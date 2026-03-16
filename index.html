@@ -3102,7 +3102,7 @@ function buildSpotlight() {
 }
 
 // ── Glossary ─────────────────────────────────────────────────
-const GLOSSARY_TERMS = [
+const GLOSSARY_TERMS_EN = [
   { term: 'Tax Lien', def: 'A legal claim placed on a property by the government when the owner fails to pay property taxes. Investors can purchase these liens and earn interest.' },
   { term: 'Tax Deed', def: 'A legal document granted to a buyer at a tax deed sale, transferring ownership of a property after the original owner failed to pay property taxes.' },
   { term: 'Redemption Period', def: 'The window of time during which a delinquent property owner can pay off their tax debt (plus interest and penalties) to reclaim their property.' },
@@ -3116,17 +3116,44 @@ const GLOSSARY_TERMS = [
   { term: 'Foreclosure', def: 'The legal process by which a tax lien investor forces the sale or transfer of a property after the redemption period expires and the lien is not paid.' },
   { term: 'Delinquent Taxes', def: 'Property taxes that have not been paid by the due date. After a set period, the county can sell the debt or the property to recover revenue.' },
   { term: 'IRS Lien', def: 'A federal tax lien placed by the Internal Revenue Service. In most states, IRS liens survive a tax deed sale and are the buyer\'s responsibility.' },
-  { term: 'HOA Super-Lien', def: 'In some states, unpaid HOA dues create a "super-lien" that has priority over even a mortgage — and may survive a tax deed sale.' },
+  { term: 'HOA Super-Lien', def: 'In some states, unpaid HOA dues create a "super-lien" that has priority over even a mortgage - and may survive a tax deed sale.' },
   { term: 'Encumbrance', def: 'Any claim, lien, or liability attached to a property that may affect the owner\'s ability to sell or transfer it.' },
-  { term: 'Due Diligence', def: 'The research an investor performs before purchasing a tax lien or deed — including title search, property condition, and survivability of liens.' },
+  { term: 'Due Diligence', def: 'The research an investor performs before purchasing a tax lien or deed - including title search, property condition, and survivability of liens.' },
   { term: 'Deed in Lieu', def: 'A transaction where a property owner transfers their deed directly to the lienholder to avoid foreclosure proceedings.' },
   { term: 'Quitclaim Deed', def: 'A deed that transfers whatever ownership interest the grantor has, without any warranty of title. Common in tax deed states.' },
   { term: 'Title Search', def: 'A review of public records to determine the legal owner of a property and identify any liens, encumbrances, or claims on the title.' },
-  { term: 'Investor Score', def: 'Aurigen\'s proprietary 0–100 score rating how investor-friendly a state is based on rate, redemption period, accessibility, competition, and OTC availability.' },
+  { term: 'Investor Score', def: 'Aurigen\'s proprietary 0-100 score rating how investor-friendly a state is based on rate, redemption period, accessibility, competition, and OTC availability.' },
 ];
 
+const GLOSSARY_TERMS_ES = [
+  { term: 'Gravamen Fiscal (Tax Lien)', def: 'Un reclamo legal sobre una propiedad por parte del gobierno cuando el propietario no paga los impuestos. Los inversores pueden comprar estos gravamenes y ganar intereses.' },
+  { term: 'Escritura Fiscal (Tax Deed)', def: 'Un documento legal otorgado a un comprador en una venta de escritura fiscal, transfiriendo la propiedad despues de que el propietario original no pagara impuestos.' },
+  { term: 'Periodo de Redencion', def: 'El periodo durante el cual un propietario moroso puede pagar su deuda fiscal (mas intereses y penalidades) para recuperar su propiedad.' },
+  { term: 'Tasa Estatutaria', def: 'La tasa de interes establecida por la ley estatal que determina cuanto gana un inversor de gravamenes fiscales. Algunos estados permiten pujar a la baja.' },
+  { term: 'Venta Directa (OTC)', def: 'Gravamenes o escrituras fiscales que no se vendieron en subasta y estan disponibles para compra directa del condado, generalmente a la tasa estatutaria completa.' },
+  { term: 'Titulo Silencioso (Quiet Title)', def: 'Un procedimiento legal usado para establecer propiedad clara resolviendo reclamos en competencia. A veces requerido despues de una compra de escritura fiscal.' },
+  { term: 'Puja Premium', def: 'Un metodo de puja donde los inversores compiten ofreciendo una cantidad mayor sobre el valor nominal del gravamen. El excedente puede o no ser devuelto.' },
+  { term: 'Puja de Tasa de Interes', def: 'Un metodo de subasta donde los inversores pujan A LA BAJA desde la tasa maxima estatutaria. El postor mas bajo gana el certificado.' },
+  { term: 'Puja Rotacional', def: 'Un sistema de asignacion justo usado en algunos condados donde los gravamenes se distribuyen a inversores registrados por rotacion a la tasa estatutaria.' },
+  { term: 'Certificado de Compra', def: 'El documento emitido a un inversor de gravamen fiscal confirmando su compra. Se mantiene hasta que sea redimido o ejecutado.' },
+  { term: 'Ejecucion Hipotecaria', def: 'El proceso legal por el cual un inversor de gravamen fiscal fuerza la venta o transferencia de una propiedad cuando expira el periodo de redencion.' },
+  { term: 'Impuestos Morosos', def: 'Impuestos de propiedad que no se han pagado en la fecha de vencimiento. Despues de un periodo, el condado puede vender la deuda o la propiedad.' },
+  { term: 'Gravamen del IRS', def: 'Un gravamen fiscal federal colocado por el Servicio de Impuestos Internos. En la mayoria de los estados, los gravamenes del IRS sobreviven una venta fiscal.' },
+  { term: 'Super-Gravamen HOA', def: 'En algunos estados, las cuotas de HOA impagas crean un "super-gravamen" que tiene prioridad incluso sobre una hipoteca - y puede sobrevivir una venta fiscal.' },
+  { term: 'Gravamen', def: 'Cualquier reclamo, carga o responsabilidad adjunta a una propiedad que puede afectar la capacidad del propietario para vender o transferir.' },
+  { term: 'Diligencia Debida', def: 'La investigacion que un inversor realiza antes de comprar un gravamen o escritura fiscal - incluyendo busqueda de titulo, condicion de la propiedad y supervivencia de gravamenes.' },
+  { term: 'Escritura en Lugar', def: 'Una transaccion donde un propietario transfiere su escritura directamente al titular del gravamen para evitar procedimientos de ejecucion.' },
+  { term: 'Escritura de Renuncia', def: 'Una escritura que transfiere cualquier interes de propiedad que tenga el otorgante, sin ninguna garantia de titulo. Comun en estados de escritura fiscal.' },
+  { term: 'Busqueda de Titulo', def: 'Una revision de registros publicos para determinar el propietario legal de una propiedad e identificar gravamenes, cargas o reclamos sobre el titulo.' },
+  { term: 'Puntaje del Inversor', def: 'El puntaje propietario de Aurigen de 0-100 que califica que tan amigable es un estado para inversores basado en tasa, periodo de redencion, accesibilidad, competencia y disponibilidad OTC.' },
+];
+
+function getGlossaryTerms() {
+  return state.lang === 'es' ? GLOSSARY_TERMS_ES : GLOSSARY_TERMS_EN;
+}
+
 function buildGlossary() {
-  renderGlossary(GLOSSARY_TERMS);
+  renderGlossary(getGlossaryTerms());
 }
 
 function renderGlossary(terms) {
@@ -3141,12 +3168,13 @@ function renderGlossary(terms) {
 }
 
 function filterGlossary(q) {
+  const terms = getGlossaryTerms();
   const filtered = q.trim()
-    ? GLOSSARY_TERMS.filter(t =>
-        t.term.toLowerCase().includes(q.toLowerCase()) ||
-        t.def.toLowerCase().includes(q.toLowerCase())
+    ? terms.filter(term =>
+        term.term.toLowerCase().includes(q.toLowerCase()) ||
+        term.def.toLowerCase().includes(q.toLowerCase())
       )
-    : GLOSSARY_TERMS;
+    : terms;
   renderGlossary(filtered);
 }
 
