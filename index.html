@@ -95,17 +95,20 @@ function loadLanguageFile(lang) {
   --red:          #e05555;
   --green:        #4caf82;
 
-  /* Map colors */
-  --map-state:    #1a1a25;
-  --map-locked:   #1e1e2c;
-  --map-hover:    #f0d060;
-  --map-label-bg: rgba(10,10,12,0.88);
-  --map-lien:     #d4b44f;
-  --map-lien-dim: #9a7f30;
-  --map-deed:     #34e0cc;
-  --map-deed-dim: #1fa08e;
-  --map-both:     #b99cff;
-  --map-both-dim: #7a5fc4;
+  /* Map colors — premium cinematic palette */
+  --map-state:    #12121c;
+  --map-locked:   #16161f;
+  --map-hover:    #e8c547;
+  --map-label-bg: rgba(255,248,230,0.92);
+  --map-lien:     #b8943a;
+  --map-lien-dim: rgba(160,128,50,0.35);
+  --map-deed:     #2a9d8f;
+  --map-deed-dim: rgba(42,157,143,0.3);
+  --map-both:     #7c5cbf;
+  --map-both-dim: rgba(124,92,191,0.3);
+  --map-lien-glow: rgba(184,148,58,0.4);
+  --map-deed-glow: rgba(42,157,143,0.35);
+  --map-both-glow: rgba(124,92,191,0.35);
 
   /* Z-index scale */
   --z-map:    10;
@@ -926,9 +929,10 @@ a { color: inherit; text-decoration: none; }
 }
 
 .map-panel-header {
-  padding: 16px 16px 12px;
+  padding: 18px 16px 14px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
+  background: rgba(255,255,255,0.015);
 }
 
 .map-panel-title {
@@ -943,28 +947,39 @@ a { color: inherit; text-decoration: none; }
   margin-top: 2px;
 }
 
-/* Map legend */
+/* Map legend — premium pills */
 .map-legend {
   display: flex;
-  gap: 12px;
-  padding: 10px 16px;
+  gap: 8px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--text-dim);
+  padding: 4px 10px 4px 8px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .legend-dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
+  box-shadow: 0 0 6px currentColor;
 }
 
 /* State list in side panel */
@@ -972,82 +987,139 @@ a { color: inherit; text-decoration: none; }
   flex: 1;
   overflow-y: auto;
   min-height: 0;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .state-list-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: all 0.2s ease;
   position: relative;
 }
 
-.state-list-item:hover { background: rgba(255,255,255,0.03); }
-.state-list-item.active { background: var(--accent-dim); }
+.state-list-item:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+.state-list-item.active {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+}
 
 .state-list-item.locked {
-  opacity: 0.6;
+  opacity: 0.5;
   user-select: none;
+}
+.state-list-item.locked:hover {
+  opacity: 0.65;
 }
 
 .state-list-badge {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  padding: 3px 8px;
+  border-radius: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   flex-shrink: 0;
+  white-space: nowrap;
 }
 
-.badge-lien { background: rgba(200,168,75,0.15); color: var(--accent); }
-.badge-deed { background: rgba(45,212,191,0.15); color: var(--teal); }
-.badge-both { background: rgba(167,139,250,0.15); color: var(--purple); }
+.badge-lien { background: rgba(184,148,58,0.15); color: var(--map-lien); border: 1px solid rgba(184,148,58,0.2); }
+.badge-deed { background: rgba(42,157,143,0.15); color: var(--map-deed); border: 1px solid rgba(42,157,143,0.2); }
+.badge-both { background: rgba(124,92,191,0.15); color: var(--map-both); border: 1px solid rgba(124,92,191,0.2); }
 
 .state-list-name {
   flex: 1;
   font-size: 13px;
   font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .state-list-meta {
   font-size: 11px;
   color: var(--text-dim);
+  line-height: 1.3;
+}
+
+.state-list-score {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-align: right;
+  min-width: 40px;
+  flex-shrink: 0;
+}
+
+.state-list-score.high-score {
+  text-shadow: 0 0 12px var(--map-lien-glow);
 }
 
 .lock-overlay-item {
-  position: absolute;
-  right: 12px;
-  font-size: 14px;
-  animation: lockPulse 2s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  font-size: 11px;
+  flex-shrink: 0;
+  opacity: 0.7;
 }
 
 @keyframes lockPulse {
   0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+  50% { opacity: 0.8; }
 }
 
-/* Map container */
+/* Map container — cinematic treatment */
 #map-container {
   flex: 1;
   min-height: 0;
   position: relative;
-  background: radial-gradient(ellipse at 50% 60%, #141420 0%, var(--bg) 100%);
+  background: radial-gradient(ellipse at 50% 50%, #151520 0%, #0c0c12 60%, var(--bg) 100%);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: inset 0 0 60px 20px rgba(0,0,0,0.5);
+}
+
+#map-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0,0,0,0.6) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 15%, transparent 85%, rgba(0,0,0,0.2) 100%);
+  z-index: 1;
 }
 
 #map-svg {
   width: 100%;
   height: 100%;
   flex: 1;
+  position: relative;
+  z-index: 0;
 }
 
 /* Map FAB replaced by toggle bar */
@@ -2365,10 +2437,10 @@ a { color: inherit; text-decoration: none; }
             <div class="map-panel-sub">Select a state to view details</div>
           </div>
           <div class="map-legend">
-            <div class="legend-item"><div class="legend-dot" style="background:var(--map-lien)"></div>Lien</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--map-deed)"></div>Deed</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--map-both)"></div>Both</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--map-lien-dim)"></div>Locked</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--map-lien);box-shadow:0 0 8px var(--map-lien-glow)"></div>Lien</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--map-deed);box-shadow:0 0 8px var(--map-deed-glow)"></div>Deed</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--map-both);box-shadow:0 0 8px var(--map-both-glow)"></div>Both</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--map-locked);border:1px solid var(--border)"></div>Locked</div>
           </div>
           <div id="state-list"></div>
         </div>
@@ -3654,6 +3726,7 @@ function buildStateList() {
     const isFree = FREE_STATES.has(s.id) || state.isPaid;
     const badgeClass = s.type === 'lien' ? 'badge-lien' : s.type === 'deed' ? 'badge-deed' : 'badge-both';
     const typeLabel = s.type === 'lien' ? t('typeLien') : s.type === 'deed' ? t('typeDeed') : t('typeBoth');
+    const scoreClass = (s.score >= 75) ? 'state-list-score high-score' : 'state-list-score';
 
     return `<div
       class="state-list-item${isFree ? '' : ' locked'}"
@@ -3661,11 +3734,11 @@ function buildStateList() {
       id="sli-${s.id}"
     >
       <div class="state-list-badge ${badgeClass}">${typeLabel}</div>
-      <div>
+      <div style="flex:1;min-width:0">
         <div class="state-list-name">${s.name}</div>
         <div class="state-list-meta">${s.rate} · ${s.redemption}</div>
       </div>
-      ${!isFree ? '<span class="lock-overlay-item">\u{1F512}</span>' : `<div class="state-list-meta" style="color:var(--accent)">${s.score}/100</div>`}
+      ${!isFree ? '<span class="lock-overlay-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>' : `<div class="${scoreClass}">${s.score}</div>`}
     </div>`;
   }).join('');
 }
@@ -3706,8 +3779,15 @@ async function initMap() {
       .attr('id', 'map-grid').attr('width', 40).attr('height', 40)
       .attr('patternUnits', 'userSpaceOnUse');
     pattern.append('path').attr('d', 'M 40 0 L 0 0 0 40')
-      .attr('fill', 'none').attr('stroke', 'rgba(255,255,255,0.025)').attr('stroke-width', 0.5);
+      .attr('fill', 'none').attr('stroke', 'rgba(255,255,255,0.018)').attr('stroke-width', 0.5);
     svg.append('rect').attr('width', w).attr('height', h).attr('fill', 'url(#map-grid)');
+
+    // Subtle glow filter for free states
+    const glowFilter = defs.append('filter').attr('id','state-glow').attr('x','-10%').attr('y','-10%').attr('width','120%').attr('height','120%');
+    glowFilter.append('feGaussianBlur').attr('in','SourceGraphic').attr('stdDeviation','2').attr('result','blur');
+    const glowMerge = glowFilter.append('feMerge');
+    glowMerge.append('feMergeNode').attr('in','blur');
+    glowMerge.append('feMergeNode').attr('in','SourceGraphic');
 
     const projection = d3.geoAlbersUsa()
       .scale(w * 1.18)
@@ -3755,8 +3835,8 @@ async function initMap() {
 
     function getOpacity(sid) {
       const s = stateMap[sid];
-      if (!s) return 0.3;
-      return (FREE_STATES.has(sid) || state.isPaid) ? 1 : 0.75;
+      if (!s) return 0.25;
+      return (FREE_STATES.has(sid) || state.isPaid) ? 1 : 0.6;
     }
 
     const features = topojson.feature(us, us.objects.states).features;
@@ -3769,10 +3849,14 @@ async function initMap() {
       .attr('class', 'state-shape')
       .attr('d', path)
       .attr('fill', d => getColor(fipsToId[String(d.id).padStart(2,'0')]))
-      .attr('stroke', mapColors.bg)
-      .attr('stroke-width', 1)
+      .attr('stroke', 'rgba(255,255,255,0.06)')
+      .attr('stroke-width', 0.5)
       .style('cursor', 'pointer')
       .style('opacity', d => getOpacity(fipsToId[String(d.id).padStart(2,'0')]))
+      .attr('filter', d => {
+        const sid = fipsToId[String(d.id).padStart(2,'0')];
+        return (FREE_STATES.has(sid) || state.isPaid) ? 'url(#state-glow)' : null;
+      })
       .on('click', (event, d) => {
         const sid = fipsToId[String(d.id).padStart(2,'0')];
         if (!sid) return;
@@ -3791,10 +3875,15 @@ async function initMap() {
     g.append('path')
       .datum(topojson.mesh(us, us.objects.states, (a,b) => a !== b))
       .attr('d', path).attr('fill','none')
-      .attr('stroke', mapColors.bg).attr('stroke-width', 0.8);
+      .attr('stroke', 'rgba(255,255,255,0.04)').attr('stroke-width', 0.5);
 
-    // State labels
+    // State labels — premium styling with drop shadow
     const TINY = new Set(['RI','DC','DE','NH','VT','MD','CT','MA','NJ']);
+
+    // Add drop shadow filter for label readability
+    const labelFilter = defs.append('filter').attr('id','label-shadow').attr('x','-20%').attr('y','-20%').attr('width','140%').attr('height','140%');
+    labelFilter.append('feDropShadow').attr('dx','0').attr('dy','1').attr('stdDeviation','1.5').attr('flood-color','rgba(0,0,0,0.8)').attr('flood-opacity','0.9');
+
     const labelG = svg.append('g').style('pointer-events','none');
 
     features.forEach(d => {
@@ -3806,22 +3895,27 @@ async function initMap() {
       const isFree = FREE_STATES.has(sid) || state.isPaid;
       const s = stateMap[sid];
       const score = (s && isFree) ? s.score : null;
-      const labelColor = isFree ? mapColors.labelBg : 'rgba(255,255,255,0.18)';
-      const fontSize = w < 500 ? '6px' : w < 800 ? '8px' : '9px';
+      const labelColor = isFree ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.3)';
+      const fontSize = w < 500 ? '7px' : w < 800 ? '9px' : '10px';
 
       labelG.append('text')
         .attr('x', c[0]).attr('y', c[1] - (score !== null ? 5 : 0))
         .attr('text-anchor','middle').attr('dominant-baseline','middle')
         .attr('font-family',"'DM Sans', sans-serif").attr('font-size', fontSize)
-        .attr('font-weight','700').attr('letter-spacing','0.05em')
-        .attr('fill', labelColor).text(sid);
+        .attr('font-weight','700').attr('letter-spacing','0.08em')
+        .attr('fill', labelColor)
+        .attr('filter', 'url(#label-shadow)')
+        .text(sid);
 
       if (score !== null && w >= 600) {
         labelG.append('text')
-          .attr('x', c[0]).attr('y', c[1] + 8)
+          .attr('x', c[0]).attr('y', c[1] + 9)
           .attr('text-anchor','middle').attr('dominant-baseline','middle')
-          .attr('font-family',"'DM Mono', monospace").attr('font-size','7px')
-          .attr('fill','rgba(10,10,12,0.65)').text(score);
+          .attr('font-family',"'DM Mono', monospace").attr('font-size','8px')
+          .attr('font-weight','500')
+          .attr('fill', 'var(--accent)')
+          .attr('filter', 'url(#label-shadow)')
+          .text(score);
       }
     });
 
@@ -4512,6 +4606,10 @@ function calcAnalyzer() {
 
 // ── Valuation Agent (Atlas) ───────────────────────────────────
 async function sendValMessage() {
+  if (!state.isPaid) {
+    appendValMsg('atlas', 'Atlas is available to full-access members. Unlock all 50 states + AI agents for just $97.');
+    return;
+  }
   if (state.valBusy) return;
   const input = document.getElementById('val-input');
   const msg = input?.value.trim();
