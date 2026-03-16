@@ -1967,28 +1967,124 @@ a { color: inherit; text-decoration: none; }
 
 <!-- ═══════════════ GATE ═══════════════ -->
 <div id="gate">
-  <div class="gate-glow"></div>
-  <div class="gate-eyebrow">Founding Member Access</div>
-  <div class="gate-logo">AURI<span>GEN</span></div>
-  <div class="gate-sub">County Resource Directory</div>
-  <div class="gate-divider"></div>
-  <button class="gate-cta" id="gate-enter-btn" onclick="handleGateEnter()">Explore the Directory</button>
-  <div class="gate-code-wrap visible" id="gate-code-wrap">
-    <input
-      class="gate-code-input"
-      id="gate-code-input"
-      type="text"
-      placeholder="Enter access code"
-      autocomplete="off"
-      autocapitalize="characters"
-    />
-    <button class="gate-code-submit" onclick="submitCode()">Unlock</button>
-    <div class="gate-code-error" id="gate-code-error"></div>
-  </div>
-  <div class="gate-disclaimer">
-    Educational research tool. Not investment advice.<br>
-    <span style="font-size:10px;cursor:pointer;color:var(--accent);text-decoration:underline;" onclick="showCodeInput()">Have an access code? Click here.</span>
-  </div>
+  <!-- Section 1: Hero -->
+  <section class="gate-hero">
+    <div class="gate-glow"></div>
+    <div class="gate-hero-content">
+      <div class="gate-eyebrow" id="gate-eyebrow">The Investor's Edge</div>
+      <div class="gate-logo">AURI<span>GEN</span></div>
+      <div class="gate-sub" id="gate-sub">County Resource Directory</div>
+      <div class="gate-tagline" id="gate-tagline">Research All 50 States. Find Your Edge in Tax Liens & Deeds.</div>
+      <div class="gate-description" id="gate-description">Auction signups, interest rates, redemption periods, county links, investor scores, and beginner tips — all in one place.</div>
+      <button class="gate-hero-cta" id="gate-enter-btn" onclick="handleGateEnter()">See What's Inside</button>
+    </div>
+    <div class="gate-scroll-indicator">
+      <span class="gate-scroll-text" id="gate-scroll-text">Scroll</span>
+      <span class="gate-scroll-chevron">&#8595;</span>
+    </div>
+  </section>
+
+  <!-- Section 2: Stats Bar -->
+  <section class="gate-stats gate-section" id="gate-stats-section">
+    <div class="gate-stats-grid">
+      <div class="gate-stat-card">
+        <div class="gate-stat-number" data-target="51">0</div>
+        <div class="gate-stat-label" id="gate-stat-label-1">States Covered</div>
+      </div>
+      <div class="gate-stat-card">
+        <div class="gate-stat-number" data-target="2800" data-suffix="+">0</div>
+        <div class="gate-stat-label" id="gate-stat-label-2">County Resources</div>
+      </div>
+      <div class="gate-stat-card">
+        <div class="gate-stat-number" data-target="7">0</div>
+        <div class="gate-stat-label" id="gate-stat-label-3">Free States to Start</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Features -->
+  <section class="gate-features gate-section">
+    <h2 class="gate-section-title" id="gate-features-title">What You Get</h2>
+    <div class="gate-features-grid">
+      <div class="gate-feature-card">
+        <div class="gate-feature-icon">&#127758;</div>
+        <div class="gate-feature-title" id="gate-feature-1-title">Interactive Map</div>
+        <div class="gate-feature-desc" id="gate-feature-1-desc">Explore all 50 states + DC with color-coded investor scores</div>
+      </div>
+      <div class="gate-feature-card">
+        <div class="gate-feature-icon">&#128221;</div>
+        <div class="gate-feature-title" id="gate-feature-2-title">Auction Signup Guides</div>
+        <div class="gate-feature-desc" id="gate-feature-2-desc">Step-by-step instructions for every state's auction platform</div>
+      </div>
+      <div class="gate-feature-card">
+        <div class="gate-feature-icon">&#127970;</div>
+        <div class="gate-feature-title" id="gate-feature-3-title">County-Level Data</div>
+        <div class="gate-feature-desc" id="gate-feature-3-desc">Direct links to county tax offices, assessors, and GIS systems</div>
+      </div>
+      <div class="gate-feature-card">
+        <div class="gate-feature-icon">&#128202;</div>
+        <div class="gate-feature-title" id="gate-feature-4-title">Deal Analyzer</div>
+        <div class="gate-feature-desc" id="gate-feature-4-desc">Calculate ROI on any tax lien or deed investment instantly</div>
+      </div>
+      <div class="gate-feature-card">
+        <div class="gate-feature-icon">&#129302;</div>
+        <div class="gate-feature-title" id="gate-feature-5-title">AI Research Advisor</div>
+        <div class="gate-feature-desc" id="gate-feature-5-desc">Ask Sage anything about tax lien and deed investing</div>
+      </div>
+      <div class="gate-feature-card">
+        <div class="gate-feature-icon">&#127793;</div>
+        <div class="gate-feature-title" id="gate-feature-6-title">Beginner Ratings</div>
+        <div class="gate-feature-desc" id="gate-feature-6-desc">Know which states are beginner-friendly and which to avoid</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Price Anchor -->
+  <section class="gate-price gate-section">
+    <div class="gate-price-community" id="gate-price-community">Join the Aurigen Collective — a growing community of tax lien & deed investors</div>
+    <div class="gate-price-display">
+      <span class="gate-price-old">$297</span>
+      <span class="gate-price-current">$97</span>
+    </div>
+    <div class="gate-price-note" id="gate-price-note">One-time · Founding Member Rate · Lifetime Access</div>
+  </section>
+
+  <!-- Section 5: Email Capture -->
+  <section class="gate-email gate-section" id="gate-email-section">
+    <h2 class="gate-email-title" id="gate-email-title">Start Free — Explore 7 States</h2>
+    <p class="gate-email-desc" id="gate-email-desc">Enter your email to unlock Florida, Illinois, Iowa, New Jersey, Georgia, Arizona, and Texas — no credit card required.</p>
+    <div class="gate-email-form">
+      <input
+        class="gate-email-input"
+        id="gate-email-input"
+        type="email"
+        placeholder="you@email.com"
+        autocomplete="email"
+      />
+      <button class="gate-email-submit" id="gate-email-submit" onclick="handleEmailGate()">Unlock Free Access</button>
+      <div class="gate-email-error" id="gate-email-error"></div>
+      <p class="gate-email-fine" id="gate-email-fine">We'll send you investor tips. Unsubscribe anytime.</p>
+    </div>
+    <div class="gate-code-toggle">
+      <span id="gate-code-toggle-text">Already have an access code?</span>
+      <button class="gate-code-toggle-link" onclick="showCodeInput()" id="gate-code-toggle-link">Enter it here</button>
+    </div>
+    <div class="gate-code-wrap" id="gate-code-wrap">
+      <input
+        class="gate-code-input"
+        id="gate-code-input"
+        type="text"
+        placeholder="Enter access code"
+        autocomplete="off"
+        autocapitalize="characters"
+      />
+      <button class="gate-code-submit" onclick="submitCode()">Unlock</button>
+      <div class="gate-code-error" id="gate-code-error"></div>
+    </div>
+    <div class="gate-disclaimer" id="gate-disclaimer">
+      Educational research tool. Not investment advice.
+    </div>
+  </section>
 </div>
 
 <!-- ═══════════════ APP ═══════════════ -->
@@ -2293,15 +2389,47 @@ const FREE_STATES = new Set(['FL', 'IL', 'IA', 'NJ', 'GA', 'AZ', 'TX']);
 // ── i18n Strings ─────────────────────────────────────────────
 const I18N = {
   en: {
-    // Gate
-    gateEyebrow: 'Founding Member Access',
+    // Gate - Hero
+    gateEyebrow: "The Investor's Edge",
     gateLogo: 'AURI<span>GEN</span>',
     gateSub: 'County Resource Directory',
-    gateCta: 'Explore the Directory',
+    gateTagline: 'Research All 50 States. Find Your Edge in Tax Liens & Deeds.',
+    gateDescription: 'Auction signups, interest rates, redemption periods, county links, investor scores, and beginner tips — all in one place.',
+    gateCta: "See What's Inside",
+    gateScrollText: 'Scroll',
+    // Gate - Stats
+    gateStatLabel1: 'States Covered',
+    gateStatLabel2: 'County Resources',
+    gateStatLabel3: 'Free States to Start',
+    // Gate - Features
+    gateFeaturesTitle: 'What You Get',
+    gateFeature1Title: 'Interactive Map',
+    gateFeature1Desc: 'Explore all 50 states + DC with color-coded investor scores',
+    gateFeature2Title: 'Auction Signup Guides',
+    gateFeature2Desc: "Step-by-step instructions for every state's auction platform",
+    gateFeature3Title: 'County-Level Data',
+    gateFeature3Desc: 'Direct links to county tax offices, assessors, and GIS systems',
+    gateFeature4Title: 'Deal Analyzer',
+    gateFeature4Desc: 'Calculate ROI on any tax lien or deed investment instantly',
+    gateFeature5Title: 'AI Research Advisor',
+    gateFeature5Desc: 'Ask Sage anything about tax lien and deed investing',
+    gateFeature6Title: 'Beginner Ratings',
+    gateFeature6Desc: 'Know which states are beginner-friendly and which to avoid',
+    // Gate - Price
+    gatePriceCommunity: 'Join the Aurigen Collective — a growing community of tax lien & deed investors',
+    gatePriceNote: 'One-time · Founding Member Rate · Lifetime Access',
+    // Gate - Email
+    gateEmailTitle: 'Start Free — Explore 7 States',
+    gateEmailDesc: 'Enter your email to unlock Florida, Illinois, Iowa, New Jersey, Georgia, Arizona, and Texas — no credit card required.',
+    gateEmailPlaceholder: 'you@email.com',
+    gateEmailSubmit: 'Unlock Free Access',
+    gateEmailFine: "We'll send you investor tips. Unsubscribe anytime.",
+    gateEmailError: 'Please enter a valid email address.',
+    gateCodeToggleText: 'Already have an access code?',
+    gateCodeToggleLink: 'Enter it here',
     gateCodePlaceholder: 'Enter access code',
     gateCodeSubmit: 'Unlock',
     gateDisclaimer: 'Educational research tool. Not investment advice.',
-    gateCodeLink: 'Have an access code? Click here.',
     gateCodeError: "That code didn't match — contact support@theaurigen.com",
     gateConnectionError: 'Connection error - please try again.',
     // Nav
@@ -2449,16 +2577,48 @@ const I18N = {
     langToggle: 'EN'
   },
   es: {
-    // Gate
-    gateEyebrow: 'Acceso Miembro Fundador',
+    // Gate - Hero
+    gateEyebrow: 'La Ventaja del Inversor',
     gateLogo: 'AURI<span>GEN</span>',
     gateSub: 'Directorio de Recursos por Condado',
-    gateCta: 'Explorar el Directorio',
+    gateTagline: 'Investiga los 50 Estados. Encuentra tu Ventaja en Gravamenes y Escrituras Fiscales.',
+    gateDescription: 'Registro de subastas, tasas de interes, periodos de redencion, enlaces de condados, puntajes de inversor y consejos para principiantes — todo en un solo lugar.',
+    gateCta: 'Ver el Contenido',
+    gateScrollText: 'Desplazar',
+    // Gate - Stats
+    gateStatLabel1: 'Estados Cubiertos',
+    gateStatLabel2: 'Recursos de Condados',
+    gateStatLabel3: 'Estados Gratis para Empezar',
+    // Gate - Features
+    gateFeaturesTitle: 'Lo Que Obtienes',
+    gateFeature1Title: 'Mapa Interactivo',
+    gateFeature1Desc: 'Explora los 50 estados + DC con puntajes de inversor codificados por color',
+    gateFeature2Title: 'Guias de Registro de Subastas',
+    gateFeature2Desc: 'Instrucciones paso a paso para la plataforma de subastas de cada estado',
+    gateFeature3Title: 'Datos a Nivel de Condado',
+    gateFeature3Desc: 'Enlaces directos a oficinas de impuestos, asesores y sistemas GIS del condado',
+    gateFeature4Title: 'Analizador de Operaciones',
+    gateFeature4Desc: 'Calcula el ROI de cualquier inversion en gravamenes o escrituras fiscales al instante',
+    gateFeature5Title: 'Asesor de Investigacion IA',
+    gateFeature5Desc: 'Pregunta a Sage cualquier cosa sobre inversion en gravamenes y escrituras fiscales',
+    gateFeature6Title: 'Calificaciones para Principiantes',
+    gateFeature6Desc: 'Conoce cuales estados son aptos para principiantes y cuales evitar',
+    // Gate - Price
+    gatePriceCommunity: 'Unete al Colectivo Aurigen — una comunidad creciente de inversores en gravamenes y escrituras fiscales',
+    gatePriceNote: 'Pago Unico · Tarifa de Miembro Fundador · Acceso de por Vida',
+    // Gate - Email
+    gateEmailTitle: 'Comienza Gratis — Explora 7 Estados',
+    gateEmailDesc: 'Ingresa tu correo para desbloquear Florida, Illinois, Iowa, New Jersey, Georgia, Arizona y Texas — sin tarjeta de credito.',
+    gateEmailPlaceholder: 'tu@correo.com',
+    gateEmailSubmit: 'Desbloquear Acceso Gratis',
+    gateEmailFine: 'Te enviaremos consejos de inversion. Cancela cuando quieras.',
+    gateEmailError: 'Por favor ingresa un correo valido.',
+    gateCodeToggleText: 'Ya tienes un codigo de acceso?',
+    gateCodeToggleLink: 'Ingresalo aqui',
     gateCodePlaceholder: 'Ingrese codigo de acceso',
     gateCodeSubmit: 'Desbloquear',
     gateDisclaimer: 'Herramienta educativa. No es asesoramiento de inversiones.',
-    gateCodeLink: 'Tiene un codigo de acceso? Haga clic aqui.',
-    gateCodeError: 'Ese código no coincide — contacte a support@theaurigen.com',
+    gateCodeError: 'Ese codigo no coincide — contacte a support@theaurigen.com',
     gateConnectionError: 'Error de conexion - intente de nuevo.',
     // Nav
     navMap: 'Mapa',
@@ -2696,23 +2856,69 @@ function applyLanguage() {
 }
 
 function updateGateStrings() {
-  const eyebrow = document.querySelector('.gate-eyebrow');
+  // Hero section
+  const eyebrow = document.getElementById('gate-eyebrow');
   const logo = document.querySelector('.gate-logo');
-  const sub = document.querySelector('.gate-sub');
+  const sub = document.getElementById('gate-sub');
+  const tagline = document.getElementById('gate-tagline');
+  const description = document.getElementById('gate-description');
   const cta = document.getElementById('gate-enter-btn');
-  const codeInput = document.getElementById('gate-code-input');
-  const codeSubmit = document.querySelector('.gate-code-submit');
-  const disclaimer = document.querySelector('.gate-disclaimer');
+  const scrollText = document.getElementById('gate-scroll-text');
 
   if (eyebrow) eyebrow.textContent = t('gateEyebrow');
   if (logo) logo.innerHTML = t('gateLogo');
   if (sub) sub.textContent = t('gateSub');
+  if (tagline) tagline.textContent = t('gateTagline');
+  if (description) description.textContent = t('gateDescription');
   if (cta) cta.textContent = t('gateCta');
+  if (scrollText) scrollText.textContent = t('gateScrollText');
+
+  // Stats section
+  const statLabel1 = document.getElementById('gate-stat-label-1');
+  const statLabel2 = document.getElementById('gate-stat-label-2');
+  const statLabel3 = document.getElementById('gate-stat-label-3');
+  if (statLabel1) statLabel1.textContent = t('gateStatLabel1');
+  if (statLabel2) statLabel2.textContent = t('gateStatLabel2');
+  if (statLabel3) statLabel3.textContent = t('gateStatLabel3');
+
+  // Features section
+  const featuresTitle = document.getElementById('gate-features-title');
+  if (featuresTitle) featuresTitle.textContent = t('gateFeaturesTitle');
+  for (let i = 1; i <= 6; i++) {
+    const title = document.getElementById(`gate-feature-${i}-title`);
+    const desc = document.getElementById(`gate-feature-${i}-desc`);
+    if (title) title.textContent = t(`gateFeature${i}Title`);
+    if (desc) desc.textContent = t(`gateFeature${i}Desc`);
+  }
+
+  // Price section
+  const priceCommunity = document.getElementById('gate-price-community');
+  const priceNote = document.getElementById('gate-price-note');
+  if (priceCommunity) priceCommunity.textContent = t('gatePriceCommunity');
+  if (priceNote) priceNote.textContent = t('gatePriceNote');
+
+  // Email section
+  const emailTitle = document.getElementById('gate-email-title');
+  const emailDesc = document.getElementById('gate-email-desc');
+  const emailInput = document.getElementById('gate-email-input');
+  const emailSubmit = document.getElementById('gate-email-submit');
+  const emailFine = document.getElementById('gate-email-fine');
+  const codeToggleText = document.getElementById('gate-code-toggle-text');
+  const codeToggleLink = document.getElementById('gate-code-toggle-link');
+  const codeInput = document.getElementById('gate-code-input');
+  const codeSubmit = document.querySelector('.gate-code-submit');
+  const disclaimer = document.getElementById('gate-disclaimer');
+
+  if (emailTitle) emailTitle.textContent = t('gateEmailTitle');
+  if (emailDesc) emailDesc.textContent = t('gateEmailDesc');
+  if (emailInput) emailInput.placeholder = t('gateEmailPlaceholder');
+  if (emailSubmit) emailSubmit.textContent = t('gateEmailSubmit');
+  if (emailFine) emailFine.textContent = t('gateEmailFine');
+  if (codeToggleText) codeToggleText.textContent = t('gateCodeToggleText');
+  if (codeToggleLink) codeToggleLink.textContent = t('gateCodeToggleLink');
   if (codeInput) codeInput.placeholder = t('gateCodePlaceholder');
   if (codeSubmit) codeSubmit.textContent = t('gateCodeSubmit');
-  if (disclaimer) {
-    disclaimer.innerHTML = `${t('gateDisclaimer')}<br><span style="font-size:10px;cursor:pointer;color:var(--accent);text-decoration:underline;" onclick="showCodeInput()">${t('gateCodeLink')}</span>`;
-  }
+  if (disclaimer) disclaimer.textContent = t('gateDisclaimer');
 }
 
 function updateNavStrings() {
@@ -2915,7 +3121,8 @@ window.addEventListener('load', async () => {
     if (state.entered) {
       enterApp(false);
     } else {
-      // Gate visible — do nothing, gate is default visible
+      // Gate visible — initialize gate animations
+      animateGateStats();
     }
 
     updateDebug();
@@ -2927,15 +3134,58 @@ window.addEventListener('load', async () => {
 
 // ── Gate ─────────────────────────────────────────────────────
 function handleGateEnter() {
-  // Gate is free to enter — preview states visible to all
-  // isPaid unlocks all 50 states
+  // Scroll to email capture section
+  const emailSection = document.getElementById('gate-email-section');
+  if (emailSection) {
+    emailSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function handleEmailGate() {
+  const input = document.getElementById('gate-email-input');
+  const errorEl = document.getElementById('gate-email-error');
+  const submitBtn = document.getElementById('gate-email-submit');
+  const email = input ? input.value.trim() : '';
+
+  // Basic email regex validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    if (input) input.classList.add('error');
+    if (errorEl) {
+      errorEl.textContent = t('gateEmailError');
+      errorEl.classList.add('show');
+    }
+    setTimeout(() => {
+      if (input) input.classList.remove('error');
+    }, 400);
+    return;
+  }
+
+  // Store email in localStorage (null-safe)
+  try {
+    localStorage.setItem('aug_email', email);
+  } catch(e) {
+    console.warn('Could not store email:', e);
+  }
+
+  // Clear error if any
+  if (errorEl) errorEl.classList.remove('show');
+
+  // Disable button during transition
+  if (submitBtn) submitBtn.disabled = true;
+
+  // Enter the app with free access (7 states)
   enterApp(true);
 }
 
 function showCodeInput() {
   const wrap = document.getElementById('gate-code-wrap');
-  wrap.classList.add('visible');
-  document.getElementById('gate-code-input').focus();
+  if (wrap) {
+    wrap.classList.add('visible');
+    const input = document.getElementById('gate-code-input');
+    if (input) input.focus();
+  }
   state.mobileCodeVisible = true;
 }
 
@@ -2948,6 +3198,53 @@ function setupMobileCodeTrigger() {
     if (typed.length > 7) typed = typed.slice(-7);
     if (typed === 'aurigen') showCodeInput();
   });
+}
+
+// Animate gate stats when scrolled into view
+function animateGateStats() {
+  const statsSection = document.getElementById('gate-stats-section');
+  if (!statsSection) return;
+
+  let animated = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !animated) {
+        animated = true;
+        const statNumbers = statsSection.querySelectorAll('.gate-stat-number');
+        statNumbers.forEach(el => {
+          const target = parseInt(el.dataset.target, 10) || 0;
+          const suffix = el.dataset.suffix || '';
+          animateNumber(el, target, suffix, 1500);
+        });
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(statsSection);
+}
+
+function animateNumber(el, target, suffix, duration) {
+  const startTime = performance.now();
+  const startValue = 0;
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+
+    // Ease out quad
+    const easeProgress = 1 - (1 - progress) * (1 - progress);
+    const currentValue = Math.round(startValue + (target - startValue) * easeProgress);
+
+    el.textContent = currentValue.toLocaleString() + suffix;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+
+  requestAnimationFrame(update);
 }
 
 async function submitCode() {
@@ -3012,10 +3309,13 @@ async function submitCode() {
   }
 }
 
-// Allow Enter key on code input
+// Allow Enter key on gate inputs
 document.addEventListener('DOMContentLoaded', () => {
-  const ci = document.getElementById('gate-code-input');
-  if (ci) ci.addEventListener('keydown', e => { if (e.key === 'Enter') submitCode(); });
+  const codeInput = document.getElementById('gate-code-input');
+  if (codeInput) codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') submitCode(); });
+
+  const emailInput = document.getElementById('gate-email-input');
+  if (emailInput) emailInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleEmailGate(); });
 });
 
 function enterApp(animate) {
