@@ -2409,7 +2409,7 @@ a { color: inherit; text-decoration: none; }
                   <input class="field-input" id="az-price" type="number" min="0" placeholder="10000" oninput="calcAnalyzer()">
                 </div>
                 <div class="field-group">
-                  <div class="field-label">Annual Interest Rate (%)</div>
+                  <div class="field-label">Annual Interest Rate (%) <span style="color:var(--text-muted);font-size:10px;font-weight:400;">IL = 36% (18%/6mo), TX = use Penalty field</span></div>
                   <input class="field-input" id="az-rate" type="number" min="0" max="100" placeholder="18" oninput="calcAnalyzer()">
                 </div>
                 <div class="field-group">
@@ -4511,7 +4511,7 @@ function calcAnalyzer() {
   const totalReturn = price + interest + penaltyEarned;
   const netReturn = totalReturn - totalCosts;
   const roi = totalCosts > 0 ? (netReturn / totalCosts) * 100 : 0;
-  const annualizedROI = months > 0 ? (roi / months) * 12 : 0;
+  const annualizedROI = months > 0 ? (Math.pow(1 + roi / 100, 12 / months) - 1) * 100 : 0;
 
   const fmt = n => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
   const fmtPct = n => n.toFixed(1) + '%';
