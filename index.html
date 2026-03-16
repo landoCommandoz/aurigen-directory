@@ -216,20 +216,21 @@ a { color: inherit; text-decoration: none; }
 }
 
 .gate-eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-size: 12px;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  font-weight: 600;
   opacity: 0;
   animation: fadeUp 0.6s 0.2s ease forwards;
 }
 
 .gate-logo {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(52px, 12vw, 88px);
-  letter-spacing: 0.1em;
-  line-height: 0.9;
+  font-size: clamp(56px, 14vw, 96px);
+  letter-spacing: 0.15em;
+  line-height: 0.95;
   color: var(--text);
   opacity: 0;
   animation: fadeUp 0.6s 0.35s ease forwards;
@@ -239,10 +240,11 @@ a { color: inherit; text-decoration: none; }
 
 .gate-sub {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(14px, 3vw, 18px);
+  font-size: clamp(15px, 3vw, 20px);
   color: var(--text-dim);
-  margin-top: 12px;
+  margin-top: 14px;
   font-style: italic;
+  letter-spacing: 0.08em;
   opacity: 0;
   animation: fadeUp 0.6s 0.5s ease forwards;
 }
@@ -713,6 +715,14 @@ a { color: inherit; text-decoration: none; }
   font-size: 20px;
   line-height: 1;
   transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-icon svg {
+  width: 22px;
+  height: 22px;
 }
 
 .nav-item.active .nav-icon { transform: scale(1.15); }
@@ -728,6 +738,51 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 375px) {
   .nav-label { display: none; }
   #bottom-nav { height: 56px; }
+}
+
+/* ═══════════════════════════════════════════════
+   TOOLS / ACCOUNT SUB-TABS
+═══════════════════════════════════════════════ */
+.tools-tabs {
+  display: flex;
+  gap: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  background: var(--bg2);
+}
+
+.tools-tab {
+  flex: 1;
+  padding: 12px 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tools-tab:hover { color: var(--text-dim); }
+.tools-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.tools-panel {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tools-panel.active {
+  display: flex;
 }
 
 /* ═══════════════════════════════════════════════
@@ -928,9 +983,8 @@ a { color: inherit; text-decoration: none; }
 .state-list-item.active { background: var(--accent-dim); }
 
 .state-list-item.locked {
-  filter: blur(3px);
+  opacity: 0.6;
   user-select: none;
-  pointer-events: none;
 }
 
 .state-list-badge {
@@ -2133,88 +2187,111 @@ a { color: inherit; text-decoration: none; }
       </div><!-- end map-body -->
     </div>
 
-    <!-- DEAL ANALYZER VIEW -->
-    <div id="view-analyzer" class="view">
-      <div class="view-header">
-        <div class="view-title">Deal Analyzer</div>
-        <div class="view-sub">Calculate return on any tax lien or deed investment</div>
+    <!-- TOOLS VIEW (Analyzer + Legal + Glossary) -->
+    <div id="view-tools" class="view">
+      <div class="tools-tabs">
+        <button class="tools-tab active" onclick="switchToolsTab('analyzer', this)">Analyzer</button>
+        <button class="tools-tab" onclick="switchToolsTab('legal', this)">Legal</button>
+        <button class="tools-tab" onclick="switchToolsTab('glossary', this)">Glossary</button>
       </div>
-      <div class="scroll-body">
-        <div class="analyzer-grid">
-          <div>
-            <div class="analyzer-card">
-              <div class="analyzer-card-title">Inputs</div>
-              <div class="field-group">
-                <div class="field-label">Investment Type</div>
-                <select class="field-select" id="az-type" onchange="calcAnalyzer()">
-                  <option value="lien">Tax Lien</option>
-                  <option value="deed">Tax Deed</option>
-                </select>
-              </div>
-              <div class="field-group">
-                <div class="field-label">Purchase Price / Lien Amount ($)</div>
-                <input class="field-input" id="az-price" type="number" placeholder="10000" oninput="calcAnalyzer()">
-              </div>
-              <div class="field-group">
-                <div class="field-label">Annual Interest Rate (%)</div>
-                <input class="field-input" id="az-rate" type="number" placeholder="18" oninput="calcAnalyzer()">
-              </div>
-              <div class="field-group">
-                <div class="field-label">Hold Period (months)</div>
-                <input class="field-input" id="az-months" type="number" placeholder="24" oninput="calcAnalyzer()">
-              </div>
-              <div class="field-group" id="az-arv-group">
-                <div class="field-label">Estimated Property ARV ($) <span style="color:var(--text-muted)">(deed only)</span></div>
-                <input class="field-input" id="az-arv" type="number" placeholder="85000" oninput="calcAnalyzer()">
-              </div>
-              <div class="field-group">
-                <div class="field-label">Additional Costs ($) <span style="color:var(--text-muted)">(legal, title, etc.)</span></div>
-                <input class="field-input" id="az-costs" type="number" placeholder="500" oninput="calcAnalyzer()">
-              </div>
-              <div class="field-group">
-                <div class="field-label">Penalty / Bonus Rate (%)</div>
-                <input class="field-input" id="az-penalty" type="number" placeholder="0" oninput="calcAnalyzer()">
-              </div>
-            </div>
-          </div>
 
-          <div>
-            <div class="analyzer-card">
-              <div class="analyzer-card-title">Results</div>
-              <div class="result-display">
-                <div class="result-label">Total Return</div>
-                <div class="result-value" id="az-return">—</div>
-                <div class="result-sub" id="az-return-sub"></div>
+      <!-- Analyzer Sub-view -->
+      <div class="tools-panel active" id="tools-analyzer">
+        <div class="scroll-body">
+          <div class="analyzer-grid">
+            <div>
+              <div class="analyzer-card">
+                <div class="analyzer-card-title">Inputs</div>
+                <div class="field-group">
+                  <div class="field-label">Investment Type</div>
+                  <select class="field-select" id="az-type" onchange="calcAnalyzer()">
+                    <option value="lien">Tax Lien</option>
+                    <option value="deed">Tax Deed</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <div class="field-label">Purchase Price / Lien Amount ($)</div>
+                  <input class="field-input" id="az-price" type="number" placeholder="10000" oninput="calcAnalyzer()">
+                </div>
+                <div class="field-group">
+                  <div class="field-label">Annual Interest Rate (%)</div>
+                  <input class="field-input" id="az-rate" type="number" placeholder="18" oninput="calcAnalyzer()">
+                </div>
+                <div class="field-group">
+                  <div class="field-label">Hold Period (months)</div>
+                  <input class="field-input" id="az-months" type="number" placeholder="24" oninput="calcAnalyzer()">
+                </div>
+                <div class="field-group" id="az-arv-group">
+                  <div class="field-label">Estimated Property ARV ($) <span style="color:var(--text-muted)">(deed only)</span></div>
+                  <input class="field-input" id="az-arv" type="number" placeholder="85000" oninput="calcAnalyzer()">
+                </div>
+                <div class="field-group">
+                  <div class="field-label">Additional Costs ($) <span style="color:var(--text-muted)">(legal, title, etc.)</span></div>
+                  <input class="field-input" id="az-costs" type="number" placeholder="500" oninput="calcAnalyzer()">
+                </div>
+                <div class="field-group">
+                  <div class="field-label">Penalty / Bonus Rate (%)</div>
+                  <input class="field-input" id="az-penalty" type="number" placeholder="0" oninput="calcAnalyzer()">
+                </div>
               </div>
-              <div class="results-grid">
+            </div>
+
+            <div>
+              <div class="analyzer-card">
+                <div class="analyzer-card-title">Results</div>
                 <div class="result-display">
-                  <div class="result-label">ROI</div>
-                  <div class="result-value" id="az-roi" style="font-size:24px">—</div>
+                  <div class="result-label">Total Return</div>
+                  <div class="result-value" id="az-return">—</div>
+                  <div class="result-sub" id="az-return-sub"></div>
                 </div>
-                <div class="result-display">
-                  <div class="result-label">Annualized</div>
-                  <div class="result-value" id="az-annualized" style="font-size:24px">—</div>
+                <div class="results-grid">
+                  <div class="result-display">
+                    <div class="result-label">ROI</div>
+                    <div class="result-value" id="az-roi" style="font-size:24px">—</div>
+                  </div>
+                  <div class="result-display">
+                    <div class="result-label">Annualized</div>
+                    <div class="result-value" id="az-annualized" style="font-size:24px">—</div>
+                  </div>
+                  <div class="result-display">
+                    <div class="result-label">Interest Earned</div>
+                    <div class="result-value" id="az-interest" style="font-size:20px">—</div>
+                  </div>
+                  <div class="result-display">
+                    <div class="result-label">Total Costs</div>
+                    <div class="result-value" id="az-total-costs" style="font-size:20px">—</div>
+                  </div>
                 </div>
-                <div class="result-display">
-                  <div class="result-label">Interest Earned</div>
-                  <div class="result-value" id="az-interest" style="font-size:20px">—</div>
+                <div id="az-deed-results" style="display:none;margin-top:10px;">
+                  <div class="result-display">
+                    <div class="result-label">Equity if Redeemed at ARV</div>
+                    <div class="result-value" id="az-equity" style="font-size:22px">—</div>
+                  </div>
                 </div>
-                <div class="result-display">
-                  <div class="result-label">Total Costs</div>
-                  <div class="result-value" id="az-total-costs" style="font-size:20px">—</div>
+                <div style="margin-top:16px;padding:12px;background:var(--bg2);border-radius:8px;font-size:11px;color:var(--text-muted);line-height:1.6;">
+                  Educational estimate only. Results are not guaranteed. Verify statutory rates with official county sources before transacting.
                 </div>
-              </div>
-              <div id="az-deed-results" style="display:none;margin-top:10px;">
-                <div class="result-display">
-                  <div class="result-label">Equity if Redeemed at ARV</div>
-                  <div class="result-value" id="az-equity" style="font-size:22px">—</div>
-                </div>
-              </div>
-              <div style="margin-top:16px;padding:12px;background:var(--bg2);border-radius:8px;font-size:11px;color:var(--text-muted);line-height:1.6;">
-                Educational estimate only. Results are not guaranteed. Verify statutory rates with official county sources before transacting.
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Legal Sub-view -->
+      <div class="tools-panel" id="tools-legal">
+        <div class="scroll-body">
+          <div class="legal-disclaimer-banner">
+            This library is for educational purposes only and does not constitute legal advice. Always consult a licensed attorney before making legal or investment decisions.
+          </div>
+          <div id="legal-cards"></div>
+        </div>
+      </div>
+
+      <!-- Glossary Sub-view -->
+      <div class="tools-panel" id="tools-glossary">
+        <div class="scroll-body">
+          <input class="glossary-search" id="glossary-search" placeholder="Search terms..." oninput="filterGlossary(this.value)">
+          <div id="glossary-list"></div>
         </div>
       </div>
     </div>
@@ -2246,61 +2323,35 @@ a { color: inherit; text-decoration: none; }
       </div>
     </div>
 
-    <!-- LEGAL LIBRARY VIEW -->
-    <div id="view-legal" class="view">
-      <div class="view-header">
-        <div class="view-title">Legal Library</div>
-        <div class="view-sub">State statutes, plain English</div>
+    <!-- ACCOUNT VIEW (Profile + Saved) -->
+    <div id="view-account" class="view">
+      <div class="tools-tabs">
+        <button class="tools-tab active" onclick="switchToolsTab('profile', this)">Profile</button>
+        <button class="tools-tab" onclick="switchToolsTab('saved', this)">Saved</button>
       </div>
-      <div class="scroll-body">
-        <div class="legal-disclaimer-banner">
-          This library is for educational purposes only and does not constitute legal advice. Always consult a licensed attorney before making legal or investment decisions.
-        </div>
-        <div id="legal-cards"></div>
-      </div>
-    </div>
 
-    <!-- GLOSSARY VIEW -->
-    <div id="view-glossary" class="view">
-      <div class="view-header">
-        <div class="view-title">Glossary</div>
-        <div class="view-sub">Key terms, plain English</div>
+      <!-- Profile Sub-view -->
+      <div class="tools-panel active" id="tools-profile">
+        <div class="scroll-body">
+          <div class="profile-section">
+            <div class="profile-section-title">Investment Strategy</div>
+            <div id="profile-strategy-tags"></div>
+          </div>
+          <div class="profile-section">
+            <div class="profile-section-title">Recommended States</div>
+            <div id="profile-recs"></div>
+          </div>
+          <div class="profile-section" style="font-size:11px;color:var(--text-muted);line-height:1.6;">
+            Recommendations are based on publicly available state data for educational reference only. Not investment advice. Verify all data with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.
+          </div>
+        </div>
       </div>
-      <div class="scroll-body">
-        <input class="glossary-search" id="glossary-search" placeholder="Search terms..." oninput="filterGlossary(this.value)">
-        <div id="glossary-list"></div>
-      </div>
-    </div>
 
-    <!-- PROFILE VIEW -->
-    <div id="view-profile" class="view">
-      <div class="view-header">
-        <div class="view-title">Investor Profile</div>
-        <div class="view-sub">Your strategy, your recommendations</div>
-      </div>
-      <div class="scroll-body">
-        <div class="profile-section">
-          <div class="profile-section-title">Investment Strategy</div>
-          <div id="profile-strategy-tags"></div>
+      <!-- Saved Sub-view -->
+      <div class="tools-panel" id="tools-saved">
+        <div class="scroll-body">
+          <div id="saved-list"></div>
         </div>
-        <div class="profile-section">
-          <div class="profile-section-title">Recommended States</div>
-          <div id="profile-recs"></div>
-        </div>
-        <div class="profile-section" style="font-size:11px;color:var(--text-muted);line-height:1.6;">
-          Recommendations are based on publicly available state data for educational reference only. Not investment advice. Verify all data with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.
-        </div>
-      </div>
-    </div>
-
-    <!-- SAVED VIEW -->
-    <div id="view-saved" class="view">
-      <div class="view-header">
-        <div class="view-title">Saved States</div>
-        <div class="view-sub">Your research watchlist</div>
-      </div>
-      <div class="scroll-body">
-        <div id="saved-list"></div>
       </div>
     </div>
 
@@ -2325,32 +2376,28 @@ a { color: inherit; text-decoration: none; }
   <!-- BOTTOM NAV -->
   <nav id="bottom-nav">
     <button class="nav-item active" data-tab="map" onclick="navigate('map')">
-      <span class="nav-icon">🗺</span>
-      <span class="nav-label">Map</span>
+      <span class="nav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </span>
+      <span class="nav-label">Explore</span>
     </button>
-    <button class="nav-item" data-tab="analyzer" onclick="navigate('analyzer')">
-      <span class="nav-icon">📊</span>
-      <span class="nav-label">Analyze</span>
+    <button class="nav-item" data-tab="tools" onclick="navigate('tools')">
+      <span class="nav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </span>
+      <span class="nav-label">Tools</span>
     </button>
     <button class="nav-item" data-tab="advisor" onclick="navigate('advisor')">
-      <span class="nav-icon">🤖</span>
+      <span class="nav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </span>
       <span class="nav-label">Advisor</span>
     </button>
-    <button class="nav-item" data-tab="legal" onclick="navigate('legal')">
-      <span class="nav-icon">⚖️</span>
-      <span class="nav-label">Legal</span>
-    </button>
-    <button class="nav-item" data-tab="glossary" onclick="navigate('glossary')">
-      <span class="nav-icon">📖</span>
-      <span class="nav-label">Glossary</span>
-    </button>
-    <button class="nav-item" data-tab="profile" onclick="navigate('profile')">
-      <span class="nav-icon">👤</span>
-      <span class="nav-label">Profile</span>
-    </button>
-    <button class="nav-item" data-tab="saved" onclick="navigate('saved')">
-      <span class="nav-icon">🔖</span>
-      <span class="nav-label">Saved</span>
+    <button class="nav-item" data-tab="account" onclick="navigate('account')">
+      <span class="nav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </span>
+      <span class="nav-label">Account</span>
     </button>
   </nav>
 
@@ -3355,8 +3402,7 @@ function navigate(tab, animate = true) {
   });
 
   // Tab-specific actions
-  if (tab === 'saved') buildSaved();
-  if (tab === 'profile') buildProfileRecs();
+  if (tab === 'account') { buildSaved(); buildProfileRecs(); }
   if (tab === 'map' && state.mapReady) {
     const svg = d3.select('#map-svg');
     const container = document.getElementById('map-container');
@@ -3368,6 +3414,19 @@ function navigate(tab, animate = true) {
   }
 
   updateDebug();
+}
+
+// ── Tools / Account Sub-tab Switch ──────────────────────────
+function switchToolsTab(panel, btn) {
+  const parent = btn.closest('.view');
+  if (!parent) return;
+  parent.querySelectorAll('.tools-tab').forEach(t => t.classList.remove('active'));
+  parent.querySelectorAll('.tools-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  const target = document.getElementById('tools-' + panel);
+  if (target) target.classList.add('active');
+  if (panel === 'saved') buildSaved();
+  if (panel === 'profile') buildProfileRecs();
 }
 
 // ── State List ───────────────────────────────────────────────
@@ -3471,15 +3530,15 @@ async function initMap() {
     function getColor(sid) {
       const s = stateMap[sid];
       if (!s) return mapColors.state;
-      const isFree = FREE_STATES.has(sid) || state.isPaid;
-      if (!isFree) return mapColors.locked;
       if (s.type === 'lien') return mapColors.accent;
       if (s.type === 'deed') return mapColors.teal;
       return mapColors.purple;
     }
 
     function getOpacity(sid) {
-      return (FREE_STATES.has(sid) || state.isPaid) ? 0.9 : 0.3;
+      const s = stateMap[sid];
+      if (!s) return 0.3;
+      return (FREE_STATES.has(sid) || state.isPaid) ? 0.9 : 0.55;
     }
 
     const features = topojson.feature(us, us.objects.states).features;
@@ -3503,8 +3562,7 @@ async function initMap() {
       })
       .on('mouseenter', function(event, d) {
         const sid = fipsToId[String(d.id).padStart(2,'0')];
-        if (FREE_STATES.has(sid) || state.isPaid)
-          d3.select(this).attr('fill', mapColors.hover).style('opacity', 1);
+        if (sid) d3.select(this).attr('fill', mapColors.hover).style('opacity', 1);
       })
       .on('mouseleave', function(event, d) {
         const sid = fipsToId[String(d.id).padStart(2,'0')];
