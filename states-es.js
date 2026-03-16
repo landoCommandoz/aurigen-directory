@@ -125,7 +125,7 @@ var STATES_ES = [
     counties:[{name:"Miami-Dade",link:"https://www.miamidade.gov/taxcollector/",notes:"El más grande de FL. Tasas pujadas al 0–1%. No para principiantes."},{name:"Broward",link:"https://www.broward.org/TaxCollector/",notes:"Alta competencia. Igual que Miami-Dade."},{name:"Citrus",link:"https://www.citrusclerk.org",notes:"Menor competencia. Bueno para principiantes."},{name:"Hernando",link:"https://hernandoclerk.com/",notes:"Menor competencia. Apto para principiantes."},{name:"Orange",link:"https://www.occompt.com",notes:"Competencia moderada. Buen inventario."}]
   },
   {
-    id:"GA",name:"Georgia",type:"hybrid",rate:"20% año1 + 10%/año después",redemption:"1 año",score:71,beginnerFriendly:true,
+    id:"GA",name:"Georgia",type:"redeemable deed",rate:"20% año1 + 10%/año después",redemption:"1 año",score:71,beginnerFriendly:true,
     scoreWhy:"Subastas mensuales cada primer martes, fuerte estructura de penalización y flujo constante hacen de Georgia un estado excelente para inversores activos.",
     note:"Georgia es un estado de escritura redimible. El inversor recibe la escritura fiscal en subasta pero el propietario retiene 1 año de redención. Costo de redención = precio de puja + 20% (año 1) + 10% por año adicional. Estatuto: OCGA §48-4-1.",
     auctionSignup:{platform:"Secretario del Tribunal Superior del Condado (en persona, primer martes de cada mes)",steps:["Encuentre el Secretario del Tribunal Superior de su condado en gsccca.org","Contacte la oficina al menos 2 semanas antes del primer martes para confirmar la venta y solicitar la lista","Llegue al tribunal el primer martes — regístrese en persona con identificación oficial","Las pujas son orales/abiertas — traiga cheque de caja o confirme requisitos de transferencia"],depositInfo:"Normalmente cheque de caja. El monto varía. Confirme con la oficina del secretario.",directLink:"https://gsccca.org"},
@@ -149,7 +149,7 @@ var STATES_ES = [
     platforms:["Oficinas fiscales del condado"],counties:[]
   },
   {
-    id:"ID",name:"Idaho",type:"deed",rate:"Varía",redemption:"3 años",score:31,beginnerFriendly:false,
+    id:"ID",name:"Idaho",type:"deed",rate:"Varía",redemption:"14 meses",score:31,beginnerFriendly:false,
     notBeginnerReason:"Los condados tienen discreción sobre si vender — muchos nunca lo hacen. Sin calendario ni sistema central.",
     scoreWhy:"Inventario impredecible, sin sistema centralizado y discreción del condado hacen esto poco confiable como estrategia.",
     note:"Los condados de Idaho tienen la autoridad pero no la obligación de vender propiedades en mora. Algunos condados no han realizado ventas en años. Estatuto: IC §63-1003.",
@@ -197,7 +197,7 @@ var STATES_ES = [
     platforms:["Oficinas del tesorero del condado"],counties:[]
   },
   {
-    id:"KS",name:"Kansas",type:"lien",rate:"Hasta 15%",redemption:"2 años",score:48,beginnerFriendly:true,
+    id:"KS",name:"Kansas",type:"lien",rate:"Hasta 15%",redemption:"2–3 años",score:48,beginnerFriendly:true,
     scoreWhy:"Ventana de redención de 2 años antes de venta judicial, el condado puede reducir mínimos en propiedades no vendidas e inventario suburbano decente.",
     note:"Kansas realiza ventas de gravámenes a nivel de condado. Después de 2 años, el condado presenta para venta judicial. El condado puede reducir la puja mínima en propiedades no vendidas. Estatuto: KSA §79-2801.",
     auctionSignup:{platform:"Secretario del condado o tribunal de distrito (varía)",steps:["Contacte al secretario de su condado objetivo — ksrevisor.org/municipalities","Pregunte sobre el próximo calendario de venta","Regístrese según instrucciones del condado — la mayoría son en persona","Traiga cheque de caja o confirme requisitos de transferencia"],depositInfo:"Varía por condado.",directLink:"https://www.ksrevisor.org/statutes/chapters/ch79/079_028_0001.html"},
@@ -209,7 +209,7 @@ var STATES_ES = [
     counties:[{name:"Sedgwick",link:"https://www.sedgwickcounty.org/treasurer/",notes:"Área de Wichita. Mejor inventario en KS."},{name:"Johnson",link:"https://www.jocogov.org/department/treasury-taxation-and-vehicles",notes:"Suburbio de Kansas City. Buenas propiedades."}]
   },
   {
-    id:"KY",name:"Kentucky",type:"lien",rate:"12%",redemption:"1 año",score:38,beginnerFriendly:false,
+    id:"KY",name:"Kentucky",type:"lien",rate:"12% + penalidades",redemption:"1 año",score:38,beginnerFriendly:false,
     notBeginnerReason:"Solo en persona, sin pujas en línea, el formato de puja sellada dificulta evaluar la competencia.",
     scoreWhy:"Tasa decente del 12% pero el requisito de solo en persona y formato de puja sellada limitan la escalabilidad.",
     note:"Kentucky realiza ventas selladas en persona a nivel de condado. Sin pujas en línea. Redención de 1 año antes de que pueda proceder la ejecución. Estatuto: KRS §134.420.",
@@ -245,7 +245,7 @@ var STATES_ES = [
     platforms:["Oficinas del recaudador de impuestos municipal"],counties:[]
   },
   {
-    id:"MD",name:"Maryland",type:"lien",rate:"6–18% (varía por condado)",redemption:"6 meses (9 meses propietario ocupante)",score:77,beginnerFriendly:true,
+    id:"MD",name:"Maryland",type:"lien",rate:"6–24% (varía por condado)",redemption:"6 meses (9 meses propietario ocupante en Baltimore City)",score:77,beginnerFriendly:true,
     scoreWhy:"Período de redención más corto del país (6 meses), tasas fuertes en Baltimore City y Anne Arundel, y múltiples condados en RealAuction.",
     note:"Maryland realiza ventas anuales de gravámenes, normalmente en mayo–junio. Tasas varían: mayoría de condados 6%, Anne Arundel y Baltimore City hasta 18%. Redención: 6 meses estándar, 9 meses para propietario ocupante en Baltimore City. Estatuto: MD Tax-Property Code §14-820.",
     auctionSignup:{platform:"RealAuction.com (mayoría de condados) + específicos para otros",steps:["Vaya a reauction.com y busque condados de Maryland","Cree una cuenta y regístrese para la venta fiscal anual de su condado objetivo","Financie su cuenta mediante ACH o transferencia antes de la fecha de subasta","Puje en línea durante la ventana de subasta"],depositInfo:"Depósito requerido. Varía por condado. La mayoría requieren fondos anticipados a través de RealAuction.",directLink:"https://reauction.com"},
@@ -316,7 +316,7 @@ var STATES_ES = [
     platforms:["Oficinas del recaudador del condado"],counties:[]
   },
   {
-    id:"MT",name:"Montana",type:"lien",rate:"10% + 2% penalización",redemption:"2-3 años (residencial: 3 años; comercial: 2 años)",score:37,beginnerFriendly:false,
+    id:"MT",name:"Montana",type:"lien",rate:"10% + 2%/mes penalización después del año 1",redemption:"3 años",score:37,beginnerFriendly:false,
     notBeginnerReason:"Asignación anual en julio, sin plataforma en línea, sin compra directa e inventario predominantemente agrícola rural.",
     scoreWhy:"Tasa baja, redención larga de 3 años, sin plataforma en línea e inventario urbano limitado.",
     note:"Montana asigna gravámenes fiscales anualmente en julio al condado. Los gravámenes no vendidos se transfieren al condado para asignación privada. Sin plataforma centralizada ni sistema en línea. Estatuto: MCA §15-17-112.",
@@ -412,8 +412,8 @@ var STATES_ES = [
     counties:[{name:"Mecklenburg",link:"https://tax.mecknc.gov/",notes:"Charlotte. Inventario fuerte."},{name:"Wake",link:"https://www.wake.gov/departments-government/tax-administration",notes:"Raleigh. Buen inventario suburbano."}]
   },
   {
-    id:"ND",name:"Dakota del Norte",type:"lien",rate:"Varía",redemption:"4 años",score:27,beginnerFriendly:false,
-    notBeginnerReason:"Período de redención de 4 años, subastas solo en diciembre e inventario predominantemente agrícola rural.",
+    id:"ND",name:"Dakota del Norte",type:"lien",rate:"12%",redemption:"3 años",score:27,beginnerFriendly:false,
+    notBeginnerReason:"Período de redención de 3 años, subastas solo en diciembre e inventario predominantemente agrícola rural.",
     scoreWhy:"La redención de 4 años inmoviliza el capital demasiado tiempo. Las subastas solo en diciembre y el inventario agrícola limitan el valor estratégico.",
     note:"Dakota del Norte realiza subastas de gravámenes fiscales solo en diciembre. Período de redención de 4 años. El inventario está dominado por tierra agrícola rural. Estatuto: NDCC §57-28.",
     auctionSignup:{platform:"Auditor del condado (en persona, diciembre)",steps:["Encuentre al auditor de su condado en nd.gov/counties","Solicite la lista de propiedades en mora en octubre","Regístrese en persona para la subasta de diciembre","Traiga cheque de caja"],depositInfo:"Se requiere cheque de caja.",directLink:"https://www.nd.gov/tax/"},
@@ -509,7 +509,7 @@ var STATES_ES = [
     platforms:["Oficinas del tesorero del condado"],counties:[]
   },
   {
-    id:"TN",name:"Tennessee",type:"hybrid",rate:"10% penalización en redención",redemption:"2 años",score:59,beginnerFriendly:false,
+    id:"TN",name:"Tennessee",type:"hybrid",rate:"10% penalización en redención",redemption:"1 año (después de 2 años de morosidad requeridos para la venta)",score:59,beginnerFriendly:false,
     notBeginnerReason:"El proceso del Tribunal de Equidad requiere abogado. Se requieren 2 años de morosidad. No puede acceder a la propiedad durante 1 año de redención.",
     scoreWhy:"Inventario decente en Nashville y Memphis pero la participación del Tribunal de Equidad agrega costos y tiempo.",
     note:"Tennessee es un estado de escritura redimible con requisito de morosidad de 2 años y redención de 1 año después de la compra. El proceso del Tribunal de Equidad requiere participación de abogado. Las propiedades no vendidas van a ventas de excedente del condado. Estatuto: TCA §67-5-2401.",
@@ -522,7 +522,7 @@ var STATES_ES = [
     counties:[{name:"Davidson",link:"https://www.nashville.gov/departments/trustee",notes:"Nashville. Mejor inventario en TN."},{name:"Shelby",link:"https://www.shelbycountytn.gov/84/Trustee",notes:"Memphis. Buen inventario urbano."}]
   },
 {
-    id:"TX",name:"Texas",type:"hybrid",rate:"25% año1 / 50% año2 (penalización en redención)",redemption:"180 días (comercial) / 2 años (vivienda/agrícola)",score:81,beginnerFriendly:true,
+    id:"TX",name:"Texas",type:"redeemable deed",rate:"25% año1 / 50% año2 (penalización en redención)",redemption:"180 días (no vivienda/no agrícola) / 2 años (vivienda/agrícola)",score:81,beginnerFriendly:true,
     scoreWhy:"Subastas mensuales estatales cada primer martes, flujo masivo de operaciones, excelentes oportunidades OTC en propiedades retenidas. Uno de los mercados de escritura más activos del país.",
     note:"Texas es un estado de escritura redimible. Subastas mensuales el primer martes en todo el estado. El inversor recibe la escritura en subasta pero el propietario puede redimir. Penalización de redención: 25% año 1, 50% año 2, calculada sobre el precio total de subasta — no solo los impuestos atrasados. Comercial: redención de 180 días. Vivienda/agrícola: 2 años. Las propiedades retenidas frecuentemente omiten la redención por completo. Estatuto: TX Tax Code §34.21.",
     auctionSignup:{platform:"RealAuction.com o GovEase.com (varía por condado) + tribunal del condado",steps:["Encuentre la información de subasta de su condado objetivo — txdmv.gov para directorio del condado","Verifique si el condado usa RealAuction.com o GovEase.com para pujas en línea","Regístrese en la plataforma y verifique su identidad (identificación oficial + documentos de entidad si puja como LLC)","Financie su cuenta antes de la subasta del primer martes","Para propiedades retenidas: contacte al recaudador-evaluador fiscal del condado directamente para la lista OTC"],depositInfo:"Varía por condado. La mayoría requieren transferencia o cheque de caja.",directLink:"https://reauction.com"},
@@ -534,8 +534,8 @@ var STATES_ES = [
     counties:[{name:"Harris",link:"https://www.hctax.net/",notes:"Houston. Inventario masivo. Pujas en línea."},{name:"Dallas",link:"https://www.dallascounty.org/departments/tax/",notes:"Dallas. Inventario urbano fuerte."},{name:"Tarrant",link:"https://www.tarrantcounty.com/en/tax.html",notes:"Fort Worth. Buen inventario."},{name:"Bexar",link:"https://www.bexar.org/1515/Tax-Assessor-Collector",notes:"San Antonio. Buen inventario."}]
   },
   {
-    id:"UT",name:"Utah",type:"deed",rate:"N/A",redemption:"4 años",score:44,beginnerFriendly:false,
-    notBeginnerReason:"Todos los condados subastan el mismo día en mayo, período de redención de 4 años, se requiere registro separado por condado.",
+    id:"UT",name:"Utah",type:"deed",rate:"N/A",redemption:"Sin redención post-venta (5 años de morosidad requeridos antes de la venta)",score:44,beginnerFriendly:false,
+    notBeginnerReason:"Todos los condados subastan el mismo día en mayo, 5 años de morosidad requeridos antes de la venta, se requiere registro separado por condado.",
     scoreWhy:"Las subastas estatales el mismo día simplifican la planificación pero la redención de 4 años y sin plataforma central requieren coordinación condado por condado.",
     note:"Utah realiza todas las subastas de escrituras fiscales del condado el mismo día cada mayo. Cada condado registra por separado — sin sistema estatal. La opción de venta del alguacil también está disponible. Inventario urbano limitado fuera de Salt Lake City. Estatuto: UCA §59-2-1351.1.",
     auctionSignup:{platform:"Tesorero del condado (cada condado registra por separado)",steps:["Encuentre al tesorero de su condado objetivo en utah.gov/government/counties.html","Contacte cada condado objetivo por separado — sin sistema de registro estatal","Solicite la lista de propiedades 60 días antes de la subasta de mayo","Asista en persona — la mayoría de los condados de Utah no ofrecen pujas en línea"],depositInfo:"Varía por condado. Confirme con cada tesorero del condado por separado.",directLink:"https://propertytax.utah.gov/"},

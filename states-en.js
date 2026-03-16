@@ -351,7 +351,7 @@ var STATES_EN = [
     ]
   },
   {
-    id: "GA", name: "Georgia", type: "hybrid", rate: "20% yr1 + 10%/yr after", redemption: "1 year",
+    id: "GA", name: "Georgia", type: "redeemable deed", rate: "20% yr1 + 10%/yr after", redemption: "1 year",
     score: 71, beginnerFriendly: true,
     scoreWhy: "Monthly auctions every first Tuesday statewide, strong penalty structure, and consistent deal flow make Georgia excellent for active investors.",
     note: "Georgia is a redeemable deed state. Investor receives the tax deed at auction but owner retains 1-year right of redemption. Redemption cost = bid price + 20% premium (year 1) + 10% per additional year. After 12 months, investor can execute via certified mail notice. Statute: OCGA §48-4-1.",
@@ -686,7 +686,7 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "MD", name: "Maryland", type: "lien", rate: "6–18% (varies by county)", redemption: "6 months (9 months owner-occupied)",
+    id: "MD", name: "Maryland", type: "lien", rate: "6–24% (varies by county)", redemption: "6 months (9 months owner-occupied in Baltimore City)",
     score: 77, beginnerFriendly: true,
     scoreWhy: "Shortest redemption period in the country (6 months), strong rates in Baltimore City and Anne Arundel, and multiple counties on RealAuction.",
     note: "Maryland conducts annual tax lien sales, typically in May–June. Interest rates vary: most counties 6%, Anne Arundel and Baltimore City up to 18%. Redemption: 6 months standard, 9 months for owner-occupied in Baltimore City. Statute: MD Tax-Property Code §14-820.",
@@ -1448,7 +1448,7 @@ var STATES_EN = [
     ]
   },
   {
-    id: "TX", name: "Texas", type: "hybrid", rate: "25% yr1 / 50% yr2 (penalty on redemption)", redemption: "180 days (commercial) / 2 years (homestead/ag)",
+    id: "TX", name: "Texas", type: "redeemable deed", rate: "25% yr1 / 50% yr2 (penalty on redemption)", redemption: "180 days (non-homestead/non-ag) / 2 years (homestead/ag)",
     score: 81, beginnerFriendly: true,
     scoreWhy: "Monthly statewide auctions every first Tuesday, massive deal flow, excellent struck-off OTC opportunities. One of the most active deed markets in the country.",
     note: "Texas is a redeemable deed state. Monthly auctions on the first Tuesday statewide. Investor gets deed at auction but owner can redeem. Redemption penalty: 25% year 1, 50% year 2, calculated on full auction price — not just back taxes. Commercial: 180-day redemption. Homestead/agricultural: 2 years. Struck-off properties often skip redemption entirely. Statute: TX Tax Code §34.21.",
