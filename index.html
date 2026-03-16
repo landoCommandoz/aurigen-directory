@@ -1,0 +1,2881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Aurigen County Resource Directory</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<style>
+/* ═══════════════════════════════════════════════
+   CSS VARIABLES
+═══════════════════════════════════════════════ */
+:root {
+  --bg:           #0a0a0c;
+  --bg2:          #111116;
+  --bg3:          #18181f;
+  --bg-card:      rgba(255,255,255,0.03);
+  --accent:       #c8a84b;
+  --accent-dim:   rgba(200,168,75,0.12);
+  --accent-glow:  rgba(200,168,75,0.25);
+  --accent-border:rgba(200,168,75,0.3);
+  --teal:         #2dd4bf;
+  --teal-dim:     rgba(45,212,191,0.12);
+  --purple:       #a78bfa;
+  --purple-dim:   rgba(167,139,250,0.12);
+  --text:         #f0f0f0;
+  --text-dim:     #888896;
+  --text-muted:   #555562;
+  --border:       rgba(255,255,255,0.07);
+  --border-hover: rgba(255,255,255,0.14);
+  --shadow:       0 8px 32px rgba(0,0,0,0.5);
+  --shadow-lg:    0 24px 64px rgba(0,0,0,0.7);
+  --red:          #e05555;
+  --green:        #4caf82;
+
+  /* Z-index scale */
+  --z-map:    10;
+  --z-panel:  20;
+  --z-modal:  100;
+  --z-nav:    50;
+  --z-gate:   200;
+  --z-debug:  998;
+}
+
+/* ═══════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* Grain overlay removed */
+
+button { cursor: pointer; font-family: inherit; }
+input, textarea { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+/* ═══════════════════════════════════════════════
+   APP SHELL — SCROLL CHAIN
+═══════════════════════════════════════════════ */
+#app {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ═══════════════════════════════════════════════
+   GATE SCREEN
+═══════════════════════════════════════════════ */
+#gate {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-gate);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  text-align: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#gate.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.gate-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(200,168,75,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none !important;
+  z-index: 0;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+#gate .gate-eyebrow,
+#gate .gate-logo,
+#gate .gate-sub,
+#gate .gate-divider,
+#gate .gate-cta,
+#gate .gate-code-wrap,
+#gate .gate-disclaimer { position: relative; z-index: 1; }
+#gate .gate-glow { position: absolute; z-index: 0; pointer-events: none !important; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+.gate-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.2s ease forwards;
+}
+
+.gate-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 12vw, 88px);
+  letter-spacing: 0.1em;
+  line-height: 0.9;
+  color: var(--text);
+  opacity: 0;
+  animation: fadeUp 0.6s 0.35s ease forwards;
+}
+
+.gate-logo span { color: var(--accent); }
+
+.gate-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(14px, 3vw, 18px);
+  color: var(--text-dim);
+  margin-top: 12px;
+  font-style: italic;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.5s ease forwards;
+}
+
+.gate-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--accent-border);
+  margin: 32px auto;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.65s ease forwards;
+}
+
+.gate-cta {
+  background: var(--accent);
+  color: #0a0a0c;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 40px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.8s ease forwards;
+}
+
+.gate-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px var(--accent-glow);
+}
+
+.gate-cta:active { transform: translateY(0); }
+
+.gate-disclaimer {
+  position: absolute;
+  bottom: 20px;
+  left: 0; right: 0;
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 0 24px;
+  line-height: 1.5;
+  opacity: 0;
+  animation: fadeUp 0.6s 1s ease forwards;
+}
+
+/* Code input (mobile trigger) */
+.gate-code-wrap {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeUp 0.4s ease forwards;
+}
+
+.gate-code-wrap.visible { display: flex; }
+
+.gate-code-input {
+  background: var(--bg3);
+  border: 1px solid var(--accent-border);
+  border-radius: 10px;
+  padding: 12px 20px;
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-align: center;
+  width: 240px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.gate-code-input:focus { border-color: var(--accent); }
+.gate-code-input.error { border-color: var(--red); animation: shake 0.3s ease; }
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.gate-code-submit {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.gate-code-submit:hover { background: var(--accent-glow); }
+
+.gate-code-error {
+  font-size: 12px;
+  color: var(--red);
+  display: none;
+}
+
+.gate-code-error.show { display: block; }
+
+/* ═══════════════════════════════════════════════
+   BOTTOM NAV — iPhone style
+═══════════════════════════════════════════════ */
+#bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0; right: 0;
+  height: 64px;
+  background: rgba(17,17,22,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: var(--z-nav);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  padding-bottom: max(env(safe-area-inset-bottom), 0px);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  flex: 1;
+  height: 100%;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+  padding: 0;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.nav-item.active { color: var(--accent); }
+.nav-item:hover { color: var(--text-dim); }
+
+.nav-icon {
+  font-size: 20px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.nav-item.active .nav-icon { transform: scale(1.15); }
+
+.nav-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+@media (max-width: 375px) {
+  .nav-label { display: none; }
+  #bottom-nav { height: 56px; }
+}
+
+/* ═══════════════════════════════════════════════
+   VIEWS
+═══════════════════════════════════════════════ */
+.view {
+  position: absolute;
+  inset: 0;
+  bottom: 64px;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.view.active { display: flex; }
+
+/* View header */
+.view-header {
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.view-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+
+.view-sub {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+  letter-spacing: 0.04em;
+}
+
+/* Scroll container */
+.scroll-body {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 16px 20px;
+  padding-bottom: 20px;
+}
+
+/* ═══════════════════════════════════════════════
+   MAP VIEW — SHELL
+═══════════════════════════════════════════════ */
+#view-map {
+  position: absolute;
+  inset: 0;
+  bottom: 64px;
+  display: none;
+  flex-direction: column;
+}
+#view-map.active { display: flex; }
+
+/* ═══════════════════════════════════════════════
+   MAP VIEW — MAP/LIST TOGGLE
+═══════════════════════════════════════════════ */
+#map-toggle-bar {
+  display: flex;
+  gap: 0;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  background: var(--bg2);
+}
+
+.map-toggle-btn {
+  flex: 1;
+  padding: 8px 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.map-toggle-btn:first-child { border-radius: 8px 0 0 8px; }
+.map-toggle-btn:last-child  { border-radius: 0 8px 8px 0; border-left: none; }
+.map-toggle-btn.active {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+/* Map body splits */
+#map-body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Desktop always: panel left, map right */
+@media (min-width: 1024px) {
+  #map-toggle-bar { display: none; }
+  #map-side-panel { display: flex !important; width: 320px; flex-shrink: 0; }
+  #map-container  { display: flex !important; flex: 1; }
+}
+
+/* Mobile: toggle controls which panel shows */
+@media (max-width: 1023px) {
+  #map-side-panel {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    z-index: 2;
+    background: var(--bg2);
+  }
+  #map-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  #map-side-panel.map-hidden { display: none !important; }
+  #map-container.map-hidden  { display: none !important; }
+}
+
+#map-side-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid var(--border);
+  background: var(--bg2);
+  z-index: var(--z-panel);
+}
+
+.map-panel-header {
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.map-panel-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+}
+
+.map-panel-sub {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+/* Map legend */
+.map-legend {
+  display: flex;
+  gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* State list in side panel */
+#state-list {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.state-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  position: relative;
+}
+
+.state-list-item:hover { background: rgba(255,255,255,0.03); }
+.state-list-item.active { background: var(--accent-dim); }
+
+.state-list-item.locked {
+  filter: blur(3px);
+  user-select: none;
+  pointer-events: none;
+}
+
+.state-list-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.badge-lien { background: rgba(200,168,75,0.15); color: var(--accent); }
+.badge-deed { background: rgba(45,212,191,0.15); color: var(--teal); }
+.badge-both { background: rgba(167,139,250,0.15); color: var(--purple); }
+
+.state-list-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.state-list-meta {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.lock-overlay-item {
+  position: absolute;
+  right: 12px;
+  font-size: 14px;
+  animation: lockPulse 2s ease-in-out infinite;
+}
+
+@keyframes lockPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Map container */
+#map-container {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  background: radial-gradient(ellipse at 50% 60%, #141420 0%, #0a0a0c 100%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#map-svg {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+}
+
+/* Map FAB replaced by toggle bar */
+#map-fab { display: none !important; }
+
+/* ═══════════════════════════════════════════════
+   STATE DETAIL PANEL / MODAL
+═══════════════════════════════════════════════ */
+#state-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#state-modal.open { opacity: 1; visibility: visible; }
+
+.state-modal-sheet {
+  background: var(--bg2);
+  border-radius: 20px 20px 0 0;
+  border-top: 1px solid var(--border);
+  width: 100%;
+  max-width: 640px;
+  max-height: 85dvh;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#state-modal.open .state-modal-sheet { transform: translateY(0); }
+
+.modal-drag-handle {
+  width: 40px;
+  height: 4px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  margin: 12px auto 8px;
+  flex-shrink: 0;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: var(--text-dim);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.modal-close:hover { background: rgba(255,255,255,0.15); color: var(--text); }
+
+.modal-header {
+  padding: 8px 20px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.modal-state-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.modal-state-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.type-lien { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent-border); }
+.type-deed { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(45,212,191,0.3); }
+.type-both { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); }
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 20px;
+}
+
+/* Stat grid */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.stat-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Score bar */
+.score-bar-wrap {
+  margin-bottom: 20px;
+}
+
+.score-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.score-bar-track {
+  height: 6px;
+  background: var(--bg3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--accent);
+  transition: width 0.6s ease;
+}
+
+/* Section headers inside modal */
+.modal-section {
+  margin-bottom: 20px;
+}
+
+.modal-section-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-note {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.65;
+}
+
+.modal-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modal-list li {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.modal-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 10px;
+  top: 3px;
+}
+
+/* Beginner badge */
+.beginner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.beginner-yes { background: rgba(76,175,130,0.15); color: var(--green); border: 1px solid rgba(76,175,130,0.3); }
+.beginner-no { background: rgba(224,85,85,0.1); color: var(--red); border: 1px solid rgba(224,85,85,0.25); }
+
+/* Signup steps */
+.signup-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.signup-step {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.signup-step-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.direct-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.direct-link-btn:hover { background: var(--accent-glow); }
+
+/* County table */
+.county-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.county-table th {
+  text-align: left;
+  padding: 6px 10px;
+  color: var(--text-dim);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border);
+}
+
+.county-table td {
+  padding: 10px 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-dim);
+  vertical-align: top;
+}
+
+.county-table td:first-child { color: var(--text); font-weight: 500; }
+.county-table tr:last-child td { border-bottom: none; }
+
+.county-link {
+  color: var(--accent);
+  font-size: 11px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Paywall inside modal */
+.modal-paywall {
+  padding: 32px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.paywall-lock { font-size: 48px; animation: lockPulse 2s ease-in-out infinite; }
+
+.paywall-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.06em;
+}
+
+.paywall-sub {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+.paywall-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+.paywall-price-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: -10px;
+}
+
+.paywall-btn {
+  background: var(--accent);
+  color: #0a0a0c;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 40px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.paywall-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px var(--accent-glow);
+}
+
+.paywall-disclaimer {
+  font-size: 10px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  max-width: 280px;
+}
+
+/* ═══════════════════════════════════════════════
+   DEAL ANALYZER VIEW
+═══════════════════════════════════════════════ */
+.analyzer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .analyzer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.analyzer-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.analyzer-card-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+.field-group {
+  margin-bottom: 14px;
+}
+
+.field-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 5px;
+  letter-spacing: 0.03em;
+}
+
+.field-input {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.field-input:focus { border-color: var(--accent-border); }
+
+.field-select {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  appearance: none;
+}
+
+.result-display {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.result-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.result-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.result-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.calc-btn {
+  width: 100%;
+  background: var(--accent);
+  color: #0a0a0c;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  margin-top: 8px;
+}
+
+.calc-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px var(--accent-glow); }
+
+/* Results grid */
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* ═══════════════════════════════════════════════
+   ADVISOR VIEW
+═══════════════════════════════════════════════ */
+#view-advisor {
+  display: none;
+  flex-direction: column;
+}
+
+#view-advisor.active { display: flex; }
+
+.advisor-messages {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.msg {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.msg-user {
+  align-self: flex-end;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  color: var(--text);
+  border-radius: 14px 14px 4px 14px;
+}
+
+.msg-sage {
+  align-self: flex-start;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 14px 14px 14px 4px;
+}
+
+.msg-sage strong { color: var(--text); }
+
+.advisor-input-bar {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+  background: var(--bg2);
+}
+
+.advisor-input {
+  flex: 1;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 10px 16px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  resize: none;
+  transition: border-color 0.2s;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.advisor-input:focus { border-color: var(--accent-border); }
+
+.advisor-send {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  color: #0a0a0c;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.advisor-send:hover { transform: scale(1.08); box-shadow: 0 4px 16px var(--accent-glow); }
+.advisor-send:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+.advisor-typing {
+  display: none;
+  align-self: flex-start;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 14px 14px 14px 4px;
+  padding: 12px 16px;
+  gap: 4px;
+}
+
+.advisor-typing.show { display: flex; }
+
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-dim); animation: typingDot 1.2s ease-in-out infinite; }
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingDot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════
+   LEGAL LIBRARY VIEW
+═══════════════════════════════════════════════ */
+.legal-disclaimer-banner {
+  margin-bottom: 16px;
+  background: rgba(200,168,75,0.08);
+  border: 1px solid var(--accent-border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.legal-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.legal-card:hover { border-color: var(--border-hover); }
+
+.legal-card-header {
+  padding: 16px 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.legal-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.legal-card-meta {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.legal-card-chevron {
+  color: var(--text-dim);
+  transition: transform 0.2s;
+  font-size: 12px;
+}
+
+.legal-card.open .legal-card-chevron { transform: rotate(90deg); }
+
+.legal-card-body {
+  display: none;
+  padding: 0 18px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.legal-card.open .legal-card-body { display: block; }
+
+.legal-field {
+  margin-top: 12px;
+}
+
+.legal-field-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+
+.legal-field-value {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.legal-field-value code {
+  font-family: 'DM Mono', monospace;
+  background: var(--bg2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════
+   GLOSSARY VIEW
+═══════════════════════════════════════════════ */
+.glossary-search {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 16px;
+  transition: border-color 0.2s;
+}
+
+.glossary-search:focus { border-color: var(--accent-border); }
+
+.glossary-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.glossary-term {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.glossary-def {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════
+   PROFILE VIEW
+═══════════════════════════════════════════════ */
+.profile-section {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.profile-section-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+.profile-strategy-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 4px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--text-dim);
+  transition: all 0.2s;
+}
+
+.profile-strategy-tag.selected {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+.profile-rec {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.profile-rec:hover { border-color: var(--accent-border); }
+
+.profile-rec-flag {
+  font-size: 20px;
+}
+
+.profile-rec-name {
+  font-size: 14px;
+  font-weight: 600;
+  flex: 1;
+}
+
+.profile-rec-why {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.profile-rec-score {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════
+   SAVED STATES VIEW
+═══════════════════════════════════════════════ */
+.saved-empty {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--text-dim);
+}
+
+.saved-empty-icon { font-size: 40px; margin-bottom: 12px; }
+.saved-empty-text { font-size: 14px; line-height: 1.6; }
+
+.saved-item {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.saved-item:hover { border-color: var(--border-hover); }
+
+.saved-item-info { flex: 1; }
+
+.saved-item-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.saved-item-meta {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.saved-unsave {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 18px;
+  padding: 4px 8px;
+  transition: color 0.2s;
+}
+
+.saved-unsave:hover { color: var(--red); }
+
+/* ═══════════════════════════════════════════════
+   SPOTLIGHT VIEW
+═══════════════════════════════════════════════ */
+.spotlight-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  transition: border-color 0.2s;
+  cursor: pointer;
+}
+
+.spotlight-card:hover { border-color: var(--accent-border); }
+
+.spotlight-card-top {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.spotlight-state-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.06em;
+}
+
+.spotlight-score {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: var(--accent);
+}
+
+.spotlight-card-body { padding: 16px 20px; }
+
+.spotlight-highlight {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER DISCLAIMER — hidden, text moved to nav
+═══════════════════════════════════════════════ */
+.app-footer-disclaimer { display: none; }
+
+/* ═══════════════════════════════════════════════
+   DEBUG PANEL
+═══════════════════════════════════════════════ */
+#debug-panel {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  background: rgba(0,0,0,0.85);
+  border: 1px solid rgba(200,168,75,0.3);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  z-index: var(--z-debug);
+  max-width: 260px;
+  line-height: 1.6;
+  display: none;
+}
+
+#debug-panel.show { display: block; }
+
+/* ═══════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ GATE ═══════════════ -->
+<div id="gate">
+  <div class="gate-glow"></div>
+  <div class="gate-eyebrow">Founding Member Access</div>
+  <div class="gate-logo">AURI<span>GEN</span></div>
+  <div class="gate-sub">County Resource Directory</div>
+  <div class="gate-divider"></div>
+  <button class="gate-cta" id="gate-enter-btn" onclick="handleGateEnter()">Explore the Directory</button>
+  <div class="gate-code-wrap visible" id="gate-code-wrap">
+    <input
+      class="gate-code-input"
+      id="gate-code-input"
+      type="text"
+      placeholder="Enter access code"
+      autocomplete="off"
+      autocapitalize="characters"
+    />
+    <button class="gate-code-submit" onclick="submitCode()">Unlock</button>
+    <div class="gate-code-error" id="gate-code-error"></div>
+  </div>
+  <div class="gate-disclaimer">
+    Educational research tool. Not investment advice.<br>
+    <span style="font-size:10px;cursor:pointer;color:var(--accent);text-decoration:underline;" onclick="showCodeInput()">Have an access code? Click here.</span>
+  </div>
+</div>
+
+<!-- ═══════════════ APP ═══════════════ -->
+<div id="app">
+
+  <div class="main-content">
+
+    <!-- MAP VIEW -->
+    <div id="view-map" class="view active">
+
+      <!-- Map / List toggle bar (hidden on desktop via CSS) -->
+      <div id="map-toggle-bar">
+        <button class="map-toggle-btn active" id="toggle-map-btn" onclick="setMapView('map')">🗺 Map</button>
+        <button class="map-toggle-btn" id="toggle-list-btn" onclick="setMapView('list')">☰ List</button>
+      </div>
+
+      <!-- Body -->
+      <div id="map-body">
+
+        <!-- Side panel / List -->
+        <div id="map-side-panel" class="map-hidden">
+          <div class="map-panel-header">
+            <div class="map-panel-title">All States</div>
+            <div class="map-panel-sub">Select a state to view details</div>
+          </div>
+          <div class="map-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>Lien</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>Deed</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Both</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#3a3a4a)"></div>Locked</div>
+          </div>
+          <div id="state-list"></div>
+        </div>
+
+        <!-- Map -->
+        <div id="map-container">
+          <svg id="map-svg"></svg>
+        </div>
+
+      </div><!-- end map-body -->
+    </div>
+
+    <!-- DEAL ANALYZER VIEW -->
+    <div id="view-analyzer" class="view">
+      <div class="view-header">
+        <div class="view-title">Deal Analyzer</div>
+        <div class="view-sub">Calculate return on any tax lien or deed investment</div>
+      </div>
+      <div class="scroll-body">
+        <div class="analyzer-grid">
+          <div>
+            <div class="analyzer-card">
+              <div class="analyzer-card-title">Inputs</div>
+              <div class="field-group">
+                <div class="field-label">Investment Type</div>
+                <select class="field-select" id="az-type" onchange="calcAnalyzer()">
+                  <option value="lien">Tax Lien</option>
+                  <option value="deed">Tax Deed</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <div class="field-label">Purchase Price / Lien Amount ($)</div>
+                <input class="field-input" id="az-price" type="number" placeholder="10000" oninput="calcAnalyzer()">
+              </div>
+              <div class="field-group">
+                <div class="field-label">Annual Interest Rate (%)</div>
+                <input class="field-input" id="az-rate" type="number" placeholder="18" oninput="calcAnalyzer()">
+              </div>
+              <div class="field-group">
+                <div class="field-label">Hold Period (months)</div>
+                <input class="field-input" id="az-months" type="number" placeholder="24" oninput="calcAnalyzer()">
+              </div>
+              <div class="field-group" id="az-arv-group">
+                <div class="field-label">Estimated Property ARV ($) <span style="color:var(--text-muted)">(deed only)</span></div>
+                <input class="field-input" id="az-arv" type="number" placeholder="85000" oninput="calcAnalyzer()">
+              </div>
+              <div class="field-group">
+                <div class="field-label">Additional Costs ($) <span style="color:var(--text-muted)">(legal, title, etc.)</span></div>
+                <input class="field-input" id="az-costs" type="number" placeholder="500" oninput="calcAnalyzer()">
+              </div>
+              <div class="field-group">
+                <div class="field-label">Penalty / Bonus Rate (%)</div>
+                <input class="field-input" id="az-penalty" type="number" placeholder="0" oninput="calcAnalyzer()">
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="analyzer-card">
+              <div class="analyzer-card-title">Results</div>
+              <div class="result-display">
+                <div class="result-label">Total Return</div>
+                <div class="result-value" id="az-return">—</div>
+                <div class="result-sub" id="az-return-sub"></div>
+              </div>
+              <div class="results-grid">
+                <div class="result-display">
+                  <div class="result-label">ROI</div>
+                  <div class="result-value" id="az-roi" style="font-size:24px">—</div>
+                </div>
+                <div class="result-display">
+                  <div class="result-label">Annualized</div>
+                  <div class="result-value" id="az-annualized" style="font-size:24px">—</div>
+                </div>
+                <div class="result-display">
+                  <div class="result-label">Interest Earned</div>
+                  <div class="result-value" id="az-interest" style="font-size:20px">—</div>
+                </div>
+                <div class="result-display">
+                  <div class="result-label">Total Costs</div>
+                  <div class="result-value" id="az-total-costs" style="font-size:20px">—</div>
+                </div>
+              </div>
+              <div id="az-deed-results" style="display:none;margin-top:10px;">
+                <div class="result-display">
+                  <div class="result-label">Equity if Redeemed at ARV</div>
+                  <div class="result-value" id="az-equity" style="font-size:22px">—</div>
+                </div>
+              </div>
+              <div style="margin-top:16px;padding:12px;background:var(--bg2);border-radius:8px;font-size:11px;color:var(--text-muted);line-height:1.6;">
+                Educational estimate only. Results are not guaranteed. Verify statutory rates with official county sources before transacting.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADVISOR VIEW -->
+    <div id="view-advisor" class="view">
+      <div class="view-header">
+        <div class="view-title">Sage — AI Advisor</div>
+        <div class="view-sub">Ask anything about tax liens, deeds, or state law</div>
+      </div>
+      <div class="advisor-messages" id="advisor-messages">
+        <div class="msg msg-sage">
+          <strong>Sage</strong><br>
+          Hello. I'm Sage — your research advisor for the Aurigen Directory. Ask me about state laws, auction processes, due diligence, or investment strategy across all 50 states. Everything I share is for educational purposes only.
+        </div>
+        <div class="advisor-typing" id="advisor-typing">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+      </div>
+      <div class="advisor-input-bar">
+        <textarea
+          class="advisor-input"
+          id="advisor-input"
+          placeholder="Ask Sage anything..."
+          rows="1"
+          onkeydown="advisorKeydown(event)"
+        ></textarea>
+        <button class="advisor-send" id="advisor-send" onclick="sendAdvisorMessage()">➤</button>
+      </div>
+    </div>
+
+    <!-- LEGAL LIBRARY VIEW -->
+    <div id="view-legal" class="view">
+      <div class="view-header">
+        <div class="view-title">Legal Library</div>
+        <div class="view-sub">State statutes, plain English</div>
+      </div>
+      <div class="scroll-body">
+        <div class="legal-disclaimer-banner">
+          This library is for educational purposes only and does not constitute legal advice. Always consult a licensed attorney before making legal or investment decisions.
+        </div>
+        <div id="legal-cards"></div>
+      </div>
+    </div>
+
+    <!-- GLOSSARY VIEW -->
+    <div id="view-glossary" class="view">
+      <div class="view-header">
+        <div class="view-title">Glossary</div>
+        <div class="view-sub">Key terms, plain English</div>
+      </div>
+      <div class="scroll-body">
+        <input class="glossary-search" id="glossary-search" placeholder="Search terms..." oninput="filterGlossary(this.value)">
+        <div id="glossary-list"></div>
+      </div>
+    </div>
+
+    <!-- PROFILE VIEW -->
+    <div id="view-profile" class="view">
+      <div class="view-header">
+        <div class="view-title">Investor Profile</div>
+        <div class="view-sub">Your strategy, your recommendations</div>
+      </div>
+      <div class="scroll-body">
+        <div class="profile-section">
+          <div class="profile-section-title">Investment Strategy</div>
+          <div id="profile-strategy-tags"></div>
+        </div>
+        <div class="profile-section">
+          <div class="profile-section-title">Recommended States</div>
+          <div id="profile-recs"></div>
+        </div>
+        <div class="profile-section" style="font-size:11px;color:var(--text-muted);line-height:1.6;">
+          Recommendations are based on publicly available state data for educational reference only. Not investment advice. Verify all data with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.
+        </div>
+      </div>
+    </div>
+
+    <!-- SAVED VIEW -->
+    <div id="view-saved" class="view">
+      <div class="view-header">
+        <div class="view-title">Saved States</div>
+        <div class="view-sub">Your research watchlist</div>
+      </div>
+      <div class="scroll-body">
+        <div id="saved-list"></div>
+      </div>
+    </div>
+
+    <!-- SPOTLIGHT VIEW -->
+    <div id="view-spotlight" class="view">
+      <div class="view-header">
+        <div class="view-title">Spotlight</div>
+        <div class="view-sub">Top states by investor score</div>
+      </div>
+      <div class="scroll-body">
+        <div id="spotlight-list"></div>
+      </div>
+    </div>
+
+  </div><!-- end main-content -->
+
+  <!-- FOOTER DISCLAIMER -->
+  <div class="app-footer-disclaimer">
+    Aurigen County Resource Directory is an educational research tool. Nothing in this content constitutes investment, legal, or financial advice. Always verify data with official county sources before transacting. © 2026 Aurigen Collective | <a href="/cdn-cgi/l/email-protection#f0bc919e949f9eb08498959185829997959ede939f9d" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="b1fdd0dfd5dedff1c5d9d4d0c4c3d8d6d4df9fd2dedc">[email&#160;protected]</span></a>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav id="bottom-nav">
+    <button class="nav-item active" data-tab="map" onclick="navigate('map')">
+      <span class="nav-icon">🗺</span>
+      <span class="nav-label">Map</span>
+    </button>
+    <button class="nav-item" data-tab="analyzer" onclick="navigate('analyzer')">
+      <span class="nav-icon">📊</span>
+      <span class="nav-label">Analyze</span>
+    </button>
+    <button class="nav-item" data-tab="advisor" onclick="navigate('advisor')">
+      <span class="nav-icon">🤖</span>
+      <span class="nav-label">Advisor</span>
+    </button>
+    <button class="nav-item" data-tab="legal" onclick="navigate('legal')">
+      <span class="nav-icon">⚖️</span>
+      <span class="nav-label">Legal</span>
+    </button>
+    <button class="nav-item" data-tab="glossary" onclick="navigate('glossary')">
+      <span class="nav-icon">📖</span>
+      <span class="nav-label">Glossary</span>
+    </button>
+    <button class="nav-item" data-tab="profile" onclick="navigate('profile')">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">Profile</span>
+    </button>
+    <button class="nav-item" data-tab="saved" onclick="navigate('saved')">
+      <span class="nav-icon">🔖</span>
+      <span class="nav-label">Saved</span>
+    </button>
+  </nav>
+
+</div><!-- end #app -->
+
+<!-- STATE DETAIL MODAL -->
+<div id="state-modal" onclick="handleModalBackdrop(event)">
+  <div class="state-modal-sheet">
+    <div class="modal-drag-handle"></div>
+    <button class="modal-close" onclick="closeStateModal()">✕</button>
+    <div class="modal-header" id="modal-header"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- DEBUG PANEL -->
+<div id="debug-panel">
+  <div>⚙ DEBUG — remove before deploy</div>
+  <div id="debug-content"></div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ═══════════════════════════════════════════════════════════
+//  AURIGEN COUNTY RESOURCE DIRECTORY — APP LOGIC
+//  Ground-up rebuild | 2026-03-12
+// ═══════════════════════════════════════════════════════════
+
+// ── Constants ───────────────────────────────────────────────
+const STRIPE_URL = 'https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00';
+const NETLIFY_FN = '/.netlify/functions/aurigen';
+const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4';
+
+// Free states (top 7 by score)
+const FREE_STATES = new Set(['FL', 'IL', 'IA', 'NJ', 'GA', 'AZ', 'TX']);
+
+// ── App State ────────────────────────────────────────────────
+let state = {
+  entered: false,
+  isPaid: false,
+  activeTab: 'map',
+  activeState: null,
+  savedStates: [],
+  profile: { strategy: [] },
+  advisorHistory: [],
+  advisorBusy: false,
+  mapReady: false,
+  mobileCodeVisible: false
+};
+
+// ── Storage helpers ──────────────────────────────────────────
+function storageGet(key, fallback = null) {
+  try { const v = localStorage.getItem(key); return v !== null ? JSON.parse(v) : fallback; }
+  catch(e) { return fallback; }
+}
+
+function storageSet(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); } catch(e) {}
+}
+
+// ── Init ─────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  try {
+    // Restore persisted state
+    state.entered = storageGet('aug_entered', false);
+    state.isPaid = storageGet('aug_paid', false);
+    state.savedStates = storageGet('aug_saved', []);
+    state.profile = storageGet('aug_profile', { strategy: [] });
+
+    // Debug toggle: backtick
+    document.addEventListener('keydown', e => {
+      if (e.key === '`') toggleDebug();
+    });
+
+    // Mobile code trigger: type "aurigen" on gate
+    setupMobileCodeTrigger();
+
+    if (state.entered) {
+      enterApp(false);
+    } else {
+      // Gate visible — do nothing, gate is default visible
+    }
+
+    updateDebug();
+  } catch(err) {
+    console.error('Init error:', err);
+    document.getElementById('gate').innerHTML += '<div style="color:#e05555;font-size:12px;margin-top:20px;">Error loading app. Please refresh.</div>';
+  }
+});
+
+// ── Gate ─────────────────────────────────────────────────────
+function handleGateEnter() {
+  // Gate is free to enter — preview states visible to all
+  // isPaid unlocks all 50 states
+  enterApp(true);
+}
+
+function showCodeInput() {
+  const wrap = document.getElementById('gate-code-wrap');
+  wrap.classList.add('visible');
+  document.getElementById('gate-code-input').focus();
+  state.mobileCodeVisible = true;
+}
+
+function setupMobileCodeTrigger() {
+  // Type "aurigen" anywhere on gate to reveal code input
+  let typed = '';
+  document.addEventListener('keydown', e => {
+    if (state.entered) return;
+    typed += e.key.toLowerCase();
+    if (typed.length > 7) typed = typed.slice(-7);
+    if (typed === 'aurigen') showCodeInput();
+  });
+}
+
+async function submitCode() {
+  const input = document.getElementById('gate-code-input');
+  const errorEl = document.getElementById('gate-code-error');
+  const code = input.value.trim();
+
+  if (!code) return;
+
+  input.disabled = true;
+  errorEl.classList.remove('show');
+
+  // Master password check (obfuscated)
+  const _mp = [65,85,82,73,71,69,78,50,48,50,54].map(c=>String.fromCharCode(c)).join('');
+  if (code.toUpperCase() === _mp) {
+    state.isPaid = true;
+    storageSet('aug_paid', true);
+    if (state.entered) {
+      buildStateList();
+      buildSpotlight();
+      buildProfileRecs();
+      closeStateModal();
+      updateDebug();
+      return;
+    }
+    enterApp(true);
+    return;
+  }
+
+  try {
+    const res = await fetch(NETLIFY_FN, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'validate-code', code })
+    });
+
+    const data = await res.json();
+
+    if (data.valid) {
+      state.isPaid = true;
+      storageSet('aug_paid', true);
+      if (state.entered) {
+        buildStateList();
+        buildSpotlight();
+        buildProfileRecs();
+        closeStateModal();
+        updateDebug();
+        return;
+      }
+      enterApp(true);
+    } else {
+      input.disabled = false;
+      input.classList.add('error');
+      errorEl.textContent = data.message || "That code didn't match — reach out to Landon@theaurigen.com";
+      errorEl.classList.add('show');
+      setTimeout(() => input.classList.remove('error'), 400);
+    }
+  } catch(err) {
+    input.disabled = false;
+    errorEl.textContent = "Connection error — please try again.";
+    errorEl.classList.add('show');
+  }
+}
+
+// Allow Enter key on code input
+document.addEventListener('DOMContentLoaded', () => {
+  const ci = document.getElementById('gate-code-input');
+  if (ci) ci.addEventListener('keydown', e => { if (e.key === 'Enter') submitCode(); });
+});
+
+function enterApp(animate) {
+  state.entered = true;
+  storageSet('aug_entered', true);
+
+  const gate = document.getElementById('gate');
+  gate.classList.add('hidden');
+
+  // Init all views
+  buildStateList();
+  buildGlossary();
+  buildLegalCards();
+  buildProfileTags();
+  buildSaved();
+  buildSpotlight();
+  navigate('map', false);
+
+  // Init map after short delay to let layout settle
+  setTimeout(() => initMap(), 150);
+
+  updateDebug();
+}
+
+// ── Navigation ───────────────────────────────────────────────
+function navigate(tab, animate = true) {
+  state.activeTab = tab;
+
+  // Update views
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const target = document.getElementById('view-' + tab);
+  if (target) target.classList.add('active');
+
+  // Update nav
+  document.querySelectorAll('.nav-item').forEach(n => {
+    n.classList.toggle('active', n.dataset.tab === tab);
+  });
+
+  // Tab-specific actions
+  if (tab === 'saved') buildSaved();
+  if (tab === 'profile') buildProfileRecs();
+  if (tab === 'map' && state.mapReady) {
+    setTimeout(() => { /* map already rendered */ }, 50);
+  }
+
+  updateDebug();
+}
+
+// ── State List ───────────────────────────────────────────────
+function buildStateList() {
+  const container = document.getElementById('state-list');
+  if (!container || !window.STATES_EN) return;
+
+  const sorted = [...STATES_EN].sort((a, b) => a.name.localeCompare(b.name));
+
+  container.innerHTML = sorted.map(s => {
+    const isFree = FREE_STATES.has(s.id) || state.isPaid;
+    const badgeClass = s.type === 'lien' ? 'badge-lien' : s.type === 'deed' ? 'badge-deed' : 'badge-both';
+    const typeLabel = s.type === 'lien' ? 'LIEN' : s.type === 'deed' ? 'DEED' : 'BOTH';
+
+    return `<div
+      class="state-list-item${isFree ? '' : ' locked'}"
+      onclick="${isFree ? `openState('${s.id}')` : `openPaywall('${s.id}')`}"
+      id="sli-${s.id}"
+    >
+      <div class="state-list-badge ${badgeClass}">${typeLabel}</div>
+      <div>
+        <div class="state-list-name">${s.name}</div>
+        <div class="state-list-meta">${s.rate} · ${s.redemption}</div>
+      </div>
+      ${!isFree ? '<span class="lock-overlay-item">🔒</span>' : `<div class="state-list-meta" style="color:var(--accent)">${s.score}/100</div>`}
+    </div>`;
+  }).join('');
+}
+
+// ── Map Toggle ───────────────────────────────────────────────
+function setMapView(which) {
+  const panel = document.getElementById('map-side-panel');
+  const mapEl = document.getElementById('map-container');
+  const btnMap  = document.getElementById('toggle-map-btn');
+  const btnList = document.getElementById('toggle-list-btn');
+  if (!panel || !mapEl) return;
+  if (which === 'list') {
+    panel.classList.remove('map-hidden');
+    mapEl.classList.add('map-hidden');
+    if (btnList) btnList.classList.add('active');
+    if (btnMap)  btnMap.classList.remove('active');
+  } else {
+    panel.classList.add('map-hidden');
+    mapEl.classList.remove('map-hidden');
+    if (btnMap)  btnMap.classList.add('active');
+    if (btnList) btnList.classList.remove('active');
+  }
+}
+
+// ── Map ──────────────────────────────────────────────────────
+async function initMap() {
+  try {
+    const svg = d3.select('#map-svg');
+    const container = document.getElementById('map-container');
+    const w = container.clientWidth || 800;
+    const h = container.clientHeight || 480;
+
+    svg.attr('viewBox', `0 0 ${w} ${h}`).attr('preserveAspectRatio', 'xMidYMid meet');
+
+    // Grid texture for depth
+    const defs = svg.append('defs');
+    const pattern = defs.append('pattern')
+      .attr('id', 'map-grid').attr('width', 40).attr('height', 40)
+      .attr('patternUnits', 'userSpaceOnUse');
+    pattern.append('path').attr('d', 'M 40 0 L 0 0 0 40')
+      .attr('fill', 'none').attr('stroke', 'rgba(255,255,255,0.025)').attr('stroke-width', 0.5);
+    svg.append('rect').attr('width', w).attr('height', h).attr('fill', 'url(#map-grid)');
+
+    const projection = d3.geoAlbersUsa()
+      .scale(w * 1.18)
+      .translate([w / 2, h / 2]);
+
+    const path = d3.geoPath().projection(projection);
+    const us = await d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json');
+
+    const stateMap = {};
+    if (window.STATES_EN) STATES_EN.forEach(s => { stateMap[s.id] = s; });
+
+    const fipsToId = {
+      '01':'AL','02':'AK','04':'AZ','05':'AR','06':'CA','08':'CO','09':'CT','10':'DE',
+      '11':'DC','12':'FL','13':'GA','15':'HI','16':'ID','17':'IL','18':'IN','19':'IA',
+      '20':'KS','21':'KY','22':'LA','23':'ME','24':'MD','25':'MA','26':'MI','27':'MN',
+      '28':'MS','29':'MO','30':'MT','31':'NE','32':'NV','33':'NH','34':'NJ','35':'NM',
+      '36':'NY','37':'NC','38':'ND','39':'OH','40':'OK','41':'OR','42':'PA','44':'RI',
+      '45':'SC','46':'SD','47':'TN','48':'TX','49':'UT','50':'VT','51':'VA','53':'WA',
+      '54':'WV','55':'WI','56':'WY'
+    };
+
+    function getColor(sid) {
+      const s = stateMap[sid];
+      if (!s) return '#1a1a25';
+      const isFree = FREE_STATES.has(sid) || state.isPaid;
+      if (!isFree) return '#1e1e2c';
+      if (s.type === 'lien') return '#c8a84b';
+      if (s.type === 'deed') return '#2dd4bf';
+      return '#a78bfa';
+    }
+
+    function getOpacity(sid) {
+      return (FREE_STATES.has(sid) || state.isPaid) ? 0.9 : 0.3;
+    }
+
+    const features = topojson.feature(us, us.objects.states).features;
+    const g = svg.append('g');
+
+    // State fills
+    g.selectAll('path.state-shape')
+      .data(features)
+      .enter().append('path')
+      .attr('class', 'state-shape')
+      .attr('d', path)
+      .attr('fill', d => getColor(fipsToId[String(d.id).padStart(2,'0')]))
+      .attr('stroke', '#0a0a0c')
+      .attr('stroke-width', 1)
+      .style('cursor', 'pointer')
+      .style('opacity', d => getOpacity(fipsToId[String(d.id).padStart(2,'0')]))
+      .on('click', (event, d) => {
+        const sid = fipsToId[String(d.id).padStart(2,'0')];
+        if (!sid) return;
+        (FREE_STATES.has(sid) || state.isPaid) ? openState(sid) : openPaywall(sid);
+      })
+      .on('mouseenter', function(event, d) {
+        const sid = fipsToId[String(d.id).padStart(2,'0')];
+        if (FREE_STATES.has(sid) || state.isPaid)
+          d3.select(this).attr('fill', '#f0d060').style('opacity', 1);
+      })
+      .on('mouseleave', function(event, d) {
+        const sid = fipsToId[String(d.id).padStart(2,'0')];
+        d3.select(this).attr('fill', getColor(sid)).style('opacity', getOpacity(sid));
+      });
+
+    // Border mesh
+    g.append('path')
+      .datum(topojson.mesh(us, us.objects.states, (a,b) => a !== b))
+      .attr('d', path).attr('fill','none')
+      .attr('stroke','#0a0a0c').attr('stroke-width', 0.8);
+
+    // State labels
+    const TINY = new Set(['RI','DC','DE','NH','VT','MD','CT','MA','NJ']);
+    const labelG = svg.append('g').style('pointer-events','none');
+
+    features.forEach(d => {
+      const sid = fipsToId[String(d.id).padStart(2,'0')];
+      if (!sid || TINY.has(sid)) return;
+      const c = path.centroid(d);
+      if (!c || isNaN(c[0]) || isNaN(c[1])) return;
+
+      const isFree = FREE_STATES.has(sid) || state.isPaid;
+      const s = stateMap[sid];
+      const score = (s && isFree) ? s.score : null;
+      const labelColor = isFree ? 'rgba(10,10,12,0.88)' : 'rgba(255,255,255,0.18)';
+      const fontSize = w < 500 ? '6px' : w < 800 ? '8px' : '9px';
+
+      labelG.append('text')
+        .attr('x', c[0]).attr('y', c[1] - (score !== null ? 5 : 0))
+        .attr('text-anchor','middle').attr('dominant-baseline','middle')
+        .attr('font-family',"'DM Sans', sans-serif").attr('font-size', fontSize)
+        .attr('font-weight','700').attr('letter-spacing','0.05em')
+        .attr('fill', labelColor).text(sid);
+
+      if (score !== null && w >= 600) {
+        labelG.append('text')
+          .attr('x', c[0]).attr('y', c[1] + 8)
+          .attr('text-anchor','middle').attr('dominant-baseline','middle')
+          .attr('font-family',"'DM Mono', monospace").attr('font-size','7px')
+          .attr('fill','rgba(10,10,12,0.65)').text(score);
+      }
+    });
+
+    state.mapReady = true;
+
+  } catch(err) {
+    console.error('Map init error:', err);
+    document.getElementById('map-container').innerHTML =
+      '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:14px;flex-direction:column;gap:12px;"><div style="font-size:32px;">🗺</div><div>Map unavailable — switch to List view.</div><button onclick="setMapView(\'list\')" style="background:var(--accent);color:#0a0a0c;border:none;border-radius:8px;padding:10px 24px;font-weight:700;cursor:pointer;font-size:12px;margin-top:4px;">Open List View</button></div>';
+  }
+}
+
+// ── State Detail ─────────────────────────────────────────────
+function openState(id) {
+  const s = (window.STATES_EN || []).find(x => x.id === id);
+  if (!s) return;
+
+  state.activeState = id;
+
+  const isFree = FREE_STATES.has(id) || state.isPaid;
+  if (!isFree) { openPaywall(id); return; }
+
+  const isSaved = state.savedStates.includes(id);
+
+  // Type class
+  const typeClass = s.type === 'lien' ? 'type-lien' : s.type === 'deed' ? 'type-deed' : 'type-both';
+  const typeLabel = s.type === 'lien' ? '🏦 Lien State' : s.type === 'deed' ? '🏠 Deed State' : '🔀 Lien + Deed';
+
+  // Header
+  document.getElementById('modal-header').innerHTML = `
+    <div class="modal-state-name">${s.name}</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap;">
+      <span class="modal-state-type ${typeClass}">${typeLabel}</span>
+      <button
+        style="background:none;border:1px solid var(--border);color:var(--text-dim);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;"
+        onclick="toggleSave('${id}')"
+        id="save-btn-${id}"
+      >${isSaved ? '🔖 Saved' : '+ Save'}</button>
+    </div>
+  `;
+
+  // Beginner badge
+  const bBadge = s.beginnerFriendly
+    ? '<span class="beginner-badge beginner-yes">✓ Beginner Friendly</span>'
+    : `<span class="beginner-badge beginner-no">⚠ Not Recommended for Beginners</span>`;
+
+  // Score bar
+  const scoreColor = s.score >= 70 ? 'var(--green)' : s.score >= 45 ? 'var(--accent)' : 'var(--red)';
+
+  // Counties
+  let countiesHTML = '';
+  if (s.counties && s.counties.length > 0) {
+    countiesHTML = `
+      <div class="modal-section">
+        <div class="modal-section-title">Key Counties</div>
+        <table class="county-table">
+          <thead><tr><th>County</th><th>Notes</th><th>Link</th></tr></thead>
+          <tbody>
+            ${s.counties.map(c => `
+              <tr>
+                <td>${c.name}</td>
+                <td>${c.notes || '—'}</td>
+                <td><a href="${c.link}" target="_blank" class="county-link">Visit ↗</a></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  // OTC
+  const otcHTML = s.otc ? `
+    <div class="modal-section">
+      <div class="modal-section-title">Over-the-Counter (OTC)</div>
+      <div class="modal-note">
+        <strong style="color:${s.otc.available ? 'var(--green)' : 'var(--red)'}">${s.otc.available ? '✓ Available' : '✗ Not Available'}</strong>
+        ${s.otc.note ? ` — ${s.otc.note}` : ''}
+      </div>
+    </div>
+  ` : '';
+
+  // Auction signup
+  let auctionHTML = '';
+  if (s.auctionSignup) {
+    const as = s.auctionSignup;
+    auctionHTML = `
+      <div class="modal-section">
+        <div class="modal-section-title">How to Register</div>
+        <div class="modal-note" style="margin-bottom:10px;"><strong>Platform:</strong> ${as.platform}</div>
+        <div class="signup-steps">
+          ${(as.steps || []).map((step, i) => `
+            <div class="signup-step">
+              <div class="signup-step-num">${i+1}</div>
+              <div>${step}</div>
+            </div>
+          `).join('')}
+        </div>
+        ${as.depositInfo ? `<div class="modal-note" style="margin-top:10px;"><strong>Deposit:</strong> ${as.depositInfo}</div>` : ''}
+        ${as.directLink ? `<a href="${as.directLink}" target="_blank" class="direct-link-btn">Official Site ↗</a>` : ''}
+      </div>
+    `;
+  }
+
+  // Body
+  document.getElementById('modal-body').innerHTML = `
+    ${bBadge}
+    ${!s.beginnerFriendly && s.notBeginnerReason ? `<div class="modal-note" style="margin-bottom:14px;color:var(--red);font-size:12px;">${s.notBeginnerReason}</div>` : ''}
+
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-label">Rate</div><div class="stat-value">${s.rate}</div></div>
+      <div class="stat-card"><div class="stat-label">Redemption</div><div class="stat-value">${s.redemption}</div></div>
+      <div class="stat-card"><div class="stat-label">Type</div><div class="stat-value" style="text-transform:capitalize">${s.type}</div></div>
+      <div class="stat-card"><div class="stat-label">Score</div><div class="stat-value" style="color:${scoreColor}">${s.score}/100</div></div>
+    </div>
+
+    <div class="score-bar-wrap">
+      <div class="score-bar-label"><span>Investor Score</span><span style="color:${scoreColor}">${s.score}/100</span></div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:${s.score}%;background:${scoreColor}"></div></div>
+    </div>
+
+    ${s.scoreWhy ? `
+      <div class="modal-section">
+        <div class="modal-section-title">Score Breakdown</div>
+        <div class="modal-note">${s.scoreWhy}</div>
+      </div>
+    ` : ''}
+
+    ${s.note ? `
+      <div class="modal-section">
+        <div class="modal-section-title">Overview</div>
+        <div class="modal-note">${s.note}</div>
+      </div>
+    ` : ''}
+
+    ${s.beginnerTip ? `
+      <div class="modal-section">
+        <div class="modal-section-title">Beginner Tip</div>
+        <div class="modal-note" style="color:var(--accent)">${s.beginnerTip}</div>
+      </div>
+    ` : ''}
+
+    ${auctionHTML}
+    ${otcHTML}
+
+    ${s.risks && s.risks.length ? `
+      <div class="modal-section">
+        <div class="modal-section-title">Risks</div>
+        <ul class="modal-list">${s.risks.map(r => `<li>${r}</li>`).join('')}</ul>
+      </div>
+    ` : ''}
+
+    ${s.ddExtra && s.ddExtra.length ? `
+      <div class="modal-section">
+        <div class="modal-section-title">Due Diligence Checklist</div>
+        <ul class="modal-list">${s.ddExtra.map(d => `<li>${d}</li>`).join('')}</ul>
+      </div>
+    ` : ''}
+
+    ${countiesHTML}
+
+    <div style="margin-top:16px;padding:12px;background:var(--bg3);border-radius:8px;font-size:11px;color:var(--text-muted);line-height:1.6;border:1px solid var(--border);">
+      Data is for educational reference. Verify with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.
+    </div>
+  `;
+
+  openModal();
+  updateDebug();
+}
+
+// ── Paywall ──────────────────────────────────────────────────
+function openPaywall(id) {
+  const s = (window.STATES_EN || []).find(x => x.id === id);
+  const name = s ? s.name : 'This State';
+
+  document.getElementById('modal-header').innerHTML = `
+    <div class="modal-state-name" style="color:var(--text-dim)">${name}</div>
+    <span class="modal-state-type type-lien">🔒 Locked</span>
+  `;
+
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-paywall">
+      <div class="paywall-lock">🔒</div>
+      <div class="paywall-title">Unlock Full Access</div>
+      <div class="paywall-sub">
+        Get verified data on all 50 states — interest rates, redemption periods, auction signup guides, OTC availability, county links, and investor scores.
+      </div>
+      <div class="paywall-price">$97</div>
+      <div class="paywall-price-note">One-time · Founding Member Rate · Lifetime Access</div>
+      <a href="${STRIPE_URL}" target="_blank" class="paywall-btn">Unlock Now</a>
+      <div style="font-size:12px;color:var(--text-dim);">
+        Already have an access code?
+        <button onclick="closeStateModal();showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">Enter it here</button>
+      </div>
+      <div class="paywall-disclaimer">
+        All sales final. Educational use only. See Terms of Service. Aurigen Collective is not a licensed investment advisor.
+      </div>
+    </div>
+  `;
+
+  openModal();
+}
+
+function openModal() {
+  document.getElementById('state-modal').classList.add('open');
+}
+
+function closeStateModal() {
+  document.getElementById('state-modal').classList.remove('open');
+  state.activeState = null;
+  updateDebug();
+}
+
+function handleModalBackdrop(e) {
+  if (e.target === document.getElementById('state-modal')) closeStateModal();
+}
+
+// ── Save States ──────────────────────────────────────────────
+function toggleSave(id) {
+  const idx = state.savedStates.indexOf(id);
+  if (idx === -1) {
+    state.savedStates.push(id);
+  } else {
+    state.savedStates.splice(idx, 1);
+  }
+  storageSet('aug_saved', state.savedStates);
+
+  const btn = document.getElementById(`save-btn-${id}`);
+  if (btn) btn.textContent = state.savedStates.includes(id) ? '🔖 Saved' : '+ Save';
+}
+
+function buildSaved() {
+  const container = document.getElementById('saved-list');
+  if (!container) return;
+
+  if (state.savedStates.length === 0) {
+    container.innerHTML = `
+      <div class="saved-empty">
+        <div class="saved-empty-icon">🔖</div>
+        <div class="saved-empty-text">No saved states yet.<br>Open any state and tap "+ Save" to add it here.</div>
+      </div>
+    `;
+    return;
+  }
+
+  const saved = (window.STATES_EN || []).filter(s => state.savedStates.includes(s.id));
+  const typeClass = s => s.type === 'lien' ? 'badge-lien' : s.type === 'deed' ? 'badge-deed' : 'badge-both';
+  const typeLabel = s => s.type === 'lien' ? 'LIEN' : s.type === 'deed' ? 'DEED' : 'BOTH';
+
+  container.innerHTML = saved.map(s => `
+    <div class="saved-item" onclick="openState('${s.id}')">
+      <div class="state-list-badge ${typeClass(s)}">${typeLabel(s)}</div>
+      <div class="saved-item-info">
+        <div class="saved-item-name">${s.name}</div>
+        <div class="saved-item-meta">${s.rate} · ${s.redemption} · Score: ${s.score}/100</div>
+      </div>
+      <button class="saved-unsave" onclick="event.stopPropagation();unsaveState('${s.id}')">✕</button>
+    </div>
+  `).join('');
+}
+
+function unsaveState(id) {
+  state.savedStates = state.savedStates.filter(x => x !== id);
+  storageSet('aug_saved', state.savedStates);
+  buildSaved();
+}
+
+// ── Spotlight ────────────────────────────────────────────────
+function buildSpotlight() {
+  const container = document.getElementById('spotlight-list');
+  if (!container || !window.STATES_EN) return;
+
+  const top = [...STATES_EN]
+    .filter(s => FREE_STATES.has(s.id) || state.isPaid)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 10);
+
+  container.innerHTML = top.map(s => {
+    const scoreColor = s.score >= 70 ? 'var(--green)' : s.score >= 45 ? 'var(--accent)' : 'var(--red)';
+    const typeLabel = s.type === 'lien' ? '🏦 Lien' : s.type === 'deed' ? '🏠 Deed' : '🔀 Both';
+    return `
+      <div class="spotlight-card" onclick="openState('${s.id}')">
+        <div class="spotlight-card-top">
+          <div>
+            <div class="spotlight-state-name">${s.name}</div>
+            <div style="font-size:11px;color:var(--text-dim);margin-top:2px;">${typeLabel} · ${s.rate}</div>
+          </div>
+          <div class="spotlight-score" style="color:${scoreColor}">${s.score}</div>
+        </div>
+        <div class="spotlight-card-body">
+          <div class="spotlight-highlight">${s.scoreWhy || s.note || ''}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ── Glossary ─────────────────────────────────────────────────
+const GLOSSARY_TERMS = [
+  { term: 'Tax Lien', def: 'A legal claim placed on a property by the government when the owner fails to pay property taxes. Investors can purchase these liens and earn interest.' },
+  { term: 'Tax Deed', def: 'A legal document granted to a buyer at a tax deed sale, transferring ownership of a property after the original owner failed to pay property taxes.' },
+  { term: 'Redemption Period', def: 'The window of time during which a delinquent property owner can pay off their tax debt (plus interest and penalties) to reclaim their property.' },
+  { term: 'Statutory Rate', def: 'The interest rate set by state law that governs how much a tax lien investor earns. Some states allow bidding this rate down at auction.' },
+  { term: 'Over-the-Counter (OTC)', def: 'Tax liens or deeds that did not sell at auction and are available for direct purchase from the county, often at the full statutory rate.' },
+  { term: 'Quiet Title', def: 'A legal proceeding used to establish clear ownership of a property by resolving any competing claims. Sometimes required after a tax deed purchase.' },
+  { term: 'Premium Bid', def: 'A bidding method where investors compete by bidding a higher amount above the lien face value. The surplus may or may not be returned.' },
+  { term: 'Interest Rate Bid', def: 'An auction method where investors bid DOWN from the statutory maximum interest rate. The lowest bidder wins the certificate.' },
+  { term: 'Rotational Bid', def: 'A fair assignment system used in some counties where liens are distributed to registered investors in rotation at the statutory rate.' },
+  { term: 'Certificate of Purchase', def: 'The document issued to a tax lien investor confirming their purchase of a lien. It is held until redeemed or foreclosed.' },
+  { term: 'Foreclosure', def: 'The legal process by which a tax lien investor forces the sale or transfer of a property after the redemption period expires and the lien is not paid.' },
+  { term: 'Delinquent Taxes', def: 'Property taxes that have not been paid by the due date. After a set period, the county can sell the debt or the property to recover revenue.' },
+  { term: 'IRS Lien', def: 'A federal tax lien placed by the Internal Revenue Service. In most states, IRS liens survive a tax deed sale and are the buyer\'s responsibility.' },
+  { term: 'HOA Super-Lien', def: 'In some states, unpaid HOA dues create a "super-lien" that has priority over even a mortgage — and may survive a tax deed sale.' },
+  { term: 'Encumbrance', def: 'Any claim, lien, or liability attached to a property that may affect the owner\'s ability to sell or transfer it.' },
+  { term: 'Due Diligence', def: 'The research an investor performs before purchasing a tax lien or deed — including title search, property condition, and survivability of liens.' },
+  { term: 'Deed in Lieu', def: 'A transaction where a property owner transfers their deed directly to the lienholder to avoid foreclosure proceedings.' },
+  { term: 'Quitclaim Deed', def: 'A deed that transfers whatever ownership interest the grantor has, without any warranty of title. Common in tax deed states.' },
+  { term: 'Title Search', def: 'A review of public records to determine the legal owner of a property and identify any liens, encumbrances, or claims on the title.' },
+  { term: 'Investor Score', def: 'Aurigen\'s proprietary 0–100 score rating how investor-friendly a state is based on rate, redemption period, accessibility, competition, and OTC availability.' },
+];
+
+function buildGlossary() {
+  renderGlossary(GLOSSARY_TERMS);
+}
+
+function renderGlossary(terms) {
+  const container = document.getElementById('glossary-list');
+  if (!container) return;
+  container.innerHTML = terms.map(t => `
+    <div class="glossary-item">
+      <div class="glossary-term">${t.term}</div>
+      <div class="glossary-def">${t.def}</div>
+    </div>
+  `).join('') || '<div style="color:var(--text-dim);font-size:13px;padding:20px 0;">No results found.</div>';
+}
+
+function filterGlossary(q) {
+  const filtered = q.trim()
+    ? GLOSSARY_TERMS.filter(t =>
+        t.term.toLowerCase().includes(q.toLowerCase()) ||
+        t.def.toLowerCase().includes(q.toLowerCase())
+      )
+    : GLOSSARY_TERMS;
+  renderGlossary(filtered);
+}
+
+// ── Legal Library ─────────────────────────────────────────────
+const LEGAL_CARDS_DATA = [
+  {
+    title: 'Florida — Tax Lien Sales',
+    meta: 'FL Stat § 197.432',
+    statute: 'FL Stat § 197.432',
+    raw: 'Tax certificates shall bear interest at the rate bid by the certificate holder...',
+    plain: 'Florida auctions tax certificates annually. Investors bid DOWN from 18% to win. The lowest interest rate bid wins the certificate. Certificates earn interest from the date of purchase.',
+    meaning: 'Competitive counties (Miami-Dade, Broward) push rates to near zero. Focus on mid-size and rural counties for yields near the statutory maximum.',
+    link: 'https://www.flsenate.gov/Laws/Statutes/2023/197.432'
+  },
+  {
+    title: 'Iowa — Tax Lien Interest',
+    meta: 'IA Code § 447.1',
+    statute: 'IA Code § 447.1',
+    raw: 'The rate of interest on the certificate shall be two percent per month...',
+    plain: 'Iowa pays a fixed 2% per month (24% annualized) on tax lien certificates. The rate is not bid down — every investor earns the same rate.',
+    meaning: 'One of the most reliable yield states. No bidding war on rates. Best for patient investors who can hold through the 21-month redemption period.',
+    link: 'https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=447'
+  },
+  {
+    title: 'Illinois — Tax Lien Penalty',
+    meta: '35 ILCS 200/21-355',
+    statute: '35 ILCS 200/21-355',
+    raw: 'The penalty on certificates of purchase shall be 36% per 6-month period...',
+    plain: 'Illinois pays a 36% penalty per 6-month period — but only if the property owner redeems. This is not an annualized rate; it applies per redemption period.',
+    meaning: 'Highest potential return in the country if redeemed. Not all certificates redeem — due diligence on each parcel is critical.',
+    link: 'https://www.ilga.gov/legislation/ilcs/ilcs4.asp?DocName=003502000HCh.+21&ActID=596'
+  },
+  {
+    title: 'Arizona — Tax Lien Sales',
+    meta: 'ARS Title 42 Ch. 18',
+    statute: 'ARS § 42-18112',
+    raw: 'The county treasurer shall sell tax liens at public auction to the person who offers to accept the lowest rate of interest...',
+    plain: 'Arizona uses a reverse-bid auction — investors compete by accepting lower interest rates from the 16% ceiling. Lowest bidder wins. OTC liens available year-round at 16%.',
+    meaning: 'Best beginner state for OTC purchases. Institutional competition in Maricopa keeps auction rates at 0–3% — stick to smaller counties.',
+    link: 'https://www.azleg.gov/viewdocument/?docName=https://www.azleg.gov/ars/42/18112.htm'
+  },
+  {
+    title: 'New Jersey — Tax Lien Sales',
+    meta: 'NJSA 54:5-1 et seq.',
+    statute: 'NJSA 54:5-1',
+    raw: 'Taxes and assessments which are not paid when due shall be a lien upon the lands assessed...',
+    plain: 'New Jersey is a lien state with up to 18% interest. Municipalities sell certificates at public auction. Investors may bid premiums above lien face value — premiums earn no interest.',
+    meaning: 'Strong statutory rate but competitive urban markets. Redemption period is 2 years. Premium bidding can reduce effective yield — factor it in before bidding.',
+    link: 'https://law.justia.com/codes/new-jersey/title-54/section-54-5-1/'
+  },
+];
+
+function buildLegalCards() {
+  const container = document.getElementById('legal-cards');
+  if (!container) return;
+
+  container.innerHTML = LEGAL_CARDS_DATA.map((card, i) => `
+    <div class="legal-card" id="legal-card-${i}">
+      <div class="legal-card-header" onclick="toggleLegalCard(${i})">
+        <div>
+          <div class="legal-card-title">${card.title}</div>
+          <div class="legal-card-meta">${card.meta}</div>
+        </div>
+        <span class="legal-card-chevron">▶</span>
+      </div>
+      <div class="legal-card-body">
+        <div class="legal-field">
+          <div class="legal-field-label">Statute</div>
+          <div class="legal-field-value"><code>${card.statute}</code></div>
+        </div>
+        <div class="legal-field">
+          <div class="legal-field-label">Raw Language</div>
+          <div class="legal-field-value">"${card.raw}"</div>
+        </div>
+        <div class="legal-field">
+          <div class="legal-field-label">Plain English</div>
+          <div class="legal-field-value">${card.plain}</div>
+        </div>
+        <div class="legal-field">
+          <div class="legal-field-label">What It Means for Investors</div>
+          <div class="legal-field-value">${card.meaning}</div>
+        </div>
+        <div class="legal-field">
+          <a href="${card.link}" target="_blank" class="direct-link-btn">Official Source ↗</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleLegalCard(i) {
+  const card = document.getElementById(`legal-card-${i}`);
+  if (card) card.classList.toggle('open');
+}
+
+// ── Profile ───────────────────────────────────────────────────
+const STRATEGIES = [
+  { id: 'lien', label: '🏦 Tax Liens' },
+  { id: 'deed', label: '🏠 Tax Deeds' },
+  { id: 'otc', label: '🛒 OTC / Direct Purchase' },
+  { id: 'remote', label: '💻 Remote Investing' },
+  { id: 'local', label: '📍 Local Investing' },
+  { id: 'passive', label: '💰 Passive Income' },
+  { id: 'beginner', label: '🌱 Beginner' },
+  { id: 'advanced', label: '⚡ Experienced' },
+];
+
+function buildProfileTags() {
+  const container = document.getElementById('profile-strategy-tags');
+  if (!container) return;
+
+  container.innerHTML = STRATEGIES.map(s => `
+    <button
+      class="profile-strategy-tag${state.profile.strategy.includes(s.id) ? ' selected' : ''}"
+      id="stag-${s.id}"
+      onclick="toggleStrategy('${s.id}')"
+    >${s.label}</button>
+  `).join('');
+}
+
+function toggleStrategy(id) {
+  const idx = state.profile.strategy.indexOf(id);
+  if (idx === -1) state.profile.strategy.push(id);
+  else state.profile.strategy.splice(idx, 1);
+  storageSet('aug_profile', state.profile);
+
+  const btn = document.getElementById(`stag-${id}`);
+  if (btn) btn.classList.toggle('selected', state.profile.strategy.includes(id));
+
+  buildProfileRecs();
+}
+
+function buildProfileRecs() {
+  const container = document.getElementById('profile-recs');
+  if (!container || !window.STATES_EN) return;
+
+  const strat = state.profile.strategy;
+
+  let filtered = [...STATES_EN];
+
+  if (strat.includes('lien')) filtered = filtered.filter(s => s.type === 'lien' || s.type === 'both');
+  if (strat.includes('deed')) filtered = filtered.filter(s => s.type === 'deed' || s.type === 'both');
+  if (strat.includes('otc')) filtered = filtered.filter(s => s.otc && s.otc.available);
+  if (strat.includes('beginner')) filtered = filtered.filter(s => s.beginnerFriendly);
+
+  const top = filtered
+    .filter(s => FREE_STATES.has(s.id) || state.isPaid)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5);
+
+  if (top.length === 0) {
+    container.innerHTML = '<div style="color:var(--text-dim);font-size:13px;">Select strategies above to get personalized recommendations.</div>';
+    return;
+  }
+
+  const stateFlags = {
+    FL:'🇺🇸',IA:'🇺🇸',IL:'🇺🇸',NJ:'🇺🇸',AZ:'🇺🇸',TX:'🇺🇸',GA:'🇺🇸',
+  };
+
+  container.innerHTML = top.map(s => `
+    <div class="profile-rec" onclick="openState('${s.id}')">
+      <div class="profile-rec-flag">${stateFlags[s.id] || '📍'}</div>
+      <div>
+        <div class="profile-rec-name">${s.name}</div>
+        <div class="profile-rec-why">${s.beginnerTip || s.scoreWhy || ''}</div>
+      </div>
+      <div class="profile-rec-score">${s.score}</div>
+    </div>
+  `).join('');
+}
+
+// ── Deal Analyzer ─────────────────────────────────────────────
+function calcAnalyzer() {
+  const type = document.getElementById('az-type')?.value;
+  const price = parseFloat(document.getElementById('az-price')?.value) || 0;
+  const rate = parseFloat(document.getElementById('az-rate')?.value) || 0;
+  const months = parseFloat(document.getElementById('az-months')?.value) || 0;
+  const arv = parseFloat(document.getElementById('az-arv')?.value) || 0;
+  const costs = parseFloat(document.getElementById('az-costs')?.value) || 0;
+  const penalty = parseFloat(document.getElementById('az-penalty')?.value) || 0;
+
+  // Show/hide deed-specific fields
+  const arvGroup = document.getElementById('az-arv-group');
+  const deedResults = document.getElementById('az-deed-results');
+  if (arvGroup) arvGroup.style.display = type === 'deed' ? '' : 'none';
+  if (deedResults) deedResults.style.display = type === 'deed' && arv > 0 ? '' : 'none';
+
+  if (!price || !months) {
+    ['az-return','az-roi','az-annualized','az-interest','az-total-costs'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = '—';
+    });
+    return;
+  }
+
+  const annualRate = rate / 100;
+  const monthlyRate = annualRate / 12;
+  const interest = price * monthlyRate * months;
+  const penaltyEarned = price * (penalty / 100);
+  const totalCosts = price + costs;
+  const totalReturn = price + interest + penaltyEarned;
+  const netReturn = totalReturn - totalCosts;
+  const roi = totalCosts > 0 ? (netReturn / totalCosts) * 100 : 0;
+  const annualizedROI = months > 0 ? (roi / months) * 12 : 0;
+
+  const fmt = n => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  const fmtPct = n => n.toFixed(1) + '%';
+
+  const returnEl = document.getElementById('az-return');
+  if (returnEl) {
+    returnEl.textContent = fmt(netReturn > 0 ? netReturn : 0);
+    returnEl.style.color = netReturn >= 0 ? 'var(--accent)' : 'var(--red)';
+  }
+
+  const sub = document.getElementById('az-return-sub');
+  if (sub) sub.textContent = `Net after $${costs.toLocaleString()} in costs`;
+
+  const roiEl = document.getElementById('az-roi');
+  if (roiEl) { roiEl.textContent = fmtPct(roi); roiEl.style.color = roi >= 0 ? 'var(--accent)' : 'var(--red)'; }
+
+  const annEl = document.getElementById('az-annualized');
+  if (annEl) { annEl.textContent = fmtPct(annualizedROI); annEl.style.color = annualizedROI >= 0 ? 'var(--green)' : 'var(--red)'; }
+
+  const intEl = document.getElementById('az-interest');
+  if (intEl) intEl.textContent = fmt(interest + penaltyEarned);
+
+  const tcEl = document.getElementById('az-total-costs');
+  if (tcEl) tcEl.textContent = fmt(totalCosts);
+
+  if (type === 'deed' && arv > 0) {
+    const equity = arv - totalCosts;
+    const eqEl = document.getElementById('az-equity');
+    if (eqEl) { eqEl.textContent = fmt(equity); eqEl.style.color = equity >= 0 ? 'var(--green)' : 'var(--red)'; }
+  }
+}
+
+// ── AI Advisor ────────────────────────────────────────────────
+async function sendAdvisorMessage() {
+  if (state.advisorBusy) return;
+  const input = document.getElementById('advisor-input');
+  const msg = input?.value.trim();
+  if (!msg) return;
+
+  input.value = '';
+  state.advisorBusy = true;
+
+  const sendBtn = document.getElementById('advisor-send');
+  if (sendBtn) sendBtn.disabled = true;
+
+  // Add user message
+  appendAdvisorMsg('user', msg);
+  state.advisorHistory.push({ role: 'user', content: msg });
+
+  // Show typing
+  const typing = document.getElementById('advisor-typing');
+  if (typing) typing.classList.add('show');
+  scrollAdvisor();
+
+  try {
+    const res = await fetch(NETLIFY_FN, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'advisor', message: msg })
+    });
+
+    const data = await res.json();
+    if (typing) typing.classList.remove('show');
+
+    const reply = data.response || data.error || 'Unable to respond right now.';
+    appendAdvisorMsg('sage', reply);
+    state.advisorHistory.push({ role: 'assistant', content: reply });
+
+  } catch(err) {
+    if (typing) typing.classList.remove('show');
+    appendAdvisorMsg('sage', 'Connection error — please try again.');
+  }
+
+  state.advisorBusy = false;
+  if (sendBtn) sendBtn.disabled = false;
+  if (input) input.focus();
+}
+
+function appendAdvisorMsg(role, text) {
+  const container = document.getElementById('advisor-messages');
+  if (!container) return;
+
+  const typing = document.getElementById('advisor-typing');
+
+  const div = document.createElement('div');
+  div.className = `msg msg-${role}`;
+  div.innerHTML = role === 'sage' ? `<strong>Sage</strong><br>${text.replace(/\n/g, '<br>')}` : text;
+
+  // Insert before typing indicator
+  if (typing) container.insertBefore(div, typing);
+  else container.appendChild(div);
+
+  scrollAdvisor();
+}
+
+function scrollAdvisor() {
+  const container = document.getElementById('advisor-messages');
+  if (container) container.scrollTop = container.scrollHeight;
+}
+
+function advisorKeydown(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendAdvisorMessage();
+  }
+}
+
+// ── Mobile State List — replaced by toggle bar ───────────────
+function openStateListMobile() { setMapView('list'); }
+function closeMobilePanel() { setMapView('map'); }
+
+// ── Debug Panel ───────────────────────────────────────────────
+function toggleDebug() {
+  const panel = document.getElementById('debug-panel');
+  if (panel) panel.classList.toggle('show');
+}
+
+function updateDebug() {
+  const content = document.getElementById('debug-content');
+  if (!content) return;
+  content.innerHTML = `
+    entered: ${state.entered}<br>
+    isPaid: ${state.isPaid}<br>
+    activeTab: ${state.activeTab}<br>
+    activeState: ${state.activeState || 'none'}<br>
+    savedStates: [${state.savedStates.join(', ')}]<br>
+    mapReady: ${state.mapReady}
+  `;
+}
+</script>
+</body>
+</html>
