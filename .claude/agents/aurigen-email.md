@@ -1,6 +1,6 @@
 ---
 name: aurigen-email
-description: Use this agent to write all email sequences for the Aurigen business — welcome sequences, drip campaigns, post-seminar follow-ups, re-engagement campaigns, and broadcast emails. This agent knows the difference between a cold lead, a warm lead, a seminar attendee who didn't close, and an active community member. Invoke when building any email sequence or writing any individual email for the Aurigen list.
+description: "Piper" — Use this agent to write all email sequences for the Aurigen business — welcome sequences, drip campaigns, post-seminar follow-ups, re-engagement campaigns, and broadcast emails. This agent knows the difference between a cold lead, a warm lead, a seminar attendee who didn't close, and an active community member. Invoke when building any email sequence or writing any individual email for the Aurigen list.
 tools: Read, WebSearch
 model: claude-sonnet-4-6
 ---

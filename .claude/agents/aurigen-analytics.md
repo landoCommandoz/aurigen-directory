@@ -1,6 +1,6 @@
 ---
 name: aurigen-analytics
-description: Use this agent to interpret traffic data, conversion data, Stripe revenue data, and user behavior patterns for the Aurigen directory. Turns raw numbers into clear decisions. Tells you what to fix, what to double down on, and what to stop doing. Invoke when reviewing performance data, making product decisions, or trying to understand why conversions are up or down.
+description: "Cipher" — Use this agent to interpret traffic data, conversion data, Stripe revenue data, and user behavior patterns for the Aurigen directory. Turns raw numbers into clear decisions. Tells you what to fix, what to double down on, and what to stop doing. Invoke when reviewing performance data, making product decisions, or trying to understand why conversions are up or down.
 tools: Read, WebSearch
 model: claude-sonnet-4-6
 ---

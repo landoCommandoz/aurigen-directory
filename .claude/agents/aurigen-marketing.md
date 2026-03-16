@@ -1,6 +1,6 @@
 ---
 name: aurigen-marketing
-description: Use this agent to write all content for Aurigen Collective, Aurigen Academy, TravelByLando, North of Nowhere, and seminar follow-up sequences. Produces TikTok scripts, email sequences, social captions, demo voiceovers, Skool posts, Stripe paywall copy, objection-handling scripts, and SMS follow-ups. Reads live state data to ground all copy in real numbers.
+description: "Blaze" — Use this agent to write all content for Aurigen Collective, Aurigen Academy, TravelByLando, North of Nowhere, and seminar follow-up sequences. Produces TikTok scripts, email sequences, social captions, demo voiceovers, Skool posts, Stripe paywall copy, objection-handling scripts, and SMS follow-ups. Reads live state data to ground all copy in real numbers.
 tools: Read, WebSearch
 model: claude-sonnet-4-6
 ---
