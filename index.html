@@ -104,11 +104,20 @@ function loadLanguageFile(lang) {
   --map-lien-dim: rgba(160,128,50,0.35);
   --map-deed:     #2a9d8f;
   --map-deed-dim: rgba(42,157,143,0.3);
+  --map-rdeed:    #d48a3a;
+  --map-rdeed-dim: rgba(212,138,58,0.3);
   --map-both:     #7c5cbf;
   --map-both-dim: rgba(124,92,191,0.3);
   --map-lien-glow: rgba(184,148,58,0.4);
   --map-deed-glow: rgba(42,157,143,0.35);
+  --map-rdeed-glow: rgba(212,138,58,0.35);
   --map-both-glow: rgba(124,92,191,0.35);
+  --rdeed:        #d48a3a;
+  --rdeed-dim:    rgba(212,138,58,0.12);
+
+  /* Map container cinematic gradient */
+  --map-bg-inner: #151520;
+  --map-bg-outer: #0c0c12;
 
   /* Z-index scale */
   --z-map:    10;
@@ -1043,6 +1052,7 @@ a { color: inherit; text-decoration: none; }
 
 .badge-lien { background: rgba(184,148,58,0.15); color: var(--map-lien); border: 1px solid rgba(184,148,58,0.2); }
 .badge-deed { background: rgba(42,157,143,0.15); color: var(--map-deed); border: 1px solid rgba(42,157,143,0.2); }
+.badge-rdeed { background: rgba(212,138,58,0.15); color: var(--map-rdeed); border: 1px solid rgba(212,138,58,0.2); }
 .badge-both { background: rgba(124,92,191,0.15); color: var(--map-both); border: 1px solid rgba(124,92,191,0.2); }
 
 .state-list-name {
@@ -1096,7 +1106,7 @@ a { color: inherit; text-decoration: none; }
   flex: 1;
   min-height: 0;
   position: relative;
-  background: radial-gradient(ellipse at 50% 50%, #151520 0%, #0c0c12 60%, var(--bg) 100%);
+  background: radial-gradient(ellipse at 50% 50%, var(--map-bg-inner) 0%, var(--map-bg-outer) 60%, var(--bg) 100%);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1219,6 +1229,7 @@ a { color: inherit; text-decoration: none; }
 
 .type-lien { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent-border); }
 .type-deed { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(45,212,191,0.3); }
+.type-rdeed { background: var(--rdeed-dim); color: var(--rdeed); border: 1px solid rgba(212,138,58,0.3); }
 .type-both { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); }
 
 .modal-body {
@@ -2439,6 +2450,7 @@ a { color: inherit; text-decoration: none; }
           <div class="map-legend">
             <div class="legend-item"><div class="legend-dot" style="background:var(--map-lien);box-shadow:0 0 8px var(--map-lien-glow)"></div>Lien</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--map-deed);box-shadow:0 0 8px var(--map-deed-glow)"></div>Deed</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--map-rdeed);box-shadow:0 0 8px var(--map-rdeed-glow)"></div>R. Deed</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--map-both);box-shadow:0 0 8px var(--map-both-glow)"></div>Both</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--map-locked);border:1px solid var(--border)"></div>Locked</div>
           </div>
@@ -2727,6 +2739,31 @@ const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-cl
 // Free states (top 7 by score)
 const FREE_STATES = new Set(['FL', 'IL', 'AZ']);
 
+// ── Type helpers ─────────────────────────────────────────────
+function typeKey(type) {
+  if (type === 'lien') return 'lien';
+  if (type === 'deed') return 'deed';
+  if (type === 'redeemable deed') return 'rdeed';
+  return 'both'; // hybrid or anything else
+}
+function typeBadgeClass(type) { return 'badge-' + typeKey(type); }
+function typeCssClass(type) { return 'type-' + typeKey(type); }
+function typeShortLabel(type) { const k = typeKey(type); return t('type' + k.charAt(0).toUpperCase() + k.slice(1)); }
+function typeFullLabel(type) { const k = typeKey(type); return t('type' + k.charAt(0).toUpperCase() + k.slice(1) + 'Full'); }
+function typeLegendLabel(type) { const k = typeKey(type); return t('legend' + k.charAt(0).toUpperCase() + k.slice(1)); }
+function typeIcon(type) {
+  if (type === 'lien') return '\u{1F3E6}';
+  if (type === 'deed') return '\u{1F3E0}';
+  if (type === 'redeemable deed') return '\u{1F504}';
+  return '\u{1F500}';
+}
+function typeMapColor(type, isFree) {
+  const k = typeKey(type);
+  const colors = { lien: 'lien', deed: 'deed', rdeed: 'rdeed', both: 'both' };
+  const key = colors[k] || 'both';
+  return isFree ? mapColors[key] : mapColors[key + 'Dim'];
+}
+
 // ── i18n Strings ─────────────────────────────────────────────
 const I18N = {
   en: {
@@ -2789,6 +2826,7 @@ const I18N = {
     mapPanelSub: 'Select a state to view details',
     legendLien: 'Lien',
     legendDeed: 'Deed',
+    legendRdeed: 'R. Deed',
     legendBoth: 'Both',
     legendLocked: 'Locked',
     mapFallback: 'Map unavailable - switch to List view.',
@@ -2908,9 +2946,11 @@ const I18N = {
     // State types
     typeLien: 'LIEN',
     typeDeed: 'DEED',
+    typeRdeed: 'R. DEED',
     typeBoth: 'BOTH',
     typeLienFull: 'Lien State',
     typeDeedFull: 'Deed State',
+    typeRdeedFull: 'Redeemable Deed',
     typeBothFull: 'Lien + Deed',
     // Strategies
     stratLien: 'Tax Liens',
@@ -2984,6 +3024,7 @@ const I18N = {
     mapPanelSub: 'Seleccione un estado para ver detalles',
     legendLien: 'Gravamen',
     legendDeed: 'Escritura',
+    legendRdeed: 'Escr. Redimible',
     legendBoth: 'Ambos',
     legendLocked: 'Bloqueado',
     mapFallback: 'Mapa no disponible - cambie a vista de Lista.',
@@ -3103,9 +3144,11 @@ const I18N = {
     // State types
     typeLien: 'GRAV',
     typeDeed: 'ESCR',
+    typeRdeed: 'ESCR. R.',
     typeBoth: 'AMBOS',
     typeLienFull: 'Estado de Gravamen',
     typeDeedFull: 'Estado de Escritura',
+    typeRdeedFull: 'Escritura Redimible',
     typeBothFull: 'Gravamen + Escritura',
     // Strategies
     stratLien: 'Gravamenes Fiscales',
@@ -3385,7 +3428,7 @@ function updateAdvisorStrings() {
 
 function updateMapLegend() {
   const legendItems = document.querySelectorAll('.map-legend .legend-item');
-  const legendKeys = ['legendLien', 'legendDeed', 'legendBoth', 'legendLocked'];
+  const legendKeys = ['legendLien', 'legendDeed', 'legendRdeed', 'legendBoth', 'legendLocked'];
   legendItems.forEach((item, i) => {
     // Get the text node (after the dot span)
     if (legendKeys[i]) {
@@ -3456,7 +3499,7 @@ window.addEventListener('load', async () => {
     updateDebug();
   } catch(err) {
     console.error('Init error:', err);
-    document.getElementById('gate').innerHTML += '<div style="color:#e05555;font-size:12px;margin-top:20px;">Error loading app. Please refresh.</div>';
+    document.getElementById('gate').innerHTML += '<div style="color:var(--red);font-size:12px;margin-top:20px;">Error loading app. Please refresh.</div>';
   }
 });
 
@@ -3724,8 +3767,8 @@ function buildStateList() {
 
   container.innerHTML = sorted.map(s => {
     const isFree = FREE_STATES.has(s.id) || state.isPaid;
-    const badgeClass = s.type === 'lien' ? 'badge-lien' : s.type === 'deed' ? 'badge-deed' : 'badge-both';
-    const typeLabel = s.type === 'lien' ? t('typeLien') : s.type === 'deed' ? t('typeDeed') : t('typeBoth');
+    const badgeClass = typeBadgeClass(s.type);
+    const typeLabel = typeShortLabel(s.type);
     const scoreClass = (s.score >= 75) ? 'state-list-score high-score' : 'state-list-score';
 
     return `<div
@@ -3819,6 +3862,8 @@ async function initMap() {
       lienDim:  cs.getPropertyValue('--map-lien-dim').trim() || '#9a7f30',
       deed:     cs.getPropertyValue('--map-deed').trim()     || '#34e0cc',
       deedDim:  cs.getPropertyValue('--map-deed-dim').trim() || '#1fa08e',
+      rdeed:    cs.getPropertyValue('--map-rdeed').trim()    || '#d48a3a',
+      rdeedDim: cs.getPropertyValue('--map-rdeed-dim').trim()|| 'rgba(212,138,58,0.3)',
       both:     cs.getPropertyValue('--map-both').trim()     || '#b99cff',
       bothDim:  cs.getPropertyValue('--map-both-dim').trim() || '#7a5fc4',
       bg:     cs.getPropertyValue('--bg').trim()      || '#0a0a0c'
@@ -3828,9 +3873,7 @@ async function initMap() {
       const s = stateMap[sid];
       if (!s) return mapColors.state;
       const isFree = FREE_STATES.has(sid) || state.isPaid;
-      if (s.type === 'lien') return isFree ? mapColors.lien : mapColors.lienDim;
-      if (s.type === 'deed') return isFree ? mapColors.deed : mapColors.deedDim;
-      return isFree ? mapColors.both : mapColors.bothDim;
+      return typeMapColor(s.type, isFree);
     }
 
     function getOpacity(sid) {
@@ -3951,15 +3994,15 @@ function openState(id) {
   if (!isFreeState && !isPaid) { openPaywall(id); return; }
 
   // Type class
-  const typeClass = s.type === 'lien' ? 'type-lien' : s.type === 'deed' ? 'type-deed' : 'type-both';
-  const typeIcon = s.type === 'lien' ? '\u{1F3E6}' : s.type === 'deed' ? '\u{1F3E0}' : '\u{1F500}';
-  const typeLabel = s.type === 'lien' ? t('typeLienFull') : s.type === 'deed' ? t('typeDeedFull') : t('typeBothFull');
+  const tClass = typeCssClass(s.type);
+  const tIcon = typeIcon(s.type);
+  const tLabel = typeFullLabel(s.type);
 
   // Header
   document.getElementById('modal-header').innerHTML = `
     <div class="modal-state-name">${s.name}</div>
     <div style="display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap;">
-      <span class="modal-state-type ${typeClass}">${typeIcon} ${typeLabel}</span>
+      <span class="modal-state-type ${tClass}">${tIcon} ${tLabel}</span>
       <button
         style="background:none;border:1px solid var(--border);color:var(--text-dim);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;"
         onclick="toggleSave('${id}')"
@@ -3987,6 +4030,14 @@ function openState(id) {
       <div class="stat-card"><div class="stat-label">${t('modalType')}</div><div class="stat-value" style="text-transform:capitalize">${s.type}</div></div>
       <div class="stat-card"><div class="stat-label">${t('modalScore')}</div><div class="stat-value" style="color:${scoreColor}">${s.score}/100</div></div>
     </div>
+
+    ${s.typeWhy || s.rateWhy ? `
+      <div class="modal-section">
+        <div class="modal-section-title">${t('modalWhyClassified') || 'Why This Classification & Rate'}</div>
+        ${s.typeWhy ? `<div class="modal-note" style="margin-bottom:8px;"><strong>${t('modalTypeLabel') || 'Type'}:</strong> ${s.typeWhy}</div>` : ''}
+        ${s.rateWhy ? `<div class="modal-note"><strong>${t('modalRateLabel') || 'Rate'}:</strong> ${s.rateWhy}</div>` : ''}
+      </div>
+    ` : ''}
 
     <div class="score-bar-wrap">
       <div class="score-bar-label"><span>${t('modalScore')}</span><span style="color:${scoreColor}">${s.score}/100</span></div>
@@ -4155,6 +4206,13 @@ function openState(id) {
 
     ${countiesHTML}
 
+    <div style="margin-top:20px;text-align:center;">
+      <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="paywall-btn" style="display:inline-block;text-decoration:none;font-size:14px;padding:12px 28px;">
+        ${t('modalBookCall') || 'Book an Investor Clarity Call'} \u2197
+      </a>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:8px;">Free 1-on-1 strategy session</div>
+    </div>
+
     <div style="margin-top:16px;padding:12px;background:var(--bg3);border-radius:8px;font-size:11px;color:var(--text-muted);line-height:1.6;border:1px solid var(--border);">
       ${t('modalDisclaimer')}
     </div>
@@ -4237,12 +4295,10 @@ function buildSaved() {
   }
 
   const saved = (STATES || []).filter(s => state.savedStates.includes(s.id));
-  const typeClass = s => s.type === 'lien' ? 'badge-lien' : s.type === 'deed' ? 'badge-deed' : 'badge-both';
-  const typeLabel = s => s.type === 'lien' ? t('typeLien') : s.type === 'deed' ? t('typeDeed') : t('typeBoth');
 
   container.innerHTML = saved.map(s => `
     <div class="saved-item" onclick="openState('${s.id}')">
-      <div class="state-list-badge ${typeClass(s)}">${typeLabel(s)}</div>
+      <div class="state-list-badge ${typeBadgeClass(s.type)}">${typeShortLabel(s.type)}</div>
       <div class="saved-item-info">
         <div class="saved-item-name">${s.name}</div>
         <div class="saved-item-meta">${s.rate} \u00B7 ${s.redemption} \u00B7 ${t('modalScore')}: ${s.score}/100</div>
@@ -4270,14 +4326,14 @@ function buildSpotlight() {
 
   container.innerHTML = top.map(s => {
     const scoreColor = s.score >= 70 ? 'var(--green)' : s.score >= 45 ? 'var(--accent)' : 'var(--red)';
-    const typeIcon = s.type === 'lien' ? '\u{1F3E6}' : s.type === 'deed' ? '\u{1F3E0}' : '\u{1F500}';
-    const typeLabel = s.type === 'lien' ? t('legendLien') : s.type === 'deed' ? t('legendDeed') : t('legendBoth');
+    const tIcon = typeIcon(s.type);
+    const tLabel = typeLegendLabel(s.type);
     return `
       <div class="spotlight-card" onclick="openState('${s.id}')">
         <div class="spotlight-card-top">
           <div>
             <div class="spotlight-state-name">${s.name}</div>
-            <div style="font-size:11px;color:var(--text-dim);margin-top:2px;">${typeIcon} ${typeLabel} \u00B7 ${s.rate}</div>
+            <div style="font-size:11px;color:var(--text-dim);margin-top:2px;">${tIcon} ${tLabel} \u00B7 ${s.rate}</div>
           </div>
           <div class="spotlight-score" style="color:${scoreColor}">${s.score}</div>
         </div>
@@ -4388,11 +4444,11 @@ const LEGAL_CARDS_DATA = [
   },
   {
     title: 'Illinois — Tax Lien Penalty',
-    meta: '35 ILCS 200/21-355',
-    statute: '35 ILCS 200/21-355',
-    raw: 'The penalty on certificates of purchase shall be 36% per 6-month period...',
-    plain: 'Illinois pays a 36% penalty per 6-month period — but only if the property owner redeems. This is not an annualized rate; it applies per redemption period.',
-    meaning: 'Highest potential return in the country if redeemed. Not all certificates redeem — due diligence on each parcel is critical.',
+    meta: '35 ILCS 200/21-215',
+    statute: '35 ILCS 200/21-215',
+    raw: 'The certificate of purchase shall bear a penalty of not to exceed 9% of the amount of taxes, special assessments, interest, and costs for each 6-month period...',
+    plain: 'Illinois pays up to 9% penalty per 6-month period (18% annualized) on tax lien certificates — but only if the property owner redeems. Rate was reduced from 18%/6mo to 9%/6mo by Public Act 100-1070 (effective January 1, 2019). The rate is bid down at auction.',
+    meaning: 'Strong statutory rate but bid-down competition in Cook County pushes rates to 0%. Focus on suburban and downstate counties (DuPage, Lake, Will) for better yields.',
     link: 'https://www.ilga.gov/legislation/ilcs/ilcs4.asp?DocName=003502000HCh.+21&ActID=596'
   },
   {
@@ -4506,8 +4562,8 @@ function buildProfileRecs() {
 
   let filtered = [...STATES];
 
-  if (strat.includes('lien')) filtered = filtered.filter(s => s.type === 'lien' || s.type === 'both');
-  if (strat.includes('deed')) filtered = filtered.filter(s => s.type === 'deed' || s.type === 'both');
+  if (strat.includes('lien')) filtered = filtered.filter(s => s.type === 'lien' || s.type === 'hybrid');
+  if (strat.includes('deed')) filtered = filtered.filter(s => s.type === 'deed' || s.type === 'redeemable deed' || s.type === 'hybrid');
   if (strat.includes('otc')) filtered = filtered.filter(s => s.otc && s.otc.available);
   if (strat.includes('beginner')) filtered = filtered.filter(s => s.beginnerFriendly);
 

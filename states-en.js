@@ -1,6 +1,6 @@
 // Aurigen Directory — State Data (English)
 // Fields: id, name, type, rate, redemption, score, beginnerFriendly, beginnerTip,
-//         scoreWhy, note, risks, ddExtra, auctionSignup, otc, counties, platforms
+//         scoreWhy, note, typeWhy, rateWhy, risks, ddExtra, auctionSignup, otc, counties, platforms
 
 var STATES_EN = [
   {
@@ -9,6 +9,8 @@ var STATES_EN = [
     notBeginnerReason: "Long redemption, title issues common, institutional competition in metro areas.",
     scoreWhy: "Low interest rate environment, long 3-year redemption, and institutional dominance in metros limit upside for individual investors.",
     note: "Alabama sells tax lien certificates at the county level. Investors purchase the lien and the property owner has 3 years to redeem at 12% annual interest. If unredeemed, the investor can pursue a tax deed through a separate process. Statute: AL Code §40-10-1 et seq.",
+    typeWhy: "Alabama sells tax lien certificates at the county level — the investor purchases only the lien, not the property, and the owner retains title during the 3-year redemption period. AL Code §40-10-1 et seq.",
+    rateWhy: "Alabama fixes the interest rate at 12% per annum on the lien amount, accruing for the full 3-year redemption period. This is a statutory flat rate, not auction-determined. AL Code §40-10-1 et seq.",
     auctionSignup: {
       platform: "County-level (varies by county)",
       steps: [
@@ -42,6 +44,8 @@ var STATES_EN = [
     notBeginnerReason: "Borough-based system, limited inventory, federal land ownership restricts most parcels. Requires local connections.",
     scoreWhy: "Remote logistics, limited inventory, and federal land restrictions make this impractical for most investors.",
     note: "Alaska operates through boroughs (not counties). The Matanuska-Susitna and Fairbanks North Star boroughs occasionally sell tax-foreclosed properties. Statute: AS §29.45.",
+    typeWhy: "Alaska sells the property outright through borough-level tax foreclosure auctions — the buyer receives a deed, not a lien. Some boroughs allow a 1-year redemption period. AS §29.45.",
+    rateWhy: "Alaska has no fixed statutory interest rate on tax sales. Bidding is market-driven, with prices determined by competitive auction at the borough level. AS §29.45.",
     auctionSignup: {
       platform: "Borough-specific",
       steps: [
@@ -74,6 +78,8 @@ var STATES_EN = [
     score: 78, beginnerFriendly: true,
     scoreWhy: "High statutory rate, fully online auctions, excellent year-round OTC availability. One of the best beginner states in the country.",
     note: "Arizona conducts reverse-bid auctions in February where investors compete to accept lower interest rates from the 16% ceiling. Unsold liens go to direct purchase (OTC) year-round at the county level. Statutes: ARS §42-18053 (16% rate), §42-18112 (auction), §42-18114 (bid-down), §42-18122 (OTC), §42-18201 (foreclosure).",
+    typeWhy: "Arizona sells tax lien certificates, not property. The investor holds the lien while the owner retains title and has 3 years to redeem. Liens are auctioned via reverse-bid format starting at 16%. ARS §42-18053, §42-18112.",
+    rateWhy: "Arizona sets a statutory ceiling of 16% annual interest, then uses a reverse-bid auction where investors compete by accepting progressively lower rates. ARS §42-18053, §42-18114.",
     auctionSignup: {
       platform: "County-specific (most use county treasurer portals; Maricopa uses an online system)",
       steps: [
@@ -109,10 +115,12 @@ var STATES_EN = [
     ]
   },
   {
-    id: "AR", name: "Arkansas", type: "deed", rate: "Penalty only", redemption: "2 years",
+    id: "AR", name: "Arkansas", type: "redeemable deed", rate: "Penalty only", redemption: "2 years",
     score: 44, beginnerFriendly: true,
     scoreWhy: "State-run COSL system is straightforward for newcomers with direct online purchasing, though property quality varies widely.",
     note: "Arkansas Commissioner of State Lands (COSL) manages all tax-delinquent properties statewide. Online purchasing available. Deed issued is quitclaim-equivalent with a 90-day litigation risk window. Statute: ACA §26-37-101.",
+    typeWhy: "Arkansas transfers the deed at sale but grants the original owner a 2-year right of redemption, making it a redeemable deed state. The deed issued is a quitclaim-equivalent managed through the Commissioner of State Lands. ACA §26-37-101.",
+    rateWhy: "Arkansas uses a penalty-only structure rather than an interest rate — the redemption cost is set by statute as a flat penalty on the original tax amount owed. ACA §26-37-101.",
     auctionSignup: {
       platform: "cosl.org (Commissioner of State Lands)",
       steps: [
@@ -146,6 +154,8 @@ var STATES_EN = [
     notBeginnerReason: "Minimum 5 years delinquency, bids open at market value, intense institutional competition, no direct purchase.",
     scoreWhy: "Opening bids near market value, 5-year delinquency requirement, no OTC, and institutional saturation eliminate beginner opportunity.",
     note: "California requires minimum 5 years of tax delinquency before county auctions. Opening bids are set near assessed value. Conducted by county tax collectors. Statute: CA Rev & Tax Code §3691.",
+    typeWhy: "California sells the property deed outright at auction after 5 years of tax delinquency. There is no post-sale redemption period — the buyer receives full title. CA Rev & Tax Code §3691.",
+    rateWhy: "California uses market-value bidding at auction with opening bids set near assessed value. There is no statutory interest rate because the state sells the deed outright. CA Rev & Tax Code §3691.",
     auctionSignup: {
       platform: "Bid4Assets.com (most counties) or county-specific portals",
       steps: [
@@ -181,6 +191,8 @@ var STATES_EN = [
     score: 52, beginnerFriendly: true,
     scoreWhy: "Online auctions and solid OTC availability in rural counties. Rate fluctuates with the Federal Discount Rate but is competitive.",
     note: "Colorado holds online county tax lien sales. Rate = Federal Discount Rate + 9% (calculated annually). Unsold liens available for direct purchase. Statute: CRS §39-11-101.",
+    typeWhy: "Colorado sells tax lien certificates — the investor purchases the right to collect delinquent taxes plus interest, not the property itself. The owner retains title during the 3-year redemption window. CRS §39-11-101.",
+    rateWhy: "Colorado ties its tax lien interest rate to the Federal Discount Rate plus a statutory 9% premium, recalculated annually. This formula-based approach adjusts with monetary policy. CRS §39-11-101.",
     auctionSignup: {
       platform: "SRI Tax Sale Services or county-specific portals",
       steps: [
@@ -217,6 +229,8 @@ var STATES_EN = [
     notBeginnerReason: "Each municipality independently chooses between lien and redeemable deed format. Requires individual research per town.",
     scoreWhy: "Fixed 18% penalty is solid but format varies town-by-town, limiting scalability and making due diligence complex.",
     note: "Connecticut municipalities independently elect to sell tax liens or redeemable deeds. No centralized state platform. 1-year redemption. Statute: CGS §12-157.",
+    typeWhy: "Connecticut municipalities sell tax lien certificates, giving investors the right to collect delinquent taxes with interest. The property owner retains title during the 1-year redemption period. CGS §12-157.",
+    rateWhy: "Connecticut imposes an 18% statutory penalty on redemption — this is a flat penalty structure rather than a compounding annual interest rate. CGS §12-157.",
     auctionSignup: {
       platform: "Town-specific — contact each municipality directly",
       steps: [
@@ -244,11 +258,13 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "DE", name: "Delaware", type: "deed", rate: "15-20% penalty (varies by county)", redemption: "60 days to 1 year",
+    id: "DE", name: "Delaware", type: "redeemable deed", rate: "15-20% penalty (varies by county)", redemption: "60 days to 1 year",
     score: 28, beginnerFriendly: false,
     notBeginnerReason: "Only 3 counties, very limited inventory, not a viable primary market.",
     scoreWhy: "Only 3 counties operating independently with minimal inventory. Too small to build a strategy around.",
     note: "Delaware has only 3 counties (Kent, New Castle, Sussex), each running independent auctions. Inventory is very limited. Statute: Del. Code Title 9 §8721.",
+    typeWhy: "Delaware sells the property deed at auction but grants the original owner a redemption window of 60 days to 1 year depending on the county, making it a redeemable deed state. Del. Code Title 9 §8721.",
+    rateWhy: "Delaware counties impose a 15-20% penalty on redemption, varying by county. With only 3 counties (Kent, New Castle, Sussex), each sets its own penalty structure. Del. Code Title 9 §8721.",
     auctionSignup: {
       platform: "County-specific",
       steps: [
@@ -284,6 +300,8 @@ var STATES_EN = [
     notBeginnerReason: "Very high property values require substantial capital. 20% deposit required. Competitive institutional market.",
     scoreWhy: "18% rate and high property values create strong lien security, but 20% upfront deposit and institutional competition require significant capital.",
     note: "DC conducts annual tax lien sales starting July 1, running daily until inventory is exhausted. Minimum 20% deposit required upfront. Statute: DC Official Code §47-1301.",
+    typeWhy: "Washington D.C. sells tax lien certificates at its annual July sale. The investor purchases the lien and the property owner retains title during a 6-12 month redemption period. DC Official Code §47-1301.",
+    rateWhy: "D.C. sets a fixed statutory interest rate of 18% per annum on tax lien certificates. This rate is not bid-down — all certificates earn the same flat 18%. DC Official Code §47-1301.",
     auctionSignup: {
       platform: "dc.gov tax sale portal",
       steps: [
@@ -316,6 +334,8 @@ var STATES_EN = [
     score: 82, beginnerFriendly: true,
     scoreWhy: "Massive inventory, two parallel profit paths (lien + deed), fully online, year-round OTC availability. One of the top states in the country.",
     note: "Florida is a hybrid state with two parallel auction tracks. (1) Annual tax certificate sale online before June 1 — reverse bid auction starting at 18%. (2) After 2-year redemption, lienholder applies for tax deed and property goes to public auction at RealAuction. OTC available year-round via LienHub. Statutes: FL Stat §197.172 (rate), §197.432 (sale), §197.4725 (OTC), §197.472 (redemption), §197.502 (deed application).",
+    typeWhy: "Florida is a hybrid state operating two parallel systems: tax lien certificates are sold at an annual reverse-bid auction, and after the 2-year redemption period expires, the property goes to a separate tax deed auction. FL Stat §197.432, §197.502.",
+    rateWhy: "Florida caps the lien interest rate at 18% and uses a reverse-bid auction where investors bid the rate down. A statutory minimum 5% penalty applies on any redemption regardless of the winning bid rate. FL Stat §197.172, §197.472.",
     auctionSignup: {
       platform: "LienHub.com (primary) + RealAuction.com (deed sales)",
       steps: [
@@ -351,10 +371,12 @@ var STATES_EN = [
     ]
   },
   {
-    id: "GA", name: "Georgia", type: "hybrid", rate: "20% yr1 + 10%/yr after", redemption: "1 year",
+    id: "GA", name: "Georgia", type: "redeemable deed", rate: "20% yr1 + 10%/yr after", redemption: "1 year",
     score: 71, beginnerFriendly: true,
     scoreWhy: "Monthly auctions every first Tuesday statewide, strong penalty structure, and consistent deal flow make Georgia excellent for active investors.",
     note: "Georgia is a redeemable deed state. Investor receives the tax deed at auction but owner retains 1-year right of redemption. Redemption cost = bid price + 20% premium (year 1) + 10% per additional year. After 12 months, investor can execute via certified mail notice. Statute: OCGA §48-4-1.",
+    typeWhy: "Georgia is a redeemable deed state — the investor receives the tax deed at auction, but the original owner retains a 1-year statutory right of redemption. OCGA §48-4-1.",
+    rateWhy: "Georgia imposes a 20% penalty on the full purchase price if the owner redeems in year 1, plus an additional 10% per year thereafter. These are penalties on the auction price, not interest on the tax amount owed. OCGA §48-4-1.",
     auctionSignup: {
       platform: "County Superior Court Clerk (in-person, first Tuesday of each month)",
       steps: [
@@ -387,11 +409,13 @@ var STATES_EN = [
     ]
   },
   {
-    id: "HI", name: "Hawaii", type: "deed", rate: "Varies", redemption: "1 year",
+    id: "HI", name: "Hawaii", type: "redeemable deed", rate: "Varies", redemption: "1 year",
     score: 14, beginnerFriendly: false,
     notBeginnerReason: "Extremely limited inventory, leasehold land complexity, and Hawaiian Home Lands restrictions make this impractical.",
     scoreWhy: "Limited inventory, complex leasehold structures, and extremely high property values make Hawaii impractical for most investors.",
     note: "Hawaii has 4 counties. Many parcels are leasehold (not fee simple). Hawaiian Home Lands and other restricted designations eliminate large portions of the market. Statute: HRS §246-60.",
+    typeWhy: "Hawaii sells tax-delinquent properties at auction but grants the former owner a 1-year right of redemption, making it a redeemable deed state. Many parcels are leasehold rather than fee simple. HRS §246-60.",
+    rateWhy: "Hawaii has no fixed statutory interest rate for tax sales. Auction prices are market-driven, and returns depend on the bid price relative to property value. HRS §246-60.",
     auctionSignup: {
       platform: "County-specific",
       steps: [
@@ -420,11 +444,13 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "ID", name: "Idaho", type: "deed", rate: "Varies", redemption: "14 months",
+    id: "ID", name: "Idaho", type: "redeemable deed", rate: "Varies", redemption: "14 months",
     score: 31, beginnerFriendly: false,
     notBeginnerReason: "Counties have discretion on whether to sell — many never do. No central calendar or system.",
     scoreWhy: "Unpredictable inventory, no centralized system, and county discretion on sales make this unreliable as a strategy.",
     note: "Idaho counties have the authority but not the obligation to sell tax-delinquent properties. Some counties haven't held sales in years. Contact county treasurer directly for any real opportunity. Statute: IC §63-1003.",
+    typeWhy: "Idaho counties sell tax-delinquent properties by deed but grant the former owner a 14-month right of redemption, making it a redeemable deed state. Counties have discretion on whether to hold sales at all. IC §63-1003.",
+    rateWhy: "Idaho has no fixed statutory interest rate on tax deed sales. Returns are market-driven based on auction competition. IC §63-1003.",
     auctionSignup: {
       platform: "County treasurer (varies — many counties do not hold sales)",
       steps: [
@@ -452,11 +478,13 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "IL", name: "Illinois", type: "lien", rate: "Up to 18%/6mo + penalties", redemption: "2.5–3 years",
+    id: "IL", name: "Illinois", type: "lien", rate: "Up to 9%/6mo (18%/yr) + penalties", redemption: "2.5–3 years",
     score: 63, beginnerFriendly: false,
     notBeginnerReason: "Cook County (Chicago) is dominated by institutional buyers pushing rates to 0%. Complex Scavenger Sale rules. Requires attorney for foreclosure.",
     scoreWhy: "High statutory penalties and massive inventory — but institutional dominance in Cook and complex legal process require experience.",
-    note: "Illinois holds Annual Sales (county-level, competitive bidding) and Scavenger Sales (Cook County, special rules for long-delinquent properties). Interest rate bid down from 18%/6mo. Penalty resets to 12%/6mo in forfeiture. Foreclosure requires specialized attorney. Statute: 35 ILCS 200/21.",
+    note: "Illinois holds Annual Sales (county-level, competitive bidding) and Scavenger Sales (Cook County, special rules for long-delinquent properties). Interest rate bid down from 9%/6mo (reduced from 18% by Public Act 100-1070, effective 2019). Penalty resets to 12%/6mo in forfeiture. Foreclosure requires specialized attorney. Statute: 35 ILCS 200/21-215.",
+    typeWhy: "Illinois sells tax lien certificates — investors purchase the right to collect delinquent taxes, not the property. The owner retains title during the 2.5-3 year redemption period before the lienholder can petition for a deed. 35 ILCS 200/21-215.",
+    rateWhy: "Illinois caps the lien penalty at 9% per 6-month period (reduced from 18% by Public Act 100-1070, effective 2019) and uses a bid-down auction format. In forfeiture, the penalty resets to 12% per 6-month period. 35 ILCS 200/21-215.",
     auctionSignup: {
       platform: "County-specific (Cook uses its own system; others vary)",
       steps: [
@@ -493,6 +521,8 @@ var STATES_EN = [
     score: 69, beginnerFriendly: true,
     scoreWhy: "Two auction windows annually, clear tiered penalty structure, and online participation available in many counties.",
     note: "Indiana holds two annual lien sales: Fall Sale (October) and Judgment Sale (January). Penalty: 10% if redeemed within 6 months, 15% months 7–12. Overbid earns 10%. Statute: IC §6-1.1-24.",
+    typeWhy: "Indiana sells tax lien certificates at two annual sales (Fall and Judgment). The investor purchases the lien while the property owner retains title during the 1-year redemption period. IC §6-1.1-24.",
+    rateWhy: "Indiana uses a tiered penalty structure: 10% if the owner redeems within the first 6 months, escalating to 15% for months 7-12. These are flat penalties on the lien amount, not annualized interest rates. IC §6-1.1-24.",
     auctionSignup: {
       platform: "SRI Tax Sale Services (sriservices.com) — most Indiana counties",
       steps: [
@@ -528,6 +558,8 @@ var STATES_EN = [
     score: 74, beginnerFriendly: true,
     scoreWhy: "Highest statutory lien rate in the country at 24%. Strong legal framework. Online participation available. Critical: must send 90-day notice at month 21 or certificate voids.",
     note: "Iowa holds its annual tax lien sale in June. Rate is a flat 24% per year. After 2 years, lienholder must send 90-day notice to owner to initiate deed process — failure to do so at the 21-month mark voids the certificate. Statute: Iowa Code §446.",
+    typeWhy: "Iowa sells tax lien certificates at its annual June sale. The investor holds the lien while the owner has 2 years to redeem. Iowa Code §446.",
+    rateWhy: "Iowa sets a statutory flat rate of 24% per annum on tax lien certificates — one of the highest fixed rates in the country. This rate is not auction-determined; all certificates earn the same 24%. Iowa Code §446.",
     auctionSignup: {
       platform: "County treasurer (varies — some online, some in-person)",
       steps: [
@@ -559,6 +591,8 @@ var STATES_EN = [
     score: 48, beginnerFriendly: true,
     scoreWhy: "2-year redemption window before judicial sale, county can reduce minimums on unsold properties, and decent suburban inventory near Wichita and Kansas City.",
     note: "Kansas holds tax lien sales at the county level. After 2-year redemption, county files for judicial sale. County can reduce minimum bid on properties that didn't sell. Statute: KSA §79-2801.",
+    typeWhy: "Kansas sells tax lien certificates at the county level. The investor purchases the lien and the owner retains title during a 2-3 year redemption period. KSA §79-2801.",
+    rateWhy: "Kansas caps the tax lien interest rate at 15% per annum. This is a statutory ceiling, though some counties may set lower effective rates. KSA §79-2801.",
     auctionSignup: {
       platform: "County clerk or district court (varies)",
       steps: [
@@ -594,6 +628,8 @@ var STATES_EN = [
     notBeginnerReason: "In-person only, no online bidding, sealed bid format makes it hard to gauge competition.",
     scoreWhy: "Decent 12% rate but in-person-only requirement and sealed bid format limit scalability significantly.",
     note: "Kentucky conducts in-person sealed bid sales at the county level. No online bidding. 1-year redemption before foreclosure can proceed. Statute: KRS §134.420.",
+    typeWhy: "Kentucky sells tax lien certificates through in-person sealed bid sales at the county level. The investor purchases the lien while the owner retains title during the 1-year redemption window. KRS §134.420.",
+    rateWhy: "Kentucky imposes a 12% annual interest rate on tax lien certificates plus additional statutory penalties on redemption. KRS §134.420.",
     auctionSignup: {
       platform: "County Sheriff or County Clerk (in-person, sealed bid)",
       steps: [
@@ -626,6 +662,8 @@ var STATES_EN = [
     notBeginnerReason: "New system launched January 1, 2026 — procedures still developing, no established case law, unique civil law jurisdiction.",
     scoreWhy: "First-mover advantage in a new system with solid rates. However, 2026 is year one — county procedures and judicial sale process are untested.",
     note: "Louisiana launched a new tax lien system January 1, 2026, replacing property bidding with a downward interest rate auction (starts at 1%/month = 12%/yr, floor 0.7%/month = 8.4%/yr). After 3-year redemption, investor executes judicial sale. Statute: LA RS §47:2153 (amended 2025).",
+    typeWhy: "Louisiana sells tax lien certificates under a system overhauled in 2025. Investors purchase the lien at a downward interest rate auction, and the owner retains title during a 3-year redemption period. LA RS §47:2153.",
+    rateWhy: "Louisiana's 2025 reform replaced property bidding with a downward interest rate auction starting at 1%/month (12%/yr) with a floor of 0.7%/month (8.4%/yr), plus a 5% flat penalty on redemption. LA RS §47:2153.",
     auctionSignup: {
       platform: "Parish Sheriff (varies by parish — new system being implemented)",
       steps: [
@@ -659,6 +697,8 @@ var STATES_EN = [
     notBeginnerReason: "Municipal-level only, sporadic auctions, very low volume. Not a viable primary market.",
     scoreWhy: "Low rate, low volume, no centralized system. Works only as a supplemental opportunity.",
     note: "Maine municipalities hold tax liens. After 18 months, municipality takes title and can auction. No centralized state system. Statute: MRSA Title 36 §942.",
+    typeWhy: "Maine municipalities hold tax liens — the municipality itself purchases the lien, and after 18 months of non-redemption, the municipality takes title and can auction the property. MRSA Title 36 §942.",
+    rateWhy: "Maine sets the interest rate on municipal tax liens at 8% per annum by statute. This is a fixed rate applied uniformly. MRSA Title 36 §942.",
     auctionSignup: {
       platform: "Municipal tax collector (varies)",
       steps: [
@@ -686,10 +726,12 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "MD", name: "Maryland", type: "lien", rate: "6–18% (varies by county)", redemption: "6 months (9 months owner-occupied)",
+    id: "MD", name: "Maryland", type: "lien", rate: "6–24% (varies by county)", redemption: "6 months (9 months owner-occupied in Baltimore City)",
     score: 77, beginnerFriendly: true,
     scoreWhy: "Shortest redemption period in the country (6 months), strong rates in Baltimore City and Anne Arundel, and multiple counties on RealAuction.",
     note: "Maryland conducts annual tax lien sales, typically in May–June. Interest rates vary: most counties 6%, Anne Arundel and Baltimore City up to 18%. Redemption: 6 months standard, 9 months for owner-occupied in Baltimore City. Statute: MD Tax-Property Code §14-820.",
+    typeWhy: "Maryland sells tax lien certificates at annual county-level sales. The investor purchases the lien and the property owner retains title during a 6-month redemption period (9 months for owner-occupied in Baltimore City). MD Tax-Property Code §14-820.",
+    rateWhy: "Maryland allows each county to set its own interest rate within a 6-24% statutory range — most counties use 6%, while Anne Arundel and Baltimore City go up to 18-24%. MD Tax-Property Code §14-820.",
     auctionSignup: {
       platform: "RealAuction.com (most counties) + county-specific for others",
       steps: [
@@ -727,6 +769,8 @@ var STATES_EN = [
     notBeginnerReason: "Municipal auctions only, Land Court process required for title, expensive in metro areas.",
     scoreWhy: "Solid 16% rate but Land Court process adds cost and time. No statewide platform. Metro areas require significant capital.",
     note: "Massachusetts municipalities sell tax liens. After purchase, full title requires Land Court quiet title. No statewide platform. Statute: MGL c.60 §62.",
+    typeWhy: "Massachusetts municipalities sell tax lien certificates. The investor holds the lien while the owner has 6 months to 3 years to redeem. Full title requires a quiet title action in Land Court. MGL c.60 §62.",
+    rateWhy: "Massachusetts sets a statutory interest rate of 16% per annum on tax lien certificates. This fixed rate is uniform across all municipalities. MGL c.60 §62.",
     auctionSignup: {
       platform: "Municipal tax collector (town-specific)",
       steps: [
@@ -758,6 +802,8 @@ var STATES_EN = [
     score: 73, beginnerFriendly: true,
     scoreWhy: "Three annual auction windows, no minimum in November, massive Wayne County inventory on Bid4Assets, and strong urban opportunity.",
     note: "Michigan holds 3 annual auctions: July (minimum bid = back taxes + fees), September (same minimums), and November (no minimum). Wayne County (Detroit) uses Bid4Assets with significant urban inventory. Unsold properties transfer to municipality. Statute: MCL §211.78.",
+    typeWhy: "Michigan sells the property deed outright at auction with no post-sale redemption period. The buyer receives full title through three annual auction rounds. MCL §211.78.",
+    rateWhy: "Michigan is a pure deed state with no statutory interest rate. Returns are market-driven: minimum bids start at back taxes plus fees. MCL §211.78.",
     auctionSignup: {
       platform: "Bid4Assets.com (Wayne County) + county-specific for others",
       steps: [
@@ -794,6 +840,8 @@ var STATES_EN = [
     notBeginnerReason: "Minimum bid set at assessed value, Tyler v. Hennepin (2023) surplus return requirement, many counties simply retain properties.",
     scoreWhy: "Market-value minimums and the Tyler ruling's surplus return requirement nearly eliminate below-market opportunity.",
     note: "Minnesota sets minimum bids at assessed value — eliminating most discount opportunity. Tyler v. Hennepin (2023) requires counties to return surplus bids to prior owners. Many counties retain properties via county land bank rather than auctioning. Statute: MN Stat §280.01.",
+    typeWhy: "Minnesota sells the property deed outright with no post-sale redemption. Per Tyler v. Hennepin (2023), surplus must be returned to former owners. MN Stat §280.01.",
+    rateWhy: "Minnesota has no statutory interest rate — it is a deed state where returns depend on the spread between the auction price and market value. MN Stat §280.01.",
     auctionSignup: {
       platform: "County auditor (varies)",
       steps: [
@@ -825,6 +873,8 @@ var STATES_EN = [
     score: 58, beginnerFriendly: true,
     scoreWhy: "18% rate with direct purchase available on state-owned land. Good inventory in rural counties with limited competition.",
     note: "Mississippi holds annual tax lien sales at the county level. 18% rate. After 2-year redemption, lienholder can file for chancery court decree. State land available for direct purchase via GovEase. Statute: MS Code §27-41-1.",
+    typeWhy: "Mississippi sells tax lien certificates at annual county-level sales. The investor purchases the lien while the property owner retains title during the 2-year redemption period. MS Code §27-41-1.",
+    rateWhy: "Mississippi sets a fixed statutory rate of 18% per annum on tax lien certificates — a flat rate that applies uniformly and is not bid down at auction. MS Code §27-41-1.",
     auctionSignup: {
       platform: "GovEase.com (state land) + county chancery clerk (county sales)",
       steps: [
@@ -857,6 +907,8 @@ var STATES_EN = [
     notBeginnerReason: "Non-residents cannot bid directly — must designate a Missouri resident agent. St. Louis and Jackson County operate as deed states with unique junior-lien rules.",
     scoreWhy: "Resident agent requirement for non-residents and complex lien priority rules (older liens subordinate to newer) make this state difficult to operate in remotely.",
     note: "Missouri non-residents cannot bid directly — must designate a resident county agent to bid and hold the certificate, then transfer by quitclaim deed. Annual sale: 4th Monday in August. St. Louis City and Jackson County conduct tax deed sales with the unusual rule that older liens are subordinate to newer ones per RSMo Cap.140.",
+    typeWhy: "Missouri sells tax lien certificates at annual county-level sales. The investor holds the lien while the owner retains title during the 1-year redemption period. RSMo Cap.140.",
+    rateWhy: "Missouri sets a statutory rate of 10% per annum on tax lien certificates. An unusual provision in St. Louis City and Jackson County makes older liens subordinate to newer ones. RSMo Cap.140.",
     auctionSignup: {
       platform: "County collector (in-person, 4th Monday in August)",
       steps: [
@@ -889,6 +941,8 @@ var STATES_EN = [
     notBeginnerReason: "Annual July assignment, no online platform, no direct purchase, and predominantly rural agricultural inventory.",
     scoreWhy: "Low rate, long 3-year redemption, no online platform, and limited urban inventory restrict opportunity.",
     note: "Montana assigns tax liens annually in July to the county. Unsold liens transfer to county for private assignment. No centralized platform or online system. 3-year redemption before deed. Statute: MCA §15-17-112.",
+    typeWhy: "Montana assigns tax lien certificates annually in July. The investor holds the lien while the owner retains title during the 3-year redemption period. MCA §15-17-112.",
+    rateWhy: "Montana starts at a 10% annual interest rate for year 1, then adds a 2% per month penalty after the first year. This escalating penalty structure incentivizes faster redemption. MCA §15-17-112.",
     auctionSignup: {
       platform: "County treasurer (in-person)",
       steps: [
@@ -920,6 +974,8 @@ var STATES_EN = [
     score: 55, beginnerFriendly: true,
     scoreWhy: "14% rate with OTC availability after the March auction and a rotational bidding format that levels the playing field.",
     note: "Nebraska holds annual tax lien sales in March. Rotational bidding format (unusual — counties rotate through available properties giving each registered bidder equal turns). 3-year redemption. OTC available after the sale. Statute: NRS §77-1801.",
+    typeWhy: "Nebraska sells tax lien certificates at annual March sales using a rotational bidding format. The investor holds the lien while the owner retains title during a 3-year redemption period. NRS §77-1801.",
+    rateWhy: "Nebraska sets a fixed statutory rate of 14% per annum on tax lien certificates. This rate is uniform and not bid down. NRS §77-1801.",
     auctionSignup: {
       platform: "County treasurer (in-person or online for some counties)",
       steps: [
@@ -952,6 +1008,8 @@ var STATES_EN = [
     notBeginnerReason: "3-year county hold period before auction, sealed bid followed by oral bid, and strong institutional competition in Las Vegas area.",
     scoreWhy: "Decent inventory in Clark County (Las Vegas) but 3-year wait and competitive urban market require patience and experience.",
     note: "Nevada counties hold tax-delinquent properties for 3 years before public auction. Auction uses sealed bids followed by oral bids. Clark County (Las Vegas) has strongest inventory. Statute: NRS §361.585.",
+    typeWhy: "Nevada sells the property deed outright at auction after 3 years of tax delinquency. There is no post-sale redemption period. NRS §361.585.",
+    rateWhy: "Nevada is a pure deed state with no statutory interest rate. Auction prices are market-driven through sealed bids followed by oral bidding. NRS §361.585.",
     auctionSignup: {
       platform: "County treasurer or assessor (varies)",
       steps: [
@@ -986,6 +1044,8 @@ var STATES_EN = [
     notBeginnerReason: "Municipal auctions only, sporadic sales, and 2020 NH Supreme Court ruling prevents municipalities from retaining surplus bids.",
     scoreWhy: "18% rate on paper, but low volume, infrequent sales, and the surplus return ruling limit practical returns.",
     note: "New Hampshire municipalities conduct sporadic tax lien sales. 2-year redemption. 2020 NH Supreme Court ruling requires municipalities to return surplus beyond what's owed. Statute: NHRS §80:19.",
+    typeWhy: "New Hampshire municipalities sell tax lien certificates. The investor holds the lien while the owner retains title during the 2-year redemption period. NHRS §80:19.",
+    rateWhy: "New Hampshire sets a fixed statutory rate of 18% per annum on tax lien certificates. This rate applies uniformly and is not auction-determined. NHRS §80:19.",
     auctionSignup: {
       platform: "Municipal tax collector (town-specific)",
       steps: [
@@ -1018,6 +1078,8 @@ var STATES_EN = [
     notBeginnerReason: "567 municipalities with varying competition. North NJ rates bid to 0%. Premium bids required in many municipalities. Bankruptcy risk within 90 days can void certificate.",
     scoreWhy: "Strong 18% rate and massive deal flow, but institutional dominance in northern NJ and bankruptcy risk require experience.",
     note: "New Jersey has 567 municipalities, 98%+ conducting annual tax sales. Rate bid down from 18%. Premiums often required. Bankruptcy within 90 days of purchase can void the certificate per Third Circuit ruling. Statute: NJSA §54:5-1.",
+    typeWhy: "New Jersey sells tax lien certificates at municipal-level auctions across 567 municipalities. The investor holds the lien while the owner retains title during a 2-year redemption period. NJSA §54:5-1.",
+    rateWhy: "New Jersey caps the interest rate at 18% and uses a bid-down auction format. Investors frequently must pay premiums above the lien which reduce effective yield. NJSA §54:5-1.",
     auctionSignup: {
       platform: "RealAuction.com (most municipalities) + municipal-specific",
       steps: [
@@ -1054,6 +1116,8 @@ var STATES_EN = [
     score: 51, beginnerFriendly: true,
     scoreWhy: "State PTD system centralizes all auctions on a single platform — simplest auction registration process in the country.",
     note: "New Mexico's Property Tax Division (PTD) manages all tax deed sales statewide through a centralized online system. Single registration covers all NM counties. Statute: NMSA §7-38-65.",
+    typeWhy: "New Mexico sells the property deed outright through the state's centralized Property Tax Division, with no post-sale redemption. NMSA §7-38-65.",
+    rateWhy: "New Mexico is a pure deed state with no statutory interest rate. Returns are market-driven based on competitive auction bidding. NMSA §7-38-65.",
     auctionSignup: {
       platform: "New Mexico PTD online portal",
       steps: [
@@ -1086,6 +1150,8 @@ var STATES_EN = [
     notBeginnerReason: "NYC lien sales require bulk qualification. Upstate varies by county — some lien, some deed. Complex system requires legal expertise.",
     scoreWhy: "NYC lien market is one of the world's largest but requires bulk qualification. Upstate varies county-by-county. Significant legal complexity.",
     note: "New York is hybrid: NYC and Long Island operate lien markets (NYC lien sale is one of the largest in the world, requires bulk qualification). Upstate counties vary between lien and deed sales. Statute: NY RPTL §1110.",
+    typeWhy: "New York is a hybrid state: NYC and Long Island operate tax lien sales where investors purchase certificates, while upstate counties vary between lien and deed formats. NY RPTL §1110.",
+    rateWhy: "NYC tax lien certificates carry an 18% statutory rate, while upstate deed sale returns vary by county. The rate structure depends on which system the target county uses. NY RPTL §1110.",
     auctionSignup: {
       platform: "NYC: cityofnewyork.us tax lien sale; Upstate: county-specific",
       steps: [
@@ -1117,6 +1183,8 @@ var STATES_EN = [
     score: 62, beginnerFriendly: true,
     scoreWhy: "Good deed inventory and two execution methods, but the 10-day upset bid period means someone can outbid you after you win.",
     note: "North Carolina holds tax deed sales. After auction, there is a 10-day 'upset bid' window where any party can submit a 5% higher bid and win the property. Good inventory in Charlotte and Raleigh metro areas. Statute: NCGS §105-374.",
+    typeWhy: "North Carolina sells the property deed outright at auction. While there is no traditional redemption period, a 10-day upset bid window allows any party to submit a higher bid. NCGS §105-374.",
+    rateWhy: "North Carolina is a deed state with no statutory interest rate. Returns depend on the auction price relative to market value. NCGS §105-374.",
     auctionSignup: {
       platform: "County tax collector or sheriff (in-person or online)",
       steps: [
@@ -1152,6 +1220,8 @@ var STATES_EN = [
     notBeginnerReason: "3-year redemption period, December-only auctions, and predominantly rural agricultural inventory.",
     scoreWhy: "3-year redemption ties up capital for a long time. December-only auctions and agricultural-dominated inventory limit strategic value.",
     note: "North Dakota holds tax lien auctions in December only. 3-year redemption period at 12% annual interest. Inventory dominated by rural agricultural land. Statute: NDCC §57-28.",
+    typeWhy: "North Dakota sells tax lien certificates at December auctions. The investor holds the lien while the owner retains title during the 3-year redemption period. NDCC §57-28.",
+    rateWhy: "North Dakota sets a fixed statutory rate of 12% per annum on tax lien certificates. This is a flat, non-auction-determined rate. NDCC §57-28.",
     auctionSignup: {
       platform: "County auditor (in-person, December)",
       steps: [
@@ -1183,6 +1253,8 @@ var STATES_EN = [
     score: 64, beginnerFriendly: true,
     scoreWhy: "34+ counties conduct lien sales with 18% upset bids. Remaining counties use deed/sheriff sales. Strong urban inventory in Cleveland and Columbus.",
     note: "Ohio is hybrid: 34+ counties hold lien certificate sales with 18% upset bids. Other counties use deed or sheriff sales at fair market value. Must verify which type your target county uses. Statute: ORC §5721.19.",
+    typeWhy: "Ohio is a hybrid state: 34+ counties conduct tax lien certificate sales, while other counties use tax deed or sheriff sales. The process differs by county. ORC §5721.19.",
+    rateWhy: "In lien counties, Ohio uses an 18% upset bid format. In deed counties, prices are market-driven. The rate structure depends on which system the target county uses. ORC §5721.19.",
     auctionSignup: {
       platform: "County treasurer (varies — some online via SRI, some in-person)",
       steps: [
@@ -1217,6 +1289,8 @@ var STATES_EN = [
     score: 36, beginnerFriendly: true,
     scoreWhy: "Low 8% rate among lien states, but straightforward process with October OTC and June resale options.",
     note: "Oklahoma holds October tax lien auction followed by June resale and Commissioner's sale. OTC available first Monday of October. Rate is only 8%. Statute: OS Title 68 §3101.",
+    typeWhy: "Oklahoma sells tax lien certificates at its annual October auction, followed by resale for unsold inventory. The owner retains title during the 2-year redemption period. OS Title 68 §3101.",
+    rateWhy: "Oklahoma sets a fixed statutory rate of 8% per annum — one of the lowest lien state rates in the country. OS Title 68 §3101.",
     auctionSignup: {
       platform: "County treasurer (Oklahoma County uses online system)",
       steps: [
@@ -1252,6 +1326,8 @@ var STATES_EN = [
     notBeginnerReason: "80% of assessed value minimum bid, 3 years delinquency + 2 years county hold, virtually no below-market opportunity.",
     scoreWhy: "80% of assessed value as opening bid eliminates discount opportunity. 5-year total cycle before auction is too long.",
     note: "Oregon requires 3 years delinquency before county takes deed, then 2 years county hold before auction. Opening bids set at 80% of assessed value. Statute: ORS §312.060.",
+    typeWhy: "Oregon sells the property deed outright after a 3-year delinquency period. There is no post-sale redemption. ORS §312.060.",
+    rateWhy: "Oregon is a deed state with no statutory interest rate. Opening bids are set at 80% of assessed value, limiting deep-discount opportunity. ORS §312.060.",
     auctionSignup: {
       platform: "County tax collector (varies)",
       steps: [
@@ -1283,6 +1359,8 @@ var STATES_EN = [
     score: 67, beginnerFriendly: true,
     scoreWhy: "Upset Sale in September often creates significant discounts. Multiple purchase pathways (upset, private, judicial) and strong urban inventory.",
     note: "Pennsylvania's Real Estate Tax Sale Law creates multiple pathways: Upset Sale (September, min = all back taxes), Private Sale (unsold properties), and Judicial Sale (lower minimums, wipes most liens). Title clearance frequently required for insurable deed. Statute: PA Act 542 (72 PS §5860.101).",
+    typeWhy: "Pennsylvania sells the property deed outright through multiple pathways (Upset Sale, Private Sale, Judicial Sale) with no post-sale redemption. PA Act 542 (72 PS §5860.101).",
+    rateWhy: "Pennsylvania is a deed state with no statutory interest rate. Upset Sale minimums equal all back taxes; Judicial Sale minimums are lower and wipe most liens. PA Act 542 (72 PS §5860.101).",
     auctionSignup: {
       platform: "County tax claim office (in-person) + Bid4Assets (Philadelphia, some others)",
       steps: [
@@ -1314,11 +1392,13 @@ var STATES_EN = [
     ]
   },
   {
-    id: "RI", name: "Rhode Island", type: "hybrid", rate: "16% penalty (6 months); 1%/mo thereafter", redemption: "1 year",
+    id: "RI", name: "Rhode Island", type: "lien", rate: "16% penalty (6 months); 1%/mo thereafter", redemption: "1 year",
     score: 26, beginnerFriendly: false,
     notBeginnerReason: "39 tiny municipalities with very low volume, no state infrastructure, irregular sales.",
     scoreWhy: "Too small and irregular to build a strategy around. Works only as a supplemental opportunity if already in the region.",
     note: "Rhode Island has 39 municipalities each conducting their own irregular tax lien sales. Very low volume. No centralized platform. Statute: RI Gen Laws §44-9-1.",
+    typeWhy: "Rhode Island municipalities conduct tax lien sales — the investor purchases the lien while the owner retains title during a 1-year redemption period. Each municipality operates independently. RI Gen Laws §44-9-1.",
+    rateWhy: "Rhode Island imposes a 16% penalty on redemption within the first 6 months, then 1% per month thereafter. This front-loaded penalty structure rewards early redemption. RI Gen Laws §44-9-1.",
     auctionSignup: {
       platform: "Municipal treasurer (town-specific)",
       steps: [
@@ -1351,6 +1431,8 @@ var STATES_EN = [
     notBeginnerReason: "Variable penalty structure tied to redemption month creates unpredictable returns. Limited online infrastructure.",
     scoreWhy: "Variable penalty structure makes returns unpredictable. October–December auction window is decent but limited online access.",
     note: "South Carolina holds annual lien sales October–December. Penalty varies by redemption month (3% if redeemed month 1, scaling to 12% if redeemed at month 12). No statewide platform. Statute: SC Code §12-51-90.",
+    typeWhy: "South Carolina sells tax lien certificates at annual county-level sales held October through December. The investor holds the lien during the 1-year redemption period. SC Code §12-51-90.",
+    rateWhy: "South Carolina uses a graduated monthly penalty scale: 3% if redeemed in month 1, scaling up to 12% if redeemed at month 12. SC Code §12-51-90.",
     auctionSignup: {
       platform: "County delinquent tax collector (in-person)",
       steps: [
@@ -1386,6 +1468,8 @@ var STATES_EN = [
     notBeginnerReason: "Long 3–4 year redemption, limited inventory, December-only auctions.",
     scoreWhy: "12% rate is decent but 3–4 year redemption ties up capital too long for most strategies. Limited inventory.",
     note: "South Dakota holds limited annual lien sales, mostly in December. Certificates are transferable. 3–4 year redemption before deed. Statute: SDCL §10-25.",
+    typeWhy: "South Dakota sells tax lien certificates at limited annual sales. The owner retains title during the 3-4 year redemption period. SDCL §10-25.",
+    rateWhy: "South Dakota sets a fixed statutory rate of 12% per annum on tax lien certificates. This is a flat, non-auction-determined rate. SDCL §10-25.",
     auctionSignup: {
       platform: "County treasurer (in-person)",
       steps: [
@@ -1413,11 +1497,13 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "TN", name: "Tennessee", type: "hybrid", rate: "10% penalty on redemption", redemption: "1 year (after 2-year delinquency required for sale)",
+    id: "TN", name: "Tennessee", type: "redeemable deed", rate: "10% penalty on redemption", redemption: "1 year (after 2-year delinquency required for sale)",
     score: 59, beginnerFriendly: false,
     notBeginnerReason: "Chancery Court process requires attorney. 2-year delinquency required. Cannot access property during 1-year redemption.",
     scoreWhy: "Decent inventory in Nashville and Memphis but Chancery Court involvement adds costs and time.",
     note: "Tennessee is a redeemable deed state with 2-year delinquency requirement and 1-year redemption after purchase. Chancery Court process requires attorney participation. Unsold properties go to county surplus sales. Statute: TCA §67-5-2401.",
+    typeWhy: "Tennessee is a redeemable deed state — the investor receives the deed at auction, but the original owner retains a 1-year right of redemption. A 2-year delinquency is required before sale, and the process runs through Chancery Court. TCA §67-5-2401.",
+    rateWhy: "Tennessee imposes a flat 10% penalty on the full purchase price upon redemption. This is a one-time penalty, not an annualized interest rate. TCA §67-5-2401.",
     auctionSignup: {
       platform: "County Chancery Court (in-person) — Nashville uses online platform",
       steps: [
@@ -1448,10 +1534,12 @@ var STATES_EN = [
     ]
   },
   {
-    id: "TX", name: "Texas", type: "hybrid", rate: "25% yr1 / 50% yr2 (penalty on redemption)", redemption: "180 days (commercial) / 2 years (homestead/ag)",
+    id: "TX", name: "Texas", type: "redeemable deed", rate: "25% yr1 / 50% yr2 (penalty on redemption)", redemption: "180 days (non-homestead/non-ag) / 2 years (homestead/ag)",
     score: 81, beginnerFriendly: true,
     scoreWhy: "Monthly statewide auctions every first Tuesday, massive deal flow, excellent struck-off OTC opportunities. One of the most active deed markets in the country.",
     note: "Texas is a redeemable deed state. Monthly auctions on the first Tuesday statewide. Investor gets deed at auction but owner can redeem. Redemption penalty: 25% year 1, 50% year 2, calculated on full auction price — not just back taxes. Commercial: 180-day redemption. Homestead/agricultural: 2 years. Struck-off properties often skip redemption entirely. Statute: TX Tax Code §34.21.",
+    typeWhy: "Texas is a redeemable deed state — the investor receives the property deed at auction, but the original owner retains a statutory right of redemption (180 days for non-homestead, 2 years for homestead/agricultural). TX Tax Code §34.21.",
+    rateWhy: "Texas imposes a 25% penalty in year 1 and 50% in year 2 on the full auction purchase price — these are statutory penalties, not annual interest rates. TX Tax Code §34.21(a).",
     auctionSignup: {
       platform: "RealAuction.com or GovEase.com (varies by county) + county courthouse",
       steps: [
@@ -1490,6 +1578,8 @@ var STATES_EN = [
     notBeginnerReason: "All counties auction same day in May, 5-year delinquency required before sale, separate registration per county required.",
     scoreWhy: "Statewide same-day auctions simplify planning but 5-year pre-sale delinquency and no central platform require county-by-county coordination.",
     note: "Utah holds all county tax deed auctions on the same day each May. Properties must be 5 years delinquent before auction. Each county registers separately — no statewide system. No redemption post-sale. Sheriff sale option also available. Limited urban inventory outside Salt Lake City. Statute: UCA §59-2-1351.1.",
+    typeWhy: "Utah sells the property deed outright at annual May auctions after 5 years of tax delinquency. There is no post-sale redemption period. UCA §59-2-1351.1.",
+    rateWhy: "Utah is a deed state with no statutory interest rate. Returns are market-driven at auction. UCA §59-2-1351.1.",
     auctionSignup: {
       platform: "County treasurer (each county registers separately)",
       steps: [
@@ -1525,6 +1615,8 @@ var STATES_EN = [
     notBeginnerReason: "Extremely rare municipal sales, virtually no inventory. Not a viable market.",
     scoreWhy: "12% rate on paper but almost no sales ever happen. Most investors never find an available lien in Vermont.",
     note: "Vermont municipalities can sell tax liens but rarely do. Sales are extremely rare. Overbid is NOT returned and does NOT earn interest — bid only at tax value. Statute: VT Stat Title 32 Ch.133.",
+    typeWhy: "Vermont municipalities can sell tax lien certificates, though sales are extremely rare. The owner retains title during the 1-year redemption period. VT Stat Title 32 Ch.133.",
+    rateWhy: "Vermont sets a fixed statutory rate of 12% per annum. Overbid amounts are not returned and do not earn interest. VT Stat Title 32 Ch.133.",
     auctionSignup: {
       platform: "Municipal tax collector (extremely rare)",
       steps: [
@@ -1556,6 +1648,8 @@ var STATES_EN = [
     notBeginnerReason: "3-year delinquency required, judicial sale process, each locality manages independently — slow and complex.",
     scoreWhy: "Good inventory in Northern Virginia but 3-year delinquency requirement and judicial sale process add significant time and cost.",
     note: "Virginia requires 3 years of delinquency before a judicial sale with oral upset bids. Each locality (city or county) manages independently — no statewide calendar. Northern Virginia has strong high-value inventory. Statute: VA Code §58.1-3965.",
+    typeWhy: "Virginia sells the property deed outright through judicial sale after 3 years of tax delinquency. There is no post-sale redemption period. VA Code §58.1-3965.",
+    rateWhy: "Virginia is a deed state with no statutory interest rate. Auction prices are market-driven through oral upset bidding in judicial sale proceedings. VA Code §58.1-3965.",
     auctionSignup: {
       platform: "Circuit Court or Treasurer (locality-specific)",
       steps: [
@@ -1591,6 +1685,8 @@ var STATES_EN = [
     notBeginnerReason: "3-year delinquency plus county hold period. Auction windows in April and November. Tenant-friendly state.",
     scoreWhy: "Decent inventory in King (Seattle) and Pierce counties with Bid4Assets access, but long cycle and tenant protections require experience.",
     note: "Washington counties hold deed auctions in April and November. King, Pierce, and Snohomish use Bid4Assets. Tax title properties available for direct purchase. 3-year delinquency required before auction. Statute: RCW §84.64.",
+    typeWhy: "Washington sells the property deed outright at county-level auctions after a 3-year delinquency period. There is no post-sale redemption. RCW §84.64.",
+    rateWhy: "Washington is a deed state with no statutory interest rate. Returns are market-driven through competitive bidding. RCW §84.64.",
     auctionSignup: {
       platform: "Bid4Assets.com (King, Pierce, Snohomish) + county-specific others",
       steps: [
@@ -1626,6 +1722,8 @@ var STATES_EN = [
     notBeginnerReason: "Often misquoted as 12-month redemption — it's actually 18 months. Mineral rights commonly separated. Complex title history.",
     scoreWhy: "12% rate with hybrid lien-to-deed path managed by the State Auditor. Strong for patient investors who understand the mineral rights landscape.",
     note: "West Virginia State Auditor manages delinquent land sales. Annual lien sales October 14–November 23 by county sheriff. Unredeemed liens after 18 months → deed sales as needed. Certificate is assignable. Statute: WV Code 11A Art.3.",
+    typeWhy: "West Virginia is a hybrid state — the county sheriff sells tax lien certificates annually, and if unredeemed after 18 months, the properties go to a separate deed sale managed by the State Auditor. WV Code 11A Art.3.",
+    rateWhy: "West Virginia sets a statutory interest rate of 12% per annum on tax lien certificates during the 18-month redemption period. Certificates are assignable. WV Code 11A Art.3.",
     auctionSignup: {
       platform: "County sheriff (in-person, October–November)",
       steps: [
@@ -1658,6 +1756,8 @@ var STATES_EN = [
     notBeginnerReason: "2-year redemption, limited centralized platform, and county-by-county coordination required.",
     scoreWhy: "Decent inventory in Milwaukee and Dane counties but 2-year cycle and limited online infrastructure require patience.",
     note: "Wisconsin counties sell tax deeds after 2-year tax certificate. Milwaukee and Dane have best inventory. Online infrastructure is growing but limited. Some counties use land banks. Statute: WS §74.57.",
+    typeWhy: "Wisconsin sells the property deed outright after a 2-year tax certificate period during which the county holds the delinquent property. There is no post-sale redemption. WS §74.57.",
+    rateWhy: "Wisconsin is a deed state with no statutory interest rate. Returns are market-driven at auction. WS §74.57.",
     auctionSignup: {
       platform: "County treasurer (varies — Milwaukee uses online system)",
       steps: [
@@ -1693,6 +1793,8 @@ var STATES_EN = [
     notBeginnerReason: "4-year redemption, limited inventory, November-only auctions, and primarily rural energy/agricultural land.",
     scoreWhy: "15% rate but 4-year redemption and limited inventory dominated by energy-sector land make this impractical for most strategies.",
     note: "Wyoming holds annual tax lien sales in November. 4-year redemption. Inventory dominated by energy sector and agricultural land. Statute: WS §39-13-108.",
+    typeWhy: "Wyoming sells tax lien certificates at annual November sales. The investor holds the lien while the owner retains title during the 4-year redemption period — one of the longest in the country. WS §39-13-108.",
+    rateWhy: "Wyoming sets a fixed statutory rate of 15% per annum on tax lien certificates. This higher-than-average rate compensates for the exceptionally long 4-year redemption period. WS §39-13-108.",
     auctionSignup: {
       platform: "County treasurer (in-person, November)",
       steps: [
