@@ -1,9 +1,9 @@
-// Aurigen — SMS Sender
+// Aurigen — WhatsApp Sender
 // Netlify Function: /.netlify/functions/sms
 //
-// Env vars required: TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER
+// Env vars required: TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_WHATSAPP_NUMBER
 //
-// Sends SMS to Lando via Twilio REST API (no npm package)
+// Sends WhatsApp messages to Lando via Twilio REST API (no npm package)
 
 exports.handler = async (event) => {
   const headers = {
@@ -37,32 +37,32 @@ exports.handler = async (event) => {
     };
   }
 
-  if (message.length > 160) {
+  if (message.length > 1600) {
     return {
       statusCode: 400,
       headers,
-      body: JSON.stringify({ error: 'Message exceeds 160 characters.' })
+      body: JSON.stringify({ error: 'Message exceeds 1600 characters.' })
     };
   }
 
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
-  const fromNumber = process.env.TWILIO_PHONE_NUMBER;
+  const fromNumber = process.env.TWILIO_WHATSAPP_NUMBER;
 
   if (!accountSid || !authToken || !fromNumber) {
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: 'SMS not configured.' })
+      body: JSON.stringify({ error: 'WhatsApp not configured.' })
     };
   }
 
-  const toNumber = '+18016805090';
+  const toNumber = 'whatsapp:+18016805090';
   const twilioUrl = `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`;
 
   const params = new URLSearchParams();
   params.append('To', toNumber);
-  params.append('From', fromNumber);
+  params.append('From', `whatsapp:${fromNumber}`);
   params.append('Body', message);
 
   try {
@@ -94,7 +94,7 @@ exports.handler = async (event) => {
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: 'SMS delivery failed.' })
+      body: JSON.stringify({ error: 'WhatsApp delivery failed.' })
     };
   }
 };
