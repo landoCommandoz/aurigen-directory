@@ -327,7 +327,7 @@ const STATES_EN = [
       depositInfo: "Deposit required per county. Most counties require pre-funding before auction day.",
       directLink: "https://lienhub.com"
     },
-    beginnerTip: "Start with smaller counties like Citrus, Hernando, or Levy — less competition than Miami-Dade or Broward. OTC purchases through LienHub let you buy at 18% with no auction pressure. That's the best beginner entry point in Florida.",
+    beginnerTip: "Your best first move in Florida is LienHub OTC — buy unsold certificates year-round at the full 18% statutory rate with zero competition and no auction schedule to wait for. Skip the live auctions entirely until you're comfortable. When you're ready to shop inventory, start with smaller counties like Citrus, Hernando, or Levy for less saturated supply.",
     otc: { available: true, note: "Unsold tax certificates available year-round on LienHub.com. Start here — guaranteed 18% rate, no competition, no bidding." },
     risks: [
       "Miami-Dade and Broward: institutional buyers push rates to 0–1% — avoid for beginners",
