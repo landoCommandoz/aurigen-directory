@@ -311,10 +311,10 @@ const STATES_EN = [
     counties: []
   },
   {
-    id: "FL", name: "Florida", type: "hybrid", rate: "Up to 18% (min 5% if redeemed in 60 days)", redemption: "2 years",
+    id: "FL", name: "Florida", type: "hybrid", rate: "Up to 18% (5% minimum on redemption)", redemption: "2 years",
     score: 82, beginnerFriendly: true,
     scoreWhy: "Massive inventory, two parallel profit paths (lien + deed), fully online, year-round OTC availability. One of the top states in the country.",
-    note: "Florida is a hybrid state with two parallel auction tracks. (1) Annual tax certificate sale online before June 1 — reverse bid auction starting at 18%. (2) After 2-year redemption, lienholder applies for tax deed and property goes to public auction at RealAuction. OTC available year-round via LienHub. Statute: FL Stat §197.432.",
+    note: "Florida is a hybrid state with two parallel auction tracks. (1) Annual tax certificate sale online before June 1 — reverse bid auction starting at 18%. (2) After 2-year redemption, lienholder applies for tax deed and property goes to public auction at RealAuction. OTC available year-round via LienHub. Statutes: FL Stat §197.172 (rate), §197.432 (sale), §197.4725 (OTC), §197.472 (redemption), §197.502 (deed application).",
     auctionSignup: {
       platform: "LienHub.com (primary) + RealAuction.com (deed sales)",
       steps: [
@@ -333,7 +333,7 @@ const STATES_EN = [
       "Miami-Dade and Broward: institutional buyers push rates to 0–1% — avoid for beginners",
       "Tax deed title is generally not insurable without quiet title action",
       "Government liens (code enforcement, municipal utilities) can survive tax deed sale",
-      "Minimum 5% rate applies only if property redeems within 60 days"
+      "5% mandatory minimum interest applies on all redemptions except 0% bids (§197.472). Separate rule: no interest accrues during 60-day post-delinquency window (§197.172)"
     ],
     ddExtra: [
       "Verify OTC inventory on LienHub for direct purchase certificates",

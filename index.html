@@ -3073,22 +3073,23 @@ function unsaveState(id) {
 // ── Spotlight ────────────────────────────────────────────────
 function buildSpotlight() {
   const container = document.getElementById('spotlight-list');
-  if (!container || !window.STATES_EN) return;
+  if (!container || !STATES || STATES.length === 0) return;
 
-  const top = [...STATES_EN]
+  const top = [...STATES]
     .filter(s => FREE_STATES.has(s.id) || state.isPaid)
     .sort((a, b) => b.score - a.score)
     .slice(0, 10);
 
   container.innerHTML = top.map(s => {
     const scoreColor = s.score >= 70 ? 'var(--green)' : s.score >= 45 ? 'var(--accent)' : 'var(--red)';
-    const typeLabel = s.type === 'lien' ? '🏦 Lien' : s.type === 'deed' ? '🏠 Deed' : '🔀 Both';
+    const typeIcon = s.type === 'lien' ? '\u{1F3E6}' : s.type === 'deed' ? '\u{1F3E0}' : '\u{1F500}';
+    const typeLabel = s.type === 'lien' ? t('legendLien') : s.type === 'deed' ? t('legendDeed') : t('legendBoth');
     return `
       <div class="spotlight-card" onclick="openState('${s.id}')">
         <div class="spotlight-card-top">
           <div>
             <div class="spotlight-state-name">${s.name}</div>
-            <div style="font-size:11px;color:var(--text-dim);margin-top:2px;">${typeLabel} · ${s.rate}</div>
+            <div style="font-size:11px;color:var(--text-dim);margin-top:2px;">${typeIcon} ${typeLabel} \u00B7 ${s.rate}</div>
           </div>
           <div class="spotlight-score" style="color:${scoreColor}">${s.score}</div>
         </div>
@@ -3242,22 +3243,25 @@ function toggleLegalCard(i) {
 }
 
 // ── Profile ───────────────────────────────────────────────────
-const STRATEGIES = [
-  { id: 'lien', label: '🏦 Tax Liens' },
-  { id: 'deed', label: '🏠 Tax Deeds' },
-  { id: 'otc', label: '🛒 OTC / Direct Purchase' },
-  { id: 'remote', label: '💻 Remote Investing' },
-  { id: 'local', label: '📍 Local Investing' },
-  { id: 'passive', label: '💰 Passive Income' },
-  { id: 'beginner', label: '🌱 Beginner' },
-  { id: 'advanced', label: '⚡ Experienced' },
-];
+function getStrategies() {
+  return [
+    { id: 'lien', label: '\u{1F3E6} ' + t('stratLien') },
+    { id: 'deed', label: '\u{1F3E0} ' + t('stratDeed') },
+    { id: 'otc', label: '\u{1F6D2} ' + t('stratOtc') },
+    { id: 'remote', label: '\u{1F4BB} ' + t('stratRemote') },
+    { id: 'local', label: '\u{1F4CD} ' + t('stratLocal') },
+    { id: 'passive', label: '\u{1F4B0} ' + t('stratPassive') },
+    { id: 'beginner', label: '\u{1F331} ' + t('stratBeginner') },
+    { id: 'advanced', label: '\u26A1 ' + t('stratAdvanced') },
+  ];
+}
 
 function buildProfileTags() {
   const container = document.getElementById('profile-strategy-tags');
   if (!container) return;
 
-  container.innerHTML = STRATEGIES.map(s => `
+  const strategies = getStrategies();
+  container.innerHTML = strategies.map(s => `
     <button
       class="profile-strategy-tag${state.profile.strategy.includes(s.id) ? ' selected' : ''}"
       id="stag-${s.id}"
@@ -3280,11 +3284,11 @@ function toggleStrategy(id) {
 
 function buildProfileRecs() {
   const container = document.getElementById('profile-recs');
-  if (!container || !window.STATES_EN) return;
+  if (!container || !STATES || STATES.length === 0) return;
 
   const strat = state.profile.strategy;
 
-  let filtered = [...STATES_EN];
+  let filtered = [...STATES];
 
   if (strat.includes('lien')) filtered = filtered.filter(s => s.type === 'lien' || s.type === 'both');
   if (strat.includes('deed')) filtered = filtered.filter(s => s.type === 'deed' || s.type === 'both');
@@ -3297,17 +3301,17 @@ function buildProfileRecs() {
     .slice(0, 5);
 
   if (top.length === 0) {
-    container.innerHTML = '<div style="color:var(--text-dim);font-size:13px;">Select strategies above to get personalized recommendations.</div>';
+    container.innerHTML = `<div style="color:var(--text-dim);font-size:13px;">${t('profileNoRecs')}</div>`;
     return;
   }
 
   const stateFlags = {
-    FL:'🇺🇸',IA:'🇺🇸',IL:'🇺🇸',NJ:'🇺🇸',AZ:'🇺🇸',TX:'🇺🇸',GA:'🇺🇸',
+    FL:'\u{1F1FA}\u{1F1F8}',IA:'\u{1F1FA}\u{1F1F8}',IL:'\u{1F1FA}\u{1F1F8}',NJ:'\u{1F1FA}\u{1F1F8}',AZ:'\u{1F1FA}\u{1F1F8}',TX:'\u{1F1FA}\u{1F1F8}',GA:'\u{1F1FA}\u{1F1F8}',
   };
 
   container.innerHTML = top.map(s => `
     <div class="profile-rec" onclick="openState('${s.id}')">
-      <div class="profile-rec-flag">${stateFlags[s.id] || '📍'}</div>
+      <div class="profile-rec-flag">${stateFlags[s.id] || '\u{1F4CD}'}</div>
       <div>
         <div class="profile-rec-name">${s.name}</div>
         <div class="profile-rec-why">${s.beginnerTip || s.scoreWhy || ''}</div>
@@ -3468,15 +3472,19 @@ function toggleDebug() {
 }
 
 function updateDebug() {
+  const titleEl = document.querySelector('#debug-panel > div:first-child');
+  if (titleEl) titleEl.innerHTML = '\u2699 ' + t('debugTitle');
+
   const content = document.getElementById('debug-content');
   if (!content) return;
   content.innerHTML = `
-    entered: ${state.entered}<br>
-    isPaid: ${state.isPaid}<br>
-    activeTab: ${state.activeTab}<br>
-    activeState: ${state.activeState || 'none'}<br>
-    savedStates: [${state.savedStates.join(', ')}]<br>
-    mapReady: ${state.mapReady}
+    ${t('debugEntered')}: ${state.entered}<br>
+    ${t('debugIsPaid')}: ${state.isPaid}<br>
+    ${t('debugActiveTab')}: ${state.activeTab}<br>
+    ${t('debugActiveState')}: ${state.activeState || t('debugNone')}<br>
+    ${t('debugSavedStates')}: [${state.savedStates.join(', ')}]<br>
+    ${t('debugMapReady')}: ${state.mapReady}<br>
+    ${t('debugLang')}: ${state.lang}
   `;
 }
 </script>
