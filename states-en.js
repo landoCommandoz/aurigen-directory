@@ -244,7 +244,7 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "DE", name: "Delaware", type: "hybrid", rate: "15-20% (varies by county)", redemption: "60 days to 1 year",
+    id: "DE", name: "Delaware", type: "deed", rate: "15-20% penalty (varies by county)", redemption: "60 days to 1 year",
     score: 28, beginnerFriendly: false,
     notBeginnerReason: "Only 3 counties, very limited inventory, not a viable primary market.",
     scoreWhy: "Only 3 counties operating independently with minimal inventory. Too small to build a strategy around.",
@@ -420,7 +420,7 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "ID", name: "Idaho", type: "deed", rate: "Varies", redemption: "3 years",
+    id: "ID", name: "Idaho", type: "deed", rate: "Varies", redemption: "14 months",
     score: 31, beginnerFriendly: false,
     notBeginnerReason: "Counties have discretion on whether to sell — many never do. No central calendar or system.",
     scoreWhy: "Unpredictable inventory, no centralized system, and county discretion on sales make this unreliable as a strategy.",
@@ -492,7 +492,7 @@ var STATES_EN = [
     id: "IN", name: "Indiana", type: "lien", rate: "10% (0–6mo) / 15% (6–12mo)", redemption: "1 year",
     score: 69, beginnerFriendly: true,
     scoreWhy: "Two auction windows annually, clear tiered penalty structure, and online participation available in many counties.",
-    note: "Indiana holds two annual lien sales: Fall Sale (October) and Judgment Sale (January). Penalty: 10% if redeemed within 6 months, 15% months 7–12. Overbid earns only 5%. Statute: IC §6-1.1-24.",
+    note: "Indiana holds two annual lien sales: Fall Sale (October) and Judgment Sale (January). Penalty: 10% if redeemed within 6 months, 15% months 7–12. Overbid earns 10%. Statute: IC §6-1.1-24.",
     auctionSignup: {
       platform: "SRI Tax Sale Services (sriservices.com) — most Indiana counties",
       steps: [
@@ -507,7 +507,7 @@ var STATES_EN = [
     beginnerTip: "Indiana is one of the most beginner-friendly lien states. SRI Tax Sale Services lets you bid from your computer. Start with Marion (Indianapolis) or Hamilton county — good inventory and clear online process.",
     otc: { available: true, note: "OTC certificates available from counties after the Fall Sale. Contact county auditor directly." },
     risks: [
-      "Overbid earns only 5% — don't overbid",
+      "Overbid earns only 10% — manage your bid carefully",
       "Verify whether the county holds a Fall Sale (October) or Spring Sale — not all counties hold both",
       "Check for active drug seizure or civil forfeiture proceedings on the property"
     ],
@@ -555,7 +555,7 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "KS", name: "Kansas", type: "lien", rate: "Up to 15%", redemption: "2 years",
+    id: "KS", name: "Kansas", type: "lien", rate: "Up to 15%", redemption: "2–3 years",
     score: 48, beginnerFriendly: true,
     scoreWhy: "2-year redemption window before judicial sale, county can reduce minimums on unsold properties, and decent suburban inventory near Wichita and Kansas City.",
     note: "Kansas holds tax lien sales at the county level. After 2-year redemption, county files for judicial sale. County can reduce minimum bid on properties that didn't sell. Statute: KSA §79-2801.",
@@ -589,7 +589,7 @@ var STATES_EN = [
     ]
   },
   {
-    id: "KY", name: "Kentucky", type: "lien", rate: "12%", redemption: "1 year",
+    id: "KY", name: "Kentucky", type: "lien", rate: "12% + penalties", redemption: "1 year",
     score: 38, beginnerFriendly: false,
     notBeginnerReason: "In-person only, no online bidding, sealed bid format makes it hard to gauge competition.",
     scoreWhy: "Decent 12% rate but in-person-only requirement and sealed bid format limit scalability significantly.",
@@ -884,7 +884,7 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "MT", name: "Montana", type: "lien", rate: "10% + 2% penalty", redemption: "2-3 years (residential: 3 yrs; commercial: 2 yrs)",
+    id: "MT", name: "Montana", type: "lien", rate: "10% + 2%/mo penalty after year 1", redemption: "3 years",
     score: 37, beginnerFriendly: false,
     notBeginnerReason: "Annual July assignment, no online platform, no direct purchase, and predominantly rural agricultural inventory.",
     scoreWhy: "Low rate, long 3-year redemption, no online platform, and limited urban inventory restrict opportunity.",
@@ -949,9 +949,9 @@ var STATES_EN = [
   {
     id: "NV", name: "Nevada", type: "deed", rate: "N/A", redemption: "None post-sale",
     score: 49, beginnerFriendly: false,
-    notBeginnerReason: "2-year county hold period before auction, sealed bid followed by oral bid, and strong institutional competition in Las Vegas area.",
-    scoreWhy: "Decent inventory in Clark County (Las Vegas) but 2-year wait and competitive urban market require patience and experience.",
-    note: "Nevada counties hold tax-delinquent properties for 2 years before public auction. Auction uses sealed bids followed by oral bids. Clark County (Las Vegas) has strongest inventory. Statute: NRS §361.585.",
+    notBeginnerReason: "3-year county hold period before auction, sealed bid followed by oral bid, and strong institutional competition in Las Vegas area.",
+    scoreWhy: "Decent inventory in Clark County (Las Vegas) but 3-year wait and competitive urban market require patience and experience.",
+    note: "Nevada counties hold tax-delinquent properties for 3 years before public auction. Auction uses sealed bids followed by oral bids. Clark County (Las Vegas) has strongest inventory. Statute: NRS §361.585.",
     auctionSignup: {
       platform: "County treasurer or assessor (varies)",
       steps: [
@@ -966,12 +966,12 @@ var STATES_EN = [
     beginnerTip: "Focus on rural Nevada counties (Churchill, Lander, Esmeralda) for lower competition. Las Vegas-area properties in Clark County face significant institutional competition.",
     otc: { available: false, note: "No OTC program." },
     risks: [
-      "2-year wait before auction — long capital cycle",
+      "3-year wait before auction — long capital cycle",
       "Clark County: institutional competition is significant in metro areas",
       "Sealed bid format — difficult to gauge market interest"
     ],
     ddExtra: [
-      "Verify the 2-year hold period has been met before attending",
+      "Verify the 3-year hold period has been met before attending",
       "Check for active water rights or mining claims on rural parcels",
       "Confirm the sealed bid deadline — missing it disqualifies you from the oral auction"
     ],
@@ -981,7 +981,7 @@ var STATES_EN = [
     ]
   },
   {
-    id: "NH", name: "New Hampshire", type: "deed", rate: "18%", redemption: "2 years",
+    id: "NH", name: "New Hampshire", type: "lien", rate: "18%", redemption: "2 years",
     score: 33, beginnerFriendly: false,
     notBeginnerReason: "Municipal auctions only, sporadic sales, and 2020 NH Supreme Court ruling prevents municipalities from retaining surplus bids.",
     scoreWhy: "18% rate on paper, but low volume, infrequent sales, and the surplus return ruling limit practical returns.",
@@ -1147,11 +1147,11 @@ var STATES_EN = [
     ]
   },
   {
-    id: "ND", name: "North Dakota", type: "lien", rate: "Varies", redemption: "4 years",
+    id: "ND", name: "North Dakota", type: "lien", rate: "12%", redemption: "3 years",
     score: 27, beginnerFriendly: false,
-    notBeginnerReason: "4-year redemption period, December-only auctions, and predominantly rural agricultural inventory.",
-    scoreWhy: "4-year redemption ties up capital far too long. December-only auctions and agricultural-dominated inventory limit strategic value.",
-    note: "North Dakota holds tax lien auctions in December only. 4-year redemption period. Inventory dominated by rural agricultural land. Statute: NDCC §57-28.",
+    notBeginnerReason: "3-year redemption period, December-only auctions, and predominantly rural agricultural inventory.",
+    scoreWhy: "3-year redemption ties up capital for a long time. December-only auctions and agricultural-dominated inventory limit strategic value.",
+    note: "North Dakota holds tax lien auctions in December only. 3-year redemption period at 12% annual interest. Inventory dominated by rural agricultural land. Statute: NDCC §57-28.",
     auctionSignup: {
       platform: "County auditor (in-person, December)",
       steps: [
@@ -1166,12 +1166,12 @@ var STATES_EN = [
     beginnerTip: "North Dakota is not recommended for beginners or most investors. If you're here specifically for agricultural land, focus on Cass County (Fargo area) where there's more demand.",
     otc: { available: false, note: "No OTC program." },
     risks: [
-      "4-year redemption — the longest in the country",
+      "3-year redemption ties up capital",
       "December-only auctions limit timing flexibility",
       "Agricultural land dominates — limited development potential"
     ],
     ddExtra: [
-      "Calculate your opportunity cost over the 4-year holding period before bidding",
+      "Calculate your opportunity cost over the 3-year holding period before bidding",
       "Verify water rights and mineral rights status on agricultural parcels",
       "Confirm drainage district liens on any farmland"
     ],
@@ -1215,7 +1215,7 @@ var STATES_EN = [
   {
     id: "OK", name: "Oklahoma", type: "lien", rate: "8%", redemption: "2 years",
     score: 36, beginnerFriendly: true,
-    scoreWhy: "Lowest rate among lien states at 8%, but straightforward process with October OTC and June resale options.",
+    scoreWhy: "Low 8% rate among lien states, but straightforward process with October OTC and June resale options.",
     note: "Oklahoma holds October tax lien auction followed by June resale and Commissioner's sale. OTC available first Monday of October. Rate is only 8%. Statute: OS Title 68 §3101.",
     auctionSignup: {
       platform: "County treasurer (Oklahoma County uses online system)",
@@ -1231,7 +1231,7 @@ var STATES_EN = [
     beginnerTip: "Oklahoma County (OKC) and Tulsa County have the best inventory. The 8% rate is low but the OTC direct purchase option on the first Monday of October is beginner-friendly — no auction competition.",
     otc: { available: true, note: "OTC available first Monday of October each year — direct purchase from county treasurer at 8% rate." },
     risks: [
-      "8% is the lowest lien rate in the country — make sure the return justifies the capital",
+      "8% is among the lowest lien rates in the country — make sure the return justifies the capital",
       "2-year redemption before deed proceedings",
       "Limited online infrastructure in rural counties"
     ],
@@ -1413,7 +1413,7 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "TN", name: "Tennessee", type: "hybrid", rate: "10% penalty on redemption", redemption: "2 years",
+    id: "TN", name: "Tennessee", type: "hybrid", rate: "10% penalty on redemption", redemption: "1 year (after 2-year delinquency required for sale)",
     score: 59, beginnerFriendly: false,
     notBeginnerReason: "Chancery Court process requires attorney. 2-year delinquency required. Cannot access property during 1-year redemption.",
     scoreWhy: "Decent inventory in Nashville and Memphis but Chancery Court involvement adds costs and time.",
@@ -1485,11 +1485,11 @@ var STATES_EN = [
     ]
   },
   {
-    id: "UT", name: "Utah", type: "deed", rate: "N/A", redemption: "4 years",
+    id: "UT", name: "Utah", type: "deed", rate: "N/A", redemption: "None post-sale (5-year delinquency required before sale)",
     score: 44, beginnerFriendly: false,
-    notBeginnerReason: "All counties auction same day in May, 4-year redemption period, separate registration per county required.",
-    scoreWhy: "Statewide same-day auctions simplify planning but 4-year redemption and no central platform require county-by-county coordination.",
-    note: "Utah holds all county tax deed auctions on the same day each May. Each county registers separately — no statewide system. Sheriff sale option also available. Limited urban inventory outside Salt Lake City. Statute: UCA §59-2-1351.1.",
+    notBeginnerReason: "All counties auction same day in May, 5-year delinquency required before sale, separate registration per county required.",
+    scoreWhy: "Statewide same-day auctions simplify planning but 5-year pre-sale delinquency and no central platform require county-by-county coordination.",
+    note: "Utah holds all county tax deed auctions on the same day each May. Properties must be 5 years delinquent before auction. Each county registers separately — no statewide system. No redemption post-sale. Sheriff sale option also available. Limited urban inventory outside Salt Lake City. Statute: UCA §59-2-1351.1.",
     auctionSignup: {
       platform: "County treasurer (each county registers separately)",
       steps: [
@@ -1504,7 +1504,7 @@ var STATES_EN = [
     beginnerTip: "Salt Lake and Utah counties have the best inventory. Contact each county treasurer separately in March — by April, the list of remaining properties after owner payments shrinks significantly.",
     otc: { available: false, note: "No OTC program." },
     risks: [
-      "4-year redemption — long capital commitment",
+      "5-year delinquency requirement before sale limits available inventory",
       "Separate registration for each county — time-intensive",
       "Limited urban inventory outside Wasatch Front"
     ],
@@ -1653,7 +1653,7 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "WI", name: "Wisconsin", type: "deed", rate: "N/A", redemption: "2 years",
+    id: "WI", name: "Wisconsin", type: "deed", rate: "N/A", redemption: "None post-sale (2-year delinquency before county takes deed)",
     score: 45, beginnerFriendly: false,
     notBeginnerReason: "2-year redemption, limited centralized platform, and county-by-county coordination required.",
     scoreWhy: "Decent inventory in Milwaukee and Dane counties but 2-year cycle and limited online infrastructure require patience.",

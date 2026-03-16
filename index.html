@@ -2244,7 +2244,7 @@ a { color: inherit; text-decoration: none; }
         <div class="gate-stat-label" id="gate-stat-label-2">Taxing Jurisdictions</div>
       </div>
       <div class="gate-stat-card">
-        <div class="gate-stat-number" data-target="7">0</div>
+        <div class="gate-stat-number" data-target="3">0</div>
         <div class="gate-stat-label" id="gate-stat-label-3">Free States to Start</div>
       </div>
     </div>
@@ -2299,8 +2299,8 @@ a { color: inherit; text-decoration: none; }
 
   <!-- Section 5: Email Capture -->
   <section class="gate-email gate-section" id="gate-email-section">
-    <h2 class="gate-email-title" id="gate-email-title">Start Free — Explore 7 States</h2>
-    <p class="gate-email-desc" id="gate-email-desc">Enter your email to unlock Florida, Illinois, Iowa, New Jersey, Georgia, Arizona, and Texas — no credit card required.</p>
+    <h2 class="gate-email-title" id="gate-email-title">Start Free — Explore 3 States</h2>
+    <p class="gate-email-desc" id="gate-email-desc">Enter your email to unlock Florida, Illinois, and Arizona — no credit card required.</p>
     <div class="gate-email-form">
       <input
         class="gate-email-input"
@@ -2688,8 +2688,8 @@ const I18N = {
     gatePriceCommunity: 'Join the Aurigen Collective — a growing community of tax lien & deed investors',
     gatePriceNote: 'One-time · Founding Member Rate · Lifetime Access',
     // Gate - Email
-    gateEmailTitle: 'Start Free — Explore 7 States',
-    gateEmailDesc: 'Enter your email to unlock Florida, Illinois, Iowa, New Jersey, Georgia, Arizona, and Texas — no credit card required.',
+    gateEmailTitle: 'Start Free — Explore 3 States',
+    gateEmailDesc: 'Enter your email to unlock Florida, Illinois, and Arizona — no credit card required.',
     gateEmailPlaceholder: 'you@email.com',
     gateEmailSubmit: 'Unlock Free Access',
     gateEmailFine: "We'll send you investor tips. Unsubscribe anytime.",
@@ -2707,6 +2707,7 @@ const I18N = {
     navAdvisor: 'Advisor',
     navLegal: 'Legal',
     navGlossary: 'Glossary',
+    navAccount: 'Account',
     navProfile: 'Profile',
     navSaved: 'Saved',
     // Map view
@@ -2882,8 +2883,8 @@ const I18N = {
     gatePriceCommunity: 'Unete al Colectivo Aurigen — una comunidad creciente de inversores en gravamenes y escrituras fiscales',
     gatePriceNote: 'Pago Unico · Tarifa de Miembro Fundador · Acceso de por Vida',
     // Gate - Email
-    gateEmailTitle: 'Comienza Gratis — Explora 7 Estados',
-    gateEmailDesc: 'Ingresa tu correo para desbloquear Florida, Illinois, Iowa, New Jersey, Georgia, Arizona y Texas — sin tarjeta de credito.',
+    gateEmailTitle: 'Comienza Gratis — Explora 3 Estados',
+    gateEmailDesc: 'Ingresa tu correo para desbloquear Florida, Illinois y Arizona — sin tarjeta de credito.',
     gateEmailPlaceholder: 'tu@correo.com',
     gateEmailSubmit: 'Desbloquear Acceso Gratis',
     gateEmailFine: 'Te enviaremos consejos de inversion. Cancela cuando quieras.',
@@ -2901,6 +2902,7 @@ const I18N = {
     navAdvisor: 'Asesor',
     navLegal: 'Legal',
     navGlossary: 'Glosario',
+    navAccount: 'Cuenta',
     navProfile: 'Perfil',
     navSaved: 'Guardados',
     // Map view
@@ -3206,7 +3208,7 @@ function updateGateStrings() {
 
 function updateNavStrings() {
   const navItems = document.querySelectorAll('.nav-item');
-  const navKeys = ['navMap', 'navAnalyze', 'navAdvisor', 'navLegal', 'navGlossary', 'navProfile', 'navSaved'];
+  const navKeys = ['navMap', 'navAnalyze', 'navAdvisor', 'navAccount'];
   navItems.forEach((item, i) => {
     const label = item.querySelector('.nav-label');
     if (label && navKeys[i]) label.textContent = t(navKeys[i]);
@@ -3224,14 +3226,8 @@ function updateViewHeaders() {
   if (toggleMapBtn) toggleMapBtn.innerHTML = '\u{1F5FA} ' + t('mapToggleMap');
   if (toggleListBtn) toggleListBtn.innerHTML = '\u2630 ' + t('mapToggleList');
 
-  // Analyzer
-  const analyzerHeader = document.querySelector('#view-analyzer .view-header');
-  if (analyzerHeader) {
-    const title = analyzerHeader.querySelector('.view-title');
-    const sub = analyzerHeader.querySelector('.view-sub');
-    if (title) title.textContent = t('analyzerTitle');
-    if (sub) sub.textContent = t('analyzerSub');
-  }
+  // Analyzer (sub-view inside #view-tools — no separate view-header)
+  // Analyzer has no view-header element; labels are updated in updateAnalyzerStrings()
 
   // Valuation Agent
   const valTitleEl = document.getElementById('val-title');
@@ -3250,49 +3246,18 @@ function updateViewHeaders() {
     if (sub) sub.textContent = t('advisorSub');
   }
 
-  // Legal
-  const legalHeader = document.querySelector('#view-legal .view-header');
-  if (legalHeader) {
-    const title = legalHeader.querySelector('.view-title');
-    const sub = legalHeader.querySelector('.view-sub');
-    if (title) title.textContent = t('legalTitle');
-    if (sub) sub.textContent = t('legalSub');
-  }
+  // Legal (sub-view inside #view-tools — no separate view-header)
   const legalDisclaimer = document.querySelector('.legal-disclaimer-banner');
   if (legalDisclaimer) legalDisclaimer.textContent = t('legalDisclaimer');
 
-  // Glossary
-  const glossaryHeader = document.querySelector('#view-glossary .view-header');
-  if (glossaryHeader) {
-    const title = glossaryHeader.querySelector('.view-title');
-    const sub = glossaryHeader.querySelector('.view-sub');
-    if (title) title.textContent = t('glossaryTitle');
-    if (sub) sub.textContent = t('glossarySub');
-  }
+  // Glossary (sub-view inside #view-tools)
   const glossarySearch = document.getElementById('glossary-search');
   if (glossarySearch) glossarySearch.placeholder = t('glossarySearch');
 
-  // Profile
-  const profileHeader = document.querySelector('#view-profile .view-header');
-  if (profileHeader) {
-    const title = profileHeader.querySelector('.view-title');
-    const sub = profileHeader.querySelector('.view-sub');
-    if (title) title.textContent = t('profileTitle');
-    if (sub) sub.textContent = t('profileSub');
-  }
-  const profileStratTitle = document.querySelector('#view-profile .profile-section:first-child .profile-section-title');
-  const profileRecsTitle = document.querySelector('#view-profile .profile-section:nth-child(2) .profile-section-title');
-  if (profileStratTitle) profileStratTitle.textContent = t('profileStrategy');
-  if (profileRecsTitle) profileRecsTitle.textContent = t('profileRecs');
-
-  // Saved
-  const savedHeader = document.querySelector('#view-saved .view-header');
-  if (savedHeader) {
-    const title = savedHeader.querySelector('.view-title');
-    const sub = savedHeader.querySelector('.view-sub');
-    if (title) title.textContent = t('savedTitle');
-    if (sub) sub.textContent = t('savedSub');
-  }
+  // Profile (sub-view inside #view-account)
+  const profileSections = document.querySelectorAll('#tools-profile .profile-section .profile-section-title');
+  if (profileSections[0]) profileSections[0].textContent = t('profileStrategy');
+  if (profileSections[1]) profileSections[1].textContent = t('profileRecs');
 
   // Spotlight
   const spotlightHeader = document.querySelector('#view-spotlight .view-header');
@@ -3306,13 +3271,13 @@ function updateViewHeaders() {
 
 function updateAnalyzerStrings() {
   // Update analyzer card titles and field labels
-  const inputsTitle = document.querySelector('#view-analyzer .analyzer-card:first-child .analyzer-card-title');
-  const resultsTitle = document.querySelector('#view-analyzer .analyzer-card:last-child .analyzer-card-title');
+  const inputsTitle = document.querySelector('#tools-analyzer .analyzer-card:first-child .analyzer-card-title');
+  const resultsTitle = document.querySelector('#tools-analyzer .analyzer-card:last-child .analyzer-card-title');
   if (inputsTitle) inputsTitle.textContent = t('analyzerInputs');
   if (resultsTitle) resultsTitle.textContent = t('analyzerResults');
 
   // Field labels
-  const fieldLabels = document.querySelectorAll('#view-analyzer .field-label');
+  const fieldLabels = document.querySelectorAll('#tools-analyzer .field-label');
   const labelKeys = ['analyzerType', 'analyzerPrice', 'analyzerRate', 'analyzerMonths', 'analyzerArv', 'analyzerCosts', 'analyzerPenalty'];
   fieldLabels.forEach((label, i) => {
     if (labelKeys[i]) {
@@ -3334,7 +3299,7 @@ function updateAnalyzerStrings() {
   }
 
   // Result labels
-  const resultLabels = document.querySelectorAll('#view-analyzer .result-label');
+  const resultLabels = document.querySelectorAll('#tools-analyzer .result-label');
   const resultKeys = ['analyzerTotalReturn', 'analyzerRoi', 'analyzerAnnualized', 'analyzerInterest', 'analyzerTotalCosts', 'analyzerEquity'];
   resultLabels.forEach((label, i) => {
     if (resultKeys[i]) label.textContent = t(resultKeys[i]);
