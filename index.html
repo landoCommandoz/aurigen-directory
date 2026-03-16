@@ -2578,13 +2578,13 @@ async function submitCode() {
     } else {
       input.disabled = false;
       input.classList.add('error');
-      errorEl.textContent = data.message || "That code didn't match — reach out to Landon@theaurigen.com";
+      errorEl.textContent = data.message || t('gateCodeError');
       errorEl.classList.add('show');
       setTimeout(() => input.classList.remove('error'), 400);
     }
   } catch(err) {
     input.disabled = false;
-    errorEl.textContent = "Connection error — please try again.";
+    errorEl.textContent = t('gateConnectionError');
     errorEl.classList.add('show');
   }
 }
@@ -3132,12 +3132,12 @@ function buildGlossary() {
 function renderGlossary(terms) {
   const container = document.getElementById('glossary-list');
   if (!container) return;
-  container.innerHTML = terms.map(t => `
+  container.innerHTML = terms.map(term => `
     <div class="glossary-item">
-      <div class="glossary-term">${t.term}</div>
-      <div class="glossary-def">${t.def}</div>
+      <div class="glossary-term">${term.term}</div>
+      <div class="glossary-def">${term.def}</div>
     </div>
-  `).join('') || '<div style="color:var(--text-dim);font-size:13px;padding:20px 0;">No results found.</div>';
+  `).join('') || `<div style="color:var(--text-dim);font-size:13px;padding:20px 0;">${t('glossaryNoResults')}</div>`;
 }
 
 function filterGlossary(q) {
@@ -3418,13 +3418,13 @@ async function sendAdvisorMessage() {
     const data = await res.json();
     if (typing) typing.classList.remove('show');
 
-    const reply = data.response || data.error || 'Unable to respond right now.';
+    const reply = data.response || data.error || t('advisorNoResponse');
     appendAdvisorMsg('sage', reply);
     state.advisorHistory.push({ role: 'assistant', content: reply });
 
   } catch(err) {
     if (typing) typing.classList.remove('show');
-    appendAdvisorMsg('sage', 'Connection error — please try again.');
+    appendAdvisorMsg('sage', t('advisorError'));
   }
 
   state.advisorBusy = false;
