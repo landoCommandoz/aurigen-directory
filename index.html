@@ -642,7 +642,7 @@ a { color: inherit; text-decoration: none; }
   flex: 1;
   min-height: 0;
   position: relative;
-  background: radial-gradient(ellipse at 50% 60%, #141420 0%, #0a0a0c 100%);
+  background: radial-gradient(ellipse at 50% 60%, #141420 0%, var(--bg) 100%);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1688,7 +1688,7 @@ a { color: inherit; text-decoration: none; }
             <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>Lien</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>Deed</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Both</div>
-            <div class="legend-item"><div class="legend-dot" style="background:#3a3a4a"></div>Locked</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--map-locked)"></div>Locked</div>
           </div>
           <div id="state-list"></div>
         </div>
@@ -2856,7 +2856,7 @@ async function initMap() {
       .attr('class', 'state-shape')
       .attr('d', path)
       .attr('fill', d => getColor(fipsToId[String(d.id).padStart(2,'0')]))
-      .attr('stroke', '#0a0a0c')
+      .attr('stroke', mapColors.bg)
       .attr('stroke-width', 1)
       .style('cursor', 'pointer')
       .style('opacity', d => getOpacity(fipsToId[String(d.id).padStart(2,'0')]))
@@ -2918,7 +2918,7 @@ async function initMap() {
   } catch(err) {
     console.error('Map init error:', err);
     document.getElementById('map-container').innerHTML =
-      `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:14px;flex-direction:column;gap:12px;"><div style="font-size:32px;">\u{1F5FA}</div><div>${t('mapFallback')}</div><button onclick="setMapView('list')" style="background:var(--accent);color:#0a0a0c;border:none;border-radius:8px;padding:10px 24px;font-weight:700;cursor:pointer;font-size:12px;margin-top:4px;">${t('mapFallbackBtn')}</button></div>`;
+      `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:14px;flex-direction:column;gap:12px;"><div style="font-size:32px;">\u{1F5FA}</div><div>${t('mapFallback')}</div><button onclick="setMapView('list')" style="background:var(--accent);color:var(--bg);border:none;border-radius:8px;padding:10px 24px;font-weight:700;cursor:pointer;font-size:12px;margin-top:4px;">${t('mapFallbackBtn')}</button></div>`;
   }
 }
 
