@@ -1356,6 +1356,163 @@ a { color: inherit; text-decoration: none; }
   text-underline-offset: 2px;
 }
 
+/* Quick Start card */
+.quick-start-card {
+  background: rgba(200,168,75,0.06);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+
+.quick-start-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.quick-start-text {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Risks card */
+.risks-card {
+  background: rgba(224,85,85,0.06);
+  border: 1px solid rgba(224,85,85,0.15);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.risks-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.risks-list li {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.risks-list li .risk-icon {
+  flex-shrink: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--red);
+}
+
+/* DD Checklist */
+.dd-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dd-checklist li {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.dd-checklist li .dd-check-icon {
+  flex-shrink: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--accent);
+}
+
+/* OTC card */
+.otc-card {
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.otc-card-available {
+  background: rgba(76,175,130,0.06);
+  border: 1px solid rgba(76,175,130,0.2);
+}
+
+.otc-card-unavailable {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+}
+
+.otc-card-status {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.otc-card-note {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* County cards grid */
+.county-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.county-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.county-card:hover {
+  border-color: var(--accent-border);
+  background: rgba(200,168,75,0.04);
+}
+
+.county-card-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.county-card-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.county-card-notes {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.county-card-icon {
+  flex-shrink: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
 /* Paywall inside modal */
 .modal-paywall {
   padding: 32px 20px;
@@ -2307,7 +2464,7 @@ a { color: inherit; text-decoration: none; }
                   </div>
                 </div>
                 <div style="margin-top:16px;padding:12px;background:var(--bg2);border-radius:8px;font-size:11px;color:var(--text-muted);line-height:1.6;">
-                  Educational estimate only. Results are not guaranteed. Verify statutory rates with official county sources before transacting.
+                  Educational estimate only — not financial, legal, or investment advice. Results are not guaranteed and do not account for all variables. Verify statutory rates with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.
                 </div>
               </div>
             </div>
@@ -2585,7 +2742,7 @@ const I18N = {
     analyzerInterest: 'Interest Earned',
     analyzerTotalCosts: 'Total Costs',
     analyzerEquity: 'Equity if Redeemed at ARV',
-    analyzerDisclaimer: 'Educational estimate only. Results are not guaranteed. Verify statutory rates with official county sources before transacting.',
+    analyzerDisclaimer: 'Educational estimate only — not financial, legal, or investment advice. Results are not guaranteed and do not account for all variables. Verify statutory rates with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.',
     // Valuation Agent
     valTitle: 'Atlas — Valuation Agent',
     valSub: 'Ask about your business value, growth levers, and exit strategy',
@@ -2779,7 +2936,7 @@ const I18N = {
     analyzerInterest: 'Interes Ganado',
     analyzerTotalCosts: 'Costos Totales',
     analyzerEquity: 'Patrimonio si se Redime al ARV',
-    analyzerDisclaimer: 'Estimacion educativa solamente. Resultados no garantizados. Verifique tasas estatutarias con fuentes oficiales del condado antes de operar.',
+    analyzerDisclaimer: 'Estimacion educativa solamente — no es asesoramiento financiero, legal ni de inversiones. Los resultados no estan garantizados y no contemplan todas las variables. Verifique tasas estatutarias con fuentes oficiales del condado antes de operar. Aurigen Collective no es un asesor de inversiones licenciado.',
     // Valuation Agent
     valTitle: 'Atlas — Agente de Valoracion',
     valSub: 'Pregunte sobre el valor de su negocio, palancas de crecimiento y estrategia de salida',
@@ -3775,6 +3932,13 @@ function openState(id) {
         <div class="modal-note">${s.scoreWhy}</div>
       </div>
     ` : ''}
+
+    ${s.beginnerTip ? `
+      <div class="quick-start-card">
+        <div class="quick-start-label">\u{1F680} Your First Step in ${s.name}:</div>
+        <div class="quick-start-text">${s.beginnerTip}</div>
+      </div>
+    ` : ''}
   `;
 
   // FREE STATE (not paid) — show preview + overview + beginner tip + risk teaser, then gate the rest
@@ -3793,13 +3957,6 @@ function openState(id) {
         <div class="modal-section">
           <div class="modal-section-title">${t('modalOverview')}</div>
           <div class="modal-note">${s.note}</div>
-        </div>
-      ` : ''}
-
-      ${s.beginnerTip ? `
-        <div class="modal-section">
-          <div class="modal-section-title">${t('modalBeginnerTip')}</div>
-          <div class="modal-note" style="color:var(--accent)">${s.beginnerTip}</div>
         </div>
       ` : ''}
 
@@ -3847,18 +4004,17 @@ function openState(id) {
     countiesHTML = `
       <div class="modal-section">
         <div class="modal-section-title">${t('modalCounties')}</div>
-        <table class="county-table">
-          <thead><tr><th>${t('modalCounty')}</th><th>${t('modalNotes')}</th><th>${t('modalLink')}</th></tr></thead>
-          <tbody>
-            ${s.counties.map(c => `
-              <tr>
-                <td>${c.name}</td>
-                <td>${c.notes || '\u2014'}</td>
-                <td><a href="${c.link}" target="_blank" class="county-link">${t('modalVisit')} \u2197</a></td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
+        <div class="county-cards-grid">
+          ${s.counties.map(c => `
+            <a href="${c.link}" target="_blank" class="county-card" rel="noopener noreferrer">
+              <div class="county-card-info">
+                <div class="county-card-name">${c.name}</div>
+                ${c.notes ? `<div class="county-card-notes">${c.notes}</div>` : ''}
+              </div>
+              <span class="county-card-icon">\u2197</span>
+            </a>
+          `).join('')}
+        </div>
       </div>
     `;
   }
@@ -3867,9 +4023,11 @@ function openState(id) {
   const otcHTML = s.otc ? `
     <div class="modal-section">
       <div class="modal-section-title">${t('modalOtc')}</div>
-      <div class="modal-note">
-        <strong style="color:${s.otc.available ? 'var(--green)' : 'var(--red)'}">${s.otc.available ? '\u2713 ' + t('modalOtcAvailable') : '\u2717 ' + t('modalOtcNotAvailable')}</strong>
-        ${s.otc.note ? ` \u2014 ${s.otc.note}` : ''}
+      <div class="otc-card ${s.otc.available ? 'otc-card-available' : 'otc-card-unavailable'}">
+        <div class="otc-card-status" style="color:${s.otc.available ? 'var(--green)' : 'var(--text-muted)'}">
+          ${s.otc.available ? '\u2713 ' + t('modalOtcAvailable') : '\u2717 No OTC Program'}
+        </div>
+        ${s.otc.note ? `<div class="otc-card-note">${s.otc.note}</div>` : ''}
       </div>
     </div>
   ` : '';
@@ -3907,27 +4065,22 @@ function openState(id) {
       </div>
     ` : ''}
 
-    ${s.beginnerTip ? `
-      <div class="modal-section">
-        <div class="modal-section-title">${t('modalBeginnerTip')}</div>
-        <div class="modal-note" style="color:var(--accent)">${s.beginnerTip}</div>
-      </div>
-    ` : ''}
-
     ${auctionHTML}
     ${otcHTML}
 
     ${s.risks && s.risks.length ? `
       <div class="modal-section">
         <div class="modal-section-title">${t('modalRisks')}</div>
-        <ul class="modal-list">${s.risks.map(r => `<li>${r}</li>`).join('')}</ul>
+        <div class="risks-card">
+          <ul class="risks-list">${s.risks.map(r => `<li><span class="risk-icon">\u26A0\uFE0F</span><span>${r}</span></li>`).join('')}</ul>
+        </div>
       </div>
     ` : ''}
 
     ${s.ddExtra && s.ddExtra.length ? `
       <div class="modal-section">
         <div class="modal-section-title">${t('modalDdChecklist')}</div>
-        <ul class="modal-list">${s.ddExtra.map(d => `<li>${d}</li>`).join('')}</ul>
+        <ul class="dd-checklist">${s.ddExtra.map(d => `<li><span class="dd-check-icon">\u2610</span><span>${d}</span></li>`).join('')}</ul>
       </div>
     ` : ''}
 
@@ -4318,12 +4471,20 @@ function buildProfileRecs() {
 // ── Deal Analyzer ─────────────────────────────────────────────
 function calcAnalyzer() {
   const type = document.getElementById('az-type')?.value;
-  const price = parseFloat(document.getElementById('az-price')?.value) || 0;
-  const rate = parseFloat(document.getElementById('az-rate')?.value) || 0;
-  const months = parseFloat(document.getElementById('az-months')?.value) || 0;
-  const arv = parseFloat(document.getElementById('az-arv')?.value) || 0;
-  const costs = parseFloat(document.getElementById('az-costs')?.value) || 0;
-  const penalty = parseFloat(document.getElementById('az-penalty')?.value) || 0;
+  const rawPrice = parseFloat(document.getElementById('az-price')?.value);
+  const rawRate = parseFloat(document.getElementById('az-rate')?.value);
+  const rawMonths = parseFloat(document.getElementById('az-months')?.value);
+  const rawArv = parseFloat(document.getElementById('az-arv')?.value);
+  const rawCosts = parseFloat(document.getElementById('az-costs')?.value);
+  const rawPenalty = parseFloat(document.getElementById('az-penalty')?.value);
+
+  // Clamp: reject negatives, cap rate/penalty at 100%, cap hold period at 600 months
+  const price = Math.max(0, rawPrice || 0);
+  const rate = Math.max(0, Math.min(rawRate || 0, 100));
+  const months = Math.max(0, Math.min(rawMonths || 0, 600));
+  const arv = Math.max(0, rawArv || 0);
+  const costs = Math.max(0, rawCosts || 0);
+  const penalty = Math.max(0, Math.min(rawPenalty || 0, 100));
 
   // Show/hide deed-specific fields
   const arvGroup = document.getElementById('az-arv-group');
@@ -4331,11 +4492,14 @@ function calcAnalyzer() {
   if (arvGroup) arvGroup.style.display = type === 'deed' ? '' : 'none';
   if (deedResults) deedResults.style.display = type === 'deed' && arv > 0 ? '' : 'none';
 
+  // Reset all result fields when key inputs are missing
   if (!price || !months) {
     ['az-return','az-roi','az-annualized','az-interest','az-total-costs'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.textContent = '—';
     });
+    const resetSub = document.getElementById('az-return-sub');
+    if (resetSub) resetSub.textContent = '';
     return;
   }
 
@@ -4352,9 +4516,10 @@ function calcAnalyzer() {
   const fmt = n => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
   const fmtPct = n => n.toFixed(1) + '%';
 
+  // Show actual net return including losses — never clamp to $0
   const returnEl = document.getElementById('az-return');
   if (returnEl) {
-    returnEl.textContent = fmt(netReturn > 0 ? netReturn : 0);
+    returnEl.textContent = fmt(netReturn);
     returnEl.style.color = netReturn >= 0 ? 'var(--accent)' : 'var(--red)';
   }
 
