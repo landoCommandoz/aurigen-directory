@@ -25,7 +25,7 @@ Built for seminar audiences and self-directed real estate investors.
 - Booking (Investor Clarity Call): https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4
 
 ## Free States (no gate required)
-FL, IL, IA, NJ, GA, AZ, TX
+FL, IL, AZ
 
 ## Key Architecture Rules — NEVER VIOLATE
 1. Scroll chain: every flex ancestor of a scroll container must have min-height:0

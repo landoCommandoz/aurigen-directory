@@ -55,4 +55,4 @@ export const ARCHITECTURE_RULES = [
   "Never use window.self / window.top / btoa() unsafely in iframe contexts",
 ];
 
-export const FREE_STATES = ["FL", "IL", "IA", "NJ", "GA", "AZ", "TX"];
+export const FREE_STATES = ["FL", "IL", "AZ"];
