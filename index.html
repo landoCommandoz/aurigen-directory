@@ -2333,104 +2333,30 @@ a { color: inherit; text-decoration: none; }
         </div>
       </div>
 
-      <!-- Valuation Sub-view -->
+      <!-- Valuation Agent Sub-view -->
       <div class="tools-panel" id="tools-valuation">
-        <div class="scroll-body">
-          <div class="analyzer-card">
-            <div class="analyzer-card-title" id="val-title">Business Valuation</div>
-            <div style="color:var(--text-dim);font-size:12px;margin-bottom:16px;" id="val-sub">Estimate the value of your freemium directory or SaaS business</div>
-
-            <div class="field-group">
-              <div class="field-label" id="val-label-price">Monthly Price ($)</div>
-              <input class="field-input" id="val-price" type="number" placeholder="49" oninput="calcValuation()">
-            </div>
-            <div class="field-group">
-              <div class="field-label" id="val-label-subs">Paying Subscribers</div>
-              <input class="field-input" id="val-subs" type="number" placeholder="100" oninput="calcValuation()">
-            </div>
-            <div class="field-group">
-              <div class="field-label" id="val-label-growth">Monthly Growth Rate (%)</div>
-              <input class="field-input" id="val-growth" type="number" placeholder="10" oninput="calcValuation()">
-            </div>
-            <div class="field-group">
-              <div class="field-label" id="val-label-churn">Monthly Churn Rate (%)</div>
-              <input class="field-input" id="val-churn" type="number" placeholder="5" oninput="calcValuation()">
-            </div>
-            <div class="field-group">
-              <div class="field-label" id="val-label-cac">Customer Acquisition Cost ($) <span style="color:var(--text-muted)">(optional)</span></div>
-              <input class="field-input" id="val-cac" type="number" placeholder="25" oninput="calcValuation()">
-            </div>
-            <div class="field-group">
-              <div class="field-label" id="val-label-multiple">Revenue Multiple</div>
-              <select class="field-select" id="val-multiple" onchange="calcValuation()">
-                <option value="3">3x (Conservative)</option>
-                <option value="5" selected>5x (Moderate)</option>
-                <option value="7">7x (Growth)</option>
-                <option value="10">10x (High Growth)</option>
-              </select>
-            </div>
+        <div class="view-header" style="padding:16px 20px 8px;">
+          <div class="view-title" id="val-title">Atlas — Valuation Agent</div>
+          <div class="view-sub" id="val-sub">Ask about your business value, growth levers, and exit strategy</div>
+        </div>
+        <div class="advisor-messages" id="val-messages">
+          <div class="msg msg-sage">
+            <strong>Atlas</strong><br>
+            I'm Atlas — your business valuation advisor. Tell me about your business (revenue, subscribers, pricing, growth) and I'll estimate its value and show you exactly how to increase it. Try: "My app makes $4,900/mo from 100 subscribers at $49/mo — what's it worth?"
           </div>
-
-          <div class="analyzer-card" style="margin-top:12px;">
-            <div class="analyzer-card-title" id="val-results-title">Valuation Results</div>
-            <div class="results-grid">
-              <div class="result-display">
-                <div class="result-label">MRR</div>
-                <div class="result-value" id="val-mrr" style="font-size:22px">—</div>
-              </div>
-              <div class="result-display">
-                <div class="result-label">ARR</div>
-                <div class="result-value" id="val-arr" style="font-size:22px">—</div>
-              </div>
-              <div class="result-display">
-                <div class="result-label" id="val-label-clv">Customer LTV</div>
-                <div class="result-value" id="val-clv" style="font-size:22px">—</div>
-              </div>
-              <div class="result-display">
-                <div class="result-label">LTV:CAC</div>
-                <div class="result-value" id="val-ltv-cac" style="font-size:22px">—</div>
-              </div>
-            </div>
+          <div class="advisor-typing" id="val-typing">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
           </div>
-
-          <div class="analyzer-card" style="margin-top:12px;">
-            <div class="analyzer-card-title" id="val-projection-title">Revenue Projections</div>
-            <div class="results-grid">
-              <div class="result-display">
-                <div class="result-label">12-Month ARR</div>
-                <div class="result-value" id="val-arr12" style="font-size:20px">—</div>
-              </div>
-              <div class="result-display">
-                <div class="result-label">24-Month ARR</div>
-                <div class="result-value" id="val-arr24" style="font-size:20px">—</div>
-              </div>
-              <div class="result-display">
-                <div class="result-label">36-Month ARR</div>
-                <div class="result-value" id="val-arr36" style="font-size:20px">—</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="analyzer-card" style="margin-top:12px;">
-            <div class="analyzer-card-title" id="val-summary-title">Estimated Valuation</div>
-            <div class="result-display" style="margin-bottom:12px;">
-              <div class="result-label" id="val-label-current">Current Valuation</div>
-              <div class="result-value" id="val-current" style="font-size:28px;color:var(--accent)">—</div>
-            </div>
-            <div class="results-grid">
-              <div class="result-display">
-                <div class="result-label">12-Month Valuation</div>
-                <div class="result-value" id="val-future12" style="font-size:20px">—</div>
-              </div>
-              <div class="result-display">
-                <div class="result-label">24-Month Valuation</div>
-                <div class="result-value" id="val-future24" style="font-size:20px">—</div>
-              </div>
-            </div>
-            <div style="margin-top:16px;padding:12px;background:var(--bg2);border-radius:8px;font-size:11px;color:var(--text-muted);line-height:1.6;" id="val-disclaimer">
-              Educational estimate only. Actual business valuations depend on many factors including profitability, market conditions, competitive landscape, and buyer appetite. Consult a licensed business broker or CPA for formal valuations.
-            </div>
-          </div>
+        </div>
+        <div class="advisor-input-bar">
+          <textarea
+            class="advisor-input"
+            id="val-input"
+            placeholder="Ask Atlas about your business value..."
+            rows="1"
+            onkeydown="valKeydown(event)"
+          ></textarea>
+          <button class="advisor-send" id="val-send" onclick="sendValMessage()">&#10148;</button>
         </div>
       </div>
     </div>
@@ -2660,22 +2586,12 @@ const I18N = {
     analyzerTotalCosts: 'Total Costs',
     analyzerEquity: 'Equity if Redeemed at ARV',
     analyzerDisclaimer: 'Educational estimate only. Results are not guaranteed. Verify statutory rates with official county sources before transacting.',
-    // Valuation
-    valTitle: 'Business Valuation',
-    valSub: 'Estimate the value of your freemium directory or SaaS business',
-    valPrice: 'Monthly Price ($)',
-    valSubs: 'Paying Subscribers',
-    valGrowth: 'Monthly Growth Rate (%)',
-    valChurn: 'Monthly Churn Rate (%)',
-    valCac: 'Customer Acquisition Cost ($)',
-    valCacNote: '(optional)',
-    valMultiple: 'Revenue Multiple',
-    valResults: 'Valuation Results',
-    valClv: 'Customer LTV',
-    valProjections: 'Revenue Projections',
-    valSummary: 'Estimated Valuation',
-    valCurrent: 'Current Valuation',
-    valDisclaimer: 'Educational estimate only. Actual business valuations depend on many factors including profitability, market conditions, competitive landscape, and buyer appetite. Consult a licensed business broker or CPA for formal valuations.',
+    // Valuation Agent
+    valTitle: 'Atlas — Valuation Agent',
+    valSub: 'Ask about your business value, growth levers, and exit strategy',
+    valWelcome: "I'm Atlas — your business valuation advisor. Tell me about your business (revenue, subscribers, pricing, growth) and I'll estimate its value and show you exactly how to increase it. Try: \"My app makes $4,900/mo from 100 subscribers at $49/mo — what's it worth?\"",
+    valPlaceholder: 'Ask Atlas about your business value...',
+    valError: 'Atlas is temporarily unavailable.',
     // Advisor
     advisorTitle: 'Sage - AI Advisor',
     advisorSub: 'Ask anything about tax liens, deeds, or state law',
@@ -2864,22 +2780,12 @@ const I18N = {
     analyzerTotalCosts: 'Costos Totales',
     analyzerEquity: 'Patrimonio si se Redime al ARV',
     analyzerDisclaimer: 'Estimacion educativa solamente. Resultados no garantizados. Verifique tasas estatutarias con fuentes oficiales del condado antes de operar.',
-    // Valuation
-    valTitle: 'Valoracion del Negocio',
-    valSub: 'Estime el valor de su directorio freemium o negocio SaaS',
-    valPrice: 'Precio Mensual ($)',
-    valSubs: 'Suscriptores de Pago',
-    valGrowth: 'Tasa de Crecimiento Mensual (%)',
-    valChurn: 'Tasa de Cancelacion Mensual (%)',
-    valCac: 'Costo de Adquisicion de Cliente ($)',
-    valCacNote: '(opcional)',
-    valMultiple: 'Multiplo de Ingresos',
-    valResults: 'Resultados de Valoracion',
-    valClv: 'Valor de Vida del Cliente',
-    valProjections: 'Proyecciones de Ingresos',
-    valSummary: 'Valoracion Estimada',
-    valCurrent: 'Valoracion Actual',
-    valDisclaimer: 'Estimacion educativa solamente. Las valoraciones reales dependen de muchos factores incluyendo rentabilidad, condiciones del mercado, panorama competitivo y apetito del comprador. Consulte a un corredor de negocios o CPA para valoraciones formales.',
+    // Valuation Agent
+    valTitle: 'Atlas — Agente de Valoracion',
+    valSub: 'Pregunte sobre el valor de su negocio, palancas de crecimiento y estrategia de salida',
+    valWelcome: 'Soy Atlas — su asesor de valoracion de negocios. Cuenteme sobre su negocio (ingresos, suscriptores, precios, crecimiento) y estimare su valor y le mostrare exactamente como aumentarlo.',
+    valPlaceholder: 'Pregunte a Atlas sobre el valor de su negocio...',
+    valError: 'Atlas no esta disponible temporalmente.',
     // Advisor
     advisorTitle: 'Sage - Asesor IA',
     advisorSub: 'Pregunte sobre gravamenes, escrituras o leyes estatales',
@@ -2994,6 +2900,8 @@ let state = {
   profile: { strategy: [] },
   advisorHistory: [],
   advisorBusy: false,
+  valHistory: [],
+  valBusy: false,
   mapReady: false,
   mobileCodeVisible: false,
   lang: 'en'
@@ -3168,25 +3076,13 @@ function updateViewHeaders() {
     if (sub) sub.textContent = t('analyzerSub');
   }
 
-  // Valuation
-  const valTitle = document.getElementById('val-title');
-  if (valTitle) valTitle.textContent = t('valTitle');
-  const valSub = document.getElementById('val-sub');
-  if (valSub) valSub.textContent = t('valSub');
-  const valLabels = {
-    'val-label-price': 'valPrice', 'val-label-subs': 'valSubs',
-    'val-label-growth': 'valGrowth', 'val-label-churn': 'valChurn',
-    'val-label-cac': 'valCac', 'val-label-multiple': 'valMultiple',
-    'val-label-clv': 'valClv', 'val-label-current': 'valCurrent',
-    'val-results-title': 'valResults', 'val-projection-title': 'valProjections',
-    'val-summary-title': 'valSummary'
-  };
-  Object.entries(valLabels).forEach(([id, key]) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = t(key);
-  });
-  const valDisclaimer = document.getElementById('val-disclaimer');
-  if (valDisclaimer) valDisclaimer.textContent = t('valDisclaimer');
+  // Valuation Agent
+  const valTitleEl = document.getElementById('val-title');
+  if (valTitleEl) valTitleEl.textContent = t('valTitle');
+  const valSubEl = document.getElementById('val-sub');
+  if (valSubEl) valSubEl.textContent = t('valSub');
+  const valInput = document.getElementById('val-input');
+  if (valInput) valInput.placeholder = t('valPlaceholder');
 
   // Advisor
   const advisorHeader = document.querySelector('#view-advisor .view-header');
@@ -4484,57 +4380,73 @@ function calcAnalyzer() {
   }
 }
 
-// ── Business Valuation ────────────────────────────────────────
-function calcValuation() {
-  const price = parseFloat(document.getElementById('val-price')?.value) || 0;
-  const subs = parseFloat(document.getElementById('val-subs')?.value) || 0;
-  const growthPct = parseFloat(document.getElementById('val-growth')?.value) || 0;
-  const churnPct = parseFloat(document.getElementById('val-churn')?.value) || 0;
-  const cac = parseFloat(document.getElementById('val-cac')?.value) || 0;
-  const multiple = parseFloat(document.getElementById('val-multiple')?.value) || 5;
+// ── Valuation Agent (Atlas) ───────────────────────────────────
+async function sendValMessage() {
+  if (state.valBusy) return;
+  const input = document.getElementById('val-input');
+  const msg = input?.value.trim();
+  if (!msg) return;
 
-  const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
-  const dash = '—';
+  input.value = '';
+  state.valBusy = true;
 
-  if (!price || !subs) {
-    ['val-mrr','val-arr','val-clv','val-ltv-cac','val-arr12','val-arr24','val-arr36','val-current','val-future12','val-future24'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = dash;
+  const sendBtn = document.getElementById('val-send');
+  if (sendBtn) sendBtn.disabled = true;
+
+  appendValMsg('user', msg);
+  if (!state.valHistory) state.valHistory = [];
+  state.valHistory.push({ role: 'user', content: msg });
+
+  const typing = document.getElementById('val-typing');
+  if (typing) typing.classList.add('show');
+  scrollVal();
+
+  try {
+    const res = await fetch(NETLIFY_FN, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'valuation', message: msg, history: state.valHistory.slice(-10) })
     });
-    return;
+
+    const data = await res.json();
+    if (typing) typing.classList.remove('show');
+
+    const reply = data.response || data.error || 'Atlas is temporarily unavailable.';
+    appendValMsg('atlas', reply);
+    state.valHistory.push({ role: 'assistant', content: reply });
+
+  } catch(err) {
+    if (typing) typing.classList.remove('show');
+    appendValMsg('atlas', 'Connection error. Please try again.');
   }
 
-  const mrr = price * subs;
-  const arr = mrr * 12;
-  const churnRate = churnPct / 100;
-  const growthRate = growthPct / 100;
-  const clv = churnRate > 0 ? price / churnRate : price * 120;
-  const ltvCac = cac > 0 ? (clv / cac).toFixed(1) + 'x' : dash;
+  state.valBusy = false;
+  if (sendBtn) sendBtn.disabled = false;
+  if (input) input.focus();
+}
 
-  // Project MRR forward using net growth (growth - churn)
-  const netMonthly = growthRate - churnRate;
-  const project = months => {
-    let projected = mrr;
-    for (let i = 0; i < months; i++) projected *= (1 + netMonthly);
-    return projected * 12;
-  };
-  const arr12 = project(12);
-  const arr24 = project(24);
-  const arr36 = project(36);
+function appendValMsg(role, text) {
+  const container = document.getElementById('val-messages');
+  if (!container) return;
+  const typing = document.getElementById('val-typing');
+  const div = document.createElement('div');
+  div.className = `msg msg-${role === 'atlas' ? 'sage' : 'user'}`;
+  div.innerHTML = role === 'atlas' ? `<strong>Atlas</strong><br>${text.replace(/\n/g, '<br>')}` : text;
+  if (typing) container.insertBefore(div, typing);
+  else container.appendChild(div);
+  scrollVal();
+}
 
-  const el = id => document.getElementById(id);
-  const set = (id, val) => { const e = el(id); if (e) e.textContent = val; };
+function scrollVal() {
+  const container = document.getElementById('val-messages');
+  if (container) container.scrollTop = container.scrollHeight;
+}
 
-  set('val-mrr', fmt(mrr));
-  set('val-arr', fmt(arr));
-  set('val-clv', fmt(clv));
-  set('val-ltv-cac', ltvCac);
-  set('val-arr12', fmt(arr12));
-  set('val-arr24', fmt(arr24));
-  set('val-arr36', fmt(arr36));
-  set('val-current', fmt(arr * multiple));
-  set('val-future12', fmt(arr12 * multiple));
-  set('val-future24', fmt(arr24 * multiple));
+function valKeydown(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendValMessage();
+  }
 }
 
 // ── AI Advisor ────────────────────────────────────────────────
@@ -4563,7 +4475,7 @@ async function sendAdvisorMessage() {
     const res = await fetch(NETLIFY_FN, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'advisor', message: msg })
+      body: JSON.stringify({ action: 'advisor', message: msg, history: state.advisorHistory.slice(-10) })
     });
 
     const data = await res.json();
