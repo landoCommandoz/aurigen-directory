@@ -7,8 +7,67 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
-<script src="states-en.js"></script>
-<script src="states-es.js"></script>
+<script>
+// ═══════════════════════════════════════════════════════════
+//  DYNAMIC LANGUAGE FILE LOADER
+//  Architecture Rule 7: Load only EN or ES — never both simultaneously
+// ═══════════════════════════════════════════════════════════
+
+// Storage helpers defined early (needed before main script loads)
+function _storageGet(key, fallback) {
+  try { var v = localStorage.getItem(key); return v !== null ? JSON.parse(v) : fallback; }
+  catch(e) { return fallback; }
+}
+
+// Track which language file is currently loaded
+window._loadedLangFile = null;
+
+// Load a language file dynamically and return a Promise
+function loadLanguageFile(lang) {
+  return new Promise(function(resolve, reject) {
+    var file = lang === 'es' ? 'states-es.js' : 'states-en.js';
+    var globalVar = lang === 'es' ? 'STATES_ES' : 'STATES_EN';
+
+    // If already loaded, resolve immediately
+    if (window._loadedLangFile === file && window[globalVar]) {
+      resolve();
+      return;
+    }
+
+    // Remove previously loaded language script if exists
+    var oldScript = document.getElementById('aurigen-lang-script');
+    if (oldScript) {
+      // Clear the old global variable
+      var oldVar = window._loadedLangFile === 'states-es.js' ? 'STATES_ES' : 'STATES_EN';
+      if (window._loadedLangFile && window[oldVar]) {
+        window[oldVar] = undefined;
+      }
+      oldScript.parentNode.removeChild(oldScript);
+    }
+
+    // Create and load new script
+    var script = document.createElement('script');
+    script.id = 'aurigen-lang-script';
+    script.src = file;
+    script.onload = function() {
+      window._loadedLangFile = file;
+      resolve();
+    };
+    script.onerror = function() {
+      reject(new Error('Failed to load ' + file));
+    };
+    document.head.appendChild(script);
+  });
+}
+
+// Determine initial language and load file
+(function() {
+  var savedLang = _storageGet('aurigen_lang', 'en');
+  var lang = (savedLang === 'es') ? 'es' : 'en';
+  window._initialLang = lang;
+  loadLanguageFile(lang);
+})();
+</script>
 <style>
 /* ═══════════════════════════════════════════════
    CSS VARIABLES
@@ -2235,14 +2294,23 @@ function t(key) {
 }
 
 // ── Language Toggle ──────────────────────────────────────────
-function toggleLanguage() {
+async function toggleLanguage() {
   state.lang = state.lang === 'en' ? 'es' : 'en';
   storageSet('aurigen_lang', state.lang);
+
+  // Dynamically load the new language file (unloads old one)
+  try {
+    await loadLanguageFile(state.lang);
+  } catch(e) {
+    console.error('Failed to load language file:', e);
+  }
+
   applyLanguage();
 }
 
 function applyLanguage() {
-  // Switch active STATES array - never load both simultaneously
+  // Switch active STATES array based on currently loaded file
+  // Rule 7: only one file loaded at a time
   STATES = state.lang === 'es' && window.STATES_ES ? window.STATES_ES : (window.STATES_EN || []);
 
   // Update language toggle button
