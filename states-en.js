@@ -2,7 +2,7 @@
 // Fields: id, name, type, rate, redemption, score, beginnerFriendly, beginnerTip,
 //         scoreWhy, note, risks, ddExtra, auctionSignup, otc, counties, platforms
 
-const STATES_EN = [
+var STATES_EN = [
   {
     id: "AL", name: "Alabama", type: "deed", rate: "Varies", redemption: "3 years",
     score: 18, beginnerFriendly: false,
