@@ -100,6 +100,12 @@ function loadLanguageFile(lang) {
   --map-locked:   #1e1e2c;
   --map-hover:    #f0d060;
   --map-label-bg: rgba(10,10,12,0.88);
+  --map-lien:     #d4b44f;
+  --map-lien-dim: #9a7f30;
+  --map-deed:     #34e0cc;
+  --map-deed-dim: #1fa08e;
+  --map-both:     #b99cff;
+  --map-both-dim: #7a5fc4;
 
   /* Z-index scale */
   --z-map:    10;
@@ -2199,10 +2205,10 @@ a { color: inherit; text-decoration: none; }
             <div class="map-panel-sub">Select a state to view details</div>
           </div>
           <div class="map-legend">
-            <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>Lien</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>Deed</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Both</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--map-locked)"></div>Locked</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--map-lien)"></div>Lien</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--map-deed)"></div>Deed</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--map-both)"></div>Both</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--map-lien-dim)"></div>Locked</div>
           </div>
           <div id="state-list"></div>
         </div>
@@ -3549,9 +3555,12 @@ async function initMap() {
       locked: cs.getPropertyValue('--map-locked').trim() || '#1e1e2c',
       hover:  cs.getPropertyValue('--map-hover').trim()  || '#f0d060',
       labelBg: cs.getPropertyValue('--map-label-bg').trim() || 'rgba(10,10,12,0.88)',
-      accent: cs.getPropertyValue('--accent').trim()  || '#c8a84b',
-      teal:   cs.getPropertyValue('--teal').trim()    || '#2dd4bf',
-      purple: cs.getPropertyValue('--purple').trim()  || '#a78bfa',
+      lien:     cs.getPropertyValue('--map-lien').trim()     || '#d4b44f',
+      lienDim:  cs.getPropertyValue('--map-lien-dim').trim() || '#9a7f30',
+      deed:     cs.getPropertyValue('--map-deed').trim()     || '#34e0cc',
+      deedDim:  cs.getPropertyValue('--map-deed-dim').trim() || '#1fa08e',
+      both:     cs.getPropertyValue('--map-both').trim()     || '#b99cff',
+      bothDim:  cs.getPropertyValue('--map-both-dim').trim() || '#7a5fc4',
       bg:     cs.getPropertyValue('--bg').trim()      || '#0a0a0c'
     };
 
@@ -3559,9 +3568,9 @@ async function initMap() {
       const s = stateMap[sid];
       if (!s) return mapColors.state;
       const isFree = FREE_STATES.has(sid) || state.isPaid;
-      if (s.type === 'lien') return isFree ? '#d4b44f' : '#9a7f30';
-      if (s.type === 'deed') return isFree ? '#34e0cc' : '#1fa08e';
-      return isFree ? '#b99cff' : '#7a5fc4';
+      if (s.type === 'lien') return isFree ? mapColors.lien : mapColors.lienDim;
+      if (s.type === 'deed') return isFree ? mapColors.deed : mapColors.deedDim;
+      return isFree ? mapColors.both : mapColors.bothDim;
     }
 
     function getOpacity(sid) {
