@@ -1,6 +1,6 @@
 ---
 name: aurigen-outreach
-description: Use this agent to write cold outreach messages, partnership pitches, podcast pitch emails, collaboration proposals, and DM sequences for growing the Aurigen audience. Handles LinkedIn, Instagram DMs, email cold outreach, and partnership negotiations. Invoke when trying to get Aurigen in front of a new audience, land a podcast spot, pitch a collaboration, or reach out to a potential partner.
+description: "Scout" — Use this agent to write cold outreach messages, partnership pitches, podcast pitch emails, collaboration proposals, and DM sequences for growing the Aurigen audience. Handles LinkedIn, Instagram DMs, email cold outreach, and partnership negotiations. Invoke when trying to get Aurigen in front of a new audience, land a podcast spot, pitch a collaboration, or reach out to a potential partner.
 tools: Read, WebSearch
 model: claude-sonnet-4-6
 ---

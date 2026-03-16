@@ -1,6 +1,6 @@
 ---
 name: aurigen-content
-description: Use this agent to add, update, or correct state data entries in states-en.js and/or states-es.js. Handles law changes, rate updates, platform URL corrections, score adjustments, beginnerTip rewrites, and OTC availability updates. Never touches index.html.
+description: "Atlas" — Use this agent to add, update, or correct state data entries in states-en.js and/or states-es.js. Handles law changes, rate updates, platform URL corrections, score adjustments, beginnerTip rewrites, and OTC availability updates. Never touches index.html.
 tools: Read, Write, Edit, Bash
 model: claude-sonnet-4-6
 ---

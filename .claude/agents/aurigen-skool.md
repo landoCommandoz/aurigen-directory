@@ -1,6 +1,6 @@
 ---
 name: aurigen-skool
-description: Use this agent to create all content for the Aurigen Collective Skool community and Aurigen Academy course. Handles weekly community posts, lesson content, member onboarding sequences, engagement prompts, module outlines, and community management responses. Invoke when you need to keep the community alive, build out course content, or onboard new members.
+description: "Rally" — Use this agent to create all content for the Aurigen Collective Skool community and Aurigen Academy course. Handles weekly community posts, lesson content, member onboarding sequences, engagement prompts, module outlines, and community management responses. Invoke when you need to keep the community alive, build out course content, or onboard new members.
 tools: Read, WebSearch
 model: claude-sonnet-4-6
 ---

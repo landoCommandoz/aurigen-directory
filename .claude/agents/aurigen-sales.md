@@ -1,6 +1,6 @@
 ---
 name: aurigen-sales
-description: Use this agent to write seminar scripts, closing frameworks, objection handlers, phone scripts, follow-up sequences, and sales floor training material for Lando and his team. This is the room — not TikTok, not email. Every output is designed to be spoken out loud in front of a live audience or on a sales call. Invoke when preparing for a seminar, training a new closer, handling a specific objection, or building a follow-up sequence for unsold attendees.
+description: "Ace" — Use this agent to write seminar scripts, closing frameworks, objection handlers, phone scripts, follow-up sequences, and sales floor training material for Lando and his team. This is the room — not TikTok, not email. Every output is designed to be spoken out loud in front of a live audience or on a sales call. Invoke when preparing for a seminar, training a new closer, handling a specific objection, or building a follow-up sequence for unsold attendees.
 tools: Read, WebSearch
 model: claude-opus-4-5
 ---
