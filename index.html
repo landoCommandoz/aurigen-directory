@@ -36,6 +36,12 @@
   --red:          #e05555;
   --green:        #4caf82;
 
+  /* Map colors */
+  --map-state:    #1a1a25;
+  --map-locked:   #1e1e2c;
+  --map-hover:    #f0d060;
+  --map-label-bg: rgba(10,10,12,0.88);
+
   /* Z-index scale */
   --z-map:    10;
   --z-panel:  20;
@@ -176,7 +182,7 @@ a { color: inherit; text-decoration: none; }
 
 .gate-cta {
   background: var(--accent);
-  color: #0a0a0c;
+  color: var(--bg);
   border: none;
   border-radius: 12px;
   padding: 16px 40px;
@@ -932,7 +938,7 @@ a { color: inherit; text-decoration: none; }
 
 .paywall-btn {
   background: var(--accent);
-  color: #0a0a0c;
+  color: var(--bg);
   border: none;
   border-radius: 12px;
   padding: 16px 40px;
@@ -1054,7 +1060,7 @@ a { color: inherit; text-decoration: none; }
 .calc-btn {
   width: 100%;
   background: var(--accent);
-  color: #0a0a0c;
+  color: var(--bg);
   border: none;
   border-radius: 10px;
   padding: 14px;
@@ -1154,7 +1160,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 50%;
   background: var(--accent);
   border: none;
-  color: #0a0a0c;
+  color: var(--bg);
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -1623,7 +1629,7 @@ a { color: inherit; text-decoration: none; }
             <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>Lien</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>Deed</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Both</div>
-            <div class="legend-item"><div class="legend-dot" style="background:#3a3a4a)"></div>Locked</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#3a3a4a"></div>Locked</div>
           </div>
           <div id="state-list"></div>
         </div>
@@ -1901,7 +1907,7 @@ const I18N = {
     gateCodeSubmit: 'Unlock',
     gateDisclaimer: 'Educational research tool. Not investment advice.',
     gateCodeLink: 'Have an access code? Click here.',
-    gateCodeError: "That code didn't match - reach out to Landon@theaurigen.com",
+    gateCodeError: "That code didn't match — contact support@theaurigen.com",
     gateConnectionError: 'Connection error - please try again.',
     // Nav
     navMap: 'Map',
@@ -2057,7 +2063,7 @@ const I18N = {
     gateCodeSubmit: 'Desbloquear',
     gateDisclaimer: 'Herramienta educativa. No es asesoramiento de inversiones.',
     gateCodeLink: 'Tiene un codigo de acceso? Haga clic aqui.',
-    gateCodeError: 'Ese codigo no coincide - contacte a Landon@theaurigen.com',
+    gateCodeError: 'Ese código no coincide — contacte a support@theaurigen.com',
     gateConnectionError: 'Error de conexion - intente de nuevo.',
     // Nav
     navMap: 'Mapa',
@@ -2635,7 +2641,13 @@ function navigate(tab, animate = true) {
   if (tab === 'saved') buildSaved();
   if (tab === 'profile') buildProfileRecs();
   if (tab === 'map' && state.mapReady) {
-    setTimeout(() => { /* map already rendered */ }, 50);
+    const svg = d3.select('#map-svg');
+    const container = document.getElementById('map-container');
+    if (svg.node() && container) {
+      const w = container.clientWidth || 800;
+      const h = container.clientHeight || 480;
+      svg.attr('viewBox', `0 0 ${w} ${h}`);
+    }
   }
 
   updateDebug();
@@ -2727,14 +2739,26 @@ async function initMap() {
       '54':'WV','55':'WI','56':'WY'
     };
 
+    const cs = getComputedStyle(document.documentElement);
+    const mapColors = {
+      state:  cs.getPropertyValue('--map-state').trim()  || '#1a1a25',
+      locked: cs.getPropertyValue('--map-locked').trim() || '#1e1e2c',
+      hover:  cs.getPropertyValue('--map-hover').trim()  || '#f0d060',
+      labelBg: cs.getPropertyValue('--map-label-bg').trim() || 'rgba(10,10,12,0.88)',
+      accent: cs.getPropertyValue('--accent').trim()  || '#c8a84b',
+      teal:   cs.getPropertyValue('--teal').trim()    || '#2dd4bf',
+      purple: cs.getPropertyValue('--purple').trim()  || '#a78bfa',
+      bg:     cs.getPropertyValue('--bg').trim()      || '#0a0a0c'
+    };
+
     function getColor(sid) {
       const s = stateMap[sid];
-      if (!s) return '#1a1a25';
+      if (!s) return mapColors.state;
       const isFree = FREE_STATES.has(sid) || state.isPaid;
-      if (!isFree) return '#1e1e2c';
-      if (s.type === 'lien') return '#c8a84b';
-      if (s.type === 'deed') return '#2dd4bf';
-      return '#a78bfa';
+      if (!isFree) return mapColors.locked;
+      if (s.type === 'lien') return mapColors.accent;
+      if (s.type === 'deed') return mapColors.teal;
+      return mapColors.purple;
     }
 
     function getOpacity(sid) {
@@ -2763,7 +2787,7 @@ async function initMap() {
       .on('mouseenter', function(event, d) {
         const sid = fipsToId[String(d.id).padStart(2,'0')];
         if (FREE_STATES.has(sid) || state.isPaid)
-          d3.select(this).attr('fill', '#f0d060').style('opacity', 1);
+          d3.select(this).attr('fill', mapColors.hover).style('opacity', 1);
       })
       .on('mouseleave', function(event, d) {
         const sid = fipsToId[String(d.id).padStart(2,'0')];
@@ -2774,7 +2798,7 @@ async function initMap() {
     g.append('path')
       .datum(topojson.mesh(us, us.objects.states, (a,b) => a !== b))
       .attr('d', path).attr('fill','none')
-      .attr('stroke','#0a0a0c').attr('stroke-width', 0.8);
+      .attr('stroke', mapColors.bg).attr('stroke-width', 0.8);
 
     // State labels
     const TINY = new Set(['RI','DC','DE','NH','VT','MD','CT','MA','NJ']);
@@ -2789,7 +2813,7 @@ async function initMap() {
       const isFree = FREE_STATES.has(sid) || state.isPaid;
       const s = stateMap[sid];
       const score = (s && isFree) ? s.score : null;
-      const labelColor = isFree ? 'rgba(10,10,12,0.88)' : 'rgba(255,255,255,0.18)';
+      const labelColor = isFree ? mapColors.labelBg : 'rgba(255,255,255,0.18)';
       const fontSize = w < 500 ? '6px' : w < 800 ? '8px' : '9px';
 
       labelG.append('text')
