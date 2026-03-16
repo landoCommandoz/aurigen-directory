@@ -1889,6 +1889,322 @@ const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-cl
 // Free states (top 7 by score)
 const FREE_STATES = new Set(['FL', 'IL', 'IA', 'NJ', 'GA', 'AZ', 'TX']);
 
+// ── i18n Strings ─────────────────────────────────────────────
+const I18N = {
+  en: {
+    // Gate
+    gateEyebrow: 'Founding Member Access',
+    gateLogo: 'AURI<span>GEN</span>',
+    gateSub: 'County Resource Directory',
+    gateCta: 'Explore the Directory',
+    gateCodePlaceholder: 'Enter access code',
+    gateCodeSubmit: 'Unlock',
+    gateDisclaimer: 'Educational research tool. Not investment advice.',
+    gateCodeLink: 'Have an access code? Click here.',
+    gateCodeError: "That code didn't match - reach out to Landon@theaurigen.com",
+    gateConnectionError: 'Connection error - please try again.',
+    // Nav
+    navMap: 'Map',
+    navAnalyze: 'Analyze',
+    navAdvisor: 'Advisor',
+    navLegal: 'Legal',
+    navGlossary: 'Glossary',
+    navProfile: 'Profile',
+    navSaved: 'Saved',
+    // Map view
+    mapToggleMap: 'Map',
+    mapToggleList: 'List',
+    mapPanelTitle: 'All States',
+    mapPanelSub: 'Select a state to view details',
+    legendLien: 'Lien',
+    legendDeed: 'Deed',
+    legendBoth: 'Both',
+    legendLocked: 'Locked',
+    mapFallback: 'Map unavailable - switch to List view.',
+    mapFallbackBtn: 'Open List View',
+    // Deal Analyzer
+    analyzerTitle: 'Deal Analyzer',
+    analyzerSub: 'Calculate return on any tax lien or deed investment',
+    analyzerInputs: 'Inputs',
+    analyzerResults: 'Results',
+    analyzerType: 'Investment Type',
+    analyzerTypeLien: 'Tax Lien',
+    analyzerTypeDeed: 'Tax Deed',
+    analyzerPrice: 'Purchase Price / Lien Amount ($)',
+    analyzerRate: 'Annual Interest Rate (%)',
+    analyzerMonths: 'Hold Period (months)',
+    analyzerArv: 'Estimated Property ARV ($)',
+    analyzerArvNote: '(deed only)',
+    analyzerCosts: 'Additional Costs ($)',
+    analyzerCostsNote: '(legal, title, etc.)',
+    analyzerPenalty: 'Penalty / Bonus Rate (%)',
+    analyzerTotalReturn: 'Total Return',
+    analyzerRoi: 'ROI',
+    analyzerAnnualized: 'Annualized',
+    analyzerInterest: 'Interest Earned',
+    analyzerTotalCosts: 'Total Costs',
+    analyzerEquity: 'Equity if Redeemed at ARV',
+    analyzerDisclaimer: 'Educational estimate only. Results are not guaranteed. Verify statutory rates with official county sources before transacting.',
+    // Advisor
+    advisorTitle: 'Sage - AI Advisor',
+    advisorSub: 'Ask anything about tax liens, deeds, or state law',
+    advisorWelcome: "Hello. I'm Sage - your research advisor for the Aurigen Directory. Ask me about state laws, auction processes, due diligence, or investment strategy across all 50 states. Everything I share is for educational purposes only.",
+    advisorPlaceholder: 'Ask Sage anything...',
+    advisorError: 'Connection error - please try again.',
+    advisorNoResponse: 'Unable to respond right now.',
+    // Legal
+    legalTitle: 'Legal Library',
+    legalSub: 'State statutes, plain English',
+    legalDisclaimer: 'This library is for educational purposes only and does not constitute legal advice. Always consult a licensed attorney before making legal or investment decisions.',
+    legalStatute: 'Statute',
+    legalRaw: 'Raw Language',
+    legalPlain: 'Plain English',
+    legalMeaning: 'What It Means for Investors',
+    legalSource: 'Official Source',
+    // Glossary
+    glossaryTitle: 'Glossary',
+    glossarySub: 'Key terms, plain English',
+    glossarySearch: 'Search terms...',
+    glossaryNoResults: 'No results found.',
+    // Profile
+    profileTitle: 'Investor Profile',
+    profileSub: 'Your strategy, your recommendations',
+    profileStrategy: 'Investment Strategy',
+    profileRecs: 'Recommended States',
+    profileNoRecs: 'Select strategies above to get personalized recommendations.',
+    profileDisclaimer: 'Recommendations are based on publicly available state data for educational reference only. Not investment advice. Verify all data with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.',
+    // Saved
+    savedTitle: 'Saved States',
+    savedSub: 'Your research watchlist',
+    savedEmpty: 'No saved states yet.',
+    savedEmptyHint: 'Open any state and tap "+ Save" to add it here.',
+    // Spotlight
+    spotlightTitle: 'Spotlight',
+    spotlightSub: 'Top states by investor score',
+    // State Modal
+    modalBeginnerYes: 'Beginner Friendly',
+    modalBeginnerNo: 'Not Recommended for Beginners',
+    modalRate: 'Rate',
+    modalRedemption: 'Redemption',
+    modalType: 'Type',
+    modalScore: 'Score',
+    modalScoreBreakdown: 'Score Breakdown',
+    modalOverview: 'Overview',
+    modalBeginnerTip: 'Beginner Tip',
+    modalRisks: 'Risks',
+    modalDdChecklist: 'Due Diligence Checklist',
+    modalCounties: 'Key Counties',
+    modalCounty: 'County',
+    modalNotes: 'Notes',
+    modalLink: 'Link',
+    modalVisit: 'Visit',
+    modalOtc: 'Over-the-Counter (OTC)',
+    modalOtcAvailable: 'Available',
+    modalOtcNotAvailable: 'Not Available',
+    modalHowToRegister: 'How to Register',
+    modalPlatform: 'Platform',
+    modalDeposit: 'Deposit',
+    modalOfficialSite: 'Official Site',
+    modalSave: '+ Save',
+    modalSaved: 'Saved',
+    modalDisclaimer: 'Data is for educational reference. Verify with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.',
+    // Paywall
+    paywallLocked: 'Locked',
+    paywallTitle: 'Unlock Full Access',
+    paywallSub: 'Get verified data on all 50 states - interest rates, redemption periods, auction signup guides, OTC availability, county links, and investor scores.',
+    paywallPrice: '$97',
+    paywallPriceNote: 'One-time · Founding Member Rate · Lifetime Access',
+    paywallCta: 'Unlock Now',
+    paywallHaveCode: 'Already have an access code?',
+    paywallEnterCode: 'Enter it here',
+    paywallDisclaimer: 'All sales final. Educational use only. See Terms of Service. Aurigen Collective is not a licensed investment advisor.',
+    // Debug
+    debugTitle: 'DEBUG - remove before deploy',
+    debugEntered: 'entered',
+    debugIsPaid: 'isPaid',
+    debugActiveTab: 'activeTab',
+    debugActiveState: 'activeState',
+    debugNone: 'none',
+    debugSavedStates: 'savedStates',
+    debugMapReady: 'mapReady',
+    debugLang: 'lang',
+    // State types
+    typeLien: 'LIEN',
+    typeDeed: 'DEED',
+    typeBoth: 'BOTH',
+    typeLienFull: 'Lien State',
+    typeDeedFull: 'Deed State',
+    typeBothFull: 'Lien + Deed',
+    // Strategies
+    stratLien: 'Tax Liens',
+    stratDeed: 'Tax Deeds',
+    stratOtc: 'OTC / Direct Purchase',
+    stratRemote: 'Remote Investing',
+    stratLocal: 'Local Investing',
+    stratPassive: 'Passive Income',
+    stratBeginner: 'Beginner',
+    stratAdvanced: 'Experienced',
+    // Language toggle
+    langToggle: 'EN'
+  },
+  es: {
+    // Gate
+    gateEyebrow: 'Acceso Miembro Fundador',
+    gateLogo: 'AURI<span>GEN</span>',
+    gateSub: 'Directorio de Recursos por Condado',
+    gateCta: 'Explorar el Directorio',
+    gateCodePlaceholder: 'Ingrese codigo de acceso',
+    gateCodeSubmit: 'Desbloquear',
+    gateDisclaimer: 'Herramienta educativa. No es asesoramiento de inversiones.',
+    gateCodeLink: 'Tiene un codigo de acceso? Haga clic aqui.',
+    gateCodeError: 'Ese codigo no coincide - contacte a Landon@theaurigen.com',
+    gateConnectionError: 'Error de conexion - intente de nuevo.',
+    // Nav
+    navMap: 'Mapa',
+    navAnalyze: 'Analizar',
+    navAdvisor: 'Asesor',
+    navLegal: 'Legal',
+    navGlossary: 'Glosario',
+    navProfile: 'Perfil',
+    navSaved: 'Guardados',
+    // Map view
+    mapToggleMap: 'Mapa',
+    mapToggleList: 'Lista',
+    mapPanelTitle: 'Todos los Estados',
+    mapPanelSub: 'Seleccione un estado para ver detalles',
+    legendLien: 'Gravamen',
+    legendDeed: 'Escritura',
+    legendBoth: 'Ambos',
+    legendLocked: 'Bloqueado',
+    mapFallback: 'Mapa no disponible - cambie a vista de Lista.',
+    mapFallbackBtn: 'Abrir Vista de Lista',
+    // Deal Analyzer
+    analyzerTitle: 'Analizador de Operaciones',
+    analyzerSub: 'Calcule el retorno de cualquier inversion en gravamenes o escrituras fiscales',
+    analyzerInputs: 'Entradas',
+    analyzerResults: 'Resultados',
+    analyzerType: 'Tipo de Inversion',
+    analyzerTypeLien: 'Gravamen Fiscal',
+    analyzerTypeDeed: 'Escritura Fiscal',
+    analyzerPrice: 'Precio de Compra / Monto del Gravamen ($)',
+    analyzerRate: 'Tasa de Interes Anual (%)',
+    analyzerMonths: 'Periodo de Retencion (meses)',
+    analyzerArv: 'ARV Estimado de la Propiedad ($)',
+    analyzerArvNote: '(solo escritura)',
+    analyzerCosts: 'Costos Adicionales ($)',
+    analyzerCostsNote: '(legal, titulo, etc.)',
+    analyzerPenalty: 'Tasa de Penalizacion / Bono (%)',
+    analyzerTotalReturn: 'Retorno Total',
+    analyzerRoi: 'ROI',
+    analyzerAnnualized: 'Anualizado',
+    analyzerInterest: 'Interes Ganado',
+    analyzerTotalCosts: 'Costos Totales',
+    analyzerEquity: 'Patrimonio si se Redime al ARV',
+    analyzerDisclaimer: 'Estimacion educativa solamente. Resultados no garantizados. Verifique tasas estatutarias con fuentes oficiales del condado antes de operar.',
+    // Advisor
+    advisorTitle: 'Sage - Asesor IA',
+    advisorSub: 'Pregunte sobre gravamenes, escrituras o leyes estatales',
+    advisorWelcome: 'Hola. Soy Sage - su asesor de investigacion para el Directorio Aurigen. Pregunteme sobre leyes estatales, procesos de subasta, diligencia debida o estrategia de inversion en los 50 estados. Todo lo que comparto es solo para fines educativos.',
+    advisorPlaceholder: 'Pregunte a Sage cualquier cosa...',
+    advisorError: 'Error de conexion - intente de nuevo.',
+    advisorNoResponse: 'No puedo responder ahora.',
+    // Legal
+    legalTitle: 'Biblioteca Legal',
+    legalSub: 'Estatutos estatales, lenguaje sencillo',
+    legalDisclaimer: 'Esta biblioteca es solo para fines educativos y no constituye asesoramiento legal. Siempre consulte a un abogado licenciado antes de tomar decisiones legales o de inversion.',
+    legalStatute: 'Estatuto',
+    legalRaw: 'Lenguaje Original',
+    legalPlain: 'Lenguaje Sencillo',
+    legalMeaning: 'Lo que Significa para Inversores',
+    legalSource: 'Fuente Oficial',
+    // Glossary
+    glossaryTitle: 'Glosario',
+    glossarySub: 'Terminos clave, lenguaje sencillo',
+    glossarySearch: 'Buscar terminos...',
+    glossaryNoResults: 'No se encontraron resultados.',
+    // Profile
+    profileTitle: 'Perfil del Inversor',
+    profileSub: 'Su estrategia, sus recomendaciones',
+    profileStrategy: 'Estrategia de Inversion',
+    profileRecs: 'Estados Recomendados',
+    profileNoRecs: 'Seleccione estrategias arriba para obtener recomendaciones personalizadas.',
+    profileDisclaimer: 'Las recomendaciones se basan en datos publicos estatales solo para referencia educativa. No es asesoramiento de inversiones. Verifique todos los datos con fuentes oficiales del condado antes de operar. Aurigen Collective no es un asesor de inversiones licenciado.',
+    // Saved
+    savedTitle: 'Estados Guardados',
+    savedSub: 'Su lista de investigacion',
+    savedEmpty: 'Aun no hay estados guardados.',
+    savedEmptyHint: 'Abra cualquier estado y toque "+ Guardar" para agregarlo aqui.',
+    // Spotlight
+    spotlightTitle: 'Destacados',
+    spotlightSub: 'Mejores estados por puntaje de inversor',
+    // State Modal
+    modalBeginnerYes: 'Apto para Principiantes',
+    modalBeginnerNo: 'No Recomendado para Principiantes',
+    modalRate: 'Tasa',
+    modalRedemption: 'Redencion',
+    modalType: 'Tipo',
+    modalScore: 'Puntaje',
+    modalScoreBreakdown: 'Desglose del Puntaje',
+    modalOverview: 'Resumen',
+    modalBeginnerTip: 'Consejo para Principiantes',
+    modalRisks: 'Riesgos',
+    modalDdChecklist: 'Lista de Diligencia Debida',
+    modalCounties: 'Condados Principales',
+    modalCounty: 'Condado',
+    modalNotes: 'Notas',
+    modalLink: 'Enlace',
+    modalVisit: 'Visitar',
+    modalOtc: 'Venta Directa (OTC)',
+    modalOtcAvailable: 'Disponible',
+    modalOtcNotAvailable: 'No Disponible',
+    modalHowToRegister: 'Como Registrarse',
+    modalPlatform: 'Plataforma',
+    modalDeposit: 'Deposito',
+    modalOfficialSite: 'Sitio Oficial',
+    modalSave: '+ Guardar',
+    modalSaved: 'Guardado',
+    modalDisclaimer: 'Los datos son solo referencia educativa. Verifique con fuentes oficiales del condado antes de operar. Aurigen Collective no es un asesor de inversiones licenciado.',
+    // Paywall
+    paywallLocked: 'Bloqueado',
+    paywallTitle: 'Desbloquear Acceso Completo',
+    paywallSub: 'Obtenga datos verificados de los 50 estados - tasas de interes, periodos de redencion, guias de registro de subastas, disponibilidad OTC, enlaces de condados y puntajes de inversor.',
+    paywallPrice: '$97',
+    paywallPriceNote: 'Pago unico · Tarifa de Miembro Fundador · Acceso de por Vida',
+    paywallCta: 'Desbloquear Ahora',
+    paywallHaveCode: 'Ya tiene un codigo de acceso?',
+    paywallEnterCode: 'Ingreselo aqui',
+    paywallDisclaimer: 'Ventas finales. Solo uso educativo. Ver Terminos de Servicio. Aurigen Collective no es un asesor de inversiones licenciado.',
+    // Debug
+    debugTitle: 'DEBUG - eliminar antes de desplegar',
+    debugEntered: 'ingresado',
+    debugIsPaid: 'esPago',
+    debugActiveTab: 'tabActiva',
+    debugActiveState: 'estadoActivo',
+    debugNone: 'ninguno',
+    debugSavedStates: 'estadosGuardados',
+    debugMapReady: 'mapaListo',
+    debugLang: 'idioma',
+    // State types
+    typeLien: 'GRAV',
+    typeDeed: 'ESCR',
+    typeBoth: 'AMBOS',
+    typeLienFull: 'Estado de Gravamen',
+    typeDeedFull: 'Estado de Escritura',
+    typeBothFull: 'Gravamen + Escritura',
+    // Strategies
+    stratLien: 'Gravamenes Fiscales',
+    stratDeed: 'Escrituras Fiscales',
+    stratOtc: 'OTC / Compra Directa',
+    stratRemote: 'Inversion Remota',
+    stratLocal: 'Inversion Local',
+    stratPassive: 'Ingreso Pasivo',
+    stratBeginner: 'Principiante',
+    stratAdvanced: 'Experimentado',
+    // Language toggle
+    langToggle: 'ES'
+  }
+};
+
 // ── App State ────────────────────────────────────────────────
 let state = {
   entered: false,
@@ -1900,8 +2216,244 @@ let state = {
   advisorHistory: [],
   advisorBusy: false,
   mapReady: false,
-  mobileCodeVisible: false
+  mobileCodeVisible: false,
+  lang: 'en'
 };
+
+// ── Active STATES array (switches between EN/ES) ─────────────
+let STATES = [];
+
+// ── i18n Helper ──────────────────────────────────────────────
+function t(key) {
+  return (I18N[state.lang] && I18N[state.lang][key]) || I18N.en[key] || key;
+}
+
+// ── Language Toggle ──────────────────────────────────────────
+function toggleLanguage() {
+  state.lang = state.lang === 'en' ? 'es' : 'en';
+  storageSet('aurigen_lang', state.lang);
+  applyLanguage();
+}
+
+function applyLanguage() {
+  // Switch active STATES array - never load both simultaneously
+  STATES = state.lang === 'es' && window.STATES_ES ? window.STATES_ES : (window.STATES_EN || []);
+
+  // Update language toggle button
+  const flagIcon = document.getElementById('lang-flag-icon');
+  const labelText = document.getElementById('lang-label-text');
+  if (flagIcon) flagIcon.textContent = state.lang === 'en' ? '\u{1F1FA}\u{1F1F8}' : '\u{1F1F2}\u{1F1FD}';
+  if (labelText) labelText.textContent = t('langToggle');
+
+  // Update gate screen
+  updateGateStrings();
+
+  // Update nav labels
+  updateNavStrings();
+
+  // Update debug panel
+  updateDebug();
+
+  // If already entered app, re-render all views
+  if (state.entered) {
+    buildStateList();
+    buildGlossary();
+    buildLegalCards();
+    buildProfileTags();
+    buildSaved();
+    buildSpotlight();
+    buildProfileRecs();
+
+    // Update view headers
+    updateViewHeaders();
+
+    // Update analyzer labels
+    updateAnalyzerStrings();
+
+    // Update advisor strings
+    updateAdvisorStrings();
+
+    // Re-render map legend
+    updateMapLegend();
+
+    // If modal is open, refresh it
+    if (state.activeState) {
+      const isFree = FREE_STATES.has(state.activeState) || state.isPaid;
+      if (isFree) openState(state.activeState);
+      else openPaywall(state.activeState);
+    }
+  }
+}
+
+function updateGateStrings() {
+  const eyebrow = document.querySelector('.gate-eyebrow');
+  const logo = document.querySelector('.gate-logo');
+  const sub = document.querySelector('.gate-sub');
+  const cta = document.getElementById('gate-enter-btn');
+  const codeInput = document.getElementById('gate-code-input');
+  const codeSubmit = document.querySelector('.gate-code-submit');
+  const disclaimer = document.querySelector('.gate-disclaimer');
+
+  if (eyebrow) eyebrow.textContent = t('gateEyebrow');
+  if (logo) logo.innerHTML = t('gateLogo');
+  if (sub) sub.textContent = t('gateSub');
+  if (cta) cta.textContent = t('gateCta');
+  if (codeInput) codeInput.placeholder = t('gateCodePlaceholder');
+  if (codeSubmit) codeSubmit.textContent = t('gateCodeSubmit');
+  if (disclaimer) {
+    disclaimer.innerHTML = `${t('gateDisclaimer')}<br><span style="font-size:10px;cursor:pointer;color:var(--accent);text-decoration:underline;" onclick="showCodeInput()">${t('gateCodeLink')}</span>`;
+  }
+}
+
+function updateNavStrings() {
+  const navItems = document.querySelectorAll('.nav-item');
+  const navKeys = ['navMap', 'navAnalyze', 'navAdvisor', 'navLegal', 'navGlossary', 'navProfile', 'navSaved'];
+  navItems.forEach((item, i) => {
+    const label = item.querySelector('.nav-label');
+    if (label && navKeys[i]) label.textContent = t(navKeys[i]);
+  });
+}
+
+function updateViewHeaders() {
+  // Map view
+  const mapPanelTitle = document.querySelector('.map-panel-title');
+  const mapPanelSub = document.querySelector('.map-panel-sub');
+  const toggleMapBtn = document.getElementById('toggle-map-btn');
+  const toggleListBtn = document.getElementById('toggle-list-btn');
+  if (mapPanelTitle) mapPanelTitle.textContent = t('mapPanelTitle');
+  if (mapPanelSub) mapPanelSub.textContent = t('mapPanelSub');
+  if (toggleMapBtn) toggleMapBtn.innerHTML = '\u{1F5FA} ' + t('mapToggleMap');
+  if (toggleListBtn) toggleListBtn.innerHTML = '\u2630 ' + t('mapToggleList');
+
+  // Analyzer
+  const analyzerHeader = document.querySelector('#view-analyzer .view-header');
+  if (analyzerHeader) {
+    const title = analyzerHeader.querySelector('.view-title');
+    const sub = analyzerHeader.querySelector('.view-sub');
+    if (title) title.textContent = t('analyzerTitle');
+    if (sub) sub.textContent = t('analyzerSub');
+  }
+
+  // Advisor
+  const advisorHeader = document.querySelector('#view-advisor .view-header');
+  if (advisorHeader) {
+    const title = advisorHeader.querySelector('.view-title');
+    const sub = advisorHeader.querySelector('.view-sub');
+    if (title) title.textContent = t('advisorTitle');
+    if (sub) sub.textContent = t('advisorSub');
+  }
+
+  // Legal
+  const legalHeader = document.querySelector('#view-legal .view-header');
+  if (legalHeader) {
+    const title = legalHeader.querySelector('.view-title');
+    const sub = legalHeader.querySelector('.view-sub');
+    if (title) title.textContent = t('legalTitle');
+    if (sub) sub.textContent = t('legalSub');
+  }
+  const legalDisclaimer = document.querySelector('.legal-disclaimer-banner');
+  if (legalDisclaimer) legalDisclaimer.textContent = t('legalDisclaimer');
+
+  // Glossary
+  const glossaryHeader = document.querySelector('#view-glossary .view-header');
+  if (glossaryHeader) {
+    const title = glossaryHeader.querySelector('.view-title');
+    const sub = glossaryHeader.querySelector('.view-sub');
+    if (title) title.textContent = t('glossaryTitle');
+    if (sub) sub.textContent = t('glossarySub');
+  }
+  const glossarySearch = document.getElementById('glossary-search');
+  if (glossarySearch) glossarySearch.placeholder = t('glossarySearch');
+
+  // Profile
+  const profileHeader = document.querySelector('#view-profile .view-header');
+  if (profileHeader) {
+    const title = profileHeader.querySelector('.view-title');
+    const sub = profileHeader.querySelector('.view-sub');
+    if (title) title.textContent = t('profileTitle');
+    if (sub) sub.textContent = t('profileSub');
+  }
+  const profileStratTitle = document.querySelector('#view-profile .profile-section:first-child .profile-section-title');
+  const profileRecsTitle = document.querySelector('#view-profile .profile-section:nth-child(2) .profile-section-title');
+  if (profileStratTitle) profileStratTitle.textContent = t('profileStrategy');
+  if (profileRecsTitle) profileRecsTitle.textContent = t('profileRecs');
+
+  // Saved
+  const savedHeader = document.querySelector('#view-saved .view-header');
+  if (savedHeader) {
+    const title = savedHeader.querySelector('.view-title');
+    const sub = savedHeader.querySelector('.view-sub');
+    if (title) title.textContent = t('savedTitle');
+    if (sub) sub.textContent = t('savedSub');
+  }
+
+  // Spotlight
+  const spotlightHeader = document.querySelector('#view-spotlight .view-header');
+  if (spotlightHeader) {
+    const title = spotlightHeader.querySelector('.view-title');
+    const sub = spotlightHeader.querySelector('.view-sub');
+    if (title) title.textContent = t('spotlightTitle');
+    if (sub) sub.textContent = t('spotlightSub');
+  }
+}
+
+function updateAnalyzerStrings() {
+  // Update analyzer card titles and field labels
+  const inputsTitle = document.querySelector('#view-analyzer .analyzer-card:first-child .analyzer-card-title');
+  const resultsTitle = document.querySelector('#view-analyzer .analyzer-card:last-child .analyzer-card-title');
+  if (inputsTitle) inputsTitle.textContent = t('analyzerInputs');
+  if (resultsTitle) resultsTitle.textContent = t('analyzerResults');
+
+  // Field labels
+  const fieldLabels = document.querySelectorAll('#view-analyzer .field-label');
+  const labelKeys = ['analyzerType', 'analyzerPrice', 'analyzerRate', 'analyzerMonths', 'analyzerArv', 'analyzerCosts', 'analyzerPenalty'];
+  fieldLabels.forEach((label, i) => {
+    if (labelKeys[i]) {
+      if (i === 4) { // ARV field
+        label.innerHTML = t('analyzerArv') + ' <span style="color:var(--text-muted)">' + t('analyzerArvNote') + '</span>';
+      } else if (i === 5) { // Costs field
+        label.innerHTML = t('analyzerCosts') + ' <span style="color:var(--text-muted)">' + t('analyzerCostsNote') + '</span>';
+      } else {
+        label.textContent = t(labelKeys[i]);
+      }
+    }
+  });
+
+  // Select options
+  const typeSelect = document.getElementById('az-type');
+  if (typeSelect && typeSelect.options.length >= 2) {
+    typeSelect.options[0].textContent = t('analyzerTypeLien');
+    typeSelect.options[1].textContent = t('analyzerTypeDeed');
+  }
+
+  // Result labels
+  const resultLabels = document.querySelectorAll('#view-analyzer .result-label');
+  const resultKeys = ['analyzerTotalReturn', 'analyzerRoi', 'analyzerAnnualized', 'analyzerInterest', 'analyzerTotalCosts', 'analyzerEquity'];
+  resultLabels.forEach((label, i) => {
+    if (resultKeys[i]) label.textContent = t(resultKeys[i]);
+  });
+}
+
+function updateAdvisorStrings() {
+  const input = document.getElementById('advisor-input');
+  if (input) input.placeholder = t('advisorPlaceholder');
+}
+
+function updateMapLegend() {
+  const legendItems = document.querySelectorAll('.map-legend .legend-item');
+  const legendKeys = ['legendLien', 'legendDeed', 'legendBoth', 'legendLocked'];
+  legendItems.forEach((item, i) => {
+    // Get the text node (after the dot span)
+    if (legendKeys[i]) {
+      const dot = item.querySelector('.legend-dot');
+      if (dot) {
+        item.innerHTML = '';
+        item.appendChild(dot);
+        item.appendChild(document.createTextNode(t(legendKeys[i])));
+      }
+    }
+  });
+}
 
 // ── Storage helpers ──────────────────────────────────────────
 function storageGet(key, fallback = null) {
@@ -1921,6 +2473,13 @@ window.addEventListener('load', () => {
     state.isPaid = storageGet('aug_paid', false);
     state.savedStates = storageGet('aug_saved', []);
     state.profile = storageGet('aug_profile', { strategy: [] });
+
+    // Load language preference from localStorage
+    const savedLang = storageGet('aurigen_lang', 'en');
+    state.lang = (savedLang === 'es') ? 'es' : 'en';
+
+    // Apply language immediately (before rendering)
+    applyLanguage();
 
     // Debug toggle: backtick
     document.addEventListener('keydown', e => {
@@ -2085,14 +2644,14 @@ function navigate(tab, animate = true) {
 // ── State List ───────────────────────────────────────────────
 function buildStateList() {
   const container = document.getElementById('state-list');
-  if (!container || !window.STATES_EN) return;
+  if (!container || !STATES || STATES.length === 0) return;
 
-  const sorted = [...STATES_EN].sort((a, b) => a.name.localeCompare(b.name));
+  const sorted = [...STATES].sort((a, b) => a.name.localeCompare(b.name));
 
   container.innerHTML = sorted.map(s => {
     const isFree = FREE_STATES.has(s.id) || state.isPaid;
     const badgeClass = s.type === 'lien' ? 'badge-lien' : s.type === 'deed' ? 'badge-deed' : 'badge-both';
-    const typeLabel = s.type === 'lien' ? 'LIEN' : s.type === 'deed' ? 'DEED' : 'BOTH';
+    const typeLabel = s.type === 'lien' ? t('typeLien') : s.type === 'deed' ? t('typeDeed') : t('typeBoth');
 
     return `<div
       class="state-list-item${isFree ? '' : ' locked'}"
@@ -2104,7 +2663,7 @@ function buildStateList() {
         <div class="state-list-name">${s.name}</div>
         <div class="state-list-meta">${s.rate} · ${s.redemption}</div>
       </div>
-      ${!isFree ? '<span class="lock-overlay-item">🔒</span>' : `<div class="state-list-meta" style="color:var(--accent)">${s.score}/100</div>`}
+      ${!isFree ? '<span class="lock-overlay-item">\u{1F512}</span>' : `<div class="state-list-meta" style="color:var(--accent)">${s.score}/100</div>`}
     </div>`;
   }).join('');
 }
@@ -2156,7 +2715,7 @@ async function initMap() {
     const us = await d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json');
 
     const stateMap = {};
-    if (window.STATES_EN) STATES_EN.forEach(s => { stateMap[s.id] = s; });
+    if (STATES && STATES.length > 0) STATES.forEach(s => { stateMap[s.id] = s; });
 
     const fipsToId = {
       '01':'AL','02':'AK','04':'AZ','05':'AR','06':'CA','08':'CO','09':'CT','10':'DE',
@@ -2254,13 +2813,13 @@ async function initMap() {
   } catch(err) {
     console.error('Map init error:', err);
     document.getElementById('map-container').innerHTML =
-      '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:14px;flex-direction:column;gap:12px;"><div style="font-size:32px;">🗺</div><div>Map unavailable — switch to List view.</div><button onclick="setMapView(\'list\')" style="background:var(--accent);color:#0a0a0c;border:none;border-radius:8px;padding:10px 24px;font-weight:700;cursor:pointer;font-size:12px;margin-top:4px;">Open List View</button></div>';
+      `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:14px;flex-direction:column;gap:12px;"><div style="font-size:32px;">\u{1F5FA}</div><div>${t('mapFallback')}</div><button onclick="setMapView('list')" style="background:var(--accent);color:#0a0a0c;border:none;border-radius:8px;padding:10px 24px;font-weight:700;cursor:pointer;font-size:12px;margin-top:4px;">${t('mapFallbackBtn')}</button></div>`;
   }
 }
 
 // ── State Detail ─────────────────────────────────────────────
 function openState(id) {
-  const s = (window.STATES_EN || []).find(x => x.id === id);
+  const s = (STATES || []).find(x => x.id === id);
   if (!s) return;
 
   state.activeState = id;
@@ -2272,25 +2831,26 @@ function openState(id) {
 
   // Type class
   const typeClass = s.type === 'lien' ? 'type-lien' : s.type === 'deed' ? 'type-deed' : 'type-both';
-  const typeLabel = s.type === 'lien' ? '🏦 Lien State' : s.type === 'deed' ? '🏠 Deed State' : '🔀 Lien + Deed';
+  const typeIcon = s.type === 'lien' ? '\u{1F3E6}' : s.type === 'deed' ? '\u{1F3E0}' : '\u{1F500}';
+  const typeLabel = s.type === 'lien' ? t('typeLienFull') : s.type === 'deed' ? t('typeDeedFull') : t('typeBothFull');
 
   // Header
   document.getElementById('modal-header').innerHTML = `
     <div class="modal-state-name">${s.name}</div>
     <div style="display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap;">
-      <span class="modal-state-type ${typeClass}">${typeLabel}</span>
+      <span class="modal-state-type ${typeClass}">${typeIcon} ${typeLabel}</span>
       <button
         style="background:none;border:1px solid var(--border);color:var(--text-dim);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;"
         onclick="toggleSave('${id}')"
         id="save-btn-${id}"
-      >${isSaved ? '🔖 Saved' : '+ Save'}</button>
+      >${isSaved ? '\u{1F516} ' + t('modalSaved') : t('modalSave')}</button>
     </div>
   `;
 
   // Beginner badge
   const bBadge = s.beginnerFriendly
-    ? '<span class="beginner-badge beginner-yes">✓ Beginner Friendly</span>'
-    : `<span class="beginner-badge beginner-no">⚠ Not Recommended for Beginners</span>`;
+    ? `<span class="beginner-badge beginner-yes">\u2713 ${t('modalBeginnerYes')}</span>`
+    : `<span class="beginner-badge beginner-no">\u26A0 ${t('modalBeginnerNo')}</span>`;
 
   // Score bar
   const scoreColor = s.score >= 70 ? 'var(--green)' : s.score >= 45 ? 'var(--accent)' : 'var(--red)';
@@ -2300,15 +2860,15 @@ function openState(id) {
   if (s.counties && s.counties.length > 0) {
     countiesHTML = `
       <div class="modal-section">
-        <div class="modal-section-title">Key Counties</div>
+        <div class="modal-section-title">${t('modalCounties')}</div>
         <table class="county-table">
-          <thead><tr><th>County</th><th>Notes</th><th>Link</th></tr></thead>
+          <thead><tr><th>${t('modalCounty')}</th><th>${t('modalNotes')}</th><th>${t('modalLink')}</th></tr></thead>
           <tbody>
             ${s.counties.map(c => `
               <tr>
                 <td>${c.name}</td>
-                <td>${c.notes || '—'}</td>
-                <td><a href="${c.link}" target="_blank" class="county-link">Visit ↗</a></td>
+                <td>${c.notes || '\u2014'}</td>
+                <td><a href="${c.link}" target="_blank" class="county-link">${t('modalVisit')} \u2197</a></td>
               </tr>
             `).join('')}
           </tbody>
@@ -2320,10 +2880,10 @@ function openState(id) {
   // OTC
   const otcHTML = s.otc ? `
     <div class="modal-section">
-      <div class="modal-section-title">Over-the-Counter (OTC)</div>
+      <div class="modal-section-title">${t('modalOtc')}</div>
       <div class="modal-note">
-        <strong style="color:${s.otc.available ? 'var(--green)' : 'var(--red)'}">${s.otc.available ? '✓ Available' : '✗ Not Available'}</strong>
-        ${s.otc.note ? ` — ${s.otc.note}` : ''}
+        <strong style="color:${s.otc.available ? 'var(--green)' : 'var(--red)'}">${s.otc.available ? '\u2713 ' + t('modalOtcAvailable') : '\u2717 ' + t('modalOtcNotAvailable')}</strong>
+        ${s.otc.note ? ` \u2014 ${s.otc.note}` : ''}
       </div>
     </div>
   ` : '';
@@ -2334,8 +2894,8 @@ function openState(id) {
     const as = s.auctionSignup;
     auctionHTML = `
       <div class="modal-section">
-        <div class="modal-section-title">How to Register</div>
-        <div class="modal-note" style="margin-bottom:10px;"><strong>Platform:</strong> ${as.platform}</div>
+        <div class="modal-section-title">${t('modalHowToRegister')}</div>
+        <div class="modal-note" style="margin-bottom:10px;"><strong>${t('modalPlatform')}:</strong> ${as.platform}</div>
         <div class="signup-steps">
           ${(as.steps || []).map((step, i) => `
             <div class="signup-step">
@@ -2344,8 +2904,8 @@ function openState(id) {
             </div>
           `).join('')}
         </div>
-        ${as.depositInfo ? `<div class="modal-note" style="margin-top:10px;"><strong>Deposit:</strong> ${as.depositInfo}</div>` : ''}
-        ${as.directLink ? `<a href="${as.directLink}" target="_blank" class="direct-link-btn">Official Site ↗</a>` : ''}
+        ${as.depositInfo ? `<div class="modal-note" style="margin-top:10px;"><strong>${t('modalDeposit')}:</strong> ${as.depositInfo}</div>` : ''}
+        ${as.directLink ? `<a href="${as.directLink}" target="_blank" class="direct-link-btn">${t('modalOfficialSite')} \u2197</a>` : ''}
       </div>
     `;
   }
@@ -2356,34 +2916,34 @@ function openState(id) {
     ${!s.beginnerFriendly && s.notBeginnerReason ? `<div class="modal-note" style="margin-bottom:14px;color:var(--red);font-size:12px;">${s.notBeginnerReason}</div>` : ''}
 
     <div class="stat-grid">
-      <div class="stat-card"><div class="stat-label">Rate</div><div class="stat-value">${s.rate}</div></div>
-      <div class="stat-card"><div class="stat-label">Redemption</div><div class="stat-value">${s.redemption}</div></div>
-      <div class="stat-card"><div class="stat-label">Type</div><div class="stat-value" style="text-transform:capitalize">${s.type}</div></div>
-      <div class="stat-card"><div class="stat-label">Score</div><div class="stat-value" style="color:${scoreColor}">${s.score}/100</div></div>
+      <div class="stat-card"><div class="stat-label">${t('modalRate')}</div><div class="stat-value">${s.rate}</div></div>
+      <div class="stat-card"><div class="stat-label">${t('modalRedemption')}</div><div class="stat-value">${s.redemption}</div></div>
+      <div class="stat-card"><div class="stat-label">${t('modalType')}</div><div class="stat-value" style="text-transform:capitalize">${s.type}</div></div>
+      <div class="stat-card"><div class="stat-label">${t('modalScore')}</div><div class="stat-value" style="color:${scoreColor}">${s.score}/100</div></div>
     </div>
 
     <div class="score-bar-wrap">
-      <div class="score-bar-label"><span>Investor Score</span><span style="color:${scoreColor}">${s.score}/100</span></div>
+      <div class="score-bar-label"><span>${t('modalScore')}</span><span style="color:${scoreColor}">${s.score}/100</span></div>
       <div class="score-bar-track"><div class="score-bar-fill" style="width:${s.score}%;background:${scoreColor}"></div></div>
     </div>
 
     ${s.scoreWhy ? `
       <div class="modal-section">
-        <div class="modal-section-title">Score Breakdown</div>
+        <div class="modal-section-title">${t('modalScoreBreakdown')}</div>
         <div class="modal-note">${s.scoreWhy}</div>
       </div>
     ` : ''}
 
     ${s.note ? `
       <div class="modal-section">
-        <div class="modal-section-title">Overview</div>
+        <div class="modal-section-title">${t('modalOverview')}</div>
         <div class="modal-note">${s.note}</div>
       </div>
     ` : ''}
 
     ${s.beginnerTip ? `
       <div class="modal-section">
-        <div class="modal-section-title">Beginner Tip</div>
+        <div class="modal-section-title">${t('modalBeginnerTip')}</div>
         <div class="modal-note" style="color:var(--accent)">${s.beginnerTip}</div>
       </div>
     ` : ''}
@@ -2393,14 +2953,14 @@ function openState(id) {
 
     ${s.risks && s.risks.length ? `
       <div class="modal-section">
-        <div class="modal-section-title">Risks</div>
+        <div class="modal-section-title">${t('modalRisks')}</div>
         <ul class="modal-list">${s.risks.map(r => `<li>${r}</li>`).join('')}</ul>
       </div>
     ` : ''}
 
     ${s.ddExtra && s.ddExtra.length ? `
       <div class="modal-section">
-        <div class="modal-section-title">Due Diligence Checklist</div>
+        <div class="modal-section-title">${t('modalDdChecklist')}</div>
         <ul class="modal-list">${s.ddExtra.map(d => `<li>${d}</li>`).join('')}</ul>
       </div>
     ` : ''}
@@ -2408,7 +2968,7 @@ function openState(id) {
     ${countiesHTML}
 
     <div style="margin-top:16px;padding:12px;background:var(--bg3);border-radius:8px;font-size:11px;color:var(--text-muted);line-height:1.6;border:1px solid var(--border);">
-      Data is for educational reference. Verify with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.
+      ${t('modalDisclaimer')}
     </div>
   `;
 
@@ -2418,31 +2978,28 @@ function openState(id) {
 
 // ── Paywall ──────────────────────────────────────────────────
 function openPaywall(id) {
-  const s = (window.STATES_EN || []).find(x => x.id === id);
+  state.activeState = id;
+  const s = (STATES || []).find(x => x.id === id);
   const name = s ? s.name : 'This State';
 
   document.getElementById('modal-header').innerHTML = `
     <div class="modal-state-name" style="color:var(--text-dim)">${name}</div>
-    <span class="modal-state-type type-lien">🔒 Locked</span>
+    <span class="modal-state-type type-lien">\u{1F512} ${t('paywallLocked')}</span>
   `;
 
   document.getElementById('modal-body').innerHTML = `
     <div class="modal-paywall">
-      <div class="paywall-lock">🔒</div>
-      <div class="paywall-title">Unlock Full Access</div>
-      <div class="paywall-sub">
-        Get verified data on all 50 states — interest rates, redemption periods, auction signup guides, OTC availability, county links, and investor scores.
-      </div>
-      <div class="paywall-price">$97</div>
-      <div class="paywall-price-note">One-time · Founding Member Rate · Lifetime Access</div>
-      <a href="${STRIPE_URL}" target="_blank" class="paywall-btn">Unlock Now</a>
+      <div class="paywall-lock">\u{1F512}</div>
+      <div class="paywall-title">${t('paywallTitle')}</div>
+      <div class="paywall-sub">${t('paywallSub')}</div>
+      <div class="paywall-price">${t('paywallPrice')}</div>
+      <div class="paywall-price-note">${t('paywallPriceNote')}</div>
+      <a href="${STRIPE_URL}" target="_blank" class="paywall-btn">${t('paywallCta')}</a>
       <div style="font-size:12px;color:var(--text-dim);">
-        Already have an access code?
-        <button onclick="closeStateModal();showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">Enter it here</button>
+        ${t('paywallHaveCode')}
+        <button onclick="closeStateModal();showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">${t('paywallEnterCode')}</button>
       </div>
-      <div class="paywall-disclaimer">
-        All sales final. Educational use only. See Terms of Service. Aurigen Collective is not a licensed investment advisor.
-      </div>
+      <div class="paywall-disclaimer">${t('paywallDisclaimer')}</div>
     </div>
   `;
 
@@ -2474,7 +3031,7 @@ function toggleSave(id) {
   storageSet('aug_saved', state.savedStates);
 
   const btn = document.getElementById(`save-btn-${id}`);
-  if (btn) btn.textContent = state.savedStates.includes(id) ? '🔖 Saved' : '+ Save';
+  if (btn) btn.textContent = state.savedStates.includes(id) ? '\u{1F516} ' + t('modalSaved') : t('modalSave');
 }
 
 function buildSaved() {
@@ -2484,25 +3041,25 @@ function buildSaved() {
   if (state.savedStates.length === 0) {
     container.innerHTML = `
       <div class="saved-empty">
-        <div class="saved-empty-icon">🔖</div>
-        <div class="saved-empty-text">No saved states yet.<br>Open any state and tap "+ Save" to add it here.</div>
+        <div class="saved-empty-icon">\u{1F516}</div>
+        <div class="saved-empty-text">${t('savedEmpty')}<br>${t('savedEmptyHint')}</div>
       </div>
     `;
     return;
   }
 
-  const saved = (window.STATES_EN || []).filter(s => state.savedStates.includes(s.id));
+  const saved = (STATES || []).filter(s => state.savedStates.includes(s.id));
   const typeClass = s => s.type === 'lien' ? 'badge-lien' : s.type === 'deed' ? 'badge-deed' : 'badge-both';
-  const typeLabel = s => s.type === 'lien' ? 'LIEN' : s.type === 'deed' ? 'DEED' : 'BOTH';
+  const typeLabel = s => s.type === 'lien' ? t('typeLien') : s.type === 'deed' ? t('typeDeed') : t('typeBoth');
 
   container.innerHTML = saved.map(s => `
     <div class="saved-item" onclick="openState('${s.id}')">
       <div class="state-list-badge ${typeClass(s)}">${typeLabel(s)}</div>
       <div class="saved-item-info">
         <div class="saved-item-name">${s.name}</div>
-        <div class="saved-item-meta">${s.rate} · ${s.redemption} · Score: ${s.score}/100</div>
+        <div class="saved-item-meta">${s.rate} \u00B7 ${s.redemption} \u00B7 ${t('modalScore')}: ${s.score}/100</div>
       </div>
-      <button class="saved-unsave" onclick="event.stopPropagation();unsaveState('${s.id}')">✕</button>
+      <button class="saved-unsave" onclick="event.stopPropagation();unsaveState('${s.id}')">\u2715</button>
     </div>
   `).join('');
 }
