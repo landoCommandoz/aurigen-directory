@@ -2496,7 +2496,7 @@ const NETLIFY_FN = '/.netlify/functions/aurigen';
 const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4';
 
 // Free states (top 7 by score)
-const FREE_STATES = new Set(['FL', 'IL', 'IA', 'NJ', 'GA', 'AZ', 'TX']);
+const FREE_STATES = new Set(['FL', 'IL', 'AZ']);
 
 // ── i18n Strings ─────────────────────────────────────────────
 const I18N = {
@@ -4451,6 +4451,10 @@ function valKeydown(e) {
 
 // ── AI Advisor ────────────────────────────────────────────────
 async function sendAdvisorMessage() {
+  if (!state.isPaid) {
+    appendAdvisorMsg('sage', 'Sage is available to full-access members. Unlock all 50 states + AI advisor for just $97.');
+    return;
+  }
   if (state.advisorBusy) return;
   const input = document.getElementById('advisor-input');
   const msg = input?.value.trim();
