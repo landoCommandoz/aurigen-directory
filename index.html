@@ -1098,18 +1098,21 @@ a { color: inherit; text-decoration: none; }
 
 .modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 12px;
+  right: 12px;
   background: rgba(255,255,255,0.08);
   border: none;
   color: var(--text-dim);
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  font-size: 16px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   transition: all 0.2s;
 }
 
@@ -1351,6 +1354,163 @@ a { color: inherit; text-decoration: none; }
   font-size: 11px;
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+/* Quick Start card */
+.quick-start-card {
+  background: rgba(200,168,75,0.06);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+
+.quick-start-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.quick-start-text {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Risks card */
+.risks-card {
+  background: rgba(224,85,85,0.06);
+  border: 1px solid rgba(224,85,85,0.15);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.risks-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.risks-list li {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.risks-list li .risk-icon {
+  flex-shrink: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--red);
+}
+
+/* DD Checklist */
+.dd-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dd-checklist li {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.dd-checklist li .dd-check-icon {
+  flex-shrink: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--accent);
+}
+
+/* OTC card */
+.otc-card {
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.otc-card-available {
+  background: rgba(76,175,130,0.06);
+  border: 1px solid rgba(76,175,130,0.2);
+}
+
+.otc-card-unavailable {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+}
+
+.otc-card-status {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.otc-card-note {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* County cards grid */
+.county-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.county-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.county-card:hover {
+  border-color: var(--accent-border);
+  background: rgba(200,168,75,0.04);
+}
+
+.county-card-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.county-card-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.county-card-notes {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.county-card-icon {
+  flex-shrink: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 2px;
 }
 
 /* Paywall inside modal */
@@ -2227,6 +2387,7 @@ a { color: inherit; text-decoration: none; }
         <button class="tools-tab active" onclick="switchToolsTab('analyzer', this)">Analyzer</button>
         <button class="tools-tab" onclick="switchToolsTab('legal', this)">Legal</button>
         <button class="tools-tab" onclick="switchToolsTab('glossary', this)">Glossary</button>
+        <button class="tools-tab" onclick="switchToolsTab('valuation', this)">Valuation</button>
       </div>
 
       <!-- Analyzer Sub-view -->
@@ -2245,27 +2406,27 @@ a { color: inherit; text-decoration: none; }
                 </div>
                 <div class="field-group">
                   <div class="field-label">Purchase Price / Lien Amount ($)</div>
-                  <input class="field-input" id="az-price" type="number" placeholder="10000" oninput="calcAnalyzer()">
+                  <input class="field-input" id="az-price" type="number" min="0" placeholder="10000" oninput="calcAnalyzer()">
                 </div>
                 <div class="field-group">
-                  <div class="field-label">Annual Interest Rate (%)</div>
-                  <input class="field-input" id="az-rate" type="number" placeholder="18" oninput="calcAnalyzer()">
+                  <div class="field-label">Annual Interest Rate (%) <span style="color:var(--text-muted);font-size:10px;font-weight:400;">IL = 36% (18%/6mo), TX = use Penalty field</span></div>
+                  <input class="field-input" id="az-rate" type="number" min="0" max="100" placeholder="18" oninput="calcAnalyzer()">
                 </div>
                 <div class="field-group">
                   <div class="field-label">Hold Period (months)</div>
-                  <input class="field-input" id="az-months" type="number" placeholder="24" oninput="calcAnalyzer()">
+                  <input class="field-input" id="az-months" type="number" min="0" max="600" placeholder="24" oninput="calcAnalyzer()">
                 </div>
                 <div class="field-group" id="az-arv-group">
                   <div class="field-label">Estimated Property ARV ($) <span style="color:var(--text-muted)">(deed only)</span></div>
-                  <input class="field-input" id="az-arv" type="number" placeholder="85000" oninput="calcAnalyzer()">
+                  <input class="field-input" id="az-arv" type="number" min="0" placeholder="85000" oninput="calcAnalyzer()">
                 </div>
                 <div class="field-group">
                   <div class="field-label">Additional Costs ($) <span style="color:var(--text-muted)">(legal, title, etc.)</span></div>
-                  <input class="field-input" id="az-costs" type="number" placeholder="500" oninput="calcAnalyzer()">
+                  <input class="field-input" id="az-costs" type="number" min="0" placeholder="500" oninput="calcAnalyzer()">
                 </div>
                 <div class="field-group">
                   <div class="field-label">Penalty / Bonus Rate (%)</div>
-                  <input class="field-input" id="az-penalty" type="number" placeholder="0" oninput="calcAnalyzer()">
+                  <input class="field-input" id="az-penalty" type="number" min="0" max="100" placeholder="0" oninput="calcAnalyzer()">
                 </div>
               </div>
             </div>
@@ -2288,7 +2449,7 @@ a { color: inherit; text-decoration: none; }
                     <div class="result-value" id="az-annualized" style="font-size:24px">—</div>
                   </div>
                   <div class="result-display">
-                    <div class="result-label">Interest Earned</div>
+                    <div class="result-label">Interest + Penalty</div>
                     <div class="result-value" id="az-interest" style="font-size:20px">—</div>
                   </div>
                   <div class="result-display">
@@ -2303,7 +2464,7 @@ a { color: inherit; text-decoration: none; }
                   </div>
                 </div>
                 <div style="margin-top:16px;padding:12px;background:var(--bg2);border-radius:8px;font-size:11px;color:var(--text-muted);line-height:1.6;">
-                  Educational estimate only. Results are not guaranteed. Verify statutory rates with official county sources before transacting.
+                  Educational estimate only — not financial, legal, or investment advice. Results are not guaranteed and do not account for all variables. Verify statutory rates with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.
                 </div>
               </div>
             </div>
@@ -2326,6 +2487,33 @@ a { color: inherit; text-decoration: none; }
         <div class="scroll-body">
           <input class="glossary-search" id="glossary-search" placeholder="Search terms..." oninput="filterGlossary(this.value)">
           <div id="glossary-list"></div>
+        </div>
+      </div>
+
+      <!-- Valuation Agent Sub-view -->
+      <div class="tools-panel" id="tools-valuation">
+        <div class="view-header" style="padding:16px 20px 8px;">
+          <div class="view-title" id="val-title">Atlas — Valuation Agent</div>
+          <div class="view-sub" id="val-sub">Ask about your business value, growth levers, and exit strategy</div>
+        </div>
+        <div class="advisor-messages" id="val-messages">
+          <div class="msg msg-sage">
+            <strong>Atlas</strong><br>
+            I'm Atlas — your business valuation advisor. Tell me about your business (revenue, subscribers, pricing, growth) and I'll estimate its value and show you exactly how to increase it. Try: "My app makes $4,900/mo from 100 subscribers at $49/mo — what's it worth?"
+          </div>
+          <div class="advisor-typing" id="val-typing">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+        <div class="advisor-input-bar">
+          <textarea
+            class="advisor-input"
+            id="val-input"
+            placeholder="Ask Atlas about your business value..."
+            rows="1"
+            onkeydown="valKeydown(event)"
+          ></textarea>
+          <button class="advisor-send" id="val-send" onclick="sendValMessage()">&#10148;</button>
         </div>
       </div>
     </div>
@@ -2465,7 +2653,7 @@ const NETLIFY_FN = '/.netlify/functions/aurigen';
 const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4';
 
 // Free states (top 7 by score)
-const FREE_STATES = new Set(['FL', 'IL', 'IA', 'NJ', 'GA', 'AZ', 'TX']);
+const FREE_STATES = new Set(['FL', 'IL', 'AZ']);
 
 // ── i18n Strings ─────────────────────────────────────────────
 const I18N = {
@@ -2551,10 +2739,16 @@ const I18N = {
     analyzerTotalReturn: 'Total Return',
     analyzerRoi: 'ROI',
     analyzerAnnualized: 'Annualized',
-    analyzerInterest: 'Interest Earned',
+    analyzerInterest: 'Interest + Penalty',
     analyzerTotalCosts: 'Total Costs',
     analyzerEquity: 'Equity if Redeemed at ARV',
-    analyzerDisclaimer: 'Educational estimate only. Results are not guaranteed. Verify statutory rates with official county sources before transacting.',
+    analyzerDisclaimer: 'Educational estimate only — not financial, legal, or investment advice. Results are not guaranteed and do not account for all variables. Verify statutory rates with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.',
+    // Valuation Agent
+    valTitle: 'Atlas — Valuation Agent',
+    valSub: 'Ask about your business value, growth levers, and exit strategy',
+    valWelcome: "I'm Atlas — your business valuation advisor. Tell me about your business (revenue, subscribers, pricing, growth) and I'll estimate its value and show you exactly how to increase it. Try: \"My app makes $4,900/mo from 100 subscribers at $49/mo — what's it worth?\"",
+    valPlaceholder: 'Ask Atlas about your business value...',
+    valError: 'Atlas is temporarily unavailable.',
     // Advisor
     advisorTitle: 'Sage - AI Advisor',
     advisorSub: 'Ask anything about tax liens, deeds, or state law',
@@ -2739,10 +2933,16 @@ const I18N = {
     analyzerTotalReturn: 'Retorno Total',
     analyzerRoi: 'ROI',
     analyzerAnnualized: 'Anualizado',
-    analyzerInterest: 'Interes Ganado',
+    analyzerInterest: 'Interes + Penalizacion',
     analyzerTotalCosts: 'Costos Totales',
     analyzerEquity: 'Patrimonio si se Redime al ARV',
-    analyzerDisclaimer: 'Estimacion educativa solamente. Resultados no garantizados. Verifique tasas estatutarias con fuentes oficiales del condado antes de operar.',
+    analyzerDisclaimer: 'Estimacion educativa solamente — no es asesoramiento financiero, legal ni de inversiones. Los resultados no estan garantizados y no contemplan todas las variables. Verifique tasas estatutarias con fuentes oficiales del condado antes de operar. Aurigen Collective no es un asesor de inversiones licenciado.',
+    // Valuation Agent
+    valTitle: 'Atlas — Agente de Valoracion',
+    valSub: 'Pregunte sobre el valor de su negocio, palancas de crecimiento y estrategia de salida',
+    valWelcome: 'Soy Atlas — su asesor de valoracion de negocios. Cuenteme sobre su negocio (ingresos, suscriptores, precios, crecimiento) y estimare su valor y le mostrare exactamente como aumentarlo.',
+    valPlaceholder: 'Pregunte a Atlas sobre el valor de su negocio...',
+    valError: 'Atlas no esta disponible temporalmente.',
     // Advisor
     advisorTitle: 'Sage - Asesor IA',
     advisorSub: 'Pregunte sobre gravamenes, escrituras o leyes estatales',
@@ -2857,6 +3057,8 @@ let state = {
   profile: { strategy: [] },
   advisorHistory: [],
   advisorBusy: false,
+  valHistory: [],
+  valBusy: false,
   mapReady: false,
   mobileCodeVisible: false,
   lang: 'en'
@@ -3030,6 +3232,14 @@ function updateViewHeaders() {
     if (title) title.textContent = t('analyzerTitle');
     if (sub) sub.textContent = t('analyzerSub');
   }
+
+  // Valuation Agent
+  const valTitleEl = document.getElementById('val-title');
+  if (valTitleEl) valTitleEl.textContent = t('valTitle');
+  const valSubEl = document.getElementById('val-sub');
+  if (valSubEl) valSubEl.textContent = t('valSub');
+  const valInput = document.getElementById('val-input');
+  if (valInput) valInput.placeholder = t('valPlaceholder');
 
   // Advisor
   const advisorHeader = document.querySelector('#view-advisor .view-header');
@@ -3468,7 +3678,12 @@ function buildStateList() {
   const container = document.getElementById('state-list');
   if (!container || !STATES || STATES.length === 0) return;
 
-  const sorted = [...STATES].sort((a, b) => a.name.localeCompare(b.name));
+  const sorted = [...STATES].sort((a, b) => {
+    const aFree = FREE_STATES.has(a.id);
+    const bFree = FREE_STATES.has(b.id);
+    if (aFree !== bFree) return aFree ? -1 : 1;
+    return a.name.localeCompare(b.name);
+  });
 
   container.innerHTML = sorted.map(s => {
     const isFree = FREE_STATES.has(s.id) || state.isPaid;
@@ -3717,10 +3932,24 @@ function openState(id) {
         <div class="modal-note">${s.scoreWhy}</div>
       </div>
     ` : ''}
+
+    ${s.beginnerTip ? `
+      <div class="quick-start-card">
+        <div class="quick-start-label">\u{1F680} Your First Step in ${s.name}:</div>
+        <div class="quick-start-text">${s.beginnerTip}</div>
+      </div>
+    ` : ''}
   `;
 
-  // FREE STATE (not paid) — show preview + overview, then gate the rest
+  // FREE STATE (not paid) — show preview + overview + beginner tip + risk teaser, then gate the rest
   if (isFreeState && !isPaid) {
+    const riskTeaser = (s.risks && s.risks.length) ? s.risks.slice(0, 2) : [];
+    const remainingInsights = ((s.risks ? Math.max(0, s.risks.length - 2) : 0)
+      + (s.ddExtra ? s.ddExtra.length : 0)
+      + (s.counties ? s.counties.length : 0)
+      + (s.auctionSignup ? 1 : 0)
+      + (s.otc ? 1 : 0));
+
     document.getElementById('modal-body').innerHTML = `
       ${previewHTML}
 
@@ -3731,13 +3960,26 @@ function openState(id) {
         </div>
       ` : ''}
 
+      ${riskTeaser.length ? `
+        <div class="modal-section">
+          <div class="modal-section-title">${t('modalRisks')}</div>
+          <ul class="modal-list">${riskTeaser.map(r => '<li>' + r + '</li>').join('')}</ul>
+        </div>
+      ` : ''}
+
+      ${remainingInsights > 0 ? `
+        <div style="text-align:center;padding:10px 0 4px;font-size:13px;color:var(--text-dim);font-weight:600;">
+          ...and ${remainingInsights} more insight${remainingInsights === 1 ? '' : 's'} inside
+        </div>
+      ` : ''}
+
       <div class="preview-fade-gate">
         <div class="preview-fade-overlay"></div>
         <div class="preview-gate-content">
           <div style="font-size:32px;margin-bottom:8px;">\u{1F512}</div>
           <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px;">Unlock Full State Details</div>
           <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.5;">
-            Get auction signup steps, county links, risks, due diligence checklists, beginner tips, and OTC availability for all 51 states.
+            Get auction signup steps, county links, full risks list, due diligence checklists, and OTC availability for all 51 states.
           </div>
           <div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>
           <div style="font-size:11px;color:var(--text-muted);margin-bottom:16px;">${t('paywallPriceNote')}</div>
@@ -3762,18 +4004,17 @@ function openState(id) {
     countiesHTML = `
       <div class="modal-section">
         <div class="modal-section-title">${t('modalCounties')}</div>
-        <table class="county-table">
-          <thead><tr><th>${t('modalCounty')}</th><th>${t('modalNotes')}</th><th>${t('modalLink')}</th></tr></thead>
-          <tbody>
-            ${s.counties.map(c => `
-              <tr>
-                <td>${c.name}</td>
-                <td>${c.notes || '\u2014'}</td>
-                <td><a href="${c.link}" target="_blank" class="county-link">${t('modalVisit')} \u2197</a></td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
+        <div class="county-cards-grid">
+          ${s.counties.map(c => `
+            <a href="${c.link}" target="_blank" class="county-card" rel="noopener noreferrer">
+              <div class="county-card-info">
+                <div class="county-card-name">${c.name}</div>
+                ${c.notes ? `<div class="county-card-notes">${c.notes}</div>` : ''}
+              </div>
+              <span class="county-card-icon">\u2197</span>
+            </a>
+          `).join('')}
+        </div>
       </div>
     `;
   }
@@ -3782,9 +4023,11 @@ function openState(id) {
   const otcHTML = s.otc ? `
     <div class="modal-section">
       <div class="modal-section-title">${t('modalOtc')}</div>
-      <div class="modal-note">
-        <strong style="color:${s.otc.available ? 'var(--green)' : 'var(--red)'}">${s.otc.available ? '\u2713 ' + t('modalOtcAvailable') : '\u2717 ' + t('modalOtcNotAvailable')}</strong>
-        ${s.otc.note ? ` \u2014 ${s.otc.note}` : ''}
+      <div class="otc-card ${s.otc.available ? 'otc-card-available' : 'otc-card-unavailable'}">
+        <div class="otc-card-status" style="color:${s.otc.available ? 'var(--green)' : 'var(--text-muted)'}">
+          ${s.otc.available ? '\u2713 ' + t('modalOtcAvailable') : '\u2717 No OTC Program'}
+        </div>
+        ${s.otc.note ? `<div class="otc-card-note">${s.otc.note}</div>` : ''}
       </div>
     </div>
   ` : '';
@@ -3822,27 +4065,22 @@ function openState(id) {
       </div>
     ` : ''}
 
-    ${s.beginnerTip ? `
-      <div class="modal-section">
-        <div class="modal-section-title">${t('modalBeginnerTip')}</div>
-        <div class="modal-note" style="color:var(--accent)">${s.beginnerTip}</div>
-      </div>
-    ` : ''}
-
     ${auctionHTML}
     ${otcHTML}
 
     ${s.risks && s.risks.length ? `
       <div class="modal-section">
         <div class="modal-section-title">${t('modalRisks')}</div>
-        <ul class="modal-list">${s.risks.map(r => `<li>${r}</li>`).join('')}</ul>
+        <div class="risks-card">
+          <ul class="risks-list">${s.risks.map(r => `<li><span class="risk-icon">\u26A0\uFE0F</span><span>${r}</span></li>`).join('')}</ul>
+        </div>
       </div>
     ` : ''}
 
     ${s.ddExtra && s.ddExtra.length ? `
       <div class="modal-section">
         <div class="modal-section-title">${t('modalDdChecklist')}</div>
-        <ul class="modal-list">${s.ddExtra.map(d => `<li>${d}</li>`).join('')}</ul>
+        <ul class="dd-checklist">${s.ddExtra.map(d => `<li><span class="dd-check-icon">\u2610</span><span>${d}</span></li>`).join('')}</ul>
       </div>
     ` : ''}
 
@@ -4233,12 +4471,20 @@ function buildProfileRecs() {
 // ── Deal Analyzer ─────────────────────────────────────────────
 function calcAnalyzer() {
   const type = document.getElementById('az-type')?.value;
-  const price = parseFloat(document.getElementById('az-price')?.value) || 0;
-  const rate = parseFloat(document.getElementById('az-rate')?.value) || 0;
-  const months = parseFloat(document.getElementById('az-months')?.value) || 0;
-  const arv = parseFloat(document.getElementById('az-arv')?.value) || 0;
-  const costs = parseFloat(document.getElementById('az-costs')?.value) || 0;
-  const penalty = parseFloat(document.getElementById('az-penalty')?.value) || 0;
+  const rawPrice = parseFloat(document.getElementById('az-price')?.value);
+  const rawRate = parseFloat(document.getElementById('az-rate')?.value);
+  const rawMonths = parseFloat(document.getElementById('az-months')?.value);
+  const rawArv = parseFloat(document.getElementById('az-arv')?.value);
+  const rawCosts = parseFloat(document.getElementById('az-costs')?.value);
+  const rawPenalty = parseFloat(document.getElementById('az-penalty')?.value);
+
+  // Clamp: reject negatives, cap rate/penalty at 100%, cap hold period at 600 months
+  const price = Math.max(0, rawPrice || 0);
+  const rate = Math.max(0, Math.min(rawRate || 0, 100));
+  const months = Math.max(0, Math.min(rawMonths || 0, 600));
+  const arv = Math.max(0, rawArv || 0);
+  const costs = Math.max(0, rawCosts || 0);
+  const penalty = Math.max(0, Math.min(rawPenalty || 0, 100));
 
   // Show/hide deed-specific fields
   const arvGroup = document.getElementById('az-arv-group');
@@ -4246,11 +4492,14 @@ function calcAnalyzer() {
   if (arvGroup) arvGroup.style.display = type === 'deed' ? '' : 'none';
   if (deedResults) deedResults.style.display = type === 'deed' && arv > 0 ? '' : 'none';
 
+  // Reset all result fields when key inputs are missing
   if (!price || !months) {
     ['az-return','az-roi','az-annualized','az-interest','az-total-costs'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.textContent = '—';
     });
+    const resetSub = document.getElementById('az-return-sub');
+    if (resetSub) resetSub.textContent = '';
     return;
   }
 
@@ -4262,14 +4511,15 @@ function calcAnalyzer() {
   const totalReturn = price + interest + penaltyEarned;
   const netReturn = totalReturn - totalCosts;
   const roi = totalCosts > 0 ? (netReturn / totalCosts) * 100 : 0;
-  const annualizedROI = months > 0 ? (roi / months) * 12 : 0;
+  const annualizedROI = months > 0 ? (Math.pow(1 + roi / 100, 12 / months) - 1) * 100 : 0;
 
   const fmt = n => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
   const fmtPct = n => n.toFixed(1) + '%';
 
+  // Show actual net return including losses — never clamp to $0
   const returnEl = document.getElementById('az-return');
   if (returnEl) {
-    returnEl.textContent = fmt(netReturn > 0 ? netReturn : 0);
+    returnEl.textContent = fmt(netReturn);
     returnEl.style.color = netReturn >= 0 ? 'var(--accent)' : 'var(--red)';
   }
 
@@ -4295,8 +4545,81 @@ function calcAnalyzer() {
   }
 }
 
+// ── Valuation Agent (Atlas) ───────────────────────────────────
+async function sendValMessage() {
+  if (state.valBusy) return;
+  const input = document.getElementById('val-input');
+  const msg = input?.value.trim();
+  if (!msg) return;
+
+  input.value = '';
+  state.valBusy = true;
+
+  const sendBtn = document.getElementById('val-send');
+  if (sendBtn) sendBtn.disabled = true;
+
+  appendValMsg('user', msg);
+  if (!state.valHistory) state.valHistory = [];
+  state.valHistory.push({ role: 'user', content: msg });
+
+  const typing = document.getElementById('val-typing');
+  if (typing) typing.classList.add('show');
+  scrollVal();
+
+  try {
+    const res = await fetch(NETLIFY_FN, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'valuation', message: msg, history: state.valHistory.slice(-10) })
+    });
+
+    const data = await res.json();
+    if (typing) typing.classList.remove('show');
+
+    const reply = data.response || data.error || 'Atlas is temporarily unavailable.';
+    appendValMsg('atlas', reply);
+    state.valHistory.push({ role: 'assistant', content: reply });
+
+  } catch(err) {
+    if (typing) typing.classList.remove('show');
+    appendValMsg('atlas', 'Connection error. Please try again.');
+  }
+
+  state.valBusy = false;
+  if (sendBtn) sendBtn.disabled = false;
+  if (input) input.focus();
+}
+
+function appendValMsg(role, text) {
+  const container = document.getElementById('val-messages');
+  if (!container) return;
+  const typing = document.getElementById('val-typing');
+  const div = document.createElement('div');
+  div.className = `msg msg-${role === 'atlas' ? 'sage' : 'user'}`;
+  div.innerHTML = role === 'atlas' ? `<strong>Atlas</strong><br>${text.replace(/\n/g, '<br>')}` : text;
+  if (typing) container.insertBefore(div, typing);
+  else container.appendChild(div);
+  scrollVal();
+}
+
+function scrollVal() {
+  const container = document.getElementById('val-messages');
+  if (container) container.scrollTop = container.scrollHeight;
+}
+
+function valKeydown(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendValMessage();
+  }
+}
+
 // ── AI Advisor ────────────────────────────────────────────────
 async function sendAdvisorMessage() {
+  if (!state.isPaid) {
+    appendAdvisorMsg('sage', 'Sage is available to full-access members. Unlock all 50 states + AI advisor for just $97.');
+    return;
+  }
   if (state.advisorBusy) return;
   const input = document.getElementById('advisor-input');
   const msg = input?.value.trim();
@@ -4321,7 +4644,7 @@ async function sendAdvisorMessage() {
     const res = await fetch(NETLIFY_FN, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'advisor', message: msg })
+      body: JSON.stringify({ action: 'advisor', message: msg, history: state.advisorHistory.slice(-10) })
     });
 
     const data = await res.json();
