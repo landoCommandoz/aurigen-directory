@@ -1,0 +1,39 @@
+# systemd service for Aurigen Agentic Pipeline
+# Install:
+#   sudo cp pipeline/aurigen-pipeline.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable aurigen-pipeline
+#   sudo systemctl start aurigen-pipeline
+#
+# Logs:
+#   sudo journalctl -u aurigen-pipeline -f
+
+[Unit]
+Description=Aurigen Agentic Pipeline (Design → Code → QA → Ship)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=deploy
+Group=deploy
+WorkingDirectory=/home/deploy/aurigen-directory
+ExecStart=/usr/bin/node pipeline/orchestrator.js --loop
+Restart=on-failure
+RestartSec=30
+
+# Environment
+Environment=NODE_ENV=production
+EnvironmentFile=/home/deploy/aurigen-directory/.env
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/home/deploy/aurigen-directory
+
+# Resource limits
+MemoryMax=1G
+CPUQuota=80%
+
+[Install]
+WantedBy=multi-user.target
