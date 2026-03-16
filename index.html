@@ -3471,7 +3471,12 @@ function buildStateList() {
   const container = document.getElementById('state-list');
   if (!container || !STATES || STATES.length === 0) return;
 
-  const sorted = [...STATES].sort((a, b) => a.name.localeCompare(b.name));
+  const sorted = [...STATES].sort((a, b) => {
+    const aFree = FREE_STATES.has(a.id);
+    const bFree = FREE_STATES.has(b.id);
+    if (aFree !== bFree) return aFree ? -1 : 1;
+    return a.name.localeCompare(b.name);
+  });
 
   container.innerHTML = sorted.map(s => {
     const isFree = FREE_STATES.has(s.id) || state.isPaid;
