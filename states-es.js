@@ -4,7 +4,7 @@
 
 var STATES_ES = [
 {
-    id:"AL",name:"Alabama",type:"deed",rate:"Varía",redemption:"3 años",score:18,beginnerFriendly:false,
+    id:"AL",name:"Alabama",type:"lien",rate:"12% por año",redemption:"3 años",score:18,beginnerFriendly:false,
     notBeginnerReason:"Período de redención largo, problemas de título frecuentes, competencia institucional en áreas metropolitanas.",
     scoreWhy:"Entorno de tasas bajas, redención de 3 años y dominio institucional en metros limitan el potencial para inversores individuales.",
     note:"Alabama realiza ventas de escrituras fiscales a nivel de condado. Las propiedades deben estar en mora 3 años antes de que el condado las subaste. Estatuto: AL Code §40-10-1 et seq.",
@@ -88,7 +88,7 @@ var STATES_ES = [
     platforms:["A nivel de ciudad (sin plataforma centralizada)"],counties:[]
   },
   {
-    id:"DE",name:"Delaware",type:"hybrid",rate:"15-20% (varía por condado)",redemption:"60 días a 1 año",score:28,beginnerFriendly:false,
+    id:"DE",name:"Delaware",type:"deed",rate:"15-20% (varía por condado)",redemption:"60 días a 1 año",score:28,beginnerFriendly:false,
     notBeginnerReason:"Solo 3 condados, inventario muy limitado, no es un mercado primario viable.",
     scoreWhy:"Solo 3 condados operando independientemente con inventario mínimo. Demasiado pequeño para construir una estrategia.",
     note:"Delaware tiene solo 3 condados (Kent, New Castle, Sussex), cada uno realizando subastas independientes. Estatuto: Del. Code Título 9 §8721.",
@@ -352,7 +352,7 @@ var STATES_ES = [
     counties:[{name:"Clark",link:"https://www.clarkcountynv.gov/government/assessor/",notes:"Las Vegas. Mejor inventario. Competitivo."}]
   },
 {
-    id:"NH",name:"New Hampshire",type:"deed",rate:"18%",redemption:"2 años",score:33,beginnerFriendly:false,
+    id:"NH",name:"New Hampshire",type:"lien",rate:"18%",redemption:"2 años",score:33,beginnerFriendly:false,
     notBeginnerReason:"Solo subastas municipales, ventas esporádicas y el fallo de la Corte Suprema de NH de 2020 impide que los municipios retengan pujas de excedente.",
     scoreWhy:"Tasa del 18% en papel, pero bajo volumen, ventas infrecuentes y el fallo de devolución de excedente limitan los retornos prácticos.",
     note:"Los municipios de New Hampshire realizan ventas de gravámenes esporádicas. Redención de 2 años. El fallo de la Corte Suprema de NH de 2020 requiere que los municipios devuelvan el excedente más allá de lo adeudado. Estatuto: NHRS §80:19.",
