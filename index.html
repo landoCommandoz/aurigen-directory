@@ -1098,18 +1098,21 @@ a { color: inherit; text-decoration: none; }
 
 .modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 12px;
+  right: 12px;
   background: rgba(255,255,255,0.08);
   border: none;
   color: var(--text-dim);
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  font-size: 16px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   transition: all 0.2s;
 }
 
@@ -3719,8 +3722,15 @@ function openState(id) {
     ` : ''}
   `;
 
-  // FREE STATE (not paid) — show preview + overview, then gate the rest
+  // FREE STATE (not paid) — show preview + overview + beginner tip + risk teaser, then gate the rest
   if (isFreeState && !isPaid) {
+    const riskTeaser = (s.risks && s.risks.length) ? s.risks.slice(0, 2) : [];
+    const remainingInsights = ((s.risks ? Math.max(0, s.risks.length - 2) : 0)
+      + (s.ddExtra ? s.ddExtra.length : 0)
+      + (s.counties ? s.counties.length : 0)
+      + (s.auctionSignup ? 1 : 0)
+      + (s.otc ? 1 : 0));
+
     document.getElementById('modal-body').innerHTML = `
       ${previewHTML}
 
@@ -3731,13 +3741,33 @@ function openState(id) {
         </div>
       ` : ''}
 
+      ${s.beginnerTip ? `
+        <div class="modal-section">
+          <div class="modal-section-title">${t('modalBeginnerTip')}</div>
+          <div class="modal-note" style="color:var(--accent)">${s.beginnerTip}</div>
+        </div>
+      ` : ''}
+
+      ${riskTeaser.length ? `
+        <div class="modal-section">
+          <div class="modal-section-title">${t('modalRisks')}</div>
+          <ul class="modal-list">${riskTeaser.map(r => '<li>' + r + '</li>').join('')}</ul>
+        </div>
+      ` : ''}
+
+      ${remainingInsights > 0 ? `
+        <div style="text-align:center;padding:10px 0 4px;font-size:13px;color:var(--text-dim);font-weight:600;">
+          ...and ${remainingInsights} more insight${remainingInsights === 1 ? '' : 's'} inside
+        </div>
+      ` : ''}
+
       <div class="preview-fade-gate">
         <div class="preview-fade-overlay"></div>
         <div class="preview-gate-content">
           <div style="font-size:32px;margin-bottom:8px;">\u{1F512}</div>
           <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px;">Unlock Full State Details</div>
           <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.5;">
-            Get auction signup steps, county links, risks, due diligence checklists, beginner tips, and OTC availability for all 51 states.
+            Get auction signup steps, county links, full risks list, due diligence checklists, and OTC availability for all 51 states.
           </div>
           <div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>
           <div style="font-size:11px;color:var(--text-muted);margin-bottom:16px;">${t('paywallPriceNote')}</div>
