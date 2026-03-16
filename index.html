@@ -3886,11 +3886,19 @@ async function initMap() {
 
     const labelG = svg.append('g').style('pointer-events','none');
 
+    const LABEL_OFFSETS = {
+      'FL': [14, -5],   'MI': [14, 18],  'LA': [-4, -6],
+      'CA': [-8, 12],   'NY': [6, 0],    'ID': [0, 6],
+      'VA': [-6, 2],    'HI': [0, -5],   'TX': [-4, 4]
+    };
+
     features.forEach(d => {
       const sid = fipsToId[String(d.id).padStart(2,'0')];
       if (!sid || TINY.has(sid)) return;
       const c = path.centroid(d);
       if (!c || isNaN(c[0]) || isNaN(c[1])) return;
+      const off = LABEL_OFFSETS[sid] || [0, 0];
+      const cx = c[0] + off[0], cy = c[1] + off[1];
 
       const isFree = FREE_STATES.has(sid) || state.isPaid;
       const s = stateMap[sid];
@@ -3899,7 +3907,7 @@ async function initMap() {
       const fontSize = w < 500 ? '7px' : w < 800 ? '9px' : '10px';
 
       labelG.append('text')
-        .attr('x', c[0]).attr('y', c[1] - (score !== null ? 5 : 0))
+        .attr('x', cx).attr('y', cy - (score !== null ? 5 : 0))
         .attr('text-anchor','middle').attr('dominant-baseline','middle')
         .attr('font-family',"'DM Sans', sans-serif").attr('font-size', fontSize)
         .attr('font-weight','700').attr('letter-spacing','0.08em')
@@ -3909,7 +3917,7 @@ async function initMap() {
 
       if (score !== null && w >= 600) {
         labelG.append('text')
-          .attr('x', c[0]).attr('y', c[1] + 9)
+          .attr('x', cx).attr('y', cy + 9)
           .attr('text-anchor','middle').attr('dominant-baseline','middle')
           .attr('font-family',"'DM Mono', monospace").attr('font-size','8px')
           .attr('font-weight','500')
@@ -4064,15 +4072,17 @@ function openState(id) {
       <div class="modal-section">
         <div class="modal-section-title">${t('modalCounties')}</div>
         <div class="county-cards-grid">
-          ${s.counties.map(c => `
-            <a href="${c.link}" target="_blank" class="county-card" rel="noopener noreferrer">
+          ${s.counties.map(c => {
+            const href = c.link || `https://www.google.com/search?q=${encodeURIComponent(c.name + ' County ' + s.name + ' tax collector treasurer')}`;
+            return `
+            <a href="${href}" target="_blank" class="county-card" rel="noopener noreferrer">
               <div class="county-card-info">
                 <div class="county-card-name">${c.name}</div>
                 ${c.notes ? `<div class="county-card-notes">${c.notes}</div>` : ''}
               </div>
               <span class="county-card-icon">\u2197</span>
-            </a>
-          `).join('')}
+            </a>`;
+          }).join('')}
         </div>
       </div>
     `;

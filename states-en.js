@@ -172,7 +172,7 @@ var STATES_EN = [
     ],
     platforms: ["Bid4Assets.com", "County tax collector portals"],
     counties: [
-      { name: "Los Angeles", link: "https://ttc.lacounty.gov/tax-defaulted-property-auctions/", notes: "Largest in state. Near-market bids, high competition." },
+      { name: "Los Angeles", link: "https://ttc.lacounty.gov/schedule-of-upcoming-auctions/", notes: "Largest in state. Near-market bids, high competition." },
       { name: "Sacramento", link: "https://www.assessor.saccounty.gov", notes: "Moderate competition, better rural inventory." }
     ]
   },
@@ -206,8 +206,8 @@ var STATES_EN = [
     ],
     platforms: ["SRI Tax Sale Services", "County treasurer portals"],
     counties: [
-      { name: "El Paso", link: "https://www.elpasoco.com/treasurer/", notes: "Largest auction in CO. Moderate competition." },
-      { name: "Denver", link: "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Treasury", notes: "Urban, competitive." },
+      { name: "El Paso", link: "https://treasurer.elpasoco.com/", notes: "Largest auction in CO. Moderate competition." },
+      { name: "Denver", link: "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Department-of-Finance/Our-Divisions/Treasury", notes: "Urban, competitive." },
       { name: "Kiowa", link: "https://www.kiowacounty.org", notes: "Rural, excellent OTC availability, minimal competition." }
     ]
   },
@@ -346,7 +346,7 @@ var STATES_EN = [
       { name: "Miami-Dade", link: "https://www.miamidade.gov/taxcollector/", notes: "Largest in FL. Rates bid to 0–1%. Not for beginners." },
       { name: "Broward", link: "https://www.broward.org/TaxCollector/", notes: "High competition. Same as Miami-Dade." },
       { name: "Citrus", link: "https://www.citrusclerk.org", notes: "Lower competition. Good for beginners." },
-      { name: "Hernando", link: "https://www.hernandocounty.us/departments/departments-a-m/clerk-of-circuit-court", notes: "Lower competition. Beginner-friendly." },
+      { name: "Hernando", link: "https://hernandoclerk.com/", notes: "Lower competition. Beginner-friendly." },
       { name: "Orange", link: "https://www.occompt.com", notes: "Moderate competition. Good inventory." }
     ]
   },
@@ -381,7 +381,7 @@ var STATES_EN = [
     ],
     platforms: ["County Superior Court Clerk offices"],
     counties: [
-      { name: "Fulton", link: "https://www.fultoncountyga.gov/services/courts/superior-court", notes: "Atlanta area. High competition." },
+      { name: "Fulton", link: "https://www.fultoncountyga.gov/inside-fulton-county/fulton-county-departments/superior-court", notes: "Atlanta area. High competition." },
       { name: "Bibb", link: "https://www.maconbibb.us/clerk-of-superior-court/", notes: "Macon area. Moderate competition. Good for beginners." },
       { name: "Chatham", link: "https://chathamcounty.org/454/Superior-Court", notes: "Savannah area. Good inventory." }
     ]
@@ -434,7 +434,7 @@ var STATES_EN = [
         "Most sales are in-person at the courthouse"
       ],
       depositInfo: "Varies by county.",
-      directLink: "https://tax.idaho.gov/county-contact-information/"
+      directLink: "https://tax.idaho.gov/contact-us/contact-property-tax/"
     },
     beginnerTip: "Call Ada (Boise) and Canyon counties first — they have the most consistent sale activity in Idaho.",
     otc: { available: false, note: "No OTC program." },
@@ -537,7 +537,7 @@ var STATES_EN = [
         "Fund via wire or cashier's check per county instructions"
       ],
       depositInfo: "Varies by county.",
-      directLink: "https://tax.iowa.gov/property-tax"
+      directLink: "https://revenue.iowa.gov/topics/property-tax"
     },
     beginnerTip: "Iowa's 24% rate is the best in the country. The critical rule: set a calendar reminder to send your 90-day notice at exactly 21 months from purchase. Missing this deadline voids your certificate. That's the #1 mistake Iowa investors make.",
     otc: { available: false, note: "Liens not sold at auction must be purchased directly from the county — contact treasurer after the June sale." },
@@ -585,7 +585,7 @@ var STATES_EN = [
     platforms: ["County clerk offices"],
     counties: [
       { name: "Sedgwick", link: "https://www.sedgwickcounty.org/treasurer/", notes: "Wichita area. Best inventory in KS." },
-      { name: "Johnson", link: "https://www.jocogov.org/dept/treasury/home", notes: "Kansas City suburb. Good properties." }
+      { name: "Johnson", link: "https://www.jocogov.org/department/treasury-taxation-and-vehicles", notes: "Kansas City suburb. Good properties." }
     ]
   },
   {
@@ -668,7 +668,7 @@ var STATES_EN = [
         "Register per municipality instructions — most are in-person"
       ],
       depositInfo: "Varies by municipality.",
-      directLink: "https://www.maine.gov/revenue/taxes/property-taxes"
+      directLink: "https://www.maine.gov/revenue/taxes/property-tax"
     },
     beginnerTip: "Portland and Bangor have the most consistent municipal auction activity. For rural towns, call the town office directly — many don't advertise sales publicly.",
     otc: { available: false, note: "No OTC program." },
@@ -716,8 +716,8 @@ var STATES_EN = [
     ],
     platforms: ["RealAuction.com", "County treasurer portals"],
     counties: [
-      { name: "Baltimore City", link: "https://sdat.dat.maryland.gov/realestate/pages/default.aspx", notes: "18% rate. Best in MD. Online via RealAuction." },
-      { name: "Anne Arundel", link: "https://www.aacounty.org/departments/budget-and-finance/treasurer", notes: "18% rate. Good inventory." },
+      { name: "Baltimore City", link: "https://sdat.dat.maryland.gov/RealProperty/Pages/default.aspx", notes: "18% rate. Best in MD. Online via RealAuction." },
+      { name: "Anne Arundel", link: "https://www.aacounty.org/finance", notes: "18% rate. Good inventory." },
       { name: "Prince George's", link: "https://www.princegeorgescountymd.gov/government/departments/finance", notes: "Moderate rate. Good suburban inventory." }
     ]
   },
@@ -803,7 +803,7 @@ var STATES_EN = [
         "Most sales are in-person with public notice required"
       ],
       depositInfo: "Varies by county.",
-      directLink: "https://www.revenue.state.mn.us/property-tax-division"
+      directLink: "https://www.revenue.state.mn.us/property-taxes"
     },
     beginnerTip: "Minnesota is not a recommended market. If you're in MN, look at county land bank programs — St. Louis County and Cass County occasionally offer direct purchase of tax-forfeited land at below-assessed prices.",
     otc: { available: false, note: "County land banks may offer direct purchase — contact county auditor." },
@@ -866,7 +866,7 @@ var STATES_EN = [
         "Bring cashier's check — most Missouri counties do not accept wire on auction day"
       ],
       depositInfo: "Cashier's check. Confirm amount with county collector.",
-      directLink: "https://dor.mo.gov/taxation/property/"
+      directLink: "https://dor.mo.gov/how-do-i/learn-about-personal-property-taxes.html"
     },
     beginnerTip: "Missouri is not recommended for out-of-state beginners due to the agent requirement. If you have a Missouri contact, start with rural counties where the 10% rate faces no competition.",
     otc: { available: false, note: "No OTC program." },
@@ -1044,7 +1044,7 @@ var STATES_EN = [
     ],
     platforms: ["RealAuction.com", "Municipal tax collector offices"],
     counties: [
-      { name: "Salem", link: "https://www.salemcountynj.gov/county-government/county-offices/tax-administrator/", notes: "Low competition. Good rates." },
+      { name: "Salem", link: "https://www.salemcountynj.gov/departments/treasury/", notes: "Low competition. Good rates." },
       { name: "Cumberland", link: "https://www.co.cumberland.nj.us/264/Tax-Board", notes: "Low competition. Good rates." },
       { name: "Bergen", link: "https://www.bergencountynj.gov/", notes: "High competition. Rates often 0%. Avoid for beginners." }
     ]
@@ -1063,7 +1063,7 @@ var STATES_EN = [
         "Bid online per PTD instructions"
       ],
       depositInfo: "Varies by sale. Confirm with PTD.",
-      directLink: "https://www.tax.newmexico.gov/property-taxes/"
+      directLink: "https://www.tax.newmexico.gov/about-us/property-tax-division/"
     },
     beginnerTip: "New Mexico's single-registration system is the simplest in the country. Register once, access all county sales. Good starting point for deed-state investing.",
     otc: { available: false, note: "No OTC program." },
@@ -1095,7 +1095,7 @@ var STATES_EN = [
         "Register per county instructions — processes vary significantly"
       ],
       depositInfo: "NYC: significant capital requirement for bulk purchase. Upstate: varies.",
-      directLink: "https://www.nyc.gov/site/finance/taxes/property-tax-lien-sale.page"
+      directLink: "https://www.nyc.gov/site/finance/property/property-lien-sales.page"
     },
     beginnerTip: "Skip NYC — it's not for beginners. Focus on upstate deed counties like Onondaga (Syracuse), Monroe (Rochester), or Erie (Buffalo) where processes are more accessible.",
     otc: { available: false, note: "No statewide OTC." },
@@ -1142,8 +1142,8 @@ var STATES_EN = [
     ],
     platforms: ["County tax collector offices", "County sheriff offices"],
     counties: [
-      { name: "Mecklenburg", link: "https://www.mecknc.gov/TaxCollections/Pages/Home.aspx", notes: "Charlotte. Strong inventory." },
-      { name: "Wake", link: "https://www.wake.gov/departments-agencies/revenue-department", notes: "Raleigh. Good suburban inventory." }
+      { name: "Mecklenburg", link: "https://tax.mecknc.gov/", notes: "Charlotte. Strong inventory." },
+      { name: "Wake", link: "https://www.wake.gov/departments-government/tax-administration", notes: "Raleigh. Good suburban inventory." }
     ]
   },
   {
@@ -1243,7 +1243,7 @@ var STATES_EN = [
     platforms: ["County treasurer offices"],
     counties: [
       { name: "Oklahoma", link: "https://www.oklahomacounty.org/departments/county-treasurer", notes: "OKC area. Best inventory." },
-      { name: "Tulsa", link: "https://www.tulsacounty.org/Department/TreasurerPortal.aspx", notes: "Good inventory." }
+      { name: "Tulsa", link: "https://www2.tulsacounty.org/treasurer/", notes: "Good inventory." }
     ]
   },
   {
@@ -1309,7 +1309,7 @@ var STATES_EN = [
     platforms: ["Bid4Assets.com", "County tax claim offices"],
     counties: [
       { name: "Philadelphia", link: "https://www.bid4assets.com/taxsales/pennsylvania", notes: "Sheriff's Sale via Bid4Assets. High inventory." },
-      { name: "Allegheny", link: "https://www.alleghenycounty.us/real-estate/tax-claim-bureau.aspx", notes: "Pittsburgh area. Good inventory." },
+      { name: "Allegheny", link: "https://alleghenycountytreasurer.us/real-estate-tax/", notes: "Pittsburgh area. Good inventory." },
       { name: "Dauphin", link: "https://www.dauphincounty.org/government/departments/treasury", notes: "Harrisburg area. Moderate competition." }
     ]
   },
@@ -1328,7 +1328,7 @@ var STATES_EN = [
         "Most are in-person"
       ],
       depositInfo: "Varies by municipality.",
-      directLink: "https://www.ri.gov/government/local/"
+      directLink: "https://www.ri.gov/towns/"
     },
     beginnerTip: "Providence and Pawtucket have the most consistent sale activity in RI. For such a small state, your time may be better spent on a neighboring state with more inventory.",
     otc: { available: false, note: "No OTC program." },
@@ -1377,7 +1377,7 @@ var STATES_EN = [
     platforms: ["County delinquent tax collector offices"],
     counties: [
       { name: "Greenville", link: "https://www.greenvillecounty.org/treasurer/", notes: "Best inventory in SC." },
-      { name: "Richland", link: "https://www.richlandcountysc.gov/Departments/Treasurer", notes: "Columbia area. Good inventory." }
+      { name: "Richland", link: "https://www.richlandcountysc.gov/Government/Elected-Offices/Treasurer", notes: "Columbia area. Good inventory." }
     ]
   },
   {
@@ -1427,7 +1427,7 @@ var STATES_EN = [
         "Nashville (Davidson County) has an online component — check nashville.gov for details"
       ],
       depositInfo: "Varies by county. Attorney required.",
-      directLink: "https://www.tn.gov/revenue/taxes/property-tax.html"
+      directLink: "https://www.tn.gov/revenue/taxes/local-taxes/property-tax.html"
     },
     beginnerTip: "Budget $2,000–$4,000 for attorney costs before your first TN purchase. Davidson (Nashville) and Shelby (Memphis) counties have the best inventory but also the most competition.",
     otc: { available: false, note: "Check county surplus sale listings for post-auction direct purchase opportunities." },
@@ -1444,7 +1444,7 @@ var STATES_EN = [
     platforms: ["County Chancery Court offices"],
     counties: [
       { name: "Davidson", link: "https://www.nashville.gov/departments/trustee", notes: "Nashville. Best inventory in TN." },
-      { name: "Shelby", link: "https://www.shelbycountytn.gov/TrusteeIndex", notes: "Memphis. Good urban inventory." }
+      { name: "Shelby", link: "https://www.shelbycountytn.gov/84/Trustee", notes: "Memphis. Good urban inventory." }
     ]
   },
   {
@@ -1479,9 +1479,9 @@ var STATES_EN = [
     platforms: ["RealAuction.com", "GovEase.com", "County tax assessor-collector offices"],
     counties: [
       { name: "Harris", link: "https://www.hctax.net/", notes: "Houston. Massive inventory. Online bidding." },
-      { name: "Dallas", link: "https://www.dallascounty.org/departments/dallascounty/taxoffice.php", notes: "Dallas. Strong urban inventory." },
+      { name: "Dallas", link: "https://www.dallascounty.org/departments/tax/", notes: "Dallas. Strong urban inventory." },
       { name: "Tarrant", link: "https://www.tarrantcounty.com/en/tax.html", notes: "Fort Worth. Good inventory." },
-      { name: "Bexar", link: "https://www.bexar.org/218/Tax-Assessor-Collector", notes: "San Antonio. Good inventory." }
+      { name: "Bexar", link: "https://www.bexar.org/1515/Tax-Assessor-Collector", notes: "San Antonio. Good inventory." }
     ]
   },
   {
@@ -1565,7 +1565,7 @@ var STATES_EN = [
         "Register per the court's instructions and attend in person"
       ],
       depositInfo: "Varies by locality. Attorney costs add $1,500–$3,500.",
-      directLink: "https://www.tax.virginia.gov/property-tax"
+      directLink: "https://www.tax.virginia.gov/property-tax-and-real-estate-tax-questions"
     },
     beginnerTip: "Focus on localities with consistent judicial sale schedules — Prince William, Henrico, and Chesterfield have regular activity. Budget for attorney costs upfront.",
     otc: { available: false, note: "No OTC program." },
@@ -1582,7 +1582,7 @@ var STATES_EN = [
     platforms: ["Circuit Court offices", "Local treasurer offices"],
     counties: [
       { name: "Prince William", link: "https://www.pwcgov.org/government/dept/finance/Pages/Treasurer.aspx", notes: "Northern VA. Good inventory." },
-      { name: "Henrico", link: "https://www.henrico.us/services/finance/", notes: "Richmond area. Consistent sales." }
+      { name: "Henrico", link: "https://henrico.gov/finance/", notes: "Richmond area. Consistent sales." }
     ]
   },
   {
@@ -1635,7 +1635,7 @@ var STATES_EN = [
         "Note: the lien certificate you receive is assignable — you can transfer it"
       ],
       depositInfo: "Varies by county. Confirm with county sheriff.",
-      directLink: "https://tax.wv.gov/Property/SaleOfLands/Pages/SaleOfLands.aspx"
+      directLink: "https://www.wvsao.gov/CountyCollections/Default"
     },
     beginnerTip: "Confirm the 18-month redemption period before planning your deed execution. Many investors incorrectly plan for 12 months and are caught off guard. Also check for separated mineral rights on any rural WV parcel — they're extremely common.",
     otc: { available: false, note: "No OTC. Check WV State Auditor's delinquent land list for additional opportunities." },
@@ -1667,7 +1667,7 @@ var STATES_EN = [
         "Register per county instructions"
       ],
       depositInfo: "Varies by county.",
-      directLink: "https://www.revenue.wi.gov/Pages/FAQS/ise-propertytax.aspx"
+      directLink: "https://www.revenue.wi.gov/Pages/PropertyTax/home.aspx"
     },
     beginnerTip: "Milwaukee and Dane (Madison) counties have the best WI inventory. Contact the Milwaukee County Treasurer specifically — they have the most organized auction process in the state.",
     otc: { available: false, note: "Check county land bank for properties not in public auction." },
@@ -1702,7 +1702,7 @@ var STATES_EN = [
         "Register in person — most WY counties do not have online bidding"
       ],
       depositInfo: "Varies by county.",
-      directLink: "https://revenue.wyo.gov/property-tax"
+      directLink: "https://wyo-prop-div.wyo.gov/"
     },
     beginnerTip: "Laramie and Natrona counties have the best WY inventory. The 4-year redemption makes Wyoming a very long-term play — not recommended unless you understand the energy land market.",
     otc: { available: false, note: "No OTC program." },
