@@ -40,7 +40,7 @@ var STATES_ES = [
     counties:[{name:"Maricopa",link:"https://treasurer.maricopa.gov/tax-lien",notes:"Subasta más grande de AZ. Alta competencia. Solo en línea."},{name:"Pima",link:"https://www.pima.gov/government/treasurer",notes:"Segunda más grande. Competencia moderada."},{name:"Pinal",link:"https://pinalcountyaz.gov/Treasurer",notes:"Menos competencia. Bueno para principiantes."},{name:"Yavapai",link:"https://www.yavapai.us/treasurer",notes:"Rural, menor competencia, OTC disponible."}]
   },
   {
-    id:"AR",name:"Arkansas",type:"deed",rate:"Solo penalización",redemption:"2 años",score:44,beginnerFriendly:true,
+    id:"AR",name:"Arkansas",type:"redeemable deed",rate:"Solo penalización",redemption:"2 años",score:44,beginnerFriendly:true,
     scoreWhy:"El sistema COSL es sencillo para principiantes con compras directas en línea, aunque la calidad de propiedades varía.",
     note:"El Comisionado de Tierras del Estado (COSL) administra todas las propiedades en mora statewide. Compra en línea disponible. Escritura equivalente a quitclaim con ventana de litigio de 90 días. Estatuto: ACA §26-37-101.",
     auctionSignup:{platform:"cosl.org (Comisionado de Tierras del Estado)",steps:["Vaya a cosl.org y cree una cuenta gratuita","Explore las propiedades disponibles — actualizadas regularmente","Envíe una oferta en línea para cualquier propiedad disponible","Si es aceptada, pague con tarjeta o ACH y reciba su escritura electrónicamente"],depositInfo:"Pago requerido al momento de la compra. No se necesita depósito para explorar.",directLink:"https://cosl.org"},
@@ -88,7 +88,7 @@ var STATES_ES = [
     platforms:["A nivel de ciudad (sin plataforma centralizada)"],counties:[]
   },
   {
-    id:"DE",name:"Delaware",type:"deed",rate:"15-20% (varía por condado)",redemption:"60 días a 1 año",score:28,beginnerFriendly:false,
+    id:"DE",name:"Delaware",type:"redeemable deed",rate:"15-20% (varía por condado)",redemption:"60 días a 1 año",score:28,beginnerFriendly:false,
     notBeginnerReason:"Solo 3 condados, inventario muy limitado, no es un mercado primario viable.",
     scoreWhy:"Solo 3 condados operando independientemente con inventario mínimo. Demasiado pequeño para construir una estrategia.",
     note:"Delaware tiene solo 3 condados (Kent, New Castle, Sussex), cada uno realizando subastas independientes. Estatuto: Del. Code Título 9 §8721.",
@@ -137,7 +137,7 @@ var STATES_ES = [
     counties:[{name:"Fulton",link:"https://www.fultoncountyga.gov/inside-fulton-county/fulton-county-departments/superior-court",notes:"Área de Atlanta. Alta competencia."},{name:"Bibb",link:"https://www.maconbibb.us/clerk-of-superior-court/",notes:"Área de Macon. Competencia moderada. Bueno para principiantes."},{name:"Chatham",link:"https://chathamcounty.org/454/Superior-Court",notes:"Área de Savannah. Buen inventario."}]
   },
   {
-    id:"HI",name:"Hawái",type:"deed",rate:"Varía",redemption:"1 año",score:14,beginnerFriendly:false,
+    id:"HI",name:"Hawái",type:"redeemable deed",rate:"Varía",redemption:"1 año",score:14,beginnerFriendly:false,
     notBeginnerReason:"Inventario extremadamente limitado, complejidad de tierra en arrendamiento y restricciones de Hawaiian Home Lands hacen esto impracticable.",
     scoreWhy:"Inventario limitado, estructuras complejas de arrendamiento y valores de propiedad extremadamente altos hacen que Hawái sea impracticable para la mayoría.",
     note:"Hawái tiene 4 condados. Muchas parcelas son en arrendamiento (no en dominio absoluto). Las Hawaiian Home Lands eliminan grandes porciones del mercado. Estatuto: HRS §246-60.",
@@ -149,7 +149,7 @@ var STATES_ES = [
     platforms:["Oficinas fiscales del condado"],counties:[]
   },
   {
-    id:"ID",name:"Idaho",type:"deed",rate:"Varía",redemption:"14 meses",score:31,beginnerFriendly:false,
+    id:"ID",name:"Idaho",type:"redeemable deed",rate:"Varía",redemption:"14 meses",score:31,beginnerFriendly:false,
     notBeginnerReason:"Los condados tienen discreción sobre si vender — muchos nunca lo hacen. Sin calendario ni sistema central.",
     scoreWhy:"Inventario impredecible, sin sistema centralizado y discreción del condado hacen esto poco confiable como estrategia.",
     note:"Los condados de Idaho tienen la autoridad pero no la obligación de vender propiedades en mora. Algunos condados no han realizado ventas en años. Estatuto: IC §63-1003.",
@@ -161,10 +161,10 @@ var STATES_ES = [
     platforms:["Oficinas del tesorero del condado"],counties:[]
   },
   {
-    id:"IL",name:"Illinois",type:"lien",rate:"Hasta 18%/6mo + penalizaciones",redemption:"2.5–3 años",score:63,beginnerFriendly:false,
+    id:"IL",name:"Illinois",type:"lien",rate:"Hasta 9%/6mo (18%/año) + penalizaciones",redemption:"2.5–3 años",score:63,beginnerFriendly:false,
     notBeginnerReason:"El Condado Cook (Chicago) está dominado por compradores institucionales que reducen tasas al 0%. Reglas complejas de Venta de Carroñero. Requiere abogado para ejecución.",
     scoreWhy:"Altas penalizaciones e inventario masivo — pero dominio institucional en Cook y proceso legal complejo requieren experiencia.",
-    note:"Illinois realiza Ventas Anuales y Ventas de Carroñero (Condado Cook, reglas especiales). Tasa de interés pujada a la baja desde 18%/6mo. Ejecución requiere abogado especializado. Estatuto: 35 ILCS 200/21.",
+    note:"Illinois realiza Ventas Anuales y Ventas de Carroñero (Condado Cook, reglas especiales). Tasa de interés pujada a la baja desde 9%/6mo (reducida del 18% por Ley Pública 100-1070, vigente 2019). Ejecución requiere abogado especializado. Estatuto: 35 ILCS 200/21-215.",
     auctionSignup:{platform:"Específico por condado (Cook usa su propio sistema)",steps:["Para Cook County: cookcountytreasurer.com y regístrese para la Venta Fiscal Anual","Para otros condados: contacte al secretario o tesorero — revenue.illinois.gov","Pre-regístrese al menos 2 semanas antes con identificación y documentos de entidad si puja como LLC","Financie su cuenta según instrucciones del condado — Cook requiere fondos anticipados"],depositInfo:"Cook County requiere fondos anticipados. Otros condados varían.",directLink:"https://www.cookcountytreasurer.com"},
     beginnerTip:"Omita Cook County hasta tener experiencia. Comience con DuPage, Lake o Will — mejores tasas y menos competencia institucional.",
     otc:{available:false,note:"Sin OTC. Los gravámenes no vendidos van a estado de confiscación — contacte al condado para compra."},
@@ -472,7 +472,7 @@ var STATES_ES = [
     counties:[{name:"Filadelfia",link:"https://www.bid4assets.com/taxsales/pennsylvania",notes:"Venta del Alguacil vía Bid4Assets. Alto inventario."},{name:"Allegheny",link:"https://alleghenycountytreasurer.us/real-estate-tax/",notes:"Área de Pittsburgh. Buen inventario."},{name:"Dauphin",link:"https://www.dauphincounty.org/government/departments/treasury",notes:"Área de Harrisburg. Competencia moderada."}]
   },
   {
-    id:"RI",name:"Rhode Island",type:"hybrid",rate:"16% penalización (6 meses); 1%/mes después",redemption:"1 año",score:26,beginnerFriendly:false,
+    id:"RI",name:"Rhode Island",type:"lien",rate:"16% penalización (6 meses); 1%/mes después",redemption:"1 año",score:26,beginnerFriendly:false,
     notBeginnerReason:"39 municipios pequeños con volumen muy bajo, sin infraestructura estatal, ventas irregulares.",
     scoreWhy:"Demasiado pequeño e irregular para construir una estrategia. Solo funciona como oportunidad suplementaria si ya está en la región.",
     note:"Rhode Island tiene 39 municipios realizando sus propias ventas de gravámenes irregulares. Volumen muy bajo. Sin plataforma centralizada. Estatuto: RI Gen Laws §44-9-1.",
@@ -509,7 +509,7 @@ var STATES_ES = [
     platforms:["Oficinas del tesorero del condado"],counties:[]
   },
   {
-    id:"TN",name:"Tennessee",type:"hybrid",rate:"10% penalización en redención",redemption:"1 año (después de 2 años de morosidad requeridos para la venta)",score:59,beginnerFriendly:false,
+    id:"TN",name:"Tennessee",type:"redeemable deed",rate:"10% penalización en redención",redemption:"1 año (después de 2 años de morosidad requeridos para la venta)",score:59,beginnerFriendly:false,
     notBeginnerReason:"El proceso del Tribunal de Equidad requiere abogado. Se requieren 2 años de morosidad. No puede acceder a la propiedad durante 1 año de redención.",
     scoreWhy:"Inventario decente en Nashville y Memphis pero la participación del Tribunal de Equidad agrega costos y tiempo.",
     note:"Tennessee es un estado de escritura redimible con requisito de morosidad de 2 años y redención de 1 año después de la compra. El proceso del Tribunal de Equidad requiere participación de abogado. Las propiedades no vendidas van a ventas de excedente del condado. Estatuto: TCA §67-5-2401.",

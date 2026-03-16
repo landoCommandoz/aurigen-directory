@@ -109,7 +109,7 @@ var STATES_EN = [
     ]
   },
   {
-    id: "AR", name: "Arkansas", type: "deed", rate: "Penalty only", redemption: "2 years",
+    id: "AR", name: "Arkansas", type: "redeemable deed", rate: "Penalty only", redemption: "2 years",
     score: 44, beginnerFriendly: true,
     scoreWhy: "State-run COSL system is straightforward for newcomers with direct online purchasing, though property quality varies widely.",
     note: "Arkansas Commissioner of State Lands (COSL) manages all tax-delinquent properties statewide. Online purchasing available. Deed issued is quitclaim-equivalent with a 90-day litigation risk window. Statute: ACA §26-37-101.",
@@ -244,7 +244,7 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "DE", name: "Delaware", type: "deed", rate: "15-20% penalty (varies by county)", redemption: "60 days to 1 year",
+    id: "DE", name: "Delaware", type: "redeemable deed", rate: "15-20% penalty (varies by county)", redemption: "60 days to 1 year",
     score: 28, beginnerFriendly: false,
     notBeginnerReason: "Only 3 counties, very limited inventory, not a viable primary market.",
     scoreWhy: "Only 3 counties operating independently with minimal inventory. Too small to build a strategy around.",
@@ -387,7 +387,7 @@ var STATES_EN = [
     ]
   },
   {
-    id: "HI", name: "Hawaii", type: "deed", rate: "Varies", redemption: "1 year",
+    id: "HI", name: "Hawaii", type: "redeemable deed", rate: "Varies", redemption: "1 year",
     score: 14, beginnerFriendly: false,
     notBeginnerReason: "Extremely limited inventory, leasehold land complexity, and Hawaiian Home Lands restrictions make this impractical.",
     scoreWhy: "Limited inventory, complex leasehold structures, and extremely high property values make Hawaii impractical for most investors.",
@@ -420,7 +420,7 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "ID", name: "Idaho", type: "deed", rate: "Varies", redemption: "14 months",
+    id: "ID", name: "Idaho", type: "redeemable deed", rate: "Varies", redemption: "14 months",
     score: 31, beginnerFriendly: false,
     notBeginnerReason: "Counties have discretion on whether to sell — many never do. No central calendar or system.",
     scoreWhy: "Unpredictable inventory, no centralized system, and county discretion on sales make this unreliable as a strategy.",
@@ -452,11 +452,11 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "IL", name: "Illinois", type: "lien", rate: "Up to 18%/6mo + penalties", redemption: "2.5–3 years",
+    id: "IL", name: "Illinois", type: "lien", rate: "Up to 9%/6mo (18%/yr) + penalties", redemption: "2.5–3 years",
     score: 63, beginnerFriendly: false,
     notBeginnerReason: "Cook County (Chicago) is dominated by institutional buyers pushing rates to 0%. Complex Scavenger Sale rules. Requires attorney for foreclosure.",
     scoreWhy: "High statutory penalties and massive inventory — but institutional dominance in Cook and complex legal process require experience.",
-    note: "Illinois holds Annual Sales (county-level, competitive bidding) and Scavenger Sales (Cook County, special rules for long-delinquent properties). Interest rate bid down from 18%/6mo. Penalty resets to 12%/6mo in forfeiture. Foreclosure requires specialized attorney. Statute: 35 ILCS 200/21.",
+    note: "Illinois holds Annual Sales (county-level, competitive bidding) and Scavenger Sales (Cook County, special rules for long-delinquent properties). Interest rate bid down from 9%/6mo (reduced from 18% by Public Act 100-1070, effective 2019). Penalty resets to 12%/6mo in forfeiture. Foreclosure requires specialized attorney. Statute: 35 ILCS 200/21-215.",
     auctionSignup: {
       platform: "County-specific (Cook uses its own system; others vary)",
       steps: [
@@ -1314,7 +1314,7 @@ var STATES_EN = [
     ]
   },
   {
-    id: "RI", name: "Rhode Island", type: "hybrid", rate: "16% penalty (6 months); 1%/mo thereafter", redemption: "1 year",
+    id: "RI", name: "Rhode Island", type: "lien", rate: "16% penalty (6 months); 1%/mo thereafter", redemption: "1 year",
     score: 26, beginnerFriendly: false,
     notBeginnerReason: "39 tiny municipalities with very low volume, no state infrastructure, irregular sales.",
     scoreWhy: "Too small and irregular to build a strategy around. Works only as a supplemental opportunity if already in the region.",
@@ -1413,7 +1413,7 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "TN", name: "Tennessee", type: "hybrid", rate: "10% penalty on redemption", redemption: "1 year (after 2-year delinquency required for sale)",
+    id: "TN", name: "Tennessee", type: "redeemable deed", rate: "10% penalty on redemption", redemption: "1 year (after 2-year delinquency required for sale)",
     score: 59, beginnerFriendly: false,
     notBeginnerReason: "Chancery Court process requires attorney. 2-year delinquency required. Cannot access property during 1-year redemption.",
     scoreWhy: "Decent inventory in Nashville and Memphis but Chancery Court involvement adds costs and time.",
