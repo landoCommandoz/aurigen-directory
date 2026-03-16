@@ -73,7 +73,7 @@ const STATES_EN = [
     id: "AZ", name: "Arizona", type: "lien", rate: "Up to 16%", redemption: "3 years",
     score: 78, beginnerFriendly: true,
     scoreWhy: "High statutory rate, fully online auctions, excellent year-round OTC availability. One of the best beginner states in the country.",
-    note: "Arizona conducts reverse-bid auctions in February where investors compete to accept lower interest rates from the 16% ceiling. Unsold liens go to direct purchase (OTC) year-round at the county level. Statute: ARS Title 42 Chapter 18.",
+    note: "Arizona conducts reverse-bid auctions in February where investors compete to accept lower interest rates from the 16% ceiling. Unsold liens go to direct purchase (OTC) year-round at the county level. Statutes: ARS §42-18053 (16% rate), §42-18112 (auction), §42-18114 (bid-down), §42-18122 (OTC), §42-18201 (foreclosure).",
     auctionSignup: {
       platform: "County-specific (most use county treasurer portals; Maricopa uses an online system)",
       steps: [
@@ -89,7 +89,7 @@ const STATES_EN = [
     otc: { available: true, note: "Unsold liens available year-round directly from county treasurers at the statutory 16% rate. Best OTC program in the country for beginners." },
     risks: [
       "Maricopa and Pima counties are saturated — institutional buyers push rates to 0–3%",
-      "3-year holding period before requesting treasurer's deed",
+      "3-year holding period before initiating judicial foreclosure via Superior Court (ARS §42-18201) — not a treasurer's deed",
       "Many parcels are undeveloped desert with no road access or development potential",
       "Check for active water rights and irrigation district liens",
       "Confirm parcel is not state trust land"
@@ -97,7 +97,8 @@ const STATES_EN = [
     ddExtra: [
       "Run parcel through county GIS to confirm road access and zoning",
       "Verify no irrigation district or water district secondary liens",
-      "Check ADWR (Arizona Department of Water Resources) for water rights status on agricultural parcels"
+      "Check ADWR (Arizona Department of Water Resources) for water rights status on agricultural parcels",
+      "Be aware of SB 1431 (2024) — new excess proceeds rules may affect post-foreclosure surplus distribution"
     ],
     platforms: ["aztaxsale.info", "County treasurer portals", "RealAuction (some counties)"],
     counties: [
