@@ -4031,6 +4031,14 @@ function openState(id) {
       <div class="stat-card"><div class="stat-label">${t('modalScore')}</div><div class="stat-value" style="color:${scoreColor}">${s.score}/100</div></div>
     </div>
 
+    ${s.typeWhy || s.rateWhy ? `
+      <div class="modal-section">
+        <div class="modal-section-title">${t('modalWhyClassified') || 'Why This Classification & Rate'}</div>
+        ${s.typeWhy ? `<div class="modal-note" style="margin-bottom:8px;"><strong>${t('modalTypeLabel') || 'Type'}:</strong> ${s.typeWhy}</div>` : ''}
+        ${s.rateWhy ? `<div class="modal-note"><strong>${t('modalRateLabel') || 'Rate'}:</strong> ${s.rateWhy}</div>` : ''}
+      </div>
+    ` : ''}
+
     <div class="score-bar-wrap">
       <div class="score-bar-label"><span>${t('modalScore')}</span><span style="color:${scoreColor}">${s.score}/100</span></div>
       <div class="score-bar-track"><div class="score-bar-fill" style="width:${s.score}%;background:${scoreColor}"></div></div>
