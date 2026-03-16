@@ -2,7 +2,7 @@
 // Fields: id, name, type, rate, redemption, score, beginnerFriendly, beginnerTip,
 //         scoreWhy, note, risks, ddExtra, auctionSignup, otc, counties, platforms
 
-const STATES_ES = [
+var STATES_ES = [
 {
     id:"AL",name:"Alabama",type:"deed",rate:"Varía",redemption:"3 años",score:18,beginnerFriendly:false,
     notBeginnerReason:"Período de redención largo, problemas de título frecuentes, competencia institucional en áreas metropolitanas.",
