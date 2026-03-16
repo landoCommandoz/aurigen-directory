@@ -2406,27 +2406,27 @@ a { color: inherit; text-decoration: none; }
                 </div>
                 <div class="field-group">
                   <div class="field-label">Purchase Price / Lien Amount ($)</div>
-                  <input class="field-input" id="az-price" type="number" placeholder="10000" oninput="calcAnalyzer()">
+                  <input class="field-input" id="az-price" type="number" min="0" placeholder="10000" oninput="calcAnalyzer()">
                 </div>
                 <div class="field-group">
                   <div class="field-label">Annual Interest Rate (%)</div>
-                  <input class="field-input" id="az-rate" type="number" placeholder="18" oninput="calcAnalyzer()">
+                  <input class="field-input" id="az-rate" type="number" min="0" max="100" placeholder="18" oninput="calcAnalyzer()">
                 </div>
                 <div class="field-group">
                   <div class="field-label">Hold Period (months)</div>
-                  <input class="field-input" id="az-months" type="number" placeholder="24" oninput="calcAnalyzer()">
+                  <input class="field-input" id="az-months" type="number" min="0" max="600" placeholder="24" oninput="calcAnalyzer()">
                 </div>
                 <div class="field-group" id="az-arv-group">
                   <div class="field-label">Estimated Property ARV ($) <span style="color:var(--text-muted)">(deed only)</span></div>
-                  <input class="field-input" id="az-arv" type="number" placeholder="85000" oninput="calcAnalyzer()">
+                  <input class="field-input" id="az-arv" type="number" min="0" placeholder="85000" oninput="calcAnalyzer()">
                 </div>
                 <div class="field-group">
                   <div class="field-label">Additional Costs ($) <span style="color:var(--text-muted)">(legal, title, etc.)</span></div>
-                  <input class="field-input" id="az-costs" type="number" placeholder="500" oninput="calcAnalyzer()">
+                  <input class="field-input" id="az-costs" type="number" min="0" placeholder="500" oninput="calcAnalyzer()">
                 </div>
                 <div class="field-group">
                   <div class="field-label">Penalty / Bonus Rate (%)</div>
-                  <input class="field-input" id="az-penalty" type="number" placeholder="0" oninput="calcAnalyzer()">
+                  <input class="field-input" id="az-penalty" type="number" min="0" max="100" placeholder="0" oninput="calcAnalyzer()">
                 </div>
               </div>
             </div>
