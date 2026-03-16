@@ -1405,6 +1405,34 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 10px 28px var(--accent-glow);
 }
 
+/* Preview fade gate for locked states */
+.preview-fade-gate {
+  position: relative;
+  margin-top: 20px;
+}
+
+.preview-fade-overlay {
+  position: absolute;
+  top: -60px;
+  left: -20px;
+  right: -20px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--bg2));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.preview-gate-content {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .paywall-disclaimer {
   font-size: 10px;
   color: var(--text-muted);
@@ -1948,7 +1976,7 @@ a { color: inherit; text-decoration: none; }
 ═══════════════════════════════════════════════ */
 #lang-toggle {
   position: fixed;
-  top: 12px;
+  top: 56px;
   right: 12px;
   background: rgba(17,17,22,0.95);
   backdrop-filter: blur(12px);
@@ -3530,15 +3558,16 @@ async function initMap() {
     function getColor(sid) {
       const s = stateMap[sid];
       if (!s) return mapColors.state;
-      if (s.type === 'lien') return mapColors.accent;
-      if (s.type === 'deed') return mapColors.teal;
-      return mapColors.purple;
+      const isFree = FREE_STATES.has(sid) || state.isPaid;
+      if (s.type === 'lien') return isFree ? '#d4b44f' : '#9a7f30';
+      if (s.type === 'deed') return isFree ? '#34e0cc' : '#1fa08e';
+      return isFree ? '#b99cff' : '#7a5fc4';
     }
 
     function getOpacity(sid) {
       const s = stateMap[sid];
       if (!s) return 0.3;
-      return (FREE_STATES.has(sid) || state.isPaid) ? 0.9 : 0.55;
+      return (FREE_STATES.has(sid) || state.isPaid) ? 1 : 0.75;
     }
 
     const features = topojson.feature(us, us.objects.states).features;
@@ -3558,7 +3587,7 @@ async function initMap() {
       .on('click', (event, d) => {
         const sid = fipsToId[String(d.id).padStart(2,'0')];
         if (!sid) return;
-        (FREE_STATES.has(sid) || state.isPaid) ? openState(sid) : openPaywall(sid);
+        openState(sid);  // openState handles free/locked/paid routing internally
       })
       .on('mouseenter', function(event, d) {
         const sid = fipsToId[String(d.id).padStart(2,'0')];
@@ -3623,10 +3652,12 @@ function openState(id) {
 
   state.activeState = id;
 
-  const isFree = FREE_STATES.has(id) || state.isPaid;
-  if (!isFree) { openPaywall(id); return; }
-
+  const isPaid = state.isPaid;
+  const isFreeState = FREE_STATES.has(id);
   const isSaved = state.savedStates.includes(id);
+
+  // Locked states (not free, not paid) → straight to paywall
+  if (!isFreeState && !isPaid) { openPaywall(id); return; }
 
   // Type class
   const typeClass = s.type === 'lien' ? 'type-lien' : s.type === 'deed' ? 'type-deed' : 'type-both';
@@ -3654,6 +3685,68 @@ function openState(id) {
   // Score bar
   const scoreColor = s.score >= 70 ? 'var(--green)' : s.score >= 45 ? 'var(--accent)' : 'var(--red)';
 
+  // PREVIEW SECTION — visible to free and paid users
+  const previewHTML = `
+    ${bBadge}
+    ${!s.beginnerFriendly && s.notBeginnerReason ? `<div class="modal-note" style="margin-bottom:14px;color:var(--red);font-size:12px;">${s.notBeginnerReason}</div>` : ''}
+
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-label">${t('modalRate')}</div><div class="stat-value">${s.rate}</div></div>
+      <div class="stat-card"><div class="stat-label">${t('modalRedemption')}</div><div class="stat-value">${s.redemption}</div></div>
+      <div class="stat-card"><div class="stat-label">${t('modalType')}</div><div class="stat-value" style="text-transform:capitalize">${s.type}</div></div>
+      <div class="stat-card"><div class="stat-label">${t('modalScore')}</div><div class="stat-value" style="color:${scoreColor}">${s.score}/100</div></div>
+    </div>
+
+    <div class="score-bar-wrap">
+      <div class="score-bar-label"><span>${t('modalScore')}</span><span style="color:${scoreColor}">${s.score}/100</span></div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:${s.score}%;background:${scoreColor}"></div></div>
+    </div>
+
+    ${s.scoreWhy ? `
+      <div class="modal-section">
+        <div class="modal-section-title">${t('modalScoreBreakdown')}</div>
+        <div class="modal-note">${s.scoreWhy}</div>
+      </div>
+    ` : ''}
+  `;
+
+  // FREE STATE (not paid) — show preview + overview, then gate the rest
+  if (isFreeState && !isPaid) {
+    document.getElementById('modal-body').innerHTML = `
+      ${previewHTML}
+
+      ${s.note ? `
+        <div class="modal-section">
+          <div class="modal-section-title">${t('modalOverview')}</div>
+          <div class="modal-note">${s.note}</div>
+        </div>
+      ` : ''}
+
+      <div class="preview-fade-gate">
+        <div class="preview-fade-overlay"></div>
+        <div class="preview-gate-content">
+          <div style="font-size:32px;margin-bottom:8px;">\u{1F512}</div>
+          <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px;">Unlock Full State Details</div>
+          <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.5;">
+            Get auction signup steps, county links, risks, due diligence checklists, beginner tips, and OTC availability for all 51 states.
+          </div>
+          <div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:16px;">${t('paywallPriceNote')}</div>
+          <a href="${STRIPE_URL}" target="_blank" class="paywall-btn">${t('paywallCta')}</a>
+          <div style="font-size:12px;color:var(--text-dim);margin-top:12px;">
+            ${t('paywallHaveCode')}
+            <button onclick="closeStateModal();showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">${t('paywallEnterCode')}</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    openModal();
+    updateDebug();
+    return;
+  }
+
+  // PAID USER — full access to everything
   // Counties
   let countiesHTML = '';
   if (s.counties && s.counties.length > 0) {
@@ -3709,29 +3802,9 @@ function openState(id) {
     `;
   }
 
-  // Body
+  // Full body for paid users
   document.getElementById('modal-body').innerHTML = `
-    ${bBadge}
-    ${!s.beginnerFriendly && s.notBeginnerReason ? `<div class="modal-note" style="margin-bottom:14px;color:var(--red);font-size:12px;">${s.notBeginnerReason}</div>` : ''}
-
-    <div class="stat-grid">
-      <div class="stat-card"><div class="stat-label">${t('modalRate')}</div><div class="stat-value">${s.rate}</div></div>
-      <div class="stat-card"><div class="stat-label">${t('modalRedemption')}</div><div class="stat-value">${s.redemption}</div></div>
-      <div class="stat-card"><div class="stat-label">${t('modalType')}</div><div class="stat-value" style="text-transform:capitalize">${s.type}</div></div>
-      <div class="stat-card"><div class="stat-label">${t('modalScore')}</div><div class="stat-value" style="color:${scoreColor}">${s.score}/100</div></div>
-    </div>
-
-    <div class="score-bar-wrap">
-      <div class="score-bar-label"><span>${t('modalScore')}</span><span style="color:${scoreColor}">${s.score}/100</span></div>
-      <div class="score-bar-track"><div class="score-bar-fill" style="width:${s.score}%;background:${scoreColor}"></div></div>
-    </div>
-
-    ${s.scoreWhy ? `
-      <div class="modal-section">
-        <div class="modal-section-title">${t('modalScoreBreakdown')}</div>
-        <div class="modal-note">${s.scoreWhy}</div>
-      </div>
-    ` : ''}
+    ${previewHTML}
 
     ${s.note ? `
       <div class="modal-section">
