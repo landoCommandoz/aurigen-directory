@@ -2540,7 +2540,7 @@ function storageSet(key, val) {
 }
 
 // ── Init ─────────────────────────────────────────────────────
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
   try {
     // Restore persisted state
     state.entered = storageGet('aug_entered', false);
@@ -2551,6 +2551,19 @@ window.addEventListener('load', () => {
     // Load language preference from localStorage
     const savedLang = storageGet('aurigen_lang', 'en');
     state.lang = (savedLang === 'es') ? 'es' : 'en';
+
+    // Wait for language file to finish loading (started in head script)
+    // The file was already requested; we just ensure it's loaded before proceeding
+    try {
+      await loadLanguageFile(state.lang);
+    } catch(e) {
+      console.error('Failed to load initial language file:', e);
+      // Fallback: try loading English
+      if (state.lang !== 'en') {
+        state.lang = 'en';
+        await loadLanguageFile('en');
+      }
+    }
 
     // Apply language immediately (before rendering)
     applyLanguage();
