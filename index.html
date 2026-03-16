@@ -2829,7 +2829,8 @@ const I18N = {
     legendRdeed: 'R. Deed',
     legendBoth: 'Both',
     legendLocked: 'Locked',
-    mapFallback: 'Map unavailable - switch to List view.',
+    mapFallback: 'Map unavailable — tap Retry to reload.',
+    mapRetryBtn: 'Retry Map',
     mapFallbackBtn: 'Open List View',
     // Deal Analyzer
     analyzerTitle: 'Deal Analyzer',
@@ -3027,7 +3028,8 @@ const I18N = {
     legendRdeed: 'Escr. Redimible',
     legendBoth: 'Ambos',
     legendLocked: 'Bloqueado',
-    mapFallback: 'Mapa no disponible - cambie a vista de Lista.',
+    mapFallback: 'Mapa no disponible — toque Reintentar para recargar.',
+    mapRetryBtn: 'Reintentar Mapa',
     mapFallbackBtn: 'Abrir Vista de Lista',
     // Deal Analyzer
     analyzerTitle: 'Analizador de Operaciones',
@@ -3807,10 +3809,33 @@ function setMapView(which) {
 }
 
 // ── Map ──────────────────────────────────────────────────────
+async function fetchWithRetry(urls, retries = 3, delay = 1000) {
+  const allUrls = Array.isArray(urls) ? urls : [urls];
+  for (const url of allUrls) {
+    for (let i = 0; i <= retries; i++) {
+      try { return await d3.json(url); }
+      catch(e) { if (i < retries) await new Promise(r => setTimeout(r, delay * Math.pow(2, i))); }
+    }
+  }
+  throw new Error('All CDN sources failed after retries');
+}
+
 async function initMap() {
   try {
-    const svg = d3.select('#map-svg');
+    if (typeof d3 === 'undefined' || typeof topojson === 'undefined') {
+      throw new Error('D3 or TopoJSON library not loaded');
+    }
+
     const container = document.getElementById('map-container');
+    // Reset SVG in case of retry
+    container.querySelector('#map-svg')?.remove();
+    const svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgEl.id = 'map-svg';
+    svgEl.style.cssText = 'width:100%;height:100%;flex:1;position:relative;z-index:0;';
+    container.innerHTML = '';
+    container.appendChild(svgEl);
+
+    const svg = d3.select('#map-svg');
     const w = container.clientWidth || 800;
     const h = container.clientHeight || 480;
 
@@ -3837,7 +3862,10 @@ async function initMap() {
       .translate([w / 2, h / 2]);
 
     const path = d3.geoPath().projection(projection);
-    const us = await d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json');
+    const us = await fetchWithRetry([
+      'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json',
+      'https://unpkg.com/us-atlas@3/states-10m.json'
+    ], 3, 1000);
 
     const stateMap = {};
     if (STATES && STATES.length > 0) STATES.forEach(s => { stateMap[s.id] = s; });
@@ -3975,7 +4003,14 @@ async function initMap() {
   } catch(err) {
     console.error('Map init error:', err);
     document.getElementById('map-container').innerHTML =
-      `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:14px;flex-direction:column;gap:12px;"><div style="font-size:32px;">\u{1F5FA}</div><div>${t('mapFallback')}</div><button onclick="setMapView('list')" style="background:var(--accent);color:var(--bg);border:none;border-radius:8px;padding:10px 24px;font-weight:700;cursor:pointer;font-size:12px;margin-top:4px;">${t('mapFallbackBtn')}</button></div>`;
+      `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:14px;flex-direction:column;gap:12px;">
+        <div style="font-size:32px;">\u{1F5FA}</div>
+        <div>${t('mapFallback')}</div>
+        <div style="display:flex;gap:8px;">
+          <button onclick="initMap()" style="background:var(--accent);color:var(--bg);border:none;border-radius:8px;padding:10px 24px;font-weight:700;cursor:pointer;font-size:12px;">${t('mapRetryBtn')}</button>
+          <button onclick="setMapView('list')" style="background:transparent;color:var(--text-dim);border:1px solid var(--text-dim);border-radius:8px;padding:10px 24px;font-weight:700;cursor:pointer;font-size:12px;">${t('mapFallbackBtn')}</button>
+        </div>
+      </div>`;
   }
 }
 
