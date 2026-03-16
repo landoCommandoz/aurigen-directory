@@ -4,11 +4,11 @@
 
 var STATES_EN = [
   {
-    id: "AL", name: "Alabama", type: "deed", rate: "Varies", redemption: "3 years",
+    id: "AL", name: "Alabama", type: "lien", rate: "12% per annum", redemption: "3 years",
     score: 18, beginnerFriendly: false,
     notBeginnerReason: "Long redemption, title issues common, institutional competition in metro areas.",
     scoreWhy: "Low interest rate environment, long 3-year redemption, and institutional dominance in metros limit upside for individual investors.",
-    note: "Alabama conducts tax deed sales at the county level. Properties must be delinquent for 3 years before the county auctions them. Statute: AL Code §40-10-1 et seq.",
+    note: "Alabama sells tax lien certificates at the county level. Investors purchase the lien and the property owner has 3 years to redeem at 12% annual interest. If unredeemed, the investor can pursue a tax deed through a separate process. Statute: AL Code §40-10-1 et seq.",
     auctionSignup: {
       platform: "County-level (varies by county)",
       steps: [
@@ -244,7 +244,7 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "DE", name: "Delaware", type: "hybrid", llcFriendly: true, rate: "15-20% (varies by county)", redemption: "60 days to 1 year",
+    id: "DE", name: "Delaware", type: "hybrid", rate: "15-20% (varies by county)", redemption: "60 days to 1 year",
     score: 28, beginnerFriendly: false,
     notBeginnerReason: "Only 3 counties, very limited inventory, not a viable primary market.",
     scoreWhy: "Only 3 counties operating independently with minimal inventory. Too small to build a strategy around.",
@@ -947,7 +947,7 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "NV", name: "Nevada", type: "deed", llcFriendly: true, rate: "N/A", redemption: "None post-sale",
+    id: "NV", name: "Nevada", type: "deed", rate: "N/A", redemption: "None post-sale",
     score: 49, beginnerFriendly: false,
     notBeginnerReason: "2-year county hold period before auction, sealed bid followed by oral bid, and strong institutional competition in Las Vegas area.",
     scoreWhy: "Decent inventory in Clark County (Las Vegas) but 2-year wait and competitive urban market require patience and experience.",
@@ -1689,7 +1689,7 @@ var STATES_EN = [
   },
   {
     id: "WY", name: "Wyoming", type: "lien", rate: "15%", redemption: "4 years",
-    score: 32, beginnerFriendly: false, llcFriendly: true,
+    score: 32, beginnerFriendly: false,
     notBeginnerReason: "4-year redemption, limited inventory, November-only auctions, and primarily rural energy/agricultural land.",
     scoreWhy: "15% rate but 4-year redemption and limited inventory dominated by energy-sector land make this impractical for most strategies.",
     note: "Wyoming holds annual tax lien sales in November. 4-year redemption. Inventory dominated by energy sector and agricultural land. Statute: WS §39-13-108.",
