@@ -994,26 +994,35 @@ a { color: inherit; text-decoration: none; }
   gap: 10px;
   margin-top: 20px;
   width: 100%;
-  max-width: 300px;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
   opacity: 0;
   animation: fadeUp 0.4s ease forwards;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(200,168,75,0.12);
+  border-radius: 16px;
+  padding: 28px 32px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .gate-code-wrap.visible { display: flex; }
 
 .gate-code-input {
   width: 100%;
-  background: var(--bg3);
-  border: 1px solid var(--accent-border);
-  border-radius: 10px;
-  padding: 12px 20px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(200,168,75,0.15);
+  border-radius: 12px;
+  padding: 16px 20px;
   color: var(--text);
   font-family: 'DM Mono', monospace;
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   text-align: center;
   outline: none;
   transition: border-color 0.2s;
+  box-sizing: border-box;
 }
 
 .gate-code-input:focus { border-color: var(--accent); }
@@ -1027,19 +1036,20 @@ a { color: inherit; text-decoration: none; }
 
 .gate-code-submit {
   width: 100%;
-  background: var(--accent-dim);
-  border: 1px solid var(--accent-border);
-  color: var(--accent);
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 12px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 12px;
+  padding: 16px 40px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  transition: all 0.2s;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px var(--accent-glow);
 }
 
-.gate-code-submit:hover { background: var(--accent-glow); }
+.gate-code-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 32px var(--accent-glow); }
 
 .gate-code-error {
   font-size: 12px;
@@ -7275,18 +7285,35 @@ function t(key) {
 }
 
 // ── Language Toggle ──────────────────────────────────────────
-async function toggleLanguage() {
+var _langToggleBusy = false;
+function toggleLanguage() {
+  // SECURITY: Re-entrancy guard — prevents rapid toggle from interleaving loads
+  if (_langToggleBusy) return;
+  _langToggleBusy = true;
+
+  // SECURITY: Revalidate access level SYNCHRONOUSLY before anything else
+  // This fires on every toggle event — not async, not deferred
+  try {
+    var storedPaid = localStorage.getItem('aug_paid');
+    state.isPaid = storedPaid === 'true' || storedPaid === true;
+  } catch(e) {
+    state.isPaid = false;
+  }
+
   state.lang = state.lang === 'en' ? 'es' : 'en';
   storageSet('aurigen_lang', state.lang);
 
   // Dynamically load the new language file (unloads old one)
-  try {
-    await loadLanguageFile(state.lang);
-  } catch(e) {
+  loadLanguageFile(state.lang).then(function() {
+    applyLanguage();
+  }).catch(function(e) {
     console.error('Failed to load language file:', e);
-  }
-
-  applyLanguage();
+    // Revert language on failure — don't leave in broken state
+    state.lang = state.lang === 'en' ? 'es' : 'en';
+    storageSet('aurigen_lang', state.lang);
+  }).finally(function() {
+    _langToggleBusy = false;
+  });
 }
 
 function applyLanguage() {
@@ -8066,30 +8093,62 @@ function animateGateStats(retryCount) {
     });
   }
 
-  // Fire immediately after a short delay for paint
-  setTimeout(fireCounters, 400);
+  // Use IntersectionObserver to fire counters when section is visible (iPad-safe)
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          observer.disconnect();
+          setTimeout(fireCounters, 200);
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(statsSection);
+    // Safety net: if observer never fires within 5s, force counters
+    setTimeout(function() {
+      observer.disconnect();
+      fireCounters();
+    }, 5000);
+  } else {
+    // Fallback for browsers without IntersectionObserver
+    setTimeout(fireCounters, 400);
+  }
 }
 
 function animateNumber(el, target, suffix, duration) {
-  const startTime = performance.now();
-  const startValue = 0;
+  var startTime = performance.now();
+  var startValue = 0;
+  var completed = false;
+
+  function setFinal() {
+    if (!completed) {
+      completed = true;
+      el.textContent = target.toLocaleString() + suffix;
+    }
+  }
 
   function update(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
+    if (completed) return;
+    var elapsed = currentTime - startTime;
+    var progress = Math.min(elapsed / duration, 1);
 
     // Ease out quad
-    const easeProgress = 1 - (1 - progress) * (1 - progress);
-    const currentValue = Math.round(startValue + (target - startValue) * easeProgress);
+    var easeProgress = 1 - (1 - progress) * (1 - progress);
+    var currentValue = Math.round(startValue + (target - startValue) * easeProgress);
 
     el.textContent = currentValue.toLocaleString() + suffix;
 
     if (progress < 1) {
       requestAnimationFrame(update);
+    } else {
+      completed = true;
     }
   }
 
   requestAnimationFrame(update);
+
+  // iPad/iOS safety net: if rAF never fires or stalls, force final values
+  setTimeout(setFinal, duration + 500);
 }
 
 async function submitCode() {
