@@ -5224,6 +5224,32 @@ var FF = (function() {
       default: false,
       description: 'Progress badges and research streaks',
       category: 'experiment'
+    },
+
+    // ── P1 Conversion Optimization ───────────────────────────
+    dynamic_paywall: {
+      type: TYPE_BOOLEAN,
+      default: true,
+      description: 'Dynamic paywall with urgency triggers',
+      category: 'gate'
+    },
+    paywall_price_anchor: {
+      type: TYPE_BOOLEAN,
+      default: true,
+      description: 'Show price anchoring on paywall',
+      category: 'gate'
+    },
+    hide_locked_meta: {
+      type: TYPE_BOOLEAN,
+      default: true,
+      description: 'Hide metadata for locked states',
+      category: 'gate'
+    },
+    escalating_paywall: {
+      type: TYPE_BOOLEAN,
+      default: true,
+      description: 'Escalating paywall urgency over time',
+      category: 'gate'
     }
   };
 
@@ -5707,43 +5733,7 @@ function stripeUrl() {
 var ff_deal_tape = true;
 const FREE_STATES = new Set(['FL', 'IL', 'AZ']);
 
-// ── Feature Flags (P1 Conversion Optimization) ──────────────
-// Lightweight flag system: URL param (ff_<name>=0/1) > localStorage > default
-// All flags default to true (enabled). Disable via URL: ?ff_dynamic_paywall=0
-const FF = (function() {
-  const FLAGS = {
-    dynamic_paywall: true,
-    paywall_price_anchor: true,
-    hide_locked_meta: true,
-    escalating_paywall: true
-  };
-  function _urlParam(name) {
-    try {
-      const p = new URLSearchParams(window.location.search);
-      const v = p.get('ff_' + name);
-      if (v === '0' || v === 'false') return false;
-      if (v === '1' || v === 'true') return true;
-      return null;
-    } catch(e) { return null; }
-  }
-  function _lsGet(name) {
-    try {
-      const v = localStorage.getItem('ff_' + name);
-      if (v === '0' || v === 'false') return false;
-      if (v === '1' || v === 'true') return true;
-      return null;
-    } catch(e) { return null; }
-  }
-  return {
-    isEnabled: function(name) {
-      const url = _urlParam(name);
-      if (url !== null) return url;
-      const ls = _lsGet(name);
-      if (ls !== null) return ls;
-      return FLAGS.hasOwnProperty(name) ? FLAGS[name] : false;
-    }
-  };
-})();
+// (P1 conversion flags merged into var FF FLAG_DEFINITIONS above)
 
 // ── Type helpers ─────────────────────────────────────────────
 function typeKey(type) {
@@ -6517,7 +6507,11 @@ const I18N = {
 var FEATURE_FLAGS = {
   ff_free_ai_messages: true,
   ff_return_visit: true,
-  ff_premium_onboarding: true
+  ff_premium_onboarding: true,
+  ff_auction_pulse: true,
+  ff_social_proof: true,
+  ff_shareable_cards: true,
+  ff_qr_code: true
 };
 
 function ffEnabled(name) {
@@ -6645,6 +6639,7 @@ function applyLanguage() {
 
     // Re-render Phase 2 features on language switch
     if (typeof buildAuctionPulse === 'function') buildAuctionPulse();
+    if (typeof initSocialProofTicker === 'function') initSocialProofTicker();
     if (typeof buildQrCode === 'function') buildQrCode();
     if (typeof updateTickerMessage === 'function') updateTickerMessage();
 
@@ -8874,7 +8869,7 @@ function runVersus() {
 
   function lockedCell() {
     return '<div class="vs-cell-locked"><span class="lock-icon">\uD83D\uDD12</span> ' + t('vsLocked') +
-      '</div><button class="vs-unlock-btn" onclick="window.open(\'' + STRIPE_URL + '\',\'_blank\')">' + t('vsUnlock') + '</button>';
+      '</div><button class="vs-unlock-btn" onclick="window.open(\'' + stripeUrl() + '\',\'_blank\')">' + t('vsUnlock') + '</button>';
   }
 
   // 1. Type
@@ -9269,7 +9264,7 @@ function showAiGateOverlay(viewId) {
     '<div class="ai-gate-icon">\u{1F512}</div>' +
     '<div class="ai-gate-title">' + t('aiGateTitle') + '</div>' +
     '<div class="ai-gate-desc">' + t('aiGateDesc') + '</div>' +
-    '<a href="' + STRIPE_URL + '" target="_blank" class="ai-gate-btn">' + t('aiGateCta') + '</a>';
+    '<a href="' + stripeUrl() + '" target="_blank" class="ai-gate-btn">' + t('aiGateCta') + '</a>';
   container.parentElement.style.position = 'relative';
   container.parentElement.appendChild(overlay);
 }
@@ -10099,34 +10094,7 @@ function dnaDrawRadarInto(container) {
   });
 }
 
-// ═══════════════════════════════════════════════════════════
-//  FEATURE FLAG SYSTEM (lightweight)
-//  Priority: URL param > localStorage > default
-// ═══════════════════════════════════════════════════════════
-var FEATURE_FLAGS = {
-  ff_auction_pulse: true,
-  ff_social_proof: true,
-  ff_shareable_cards: true,
-  ff_qr_code: true
-};
-
-function ffEnabled(name) {
-  // Check URL param first
-  try {
-    var params = new URLSearchParams(window.location.search);
-    var urlVal = params.get(name);
-    if (urlVal === 'true' || urlVal === '1') return true;
-    if (urlVal === 'false' || urlVal === '0') return false;
-  } catch(e) {}
-  // Then localStorage
-  try {
-    var stored = localStorage.getItem(name);
-    if (stored === 'true' || stored === '1') return true;
-    if (stored === 'false' || stored === '0') return false;
-  } catch(e) {}
-  // Default
-  return !!FEATURE_FLAGS[name];
-}
+// (FEATURE_FLAGS and ffEnabled merged into single declarations above)
 
 // ═══════════════════════════════════════════════════════════
 //  FEATURE 1: AUCTION PULSE — Live Auction Calendar
