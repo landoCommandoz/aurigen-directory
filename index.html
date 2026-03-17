@@ -2466,6 +2466,143 @@ a { color: inherit; text-decoration: none; }
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/* ═══════════════════════════════════════════════
+   EXIT INTENT POPUP
+═══════════════════════════════════════════════ */
+.exit-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  padding: 24px;
+}
+
+.exit-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.exit-modal {
+  background: rgba(22, 22, 32, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--accent-border);
+  border-radius: 16px;
+  padding: 48px 40px 36px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-shadow: var(--shadow-lg), 0 0 80px rgba(200, 168, 75, 0.08);
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.exit-overlay.active .exit-modal {
+  transform: translateY(0) scale(1);
+}
+
+.exit-modal::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, var(--accent-glow), transparent 60%);
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.exit-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 20px;
+  line-height: 1;
+  padding: 4px 8px;
+  transition: color 0.2s;
+}
+
+.exit-close:hover { color: var(--text); }
+
+.exit-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.exit-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 6vw, 38px);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.exit-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 28px;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.exit-cta {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  padding: 14px 36px;
+  border-radius: 8px;
+  border: none;
+  transition: background 0.2s, transform 0.15s;
+  cursor: pointer;
+}
+
+.exit-cta:hover {
+  background: #d4b45a;
+  transform: translateY(-1px);
+}
+
+.exit-dismiss {
+  display: block;
+  margin-top: 16px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.exit-dismiss:hover { color: var(--text-dim); }
+
+@media (max-width: 480px) {
+  .exit-modal { padding: 36px 24px 28px; }
+  .exit-headline { font-size: 28px; }
+}
 </style>
 </head>
 <body>
@@ -2595,6 +2732,18 @@ a { color: inherit; text-decoration: none; }
       Educational research tool. Not investment advice.
     </div>
   </section>
+</div>
+
+<!-- ═══════════════ EXIT INTENT POPUP ═══════════════ -->
+<div class="exit-overlay" id="exit-popup">
+  <div class="exit-modal">
+    <button class="exit-close" id="exit-close-btn" aria-label="Close">&times;</button>
+    <div class="exit-eyebrow" id="exit-eyebrow">Before You Go</div>
+    <h2 class="exit-headline" id="exit-headline">Wait &mdash; Don&rsquo;t Miss Your Free State Access</h2>
+    <p class="exit-body" id="exit-body">Get instant access to 7 states free. See which counties are best for tax lien and tax deed investing.</p>
+    <button class="exit-cta" id="exit-cta">Unlock Free Access</button>
+    <button class="exit-dismiss" id="exit-dismiss">No thanks</button>
+  </div>
 </div>
 
 <!-- ═══════════════ APP ═══════════════ -->
@@ -3143,7 +3292,13 @@ const I18N = {
     stratBeginner: 'Beginner',
     stratAdvanced: 'Experienced',
     // Language toggle
-    langToggle: 'EN'
+    langToggle: 'EN',
+    // Exit intent
+    exitEyebrow: 'Before You Go',
+    exitHeadline: "Wait \u2014 Don\u2019t Miss Your Free State Access",
+    exitBody: 'Get instant access to 7 states free. See which counties are best for tax lien and tax deed investing.',
+    exitCta: 'Unlock Free Access',
+    exitDismiss: 'No thanks'
   },
   es: {
     // Gate - Hero
@@ -3342,7 +3497,13 @@ const I18N = {
     stratBeginner: 'Principiante',
     stratAdvanced: 'Experimentado',
     // Language toggle
-    langToggle: 'ES'
+    langToggle: 'ES',
+    // Exit intent
+    exitEyebrow: 'Antes de Irte',
+    exitHeadline: 'Espera \u2014 No Te Pierdas Tu Acceso Gratuito',
+    exitBody: 'Obtene acceso instantaneo a 7 estados gratis. Descubri cuales condados son mejores para invertir en gravamenes y escrituras fiscales.',
+    exitCta: 'Desbloquear Acceso Gratis',
+    exitDismiss: 'No gracias'
   }
 };
 
@@ -3405,6 +3566,9 @@ function applyLanguage() {
 
   // Update debug panel
   updateDebug();
+
+  // Update exit intent popup text
+  if (window._updateExitText) window._updateExitText();
 
   // If already entered app, re-render all views
   if (state.entered) {
@@ -5046,6 +5210,90 @@ function toggleDebug() {
   const panel = document.getElementById('debug-panel');
   if (panel) panel.classList.toggle('show');
 }
+
+// ── Exit Intent Popup ─────────────────────────────────────
+(function initExitIntent() {
+  var exitShown = false;
+
+  function exitAlreadySeen() {
+    try { return sessionStorage.getItem('aurigen_exit_shown') === '1'; }
+    catch(e) { return false; }
+  }
+
+  function markExitSeen() {
+    try { sessionStorage.setItem('aurigen_exit_shown', '1'); } catch(e) {}
+  }
+
+  function updateExitText() {
+    var el;
+    el = document.getElementById('exit-eyebrow');
+    if (el) el.textContent = t('exitEyebrow');
+    el = document.getElementById('exit-headline');
+    if (el) el.textContent = t('exitHeadline');
+    el = document.getElementById('exit-body');
+    if (el) el.textContent = t('exitBody');
+    el = document.getElementById('exit-cta');
+    if (el) el.textContent = t('exitCta');
+    el = document.getElementById('exit-dismiss');
+    if (el) el.textContent = t('exitDismiss');
+  }
+
+  function showExitPopup() {
+    if (exitShown || exitAlreadySeen()) return;
+    // Don't show if user already has access (entered the app)
+    if (state.entered) return;
+    exitShown = true;
+    markExitSeen();
+    updateExitText();
+    var overlay = document.getElementById('exit-popup');
+    if (overlay) overlay.classList.add('active');
+  }
+
+  function hideExitPopup() {
+    var overlay = document.getElementById('exit-popup');
+    if (overlay) overlay.classList.remove('active');
+  }
+
+  // Desktop: mouseout from viewport top
+  document.addEventListener('mouseout', function(e) {
+    if (e.clientY <= 0) showExitPopup();
+  });
+
+  // CTA: scroll to email gate section
+  document.addEventListener('DOMContentLoaded', function() {
+    var ctaBtn = document.getElementById('exit-cta');
+    if (ctaBtn) {
+      ctaBtn.addEventListener('click', function() {
+        hideExitPopup();
+        var emailSection = document.getElementById('gate-email-section');
+        if (emailSection) {
+          emailSection.scrollIntoView({ behavior: 'smooth' });
+          // Focus the email input after scroll
+          setTimeout(function() {
+            var input = document.getElementById('gate-email-input');
+            if (input) input.focus();
+          }, 600);
+        }
+      });
+    }
+
+    var dismissBtn = document.getElementById('exit-dismiss');
+    if (dismissBtn) dismissBtn.addEventListener('click', hideExitPopup);
+
+    var closeBtn = document.getElementById('exit-close-btn');
+    if (closeBtn) closeBtn.addEventListener('click', hideExitPopup);
+
+    var overlay = document.getElementById('exit-popup');
+    if (overlay) {
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) hideExitPopup();
+      });
+    }
+  });
+
+  // Expose updateExitText for language toggle
+  window._updateExitText = updateExitText;
+})();
 
 function updateDebug() {
   const titleEl = document.querySelector('#debug-panel > div:first-child');
