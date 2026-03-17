@@ -5865,7 +5865,7 @@ var FF = (function() {
 // ═══════════════════════════════════════════════════════════
 
 // ── Constants ───────────────────────────────────────────────
-const STRIPE_URL = 'https://buy.stripe.com/8x2bJ10i05j66avdCa2VG01';
+const STRIPE_URL = 'https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00';
 const SKOOL_URL = 'https://www.skool.com/tax-lien-wealth-2705/about?ref=6fd80bf6895e4e3e9ed85d2eaf0639f2';
 const NETLIFY_FN = '/.netlify/functions/aurigen';
 const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4';
@@ -5883,7 +5883,7 @@ function stripeUrl() {
 
 // ── Feature Flag: Deal Tape ──────────────────────────────────
 var ff_deal_tape = true;
-const FREE_STATES = new Set(['FL', 'IL', 'AZ']);
+const FREE_STATES = new Set(['FL']);
 
 // (P1 conversion flags merged into var FF FLAG_DEFINITIONS above)
 
@@ -7332,6 +7332,28 @@ function handleEmailGate() {
 }
 
 function showCodeInput() {
+  // If inside the app (gate hidden), show inline code modal
+  if (state.entered) {
+    var existing = document.getElementById('inline-code-modal');
+    if (existing) existing.remove();
+    var modal = document.createElement('div');
+    modal.id = 'inline-code-modal';
+    modal.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;';
+    modal.innerHTML =
+      '<div style="background:var(--bg2,#1a1a1c);border:1px solid var(--accent-border);border-radius:16px;padding:32px 24px;max-width:360px;width:90%;text-align:center;">' +
+        '<div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px;">Enter Access Code</div>' +
+        '<div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">Already have an access code? Enter it below.</div>' +
+        '<input id="inline-code-input" type="text" placeholder="Your access code" autocomplete="off" style="width:100%;padding:14px 16px;border-radius:10px;border:1px solid var(--accent-border);background:rgba(255,255,255,0.04);color:var(--text);font-size:15px;text-align:center;outline:none;box-sizing:border-box;margin-bottom:12px;" />' +
+        '<button onclick="submitInlineCode()" style="width:100%;padding:14px;background:var(--accent);color:var(--bg);border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;">Unlock</button>' +
+        '<div id="inline-code-error" style="display:none;color:var(--red,#e74c3c);font-size:12px;margin-top:8px;"></div>' +
+        '<button onclick="document.getElementById(\'inline-code-modal\').remove();" style="background:none;border:none;color:var(--text-muted);font-size:12px;cursor:pointer;margin-top:12px;">Cancel</button>' +
+      '</div>';
+    document.body.appendChild(modal);
+    modal.querySelector('#inline-code-input').focus();
+    modal.addEventListener('click', function(e) { if (e.target === modal) modal.remove(); });
+    return;
+  }
+  // Gate context: show the gate code wrap
   const wrap = document.getElementById('gate-code-wrap');
   if (wrap) {
     wrap.classList.add('visible');
@@ -7339,6 +7361,51 @@ function showCodeInput() {
     if (input) input.focus();
   }
   state.mobileCodeVisible = true;
+}
+
+async function submitInlineCode() {
+  var input = document.getElementById('inline-code-input');
+  var errEl = document.getElementById('inline-code-error');
+  if (!input) return;
+  var code = input.value.trim();
+  if (!code) return;
+  // Check master password
+  var master = [65,85,82,73,71,69,78,50,48,50,54].map(function(c){return String.fromCharCode(c);}).join('');
+  if (code === master) {
+    state.isPaid = true;
+    storageSet('aug_paid', true);
+    var modal = document.getElementById('inline-code-modal');
+    if (modal) modal.remove();
+    // Refresh all views
+    buildStateList();
+    buildDealTape();
+    if (typeof buildAuctionPulse === 'function') buildAuctionPulse();
+    if (typeof populateVersusDropdowns === 'function') populateVersusDropdowns();
+    navigate(state.activeTab, false);
+    return;
+  }
+  // Try Netlify validation
+  try {
+    var res = await fetch(NETLIFY_FN, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'validate-code', code: code })
+    });
+    var data = await res.json();
+    if (data.valid) {
+      state.isPaid = true;
+      storageSet('aug_paid', true);
+      var modal = document.getElementById('inline-code-modal');
+      if (modal) modal.remove();
+      buildStateList();
+      buildDealTape();
+      if (typeof buildAuctionPulse === 'function') buildAuctionPulse();
+      if (typeof populateVersusDropdowns === 'function') populateVersusDropdowns();
+      navigate(state.activeTab, false);
+      return;
+    }
+  } catch(e) {}
+  if (errEl) { errEl.style.display = 'block'; errEl.textContent = t('gateCodeError'); }
 }
 
 function setupMobileCodeTrigger() {
@@ -7712,8 +7779,8 @@ async function initMap() {
 
     function getOpacity(sid) {
       const s = stateMap[sid];
-      if (!s) return 0.25;
-      return (FREE_STATES.has(sid) || state.isPaid) ? 1 : 0.6;
+      if (!s) return 0.15;
+      return (FREE_STATES.has(sid) || state.isPaid) ? 1 : 0.25;
     }
 
     const features = topojson.feature(us, us.objects.states).features;
@@ -8275,6 +8342,24 @@ function buildDealTape() {
   var container = document.getElementById('deal-tape-feed');
   if (!container || !STATES || STATES.length === 0) return;
 
+  if (!state.isPaid) {
+    container.innerHTML =
+      '<div class="deal-tape-card" style="filter:blur(6px);pointer-events:none;opacity:0.5;">' +
+        '<div class="deal-tape-inner" style="padding:24px;">' +
+          '<div class="deal-tape-eyebrow">Deal Scenario</div>' +
+          '<div class="deal-tape-title">$5,000 Tax Lien in Duval County, Florida</div>' +
+          '<div style="margin-top:16px;font-size:14px;color:var(--text-dim);">Best Case: 18% Return...</div>' +
+        '</div>' +
+      '</div>' +
+      '<div style="text-align:center;padding:32px 24px;">' +
+        '<div style="font-size:48px;margin-bottom:16px;">\u{1F512}</div>' +
+        '<div style="font-size:16px;color:var(--text);font-weight:600;line-height:1.5;max-width:320px;margin:0 auto 20px;">Unlock to see real investment scenarios across all 50 states.</div>' +
+        '<a href="' + stripeUrl() + '" target="_blank" class="paywall-btn" style="display:inline-block;background:var(--accent);color:var(--bg);padding:16px 40px;border-radius:12px;font-weight:700;font-size:15px;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;box-shadow:0 4px 20px var(--accent-glow);margin-bottom:16px;">UNLOCK NOW</a>' +
+        '<div style="font-size:12px;color:var(--text-dim);">' + t('paywallHaveCode') + ' <button onclick="showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">' + t('paywallEnterCode') + '</button></div>' +
+      '</div>';
+    return;
+  }
+
   // Generate scenarios from state data
   var scenarios = generateDealScenarios();
   if (scenarios.length === 0) return;
@@ -8699,6 +8784,20 @@ function setResultValue(id, text, colorClass) {
 }
 
 function calcAnalyzer() {
+  if (!state.isPaid) {
+    var resultArea = document.getElementById('az-return');
+    if (resultArea && resultArea.parentElement) {
+      var wrap = resultArea.closest('.calc-results') || resultArea.parentElement;
+      wrap.innerHTML =
+        '<div style="text-align:center;padding:24px;">' +
+          '<div style="font-size:36px;margin-bottom:12px;">\u{1F512}</div>' +
+          '<div style="font-size:14px;color:var(--text);font-weight:600;line-height:1.5;margin-bottom:16px;">Unlock to run unlimited ROI calculations.</div>' +
+          '<a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:var(--bg);padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;">UNLOCK NOW</a>' +
+          '<div style="margin-top:12px;font-size:12px;color:var(--text-dim);">' + t('paywallHaveCode') + ' <button onclick="showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">' + t('paywallEnterCode') + '</button></div>' +
+        '</div>';
+    }
+    return;
+  }
   dnaTrackEvent('analyzer_use');
   const type = document.getElementById('az-type')?.value;
 
@@ -8777,17 +8876,8 @@ function calcAnalyzer() {
 // ── Valuation Agent (Atlas) ───────────────────────────────────
 async function sendValMessage() {
   if (!state.isPaid) {
-    // ff_free_ai_messages: allow 2 free messages before gating
-    if (typeof ffEnabled === 'function' && ffEnabled('ff_free_ai_messages')) {
-      var atlasCount = storageGet('aug_ai_atlas_count', 0);
-      if (atlasCount >= 2) {
-        showAiGateOverlay('val');
-        return;
-      }
-    } else {
-      appendValMsg('atlas', 'Atlas is available to full-access members. Unlock all 50 states + DC, AI agents, and more for just $97.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
-      return;
-    }
+    appendValMsg('atlas', 'Atlas is a paid feature. Unlock full access to run valuations across all 50 states.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;">UNLOCK NOW</a><br><span style="font-size:12px;color:var(--text-dim);">' + t('paywallHaveCode') + ' <button onclick="showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">' + t('paywallEnterCode') + '</button></span>');
+    return;
   }
   if (state.valBusy) return;
   const input = document.getElementById('val-input');
@@ -8865,17 +8955,8 @@ function valKeydown(e) {
 async function sendAdvisorMessage() {
   dnaTrackEvent('ai_question');
   if (!state.isPaid) {
-    // ff_free_ai_messages: allow 2 free messages before gating
-    if (typeof ffEnabled === 'function' && ffEnabled('ff_free_ai_messages')) {
-      var sageCount = storageGet('aug_ai_sage_count', 0);
-      if (sageCount >= 2) {
-        showAiGateOverlay('advisor');
-        return;
-      }
-    } else {
-      appendAdvisorMsg('sage', 'Sage is available to full-access members. Unlock all 50 states + DC, AI advisor, and more for just $97.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
-      return;
-    }
+    appendAdvisorMsg('sage', 'Sage is a paid feature. Unlock full access to ask Sage anything about all 50 states.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;">UNLOCK NOW</a><br><span style="font-size:12px;color:var(--text-dim);">' + t('paywallHaveCode') + ' <button onclick="showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">' + t('paywallEnterCode') + '</button></span>');
+    return;
   }
   if (state.advisorBusy) return;
   const input = document.getElementById('advisor-input');
@@ -8996,6 +9077,11 @@ function runVersus() {
 
   if (!idA || !idB || idA === idB) {
     container.innerHTML = '<div class="vs-empty"><div class="vs-empty-icon">&#9878;</div><div>' + t('vsEmpty') + '</div></div>';
+    return;
+  }
+
+  if (!state.isPaid) {
+    showFeaturePaywall('vs-result', 'State Versus is a paid feature. Unlock full access to compare any two states side by side.');
     return;
   }
 
@@ -9429,6 +9515,22 @@ function showAiGateOverlay(viewId) {
   container.parentElement.appendChild(overlay);
 }
 
+// ── Feature Paywall Overlay (universal) ────────────────────
+function showFeaturePaywall(containerId, message) {
+  var container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML =
+    '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px;min-height:200px;">' +
+      '<div style="font-size:48px;margin-bottom:16px;">\u{1F512}</div>' +
+      '<div style="font-size:16px;color:var(--text);font-weight:600;line-height:1.5;max-width:320px;margin-bottom:20px;">' + message + '</div>' +
+      '<a href="' + stripeUrl() + '" target="_blank" class="paywall-btn" style="display:inline-block;background:var(--accent);color:var(--bg);padding:16px 40px;border-radius:12px;font-weight:700;font-size:15px;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;box-shadow:0 4px 20px var(--accent-glow);margin-bottom:16px;">UNLOCK NOW</a>' +
+      '<div style="font-size:12px;color:var(--text-dim);">' +
+        t('paywallHaveCode') + ' ' +
+        '<button onclick="showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">' + t('paywallEnterCode') + '</button>' +
+      '</div>' +
+    '</div>';
+}
+
 // ── 2. Return Visit Recognition ───────────────────────────
 function showReturnVisitToast() {
   if (!ffEnabled('ff_return_visit')) return;
@@ -9661,6 +9763,11 @@ function dnaSelectOption(qIdx, optIdx) {
 
 function dnaQuizNext() {
   if (state.dnaAnswers[state.dnaQuizStep] === null) return;
+  // Gate after first question for free users
+  if (!state.isPaid && state.dnaQuizStep >= 0) {
+    showFeaturePaywall('dna-quiz-area', 'Complete your investor profile with full access.');
+    return;
+  }
   if (state.dnaQuizStep < 4) {
     state.dnaQuizStep++;
     dnaRenderQuiz();
@@ -10308,6 +10415,11 @@ function buildAuctionPulse() {
   var subEl = document.getElementById('auction-sub');
   if (titleEl) titleEl.textContent = t('auctionTitle');
   if (subEl) subEl.textContent = t('auctionSub');
+
+  if (!state.isPaid) {
+    showFeaturePaywall('auction-list', 'Unlock to see upcoming auctions in your target states.');
+    return;
+  }
 
   // Update filter buttons
   var filterBtns = document.querySelectorAll('.auction-filter-btn');
