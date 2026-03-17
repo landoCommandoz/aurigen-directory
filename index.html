@@ -566,7 +566,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── EMAIL CAPTURE SECTION ─── */
 .gate-email {
-  padding: 40px 24px 60px;
+  padding: 60px 24px 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2366,44 +2366,7 @@ a { color: inherit; text-decoration: none; }
     </div>
   </section>
 
-  <!-- Section 2: Email Capture (moved up — first thing after hero) -->
-  <section class="gate-email gate-section" id="gate-email-section">
-    <h2 class="gate-email-title" id="gate-email-title">Start Free — Explore 3 States</h2>
-    <p class="gate-email-desc" id="gate-email-desc">Enter your email to unlock Florida, Illinois, and Arizona — no credit card required.</p>
-    <div class="gate-email-form">
-      <input
-        class="gate-email-input"
-        id="gate-email-input"
-        type="email"
-        placeholder="you@email.com"
-        autocomplete="email"
-      />
-      <button class="gate-email-submit" id="gate-email-submit" onclick="handleEmailGate()">Unlock Free Access</button>
-      <div class="gate-email-error" id="gate-email-error"></div>
-      <p class="gate-email-fine" id="gate-email-fine">We'll send you investor tips. Unsubscribe anytime.</p>
-    </div>
-    <div class="gate-code-toggle">
-      <span id="gate-code-toggle-text">Already have an access code?</span>
-      <button class="gate-code-toggle-link" onclick="showCodeInput()" id="gate-code-toggle-link">Enter it here</button>
-    </div>
-    <div class="gate-code-wrap" id="gate-code-wrap">
-      <input
-        class="gate-code-input"
-        id="gate-code-input"
-        type="text"
-        placeholder="Enter access code"
-        autocomplete="off"
-        autocapitalize="characters"
-      />
-      <button class="gate-code-submit" onclick="submitCode()">Unlock</button>
-      <div class="gate-code-error" id="gate-code-error"></div>
-    </div>
-    <div class="gate-disclaimer" id="gate-disclaimer">
-      Educational research tool. Not investment advice.
-    </div>
-  </section>
-
-  <!-- Section 3: Stats Bar -->
+  <!-- Section 2: Stats Bar -->
   <section class="gate-stats gate-section" id="gate-stats-section">
     <div class="gate-stats-grid">
       <div class="gate-stat-card">
@@ -2421,7 +2384,7 @@ a { color: inherit; text-decoration: none; }
     </div>
   </section>
 
-  <!-- Section 4: Features -->
+  <!-- Section 3: Features -->
   <section class="gate-features gate-section">
     <h2 class="gate-section-title" id="gate-features-title">What You Get</h2>
     <div class="gate-features-grid">
@@ -2458,7 +2421,7 @@ a { color: inherit; text-decoration: none; }
     </div>
   </section>
 
-  <!-- Section 5: Price Anchor -->
+  <!-- Section 4: Price Anchor -->
   <section class="gate-price gate-section">
     <div class="gate-price-community" id="gate-price-community">Join the Aurigen Collective — a growing community of tax lien & deed investors</div>
     <div class="gate-price-display">
@@ -2466,6 +2429,43 @@ a { color: inherit; text-decoration: none; }
       <span class="gate-price-current">$97</span>
     </div>
     <div class="gate-price-note" id="gate-price-note">One-time · Founding Member Rate · Lifetime Access</div>
+  </section>
+
+  <!-- Section 5: Email Capture — conversion point after value is established -->
+  <section class="gate-email gate-section" id="gate-email-section">
+    <h2 class="gate-email-title" id="gate-email-title">Start Free — Explore 3 States</h2>
+    <p class="gate-email-desc" id="gate-email-desc">Enter your email to unlock Florida, Illinois, and Arizona — no credit card required.</p>
+    <div class="gate-email-form">
+      <input
+        class="gate-email-input"
+        id="gate-email-input"
+        type="email"
+        placeholder="you@email.com"
+        autocomplete="email"
+      />
+      <button class="gate-email-submit" id="gate-email-submit" onclick="handleEmailGate()">Unlock Free Access</button>
+      <div class="gate-email-error" id="gate-email-error"></div>
+      <p class="gate-email-fine" id="gate-email-fine">We'll send you investor tips. Unsubscribe anytime.</p>
+    </div>
+    <div class="gate-code-toggle">
+      <span id="gate-code-toggle-text">Already have an access code?</span>
+      <button class="gate-code-toggle-link" onclick="showCodeInput()" id="gate-code-toggle-link">Enter it here</button>
+    </div>
+    <div class="gate-code-wrap" id="gate-code-wrap">
+      <input
+        class="gate-code-input"
+        id="gate-code-input"
+        type="text"
+        placeholder="Enter access code"
+        autocomplete="off"
+        autocapitalize="characters"
+      />
+      <button class="gate-code-submit" onclick="submitCode()">Unlock</button>
+      <div class="gate-code-error" id="gate-code-error"></div>
+    </div>
+    <div class="gate-disclaimer" id="gate-disclaimer">
+      Educational research tool. Not investment advice.
+    </div>
   </section>
 </div>
 
