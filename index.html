@@ -5224,7 +5224,6 @@ a { color: inherit; text-decoration: none; }
         <button class="tools-tab active" onclick="switchToolsTab('analyzer', this)">Analyzer</button>
         <button class="tools-tab" onclick="switchToolsTab('legal', this)">Legal</button>
         <button class="tools-tab" onclick="switchToolsTab('glossary', this)">Glossary</button>
-        <button class="tools-tab" onclick="switchToolsTab('valuation', this)">Valuation</button>
       </div>
 
       <!-- Analyzer Sub-view -->
@@ -5332,32 +5331,7 @@ a { color: inherit; text-decoration: none; }
         </div>
       </div>
 
-      <!-- Valuation Agent Sub-view -->
-      <div class="tools-panel" id="tools-valuation">
-        <div class="view-header" style="padding:16px 20px 8px;">
-          <div class="view-title" id="val-title">Atlas — Investment Valuation Agent</div>
-          <div class="view-sub" id="val-sub">Analyze tax lien and deed investments — returns, risks, and deal structure</div>
-        </div>
-        <div class="advisor-messages" id="val-messages">
-          <div class="msg msg-sage">
-            <strong>Atlas</strong><br>
-            I'm Atlas — your tax lien and deed investment valuation agent. Tell me about a deal (purchase price, interest rate, redemption period, county) and I'll break down the expected return, risk factors, and whether it fits your portfolio. Try: "I'm looking at a $5,000 tax lien in Florida at 18% — what's my expected return over 12 months?"
-          </div>
-          <div class="advisor-typing" id="val-typing">
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-          </div>
-        </div>
-        <div class="advisor-input-bar">
-          <textarea
-            class="advisor-input"
-            id="val-input"
-            placeholder="Ask Atlas about your business value..."
-            rows="1"
-            onkeydown="valKeydown(event)"
-          ></textarea>
-          <button class="advisor-send" id="val-send" onclick="sendValMessage()">&#10148;</button>
-        </div>
-      </div>
+      <!-- Atlas/Valuation removed -->
     </div>
 
     <!-- ADVISOR VIEW -->
@@ -6432,12 +6406,6 @@ const I18N = {
     analyzerEquity: 'Equity if Redeemed at ARV',
     analyzerMonthly: 'Monthly Income',
     analyzerDisclaimer: 'Educational estimate only — not financial, legal, or investment advice. Results are not guaranteed and do not account for all variables. Verify statutory rates with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.',
-    // Valuation Agent
-    valTitle: 'Atlas — Investment Valuation Agent',
-    valSub: 'Analyze tax lien and deed investments — returns, risks, and deal structure',
-    valWelcome: "I'm Atlas — your tax lien and deed investment valuation agent. Tell me about a deal (purchase price, interest rate, redemption period, county) and I'll break down the expected return, risk factors, and whether it fits your portfolio. Try: \"I'm looking at a $5,000 tax lien in Florida at 18% — what's my expected return over 12 months?\"",
-    valPlaceholder: 'Ask Atlas about your business value...',
-    valError: 'Atlas is temporarily unavailable.',
     // Advisor
     advisorTitle: 'Sage - AI Advisor',
     advisorSub: 'Ask anything about tax liens, deeds, or state law',
@@ -6813,12 +6781,6 @@ const I18N = {
     analyzerEquity: 'Patrimonio si se Redime al ARV',
     analyzerMonthly: 'Ingreso Mensual',
     analyzerDisclaimer: 'Estimacion educativa solamente — no es asesoramiento financiero, legal ni de inversiones. Los resultados no estan garantizados y no contemplan todas las variables. Verifique tasas estatutarias con fuentes oficiales del condado antes de operar. Aurigen Collective no es un asesor de inversiones licenciado.',
-    // Valuation Agent
-    valTitle: 'Atlas — Agente de Valoracion de Inversiones',
-    valSub: 'Analice inversiones en gravamenes y escrituras fiscales — rendimientos, riesgos y estructura',
-    valWelcome: 'Soy Atlas — su agente de valoracion de inversiones en gravamenes y escrituras fiscales. Cuenteme sobre un trato (precio de compra, tasa de interes, periodo de redencion, condado) y le mostrare el rendimiento esperado, factores de riesgo y si encaja en su portafolio.',
-    valPlaceholder: 'Pregunte a Atlas sobre el valor de su negocio...',
-    valError: 'Atlas no esta disponible temporalmente.',
     // Advisor
     advisorTitle: 'Sage - Asesor IA',
     advisorSub: 'Pregunte sobre gravamenes, escrituras o leyes estatales',
@@ -7376,14 +7338,6 @@ function updateViewHeaders() {
 
   // Analyzer (sub-view inside #view-tools — no separate view-header)
   // Analyzer has no view-header element; labels are updated in updateAnalyzerStrings()
-
-  // Valuation Agent
-  const valTitleEl = document.getElementById('val-title');
-  if (valTitleEl) valTitleEl.textContent = t('valTitle');
-  const valSubEl = document.getElementById('val-sub');
-  if (valSubEl) valSubEl.textContent = t('valSub');
-  const valInput = document.getElementById('val-input');
-  if (valInput) valInput.placeholder = t('valPlaceholder');
 
   // Advisor
   const advisorHeader = document.querySelector('#view-advisor .view-header');
@@ -9436,84 +9390,6 @@ function calcAnalyzer() {
   }
 }
 
-// ── Valuation Agent (Atlas) ───────────────────────────────────
-async function sendValMessage() {
-  if (!state.isPaid) {
-    appendValMsg('atlas', 'Atlas is a paid feature. Unlock full access to run valuations across all 50 states.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;">UNLOCK NOW</a><br><span style="font-size:12px;color:var(--text-dim);">' + t('paywallHaveCode') + ' <button onclick="showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">' + t('paywallEnterCode') + '</button></span>');
-    return;
-  }
-  if (state.valBusy) return;
-  const input = document.getElementById('val-input');
-  const msg = input?.value.trim();
-  if (!msg) return;
-
-  input.value = '';
-  state.valBusy = true;
-
-  const sendBtn = document.getElementById('val-send');
-  if (sendBtn) sendBtn.disabled = true;
-
-  appendValMsg('user', msg);
-  if (!state.valHistory) state.valHistory = [];
-  state.valHistory.push({ role: 'user', content: msg });
-
-  // ff_free_ai_messages: increment Atlas message count for free users
-  if (!state.isPaid && ffEnabled('ff_free_ai_messages')) {
-    storageSet('aug_ai_atlas_count', storageGet('aug_ai_atlas_count', 0) + 1);
-  }
-
-  const typing = document.getElementById('val-typing');
-  if (typing) typing.classList.add('show');
-  scrollVal();
-
-  try {
-    const res = await fetch(NETLIFY_FN, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'valuation', message: msg, history: state.valHistory.slice(-10) })
-    });
-
-    const data = await res.json();
-    if (typing) typing.classList.remove('show');
-
-    const reply = data.response || data.error || 'Atlas is temporarily unavailable.';
-    appendValMsg('atlas', reply);
-    state.valHistory.push({ role: 'assistant', content: reply });
-
-  } catch(err) {
-    if (typing) typing.classList.remove('show');
-    appendValMsg('atlas', 'Connection error. Please try again.');
-  }
-
-  state.valBusy = false;
-  if (sendBtn) sendBtn.disabled = false;
-  if (input) input.focus();
-}
-
-function appendValMsg(role, text) {
-  const container = document.getElementById('val-messages');
-  if (!container) return;
-  const typing = document.getElementById('val-typing');
-  const div = document.createElement('div');
-  div.className = `msg msg-${role === 'atlas' ? 'sage' : 'user'}`;
-  div.innerHTML = role === 'atlas' ? `<strong>Atlas</strong><br>${text.replace(/\n/g, '<br>')}` : text;
-  if (typing) container.insertBefore(div, typing);
-  else container.appendChild(div);
-  scrollVal();
-}
-
-function scrollVal() {
-  const container = document.getElementById('val-messages');
-  if (container) container.scrollTop = container.scrollHeight;
-}
-
-function valKeydown(e) {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    sendValMessage();
-  }
-}
-
 // ── AI Advisor ────────────────────────────────────────────────
 async function sendAdvisorMessage() {
   dnaTrackEvent('ai_question');
@@ -10060,8 +9936,8 @@ function updateLegalText() {
 
 // ── 1. Free AI Messages Gate Overlay ──────────────────────
 function showAiGateOverlay(viewId) {
-  // viewId: 'val' for Atlas, 'advisor' for Sage
-  var containerId = viewId === 'val' ? 'val-messages' : 'advisor-messages';
+  // viewId: 'advisor' for Sage
+  var containerId = 'advisor-messages';
   var container = document.getElementById(containerId);
   if (!container || !container.parentElement) return;
   // Don't add duplicate overlays
