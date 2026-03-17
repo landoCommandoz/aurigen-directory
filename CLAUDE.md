@@ -51,12 +51,16 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 All waves 1-4 merged to main.
 Next PR: VS view objection handler + testimonial carousel (pending real customers)
 
+## CURRENT SESSION STATUS
+- Agent depth rebuilds Section 1 (batch 1+2): COMPLETE — 8 agents rebuilt (Cipher, Knox, Recon, Wraith, Ace, Compass, Scout, Rally, Atlas + existing)
+- Agent depth rebuilds Section 2: COMPLETE — Rally, Scout, Compass, Atlas rebuilt with full-depth frameworks
+- All 16+ agents now have PERSISTENT MEMORY blocks and depth intelligence
+
 ## NEXT SESSION PRIORITIES
 1. C2 fix — serverless data gating
 2. C3 fix — server-side session validation
 3. VS view objection handler
 4. Statute citation teasers on locked states
-5. Agent depth rebuilds — Rally, Scout, Compass, Atlas
 
 ---
 

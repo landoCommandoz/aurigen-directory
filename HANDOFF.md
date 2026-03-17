@@ -5,9 +5,11 @@
 2026-03-17
 
 ### LAST SESSION SUMMARY:
-- Created Ace (deep sales intelligence) and Wraith (absolute security) agent files
-- Built project memory system: SESSION MEMORY in CLAUDE.md, HANDOFF.md, PERSISTENT MEMORY in all agent files
-- Security hardening merged: server-side data gating, CORS, rate limiting, XSS fix, client-side password removal
+- Agent depth rebuilds complete: ALL agents now have full-depth intelligence frameworks
+- Section 1 (batch 1+2): Rebuilt 8 agents with PERSISTENT MEMORY (Cipher, Knox, Recon, Wraith, Ace, Compass, Scout, Rally, Atlas)
+- Section 2: Rebuilt Rally (6-layer community intelligence), Scout (5-layer outreach intelligence), Compass (5-layer operations intelligence), Atlas (5-layer content intelligence)
+- All agent files updated with depth frameworks, prime directives, and failure mode documentation
+- Previous session: Created Ace/Wraith agents, built memory system, security hardening merged
 
 ### WHAT WAS MERGED THIS SESSION:
 - PR #37 — Security fixes: file access blocking, password removal, security headers
@@ -64,10 +66,10 @@ Piper: Email sequences not yet built. Needs post-seminar and cold lead flows. Aw
 Recon: No reports generated yet. Needs competitive landscape assignment. Awaiting activation.
 Blaze: Marketing copy framework defined. No campaigns built yet. Awaiting activation.
 Ace: Agent file created with 6-layer sales framework. Ready for seminar script generation.
-Rally: Skool community strategy not yet built. Needs content calendar. Awaiting activation.
-Atlas: State data maintenance — EN complete (51 entries), ES needs parity work. Standing by.
-Scout: Outreach templates not yet built. Needs podcast pitch and partnership frameworks. Awaiting activation.
+Rally: Full depth rebuild complete — 6-layer community intelligence. Next: 30-day content calendar.
+Atlas: Full depth rebuild complete — 5-layer content intelligence + data management. EN complete, ES needs parity. Next: ES audit + Tyler v. Hennepin article.
+Scout: Full depth rebuild complete — 5-layer outreach intelligence. Next: podcast pitch + partnership proposal templates.
 Cipher: Analytics framework defined. No real data source connected. Awaiting activation.
-Compass: Operations coordination active. Memory system built this session. Coordinating.
+Compass: Full depth rebuild complete — 5-layer operations intelligence. Coordinating. Next: dispatch top 3 priorities.
 Prism: Design system defined in CLAUDE.md. No new mockup requests pending. Standing by.
 Wraith: Security audit completed. C2/C3/C4/C5 items identified. Standing by for post-fix verification.
