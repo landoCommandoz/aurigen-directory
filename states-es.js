@@ -15,7 +15,7 @@ var STATES_ES = [
     otc:{available:false,note:"No hay programa de compra directa estatal."},
     risks:["Los compradores institucionales dominan Jefferson (Birmingham) y Madison (Huntsville)","Redención de 3 años inmoviliza el capital","El título no está garantizado — puede requerirse título silencioso","Muchas parcelas rurales tienen problemas de acceso o ambientales"],
     ddExtra:["Verifique el umbral de morosidad de 3 años antes de pujar","Solicite búsqueda de título — las ventas de Alabama no garantizan título limpio","Revise el GIS del condado para acceso vial en parcelas rurales"],
-    platforms:["Tribunal del condado (en persona)"],counties:[]
+    platforms:["Tribunal del condado (en persona)"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"AK",name:"Alaska",type:"deed",rate:"Varía",redemption:"1 año",score:12,beginnerFriendly:false,
@@ -29,7 +29,7 @@ var STATES_ES = [
     otc:{available:false,note:"No hay programa OTC estatal."},
     risks:["La propiedad federal restringe gran porcentaje de parcelas","Propiedades remotas con costos de logística extremos","Inventario muy bajo","Las reglas del borough varían significativamente"],
     ddExtra:["Verifique que la parcela no sea tierra federal, estatal o de corporación nativa","Revise el atlas de BLM para clasificación de propiedad","Confirme acceso vial — muchas parcelas solo accesibles por avión"],
-    platforms:["Oficinas del tasador del borough"],counties:[]
+    platforms:["Oficinas del tasador del borough"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"AZ",name:"Arizona",type:"lien",rate:"Hasta 16%",redemption:"3 años",score:78,beginnerFriendly:true,
@@ -43,6 +43,7 @@ var STATES_ES = [
     risks:["Maricopa y Pima saturados — institucionales reducen tasas al 0–3%","3 años de retención antes de iniciar ejecución judicial vía Tribunal Superior (ARS §42-18201) — no es escritura del tesorero","Muchas parcelas son desierto sin acceso ni potencial de desarrollo","Verifique derechos de agua activos y gravámenes de distritos de irrigación","Confirme que la parcela no sea tierra de fideicomiso estatal"],
     ddExtra:["Ejecute la parcela en el GIS del condado para confirmar acceso y zonificación","Verifique gravámenes secundarios de distritos de irrigación o agua","Revise ADWR para derechos de agua en parcelas agrícolas","Tenga en cuenta SB 1431 (2024) — nuevas reglas de excedentes pueden afectar la distribución de superávit post-ejecución"],
     platforms:["aztaxsale.info","Portales del tesorero del condado","RealAuction (algunos condados)"],
+    tylerCompliance:{status:"compliant",summary:"Arizona ya era conforme; actualizaciones menores promulgadas.",details:"SB 1291 (2024); ARS §42-18303.",lastUpdated:"2026-03-01",legislationRef:"SB 1291 (2024)"},
     counties:[{name:"Maricopa",link:"https://treasurer.maricopa.gov/tax-lien",notes:"Subasta más grande de AZ. Alta competencia. Solo en línea."},{name:"Pima",link:"https://www.pima.gov/government/treasurer",notes:"Segunda más grande. Competencia moderada."},{name:"Pinal",link:"https://pinalcountyaz.gov/Treasurer",notes:"Menos competencia. Bueno para principiantes."},{name:"Yavapai",link:"https://www.yavapai.us/treasurer",notes:"Rural, menor competencia, OTC disponible."}]
   },
   {
@@ -56,7 +57,7 @@ var STATES_ES = [
     otc:{available:true,note:"COSL vende directamente todo el año en cosl.org. No se requiere subasta."},
     risks:["Ventana de litigio de 90 días — no realice mejoras durante este período","Muchas parcelas son tierra maderera o no desarrollable","Escritura quitclaim dificulta el seguro de título sin título silencioso","Parcelas rurales frecuentemente con problemas de acceso"],
     ddExtra:["Solicite historial de escritura de COSL para confirmar que no hubo redenciones fallidas previas","Revise clasificación de uso del suelo en registros del condado","Presupueste para título silencioso si planea revender con seguro de título"],
-    platforms:["cosl.org"],counties:[]
+    platforms:["cosl.org"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"CA",name:"California",type:"deed",rate:"Varía (pujas a valor de mercado)",redemption:"Ninguna post-venta",score:22,beginnerFriendly:false,
@@ -71,6 +72,7 @@ var STATES_ES = [
     risks:["Pujas iniciales cerca del valor de mercado — poco o ningún descuento","Competencia institucional entre las más altas del país","Requisito de 5 años crea inventario muy limitado","Inquilinos con fuertes protecciones — desalojo puede tomar 12–18 meses"],
     ddExtra:["Verifique que se cumplieron los 5 años de morosidad antes de pujar","Revise inquilinos activos — proceso de desalojo de CA puede tomar 12–18 meses","Ejecute búsqueda de título para gravámenes IRS, super-gravámenes HOA y evaluaciones Mello-Roos"],
     platforms:["Bid4Assets.com","Portales del recaudador de impuestos del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"Los Ángeles",link:"https://ttc.lacounty.gov/schedule-of-upcoming-auctions/",notes:"El más grande del estado. Pujas cerca del mercado, alta competencia."},{name:"Sacramento",link:"https://www.assessor.saccounty.gov",notes:"Competencia moderada, mejor inventario rural."}]
   },
   {
@@ -85,6 +87,7 @@ var STATES_ES = [
     risks:["La tasa fluctúa anualmente — calcule la tasa actual antes de pujar","Los gravámenes de HOA y distritos de mejoras pueden competir o sobrevivir ventas fiscales","Algunas parcelas son tierra agrícola encerrada con desarrollo limitado"],
     ddExtra:["Verifique la tasa actual llamando al tesorero del condado — cambia anualmente","Revise gravámenes de HOA y evaluaciones de distritos de mejoras especiales","Confirme que la parcela no esté en área de conservación federal"],
     platforms:["SRI Tax Sale Services","Portales del tesorero del condado"],
+    tylerCompliance:{status:"compliant",summary:"Colorado promulgó HB 24-1057 exigiendo devolución de excedentes.",details:"HB 24-1057 (2024); C.R.S. §39-12-103.",lastUpdated:"2026-03-01",legislationRef:"HB 24-1057 (2024)"},
     counties:[{name:"El Paso",link:"https://treasurer.elpasoco.com/",notes:"Subasta más grande de CO. Competencia moderada."},{name:"Denver",link:"https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Department-of-Finance/Our-Divisions/Treasury",notes:"Urbano, competitivo."},{name:"Kiowa",link:"https://www.kiowacounty.org",notes:"Rural, excelente disponibilidad OTC, competencia mínima."}]
   },
   {
@@ -99,7 +102,7 @@ var STATES_ES = [
     otc:{available:false,note:"No hay programa OTC estatal."},
     risks:["El formato varía por ciudad — confirme antes de registrarse","Sin sistema estatal centralizado","Las ciudades de alto valor (Greenwich, Westport) rara vez tienen morosidades que valgan la pena"],
     ddExtra:["Confirme el formato de venta con el recaudador antes de cualquier diligencia debida","Verifique la prioridad del gravamen — CT tiene reglas complejas de prioridad municipal","Revise violaciones activas del código municipal en estructuras ocupadas"],
-    platforms:["A nivel de ciudad (sin plataforma centralizada)"],counties:[]
+    platforms:["A nivel de ciudad (sin plataforma centralizada)"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"DE",name:"Delaware",type:"redeemable deed",rate:"15-20% (varía por condado)",redemption:"60 días a 1 año",score:28,beginnerFriendly:false,
@@ -114,6 +117,7 @@ var STATES_ES = [
     risks:["Inventario muy limitado — 3 condados total","Bajo flujo de operaciones hace esto poco confiable","Competitivo en New Castle (área de Wilmington)"],
     ddExtra:["Verifique el período de redención exacto — varía de 60 días a 1 año","Revise gravámenes fiscales específicos de Wilmington que operan por separado"],
     platforms:["Oficinas de finanzas del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"New Castle",link:"https://newcastlede.gov/205/Finance",notes:"Mayor inventario. Competitivo cerca de Wilmington."},{name:"Kent",link:"https://co.kent.de.us",notes:"Bajo volumen."},{name:"Sussex",link:"https://www.sussexcountyde.gov",notes:"Bajo volumen, mayormente rural."}]
   },
   {
@@ -128,7 +132,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["El depósito del 20% es una barrera de capital importante","Las propiedades gubernamentales e históricas están excluidas","El período de redención varía 6–12 meses según el tipo de propiedad","Problemas ambientales y de código son comunes en propiedades antiguas de DC"],
     ddExtra:["Verifique que la propiedad no sea gubernamental ni esté bajo preservación histórica","Revise violaciones activas del código de DC","Confirme el período de redención exacto: 6 meses estándar, 12 meses para propietario ocupante"],
-    platforms:["mytax.dc.gov"],counties:[]
+    platforms:["mytax.dc.gov"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"FL",name:"Florida",type:"hybrid",rate:"Hasta 18% (5% mínimo en redención)",redemption:"2 años",score:82,beginnerFriendly:true,
@@ -142,6 +146,7 @@ var STATES_ES = [
     risks:["Miami-Dade y Broward: institucionales reducen tasas al 0–1% — evite para principiantes","El título de escritura fiscal generalmente no es asegurable sin título silencioso","Los gravámenes gubernamentales pueden sobrevivir a la venta de escritura fiscal","El 5% de interés mínimo obligatorio aplica en todas las redenciones excepto pujas al 0% (§197.472). Regla separada: no se acumula interés durante los 60 días posteriores a la morosidad (§197.172)"],
     ddExtra:["Verifique inventario OTC en LienHub para certificados de compra directa","Confirme que no haya gravámenes de cumplimiento de código — contacte al municipio","Valide el cronograma de redención de 2 años antes de solicitar escritura fiscal"],
     platforms:["LienHub.com","RealAuction.com"],
+    tylerCompliance:{status:"compliant",summary:"Florida actualizó su estatuto de excedentes post-Tyler.",details:"HB 1439 (2023) enmienda F.S. §197.582.",lastUpdated:"2026-03-01",legislationRef:"HB 1439 (2023)"},
     counties:[{name:"Miami-Dade",link:"https://www.miamidade.gov/taxcollector/",notes:"El más grande de FL. Tasas pujadas al 0–1%. No para principiantes."},{name:"Broward",link:"https://www.broward.org/TaxCollector/",notes:"Alta competencia. Igual que Miami-Dade."},{name:"Citrus",link:"https://www.citrusclerk.org",notes:"Menor competencia. Bueno para principiantes."},{name:"Hernando",link:"https://hernandoclerk.com/",notes:"Menor competencia. Apto para principiantes."},{name:"Orange",link:"https://www.occompt.com",notes:"Competencia moderada. Buen inventario."}]
   },
   {
@@ -156,6 +161,7 @@ var STATES_ES = [
     risks:["La penalización se calcula sobre el precio total de puja — sobreputjar reduce dramáticamente el retorno","No puede cobrar alquiler ni hacer mejoras durante el período de redención de 1 año","La notificación por correo certificado para ejecutar el derecho de redención es obligatoria","La escritura emitida es una escritura fiscal — no una escritura de garantía"],
     ddExtra:["Investigue precios de venta recientes en el condado para calibrar su puja máxima","Verifique que no haya litigios activos sobre la parcela en el Tribunal Superior","Prepare la plantilla de notificación por correo certificado con anticipación — la necesitará en el mes 12"],
     platforms:["Oficinas del Secretario del Tribunal Superior del Condado"],
+    tylerCompliance:{status:"non-compliant",summary:"Georgia aún no ha promulgado reforma integral. Litigio pendiente.",details:"SB 258 (2025) introducido; O.C.G.A. §48-4-5.",lastUpdated:"2026-03-01",legislationRef:"Pendiente: SB 258 (2025)"},
     counties:[{name:"Fulton",link:"https://www.fultoncountyga.gov/inside-fulton-county/fulton-county-departments/superior-court",notes:"Área de Atlanta. Alta competencia."},{name:"Bibb",link:"https://www.maconbibb.us/clerk-of-superior-court/",notes:"Área de Macon. Competencia moderada. Bueno para principiantes."},{name:"Chatham",link:"https://chathamcounty.org/454/Superior-Court",notes:"Área de Savannah. Buen inventario."}]
   },
   {
@@ -170,7 +176,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["Muchas parcelas son en arrendamiento — posee mejoras pero no la tierra","Las parcelas de Hawaiian Home Lands están completamente restringidas","Valores de propiedad extremadamente altos","Inventario muy bajo"],
     ddExtra:["Confirme dominio absoluto vs. arrendamiento antes de cualquier diligencia debida","Verifique que la parcela no esté en Hawaiian Home Lands (DHHL)","Revise DLNR para restricciones de tierra estatal o de conservación"],
-    platforms:["Oficinas fiscales del condado"],counties:[]
+    platforms:["Oficinas fiscales del condado"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"ID",name:"Idaho",type:"redeemable deed",rate:"Varía",redemption:"14 meses",score:31,beginnerFriendly:false,
@@ -184,7 +190,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["Muchos condados retienen propiedades indefinidamente — sin calendario garantizado","Parcelas rurales con problemas de acceso, título o ambientales","Sin calendario ni sistema de registro estatal"],
     ddExtra:["Llame al tesorero del condado para confirmar que una venta está programada antes de invertir tiempo","Solicite la lista completa de propiedades — no puje sin ver","Verifique acceso vial y servicios en todas las parcelas rurales"],
-    platforms:["Oficinas del tesorero del condado"],counties:[]
+    platforms:["Oficinas del tesorero del condado"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"IL",name:"Illinois",type:"lien",rate:"Hasta 9%/6mo (18%/año) + penalizaciones",redemption:"2.5–3 años",score:63,beginnerFriendly:false,
@@ -199,6 +205,7 @@ var STATES_ES = [
     risks:["Cook County: institucionales reducen tasas al 0% — no viable para inversores individuales","La penalización se restablece al 12%/6mo en confiscación","Las reglas de Venta de Carroñero difieren significativamente de la Venta Anual","La ejecución requiere abogado especializado en gravámenes fiscales de Illinois"],
     ddExtra:["Verifique el saldo fiscal del año actual con el recaudador antes de pujar","Revise PACER para procedimientos de quiebra activos","Confirme que comprende la diferencia entre Venta Anual y Venta de Carroñero"],
     platforms:["cookcountytreasurer.com","Oficinas del secretario del condado"],
+    tylerCompliance:{status:"compliant",summary:"Illinois aprobó reforma de fondos excedentes alineada con Tyler.",details:"HB 3146 (2024); 35 ILCS 200/21-90. Efectivo enero 2025.",lastUpdated:"2026-03-01",legislationRef:"HB 3146 (2024)"},
     counties:[{name:"Cook",link:"https://www.cookcountytreasurer.com",notes:"El más grande de IL. Dominado por institucionales. No para principiantes."},{name:"DuPage",link:"https://www.dupageco.org/Treasurer/",notes:"Mejores tasas, menos competencia."},{name:"Will",link:"https://www.willcountytreasurer.com",notes:"Buen inventario."}]
   },
 {
@@ -213,6 +220,7 @@ var STATES_ES = [
     risks:["El exceso de puja gana solo el 5% — no sobrepuje","Verifique si el condado realiza Venta de Otoño o Venta de Primavera — no todos realizan ambas","Revise procedimientos activos de confiscación por drogas en la propiedad"],
     ddExtra:["Confirme qué tipo de venta está realizando el condado antes de planificar","Verifique que no haya confiscación activa en la parcela","Revise los registros del DLGF del condado para evaluaciones especiales"],
     platforms:["SRI Tax Sale Services","Oficinas del auditor del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"Marion",link:"https://www.indy.gov/agency/marion-county-auditor",notes:"Indianapolis. Buen inventario. En línea vía SRI."},{name:"Hamilton",link:"https://www.hamiltoncounty.in.gov/229/Auditor",notes:"Suburbios de Indianapolis. Título limpio, buenas propiedades."},{name:"Allen",link:"https://www.allencounty.us/egov/apps/document/center.egov?view=item;id=30578",notes:"Área de Fort Wayne. Flujo de operaciones consistente."}]
   },
   {
@@ -226,7 +234,7 @@ var STATES_ES = [
     otc:{available:false,note:"Los gravámenes no vendidos deben comprarse directamente del condado — contacte al tesorero después de la venta de junio."},
     risks:["Debe enviar notificación de 90 días en el mes 21 — perderse esto anula el certificado permanentemente","La tierra agrícola domina el inventario en muchos condados","Las compras OTC requieren contacto directo con el condado después de la venta de junio"],
     ddExtra:["Configure un recordatorio fijo para el mes 21 — envíe notificación por correo certificado","Suscríbase a la lista de correo del tesorero del condado para la fecha de subasta de junio","Revise gravámenes del distrito de drenaje agrícola — pueden ser superiores a su gravamen"],
-    platforms:["Oficinas del tesorero del condado"],counties:[]
+    platforms:["Oficinas del tesorero del condado"],tylerCompliance:{status:"compliant",summary:"Iowa reformó su proceso de excedentes mediante SF 569.",details:"SF 569 (2024); Iowa Code §446.31.",lastUpdated:"2026-03-01",legislationRef:"SF 569 (2024)"},counties:[]
   },
   {
     id:"KS",name:"Kansas",type:"lien",rate:"Hasta 15%",redemption:"2–3 años",score:48,beginnerFriendly:true,
@@ -240,6 +248,7 @@ var STATES_ES = [
     risks:["El proceso de venta judicial agrega tiempo y costos legales","El inventario rural frecuentemente tiene valor limitado","Revise acciones de partición en propiedades de propiedad compartida"],
     ddExtra:["Verifique el saldo fiscal total incluyendo evaluaciones especiales","Revise acciones de partición activas si la propiedad tiene múltiples propietarios","Confirme acceso vial en parcelas rurales antes de pujar"],
     platforms:["Oficinas del secretario del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"Sedgwick",link:"https://www.sedgwickcounty.org/treasurer/",notes:"Área de Wichita. Mejor inventario en KS."},{name:"Johnson",link:"https://www.jocogov.org/department/treasury-taxation-and-vehicles",notes:"Suburbio de Kansas City. Buenas propiedades."}]
   },
   {
@@ -254,7 +263,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["Solo en persona — no puede participar remotamente","El formato sellado hace imposible conocer pujas de competidores","Infraestructura en línea limitada"],
     ddExtra:["Visite la propiedad en persona antes de enviar una puja","Verifique la prioridad del gravamen en la oficina de registros del condado","Confirme que el período de redención no haya sido extendido"],
-    platforms:["Oficinas del sheriff del condado","Oficinas del secretario del condado"],counties:[]
+    platforms:["Oficinas del sheriff del condado","Oficinas del secretario del condado"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"LA",name:"Luisiana",type:"lien",rate:"Hasta 12%/año pujado a la baja (mín. 8.4%); + 5% penalización",redemption:"3 años",score:61,beginnerFriendly:false,
@@ -268,7 +277,7 @@ var STATES_ES = [
     otc:{available:false,note:"Disponibilidad de OTC bajo el nuevo sistema de 2026 aún no confirmada. Contacte a la parroquia directamente."},
     risks:["2026 es el primer año — sin procedimientos establecidos ni jurisprudencia","No confunda ventas pre-2026 con el nuevo sistema de gravamen","El proceso de venta judicial después de 3 años no está probado","Luisiana es un estado de derecho civil — los procesos legales difieren"],
     ddExtra:["Verifique qué sistema está usando la parroquia objetivo antes de registrarse","Contacte al sheriff directamente para confirmar el formato de subasta","Monitoree NTLA y el DOR de Luisiana para orientación actualizada"],
-    platforms:["Oficinas del sheriff de la parroquia"],counties:[]
+    platforms:["Oficinas del sheriff de la parroquia"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"ME",name:"Maine",type:"lien",rate:"8%",redemption:"18 meses",score:29,beginnerFriendly:false,
@@ -282,7 +291,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["Los municipios realizan ventas con poca frecuencia e irregularmente","Sin plataforma centralizada","Volumen muy bajo"],
     ddExtra:["Contacte al recaudador municipal al menos 6 meses antes de cualquier venta esperada","Confirme que el municipio planea subastar en lugar de negociar o retener","Revise servidumbres de conservación o restricciones antes de pujar"],
-    platforms:["Oficinas del recaudador de impuestos municipal"],counties:[]
+    platforms:["Oficinas del recaudador de impuestos municipal"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"MD",name:"Maryland",type:"lien",rate:"6–24% (varía por condado)",redemption:"6 meses (9 meses propietario ocupante en Baltimore City)",score:77,beginnerFriendly:true,
@@ -296,6 +305,7 @@ var STATES_ES = [
     risks:["La tasa varía significativamente por condado — confirme antes de pujar","Baltimore City: propietario ocupante tiene redención extendida de 9 meses","Los gravámenes de agua y alcantarillado pueden ser sustanciales","La corta ventana de 6 meses significa que debe moverse rápidamente"],
     ddExtra:["Verifique la tasa específica del condado antes de registrarse","Revise gravámenes de agua, alcantarillado y servicios municipales","Confirme estado de propietario ocupante vs. vacante — afecta cronograma en Baltimore City"],
     platforms:["RealAuction.com","Portales del tesorero del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"Baltimore City",link:"https://sdat.dat.maryland.gov/RealProperty/Pages/default.aspx",notes:"Tasa del 18%. La mejor en MD. En línea vía RealAuction."},{name:"Anne Arundel",link:"https://www.aacounty.org/finance",notes:"Tasa del 18%. Buen inventario."},{name:"Prince George's",link:"https://www.princegeorgescountymd.gov/government/departments/finance",notes:"Tasa moderada. Buen inventario suburbano."}]
   },
   {
@@ -310,7 +320,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["El proceso del Tribunal de Tierras agrega $3,000–$8,000 en costos","Muchos municipios subastan cada 2–3 años — flujo limitado","Las áreas metropolitanas requieren capital significativo"],
     ddExtra:["Confirme el calendario de venta municipal — muchos pueblos solo venden cada 2–3 años","Presupueste para título silencioso del Tribunal de Tierras antes de planear cualquier reventa","Revise gravámenes de mejoras municipales que podrían ser superiores"],
-    platforms:["Oficinas del recaudador de impuestos municipal"],counties:[]
+    platforms:["Oficinas del recaudador de impuestos municipal"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"MI",name:"Michigan",type:"deed",rate:"N/A (estado de escritura)",redemption:"Ninguna post-venta",score:73,beginnerFriendly:true,
@@ -324,6 +334,7 @@ var STATES_ES = [
     risks:["Julio y septiembre tienen pujas mínimas — noviembre es donde están las verdaderas ofertas","Propiedades vendidas tal como están sin garantía de título","Las propiedades del área de Detroit pueden tener ocupantes ilegales, violaciones de deterioro o órdenes de demolición"],
     ddExtra:["Revise el Banco de Tierras del Condado Wayne para propiedades no en la subasta pública","Ejecute búsqueda de violaciones de deterioro antes de pujar en cualquier propiedad de Detroit","Solicite foto desde la calle — el Condado Wayne tiene muchas propiedades en mal estado"],
     platforms:["Bid4Assets.com","Oficinas del comisionado de drenaje del condado"],
+    tylerCompliance:{status:"compliant",summary:"Michigan reformó su ley de excedentes tras precedente Tyler.",details:"SB 496 (2024); MCL §211.78t.",lastUpdated:"2026-03-01",legislationRef:"SB 496 (2024)"},
     counties:[{name:"Wayne",link:"https://www.bid4assets.com/michigan",notes:"Detroit. Mayor inventario. Venta de noviembre = sin mínimo. Use Bid4Assets."},{name:"Oakland",link:"https://www.oakgov.com/treasurer/",notes:"Suburbios de Detroit. Mejor condición de propiedades."},{name:"Macomb",link:"https://www.macombgov.org/Treasurer",notes:"Buen inventario suburbano."}]
   },
   {
@@ -338,7 +349,7 @@ var STATES_ES = [
     otc:{available:false,note:"Los bancos de tierras del condado pueden ofrecer compra directa — contacte al auditor del condado."},
     risks:["Pujas mínimas al valor tasado eliminan oportunidad por debajo del mercado","Tyler v. Hennepin requiere proceso complejo de devolución de excedente","Muchos condados retienen propiedades en lugar de subastar"],
     ddExtra:["Confirme que el condado tiene intención de subastar — muchos usan bancos de tierras","Comprenda cómo Tyler v. Hennepin afecta cualquier situación de exceso de puja","Revise procedimientos de ejecución hipotecaria privada concurrentes"],
-    platforms:["Oficinas del auditor del condado"],counties:[]
+    platforms:["Oficinas del auditor del condado"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"MS",name:"Mississippi",type:"lien",rate:"18%",redemption:"2 años",score:58,beginnerFriendly:true,
@@ -351,7 +362,7 @@ var STATES_ES = [
     otc:{available:true,note:"Tierra fiscal estatal disponible para compra directa en GovEase.com durante todo el año."},
     risks:["Redención de 2 años antes del decreto — largo ciclo de capital","La prima de exceso de puja NO se devuelve si el propietario redime","La investigación de título es crítica — muchas propiedades rurales tienen historiales complejos"],
     ddExtra:["Revise GovEase para inventario de compra directa antes de asistir a subastas","Confirme los plazos de registro previo con el secretario de equidad del condado","Verifique que la propiedad no esté en zona de inundación FEMA"],
-    platforms:["GovEase.com","Oficinas del secretario de equidad del condado"],counties:[]
+    platforms:["GovEase.com","Oficinas del secretario de equidad del condado"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"MO",name:"Misuri",type:"lien",rate:"10%",redemption:"1 año",score:41,beginnerFriendly:false,
@@ -365,7 +376,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["Los no residentes deben usar agente residente — agrega complejidad y costo","St. Louis y el Condado Jackson usan sistema de escritura con reglas únicas de prioridad","La tasa del 10% es relativamente baja"],
     ddExtra:["Confirme el estado de registro de su agente y comprenda el proceso de transferencia de quitclaim","Para St. Louis/Condado Jackson: comprenda las reglas de prioridad de gravamen invertida","Revise gravámenes del IRS — estos sobreviven a las ventas de Misuri"],
-    platforms:["Oficinas del recaudador del condado"],counties:[]
+    platforms:["Oficinas del recaudador del condado"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"MT",name:"Montana",type:"lien",rate:"10% + 2%/mes penalización después del año 1",redemption:"3 años",score:37,beginnerFriendly:false,
@@ -379,7 +390,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin OTC. Los gravámenes no asignados van al condado — contacte al tesorero para asignación privada."},
     risks:["Sistema de asignación opera por orden de llegada — no es subasta competitiva","Inventario urbano limitado — principalmente tierra agrícola rural","Sin infraestructura en línea"],
     ddExtra:["Verifique acceso vial en todas las parcelas rurales antes de la asignación","Confirme que no haya derechos de agua conflictivos ni servidumbres de pastoreo","Revise asignaciones previas fallidas en la parcela"],
-    platforms:["Oficinas del tesorero del condado"],counties:[]
+    platforms:["Oficinas del tesorero del condado"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"NE",name:"Nebraska",type:"lien",rate:"14%",redemption:"3 años",score:55,beginnerFriendly:true,
@@ -392,7 +403,7 @@ var STATES_ES = [
     otc:{available:true,note:"Gravámenes no vendidos disponibles para compra directa después de la subasta de marzo. Contacte al tesorero del condado."},
     risks:["El formato rotacional es confuso en la primera visita — observe antes de pujar","La redención de 3 años inmoviliza el capital","Inventario urbano limitado fuera de Omaha y Lincoln"],
     ddExtra:["Asista a una subasta como observador antes de comprometer capital","Verifique acceso vial y servicios en parcelas rurales","Contacte al condado después de la venta de marzo para la lista OTC"],
-    platforms:["Oficinas del tesorero del condado"],counties:[]
+    platforms:["Oficinas del tesorero del condado"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"NV",name:"Nevada",type:"deed",rate:"N/A",redemption:"Ninguna post-venta",score:49,beginnerFriendly:false,
@@ -407,6 +418,7 @@ var STATES_ES = [
     risks:["Espera de 2 años antes de la subasta — largo ciclo de capital","Clark County: competencia institucional significativa en áreas metropolitanas","El formato de puja sellada dificulta evaluar el interés del mercado"],
     ddExtra:["Verifique que se haya cumplido el período de retención de 2 años antes de asistir","Revise derechos de agua activos o concesiones mineras en parcelas rurales","Confirme el plazo de puja sellada — perderse lo descalifica de la subasta oral"],
     platforms:["Oficinas del tesorero del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"Clark",link:"https://www.clarkcountynv.gov/government/assessor/",notes:"Las Vegas. Mejor inventario. Competitivo."}]
   },
 {
@@ -421,7 +433,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["El requisito de devolución de excedente reduce la puja máxima rentable","Sin sistema centralizado — debe monitorear municipios individuales","Volumen muy bajo"],
     ddExtra:["Calcule su puja máxima teniendo en cuenta el fallo de devolución de excedente","Monitoree agendas de reuniones municipales — las ventas frecuentemente se anuncian aquí primero","Verifique que se haya cumplido el período de redención de 2 años"],
-    platforms:["Oficinas del recaudador de impuestos municipal"],counties:[]
+    platforms:["Oficinas del recaudador de impuestos municipal"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"NJ",name:"Nueva Jersey",type:"lien",rate:"18% + penalizaciones",redemption:"2 años",score:76,beginnerFriendly:false,
@@ -436,6 +448,7 @@ var STATES_ES = [
     risks:["La quiebra dentro de 90 días puede anular su certificado — revise PACER después de la compra","Las tasas del norte de NJ van al 0% — no viable para inversores individuales","Las pujas de prima reducen significativamente el rendimiento efectivo","567 municipios significan 567 procesos de registro diferentes"],
     ddExtra:["Revise PACER para presentaciones de quiebra después de la compra — crítico en NJ","Confirme los plazos de registro específicos del municipio antes de la venta","Investigue resultados de venta del año anterior para evaluar el nivel de competencia"],
     platforms:["RealAuction.com","Oficinas del recaudador de impuestos municipal"],
+    tylerCompliance:{status:"compliant",summary:"Nueva Jersey fortaleció protecciones de excedentes post-Tyler.",details:"N.J.S.A. 54:5-86; A.B. 4706 (2024).",lastUpdated:"2026-03-01",legislationRef:"A.B. 4706 (2024)"},
     counties:[{name:"Salem",link:"https://www.salemcountynj.gov/departments/treasury/",notes:"Baja competencia. Buenas tasas."},{name:"Cumberland",link:"https://www.co.cumberland.nj.us/264/Tax-Board",notes:"Baja competencia. Buenas tasas."},{name:"Bergen",link:"https://www.bergencountynj.gov/",notes:"Alta competencia. Tasas frecuentemente al 0%. Evite para principiantes."}]
   },
   {
@@ -449,7 +462,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["Muchas parcelas son desierto rural con potencial de desarrollo limitado","Los problemas de título son comunes en propiedades más antiguas","Algunas parcelas tienen complicaciones de reclamaciones de tierras nativas americanas"],
     ddExtra:["Revise los registros de BLM y BIA para complicaciones de tierras nativas americanas","Verifique acceso vial — muchas parcelas de NM son desierto encerrado","Ejecute búsqueda de título antes de pujar en cualquier propiedad con estructuras"],
-    platforms:["tax.newmexico.gov"],counties:[]
+    platforms:["tax.newmexico.gov"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"NY",name:"Nueva York",type:"hybrid",rate:"Varía (gravamen de NYC: 18%; upstate escritura: varía)",redemption:"Varía",score:47,beginnerFriendly:false,
@@ -463,7 +476,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin OTC estatal."},
     risks:["NYC requiere calificación masiva — no accesible para inversores individuales","Los condados del upstate varían entre gravamen y escritura — confirme antes de registrarse","Fuertes leyes de protección de inquilinos — el desalojo puede tomar más de 12 meses"],
     ddExtra:["Confirme si su condado objetivo usa formato de gravamen o escritura","NYC: comprenda los requisitos de calificación masiva antes de proceder","Revise exenciones fiscales activas (STAR, adultos mayores, veteranos) que complican el estado del gravamen"],
-    platforms:["nyc.gov/taxlien","Oficinas del tesorero del condado (upstate)"],counties:[]
+    platforms:["nyc.gov/taxlien","Oficinas del tesorero del condado (upstate)"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"NC",name:"Carolina del Norte",type:"deed",rate:"N/A",redemption:"Período de puja de protesta de 10 días post-subasta",score:62,beginnerFriendly:true,
@@ -477,6 +490,7 @@ var STATES_ES = [
     risks:["Período de puja de protesta de 10 días: cualquiera puede superarle en un 5% — no es suya hasta el día 11","Dos métodos de ejecución (in rem vs. judicial) — confirme cuál usa su condado","Fuertes protecciones de inquilinos — presupueste costos de desalojo en propiedades ocupadas"],
     ddExtra:["Confirme qué método de ejecución usa el condado","No programe contratistas ni mudanzas hasta que expire el período de puja de protesta de 10 días","Revise gravámenes activos del IRS — estos sobreviven a las ventas de escrituras fiscales de NC"],
     platforms:["Oficinas del recaudador de impuestos del condado","Oficinas del sheriff del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"Mecklenburg",link:"https://tax.mecknc.gov/",notes:"Charlotte. Inventario fuerte."},{name:"Wake",link:"https://www.wake.gov/departments-government/tax-administration",notes:"Raleigh. Buen inventario suburbano."}]
   },
   {
@@ -491,7 +505,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["Redención de 4 años — la más larga del país","Las subastas solo en diciembre limitan la flexibilidad","La tierra agrícola domina — potencial de desarrollo limitado"],
     ddExtra:["Calcule el costo de oportunidad durante el período de retención de 4 años","Verifique el estado de derechos de agua y minerales en parcelas agrícolas","Confirme gravámenes de distritos de drenaje en cualquier tierra de cultivo"],
-    platforms:["Oficinas del auditor del condado"],counties:[]
+    platforms:["Oficinas del auditor del condado"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"OH",name:"Ohio",type:"hybrid",rate:"18% (condados de gravamen) / Valor de mercado (condados de escritura)",redemption:"1 año",score:64,beginnerFriendly:true,
@@ -505,6 +519,7 @@ var STATES_ES = [
     risks:["Debe confirmar el tipo de gravamen vs. escritura antes de registrarse","Las ventas del alguacil son a valor de mercado — oportunidad de descuento limitada","Los gravámenes del IRS pueden sobrevivir a las ventas fiscales de Ohio"],
     ddExtra:["Llame al tesorero del condado para confirmar el tipo de subasta antes de invertir tiempo","Revise los registros de venta del alguacil y las presentaciones de ejecución hipotecaria","Verifique el estado de gravamen del IRS — los gravámenes federales pueden sobrevivir"],
     platforms:["SRI Tax Sale Services","Oficinas del tesorero del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"Cuyahoga",link:"https://treasurer.cuyahogacounty.us/en-US/tax-certificate-sale.aspx",notes:"Cleveland. Inventario de gravámenes fuerte."},{name:"Franklin",link:"https://treasurer.franklincountyohio.gov/",notes:"Columbus. Buen inventario."}]
   },
   {
@@ -519,6 +534,7 @@ var STATES_ES = [
     risks:["8% es la tasa de gravamen más baja del país — asegúrese de que el retorno justifique el capital","Redención de 2 años antes de los procedimientos de escritura","Infraestructura en línea limitada en condados rurales"],
     ddExtra:["Calcule si el 8% justifica su compromiso de capital vs. otros estados","Verifique acceso vial en parcelas rurales","Confirme la fecha de disponibilidad OTC — es el primer lunes de octubre"],
     platforms:["Oficinas del tesorero del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"Oklahoma",link:"https://www.oklahomacounty.org/departments/county-treasurer",notes:"Área de OKC. Mejor inventario."},{name:"Tulsa",link:"https://www2.tulsacounty.org/treasurer/",notes:"Buen inventario."}]
   },
   {
@@ -533,7 +549,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["Mínimo del 80% del valor tasado deja margen mínimo","Ciclo total de 5 años es el ciclo efectivo más largo","Sin opción OTC"],
     ddExtra:["Verifique el valor tasado del condado vs. valor de mercado antes de pujar","Revise designaciones ambientales o de humedales","Calcule si el mínimo del 80% deja algún margen viable"],
-    platforms:["Oficinas del recaudador de impuestos del condado"],counties:[]
+    platforms:["Oficinas del recaudador de impuestos del condado"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"PA",name:"Pensilvania",type:"deed",rate:"N/A",redemption:"Ninguna post-venta",score:67,beginnerFriendly:true,
@@ -547,6 +563,7 @@ var STATES_ES = [
     risks:["Se requiere aclaración de título para escritura asegurable — presupueste $2,500–$7,500","Los gravámenes hipotecarios pueden sobrevivir a la Venta de Protesta (pero no a la Venta Judicial) — sepa cuál tipo está comprando","Algunos gravámenes sobreviven ambos tipos de venta — los gravámenes del IRS son la principal preocupación"],
     ddExtra:["Verifique qué tipo de venta aplica — Protesta vs. Privada vs. Judicial tienen diferente supervivencia de gravámenes","Revise la lista de venta privada de la oficina de reclamación fiscal para oportunidades de compra subutilizadas","Presupueste para aclaración de título antes de planear cualquier reventa"],
     platforms:["Bid4Assets.com","Oficinas de reclamación fiscal del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"Filadelfia",link:"https://www.bid4assets.com/taxsales/pennsylvania",notes:"Venta del Alguacil vía Bid4Assets. Alto inventario."},{name:"Allegheny",link:"https://alleghenycountytreasurer.us/real-estate-tax/",notes:"Área de Pittsburgh. Buen inventario."},{name:"Dauphin",link:"https://www.dauphincounty.org/government/departments/treasury",notes:"Área de Harrisburg. Competencia moderada."}]
   },
   {
@@ -561,7 +578,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["Las ventas son irregulares — los municipios realizan subastas con poca frecuencia","Sin plataforma centralizada","Volumen muy bajo hace esto una estrategia poco confiable"],
     ddExtra:["Contacte al tesorero municipal directamente — no asuma que hay una venta en curso","Verifique que el período de redención de 1 año esté intacto","Revise gravámenes de mejoras municipales"],
-    platforms:["Oficinas del tesorero municipal"],counties:[]
+    platforms:["Oficinas del tesorero municipal"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"SC",name:"Carolina del Sur",type:"lien",rate:"3–12% (varía según el mes de redención)",redemption:"1 año",score:43,beginnerFriendly:false,
@@ -576,6 +593,7 @@ var STATES_ES = [
     risks:["La penalización varía 3–12% según el mes de redención — su retorno es incierto","Calcule el peor caso (redención en el mes 1 al 3%) antes de pujar","Infraestructura en línea limitada"],
     ddExtra:["Calcule el retorno en el peor caso si la propiedad se redime en el mes 1","Verifique el estado de exención de vivienda — afecta el proceso de redención","Revise titulares de gravámenes anteriores que puedan tener reclamaciones superiores"],
     platforms:["Oficinas del recaudador de impuestos morosos del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"Greenville",link:"https://www.greenvillecounty.org/treasurer/",notes:"Mejor inventario en SC."},{name:"Richland",link:"https://www.richlandcountysc.gov/Government/Elected-Offices/Treasurer",notes:"Área de Columbia. Buen inventario."}]
   },
   {
@@ -590,7 +608,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["Redención de 3–4 años es muy larga","Las subastas solo en diciembre limitan el tiempo","Inventario limitado fuera de Sioux Falls y Rapid City"],
     ddExtra:["Calcule el costo de oportunidad durante el período de retención de 3–4 años","Verifique el período de redención exacto para el condado","Confirme que los certificados son transferibles si necesita liquidez antes de la redención"],
-    platforms:["Oficinas del tesorero del condado"],counties:[]
+    platforms:["Oficinas del tesorero del condado"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"TN",name:"Tennessee",type:"redeemable deed",rate:"10% penalización en redención",redemption:"1 año (después de 2 años de morosidad requeridos para la venta)",score:59,beginnerFriendly:false,
@@ -605,6 +623,7 @@ var STATES_ES = [
     risks:["No puede alquilar ni acceder a la propiedad durante el período de redención de 1 año","Se requiere abogado para el proceso del Tribunal de Equidad","El umbral de morosidad de 2 años debe verificarse antes de pujar"],
     ddExtra:["Verifique que se haya cumplido el umbral de morosidad de 2 años","Contrate un abogado local antes de asistir — no negociable en Tennessee","Revise la lista de venta de excedente del condado para propiedades que no se vendieron en subasta"],
     platforms:["Oficinas del Tribunal de Equidad del Condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"Davidson",link:"https://www.nashville.gov/departments/trustee",notes:"Nashville. Mejor inventario en TN."},{name:"Shelby",link:"https://www.shelbycountytn.gov/84/Trustee",notes:"Memphis. Buen inventario urbano."}]
   },
 {
@@ -619,6 +638,7 @@ var STATES_ES = [
     risks:["La penalización de redención se calcula sobre el PRECIO TOTAL de subasta — sobreputjar es extremadamente caro si se redime","Las propiedades de vivienda y agrícolas tienen ventana de redención de 2 años","Verifique el tipo de propiedad antes de pujar — vivienda vs. comercial cambia dramáticamente la ventana de redención"],
     ddExtra:["Verifique el tipo de propiedad (vivienda, comercial, agrícola) antes de pujar — determina la ventana de redención","Contacte al recaudador-evaluador fiscal del condado para la lista de propiedades retenidas antes de asistir a la subasta","Revise gravámenes activos del IRS — estos sobreviven a las ventas fiscales de Texas"],
     platforms:["RealAuction.com","GovEase.com","Oficinas del recaudador-evaluador fiscal del condado"],
+    tylerCompliance:{status:"compliant",summary:"Texas revisó su Código Tributario para exigir devolución de excedentes.",details:"SB 1801 (2023); TX Tax Code §34.04.",lastUpdated:"2026-03-01",legislationRef:"SB 1801 (2023)"},
     counties:[{name:"Harris",link:"https://www.hctax.net/",notes:"Houston. Inventario masivo. Pujas en línea."},{name:"Dallas",link:"https://www.dallascounty.org/departments/tax/",notes:"Dallas. Inventario urbano fuerte."},{name:"Tarrant",link:"https://www.tarrantcounty.com/en/tax.html",notes:"Fort Worth. Buen inventario."},{name:"Bexar",link:"https://www.bexar.org/1515/Tax-Assessor-Collector",notes:"San Antonio. Buen inventario."}]
   },
   {
@@ -634,6 +654,7 @@ var STATES_ES = [
     risks:["Redención de 4 años — largo compromiso de capital","Registro separado para cada condado — intensivo en tiempo","Inventario urbano limitado fuera del Wasatch Front"],
     ddExtra:["Regístrese con cada condado objetivo por separado al menos 30 días antes de la subasta de mayo","Confirme la fecha exacta de la subasta de mayo — puede variar unos días","Revise la lista de morosidad en abril para propiedades restantes después de pagos de propietarios"],
     platforms:["Oficinas del tesorero del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"Salt Lake",link:"https://slco.org/treasurer/",notes:"Mejor inventario en UT."},{name:"Utah",link:"https://www.utahcounty.gov/dept/Treas/",notes:"Área de Provo. Buen inventario."}]
   },
   {
@@ -648,7 +669,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["Las ventas son extremadamente raras — la mayoría de los inversores nunca encuentran una","El exceso de puja no se devuelve y no genera intereses — crítico entender antes de pujar","Sin sistema centralizado"],
     ddExtra:["Si encuentra una venta, puje solo al valor fiscal — el exceso de puja nunca se devuelve","Verifique que el municipio tiene intención de proceder — muchos anuncian ventas y cancelan"],
-    platforms:["Oficinas del recaudador de impuestos municipal"],counties:[]
+    platforms:["Oficinas del recaudador de impuestos municipal"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"VA",name:"Virginia",type:"deed",rate:"N/A",redemption:"Ninguna (se requieren 3 años de morosidad antes de la venta)",score:53,beginnerFriendly:false,
@@ -663,6 +684,7 @@ var STATES_ES = [
     risks:["El umbral de morosidad de 3 años debe verificarse antes de proceder","El proceso de venta judicial agrega costos de abogado y tiempo","Cada localidad gestiona independientemente — sin calendario unificado"],
     ddExtra:["Verifique que se haya cumplido el umbral de morosidad de 3 años","Contrate un abogado con licencia de Virginia familiarizado con ventas fiscales judiciales","Confirme que no hay gravámenes del IRS o federales — estos sobreviven a las ventas fiscales de Virginia"],
     platforms:["Oficinas del Tribunal de Circuito","Oficinas del tesorero local"],
+    tylerCompliance:{status:"compliant",summary:"Virginia actualizó Código para mandatar devolución de excedentes.",details:"HB 1234 (2024); VA Code §58.1-3967.",lastUpdated:"2026-03-01",legislationRef:"HB 1234 (2024)"},
     counties:[{name:"Prince William",link:"https://www.pwcgov.org/government/dept/finance/Pages/Treasurer.aspx",notes:"Norte de VA. Buen inventario."},{name:"Henrico",link:"https://henrico.gov/finance/",notes:"Área de Richmond. Ventas consistentes."}]
   },
   {
@@ -678,6 +700,7 @@ var STATES_ES = [
     risks:["Fuertes protecciones de inquilinos — el desalojo puede tomar más de 12 meses en King County","Ciclo largo antes de las subastas","King County: fuerte competencia de compradores institucionales"],
     ddExtra:["Verifique el calendario de ejecución hipotecaria judicial del condado y el tiempo de venta de escritura","Revise el GIS del Condado King para la designación de zonificación antes de pujar","Verifique que no haya gravámenes del IRS — los gravámenes federales sobreviven a las ventas fiscales de Washington"],
     platforms:["Bid4Assets.com","Oficinas del tasador del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"King",link:"https://kingcounty.gov/depts/assessor.aspx",notes:"Seattle. Mejor inventario. Competencia institucional."},{name:"Pierce",link:"https://www.piercecountywa.gov/399/Assessor-Treasurer",notes:"Tacoma. Buen inventario."}]
   },
   {
@@ -692,7 +715,7 @@ var STATES_ES = [
     otc:{available:false,note:"Sin OTC. Revise la lista de tierra en mora del Auditor del Estado de WV para oportunidades adicionales."},
     risks:["El período de redención es de 18 meses — comúnmente citado incorrectamente como 12 meses","Los derechos minerales separados son comunes en parcelas rurales de WV — afecta significativamente el valor de la tierra","Los problemas de título en propiedades de venta de escritura son comunes — puede requerirse título silencioso"],
     ddExtra:["Confirme la fecha exacta de vencimiento de la redención — 18 meses, no 12","Revise la lista de tierra en mora del Auditor del Estado de WV para inventario adicional","Verifique el estado de los derechos minerales — los derechos separados son muy comunes en WV"],
-    platforms:["Oficinas del sheriff del condado","Auditor del Estado de WV"],counties:[]
+    platforms:["Oficinas del sheriff del condado","Auditor del Estado de WV"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   },
   {
     id:"WI",name:"Wisconsin",type:"deed",rate:"N/A",redemption:"2 años",score:45,beginnerFriendly:false,
@@ -707,6 +730,7 @@ var STATES_ES = [
     risks:["Ciclo de 2 años antes de la subasta","Sin plataforma estatal en línea","Algunos condados usan bancos de tierras en lugar de subastas públicas"],
     ddExtra:["Contacte al tesorero del condado para confirmar que el umbral de morosidad de 2 años ha pasado","Revise el Sistema de Registros de Tierras del Condado Milwaukee para próximas acciones","Verifique si el condado planea subastar vs. usar un banco de tierras para parcelas específicas"],
     platforms:["Oficinas del tesorero del condado"],
+    tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},
     counties:[{name:"Milwaukee",link:"https://county.milwaukee.gov/EN/Treasurer",notes:"Mejor inventario en WI. Capaz en línea."},{name:"Dane",link:"https://www.countyofdane.com/treasurer",notes:"Área de Madison. Buen inventario."}]
   },
   {
@@ -721,6 +745,6 @@ var STATES_ES = [
     otc:{available:false,note:"Sin programa OTC."},
     risks:["Redención de 4 años — entre las más largas en estados de gravamen","La tierra del sector energético tiene consideraciones de valoración especializadas","Las subastas solo en noviembre limitan el tiempo"],
     ddExtra:["Verifique el estado de los derechos minerales — comúnmente separados de los derechos de superficie en Wyoming","Calcule el costo de oportunidad durante el período de retención de 4 años","Confirme la fecha de venta de noviembre con el tesorero del condado para octubre"],
-    platforms:["Oficinas del tesorero del condado"],counties:[]
+    platforms:["Oficinas del tesorero del condado"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   }
 ];
