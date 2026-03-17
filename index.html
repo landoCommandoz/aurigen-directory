@@ -2466,6 +2466,540 @@ a { color: inherit; text-decoration: none; }
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/* ═══════════════════════════════════════════════
+   INVESTOR DNA — Radar Chart, Quiz, Pathway
+═══════════════════════════════════════════════ */
+#view-dna { padding-bottom: 0; }
+#view-dna.active { display: flex; }
+
+.dna-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 16px 24px;
+}
+
+.dna-header {
+  text-align: center;
+  padding: 20px 16px 0;
+  flex-shrink: 0;
+}
+
+.dna-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+
+.dna-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+/* DNA Tabs: Profile vs Pathway */
+.dna-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.dna-tab {
+  flex: 1;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.dna-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.dna-panel { display: none; }
+.dna-panel.active { display: block; }
+
+/* Quiz */
+.dna-quiz-container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.dna-quiz-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.dna-quiz-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dna-quiz-progress {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.dna-quiz-dot {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  transition: background 0.3s ease;
+}
+
+.dna-quiz-dot.active { background: var(--accent); }
+.dna-quiz-dot.done { background: var(--accent); opacity: 0.5; }
+
+.dna-question {
+  display: none;
+  animation: fadeIn 0.2s ease;
+}
+
+.dna-question.active { display: block; }
+
+.dna-question-text {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.dna-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dna-option {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 14px;
+  text-align: left;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.dna-option:hover { border-color: var(--accent-border); background: var(--accent-dim); }
+.dna-option.selected { border-color: var(--accent); background: var(--accent-dim); }
+
+.dna-quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+.dna-quiz-btn {
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.dna-quiz-btn.primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.dna-quiz-btn.primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.dna-quiz-btn.secondary {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+}
+
+/* Radar Chart */
+.dna-radar-wrap {
+  max-width: 360px;
+  margin: 0 auto 24px;
+}
+
+.dna-radar-wrap svg {
+  width: 100%;
+  height: auto;
+}
+
+.dna-radar-grid line { stroke: var(--border); stroke-width: 1; }
+.dna-radar-grid circle { fill: none; stroke: var(--border); stroke-width: 1; }
+.dna-radar-area {
+  fill: rgba(200, 168, 75, 0.15);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.dna-radar-point { fill: var(--accent); }
+
+.dna-radar-label {
+  fill: var(--text-dim);
+  font-size: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Retake button */
+.dna-retake-btn {
+  display: block;
+  margin: 0 auto 20px;
+  padding: 8px 20px;
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dna-retake-btn:hover { border-color: var(--accent-border); color: var(--accent); }
+
+/* Top States Cards */
+.dna-top-states-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.dna-state-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dna-state-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dna-state-card:hover { border-color: var(--accent-border); }
+
+.dna-state-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dna-state-card-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.dna-state-card-meta {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.dna-state-card-match {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--accent-dim);
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.dna-empty-msg {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+  padding: 32px 0;
+}
+
+/* Guided Pathway */
+.pathway-progress {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 20px 16px 16px;
+  flex-shrink: 0;
+}
+
+.pathway-step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--bg3);
+  color: var(--text-muted);
+  border: 2px solid var(--border);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.pathway-step-indicator.active {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.pathway-step-indicator.done {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.pathway-step-line {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  transition: background 0.3s ease;
+}
+
+.pathway-step-line.done { background: var(--accent); }
+
+.pathway-step-content {
+  display: none;
+  animation: fadeIn 0.2s ease;
+}
+
+.pathway-step-content.active { display: block; }
+
+.pathway-step-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.pathway-step-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+.pathway-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.pathway-nav-btn {
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.pathway-nav-btn.primary { background: var(--accent); color: var(--bg); }
+.pathway-nav-btn.primary:disabled { opacity: 0.4; cursor: not-allowed; }
+.pathway-nav-btn.secondary { background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
+
+/* Pathway state picker */
+.pathway-state-pick {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pathway-state-pick-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pathway-state-pick-item:hover { border-color: var(--accent-border); }
+.pathway-state-pick-item.selected { border-color: var(--accent); background: var(--accent-dim); }
+
+/* Pathway deep dive inline detail */
+.pathway-detail-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.pathway-detail-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.pathway-detail-card p,
+.pathway-detail-card li {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.pathway-detail-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pathway-detail-card li::before {
+  content: '\2022';
+  color: var(--accent);
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+}
+
+/* Pathway analyzer mini */
+.pathway-analyzer {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.pathway-analyzer-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pathway-analyzer-row:last-child { border-bottom: none; }
+.pathway-analyzer-row .label { color: var(--text-dim); }
+.pathway-analyzer-row .value { font-weight: 600; color: var(--accent); }
+
+/* Pathway action section */
+.pathway-action-card {
+  background: var(--bg-card);
+  border: 1px solid var(--accent-border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.pathway-action-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+.pathway-action-card ol {
+  list-style: none;
+  padding: 0;
+  counter-reset: step;
+}
+
+.pathway-action-card ol li {
+  counter-increment: step;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  padding: 4px 0 4px 28px;
+  position: relative;
+}
+
+.pathway-action-card ol li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pathway-book-cta {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  margin-top: 16px;
+}
+
+.pathway-book-cta:hover { opacity: 0.9; }
+
+.pathway-book-sub {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-align: center;
+  margin-top: 6px;
+}
+
+.pathway-complete-msg {
+  text-align: center;
+  padding: 24px 0;
+}
+
+.pathway-complete-msg .check {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+.pathway-complete-msg p {
+  font-size: 14px;
+  color: var(--text-dim);
+}
 </style>
 </head>
 <body>
@@ -2851,6 +3385,35 @@ a { color: inherit; text-decoration: none; }
       </div>
     </div>
 
+    <!-- DNA VIEW -->
+    <div id="view-dna" class="view">
+      <div class="dna-tabs">
+        <button class="dna-tab active" onclick="switchDnaTab('profile')">Profile</button>
+        <button class="dna-tab" onclick="switchDnaTab('pathway')">First Deal</button>
+      </div>
+
+      <!-- Profile Panel -->
+      <div class="dna-panel active" id="dna-profile-panel">
+        <div class="dna-scroll" id="dna-profile-scroll">
+          <div id="dna-quiz-area"></div>
+          <div id="dna-radar-area" style="display:none;">
+            <div class="dna-radar-wrap" id="dna-radar-chart"></div>
+            <button class="dna-retake-btn" onclick="dnaRetakeQuiz()">Retake Quiz</button>
+            <div class="dna-top-states-title" id="dna-top-title">Top States for Your Profile</div>
+            <div class="dna-state-cards" id="dna-top-states"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pathway Panel -->
+      <div class="dna-panel" id="dna-pathway-panel">
+        <div class="pathway-progress" id="pathway-progress"></div>
+        <div class="dna-scroll" id="dna-pathway-scroll">
+          <div id="pathway-steps-container"></div>
+        </div>
+      </div>
+    </div>
+
   </div><!-- end main-content -->
 
   <!-- FOOTER DISCLAIMER -->
@@ -2877,6 +3440,12 @@ a { color: inherit; text-decoration: none; }
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       </span>
       <span class="nav-label">Advisor</span>
+    </button>
+    <button class="nav-item" data-tab="dna" onclick="navigate('dna')">
+      <span class="nav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/><path d="M17 6l-2.5-2.5"/><path d="M14 8l-1-1"/><path d="M7 18l2.5 2.5"/><path d="M3.5 14.5l.5.5"/><path d="M20 9l.5.5"/><path d="M6.5 12.5l1 1"/><path d="M16.5 10.5l1 1"/><path d="M10 16l1.5 1.5"/></svg>
+      </span>
+      <span class="nav-label" id="nav-label-dna">DNA</span>
     </button>
     <button class="nav-item" data-tab="account" onclick="navigate('account')">
       <span class="nav-icon">
@@ -3143,7 +3712,61 @@ const I18N = {
     stratBeginner: 'Beginner',
     stratAdvanced: 'Experienced',
     // Language toggle
-    langToggle: 'EN'
+    langToggle: 'EN',
+    // Investor DNA
+    navDna: 'DNA',
+    dnaViewTitle: 'Investor DNA',
+    dnaViewSub: 'Your adaptive investor profile',
+    dnaTabProfile: 'Profile',
+    dnaTabPathway: 'First Deal',
+    dnaQuizTitle: 'Build Your Investor Profile',
+    dnaQuizSub: 'Answer 5 quick questions so we can match you with the right states.',
+    dnaQ1: "What's your investment budget?",
+    dnaQ1a: 'Under $5K', dnaQ1b: '$5K - $25K', dnaQ1c: '$25K - $100K', dnaQ1d: '$100K+',
+    dnaQ2: "What's your experience level?",
+    dnaQ2a: 'Brand new', dnaQ2b: 'Some research', dnaQ2c: 'Have invested', dnaQ2d: 'Experienced',
+    dnaQ3: "What's your risk tolerance?",
+    dnaQ3a: 'Conservative', dnaQ3b: 'Moderate', dnaQ3c: 'Aggressive',
+    dnaQ4: "What's your time horizon?",
+    dnaQ4a: 'Quick returns (< 1 year)', dnaQ4b: 'Medium (1-3 years)', dnaQ4c: 'Long-term (3+ years)',
+    dnaQ5: 'What interests you more?',
+    dnaQ5a: 'Steady interest (liens)', dnaQ5b: 'Property ownership (deeds)', dnaQ5c: 'Both',
+    dnaQuizNext: 'Next',
+    dnaQuizBack: 'Back',
+    dnaQuizFinish: 'See My Profile',
+    dnaRadarBudget: 'Budget',
+    dnaRadarExperience: 'Experience',
+    dnaRadarRisk: 'Risk Tolerance',
+    dnaRadarTime: 'Time Horizon',
+    dnaRadarDiversification: 'Diversification',
+    dnaRadarActivity: 'Activity Level',
+    dnaTopStates: 'Top States for Your Profile',
+    dnaTopStatesNone: 'Complete the quiz to see your matched states.',
+    dnaRetake: 'Retake Quiz',
+    dnaMatchScore: 'Match',
+    pathwayTitle: 'Your First Deal',
+    pathwaySub: 'A guided 5-step path to your first investment.',
+    pathwayStep1: 'Profile',
+    pathwayStep2: 'Matched States',
+    pathwayStep3: 'Deep Dive',
+    pathwayStep4: 'Run the Numbers',
+    pathwayStep5: 'Take Action',
+    pathwayNext: 'Next Step',
+    pathwayBack: 'Back',
+    pathwayMatchedTitle: 'Your Best States',
+    pathwayMatchedSub: 'Based on your profile, these states are the best fit.',
+    pathwayPickState: 'Pick a state to dive deeper.',
+    pathwayDeepDiveTitle: 'Deep Dive',
+    pathwayDeepDiveSub: 'Explore your selected state in detail.',
+    pathwayAnalyzerTitle: 'Run the Numbers',
+    pathwayAnalyzerSub: 'See what a deal looks like in this state.',
+    pathwayActionTitle: 'Take Action',
+    pathwayActionSub: 'Register for the auction and book a strategy call.',
+    pathwayAuctionSteps: 'Auction Signup Steps',
+    pathwayBookCall: 'Book an Investor Clarity Call',
+    pathwayBookCallSub: 'Get personalized guidance from an expert.',
+    pathwayComplete: 'Pathway complete.',
+    pathwayRestart: 'Start Over'
   },
   es: {
     // Gate - Hero
@@ -3342,7 +3965,61 @@ const I18N = {
     stratBeginner: 'Principiante',
     stratAdvanced: 'Experimentado',
     // Language toggle
-    langToggle: 'ES'
+    langToggle: 'ES',
+    // Investor DNA
+    navDna: 'ADN',
+    dnaViewTitle: 'ADN del Inversor',
+    dnaViewSub: 'Tu perfil adaptativo de inversor',
+    dnaTabProfile: 'Perfil',
+    dnaTabPathway: 'Primera Operacion',
+    dnaQuizTitle: 'Construye Tu Perfil de Inversor',
+    dnaQuizSub: 'Responde 5 preguntas rapidas para encontrar los estados ideales.',
+    dnaQ1: 'Cual es tu presupuesto de inversion?',
+    dnaQ1a: 'Menos de $5K', dnaQ1b: '$5K - $25K', dnaQ1c: '$25K - $100K', dnaQ1d: '$100K+',
+    dnaQ2: 'Cual es tu nivel de experiencia?',
+    dnaQ2a: 'Totalmente nuevo', dnaQ2b: 'Algo de investigacion', dnaQ2c: 'He invertido', dnaQ2d: 'Experimentado',
+    dnaQ3: 'Cual es tu tolerancia al riesgo?',
+    dnaQ3a: 'Conservador', dnaQ3b: 'Moderado', dnaQ3c: 'Agresivo',
+    dnaQ4: 'Cual es tu horizonte de tiempo?',
+    dnaQ4a: 'Retornos rapidos (< 1 ano)', dnaQ4b: 'Medio (1-3 anos)', dnaQ4c: 'Largo plazo (3+ anos)',
+    dnaQ5: 'Que te interesa mas?',
+    dnaQ5a: 'Interes constante (gravamenes)', dnaQ5b: 'Propiedad (escrituras)', dnaQ5c: 'Ambos',
+    dnaQuizNext: 'Siguiente',
+    dnaQuizBack: 'Atras',
+    dnaQuizFinish: 'Ver Mi Perfil',
+    dnaRadarBudget: 'Presupuesto',
+    dnaRadarExperience: 'Experiencia',
+    dnaRadarRisk: 'Tolerancia al Riesgo',
+    dnaRadarTime: 'Horizonte de Tiempo',
+    dnaRadarDiversification: 'Diversificacion',
+    dnaRadarActivity: 'Nivel de Actividad',
+    dnaTopStates: 'Mejores Estados para Tu Perfil',
+    dnaTopStatesNone: 'Completa el cuestionario para ver tus estados recomendados.',
+    dnaRetake: 'Repetir Cuestionario',
+    dnaMatchScore: 'Coincidencia',
+    pathwayTitle: 'Tu Primera Operacion',
+    pathwaySub: 'Un camino guiado de 5 pasos hacia tu primera inversion.',
+    pathwayStep1: 'Perfil',
+    pathwayStep2: 'Estados Coincidentes',
+    pathwayStep3: 'Analisis Profundo',
+    pathwayStep4: 'Calcular Numeros',
+    pathwayStep5: 'Tomar Accion',
+    pathwayNext: 'Siguiente Paso',
+    pathwayBack: 'Atras',
+    pathwayMatchedTitle: 'Tus Mejores Estados',
+    pathwayMatchedSub: 'Basado en tu perfil, estos estados son los mejores.',
+    pathwayPickState: 'Elige un estado para explorar mas.',
+    pathwayDeepDiveTitle: 'Analisis Profundo',
+    pathwayDeepDiveSub: 'Explora tu estado seleccionado en detalle.',
+    pathwayAnalyzerTitle: 'Calcular Numeros',
+    pathwayAnalyzerSub: 'Mira como seria una operacion en este estado.',
+    pathwayActionTitle: 'Tomar Accion',
+    pathwayActionSub: 'Registrate para la subasta y agenda una llamada estrategica.',
+    pathwayAuctionSteps: 'Pasos de Registro de Subasta',
+    pathwayBookCall: 'Agendar Llamada de Claridad para Inversores',
+    pathwayBookCallSub: 'Recibe orientacion personalizada de un experto.',
+    pathwayComplete: 'Camino completado.',
+    pathwayRestart: 'Empezar de Nuevo'
   }
 };
 
@@ -3360,7 +4037,13 @@ let state = {
   valBusy: false,
   mapReady: false,
   mobileCodeVisible: false,
-  lang: 'en'
+  lang: 'en',
+  dnaQuizStep: 0,
+  dnaAnswers: [null, null, null, null, null],
+  dnaCompleted: false,
+  dnaRadar: { budget: 0, experience: 0, risk: 0, time: 0, diversification: 0, activity: 0 },
+  pathwayStep: 0,
+  pathwaySelectedState: null
 };
 
 // ── Active STATES array (switches between EN/ES) ─────────────
@@ -3427,6 +4110,12 @@ function applyLanguage() {
 
     // Re-render map legend
     updateMapLegend();
+
+    // Re-render DNA view
+    dnaRenderProfile();
+    // Update DNA nav label
+    const dnaLabel = document.getElementById('nav-label-dna');
+    if (dnaLabel) dnaLabel.textContent = t('navDna');
 
     // If modal is open, refresh it
     if (state.activeState) {
@@ -3885,6 +4574,7 @@ function enterApp(animate) {
   buildProfileTags();
   buildSaved();
   buildSpotlight();
+  dnaInit();
   navigate('map', false);
 
   // Init map after short delay to let layout settle
@@ -3909,6 +4599,7 @@ function navigate(tab, animate = true) {
 
   // Tab-specific actions
   if (tab === 'account') { buildSaved(); buildProfileRecs(); }
+  if (tab === 'dna') { dnaRenderProfile(); pathwayRender(); }
   if (tab === 'map' && state.mapReady) {
     const svg = d3.select('#map-svg');
     const container = document.getElementById('map-container');
@@ -4206,7 +4897,10 @@ function openState(id) {
   const isSaved = state.savedStates.includes(id);
 
   // Locked states (not free, not paid) → straight to paywall
-  if (!isFreeState && !isPaid) { openPaywall(id); return; }
+  if (!isFreeState && !isPaid) { dnaTrackEvent('locked_click'); openPaywall(id); return; }
+
+  // Track state view for DNA behavior
+  dnaTrackEvent('state_view', { id: s.id, type: s.type });
 
   // Type class
   const tClass = typeCssClass(s.type);
@@ -4810,6 +5504,7 @@ function buildProfileRecs() {
 
 // ── Deal Analyzer ─────────────────────────────────────────────
 function calcAnalyzer() {
+  dnaTrackEvent('analyzer_use');
   const type = document.getElementById('az-type')?.value;
   const rawPrice = parseFloat(document.getElementById('az-price')?.value);
   const rawRate = parseFloat(document.getElementById('az-rate')?.value);
@@ -4960,6 +5655,7 @@ function valKeydown(e) {
 
 // ── AI Advisor ────────────────────────────────────────────────
 async function sendAdvisorMessage() {
+  dnaTrackEvent('ai_question');
   if (!state.isPaid) {
     appendAdvisorMsg('sage', 'Sage is available to full-access members. Unlock all 50 states + DC, AI advisor, and more for just $97.<br><br><a href="' + STRIPE_URL + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
     return;
@@ -5062,6 +5758,737 @@ function updateDebug() {
     ${t('debugMapReady')}: ${state.mapReady}<br>
     ${t('debugLang')}: ${state.lang}
   `;
+}
+
+// ═══════════════════════════════════════════════════════════
+//  INVESTOR DNA — Quiz, Radar Chart, Recommendations, Pathway
+//  Feature flags: ff_investor_dna, ff_guided_pathway
+// ═══════════════════════════════════════════════════════════
+
+// ── Behavior tracking ─────────────────────────────────────────
+const DNA_TRACK_KEY = 'aug_dna_tracking';
+
+function dnaTrackEvent(eventType, data) {
+  try {
+    const tracking = storageGet(DNA_TRACK_KEY, {
+      statesViewed: [], stateTypesViewed: {}, analyzerUses: 0,
+      aiQuestions: 0, sessionStart: 0, sessionSeconds: 0, lockedClicks: 0
+    });
+    if (eventType === 'state_view') {
+      if (!tracking.statesViewed.includes(data.id)) tracking.statesViewed.push(data.id);
+      tracking.stateTypesViewed[data.type] = (tracking.stateTypesViewed[data.type] || 0) + 1;
+    } else if (eventType === 'analyzer_use') {
+      tracking.analyzerUses = (tracking.analyzerUses || 0) + 1;
+    } else if (eventType === 'ai_question') {
+      tracking.aiQuestions = (tracking.aiQuestions || 0) + 1;
+    } else if (eventType === 'locked_click') {
+      tracking.lockedClicks = (tracking.lockedClicks || 0) + 1;
+    } else if (eventType === 'session_tick') {
+      tracking.sessionSeconds = (tracking.sessionSeconds || 0) + 30;
+    }
+    storageSet(DNA_TRACK_KEY, tracking);
+  } catch(e) {}
+}
+
+// Session timer — every 30 seconds
+setInterval(function() { dnaTrackEvent('session_tick'); }, 30000);
+
+// ── DNA Quiz ──────────────────────────────────────────────────
+const DNA_QUIZ_QUESTIONS = [
+  { key: 'dnaQ1', options: ['dnaQ1a', 'dnaQ1b', 'dnaQ1c', 'dnaQ1d'] },
+  { key: 'dnaQ2', options: ['dnaQ2a', 'dnaQ2b', 'dnaQ2c', 'dnaQ2d'] },
+  { key: 'dnaQ3', options: ['dnaQ3a', 'dnaQ3b', 'dnaQ3c'] },
+  { key: 'dnaQ4', options: ['dnaQ4a', 'dnaQ4b', 'dnaQ4c'] },
+  { key: 'dnaQ5', options: ['dnaQ5a', 'dnaQ5b', 'dnaQ5c'] }
+];
+
+function dnaInit() {
+  // Restore saved state
+  const saved = storageGet('aug_dna_profile', null);
+  if (saved && saved.completed) {
+    state.dnaAnswers = saved.answers || [null, null, null, null, null];
+    state.dnaCompleted = true;
+    state.dnaRadar = saved.radar || state.dnaRadar;
+  }
+  // Restore pathway state
+  const pw = storageGet('aug_dna_pathway', null);
+  if (pw) {
+    state.pathwayStep = pw.step || 0;
+    state.pathwaySelectedState = pw.selectedState || null;
+  }
+  dnaRenderProfile();
+}
+
+function dnaRenderProfile() {
+  const quizArea = document.getElementById('dna-quiz-area');
+  const radarArea = document.getElementById('dna-radar-area');
+  if (!quizArea || !radarArea) return;
+
+  // Update tab labels
+  const tabs = document.querySelectorAll('#view-dna .dna-tab');
+  if (tabs.length >= 2) {
+    tabs[0].textContent = t('dnaTabProfile');
+    tabs[1].textContent = t('dnaTabPathway');
+  }
+
+  if (state.dnaCompleted) {
+    quizArea.style.display = 'none';
+    radarArea.style.display = 'block';
+    // Recalculate radar with behavior data
+    dnaUpdateRadarFromBehavior();
+    dnaDrawRadar();
+    dnaRenderTopStates();
+    // Update retake button and title text
+    const retakeBtn = radarArea.querySelector('.dna-retake-btn');
+    if (retakeBtn) retakeBtn.textContent = t('dnaRetake');
+    const topTitle = document.getElementById('dna-top-title');
+    if (topTitle) topTitle.textContent = t('dnaTopStates');
+  } else {
+    quizArea.style.display = 'block';
+    radarArea.style.display = 'none';
+    dnaRenderQuiz();
+  }
+}
+
+function dnaRenderQuiz() {
+  const container = document.getElementById('dna-quiz-area');
+  if (!container) return;
+
+  const step = state.dnaQuizStep;
+  const q = DNA_QUIZ_QUESTIONS[step];
+
+  // Progress dots
+  let dots = '';
+  for (let i = 0; i < 5; i++) {
+    const cls = i < step ? 'dna-quiz-dot done' : (i === step ? 'dna-quiz-dot active' : 'dna-quiz-dot');
+    dots += '<div class="' + cls + '"></div>';
+  }
+
+  // Options
+  let opts = '';
+  q.options.forEach(function(optKey, idx) {
+    const sel = state.dnaAnswers[step] === idx ? ' selected' : '';
+    opts += '<button class="dna-option' + sel + '" onclick="dnaSelectOption(' + step + ',' + idx + ')">' + t(optKey) + '</button>';
+  });
+
+  const isFirst = step === 0;
+  const isLast = step === 4;
+  const hasAnswer = state.dnaAnswers[step] !== null;
+
+  container.innerHTML = '<div class="dna-quiz-container">' +
+    '<div class="dna-quiz-title">' + t('dnaQuizTitle') + '</div>' +
+    '<div class="dna-quiz-sub">' + t('dnaQuizSub') + '</div>' +
+    '<div class="dna-quiz-progress">' + dots + '</div>' +
+    '<div class="dna-question active">' +
+    '<div class="dna-question-text">' + t(q.key) + '</div>' +
+    '<div class="dna-options">' + opts + '</div>' +
+    '</div>' +
+    '<div class="dna-quiz-nav">' +
+    (isFirst ? '<div></div>' : '<button class="dna-quiz-btn secondary" onclick="dnaQuizBack()">' + t('dnaQuizBack') + '</button>') +
+    (isLast
+      ? '<button class="dna-quiz-btn primary" onclick="dnaQuizFinish()"' + (hasAnswer ? '' : ' disabled') + '>' + t('dnaQuizFinish') + '</button>'
+      : '<button class="dna-quiz-btn primary" onclick="dnaQuizNext()"' + (hasAnswer ? '' : ' disabled') + '>' + t('dnaQuizNext') + '</button>') +
+    '</div></div>';
+}
+
+function dnaSelectOption(qIdx, optIdx) {
+  state.dnaAnswers[qIdx] = optIdx;
+  dnaRenderQuiz();
+}
+
+function dnaQuizNext() {
+  if (state.dnaAnswers[state.dnaQuizStep] === null) return;
+  if (state.dnaQuizStep < 4) {
+    state.dnaQuizStep++;
+    dnaRenderQuiz();
+  }
+}
+
+function dnaQuizBack() {
+  if (state.dnaQuizStep > 0) {
+    state.dnaQuizStep--;
+    dnaRenderQuiz();
+  }
+}
+
+function dnaQuizFinish() {
+  if (state.dnaAnswers.some(function(a) { return a === null; })) return;
+  state.dnaCompleted = true;
+  dnaCalculateRadar();
+  dnaSaveProfile();
+  dnaRenderProfile();
+}
+
+function dnaRetakeQuiz() {
+  state.dnaCompleted = false;
+  state.dnaQuizStep = 0;
+  state.dnaAnswers = [null, null, null, null, null];
+  state.dnaRadar = { budget: 0, experience: 0, risk: 0, time: 0, diversification: 0, activity: 0 };
+  storageSet('aug_dna_profile', null);
+  dnaRenderProfile();
+}
+
+// ── Radar calculation from quiz answers ───────────────────────
+function dnaCalculateRadar() {
+  const a = state.dnaAnswers;
+  // Q1 budget: 0=under5k→25, 1=5-25k→50, 2=25-100k→75, 3=100k+→100
+  const budgetMap = [25, 50, 75, 100];
+  // Q2 experience: 0=new→15, 1=research→40, 2=invested→70, 3=experienced→100
+  const expMap = [15, 40, 70, 100];
+  // Q3 risk: 0=conservative→25, 1=moderate→60, 2=aggressive→100
+  const riskMap = [25, 60, 100];
+  // Q4 time: 0=quick→30, 1=medium→60, 2=long→90
+  const timeMap = [30, 60, 90];
+
+  state.dnaRadar.budget = budgetMap[a[0]] || 50;
+  state.dnaRadar.experience = expMap[a[1]] || 40;
+  state.dnaRadar.risk = riskMap[a[2]] || 60;
+  state.dnaRadar.time = timeMap[a[3]] || 60;
+  // Diversification and activity start at base, adjusted by behavior
+  state.dnaRadar.diversification = 30;
+  state.dnaRadar.activity = 30;
+}
+
+function dnaUpdateRadarFromBehavior() {
+  const tracking = storageGet(DNA_TRACK_KEY, {
+    statesViewed: [], analyzerUses: 0, aiQuestions: 0,
+    sessionSeconds: 0, lockedClicks: 0
+  });
+  // Diversification: more states viewed → higher
+  const viewCount = (tracking.statesViewed || []).length;
+  state.dnaRadar.diversification = Math.min(100, 30 + viewCount * 8);
+  // Activity: analyzer + AI usage
+  const activityScore = (tracking.analyzerUses || 0) * 10 + (tracking.aiQuestions || 0) * 5;
+  state.dnaRadar.activity = Math.min(100, 30 + activityScore);
+  // Budget ambition: locked clicks suggest higher aspirations
+  if ((tracking.lockedClicks || 0) > 3) {
+    state.dnaRadar.budget = Math.min(100, state.dnaRadar.budget + 15);
+  }
+}
+
+function dnaSaveProfile() {
+  storageSet('aug_dna_profile', {
+    completed: state.dnaCompleted,
+    answers: state.dnaAnswers,
+    radar: state.dnaRadar
+  });
+}
+
+// ── D3 Radar Chart ────────────────────────────────────────────
+function dnaDrawRadar() {
+  const container = document.getElementById('dna-radar-chart');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const size = 300;
+  const cx = size / 2;
+  const cy = size / 2;
+  const radius = 110;
+  const levels = 5;
+
+  const axes = [
+    { key: 'budget', label: t('dnaRadarBudget') },
+    { key: 'experience', label: t('dnaRadarExperience') },
+    { key: 'risk', label: t('dnaRadarRisk') },
+    { key: 'time', label: t('dnaRadarTime') },
+    { key: 'diversification', label: t('dnaRadarDiversification') },
+    { key: 'activity', label: t('dnaRadarActivity') }
+  ];
+
+  const angleSlice = (Math.PI * 2) / axes.length;
+
+  const svg = d3.select(container)
+    .append('svg')
+    .attr('viewBox', '0 0 ' + size + ' ' + size)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+
+  const g = svg.append('g').attr('transform', 'translate(' + cx + ',' + cy + ')');
+
+  // Grid circles
+  for (let lvl = 1; lvl <= levels; lvl++) {
+    const r = (radius / levels) * lvl;
+    g.append('circle')
+      .attr('class', 'dna-radar-grid')
+      .attr('r', r)
+      .style('fill', 'none')
+      .style('stroke', 'var(--border)')
+      .style('stroke-width', 1);
+  }
+
+  // Axis lines
+  axes.forEach(function(ax, i) {
+    const angle = angleSlice * i - Math.PI / 2;
+    g.append('line')
+      .attr('class', 'dna-radar-grid')
+      .attr('x1', 0).attr('y1', 0)
+      .attr('x2', radius * Math.cos(angle))
+      .attr('y2', radius * Math.sin(angle))
+      .style('stroke', 'var(--border)')
+      .style('stroke-width', 1);
+  });
+
+  // Data area
+  const dataPoints = axes.map(function(ax, i) {
+    const val = (state.dnaRadar[ax.key] || 0) / 100;
+    const angle = angleSlice * i - Math.PI / 2;
+    return {
+      x: radius * val * Math.cos(angle),
+      y: radius * val * Math.sin(angle)
+    };
+  });
+
+  const lineGen = d3.line()
+    .x(function(d) { return d.x; })
+    .y(function(d) { return d.y; })
+    .curve(d3.curveLinearClosed);
+
+  // Animated area
+  const areaPath = g.append('path')
+    .datum(dataPoints)
+    .attr('class', 'dna-radar-area')
+    .attr('d', lineGen(dataPoints.map(function() { return { x: 0, y: 0 }; })));
+
+  areaPath.transition()
+    .duration(800)
+    .ease(d3.easeCubicOut)
+    .attr('d', lineGen(dataPoints));
+
+  // Points
+  dataPoints.forEach(function(pt, i) {
+    g.append('circle')
+      .attr('class', 'dna-radar-point')
+      .attr('r', 4)
+      .attr('cx', 0).attr('cy', 0)
+      .transition()
+      .duration(800)
+      .ease(d3.easeCubicOut)
+      .attr('cx', pt.x)
+      .attr('cy', pt.y);
+  });
+
+  // Labels
+  axes.forEach(function(ax, i) {
+    const angle = angleSlice * i - Math.PI / 2;
+    const labelR = radius + 22;
+    const lx = labelR * Math.cos(angle);
+    const ly = labelR * Math.sin(angle);
+    const anchor = Math.abs(lx) < 5 ? 'middle' : (lx > 0 ? 'start' : 'end');
+
+    g.append('text')
+      .attr('class', 'dna-radar-label')
+      .attr('x', lx)
+      .attr('y', ly + 3)
+      .attr('text-anchor', anchor)
+      .text(ax.label);
+  });
+}
+
+// ── Recommended States ────────────────────────────────────────
+function dnaGetMatchedStates(maxCount) {
+  if (!STATES || STATES.length === 0) return [];
+  const radar = state.dnaRadar;
+  const a = state.dnaAnswers;
+
+  // Q5 preference: 0=liens, 1=deeds, 2=both
+  const pref = a[4];
+
+  const scored = STATES.map(function(s) {
+    let matchScore = 0;
+
+    // Type match (weight: 30)
+    if (pref === 0 && (s.type === 'lien' || s.type === 'hybrid')) matchScore += 30;
+    else if (pref === 1 && (s.type === 'deed' || s.type === 'redeemable deed')) matchScore += 30;
+    else if (pref === 2) matchScore += 20;
+    else matchScore += 10;
+
+    // Beginner friendliness vs experience (weight: 25)
+    if (radar.experience < 40) {
+      matchScore += s.beginnerFriendly ? 25 : 5;
+    } else if (radar.experience < 70) {
+      matchScore += s.beginnerFriendly ? 15 : 18;
+    } else {
+      matchScore += s.beginnerFriendly ? 10 : 25;
+    }
+
+    // Score quality (weight: 20)
+    matchScore += Math.min(20, Math.round(s.score / 5));
+
+    // Risk alignment (weight: 15)
+    if (radar.risk <= 30) {
+      matchScore += s.score >= 60 ? 15 : 5;
+    } else if (radar.risk <= 70) {
+      matchScore += s.score >= 40 ? 12 : 8;
+    } else {
+      matchScore += 10; // aggressive = any state OK
+    }
+
+    // Budget (weight: 10) — states with OTC available may be lower entry
+    if (radar.budget <= 30 && s.otc && s.otc.available) matchScore += 10;
+    else if (radar.budget > 60) matchScore += 8;
+    else matchScore += 5;
+
+    return { state: s, score: matchScore };
+  });
+
+  scored.sort(function(a, b) { return b.score - a.score; });
+  return scored.slice(0, maxCount || 3);
+}
+
+function dnaRenderTopStates() {
+  const container = document.getElementById('dna-top-states');
+  if (!container) return;
+
+  if (!state.dnaCompleted) {
+    container.innerHTML = '<div class="dna-empty-msg">' + t('dnaTopStatesNone') + '</div>';
+    return;
+  }
+
+  const matched = dnaGetMatchedStates(3);
+  if (matched.length === 0) {
+    container.innerHTML = '<div class="dna-empty-msg">' + t('dnaTopStatesNone') + '</div>';
+    return;
+  }
+
+  container.innerHTML = matched.map(function(m) {
+    const s = m.state;
+    const pct = Math.round(m.score);
+    const isFree = FREE_STATES.has(s.id) || state.isPaid;
+    const clickAction = isFree ? "openState('" + s.id + "')" : "openPaywall('" + s.id + "')";
+    const tLabel = typeShortLabel(s.type);
+    return '<div class="dna-state-card" onclick="' + clickAction + '">' +
+      '<div class="dna-state-card-info">' +
+      '<div class="dna-state-card-name">' + s.name + '</div>' +
+      '<div class="dna-state-card-meta">' + tLabel + ' · ' + s.rate + '</div>' +
+      '</div>' +
+      '<div class="dna-state-card-match">' + pct + '% ' + t('dnaMatchScore') + '</div>' +
+      '</div>';
+  }).join('');
+}
+
+// ── DNA Tab Switch ────────────────────────────────────────────
+function switchDnaTab(panel) {
+  const panels = document.querySelectorAll('#view-dna .dna-panel');
+  const tabs = document.querySelectorAll('#view-dna .dna-tab');
+  panels.forEach(function(p) { p.classList.remove('active'); });
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+
+  if (panel === 'pathway') {
+    document.getElementById('dna-pathway-panel').classList.add('active');
+    tabs[1].classList.add('active');
+    pathwayRender();
+  } else {
+    document.getElementById('dna-profile-panel').classList.add('active');
+    tabs[0].classList.add('active');
+    dnaRenderProfile();
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  GUIDED PATHWAY — 5-Step "First Deal" Flow
+// ═══════════════════════════════════════════════════════════
+
+function pathwaySaveProgress() {
+  storageSet('aug_dna_pathway', {
+    step: state.pathwayStep,
+    selectedState: state.pathwaySelectedState
+  });
+}
+
+function pathwayRender() {
+  pathwayRenderProgress();
+  pathwayRenderStep();
+}
+
+function pathwayRenderProgress() {
+  const container = document.getElementById('pathway-progress');
+  if (!container) return;
+  const labels = [t('pathwayStep1'), t('pathwayStep2'), t('pathwayStep3'), t('pathwayStep4'), t('pathwayStep5')];
+  let html = '';
+  for (let i = 0; i < 5; i++) {
+    const cls = i < state.pathwayStep ? 'done' : (i === state.pathwayStep ? 'active' : '');
+    html += '<div class="pathway-step-indicator ' + cls + '">' + (i + 1) + '</div>';
+    if (i < 4) {
+      const lineCls = i < state.pathwayStep ? 'pathway-step-line done' : 'pathway-step-line';
+      html += '<div class="' + lineCls + '"></div>';
+    }
+  }
+  container.innerHTML = html;
+}
+
+function pathwayRenderStep() {
+  const container = document.getElementById('pathway-steps-container');
+  if (!container) return;
+
+  const step = state.pathwayStep;
+
+  if (step === 0) {
+    // Step 1: Profile quiz or summary
+    if (state.dnaCompleted) {
+      container.innerHTML = '<div class="pathway-step-content active">' +
+        '<div class="pathway-step-title">' + t('pathwayStep1') + '</div>' +
+        '<div class="pathway-step-sub">' + t('dnaViewSub') + '</div>' +
+        '<div class="dna-radar-wrap" id="pathway-radar-chart"></div>' +
+        '<div class="pathway-nav"><div></div>' +
+        '<button class="pathway-nav-btn primary" onclick="pathwayNext()">' + t('pathwayNext') + '</button>' +
+        '</div></div>';
+      // Draw radar in pathway context
+      setTimeout(function() {
+        const prc = document.getElementById('pathway-radar-chart');
+        if (prc) {
+          prc.innerHTML = '';
+          // Temporarily swap container for drawing
+          const origContainer = document.getElementById('dna-radar-chart');
+          const origHTML = origContainer ? origContainer.innerHTML : '';
+          dnaDrawRadarInto(prc);
+        }
+      }, 50);
+    } else {
+      container.innerHTML = '<div class="pathway-step-content active">' +
+        '<div class="pathway-step-title">' + t('pathwayStep1') + '</div>' +
+        '<div class="pathway-step-sub">' + t('dnaQuizSub') + '</div>' +
+        '<div id="pathway-quiz-inline"></div></div>';
+      // Render quiz inline inside pathway
+      setTimeout(function() {
+        const inlineQuiz = document.getElementById('pathway-quiz-inline');
+        if (inlineQuiz) {
+          inlineQuiz.innerHTML = '<div class="dna-empty-msg">' + t('dnaTopStatesNone') +
+            '<br><br><button class="dna-quiz-btn primary" onclick="switchDnaTab(\'profile\')" style="margin-top:8px;">' +
+            t('dnaQuizFinish').replace('See My Profile', t('dnaQuizFinish')) + '</button></div>';
+        }
+      }, 50);
+    }
+
+  } else if (step === 1) {
+    // Step 2: Matched states
+    const matched = dnaGetMatchedStates(5);
+    let stateCards = '';
+    matched.forEach(function(m) {
+      const s = m.state;
+      const sel = state.pathwaySelectedState === s.id ? ' selected' : '';
+      const tLabel = typeShortLabel(s.type);
+      stateCards += '<div class="pathway-state-pick-item' + sel + '" onclick="pathwaySelectState(\'' + s.id + '\')">' +
+        '<div><div style="font-weight:600;font-size:14px;">' + s.name + '</div>' +
+        '<div style="font-size:11px;color:var(--text-dim);">' + tLabel + ' · ' + s.rate + '</div></div>' +
+        '<div class="dna-state-card-match">' + Math.round(m.score) + '% ' + t('dnaMatchScore') + '</div></div>';
+    });
+
+    container.innerHTML = '<div class="pathway-step-content active">' +
+      '<div class="pathway-step-title">' + t('pathwayMatchedTitle') + '</div>' +
+      '<div class="pathway-step-sub">' + t('pathwayMatchedSub') + ' ' + t('pathwayPickState') + '</div>' +
+      '<div class="pathway-state-pick">' + stateCards + '</div>' +
+      '<div class="pathway-nav">' +
+      '<button class="pathway-nav-btn secondary" onclick="pathwayBack()">' + t('pathwayBack') + '</button>' +
+      '<button class="pathway-nav-btn primary" onclick="pathwayNext()"' +
+      (state.pathwaySelectedState ? '' : ' disabled') + '>' + t('pathwayNext') + '</button>' +
+      '</div></div>';
+
+  } else if (step === 2) {
+    // Step 3: Deep dive into selected state
+    const s = (STATES || []).find(function(x) { return x.id === state.pathwaySelectedState; });
+    if (!s) { pathwayBack(); return; }
+
+    const tLabel = typeFullLabel(s.type);
+    const scoreColor = s.score >= 70 ? 'var(--green)' : s.score >= 45 ? 'var(--accent)' : 'var(--red)';
+
+    let risksHtml = '';
+    if (s.risks && s.risks.length) {
+      risksHtml = '<div class="pathway-detail-card"><h3>Risks</h3><ul>' +
+        s.risks.map(function(r) { return '<li>' + r + '</li>'; }).join('') +
+        '</ul></div>';
+    }
+
+    let tipsHtml = s.beginnerTip
+      ? '<div class="pathway-detail-card"><h3>Beginner Tip</h3><p>' + s.beginnerTip + '</p></div>'
+      : '';
+
+    container.innerHTML = '<div class="pathway-step-content active">' +
+      '<div class="pathway-step-title">' + s.name + ' — ' + t('pathwayDeepDiveTitle') + '</div>' +
+      '<div class="pathway-step-sub">' + t('pathwayDeepDiveSub') + '</div>' +
+      '<div class="pathway-detail-card">' +
+      '<h3>' + tLabel + '</h3>' +
+      '<p style="margin-bottom:8px;">' + s.note + '</p>' +
+      '<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;">' +
+      '<div><span style="color:var(--text-dim);font-size:11px;">Rate</span><br><strong>' + s.rate + '</strong></div>' +
+      '<div><span style="color:var(--text-dim);font-size:11px;">Redemption</span><br><strong>' + s.redemption + '</strong></div>' +
+      '<div><span style="color:var(--text-dim);font-size:11px;">Score</span><br><strong style="color:' + scoreColor + ';">' + s.score + '/100</strong></div>' +
+      '</div></div>' +
+      risksHtml + tipsHtml +
+      '<div class="pathway-nav">' +
+      '<button class="pathway-nav-btn secondary" onclick="pathwayBack()">' + t('pathwayBack') + '</button>' +
+      '<button class="pathway-nav-btn primary" onclick="pathwayNext()">' + t('pathwayNext') + '</button>' +
+      '</div></div>';
+
+  } else if (step === 3) {
+    // Step 4: Run the numbers — mini analyzer
+    const s = (STATES || []).find(function(x) { return x.id === state.pathwaySelectedState; });
+    if (!s) { pathwayBack(); return; }
+
+    // Parse rate to get a number
+    let rateNum = 0;
+    const rateMatch = (s.rate || '').match(/([\d.]+)/);
+    if (rateMatch) rateNum = parseFloat(rateMatch[1]);
+
+    // Sample deal based on budget
+    const budgetSamples = [3000, 10000, 50000, 100000];
+    const sampleAmount = budgetSamples[state.dnaAnswers[0]] || 10000;
+    const holdMonths = 12;
+    const interest = Math.round(sampleAmount * (rateNum / 100) * (holdMonths / 12));
+    const totalReturn = sampleAmount + interest;
+    const roi = sampleAmount > 0 ? ((interest / sampleAmount) * 100).toFixed(1) : '0.0';
+
+    container.innerHTML = '<div class="pathway-step-content active">' +
+      '<div class="pathway-step-title">' + t('pathwayAnalyzerTitle') + ' — ' + s.name + '</div>' +
+      '<div class="pathway-step-sub">' + t('pathwayAnalyzerSub') + '</div>' +
+      '<div class="pathway-analyzer">' +
+      '<div class="pathway-analyzer-row"><span class="label">Investment Amount</span><span class="value">$' + sampleAmount.toLocaleString() + '</span></div>' +
+      '<div class="pathway-analyzer-row"><span class="label">Interest Rate</span><span class="value">' + rateNum + '%</span></div>' +
+      '<div class="pathway-analyzer-row"><span class="label">Hold Period</span><span class="value">' + holdMonths + ' months</span></div>' +
+      '<div class="pathway-analyzer-row"><span class="label">Interest Earned</span><span class="value" style="color:var(--green);">$' + interest.toLocaleString() + '</span></div>' +
+      '<div class="pathway-analyzer-row"><span class="label">Total Return</span><span class="value">$' + totalReturn.toLocaleString() + '</span></div>' +
+      '<div class="pathway-analyzer-row"><span class="label">ROI</span><span class="value" style="color:var(--green);">' + roi + '%</span></div>' +
+      '</div>' +
+      '<div style="font-size:11px;color:var(--text-muted);margin-top:12px;line-height:1.5;">Educational estimate only. Not financial advice. Verify with official county sources.</div>' +
+      '<div class="pathway-nav">' +
+      '<button class="pathway-nav-btn secondary" onclick="pathwayBack()">' + t('pathwayBack') + '</button>' +
+      '<button class="pathway-nav-btn primary" onclick="pathwayNext()">' + t('pathwayNext') + '</button>' +
+      '</div></div>';
+
+  } else if (step === 4) {
+    // Step 5: Take action
+    const s = (STATES || []).find(function(x) { return x.id === state.pathwaySelectedState; });
+    if (!s) { pathwayBack(); return; }
+
+    let auctionHtml = '';
+    if (s.auctionSignup) {
+      let stepsHtml = '';
+      if (s.auctionSignup.steps && s.auctionSignup.steps.length) {
+        stepsHtml = '<ol>' + s.auctionSignup.steps.map(function(st) { return '<li>' + st + '</li>'; }).join('') + '</ol>';
+      }
+      auctionHtml = '<div class="pathway-action-card">' +
+        '<h3>' + t('pathwayAuctionSteps') + '</h3>' +
+        '<p style="font-size:12px;color:var(--text-dim);margin-bottom:8px;">' + (s.auctionSignup.platform || '') + '</p>' +
+        stepsHtml +
+        (s.auctionSignup.depositInfo ? '<p style="font-size:12px;color:var(--text-dim);margin-top:8px;">' + s.auctionSignup.depositInfo + '</p>' : '') +
+        (s.auctionSignup.directLink ? '<a href="' + s.auctionSignup.directLink + '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:12px;color:var(--accent);">' + s.auctionSignup.directLink + '</a>' : '') +
+        '</div>';
+    }
+
+    container.innerHTML = '<div class="pathway-step-content active">' +
+      '<div class="pathway-step-title">' + t('pathwayActionTitle') + ' — ' + s.name + '</div>' +
+      '<div class="pathway-step-sub">' + t('pathwayActionSub') + '</div>' +
+      auctionHtml +
+      '<a href="' + BOOKING_URL + '" target="_blank" rel="noopener" class="pathway-book-cta">' + t('pathwayBookCall') + '</a>' +
+      '<div class="pathway-book-sub">' + t('pathwayBookCallSub') + '</div>' +
+      '<div class="pathway-complete-msg" style="margin-top:20px;">' +
+      '<div class="check" style="color:var(--green);">&#10003;</div>' +
+      '<p>' + t('pathwayComplete') + '</p>' +
+      '<button class="dna-retake-btn" style="margin-top:12px;" onclick="pathwayRestart()">' + t('pathwayRestart') + '</button>' +
+      '</div>' +
+      '<div class="pathway-nav">' +
+      '<button class="pathway-nav-btn secondary" onclick="pathwayBack()">' + t('pathwayBack') + '</button>' +
+      '<div></div>' +
+      '</div></div>';
+  }
+}
+
+function pathwaySelectState(id) {
+  state.pathwaySelectedState = id;
+  pathwaySaveProgress();
+  pathwayRenderStep();
+}
+
+function pathwayNext() {
+  if (state.pathwayStep === 0 && !state.dnaCompleted) return;
+  if (state.pathwayStep === 1 && !state.pathwaySelectedState) return;
+  if (state.pathwayStep < 4) {
+    state.pathwayStep++;
+    pathwaySaveProgress();
+    pathwayRender();
+  }
+}
+
+function pathwayBack() {
+  if (state.pathwayStep > 0) {
+    state.pathwayStep--;
+    pathwaySaveProgress();
+    pathwayRender();
+  }
+}
+
+function pathwayRestart() {
+  state.pathwayStep = 0;
+  state.pathwaySelectedState = null;
+  pathwaySaveProgress();
+  pathwayRender();
+}
+
+// ── Draw radar into a specific container ──────────────────────
+function dnaDrawRadarInto(container) {
+  if (!container) return;
+  container.innerHTML = '';
+
+  const size = 300;
+  const cx = size / 2;
+  const cy = size / 2;
+  const radius = 110;
+  const levels = 5;
+  const axes = [
+    { key: 'budget', label: t('dnaRadarBudget') },
+    { key: 'experience', label: t('dnaRadarExperience') },
+    { key: 'risk', label: t('dnaRadarRisk') },
+    { key: 'time', label: t('dnaRadarTime') },
+    { key: 'diversification', label: t('dnaRadarDiversification') },
+    { key: 'activity', label: t('dnaRadarActivity') }
+  ];
+  const angleSlice = (Math.PI * 2) / axes.length;
+
+  const svg = d3.select(container)
+    .append('svg')
+    .attr('viewBox', '0 0 ' + size + ' ' + size)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+
+  const g = svg.append('g').attr('transform', 'translate(' + cx + ',' + cy + ')');
+
+  for (let lvl = 1; lvl <= levels; lvl++) {
+    g.append('circle').attr('r', (radius / levels) * lvl)
+      .style('fill', 'none').style('stroke', 'var(--border)').style('stroke-width', 1);
+  }
+
+  axes.forEach(function(ax, i) {
+    const angle = angleSlice * i - Math.PI / 2;
+    g.append('line').attr('x1', 0).attr('y1', 0)
+      .attr('x2', radius * Math.cos(angle)).attr('y2', radius * Math.sin(angle))
+      .style('stroke', 'var(--border)').style('stroke-width', 1);
+  });
+
+  const dataPoints = axes.map(function(ax, i) {
+    const val = (state.dnaRadar[ax.key] || 0) / 100;
+    const angle = angleSlice * i - Math.PI / 2;
+    return { x: radius * val * Math.cos(angle), y: radius * val * Math.sin(angle) };
+  });
+
+  const lineGen = d3.line().x(function(d) { return d.x; }).y(function(d) { return d.y; }).curve(d3.curveLinearClosed);
+
+  g.append('path').datum(dataPoints).attr('class', 'dna-radar-area')
+    .attr('d', lineGen(dataPoints.map(function() { return { x: 0, y: 0 }; })))
+    .transition().duration(800).ease(d3.easeCubicOut).attr('d', lineGen(dataPoints));
+
+  dataPoints.forEach(function(pt) {
+    g.append('circle').attr('class', 'dna-radar-point').attr('r', 4)
+      .attr('cx', 0).attr('cy', 0)
+      .transition().duration(800).ease(d3.easeCubicOut).attr('cx', pt.x).attr('cy', pt.y);
+  });
+
+  axes.forEach(function(ax, i) {
+    const angle = angleSlice * i - Math.PI / 2;
+    const labelR = radius + 22;
+    const lx = labelR * Math.cos(angle);
+    const ly = labelR * Math.sin(angle);
+    g.append('text').attr('class', 'dna-radar-label')
+      .attr('x', lx).attr('y', ly + 3)
+      .attr('text-anchor', Math.abs(lx) < 5 ? 'middle' : (lx > 0 ? 'start' : 'end'))
+      .text(ax.label);
+  });
 }
 </script>
 </body>
