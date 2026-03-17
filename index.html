@@ -1839,6 +1839,82 @@ a { color: inherit; text-decoration: none; }
   z-index: 0;
 }
 
+/* Map paywall: blur + lock overlay when not paid */
+#map-container.map-locked #map-svg {
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+#map-lock-overlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: rgba(10,10,12,0.35);
+  pointer-events: auto;
+}
+
+#map-container.map-locked #map-lock-overlay {
+  display: flex;
+}
+
+.map-lock-icon {
+  width: 64px;
+  height: 64px;
+  color: var(--accent);
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 24px rgba(200,168,75,0.4));
+}
+
+.map-lock-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(20px, 4vw, 28px);
+  letter-spacing: 0.1em;
+  color: var(--text);
+  text-align: center;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+
+.map-lock-cta {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 12px;
+  padding: 16px 40px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  transition: all 0.25s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.map-lock-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 40px var(--accent-glow);
+}
+
+.map-lock-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* Map lock overlay responsive */
+@media (max-width: 640px) {
+  .map-lock-icon { width: 48px; height: 48px; }
+  .map-lock-text { font-size: 18px; padding: 0 16px; }
+  .map-lock-cta { padding: 14px 32px; font-size: 13px; }
+  .map-lock-sub { font-size: 11px; padding: 0 16px; text-align: center; }
+}
+
 /* Map FAB replaced by toggle bar */
 #map-fab { display: none !important; }
 
@@ -4814,7 +4890,7 @@ a { color: inherit; text-decoration: none; }
             <div class="legend-item"><div class="legend-dot" style="background:var(--map-deed);box-shadow:0 0 8px var(--map-deed-glow)"></div>Deed</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--map-rdeed);box-shadow:0 0 8px var(--map-rdeed-glow)"></div>R. Deed</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--map-both);box-shadow:0 0 8px var(--map-both-glow)"></div>Both</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--map-locked);border:1px solid var(--border)"></div>Locked</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--accent);border:1px solid var(--accent-border)"></div><svg width="10" height="10" viewBox="0 0 24 24" fill="var(--text-muted)" style="vertical-align:middle;margin-right:2px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="var(--text-muted)" stroke-width="2"/></svg>Locked</div>
           </div>
           <div id="state-list"></div>
         </div>
@@ -4822,6 +4898,15 @@ a { color: inherit; text-decoration: none; }
         <!-- Map -->
         <div id="map-container">
           <svg id="map-svg"></svg>
+          <div id="map-lock-overlay">
+            <svg class="map-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <div class="map-lock-text">Full Map Access Requires Upgrade</div>
+            <a class="map-lock-cta" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Unlock Full Access</a>
+            <div class="map-lock-sub">One-time payment · Lifetime access · All 51 states</div>
+          </div>
         </div>
 
       </div><!-- end map-body -->
@@ -7399,6 +7484,7 @@ async function submitInlineCode() {
   if (code === master) {
     state.isPaid = true;
     storageSet('aug_paid', true);
+    updateMapLockState();
     var modal = document.getElementById('inline-code-modal');
     if (modal) modal.remove();
     // Refresh all views
@@ -7420,6 +7506,7 @@ async function submitInlineCode() {
     if (data.valid) {
       state.isPaid = true;
       storageSet('aug_paid', true);
+      updateMapLockState();
       var modal = document.getElementById('inline-code-modal');
       if (modal) modal.remove();
       buildStateList();
@@ -7520,6 +7607,7 @@ async function submitCode() {
   if (code.toUpperCase() === _mp) {
     state.isPaid = true;
     storageSet('aug_paid', true);
+    updateMapLockState();
     trackEvent('gate_enter', { method: 'code' });
     if (state.entered) {
       buildStateList();
@@ -7545,6 +7633,7 @@ async function submitCode() {
     if (data.valid) {
       state.isPaid = true;
       storageSet('aug_paid', true);
+      updateMapLockState();
       trackEvent('gate_enter', { method: 'paid' });
       if (state.entered) {
         buildStateList();
@@ -7754,6 +7843,12 @@ async function initMap() {
     container.innerHTML = '';
     container.appendChild(svgEl);
 
+    // Re-inject lock overlay (cleared by innerHTML reset)
+    var lockOverlay = document.createElement('div');
+    lockOverlay.id = 'map-lock-overlay';
+    lockOverlay.innerHTML = '<svg class="map-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><div class="map-lock-text">Full Map Access Requires Upgrade</div><a class="map-lock-cta" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Unlock Full Access</a><div class="map-lock-sub">One-time payment \u00b7 Lifetime access \u00b7 All 51 states</div>';
+    container.appendChild(lockOverlay);
+
     const svg = d3.select('#map-svg');
     const w = container.clientWidth || 800;
     const h = container.clientHeight || 480;
@@ -7894,7 +7989,7 @@ async function initMap() {
       const s = stateMap[sid];
       const score = (s && isFree) ? s.score : null;
       const labelColor = isFree ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.3)';
-      const fontSize = w < 500 ? '7px' : w < 800 ? '9px' : '10px';
+      const fontSize = w < 500 ? '6.5px' : w < 768 ? '8px' : w < 1024 ? '8.5px' : '10px';
 
       labelG.append('text')
         .attr('x', cx).attr('y', cy - (score !== null ? 5 : 0))
@@ -7905,11 +8000,12 @@ async function initMap() {
         .attr('filter', 'url(#label-shadow)')
         .text(sid);
 
-      if (score !== null && w >= 600) {
+      if (score !== null && w >= 900) {
+        var scoreFontSize = w < 1024 ? '7px' : '8px';
         labelG.append('text')
           .attr('x', cx).attr('y', cy + 9)
           .attr('text-anchor','middle').attr('dominant-baseline','middle')
-          .attr('font-family',"'DM Mono', monospace").attr('font-size','8px')
+          .attr('font-family',"'DM Mono', monospace").attr('font-size', scoreFontSize)
           .attr('font-weight','500')
           .attr('fill', 'var(--accent)')
           .attr('filter', 'url(#label-shadow)')
@@ -7918,6 +8014,9 @@ async function initMap() {
     });
 
     state.mapReady = true;
+
+    // Apply map lock overlay if not paid
+    updateMapLockState();
 
   } catch(err) {
     console.error('Map init error:', err);
@@ -7930,6 +8029,17 @@ async function initMap() {
           <button onclick="setMapView('list')" style="background:transparent;color:var(--text-dim);border:1px solid var(--text-dim);border-radius:8px;padding:10px 24px;font-weight:700;cursor:pointer;font-size:12px;">${t('mapFallbackBtn')}</button>
         </div>
       </div>`;
+  }
+}
+
+// ── Map lock state (blur overlay for non-paid) ──────────────
+function updateMapLockState() {
+  var mc = document.getElementById('map-container');
+  if (!mc) return;
+  if (state.isPaid) {
+    mc.classList.remove('map-locked');
+  } else {
+    mc.classList.add('map-locked');
   }
 }
 
