@@ -3820,63 +3820,6 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
 }
 
-/* Gate testimonial carousel */
-.gate-testimonial-carousel {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 24px;
-}
-
-.gate-testimonial-track {
-  display: flex;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.gate-testimonial-slide {
-  min-width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
-}
-
-.gate-testimonial-quote {
-  font-size: 14px;
-  color: var(--text);
-  line-height: 1.6;
-  font-style: italic;
-}
-
-.gate-testimonial-author {
-  margin-top: 10px;
-  font-size: 12px;
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.gate-testimonial-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.gate-testimonial-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--border);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.3s ease;
-}
-
-.gate-testimonial-dot.active {
-  background: var(--accent);
-}
-
 /* Statute citation teaser on locked previews */
 .statute-teaser {
   margin-top: 12px;
@@ -5257,33 +5200,6 @@ a { color: inherit; text-decoration: none; }
         <li>&#10003; Lifetime updates — data verified and refreshed quarterly</li>
       </ul>
 
-      <!-- TESTIMONIAL CAROUSEL -->
-      <div id="gate-price-testimonial" class="gate-testimonial-carousel">
-        <div class="gate-testimonial-track" id="testimonial-track">
-          <div class="gate-testimonial-slide">
-            <div class="gate-testimonial-quote">"I spent three weeks Googling county websites before I found Aurigen. It had everything — auction links, redemption timelines, even the deposit amounts. I closed my first tax deed in Arizona within 30 days."</div>
-            <div class="gate-testimonial-author">— Marcus R., Jacksonville, FL</div>
-          </div>
-          <div class="gate-testimonial-slide">
-            <div class="gate-testimonial-quote">"I was about to pay $1,500 for a weekend seminar. Then I found Aurigen and got more actionable data for $97 than any course I've seen. The county links alone saved me a full week."</div>
-            <div class="gate-testimonial-author">— Dana K., Phoenix, AZ</div>
-          </div>
-          <div class="gate-testimonial-slide">
-            <div class="gate-testimonial-quote">"As a Spanish speaker, finding reliable tax lien info was nearly impossible. Aurigen's bilingual mode gave me the same detail in Spanish — statutes, rates, county contacts. Finally felt like I wasn't guessing."</div>
-            <div class="gate-testimonial-author">— Roberto M., Houston, TX</div>
-          </div>
-          <div class="gate-testimonial-slide">
-            <div class="gate-testimonial-quote">"The Investor DNA quiz told me I was a 'yield optimizer' and pointed me to Iowa and Florida. I never would have considered Iowa on my own — now it's my best-performing state."</div>
-            <div class="gate-testimonial-author">— Priya S., Chicago, IL</div>
-          </div>
-          <div class="gate-testimonial-slide">
-            <div class="gate-testimonial-quote">"I've used three different tax sale research tools. Aurigen is the only one that gives you statute citations, OTC availability, AND actual county links — all in one place. It's not even close."</div>
-            <div class="gate-testimonial-author">— James T., Atlanta, GA</div>
-          </div>
-        </div>
-        <div class="gate-testimonial-dots" id="testimonial-dots"></div>
-      </div>
-
       <!-- WHY NOW -->
       <div id="gate-price-urgency" style="font-size:13px;color:var(--accent);font-weight:600;margin-bottom:12px;letter-spacing:0.04em;">
         Founding rate locks in at $97. When we hit 500 members, the price goes to $297.
@@ -5291,46 +5207,24 @@ a { color: inherit; text-decoration: none; }
 
       <!-- RISK REVERSAL -->
       <div id="gate-price-guarantee" style="font-size:13px;color:var(--text-dim);margin-bottom:20px;line-height:1.6;">
-        Not sure yet? Start with 3 free states. If the paid directory doesn't save you 10+ hours of research in your first week, email us and we'll make it right.
+        Not sure yet? Start with 3 free states. If the full directory doesn't meet your expectations within 30 days, email <a href="mailto:support@theaurigen.com" style="color:var(--accent);text-decoration:underline;">support@theaurigen.com</a> and we'll work with you to make it right — including a full refund if needed. <a href="#" onclick="openLegalModal('tos');return false;" style="color:var(--accent);text-decoration:underline;">See our refund policy for details.</a>
       </div>
 
-      <div class="gate-price-note" id="gate-price-note">One-time · Lifetime Access · No Recurring Fees</div>
+      <div class="gate-price-note" id="gate-price-note">One-time payment · Access for the life of the product · No recurring fees</div>
 
       <!-- DATA ACCURACY PROOF -->
       <div id="data-accuracy-proof" style="margin-top:16px;font-size:12px;color:var(--text-dim);line-height:1.6;text-align:center;">
-        <span style="color:var(--accent);font-weight:600;">Data sourced from official government records.</span>
-        Every state entry cites the governing statute. Rates, redemption periods, and platforms verified against county tax authority websites. Last verified: March 2026.
+        <span style="color:var(--accent);font-weight:600;">Data compiled from publicly available government sources.</span>
+        State entries reference applicable statutes where available. Rates, redemption periods, and platform information were last reviewed in March 2026. Laws and procedures change — always verify current requirements directly with the relevant county tax authority before taking action.
       </div>
     </div>
 
     <!-- PRICE JUSTIFICATION -->
     <div id="price-justification" style="margin-top:20px;font-size:13px;color:var(--text-dim);line-height:1.7;max-width:440px;text-align:center;">
-      A single title search costs $75–$150. One bad bid on the wrong county costs thousands. Aurigen gives you the research layer that prevents those mistakes — for every state, for life, for less than the cost of one due diligence report.
+      A single title search costs $75–$150. One bad bid on the wrong county costs thousands. Aurigen gives you the research layer that helps you avoid common pitfalls — for every state, for less than the cost of one due diligence report.
     </div>
   </section>
 
-  <!-- Section 6: Investor Testimonials Wall -->
-  <section class="gate-section" id="gate-testimonials-section" style="padding:40px 20px;">
-    <h2 class="gate-section-title" id="gate-testimonials-title" style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:0.06em;color:var(--text);text-align:center;margin-bottom:24px;">What Investors Are Saying</h2>
-    <div id="gate-testimonials-wall" style="display:grid;grid-template-columns:1fr;gap:14px;max-width:520px;margin:0 auto;">
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;">
-        <div style="font-size:13px;color:var(--text);line-height:1.6;font-style:italic;">"I was about to pay $1,500 for a weekend seminar. Then I found Aurigen and got more actionable data for $97 than any course I've seen. The county links alone saved me a full week."</div>
-        <div style="margin-top:8px;font-size:11px;color:var(--accent);font-weight:600;">— Dana K., Phoenix, AZ</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;">
-        <div style="font-size:13px;color:var(--text);line-height:1.6;font-style:italic;">"As a Spanish speaker, finding reliable tax lien info was nearly impossible. Aurigen's bilingual mode gave me the same detail in Spanish — statutes, rates, county contacts. Finally felt like I wasn't guessing."</div>
-        <div style="margin-top:8px;font-size:11px;color:var(--accent);font-weight:600;">— Roberto M., Houston, TX</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;">
-        <div style="font-size:13px;color:var(--text);line-height:1.6;font-style:italic;">"The Investor DNA quiz told me I was a 'yield optimizer' and pointed me to Iowa and Florida. I never would have considered Iowa on my own — now it's my best-performing state."</div>
-        <div style="margin-top:8px;font-size:11px;color:var(--accent);font-weight:600;">— Priya S., Chicago, IL</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;">
-        <div style="font-size:13px;color:var(--text);line-height:1.6;font-style:italic;">"I've used three different tax sale research tools. Aurigen is the only one that gives you statute citations, OTC availability, AND actual county links — all in one place. It's not even close."</div>
-        <div style="margin-top:8px;font-size:11px;color:var(--accent);font-weight:600;">— James T., Atlanta, GA</div>
-      </div>
-    </div>
-  </section>
 </div>
 
 <!-- ═══════════════ EXIT INTENT POPUP ═══════════════ -->
@@ -5696,7 +5590,10 @@ a { color: inherit; text-decoration: none; }
 
   <!-- FOOTER DISCLAIMER -->
   <div class="app-footer-disclaimer" id="app-footer-disclaimer">
-    Aurigen County Resource Directory is an educational research tool. Nothing in this content constitutes investment, legal, or financial advice. Always verify data with official county sources before transacting. State data verified against official county tax authority records and state statutory code. Last full audit: March 2026.
+    Aurigen County Resource Directory is an educational research tool. Nothing in this content constitutes investment, legal, or financial advice. Always verify data with official county sources before transacting. State data compiled from publicly available government sources and state statutory code. Last reviewed: March 2026.
+    <br><br>
+    <span style="font-size:10px;color:var(--text-muted);line-height:1.5;">Aurigen Directory is a research reference tool, not investment, legal, or tax advice. Always consult a qualified professional and conduct independent due diligence before making any investment decision.</span>
+    <br><br>
     <a href="#" onclick="openLegalModal('tos');return false;" id="footer-tos-link">Terms of Service</a> |
     <a href="#" onclick="openLegalModal('privacy');return false;" id="footer-privacy-link">Privacy Policy</a> | © 2026 Aurigen Collective | <a href="/cdn-cgi/l/email-protection#f0bc919e949f9eb08498959185829997959ede939f9d" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="b1fdd0dfd5dedff1c5d9d4d0c4c3d8d6d4df9fd2dedc">[email&#160;protected]</span></a>
   </div>
@@ -5891,7 +5788,7 @@ var FF = (function() {
     gate_layout: {
       type: TYPE_VARIANT,
       default: 'default',
-      variants: ['default', 'minimal', 'video', 'testimonial'],
+      variants: ['default', 'minimal', 'video'],
       description: 'Gate landing page layout variant',
       category: 'gate'
     },
@@ -6564,7 +6461,7 @@ const I18N = {
     gateFeature6Desc: 'Know which states are beginner-friendly and which to avoid',
     // Gate - Price
     gatePriceCommunity: 'Join the Aurigen Collective — a growing community of tax lien & deed investors',
-    gatePriceNote: 'One-time · Founding Member Rate · Lifetime Access',
+    gatePriceNote: 'One-time payment · Founding Member Rate · Access for the life of the product',
     // Gate - Email
     gateEmailTitle: 'Start Free — Explore 3 States',
     gateEmailDesc: 'Enter your email to unlock Florida, Illinois, and Arizona — no credit card required.',
@@ -6735,8 +6632,8 @@ const I18N = {
     paywallTitle: 'Unlock Full Access',
     paywallSub: 'Get verified data on all 50 states - interest rates, redemption periods, auction signup guides, OTC availability, county links, and investor scores.',
     paywallPrice: '$97',
-    paywallPriceNote: 'One-time · Founding Member Rate · Lifetime Access',
-    paywallCta: 'Get Lifetime Access \u2014 $97',
+    paywallPriceNote: 'One-time payment · Founding Member Rate · Access for the life of the product',
+    paywallCta: 'Get Full Access \u2014 $97',
     paywallHaveCode: 'Already have an access code?',
     paywallEnterCode: 'Enter it here',
     paywallDisclaimer: 'Secure one-time payment. Educational use only. <a href="#" onclick="openLegalModal(\'tos\');return false;" style="color:var(--accent);text-decoration:underline;cursor:pointer;">Terms of Service</a>. Always verify with official county sources.',
@@ -6956,7 +6853,7 @@ const I18N = {
     gateFeature6Desc: 'Conoce cuales estados son aptos para principiantes y cuales evitar',
     // Gate - Price
     gatePriceCommunity: 'Unete al Colectivo Aurigen — una comunidad creciente de inversores en gravamenes y escrituras fiscales',
-    gatePriceNote: 'Pago Unico · Tarifa de Miembro Fundador · Acceso de por Vida',
+    gatePriceNote: 'Pago unico · Tarifa de Miembro Fundador · Acceso durante la vida del producto',
     // Gate - Email
     gateEmailTitle: 'Comienza Gratis — Explora 3 Estados',
     gateEmailDesc: 'Ingresa tu correo para desbloquear Florida, Illinois y Arizona — sin tarjeta de credito.',
@@ -7127,8 +7024,8 @@ const I18N = {
     paywallTitle: 'Desbloquear Acceso Completo',
     paywallSub: 'Obtenga datos verificados de los 50 estados - tasas de interes, periodos de redencion, guias de registro de subastas, disponibilidad OTC, enlaces de condados y puntajes de inversor.',
     paywallPrice: '$97',
-    paywallPriceNote: 'Pago unico · Tarifa de Miembro Fundador · Acceso de por Vida',
-    paywallCta: 'Acceso de por Vida \u2014 $97',
+    paywallPriceNote: 'Pago unico · Tarifa de Miembro Fundador · Acceso durante la vida del producto',
+    paywallCta: 'Acceso Completo \u2014 $97',
     paywallHaveCode: 'Ya tiene un codigo de acceso?',
     paywallEnterCode: 'Ingreselo aqui',
     paywallDisclaimer: 'Pago unico seguro. Solo uso educativo. <a href="#" onclick="openLegalModal(\'tos\');return false;" style="color:var(--accent);text-decoration:underline;cursor:pointer;">Terminos de Servicio</a>. Siempre verifique con fuentes oficiales del condado.',
@@ -7917,68 +7814,6 @@ window.addEventListener('load', async () => {
 });
 
 // ── Gate ─────────────────────────────────────────────────────
-// ── Testimonial Carousel ────────────────────────────────────
-function initTestimonialCarousel() {
-  var track = document.getElementById('testimonial-track');
-  var dotsContainer = document.getElementById('testimonial-dots');
-  if (!track || !dotsContainer) return;
-
-  var slides = track.querySelectorAll('.gate-testimonial-slide');
-  if (slides.length === 0) return;
-
-  var currentSlide = 0;
-  var totalSlides = slides.length;
-  var autoInterval = null;
-
-  // Build dots
-  dotsContainer.innerHTML = '';
-  for (var i = 0; i < totalSlides; i++) {
-    var dot = document.createElement('button');
-    dot.className = 'gate-testimonial-dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', 'Testimonial ' + (i + 1));
-    dot.dataset.index = i;
-    dot.addEventListener('click', function() {
-      goToSlide(parseInt(this.dataset.index));
-    });
-    dotsContainer.appendChild(dot);
-  }
-
-  function goToSlide(index) {
-    currentSlide = index;
-    track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-    var dots = dotsContainer.querySelectorAll('.gate-testimonial-dot');
-    dots.forEach(function(d, j) {
-      d.classList.toggle('active', j === currentSlide);
-    });
-  }
-
-  function nextSlide() {
-    goToSlide((currentSlide + 1) % totalSlides);
-  }
-
-  // Auto-rotate every 5 seconds
-  autoInterval = setInterval(nextSlide, 5000);
-
-  // Pause on hover
-  track.addEventListener('mouseenter', function() { clearInterval(autoInterval); });
-  track.addEventListener('mouseleave', function() { autoInterval = setInterval(nextSlide, 5000); });
-
-  // Touch swipe support
-  var startX = 0;
-  track.addEventListener('touchstart', function(e) {
-    startX = e.touches[0].clientX;
-    clearInterval(autoInterval);
-  }, { passive: true });
-  track.addEventListener('touchend', function(e) {
-    var diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) goToSlide((currentSlide + 1) % totalSlides);
-      else goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
-    }
-    autoInterval = setInterval(nextSlide, 5000);
-  }, { passive: true });
-}
-
 function handleGateEnter() {
   // Scroll to email capture section
   const emailSection = document.getElementById('gate-email-section');
@@ -8345,8 +8180,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Testimonial carousel
-  initTestimonialCarousel();
 });
 
 function enterApp(animate) {
@@ -10168,10 +10001,12 @@ var LEGAL_CONTENT = {
       '<p>By accessing or using the Aurigen County Resource Directory ("Service"), you agree to be bound by these Terms of Service. If you do not agree, do not use the Service.</p>' +
       '<h3>2. License to Use</h3>' +
       '<p>We grant you a limited, non-exclusive, non-transferable, revocable license to access and use the Service for your personal, non-commercial research purposes. You may not redistribute, resell, or share your account credentials with others.</p>' +
+      '<p><strong>"Access for the life of the product"</strong> means access for as long as the Aurigen Directory remains commercially available. Aurigen reserves the right to discontinue the product with 90 days\' notice.</p>' +
       '<h3>3. No Investment Advice</h3>' +
       '<p><strong>The Service is an educational research tool only.</strong> Nothing in this directory constitutes investment, legal, tax, or financial advice. All data (interest rates, redemption periods, auction details, county links, investor scores) is provided for informational purposes. You must independently verify all information with official county and state sources before making any investment decisions. Aurigen Collective is not a licensed investment advisor, broker, or attorney.</p>' +
+      '<p><strong>Aurigen Directory is a research reference tool, not investment, legal, or tax advice. Always consult a qualified professional and conduct independent due diligence before making any investment decision.</strong></p>' +
       '<h3>4. Payment and Refund Policy</h3>' +
-      '<p>Paid access is a one-time purchase processed through Stripe. <strong>All sales are final.</strong> Due to the immediate delivery of digital content, refunds are not available. If you experience technical issues preventing access, contact support@theaurigen.com within 14 days of purchase for assistance.</p>' +
+      '<p>Paid access is a one-time purchase processed through Stripe. If the directory does not meet your expectations, you may request a full refund within <strong>30 days</strong> of purchase by emailing <strong>support@theaurigen.com</strong>. Refund requests must be made within the 30-day window. After 30 days, all sales are final. If you experience technical issues preventing access, contact us at any time for assistance.</p>' +
       '<h3>5. Data Accuracy Disclaimer</h3>' +
       '<p>Tax lien and tax deed laws change frequently. While we make reasonable efforts to keep data current, we do not guarantee the accuracy, completeness, or timeliness of any information. State laws, interest rates, redemption periods, and auction procedures may change without notice. Always verify with official sources.</p>' +
       '<h3>6. Limitation of Liability</h3>' +
@@ -10189,10 +10024,12 @@ var LEGAL_CONTENT = {
       '<p>Al acceder o utilizar el Directorio de Recursos por Condado de Aurigen ("Servicio"), usted acepta estos Terminos de Servicio. Si no esta de acuerdo, no utilice el Servicio.</p>' +
       '<h3>2. Licencia de Uso</h3>' +
       '<p>Le otorgamos una licencia limitada, no exclusiva, intransferible y revocable para acceder y utilizar el Servicio con fines de investigacion personal y no comercial. No puede redistribuir, revender ni compartir sus credenciales de cuenta con terceros.</p>' +
+      '<p><strong>"Acceso durante la vida del producto"</strong> significa acceso mientras el Directorio Aurigen permanezca comercialmente disponible. Aurigen se reserva el derecho de descontinuar el producto con 90 dias de aviso previo.</p>' +
       '<h3>3. Sin Asesoramiento de Inversion</h3>' +
       '<p><strong>El Servicio es una herramienta de investigacion educativa unicamente.</strong> Nada en este directorio constituye asesoramiento de inversion, legal, fiscal o financiero. Todos los datos (tasas de interes, periodos de redencion, detalles de subastas, enlaces de condados, puntajes de inversor) se proporcionan solo con fines informativos. Usted debe verificar independientemente toda la informacion con fuentes oficiales del condado y del estado antes de tomar cualquier decision de inversion. Aurigen Collective no es un asesor de inversiones, corredor o abogado con licencia.</p>' +
+      '<p><strong>El Directorio Aurigen es una herramienta de referencia para investigacion, no asesoramiento de inversion, legal o fiscal. Siempre consulte a un profesional calificado y realice su propia diligencia debida antes de tomar cualquier decision de inversion.</strong></p>' +
       '<h3>4. Politica de Pagos y Reembolsos</h3>' +
-      '<p>El acceso pago es una compra unica procesada a traves de Stripe. <strong>Todas las ventas son finales.</strong> Debido a la entrega inmediata de contenido digital, no se ofrecen reembolsos. Si experimenta problemas tecnicos que le impidan acceder, contacte a support@theaurigen.com dentro de los 14 dias posteriores a la compra para recibir asistencia.</p>' +
+      '<p>El acceso pago es una compra unica procesada a traves de Stripe. Si el directorio no cumple con sus expectativas, puede solicitar un reembolso completo dentro de los <strong>30 dias</strong> posteriores a la compra enviando un correo a <strong>support@theaurigen.com</strong>. Las solicitudes de reembolso deben realizarse dentro del plazo de 30 dias. Despues de 30 dias, todas las ventas son finales. Si experimenta problemas tecnicos que le impidan acceder, contactenos en cualquier momento para recibir asistencia.</p>' +
       '<h3>5. Descargo de Responsabilidad sobre Precision de Datos</h3>' +
       '<p>Las leyes de gravamenes y escrituras fiscales cambian frecuentemente. Aunque hacemos esfuerzos razonables para mantener los datos actualizados, no garantizamos la precision, integridad o actualidad de la informacion. Las leyes estatales, tasas de interes, periodos de redencion y procedimientos de subasta pueden cambiar sin previo aviso. Siempre verifique con fuentes oficiales.</p>' +
       '<h3>6. Limitacion de Responsabilidad</h3>' +
