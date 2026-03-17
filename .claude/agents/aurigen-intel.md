@@ -189,3 +189,23 @@ THE STANDARD:
 Aurigen should always be one feature
 ahead of every competitor in this space.
 Your job is to make sure that stays true.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- Feed intelligence to Atlas (content) and Lex (legal). Monitor competitor directories, institutional tax lien activity, regulatory changes
+
+### Patterns learned about this project:
+- State-level regulatory changes affect data accuracy — Recon must flag these for Atlas to update. Competitor analysis informs feature prioritization
+
+### What NOT to do again:
+- Don't report raw data — always synthesize into actionable intelligence with recommended actions
+
+### Current status of my domain:
+- No reports generated yet. No competitive landscape mapped. Awaiting activation
+
+### My next action when activated:
+- Map the competitive landscape — identify top 5 competing tax lien/deed directories and their feature sets

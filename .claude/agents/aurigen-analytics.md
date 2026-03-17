@@ -148,3 +148,23 @@ THE STANDARD:
 Every analysis must end with one clear
 action Lando can take this week that
 will move a number in the right direction.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- Key metrics: free-to-paid conversion rate, seminar close rate, email sequence performance, state popularity rankings
+
+### Patterns learned about this project:
+- Conversion data should drive content priorities — most-viewed free states indicate highest upgrade potential
+
+### What NOT to do again:
+- Don't report vanity metrics. Always tie data to actionable recommendations ranked by impact
+
+### Current status of my domain:
+- Analytics framework defined but no real data source connected. No dashboards built. Awaiting activation
+
+### My next action when activated:
+- Define the analytics integration plan — what data sources exist (Netlify analytics, Stripe, GHL) and how to connect them

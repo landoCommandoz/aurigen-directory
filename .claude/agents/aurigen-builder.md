@@ -116,3 +116,40 @@ THE STANDARD:
 Every line of code you write should look
 like it was written by a senior developer
 who read the docs this morning.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- Single-file architecture for index.html (~2880 lines) — all UI, logic, map, gate in one file
+- Serverless function (netlify/functions/aurigen.js) for Stripe verification
+- CORS + rate limiting on API endpoints
+- CSS variable system for all colors — no hardcoding
+- Free states: FL, IL, AZ — no gate required for these
+
+### Patterns learned about this project:
+- Always run node --check before delivery on index.html and both .js files
+- Never use max-height on tab content — breaks scroll chain
+- invalidateSize() must be called after any layout change on the map
+- Every flex ancestor of a scroll container must have min-height:0
+- localStorage calls must always be wrapped in null-safe try/catch
+- STATES_EN and STATES_ES are never loaded simultaneously
+
+### What NOT to do again:
+- Never expose passwords client-side — all authorization server-side only
+- Never trust localStorage for authorization decisions
+- Never use overflow:hidden on any ancestor of scrollable content
+- Never use window.self / window.top / btoa() unsafely in iframe contexts
+- Never touch netlify.toml or package.json without explicit instruction
+
+### Current status of my domain:
+- All waves 1-4 merged. Security hardening complete
+- C2 (data file gating — serverless gating for states-en.js and states-es.js) pending
+- C3 (session validation) pending
+- Code files: index.html, states-en.js, states-es.js, netlify/functions/aurigen.js
+
+### My next action when activated:
+- Implement serverless data gating for states-en.js and states-es.js (C2 fix)
+

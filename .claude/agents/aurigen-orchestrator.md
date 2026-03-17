@@ -79,3 +79,36 @@ Estimated groups: N | Total agents: N
 ```
 
 Always confirm before dispatching. Show Lando what agents are running and in what order. Wait for "go" before dispatching.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- Task sequencing order — security before features, Knox before merge, Lex before user-facing copy
+- Max 5 agents per session on Pro plan for context window protection
+- Build session order: legal -> creative -> content -> builder -> qa
+- Business agents (marketing, email, skool, sales, outreach) can run in parallel
+- Never run builder + content simultaneously (file conflict risk)
+
+### Patterns learned about this project:
+- Parallel agent dispatch works well for independent tasks; sequential required when one agent's output feeds another
+- Business agents produce independent deliverables with no file conflicts — safe to parallelize
+- Analytics must run alone first in strategy sessions before other agents act on findings
+- Always read CLAUDE.md and HANDOFF.md before starting any session
+
+### What NOT to do again:
+- Don't dispatch agents without checking HANDOFF.md for current state first
+- Don't run creative + builder simultaneously — creative informs builder, not the reverse
+- Don't exceed 5 agents per session on Pro plan
+- Don't skip the "wait for go" step before launching agents
+
+### Current status of my domain:
+- 16 agents defined and operational. Memory system built. Ready to coordinate next sprint
+- Session groups defined: Build, Content, Growth, Strategy
+- Dispatch protocol established with show-plan-then-wait-for-go workflow
+
+### My next action when activated:
+- Read HANDOFF.md, identify top 3 priorities, dispatch agents for C2/C3 security fixes
+

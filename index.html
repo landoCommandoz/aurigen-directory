@@ -22,41 +22,49 @@ function _storageGet(key, fallback) {
 // Track which language file is currently loaded
 window._loadedLangFile = null;
 
-// Load a language file dynamically and return a Promise
+// Get stored access token
+function _getAccessToken() {
+  try { return localStorage.getItem('aug_token') || ''; } catch(e) { return ''; }
+}
+
+// Load state data from server-side gating function
 function loadLanguageFile(lang) {
   return new Promise(function(resolve, reject) {
-    var file = lang === 'es' ? 'states-es.js' : 'states-en.js';
     var globalVar = lang === 'es' ? 'STATES_ES' : 'STATES_EN';
+    var cacheKey = lang === 'es' ? 'states-es' : 'states-en';
 
     // If already loaded, resolve immediately
-    if (window._loadedLangFile === file && window[globalVar]) {
+    if (window._loadedLangFile === cacheKey && window[globalVar]) {
       resolve();
       return;
     }
 
-    // Remove previously loaded language script if exists
-    var oldScript = document.getElementById('aurigen-lang-script');
-    if (oldScript) {
-      // Clear the old global variable
-      var oldVar = window._loadedLangFile === 'states-es.js' ? 'STATES_ES' : 'STATES_EN';
-      if (window._loadedLangFile && window[oldVar]) {
-        window[oldVar] = undefined;
-      }
-      oldScript.parentNode.removeChild(oldScript);
+    // Clear old language data
+    var oldVar = window._loadedLangFile === 'states-es' ? 'STATES_ES' : 'STATES_EN';
+    if (window._loadedLangFile && window[oldVar]) {
+      window[oldVar] = undefined;
     }
 
-    // Create and load new script
-    var script = document.createElement('script');
-    script.id = 'aurigen-lang-script';
-    script.src = file;
-    script.onload = function() {
-      window._loadedLangFile = file;
-      resolve();
-    };
-    script.onerror = function() {
-      reject(new Error('Failed to load ' + file));
-    };
-    document.head.appendChild(script);
+    // Fetch from server-side function with access token
+    var token = _getAccessToken();
+    var fetchHeaders = { 'Accept': 'application/javascript' };
+    if (token) fetchHeaders['Authorization'] = 'Bearer ' + token;
+
+    fetch('/.netlify/functions/get-states?lang=' + lang, { headers: fetchHeaders })
+      .then(function(res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.text();
+      })
+      .then(function(js) {
+        // Execute the returned JavaScript to set the global variable
+        var fn = new Function(js);
+        fn();
+        window._loadedLangFile = cacheKey;
+        resolve();
+      })
+      .catch(function(err) {
+        reject(new Error('Failed to load state data: ' + err.message));
+      });
   });
 }
 
@@ -994,26 +1002,35 @@ a { color: inherit; text-decoration: none; }
   gap: 10px;
   margin-top: 20px;
   width: 100%;
-  max-width: 300px;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
   opacity: 0;
   animation: fadeUp 0.4s ease forwards;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(200,168,75,0.12);
+  border-radius: 16px;
+  padding: 28px 32px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .gate-code-wrap.visible { display: flex; }
 
 .gate-code-input {
   width: 100%;
-  background: var(--bg3);
-  border: 1px solid var(--accent-border);
-  border-radius: 10px;
-  padding: 12px 20px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(200,168,75,0.15);
+  border-radius: 12px;
+  padding: 16px 20px;
   color: var(--text);
   font-family: 'DM Mono', monospace;
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   text-align: center;
   outline: none;
   transition: border-color 0.2s;
+  box-sizing: border-box;
 }
 
 .gate-code-input:focus { border-color: var(--accent); }
@@ -1027,19 +1044,20 @@ a { color: inherit; text-decoration: none; }
 
 .gate-code-submit {
   width: 100%;
-  background: var(--accent-dim);
-  border: 1px solid var(--accent-border);
-  color: var(--accent);
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 12px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 12px;
+  padding: 16px 40px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  transition: all 0.2s;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px var(--accent-glow);
 }
 
-.gate-code-submit:hover { background: var(--accent-glow); }
+.gate-code-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 32px var(--accent-glow); }
 
 .gate-code-error {
   font-size: 12px;
@@ -3818,6 +3836,35 @@ a { color: inherit; text-decoration: none; }
 .vs-why-bottom strong {
   color: var(--accent);
   font-weight: 700;
+}
+
+.vs-why-edges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 16px 20px;
+  background: rgba(200,168,75,0.04);
+  border: 1px solid rgba(200,168,75,0.12);
+  border-radius: 12px;
+}
+.vs-why-edge {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  padding-left: 16px;
+  position: relative;
+}
+.vs-why-edge::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+.vs-why-edge span {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 /* Statute citation teaser on locked previews */
@@ -6599,7 +6646,10 @@ const I18N = {
     vsWhyForumsLabel: 'Forums & Groups',
     vsWhyForumsAlt: 'Scattered tips, outdated threads, conflicting advice',
     vsWhyForumsAurigen: '<span>Statute-cited</span> data you can verify yourself',
-    vsWhyBottom: 'Aurigen replaces <strong>40+ hours of research</strong> with one searchable directory — verified against official county records.',
+    vsWhyEdge1: '<span>Bilingual EN/ES</span> — the only tax lien directory with full Spanish translations',
+    vsWhyEdge2: '<span>Tyler v. Hennepin tracking</span> — real-time compliance status for every state\'s surplus rules',
+    vsWhyEdge3: '<span>Verified statute citations</span> — every rate and redemption period linked to the actual state code',
+    vsWhyBottom: 'Aurigen replaces <strong>40+ hours of research</strong> with one searchable directory — bilingual, statute-cited, and tracking Tyler v. Hennepin compliance across all 51 jurisdictions.',
     // State Modal
     modalBeginnerYes: 'Beginner Friendly',
     modalBeginnerNo: 'Not Recommended for Beginners',
@@ -6991,7 +7041,10 @@ const I18N = {
     vsWhyForumsLabel: 'Foros y grupos',
     vsWhyForumsAlt: 'Tips dispersos, hilos desactualizados, consejos contradictorios',
     vsWhyForumsAurigen: 'Datos <span>citando estatutos</span> que puedes verificar',
-    vsWhyBottom: 'Aurigen reemplaza <strong>más de 40 horas de investigación</strong> con un directorio buscable — verificado contra registros oficiales.',
+    vsWhyEdge1: '<span>Bilingüe EN/ES</span> — el único directorio de gravámenes fiscales con traducción completa al español',
+    vsWhyEdge2: '<span>Seguimiento Tyler v. Hennepin</span> — estado de cumplimiento en tiempo real para las reglas de excedentes de cada estado',
+    vsWhyEdge3: '<span>Citas de estatutos verificadas</span> — cada tasa y período de redención vinculado al código estatal real',
+    vsWhyBottom: 'Aurigen reemplaza <strong>más de 40 horas de investigación</strong> con un directorio buscable — bilingüe, con citas de estatutos, y seguimiento del cumplimiento Tyler v. Hennepin en las 51 jurisdicciones.',
     // State Modal
     modalBeginnerYes: 'Apto para Principiantes',
     modalBeginnerNo: 'No Recomendado para Principiantes',
@@ -7275,18 +7328,35 @@ function t(key) {
 }
 
 // ── Language Toggle ──────────────────────────────────────────
-async function toggleLanguage() {
+var _langToggleBusy = false;
+function toggleLanguage() {
+  // SECURITY: Re-entrancy guard — prevents rapid toggle from interleaving loads
+  if (_langToggleBusy) return;
+  _langToggleBusy = true;
+
+  // SECURITY: Revalidate access level SYNCHRONOUSLY before anything else
+  // This fires on every toggle event — not async, not deferred
+  try {
+    var storedPaid = localStorage.getItem('aug_paid');
+    state.isPaid = storedPaid === 'true' || storedPaid === true;
+  } catch(e) {
+    state.isPaid = false;
+  }
+
   state.lang = state.lang === 'en' ? 'es' : 'en';
   storageSet('aurigen_lang', state.lang);
 
   // Dynamically load the new language file (unloads old one)
-  try {
-    await loadLanguageFile(state.lang);
-  } catch(e) {
+  loadLanguageFile(state.lang).then(function() {
+    applyLanguage();
+  }).catch(function(e) {
     console.error('Failed to load language file:', e);
-  }
-
-  applyLanguage();
+    // Revert language on failure — don't leave in broken state
+    state.lang = state.lang === 'en' ? 'es' : 'en';
+    storageSet('aurigen_lang', state.lang);
+  }).finally(function() {
+    _langToggleBusy = false;
+  });
 }
 
 function applyLanguage() {
@@ -7957,23 +8027,7 @@ async function submitInlineCode() {
   if (!input) return;
   var code = input.value.trim();
   if (!code) return;
-  // Check master password
-  var master = [65,85,82,73,71,69,78,50,48,50,54].map(function(c){return String.fromCharCode(c);}).join('');
-  if (code === master) {
-    state.isPaid = true;
-    storageSet('aug_paid', true);
-    updateMapLockState();
-    var modal = document.getElementById('inline-code-modal');
-    if (modal) modal.remove();
-    // Refresh all views
-    buildStateList();
-    buildDealTape();
-    if (typeof buildAuctionPulse === 'function') buildAuctionPulse();
-    if (typeof populateVersusDropdowns === 'function') populateVersusDropdowns();
-    navigate(state.activeTab, false);
-    return;
-  }
-  // Try Netlify validation
+  // ALL code validation is server-side only — no client-side secrets
   try {
     var res = await fetch(NETLIFY_FN, {
       method: 'POST',
@@ -7984,6 +8038,9 @@ async function submitInlineCode() {
     if (data.valid) {
       state.isPaid = true;
       storageSet('aug_paid', true);
+      if (data.token) storageSet('aug_token', data.token);
+      // Reload state data with new token to get full 51-state dataset
+      await loadLanguageFile(state.lang);
       updateMapLockState();
       var modal = document.getElementById('inline-code-modal');
       if (modal) modal.remove();
@@ -8066,30 +8123,62 @@ function animateGateStats(retryCount) {
     });
   }
 
-  // Fire immediately after a short delay for paint
-  setTimeout(fireCounters, 400);
+  // Use IntersectionObserver to fire counters when section is visible (iPad-safe)
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          observer.disconnect();
+          setTimeout(fireCounters, 200);
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(statsSection);
+    // Safety net: if observer never fires within 5s, force counters
+    setTimeout(function() {
+      observer.disconnect();
+      fireCounters();
+    }, 5000);
+  } else {
+    // Fallback for browsers without IntersectionObserver
+    setTimeout(fireCounters, 400);
+  }
 }
 
 function animateNumber(el, target, suffix, duration) {
-  const startTime = performance.now();
-  const startValue = 0;
+  var startTime = performance.now();
+  var startValue = 0;
+  var completed = false;
+
+  function setFinal() {
+    if (!completed) {
+      completed = true;
+      el.textContent = target.toLocaleString() + suffix;
+    }
+  }
 
   function update(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
+    if (completed) return;
+    var elapsed = currentTime - startTime;
+    var progress = Math.min(elapsed / duration, 1);
 
     // Ease out quad
-    const easeProgress = 1 - (1 - progress) * (1 - progress);
-    const currentValue = Math.round(startValue + (target - startValue) * easeProgress);
+    var easeProgress = 1 - (1 - progress) * (1 - progress);
+    var currentValue = Math.round(startValue + (target - startValue) * easeProgress);
 
     el.textContent = currentValue.toLocaleString() + suffix;
 
     if (progress < 1) {
       requestAnimationFrame(update);
+    } else {
+      completed = true;
     }
   }
 
   requestAnimationFrame(update);
+
+  // iPad/iOS safety net: if rAF never fires or stalls, force final values
+  setTimeout(setFinal, duration + 500);
 }
 
 async function submitCode() {
@@ -8102,25 +8191,7 @@ async function submitCode() {
   input.disabled = true;
   errorEl.classList.remove('show');
 
-  // Master password check (obfuscated)
-  const _mp = [65,85,82,73,71,69,78,50,48,50,54].map(c=>String.fromCharCode(c)).join('');
-  if (code.toUpperCase() === _mp) {
-    state.isPaid = true;
-    storageSet('aug_paid', true);
-    updateMapLockState();
-    trackEvent('gate_enter', { method: 'code' });
-    if (state.entered) {
-      buildStateList();
-      buildSpotlight();
-      buildProfileRecs();
-      closeStateModal();
-      updateDebug();
-      return;
-    }
-    enterApp(true);
-    return;
-  }
-
+  // ALL code validation is server-side only — no client-side secrets
   try {
     const res = await fetch(NETLIFY_FN, {
       method: 'POST',
@@ -8133,6 +8204,9 @@ async function submitCode() {
     if (data.valid) {
       state.isPaid = true;
       storageSet('aug_paid', true);
+      if (data.token) storageSet('aug_token', data.token);
+      // Reload state data with new token to get full 51-state dataset
+      await loadLanguageFile(state.lang);
       updateMapLockState();
       trackEvent('gate_enter', { method: 'paid' });
       if (state.entered) {
@@ -9644,7 +9718,18 @@ function appendAdvisorMsg(role, text) {
 
   const div = document.createElement('div');
   div.className = `msg msg-${role}`;
-  div.innerHTML = role === 'sage' ? `<strong>Sage</strong><br>${text.replace(/\n/g, '<br>')}` : text;
+  if (role === 'sage') {
+    var label = document.createElement('strong');
+    label.textContent = 'Sage';
+    div.appendChild(label);
+    div.appendChild(document.createElement('br'));
+    text.split('\n').forEach(function(line, i) {
+      if (i > 0) div.appendChild(document.createElement('br'));
+      div.appendChild(document.createTextNode(line));
+    });
+  } else {
+    div.textContent = text;
+  }
 
   // Insert before typing indicator
   if (typing) container.insertBefore(div, typing);
@@ -9875,6 +9960,11 @@ function buildWhyAurigenSection() {
   });
 
   html += '</div>' +
+    '<div class="vs-why-edges">' +
+      '<div class="vs-why-edge">' + t('vsWhyEdge1') + '</div>' +
+      '<div class="vs-why-edge">' + t('vsWhyEdge2') + '</div>' +
+      '<div class="vs-why-edge">' + t('vsWhyEdge3') + '</div>' +
+    '</div>' +
     '<div class="vs-why-bottom">' + t('vsWhyBottom') + '</div>' +
   '</div>';
 

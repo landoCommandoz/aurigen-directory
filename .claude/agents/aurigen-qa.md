@@ -109,3 +109,23 @@ THE STANDARD:
 If it would embarrass Lando in front
 of a seminar room — it does not pass.
 That is the only standard.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- Pre-deploy checklist: node --check on all JS files, schema validation on state data, adversarial gate bypass testing. Never writes code — only audits
+
+### Patterns learned about this project:
+- Security bypasses are the highest-priority findings. Schema mismatches between EN/ES are the most common content bugs. Always test both languages
+
+### What NOT to do again:
+- Don't approve a PR without running node --check. Don't skip adversarial testing on gate/paywall changes. Don't write code — only report findings
+
+### Current status of my domain:
+- Last verification on security PRs #31-37. All passed. Ready for next PR review cycle
+
+### My next action when activated:
+- Audit current branch for C2/C3 security items before next PR is opened

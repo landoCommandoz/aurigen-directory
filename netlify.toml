@@ -2,6 +2,43 @@
   publish = "."
   functions = "netlify/functions"
 
+# ── SECURITY: Block direct access to sensitive markdown files ─
+# force = true required because files exist as static assets
+# These MUST come before the API splat redirect
+
+[[redirects]]
+  from = "/CLAUDE.md"
+  to = "/index.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/EXPANSION-PLAN.md"
+  to = "/index.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/README.md"
+  to = "/index.html"
+  status = 301
+  force = true
+
+# ── SECURITY: Block direct access to state data files ──────────
+# Data is now served through /.netlify/functions/get-states
+[[redirects]]
+  from = "/states-en.js"
+  to = "/index.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/states-es.js"
+  to = "/index.html"
+  status = 301
+  force = true
+
+# ── API proxy ─────────────────────────────────────────────────
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
@@ -9,3 +46,18 @@
 
 [functions]
   node_bundler = "esbuild"
+
+# ── SECURITY: Prevent indexing of markdown files ──────────────
+[[headers]]
+  for = "/*.md"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+# ── SECURITY: Global security headers ─────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000"

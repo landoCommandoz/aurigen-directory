@@ -7,12 +7,65 @@
 // Also handles Advisor (AI) requests when action=advisor
 
 const Anthropic = require('@anthropic-ai/sdk');
+const crypto = require('crypto');
+
+// ── CORS: Restrict to production domains only ─────────────────
+const ALLOWED_ORIGINS = [
+  'https://statuesque-bublanina-330b9d.netlify.app',
+  'https://hilarious-llama-2933ac.netlify.app'
+];
+
+// ── Rate limiting: in-memory store for code validation ────────
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW = 60000; // 1 minute
+const RATE_LIMIT_MAX = 5;        // 5 attempts per window
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now - entry.windowStart > RATE_LIMIT_WINDOW) {
+    rateLimitMap.set(ip, { windowStart: now, count: 1 });
+    return false;
+  }
+  entry.count++;
+  if (entry.count > RATE_LIMIT_MAX) return true;
+  return false;
+}
+
+// ── Constant-time code comparison ─────────────────────────────
+function safeCodeMatch(submitted, validCodes) {
+  let match = false;
+  for (const code of validCodes) {
+    if (submitted.length === code.length) {
+      const a = Buffer.from(submitted);
+      const b = Buffer.from(code);
+      if (crypto.timingSafeEqual(a, b)) match = true;
+    }
+  }
+  return match;
+}
+
+// ── HMAC-signed access token ──────────────────────────────────
+function createAccessToken(secret) {
+  const header = Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT' })).toString('base64url');
+  const payload = Buffer.from(JSON.stringify({
+    iss: 'aurigen',
+    iat: Date.now(),
+    exp: Date.now() + (30 * 24 * 60 * 60 * 1000) // 30 days
+  })).toString('base64url');
+  const sig = crypto.createHmac('sha256', secret).update(header + '.' + payload).digest('base64url');
+  return header + '.' + payload + '.' + sig;
+}
 
 exports.handler = async (event) => {
+  const origin = (event.headers && (event.headers['origin'] || event.headers['Origin'])) || '';
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+
   const headers = {
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': allowedOrigin,
     'Access-Control-Allow-Headers': 'Content-Type',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Vary': 'Origin'
   };
 
   if (event.httpMethod === 'OPTIONS') {
@@ -95,6 +148,16 @@ exports.handler = async (event) => {
 
   // ── Code Validation ───────────────────────────────────────
   if (body.action === 'validate-code') {
+    // Rate limit by IP
+    const clientIp = (event.headers && (event.headers['x-forwarded-for'] || event.headers['client-ip'])) || 'unknown';
+    if (isRateLimited(clientIp)) {
+      return {
+        statusCode: 429,
+        headers,
+        body: JSON.stringify({ valid: false, message: 'Too many attempts. Please wait a minute and try again.' })
+      };
+    }
+
     const submitted = (body.code || '').trim().toUpperCase();
 
     if (!submitted) {
@@ -111,11 +174,16 @@ exports.handler = async (event) => {
       .map(c => c.trim().toUpperCase())
       .filter(Boolean);
 
-    if (validCodes.includes(submitted)) {
+    if (safeCodeMatch(submitted, validCodes)) {
+      const tokenSecret = process.env.TOKEN_SECRET;
+      const response = { valid: true };
+      if (tokenSecret) {
+        response.token = createAccessToken(tokenSecret);
+      }
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ valid: true })
+        body: JSON.stringify(response)
       };
     } else {
       return {
@@ -123,7 +191,7 @@ exports.handler = async (event) => {
         headers,
         body: JSON.stringify({
           valid: false,
-          message: "That code didn't match — reach out to Landon@theaurigen.com"
+          message: "That code didn't match. Please check your code and try again."
         })
       };
     }

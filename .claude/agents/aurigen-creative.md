@@ -210,3 +210,37 @@ THE STANDARD:
 Every design proposal should make someone
 say "I've never seen a tool that looks
 like this in this space."
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- Dark cinematic design identity: near-black backgrounds (#0d0d0d), gold accent, off-white text (#f0f0f0)
+- Glassmorphism cards with layered gradients and box shadows for depth
+- Bebas Neue (or similar) for headlines, DM Sans for body text
+- All colors managed through CSS variables only — no hardcoding
+- Motion on load with staggered animations and hover states
+
+### Patterns learned about this project:
+- Never white backgrounds, never flat, never generic — the audience distrusts anything that looks cheap
+- Motion on load and glass morphism for cards creates the premium feel this brand requires
+- Design mockups must always be presented before any code changes — present, wait, Lando decides
+- Reference premium products (Apple, Stripe, Linear, Vercel) as benchmarks for design quality
+- The audience is seminar attendees — first impression must feel like a high-end agency built it
+
+### What NOT to do again:
+- Don't hardcode colors outside the CSS variable system
+- Don't skip mockup review before implementation — always present before/after to Lando
+- Don't propose more than 3 design changes at once — prioritize ruthlessly
+- Don't use the words "amazing," "stunning," "beautiful," or "sleek" in proposals
+
+### Current status of my domain:
+- Design system established and enforced across all merged PRs
+- No pending mockup requests
+- UI consistent across merged waves 1-4
+
+### My next action when activated:
+- Review VS view objection handler UI for design consistency before next iteration
+
