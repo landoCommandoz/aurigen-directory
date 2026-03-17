@@ -1802,6 +1802,37 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.04em;
 }
 
+.paywall-price-anchor {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px;
+}
+
+.paywall-price-old {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  letter-spacing: 0.04em;
+  opacity: 0.5;
+}
+
+.paywall-price-current {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+.paywall-escalation {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
 .paywall-price-note {
   font-size: 11px;
   color: var(--text-muted);
@@ -2919,6 +2950,44 @@ const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-cl
 // Free states (top 7 by score)
 const FREE_STATES = new Set(['FL', 'IL', 'AZ']);
 
+// ── Feature Flags (P1 Conversion Optimization) ──────────────
+// Lightweight flag system: URL param (ff_<name>=0/1) > localStorage > default
+// All flags default to true (enabled). Disable via URL: ?ff_dynamic_paywall=0
+const FF = (function() {
+  const FLAGS = {
+    dynamic_paywall: true,
+    paywall_price_anchor: true,
+    hide_locked_meta: true,
+    escalating_paywall: true
+  };
+  function _urlParam(name) {
+    try {
+      const p = new URLSearchParams(window.location.search);
+      const v = p.get('ff_' + name);
+      if (v === '0' || v === 'false') return false;
+      if (v === '1' || v === 'true') return true;
+      return null;
+    } catch(e) { return null; }
+  }
+  function _lsGet(name) {
+    try {
+      const v = localStorage.getItem('ff_' + name);
+      if (v === '0' || v === 'false') return false;
+      if (v === '1' || v === 'true') return true;
+      return null;
+    } catch(e) { return null; }
+  }
+  return {
+    isEnabled: function(name) {
+      const url = _urlParam(name);
+      if (url !== null) return url;
+      const ls = _lsGet(name);
+      if (ls !== null) return ls;
+      return FLAGS.hasOwnProperty(name) ? FLAGS[name] : false;
+    }
+  };
+})();
+
 // ── Type helpers ─────────────────────────────────────────────
 function typeKey(type) {
   if (type === 'lien') return 'lien';
@@ -3114,6 +3183,11 @@ const I18N = {
     paywallHaveCode: 'Already have an access code?',
     paywallEnterCode: 'Enter it here',
     paywallDisclaimer: 'All sales final. Educational use only. See Terms of Service. Aurigen Collective is not a licensed investment advisor.',
+    // P1 Conversion Optimization
+    unlockToSee: 'Unlock to see',
+    paywallDynamicSub: '{countyPart}step-by-step auction signup',
+    paywallEscalate3: "You\u2019ve explored {n} states so far. Serious investors unlock all 51.",
+    paywallEscalate5: 'Most buyers unlock within their first session.',
     // Debug
     debugTitle: 'DEBUG - remove before deploy',
     debugEntered: 'entered',
@@ -3313,6 +3387,11 @@ const I18N = {
     paywallHaveCode: 'Ya tiene un codigo de acceso?',
     paywallEnterCode: 'Ingreselo aqui',
     paywallDisclaimer: 'Ventas finales. Solo uso educativo. Ver Terminos de Servicio. Aurigen Collective no es un asesor de inversiones licenciado.',
+    // P1 Conversion Optimization
+    unlockToSee: 'Desbloquear para ver',
+    paywallDynamicSub: '{countyPart}registro paso a paso para subastas',
+    paywallEscalate3: 'Ya exploraste {n} estados. Los inversionistas serios desbloquean los 51.',
+    paywallEscalate5: 'La mayor\u00EDa compra en su primera sesi\u00F3n.',
     // Debug
     debugTitle: 'DEBUG - eliminar antes de desplegar',
     debugEntered: 'ingresado',
@@ -3961,7 +4040,7 @@ function buildStateList() {
       <div class="state-list-badge ${badgeClass}">${typeLabel}</div>
       <div style="flex:1;min-width:0">
         <div class="state-list-name">${s.name}</div>
-        <div class="state-list-meta">${s.rate} · ${s.redemption}</div>
+        <div class="state-list-meta">${(!isFree && FF.isEnabled('hide_locked_meta')) ? t('unlockToSee') : (s.rate + ' \u00B7 ' + s.redemption)}</div>
       </div>
       ${!isFree ? '<span class="lock-overlay-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>' : `<div class="${scoreClass}">${s.score}</div>`}
     </div>`;
@@ -4314,7 +4393,9 @@ function openState(id) {
           <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.5;">
             Get auction signup steps, county links, full risks list, due diligence checklists, and OTC availability for all 50 states + DC.
           </div>
-          <div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>
+          ${FF.isEnabled('paywall_price_anchor')
+            ? '<div class="paywall-price-anchor" style="margin-bottom:4px;"><span class="paywall-price-old">$297</span><span style="font-size:18px;font-weight:700;color:var(--accent);">$97</span></div>'
+            : '<div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>'}
           <div style="font-size:11px;color:var(--text-muted);margin-bottom:16px;">${t('paywallPriceNote')}</div>
           <a href="${STRIPE_URL}" target="_blank" class="paywall-btn">${t('paywallCta')}</a>
           <div style="font-size:12px;color:var(--text-dim);margin-top:12px;">
@@ -4438,10 +4519,70 @@ function openState(id) {
 }
 
 // ── Paywall ──────────────────────────────────────────────────
+// Locked-click counter for escalating paywall (ff_escalating_paywall)
+function _trackLockedClick() {
+  try {
+    var c = parseInt(localStorage.getItem('aug_locked_clicks') || '0', 10);
+    c = (isNaN(c) ? 0 : c) + 1;
+    localStorage.setItem('aug_locked_clicks', String(c));
+    return c;
+  } catch(e) { return 1; }
+}
+function _getLockedClicks() {
+  try {
+    var c = parseInt(localStorage.getItem('aug_locked_clicks') || '0', 10);
+    return isNaN(c) ? 0 : c;
+  } catch(e) { return 0; }
+}
+
 function openPaywall(id) {
   state.activeState = id;
   const s = (STATES || []).find(x => x.id === id);
   const name = s ? s.name : 'This State';
+
+  // ── Escalating paywall: track clicks (ff_escalating_paywall) ──
+  const clickCount = FF.isEnabled('escalating_paywall') ? _trackLockedClick() : _getLockedClicks();
+
+  // ── State-specific paywall copy (ff_dynamic_paywall) ──
+  let pwTitle = t('paywallTitle');
+  let pwSub = t('paywallSub');
+
+  if (FF.isEnabled('dynamic_paywall') && s) {
+    pwTitle = (state.lang === 'es' ? 'Desbloquear ' : 'Unlock ') + s.name;
+
+    const countyPart = (s.counties && s.counties.length > 0)
+      ? (state.lang === 'es'
+          ? s.counties.length + ' enlaces de condados, '
+          : s.counties.length + ' county links, ')
+      : '';
+
+    const ratePart = s.rate
+      ? s.rate + ' ' + (state.lang === 'es' ? 'rendimientos' : 'returns') + ', '
+      : '';
+
+    pwSub = ratePart + t('paywallDynamicSub').replace('{countyPart}', countyPart);
+  }
+
+  // ── Escalating copy (ff_escalating_paywall) ──
+  let escalationHTML = '';
+  if (FF.isEnabled('escalating_paywall') && clickCount >= 3) {
+    escalationHTML = '<div class="paywall-escalation">' + t('paywallEscalate3').replace('{n}', clickCount) + '</div>';
+    if (clickCount >= 5) {
+      escalationHTML += '<div class="paywall-escalation" style="margin-top:4px;">' + t('paywallEscalate5') + '</div>';
+    }
+  }
+
+  // ── Price anchor (ff_paywall_price_anchor) ──
+  let priceHTML;
+  if (FF.isEnabled('paywall_price_anchor')) {
+    priceHTML = `
+      <div class="paywall-price-anchor">
+        <span class="paywall-price-old">$297</span>
+        <span class="paywall-price-current">${t('paywallPrice')}</span>
+      </div>`;
+  } else {
+    priceHTML = '<div class="paywall-price">' + t('paywallPrice') + '</div>';
+  }
 
   document.getElementById('modal-header').innerHTML = `
     <div class="modal-state-name" style="color:var(--text-dim)">${name}</div>
@@ -4451,9 +4592,10 @@ function openPaywall(id) {
   document.getElementById('modal-body').innerHTML = `
     <div class="modal-paywall">
       <div class="paywall-lock">\u{1F512}</div>
-      <div class="paywall-title">${t('paywallTitle')}</div>
-      <div class="paywall-sub">${t('paywallSub')}</div>
-      <div class="paywall-price">${t('paywallPrice')}</div>
+      <div class="paywall-title">${pwTitle}</div>
+      <div class="paywall-sub">${pwSub}</div>
+      ${escalationHTML}
+      ${priceHTML}
       <div class="paywall-price-note">${t('paywallPriceNote')}</div>
       <a href="${STRIPE_URL}" target="_blank" class="paywall-btn">${t('paywallCta')}</a>
       <div style="font-size:12px;color:var(--text-dim);">
