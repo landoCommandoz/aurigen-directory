@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
 <title>Aurigen County Resource Directory</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
@@ -186,6 +186,8 @@ a { color: inherit; text-decoration: none; }
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
   transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
@@ -869,7 +871,7 @@ a { color: inherit; text-decoration: none; }
   position: fixed;
   bottom: 0;
   left: 0; right: 0;
-  height: 64px;
+  height: calc(64px + env(safe-area-inset-bottom, 0px));
   background: rgba(17,17,22,0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -878,8 +880,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: space-around;
   z-index: var(--z-nav);
-  padding-bottom: env(safe-area-inset-bottom, 0);
-  padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .nav-item {
@@ -982,7 +983,7 @@ a { color: inherit; text-decoration: none; }
 .view {
   position: absolute;
   inset: 0;
-  bottom: 64px;
+  bottom: calc(64px + env(safe-area-inset-bottom, 0px));
   display: none;
   flex-direction: column;
   overflow: hidden;
@@ -2492,8 +2493,8 @@ a { color: inherit; text-decoration: none; }
   <section class="gate-stats gate-section" id="gate-stats-section">
     <div class="gate-stats-grid">
       <div class="gate-stat-card">
-        <div class="gate-stat-number" data-target="51">0</div>
-        <div class="gate-stat-label" id="gate-stat-label-1">States Covered</div>
+        <div class="gate-stat-number" data-target="50">0</div>
+        <div class="gate-stat-label" id="gate-stat-label-1">States + DC Covered</div>
       </div>
       <div class="gate-stat-card">
         <div class="gate-stat-number" data-target="5000" data-suffix="+">0</div>
@@ -2910,7 +2911,8 @@ a { color: inherit; text-decoration: none; }
 // ═══════════════════════════════════════════════════════════
 
 // ── Constants ───────────────────────────────────────────────
-const STRIPE_URL = 'https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00';
+const STRIPE_URL = 'https://buy.stripe.com/8x2bJ10i05j66avdCa2VG01';
+const SKOOL_URL = 'https://www.skool.com/tax-lien-wealth-2705/about?ref=6fd80bf6895e4e3e9ed85d2eaf0639f2';
 const NETLIFY_FN = '/.netlify/functions/aurigen';
 const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4';
 
@@ -2954,7 +2956,7 @@ const I18N = {
     gateCta: "See What's Inside",
     gateScrollText: 'Scroll',
     // Gate - Stats
-    gateStatLabel1: 'States Covered',
+    gateStatLabel1: 'States + DC Covered',
     gateStatLabel2: 'Taxing Jurisdictions',
     gateStatLabel3: 'Free States to Start',
     // Gate - Features
@@ -3153,7 +3155,7 @@ const I18N = {
     gateCta: 'Ver el Contenido',
     gateScrollText: 'Desplazar',
     // Gate - Stats
-    gateStatLabel1: 'Estados Cubiertos',
+    gateStatLabel1: 'Estados + DC Cubiertos',
     gateStatLabel2: 'Jurisdicciones Fiscales',
     gateStatLabel3: 'Estados Gratis para Empezar',
     // Gate - Features
@@ -4310,7 +4312,7 @@ function openState(id) {
           <div style="font-size:32px;margin-bottom:8px;">\u{1F512}</div>
           <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px;">Unlock Full State Details</div>
           <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.5;">
-            Get auction signup steps, county links, full risks list, due diligence checklists, and OTC availability for all 51 states.
+            Get auction signup steps, county links, full risks list, due diligence checklists, and OTC availability for all 50 states + DC.
           </div>
           <div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>
           <div style="font-size:11px;color:var(--text-muted);margin-bottom:16px;">${t('paywallPriceNote')}</div>
@@ -4886,7 +4888,7 @@ function calcAnalyzer() {
 // ── Valuation Agent (Atlas) ───────────────────────────────────
 async function sendValMessage() {
   if (!state.isPaid) {
-    appendValMsg('atlas', 'Atlas is available to full-access members. Unlock all 50 states + AI agents for just $97.');
+    appendValMsg('atlas', 'Atlas is available to full-access members. Unlock all 50 states + DC, AI agents, and more for just $97.<br><br><a href="' + STRIPE_URL + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
     return;
   }
   if (state.valBusy) return;
@@ -4959,7 +4961,7 @@ function valKeydown(e) {
 // ── AI Advisor ────────────────────────────────────────────────
 async function sendAdvisorMessage() {
   if (!state.isPaid) {
-    appendAdvisorMsg('sage', 'Sage is available to full-access members. Unlock all 50 states + AI advisor for just $97.');
+    appendAdvisorMsg('sage', 'Sage is available to full-access members. Unlock all 50 states + DC, AI advisor, and more for just $97.<br><br><a href="' + STRIPE_URL + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
     return;
   }
   if (state.advisorBusy) return;
