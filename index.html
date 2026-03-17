@@ -2455,6 +2455,218 @@ a { color: inherit; text-decoration: none; }
 #debug-panel.show { display: block; }
 
 /* ═══════════════════════════════════════════════
+   FEATURE FLAG ADMIN PANEL
+═══════════════════════════════════════════════ */
+#ff-admin-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 340px;
+  max-width: 90vw;
+  height: 100dvh;
+  background: rgba(10,10,14,0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid var(--accent-border);
+  z-index: 999;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: -8px 0 40px rgba(0,0,0,0.6);
+}
+
+#ff-admin-panel.open {
+  display: flex;
+  transform: translateX(0);
+}
+
+.ff-admin-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.ff-admin-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.ff-admin-close {
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: var(--text-dim);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ff-admin-close:hover { background: rgba(255,255,255,0.15); color: var(--text); }
+
+.ff-admin-actions {
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ff-admin-btn {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ff-admin-btn:hover { border-color: var(--accent-border); color: var(--accent); }
+
+.ff-admin-btn.danger { border-color: rgba(224,85,85,0.3); color: var(--red); }
+.ff-admin-btn.danger:hover { background: rgba(224,85,85,0.1); }
+
+.ff-admin-body {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 12px 20px 20px;
+}
+
+.ff-category {
+  margin-bottom: 16px;
+}
+
+.ff-category-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ff-flag-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  gap: 8px;
+}
+
+.ff-flag-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ff-flag-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--text);
+  word-break: break-all;
+}
+
+.ff-flag-desc {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.ff-flag-source {
+  font-size: 9px;
+  color: var(--text-muted);
+  margin-top: 1px;
+  font-style: italic;
+}
+
+/* Toggle switch */
+.ff-toggle {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.ff-toggle input { opacity: 0; width: 0; height: 0; }
+
+.ff-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+.ff-toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  left: 2px;
+  bottom: 2px;
+  background: var(--text-dim);
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.ff-toggle input:checked + .ff-toggle-slider {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+}
+
+.ff-toggle input:checked + .ff-toggle-slider::before {
+  transform: translateX(16px);
+  background: var(--accent);
+}
+
+/* Variant selector */
+.ff-variant-select {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 11px;
+  color: var(--text);
+  outline: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ff-variant-select:focus { border-color: var(--accent-border); }
+
+.ff-admin-footer {
+  padding: 10px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 9px;
+  color: var(--text-muted);
+  text-align: center;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+/* ═══════════════════════════════════════════════
    ANIMATIONS
 ═══════════════════════════════════════════════ */
 @keyframes fadeUp {
@@ -2904,7 +3116,658 @@ a { color: inherit; text-decoration: none; }
   <div id="debug-content"></div>
 </div>
 
+<!-- FEATURE FLAG ADMIN PANEL -->
+<div id="ff-admin-panel">
+  <div class="ff-admin-header">
+    <div class="ff-admin-title">Feature Flags</div>
+    <button class="ff-admin-close" onclick="FF.closeAdmin()">&#10005;</button>
+  </div>
+  <div class="ff-admin-actions">
+    <button class="ff-admin-btn" onclick="FF.exportFlags()">Export</button>
+    <button class="ff-admin-btn" onclick="FF.importFlags()">Import</button>
+    <button class="ff-admin-btn danger" onclick="FF.resetAll()">Reset All</button>
+  </div>
+  <div class="ff-admin-body" id="ff-admin-body"></div>
+  <div class="ff-admin-footer">
+    Feature flags are for internal testing only.<br>
+    Priority: URL param &gt; localStorage &gt; default
+  </div>
+</div>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ═══════════════════════════════════════════════════════════
+//  FEATURE FLAG SYSTEM
+//  Zero-dependency, production-ready feature flag manager.
+//  Priority: URL param > localStorage > default value.
+//  Access admin panel: ?admin=true or Konami code
+// ═══════════════════════════════════════════════════════════
+
+var FF = (function() {
+  'use strict';
+
+  // ── Storage key prefix ────────────────────────────────────
+  var STORAGE_PREFIX = 'ff_';
+  var STORAGE_KEY_ALL = 'ff__overrides';
+
+  // ── Flag type constants ───────────────────────────────────
+  var TYPE_BOOLEAN = 'boolean';
+  var TYPE_VARIANT = 'variant';
+
+  // ── Flag definitions ──────────────────────────────────────
+  // Each flag has: type, default, description, category, and
+  // optionally 'variants' (array of strings) for variant flags.
+  //
+  // Categories help organize the admin panel:
+  //   ui         — UI features (new components, layouts)
+  //   gate       — Gate/paywall variations
+  //   data       — Data display modes
+  //   analytics  — Analytics/tracking
+  //   experiment — Experimental features
+  // ─────────────────────────────────────────────────────────
+
+  var FLAG_DEFINITIONS = {
+
+    // ── UI Features ───────────────────────────────────────
+    enhanced_map: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Enhanced map with tooltips, animations, and clustering',
+      category: 'ui'
+    },
+    compact_state_list: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Compact state list layout with less whitespace',
+      category: 'ui'
+    },
+    dark_mode_v2: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Updated dark theme with revised color palette',
+      category: 'ui'
+    },
+    bottom_nav_labels: {
+      type: TYPE_BOOLEAN,
+      default: true,
+      description: 'Show text labels under bottom nav icons',
+      category: 'ui'
+    },
+    modal_animation: {
+      type: TYPE_VARIANT,
+      default: 'slide',
+      variants: ['slide', 'fade', 'scale'],
+      description: 'State detail modal entry animation style',
+      category: 'ui'
+    },
+
+    // ── Gate / Paywall ────────────────────────────────────
+    conversion_optimization: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Optimized gate flow with urgency triggers and social proof',
+      category: 'gate'
+    },
+    gate_layout: {
+      type: TYPE_VARIANT,
+      default: 'default',
+      variants: ['default', 'minimal', 'video', 'testimonial'],
+      description: 'Gate landing page layout variant',
+      category: 'gate'
+    },
+    free_state_count: {
+      type: TYPE_VARIANT,
+      default: '3',
+      variants: ['3', '5', '7'],
+      description: 'Number of free states before paywall',
+      category: 'gate'
+    },
+    exit_intent_popup: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Show discount popup on exit intent',
+      category: 'gate'
+    },
+    price_display: {
+      type: TYPE_VARIANT,
+      default: 'standard',
+      variants: ['standard', 'anchored', 'payment_plan'],
+      description: 'Pricing display strategy on gate and paywall',
+      category: 'gate'
+    },
+
+    // ── Data Display ──────────────────────────────────────
+    smart_recommendations: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'AI-powered state recommendations based on user behavior',
+      category: 'data'
+    },
+    score_explanation: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Show detailed score breakdown visualization in modal',
+      category: 'data'
+    },
+    county_heatmap: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Color-coded county data density indicators',
+      category: 'data'
+    },
+    comparison_mode: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Side-by-side state comparison feature',
+      category: 'data'
+    },
+
+    // ── Analytics / Tracking ──────────────────────────────
+    advanced_analytics: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Enhanced event tracking for user journey analysis',
+      category: 'analytics'
+    },
+    scroll_depth_tracking: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Track scroll depth on gate page sections',
+      category: 'analytics'
+    },
+    session_recording: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Enable session recording integration hooks',
+      category: 'analytics'
+    },
+
+    // ── Experimental ──────────────────────────────────────
+    premium_onboarding: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Guided onboarding flow for new paid users',
+      category: 'experiment'
+    },
+    advisor_v2: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Next-gen Sage advisor with context awareness',
+      category: 'experiment'
+    },
+    offline_mode: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Cache state data for offline access via Service Worker',
+      category: 'experiment'
+    },
+    social_proof_banner: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Show live purchase notifications toast',
+      category: 'experiment'
+    },
+    gamification: {
+      type: TYPE_BOOLEAN,
+      default: false,
+      description: 'Progress badges and research streaks',
+      category: 'experiment'
+    }
+  };
+
+  // ── Internal state ────────────────────────────────────────
+  // Resolved values: merged result of default + localStorage + URL
+  var _resolved = {};
+
+  // Source tracking: records where each flag's value came from
+  var _sources = {};
+
+  // Event listeners: { flagName: [callback, ...], '*': [...] }
+  var _listeners = {};
+
+  // Admin panel state
+  var _adminOpen = false;
+
+  // Konami code tracker
+  var _konamiBuffer = [];
+  var KONAMI_CODE = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // up up down down left right left right B A
+
+  // ── localStorage helpers (null-safe, per CLAUDE.md rule 5) ─
+  function _lsGet(key, fallback) {
+    try {
+      var v = localStorage.getItem(key);
+      return v !== null ? JSON.parse(v) : fallback;
+    } catch(e) { return fallback; }
+  }
+
+  function _lsSet(key, val) {
+    try { localStorage.setItem(key, JSON.stringify(val)); } catch(e) {}
+  }
+
+  function _lsRemove(key) {
+    try { localStorage.removeItem(key); } catch(e) {}
+  }
+
+  // ── URL param reader ──────────────────────────────────────
+  function _getUrlParams() {
+    var params = {};
+    try {
+      var search = window.location.search.substring(1);
+      if (!search) return params;
+      var pairs = search.split('&');
+      for (var i = 0; i < pairs.length; i++) {
+        var pair = pairs[i].split('=');
+        var key = decodeURIComponent(pair[0]);
+        var val = pair.length > 1 ? decodeURIComponent(pair[1]) : 'true';
+        params[key] = val;
+      }
+    } catch(e) {}
+    return params;
+  }
+
+  // ── Core resolution ───────────────────────────────────────
+  // Resolves all flag values with priority:
+  //   URL param (ff_<name>) > localStorage > default
+  function _resolveAll() {
+    var urlParams = _getUrlParams();
+    var lsOverrides = _lsGet(STORAGE_KEY_ALL, {});
+
+    var flagNames = Object.keys(FLAG_DEFINITIONS);
+    for (var i = 0; i < flagNames.length; i++) {
+      var name = flagNames[i];
+      var def = FLAG_DEFINITIONS[name];
+      var urlKey = 'ff_' + name;
+
+      // Start with default
+      var value = def.default;
+      var source = 'default';
+
+      // Layer 2: localStorage override
+      if (lsOverrides.hasOwnProperty(name)) {
+        value = lsOverrides[name];
+        source = 'localStorage';
+      }
+
+      // Layer 3: URL param override (highest priority)
+      if (urlParams.hasOwnProperty(urlKey)) {
+        var raw = urlParams[urlKey];
+        if (def.type === TYPE_BOOLEAN) {
+          value = (raw === 'true' || raw === '1' || raw === 'yes');
+        } else {
+          // Variant: accept if it's a valid variant, otherwise keep current
+          if (def.variants && def.variants.indexOf(raw) !== -1) {
+            value = raw;
+          }
+        }
+        source = 'url';
+      }
+
+      _resolved[name] = value;
+      _sources[name] = source;
+    }
+  }
+
+  // ── Public API ────────────────────────────────────────────
+
+  /**
+   * isEnabled(flagName) — Check if a boolean flag is truthy.
+   * Returns false for unknown flags (fail closed).
+   */
+  function isEnabled(name) {
+    if (!FLAG_DEFINITIONS.hasOwnProperty(name)) return false;
+    return !!_resolved[name];
+  }
+
+  /**
+   * getVariant(flagName) — Get the current variant string.
+   * Returns the default value for unknown flags.
+   */
+  function getVariant(name) {
+    if (!FLAG_DEFINITIONS.hasOwnProperty(name)) return null;
+    return _resolved[name];
+  }
+
+  /**
+   * getValue(flagName) — Generic getter, works for both types.
+   */
+  function getValue(name) {
+    if (!FLAG_DEFINITIONS.hasOwnProperty(name)) return undefined;
+    return _resolved[name];
+  }
+
+  /**
+   * getSource(flagName) — Returns 'url', 'localStorage', or 'default'.
+   */
+  function getSource(name) {
+    return _sources[name] || 'unknown';
+  }
+
+  /**
+   * setFlag(flagName, value) — Set a flag value via localStorage.
+   * Triggers change events. Does NOT override URL params
+   * (URL params always win on next resolve).
+   */
+  function setFlag(name, value) {
+    if (!FLAG_DEFINITIONS.hasOwnProperty(name)) return;
+
+    var def = FLAG_DEFINITIONS[name];
+    var prev = _resolved[name];
+
+    // Validate value
+    if (def.type === TYPE_BOOLEAN) {
+      value = !!value;
+    } else if (def.type === TYPE_VARIANT) {
+      if (def.variants && def.variants.indexOf(String(value)) === -1) return;
+      value = String(value);
+    }
+
+    // Persist to localStorage
+    var overrides = _lsGet(STORAGE_KEY_ALL, {});
+    overrides[name] = value;
+    _lsSet(STORAGE_KEY_ALL, overrides);
+
+    // Update resolved (only if URL isn't overriding)
+    if (_sources[name] !== 'url') {
+      _resolved[name] = value;
+      _sources[name] = 'localStorage';
+    }
+
+    // Fire events if value changed
+    if (prev !== value) {
+      _fireEvent(name, value, prev);
+    }
+  }
+
+  /**
+   * resetFlag(flagName) — Remove localStorage override for a flag.
+   */
+  function resetFlag(name) {
+    if (!FLAG_DEFINITIONS.hasOwnProperty(name)) return;
+    var overrides = _lsGet(STORAGE_KEY_ALL, {});
+    delete overrides[name];
+    _lsSet(STORAGE_KEY_ALL, overrides);
+
+    var prev = _resolved[name];
+    _resolveAll();
+    if (prev !== _resolved[name]) {
+      _fireEvent(name, _resolved[name], prev);
+    }
+  }
+
+  /**
+   * resetAll() — Clear all localStorage overrides.
+   */
+  function resetAll() {
+    _lsRemove(STORAGE_KEY_ALL);
+    _resolveAll();
+    _renderAdmin();
+  }
+
+  // ── Event system ──────────────────────────────────────────
+
+  /**
+   * on(flagName, callback) — Listen for changes to a specific flag.
+   * Use '*' to listen for any flag change.
+   * Callback receives: (flagName, newValue, oldValue)
+   */
+  function on(name, callback) {
+    if (typeof callback !== 'function') return;
+    if (!_listeners[name]) _listeners[name] = [];
+    _listeners[name].push(callback);
+  }
+
+  /**
+   * off(flagName, callback) — Remove a listener.
+   */
+  function off(name, callback) {
+    if (!_listeners[name]) return;
+    _listeners[name] = _listeners[name].filter(function(fn) {
+      return fn !== callback;
+    });
+  }
+
+  function _fireEvent(name, newVal, oldVal) {
+    // Specific listeners
+    if (_listeners[name]) {
+      for (var i = 0; i < _listeners[name].length; i++) {
+        try { _listeners[name][i](name, newVal, oldVal); } catch(e) {}
+      }
+    }
+    // Wildcard listeners
+    if (_listeners['*']) {
+      for (var j = 0; j < _listeners['*'].length; j++) {
+        try { _listeners['*'][j](name, newVal, oldVal); } catch(e) {}
+      }
+    }
+  }
+
+  // ── Admin panel ───────────────────────────────────────────
+
+  var CATEGORY_LABELS = {
+    ui: 'UI Features',
+    gate: 'Gate / Paywall',
+    data: 'Data Display',
+    analytics: 'Analytics / Tracking',
+    experiment: 'Experimental'
+  };
+
+  function openAdmin() {
+    var panel = document.getElementById('ff-admin-panel');
+    if (!panel) return;
+    _adminOpen = true;
+    panel.style.display = 'flex';
+    // Force reflow before adding class for transition
+    void panel.offsetWidth;
+    panel.classList.add('open');
+    _renderAdmin();
+  }
+
+  function closeAdmin() {
+    var panel = document.getElementById('ff-admin-panel');
+    if (!panel) return;
+    _adminOpen = false;
+    panel.classList.remove('open');
+    // Hide after transition
+    setTimeout(function() {
+      if (!_adminOpen) panel.style.display = 'none';
+    }, 350);
+  }
+
+  function toggleAdmin() {
+    if (_adminOpen) closeAdmin();
+    else openAdmin();
+  }
+
+  function _renderAdmin() {
+    var body = document.getElementById('ff-admin-body');
+    if (!body) return;
+
+    // Group flags by category
+    var groups = {};
+    var flagNames = Object.keys(FLAG_DEFINITIONS);
+    for (var i = 0; i < flagNames.length; i++) {
+      var name = flagNames[i];
+      var def = FLAG_DEFINITIONS[name];
+      var cat = def.category || 'other';
+      if (!groups[cat]) groups[cat] = [];
+      groups[cat].push(name);
+    }
+
+    var html = '';
+    var categoryOrder = ['ui', 'gate', 'data', 'analytics', 'experiment'];
+
+    for (var c = 0; c < categoryOrder.length; c++) {
+      var cat = categoryOrder[c];
+      if (!groups[cat] || groups[cat].length === 0) continue;
+
+      html += '<div class="ff-category">';
+      html += '<div class="ff-category-title">' + (CATEGORY_LABELS[cat] || cat) + '</div>';
+
+      for (var f = 0; f < groups[cat].length; f++) {
+        var flagName = groups[cat][f];
+        var flagDef = FLAG_DEFINITIONS[flagName];
+        var val = _resolved[flagName];
+        var src = _sources[flagName];
+
+        html += '<div class="ff-flag-row">';
+        html += '<div class="ff-flag-info">';
+        html += '<div class="ff-flag-name">' + flagName + '</div>';
+        html += '<div class="ff-flag-desc">' + (flagDef.description || '') + '</div>';
+        html += '<div class="ff-flag-source">source: ' + src + '</div>';
+        html += '</div>';
+
+        if (flagDef.type === TYPE_BOOLEAN) {
+          var checked = val ? ' checked' : '';
+          html += '<label class="ff-toggle">';
+          html += '<input type="checkbox"' + checked + ' onchange="FF.setFlag(\'' + flagName + '\', this.checked); FF._renderAdmin();">';
+          html += '<span class="ff-toggle-slider"></span>';
+          html += '</label>';
+        } else if (flagDef.type === TYPE_VARIANT) {
+          html += '<select class="ff-variant-select" onchange="FF.setFlag(\'' + flagName + '\', this.value); FF._renderAdmin();">';
+          var variants = flagDef.variants || [];
+          for (var v = 0; v < variants.length; v++) {
+            var sel = variants[v] === String(val) ? ' selected' : '';
+            html += '<option value="' + variants[v] + '"' + sel + '>' + variants[v] + '</option>';
+          }
+          html += '</select>';
+        }
+
+        html += '</div>';
+      }
+
+      html += '</div>';
+    }
+
+    body.innerHTML = html;
+  }
+
+  // ── Export / Import ───────────────────────────────────────
+
+  function exportFlags() {
+    var data = {
+      timestamp: new Date().toISOString(),
+      flags: _lsGet(STORAGE_KEY_ALL, {})
+    };
+    var json = JSON.stringify(data, null, 2);
+
+    // Copy to clipboard
+    try {
+      navigator.clipboard.writeText(json).then(function() {
+        alert('Feature flag overrides copied to clipboard.');
+      });
+    } catch(e) {
+      // Fallback: show in prompt
+      prompt('Copy this JSON:', json);
+    }
+  }
+
+  function importFlags() {
+    var json = prompt('Paste feature flag JSON:');
+    if (!json) return;
+    try {
+      var data = JSON.parse(json);
+      var flags = data.flags || data;
+      if (typeof flags !== 'object') throw new Error('Invalid format');
+      _lsSet(STORAGE_KEY_ALL, flags);
+      _resolveAll();
+      _renderAdmin();
+    } catch(e) {
+      alert('Invalid JSON format.');
+    }
+  }
+
+  // ── Konami code listener ──────────────────────────────────
+  function _initKonami() {
+    document.addEventListener('keydown', function(e) {
+      _konamiBuffer.push(e.keyCode);
+      if (_konamiBuffer.length > KONAMI_CODE.length) {
+        _konamiBuffer = _konamiBuffer.slice(-KONAMI_CODE.length);
+      }
+      if (_konamiBuffer.length === KONAMI_CODE.length) {
+        var match = true;
+        for (var i = 0; i < KONAMI_CODE.length; i++) {
+          if (_konamiBuffer[i] !== KONAMI_CODE[i]) { match = false; break; }
+        }
+        if (match) {
+          _konamiBuffer = [];
+          toggleAdmin();
+        }
+      }
+    });
+  }
+
+  // ── URL param check for ?admin=true ───────────────────────
+  function _checkAdminParam() {
+    var params = _getUrlParams();
+    if (params.admin === 'true' || params.admin === '1') {
+      // Defer to ensure DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', openAdmin);
+      } else {
+        openAdmin();
+      }
+    }
+  }
+
+  // ── getAllFlags — returns a snapshot for debugging ─────────
+  function getAllFlags() {
+    var snapshot = {};
+    var flagNames = Object.keys(FLAG_DEFINITIONS);
+    for (var i = 0; i < flagNames.length; i++) {
+      var name = flagNames[i];
+      snapshot[name] = {
+        value: _resolved[name],
+        source: _sources[name],
+        type: FLAG_DEFINITIONS[name].type,
+        default: FLAG_DEFINITIONS[name].default
+      };
+    }
+    return snapshot;
+  }
+
+  // ── getDefinition — returns flag definition ───────────────
+  function getDefinition(name) {
+    return FLAG_DEFINITIONS[name] || null;
+  }
+
+  // ── Initialize ────────────────────────────────────────────
+  _resolveAll();
+  _initKonami();
+  _checkAdminParam();
+
+  // ── Public interface ──────────────────────────────────────
+  return {
+    // Core API
+    isEnabled: isEnabled,
+    getVariant: getVariant,
+    getValue: getValue,
+    getSource: getSource,
+    setFlag: setFlag,
+    resetFlag: resetFlag,
+    resetAll: resetAll,
+
+    // Event system
+    on: on,
+    off: off,
+
+    // Admin panel
+    openAdmin: openAdmin,
+    closeAdmin: closeAdmin,
+    toggleAdmin: toggleAdmin,
+
+    // Import / Export
+    exportFlags: exportFlags,
+    importFlags: importFlags,
+
+    // Introspection
+    getAllFlags: getAllFlags,
+    getDefinition: getDefinition,
+
+    // Internal (exposed for admin panel onclick handlers)
+    _renderAdmin: _renderAdmin
+  };
+
+})();
+
 // ═══════════════════════════════════════════════════════════
 //  AURIGEN COUNTY RESOURCE DIRECTORY — APP LOGIC
 //  Ground-up rebuild | 2026-03-12
