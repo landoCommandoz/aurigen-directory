@@ -7132,6 +7132,16 @@ async function toggleLanguage() {
 }
 
 function applyLanguage() {
+  // SECURITY: Revalidate access level from localStorage before switching
+  // Prevents any in-memory state corruption from granting unearned access
+  try {
+    var storedPaid = localStorage.getItem('aug_paid');
+    state.isPaid = storedPaid === 'true' || storedPaid === true;
+  } catch(e) {
+    // If localStorage fails, default to unpaid (safe fallback)
+    state.isPaid = false;
+  }
+
   // Switch active STATES array based on currently loaded file
   // Rule 7: only one file loaded at a time
   STATES = state.lang === 'es' && window.STATES_ES ? window.STATES_ES : (window.STATES_EN || []);
@@ -7183,6 +7193,25 @@ function applyLanguage() {
 
     // Re-render map legend
     updateMapLegend();
+
+    // SECURITY: Refresh map fills to enforce access level visually
+    // Without this, locked states could show as unlocked after toggle
+    try {
+      var stateMap = {};
+      STATES.forEach(function(s) { stateMap[s.id] = s; });
+      d3.selectAll('path.state-shape').each(function(d) {
+        var fipsToId = window._fipsToId;
+        if (!fipsToId || !d) return;
+        var sid = fipsToId[String(d.id).padStart(2,'0')];
+        if (!sid) return;
+        var s = stateMap[sid];
+        if (!s) return;
+        var isFree = FREE_STATES.has(sid) || state.isPaid;
+        d3.select(this)
+          .style('opacity', isFree ? 1 : 0.25)
+          .attr('filter', isFree ? 'url(#state-glow)' : null);
+      });
+    } catch(e) { /* map may not be initialized yet */ }
 
     // Re-render DNA view
     if (typeof dnaRenderProfile === 'function') dnaRenderProfile();
@@ -8195,6 +8224,8 @@ async function initMap() {
       '45':'SC','46':'SD','47':'TN','48':'TX','49':'UT','50':'VT','51':'VA','53':'WA',
       '54':'WV','55':'WI','56':'WY'
     };
+    // Expose for language toggle map refresh
+    window._fipsToId = fipsToId;
 
     const cs = getComputedStyle(document.documentElement);
     const mapColors = {
