@@ -3820,63 +3820,6 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
 }
 
-/* Gate testimonial carousel */
-.gate-testimonial-carousel {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 24px;
-}
-
-.gate-testimonial-track {
-  display: flex;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.gate-testimonial-slide {
-  min-width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
-}
-
-.gate-testimonial-quote {
-  font-size: 14px;
-  color: var(--text);
-  line-height: 1.6;
-  font-style: italic;
-}
-
-.gate-testimonial-author {
-  margin-top: 10px;
-  font-size: 12px;
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.gate-testimonial-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.gate-testimonial-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--border);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.3s ease;
-}
-
-.gate-testimonial-dot.active {
-  background: var(--accent);
-}
-
 /* Statute citation teaser on locked previews */
 .statute-teaser {
   margin-top: 12px;
@@ -5257,34 +5200,6 @@ a { color: inherit; text-decoration: none; }
         <li>&#10003; Lifetime updates — data verified and refreshed quarterly</li>
       </ul>
 
-      <!-- TESTIMONIAL CAROUSEL -->
-      <div id="gate-price-testimonial" class="gate-testimonial-carousel">
-        <div class="gate-testimonial-track" id="testimonial-track">
-          <div class="gate-testimonial-slide">
-            <div class="gate-testimonial-quote">"I spent three weeks Googling county websites before I found Aurigen. It had everything — auction links, redemption timelines, even the deposit amounts. I closed my first tax deed in Arizona within 30 days."</div>
-            <div class="gate-testimonial-author">— Marcus R., Jacksonville, FL</div>
-          </div>
-          <div class="gate-testimonial-slide">
-            <div class="gate-testimonial-quote">"I was spending hours searching county websites one by one. Aurigen organized everything I needed in one place. The county links alone saved me a full week."</div>
-            <div class="gate-testimonial-author">— Dana K., Phoenix, AZ</div>
-            <div style="font-size:10px;color:var(--text-muted);font-style:italic;margin-top:4px;">Individual experience. Results may vary.</div>
-          </div>
-          <div class="gate-testimonial-slide">
-            <div class="gate-testimonial-quote">"As a Spanish speaker, finding reliable tax lien info was nearly impossible. Aurigen's bilingual mode gave me the same detail in Spanish — statutes, rates, county contacts. Finally felt like I wasn't guessing."</div>
-            <div class="gate-testimonial-author">— Roberto M., Houston, TX</div>
-          </div>
-          <div class="gate-testimonial-slide">
-            <div class="gate-testimonial-quote">"The Investor DNA quiz told me I was a 'yield optimizer' and pointed me to Iowa and Florida. I never would have considered Iowa on my own — now it's my best-performing state."</div>
-            <div class="gate-testimonial-author">— Priya S., Chicago, IL</div>
-          </div>
-          <div class="gate-testimonial-slide">
-            <div class="gate-testimonial-quote">"I've used three different tax sale research tools. Aurigen is the only one that gives you statute citations, OTC availability, AND actual county links — all in one place. It's not even close."</div>
-            <div class="gate-testimonial-author">— James T., Atlanta, GA</div>
-          </div>
-        </div>
-        <div class="gate-testimonial-dots" id="testimonial-dots"></div>
-      </div>
-
       <!-- WHY NOW -->
       <div id="gate-price-urgency" style="font-size:13px;color:var(--accent);font-weight:600;margin-bottom:12px;letter-spacing:0.04em;">
         Founding rate locks in at $97. When we hit 500 members, the price goes to $297.
@@ -5310,29 +5225,6 @@ a { color: inherit; text-decoration: none; }
     </div>
   </section>
 
-  <!-- Section 6: Investor Testimonials Wall -->
-  <section class="gate-section" id="gate-testimonials-section" style="padding:40px 20px;">
-    <h2 class="gate-section-title" id="gate-testimonials-title" style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:0.06em;color:var(--text);text-align:center;margin-bottom:24px;">What Investors Are Saying</h2>
-    <div id="gate-testimonials-wall" style="display:grid;grid-template-columns:1fr;gap:14px;max-width:520px;margin:0 auto;">
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;">
-        <div style="font-size:13px;color:var(--text);line-height:1.6;font-style:italic;">"I was spending hours searching county websites one by one. Aurigen organized everything I needed in one place. The county links alone saved me a full week."</div>
-        <div style="margin-top:8px;font-size:11px;color:var(--accent);font-weight:600;">— Dana K., Phoenix, AZ</div>
-        <div style="margin-top:4px;font-size:10px;color:var(--text-muted);font-style:italic;">Individual experience. Results may vary.</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;">
-        <div style="font-size:13px;color:var(--text);line-height:1.6;font-style:italic;">"As a Spanish speaker, finding reliable tax lien info was nearly impossible. Aurigen's bilingual mode gave me the same detail in Spanish — statutes, rates, county contacts. Finally felt like I wasn't guessing."</div>
-        <div style="margin-top:8px;font-size:11px;color:var(--accent);font-weight:600;">— Roberto M., Houston, TX</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;">
-        <div style="font-size:13px;color:var(--text);line-height:1.6;font-style:italic;">"The Investor DNA quiz told me I was a 'yield optimizer' and pointed me to Iowa and Florida. I never would have considered Iowa on my own — now it's my best-performing state."</div>
-        <div style="margin-top:8px;font-size:11px;color:var(--accent);font-weight:600;">— Priya S., Chicago, IL</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;">
-        <div style="font-size:13px;color:var(--text);line-height:1.6;font-style:italic;">"I've used three different tax sale research tools. Aurigen is the only one that gives you statute citations, OTC availability, AND actual county links — all in one place. It's not even close."</div>
-        <div style="margin-top:8px;font-size:11px;color:var(--accent);font-weight:600;">— James T., Atlanta, GA</div>
-      </div>
-    </div>
-  </section>
 </div>
 
 <!-- ═══════════════ EXIT INTENT POPUP ═══════════════ -->
@@ -5896,7 +5788,7 @@ var FF = (function() {
     gate_layout: {
       type: TYPE_VARIANT,
       default: 'default',
-      variants: ['default', 'minimal', 'video', 'testimonial'],
+      variants: ['default', 'minimal', 'video'],
       description: 'Gate landing page layout variant',
       category: 'gate'
     },
@@ -7922,68 +7814,6 @@ window.addEventListener('load', async () => {
 });
 
 // ── Gate ─────────────────────────────────────────────────────
-// ── Testimonial Carousel ────────────────────────────────────
-function initTestimonialCarousel() {
-  var track = document.getElementById('testimonial-track');
-  var dotsContainer = document.getElementById('testimonial-dots');
-  if (!track || !dotsContainer) return;
-
-  var slides = track.querySelectorAll('.gate-testimonial-slide');
-  if (slides.length === 0) return;
-
-  var currentSlide = 0;
-  var totalSlides = slides.length;
-  var autoInterval = null;
-
-  // Build dots
-  dotsContainer.innerHTML = '';
-  for (var i = 0; i < totalSlides; i++) {
-    var dot = document.createElement('button');
-    dot.className = 'gate-testimonial-dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', 'Testimonial ' + (i + 1));
-    dot.dataset.index = i;
-    dot.addEventListener('click', function() {
-      goToSlide(parseInt(this.dataset.index));
-    });
-    dotsContainer.appendChild(dot);
-  }
-
-  function goToSlide(index) {
-    currentSlide = index;
-    track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-    var dots = dotsContainer.querySelectorAll('.gate-testimonial-dot');
-    dots.forEach(function(d, j) {
-      d.classList.toggle('active', j === currentSlide);
-    });
-  }
-
-  function nextSlide() {
-    goToSlide((currentSlide + 1) % totalSlides);
-  }
-
-  // Auto-rotate every 5 seconds
-  autoInterval = setInterval(nextSlide, 5000);
-
-  // Pause on hover
-  track.addEventListener('mouseenter', function() { clearInterval(autoInterval); });
-  track.addEventListener('mouseleave', function() { autoInterval = setInterval(nextSlide, 5000); });
-
-  // Touch swipe support
-  var startX = 0;
-  track.addEventListener('touchstart', function(e) {
-    startX = e.touches[0].clientX;
-    clearInterval(autoInterval);
-  }, { passive: true });
-  track.addEventListener('touchend', function(e) {
-    var diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) goToSlide((currentSlide + 1) % totalSlides);
-      else goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
-    }
-    autoInterval = setInterval(nextSlide, 5000);
-  }, { passive: true });
-}
-
 function handleGateEnter() {
   // Scroll to email capture section
   const emailSection = document.getElementById('gate-email-section');
@@ -8350,8 +8180,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Testimonial carousel
-  initTestimonialCarousel();
 });
 
 function enterApp(animate) {
