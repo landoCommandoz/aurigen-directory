@@ -6688,6 +6688,7 @@ const I18N = {
     vsSummaryCategories: 'categories',
     vsSummaryTied: 'Tied at',
     vsSummaryEach: 'each',
+    vsPaywallMsg: 'State Versus is a paid feature. Unlock full access to compare any two states side by side.',
     vsWhyTitle: 'Why Aurigen Over the Alternatives?',
     vsWhyDiyLabel: 'DIY County Research',
     vsWhyDiyAlt: 'Hours Googling county websites, calling offices, checking statutes',
@@ -7079,6 +7080,7 @@ const I18N = {
     vsSummaryCategories: 'categorias',
     vsSummaryTied: 'Empatados en',
     vsSummaryEach: 'cada uno',
+    vsPaywallMsg: 'Estado vs Estado es una función paga. Desbloquea acceso completo para comparar cualquier par de estados.',
     vsWhyTitle: '¿Por qué Aurigen sobre las alternativas?',
     vsWhyDiyLabel: 'Investigación manual',
     vsWhyDiyAlt: 'Horas buscando sitios de condados, llamando oficinas',
@@ -9870,7 +9872,7 @@ function runVersus() {
   }
 
   if (!state.isPaid) {
-    showFeaturePaywall('vs-result', 'State Versus is a paid feature. Unlock full access to compare any two states side by side.');
+    showFeaturePaywall('vs-result', t('vsPaywallMsg'));
     return;
   }
 
