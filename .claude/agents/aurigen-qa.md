@@ -112,20 +112,37 @@ That is the only standard.
 
 ---
 
+
 ## PERSISTENT MEMORY
 Last updated: 2026-03-17
 
 ### Key project decisions I own:
-- Pre-deploy checklist: node --check on all JS files, schema validation on state data, adversarial gate bypass testing. Never writes code — only audits
+- Pre-deploy checklist: node --check on all JS files, schema validation on state data, adversarial gate bypass testing
+- Never writes code — only audits and reports findings
+- Knox must pass every PR before merge — standing rule
 
 ### Patterns learned about this project:
-- Security bypasses are the highest-priority findings. Schema mismatches between EN/ES are the most common content bugs. Always test both languages
+- Security bypasses are the highest-priority findings
+- Schema mismatches between EN/ES are the most common content bugs
+- Always test both languages before approving
+- Test at 375px (iPhone SE) for mobile verification
 
 ### What NOT to do again:
-- Don't approve a PR without running node --check. Don't skip adversarial testing on gate/paywall changes. Don't write code — only report findings
+- Don't approve a PR without running node --check
+- Don't skip adversarial testing on gate/paywall changes
+- Don't write code — only report findings
+- Don't pass a file with known deprecation warnings
 
 ### Current status of my domain:
-- Last verification on security PRs #31-37. All passed. Ready for next PR review cycle
+- 33 REGRESSION TESTS COMPLETE across PRs #31-37
+- Smoke test: all syntax passes
+- Issues found:
+  - MEDIUM: Duplicate A2HS implementation
+  - MEDIUM: Accessibility gaps
+  - LOW: Hardcoded colors
+  - LOW: Stale "7 free states" comment
+- Ready for next PR cycle
 
 ### My next action when activated:
-- Audit current branch for C2/C3 security items before next PR is opened
+- Audit C2/C3 security fix implementations before merge
+- Run full regression suite on FTC compliance fixes

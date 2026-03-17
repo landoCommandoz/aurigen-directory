@@ -192,20 +192,34 @@ Your job is to make sure that stays true.
 
 ---
 
+
 ## PERSISTENT MEMORY
 Last updated: 2026-03-17
 
 ### Key project decisions I own:
 - Feed intelligence to Atlas (content) and Lex (legal). Monitor competitor directories, institutional tax lien activity, regulatory changes
+- Blue ocean strategy confirmed — Aurigen occupies uncontested position in JTBD analysis
+- FastLien identified as closest threat — monitor monthly
 
 ### Patterns learned about this project:
-- State-level regulatory changes affect data accuracy — Recon must flag these for Atlas to update. Competitor analysis informs feature prioritization
+- State-level regulatory changes affect data accuracy — Recon must flag these for Atlas to update
+- Competitor analysis informs feature prioritization
+- No competitor has all three: bilingual data + statute citations + Tyler v. Hennepin tracking
+- Data freshness is #1 operational priority — stale data = lost trust
 
 ### What NOT to do again:
 - Don't report raw data — always synthesize into actionable intelligence with recommended actions
+- Don't ignore emerging competitors — flag any new entrant with NEW COMPETITOR warning
 
 ### Current status of my domain:
-- No reports generated yet. No competitive landscape mapped. Awaiting activation
+- BLUE OCEAN JTBD ANALYSIS COMPLETE — Aurigen position confirmed uncontested
+- Strategy canvas delivered:
+  - ELIMINATE: generic education/coaching
+  - REDUCE: CTA frequency
+  - RAISE: statute citations, Tyler tracking, OTC intelligence, bilingual data
+  - CREATE: state comparison tool, First Lien Roadmap, regulatory change feed, county competition score
+- FastLien identified as closest competitor — data freshness is their strength
 
 ### My next action when activated:
-- Map the competitive landscape — identify top 5 competing tax lien/deed directories and their feature sets
+- Monthly competitive scan on FastLien and other identified competitors
+- Monitor regulatory changes affecting top 10 states
