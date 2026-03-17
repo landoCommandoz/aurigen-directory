@@ -204,22 +204,19 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── HERO SECTION ─── */
 .gate-hero {
-  min-height: 100vh;
-  min-height: 100dvh;
-  min-height: -webkit-fill-available;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  display: block;
   text-align: center;
   position: relative;
-  padding: 80px 24px 60px;
-  padding-top: max(80px, calc(12vh));
+  padding: 60px 24px 40px;
   overflow: visible;
 }
 
+/* Gate glow: decorative radial behind hero — stays absolute within .gate-hero (relative) */
 .gate-glow {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 600px;
   height: 600px;
   background: radial-gradient(circle, rgba(200,168,75,0.08) 0%, transparent 70%);
@@ -230,8 +227,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.1); opacity: 1; }
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
 }
 
 .gate-hero-content {
@@ -240,6 +237,9 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .gate-eyebrow {
@@ -463,24 +463,25 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── STATS SECTION (separate from hero) ─── */
 .gate-stats {
+  display: block;
   padding: 60px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-top: 40px;
   border-top: 1px solid rgba(255,255,255,0.04);
   position: relative;
   z-index: 1;
 }
 
 .gate-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: center;
   gap: 32px;
   width: 100%;
   max-width: 800px;
+  margin: 0 auto;
 }
 
 .gate-stat-card {
+  flex: 1;
   background: rgba(255,255,255,0.04);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -514,10 +515,9 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── FEATURES SECTION ─── */
 .gate-features {
+  display: block;
   padding: 60px 24px 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-top: 60px;
   border-top: 1px solid rgba(255,255,255,0.04);
   position: relative;
   z-index: 1;
@@ -540,6 +540,7 @@ a { color: inherit; text-decoration: none; }
   gap: 24px;
   width: 100%;
   max-width: 960px;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
 }
@@ -561,11 +562,11 @@ a { color: inherit; text-decoration: none; }
 /* ─── TABLET/IPAD GATE FIX ─── */
 @media (min-width: 641px) and (max-width: 1024px) {
   .gate-hero {
-    padding: 60px 32px 80px;
-    padding-top: max(60px, calc(10vh));
+    padding: 60px 32px 40px;
   }
   .gate-stats {
     padding: 48px 32px;
+    margin-top: 32px;
   }
   .gate-stats-grid {
     gap: 20px;
@@ -573,12 +574,14 @@ a { color: inherit; text-decoration: none; }
   }
   .gate-stat-card {
     padding: 28px 16px;
+    flex: 1;
   }
   .gate-stat-number {
     font-size: clamp(36px, 6vw, 48px);
   }
   .gate-features {
     padding: 48px 32px;
+    margin-top: 48px;
   }
   .gate-features-grid {
     gap: 16px;
@@ -588,11 +591,9 @@ a { color: inherit; text-decoration: none; }
 /* ─── MOBILE GATE TIGHTENING ─── */
 @media (max-width: 640px) {
   .gate-hero {
-    min-height: auto;
     padding: 48px 20px 32px;
     padding-top: max(48px, env(safe-area-inset-top, 0px));
     padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
-    justify-content: flex-start;
   }
   .gate-logo {
     font-size: clamp(48px, 12vw, 72px);
@@ -643,12 +644,15 @@ a { color: inherit; text-decoration: none; }
   }
   .gate-stats {
     padding: 32px 20px;
+    margin-top: 24px;
   }
   .gate-stats-grid {
     gap: 8px;
+    flex-wrap: wrap;
   }
   .gate-stat-card {
     padding: 20px 12px;
+    min-width: 90px;
   }
   .gate-stat-number {
     font-size: clamp(28px, 8vw, 38px);
@@ -671,6 +675,7 @@ a { color: inherit; text-decoration: none; }
   }
   .gate-features {
     padding: 40px 20px;
+    margin-top: 32px;
   }
   .gate-price {
     padding: 40px 20px;
@@ -720,10 +725,8 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── PRICE SECTION ─── */
 .gate-price {
+  display: block;
   padding: 60px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
   border-top: 1px solid rgba(200,168,75,0.1);
 }
@@ -746,6 +749,8 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 0 60px rgba(200,168,75,0.08), inset 0 1px 0 rgba(255,255,255,0.06);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 .gate-price-badge {
@@ -823,10 +828,9 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── EMAIL CAPTURE SECTION ─── */
 .gate-email {
+  display: block;
   padding: 60px 24px 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-top: 40px;
   text-align: center;
   border-top: 2px solid rgba(200,168,75,0.2);
   background: rgba(200,168,75,0.02);
@@ -871,6 +875,7 @@ a { color: inherit; text-decoration: none; }
   gap: 12px;
   width: 100%;
   max-width: 420px;
+  margin: 0 auto;
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(200,168,75,0.12);
   border-radius: 16px;
@@ -4364,6 +4369,36 @@ a { color: inherit; text-decoration: none; }
   opacity: 0.8;
 }
 
+/* ---------- A2HS Banner ---------- */
+#a2hs-banner {
+  position: fixed;
+  bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  left: 0; right: 0;
+  z-index: 45;
+  padding: 0 12px 8px;
+  transform: translateY(120%);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+  pointer-events: none;
+}
+#a2hs-banner.visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.a2hs-card {
+  background: rgba(17, 17, 22, 0.92);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--accent-border);
+  border-radius: 16px;
+  padding: 16px 18px 14px;
+  box-shadow: 0 -4px 32px rgba(0,0,0,0.5), 0 0 20px var(--accent-dim);
+}
+.a2hs-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.a2hs-title { font-family: 'Bebas Neue', 'DM Sans', sans-serif; font-size: 17px; letter-spacing: 0.06em; color: var(--accent); margin: 0; }
+.a2hs-close { background: none; border: none; color: var(--text-muted); font-size: 22px; line-height: 1; cursor: pointer; padding: 4px 6px; border-radius: 6px; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+.a2hs-close:hover, .a2hs-close:active { color: var(--text); background: rgba(255,255,255,0.06); }
+.a2hs-steps { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.a2hs-step { display: flex; align-items: center; gap: 10px; font-size: 14px; line-height: 1.45; color: var(--text); font-family: 'DM Sans', sans-serif; }
+.a2hs-step-num { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--accent-dim); border: 1px solid var(--accent-border); color: var(--accent); font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.a2hs-step-icon { font-size: 16px; flex-shrink: 0; }
+
 /* DNA Tabs: Profile vs Pathway */
 .dna-tabs {
   display: flex;
@@ -4914,7 +4949,7 @@ a { color: inherit; text-decoration: none; }
         <div class="gate-stat-label" id="gate-stat-label-2">Taxing Jurisdictions</div>
       </div>
       <div class="gate-stat-card">
-        <div class="gate-stat-number" data-target="7">0</div>
+        <div class="gate-stat-number" data-target="3">0</div>
         <div class="gate-stat-label" id="gate-stat-label-3">Free States to Start</div>
       </div>
     </div>
@@ -5464,6 +5499,17 @@ a { color: inherit; text-decoration: none; }
   </nav>
 
 </div><!-- end #app -->
+
+<!-- A2HS BANNER -->
+<div id="a2hs-banner" role="complementary" aria-label="Add to Home Screen guide">
+  <div class="a2hs-card">
+    <div class="a2hs-header">
+      <h3 class="a2hs-title">INSTALL THIS APP</h3>
+      <button class="a2hs-close" onclick="dismissA2HS()" aria-label="Close">&times;</button>
+    </div>
+    <ol class="a2hs-steps" id="a2hs-steps"></ol>
+  </div>
+</div>
 
 <!-- STATE DETAIL MODAL -->
 <div id="state-modal" onclick="handleModalBackdrop(event)">
@@ -6214,7 +6260,7 @@ function stripeUrl() {
 
 // ── Feature Flag: Deal Tape ──────────────────────────────────
 var ff_deal_tape = true;
-const FREE_STATES = new Set(['FL']);
+const FREE_STATES = new Set(['FL','IL','AZ']);
 
 // (P1 conversion flags merged into var FF FLAG_DEFINITIONS above)
 
@@ -7804,7 +7850,7 @@ function animateGateStats(retryCount) {
   if (jurisdictionCount < 3000) jurisdictionCount = 3000;
   else jurisdictionCount = Math.floor(jurisdictionCount / 100) * 100;
 
-  var freeStates = ['FL','IL','AZ','TX','NJ','GA','OH'];
+  var freeStates = ['FL','IL','AZ'];
   var freeCount = freeStates.length;
 
   // Update data-target attributes with real values
@@ -11363,6 +11409,64 @@ function initA2hs() {
   var gateEl = document.getElementById('gate');
   if (gateEl) _initObserver.observe(gateEl, { attributes: true });
 })();
+
+/* ---------- A2HS Banner Logic ---------- */
+(function initA2HS() {
+  var dismissed = false;
+  try { dismissed = localStorage.getItem('aurigen_a2hs_dismissed') === '1'; } catch(e) {}
+  if (dismissed) return;
+  var isStandalone = (window.navigator.standalone === true) ||
+    (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+  if (isStandalone) return;
+  var ua = navigator.userAgent || '';
+  var device = detectA2HSDevice(ua);
+  if (!device) return;
+  var steps = getA2HSSteps(device);
+  var stepsEl = document.getElementById('a2hs-steps');
+  if (!stepsEl) return;
+  steps.forEach(function(step, i) {
+    var li = document.createElement('li');
+    li.className = 'a2hs-step';
+    li.innerHTML = '<span class="a2hs-step-num">' + (i + 1) + '</span><span class="a2hs-step-icon">' + step.icon + '</span><span>' + step.text + '</span>';
+    stepsEl.appendChild(li);
+  });
+  setTimeout(function() {
+    var banner = document.getElementById('a2hs-banner');
+    if (banner) banner.classList.add('visible');
+  }, 3000);
+})();
+
+function detectA2HSDevice(ua) {
+  if (/iPad/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1)) return 'ipad';
+  if (/iPhone/i.test(ua)) return 'iphone';
+  if (/Android/i.test(ua)) return 'android';
+  return null;
+}
+
+function getA2HSSteps(device) {
+  if (device === 'iphone') return [
+    { icon: '\u{1F4E4}', text: 'Tap the <strong>Share</strong> button (box with arrow) at the bottom of Safari' },
+    { icon: '\u{1F447}', text: 'Scroll down in the menu' },
+    { icon: '\u{2795}', text: 'Tap <strong>"Add to Home Screen"</strong>' },
+    { icon: '\u{2705}', text: 'Tap <strong>"Add"</strong> in the top right' }
+  ];
+  if (device === 'ipad') return [
+    { icon: '\u{1F4E4}', text: 'Tap the <strong>Share</strong> button (box with arrow) in the toolbar' },
+    { icon: '\u{2795}', text: 'Tap <strong>"Add to Home Screen"</strong>' },
+    { icon: '\u{2705}', text: 'Tap <strong>"Add"</strong> to confirm' }
+  ];
+  return [
+    { icon: '\u{22EE}', text: 'Tap the <strong>three-dot menu</strong> in the top right of Chrome' },
+    { icon: '\u{1F4F2}', text: 'Tap <strong>"Add to home screen"</strong>' },
+    { icon: '\u{2705}', text: 'Tap <strong>"Add"</strong> to confirm' }
+  ];
+}
+
+function dismissA2HS() {
+  var banner = document.getElementById('a2hs-banner');
+  if (banner) banner.classList.remove('visible');
+  try { localStorage.setItem('aurigen_a2hs_dismissed', '1'); } catch(e) {}
+}
 </script>
 
 <!-- Add to Home Screen Guide -->

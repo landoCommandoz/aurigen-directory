@@ -1,0 +1,228 @@
+<!--
+  ============================================================
+  A2HS (Add to Home Screen) GUIDE BANNER
+  ============================================================
+  This file contains three pieces to insert into index.html:
+    1. CSS  — insert inside the existing <style> block
+    2. HTML — insert just BEFORE <div id="state-modal" ...>
+    3. JS   — insert just BEFORE the closing </script> tag
+  ============================================================
+-->
+
+
+<!-- ========================================================
+     1. CSS — INSERT inside the <style> block, just before
+        the closing </style> tag (or near the #bottom-nav
+        styles around line ~1052).
+     ======================================================== -->
+<style>
+/* ---------- A2HS Banner ---------- */
+#a2hs-banner {
+  position: fixed;
+  bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  left: 0; right: 0;
+  z-index: 45; /* below nav (50), above panel (20) */
+  padding: 0 12px 8px;
+  transform: translateY(120%);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.4s ease;
+  pointer-events: none;
+}
+#a2hs-banner.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.a2hs-card {
+  background: rgba(17, 17, 22, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--accent-border);
+  border-radius: 16px;
+  padding: 16px 18px 14px;
+  box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.5),
+              0 0 20px var(--accent-dim);
+}
+
+.a2hs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.a2hs-title {
+  font-family: 'Bebas Neue', 'DM Sans', sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin: 0;
+}
+
+.a2hs-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.a2hs-close:hover,
+.a2hs-close:active {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.a2hs-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.a2hs-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.a2hs-step-num {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.a2hs-step-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+</style>
+
+
+<!-- ========================================================
+     2. HTML — INSERT just BEFORE <div id="state-modal" ...>
+        (around line ~5469 in index.html)
+     ======================================================== -->
+<div id="a2hs-banner" role="complementary" aria-label="Add to Home Screen guide">
+  <div class="a2hs-card">
+    <div class="a2hs-header">
+      <h3 class="a2hs-title">INSTALL THIS APP</h3>
+      <button class="a2hs-close" onclick="dismissA2HS()" aria-label="Close">&times;</button>
+    </div>
+    <ol class="a2hs-steps" id="a2hs-steps"></ol>
+  </div>
+</div>
+
+
+<!-- ========================================================
+     3. JS — INSERT just BEFORE the closing </script> tag.
+        All localStorage calls are wrapped in try/catch per
+        CLAUDE.md rules.
+     ======================================================== -->
+<script>
+/* ---------- A2HS Banner Logic ---------- */
+(function initA2HS() {
+  // --- Check if already dismissed ---
+  var dismissed = false;
+  try { dismissed = localStorage.getItem('aurigen_a2hs_dismissed') === '1'; } catch(e) {}
+  if (dismissed) return;
+
+  // --- Check if already in standalone / PWA mode ---
+  var isStandalone = (window.navigator.standalone === true) ||
+    (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+  if (isStandalone) return;
+
+  // --- Device detection ---
+  var ua = navigator.userAgent || '';
+  var device = detectA2HSDevice(ua);
+  if (!device) return; // not a mobile/tablet we support
+
+  // --- Build steps ---
+  var steps = getA2HSSteps(device);
+  var stepsEl = document.getElementById('a2hs-steps');
+  if (!stepsEl) return;
+
+  steps.forEach(function(step, i) {
+    var li = document.createElement('li');
+    li.className = 'a2hs-step';
+    li.innerHTML =
+      '<span class="a2hs-step-num">' + (i + 1) + '</span>' +
+      '<span class="a2hs-step-icon">' + step.icon + '</span>' +
+      '<span>' + step.text + '</span>';
+    stepsEl.appendChild(li);
+  });
+
+  // --- Show after 3-second delay ---
+  setTimeout(function() {
+    var banner = document.getElementById('a2hs-banner');
+    if (banner) banner.classList.add('visible');
+  }, 3000);
+})();
+
+function detectA2HSDevice(ua) {
+  var isIPad = /iPad/i.test(ua) ||
+    (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
+  var isIPhone = /iPhone/i.test(ua);
+  var isAndroid = /Android/i.test(ua);
+
+  if (isIPad) return 'ipad';
+  if (isIPhone) return 'iphone';
+  if (isAndroid) return 'android';
+  return null; // desktop or unsupported
+}
+
+function getA2HSSteps(device) {
+  if (device === 'iphone') {
+    return [
+      { icon: '\u{1F4E4}', text: 'Tap the <strong>Share</strong> button (box with arrow) at the bottom of Safari' },
+      { icon: '\u{1F447}', text: 'Scroll down in the menu' },
+      { icon: '\u{2795}',  text: 'Tap <strong>"Add to Home Screen"</strong>' },
+      { icon: '\u{2705}',  text: 'Tap <strong>"Add"</strong> in the top right' }
+    ];
+  }
+  if (device === 'ipad') {
+    return [
+      { icon: '\u{1F4E4}', text: 'Tap the <strong>Share</strong> button (box with arrow) in the toolbar' },
+      { icon: '\u{2795}',  text: 'Tap <strong>"Add to Home Screen"</strong>' },
+      { icon: '\u{2705}',  text: 'Tap <strong>"Add"</strong> to confirm' }
+    ];
+  }
+  // android
+  return [
+    { icon: '\u{22EE}',   text: 'Tap the <strong>three-dot menu</strong> in the top right of Chrome' },
+    { icon: '\u{1F4F2}',  text: 'Tap <strong>"Add to home screen"</strong>' },
+    { icon: '\u{2705}',   text: 'Tap <strong>"Add"</strong> to confirm' }
+  ];
+}
+
+function dismissA2HS() {
+  var banner = document.getElementById('a2hs-banner');
+  if (banner) banner.classList.remove('visible');
+  try { localStorage.setItem('aurigen_a2hs_dismissed', '1'); } catch(e) {}
+}
+</script>
