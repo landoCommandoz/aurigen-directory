@@ -204,8 +204,8 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── HERO SECTION ─── */
 .gate-hero {
-  min-height: 90vh;
-  min-height: 90dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
   min-height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
@@ -213,8 +213,8 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   text-align: center;
   position: relative;
-  padding: 60px 24px;
-  overflow: hidden;
+  padding: 80px 24px 100px;
+  overflow: visible;
 }
 
 .gate-glow {
@@ -554,14 +554,23 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
+/* ─── TABLET/IPAD GATE FIX ─── */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .gate-hero {
+    padding: 80px 32px 110px;
+  }
+}
+
 /* ─── MOBILE GATE TIGHTENING ─── */
 @media (max-width: 640px) {
   .gate-hero {
     min-height: 100vh;
     min-height: 100dvh;
     min-height: -webkit-fill-available;
-    padding: 48px 20px 60px;
-    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+    padding: 60px 20px 100px;
+    padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+    justify-content: flex-start;
+    padding-top: max(60px, 12vh);
   }
   .gate-logo {
     font-size: clamp(48px, 12vw, 72px);
@@ -1340,6 +1349,14 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 16px;
   line-height: 1.5;
 }
+.qr-card-note {
+  font-size: 11px;
+  color: var(--accent);
+  margin-bottom: 14px;
+  line-height: 1.5;
+  font-style: italic;
+  opacity: 0.85;
+}
 .qr-copy-btn {
   background: var(--accent-dim);
   border: 1px solid var(--accent-border);
@@ -1353,6 +1370,115 @@ a { color: inherit; text-decoration: none; }
 }
 .qr-copy-btn:hover {
   background: rgba(200,168,75,0.2);
+}
+
+/* ═══════════════════════════════════════════════
+   ADD TO HOME SCREEN — Slide-up Guide
+═══════════════════════════════════════════════ */
+.a2hs-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.a2hs-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.a2hs-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  background: rgba(20,20,20,0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--accent-border);
+  border-radius: 20px 20px 0 0;
+  padding: 28px 24px calc(28px + env(safe-area-inset-bottom, 0px));
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  max-width: 480px;
+  margin: 0 auto;
+}
+.a2hs-panel.visible {
+  transform: translateY(0);
+}
+.a2hs-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 4px;
+}
+.a2hs-subtitle {
+  font-size: 14px;
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 20px;
+}
+.a2hs-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+.a2hs-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.a2hs-step:last-child {
+  border-bottom: none;
+}
+.a2hs-step-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.a2hs-step-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  padding-top: 4px;
+}
+.a2hs-step-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 2px;
+}
+.a2hs-dismiss {
+  display: block;
+  width: 100%;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 14px;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  min-height: 52px;
+  transition: all 0.2s ease;
+}
+.a2hs-dismiss:active {
+  transform: scale(0.97);
 }
 
 /* ═══════════════════════════════════════════════
@@ -3518,6 +3644,28 @@ a { color: inherit; text-decoration: none; }
   .vs-cell-value {
     font-size: 14px;
   }
+}
+
+/* ═══════════════════════════════════════════════
+   FORCE MOBILE — ?mobile=true QR scan override
+═══════════════════════════════════════════════ */
+.force-mobile .gate-hero .gate-eyebrow,
+.force-mobile .gate-hero .gate-logo,
+.force-mobile .gate-hero .gate-sub,
+.force-mobile .gate-hero .gate-tagline,
+.force-mobile .gate-hero .gate-description,
+.force-mobile .gate-hero .gate-hero-cta,
+.force-mobile .gate-hero .hero-email-wrap,
+.force-mobile .gate-hero .gate-scroll-indicator {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+.force-mobile .gate-glow {
+  animation: none !important;
+}
+.force-mobile #map-toggle-bar {
+  display: none !important;
 }
 
 /* ═══════════════════════════════════════════════
@@ -6128,6 +6276,7 @@ const I18N = {
     // QR Code
     qrTitle: 'Share This Directory',
     qrDesc: 'Scan to access the Aurigen County Resource Directory',
+    qrNote: 'Scan to open on your phone — App coming soon on iOS & Android',
     qrCopyLink: 'Copy Link',
     qrCopied: 'Copied!'
   },
@@ -6497,6 +6646,7 @@ const I18N = {
     // QR Code
     qrTitle: 'Comparte Este Directorio',
     qrDesc: 'Escanea para acceder al Directorio de Recursos de Aurigen',
+    qrNote: 'Escanea para abrir en tu telefono — App disponible pronto en iOS y Android',
     qrCopyLink: 'Copiar Enlace',
     qrCopied: 'Copiado!'
   }
@@ -7030,6 +7180,13 @@ window.addEventListener('load', async () => {
       }
     }
 
+    // Detect ?mobile=true from QR scan
+    var _urlParams = _getUrlParams();
+    if (_urlParams.mobile === 'true') {
+      state.mobileQr = true;
+      document.documentElement.classList.add('force-mobile');
+    }
+
     // Apply language immediately (before rendering)
     applyLanguage();
 
@@ -7048,7 +7205,7 @@ window.addEventListener('load', async () => {
       buildAnalyticsAdmin();
     }
 
-    if (state.entered) {
+    if (state.mobileQr || state.entered) {
       enterApp(false);
     } else {
       // Gate visible — initialize gate animations
@@ -7336,7 +7493,13 @@ function enterApp(animate) {
   buildSaved();
   buildSpotlight();
   dnaInit();
-  navigate('map', false);
+
+  // QR mobile scan: default to list view, skip map init delay
+  if (state.mobileQr) {
+    navigate('auctions', false);
+  } else {
+    navigate('map', false);
+  }
 
   // Init map after short delay to let layout settle
   setTimeout(() => initMap(), 150);
@@ -7347,7 +7510,7 @@ function enterApp(animate) {
     setTimeout(function() { showReturnVisitToast(); }, 800);
   }
   // Onboarding: show for first-time users passing the gate (animate=true)
-  if (animate) {
+  if (animate && !state.mobileQr) {
     setTimeout(function() { showOnboarding(); }, 400);
   }
 
@@ -9583,7 +9746,7 @@ function dnaDrawRadar() {
   if (!container) return;
   container.innerHTML = '';
 
-  const size = 300;
+  const size = 380;
   const cx = size / 2;
   const cy = size / 2;
   const radius = 110;
@@ -9672,7 +9835,7 @@ function dnaDrawRadar() {
   // Labels
   axes.forEach(function(ax, i) {
     const angle = angleSlice * i - Math.PI / 2;
-    const labelR = radius + 22;
+    const labelR = radius + 28;
     const lx = labelR * Math.cos(angle);
     const ly = labelR * Math.sin(angle);
     const anchor = Math.abs(lx) < 5 ? 'middle' : (lx > 0 ? 'start' : 'end');
@@ -10030,7 +10193,7 @@ function dnaDrawRadarInto(container) {
   if (!container) return;
   container.innerHTML = '';
 
-  const size = 300;
+  const size = 380;
   const cx = size / 2;
   const cy = size / 2;
   const radius = 110;
@@ -10084,7 +10247,7 @@ function dnaDrawRadarInto(container) {
 
   axes.forEach(function(ax, i) {
     const angle = angleSlice * i - Math.PI / 2;
-    const labelR = radius + 22;
+    const labelR = radius + 28;
     const lx = labelR * Math.cos(angle);
     const ly = labelR * Math.sin(angle);
     g.append('text').attr('class', 'dna-radar-label')
@@ -10440,7 +10603,7 @@ function buildQrCode() {
   if (!container) return;
   container.style.display = '';
 
-  var liveUrl = 'https://statuesque-bublanina-330b9d.netlify.app';
+  var liveUrl = 'https://directory.theaurigen.com?mobile=true';
   var qrSvg = generateQrSvg(liveUrl, 200);
 
   container.innerHTML =
@@ -10448,12 +10611,13 @@ function buildQrCode() {
       '<div class="qr-card-title">' + t('qrTitle') + '</div>' +
       '<div class="qr-code-container">' + qrSvg + '</div>' +
       '<div class="qr-card-desc">' + t('qrDesc') + '</div>' +
+      '<div class="qr-card-note">' + t('qrNote') + '</div>' +
       '<button class="qr-copy-btn" onclick="copyDirectoryLink(this)">' + t('qrCopyLink') + '</button>' +
     '</div>';
 }
 
 function copyDirectoryLink(btn) {
-  var url = 'https://statuesque-bublanina-330b9d.netlify.app';
+  var url = 'https://directory.theaurigen.com?mobile=true';
   try {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(url).then(function() {
@@ -10472,6 +10636,96 @@ function copyDirectoryLink(btn) {
 }
 
 // ═══════════════════════════════════════════════════════════
+//  ADD TO HOME SCREEN GUIDE
+// ═══════════════════════════════════════════════════════════
+function detectMobileDevice() {
+  var ua = navigator.userAgent || '';
+  if (/iPhone|iPad|iPod/.test(ua)) return 'ios';
+  if (/Android/.test(ua)) return 'android';
+  return null;
+}
+
+function shouldShowA2hs() {
+  // Only on mobile, only if not dismissed, only if not already in standalone mode
+  var device = detectMobileDevice();
+  if (!device) return false;
+  if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) return false;
+  if (navigator.standalone) return false;
+  try {
+    if (localStorage.getItem('aug_a2hs_dismissed')) return false;
+  } catch(e) {}
+  return device;
+}
+
+function showA2hsGuide() {
+  var device = shouldShowA2hs();
+  if (!device) return;
+
+  var panel = document.getElementById('a2hs-panel');
+  var overlay = document.getElementById('a2hs-overlay');
+  if (!panel || !overlay) return;
+
+  var shareIcon = '<svg class="a2hs-step-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>';
+  var plusIcon = '<svg class="a2hs-step-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>';
+
+  var steps;
+  if (device === 'ios') {
+    steps =
+      '<li class="a2hs-step">' +
+        '<span class="a2hs-step-num">1</span>' +
+        '<span class="a2hs-step-text">Tap the Share button ' + shareIcon + ' at the bottom of your screen</span>' +
+      '</li>' +
+      '<li class="a2hs-step">' +
+        '<span class="a2hs-step-num">2</span>' +
+        '<span class="a2hs-step-text">Scroll down and tap "Add to Home Screen" ' + plusIcon + '</span>' +
+      '</li>' +
+      '<li class="a2hs-step">' +
+        '<span class="a2hs-step-num">3</span>' +
+        '<span class="a2hs-step-text">Tap "Add" — you\'re done!</span>' +
+      '</li>';
+  } else {
+    steps =
+      '<li class="a2hs-step">' +
+        '<span class="a2hs-step-num">1</span>' +
+        '<span class="a2hs-step-text">Tap the three dots &#8942; in the top right corner</span>' +
+      '</li>' +
+      '<li class="a2hs-step">' +
+        '<span class="a2hs-step-num">2</span>' +
+        '<span class="a2hs-step-text">Tap "Add to Home Screen"</span>' +
+      '</li>' +
+      '<li class="a2hs-step">' +
+        '<span class="a2hs-step-num">3</span>' +
+        '<span class="a2hs-step-text">Tap "Add" — you\'re done!</span>' +
+      '</li>';
+  }
+
+  panel.innerHTML =
+    '<div class="a2hs-title">Use Aurigen Like an App</div>' +
+    '<div class="a2hs-subtitle">Add it to your home screen in 3 easy steps:</div>' +
+    '<ul class="a2hs-steps">' + steps + '</ul>' +
+    '<button class="a2hs-dismiss" onclick="dismissA2hs()">Got It — Add Later</button>';
+
+  // Slide in after a brief paint delay
+  requestAnimationFrame(function() {
+    overlay.classList.add('visible');
+    panel.classList.add('visible');
+  });
+}
+
+function dismissA2hs() {
+  var panel = document.getElementById('a2hs-panel');
+  var overlay = document.getElementById('a2hs-overlay');
+  if (panel) panel.classList.remove('visible');
+  if (overlay) overlay.classList.remove('visible');
+  try { localStorage.setItem('aug_a2hs_dismissed', '1'); } catch(e) {}
+}
+
+function initA2hs() {
+  if (!shouldShowA2hs()) return;
+  setTimeout(showA2hsGuide, 3000);
+}
+
+// ═══════════════════════════════════════════════════════════
 //  INIT HOOKS for all 4 features
 // ═══════════════════════════════════════════════════════════
 (function() {
@@ -10480,6 +10734,7 @@ function copyDirectoryLink(btn) {
     initAuctionPulse();
     initSocialProofTicker();
     buildQrCode();
+    initA2hs();
   }
 
   // Run after load to ensure enterApp has completed
@@ -10507,5 +10762,10 @@ function copyDirectoryLink(btn) {
   if (gateEl) _initObserver.observe(gateEl, { attributes: true });
 })();
 </script>
+
+<!-- Add to Home Screen Guide -->
+<div class="a2hs-overlay" id="a2hs-overlay" onclick="dismissA2hs()"></div>
+<div class="a2hs-panel" id="a2hs-panel"></div>
+
 </body>
 </html>
