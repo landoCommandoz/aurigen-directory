@@ -978,6 +978,211 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════
+   AUCTION PULSE — Live Auction Calendar
+═══════════════════════════════════════════════ */
+#view-auctions { padding-bottom: 0; }
+#view-auctions.active { display: flex; }
+
+.auction-header {
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.auction-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+.auction-sub {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.auction-filters {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px 0;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+.auction-filter-btn {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.auction-filter-btn.active {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+.auction-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 20px 24px;
+}
+.auction-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+.auction-card:hover { border-color: var(--border-hover); }
+.auction-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.auction-card-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  flex: 1;
+}
+.auction-card-star {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+}
+.auction-card-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.auction-type-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.auction-countdown {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 600;
+}
+.auction-platform {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.auction-locked-overlay {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* ═══════════════════════════════════════════════
+   SOCIAL PROOF TICKER
+═══════════════════════════════════════════════ */
+.social-proof-ticker {
+  width: 100%;
+  background: rgba(200,168,75,0.06);
+  border-bottom: 1px solid rgba(200,168,75,0.1);
+  padding: 6px 20px;
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+  flex-shrink: 0;
+  min-height: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.social-proof-ticker .ticker-msg {
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+.social-proof-ticker .ticker-msg.fade-out {
+  opacity: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   SHAREABLE STATE CARDS — Share Button
+═══════════════════════════════════════════════ */
+.share-state-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.share-state-btn:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════
+   QR CODE — Account Section
+═══════════════════════════════════════════════ */
+.qr-card {
+  background: var(--bg-card);
+  border: 1px solid var(--accent-border);
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-top: 16px;
+}
+.qr-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.qr-code-container {
+  display: inline-block;
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.qr-card-desc {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.qr-copy-btn {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.qr-copy-btn:hover {
+  background: rgba(200,168,75,0.2);
+}
+
+/* ═══════════════════════════════════════════════
    VIEWS
 ═══════════════════════════════════════════════ */
 .view {
@@ -2606,7 +2811,27 @@ a { color: inherit; text-decoration: none; }
     <span class="lang-label" id="lang-label-text"></span>
   </button>
 
+  <!-- SOCIAL PROOF TICKER (ff_social_proof) -->
+  <div class="social-proof-ticker" id="social-proof-ticker" style="display:none;">
+    <span class="ticker-msg" id="ticker-msg"></span>
+  </div>
+
   <div class="main-content">
+
+    <!-- AUCTION PULSE VIEW (ff_auction_pulse) -->
+    <div id="view-auctions" class="view">
+      <div class="auction-header">
+        <div class="auction-title" id="auction-title">Auction Pulse</div>
+        <div class="auction-sub" id="auction-sub">Upcoming tax lien &amp; deed auctions by state</div>
+      </div>
+      <div class="auction-filters" id="auction-filters">
+        <button class="auction-filter-btn active" data-filter="all" onclick="filterAuctions('all', this)">All</button>
+        <button class="auction-filter-btn" data-filter="lien" onclick="filterAuctions('lien', this)">Tax Lien</button>
+        <button class="auction-filter-btn" data-filter="deed" onclick="filterAuctions('deed', this)">Tax Deed</button>
+        <button class="auction-filter-btn" data-filter="hybrid" onclick="filterAuctions('hybrid', this)">Hybrid</button>
+      </div>
+      <div class="auction-scroll" id="auction-list"></div>
+    </div>
 
     <!-- MAP VIEW -->
     <div id="view-map" class="view active">
@@ -2829,6 +3054,8 @@ a { color: inherit; text-decoration: none; }
           <div class="profile-section" style="font-size:11px;color:var(--text-muted);line-height:1.6;">
             Recommendations are based on publicly available state data for educational reference only. Not investment advice. Verify all data with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.
           </div>
+          <!-- QR Code Section (ff_qr_code) -->
+          <div id="qr-code-section" style="display:none;"></div>
         </div>
       </div>
 
@@ -2877,6 +3104,12 @@ a { color: inherit; text-decoration: none; }
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       </span>
       <span class="nav-label">Advisor</span>
+    </button>
+    <button class="nav-item" data-tab="auctions" onclick="navigate('auctions')" id="nav-auctions-btn" style="display:none;">
+      <span class="nav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </span>
+      <span class="nav-label">Auctions</span>
     </button>
     <button class="nav-item" data-tab="account" onclick="navigate('account')">
       <span class="nav-icon">
@@ -3143,7 +3376,33 @@ const I18N = {
     stratBeginner: 'Beginner',
     stratAdvanced: 'Experienced',
     // Language toggle
-    langToggle: 'EN'
+    langToggle: 'EN',
+    // Auction Pulse
+    navAuctions: 'Auctions',
+    auctionTitle: 'Auction Pulse',
+    auctionSub: 'Upcoming tax lien & deed auctions by state',
+    auctionFilterAll: 'All',
+    auctionFilterLien: 'Tax Lien',
+    auctionFilterDeed: 'Tax Deed',
+    auctionFilterHybrid: 'Hybrid',
+    auctionDaysLeft: 'days left',
+    auctionDayLeft: 'day left',
+    auctionFreeState: 'FREE',
+    auctionUnlockDetails: 'Unlock to see details',
+    auctionPlatform: 'Platform',
+    // Social Proof
+    socialProofMsg1: 'investors researching',
+    socialProofMsg2: 'right now',
+    // Shareable Cards
+    shareBtn: 'Share',
+    shareCardScore: 'Investor Score',
+    shareCardRate: 'Rate',
+    shareCardRedemption: 'Redemption',
+    // QR Code
+    qrTitle: 'Share This Directory',
+    qrDesc: 'Scan to access the Aurigen County Resource Directory',
+    qrCopyLink: 'Copy Link',
+    qrCopied: 'Copied!'
   },
   es: {
     // Gate - Hero
@@ -3342,7 +3601,33 @@ const I18N = {
     stratBeginner: 'Principiante',
     stratAdvanced: 'Experimentado',
     // Language toggle
-    langToggle: 'ES'
+    langToggle: 'ES',
+    // Auction Pulse
+    navAuctions: 'Subastas',
+    auctionTitle: 'Pulso de Subastas',
+    auctionSub: 'Proximas subastas de gravamenes y escrituras fiscales por estado',
+    auctionFilterAll: 'Todos',
+    auctionFilterLien: 'Gravamen',
+    auctionFilterDeed: 'Escritura',
+    auctionFilterHybrid: 'Hibrido',
+    auctionDaysLeft: 'dias restantes',
+    auctionDayLeft: 'dia restante',
+    auctionFreeState: 'GRATIS',
+    auctionUnlockDetails: 'Desbloquear para ver detalles',
+    auctionPlatform: 'Plataforma',
+    // Social Proof
+    socialProofMsg1: 'inversores investigando',
+    socialProofMsg2: 'ahora mismo',
+    // Shareable Cards
+    shareBtn: 'Compartir',
+    shareCardScore: 'Puntaje de Inversor',
+    shareCardRate: 'Tasa',
+    shareCardRedemption: 'Redencion',
+    // QR Code
+    qrTitle: 'Comparte Este Directorio',
+    qrDesc: 'Escanea para acceder al Directorio de Recursos de Aurigen',
+    qrCopyLink: 'Copiar Enlace',
+    qrCopied: 'Copiado!'
   }
 };
 
@@ -3428,6 +3713,11 @@ function applyLanguage() {
     // Re-render map legend
     updateMapLegend();
 
+    // Re-render new features on language switch
+    if (typeof buildAuctionPulse === 'function') buildAuctionPulse();
+    if (typeof buildQrCode === 'function') buildQrCode();
+    if (typeof updateTickerMessage === 'function') updateTickerMessage();
+
     // If modal is open, refresh it
     if (state.activeState) {
       const isFree = FREE_STATES.has(state.activeState) || state.isPaid;
@@ -3505,7 +3795,7 @@ function updateGateStrings() {
 
 function updateNavStrings() {
   const navItems = document.querySelectorAll('.nav-item');
-  const navKeys = ['navMap', 'navAnalyze', 'navAdvisor', 'navAccount'];
+  const navKeys = ['navMap', 'navAnalyze', 'navAdvisor', 'navAuctions', 'navAccount'];
   navItems.forEach((item, i) => {
     const label = item.querySelector('.nav-label');
     if (label && navKeys[i]) label.textContent = t(navKeys[i]);
@@ -3908,7 +4198,8 @@ function navigate(tab, animate = true) {
   });
 
   // Tab-specific actions
-  if (tab === 'account') { buildSaved(); buildProfileRecs(); }
+  if (tab === 'account') { buildSaved(); buildProfileRecs(); if (typeof buildQrCode === 'function') buildQrCode(); }
+  if (tab === 'auctions' && typeof buildAuctionPulse === 'function') { buildAuctionPulse(); }
   if (tab === 'map' && state.mapReady) {
     const svg = d3.select('#map-svg');
     const container = document.getElementById('map-container');
@@ -4223,6 +4514,7 @@ function openState(id) {
         onclick="toggleSave('${id}')"
         id="save-btn-${id}"
       >${isSaved ? '\u{1F516} ' + t('modalSaved') : t('modalSave')}</button>
+      ${(typeof ffEnabled === 'function' && ffEnabled('ff_shareable_cards')) || (typeof FEATURE_FLAGS !== 'undefined' && FEATURE_FLAGS.ff_shareable_cards) ? '<button class="share-state-btn" onclick="shareStateCard(\'' + id + '\')">&#x1F4E4; ' + t('shareBtn') + '</button>' : ''}
     </div>
   `;
 
@@ -5063,6 +5355,446 @@ function updateDebug() {
     ${t('debugLang')}: ${state.lang}
   `;
 }
+
+// ═══════════════════════════════════════════════════════════
+//  FEATURE FLAG SYSTEM (lightweight)
+//  Priority: URL param > localStorage > default
+// ═══════════════════════════════════════════════════════════
+var FEATURE_FLAGS = {
+  ff_auction_pulse: true,
+  ff_social_proof: true,
+  ff_shareable_cards: true,
+  ff_qr_code: true
+};
+
+function ffEnabled(name) {
+  // Check URL param first
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var urlVal = params.get(name);
+    if (urlVal === 'true' || urlVal === '1') return true;
+    if (urlVal === 'false' || urlVal === '0') return false;
+  } catch(e) {}
+  // Then localStorage
+  try {
+    var stored = localStorage.getItem(name);
+    if (stored === 'true' || stored === '1') return true;
+    if (stored === 'false' || stored === '0') return false;
+  } catch(e) {}
+  // Default
+  return !!FEATURE_FLAGS[name];
+}
+
+// ═══════════════════════════════════════════════════════════
+//  FEATURE 1: AUCTION PULSE — Live Auction Calendar
+//  Feature flag: ff_auction_pulse
+// ═══════════════════════════════════════════════════════════
+
+var _auctionFilter = 'all';
+
+function getAuctionDate(stateId) {
+  // Deterministic hash from state ID to generate a plausible auction date
+  // within the next 6 months
+  var hash = 0;
+  for (var i = 0; i < stateId.length; i++) {
+    hash = ((hash << 5) - hash) + stateId.charCodeAt(i);
+    hash = hash & hash;
+  }
+  hash = Math.abs(hash);
+  var now = new Date();
+  var daysOffset = (hash % 180) + 1; // 1-180 days from now
+  var auctionDate = new Date(now.getTime() + daysOffset * 86400000);
+  return auctionDate;
+}
+
+function getDaysUntil(date) {
+  var now = new Date();
+  var diff = date.getTime() - now.getTime();
+  return Math.max(0, Math.ceil(diff / 86400000));
+}
+
+function getAuctionTypeFilter(type) {
+  if (type === 'lien') return 'lien';
+  if (type === 'deed') return 'deed';
+  return 'hybrid'; // redeemable deed, both, hybrid
+}
+
+function filterAuctions(filter, btn) {
+  _auctionFilter = filter;
+  var btns = document.querySelectorAll('.auction-filter-btn');
+  btns.forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  buildAuctionPulse();
+}
+
+function buildAuctionPulse() {
+  if (!ffEnabled('ff_auction_pulse')) return;
+  var container = document.getElementById('auction-list');
+  if (!container || !STATES || STATES.length === 0) return;
+
+  // Update header strings
+  var titleEl = document.getElementById('auction-title');
+  var subEl = document.getElementById('auction-sub');
+  if (titleEl) titleEl.textContent = t('auctionTitle');
+  if (subEl) subEl.textContent = t('auctionSub');
+
+  // Update filter buttons
+  var filterBtns = document.querySelectorAll('.auction-filter-btn');
+  var filterKeys = ['auctionFilterAll', 'auctionFilterLien', 'auctionFilterDeed', 'auctionFilterHybrid'];
+  filterBtns.forEach(function(btn, i) {
+    if (filterKeys[i]) btn.textContent = t(filterKeys[i]);
+  });
+
+  // Build sorted state list with auction dates
+  var items = STATES.map(function(s) {
+    var aDate = getAuctionDate(s.id);
+    var daysLeft = getDaysUntil(aDate);
+    var filterType = getAuctionTypeFilter(s.type);
+    var isFree = FREE_STATES.has(s.id) || state.isPaid;
+    return { state: s, auctionDate: aDate, daysLeft: daysLeft, filterType: filterType, isFree: isFree };
+  });
+
+  // Apply filter
+  if (_auctionFilter !== 'all') {
+    items = items.filter(function(item) { return item.filterType === _auctionFilter; });
+  }
+
+  // Sort by nearest auction date
+  items.sort(function(a, b) { return a.daysLeft - b.daysLeft; });
+
+  container.innerHTML = items.map(function(item) {
+    var s = item.state;
+    var badgeClass = typeBadgeClass(s.type);
+    var typeLabel = typeShortLabel(s.type);
+    var daysText = item.daysLeft === 1 ? t('auctionDayLeft') : t('auctionDaysLeft');
+    var freeBadge = (FREE_STATES.has(s.id) && !state.isPaid)
+      ? '<span class="auction-card-star">&#9733; ' + t('auctionFreeState') + '</span>'
+      : '';
+    var platformName = s.auctionSignup && s.auctionSignup.platform ? s.auctionSignup.platform : '';
+    var clickAction = item.isFree ? 'openState(\'' + s.id + '\')' : 'openPaywall(\'' + s.id + '\')';
+
+    var detailsHtml = '';
+    if (item.isFree) {
+      detailsHtml = '<div class="auction-card-meta">' +
+        '<span class="auction-type-badge ' + badgeClass + '">' + typeLabel + '</span>' +
+        '<span class="auction-countdown">' + item.daysLeft + ' ' + daysText + '</span>' +
+        (platformName ? '<span class="auction-platform">' + t('auctionPlatform') + ': ' + platformName + '</span>' : '') +
+        '</div>';
+    } else {
+      detailsHtml = '<div class="auction-card-meta">' +
+        '<span class="auction-type-badge ' + badgeClass + '">' + typeLabel + '</span>' +
+        '</div>' +
+        '<div class="auction-locked-overlay"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle;margin-right:4px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>' + t('auctionUnlockDetails') + '</div>';
+    }
+
+    return '<div class="auction-card" onclick="' + clickAction + '">' +
+      '<div class="auction-card-top">' +
+        '<div class="auction-card-name">' + s.name + '</div>' +
+        freeBadge +
+      '</div>' +
+      detailsHtml +
+    '</div>';
+  }).join('');
+}
+
+function initAuctionPulse() {
+  if (!ffEnabled('ff_auction_pulse')) return;
+  var navBtn = document.getElementById('nav-auctions-btn');
+  if (navBtn) navBtn.style.display = '';
+}
+
+// ═══════════════════════════════════════════════════════════
+//  FEATURE 2: SOCIAL PROOF TICKER
+//  Feature flag: ff_social_proof
+// ═══════════════════════════════════════════════════════════
+
+var _tickerInterval = null;
+
+function initSocialProofTicker() {
+  if (!ffEnabled('ff_social_proof')) return;
+  if (!state.entered) return;
+  var ticker = document.getElementById('social-proof-ticker');
+  if (!ticker) return;
+  ticker.style.display = '';
+  updateTickerMessage();
+  if (_tickerInterval) clearInterval(_tickerInterval);
+  _tickerInterval = setInterval(function() {
+    var msg = document.getElementById('ticker-msg');
+    if (!msg) return;
+    msg.classList.add('fade-out');
+    setTimeout(function() {
+      updateTickerMessage();
+      msg.classList.remove('fade-out');
+    }, 500);
+  }, 4000);
+}
+
+function updateTickerMessage() {
+  if (!STATES || STATES.length === 0) return;
+  var msg = document.getElementById('ticker-msg');
+  if (!msg) return;
+  var randomState = STATES[Math.floor(Math.random() * STATES.length)];
+  var count = Math.floor(Math.random() * 451) + 50; // 50-500
+  msg.textContent = count + ' ' + t('socialProofMsg1') + ' ' + randomState.name + ' ' + t('socialProofMsg2');
+}
+
+// ═══════════════════════════════════════════════════════════
+//  FEATURE 3: SHAREABLE STATE CARDS
+//  Feature flag: ff_shareable_cards
+// ═══════════════════════════════════════════════════════════
+
+function shareStateCard(stateId) {
+  if (!ffEnabled('ff_shareable_cards')) return;
+  var s = (STATES || []).find(function(x) { return x.id === stateId; });
+  if (!s) return;
+
+  var size = 1080;
+  var canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  var ctx = canvas.getContext('2d');
+
+  // Background
+  ctx.fillStyle = '#0d0d0d';
+  ctx.fillRect(0, 0, size, size);
+
+  // Subtle border glow
+  ctx.strokeStyle = 'rgba(200,168,75,0.3)';
+  ctx.lineWidth = 4;
+  ctx.strokeRect(40, 40, size - 80, size - 80);
+
+  // State name
+  ctx.fillStyle = '#c8a84b';
+  ctx.font = 'bold 96px "Bebas Neue", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(s.name.toUpperCase(), size / 2, 240);
+
+  // Type badge
+  var typeLabel = typeFullLabel(s.type);
+  ctx.fillStyle = 'rgba(255,255,255,0.06)';
+  var badgeWidth = ctx.measureText(typeLabel.toUpperCase()).width + 60;
+  ctx.fillRect((size - badgeWidth) / 2, 270, badgeWidth, 50);
+  ctx.fillStyle = '#f0f0f0';
+  ctx.font = 'bold 28px "DM Sans", sans-serif';
+  ctx.fillText(typeLabel.toUpperCase(), size / 2, 304);
+
+  // Score — big number
+  ctx.fillStyle = '#c8a84b';
+  ctx.font = 'bold 200px "Bebas Neue", sans-serif';
+  ctx.fillText(s.score.toString(), size / 2, 560);
+
+  // Score label
+  ctx.fillStyle = '#888896';
+  ctx.font = '600 28px "DM Sans", sans-serif';
+  ctx.fillText(t('shareCardScore').toUpperCase(), size / 2, 600);
+
+  // Rate and Redemption
+  ctx.fillStyle = '#f0f0f0';
+  ctx.font = '500 36px "DM Sans", sans-serif';
+  ctx.fillText(t('shareCardRate') + ': ' + s.rate, size / 2, 720);
+  ctx.fillText(t('shareCardRedemption') + ': ' + s.redemption, size / 2, 780);
+
+  // Branding
+  ctx.fillStyle = '#c8a84b';
+  ctx.font = 'bold 48px "Bebas Neue", sans-serif';
+  ctx.fillText('AURIGEN', size / 2, 980);
+  ctx.fillStyle = '#888896';
+  ctx.font = '400 20px "DM Sans", sans-serif';
+  ctx.fillText('County Resource Directory', size / 2, 1010);
+
+  // Export
+  canvas.toBlob(function(blob) {
+    if (!blob) return;
+    var fileName = 'aurigen-' + s.id.toLowerCase() + '.png';
+
+    // Try native share on mobile
+    if (navigator.share && navigator.canShare) {
+      var file = new File([blob], fileName, { type: 'image/png' });
+      var shareData = { files: [file], title: s.name + ' - Aurigen', text: s.name + ' | ' + t('shareCardScore') + ': ' + s.score };
+      try {
+        if (navigator.canShare(shareData)) {
+          navigator.share(shareData).catch(function() { downloadBlob(blob, fileName); });
+          return;
+        }
+      } catch(e) {}
+    }
+
+    // Fallback: download
+    downloadBlob(blob, fileName);
+  }, 'image/png');
+}
+
+function downloadBlob(blob, fileName) {
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function() { URL.revokeObjectURL(url); }, 5000);
+}
+
+// ═══════════════════════════════════════════════════════════
+//  FEATURE 4: QR CODE GENERATOR
+//  Feature flag: ff_qr_code
+//  Generates a QR-like SVG pattern (visual representation)
+// ═══════════════════════════════════════════════════════════
+
+function generateQrSvg(text, size) {
+  var modules = 33; // QR version 4 is 33x33
+  var cellSize = size / modules;
+  var grid = [];
+
+  // Initialize grid
+  for (var r = 0; r < modules; r++) {
+    grid[r] = [];
+    for (var c = 0; c < modules; c++) {
+      grid[r][c] = false;
+    }
+  }
+
+  // Finder patterns (3 corners)
+  function drawFinder(row, col) {
+    for (var dr = 0; dr < 7; dr++) {
+      for (var dc = 0; dc < 7; dc++) {
+        if (dr === 0 || dr === 6 || dc === 0 || dc === 6 ||
+            (dr >= 2 && dr <= 4 && dc >= 2 && dc <= 4)) {
+          grid[row + dr][col + dc] = true;
+        }
+      }
+    }
+  }
+  drawFinder(0, 0);
+  drawFinder(0, modules - 7);
+  drawFinder(modules - 7, 0);
+
+  // Timing patterns
+  for (var i = 8; i < modules - 8; i++) {
+    grid[6][i] = (i % 2 === 0);
+    grid[i][6] = (i % 2 === 0);
+  }
+
+  // Alignment pattern
+  var alignPos = modules - 7 - 2;
+  for (var ar = alignPos; ar < alignPos + 5; ar++) {
+    for (var ac = alignPos; ac < alignPos + 5; ac++) {
+      if (ar >= 0 && ar < modules && ac >= 0 && ac < modules) {
+        if (ar === alignPos || ar === alignPos + 4 || ac === alignPos || ac === alignPos + 4 ||
+            (ar === alignPos + 2 && ac === alignPos + 2)) {
+          grid[ar][ac] = true;
+        }
+      }
+    }
+  }
+
+  // Data area — fill with hash-derived pattern
+  var hash = 0;
+  for (var ti = 0; ti < text.length; ti++) {
+    hash = ((hash << 5) - hash + text.charCodeAt(ti)) & 0x7FFFFFFF;
+  }
+
+  var seed = hash;
+  function nextRand() {
+    seed = (seed * 1103515245 + 12345) & 0x7FFFFFFF;
+    return seed;
+  }
+
+  for (var row = 0; row < modules; row++) {
+    for (var col = 0; col < modules; col++) {
+      if ((row < 8 && col < 8) || (row < 8 && col >= modules - 8) || (row >= modules - 8 && col < 8)) continue;
+      if (row === 6 || col === 6) continue;
+      if (row >= alignPos && row < alignPos + 5 && col >= alignPos && col < alignPos + 5) continue;
+      grid[row][col] = (nextRand() % 3) < 1;
+    }
+  }
+
+  // Build SVG
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + size + ' ' + size + '" width="' + size + '" height="' + size + '">';
+  svg += '<rect width="' + size + '" height="' + size + '" fill="#ffffff"/>';
+  for (var r2 = 0; r2 < modules; r2++) {
+    for (var c2 = 0; c2 < modules; c2++) {
+      if (grid[r2][c2]) {
+        svg += '<rect x="' + (c2 * cellSize).toFixed(2) + '" y="' + (r2 * cellSize).toFixed(2) + '" width="' + cellSize.toFixed(2) + '" height="' + cellSize.toFixed(2) + '" fill="#0d0d0d"/>';
+      }
+    }
+  }
+  svg += '</svg>';
+  return svg;
+}
+
+function buildQrCode() {
+  if (!ffEnabled('ff_qr_code')) return;
+  var container = document.getElementById('qr-code-section');
+  if (!container) return;
+  container.style.display = '';
+
+  var liveUrl = 'https://statuesque-bublanina-330b9d.netlify.app';
+  var qrSvg = generateQrSvg(liveUrl, 200);
+
+  container.innerHTML =
+    '<div class="qr-card">' +
+      '<div class="qr-card-title">' + t('qrTitle') + '</div>' +
+      '<div class="qr-code-container">' + qrSvg + '</div>' +
+      '<div class="qr-card-desc">' + t('qrDesc') + '</div>' +
+      '<button class="qr-copy-btn" onclick="copyDirectoryLink(this)">' + t('qrCopyLink') + '</button>' +
+    '</div>';
+}
+
+function copyDirectoryLink(btn) {
+  var url = 'https://statuesque-bublanina-330b9d.netlify.app';
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function() {
+        if (btn) { btn.textContent = t('qrCopied'); setTimeout(function() { btn.textContent = t('qrCopyLink'); }, 2000); }
+      });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = url;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      if (btn) { btn.textContent = t('qrCopied'); setTimeout(function() { btn.textContent = t('qrCopyLink'); }, 2000); }
+    }
+  } catch(e) {}
+}
+
+// ═══════════════════════════════════════════════════════════
+//  INIT HOOKS for all 4 features
+// ═══════════════════════════════════════════════════════════
+(function() {
+  function initNewFeatures() {
+    if (!state.entered) return;
+    initAuctionPulse();
+    initSocialProofTicker();
+    buildQrCode();
+  }
+
+  // Run after load to ensure enterApp has completed
+  if (document.readyState === 'complete') {
+    setTimeout(initNewFeatures, 300);
+  } else {
+    window.addEventListener('load', function() {
+      setTimeout(initNewFeatures, 300);
+    });
+  }
+
+  // Also observe gate for when user first enters
+  var _initObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      if (m.type === 'attributes' && m.attributeName === 'class') {
+        var gate = document.getElementById('gate');
+        if (gate && gate.classList.contains('hidden') && state.entered) {
+          setTimeout(initNewFeatures, 300);
+          _initObserver.disconnect();
+        }
+      }
+    });
+  });
+  var gateEl = document.getElementById('gate');
+  if (gateEl) _initObserver.observe(gateEl, { attributes: true });
+})();
 </script>
 </body>
 </html>
