@@ -22,41 +22,49 @@ function _storageGet(key, fallback) {
 // Track which language file is currently loaded
 window._loadedLangFile = null;
 
-// Load a language file dynamically and return a Promise
+// Get stored access token
+function _getAccessToken() {
+  try { return localStorage.getItem('aug_token') || ''; } catch(e) { return ''; }
+}
+
+// Load state data from server-side gating function
 function loadLanguageFile(lang) {
   return new Promise(function(resolve, reject) {
-    var file = lang === 'es' ? 'states-es.js' : 'states-en.js';
     var globalVar = lang === 'es' ? 'STATES_ES' : 'STATES_EN';
+    var cacheKey = lang === 'es' ? 'states-es' : 'states-en';
 
     // If already loaded, resolve immediately
-    if (window._loadedLangFile === file && window[globalVar]) {
+    if (window._loadedLangFile === cacheKey && window[globalVar]) {
       resolve();
       return;
     }
 
-    // Remove previously loaded language script if exists
-    var oldScript = document.getElementById('aurigen-lang-script');
-    if (oldScript) {
-      // Clear the old global variable
-      var oldVar = window._loadedLangFile === 'states-es.js' ? 'STATES_ES' : 'STATES_EN';
-      if (window._loadedLangFile && window[oldVar]) {
-        window[oldVar] = undefined;
-      }
-      oldScript.parentNode.removeChild(oldScript);
+    // Clear old language data
+    var oldVar = window._loadedLangFile === 'states-es' ? 'STATES_ES' : 'STATES_EN';
+    if (window._loadedLangFile && window[oldVar]) {
+      window[oldVar] = undefined;
     }
 
-    // Create and load new script
-    var script = document.createElement('script');
-    script.id = 'aurigen-lang-script';
-    script.src = file;
-    script.onload = function() {
-      window._loadedLangFile = file;
-      resolve();
-    };
-    script.onerror = function() {
-      reject(new Error('Failed to load ' + file));
-    };
-    document.head.appendChild(script);
+    // Fetch from server-side function with access token
+    var token = _getAccessToken();
+    var fetchHeaders = { 'Accept': 'application/javascript' };
+    if (token) fetchHeaders['Authorization'] = 'Bearer ' + token;
+
+    fetch('/.netlify/functions/get-states?lang=' + lang, { headers: fetchHeaders })
+      .then(function(res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.text();
+      })
+      .then(function(js) {
+        // Execute the returned JavaScript to set the global variable
+        var fn = new Function(js);
+        fn();
+        window._loadedLangFile = cacheKey;
+        resolve();
+      })
+      .catch(function(err) {
+        reject(new Error('Failed to load state data: ' + err.message));
+      });
   });
 }
 
@@ -8030,6 +8038,9 @@ async function submitInlineCode() {
     if (data.valid) {
       state.isPaid = true;
       storageSet('aug_paid', true);
+      if (data.token) storageSet('aug_token', data.token);
+      // Reload state data with new token to get full 51-state dataset
+      await loadLanguageFile(state.lang);
       updateMapLockState();
       var modal = document.getElementById('inline-code-modal');
       if (modal) modal.remove();
@@ -8193,6 +8204,9 @@ async function submitCode() {
     if (data.valid) {
       state.isPaid = true;
       storageSet('aug_paid', true);
+      if (data.token) storageSet('aug_token', data.token);
+      // Reload state data with new token to get full 51-state dataset
+      await loadLanguageFile(state.lang);
       updateMapLockState();
       trackEvent('gate_enter', { method: 'paid' });
       if (state.entered) {
@@ -9704,7 +9718,18 @@ function appendAdvisorMsg(role, text) {
 
   const div = document.createElement('div');
   div.className = `msg msg-${role}`;
-  div.innerHTML = role === 'sage' ? `<strong>Sage</strong><br>${text.replace(/\n/g, '<br>')}` : text;
+  if (role === 'sage') {
+    var label = document.createElement('strong');
+    label.textContent = 'Sage';
+    div.appendChild(label);
+    div.appendChild(document.createElement('br'));
+    text.split('\n').forEach(function(line, i) {
+      if (i > 0) div.appendChild(document.createElement('br'));
+      div.appendChild(document.createTextNode(line));
+    });
+  } else {
+    div.textContent = text;
+  }
 
   // Insert before typing indicator
   if (typing) container.insertBefore(div, typing);
