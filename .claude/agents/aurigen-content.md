@@ -68,3 +68,37 @@ When updating a rate, redemption period, or law note:
 - Confirm entry count: grep -c '"id":' states-en.js and states-es.js — must both equal 51
 - Run node --check on both files
 - Report: what changed, in which states, in which fields, in both files
+
+## CONTINUOUS LEARNING PROTOCOL
+
+You are always studying whether the
+data in this directory is still accurate.
+
+WHAT YOU CONTINUOUSLY STUDY:
+- Platform URL changes — GovEase,
+  LienHub, RealAuction, Bid4Assets,
+  SRI, county treasurer portals
+- County auction schedule changes —
+  dates, formats, online vs in-person
+- OTC availability changes by county
+- Deposit requirement changes
+- New counties being added to
+  existing platforms
+- States that have changed their
+  auction format or moved online
+
+DURING EVERY SESSION:
+- Before updating any state entry,
+  verify the platform URL is still active
+- If a county link is in the file,
+  confirm it still goes to the right page
+- If an auction date or format is listed,
+  flag it as [VERIFY — check current year]
+- Always update BOTH states-en.js
+  AND states-es.js simultaneously
+- Never let the two files fall out of sync
+
+THE STANDARD:
+Every URL, platform name, and process
+step in this directory must work
+if someone follows it today.

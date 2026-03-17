@@ -1061,6 +1061,51 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════
+   DEAL TAPE — TikTok-style Scenario Feed
+═══════════════════════════════════════════════ */
+#view-dealtape{position:absolute;inset:0;bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+.deal-tape-feed{height:100%;overflow-y:scroll;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;min-height:0}
+.deal-tape-card{height:100%;min-height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px 20px;position:relative;overflow:hidden}
+.deal-tape-card::before{content:'';position:absolute;inset:0;background:linear-gradient(170deg,rgba(200,168,75,0.06) 0%,rgba(10,10,12,0.95) 40%,var(--bg) 100%);pointer-events:none;z-index:0}
+.deal-tape-inner{position:relative;z-index:1;width:100%;max-width:420px;display:flex;flex-direction:column;gap:16px}
+.deal-tape-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);opacity:0.8}
+.deal-tape-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,5vw,30px);letter-spacing:0.04em;color:var(--text);line-height:1.15}
+.deal-tape-title .dt-amount{color:var(--accent)}
+.deal-tape-stats{display:flex;gap:10px;flex-wrap:wrap}
+.deal-tape-stat{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:8px 12px;display:flex;flex-direction:column;gap:2px;flex:1;min-width:70px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.deal-tape-stat-label{font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted)}
+.deal-tape-stat-value{font-family:'DM Mono',monospace;font-size:13px;color:var(--text);font-weight:500}
+.deal-tape-outcomes{display:flex;flex-direction:column;gap:10px}
+.deal-tape-outcome{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:12px 14px;position:relative;overflow:hidden}
+.deal-tape-outcome-bar{position:absolute;left:0;top:0;bottom:0;border-radius:10px 0 0 10px;opacity:0.10;transition:width 1.2s cubic-bezier(0.22,1,0.36,1);width:0}
+.deal-tape-outcome.best .deal-tape-outcome-bar{background:var(--green)}
+.deal-tape-outcome.likely .deal-tape-outcome-bar{background:var(--accent)}
+.deal-tape-outcome.worst .deal-tape-outcome-bar{background:var(--red)}
+.deal-tape-outcome-label{font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;position:relative;z-index:1}
+.deal-tape-outcome-text{font-size:13px;color:var(--text);position:relative;z-index:1;line-height:1.35}
+.deal-tape-outcome-text .dt-highlight{color:var(--accent);font-weight:600}
+.deal-tape-score-row{display:flex;align-items:center;gap:8px}
+.deal-tape-score-badge{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:14px;font-weight:600;color:var(--bg);flex-shrink:0}
+.deal-tape-score-badge.high{background:var(--green)}
+.deal-tape-score-badge.mid{background:var(--accent)}
+.deal-tape-score-badge.low{background:var(--red)}
+.deal-tape-score-label{font-size:11px;color:var(--text-dim)}
+.deal-tape-score-beginner{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:500;margin-left:auto}
+.deal-tape-score-beginner.yes{background:rgba(76,175,130,0.15);color:var(--green)}
+.deal-tape-score-beginner.no{background:rgba(224,85,85,0.15);color:var(--red)}
+.deal-tape-cta{display:flex;gap:10px}
+.deal-tape-cta-btn{flex:1;padding:12px 16px;border-radius:10px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.04em;cursor:pointer;transition:all 0.2s ease;text-align:center}
+.deal-tape-cta-btn.primary{background:var(--accent);color:var(--bg)}
+.deal-tape-cta-btn.primary:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.deal-tape-cta-btn.locked{background:rgba(255,255,255,0.06);color:var(--accent);border:1px solid var(--accent-border)}
+.deal-tape-cta-btn.locked:hover{background:rgba(200,168,75,0.12)}
+.deal-tape-swipe-hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--text-muted);animation:dtSwipeHint 2s ease-in-out infinite;pointer-events:none;z-index:2}
+.deal-tape-swipe-hint span{font-size:9px;letter-spacing:0.1em;text-transform:uppercase}
+.deal-tape-swipe-hint svg{width:16px;height:16px;opacity:0.5}
+@keyframes dtSwipeHint{0%,100%{opacity:0.6;transform:translateX(-50%) translateY(0)}50%{opacity:1;transform:translateX(-50%) translateY(-4px)}}
+.deal-tape-counter{position:absolute;top:12px;right:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);z-index:2}
+
+/* ═══════════════════════════════════════════════
    TOOLS / ACCOUNT SUB-TABS
 ═══════════════════════════════════════════════ */
 .tools-tabs {
@@ -1103,6 +1148,211 @@ a { color: inherit; text-decoration: none; }
 
 .tools-panel.active {
   display: flex;
+}
+
+/* ═══════════════════════════════════════════════
+   AUCTION PULSE — Live Auction Calendar
+═══════════════════════════════════════════════ */
+#view-auctions { padding-bottom: 0; }
+#view-auctions.active { display: flex; }
+
+.auction-header {
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.auction-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+.auction-sub {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.auction-filters {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px 0;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+.auction-filter-btn {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.auction-filter-btn.active {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+.auction-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 20px 24px;
+}
+.auction-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+.auction-card:hover { border-color: var(--border-hover); }
+.auction-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.auction-card-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  flex: 1;
+}
+.auction-card-star {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+}
+.auction-card-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.auction-type-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.auction-countdown {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 600;
+}
+.auction-platform {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.auction-locked-overlay {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* ═══════════════════════════════════════════════
+   SOCIAL PROOF TICKER
+═══════════════════════════════════════════════ */
+.social-proof-ticker {
+  width: 100%;
+  background: rgba(200,168,75,0.06);
+  border-bottom: 1px solid rgba(200,168,75,0.1);
+  padding: 6px 20px;
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+  flex-shrink: 0;
+  min-height: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.social-proof-ticker .ticker-msg {
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+.social-proof-ticker .ticker-msg.fade-out {
+  opacity: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   SHAREABLE STATE CARDS — Share Button
+═══════════════════════════════════════════════ */
+.share-state-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.share-state-btn:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════
+   QR CODE — Account Section
+═══════════════════════════════════════════════ */
+.qr-card {
+  background: var(--bg-card);
+  border: 1px solid var(--accent-border);
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-top: 16px;
+}
+.qr-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.qr-code-container {
+  display: inline-block;
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.qr-card-desc {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.qr-copy-btn {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.qr-copy-btn:hover {
+  background: rgba(200,168,75,0.2);
 }
 
 /* ═══════════════════════════════════════════════
@@ -1930,6 +2180,37 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.04em;
 }
 
+.paywall-price-anchor {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px;
+}
+
+.paywall-price-old {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  letter-spacing: 0.04em;
+  opacity: 0.5;
+}
+
+.paywall-price-current {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+.paywall-escalation {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
 .paywall-price-note {
   font-size: 11px;
   color: var(--text-muted);
@@ -2077,7 +2358,17 @@ a { color: inherit; text-decoration: none; }
   font-size: 32px;
   letter-spacing: 0.06em;
   color: var(--accent);
+  transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
+
+.result-value.updating {
+  opacity: 0.4;
+  transform: scale(0.96);
+}
+
+.result-value.positive { color: var(--accent); }
+.result-value.negative { color: var(--red); }
+.result-value.green { color: var(--green); }
 
 .result-sub {
   font-size: 11px;
@@ -2518,9 +2809,131 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════
-   FOOTER DISCLAIMER — hidden, text moved to nav
+   FOOTER DISCLAIMER
 ═══════════════════════════════════════════════ */
-.app-footer-disclaimer { display: none; }
+.app-footer-disclaimer {
+  padding: 10px 16px;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.5;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+.app-footer-disclaimer a { color: var(--accent); text-decoration: underline; }
+.app-footer-disclaimer a:hover { color: var(--text); }
+
+/* ═══════════════════════════════════════════════
+   LEGAL MODALS (ToS + Privacy Policy)
+═══════════════════════════════════════════════ */
+.legal-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.legal-modal-overlay.open { opacity: 1; visibility: visible; }
+.legal-modal-sheet {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: 92%;
+  max-width: 640px;
+  max-height: 85dvh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+.legal-modal-overlay.open .legal-modal-sheet { transform: translateY(0); }
+.legal-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.legal-modal-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+.legal-modal-close {
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: var(--text-dim);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.legal-modal-close:hover { background: rgba(255,255,255,0.15); }
+.legal-modal-body {
+  padding: 20px 24px 28px;
+  overflow-y: auto;
+  min-height: 0;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+.legal-modal-body h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 20px 0 8px;
+}
+.legal-modal-body h3:first-child { margin-top: 0; }
+.legal-modal-body p { margin: 0 0 10px; }
+.legal-modal-body ul { margin: 0 0 10px; padding-left: 20px; }
+.legal-modal-body li { margin-bottom: 4px; }
+.legal-modal-body strong { color: var(--text); }
+
+/* ═══════════════════════════════════════════════
+   STATE MODAL DISCLAIMER BANNER
+═══════════════════════════════════════════════ */
+.state-modal-disclaimer-banner {
+  padding: 8px 14px;
+  background: rgba(200,168,75,0.08);
+  border: 1px solid rgba(200,168,75,0.18);
+  border-radius: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+/* ═══════════════════════════════════════════════
+   GATE EMAIL CONSENT
+═══════════════════════════════════════════════ */
+.gate-email-consent {
+  font-size: 11px;
+  color: var(--text-muted);
+  max-width: 340px;
+  line-height: 1.5;
+  margin-top: 6px;
+}
+.gate-email-consent a {
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 /* ═══════════════════════════════════════════════
    LANGUAGE TOGGLE
@@ -3256,6 +3669,743 @@ a { color: inherit; text-decoration: none; }
   .exit-modal { padding: 36px 24px 28px; }
   .exit-headline { font-size: 28px; }
 }
+
+/* ═══════════════════════════════════════════════
+   SMART UX — AI Message Gate Overlay
+═══════════════════════════════════════════════ */
+.ai-gate-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(10, 10, 12, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 32px 24px;
+  gap: 12px;
+}
+
+.ai-gate-overlay .ai-gate-icon { font-size: 36px; margin-bottom: 4px; }
+
+.ai-gate-overlay .ai-gate-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.ai-gate-overlay .ai-gate-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  max-width: 280px;
+}
+
+.ai-gate-overlay .ai-gate-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #0d0d0d;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  margin-top: 8px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.ai-gate-overlay .ai-gate-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+/* ═══════════════════════════════════════════════
+   SMART UX — Return Visit Toast
+═══════════════════════════════════════════════ */
+.return-toast {
+  position: fixed;
+  bottom: 80px;
+  right: 16px;
+  z-index: 150;
+  background: rgba(24, 24, 31, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--accent-border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  max-width: 340px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  transform: translateY(120%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.return-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.return-toast-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+  line-height: 1;
+}
+
+.return-toast-close:hover { color: var(--text); }
+
+.return-toast-msg {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+  padding-right: 20px;
+  margin-bottom: 10px;
+}
+
+.return-toast-msg strong { color: var(--accent); }
+
+.return-toast-go {
+  background: var(--accent);
+  color: #0d0d0d;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.return-toast-go:hover { transform: translateY(-1px); }
+
+/* ═══════════════════════════════════════════════
+   SMART UX — Onboarding Overlay
+═══════════════════════════════════════════════ */
+.onboard-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.onboard-overlay.active { opacity: 1; visibility: visible; }
+
+.onboard-card {
+  background: rgba(24, 24, 31, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--accent-border);
+  border-radius: 18px;
+  padding: 36px 32px 28px;
+  max-width: 380px;
+  width: calc(100% - 32px);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.onboard-step-icon { font-size: 48px; margin-bottom: 12px; }
+
+.onboard-step-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.onboard-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.onboard-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.2s;
+}
+
+.onboard-dot.active { background: var(--accent); }
+
+.onboard-btn {
+  background: var(--accent);
+  color: #0d0d0d;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.onboard-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px var(--accent-glow);
+}
+
+.onboard-step-num {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════
+   INVESTOR DNA — Radar Chart, Quiz, Pathway
+═══════════════════════════════════════════════ */
+#view-dna { padding-bottom: 0; }
+#view-dna.active { display: flex; }
+
+.dna-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 16px 24px;
+}
+
+.dna-header {
+  text-align: center;
+  padding: 20px 16px 0;
+  flex-shrink: 0;
+}
+
+.dna-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+
+.dna-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+/* DNA Tabs: Profile vs Pathway */
+.dna-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.dna-tab {
+  flex: 1;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.dna-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.dna-panel { display: none; }
+.dna-panel.active { display: block; }
+
+/* Quiz */
+.dna-quiz-container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.dna-quiz-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.dna-quiz-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dna-quiz-progress {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.dna-quiz-dot {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  transition: background 0.3s ease;
+}
+
+.dna-quiz-dot.active { background: var(--accent); }
+.dna-quiz-dot.done { background: var(--accent); opacity: 0.5; }
+
+.dna-question {
+  display: none;
+  animation: fadeIn 0.2s ease;
+}
+
+.dna-question.active { display: block; }
+
+.dna-question-text {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.dna-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dna-option {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 14px;
+  text-align: left;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.dna-option:hover { border-color: var(--accent-border); background: var(--accent-dim); }
+.dna-option.selected { border-color: var(--accent); background: var(--accent-dim); }
+
+.dna-quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+.dna-quiz-btn {
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.dna-quiz-btn.primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.dna-quiz-btn.primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.dna-quiz-btn.secondary {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+}
+
+/* Radar Chart */
+.dna-radar-wrap {
+  max-width: 360px;
+  margin: 0 auto 24px;
+}
+
+.dna-radar-wrap svg {
+  width: 100%;
+  height: auto;
+}
+
+.dna-radar-grid line { stroke: var(--border); stroke-width: 1; }
+.dna-radar-grid circle { fill: none; stroke: var(--border); stroke-width: 1; }
+.dna-radar-area {
+  fill: rgba(200, 168, 75, 0.15);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.dna-radar-point { fill: var(--accent); }
+
+.dna-radar-label {
+  fill: var(--text-dim);
+  font-size: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Retake button */
+.dna-retake-btn {
+  display: block;
+  margin: 0 auto 20px;
+  padding: 8px 20px;
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dna-retake-btn:hover { border-color: var(--accent-border); color: var(--accent); }
+
+/* Top States Cards */
+.dna-top-states-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.dna-state-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dna-state-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dna-state-card:hover { border-color: var(--accent-border); }
+
+.dna-state-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dna-state-card-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.dna-state-card-meta {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.dna-state-card-match {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--accent-dim);
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.dna-empty-msg {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+  padding: 32px 0;
+}
+
+/* Guided Pathway */
+.pathway-progress {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 20px 16px 16px;
+  flex-shrink: 0;
+}
+
+.pathway-step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--bg3);
+  color: var(--text-muted);
+  border: 2px solid var(--border);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.pathway-step-indicator.active {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.pathway-step-indicator.done {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.pathway-step-line {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  transition: background 0.3s ease;
+}
+
+.pathway-step-line.done { background: var(--accent); }
+
+.pathway-step-content {
+  display: none;
+  animation: fadeIn 0.2s ease;
+}
+
+.pathway-step-content.active { display: block; }
+
+.pathway-step-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.pathway-step-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+.pathway-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.pathway-nav-btn {
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.pathway-nav-btn.primary { background: var(--accent); color: var(--bg); }
+.pathway-nav-btn.primary:disabled { opacity: 0.4; cursor: not-allowed; }
+.pathway-nav-btn.secondary { background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
+
+/* Pathway state picker */
+.pathway-state-pick {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pathway-state-pick-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pathway-state-pick-item:hover { border-color: var(--accent-border); }
+.pathway-state-pick-item.selected { border-color: var(--accent); background: var(--accent-dim); }
+
+/* Pathway deep dive inline detail */
+.pathway-detail-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.pathway-detail-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.pathway-detail-card p,
+.pathway-detail-card li {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.pathway-detail-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pathway-detail-card li::before {
+  content: '\2022';
+  color: var(--accent);
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+}
+
+/* Pathway analyzer mini */
+.pathway-analyzer {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.pathway-analyzer-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pathway-analyzer-row:last-child { border-bottom: none; }
+.pathway-analyzer-row .label { color: var(--text-dim); }
+.pathway-analyzer-row .value { font-weight: 600; color: var(--accent); }
+
+/* Pathway action section */
+.pathway-action-card {
+  background: var(--bg-card);
+  border: 1px solid var(--accent-border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.pathway-action-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+.pathway-action-card ol {
+  list-style: none;
+  padding: 0;
+  counter-reset: step;
+}
+
+.pathway-action-card ol li {
+  counter-increment: step;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  padding: 4px 0 4px 28px;
+  position: relative;
+}
+
+.pathway-action-card ol li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pathway-book-cta {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  margin-top: 16px;
+}
+
+.pathway-book-cta:hover { opacity: 0.9; }
+
+.pathway-book-sub {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-align: center;
+  margin-top: 6px;
+}
+
+.pathway-complete-msg {
+  text-align: center;
+  padding: 24px 0;
+}
+
+.pathway-complete-msg .check {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+.pathway-complete-msg p {
+  font-size: 14px;
+  color: var(--text-dim);
+}
 </style>
 </head>
 <body>
@@ -3364,6 +4514,7 @@ a { color: inherit; text-decoration: none; }
       <button class="gate-email-submit" id="gate-email-submit" onclick="handleEmailGate()">Unlock Free Access</button>
       <div class="gate-email-error" id="gate-email-error"></div>
       <p class="gate-email-fine" id="gate-email-fine">We'll send you investor tips. Unsubscribe anytime.</p>
+      <p class="gate-email-consent" id="gate-email-consent">By entering your email, you agree to our <a onclick="openLegalModal('tos')">Terms of Service</a> and <a onclick="openLegalModal('privacy')">Privacy Policy</a>.</p>
     </div>
     <div class="gate-code-toggle">
       <span id="gate-code-toggle-text">Already have an access code?</span>
@@ -3414,6 +4565,24 @@ a { color: inherit; text-decoration: none; }
   </div>
 </div>
 
+<!-- ═══════════════ RETURN VISIT TOAST ═══════════════ -->
+<div class="return-toast" id="return-toast">
+  <button class="return-toast-close" id="return-toast-close" aria-label="Close">&times;</button>
+  <div class="return-toast-msg" id="return-toast-msg"></div>
+  <button class="return-toast-go" id="return-toast-go">Go</button>
+</div>
+
+<!-- ═══════════════ ONBOARDING OVERLAY ═══════════════ -->
+<div class="onboard-overlay" id="onboard-overlay">
+  <div class="onboard-card">
+    <div class="onboard-step-num" id="onboard-step-num"></div>
+    <div class="onboard-step-icon" id="onboard-step-icon"></div>
+    <div class="onboard-step-text" id="onboard-step-text"></div>
+    <div class="onboard-dots" id="onboard-dots"></div>
+    <button class="onboard-btn" id="onboard-btn"></button>
+  </div>
+</div>
+
 <!-- ═══════════════ APP ═══════════════ -->
 <div id="app">
 
@@ -3423,7 +4592,27 @@ a { color: inherit; text-decoration: none; }
     <span class="lang-label" id="lang-label-text"></span>
   </button>
 
+  <!-- SOCIAL PROOF TICKER (ff_social_proof) -->
+  <div class="social-proof-ticker" id="social-proof-ticker" style="display:none;">
+    <span class="ticker-msg" id="ticker-msg"></span>
+  </div>
+
   <div class="main-content">
+
+    <!-- AUCTION PULSE VIEW (ff_auction_pulse) -->
+    <div id="view-auctions" class="view">
+      <div class="auction-header">
+        <div class="auction-title" id="auction-title">Auction Pulse</div>
+        <div class="auction-sub" id="auction-sub">Upcoming tax lien &amp; deed auctions by state</div>
+      </div>
+      <div class="auction-filters" id="auction-filters">
+        <button class="auction-filter-btn active" data-filter="all" onclick="filterAuctions('all', this)">All</button>
+        <button class="auction-filter-btn" data-filter="lien" onclick="filterAuctions('lien', this)">Tax Lien</button>
+        <button class="auction-filter-btn" data-filter="deed" onclick="filterAuctions('deed', this)">Tax Deed</button>
+        <button class="auction-filter-btn" data-filter="hybrid" onclick="filterAuctions('hybrid', this)">Hybrid</button>
+      </div>
+      <div class="auction-scroll" id="auction-list"></div>
+    </div>
 
     <!-- MAP VIEW -->
     <div id="view-map" class="view active">
@@ -3496,7 +4685,7 @@ a { color: inherit; text-decoration: none; }
                   <div class="field-label">Hold Period (months)</div>
                   <input class="field-input" id="az-months" type="number" min="0" max="600" placeholder="24" oninput="calcAnalyzer()">
                 </div>
-                <div class="field-group" id="az-arv-group">
+                <div class="field-group" id="az-arv-group" style="display:none">
                   <div class="field-label">Estimated Property ARV ($) <span style="color:var(--text-muted)">(deed only)</span></div>
                   <input class="field-input" id="az-arv" type="number" min="0" placeholder="85000" oninput="calcAnalyzer()">
                 </div>
@@ -3508,6 +4697,7 @@ a { color: inherit; text-decoration: none; }
                   <div class="field-label">Penalty / Bonus Rate (%)</div>
                   <input class="field-input" id="az-penalty" type="number" min="0" max="100" placeholder="0" oninput="calcAnalyzer()">
                 </div>
+                <button class="calc-btn" onclick="calcAnalyzer()">Calculate</button>
               </div>
             </div>
 
@@ -3535,6 +4725,10 @@ a { color: inherit; text-decoration: none; }
                   <div class="result-display">
                     <div class="result-label">Total Costs</div>
                     <div class="result-value" id="az-total-costs" style="font-size:20px">—</div>
+                  </div>
+                  <div class="result-display" style="grid-column:1/-1;">
+                    <div class="result-label">Monthly Income</div>
+                    <div class="result-value" id="az-monthly" style="font-size:22px">—</div>
                   </div>
                 </div>
                 <div id="az-deed-results" style="display:none;margin-top:10px;">
@@ -3646,6 +4840,8 @@ a { color: inherit; text-decoration: none; }
           <div class="profile-section" style="font-size:11px;color:var(--text-muted);line-height:1.6;">
             Recommendations are based on publicly available state data for educational reference only. Not investment advice. Verify all data with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.
           </div>
+          <!-- QR Code Section (ff_qr_code) -->
+          <div id="qr-code-section" style="display:none;"></div>
         </div>
       </div>
 
@@ -3689,11 +4885,47 @@ a { color: inherit; text-decoration: none; }
       </div>
     </div>
 
+    <!-- DEAL TAPE VIEW -->
+    <div id="view-dealtape" class="view">
+      <div class="deal-tape-feed" id="deal-tape-feed"></div>
+    </div>
+
+    <!-- DNA VIEW -->
+    <div id="view-dna" class="view">
+      <div class="dna-tabs">
+        <button class="dna-tab active" onclick="switchDnaTab('profile')">Profile</button>
+        <button class="dna-tab" onclick="switchDnaTab('pathway')">First Deal</button>
+      </div>
+
+      <!-- Profile Panel -->
+      <div class="dna-panel active" id="dna-profile-panel">
+        <div class="dna-scroll" id="dna-profile-scroll">
+          <div id="dna-quiz-area"></div>
+          <div id="dna-radar-area" style="display:none;">
+            <div class="dna-radar-wrap" id="dna-radar-chart"></div>
+            <button class="dna-retake-btn" onclick="dnaRetakeQuiz()">Retake Quiz</button>
+            <div class="dna-top-states-title" id="dna-top-title">Top States for Your Profile</div>
+            <div class="dna-state-cards" id="dna-top-states"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pathway Panel -->
+      <div class="dna-panel" id="dna-pathway-panel">
+        <div class="pathway-progress" id="pathway-progress"></div>
+        <div class="dna-scroll" id="dna-pathway-scroll">
+          <div id="pathway-steps-container"></div>
+        </div>
+      </div>
+    </div>
+
   </div><!-- end main-content -->
 
   <!-- FOOTER DISCLAIMER -->
-  <div class="app-footer-disclaimer">
-    Aurigen County Resource Directory is an educational research tool. Nothing in this content constitutes investment, legal, or financial advice. Always verify data with official county sources before transacting. © 2026 Aurigen Collective | <a href="/cdn-cgi/l/email-protection#f0bc919e949f9eb08498959185829997959ede939f9d" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="b1fdd0dfd5dedff1c5d9d4d0c4c3d8d6d4df9fd2dedc">[email&#160;protected]</span></a>
+  <div class="app-footer-disclaimer" id="app-footer-disclaimer">
+    Aurigen County Resource Directory is an educational research tool. Nothing in this content constitutes investment, legal, or financial advice. Always verify data with official county sources before transacting.
+    <a href="javascript:void(0)" onclick="openLegalModal('tos')" id="footer-tos-link">Terms of Service</a> |
+    <a href="javascript:void(0)" onclick="openLegalModal('privacy')" id="footer-privacy-link">Privacy Policy</a> | © 2026 Aurigen Collective | <a href="/cdn-cgi/l/email-protection#f0bc919e949f9eb08498959185829997959ede939f9d" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="b1fdd0dfd5dedff1c5d9d4d0c4c3d8d6d4df9fd2dedc">[email&#160;protected]</span></a>
   </div>
 
   <!-- BOTTOM NAV -->
@@ -3722,6 +4954,24 @@ a { color: inherit; text-decoration: none; }
       </span>
       <span class="nav-label">VS</span>
     </button>
+    <button class="nav-item" data-tab="dealtape" onclick="navigate('dealtape')">
+      <span class="nav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
+      </span>
+      <span class="nav-label">Deal Tape</span>
+    </button>
+    <button class="nav-item" data-tab="dna" onclick="navigate('dna')">
+      <span class="nav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/><path d="M17 6l-2.5-2.5"/><path d="M14 8l-1-1"/><path d="M7 18l2.5 2.5"/><path d="M3.5 14.5l.5.5"/><path d="M20 9l.5.5"/><path d="M6.5 12.5l1 1"/><path d="M16.5 10.5l1 1"/><path d="M10 16l1.5 1.5"/></svg>
+      </span>
+      <span class="nav-label" id="nav-label-dna">DNA</span>
+    </button>
+    <button class="nav-item" data-tab="auctions" onclick="navigate('auctions')" id="nav-auctions-btn" style="display:none;">
+      <span class="nav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </span>
+      <span class="nav-label">Auctions</span>
+    </button>
     <button class="nav-item" data-tab="account" onclick="navigate('account')">
       <span class="nav-icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -3739,6 +4989,28 @@ a { color: inherit; text-decoration: none; }
     <button class="modal-close" onclick="closeStateModal()">✕</button>
     <div class="modal-header" id="modal-header"></div>
     <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- TERMS OF SERVICE MODAL -->
+<div id="tos-modal" class="legal-modal-overlay" onclick="if(event.target===this)closeLegalModal('tos')">
+  <div class="legal-modal-sheet">
+    <div class="legal-modal-header">
+      <div class="legal-modal-title" id="tos-modal-title">Terms of Service</div>
+      <button class="legal-modal-close" onclick="closeLegalModal('tos')">&#10005;</button>
+    </div>
+    <div class="legal-modal-body" id="tos-modal-body"></div>
+  </div>
+</div>
+
+<!-- PRIVACY POLICY MODAL -->
+<div id="privacy-modal" class="legal-modal-overlay" onclick="if(event.target===this)closeLegalModal('privacy')">
+  <div class="legal-modal-sheet">
+    <div class="legal-modal-header">
+      <div class="legal-modal-title" id="privacy-modal-title">Privacy Policy</div>
+      <button class="legal-modal-close" onclick="closeLegalModal('privacy')">&#10005;</button>
+    </div>
+    <div class="legal-modal-body" id="privacy-modal-body"></div>
   </div>
 </div>
 
@@ -3764,6 +5036,15 @@ a { color: inherit; text-decoration: none; }
     Feature flags are for internal testing only.<br>
     Priority: URL param &gt; localStorage &gt; default
   </div>
+</div>
+
+<!-- ADMIN PANEL — Analytics Section (visible when ?admin=true) -->
+<div id="admin-panel-analytics" style="display:none;position:fixed;top:0;right:0;width:380px;max-width:90vw;height:100vh;background:var(--bg);border-left:1px solid var(--border);z-index:999;overflow-y:auto;padding:24px;box-shadow:-4px 0 24px rgba(0,0,0,0.6);">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.1em;color:var(--text);">Admin Panel</div>
+    <button onclick="document.getElementById('admin-panel-analytics').style.display='none'" style="background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer;">&#10005;</button>
+  </div>
+  <div id="admin-analytics-section"></div>
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -4421,7 +5702,48 @@ function stripeUrl() {
 }
 
 // Free states (top 7 by score)
+
+// ── Feature Flag: Deal Tape ──────────────────────────────────
+var ff_deal_tape = true;
 const FREE_STATES = new Set(['FL', 'IL', 'AZ']);
+
+// ── Feature Flags (P1 Conversion Optimization) ──────────────
+// Lightweight flag system: URL param (ff_<name>=0/1) > localStorage > default
+// All flags default to true (enabled). Disable via URL: ?ff_dynamic_paywall=0
+const FF = (function() {
+  const FLAGS = {
+    dynamic_paywall: true,
+    paywall_price_anchor: true,
+    hide_locked_meta: true,
+    escalating_paywall: true
+  };
+  function _urlParam(name) {
+    try {
+      const p = new URLSearchParams(window.location.search);
+      const v = p.get('ff_' + name);
+      if (v === '0' || v === 'false') return false;
+      if (v === '1' || v === 'true') return true;
+      return null;
+    } catch(e) { return null; }
+  }
+  function _lsGet(name) {
+    try {
+      const v = localStorage.getItem('ff_' + name);
+      if (v === '0' || v === 'false') return false;
+      if (v === '1' || v === 'true') return true;
+      return null;
+    } catch(e) { return null; }
+  }
+  return {
+    isEnabled: function(name) {
+      const url = _urlParam(name);
+      if (url !== null) return url;
+      const ls = _lsGet(name);
+      if (ls !== null) return ls;
+      return FLAGS.hasOwnProperty(name) ? FLAGS[name] : false;
+    }
+  };
+})();
 
 // ── Type helpers ─────────────────────────────────────────────
 function typeKey(type) {
@@ -4507,6 +5829,7 @@ const I18N = {
     navGlossary: 'Glossary',
     navVersus: 'VS',
     navAccount: 'Account',
+    navDealTape: 'Deal Tape',
     navProfile: 'Profile',
     navSaved: 'Saved',
     // Map view
@@ -4544,6 +5867,7 @@ const I18N = {
     analyzerInterest: 'Interest + Penalty',
     analyzerTotalCosts: 'Total Costs',
     analyzerEquity: 'Equity if Redeemed at ARV',
+    analyzerMonthly: 'Monthly Income',
     analyzerDisclaimer: 'Educational estimate only — not financial, legal, or investment advice. Results are not guaranteed and do not account for all variables. Verify statutory rates with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.',
     // Valuation Agent
     valTitle: 'Atlas — Valuation Agent',
@@ -4648,7 +5972,12 @@ const I18N = {
     paywallCta: 'Unlock Now',
     paywallHaveCode: 'Already have an access code?',
     paywallEnterCode: 'Enter it here',
-    paywallDisclaimer: 'All sales final. Educational use only. See Terms of Service. Aurigen Collective is not a licensed investment advisor.',
+    paywallDisclaimer: 'All sales final. Educational use only. <a href="javascript:void(0)" onclick="openLegalModal(\'tos\')" style="color:var(--accent);text-decoration:underline;cursor:pointer;">See Terms of Service</a>. Aurigen Collective is not a licensed investment advisor.',
+    // P1 Conversion Optimization
+    unlockToSee: 'Unlock to see',
+    paywallDynamicSub: '{countyPart}step-by-step auction signup',
+    paywallEscalate3: "You\u2019ve explored {n} states so far. Serious investors unlock all 51.",
+    paywallEscalate5: 'Most buyers unlock within their first session.',
     // Debug
     debugTitle: 'DEBUG - remove before deploy',
     debugEntered: 'entered',
@@ -4677,6 +6006,31 @@ const I18N = {
     stratPassive: 'Passive Income',
     stratBeginner: 'Beginner',
     stratAdvanced: 'Experienced',
+    // Deal Tape
+    dtNav: 'Deal Tape',
+    dtEyebrow: 'INVESTMENT SCENARIO',
+    dtTaxLien: 'Tax Lien',
+    dtTaxDeed: 'Tax Deed',
+    dtBestCase: 'Best Case',
+    dtLikelyCase: 'Likely Case',
+    dtWorstCase: 'Worst Case',
+    dtReturn: 'return',
+    dtIn: 'in',
+    dtMonths: 'months',
+    dtRedemption: 'Property redeems \u2014 you get principal + interest',
+    dtRepairs: 'Property needs repairs',
+    dtInEstimated: 'in estimated repairs',
+    dtType: 'Type',
+    dtRate: 'Rate',
+    dtRedeem: 'Redeem',
+    dtScore: 'Score',
+    dtExplore: 'Explore',
+    dtUnlock: 'Unlock Full Analysis',
+    dtSwipe: 'Swipe for next deal',
+    dtBeginnerYes: 'Beginner OK',
+    dtBeginnerNo: 'Advanced',
+    dtInvestorScore: 'Investor Score',
+    dtOf: 'of',
     // Language toggle
     langToggle: 'EN',
     // Exit intent
@@ -4684,7 +6038,108 @@ const I18N = {
     exitHeadline: "Wait \u2014 Don\u2019t Miss Your Free State Access",
     exitBody: 'Get instant access to 7 states free. See which counties are best for tax lien and tax deed investing.',
     exitCta: 'Unlock Free Access',
-    exitDismiss: 'No thanks'
+    exitDismiss: 'No thanks',
+    // Legal modals
+    tosTitle: 'Terms of Service',
+    privacyTitle: 'Privacy Policy',
+    gateEmailConsent: 'By entering your email, you agree to our <a onclick="openLegalModal(\'tos\')">Terms of Service</a> and <a onclick="openLegalModal(\'privacy\')">Privacy Policy</a>.',
+    stateDisclaimerBanner: 'For informational purposes only. Not investment advice.',
+    footerTos: 'Terms of Service',
+    footerPrivacy: 'Privacy Policy',
+    // Smart UX — Free AI Messages
+    aiGateTitle: "You've used your free questions.",
+    aiGateDesc: 'Unlock unlimited AI access.',
+    aiGateCta: 'Unlock Full Access',
+    // Smart UX — Return Visit
+    returnVisitMsg: 'Welcome back — you were researching',
+    returnVisitContinue: 'Pick up where you left off?',
+    returnVisitGo: 'Go',
+    // Smart UX — Onboarding
+    onboardStep1: 'Tap any gold state on the map to explore',
+    onboardStep2: 'Use the Deal Analyzer to crunch numbers',
+    onboardStep3: 'Ask Sage anything about tax liens',
+    onboardNext: 'Next',
+    onboardStart: 'Get Started',
+    // Investor DNA
+    navDna: 'DNA',
+    dnaViewTitle: 'Investor DNA',
+    dnaViewSub: 'Your adaptive investor profile',
+    dnaTabProfile: 'Profile',
+    dnaTabPathway: 'First Deal',
+    dnaQuizTitle: 'Build Your Investor Profile',
+    dnaQuizSub: 'Answer 5 quick questions so we can match you with the right states.',
+    dnaQ1: "What's your investment budget?",
+    dnaQ1a: 'Under $5K', dnaQ1b: '$5K - $25K', dnaQ1c: '$25K - $100K', dnaQ1d: '$100K+',
+    dnaQ2: "What's your experience level?",
+    dnaQ2a: 'Brand new', dnaQ2b: 'Some research', dnaQ2c: 'Have invested', dnaQ2d: 'Experienced',
+    dnaQ3: "What's your risk tolerance?",
+    dnaQ3a: 'Conservative', dnaQ3b: 'Moderate', dnaQ3c: 'Aggressive',
+    dnaQ4: "What's your time horizon?",
+    dnaQ4a: 'Quick returns (< 1 year)', dnaQ4b: 'Medium (1-3 years)', dnaQ4c: 'Long-term (3+ years)',
+    dnaQ5: 'What interests you more?',
+    dnaQ5a: 'Steady interest (liens)', dnaQ5b: 'Property ownership (deeds)', dnaQ5c: 'Both',
+    dnaQuizNext: 'Next',
+    dnaQuizBack: 'Back',
+    dnaQuizFinish: 'See My Profile',
+    dnaRadarBudget: 'Budget',
+    dnaRadarExperience: 'Experience',
+    dnaRadarRisk: 'Risk Tolerance',
+    dnaRadarTime: 'Time Horizon',
+    dnaRadarDiversification: 'Diversification',
+    dnaRadarActivity: 'Activity Level',
+    dnaTopStates: 'Top States for Your Profile',
+    dnaTopStatesNone: 'Complete the quiz to see your matched states.',
+    dnaRetake: 'Retake Quiz',
+    dnaMatchScore: 'Match',
+    pathwayTitle: 'Your First Deal',
+    pathwaySub: 'A guided 5-step path to your first investment.',
+    pathwayStep1: 'Profile',
+    pathwayStep2: 'Matched States',
+    pathwayStep3: 'Deep Dive',
+    pathwayStep4: 'Run the Numbers',
+    pathwayStep5: 'Take Action',
+    pathwayNext: 'Next Step',
+    pathwayBack: 'Back',
+    pathwayMatchedTitle: 'Your Best States',
+    pathwayMatchedSub: 'Based on your profile, these states are the best fit.',
+    pathwayPickState: 'Pick a state to dive deeper.',
+    pathwayDeepDiveTitle: 'Deep Dive',
+    pathwayDeepDiveSub: 'Explore your selected state in detail.',
+    pathwayAnalyzerTitle: 'Run the Numbers',
+    pathwayAnalyzerSub: 'See what a deal looks like in this state.',
+    pathwayActionTitle: 'Take Action',
+    pathwayActionSub: 'Register for the auction and book a strategy call.',
+    pathwayAuctionSteps: 'Auction Signup Steps',
+    pathwayBookCall: 'Book an Investor Clarity Call',
+    pathwayBookCallSub: 'Get personalized guidance from an expert.',
+    pathwayComplete: 'Pathway complete.',
+    pathwayRestart: 'Start Over',
+    // Auction Pulse
+    navAuctions: 'Auctions',
+    auctionTitle: 'Auction Pulse',
+    auctionSub: 'Upcoming tax lien & deed auctions by state',
+    auctionFilterAll: 'All',
+    auctionFilterLien: 'Tax Lien',
+    auctionFilterDeed: 'Tax Deed',
+    auctionFilterHybrid: 'Hybrid',
+    auctionDaysLeft: 'days left',
+    auctionDayLeft: 'day left',
+    auctionFreeState: 'FREE',
+    auctionUnlockDetails: 'Unlock to see details',
+    auctionPlatform: 'Platform',
+    // Social Proof
+    socialProofMsg1: 'investors researching',
+    socialProofMsg2: 'right now',
+    // Shareable Cards
+    shareBtn: 'Share',
+    shareCardScore: 'Investor Score',
+    shareCardRate: 'Rate',
+    shareCardRedemption: 'Redemption',
+    // QR Code
+    qrTitle: 'Share This Directory',
+    qrDesc: 'Scan to access the Aurigen County Resource Directory',
+    qrCopyLink: 'Copy Link',
+    qrCopied: 'Copied!'
   },
   es: {
     // Gate - Hero
@@ -4743,6 +6198,7 @@ const I18N = {
     navGlossary: 'Glosario',
     navVersus: 'VS',
     navAccount: 'Cuenta',
+    navDealTape: 'Cinta de Ofertas',
     navProfile: 'Perfil',
     navSaved: 'Guardados',
     // Map view
@@ -4780,6 +6236,7 @@ const I18N = {
     analyzerInterest: 'Interes + Penalizacion',
     analyzerTotalCosts: 'Costos Totales',
     analyzerEquity: 'Patrimonio si se Redime al ARV',
+    analyzerMonthly: 'Ingreso Mensual',
     analyzerDisclaimer: 'Estimacion educativa solamente — no es asesoramiento financiero, legal ni de inversiones. Los resultados no estan garantizados y no contemplan todas las variables. Verifique tasas estatutarias con fuentes oficiales del condado antes de operar. Aurigen Collective no es un asesor de inversiones licenciado.',
     // Valuation Agent
     valTitle: 'Atlas — Agente de Valoracion',
@@ -4884,7 +6341,12 @@ const I18N = {
     paywallCta: 'Desbloquear Ahora',
     paywallHaveCode: 'Ya tiene un codigo de acceso?',
     paywallEnterCode: 'Ingreselo aqui',
-    paywallDisclaimer: 'Ventas finales. Solo uso educativo. Ver Terminos de Servicio. Aurigen Collective no es un asesor de inversiones licenciado.',
+    paywallDisclaimer: 'Ventas finales. Solo uso educativo. <a href="javascript:void(0)" onclick="openLegalModal(\'tos\')" style="color:var(--accent);text-decoration:underline;cursor:pointer;">Ver Terminos de Servicio</a>. Aurigen Collective no es un asesor de inversiones licenciado.',
+    // P1 Conversion Optimization
+    unlockToSee: 'Desbloquear para ver',
+    paywallDynamicSub: '{countyPart}registro paso a paso para subastas',
+    paywallEscalate3: 'Ya exploraste {n} estados. Los inversionistas serios desbloquean los 51.',
+    paywallEscalate5: 'La mayor\u00EDa compra en su primera sesi\u00F3n.',
     // Debug
     debugTitle: 'DEBUG - eliminar antes de desplegar',
     debugEntered: 'ingresado',
@@ -4913,6 +6375,31 @@ const I18N = {
     stratPassive: 'Ingreso Pasivo',
     stratBeginner: 'Principiante',
     stratAdvanced: 'Experimentado',
+    // Deal Tape
+    dtNav: 'Cinta de Ofertas',
+    dtEyebrow: 'ESCENARIO DE INVERSION',
+    dtTaxLien: 'Gravamen Fiscal',
+    dtTaxDeed: 'Escritura Fiscal',
+    dtBestCase: 'Mejor Caso',
+    dtLikelyCase: 'Caso Probable',
+    dtWorstCase: 'Peor Caso',
+    dtReturn: 'retorno',
+    dtIn: 'en',
+    dtMonths: 'meses',
+    dtRedemption: 'La propiedad se redime \u2014 recibes capital + intereses',
+    dtRepairs: 'La propiedad necesita reparaciones',
+    dtInEstimated: 'en reparaciones estimadas',
+    dtType: 'Tipo',
+    dtRate: 'Tasa',
+    dtRedeem: 'Redencion',
+    dtScore: 'Puntaje',
+    dtExplore: 'Explorar',
+    dtUnlock: 'Desbloquear Analisis Completo',
+    dtSwipe: 'Desliza para la siguiente oferta',
+    dtBeginnerYes: 'Para Principiantes',
+    dtBeginnerNo: 'Avanzado',
+    dtInvestorScore: 'Puntaje de Inversor',
+    dtOf: 'de',
     // Language toggle
     langToggle: 'ES',
     // Exit intent
@@ -4920,9 +6407,136 @@ const I18N = {
     exitHeadline: 'Espera \u2014 No Te Pierdas Tu Acceso Gratuito',
     exitBody: 'Obtene acceso instantaneo a 7 estados gratis. Descubri cuales condados son mejores para invertir en gravamenes y escrituras fiscales.',
     exitCta: 'Desbloquear Acceso Gratis',
-    exitDismiss: 'No gracias'
+    exitDismiss: 'No gracias',
+    // Legal modals
+    tosTitle: 'Terminos de Servicio',
+    privacyTitle: 'Politica de Privacidad',
+    gateEmailConsent: 'Al ingresar tu correo, aceptas nuestros <a onclick="openLegalModal(\'tos\')">Terminos de Servicio</a> y <a onclick="openLegalModal(\'privacy\')">Politica de Privacidad</a>.',
+    stateDisclaimerBanner: 'Solo con fines informativos. No es asesoramiento de inversion.',
+    footerTos: 'Terminos de Servicio',
+    footerPrivacy: 'Politica de Privacidad',
+    // Smart UX — Free AI Messages
+    aiGateTitle: 'Ya usaste tus preguntas gratuitas.',
+    aiGateDesc: 'Desbloquea acceso ilimitado al AI.',
+    aiGateCta: 'Desbloquear Acceso Completo',
+    // Smart UX — Return Visit
+    returnVisitMsg: 'Bienvenido de nuevo \u2014 estabas investigando',
+    returnVisitContinue: '\u00BFContinuar donde lo dejaste?',
+    returnVisitGo: 'Ir',
+    // Smart UX — Onboarding
+    onboardStep1: 'Toca cualquier estado dorado en el mapa para explorar',
+    onboardStep2: 'Usa el Analizador de Operaciones para calcular numeros',
+    onboardStep3: 'Pregunta a Sage cualquier cosa sobre gravamenes fiscales',
+    onboardNext: 'Siguiente',
+    onboardStart: 'Comenzar',
+    // Investor DNA
+    navDna: 'ADN',
+    dnaViewTitle: 'ADN del Inversor',
+    dnaViewSub: 'Tu perfil adaptativo de inversor',
+    dnaTabProfile: 'Perfil',
+    dnaTabPathway: 'Primera Operacion',
+    dnaQuizTitle: 'Construye Tu Perfil de Inversor',
+    dnaQuizSub: 'Responde 5 preguntas rapidas para encontrar los estados ideales.',
+    dnaQ1: 'Cual es tu presupuesto de inversion?',
+    dnaQ1a: 'Menos de $5K', dnaQ1b: '$5K - $25K', dnaQ1c: '$25K - $100K', dnaQ1d: '$100K+',
+    dnaQ2: 'Cual es tu nivel de experiencia?',
+    dnaQ2a: 'Totalmente nuevo', dnaQ2b: 'Algo de investigacion', dnaQ2c: 'He invertido', dnaQ2d: 'Experimentado',
+    dnaQ3: 'Cual es tu tolerancia al riesgo?',
+    dnaQ3a: 'Conservador', dnaQ3b: 'Moderado', dnaQ3c: 'Agresivo',
+    dnaQ4: 'Cual es tu horizonte de tiempo?',
+    dnaQ4a: 'Retornos rapidos (< 1 ano)', dnaQ4b: 'Medio (1-3 anos)', dnaQ4c: 'Largo plazo (3+ anos)',
+    dnaQ5: 'Que te interesa mas?',
+    dnaQ5a: 'Interes constante (gravamenes)', dnaQ5b: 'Propiedad (escrituras)', dnaQ5c: 'Ambos',
+    dnaQuizNext: 'Siguiente',
+    dnaQuizBack: 'Atras',
+    dnaQuizFinish: 'Ver Mi Perfil',
+    dnaRadarBudget: 'Presupuesto',
+    dnaRadarExperience: 'Experiencia',
+    dnaRadarRisk: 'Tolerancia al Riesgo',
+    dnaRadarTime: 'Horizonte de Tiempo',
+    dnaRadarDiversification: 'Diversificacion',
+    dnaRadarActivity: 'Nivel de Actividad',
+    dnaTopStates: 'Mejores Estados para Tu Perfil',
+    dnaTopStatesNone: 'Completa el cuestionario para ver tus estados recomendados.',
+    dnaRetake: 'Repetir Cuestionario',
+    dnaMatchScore: 'Coincidencia',
+    pathwayTitle: 'Tu Primera Operacion',
+    pathwaySub: 'Un camino guiado de 5 pasos hacia tu primera inversion.',
+    pathwayStep1: 'Perfil',
+    pathwayStep2: 'Estados Coincidentes',
+    pathwayStep3: 'Analisis Profundo',
+    pathwayStep4: 'Calcular Numeros',
+    pathwayStep5: 'Tomar Accion',
+    pathwayNext: 'Siguiente Paso',
+    pathwayBack: 'Atras',
+    pathwayMatchedTitle: 'Tus Mejores Estados',
+    pathwayMatchedSub: 'Basado en tu perfil, estos estados son los mejores.',
+    pathwayPickState: 'Elige un estado para explorar mas.',
+    pathwayDeepDiveTitle: 'Analisis Profundo',
+    pathwayDeepDiveSub: 'Explora tu estado seleccionado en detalle.',
+    pathwayAnalyzerTitle: 'Calcular Numeros',
+    pathwayAnalyzerSub: 'Mira como seria una operacion en este estado.',
+    pathwayActionTitle: 'Tomar Accion',
+    pathwayActionSub: 'Registrate para la subasta y agenda una llamada estrategica.',
+    pathwayAuctionSteps: 'Pasos de Registro de Subasta',
+    pathwayBookCall: 'Agendar Llamada de Claridad para Inversores',
+    pathwayBookCallSub: 'Recibe orientacion personalizada de un experto.',
+    pathwayComplete: 'Camino completado.',
+    pathwayRestart: 'Empezar de Nuevo',
+    // Auction Pulse
+    navAuctions: 'Subastas',
+    auctionTitle: 'Pulso de Subastas',
+    auctionSub: 'Proximas subastas de gravamenes y escrituras fiscales por estado',
+    auctionFilterAll: 'Todos',
+    auctionFilterLien: 'Gravamen',
+    auctionFilterDeed: 'Escritura',
+    auctionFilterHybrid: 'Hibrido',
+    auctionDaysLeft: 'dias restantes',
+    auctionDayLeft: 'dia restante',
+    auctionFreeState: 'GRATIS',
+    auctionUnlockDetails: 'Desbloquear para ver detalles',
+    auctionPlatform: 'Plataforma',
+    // Social Proof
+    socialProofMsg1: 'inversores investigando',
+    socialProofMsg2: 'ahora mismo',
+    // Shareable Cards
+    shareBtn: 'Compartir',
+    shareCardScore: 'Puntaje de Inversor',
+    shareCardRate: 'Tasa',
+    shareCardRedemption: 'Redencion',
+    // QR Code
+    qrTitle: 'Comparte Este Directorio',
+    qrDesc: 'Escanea para acceder al Directorio de Recursos de Aurigen',
+    qrCopyLink: 'Copiar Enlace',
+    qrCopied: 'Copiado!'
   }
 };
+
+// ── Feature Flags (lightweight) ──────────────────────────────
+// Priority: URL param > localStorage > default
+var FEATURE_FLAGS = {
+  ff_free_ai_messages: true,
+  ff_return_visit: true,
+  ff_premium_onboarding: true
+};
+
+function ffEnabled(name) {
+  // Check URL param first
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var urlVal = params.get(name);
+    if (urlVal === 'true') return true;
+    if (urlVal === 'false') return false;
+  } catch(e) {}
+  // Then localStorage
+  try {
+    var stored = localStorage.getItem('ff_' + name);
+    if (stored === 'true') return true;
+    if (stored === 'false') return false;
+  } catch(e) {}
+  // Default
+  return !!FEATURE_FLAGS[name];
+}
 
 // ── App State ────────────────────────────────────────────────
 let state = {
@@ -4938,7 +6552,13 @@ let state = {
   valBusy: false,
   mapReady: false,
   mobileCodeVisible: false,
-  lang: 'en'
+  lang: 'en',
+  dnaQuizStep: 0,
+  dnaAnswers: [null, null, null, null, null],
+  dnaCompleted: false,
+  dnaRadar: { budget: 0, experience: 0, risk: 0, time: 0, diversification: 0, activity: 0 },
+  pathwayStep: 0,
+  pathwaySelectedState: null
 };
 
 // ── Active STATES array (switches between EN/ES) ─────────────
@@ -4987,6 +6607,9 @@ function applyLanguage() {
   // Update exit intent popup text
   if (window._updateExitText) window._updateExitText();
 
+  // Update legal text
+  if (typeof updateLegalText === 'function') updateLegalText();
+
   // If already entered app, re-render all views
   if (state.entered) {
     buildStateList();
@@ -4996,6 +6619,8 @@ function applyLanguage() {
     buildSaved();
     buildSpotlight();
     buildProfileRecs();
+
+    buildDealTape();
 
     // Update view headers
     updateViewHeaders();
@@ -5011,6 +6636,17 @@ function applyLanguage() {
 
     // Re-render map legend
     updateMapLegend();
+
+    // Re-render DNA view
+    if (typeof dnaRenderProfile === 'function') dnaRenderProfile();
+    // Update DNA nav label
+    const dnaLabel = document.getElementById('nav-label-dna');
+    if (dnaLabel) dnaLabel.textContent = t('navDna');
+
+    // Re-render Phase 2 features on language switch
+    if (typeof buildAuctionPulse === 'function') buildAuctionPulse();
+    if (typeof buildQrCode === 'function') buildQrCode();
+    if (typeof updateTickerMessage === 'function') updateTickerMessage();
 
     // If modal is open, refresh it
     if (state.activeState) {
@@ -5099,7 +6735,7 @@ function updateGateStrings() {
 
 function updateNavStrings() {
   const navItems = document.querySelectorAll('.nav-item');
-  const navKeys = ['navMap', 'navAnalyze', 'navAdvisor', 'navVersus', 'navAccount'];
+  const navKeys = ['navMap', 'navAnalyze', 'navAdvisor', 'navVersus', 'navDealTape', 'navDna', 'navAuctions', 'navAccount'];
   navItems.forEach((item, i) => {
     const label = item.querySelector('.nav-label');
     if (label && navKeys[i]) label.textContent = t(navKeys[i]);
@@ -5197,7 +6833,7 @@ function updateAnalyzerStrings() {
 
   // Result labels
   const resultLabels = document.querySelectorAll('#tools-analyzer .result-label');
-  const resultKeys = ['analyzerTotalReturn', 'analyzerRoi', 'analyzerAnnualized', 'analyzerInterest', 'analyzerTotalCosts', 'analyzerEquity'];
+  const resultKeys = ['analyzerTotalReturn', 'analyzerRoi', 'analyzerAnnualized', 'analyzerInterest', 'analyzerTotalCosts', 'analyzerMonthly', 'analyzerEquity'];
   resultLabels.forEach((label, i) => {
     if (resultKeys[i]) label.textContent = t(resultKeys[i]);
   });
@@ -5232,6 +6868,145 @@ function storageGet(key, fallback = null) {
 
 function storageSet(key, val) {
   try { localStorage.setItem(key, JSON.stringify(val)); } catch(e) {}
+}
+
+// ── Analytics Tracking Layer ─────────────────────────────────
+// Feature flag: ff_analytics_events
+// Logs to console (when ?debug=true), pushes to window.dataLayer (GTM-compatible),
+// stores event counts in localStorage for the admin panel.
+const _analyticsDebug = (new URLSearchParams(window.location.search)).get('debug') === 'true';
+const _analyticsEnabled = (function() {
+  // Check URL param first, then localStorage, then default to true
+  const urlVal = (new URLSearchParams(window.location.search)).get('ff_analytics_events');
+  if (urlVal !== null) return urlVal === 'true' || urlVal === '1';
+  try {
+    const stored = localStorage.getItem('ff_analytics_events');
+    if (stored !== null) return stored === 'true' || stored === '1';
+  } catch(e) {}
+  return true; // enabled by default
+})();
+
+window.dataLayer = window.dataLayer || [];
+
+function trackEvent(name, data) {
+  if (!_analyticsEnabled) return;
+
+  var eventObj = { event: name, timestamp: Date.now() };
+  if (data && typeof data === 'object') {
+    for (var k in data) {
+      if (data.hasOwnProperty(k)) eventObj[k] = data[k];
+    }
+  }
+
+  // 1. Console logging in debug mode
+  if (_analyticsDebug) {
+    console.log('%c[Analytics]%c ' + name, 'color:#c8a84b;font-weight:bold', 'color:inherit', data || '');
+  }
+
+  // 2. Push to dataLayer (GTM-compatible)
+  try {
+    window.dataLayer.push(eventObj);
+  } catch(e) {}
+
+  // 3. Increment count in localStorage
+  try {
+    var counts = JSON.parse(localStorage.getItem('aug_analytics_counts') || '{}');
+    counts[name] = (counts[name] || 0) + 1;
+    localStorage.setItem('aug_analytics_counts', JSON.stringify(counts));
+  } catch(e) {}
+}
+
+function _getAnalyticsCounts() {
+  try {
+    return JSON.parse(localStorage.getItem('aug_analytics_counts') || '{}');
+  } catch(e) { return {}; }
+}
+
+function _resetAnalyticsCounts() {
+  try { localStorage.removeItem('aug_analytics_counts'); } catch(e) {}
+}
+
+// Stub for vs_comparison — call this when the State Versus feature is built
+// Usage: trackVsComparison('FL', 'AZ')
+function trackVsComparison(id1, id2) {
+  trackEvent('vs_comparison', { states: [id1, id2] });
+}
+
+// ── Admin Panel (Analytics Section) ──────────────────────────
+const _isAdmin = (new URLSearchParams(window.location.search)).get('admin') === 'true';
+
+function buildAnalyticsAdmin() {
+  if (!_isAdmin) return;
+
+  var container = document.getElementById('admin-analytics-section');
+  if (!container) return;
+
+  var counts = _getAnalyticsCounts();
+  var eventNames = [
+    'gate_view', 'gate_email_submit', 'gate_enter',
+    'paywall_view', 'paywall_cta_click', 'state_open',
+    'sage_conversation_start', 'vs_comparison',
+    'analyzer_calculate', 'booking_cta_click'
+  ];
+
+  var rows = eventNames.map(function(name) {
+    return '<tr><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text);font-family:\'DM Mono\',monospace;font-size:13px;">' +
+      name + '</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--accent);font-weight:600;text-align:right;font-size:14px;">' +
+      (counts[name] || 0) + '</td></tr>';
+  }).join('');
+
+  // Also show any extra events not in the predefined list
+  for (var k in counts) {
+    if (counts.hasOwnProperty(k) && eventNames.indexOf(k) === -1) {
+      rows += '<tr><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text-dim);font-family:\'DM Mono\',monospace;font-size:13px;">' +
+        k + '</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--accent);font-weight:600;text-align:right;font-size:14px;">' +
+        (counts[k] || 0) + '</td></tr>';
+    }
+  }
+
+  var totalEvents = 0;
+  for (var j in counts) { if (counts.hasOwnProperty(j)) totalEvents += counts[j]; }
+
+  container.innerHTML = '<div style="margin-bottom:16px;">' +
+    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--accent);margin-bottom:4px;">Analytics Events</div>' +
+    '<div style="font-size:12px;color:var(--text-muted);">Feature flag: ff_analytics_events (' + (_analyticsEnabled ? 'ON' : 'OFF') + ') &middot; Total: ' + totalEvents + ' events</div>' +
+    '</div>' +
+    '<table style="width:100%;border-collapse:collapse;background:var(--bg2);border-radius:8px;overflow:hidden;border:1px solid var(--border);">' +
+    '<thead><tr>' +
+    '<th style="padding:10px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);border-bottom:1px solid var(--border);background:var(--bg3);">Event</th>' +
+    '<th style="padding:10px 12px;text-align:right;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);border-bottom:1px solid var(--border);background:var(--bg3);">Count</th>' +
+    '</tr></thead><tbody>' + rows + '</tbody></table>' +
+    '<div style="display:flex;gap:10px;margin-top:14px;">' +
+    '<button onclick="resetAnalyticsAdmin()" style="flex:1;padding:10px;background:var(--bg3);border:1px solid var(--border);color:var(--red);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">Reset Counts</button>' +
+    '<button onclick="exportAnalyticsAdmin()" style="flex:1;padding:10px;background:var(--bg3);border:1px solid var(--border);color:var(--accent);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">Export Events (JSON)</button>' +
+    '</div>';
+}
+
+function resetAnalyticsAdmin() {
+  _resetAnalyticsCounts();
+  buildAnalyticsAdmin();
+}
+
+function exportAnalyticsAdmin() {
+  try {
+    var json = JSON.stringify(window.dataLayer || [], null, 2);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(json).then(function() {
+        alert('Copied ' + (window.dataLayer || []).length + ' events to clipboard.');
+      });
+    } else {
+      // Fallback
+      var ta = document.createElement('textarea');
+      ta.value = json;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      alert('Copied ' + (window.dataLayer || []).length + ' events to clipboard.');
+    }
+  } catch(e) {
+    alert('Export failed: ' + e.message);
+  }
 }
 
 // ── Init ─────────────────────────────────────────────────────
@@ -5271,11 +7046,20 @@ window.addEventListener('load', async () => {
     // Mobile code trigger: type "aurigen" on gate
     setupMobileCodeTrigger();
 
+    // Show admin analytics panel if ?admin=true
+    if (_isAdmin) {
+      var adminPanel = document.getElementById('admin-panel-analytics');
+      if (adminPanel) adminPanel.style.display = 'block';
+      buildAnalyticsAdmin();
+    }
+
     if (state.entered) {
       enterApp(false);
     } else {
       // Gate visible — initialize gate animations
       animateGateStats();
+      // Analytics: gate_view
+      trackEvent('gate_view');
     }
 
     updateDebug();
@@ -5375,11 +7159,17 @@ function handleEmailGate() {
     // Silent catch — server capture is best-effort
   }
 
+  // Analytics: gate_email_submit
+  if (typeof trackEvent === 'function') trackEvent('gate_email_submit', { email_provided: true });
+
   // Clear error if any
   if (errorEl) errorEl.classList.remove('show');
 
   // Disable button during transition
   if (submitBtn) submitBtn.disabled = true;
+
+  // Analytics: gate_enter via email
+  trackEvent('gate_enter', { method: 'email' });
 
   // Enter the app with free access (7 states)
   enterApp(true);
@@ -5468,6 +7258,7 @@ async function submitCode() {
   if (code.toUpperCase() === _mp) {
     state.isPaid = true;
     storageSet('aug_paid', true);
+    trackEvent('gate_enter', { method: 'code' });
     if (state.entered) {
       buildStateList();
       buildSpotlight();
@@ -5492,6 +7283,7 @@ async function submitCode() {
     if (data.valid) {
       state.isPaid = true;
       storageSet('aug_paid', true);
+      trackEvent('gate_enter', { method: 'paid' });
       if (state.entered) {
         buildStateList();
         buildSpotlight();
@@ -5515,7 +7307,7 @@ async function submitCode() {
   }
 }
 
-// Allow Enter key on gate inputs
+// Allow Enter key on gate inputs + analyzer fallback listeners
 document.addEventListener('DOMContentLoaded', () => {
   const codeInput = document.getElementById('gate-code-input');
   if (codeInput) codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') submitCode(); });
@@ -5525,6 +7317,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const heroEmailInput = document.getElementById('hero-email-input');
   if (heroEmailInput) heroEmailInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleHeroEmail(); });
+
+  // Fallback: attach change listeners to analyzer inputs for browsers
+  // that may not fire oninput reliably on number inputs
+  ['az-type','az-price','az-rate','az-months','az-arv','az-costs','az-penalty'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('change', calcAnalyzer);
+  });
 });
 
 function enterApp(animate) {
@@ -5541,10 +7340,21 @@ function enterApp(animate) {
   buildProfileTags();
   buildSaved();
   buildSpotlight();
+  dnaInit();
   navigate('map', false);
 
   // Init map after short delay to let layout settle
   setTimeout(() => initMap(), 150);
+
+  // ── Smart UX hooks ──────────────────────────────────
+  // Return visit: show toast for returning users (animate=false means restored session)
+  if (!animate) {
+    setTimeout(function() { showReturnVisitToast(); }, 800);
+  }
+  // Onboarding: show for first-time users passing the gate (animate=true)
+  if (animate) {
+    setTimeout(function() { showOnboarding(); }, 400);
+  }
 
   updateDebug();
 }
@@ -5565,7 +7375,10 @@ function navigate(tab, animate = true) {
 
   // Tab-specific actions
   if (tab === 'versus') { populateVersusDropdowns(); }
-  if (tab === 'account') { buildSaved(); buildProfileRecs(); }
+  if (tab === 'dealtape') { buildDealTape(); }
+  if (tab === 'account') { buildSaved(); buildProfileRecs(); if (typeof buildQrCode === 'function') buildQrCode(); }
+  if (tab === 'dna') { if (typeof dnaRenderProfile === 'function') dnaRenderProfile(); if (typeof pathwayRender === 'function') pathwayRender(); }
+  if (tab === 'auctions' && typeof buildAuctionPulse === 'function') { buildAuctionPulse(); }
   if (tab === 'map' && state.mapReady) {
     const svg = d3.select('#map-svg');
     const container = document.getElementById('map-container');
@@ -5590,6 +7403,7 @@ function switchToolsTab(panel, btn) {
   if (target) target.classList.add('active');
   if (panel === 'saved') buildSaved();
   if (panel === 'profile') buildProfileRecs();
+  if (panel === 'analyzer') calcAnalyzer();
 }
 
 // ── State List ───────────────────────────────────────────────
@@ -5618,7 +7432,7 @@ function buildStateList() {
       <div class="state-list-badge ${badgeClass}">${typeLabel}</div>
       <div style="flex:1;min-width:0">
         <div class="state-list-name">${s.name}</div>
-        <div class="state-list-meta">${s.rate} · ${s.redemption}</div>
+        <div class="state-list-meta">${(!isFree && FF.isEnabled('hide_locked_meta')) ? t('unlockToSee') : (s.rate + ' \u00B7 ' + s.redemption)}</div>
       </div>
       ${!isFree ? '<span class="lock-overlay-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>' : `<div class="${scoreClass}">${s.score}</div>`}
     </div>`;
@@ -5858,12 +7672,21 @@ function openState(id) {
 
   state.activeState = id;
 
+  // ff_return_visit: store last viewed state for return visit recognition
+  try { storageSet('aug_last_viewed_state', id); } catch(e) {}
+
   const isPaid = state.isPaid;
   const isFreeState = FREE_STATES.has(id);
   const isSaved = state.savedStates.includes(id);
 
+  // Analytics: state_open
+  trackEvent('state_open', { state_id: id, state_name: s.name, is_free: isFreeState, is_paid: isPaid });
+
   // Locked states (not free, not paid) → straight to paywall
-  if (!isFreeState && !isPaid) { openPaywall(id); return; }
+  if (!isFreeState && !isPaid) { dnaTrackEvent('locked_click'); openPaywall(id); return; }
+
+  // Track state view for DNA behavior
+  dnaTrackEvent('state_view', { id: s.id, type: s.type });
 
   // Type class
   const tClass = typeCssClass(s.type);
@@ -5880,6 +7703,7 @@ function openState(id) {
         onclick="toggleSave('${id}')"
         id="save-btn-${id}"
       >${isSaved ? '\u{1F516} ' + t('modalSaved') : t('modalSave')}</button>
+      ${(typeof ffEnabled === 'function' && ffEnabled('ff_shareable_cards')) || (typeof FEATURE_FLAGS !== 'undefined' && FEATURE_FLAGS.ff_shareable_cards) ? '<button class="share-state-btn" onclick="shareStateCard(\'' + id + '\')">&#x1F4E4; ' + t('shareBtn') + '</button>' : ''}
     </div>
   `;
 
@@ -5893,6 +7717,7 @@ function openState(id) {
 
   // PREVIEW SECTION — visible to free and paid users
   const previewHTML = `
+    <div class="state-modal-disclaimer-banner">${t('stateDisclaimerBanner')}</div>
     ${bBadge}
     ${!s.beginnerFriendly && s.notBeginnerReason ? `<div class="modal-note" style="margin-bottom:14px;color:var(--red);font-size:12px;">${s.notBeginnerReason}</div>` : ''}
 
@@ -5971,9 +7796,11 @@ function openState(id) {
           <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.5;">
             Get auction signup steps, county links, full risks list, due diligence checklists, and OTC availability for all 50 states + DC.
           </div>
-          <div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>
+          ${FF.isEnabled('paywall_price_anchor')
+            ? '<div class="paywall-price-anchor" style="margin-bottom:4px;"><span class="paywall-price-old">$297</span><span style="font-size:18px;font-weight:700;color:var(--accent);">$97</span></div>'
+            : '<div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>'}
           <div style="font-size:11px;color:var(--text-muted);margin-bottom:16px;">${t('paywallPriceNote')}</div>
-          <a href="${stripeUrl()}" target="_blank" class="paywall-btn">${t('paywallCta')}</a>
+          <a href="${stripeUrl()}" target="_blank" class="paywall-btn" onclick="if(typeof trackEvent==='function')trackEvent('paywall_cta_click',{state_id:'${s.id}'})">${t('paywallCta')}</a>
           <div style="font-size:12px;color:var(--text-dim);margin-top:12px;">
             ${t('paywallHaveCode')}
             <button onclick="closeStateModal();showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">${t('paywallEnterCode')}</button>
@@ -6079,7 +7906,7 @@ function openState(id) {
     ${countiesHTML}
 
     <div style="margin-top:20px;text-align:center;">
-      <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="paywall-btn" style="display:inline-block;text-decoration:none;font-size:14px;padding:12px 28px;">
+      <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="paywall-btn" style="display:inline-block;text-decoration:none;font-size:14px;padding:12px 28px;" onclick="trackEvent('booking_cta_click',{source:'state_detail'})">
         ${t('modalBookCall') || 'Book an Investor Clarity Call'} \u2197
       </a>
       <div style="font-size:11px;color:var(--text-muted);margin-top:8px;">Free 1-on-1 strategy session</div>
@@ -6095,10 +7922,73 @@ function openState(id) {
 }
 
 // ── Paywall ──────────────────────────────────────────────────
+// Locked-click counter for escalating paywall (ff_escalating_paywall)
+function _trackLockedClick() {
+  try {
+    var c = parseInt(localStorage.getItem('aug_locked_clicks') || '0', 10);
+    c = (isNaN(c) ? 0 : c) + 1;
+    localStorage.setItem('aug_locked_clicks', String(c));
+    return c;
+  } catch(e) { return 1; }
+}
+function _getLockedClicks() {
+  try {
+    var c = parseInt(localStorage.getItem('aug_locked_clicks') || '0', 10);
+    return isNaN(c) ? 0 : c;
+  } catch(e) { return 0; }
+}
+
 function openPaywall(id) {
   state.activeState = id;
   const s = (STATES || []).find(x => x.id === id);
   const name = s ? s.name : 'This State';
+
+  // Analytics: paywall_view
+  if (typeof trackEvent === 'function') trackEvent('paywall_view', { state_id: id, state_name: name });
+
+  // ── Escalating paywall: track clicks (ff_escalating_paywall) ──
+  const clickCount = FF.isEnabled('escalating_paywall') ? _trackLockedClick() : _getLockedClicks();
+
+  // ── State-specific paywall copy (ff_dynamic_paywall) ──
+  let pwTitle = t('paywallTitle');
+  let pwSub = t('paywallSub');
+
+  if (FF.isEnabled('dynamic_paywall') && s) {
+    pwTitle = (state.lang === 'es' ? 'Desbloquear ' : 'Unlock ') + s.name;
+
+    const countyPart = (s.counties && s.counties.length > 0)
+      ? (state.lang === 'es'
+          ? s.counties.length + ' enlaces de condados, '
+          : s.counties.length + ' county links, ')
+      : '';
+
+    const ratePart = s.rate
+      ? s.rate + ' ' + (state.lang === 'es' ? 'rendimientos' : 'returns') + ', '
+      : '';
+
+    pwSub = ratePart + t('paywallDynamicSub').replace('{countyPart}', countyPart);
+  }
+
+  // ── Escalating copy (ff_escalating_paywall) ──
+  let escalationHTML = '';
+  if (FF.isEnabled('escalating_paywall') && clickCount >= 3) {
+    escalationHTML = '<div class="paywall-escalation">' + t('paywallEscalate3').replace('{n}', clickCount) + '</div>';
+    if (clickCount >= 5) {
+      escalationHTML += '<div class="paywall-escalation" style="margin-top:4px;">' + t('paywallEscalate5') + '</div>';
+    }
+  }
+
+  // ── Price anchor (ff_paywall_price_anchor) ──
+  let priceHTML;
+  if (FF.isEnabled('paywall_price_anchor')) {
+    priceHTML = `
+      <div class="paywall-price-anchor">
+        <span class="paywall-price-old">$297</span>
+        <span class="paywall-price-current">${t('paywallPrice')}</span>
+      </div>`;
+  } else {
+    priceHTML = '<div class="paywall-price">' + t('paywallPrice') + '</div>';
+  }
 
   document.getElementById('modal-header').innerHTML = `
     <div class="modal-state-name" style="color:var(--text-dim)">${name}</div>
@@ -6108,11 +7998,12 @@ function openPaywall(id) {
   document.getElementById('modal-body').innerHTML = `
     <div class="modal-paywall">
       <div class="paywall-lock">\u{1F512}</div>
-      <div class="paywall-title">${t('paywallTitle')}</div>
-      <div class="paywall-sub">${t('paywallSub')}</div>
-      <div class="paywall-price">${t('paywallPrice')}</div>
+      <div class="paywall-title">${pwTitle}</div>
+      <div class="paywall-sub">${pwSub}</div>
+      ${escalationHTML}
+      ${priceHTML}
       <div class="paywall-price-note">${t('paywallPriceNote')}</div>
-      <a href="${stripeUrl()}" target="_blank" class="paywall-btn">${t('paywallCta')}</a>
+      <a href="${stripeUrl()}" target="_blank" class="paywall-btn" onclick="if(typeof trackEvent==='function')trackEvent('paywall_cta_click',{state_id:'${id}'})">${t('paywallCta')}</a>
       <div style="font-size:12px;color:var(--text-dim);">
         ${t('paywallHaveCode')}
         <button onclick="closeStateModal();showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">${t('paywallEnterCode')}</button>
@@ -6215,6 +8106,179 @@ function buildSpotlight() {
       </div>
     `;
   }).join('');
+}
+
+
+// ── Deal Tape — TikTok-style Scenario Feed ───────────────────
+var _dealTapeBuilt = false;
+
+function buildDealTape() {
+  if (!ff_deal_tape) return;
+  // Feature flag check
+  if (typeof FF !== 'undefined' && FF.get && !FF.get('deal_tape')) return;
+
+  var container = document.getElementById('deal-tape-feed');
+  if (!container || !STATES || STATES.length === 0) return;
+
+  // Generate scenarios from state data
+  var scenarios = generateDealScenarios();
+  if (scenarios.length === 0) return;
+
+  var total = scenarios.length;
+
+  container.innerHTML = scenarios.map(function(sc, idx) {
+    var isFree = FREE_STATES.has(sc.stateId) || state.isPaid;
+    var scoreClass = sc.score >= 70 ? 'high' : sc.score >= 40 ? 'mid' : 'low';
+    var beginnerClass = sc.beginnerFriendly ? 'yes' : 'no';
+    var beginnerLabel = sc.beginnerFriendly ? t('dtBeginnerYes') : t('dtBeginnerNo');
+    var typeLabel = sc.isLien ? t('dtTaxLien') : t('dtTaxDeed');
+
+    var bestText = '<span class="dt-highlight">' + sc.bestReturn + '% ' + t('dtReturn') + '</span> = <span class="dt-highlight">$' + sc.bestDollars.toLocaleString() + '</span> ' + t('dtIn') + ' ' + sc.holdMonths + ' ' + t('dtMonths');
+    var likelyText = '<span class="dt-highlight">' + sc.likelyReturn + '% ' + t('dtReturn') + '</span> = <span class="dt-highlight">$' + sc.likelyDollars.toLocaleString() + '</span> ' + t('dtIn') + ' ' + sc.holdMonths + ' ' + t('dtMonths');
+    var worstText = sc.isLien
+      ? t('dtRedemption')
+      : t('dtRepairs') + ' — <span class="dt-highlight">$' + sc.repairCost.toLocaleString() + '</span> ' + t('dtInEstimated');
+
+    var ctaHtml;
+    if (isFree) {
+      ctaHtml = '<button class="deal-tape-cta-btn primary" onclick="navigate(\'map\'); setTimeout(function(){openState(\'' + sc.stateId + '\')},300)">' + t('dtExplore') + ' ' + sc.stateName + '</button>';
+    } else {
+      ctaHtml = '<button class="deal-tape-cta-btn locked" onclick="openPaywall(\'' + sc.stateId + '\')">' + t('dtUnlock') + '</button>';
+    }
+
+    return '<div class="deal-tape-card" data-card-index="' + idx + '">' +
+      '<div class="deal-tape-counter">' + (idx + 1) + ' ' + t('dtOf') + ' ' + total + '</div>' +
+      '<div class="deal-tape-inner">' +
+        '<div class="deal-tape-eyebrow">' + t('dtEyebrow') + '</div>' +
+        '<div class="deal-tape-title"><span class="dt-amount">$' + sc.amount.toLocaleString() + '</span> ' + typeLabel + ' ' + t('dtIn') + ' ' + sc.county + ', ' + sc.stateName + '</div>' +
+        '<div class="deal-tape-stats">' +
+          '<div class="deal-tape-stat"><div class="deal-tape-stat-label">' + t('dtType') + '</div><div class="deal-tape-stat-value">' + typeLabel + '</div></div>' +
+          '<div class="deal-tape-stat"><div class="deal-tape-stat-label">' + t('dtRate') + '</div><div class="deal-tape-stat-value">' + sc.rate + '</div></div>' +
+          '<div class="deal-tape-stat"><div class="deal-tape-stat-label">' + t('dtRedeem') + '</div><div class="deal-tape-stat-value">' + sc.redemption + '</div></div>' +
+        '</div>' +
+        '<div class="deal-tape-outcomes">' +
+          '<div class="deal-tape-outcome best"><div class="deal-tape-outcome-bar"></div><div class="deal-tape-outcome-label">' + t('dtBestCase') + '</div><div class="deal-tape-outcome-text">' + bestText + '</div></div>' +
+          '<div class="deal-tape-outcome likely"><div class="deal-tape-outcome-bar"></div><div class="deal-tape-outcome-label">' + t('dtLikelyCase') + '</div><div class="deal-tape-outcome-text">' + likelyText + '</div></div>' +
+          '<div class="deal-tape-outcome worst"><div class="deal-tape-outcome-bar"></div><div class="deal-tape-outcome-label">' + t('dtWorstCase') + '</div><div class="deal-tape-outcome-text">' + worstText + '</div></div>' +
+        '</div>' +
+        '<div class="deal-tape-score-row">' +
+          '<div class="deal-tape-score-badge ' + scoreClass + '">' + sc.score + '</div>' +
+          '<div class="deal-tape-score-label">' + t('dtInvestorScore') + '</div>' +
+          '<div class="deal-tape-score-beginner ' + beginnerClass + '">' + beginnerLabel + '</div>' +
+        '</div>' +
+        '<div class="deal-tape-cta">' + ctaHtml + '</div>' +
+      '</div>' +
+      (idx === 0 ? '<div class="deal-tape-swipe-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg><span>' + t('dtSwipe') + '</span></div>' : '') +
+    '</div>';
+  }).join('');
+
+  // Animate outcome bars on scroll into view
+  requestAnimationFrame(function() { animateDealTapeBars(container); });
+  _dealTapeBuilt = true;
+}
+
+function generateDealScenarios() {
+  if (!STATES || STATES.length === 0) return [];
+
+  // Pick 12 random states, shuffled each visit
+  var pool = STATES.slice();
+  shuffleArray(pool);
+  var selected = pool.slice(0, Math.min(12, pool.length));
+
+  return selected.map(function(s) {
+    var isLien = (s.type === 'lien' || s.type === 'both');
+    var rateNum = parseRateNumber(s.rate);
+    var holdMonths = isLien ? randomInt(6, 24) : randomInt(3, 12);
+
+    // Investment amount: liens $2K-$15K, deeds $8K-$50K
+    var minAmt = isLien ? 2000 : 8000;
+    var maxAmt = isLien ? 15000 : 50000;
+    var amount = roundToNearest(randomInt(minAmt, maxAmt), 500);
+
+    var bestReturn = rateNum;
+    var bestDollars = Math.round(amount * (rateNum / 100) * (holdMonths / 12));
+    var likelyReturn = Math.round(rateNum * 0.7 * 10) / 10;
+    var likelyDollars = Math.round(amount * (likelyReturn / 100) * (holdMonths / 12));
+    var repairCost = roundToNearest(randomInt(3000, 25000), 1000);
+
+    // Pick a county name or use state name
+    var county = 'County';
+    if (s.counties && s.counties.length > 0) {
+      county = s.counties[randomInt(0, s.counties.length - 1)].name;
+    } else {
+      // Generate a plausible county reference
+      county = s.name;
+    }
+
+    return {
+      stateId: s.id,
+      stateName: s.name,
+      type: s.type,
+      isLien: isLien,
+      rate: s.rate,
+      redemption: s.redemption,
+      score: s.score,
+      beginnerFriendly: s.beginnerFriendly,
+      amount: amount,
+      holdMonths: holdMonths,
+      bestReturn: bestReturn,
+      bestDollars: bestDollars,
+      likelyReturn: likelyReturn,
+      likelyDollars: likelyDollars,
+      repairCost: repairCost,
+      county: county
+    };
+  });
+}
+
+function parseRateNumber(rateStr) {
+  if (!rateStr) return 8;
+  var m = rateStr.match(/(\d+\.?\d*)/);
+  if (m) return parseFloat(m[1]);
+  return 8; // fallback
+}
+
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function roundToNearest(val, nearest) {
+  return Math.round(val / nearest) * nearest;
+}
+
+function shuffleArray(arr) {
+  for (var i = arr.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+  }
+  return arr;
+}
+
+function animateDealTapeBars(container) {
+  if (!container) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var bars = entry.target.querySelectorAll('.deal-tape-outcome-bar');
+        setTimeout(function() {
+          if (bars[0]) bars[0].style.width = '85%';
+          if (bars[1]) bars[1].style.width = '60%';
+          if (bars[2]) bars[2].style.width = '35%';
+        }, 200);
+        // Hide swipe hint after first scroll
+        var hint = entry.target.querySelector('.deal-tape-swipe-hint');
+        if (hint) hint.style.display = 'none';
+      } else {
+        // Reset bars when card leaves viewport
+        var bars = entry.target.querySelectorAll('.deal-tape-outcome-bar');
+        bars.forEach(function(b) { b.style.width = '0'; });
+      }
+    });
+  }, { root: container, threshold: 0.5 });
+
+  container.querySelectorAll('.deal-tape-card').forEach(function(card) {
+    observer.observe(card);
+  });
 }
 
 // ── Glossary ─────────────────────────────────────────────────
@@ -6466,8 +8530,24 @@ function buildProfileRecs() {
 }
 
 // ── Deal Analyzer ─────────────────────────────────────────────
+function setResultValue(id, text, colorClass) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('updating');
+  setTimeout(() => {
+    el.textContent = text;
+    el.classList.remove('positive', 'negative', 'green');
+    if (colorClass) el.classList.add(colorClass);
+    el.style.color = '';
+    el.classList.remove('updating');
+  }, 100);
+}
+
 function calcAnalyzer() {
+  dnaTrackEvent('analyzer_use');
   const type = document.getElementById('az-type')?.value;
+
+  // Read raw values — use isNaN to properly detect empty fields
   const rawPrice = parseFloat(document.getElementById('az-price')?.value);
   const rawRate = parseFloat(document.getElementById('az-rate')?.value);
   const rawMonths = parseFloat(document.getElementById('az-months')?.value);
@@ -6476,12 +8556,12 @@ function calcAnalyzer() {
   const rawPenalty = parseFloat(document.getElementById('az-penalty')?.value);
 
   // Clamp: reject negatives, cap rate/penalty at 100%, cap hold period at 600 months
-  const price = Math.max(0, rawPrice || 0);
-  const rate = Math.max(0, Math.min(rawRate || 0, 100));
-  const months = Math.max(0, Math.min(rawMonths || 0, 600));
-  const arv = Math.max(0, rawArv || 0);
-  const costs = Math.max(0, rawCosts || 0);
-  const penalty = Math.max(0, Math.min(rawPenalty || 0, 100));
+  const price = isNaN(rawPrice) ? 0 : Math.max(0, rawPrice);
+  const rate = isNaN(rawRate) ? 0 : Math.max(0, Math.min(rawRate, 100));
+  const months = isNaN(rawMonths) ? 0 : Math.max(0, Math.min(rawMonths, 600));
+  const arv = isNaN(rawArv) ? 0 : Math.max(0, rawArv);
+  const costs = isNaN(rawCosts) ? 0 : Math.max(0, rawCosts);
+  const penalty = isNaN(rawPenalty) ? 0 : Math.max(0, Math.min(rawPenalty, 100));
 
   // Show/hide deed-specific fields
   const arvGroup = document.getElementById('az-arv-group');
@@ -6490,14 +8570,21 @@ function calcAnalyzer() {
   if (deedResults) deedResults.style.display = type === 'deed' && arv > 0 ? '' : 'none';
 
   // Reset all result fields when key inputs are missing
-  if (!price || !months) {
-    ['az-return','az-roi','az-annualized','az-interest','az-total-costs'].forEach(id => {
+  const resultIds = ['az-return','az-roi','az-annualized','az-interest','az-total-costs','az-monthly'];
+  if (price <= 0 || months <= 0) {
+    resultIds.forEach(id => {
       const el = document.getElementById(id);
-      if (el) el.textContent = '—';
+      if (el) { el.textContent = '\u2014'; el.classList.remove('positive','negative','green'); el.style.color = ''; }
     });
     const resetSub = document.getElementById('az-return-sub');
     if (resetSub) resetSub.textContent = '';
     return;
+  }
+
+  // Analytics: analyzer_calculate (debounced — only fires when key inputs are valid)
+  if (!calcAnalyzer._lastTrack || Date.now() - calcAnalyzer._lastTrack > 2000) {
+    calcAnalyzer._lastTrack = Date.now();
+    trackEvent('analyzer_calculate', { state_id: state.activeState || null });
   }
 
   const annualRate = rate / 100;
@@ -6509,44 +8596,43 @@ function calcAnalyzer() {
   const netReturn = totalReturn - totalCosts;
   const roi = totalCosts > 0 ? (netReturn / totalCosts) * 100 : 0;
   const annualizedROI = months > 0 ? (Math.pow(1 + roi / 100, 12 / months) - 1) * 100 : 0;
+  const monthlyIncome = months > 0 ? netReturn / months : 0;
 
-  const fmt = n => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-  const fmtPct = n => n.toFixed(1) + '%';
+  const fmt = n => (n < 0 ? '-' : '') + '$' + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmtPct = n => n.toFixed(2) + '%';
 
-  // Show actual net return including losses — never clamp to $0
-  const returnEl = document.getElementById('az-return');
-  if (returnEl) {
-    returnEl.textContent = fmt(netReturn);
-    returnEl.style.color = netReturn >= 0 ? 'var(--accent)' : 'var(--red)';
-  }
+  // Animated result updates with color coding
+  setResultValue('az-return', fmt(netReturn), netReturn >= 0 ? 'positive' : 'negative');
 
   const sub = document.getElementById('az-return-sub');
-  if (sub) sub.textContent = `Net after $${costs.toLocaleString()} in costs`;
+  if (sub) sub.textContent = 'Net after ' + fmt(costs) + ' in costs';
 
-  const roiEl = document.getElementById('az-roi');
-  if (roiEl) { roiEl.textContent = fmtPct(roi); roiEl.style.color = roi >= 0 ? 'var(--accent)' : 'var(--red)'; }
-
-  const annEl = document.getElementById('az-annualized');
-  if (annEl) { annEl.textContent = fmtPct(annualizedROI); annEl.style.color = annualizedROI >= 0 ? 'var(--green)' : 'var(--red)'; }
-
-  const intEl = document.getElementById('az-interest');
-  if (intEl) intEl.textContent = fmt(interest + penaltyEarned);
-
-  const tcEl = document.getElementById('az-total-costs');
-  if (tcEl) tcEl.textContent = fmt(totalCosts);
+  setResultValue('az-roi', fmtPct(roi), roi >= 0 ? 'positive' : 'negative');
+  setResultValue('az-annualized', fmtPct(annualizedROI), annualizedROI >= 0 ? 'green' : 'negative');
+  setResultValue('az-interest', fmt(interest + penaltyEarned), 'positive');
+  setResultValue('az-total-costs', fmt(totalCosts), '');
+  setResultValue('az-monthly', fmt(monthlyIncome), monthlyIncome >= 0 ? 'green' : 'negative');
 
   if (type === 'deed' && arv > 0) {
     const equity = arv - totalCosts;
-    const eqEl = document.getElementById('az-equity');
-    if (eqEl) { eqEl.textContent = fmt(equity); eqEl.style.color = equity >= 0 ? 'var(--green)' : 'var(--red)'; }
+    setResultValue('az-equity', fmt(equity), equity >= 0 ? 'green' : 'negative');
   }
 }
 
 // ── Valuation Agent (Atlas) ───────────────────────────────────
 async function sendValMessage() {
   if (!state.isPaid) {
-    appendValMsg('atlas', 'Atlas is available to full-access members. Unlock all 50 states + DC, AI agents, and more for just $97.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
-    return;
+    // ff_free_ai_messages: allow 2 free messages before gating
+    if (typeof ffEnabled === 'function' && ffEnabled('ff_free_ai_messages')) {
+      var atlasCount = storageGet('aug_ai_atlas_count', 0);
+      if (atlasCount >= 2) {
+        showAiGateOverlay('val');
+        return;
+      }
+    } else {
+      appendValMsg('atlas', 'Atlas is available to full-access members. Unlock all 50 states + DC, AI agents, and more for just $97.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
+      return;
+    }
   }
   if (state.valBusy) return;
   const input = document.getElementById('val-input');
@@ -6562,6 +8648,11 @@ async function sendValMessage() {
   appendValMsg('user', msg);
   if (!state.valHistory) state.valHistory = [];
   state.valHistory.push({ role: 'user', content: msg });
+
+  // ff_free_ai_messages: increment Atlas message count for free users
+  if (!state.isPaid && ffEnabled('ff_free_ai_messages')) {
+    storageSet('aug_ai_atlas_count', storageGet('aug_ai_atlas_count', 0) + 1);
+  }
 
   const typing = document.getElementById('val-typing');
   if (typing) typing.classList.add('show');
@@ -6617,9 +8708,19 @@ function valKeydown(e) {
 
 // ── AI Advisor ────────────────────────────────────────────────
 async function sendAdvisorMessage() {
+  dnaTrackEvent('ai_question');
   if (!state.isPaid) {
-    appendAdvisorMsg('sage', 'Sage is available to full-access members. Unlock all 50 states + DC, AI advisor, and more for just $97.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
-    return;
+    // ff_free_ai_messages: allow 2 free messages before gating
+    if (typeof ffEnabled === 'function' && ffEnabled('ff_free_ai_messages')) {
+      var sageCount = storageGet('aug_ai_sage_count', 0);
+      if (sageCount >= 2) {
+        showAiGateOverlay('advisor');
+        return;
+      }
+    } else {
+      appendAdvisorMsg('sage', 'Sage is available to full-access members. Unlock all 50 states + DC, AI advisor, and more for just $97.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
+      return;
+    }
   }
   if (state.advisorBusy) return;
   const input = document.getElementById('advisor-input');
@@ -6632,9 +8733,19 @@ async function sendAdvisorMessage() {
   const sendBtn = document.getElementById('advisor-send');
   if (sendBtn) sendBtn.disabled = true;
 
+  // Analytics: sage_conversation_start (first message only)
+  if (state.advisorHistory.length === 0) {
+    trackEvent('sage_conversation_start', { is_free_user: !state.isPaid });
+  }
+
   // Add user message
   appendAdvisorMsg('user', msg);
   state.advisorHistory.push({ role: 'user', content: msg });
+
+  // ff_free_ai_messages: increment Sage message count for free users
+  if (!state.isPaid && ffEnabled('ff_free_ai_messages')) {
+    storageSet('aug_ai_sage_count', storageGet('aug_ai_sage_count', 0) + 1);
+  }
 
   // Show typing
   const typing = document.getElementById('advisor-typing');
@@ -6986,6 +9097,260 @@ function toggleDebug() {
   window._updateExitText = updateExitText;
 })();
 
+// ═══════════════════════════════════════════════════════════
+//  LEGAL MODALS — Terms of Service + Privacy Policy
+// ═══════════════════════════════════════════════════════════
+var LEGAL_CONTENT = {
+  tos: {
+    en: '<h3>1. Acceptance of Terms</h3>' +
+      '<p>By accessing or using the Aurigen County Resource Directory ("Service"), you agree to be bound by these Terms of Service. If you do not agree, do not use the Service.</p>' +
+      '<h3>2. License to Use</h3>' +
+      '<p>We grant you a limited, non-exclusive, non-transferable, revocable license to access and use the Service for your personal, non-commercial research purposes. You may not redistribute, resell, or share your account credentials with others.</p>' +
+      '<h3>3. No Investment Advice</h3>' +
+      '<p><strong>The Service is an educational research tool only.</strong> Nothing in this directory constitutes investment, legal, tax, or financial advice. All data (interest rates, redemption periods, auction details, county links, investor scores) is provided for informational purposes. You must independently verify all information with official county and state sources before making any investment decisions. Aurigen Collective is not a licensed investment advisor, broker, or attorney.</p>' +
+      '<h3>4. Payment and Refund Policy</h3>' +
+      '<p>Paid access is a one-time purchase processed through Stripe. <strong>All sales are final.</strong> Due to the immediate delivery of digital content, refunds are not available. If you experience technical issues preventing access, contact support@theaurigen.com within 14 days of purchase for assistance.</p>' +
+      '<h3>5. Data Accuracy Disclaimer</h3>' +
+      '<p>Tax lien and tax deed laws change frequently. While we make reasonable efforts to keep data current, we do not guarantee the accuracy, completeness, or timeliness of any information. State laws, interest rates, redemption periods, and auction procedures may change without notice. Always verify with official sources.</p>' +
+      '<h3>6. Limitation of Liability</h3>' +
+      '<p>To the maximum extent permitted by law, Aurigen Collective and its owners, employees, and agents shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of or reliance on the Service, including but not limited to investment losses, missed opportunities, or inaccurate data.</p>' +
+      '<h3>7. Data Usage</h3>' +
+      '<p>We collect your email address to provide access to the Service and send occasional educational content. We use localStorage in your browser to remember preferences (language, saved states). See our Privacy Policy for full details.</p>' +
+      '<h3>8. Account Termination</h3>' +
+      '<p>We reserve the right to terminate or suspend access to the Service at our sole discretion, without notice, for conduct that we believe violates these Terms or is harmful to other users or the Service.</p>' +
+      '<h3>9. Changes to Terms</h3>' +
+      '<p>We may update these Terms at any time. Continued use of the Service after changes constitutes acceptance of the updated Terms.</p>' +
+      '<h3>10. Contact</h3>' +
+      '<p>Questions about these Terms? Email <strong>support@theaurigen.com</strong>.</p>' +
+      '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Last updated: March 2026</p>',
+    es: '<h3>1. Aceptacion de Terminos</h3>' +
+      '<p>Al acceder o utilizar el Directorio de Recursos por Condado de Aurigen ("Servicio"), usted acepta estos Terminos de Servicio. Si no esta de acuerdo, no utilice el Servicio.</p>' +
+      '<h3>2. Licencia de Uso</h3>' +
+      '<p>Le otorgamos una licencia limitada, no exclusiva, intransferible y revocable para acceder y utilizar el Servicio con fines de investigacion personal y no comercial. No puede redistribuir, revender ni compartir sus credenciales de cuenta con terceros.</p>' +
+      '<h3>3. Sin Asesoramiento de Inversion</h3>' +
+      '<p><strong>El Servicio es una herramienta de investigacion educativa unicamente.</strong> Nada en este directorio constituye asesoramiento de inversion, legal, fiscal o financiero. Todos los datos (tasas de interes, periodos de redencion, detalles de subastas, enlaces de condados, puntajes de inversor) se proporcionan solo con fines informativos. Usted debe verificar independientemente toda la informacion con fuentes oficiales del condado y del estado antes de tomar cualquier decision de inversion. Aurigen Collective no es un asesor de inversiones, corredor o abogado con licencia.</p>' +
+      '<h3>4. Politica de Pagos y Reembolsos</h3>' +
+      '<p>El acceso pago es una compra unica procesada a traves de Stripe. <strong>Todas las ventas son finales.</strong> Debido a la entrega inmediata de contenido digital, no se ofrecen reembolsos. Si experimenta problemas tecnicos que le impidan acceder, contacte a support@theaurigen.com dentro de los 14 dias posteriores a la compra para recibir asistencia.</p>' +
+      '<h3>5. Descargo de Responsabilidad sobre Precision de Datos</h3>' +
+      '<p>Las leyes de gravamenes y escrituras fiscales cambian frecuentemente. Aunque hacemos esfuerzos razonables para mantener los datos actualizados, no garantizamos la precision, integridad o actualidad de la informacion. Las leyes estatales, tasas de interes, periodos de redencion y procedimientos de subasta pueden cambiar sin previo aviso. Siempre verifique con fuentes oficiales.</p>' +
+      '<h3>6. Limitacion de Responsabilidad</h3>' +
+      '<p>En la maxima medida permitida por la ley, Aurigen Collective y sus propietarios, empleados y agentes no seran responsables de ningun dano directo, indirecto, incidental, consecuente o punitivo que surja de su uso o confianza en el Servicio, incluyendo pero no limitado a perdidas de inversion, oportunidades perdidas o datos inexactos.</p>' +
+      '<h3>7. Uso de Datos</h3>' +
+      '<p>Recopilamos su direccion de correo electronico para proporcionar acceso al Servicio y enviar contenido educativo ocasional. Utilizamos localStorage en su navegador para recordar preferencias (idioma, estados guardados). Consulte nuestra Politica de Privacidad para mas detalles.</p>' +
+      '<h3>8. Terminacion de Cuenta</h3>' +
+      '<p>Nos reservamos el derecho de terminar o suspender el acceso al Servicio a nuestra sola discrecion, sin previo aviso, por conducta que consideremos que viola estos Terminos o que es perjudicial para otros usuarios o el Servicio.</p>' +
+      '<h3>9. Cambios en los Terminos</h3>' +
+      '<p>Podemos actualizar estos Terminos en cualquier momento. El uso continuado del Servicio despues de los cambios constituye la aceptacion de los Terminos actualizados.</p>' +
+      '<h3>10. Contacto</h3>' +
+      '<p>Preguntas sobre estos Terminos? Escriba a <strong>support@theaurigen.com</strong>.</p>' +
+      '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Ultima actualizacion: Marzo 2026</p>'
+  },
+  privacy: {
+    en: '<h3>1. Information We Collect</h3>' +
+      '<p><strong>Email Address:</strong> Collected when you sign up for free access or make a purchase. Used to deliver the Service and send occasional educational content.</p>' +
+      '<p><strong>Payment Information:</strong> Processed securely by Stripe. We do not store your credit card number, CVV, or full billing details on our servers. Stripe handles all payment data under their own privacy policy.</p>' +
+      '<p><strong>Browser Storage (localStorage):</strong> We store preferences locally in your browser, including: language preference, saved states, access status, and session data. This data never leaves your device and is not transmitted to our servers.</p>' +
+      '<p><strong>Usage Data:</strong> We may collect anonymized usage data such as pages visited, features used, and general interaction patterns to improve the Service.</p>' +
+      '<h3>2. How We Use Your Information</h3>' +
+      '<ul>' +
+      '<li>To provide and maintain the Service</li>' +
+      '<li>To process your purchase via Stripe</li>' +
+      '<li>To send you educational content and product updates (you can unsubscribe at any time)</li>' +
+      '<li>To improve the Service based on usage patterns</li>' +
+      '</ul>' +
+      '<h3>3. Third-Party Services</h3>' +
+      '<p>We use the following third-party services that may process your data:</p>' +
+      '<ul>' +
+      "<li><strong>Stripe:</strong> Payment processing. Subject to <a href=\"https://stripe.com/privacy\" target=\"_blank\" style=\"color:var(--accent)\">Stripe's Privacy Policy</a>.</li>" +
+      "<li><strong>Netlify:</strong> Hosting and serverless functions. Subject to <a href=\"https://www.netlify.com/privacy/\" target=\"_blank\" style=\"color:var(--accent)\">Netlify's Privacy Policy</a>.</li>" +
+      '</ul>' +
+      '<h3>4. Data Retention</h3>' +
+      '<p>We retain your email address for as long as your account is active or as needed to provide the Service. You may request deletion of your data at any time by contacting us.</p>' +
+      '<h3>5. Your Rights</h3>' +
+      '<p>You have the right to:</p>' +
+      '<ul>' +
+      '<li>Access the personal data we hold about you</li>' +
+      '<li>Request correction of inaccurate data</li>' +
+      '<li>Request deletion of your data</li>' +
+      '<li>Unsubscribe from marketing emails at any time</li>' +
+      '<li>Clear localStorage data by clearing your browser data</li>' +
+      '</ul>' +
+      '<h3>6. Data Security</h3>' +
+      '<p>We implement reasonable security measures to protect your information. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.</p>' +
+      "<h3>7. Children's Privacy</h3>" +
+      '<p>The Service is not directed to individuals under 18. We do not knowingly collect personal information from children.</p>' +
+      '<h3>8. Changes to This Policy</h3>' +
+      '<p>We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on this page.</p>' +
+      '<h3>9. Contact Us</h3>' +
+      '<p>For privacy-related questions or to exercise your rights, email <strong>support@theaurigen.com</strong>.</p>' +
+      '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Last updated: March 2026</p>',
+    es: '<h3>1. Informacion que Recopilamos</h3>' +
+      '<p><strong>Direccion de Correo Electronico:</strong> Se recopila cuando se registra para acceso gratuito o realiza una compra. Se utiliza para proporcionar el Servicio y enviar contenido educativo ocasional.</p>' +
+      '<p><strong>Informacion de Pago:</strong> Procesada de forma segura por Stripe. No almacenamos su numero de tarjeta de credito, CVV o datos completos de facturacion en nuestros servidores. Stripe maneja todos los datos de pago bajo su propia politica de privacidad.</p>' +
+      '<p><strong>Almacenamiento del Navegador (localStorage):</strong> Almacenamos preferencias localmente en su navegador, incluyendo: preferencia de idioma, estados guardados, estado de acceso y datos de sesion. Estos datos nunca salen de su dispositivo y no se transmiten a nuestros servidores.</p>' +
+      '<p><strong>Datos de Uso:</strong> Podemos recopilar datos de uso anonimizados como paginas visitadas, funciones utilizadas y patrones de interaccion generales para mejorar el Servicio.</p>' +
+      '<h3>2. Como Usamos su Informacion</h3>' +
+      '<ul>' +
+      '<li>Para proporcionar y mantener el Servicio</li>' +
+      '<li>Para procesar su compra a traves de Stripe</li>' +
+      '<li>Para enviarle contenido educativo y actualizaciones del producto (puede cancelar la suscripcion en cualquier momento)</li>' +
+      '<li>Para mejorar el Servicio basado en patrones de uso</li>' +
+      '</ul>' +
+      '<h3>3. Servicios de Terceros</h3>' +
+      '<p>Utilizamos los siguientes servicios de terceros que pueden procesar sus datos:</p>' +
+      '<ul>' +
+      '<li><strong>Stripe:</strong> Procesamiento de pagos. Sujeto a la <a href="https://stripe.com/privacy" target="_blank" style="color:var(--accent)">Politica de Privacidad de Stripe</a>.</li>' +
+      '<li><strong>Netlify:</strong> Alojamiento y funciones sin servidor. Sujeto a la <a href="https://www.netlify.com/privacy/" target="_blank" style="color:var(--accent)">Politica de Privacidad de Netlify</a>.</li>' +
+      '</ul>' +
+      '<h3>4. Retencion de Datos</h3>' +
+      '<p>Retenemos su direccion de correo electronico mientras su cuenta este activa o sea necesario para proporcionar el Servicio. Puede solicitar la eliminacion de sus datos en cualquier momento contactandonos.</p>' +
+      '<h3>5. Sus Derechos</h3>' +
+      '<p>Usted tiene derecho a:</p>' +
+      '<ul>' +
+      '<li>Acceder a los datos personales que tenemos sobre usted</li>' +
+      '<li>Solicitar la correccion de datos inexactos</li>' +
+      '<li>Solicitar la eliminacion de sus datos</li>' +
+      '<li>Cancelar la suscripcion a correos de marketing en cualquier momento</li>' +
+      '<li>Borrar datos de localStorage limpiando los datos de su navegador</li>' +
+      '</ul>' +
+      '<h3>6. Seguridad de Datos</h3>' +
+      '<p>Implementamos medidas de seguridad razonables para proteger su informacion. Sin embargo, ningun metodo de transmision por Internet es 100% seguro y no podemos garantizar seguridad absoluta.</p>' +
+      '<h3>7. Privacidad de Menores</h3>' +
+      '<p>El Servicio no esta dirigido a menores de 18 anos. No recopilamos intencionalmente informacion personal de menores.</p>' +
+      '<h3>8. Cambios a Esta Politica</h3>' +
+      '<p>Podemos actualizar esta Politica de Privacidad periodicamente. Le notificaremos de cualquier cambio material publicando la nueva politica en esta pagina.</p>' +
+      '<h3>9. Contactenos</h3>' +
+      '<p>Para preguntas relacionadas con privacidad o para ejercer sus derechos, escriba a <strong>support@theaurigen.com</strong>.</p>' +
+      '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Ultima actualizacion: Marzo 2026</p>'
+  }
+};
+
+function openLegalModal(type) {
+  var modal = document.getElementById(type === 'tos' ? 'tos-modal' : 'privacy-modal');
+  if (!modal) return;
+  var lang = state && state.lang ? state.lang : 'en';
+  var titleEl = document.getElementById(type === 'tos' ? 'tos-modal-title' : 'privacy-modal-title');
+  var bodyEl = document.getElementById(type === 'tos' ? 'tos-modal-body' : 'privacy-modal-body');
+  if (titleEl) titleEl.textContent = type === 'tos' ? t('tosTitle') : t('privacyTitle');
+  if (bodyEl) bodyEl.innerHTML = LEGAL_CONTENT[type][lang] || LEGAL_CONTENT[type]['en'];
+  modal.classList.add('open');
+}
+
+function closeLegalModal(type) {
+  var modal = document.getElementById(type === 'tos' ? 'tos-modal' : 'privacy-modal');
+  if (modal) modal.classList.remove('open');
+}
+
+function updateLegalText() {
+  var consent = document.getElementById('gate-email-consent');
+  if (consent) consent.innerHTML = t('gateEmailConsent');
+  var fTos = document.getElementById('footer-tos-link');
+  if (fTos) fTos.textContent = t('footerTos');
+  var fPriv = document.getElementById('footer-privacy-link');
+  if (fPriv) fPriv.textContent = t('footerPrivacy');
+}
+
+// ═══════════════════════════════════════════════════════════
+//  SMART UX — Feature Implementations
+// ═══════════════════════════════════════════════════════════
+
+// ── 1. Free AI Messages Gate Overlay ──────────────────────
+function showAiGateOverlay(viewId) {
+  // viewId: 'val' for Atlas, 'advisor' for Sage
+  var containerId = viewId === 'val' ? 'val-messages' : 'advisor-messages';
+  var container = document.getElementById(containerId);
+  if (!container || !container.parentElement) return;
+  // Don't add duplicate overlays
+  var existing = container.parentElement.querySelector('.ai-gate-overlay');
+  if (existing) return;
+  var overlay = document.createElement('div');
+  overlay.className = 'ai-gate-overlay';
+  overlay.innerHTML =
+    '<div class="ai-gate-icon">\u{1F512}</div>' +
+    '<div class="ai-gate-title">' + t('aiGateTitle') + '</div>' +
+    '<div class="ai-gate-desc">' + t('aiGateDesc') + '</div>' +
+    '<a href="' + STRIPE_URL + '" target="_blank" class="ai-gate-btn">' + t('aiGateCta') + '</a>';
+  container.parentElement.style.position = 'relative';
+  container.parentElement.appendChild(overlay);
+}
+
+// ── 2. Return Visit Recognition ───────────────────────────
+function showReturnVisitToast() {
+  if (!ffEnabled('ff_return_visit')) return;
+  var lastState = storageGet('aug_last_viewed_state', null);
+  if (!lastState) return;
+  var stateObj = (STATES || []).find(function(s) { return s.id === lastState; });
+  if (!stateObj) return;
+  var toast = document.getElementById('return-toast');
+  var msgEl = document.getElementById('return-toast-msg');
+  var goBtn = document.getElementById('return-toast-go');
+  if (!toast || !msgEl || !goBtn) return;
+  msgEl.innerHTML = t('returnVisitMsg') + ' <strong>' + stateObj.name + '</strong>. ' + t('returnVisitContinue');
+  goBtn.textContent = t('returnVisitGo');
+  toast.classList.add('show');
+  goBtn.onclick = function() {
+    toast.classList.remove('show');
+    openState(lastState);
+  };
+  var closeBtn = document.getElementById('return-toast-close');
+  if (closeBtn) {
+    closeBtn.onclick = function() { toast.classList.remove('show'); };
+  }
+  // Auto-dismiss after 6 seconds
+  setTimeout(function() { toast.classList.remove('show'); }, 6000);
+}
+
+// ── 3. Three-Step Onboarding Flow ─────────────────────────
+function showOnboarding() {
+  if (!ffEnabled('ff_premium_onboarding')) return;
+  // Only show once
+  var done = storageGet('aug_onboarding_complete', false);
+  if (done) return;
+  var overlay = document.getElementById('onboard-overlay');
+  if (!overlay) return;
+  var steps = [
+    { icon: '\u{1F5FA}\uFE0F', text: t('onboardStep1') },
+    { icon: '\u{1F4CA}', text: t('onboardStep2') },
+    { icon: '\u{1F916}', text: t('onboardStep3') }
+  ];
+  var currentStep = 0;
+  function renderStep() {
+    var s = steps[currentStep];
+    var numEl = document.getElementById('onboard-step-num');
+    var iconEl = document.getElementById('onboard-step-icon');
+    var textEl = document.getElementById('onboard-step-text');
+    var dotsEl = document.getElementById('onboard-dots');
+    var btnEl = document.getElementById('onboard-btn');
+    if (numEl) numEl.textContent = (currentStep + 1) + ' / ' + steps.length;
+    if (iconEl) iconEl.textContent = s.icon;
+    if (textEl) textEl.textContent = s.text;
+    if (dotsEl) {
+      dotsEl.innerHTML = '';
+      for (var i = 0; i < steps.length; i++) {
+        var dot = document.createElement('div');
+        dot.className = 'onboard-dot' + (i === currentStep ? ' active' : '');
+        dotsEl.appendChild(dot);
+      }
+    }
+    if (btnEl) {
+      var isLast = currentStep === steps.length - 1;
+      btnEl.textContent = isLast ? t('onboardStart') : t('onboardNext');
+      btnEl.onclick = function() {
+        if (isLast) {
+          overlay.classList.remove('active');
+          storageSet('aug_onboarding_complete', true);
+        } else {
+          currentStep++;
+          renderStep();
+        }
+      };
+    }
+  }
+  renderStep();
+  // Small delay so the app renders first
+  setTimeout(function() { overlay.classList.add('active'); }, 600);
+}
+
 function updateDebug() {
   const titleEl = document.querySelector('#debug-panel > div:first-child');
   if (titleEl) titleEl.innerHTML = '\u2699 ' + t('debugTitle');
@@ -7002,6 +9367,1177 @@ function updateDebug() {
     ${t('debugLang')}: ${state.lang}
   `;
 }
+
+// ═══════════════════════════════════════════════════════════
+//  INVESTOR DNA — Quiz, Radar Chart, Recommendations, Pathway
+//  Feature flags: ff_investor_dna, ff_guided_pathway
+// ═══════════════════════════════════════════════════════════
+
+// ── Behavior tracking ─────────────────────────────────────────
+const DNA_TRACK_KEY = 'aug_dna_tracking';
+
+function dnaTrackEvent(eventType, data) {
+  try {
+    const tracking = storageGet(DNA_TRACK_KEY, {
+      statesViewed: [], stateTypesViewed: {}, analyzerUses: 0,
+      aiQuestions: 0, sessionStart: 0, sessionSeconds: 0, lockedClicks: 0
+    });
+    if (eventType === 'state_view') {
+      if (!tracking.statesViewed.includes(data.id)) tracking.statesViewed.push(data.id);
+      tracking.stateTypesViewed[data.type] = (tracking.stateTypesViewed[data.type] || 0) + 1;
+    } else if (eventType === 'analyzer_use') {
+      tracking.analyzerUses = (tracking.analyzerUses || 0) + 1;
+    } else if (eventType === 'ai_question') {
+      tracking.aiQuestions = (tracking.aiQuestions || 0) + 1;
+    } else if (eventType === 'locked_click') {
+      tracking.lockedClicks = (tracking.lockedClicks || 0) + 1;
+    } else if (eventType === 'session_tick') {
+      tracking.sessionSeconds = (tracking.sessionSeconds || 0) + 30;
+    }
+    storageSet(DNA_TRACK_KEY, tracking);
+  } catch(e) {}
+}
+
+// Session timer — every 30 seconds
+setInterval(function() { dnaTrackEvent('session_tick'); }, 30000);
+
+// ── DNA Quiz ──────────────────────────────────────────────────
+const DNA_QUIZ_QUESTIONS = [
+  { key: 'dnaQ1', options: ['dnaQ1a', 'dnaQ1b', 'dnaQ1c', 'dnaQ1d'] },
+  { key: 'dnaQ2', options: ['dnaQ2a', 'dnaQ2b', 'dnaQ2c', 'dnaQ2d'] },
+  { key: 'dnaQ3', options: ['dnaQ3a', 'dnaQ3b', 'dnaQ3c'] },
+  { key: 'dnaQ4', options: ['dnaQ4a', 'dnaQ4b', 'dnaQ4c'] },
+  { key: 'dnaQ5', options: ['dnaQ5a', 'dnaQ5b', 'dnaQ5c'] }
+];
+
+function dnaInit() {
+  // Restore saved state
+  const saved = storageGet('aug_dna_profile', null);
+  if (saved && saved.completed) {
+    state.dnaAnswers = saved.answers || [null, null, null, null, null];
+    state.dnaCompleted = true;
+    state.dnaRadar = saved.radar || state.dnaRadar;
+  }
+  // Restore pathway state
+  const pw = storageGet('aug_dna_pathway', null);
+  if (pw) {
+    state.pathwayStep = pw.step || 0;
+    state.pathwaySelectedState = pw.selectedState || null;
+  }
+  dnaRenderProfile();
+}
+
+function dnaRenderProfile() {
+  const quizArea = document.getElementById('dna-quiz-area');
+  const radarArea = document.getElementById('dna-radar-area');
+  if (!quizArea || !radarArea) return;
+
+  // Update tab labels
+  const tabs = document.querySelectorAll('#view-dna .dna-tab');
+  if (tabs.length >= 2) {
+    tabs[0].textContent = t('dnaTabProfile');
+    tabs[1].textContent = t('dnaTabPathway');
+  }
+
+  if (state.dnaCompleted) {
+    quizArea.style.display = 'none';
+    radarArea.style.display = 'block';
+    // Recalculate radar with behavior data
+    dnaUpdateRadarFromBehavior();
+    dnaDrawRadar();
+    dnaRenderTopStates();
+    // Update retake button and title text
+    const retakeBtn = radarArea.querySelector('.dna-retake-btn');
+    if (retakeBtn) retakeBtn.textContent = t('dnaRetake');
+    const topTitle = document.getElementById('dna-top-title');
+    if (topTitle) topTitle.textContent = t('dnaTopStates');
+  } else {
+    quizArea.style.display = 'block';
+    radarArea.style.display = 'none';
+    dnaRenderQuiz();
+  }
+}
+
+function dnaRenderQuiz() {
+  const container = document.getElementById('dna-quiz-area');
+  if (!container) return;
+
+  const step = state.dnaQuizStep;
+  const q = DNA_QUIZ_QUESTIONS[step];
+
+  // Progress dots
+  let dots = '';
+  for (let i = 0; i < 5; i++) {
+    const cls = i < step ? 'dna-quiz-dot done' : (i === step ? 'dna-quiz-dot active' : 'dna-quiz-dot');
+    dots += '<div class="' + cls + '"></div>';
+  }
+
+  // Options
+  let opts = '';
+  q.options.forEach(function(optKey, idx) {
+    const sel = state.dnaAnswers[step] === idx ? ' selected' : '';
+    opts += '<button class="dna-option' + sel + '" onclick="dnaSelectOption(' + step + ',' + idx + ')">' + t(optKey) + '</button>';
+  });
+
+  const isFirst = step === 0;
+  const isLast = step === 4;
+  const hasAnswer = state.dnaAnswers[step] !== null;
+
+  container.innerHTML = '<div class="dna-quiz-container">' +
+    '<div class="dna-quiz-title">' + t('dnaQuizTitle') + '</div>' +
+    '<div class="dna-quiz-sub">' + t('dnaQuizSub') + '</div>' +
+    '<div class="dna-quiz-progress">' + dots + '</div>' +
+    '<div class="dna-question active">' +
+    '<div class="dna-question-text">' + t(q.key) + '</div>' +
+    '<div class="dna-options">' + opts + '</div>' +
+    '</div>' +
+    '<div class="dna-quiz-nav">' +
+    (isFirst ? '<div></div>' : '<button class="dna-quiz-btn secondary" onclick="dnaQuizBack()">' + t('dnaQuizBack') + '</button>') +
+    (isLast
+      ? '<button class="dna-quiz-btn primary" onclick="dnaQuizFinish()"' + (hasAnswer ? '' : ' disabled') + '>' + t('dnaQuizFinish') + '</button>'
+      : '<button class="dna-quiz-btn primary" onclick="dnaQuizNext()"' + (hasAnswer ? '' : ' disabled') + '>' + t('dnaQuizNext') + '</button>') +
+    '</div></div>';
+}
+
+function dnaSelectOption(qIdx, optIdx) {
+  state.dnaAnswers[qIdx] = optIdx;
+  dnaRenderQuiz();
+}
+
+function dnaQuizNext() {
+  if (state.dnaAnswers[state.dnaQuizStep] === null) return;
+  if (state.dnaQuizStep < 4) {
+    state.dnaQuizStep++;
+    dnaRenderQuiz();
+  }
+}
+
+function dnaQuizBack() {
+  if (state.dnaQuizStep > 0) {
+    state.dnaQuizStep--;
+    dnaRenderQuiz();
+  }
+}
+
+function dnaQuizFinish() {
+  if (state.dnaAnswers.some(function(a) { return a === null; })) return;
+  state.dnaCompleted = true;
+  dnaCalculateRadar();
+  dnaSaveProfile();
+  dnaRenderProfile();
+}
+
+function dnaRetakeQuiz() {
+  state.dnaCompleted = false;
+  state.dnaQuizStep = 0;
+  state.dnaAnswers = [null, null, null, null, null];
+  state.dnaRadar = { budget: 0, experience: 0, risk: 0, time: 0, diversification: 0, activity: 0 };
+  storageSet('aug_dna_profile', null);
+  dnaRenderProfile();
+}
+
+// ── Radar calculation from quiz answers ───────────────────────
+function dnaCalculateRadar() {
+  const a = state.dnaAnswers;
+  // Q1 budget: 0=under5k→25, 1=5-25k→50, 2=25-100k→75, 3=100k+→100
+  const budgetMap = [25, 50, 75, 100];
+  // Q2 experience: 0=new→15, 1=research→40, 2=invested→70, 3=experienced→100
+  const expMap = [15, 40, 70, 100];
+  // Q3 risk: 0=conservative→25, 1=moderate→60, 2=aggressive→100
+  const riskMap = [25, 60, 100];
+  // Q4 time: 0=quick→30, 1=medium→60, 2=long→90
+  const timeMap = [30, 60, 90];
+
+  state.dnaRadar.budget = budgetMap[a[0]] || 50;
+  state.dnaRadar.experience = expMap[a[1]] || 40;
+  state.dnaRadar.risk = riskMap[a[2]] || 60;
+  state.dnaRadar.time = timeMap[a[3]] || 60;
+  // Diversification and activity start at base, adjusted by behavior
+  state.dnaRadar.diversification = 30;
+  state.dnaRadar.activity = 30;
+}
+
+function dnaUpdateRadarFromBehavior() {
+  const tracking = storageGet(DNA_TRACK_KEY, {
+    statesViewed: [], analyzerUses: 0, aiQuestions: 0,
+    sessionSeconds: 0, lockedClicks: 0
+  });
+  // Diversification: more states viewed → higher
+  const viewCount = (tracking.statesViewed || []).length;
+  state.dnaRadar.diversification = Math.min(100, 30 + viewCount * 8);
+  // Activity: analyzer + AI usage
+  const activityScore = (tracking.analyzerUses || 0) * 10 + (tracking.aiQuestions || 0) * 5;
+  state.dnaRadar.activity = Math.min(100, 30 + activityScore);
+  // Budget ambition: locked clicks suggest higher aspirations
+  if ((tracking.lockedClicks || 0) > 3) {
+    state.dnaRadar.budget = Math.min(100, state.dnaRadar.budget + 15);
+  }
+}
+
+function dnaSaveProfile() {
+  storageSet('aug_dna_profile', {
+    completed: state.dnaCompleted,
+    answers: state.dnaAnswers,
+    radar: state.dnaRadar
+  });
+}
+
+// ── D3 Radar Chart ────────────────────────────────────────────
+function dnaDrawRadar() {
+  const container = document.getElementById('dna-radar-chart');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const size = 300;
+  const cx = size / 2;
+  const cy = size / 2;
+  const radius = 110;
+  const levels = 5;
+
+  const axes = [
+    { key: 'budget', label: t('dnaRadarBudget') },
+    { key: 'experience', label: t('dnaRadarExperience') },
+    { key: 'risk', label: t('dnaRadarRisk') },
+    { key: 'time', label: t('dnaRadarTime') },
+    { key: 'diversification', label: t('dnaRadarDiversification') },
+    { key: 'activity', label: t('dnaRadarActivity') }
+  ];
+
+  const angleSlice = (Math.PI * 2) / axes.length;
+
+  const svg = d3.select(container)
+    .append('svg')
+    .attr('viewBox', '0 0 ' + size + ' ' + size)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+
+  const g = svg.append('g').attr('transform', 'translate(' + cx + ',' + cy + ')');
+
+  // Grid circles
+  for (let lvl = 1; lvl <= levels; lvl++) {
+    const r = (radius / levels) * lvl;
+    g.append('circle')
+      .attr('class', 'dna-radar-grid')
+      .attr('r', r)
+      .style('fill', 'none')
+      .style('stroke', 'var(--border)')
+      .style('stroke-width', 1);
+  }
+
+  // Axis lines
+  axes.forEach(function(ax, i) {
+    const angle = angleSlice * i - Math.PI / 2;
+    g.append('line')
+      .attr('class', 'dna-radar-grid')
+      .attr('x1', 0).attr('y1', 0)
+      .attr('x2', radius * Math.cos(angle))
+      .attr('y2', radius * Math.sin(angle))
+      .style('stroke', 'var(--border)')
+      .style('stroke-width', 1);
+  });
+
+  // Data area
+  const dataPoints = axes.map(function(ax, i) {
+    const val = (state.dnaRadar[ax.key] || 0) / 100;
+    const angle = angleSlice * i - Math.PI / 2;
+    return {
+      x: radius * val * Math.cos(angle),
+      y: radius * val * Math.sin(angle)
+    };
+  });
+
+  const lineGen = d3.line()
+    .x(function(d) { return d.x; })
+    .y(function(d) { return d.y; })
+    .curve(d3.curveLinearClosed);
+
+  // Animated area
+  const areaPath = g.append('path')
+    .datum(dataPoints)
+    .attr('class', 'dna-radar-area')
+    .attr('d', lineGen(dataPoints.map(function() { return { x: 0, y: 0 }; })));
+
+  areaPath.transition()
+    .duration(800)
+    .ease(d3.easeCubicOut)
+    .attr('d', lineGen(dataPoints));
+
+  // Points
+  dataPoints.forEach(function(pt, i) {
+    g.append('circle')
+      .attr('class', 'dna-radar-point')
+      .attr('r', 4)
+      .attr('cx', 0).attr('cy', 0)
+      .transition()
+      .duration(800)
+      .ease(d3.easeCubicOut)
+      .attr('cx', pt.x)
+      .attr('cy', pt.y);
+  });
+
+  // Labels
+  axes.forEach(function(ax, i) {
+    const angle = angleSlice * i - Math.PI / 2;
+    const labelR = radius + 22;
+    const lx = labelR * Math.cos(angle);
+    const ly = labelR * Math.sin(angle);
+    const anchor = Math.abs(lx) < 5 ? 'middle' : (lx > 0 ? 'start' : 'end');
+
+    g.append('text')
+      .attr('class', 'dna-radar-label')
+      .attr('x', lx)
+      .attr('y', ly + 3)
+      .attr('text-anchor', anchor)
+      .text(ax.label);
+  });
+}
+
+// ── Recommended States ────────────────────────────────────────
+function dnaGetMatchedStates(maxCount) {
+  if (!STATES || STATES.length === 0) return [];
+  const radar = state.dnaRadar;
+  const a = state.dnaAnswers;
+
+  // Q5 preference: 0=liens, 1=deeds, 2=both
+  const pref = a[4];
+
+  const scored = STATES.map(function(s) {
+    let matchScore = 0;
+
+    // Type match (weight: 30)
+    if (pref === 0 && (s.type === 'lien' || s.type === 'hybrid')) matchScore += 30;
+    else if (pref === 1 && (s.type === 'deed' || s.type === 'redeemable deed')) matchScore += 30;
+    else if (pref === 2) matchScore += 20;
+    else matchScore += 10;
+
+    // Beginner friendliness vs experience (weight: 25)
+    if (radar.experience < 40) {
+      matchScore += s.beginnerFriendly ? 25 : 5;
+    } else if (radar.experience < 70) {
+      matchScore += s.beginnerFriendly ? 15 : 18;
+    } else {
+      matchScore += s.beginnerFriendly ? 10 : 25;
+    }
+
+    // Score quality (weight: 20)
+    matchScore += Math.min(20, Math.round(s.score / 5));
+
+    // Risk alignment (weight: 15)
+    if (radar.risk <= 30) {
+      matchScore += s.score >= 60 ? 15 : 5;
+    } else if (radar.risk <= 70) {
+      matchScore += s.score >= 40 ? 12 : 8;
+    } else {
+      matchScore += 10; // aggressive = any state OK
+    }
+
+    // Budget (weight: 10) — states with OTC available may be lower entry
+    if (radar.budget <= 30 && s.otc && s.otc.available) matchScore += 10;
+    else if (radar.budget > 60) matchScore += 8;
+    else matchScore += 5;
+
+    return { state: s, score: matchScore };
+  });
+
+  scored.sort(function(a, b) { return b.score - a.score; });
+  return scored.slice(0, maxCount || 3);
+}
+
+function dnaRenderTopStates() {
+  const container = document.getElementById('dna-top-states');
+  if (!container) return;
+
+  if (!state.dnaCompleted) {
+    container.innerHTML = '<div class="dna-empty-msg">' + t('dnaTopStatesNone') + '</div>';
+    return;
+  }
+
+  const matched = dnaGetMatchedStates(3);
+  if (matched.length === 0) {
+    container.innerHTML = '<div class="dna-empty-msg">' + t('dnaTopStatesNone') + '</div>';
+    return;
+  }
+
+  container.innerHTML = matched.map(function(m) {
+    const s = m.state;
+    const pct = Math.round(m.score);
+    const isFree = FREE_STATES.has(s.id) || state.isPaid;
+    const clickAction = isFree ? "openState('" + s.id + "')" : "openPaywall('" + s.id + "')";
+    const tLabel = typeShortLabel(s.type);
+    return '<div class="dna-state-card" onclick="' + clickAction + '">' +
+      '<div class="dna-state-card-info">' +
+      '<div class="dna-state-card-name">' + s.name + '</div>' +
+      '<div class="dna-state-card-meta">' + tLabel + ' · ' + s.rate + '</div>' +
+      '</div>' +
+      '<div class="dna-state-card-match">' + pct + '% ' + t('dnaMatchScore') + '</div>' +
+      '</div>';
+  }).join('');
+}
+
+// ── DNA Tab Switch ────────────────────────────────────────────
+function switchDnaTab(panel) {
+  const panels = document.querySelectorAll('#view-dna .dna-panel');
+  const tabs = document.querySelectorAll('#view-dna .dna-tab');
+  panels.forEach(function(p) { p.classList.remove('active'); });
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+
+  if (panel === 'pathway') {
+    document.getElementById('dna-pathway-panel').classList.add('active');
+    tabs[1].classList.add('active');
+    pathwayRender();
+  } else {
+    document.getElementById('dna-profile-panel').classList.add('active');
+    tabs[0].classList.add('active');
+    dnaRenderProfile();
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  GUIDED PATHWAY — 5-Step "First Deal" Flow
+// ═══════════════════════════════════════════════════════════
+
+function pathwaySaveProgress() {
+  storageSet('aug_dna_pathway', {
+    step: state.pathwayStep,
+    selectedState: state.pathwaySelectedState
+  });
+}
+
+function pathwayRender() {
+  pathwayRenderProgress();
+  pathwayRenderStep();
+}
+
+function pathwayRenderProgress() {
+  const container = document.getElementById('pathway-progress');
+  if (!container) return;
+  const labels = [t('pathwayStep1'), t('pathwayStep2'), t('pathwayStep3'), t('pathwayStep4'), t('pathwayStep5')];
+  let html = '';
+  for (let i = 0; i < 5; i++) {
+    const cls = i < state.pathwayStep ? 'done' : (i === state.pathwayStep ? 'active' : '');
+    html += '<div class="pathway-step-indicator ' + cls + '">' + (i + 1) + '</div>';
+    if (i < 4) {
+      const lineCls = i < state.pathwayStep ? 'pathway-step-line done' : 'pathway-step-line';
+      html += '<div class="' + lineCls + '"></div>';
+    }
+  }
+  container.innerHTML = html;
+}
+
+function pathwayRenderStep() {
+  const container = document.getElementById('pathway-steps-container');
+  if (!container) return;
+
+  const step = state.pathwayStep;
+
+  if (step === 0) {
+    // Step 1: Profile quiz or summary
+    if (state.dnaCompleted) {
+      container.innerHTML = '<div class="pathway-step-content active">' +
+        '<div class="pathway-step-title">' + t('pathwayStep1') + '</div>' +
+        '<div class="pathway-step-sub">' + t('dnaViewSub') + '</div>' +
+        '<div class="dna-radar-wrap" id="pathway-radar-chart"></div>' +
+        '<div class="pathway-nav"><div></div>' +
+        '<button class="pathway-nav-btn primary" onclick="pathwayNext()">' + t('pathwayNext') + '</button>' +
+        '</div></div>';
+      // Draw radar in pathway context
+      setTimeout(function() {
+        const prc = document.getElementById('pathway-radar-chart');
+        if (prc) {
+          prc.innerHTML = '';
+          // Temporarily swap container for drawing
+          const origContainer = document.getElementById('dna-radar-chart');
+          const origHTML = origContainer ? origContainer.innerHTML : '';
+          dnaDrawRadarInto(prc);
+        }
+      }, 50);
+    } else {
+      container.innerHTML = '<div class="pathway-step-content active">' +
+        '<div class="pathway-step-title">' + t('pathwayStep1') + '</div>' +
+        '<div class="pathway-step-sub">' + t('dnaQuizSub') + '</div>' +
+        '<div id="pathway-quiz-inline"></div></div>';
+      // Render quiz inline inside pathway
+      setTimeout(function() {
+        const inlineQuiz = document.getElementById('pathway-quiz-inline');
+        if (inlineQuiz) {
+          inlineQuiz.innerHTML = '<div class="dna-empty-msg">' + t('dnaTopStatesNone') +
+            '<br><br><button class="dna-quiz-btn primary" onclick="switchDnaTab(\'profile\')" style="margin-top:8px;">' +
+            t('dnaQuizFinish').replace('See My Profile', t('dnaQuizFinish')) + '</button></div>';
+        }
+      }, 50);
+    }
+
+  } else if (step === 1) {
+    // Step 2: Matched states
+    const matched = dnaGetMatchedStates(5);
+    let stateCards = '';
+    matched.forEach(function(m) {
+      const s = m.state;
+      const sel = state.pathwaySelectedState === s.id ? ' selected' : '';
+      const tLabel = typeShortLabel(s.type);
+      stateCards += '<div class="pathway-state-pick-item' + sel + '" onclick="pathwaySelectState(\'' + s.id + '\')">' +
+        '<div><div style="font-weight:600;font-size:14px;">' + s.name + '</div>' +
+        '<div style="font-size:11px;color:var(--text-dim);">' + tLabel + ' · ' + s.rate + '</div></div>' +
+        '<div class="dna-state-card-match">' + Math.round(m.score) + '% ' + t('dnaMatchScore') + '</div></div>';
+    });
+
+    container.innerHTML = '<div class="pathway-step-content active">' +
+      '<div class="pathway-step-title">' + t('pathwayMatchedTitle') + '</div>' +
+      '<div class="pathway-step-sub">' + t('pathwayMatchedSub') + ' ' + t('pathwayPickState') + '</div>' +
+      '<div class="pathway-state-pick">' + stateCards + '</div>' +
+      '<div class="pathway-nav">' +
+      '<button class="pathway-nav-btn secondary" onclick="pathwayBack()">' + t('pathwayBack') + '</button>' +
+      '<button class="pathway-nav-btn primary" onclick="pathwayNext()"' +
+      (state.pathwaySelectedState ? '' : ' disabled') + '>' + t('pathwayNext') + '</button>' +
+      '</div></div>';
+
+  } else if (step === 2) {
+    // Step 3: Deep dive into selected state
+    const s = (STATES || []).find(function(x) { return x.id === state.pathwaySelectedState; });
+    if (!s) { pathwayBack(); return; }
+
+    const tLabel = typeFullLabel(s.type);
+    const scoreColor = s.score >= 70 ? 'var(--green)' : s.score >= 45 ? 'var(--accent)' : 'var(--red)';
+
+    let risksHtml = '';
+    if (s.risks && s.risks.length) {
+      risksHtml = '<div class="pathway-detail-card"><h3>Risks</h3><ul>' +
+        s.risks.map(function(r) { return '<li>' + r + '</li>'; }).join('') +
+        '</ul></div>';
+    }
+
+    let tipsHtml = s.beginnerTip
+      ? '<div class="pathway-detail-card"><h3>Beginner Tip</h3><p>' + s.beginnerTip + '</p></div>'
+      : '';
+
+    container.innerHTML = '<div class="pathway-step-content active">' +
+      '<div class="pathway-step-title">' + s.name + ' — ' + t('pathwayDeepDiveTitle') + '</div>' +
+      '<div class="pathway-step-sub">' + t('pathwayDeepDiveSub') + '</div>' +
+      '<div class="pathway-detail-card">' +
+      '<h3>' + tLabel + '</h3>' +
+      '<p style="margin-bottom:8px;">' + s.note + '</p>' +
+      '<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;">' +
+      '<div><span style="color:var(--text-dim);font-size:11px;">Rate</span><br><strong>' + s.rate + '</strong></div>' +
+      '<div><span style="color:var(--text-dim);font-size:11px;">Redemption</span><br><strong>' + s.redemption + '</strong></div>' +
+      '<div><span style="color:var(--text-dim);font-size:11px;">Score</span><br><strong style="color:' + scoreColor + ';">' + s.score + '/100</strong></div>' +
+      '</div></div>' +
+      risksHtml + tipsHtml +
+      '<div class="pathway-nav">' +
+      '<button class="pathway-nav-btn secondary" onclick="pathwayBack()">' + t('pathwayBack') + '</button>' +
+      '<button class="pathway-nav-btn primary" onclick="pathwayNext()">' + t('pathwayNext') + '</button>' +
+      '</div></div>';
+
+  } else if (step === 3) {
+    // Step 4: Run the numbers — mini analyzer
+    const s = (STATES || []).find(function(x) { return x.id === state.pathwaySelectedState; });
+    if (!s) { pathwayBack(); return; }
+
+    // Parse rate to get a number
+    let rateNum = 0;
+    const rateMatch = (s.rate || '').match(/([\d.]+)/);
+    if (rateMatch) rateNum = parseFloat(rateMatch[1]);
+
+    // Sample deal based on budget
+    const budgetSamples = [3000, 10000, 50000, 100000];
+    const sampleAmount = budgetSamples[state.dnaAnswers[0]] || 10000;
+    const holdMonths = 12;
+    const interest = Math.round(sampleAmount * (rateNum / 100) * (holdMonths / 12));
+    const totalReturn = sampleAmount + interest;
+    const roi = sampleAmount > 0 ? ((interest / sampleAmount) * 100).toFixed(1) : '0.0';
+
+    container.innerHTML = '<div class="pathway-step-content active">' +
+      '<div class="pathway-step-title">' + t('pathwayAnalyzerTitle') + ' — ' + s.name + '</div>' +
+      '<div class="pathway-step-sub">' + t('pathwayAnalyzerSub') + '</div>' +
+      '<div class="pathway-analyzer">' +
+      '<div class="pathway-analyzer-row"><span class="label">Investment Amount</span><span class="value">$' + sampleAmount.toLocaleString() + '</span></div>' +
+      '<div class="pathway-analyzer-row"><span class="label">Interest Rate</span><span class="value">' + rateNum + '%</span></div>' +
+      '<div class="pathway-analyzer-row"><span class="label">Hold Period</span><span class="value">' + holdMonths + ' months</span></div>' +
+      '<div class="pathway-analyzer-row"><span class="label">Interest Earned</span><span class="value" style="color:var(--green);">$' + interest.toLocaleString() + '</span></div>' +
+      '<div class="pathway-analyzer-row"><span class="label">Total Return</span><span class="value">$' + totalReturn.toLocaleString() + '</span></div>' +
+      '<div class="pathway-analyzer-row"><span class="label">ROI</span><span class="value" style="color:var(--green);">' + roi + '%</span></div>' +
+      '</div>' +
+      '<div style="font-size:11px;color:var(--text-muted);margin-top:12px;line-height:1.5;">Educational estimate only. Not financial advice. Verify with official county sources.</div>' +
+      '<div class="pathway-nav">' +
+      '<button class="pathway-nav-btn secondary" onclick="pathwayBack()">' + t('pathwayBack') + '</button>' +
+      '<button class="pathway-nav-btn primary" onclick="pathwayNext()">' + t('pathwayNext') + '</button>' +
+      '</div></div>';
+
+  } else if (step === 4) {
+    // Step 5: Take action
+    const s = (STATES || []).find(function(x) { return x.id === state.pathwaySelectedState; });
+    if (!s) { pathwayBack(); return; }
+
+    let auctionHtml = '';
+    if (s.auctionSignup) {
+      let stepsHtml = '';
+      if (s.auctionSignup.steps && s.auctionSignup.steps.length) {
+        stepsHtml = '<ol>' + s.auctionSignup.steps.map(function(st) { return '<li>' + st + '</li>'; }).join('') + '</ol>';
+      }
+      auctionHtml = '<div class="pathway-action-card">' +
+        '<h3>' + t('pathwayAuctionSteps') + '</h3>' +
+        '<p style="font-size:12px;color:var(--text-dim);margin-bottom:8px;">' + (s.auctionSignup.platform || '') + '</p>' +
+        stepsHtml +
+        (s.auctionSignup.depositInfo ? '<p style="font-size:12px;color:var(--text-dim);margin-top:8px;">' + s.auctionSignup.depositInfo + '</p>' : '') +
+        (s.auctionSignup.directLink ? '<a href="' + s.auctionSignup.directLink + '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:12px;color:var(--accent);">' + s.auctionSignup.directLink + '</a>' : '') +
+        '</div>';
+    }
+
+    container.innerHTML = '<div class="pathway-step-content active">' +
+      '<div class="pathway-step-title">' + t('pathwayActionTitle') + ' — ' + s.name + '</div>' +
+      '<div class="pathway-step-sub">' + t('pathwayActionSub') + '</div>' +
+      auctionHtml +
+      '<a href="' + BOOKING_URL + '" target="_blank" rel="noopener" class="pathway-book-cta">' + t('pathwayBookCall') + '</a>' +
+      '<div class="pathway-book-sub">' + t('pathwayBookCallSub') + '</div>' +
+      '<div class="pathway-complete-msg" style="margin-top:20px;">' +
+      '<div class="check" style="color:var(--green);">&#10003;</div>' +
+      '<p>' + t('pathwayComplete') + '</p>' +
+      '<button class="dna-retake-btn" style="margin-top:12px;" onclick="pathwayRestart()">' + t('pathwayRestart') + '</button>' +
+      '</div>' +
+      '<div class="pathway-nav">' +
+      '<button class="pathway-nav-btn secondary" onclick="pathwayBack()">' + t('pathwayBack') + '</button>' +
+      '<div></div>' +
+      '</div></div>';
+  }
+}
+
+function pathwaySelectState(id) {
+  state.pathwaySelectedState = id;
+  pathwaySaveProgress();
+  pathwayRenderStep();
+}
+
+function pathwayNext() {
+  if (state.pathwayStep === 0 && !state.dnaCompleted) return;
+  if (state.pathwayStep === 1 && !state.pathwaySelectedState) return;
+  if (state.pathwayStep < 4) {
+    state.pathwayStep++;
+    pathwaySaveProgress();
+    pathwayRender();
+  }
+}
+
+function pathwayBack() {
+  if (state.pathwayStep > 0) {
+    state.pathwayStep--;
+    pathwaySaveProgress();
+    pathwayRender();
+  }
+}
+
+function pathwayRestart() {
+  state.pathwayStep = 0;
+  state.pathwaySelectedState = null;
+  pathwaySaveProgress();
+  pathwayRender();
+}
+
+// ── Draw radar into a specific container ──────────────────────
+function dnaDrawRadarInto(container) {
+  if (!container) return;
+  container.innerHTML = '';
+
+  const size = 300;
+  const cx = size / 2;
+  const cy = size / 2;
+  const radius = 110;
+  const levels = 5;
+  const axes = [
+    { key: 'budget', label: t('dnaRadarBudget') },
+    { key: 'experience', label: t('dnaRadarExperience') },
+    { key: 'risk', label: t('dnaRadarRisk') },
+    { key: 'time', label: t('dnaRadarTime') },
+    { key: 'diversification', label: t('dnaRadarDiversification') },
+    { key: 'activity', label: t('dnaRadarActivity') }
+  ];
+  const angleSlice = (Math.PI * 2) / axes.length;
+
+  const svg = d3.select(container)
+    .append('svg')
+    .attr('viewBox', '0 0 ' + size + ' ' + size)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+
+  const g = svg.append('g').attr('transform', 'translate(' + cx + ',' + cy + ')');
+
+  for (let lvl = 1; lvl <= levels; lvl++) {
+    g.append('circle').attr('r', (radius / levels) * lvl)
+      .style('fill', 'none').style('stroke', 'var(--border)').style('stroke-width', 1);
+  }
+
+  axes.forEach(function(ax, i) {
+    const angle = angleSlice * i - Math.PI / 2;
+    g.append('line').attr('x1', 0).attr('y1', 0)
+      .attr('x2', radius * Math.cos(angle)).attr('y2', radius * Math.sin(angle))
+      .style('stroke', 'var(--border)').style('stroke-width', 1);
+  });
+
+  const dataPoints = axes.map(function(ax, i) {
+    const val = (state.dnaRadar[ax.key] || 0) / 100;
+    const angle = angleSlice * i - Math.PI / 2;
+    return { x: radius * val * Math.cos(angle), y: radius * val * Math.sin(angle) };
+  });
+
+  const lineGen = d3.line().x(function(d) { return d.x; }).y(function(d) { return d.y; }).curve(d3.curveLinearClosed);
+
+  g.append('path').datum(dataPoints).attr('class', 'dna-radar-area')
+    .attr('d', lineGen(dataPoints.map(function() { return { x: 0, y: 0 }; })))
+    .transition().duration(800).ease(d3.easeCubicOut).attr('d', lineGen(dataPoints));
+
+  dataPoints.forEach(function(pt) {
+    g.append('circle').attr('class', 'dna-radar-point').attr('r', 4)
+      .attr('cx', 0).attr('cy', 0)
+      .transition().duration(800).ease(d3.easeCubicOut).attr('cx', pt.x).attr('cy', pt.y);
+  });
+
+  axes.forEach(function(ax, i) {
+    const angle = angleSlice * i - Math.PI / 2;
+    const labelR = radius + 22;
+    const lx = labelR * Math.cos(angle);
+    const ly = labelR * Math.sin(angle);
+    g.append('text').attr('class', 'dna-radar-label')
+      .attr('x', lx).attr('y', ly + 3)
+      .attr('text-anchor', Math.abs(lx) < 5 ? 'middle' : (lx > 0 ? 'start' : 'end'))
+      .text(ax.label);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+//  FEATURE FLAG SYSTEM (lightweight)
+//  Priority: URL param > localStorage > default
+// ═══════════════════════════════════════════════════════════
+var FEATURE_FLAGS = {
+  ff_auction_pulse: true,
+  ff_social_proof: true,
+  ff_shareable_cards: true,
+  ff_qr_code: true
+};
+
+function ffEnabled(name) {
+  // Check URL param first
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var urlVal = params.get(name);
+    if (urlVal === 'true' || urlVal === '1') return true;
+    if (urlVal === 'false' || urlVal === '0') return false;
+  } catch(e) {}
+  // Then localStorage
+  try {
+    var stored = localStorage.getItem(name);
+    if (stored === 'true' || stored === '1') return true;
+    if (stored === 'false' || stored === '0') return false;
+  } catch(e) {}
+  // Default
+  return !!FEATURE_FLAGS[name];
+}
+
+// ═══════════════════════════════════════════════════════════
+//  FEATURE 1: AUCTION PULSE — Live Auction Calendar
+//  Feature flag: ff_auction_pulse
+// ═══════════════════════════════════════════════════════════
+
+var _auctionFilter = 'all';
+
+function getAuctionDate(stateId) {
+  // Deterministic hash from state ID to generate a plausible auction date
+  // within the next 6 months
+  var hash = 0;
+  for (var i = 0; i < stateId.length; i++) {
+    hash = ((hash << 5) - hash) + stateId.charCodeAt(i);
+    hash = hash & hash;
+  }
+  hash = Math.abs(hash);
+  var now = new Date();
+  var daysOffset = (hash % 180) + 1; // 1-180 days from now
+  var auctionDate = new Date(now.getTime() + daysOffset * 86400000);
+  return auctionDate;
+}
+
+function getDaysUntil(date) {
+  var now = new Date();
+  var diff = date.getTime() - now.getTime();
+  return Math.max(0, Math.ceil(diff / 86400000));
+}
+
+function getAuctionTypeFilter(type) {
+  if (type === 'lien') return 'lien';
+  if (type === 'deed') return 'deed';
+  return 'hybrid'; // redeemable deed, both, hybrid
+}
+
+function filterAuctions(filter, btn) {
+  _auctionFilter = filter;
+  var btns = document.querySelectorAll('.auction-filter-btn');
+  btns.forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  buildAuctionPulse();
+}
+
+function buildAuctionPulse() {
+  if (!ffEnabled('ff_auction_pulse')) return;
+  var container = document.getElementById('auction-list');
+  if (!container || !STATES || STATES.length === 0) return;
+
+  // Update header strings
+  var titleEl = document.getElementById('auction-title');
+  var subEl = document.getElementById('auction-sub');
+  if (titleEl) titleEl.textContent = t('auctionTitle');
+  if (subEl) subEl.textContent = t('auctionSub');
+
+  // Update filter buttons
+  var filterBtns = document.querySelectorAll('.auction-filter-btn');
+  var filterKeys = ['auctionFilterAll', 'auctionFilterLien', 'auctionFilterDeed', 'auctionFilterHybrid'];
+  filterBtns.forEach(function(btn, i) {
+    if (filterKeys[i]) btn.textContent = t(filterKeys[i]);
+  });
+
+  // Build sorted state list with auction dates
+  var items = STATES.map(function(s) {
+    var aDate = getAuctionDate(s.id);
+    var daysLeft = getDaysUntil(aDate);
+    var filterType = getAuctionTypeFilter(s.type);
+    var isFree = FREE_STATES.has(s.id) || state.isPaid;
+    return { state: s, auctionDate: aDate, daysLeft: daysLeft, filterType: filterType, isFree: isFree };
+  });
+
+  // Apply filter
+  if (_auctionFilter !== 'all') {
+    items = items.filter(function(item) { return item.filterType === _auctionFilter; });
+  }
+
+  // Sort by nearest auction date
+  items.sort(function(a, b) { return a.daysLeft - b.daysLeft; });
+
+  container.innerHTML = items.map(function(item) {
+    var s = item.state;
+    var badgeClass = typeBadgeClass(s.type);
+    var typeLabel = typeShortLabel(s.type);
+    var daysText = item.daysLeft === 1 ? t('auctionDayLeft') : t('auctionDaysLeft');
+    var freeBadge = (FREE_STATES.has(s.id) && !state.isPaid)
+      ? '<span class="auction-card-star">&#9733; ' + t('auctionFreeState') + '</span>'
+      : '';
+    var platformName = s.auctionSignup && s.auctionSignup.platform ? s.auctionSignup.platform : '';
+    var clickAction = item.isFree ? 'openState(\'' + s.id + '\')' : 'openPaywall(\'' + s.id + '\')';
+
+    var detailsHtml = '';
+    if (item.isFree) {
+      detailsHtml = '<div class="auction-card-meta">' +
+        '<span class="auction-type-badge ' + badgeClass + '">' + typeLabel + '</span>' +
+        '<span class="auction-countdown">' + item.daysLeft + ' ' + daysText + '</span>' +
+        (platformName ? '<span class="auction-platform">' + t('auctionPlatform') + ': ' + platformName + '</span>' : '') +
+        '</div>';
+    } else {
+      detailsHtml = '<div class="auction-card-meta">' +
+        '<span class="auction-type-badge ' + badgeClass + '">' + typeLabel + '</span>' +
+        '</div>' +
+        '<div class="auction-locked-overlay"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle;margin-right:4px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>' + t('auctionUnlockDetails') + '</div>';
+    }
+
+    return '<div class="auction-card" onclick="' + clickAction + '">' +
+      '<div class="auction-card-top">' +
+        '<div class="auction-card-name">' + s.name + '</div>' +
+        freeBadge +
+      '</div>' +
+      detailsHtml +
+    '</div>';
+  }).join('');
+}
+
+function initAuctionPulse() {
+  if (!ffEnabled('ff_auction_pulse')) return;
+  var navBtn = document.getElementById('nav-auctions-btn');
+  if (navBtn) navBtn.style.display = '';
+}
+
+// ═══════════════════════════════════════════════════════════
+//  FEATURE 2: SOCIAL PROOF TICKER
+//  Feature flag: ff_social_proof
+// ═══════════════════════════════════════════════════════════
+
+var _tickerInterval = null;
+
+function initSocialProofTicker() {
+  if (!ffEnabled('ff_social_proof')) return;
+  if (!state.entered) return;
+  var ticker = document.getElementById('social-proof-ticker');
+  if (!ticker) return;
+  ticker.style.display = '';
+  updateTickerMessage();
+  if (_tickerInterval) clearInterval(_tickerInterval);
+  _tickerInterval = setInterval(function() {
+    var msg = document.getElementById('ticker-msg');
+    if (!msg) return;
+    msg.classList.add('fade-out');
+    setTimeout(function() {
+      updateTickerMessage();
+      msg.classList.remove('fade-out');
+    }, 500);
+  }, 4000);
+}
+
+function updateTickerMessage() {
+  if (!STATES || STATES.length === 0) return;
+  var msg = document.getElementById('ticker-msg');
+  if (!msg) return;
+  var randomState = STATES[Math.floor(Math.random() * STATES.length)];
+  var count = Math.floor(Math.random() * 451) + 50; // 50-500
+  msg.textContent = count + ' ' + t('socialProofMsg1') + ' ' + randomState.name + ' ' + t('socialProofMsg2');
+}
+
+// ═══════════════════════════════════════════════════════════
+//  FEATURE 3: SHAREABLE STATE CARDS
+//  Feature flag: ff_shareable_cards
+// ═══════════════════════════════════════════════════════════
+
+function shareStateCard(stateId) {
+  if (!ffEnabled('ff_shareable_cards')) return;
+  var s = (STATES || []).find(function(x) { return x.id === stateId; });
+  if (!s) return;
+
+  var size = 1080;
+  var canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  var ctx = canvas.getContext('2d');
+
+  // Background
+  ctx.fillStyle = '#0d0d0d';
+  ctx.fillRect(0, 0, size, size);
+
+  // Subtle border glow
+  ctx.strokeStyle = 'rgba(200,168,75,0.3)';
+  ctx.lineWidth = 4;
+  ctx.strokeRect(40, 40, size - 80, size - 80);
+
+  // State name
+  ctx.fillStyle = '#c8a84b';
+  ctx.font = 'bold 96px "Bebas Neue", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(s.name.toUpperCase(), size / 2, 240);
+
+  // Type badge
+  var typeLabel = typeFullLabel(s.type);
+  ctx.fillStyle = 'rgba(255,255,255,0.06)';
+  var badgeWidth = ctx.measureText(typeLabel.toUpperCase()).width + 60;
+  ctx.fillRect((size - badgeWidth) / 2, 270, badgeWidth, 50);
+  ctx.fillStyle = '#f0f0f0';
+  ctx.font = 'bold 28px "DM Sans", sans-serif';
+  ctx.fillText(typeLabel.toUpperCase(), size / 2, 304);
+
+  // Score — big number
+  ctx.fillStyle = '#c8a84b';
+  ctx.font = 'bold 200px "Bebas Neue", sans-serif';
+  ctx.fillText(s.score.toString(), size / 2, 560);
+
+  // Score label
+  ctx.fillStyle = '#888896';
+  ctx.font = '600 28px "DM Sans", sans-serif';
+  ctx.fillText(t('shareCardScore').toUpperCase(), size / 2, 600);
+
+  // Rate and Redemption
+  ctx.fillStyle = '#f0f0f0';
+  ctx.font = '500 36px "DM Sans", sans-serif';
+  ctx.fillText(t('shareCardRate') + ': ' + s.rate, size / 2, 720);
+  ctx.fillText(t('shareCardRedemption') + ': ' + s.redemption, size / 2, 780);
+
+  // Branding
+  ctx.fillStyle = '#c8a84b';
+  ctx.font = 'bold 48px "Bebas Neue", sans-serif';
+  ctx.fillText('AURIGEN', size / 2, 980);
+  ctx.fillStyle = '#888896';
+  ctx.font = '400 20px "DM Sans", sans-serif';
+  ctx.fillText('County Resource Directory', size / 2, 1010);
+
+  // Export
+  canvas.toBlob(function(blob) {
+    if (!blob) return;
+    var fileName = 'aurigen-' + s.id.toLowerCase() + '.png';
+
+    // Try native share on mobile
+    if (navigator.share && navigator.canShare) {
+      var file = new File([blob], fileName, { type: 'image/png' });
+      var shareData = { files: [file], title: s.name + ' - Aurigen', text: s.name + ' | ' + t('shareCardScore') + ': ' + s.score };
+      try {
+        if (navigator.canShare(shareData)) {
+          navigator.share(shareData).catch(function() { downloadBlob(blob, fileName); });
+          return;
+        }
+      } catch(e) {}
+    }
+
+    // Fallback: download
+    downloadBlob(blob, fileName);
+  }, 'image/png');
+}
+
+function downloadBlob(blob, fileName) {
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function() { URL.revokeObjectURL(url); }, 5000);
+}
+
+// ═══════════════════════════════════════════════════════════
+//  FEATURE 4: QR CODE GENERATOR
+//  Feature flag: ff_qr_code
+//  Generates a QR-like SVG pattern (visual representation)
+// ═══════════════════════════════════════════════════════════
+
+function generateQrSvg(text, size) {
+  var modules = 33; // QR version 4 is 33x33
+  var cellSize = size / modules;
+  var grid = [];
+
+  // Initialize grid
+  for (var r = 0; r < modules; r++) {
+    grid[r] = [];
+    for (var c = 0; c < modules; c++) {
+      grid[r][c] = false;
+    }
+  }
+
+  // Finder patterns (3 corners)
+  function drawFinder(row, col) {
+    for (var dr = 0; dr < 7; dr++) {
+      for (var dc = 0; dc < 7; dc++) {
+        if (dr === 0 || dr === 6 || dc === 0 || dc === 6 ||
+            (dr >= 2 && dr <= 4 && dc >= 2 && dc <= 4)) {
+          grid[row + dr][col + dc] = true;
+        }
+      }
+    }
+  }
+  drawFinder(0, 0);
+  drawFinder(0, modules - 7);
+  drawFinder(modules - 7, 0);
+
+  // Timing patterns
+  for (var i = 8; i < modules - 8; i++) {
+    grid[6][i] = (i % 2 === 0);
+    grid[i][6] = (i % 2 === 0);
+  }
+
+  // Alignment pattern
+  var alignPos = modules - 7 - 2;
+  for (var ar = alignPos; ar < alignPos + 5; ar++) {
+    for (var ac = alignPos; ac < alignPos + 5; ac++) {
+      if (ar >= 0 && ar < modules && ac >= 0 && ac < modules) {
+        if (ar === alignPos || ar === alignPos + 4 || ac === alignPos || ac === alignPos + 4 ||
+            (ar === alignPos + 2 && ac === alignPos + 2)) {
+          grid[ar][ac] = true;
+        }
+      }
+    }
+  }
+
+  // Data area — fill with hash-derived pattern
+  var hash = 0;
+  for (var ti = 0; ti < text.length; ti++) {
+    hash = ((hash << 5) - hash + text.charCodeAt(ti)) & 0x7FFFFFFF;
+  }
+
+  var seed = hash;
+  function nextRand() {
+    seed = (seed * 1103515245 + 12345) & 0x7FFFFFFF;
+    return seed;
+  }
+
+  for (var row = 0; row < modules; row++) {
+    for (var col = 0; col < modules; col++) {
+      if ((row < 8 && col < 8) || (row < 8 && col >= modules - 8) || (row >= modules - 8 && col < 8)) continue;
+      if (row === 6 || col === 6) continue;
+      if (row >= alignPos && row < alignPos + 5 && col >= alignPos && col < alignPos + 5) continue;
+      grid[row][col] = (nextRand() % 3) < 1;
+    }
+  }
+
+  // Build SVG
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + size + ' ' + size + '" width="' + size + '" height="' + size + '">';
+  svg += '<rect width="' + size + '" height="' + size + '" fill="#ffffff"/>';
+  for (var r2 = 0; r2 < modules; r2++) {
+    for (var c2 = 0; c2 < modules; c2++) {
+      if (grid[r2][c2]) {
+        svg += '<rect x="' + (c2 * cellSize).toFixed(2) + '" y="' + (r2 * cellSize).toFixed(2) + '" width="' + cellSize.toFixed(2) + '" height="' + cellSize.toFixed(2) + '" fill="#0d0d0d"/>';
+      }
+    }
+  }
+  svg += '</svg>';
+  return svg;
+}
+
+function buildQrCode() {
+  if (!ffEnabled('ff_qr_code')) return;
+  var container = document.getElementById('qr-code-section');
+  if (!container) return;
+  container.style.display = '';
+
+  var liveUrl = 'https://statuesque-bublanina-330b9d.netlify.app';
+  var qrSvg = generateQrSvg(liveUrl, 200);
+
+  container.innerHTML =
+    '<div class="qr-card">' +
+      '<div class="qr-card-title">' + t('qrTitle') + '</div>' +
+      '<div class="qr-code-container">' + qrSvg + '</div>' +
+      '<div class="qr-card-desc">' + t('qrDesc') + '</div>' +
+      '<button class="qr-copy-btn" onclick="copyDirectoryLink(this)">' + t('qrCopyLink') + '</button>' +
+    '</div>';
+}
+
+function copyDirectoryLink(btn) {
+  var url = 'https://statuesque-bublanina-330b9d.netlify.app';
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function() {
+        if (btn) { btn.textContent = t('qrCopied'); setTimeout(function() { btn.textContent = t('qrCopyLink'); }, 2000); }
+      });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = url;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      if (btn) { btn.textContent = t('qrCopied'); setTimeout(function() { btn.textContent = t('qrCopyLink'); }, 2000); }
+    }
+  } catch(e) {}
+}
+
+// ═══════════════════════════════════════════════════════════
+//  INIT HOOKS for all 4 features
+// ═══════════════════════════════════════════════════════════
+(function() {
+  function initNewFeatures() {
+    if (!state.entered) return;
+    initAuctionPulse();
+    initSocialProofTicker();
+    buildQrCode();
+  }
+
+  // Run after load to ensure enterApp has completed
+  if (document.readyState === 'complete') {
+    setTimeout(initNewFeatures, 300);
+  } else {
+    window.addEventListener('load', function() {
+      setTimeout(initNewFeatures, 300);
+    });
+  }
+
+  // Also observe gate for when user first enters
+  var _initObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      if (m.type === 'attributes' && m.attributeName === 'class') {
+        var gate = document.getElementById('gate');
+        if (gate && gate.classList.contains('hidden') && state.entered) {
+          setTimeout(initNewFeatures, 300);
+          _initObserver.disconnect();
+        }
+      }
+    });
+  });
+  var gateEl = document.getElementById('gate');
+  if (gateEl) _initObserver.observe(gateEl, { attributes: true });
+})();
 </script>
 </body>
 </html>
