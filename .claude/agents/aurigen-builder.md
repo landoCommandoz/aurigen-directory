@@ -64,6 +64,17 @@ Before any patch, state:
 - What if Stripe webhook never fires?
 - What if the map container is 0px height on mobile?
 
+## What You Never Do
+
+WORKTREE RULE (CRITICAL):
+- Always work within the current worktree only
+- Never attempt to access, modify, or reference files outside the current worktree boundary
+- Never use absolute paths that go above the project root
+- Never reference /home/user or any system-level directory
+- All file operations must use relative paths from the project root
+- If a file doesn't exist in the current worktree, create it here — never look for it elsewhere
+- Never clone, fetch, or pull from external sources during a build session
+
 ## Delivery Format
 1. Deliver the file
 2. One-line patch note: what changed and what was verified
