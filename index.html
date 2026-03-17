@@ -202,8 +202,8 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── HERO SECTION ─── */
 .gate-hero {
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 90vh;
+  min-height: 90dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -237,7 +237,7 @@ a { color: inherit; text-decoration: none; }
 
 .gate-eyebrow {
   font-size: 12px;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 20px;
@@ -250,7 +250,7 @@ a { color: inherit; text-decoration: none; }
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(56px, 14vw, 96px);
   letter-spacing: 0.15em;
-  line-height: 0.95;
+  line-height: 1.0;
   color: var(--text);
   opacity: 0;
   animation: fadeUp 0.6s 0.35s ease forwards;
@@ -259,12 +259,13 @@ a { color: inherit; text-decoration: none; }
 .gate-logo span { color: var(--accent); }
 
 .gate-sub {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(15px, 3vw, 20px);
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(14px, 3vw, 18px);
   color: var(--text-dim);
   margin-top: 14px;
-  font-style: italic;
-  letter-spacing: 0.08em;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   opacity: 0;
   animation: fadeUp 0.6s 0.5s ease forwards;
 }
@@ -275,17 +276,18 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   color: var(--text);
   margin-top: 32px;
-  line-height: 1.3;
+  line-height: 1.4;
+  max-width: 600px;
   opacity: 0;
   animation: fadeUp 0.6s 0.65s ease forwards;
 }
 
 .gate-description {
-  font-size: clamp(13px, 2.5vw, 15px);
+  font-size: clamp(14px, 2.5vw, 16px);
   color: var(--text-dim);
   margin-top: 16px;
-  max-width: 500px;
-  line-height: 1.7;
+  max-width: 520px;
+  line-height: 1.6;
   opacity: 0;
   animation: fadeUp 0.6s 0.8s ease forwards;
 }
@@ -295,20 +297,22 @@ a { color: inherit; text-decoration: none; }
   color: var(--bg);
   border: none;
   border-radius: 12px;
-  padding: 16px 40px;
-  font-size: 14px;
+  padding: 18px 48px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: all 0.25s ease;
   margin-top: 40px;
+  min-width: 280px;
+  box-shadow: 0 4px 20px var(--accent-glow);
   opacity: 0;
   animation: fadeUp 0.6s 0.95s ease forwards, glowPulse 3s 1.6s ease-in-out infinite;
 }
 
 .gate-hero-cta:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px var(--accent-glow);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px var(--accent-glow);
 }
 
 .gate-hero-cta:active { transform: translateY(0); }
@@ -334,7 +338,7 @@ a { color: inherit; text-decoration: none; }
 
 .gate-scroll-text {
   font-size: 10px;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -352,16 +356,17 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── STATS SECTION ─── */
 .gate-stats {
-  padding: 80px 24px;
+  padding: 60px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.04);
 }
 
 .gate-stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 32px;
   width: 100%;
   max-width: 800px;
 }
@@ -379,7 +384,7 @@ a { color: inherit; text-decoration: none; }
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
-  padding: 32px 24px;
+  padding: 40px 32px;
   text-align: center;
   transition: border-color 0.3s ease, transform 0.3s ease;
 }
@@ -391,7 +396,7 @@ a { color: inherit; text-decoration: none; }
 
 .gate-stat-number {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 56px;
+  font-size: clamp(48px, 8vw, 56px);
   letter-spacing: 0.04em;
   color: var(--accent);
   line-height: 1;
@@ -402,20 +407,22 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-dim);
   margin-top: 8px;
   letter-spacing: 0.04em;
+  line-height: 1.3;
 }
 
 /* ─── FEATURES SECTION ─── */
 .gate-features {
-  padding: 80px 24px;
+  padding: 60px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.04);
 }
 
 .gate-section-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(28px, 6vw, 42px);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--text);
   text-align: center;
   margin-bottom: 48px;
@@ -423,10 +430,17 @@ a { color: inherit; text-decoration: none; }
 
 .gate-features-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   width: 100%;
-  max-width: 900px;
+  max-width: 960px;
+}
+
+@media (max-width: 900px) {
+  .gate-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -440,7 +454,7 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 640px) {
   .gate-hero {
     min-height: auto;
-    padding: 48px 20px 32px;
+    padding: 40px 20px 28px;
   }
   .gate-logo {
     font-size: clamp(48px, 12vw, 72px);
@@ -451,39 +465,51 @@ a { color: inherit; text-decoration: none; }
     margin-top: 20px;
   }
   .gate-description {
-    font-size: clamp(12px, 2.5vw, 14px);
+    font-size: clamp(13px, 2.5vw, 15px);
     margin-top: 12px;
   }
   .gate-hero-cta {
-    padding: 14px 32px;
-    font-size: 13px;
+    padding: 16px 40px;
+    font-size: 14px;
     margin-top: 28px;
+    min-width: auto;
+    width: 100%;
+    max-width: 300px;
   }
   .gate-scroll-indicator {
     position: relative;
     bottom: auto;
-    margin-top: 24px;
+    margin-top: 20px;
   }
   .gate-email {
     padding: 32px 20px 48px;
   }
+  .gate-email-form {
+    padding: 20px 20px;
+  }
   .gate-email-title {
-    font-size: clamp(24px, 5vw, 36px);
+    font-size: clamp(28px, 6vw, 42px);
   }
   .gate-stats {
-    padding: 48px 20px;
+    padding: 40px 20px;
+  }
+  .gate-stat-card {
+    padding: 32px 24px;
+  }
+  .gate-stats-grid {
+    gap: 20px;
   }
   .gate-features {
-    padding: 48px 20px;
+    padding: 40px 20px;
   }
   .gate-price {
-    padding: 48px 20px;
+    padding: 40px 20px;
   }
   .gate-price-card {
-    padding: 36px 28px;
+    padding: 32px 24px;
   }
   .gate-section-title {
-    font-size: clamp(24px, 5vw, 36px);
+    font-size: clamp(28px, 6vw, 42px);
     margin-bottom: 32px;
   }
 }
@@ -494,7 +520,7 @@ a { color: inherit; text-decoration: none; }
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
-  padding: 28px 24px;
+  padding: 32px 28px;
   transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -509,10 +535,11 @@ a { color: inherit; text-decoration: none; }
 }
 
 .gate-feature-title {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
   color: var(--text);
   margin-bottom: 8px;
+  line-height: 1.3;
 }
 
 .gate-feature-desc {
@@ -523,11 +550,12 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── PRICE SECTION ─── */
 .gate-price {
-  padding: 80px 24px;
+  padding: 60px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  border-top: 1px solid rgba(200,168,75,0.1);
 }
 
 .gate-price-community {
@@ -556,8 +584,8 @@ a { color: inherit; text-decoration: none; }
   color: var(--bg);
   font-family: 'Bebas Neue', sans-serif;
   font-size: 13px;
-  letter-spacing: 0.18em;
-  padding: 6px 20px;
+  letter-spacing: 0.1em;
+  padding: 8px 24px;
   border-radius: 100px;
   margin-bottom: 28px;
   font-weight: 700;
@@ -573,7 +601,7 @@ a { color: inherit; text-decoration: none; }
 
 .gate-price-old {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 40px;
+  font-size: clamp(32px, 6vw, 40px);
   color: var(--text-muted);
   text-decoration: line-through;
   letter-spacing: 0.04em;
@@ -607,6 +635,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 13px;
   color: var(--text-dim);
   letter-spacing: 0.04em;
+  line-height: 1.5;
 }
 
 .gate-price-card-glow {
@@ -624,12 +653,30 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── EMAIL CAPTURE SECTION ─── */
 .gate-email {
-  padding: 60px 24px 100px;
+  padding: 60px 24px 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  border-top: 2px solid rgba(200,168,75,0.2);
+  background: rgba(200,168,75,0.02);
+  position: relative;
 }
+
+.gate-email::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(200,168,75,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gate-email > * { position: relative; z-index: 1; }
 
 .gate-email-title {
   font-family: 'Bebas Neue', sans-serif;
@@ -640,10 +687,10 @@ a { color: inherit; text-decoration: none; }
 }
 
 .gate-email-desc {
-  font-size: clamp(13px, 2.5vw, 15px);
+  font-size: clamp(14px, 2.5vw, 16px);
   color: var(--text-dim);
   max-width: 480px;
-  line-height: 1.7;
+  line-height: 1.6;
   margin-bottom: 32px;
 }
 
@@ -651,15 +698,21 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(200,168,75,0.12);
+  border-radius: 16px;
+  padding: 28px 32px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .gate-email-input {
   width: 100%;
-  background: var(--bg3);
-  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(200,168,75,0.15);
   border-radius: 12px;
   padding: 16px 20px;
   color: var(--text);
@@ -668,8 +721,17 @@ a { color: inherit; text-decoration: none; }
   transition: border-color 0.2s;
 }
 
-.gate-email-input:focus { border-color: var(--accent); }
+.gate-email-input:focus {
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.07);
+  box-shadow: 0 0 20px rgba(200,168,75,0.1);
+}
 .gate-email-input.error { border-color: var(--red); animation: shake 0.3s ease; }
+
+.gate-email-input::placeholder {
+  color: rgba(255,255,255,0.35);
+  opacity: 1;
+}
 
 .gate-email-submit {
   width: 100%;
@@ -683,11 +745,12 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: all 0.25s ease;
+  box-shadow: 0 4px 16px var(--accent-glow);
 }
 
 .gate-email-submit:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px var(--accent-glow);
+  box-shadow: 0 10px 32px var(--accent-glow);
 }
 
 .gate-email-submit:disabled {
@@ -697,7 +760,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .gate-email-fine {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-muted);
   max-width: 300px;
   line-height: 1.5;
@@ -707,6 +770,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 12px;
   color: var(--red);
   display: none;
+  line-height: 1.4;
 }
 
 .gate-email-error.show { display: block; }
@@ -792,7 +856,7 @@ a { color: inherit; text-decoration: none; }
 
 /* Disclaimer at bottom */
 .gate-disclaimer {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-muted);
   margin-top: 40px;
   line-height: 1.5;
