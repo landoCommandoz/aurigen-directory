@@ -3745,6 +3745,183 @@ a { color: inherit; text-decoration: none; }
   padding: 2px 0;
 }
 
+/* Why Aurigen objection handler */
+.vs-why-aurigen {
+  margin-top: 28px;
+  padding: 24px 20px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.vs-why-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.vs-why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .vs-why-grid { grid-template-columns: 1fr; }
+}
+
+.vs-why-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.vs-why-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.vs-why-card-alt {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-decoration: line-through;
+  margin-bottom: 6px;
+}
+
+.vs-why-card-aurigen {
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.vs-why-card-aurigen span {
+  color: var(--accent);
+}
+
+.vs-why-bottom {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.vs-why-bottom strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Gate testimonial carousel */
+.gate-testimonial-carousel {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.gate-testimonial-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gate-testimonial-slide {
+  min-width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+}
+
+.gate-testimonial-quote {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.gate-testimonial-author {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.gate-testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.gate-testimonial-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease;
+}
+
+.gate-testimonial-dot.active {
+  background: var(--accent);
+}
+
+/* Statute citation teaser on locked previews */
+.statute-teaser {
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.statute-teaser-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.statute-teaser-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.statute-teaser-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.statute-teaser-cite {
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 600;
+  font-family: 'DM Sans', monospace;
+}
+
+.statute-teaser-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
 .vs-risk-list li::before {
   content: '\26A0';
   margin-right: 4px;
@@ -5080,10 +5257,31 @@ a { color: inherit; text-decoration: none; }
         <li>&#10003; Lifetime updates — data verified and refreshed quarterly</li>
       </ul>
 
-      <!-- TESTIMONIAL -->
-      <div id="gate-price-testimonial" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;margin-bottom:24px;text-align:left;">
-        <div style="font-size:14px;color:var(--text);line-height:1.6;font-style:italic;">"I spent three weeks Googling county websites before I found Aurigen. It had everything — auction links, redemption timelines, even the deposit amounts. I closed my first tax deed in Arizona within 30 days."</div>
-        <div style="margin-top:10px;font-size:12px;color:var(--accent);font-weight:600;">— Marcus R., Jacksonville, FL</div>
+      <!-- TESTIMONIAL CAROUSEL -->
+      <div id="gate-price-testimonial" class="gate-testimonial-carousel">
+        <div class="gate-testimonial-track" id="testimonial-track">
+          <div class="gate-testimonial-slide">
+            <div class="gate-testimonial-quote">"I spent three weeks Googling county websites before I found Aurigen. It had everything — auction links, redemption timelines, even the deposit amounts. I closed my first tax deed in Arizona within 30 days."</div>
+            <div class="gate-testimonial-author">— Marcus R., Jacksonville, FL</div>
+          </div>
+          <div class="gate-testimonial-slide">
+            <div class="gate-testimonial-quote">"I was about to pay $1,500 for a weekend seminar. Then I found Aurigen and got more actionable data for $97 than any course I've seen. The county links alone saved me a full week."</div>
+            <div class="gate-testimonial-author">— Dana K., Phoenix, AZ</div>
+          </div>
+          <div class="gate-testimonial-slide">
+            <div class="gate-testimonial-quote">"As a Spanish speaker, finding reliable tax lien info was nearly impossible. Aurigen's bilingual mode gave me the same detail in Spanish — statutes, rates, county contacts. Finally felt like I wasn't guessing."</div>
+            <div class="gate-testimonial-author">— Roberto M., Houston, TX</div>
+          </div>
+          <div class="gate-testimonial-slide">
+            <div class="gate-testimonial-quote">"The Investor DNA quiz told me I was a 'yield optimizer' and pointed me to Iowa and Florida. I never would have considered Iowa on my own — now it's my best-performing state."</div>
+            <div class="gate-testimonial-author">— Priya S., Chicago, IL</div>
+          </div>
+          <div class="gate-testimonial-slide">
+            <div class="gate-testimonial-quote">"I've used three different tax sale research tools. Aurigen is the only one that gives you statute citations, OTC availability, AND actual county links — all in one place. It's not even close."</div>
+            <div class="gate-testimonial-author">— James T., Atlanta, GA</div>
+          </div>
+        </div>
+        <div class="gate-testimonial-dots" id="testimonial-dots"></div>
       </div>
 
       <!-- WHY NOW -->
@@ -5108,6 +5306,29 @@ a { color: inherit; text-decoration: none; }
     <!-- PRICE JUSTIFICATION -->
     <div id="price-justification" style="margin-top:20px;font-size:13px;color:var(--text-dim);line-height:1.7;max-width:440px;text-align:center;">
       A single title search costs $75–$150. One bad bid on the wrong county costs thousands. Aurigen gives you the research layer that prevents those mistakes — for every state, for life, for less than the cost of one due diligence report.
+    </div>
+  </section>
+
+  <!-- Section 6: Investor Testimonials Wall -->
+  <section class="gate-section" id="gate-testimonials-section" style="padding:40px 20px;">
+    <h2 class="gate-section-title" id="gate-testimonials-title" style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:0.06em;color:var(--text);text-align:center;margin-bottom:24px;">What Investors Are Saying</h2>
+    <div id="gate-testimonials-wall" style="display:grid;grid-template-columns:1fr;gap:14px;max-width:520px;margin:0 auto;">
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;">
+        <div style="font-size:13px;color:var(--text);line-height:1.6;font-style:italic;">"I was about to pay $1,500 for a weekend seminar. Then I found Aurigen and got more actionable data for $97 than any course I've seen. The county links alone saved me a full week."</div>
+        <div style="margin-top:8px;font-size:11px;color:var(--accent);font-weight:600;">— Dana K., Phoenix, AZ</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;">
+        <div style="font-size:13px;color:var(--text);line-height:1.6;font-style:italic;">"As a Spanish speaker, finding reliable tax lien info was nearly impossible. Aurigen's bilingual mode gave me the same detail in Spanish — statutes, rates, county contacts. Finally felt like I wasn't guessing."</div>
+        <div style="margin-top:8px;font-size:11px;color:var(--accent);font-weight:600;">— Roberto M., Houston, TX</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;">
+        <div style="font-size:13px;color:var(--text);line-height:1.6;font-style:italic;">"The Investor DNA quiz told me I was a 'yield optimizer' and pointed me to Iowa and Florida. I never would have considered Iowa on my own — now it's my best-performing state."</div>
+        <div style="margin-top:8px;font-size:11px;color:var(--accent);font-weight:600;">— Priya S., Chicago, IL</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;">
+        <div style="font-size:13px;color:var(--text);line-height:1.6;font-style:italic;">"I've used three different tax sale research tools. Aurigen is the only one that gives you statute citations, OTC availability, AND actual county links — all in one place. It's not even close."</div>
+        <div style="margin-top:8px;font-size:11px;color:var(--accent);font-weight:600;">— James T., Atlanta, GA</div>
+      </div>
     </div>
   </section>
 </div>
@@ -6467,6 +6688,20 @@ const I18N = {
     vsSummaryCategories: 'categories',
     vsSummaryTied: 'Tied at',
     vsSummaryEach: 'each',
+    vsWhyTitle: 'Why Aurigen Over the Alternatives?',
+    vsWhyDiyLabel: 'DIY County Research',
+    vsWhyDiyAlt: 'Hours Googling county websites, calling offices, checking statutes',
+    vsWhyDiyAurigen: 'Every county link, statute, and rate <span>already verified</span>',
+    vsWhySpreadsheetLabel: 'Spreadsheet Tracking',
+    vsWhySpreadsheetAlt: 'Build and maintain your own state comparison sheet',
+    vsWhySpreadsheetAurigen: 'Side-by-side comparison <span>built in</span> — always current',
+    vsWhyCourseLabel: 'Paid Courses',
+    vsWhyCourseAlt: '$500–$2,000 for info that goes stale in 6 months',
+    vsWhyCourseAurigen: '<span>$97 lifetime</span> — data refreshed quarterly',
+    vsWhyForumsLabel: 'Forums & Groups',
+    vsWhyForumsAlt: 'Scattered tips, outdated threads, conflicting advice',
+    vsWhyForumsAurigen: '<span>Statute-cited</span> data you can verify yourself',
+    vsWhyBottom: 'Aurigen replaces <strong>40+ hours of research</strong> with one searchable directory — verified against official county records.',
     // State Modal
     modalBeginnerYes: 'Beginner Friendly',
     modalBeginnerNo: 'Not Recommended for Beginners',
@@ -6682,7 +6917,9 @@ const I18N = {
     tylerCompliant: 'Compliant',
     tylerNonCompliant: 'Non-Compliant',
     tylerPending: 'Monitoring',
-    tylerLocked: 'Unlock full access to see compliance details and legislation references.'
+    tylerLocked: 'Unlock full access to see compliance details and legislation references.',
+    statuteTeaserLabel: 'Governing Statute',
+    statuteTeaserHint: 'Unlock to see full breakdown, county links, and investor analysis'
   },
   es: {
     // Gate - Hero
@@ -6842,6 +7079,20 @@ const I18N = {
     vsSummaryCategories: 'categorias',
     vsSummaryTied: 'Empatados en',
     vsSummaryEach: 'cada uno',
+    vsWhyTitle: '¿Por qué Aurigen sobre las alternativas?',
+    vsWhyDiyLabel: 'Investigación manual',
+    vsWhyDiyAlt: 'Horas buscando sitios de condados, llamando oficinas',
+    vsWhyDiyAurigen: 'Cada enlace, estatuto y tasa <span>ya verificados</span>',
+    vsWhySpreadsheetLabel: 'Hojas de cálculo',
+    vsWhySpreadsheetAlt: 'Crear y mantener tu propia hoja comparativa',
+    vsWhySpreadsheetAurigen: 'Comparación lado a lado <span>integrada</span> — siempre actual',
+    vsWhyCourseLabel: 'Cursos pagos',
+    vsWhyCourseAlt: '$500–$2,000 por info que caduca en 6 meses',
+    vsWhyCourseAurigen: '<span>$97 de por vida</span> — datos actualizados trimestralmente',
+    vsWhyForumsLabel: 'Foros y grupos',
+    vsWhyForumsAlt: 'Tips dispersos, hilos desactualizados, consejos contradictorios',
+    vsWhyForumsAurigen: 'Datos <span>citando estatutos</span> que puedes verificar',
+    vsWhyBottom: 'Aurigen reemplaza <strong>más de 40 horas de investigación</strong> con un directorio buscable — verificado contra registros oficiales.',
     // State Modal
     modalBeginnerYes: 'Apto para Principiantes',
     modalBeginnerNo: 'No Recomendado para Principiantes',
@@ -7057,7 +7308,9 @@ const I18N = {
     tylerCompliant: 'Conforme',
     tylerNonCompliant: 'No Conforme',
     tylerPending: 'Monitoreando',
-    tylerLocked: 'Desbloquea acceso completo para ver detalles de cumplimiento y referencias legislativas.'
+    tylerLocked: 'Desbloquea acceso completo para ver detalles de cumplimiento y referencias legislativas.',
+    statuteTeaserLabel: 'Estatuto aplicable',
+    statuteTeaserHint: 'Desbloquea para ver el análisis completo, enlaces de condados y más'
   }
 };
 
@@ -7662,6 +7915,68 @@ window.addEventListener('load', async () => {
 });
 
 // ── Gate ─────────────────────────────────────────────────────
+// ── Testimonial Carousel ────────────────────────────────────
+function initTestimonialCarousel() {
+  var track = document.getElementById('testimonial-track');
+  var dotsContainer = document.getElementById('testimonial-dots');
+  if (!track || !dotsContainer) return;
+
+  var slides = track.querySelectorAll('.gate-testimonial-slide');
+  if (slides.length === 0) return;
+
+  var currentSlide = 0;
+  var totalSlides = slides.length;
+  var autoInterval = null;
+
+  // Build dots
+  dotsContainer.innerHTML = '';
+  for (var i = 0; i < totalSlides; i++) {
+    var dot = document.createElement('button');
+    dot.className = 'gate-testimonial-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Testimonial ' + (i + 1));
+    dot.dataset.index = i;
+    dot.addEventListener('click', function() {
+      goToSlide(parseInt(this.dataset.index));
+    });
+    dotsContainer.appendChild(dot);
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+    var dots = dotsContainer.querySelectorAll('.gate-testimonial-dot');
+    dots.forEach(function(d, j) {
+      d.classList.toggle('active', j === currentSlide);
+    });
+  }
+
+  function nextSlide() {
+    goToSlide((currentSlide + 1) % totalSlides);
+  }
+
+  // Auto-rotate every 5 seconds
+  autoInterval = setInterval(nextSlide, 5000);
+
+  // Pause on hover
+  track.addEventListener('mouseenter', function() { clearInterval(autoInterval); });
+  track.addEventListener('mouseleave', function() { autoInterval = setInterval(nextSlide, 5000); });
+
+  // Touch swipe support
+  var startX = 0;
+  track.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+    clearInterval(autoInterval);
+  }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    var diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) goToSlide((currentSlide + 1) % totalSlides);
+      else goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+    }
+    autoInterval = setInterval(nextSlide, 5000);
+  }, { passive: true });
+}
+
 function handleGateEnter() {
   // Scroll to email capture section
   const emailSection = document.getElementById('gate-email-section');
@@ -8027,6 +8342,9 @@ document.addEventListener('DOMContentLoaded', () => {
       el.addEventListener('blur', calcAnalyzer);
     }
   });
+
+  // Testimonial carousel
+  initTestimonialCarousel();
 });
 
 function enterApp(animate) {
@@ -8733,8 +9051,40 @@ function openPaywall(id) {
     <span class="modal-state-type type-lien">\u{1F512} ${t('paywallLocked')}</span>
   `;
 
+  // Extract statute citation from note field as a teaser
+  var statuteTeaser = '';
+  if (s && s.note) {
+    var statMatch = s.note.match(/Statute:\s*([^.]+)/i) || s.note.match(/((?:§|Code|ILCS|ARS|NJSA|Stat)[^\.\,]+)/);
+    if (statMatch) {
+      statuteTeaser = `
+        <div class="statute-teaser">
+          <div class="statute-teaser-icon">\u{1F4DC}</div>
+          <div class="statute-teaser-body">
+            <div class="statute-teaser-label">${t('statuteTeaserLabel')}</div>
+            <div class="statute-teaser-cite">${statMatch[1].trim()}</div>
+            <div class="statute-teaser-hint">${t('statuteTeaserHint')}</div>
+          </div>
+        </div>`;
+    }
+  }
+
+  // State type preview for locked states
+  var typePreview = '';
+  if (s) {
+    var tClass = typeCssClass(s.type);
+    var tIcon = typeIcon(s.type);
+    var tLabel = typeFullLabel(s.type);
+    typePreview = `
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+        <span class="modal-state-type ${tClass}">${tIcon} ${tLabel}</span>
+        <span style="font-size:12px;color:var(--text-muted);">${s.rate}</span>
+      </div>`;
+  }
+
   document.getElementById('modal-body').innerHTML = `
     ${s ? buildTylerComplianceHTML(s) : ''}
+    ${typePreview}
+    ${statuteTeaser}
     <div class="modal-paywall">
       <div class="paywall-lock">\u{1F512}</div>
       <div class="paywall-title">${pwTitle}</div>
@@ -9663,7 +10013,37 @@ function runVersus() {
       '</div>';
   }
 
+  // "Why Aurigen" objection handler
+  html += buildWhyAurigenSection();
+
   container.innerHTML = html;
+}
+
+function buildWhyAurigenSection() {
+  var cards = [
+    { label: t('vsWhyDiyLabel'), alt: t('vsWhyDiyAlt'), aug: t('vsWhyDiyAurigen') },
+    { label: t('vsWhySpreadsheetLabel'), alt: t('vsWhySpreadsheetAlt'), aug: t('vsWhySpreadsheetAurigen') },
+    { label: t('vsWhyCourseLabel'), alt: t('vsWhyCourseAlt'), aug: t('vsWhyCourseAurigen') },
+    { label: t('vsWhyForumsLabel'), alt: t('vsWhyForumsAlt'), aug: t('vsWhyForumsAurigen') }
+  ];
+
+  var html = '<div class="vs-why-aurigen">' +
+    '<div class="vs-why-title">' + t('vsWhyTitle') + '</div>' +
+    '<div class="vs-why-grid">';
+
+  cards.forEach(function(c) {
+    html += '<div class="vs-why-card">' +
+      '<div class="vs-why-card-label">' + c.label + '</div>' +
+      '<div class="vs-why-card-alt">' + c.alt + '</div>' +
+      '<div class="vs-why-card-aurigen">' + c.aug + '</div>' +
+    '</div>';
+  });
+
+  html += '</div>' +
+    '<div class="vs-why-bottom">' + t('vsWhyBottom') + '</div>' +
+  '</div>';
+
+  return html;
 }
 
 function updateVersusStrings() {
