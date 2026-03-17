@@ -3830,6 +3830,35 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
 }
 
+.vs-why-edges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 16px 20px;
+  background: rgba(200,168,75,0.04);
+  border: 1px solid rgba(200,168,75,0.12);
+  border-radius: 12px;
+}
+.vs-why-edge {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  padding-left: 16px;
+  position: relative;
+}
+.vs-why-edge::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+.vs-why-edge span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 /* Statute citation teaser on locked previews */
 .statute-teaser {
   margin-top: 12px;
@@ -6609,7 +6638,10 @@ const I18N = {
     vsWhyForumsLabel: 'Forums & Groups',
     vsWhyForumsAlt: 'Scattered tips, outdated threads, conflicting advice',
     vsWhyForumsAurigen: '<span>Statute-cited</span> data you can verify yourself',
-    vsWhyBottom: 'Aurigen replaces <strong>40+ hours of research</strong> with one searchable directory — verified against official county records.',
+    vsWhyEdge1: '<span>Bilingual EN/ES</span> — the only tax lien directory with full Spanish translations',
+    vsWhyEdge2: '<span>Tyler v. Hennepin tracking</span> — real-time compliance status for every state\'s surplus rules',
+    vsWhyEdge3: '<span>Verified statute citations</span> — every rate and redemption period linked to the actual state code',
+    vsWhyBottom: 'Aurigen replaces <strong>40+ hours of research</strong> with one searchable directory — bilingual, statute-cited, and tracking Tyler v. Hennepin compliance across all 51 jurisdictions.',
     // State Modal
     modalBeginnerYes: 'Beginner Friendly',
     modalBeginnerNo: 'Not Recommended for Beginners',
@@ -7001,7 +7033,10 @@ const I18N = {
     vsWhyForumsLabel: 'Foros y grupos',
     vsWhyForumsAlt: 'Tips dispersos, hilos desactualizados, consejos contradictorios',
     vsWhyForumsAurigen: 'Datos <span>citando estatutos</span> que puedes verificar',
-    vsWhyBottom: 'Aurigen reemplaza <strong>más de 40 horas de investigación</strong> con un directorio buscable — verificado contra registros oficiales.',
+    vsWhyEdge1: '<span>Bilingüe EN/ES</span> — el único directorio de gravámenes fiscales con traducción completa al español',
+    vsWhyEdge2: '<span>Seguimiento Tyler v. Hennepin</span> — estado de cumplimiento en tiempo real para las reglas de excedentes de cada estado',
+    vsWhyEdge3: '<span>Citas de estatutos verificadas</span> — cada tasa y período de redención vinculado al código estatal real',
+    vsWhyBottom: 'Aurigen reemplaza <strong>más de 40 horas de investigación</strong> con un directorio buscable — bilingüe, con citas de estatutos, y seguimiento del cumplimiento Tyler v. Hennepin en las 51 jurisdicciones.',
     // State Modal
     modalBeginnerYes: 'Apto para Principiantes',
     modalBeginnerNo: 'No Recomendado para Principiantes',
@@ -9934,6 +9969,11 @@ function buildWhyAurigenSection() {
   });
 
   html += '</div>' +
+    '<div class="vs-why-edges">' +
+      '<div class="vs-why-edge">' + t('vsWhyEdge1') + '</div>' +
+      '<div class="vs-why-edge">' + t('vsWhyEdge2') + '</div>' +
+      '<div class="vs-why-edge">' + t('vsWhyEdge3') + '</div>' +
+    '</div>' +
     '<div class="vs-why-bottom">' + t('vsWhyBottom') + '</div>' +
   '</div>';
 
