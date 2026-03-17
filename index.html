@@ -3409,6 +3409,209 @@ a { color: inherit; text-decoration: none; }
   .exit-modal { padding: 36px 24px 28px; }
   .exit-headline { font-size: 28px; }
 }
+
+/* ═══════════════════════════════════════════════
+   SMART UX — AI Message Gate Overlay
+═══════════════════════════════════════════════ */
+.ai-gate-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(10, 10, 12, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 32px 24px;
+  gap: 12px;
+}
+
+.ai-gate-overlay .ai-gate-icon { font-size: 36px; margin-bottom: 4px; }
+
+.ai-gate-overlay .ai-gate-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.ai-gate-overlay .ai-gate-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  max-width: 280px;
+}
+
+.ai-gate-overlay .ai-gate-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #0d0d0d;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  margin-top: 8px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.ai-gate-overlay .ai-gate-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+/* ═══════════════════════════════════════════════
+   SMART UX — Return Visit Toast
+═══════════════════════════════════════════════ */
+.return-toast {
+  position: fixed;
+  bottom: 80px;
+  right: 16px;
+  z-index: 150;
+  background: rgba(24, 24, 31, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--accent-border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  max-width: 340px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  transform: translateY(120%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.return-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.return-toast-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+  line-height: 1;
+}
+
+.return-toast-close:hover { color: var(--text); }
+
+.return-toast-msg {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+  padding-right: 20px;
+  margin-bottom: 10px;
+}
+
+.return-toast-msg strong { color: var(--accent); }
+
+.return-toast-go {
+  background: var(--accent);
+  color: #0d0d0d;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.return-toast-go:hover { transform: translateY(-1px); }
+
+/* ═══════════════════════════════════════════════
+   SMART UX — Onboarding Overlay
+═══════════════════════════════════════════════ */
+.onboard-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.onboard-overlay.active { opacity: 1; visibility: visible; }
+
+.onboard-card {
+  background: rgba(24, 24, 31, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--accent-border);
+  border-radius: 18px;
+  padding: 36px 32px 28px;
+  max-width: 380px;
+  width: calc(100% - 32px);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.onboard-step-icon { font-size: 48px; margin-bottom: 12px; }
+
+.onboard-step-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.onboard-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.onboard-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.2s;
+}
+
+.onboard-dot.active { background: var(--accent); }
+
+.onboard-btn {
+  background: var(--accent);
+  color: #0d0d0d;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.onboard-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px var(--accent-glow);
+}
+
+.onboard-step-num {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
 </style>
 </head>
 <body>
@@ -3565,6 +3768,24 @@ a { color: inherit; text-decoration: none; }
     <p class="exit-body" id="exit-body">Get instant access to 7 states free. See which counties are best for tax lien and tax deed investing.</p>
     <button class="exit-cta" id="exit-cta">Unlock Free Access</button>
     <button class="exit-dismiss" id="exit-dismiss">No thanks</button>
+  </div>
+</div>
+
+<!-- ═══════════════ RETURN VISIT TOAST ═══════════════ -->
+<div class="return-toast" id="return-toast">
+  <button class="return-toast-close" id="return-toast-close" aria-label="Close">&times;</button>
+  <div class="return-toast-msg" id="return-toast-msg"></div>
+  <button class="return-toast-go" id="return-toast-go">Go</button>
+</div>
+
+<!-- ═══════════════ ONBOARDING OVERLAY ═══════════════ -->
+<div class="onboard-overlay" id="onboard-overlay">
+  <div class="onboard-card">
+    <div class="onboard-step-num" id="onboard-step-num"></div>
+    <div class="onboard-step-icon" id="onboard-step-icon"></div>
+    <div class="onboard-step-text" id="onboard-step-text"></div>
+    <div class="onboard-dots" id="onboard-dots"></div>
+    <button class="onboard-btn" id="onboard-btn"></button>
   </div>
 </div>
 
@@ -4912,7 +5133,21 @@ const I18N = {
     gateEmailConsent: 'By entering your email, you agree to our <a onclick="openLegalModal(\'tos\')">Terms of Service</a> and <a onclick="openLegalModal(\'privacy\')">Privacy Policy</a>.',
     stateDisclaimerBanner: 'For informational purposes only. Not investment advice.',
     footerTos: 'Terms of Service',
-    footerPrivacy: 'Privacy Policy'
+    footerPrivacy: 'Privacy Policy',
+    // Smart UX — Free AI Messages
+    aiGateTitle: "You've used your free questions.",
+    aiGateDesc: 'Unlock unlimited AI access.',
+    aiGateCta: 'Unlock Full Access',
+    // Smart UX — Return Visit
+    returnVisitMsg: 'Welcome back — you were researching',
+    returnVisitContinue: 'Pick up where you left off?',
+    returnVisitGo: 'Go',
+    // Smart UX — Onboarding
+    onboardStep1: 'Tap any gold state on the map to explore',
+    onboardStep2: 'Use the Deal Analyzer to crunch numbers',
+    onboardStep3: 'Ask Sage anything about tax liens',
+    onboardNext: 'Next',
+    onboardStart: 'Get Started'
   },
   es: {
     // Gate - Hero
@@ -5160,9 +5395,49 @@ const I18N = {
     gateEmailConsent: 'Al ingresar tu correo, aceptas nuestros <a onclick="openLegalModal(\'tos\')">Terminos de Servicio</a> y <a onclick="openLegalModal(\'privacy\')">Politica de Privacidad</a>.',
     stateDisclaimerBanner: 'Solo con fines informativos. No es asesoramiento de inversion.',
     footerTos: 'Terminos de Servicio',
-    footerPrivacy: 'Politica de Privacidad'
+    footerPrivacy: 'Politica de Privacidad',
+    // Smart UX — Free AI Messages
+    aiGateTitle: 'Ya usaste tus preguntas gratuitas.',
+    aiGateDesc: 'Desbloquea acceso ilimitado al AI.',
+    aiGateCta: 'Desbloquear Acceso Completo',
+    // Smart UX — Return Visit
+    returnVisitMsg: 'Bienvenido de nuevo \u2014 estabas investigando',
+    returnVisitContinue: '\u00BFContinuar donde lo dejaste?',
+    returnVisitGo: 'Ir',
+    // Smart UX — Onboarding
+    onboardStep1: 'Toca cualquier estado dorado en el mapa para explorar',
+    onboardStep2: 'Usa el Analizador de Operaciones para calcular numeros',
+    onboardStep3: 'Pregunta a Sage cualquier cosa sobre gravamenes fiscales',
+    onboardNext: 'Siguiente',
+    onboardStart: 'Comenzar'
   }
 };
+
+// ── Feature Flags (lightweight) ──────────────────────────────
+// Priority: URL param > localStorage > default
+var FEATURE_FLAGS = {
+  ff_free_ai_messages: true,
+  ff_return_visit: true,
+  ff_premium_onboarding: true
+};
+
+function ffEnabled(name) {
+  // Check URL param first
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var urlVal = params.get(name);
+    if (urlVal === 'true') return true;
+    if (urlVal === 'false') return false;
+  } catch(e) {}
+  // Then localStorage
+  try {
+    var stored = localStorage.getItem('ff_' + name);
+    if (stored === 'true') return true;
+    if (stored === 'false') return false;
+  } catch(e) {}
+  // Default
+  return !!FEATURE_FLAGS[name];
+}
 
 // ── App State ────────────────────────────────────────────────
 let state = {
@@ -5789,6 +6064,16 @@ function enterApp(animate) {
   // Init map after short delay to let layout settle
   setTimeout(() => initMap(), 150);
 
+  // ── Smart UX hooks ──────────────────────────────────
+  // Return visit: show toast for returning users (animate=false means restored session)
+  if (!animate) {
+    setTimeout(function() { showReturnVisitToast(); }, 800);
+  }
+  // Onboarding: show for first-time users passing the gate (animate=true)
+  if (animate) {
+    setTimeout(function() { showOnboarding(); }, 400);
+  }
+
   updateDebug();
 }
 
@@ -6100,6 +6385,9 @@ function openState(id) {
   if (!s) return;
 
   state.activeState = id;
+
+  // ff_return_visit: store last viewed state for return visit recognition
+  try { storageSet('aug_last_viewed_state', id); } catch(e) {}
 
   const isPaid = state.isPaid;
   const isFreeState = FREE_STATES.has(id);
@@ -6852,8 +7140,17 @@ function calcAnalyzer() {
 // ── Valuation Agent (Atlas) ───────────────────────────────────
 async function sendValMessage() {
   if (!state.isPaid) {
-    appendValMsg('atlas', 'Atlas is available to full-access members. Unlock all 50 states + DC, AI agents, and more for just $97.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
-    return;
+    // ff_free_ai_messages: allow 2 free messages before gating
+    if (typeof ffEnabled === 'function' && ffEnabled('ff_free_ai_messages')) {
+      var atlasCount = storageGet('aug_ai_atlas_count', 0);
+      if (atlasCount >= 2) {
+        showAiGateOverlay('val');
+        return;
+      }
+    } else {
+      appendValMsg('atlas', 'Atlas is available to full-access members. Unlock all 50 states + DC, AI agents, and more for just $97.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
+      return;
+    }
   }
   if (state.valBusy) return;
   const input = document.getElementById('val-input');
@@ -6869,6 +7166,11 @@ async function sendValMessage() {
   appendValMsg('user', msg);
   if (!state.valHistory) state.valHistory = [];
   state.valHistory.push({ role: 'user', content: msg });
+
+  // ff_free_ai_messages: increment Atlas message count for free users
+  if (!state.isPaid && ffEnabled('ff_free_ai_messages')) {
+    storageSet('aug_ai_atlas_count', storageGet('aug_ai_atlas_count', 0) + 1);
+  }
 
   const typing = document.getElementById('val-typing');
   if (typing) typing.classList.add('show');
@@ -6925,8 +7227,17 @@ function valKeydown(e) {
 // ── AI Advisor ────────────────────────────────────────────────
 async function sendAdvisorMessage() {
   if (!state.isPaid) {
-    appendAdvisorMsg('sage', 'Sage is available to full-access members. Unlock all 50 states + DC, AI advisor, and more for just $97.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
-    return;
+    // ff_free_ai_messages: allow 2 free messages before gating
+    if (typeof ffEnabled === 'function' && ffEnabled('ff_free_ai_messages')) {
+      var sageCount = storageGet('aug_ai_sage_count', 0);
+      if (sageCount >= 2) {
+        showAiGateOverlay('advisor');
+        return;
+      }
+    } else {
+      appendAdvisorMsg('sage', 'Sage is available to full-access members. Unlock all 50 states + DC, AI advisor, and more for just $97.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
+      return;
+    }
   }
   if (state.advisorBusy) return;
   const input = document.getElementById('advisor-input');
@@ -6942,6 +7253,11 @@ async function sendAdvisorMessage() {
   // Add user message
   appendAdvisorMsg('user', msg);
   state.advisorHistory.push({ role: 'user', content: msg });
+
+  // ff_free_ai_messages: increment Sage message count for free users
+  if (!state.isPaid && ffEnabled('ff_free_ai_messages')) {
+    storageSet('aug_ai_sage_count', storageGet('aug_ai_sage_count', 0) + 1);
+  }
 
   // Show typing
   const typing = document.getElementById('advisor-typing');
@@ -7444,6 +7760,107 @@ function updateLegalText() {
   if (fTos) fTos.textContent = t('footerTos');
   var fPriv = document.getElementById('footer-privacy-link');
   if (fPriv) fPriv.textContent = t('footerPrivacy');
+}
+
+// ═══════════════════════════════════════════════════════════
+//  SMART UX — Feature Implementations
+// ═══════════════════════════════════════════════════════════
+
+// ── 1. Free AI Messages Gate Overlay ──────────────────────
+function showAiGateOverlay(viewId) {
+  // viewId: 'val' for Atlas, 'advisor' for Sage
+  var containerId = viewId === 'val' ? 'val-messages' : 'advisor-messages';
+  var container = document.getElementById(containerId);
+  if (!container || !container.parentElement) return;
+  // Don't add duplicate overlays
+  var existing = container.parentElement.querySelector('.ai-gate-overlay');
+  if (existing) return;
+  var overlay = document.createElement('div');
+  overlay.className = 'ai-gate-overlay';
+  overlay.innerHTML =
+    '<div class="ai-gate-icon">\u{1F512}</div>' +
+    '<div class="ai-gate-title">' + t('aiGateTitle') + '</div>' +
+    '<div class="ai-gate-desc">' + t('aiGateDesc') + '</div>' +
+    '<a href="' + STRIPE_URL + '" target="_blank" class="ai-gate-btn">' + t('aiGateCta') + '</a>';
+  container.parentElement.style.position = 'relative';
+  container.parentElement.appendChild(overlay);
+}
+
+// ── 2. Return Visit Recognition ───────────────────────────
+function showReturnVisitToast() {
+  if (!ffEnabled('ff_return_visit')) return;
+  var lastState = storageGet('aug_last_viewed_state', null);
+  if (!lastState) return;
+  var stateObj = (STATES || []).find(function(s) { return s.id === lastState; });
+  if (!stateObj) return;
+  var toast = document.getElementById('return-toast');
+  var msgEl = document.getElementById('return-toast-msg');
+  var goBtn = document.getElementById('return-toast-go');
+  if (!toast || !msgEl || !goBtn) return;
+  msgEl.innerHTML = t('returnVisitMsg') + ' <strong>' + stateObj.name + '</strong>. ' + t('returnVisitContinue');
+  goBtn.textContent = t('returnVisitGo');
+  toast.classList.add('show');
+  goBtn.onclick = function() {
+    toast.classList.remove('show');
+    openState(lastState);
+  };
+  var closeBtn = document.getElementById('return-toast-close');
+  if (closeBtn) {
+    closeBtn.onclick = function() { toast.classList.remove('show'); };
+  }
+  // Auto-dismiss after 6 seconds
+  setTimeout(function() { toast.classList.remove('show'); }, 6000);
+}
+
+// ── 3. Three-Step Onboarding Flow ─────────────────────────
+function showOnboarding() {
+  if (!ffEnabled('ff_premium_onboarding')) return;
+  // Only show once
+  var done = storageGet('aug_onboarding_complete', false);
+  if (done) return;
+  var overlay = document.getElementById('onboard-overlay');
+  if (!overlay) return;
+  var steps = [
+    { icon: '\u{1F5FA}\uFE0F', text: t('onboardStep1') },
+    { icon: '\u{1F4CA}', text: t('onboardStep2') },
+    { icon: '\u{1F916}', text: t('onboardStep3') }
+  ];
+  var currentStep = 0;
+  function renderStep() {
+    var s = steps[currentStep];
+    var numEl = document.getElementById('onboard-step-num');
+    var iconEl = document.getElementById('onboard-step-icon');
+    var textEl = document.getElementById('onboard-step-text');
+    var dotsEl = document.getElementById('onboard-dots');
+    var btnEl = document.getElementById('onboard-btn');
+    if (numEl) numEl.textContent = (currentStep + 1) + ' / ' + steps.length;
+    if (iconEl) iconEl.textContent = s.icon;
+    if (textEl) textEl.textContent = s.text;
+    if (dotsEl) {
+      dotsEl.innerHTML = '';
+      for (var i = 0; i < steps.length; i++) {
+        var dot = document.createElement('div');
+        dot.className = 'onboard-dot' + (i === currentStep ? ' active' : '');
+        dotsEl.appendChild(dot);
+      }
+    }
+    if (btnEl) {
+      var isLast = currentStep === steps.length - 1;
+      btnEl.textContent = isLast ? t('onboardStart') : t('onboardNext');
+      btnEl.onclick = function() {
+        if (isLast) {
+          overlay.classList.remove('active');
+          storageSet('aug_onboarding_complete', true);
+        } else {
+          currentStep++;
+          renderStep();
+        }
+      };
+    }
+  }
+  renderStep();
+  // Small delay so the app renders first
+  setTimeout(function() { overlay.classList.add('active'); }, 600);
 }
 
 function updateDebug() {
