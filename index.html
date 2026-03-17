@@ -2757,11 +2757,11 @@ function typeIcon(type) {
   if (type === 'redeemable deed') return '\u{1F504}';
   return '\u{1F500}';
 }
-function typeMapColor(type, isFree) {
+function typeMapColor(type, isFree, mc) {
   const k = typeKey(type);
   const colors = { lien: 'lien', deed: 'deed', rdeed: 'rdeed', both: 'both' };
   const key = colors[k] || 'both';
-  return isFree ? mapColors[key] : mapColors[key + 'Dim'];
+  return isFree ? mc[key] : mc[key + 'Dim'];
 }
 
 // ── i18n Strings ─────────────────────────────────────────────
@@ -3901,7 +3901,7 @@ async function initMap() {
       const s = stateMap[sid];
       if (!s) return mapColors.state;
       const isFree = FREE_STATES.has(sid) || state.isPaid;
-      return typeMapColor(s.type, isFree);
+      return typeMapColor(s.type, isFree, mapColors);
     }
 
     function getOpacity(sid) {
