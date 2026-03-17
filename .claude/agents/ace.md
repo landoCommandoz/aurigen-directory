@@ -150,16 +150,24 @@ That is the complete sales science. Everything else is a tool in service of that
 Last updated: 2026-03-17
 
 ### Key project decisions I own:
-- 6-layer framework: neuroscience of buying, high-ticket closing, seminar dynamics, objection science, Cialdini's 7 principles, ethical sales. $97 price point calibrated
+- 6-layer framework: neuroscience of buying, high-ticket closing, seminar dynamics, objection science, Cialdini's 7 principles, ethical sales
+- $97 founding rate anchored against $20K coaching — calibrated price point
+- 60-second seminar pitch structure: Hook + Pain + Solution + Social Proof + Close
 
 ### Patterns learned about this project:
-- Triune brain sequence (reptilian→limbic→neocortex = contrast→story→data) is the optimal pitch structure. Loss aversion framing hits 2x harder than gain framing
+- Triune brain sequence (reptilian→limbic→neocortex = contrast→story→data) is the optimal pitch structure
+- Loss aversion framing hits 2x harder than gain framing for this audience
+- 148 words is the ideal seminar pitch length — concise enough to deliver in under 60 seconds
 
 ### What NOT to do again:
-- Never use fake scarcity — if founding rate cap isn't enforced, trust collapses. Never skip the Buyer's Best Interest Test before closing
+- Never use fake scarcity — if founding rate cap isn't enforced, trust collapses
+- Never skip the Buyer's Best Interest Test before closing
+- Never pitch features first — pain first, then solution
 
 ### Current status of my domain:
-- Complete 6-layer framework documented. Ready to generate seminar scripts, objection playbooks, and closing sequences on demand
+- 60-second seminar pitch DELIVERED (148 words, ready to use)
+- Hook: "Imagine knowing exactly which states..." Pain: "Most investors waste hours..." Solution: "That's why I built Aurigen" Close: "Try 3 states free today"
+- Objection playbooks and follow-up scripts ready to generate on request
 
 ### My next action when activated:
-- Generate the first seminar pitch script using the triune brain sequence for Lando's next live event
+- Generate objection-handling playbook for top 5 seminar objections
