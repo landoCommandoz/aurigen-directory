@@ -206,6 +206,7 @@ a { color: inherit; text-decoration: none; }
 .gate-hero {
   min-height: 90vh;
   min-height: 90dvh;
+  min-height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -318,6 +319,107 @@ a { color: inherit; text-decoration: none; }
 }
 
 .gate-hero-cta:active { transform: translateY(0); }
+
+/* ─── HERO INLINE EMAIL CAPTURE ─── */
+.hero-email-wrap {
+  position: relative;
+  z-index: 1;
+  margin-top: 28px;
+  width: 100%;
+  max-width: 480px;
+  opacity: 0;
+  animation: fadeUp 0.6s 1.05s ease forwards;
+}
+
+.hero-email-form {
+  display: flex;
+  gap: 0;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--accent-border);
+  border-radius: 14px;
+  padding: 5px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-email-form:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 24px var(--accent-glow);
+}
+
+.hero-email-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 14px;
+  padding: 14px 16px;
+  min-width: 0;
+}
+
+.hero-email-input::placeholder {
+  color: var(--text-muted);
+}
+
+.hero-email-input.error {
+  animation: shake 0.3s ease;
+}
+
+.hero-email-submit {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 10px;
+  padding: 14px 24px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 12px var(--accent-glow);
+}
+
+.hero-email-submit:hover {
+  box-shadow: 0 6px 24px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+.hero-email-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.hero-email-error {
+  display: none;
+  color: var(--red);
+  font-size: 12px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.hero-email-error.show { display: block; }
+
+.hero-email-fine {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.hero-email-or {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 12px;
+  margin-bottom: -8px;
+}
 
 @keyframes glowPulse {
   0%, 100% { box-shadow: 0 4px 20px var(--accent-glow); }
@@ -456,19 +558,25 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 640px) {
   .gate-hero {
     min-height: auto;
+    min-height: -webkit-fill-available;
     padding: 40px 20px 28px;
+    padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));
   }
   .gate-logo {
     font-size: clamp(48px, 12vw, 72px);
     letter-spacing: 0.1em;
   }
+  /* Hide subtitle on mobile for punchier hero */
+  .gate-sub {
+    display: none;
+  }
   .gate-tagline {
     font-size: clamp(16px, 3.8vw, 22px);
     margin-top: 20px;
   }
+  /* Hide long description on mobile — hero email form replaces it */
   .gate-description {
-    font-size: clamp(13px, 2.5vw, 15px);
-    margin-top: 12px;
+    display: none;
   }
   .gate-hero-cta {
     padding: 16px 40px;
@@ -477,6 +585,25 @@ a { color: inherit; text-decoration: none; }
     min-width: auto;
     width: 100%;
     max-width: 300px;
+  }
+  .hero-email-wrap {
+    max-width: 100%;
+    margin-top: 20px;
+  }
+  .hero-email-form {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+  .hero-email-input {
+    padding: 12px 14px;
+    font-size: 15px;
+    text-align: center;
+  }
+  .hero-email-submit {
+    padding: 14px 20px;
+    font-size: 13px;
+    width: 100%;
   }
   .gate-scroll-indicator {
     position: relative;
@@ -2482,6 +2609,21 @@ a { color: inherit; text-decoration: none; }
       <div class="gate-tagline" id="gate-tagline">Research All 50 States. Find Your Edge in Tax Liens & Deeds.</div>
       <div class="gate-description" id="gate-description">Auction signups, interest rates, redemption periods, county links, investor scores, and beginner tips — all in one place.</div>
       <button class="gate-hero-cta" id="gate-enter-btn" onclick="handleGateEnter()">See What's Inside</button>
+      <div class="hero-email-or" id="hero-email-or">or</div>
+      <div class="hero-email-wrap">
+        <div class="hero-email-form">
+          <input
+            class="hero-email-input"
+            id="hero-email-input"
+            type="email"
+            placeholder="you@email.com"
+            autocomplete="email"
+          />
+          <button class="hero-email-submit" id="hero-email-submit" onclick="handleHeroEmail()">Unlock Free Access</button>
+        </div>
+        <div class="hero-email-error" id="hero-email-error"></div>
+        <p class="hero-email-fine" id="hero-email-fine">Explore 3 states free. No credit card required.</p>
+      </div>
     </div>
     <div class="gate-scroll-indicator">
       <span class="gate-scroll-text" id="gate-scroll-text">Scroll</span>
@@ -2954,6 +3096,11 @@ const I18N = {
     gateTagline: 'Research All 50 States. Find Your Edge in Tax Liens & Deeds.',
     gateDescription: 'Auction signups, interest rates, redemption periods, county links, investor scores, and beginner tips — all in one place.',
     gateCta: "See What's Inside",
+    heroEmailOr: 'or',
+    heroEmailPlaceholder: 'you@email.com',
+    heroEmailSubmit: 'Unlock Free Access',
+    heroEmailFine: 'Explore 3 states free. No credit card required.',
+    heroEmailError: 'Please enter a valid email address.',
     gateScrollText: 'Scroll',
     // Gate - Stats
     gateStatLabel1: 'States + DC Covered',
@@ -3153,6 +3300,11 @@ const I18N = {
     gateTagline: 'Investiga los 50 Estados. Encuentra tu Ventaja en Gravamenes y Escrituras Fiscales.',
     gateDescription: 'Registro de subastas, tasas de interes, periodos de redencion, enlaces de condados, puntajes de inversor y consejos para principiantes — todo en un solo lugar.',
     gateCta: 'Ver el Contenido',
+    heroEmailOr: 'o',
+    heroEmailPlaceholder: 'tu@correo.com',
+    heroEmailSubmit: 'Desbloquear Acceso Gratis',
+    heroEmailFine: 'Explora 3 estados gratis. Sin tarjeta de credito.',
+    heroEmailError: 'Por favor ingresa un correo valido.',
     gateScrollText: 'Desplazar',
     // Gate - Stats
     gateStatLabel1: 'Estados + DC Cubiertos',
@@ -3455,6 +3607,16 @@ function updateGateStrings() {
   if (cta) cta.textContent = t('gateCta');
   if (scrollText) scrollText.textContent = t('gateScrollText');
 
+  // Hero inline email
+  const heroEmailOr = document.getElementById('hero-email-or');
+  const heroEmailInput = document.getElementById('hero-email-input');
+  const heroEmailSubmit = document.getElementById('hero-email-submit');
+  const heroEmailFine = document.getElementById('hero-email-fine');
+  if (heroEmailOr) heroEmailOr.textContent = t('heroEmailOr');
+  if (heroEmailInput) heroEmailInput.placeholder = t('heroEmailPlaceholder');
+  if (heroEmailSubmit) heroEmailSubmit.textContent = t('heroEmailSubmit');
+  if (heroEmailFine) heroEmailFine.textContent = t('heroEmailFine');
+
   // Stats section
   const statLabel1 = document.getElementById('gate-stat-label-1');
   const statLabel2 = document.getElementById('gate-stat-label-2');
@@ -3694,6 +3856,43 @@ function handleGateEnter() {
   }
 }
 
+function handleHeroEmail() {
+  const input = document.getElementById('hero-email-input');
+  const errorEl = document.getElementById('hero-email-error');
+  const submitBtn = document.getElementById('hero-email-submit');
+  const email = input ? input.value.trim() : '';
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    if (input) input.classList.add('error');
+    if (errorEl) {
+      errorEl.textContent = t('heroEmailError');
+      errorEl.classList.add('show');
+    }
+    setTimeout(() => {
+      if (input) input.classList.remove('error');
+    }, 400);
+    return;
+  }
+
+  // Store email in localStorage (null-safe)
+  try {
+    localStorage.setItem('aug_email', email);
+  } catch(e) {
+    console.warn('Could not store email:', e);
+  }
+
+  // Clear error if any
+  if (errorEl) errorEl.classList.remove('show');
+
+  // Disable button during transition
+  if (submitBtn) submitBtn.disabled = true;
+
+  // Enter the app with free access (same as main email gate)
+  enterApp(true);
+}
+
 function handleEmailGate() {
   const input = document.getElementById('gate-email-input');
   const errorEl = document.getElementById('gate-email-error');
@@ -3869,6 +4068,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const emailInput = document.getElementById('gate-email-input');
   if (emailInput) emailInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleEmailGate(); });
+
+  const heroEmailInput = document.getElementById('hero-email-input');
+  if (heroEmailInput) heroEmailInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleHeroEmail(); });
 });
 
 function enterApp(animate) {
