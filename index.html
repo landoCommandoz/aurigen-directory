@@ -227,8 +227,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.1); opacity: 1; }
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
 }
 
 .gate-hero-content {
@@ -481,6 +481,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .gate-stat-card {
+  flex: 1;
   background: rgba(255,255,255,0.04);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -561,11 +562,11 @@ a { color: inherit; text-decoration: none; }
 /* ─── TABLET/IPAD GATE FIX ─── */
 @media (min-width: 641px) and (max-width: 1024px) {
   .gate-hero {
-    padding: 60px 32px 80px;
-    padding-top: max(60px, calc(10vh));
+    padding: 60px 32px 40px;
   }
   .gate-stats {
     padding: 48px 32px;
+    margin-top: 32px;
   }
   .gate-stats-grid {
     gap: 20px;
@@ -573,12 +574,14 @@ a { color: inherit; text-decoration: none; }
   }
   .gate-stat-card {
     padding: 28px 16px;
+    flex: 1;
   }
   .gate-stat-number {
     font-size: clamp(36px, 6vw, 48px);
   }
   .gate-features {
     padding: 48px 32px;
+    margin-top: 48px;
   }
   .gate-features-grid {
     gap: 16px;
@@ -588,11 +591,9 @@ a { color: inherit; text-decoration: none; }
 /* ─── MOBILE GATE TIGHTENING ─── */
 @media (max-width: 640px) {
   .gate-hero {
-    min-height: auto;
     padding: 48px 20px 32px;
     padding-top: max(48px, env(safe-area-inset-top, 0px));
     padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
-    justify-content: flex-start;
   }
   .gate-logo {
     font-size: clamp(48px, 12vw, 72px);
@@ -643,12 +644,15 @@ a { color: inherit; text-decoration: none; }
   }
   .gate-stats {
     padding: 32px 20px;
+    margin-top: 24px;
   }
   .gate-stats-grid {
     gap: 8px;
+    flex-wrap: wrap;
   }
   .gate-stat-card {
     padding: 20px 12px;
+    min-width: 90px;
   }
   .gate-stat-number {
     font-size: clamp(28px, 8vw, 38px);
@@ -671,6 +675,7 @@ a { color: inherit; text-decoration: none; }
   }
   .gate-features {
     padding: 40px 20px;
+    margin-top: 32px;
   }
   .gate-price {
     padding: 40px 20px;
@@ -4914,7 +4919,7 @@ a { color: inherit; text-decoration: none; }
         <div class="gate-stat-label" id="gate-stat-label-2">Taxing Jurisdictions</div>
       </div>
       <div class="gate-stat-card">
-        <div class="gate-stat-number" data-target="7">0</div>
+        <div class="gate-stat-number" data-target="3">0</div>
         <div class="gate-stat-label" id="gate-stat-label-3">Free States to Start</div>
       </div>
     </div>
@@ -6214,7 +6219,7 @@ function stripeUrl() {
 
 // ── Feature Flag: Deal Tape ──────────────────────────────────
 var ff_deal_tape = true;
-const FREE_STATES = new Set(['FL']);
+const FREE_STATES = new Set(['FL','IL','AZ']);
 
 // (P1 conversion flags merged into var FF FLAG_DEFINITIONS above)
 
@@ -7804,7 +7809,7 @@ function animateGateStats(retryCount) {
   if (jurisdictionCount < 3000) jurisdictionCount = 3000;
   else jurisdictionCount = Math.floor(jurisdictionCount / 100) * 100;
 
-  var freeStates = ['FL','IL','AZ','TX','NJ','GA','OH'];
+  var freeStates = ['FL','IL','AZ'];
   var freeCount = freeStates.length;
 
   // Update data-target attributes with real values
