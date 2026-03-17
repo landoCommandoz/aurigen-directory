@@ -48,10 +48,48 @@ exports.handler = async (event) => {
     // Log to Netlify function logs (visible in Netlify dashboard > Functions > Logs)
     console.log(`[LEAD CAPTURED] email=${email} lang=${lang} ts=${timestamp}`);
 
+    // ── Push to GoHighLevel CRM ──────────────────────────
+    const ghlToken = process.env.GHL_ACCESS_TOKEN;
+    let ghlResult = null;
+    if (ghlToken) {
+      try {
+        const ghlRes = await fetch('https://services.leadconnectorhq.com/contacts/upsert', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + ghlToken,
+            'Content-Type': 'application/json',
+            'Version': '2021-07-28'
+          },
+          body: JSON.stringify({
+            locationId: 'SF8klkCZPOA9Axfzesf3',
+            email: email,
+            tags: ['Aurigen Directory Lead'],
+            source: 'Aurigen Directory',
+            customFields: [
+              { field_key: 'preferred_language', value: lang }
+            ]
+          })
+        });
+        const ghlData = await ghlRes.json();
+        if (ghlRes.ok) {
+          console.log(`[GHL] Upserted contact id=${ghlData.contact && ghlData.contact.id} email=${email}`);
+          ghlResult = { success: true, contactId: ghlData.contact && ghlData.contact.id };
+        } else {
+          console.error(`[GHL] Error ${ghlRes.status}: ${JSON.stringify(ghlData)}`);
+          ghlResult = { success: false, status: ghlRes.status };
+        }
+      } catch (err) {
+        console.error(`[GHL] Network error: ${err.message}`);
+        ghlResult = { success: false, error: err.message };
+      }
+    } else {
+      console.warn('[GHL] GHL_ACCESS_TOKEN not set — skipping CRM push');
+    }
+
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ success: true, email })
+      body: JSON.stringify({ success: true, email, ghl: ghlResult })
     };
   }
 
