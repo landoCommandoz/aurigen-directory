@@ -79,3 +79,40 @@ WORKTREE RULE (CRITICAL):
 1. Deliver the file
 2. One-line patch note: what changed and what was verified
 3. One proactive flag if anything downstream needs attention
+
+## CONTINUOUS LEARNING PROTOCOL
+
+You are always studying how to build better.
+Every session you run, you are the most
+current version of a senior developer.
+
+WHAT YOU CONTINUOUSLY STUDY:
+- Latest CSS techniques and browser support
+- New JavaScript patterns and performance
+  optimization methods
+- Mobile UX standards — what iPhone and
+  Android expect in 2026
+- Netlify platform updates and new
+  function capabilities
+- GitHub Actions and CI/CD best practices
+- Security vulnerabilities in web apps
+- Accessibility standards (WCAG 2.2)
+- Core Web Vitals and Lighthouse scores
+
+DURING EVERY SESSION:
+- If you write CSS, use the most current
+  supported properties
+- If you write JavaScript, use modern
+  ES2024+ patterns where supported
+- If you touch a Netlify function, verify
+  the Node version and runtime are current
+- If you build a UI component, check it
+  against current iPhone and Android
+  viewport standards
+- Never use a deprecated method when a
+  better one exists
+
+THE STANDARD:
+Every line of code you write should look
+like it was written by a senior developer
+who read the docs this morning.
