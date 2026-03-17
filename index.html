@@ -3779,6 +3779,15 @@ const SKOOL_URL = 'https://www.skool.com/tax-lien-wealth-2705/about?ref=6fd80bf6
 const NETLIFY_FN = '/.netlify/functions/aurigen';
 const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4';
 
+// Build Stripe checkout URL with client_reference_id from stored email
+function stripeUrl() {
+  try {
+    var em = localStorage.getItem('aug_email');
+    if (em) return STRIPE_URL + '?client_reference_id=' + encodeURIComponent(em);
+  } catch(e) { /* silent */ }
+  return STRIPE_URL;
+}
+
 // Free states (top 7 by score)
 const FREE_STATES = new Set(['FL', 'IL', 'AZ']);
 
@@ -4585,6 +4594,22 @@ function handleEmailGate() {
     console.warn('Could not store email:', e);
   }
 
+  // Fire-and-forget: capture email server-side (non-blocking)
+  try {
+    fetch(NETLIFY_FN, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'capture-email',
+        email: email,
+        lang: state.lang || 'en',
+        timestamp: new Date().toISOString()
+      })
+    }).catch(function() { /* silent — user experience unaffected */ });
+  } catch(e) {
+    // Silent catch — server capture is best-effort
+  }
+
   // Clear error if any
   if (errorEl) errorEl.classList.remove('show');
 
@@ -5179,7 +5204,7 @@ function openState(id) {
           </div>
           <div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>
           <div style="font-size:11px;color:var(--text-muted);margin-bottom:16px;">${t('paywallPriceNote')}</div>
-          <a href="${STRIPE_URL}" target="_blank" class="paywall-btn">${t('paywallCta')}</a>
+          <a href="${stripeUrl()}" target="_blank" class="paywall-btn">${t('paywallCta')}</a>
           <div style="font-size:12px;color:var(--text-dim);margin-top:12px;">
             ${t('paywallHaveCode')}
             <button onclick="closeStateModal();showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">${t('paywallEnterCode')}</button>
@@ -5318,7 +5343,7 @@ function openPaywall(id) {
       <div class="paywall-sub">${t('paywallSub')}</div>
       <div class="paywall-price">${t('paywallPrice')}</div>
       <div class="paywall-price-note">${t('paywallPriceNote')}</div>
-      <a href="${STRIPE_URL}" target="_blank" class="paywall-btn">${t('paywallCta')}</a>
+      <a href="${stripeUrl()}" target="_blank" class="paywall-btn">${t('paywallCta')}</a>
       <div style="font-size:12px;color:var(--text-dim);">
         ${t('paywallHaveCode')}
         <button onclick="closeStateModal();showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">${t('paywallEnterCode')}</button>
@@ -5751,7 +5776,7 @@ function calcAnalyzer() {
 // ── Valuation Agent (Atlas) ───────────────────────────────────
 async function sendValMessage() {
   if (!state.isPaid) {
-    appendValMsg('atlas', 'Atlas is available to full-access members. Unlock all 50 states + DC, AI agents, and more for just $97.<br><br><a href="' + STRIPE_URL + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
+    appendValMsg('atlas', 'Atlas is available to full-access members. Unlock all 50 states + DC, AI agents, and more for just $97.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
     return;
   }
   if (state.valBusy) return;
@@ -5824,7 +5849,7 @@ function valKeydown(e) {
 // ── AI Advisor ────────────────────────────────────────────────
 async function sendAdvisorMessage() {
   if (!state.isPaid) {
-    appendAdvisorMsg('sage', 'Sage is available to full-access members. Unlock all 50 states + DC, AI advisor, and more for just $97.<br><br><a href="' + STRIPE_URL + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
+    appendAdvisorMsg('sage', 'Sage is available to full-access members. Unlock all 50 states + DC, AI advisor, and more for just $97.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin:4px 8px 4px 0;">Unlock Full Access</a><a href="' + SKOOL_URL + '" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.08);color:var(--text);padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);margin:4px 0;">Join Free Community</a>');
     return;
   }
   if (state.advisorBusy) return;
