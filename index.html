@@ -206,6 +206,7 @@ a { color: inherit; text-decoration: none; }
 .gate-hero {
   min-height: 90vh;
   min-height: 90dvh;
+  min-height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -318,6 +319,107 @@ a { color: inherit; text-decoration: none; }
 }
 
 .gate-hero-cta:active { transform: translateY(0); }
+
+/* ─── HERO INLINE EMAIL CAPTURE ─── */
+.hero-email-wrap {
+  position: relative;
+  z-index: 1;
+  margin-top: 28px;
+  width: 100%;
+  max-width: 480px;
+  opacity: 0;
+  animation: fadeUp 0.6s 1.05s ease forwards;
+}
+
+.hero-email-form {
+  display: flex;
+  gap: 0;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--accent-border);
+  border-radius: 14px;
+  padding: 5px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-email-form:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 24px var(--accent-glow);
+}
+
+.hero-email-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 14px;
+  padding: 14px 16px;
+  min-width: 0;
+}
+
+.hero-email-input::placeholder {
+  color: var(--text-muted);
+}
+
+.hero-email-input.error {
+  animation: shake 0.3s ease;
+}
+
+.hero-email-submit {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 10px;
+  padding: 14px 24px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 12px var(--accent-glow);
+}
+
+.hero-email-submit:hover {
+  box-shadow: 0 6px 24px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+.hero-email-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.hero-email-error {
+  display: none;
+  color: var(--red);
+  font-size: 12px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.hero-email-error.show { display: block; }
+
+.hero-email-fine {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.hero-email-or {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 12px;
+  margin-bottom: -8px;
+}
 
 @keyframes glowPulse {
   0%, 100% { box-shadow: 0 4px 20px var(--accent-glow); }
@@ -455,20 +557,27 @@ a { color: inherit; text-decoration: none; }
 /* ─── MOBILE GATE TIGHTENING ─── */
 @media (max-width: 640px) {
   .gate-hero {
-    min-height: auto;
-    padding: 40px 20px 28px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+    padding: 48px 20px 60px;
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
   }
   .gate-logo {
     font-size: clamp(48px, 12vw, 72px);
     letter-spacing: 0.1em;
   }
+  /* Hide subtitle on mobile for punchier hero */
+  .gate-sub {
+    display: none;
+  }
   .gate-tagline {
     font-size: clamp(16px, 3.8vw, 22px);
     margin-top: 20px;
   }
+  /* Hide long description on mobile — hero email form replaces it */
   .gate-description {
-    font-size: clamp(13px, 2.5vw, 15px);
-    margin-top: 12px;
+    display: none;
   }
   .gate-hero-cta {
     padding: 16px 40px;
@@ -478,10 +587,29 @@ a { color: inherit; text-decoration: none; }
     width: 100%;
     max-width: 300px;
   }
-  .gate-scroll-indicator {
-    position: relative;
-    bottom: auto;
+  .hero-email-wrap {
+    max-width: 100%;
     margin-top: 20px;
+  }
+  .hero-email-form {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+  .hero-email-input {
+    padding: 12px 14px;
+    font-size: 15px;
+    text-align: center;
+  }
+  .hero-email-submit {
+    padding: 14px 20px;
+    font-size: 13px;
+    width: 100%;
+  }
+  .gate-scroll-indicator {
+    position: absolute;
+    bottom: 20px;
+    margin-top: 0;
   }
   .gate-email {
     padding: 32px 20px 48px;
@@ -621,8 +749,8 @@ a { color: inherit; text-decoration: none; }
 
 .gate-price-savings {
   display: inline-block;
-  background: rgba(76,175,80,0.12);
-  color: #66bb6a;
+  background: rgba(200,168,75,0.12);
+  color: var(--accent);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -630,7 +758,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 100px;
   margin-top: 12px;
   margin-bottom: 16px;
-  border: 1px solid rgba(76,175,80,0.2);
+  border: 1px solid rgba(200,168,75,0.25);
 }
 
 .gate-price-note {
@@ -2667,6 +2795,319 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════
+   STATE VERSUS — Comparison Panel
+═══════════════════════════════════════════════ */
+#view-versus {
+  padding-bottom: 0;
+}
+
+#view-versus.active { display: flex; }
+
+.vs-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 16px 24px;
+}
+
+.vs-header {
+  text-align: center;
+  padding: 20px 16px 0;
+  flex-shrink: 0;
+}
+
+.vs-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+
+.vs-sub {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.vs-pickers {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.vs-pickers select {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888896' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+.vs-pickers select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.vs-badge-divider {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.vs-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.vs-empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+/* Comparison table */
+.vs-table {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: fadeUp 0.35s ease forwards;
+}
+
+.vs-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.vs-row:hover {
+  border-color: var(--border-hover);
+}
+
+.vs-row-label {
+  grid-column: 1 / -1;
+  padding: 10px 16px 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.02);
+}
+
+.vs-cell {
+  padding: 8px 16px 14px;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vs-cell.left { text-align: left; }
+.vs-cell.right { text-align: right; }
+
+.vs-cell-divider {
+  width: 1px;
+  background: var(--border);
+  align-self: stretch;
+}
+
+.vs-cell.winner {
+  background: var(--accent-dim);
+}
+
+.vs-cell.winner .vs-cell-value {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.vs-cell-value {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.vs-cell-detail {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Winner badge */
+.vs-winner-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+  width: fit-content;
+}
+
+.vs-cell.right .vs-winner-badge {
+  margin-left: auto;
+}
+
+/* Locked state overlay */
+.vs-cell-locked {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.vs-cell-locked .lock-icon {
+  font-size: 16px;
+}
+
+.vs-unlock-btn {
+  display: inline-block;
+  margin-top: 6px;
+  background: none;
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vs-unlock-btn:hover {
+  background: var(--accent-dim);
+}
+
+/* Summary card at bottom */
+.vs-summary {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--accent-border);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.vs-summary-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.vs-summary-text {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.vs-summary-score {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 12px;
+}
+
+.vs-summary-score-item {
+  text-align: center;
+}
+
+.vs-summary-score-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.vs-summary-score-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Risks list in vs */
+.vs-risk-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vs-risk-list li {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.4;
+  padding: 2px 0;
+}
+
+.vs-risk-list li::before {
+  content: '\26A0';
+  margin-right: 4px;
+  font-size: 10px;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 640px) {
+  .vs-pickers {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .vs-pickers select {
+    width: 100%;
+  }
+  .vs-badge-divider {
+    font-size: 18px;
+  }
+  .vs-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .vs-cell-divider {
+    display: none;
+  }
+  .vs-cell {
+    padding: 8px 12px 12px;
+    font-size: 13px;
+  }
+  .vs-cell-value {
+    font-size: 14px;
+  }
+}
+
+/* ═══════════════════════════════════════════════
    ANIMATIONS
 ═══════════════════════════════════════════════ */
 @keyframes fadeUp {
@@ -2677,6 +3118,143 @@ a { color: inherit; text-decoration: none; }
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════
+   EXIT INTENT POPUP
+═══════════════════════════════════════════════ */
+.exit-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  padding: 24px;
+}
+
+.exit-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.exit-modal {
+  background: rgba(22, 22, 32, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--accent-border);
+  border-radius: 16px;
+  padding: 48px 40px 36px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-shadow: var(--shadow-lg), 0 0 80px rgba(200, 168, 75, 0.08);
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.exit-overlay.active .exit-modal {
+  transform: translateY(0) scale(1);
+}
+
+.exit-modal::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, var(--accent-glow), transparent 60%);
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.exit-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 20px;
+  line-height: 1;
+  padding: 4px 8px;
+  transition: color 0.2s;
+}
+
+.exit-close:hover { color: var(--text); }
+
+.exit-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.exit-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 6vw, 38px);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.exit-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 28px;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.exit-cta {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  padding: 14px 36px;
+  border-radius: 8px;
+  border: none;
+  transition: background 0.2s, transform 0.15s;
+  cursor: pointer;
+}
+
+.exit-cta:hover {
+  background: #d4b45a;
+  transform: translateY(-1px);
+}
+
+.exit-dismiss {
+  display: block;
+  margin-top: 16px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.exit-dismiss:hover { color: var(--text-dim); }
+
+@media (max-width: 480px) {
+  .exit-modal { padding: 36px 24px 28px; }
+  .exit-headline { font-size: 28px; }
 }
 </style>
 </head>
@@ -2694,6 +3272,21 @@ a { color: inherit; text-decoration: none; }
       <div class="gate-tagline" id="gate-tagline">Research All 50 States. Find Your Edge in Tax Liens & Deeds.</div>
       <div class="gate-description" id="gate-description">Auction signups, interest rates, redemption periods, county links, investor scores, and beginner tips — all in one place.</div>
       <button class="gate-hero-cta" id="gate-enter-btn" onclick="handleGateEnter()">See What's Inside</button>
+      <div class="hero-email-or" id="hero-email-or">or</div>
+      <div class="hero-email-wrap">
+        <div class="hero-email-form">
+          <input
+            class="hero-email-input"
+            id="hero-email-input"
+            type="email"
+            placeholder="you@email.com"
+            autocomplete="email"
+          />
+          <button class="hero-email-submit" id="hero-email-submit" onclick="handleHeroEmail()">Unlock Free Access</button>
+        </div>
+        <div class="hero-email-error" id="hero-email-error"></div>
+        <p class="hero-email-fine" id="hero-email-fine">Explore 3 states free. No credit card required.</p>
+      </div>
     </div>
     <div class="gate-scroll-indicator">
       <span class="gate-scroll-text" id="gate-scroll-text">Scroll</span>
@@ -2756,22 +3349,7 @@ a { color: inherit; text-decoration: none; }
     </div>
   </section>
 
-  <!-- Section 4: Price Anchor -->
-  <section class="gate-price gate-section">
-    <div class="gate-price-community" id="gate-price-community">Join the Aurigen Collective — a growing community of tax lien & deed investors</div>
-    <div class="gate-price-card">
-      <div class="gate-price-card-glow"></div>
-      <div class="gate-price-badge">FOUNDING MEMBER RATE</div>
-      <div class="gate-price-display">
-        <span class="gate-price-old">$297</span>
-        <span class="gate-price-current">$97</span>
-      </div>
-      <div class="gate-price-savings">SAVE $200</div>
-      <div class="gate-price-note" id="gate-price-note">One-time · Lifetime Access · No Recurring Fees</div>
-    </div>
-  </section>
-
-  <!-- Section 5: Email Capture — conversion point after value is established -->
+  <!-- Section 4: Email Capture — free gate comes first -->
   <section class="gate-email gate-section" id="gate-email-section">
     <h2 class="gate-email-title" id="gate-email-title">Start Free — Explore 3 States</h2>
     <p class="gate-email-desc" id="gate-email-desc">Enter your email to unlock Florida, Illinois, and Arizona — no credit card required.</p>
@@ -2807,6 +3385,33 @@ a { color: inherit; text-decoration: none; }
       Educational research tool. Not investment advice.
     </div>
   </section>
+
+  <!-- Section 5: Price Anchor — paid upgrade after free email gate -->
+  <section class="gate-price gate-section">
+    <div class="gate-price-community" id="gate-price-community">Join the Aurigen Collective — a growing community of tax lien & deed investors</div>
+    <div class="gate-price-card">
+      <div class="gate-price-card-glow"></div>
+      <div class="gate-price-badge">FOUNDING MEMBER RATE</div>
+      <div class="gate-price-display">
+        <span class="gate-price-old">$297</span>
+        <span class="gate-price-current">$97</span>
+      </div>
+      <div class="gate-price-savings">SAVE $200</div>
+      <div class="gate-price-note" id="gate-price-note">One-time · Lifetime Access · No Recurring Fees</div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ EXIT INTENT POPUP ═══════════════ -->
+<div class="exit-overlay" id="exit-popup">
+  <div class="exit-modal">
+    <button class="exit-close" id="exit-close-btn" aria-label="Close">&times;</button>
+    <div class="exit-eyebrow" id="exit-eyebrow">Before You Go</div>
+    <h2 class="exit-headline" id="exit-headline">Wait &mdash; Don&rsquo;t Miss Your Free State Access</h2>
+    <p class="exit-body" id="exit-body">Get instant access to 7 states free. See which counties are best for tax lien and tax deed investing.</p>
+    <button class="exit-cta" id="exit-cta">Unlock Free Access</button>
+    <button class="exit-dismiss" id="exit-dismiss">No thanks</button>
+  </div>
 </div>
 
 <!-- ═══════════════ APP ═══════════════ -->
@@ -3063,6 +3668,27 @@ a { color: inherit; text-decoration: none; }
       </div>
     </div>
 
+    <!-- VERSUS VIEW -->
+    <div id="view-versus" class="view">
+      <div class="vs-header">
+        <div class="vs-title" id="vs-title">State Versus</div>
+        <div class="vs-sub" id="vs-sub">Compare two states side-by-side</div>
+      </div>
+      <div class="vs-scroll">
+        <div class="vs-pickers">
+          <select id="vs-select-a" onchange="runVersus()"></select>
+          <span class="vs-badge-divider">VS</span>
+          <select id="vs-select-b" onchange="runVersus()"></select>
+        </div>
+        <div id="vs-result">
+          <div class="vs-empty">
+            <div class="vs-empty-icon">&#9878;</div>
+            <div id="vs-empty-text">Pick two states above to compare them head-to-head.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div><!-- end main-content -->
 
   <!-- FOOTER DISCLAIMER -->
@@ -3089,6 +3715,12 @@ a { color: inherit; text-decoration: none; }
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       </span>
       <span class="nav-label">Advisor</span>
+    </button>
+    <button class="nav-item" data-tab="versus" onclick="navigate('versus')">
+      <span class="nav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3l5 5-5 5"/><path d="M21 8H9"/><path d="M8 21l-5-5 5-5"/><path d="M3 16h12"/></svg>
+      </span>
+      <span class="nav-label">VS</span>
     </button>
     <button class="nav-item" data-tab="account" onclick="navigate('account')">
       <span class="nav-icon">
@@ -3826,6 +4458,11 @@ const I18N = {
     gateTagline: 'Research All 50 States. Find Your Edge in Tax Liens & Deeds.',
     gateDescription: 'Auction signups, interest rates, redemption periods, county links, investor scores, and beginner tips — all in one place.',
     gateCta: "See What's Inside",
+    heroEmailOr: 'or',
+    heroEmailPlaceholder: 'you@email.com',
+    heroEmailSubmit: 'Unlock Free Access',
+    heroEmailFine: 'Explore 3 states free. No credit card required.',
+    heroEmailError: 'Please enter a valid email address.',
     gateScrollText: 'Scroll',
     // Gate - Stats
     gateStatLabel1: 'States + DC Covered',
@@ -3868,6 +4505,7 @@ const I18N = {
     navAdvisor: 'Advisor',
     navLegal: 'Legal',
     navGlossary: 'Glossary',
+    navVersus: 'VS',
     navAccount: 'Account',
     navProfile: 'Profile',
     navSaved: 'Saved',
@@ -3949,6 +4587,31 @@ const I18N = {
     // Spotlight
     spotlightTitle: 'Spotlight',
     spotlightSub: 'Top states by investor score',
+    // Versus
+    vsTitle: 'State Versus',
+    vsSub: 'Compare two states side-by-side',
+    vsPickState: '— Select State —',
+    vsEmpty: 'Pick two states above to compare them head-to-head.',
+    vsType: 'Investment Type',
+    vsRate: 'Interest Rate',
+    vsRedemption: 'Redemption Period',
+    vsScore: 'Investor Score',
+    vsBeginner: 'Beginner Friendly',
+    vsCounties: 'Counties Listed',
+    vsRisks: 'Key Risks',
+    vsPlatforms: 'Platforms',
+    vsOtc: 'OTC Available',
+    vsYes: 'Yes',
+    vsNo: 'No',
+    vsWinner: 'Edge',
+    vsTie: 'Tie',
+    vsLocked: 'Locked',
+    vsUnlock: 'Unlock',
+    vsSummary: 'Verdict',
+    vsSummaryWins: 'wins',
+    vsSummaryCategories: 'categories',
+    vsSummaryTied: 'Tied at',
+    vsSummaryEach: 'each',
     // State Modal
     modalBeginnerYes: 'Beginner Friendly',
     modalBeginnerNo: 'Not Recommended for Beginners',
@@ -4015,7 +4678,13 @@ const I18N = {
     stratBeginner: 'Beginner',
     stratAdvanced: 'Experienced',
     // Language toggle
-    langToggle: 'EN'
+    langToggle: 'EN',
+    // Exit intent
+    exitEyebrow: 'Before You Go',
+    exitHeadline: "Wait \u2014 Don\u2019t Miss Your Free State Access",
+    exitBody: 'Get instant access to 7 states free. See which counties are best for tax lien and tax deed investing.',
+    exitCta: 'Unlock Free Access',
+    exitDismiss: 'No thanks'
   },
   es: {
     // Gate - Hero
@@ -4025,6 +4694,11 @@ const I18N = {
     gateTagline: 'Investiga los 50 Estados. Encuentra tu Ventaja en Gravamenes y Escrituras Fiscales.',
     gateDescription: 'Registro de subastas, tasas de interes, periodos de redencion, enlaces de condados, puntajes de inversor y consejos para principiantes — todo en un solo lugar.',
     gateCta: 'Ver el Contenido',
+    heroEmailOr: 'o',
+    heroEmailPlaceholder: 'tu@correo.com',
+    heroEmailSubmit: 'Desbloquear Acceso Gratis',
+    heroEmailFine: 'Explora 3 estados gratis. Sin tarjeta de credito.',
+    heroEmailError: 'Por favor ingresa un correo valido.',
     gateScrollText: 'Desplazar',
     // Gate - Stats
     gateStatLabel1: 'Estados + DC Cubiertos',
@@ -4067,6 +4741,7 @@ const I18N = {
     navAdvisor: 'Asesor',
     navLegal: 'Legal',
     navGlossary: 'Glosario',
+    navVersus: 'VS',
     navAccount: 'Cuenta',
     navProfile: 'Perfil',
     navSaved: 'Guardados',
@@ -4148,6 +4823,31 @@ const I18N = {
     // Spotlight
     spotlightTitle: 'Destacados',
     spotlightSub: 'Mejores estados por puntaje de inversor',
+    // Versus
+    vsTitle: 'Estado vs Estado',
+    vsSub: 'Compare dos estados lado a lado',
+    vsPickState: '— Seleccionar Estado —',
+    vsEmpty: 'Seleccione dos estados arriba para compararlos.',
+    vsType: 'Tipo de Inversion',
+    vsRate: 'Tasa de Interes',
+    vsRedemption: 'Periodo de Redencion',
+    vsScore: 'Puntaje del Inversor',
+    vsBeginner: 'Apto para Principiantes',
+    vsCounties: 'Condados Listados',
+    vsRisks: 'Riesgos Clave',
+    vsPlatforms: 'Plataformas',
+    vsOtc: 'OTC Disponible',
+    vsYes: 'Si',
+    vsNo: 'No',
+    vsWinner: 'Ventaja',
+    vsTie: 'Empate',
+    vsLocked: 'Bloqueado',
+    vsUnlock: 'Desbloquear',
+    vsSummary: 'Veredicto',
+    vsSummaryWins: 'gana',
+    vsSummaryCategories: 'categorias',
+    vsSummaryTied: 'Empatados en',
+    vsSummaryEach: 'cada uno',
     // State Modal
     modalBeginnerYes: 'Apto para Principiantes',
     modalBeginnerNo: 'No Recomendado para Principiantes',
@@ -4214,7 +4914,13 @@ const I18N = {
     stratBeginner: 'Principiante',
     stratAdvanced: 'Experimentado',
     // Language toggle
-    langToggle: 'ES'
+    langToggle: 'ES',
+    // Exit intent
+    exitEyebrow: 'Antes de Irte',
+    exitHeadline: 'Espera \u2014 No Te Pierdas Tu Acceso Gratuito',
+    exitBody: 'Obtene acceso instantaneo a 7 estados gratis. Descubri cuales condados son mejores para invertir en gravamenes y escrituras fiscales.',
+    exitCta: 'Desbloquear Acceso Gratis',
+    exitDismiss: 'No gracias'
   }
 };
 
@@ -4278,6 +4984,9 @@ function applyLanguage() {
   // Update debug panel
   updateDebug();
 
+  // Update exit intent popup text
+  if (window._updateExitText) window._updateExitText();
+
   // If already entered app, re-render all views
   if (state.entered) {
     buildStateList();
@@ -4296,6 +5005,9 @@ function applyLanguage() {
 
     // Update advisor strings
     updateAdvisorStrings();
+
+    // Update versus strings
+    updateVersusStrings();
 
     // Re-render map legend
     updateMapLegend();
@@ -4326,6 +5038,16 @@ function updateGateStrings() {
   if (description) description.textContent = t('gateDescription');
   if (cta) cta.textContent = t('gateCta');
   if (scrollText) scrollText.textContent = t('gateScrollText');
+
+  // Hero inline email
+  const heroEmailOr = document.getElementById('hero-email-or');
+  const heroEmailInput = document.getElementById('hero-email-input');
+  const heroEmailSubmit = document.getElementById('hero-email-submit');
+  const heroEmailFine = document.getElementById('hero-email-fine');
+  if (heroEmailOr) heroEmailOr.textContent = t('heroEmailOr');
+  if (heroEmailInput) heroEmailInput.placeholder = t('heroEmailPlaceholder');
+  if (heroEmailSubmit) heroEmailSubmit.textContent = t('heroEmailSubmit');
+  if (heroEmailFine) heroEmailFine.textContent = t('heroEmailFine');
 
   // Stats section
   const statLabel1 = document.getElementById('gate-stat-label-1');
@@ -4377,7 +5099,7 @@ function updateGateStrings() {
 
 function updateNavStrings() {
   const navItems = document.querySelectorAll('.nav-item');
-  const navKeys = ['navMap', 'navAnalyze', 'navAdvisor', 'navAccount'];
+  const navKeys = ['navMap', 'navAnalyze', 'navAdvisor', 'navVersus', 'navAccount'];
   navItems.forEach((item, i) => {
     const label = item.querySelector('.nav-label');
     if (label && navKeys[i]) label.textContent = t(navKeys[i]);
@@ -4436,6 +5158,12 @@ function updateViewHeaders() {
     if (title) title.textContent = t('spotlightTitle');
     if (sub) sub.textContent = t('spotlightSub');
   }
+
+  // Versus
+  var vsTitle = document.getElementById('vs-title');
+  var vsSub = document.getElementById('vs-sub');
+  if (vsTitle) vsTitle.textContent = t('vsTitle');
+  if (vsSub) vsSub.textContent = t('vsSub');
 }
 
 function updateAnalyzerStrings() {
@@ -4564,6 +5292,43 @@ function handleGateEnter() {
   if (emailSection) {
     emailSection.scrollIntoView({ behavior: 'smooth' });
   }
+}
+
+function handleHeroEmail() {
+  const input = document.getElementById('hero-email-input');
+  const errorEl = document.getElementById('hero-email-error');
+  const submitBtn = document.getElementById('hero-email-submit');
+  const email = input ? input.value.trim() : '';
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    if (input) input.classList.add('error');
+    if (errorEl) {
+      errorEl.textContent = t('heroEmailError');
+      errorEl.classList.add('show');
+    }
+    setTimeout(() => {
+      if (input) input.classList.remove('error');
+    }, 400);
+    return;
+  }
+
+  // Store email in localStorage (null-safe)
+  try {
+    localStorage.setItem('aug_email', email);
+  } catch(e) {
+    console.warn('Could not store email:', e);
+  }
+
+  // Clear error if any
+  if (errorEl) errorEl.classList.remove('show');
+
+  // Disable button during transition
+  if (submitBtn) submitBtn.disabled = true;
+
+  // Enter the app with free access (same as main email gate)
+  enterApp(true);
 }
 
 function handleEmailGate() {
@@ -4757,6 +5522,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const emailInput = document.getElementById('gate-email-input');
   if (emailInput) emailInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleEmailGate(); });
+
+  const heroEmailInput = document.getElementById('hero-email-input');
+  if (heroEmailInput) heroEmailInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleHeroEmail(); });
 });
 
 function enterApp(animate) {
@@ -4796,6 +5564,7 @@ function navigate(tab, animate = true) {
   });
 
   // Tab-specific actions
+  if (tab === 'versus') { populateVersusDropdowns(); }
   if (tab === 'account') { buildSaved(); buildProfileRecs(); }
   if (tab === 'map' && state.mapReady) {
     const svg = d3.select('#map-svg');
@@ -5925,6 +6694,204 @@ function advisorKeydown(e) {
   }
 }
 
+// ── State Versus — Comparison Feature ─────────────────────────
+function populateVersusDropdowns() {
+  var selA = document.getElementById('vs-select-a');
+  var selB = document.getElementById('vs-select-b');
+  if (!selA || !selB || !STATES || STATES.length === 0) return;
+
+  var sorted = STATES.slice().sort(function(a, b) { return a.name.localeCompare(b.name); });
+  var placeholder = t('vsPickState');
+
+  [selA, selB].forEach(function(sel) {
+    var currentVal = sel.value;
+    sel.innerHTML = '';
+    var opt0 = document.createElement('option');
+    opt0.value = '';
+    opt0.textContent = placeholder;
+    sel.appendChild(opt0);
+    sorted.forEach(function(s) {
+      var opt = document.createElement('option');
+      opt.value = s.id;
+      var isFree = FREE_STATES.has(s.id) || state.isPaid;
+      opt.textContent = s.name + (isFree ? '' : ' \uD83D\uDD12');
+      sel.appendChild(opt);
+    });
+    if (currentVal) sel.value = currentVal;
+  });
+}
+
+function runVersus() {
+  var container = document.getElementById('vs-result');
+  if (!container) return;
+
+  var idA = document.getElementById('vs-select-a').value;
+  var idB = document.getElementById('vs-select-b').value;
+
+  if (!idA || !idB || idA === idB) {
+    container.innerHTML = '<div class="vs-empty"><div class="vs-empty-icon">&#9878;</div><div>' + t('vsEmpty') + '</div></div>';
+    return;
+  }
+
+  var sA = STATES.find(function(s) { return s.id === idA; });
+  var sB = STATES.find(function(s) { return s.id === idB; });
+  if (!sA || !sB) return;
+
+  var freeA = FREE_STATES.has(idA) || state.isPaid;
+  var freeB = FREE_STATES.has(idB) || state.isPaid;
+
+  var html = '<div class="vs-table">';
+  var winsA = 0;
+  var winsB = 0;
+
+  // Helper: build a row
+  function row(label, valA, valB, winSide, detailA, detailB) {
+    var leftWin = winSide === 'a' ? ' winner' : '';
+    var rightWin = winSide === 'b' ? ' winner' : '';
+    var badgeA = winSide === 'a' ? '<div class="vs-winner-badge">' + t('vsWinner') + '</div>' : '';
+    var badgeB = winSide === 'b' ? '<div class="vs-winner-badge">' + t('vsWinner') + '</div>' : '';
+    var dA = detailA ? '<div class="vs-cell-detail">' + detailA + '</div>' : '';
+    var dB = detailB ? '<div class="vs-cell-detail">' + detailB + '</div>' : '';
+
+    return '<div class="vs-row">' +
+      '<div class="vs-row-label">' + label + '</div>' +
+      '<div class="vs-cell left' + leftWin + '"><div class="vs-cell-value">' + valA + '</div>' + dA + badgeA + '</div>' +
+      '<div class="vs-cell-divider"></div>' +
+      '<div class="vs-cell right' + rightWin + '"><div class="vs-cell-value">' + valB + '</div>' + dB + badgeB + '</div>' +
+      '</div>';
+  }
+
+  function lockedCell() {
+    return '<div class="vs-cell-locked"><span class="lock-icon">\uD83D\uDD12</span> ' + t('vsLocked') +
+      '</div><button class="vs-unlock-btn" onclick="window.open(\'' + STRIPE_URL + '\',\'_blank\')">' + t('vsUnlock') + '</button>';
+  }
+
+  // 1. Type
+  var typeA = freeA ? typeFullLabel(sA.type) : lockedCell();
+  var typeB = freeB ? typeFullLabel(sB.type) : lockedCell();
+  html += row(t('vsType'), typeA, typeB, null);
+
+  // 2. Rate
+  var rateA = freeA ? sA.rate : lockedCell();
+  var rateB = freeB ? sB.rate : lockedCell();
+  // Try to compare rates numerically
+  var rateWin = null;
+  if (freeA && freeB) {
+    var numA = parseFloat(sA.rate);
+    var numB = parseFloat(sB.rate);
+    if (!isNaN(numA) && !isNaN(numB)) {
+      if (numA > numB) { rateWin = 'a'; winsA++; }
+      else if (numB > numA) { rateWin = 'b'; winsB++; }
+    }
+  }
+  html += row(t('vsRate'), rateA, rateB, rateWin);
+
+  // 3. Redemption
+  var redA = freeA ? sA.redemption : lockedCell();
+  var redB = freeB ? sB.redemption : lockedCell();
+  html += row(t('vsRedemption'), redA, redB, null);
+
+  // 4. Score
+  var scoreA = freeA ? String(sA.score) : lockedCell();
+  var scoreB = freeB ? String(sB.score) : lockedCell();
+  var scoreWin = null;
+  if (freeA && freeB) {
+    if (sA.score > sB.score) { scoreWin = 'a'; winsA++; }
+    else if (sB.score > sA.score) { scoreWin = 'b'; winsB++; }
+  }
+  var scoreDetailA = freeA ? sA.scoreWhy : '';
+  var scoreDetailB = freeB ? sB.scoreWhy : '';
+  html += row(t('vsScore'), scoreA, scoreB, scoreWin, scoreDetailA, scoreDetailB);
+
+  // 5. Beginner Friendly
+  var begA = freeA ? (sA.beginnerFriendly ? '\u2705 ' + t('vsYes') : '\u274C ' + t('vsNo')) : lockedCell();
+  var begB = freeB ? (sB.beginnerFriendly ? '\u2705 ' + t('vsYes') : '\u274C ' + t('vsNo')) : lockedCell();
+  var begWin = null;
+  if (freeA && freeB) {
+    if (sA.beginnerFriendly && !sB.beginnerFriendly) { begWin = 'a'; winsA++; }
+    else if (sB.beginnerFriendly && !sA.beginnerFriendly) { begWin = 'b'; winsB++; }
+  }
+  html += row(t('vsBeginner'), begA, begB, begWin);
+
+  // 6. Counties
+  var cntA = freeA ? String((sA.counties || []).length) : lockedCell();
+  var cntB = freeB ? String((sB.counties || []).length) : lockedCell();
+  var cntWin = null;
+  if (freeA && freeB) {
+    var nA = (sA.counties || []).length;
+    var nB = (sB.counties || []).length;
+    if (nA > nB) { cntWin = 'a'; winsA++; }
+    else if (nB > nA) { cntWin = 'b'; winsB++; }
+  }
+  html += row(t('vsCounties'), cntA, cntB, cntWin);
+
+  // 7. Platforms
+  var platA = freeA ? (sA.platforms || []).join(', ') || '—' : lockedCell();
+  var platB = freeB ? (sB.platforms || []).join(', ') || '—' : lockedCell();
+  html += row(t('vsPlatforms'), platA, platB, null);
+
+  // 8. OTC
+  var otcA = freeA ? (sA.otc && sA.otc.available ? '\u2705 ' + t('vsYes') : '\u274C ' + t('vsNo')) : lockedCell();
+  var otcB = freeB ? (sB.otc && sB.otc.available ? '\u2705 ' + t('vsYes') : '\u274C ' + t('vsNo')) : lockedCell();
+  var otcWin = null;
+  if (freeA && freeB) {
+    var oA = sA.otc && sA.otc.available;
+    var oB = sB.otc && sB.otc.available;
+    if (oA && !oB) { otcWin = 'a'; winsA++; }
+    else if (oB && !oA) { otcWin = 'b'; winsB++; }
+  }
+  html += row(t('vsOtc'), otcA, otcB, otcWin);
+
+  // 9. Risks
+  if (freeA || freeB) {
+    var risksAHtml = freeA ? '<ul class="vs-risk-list">' + (sA.risks || []).slice(0, 3).map(function(r) { return '<li>' + r + '</li>'; }).join('') + '</ul>' : lockedCell();
+    var risksBHtml = freeB ? '<ul class="vs-risk-list">' + (sB.risks || []).slice(0, 3).map(function(r) { return '<li>' + r + '</li>'; }).join('') + '</ul>' : lockedCell();
+    html += row(t('vsRisks'), risksAHtml, risksBHtml, null);
+  }
+
+  html += '</div>';
+
+  // Summary card
+  if (freeA && freeB) {
+    var summaryText = '';
+    if (winsA > winsB) {
+      summaryText = sA.name + ' ' + t('vsSummaryWins') + ' ' + winsA + ' ' + t('vsSummaryCategories');
+    } else if (winsB > winsA) {
+      summaryText = sB.name + ' ' + t('vsSummaryWins') + ' ' + winsB + ' ' + t('vsSummaryCategories');
+    } else {
+      summaryText = t('vsSummaryTied') + ' ' + winsA + ' ' + t('vsSummaryEach');
+    }
+
+    html += '<div class="vs-summary">' +
+      '<div class="vs-summary-title">' + t('vsSummary') + '</div>' +
+      '<div class="vs-summary-score">' +
+        '<div class="vs-summary-score-item"><div class="vs-summary-score-value">' + sA.score + '</div><div class="vs-summary-score-label">' + sA.name + '</div></div>' +
+        '<div class="vs-summary-score-item"><div class="vs-summary-score-value">' + sB.score + '</div><div class="vs-summary-score-label">' + sB.name + '</div></div>' +
+      '</div>' +
+      '<div class="vs-summary-text">' + summaryText + '</div>' +
+      '</div>';
+  }
+
+  container.innerHTML = html;
+}
+
+function updateVersusStrings() {
+  var title = document.getElementById('vs-title');
+  var sub = document.getElementById('vs-sub');
+  if (title) title.textContent = t('vsTitle');
+  if (sub) sub.textContent = t('vsSub');
+  populateVersusDropdowns();
+  // Re-run comparison if selections exist
+  var selA = document.getElementById('vs-select-a');
+  var selB = document.getElementById('vs-select-b');
+  if (selA && selB && selA.value && selB.value) {
+    runVersus();
+  } else {
+    var emptyText = document.getElementById('vs-empty-text');
+    if (emptyText) emptyText.textContent = t('vsEmpty');
+  }
+}
+
 // ── Mobile State List — replaced by toggle bar ───────────────
 function openStateListMobile() { setMapView('list'); }
 function closeMobilePanel() { setMapView('map'); }
@@ -5934,6 +6901,90 @@ function toggleDebug() {
   const panel = document.getElementById('debug-panel');
   if (panel) panel.classList.toggle('show');
 }
+
+// ── Exit Intent Popup ─────────────────────────────────────
+(function initExitIntent() {
+  var exitShown = false;
+
+  function exitAlreadySeen() {
+    try { return sessionStorage.getItem('aurigen_exit_shown') === '1'; }
+    catch(e) { return false; }
+  }
+
+  function markExitSeen() {
+    try { sessionStorage.setItem('aurigen_exit_shown', '1'); } catch(e) {}
+  }
+
+  function updateExitText() {
+    var el;
+    el = document.getElementById('exit-eyebrow');
+    if (el) el.textContent = t('exitEyebrow');
+    el = document.getElementById('exit-headline');
+    if (el) el.textContent = t('exitHeadline');
+    el = document.getElementById('exit-body');
+    if (el) el.textContent = t('exitBody');
+    el = document.getElementById('exit-cta');
+    if (el) el.textContent = t('exitCta');
+    el = document.getElementById('exit-dismiss');
+    if (el) el.textContent = t('exitDismiss');
+  }
+
+  function showExitPopup() {
+    if (exitShown || exitAlreadySeen()) return;
+    // Don't show if user already has access (entered the app)
+    if (state.entered) return;
+    exitShown = true;
+    markExitSeen();
+    updateExitText();
+    var overlay = document.getElementById('exit-popup');
+    if (overlay) overlay.classList.add('active');
+  }
+
+  function hideExitPopup() {
+    var overlay = document.getElementById('exit-popup');
+    if (overlay) overlay.classList.remove('active');
+  }
+
+  // Desktop: mouseout from viewport top
+  document.addEventListener('mouseout', function(e) {
+    if (e.clientY <= 0) showExitPopup();
+  });
+
+  // CTA: scroll to email gate section
+  document.addEventListener('DOMContentLoaded', function() {
+    var ctaBtn = document.getElementById('exit-cta');
+    if (ctaBtn) {
+      ctaBtn.addEventListener('click', function() {
+        hideExitPopup();
+        var emailSection = document.getElementById('gate-email-section');
+        if (emailSection) {
+          emailSection.scrollIntoView({ behavior: 'smooth' });
+          // Focus the email input after scroll
+          setTimeout(function() {
+            var input = document.getElementById('gate-email-input');
+            if (input) input.focus();
+          }, 600);
+        }
+      });
+    }
+
+    var dismissBtn = document.getElementById('exit-dismiss');
+    if (dismissBtn) dismissBtn.addEventListener('click', hideExitPopup);
+
+    var closeBtn = document.getElementById('exit-close-btn');
+    if (closeBtn) closeBtn.addEventListener('click', hideExitPopup);
+
+    var overlay = document.getElementById('exit-popup');
+    if (overlay) {
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) hideExitPopup();
+      });
+    }
+  });
+
+  // Expose updateExitText for language toggle
+  window._updateExitText = updateExitText;
+})();
 
 function updateDebug() {
   const titleEl = document.querySelector('#debug-panel > div:first-child');
