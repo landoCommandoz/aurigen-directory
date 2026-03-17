@@ -213,7 +213,7 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   text-align: center;
   position: relative;
-  padding: 80px 24px 100px;
+  padding: 80px 24px 60px;
   overflow: visible;
 }
 
@@ -236,6 +236,9 @@ a { color: inherit; text-decoration: none; }
 .gate-hero-content {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .gate-eyebrow {
@@ -274,13 +277,14 @@ a { color: inherit; text-decoration: none; }
 }
 
 .gate-tagline {
-  font-family: 'DM Sans', sans-serif;
-  font-size: clamp(18px, 4vw, 26px);
-  font-weight: 600;
-  color: var(--text);
-  margin-top: 32px;
-  line-height: 1.4;
-  max-width: 600px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-dim);
+  margin-top: 28px;
+  line-height: 1.5;
+  max-width: 560px;
   opacity: 0;
   animation: fadeUp 0.6s 0.65s ease forwards;
 }
@@ -428,10 +432,8 @@ a { color: inherit; text-decoration: none; }
 
 /* Scroll indicator */
 .gate-scroll-indicator {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -458,11 +460,15 @@ a { color: inherit; text-decoration: none; }
   50% { transform: translateY(8px); opacity: 1; }
 }
 
-/* ─── STATS (inline in hero) ─── */
-.gate-hero-stats {
-  margin-top: 32px;
-  width: 100%;
-  max-width: 800px;
+/* ─── STATS SECTION (separate from hero) ─── */
+.gate-stats {
+  padding: 60px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  position: relative;
+  z-index: 1;
 }
 
 .gate-stats-grid {
@@ -470,17 +476,7 @@ a { color: inherit; text-decoration: none; }
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   width: 100%;
-}
-
-@media (max-width: 640px) {
-  .gate-hero-stats {
-    margin-top: 24px;
-    max-width: 100%;
-  }
-  .gate-stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-  }
+  max-width: 800px;
 }
 
 .gate-stat-card {
@@ -489,7 +485,7 @@ a { color: inherit; text-decoration: none; }
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
-  padding: 40px 32px;
+  padding: 36px 24px;
   text-align: center;
   transition: border-color 0.3s ease, transform 0.3s ease;
 }
@@ -501,7 +497,7 @@ a { color: inherit; text-decoration: none; }
 
 .gate-stat-number {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(48px, 8vw, 56px);
+  font-size: clamp(42px, 8vw, 56px);
   letter-spacing: 0.04em;
   color: var(--accent);
   line-height: 1;
@@ -517,11 +513,13 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── FEATURES SECTION ─── */
 .gate-features {
-  padding: 60px 24px;
+  padding: 60px 24px 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-top: 1px solid rgba(255,255,255,0.04);
+  position: relative;
+  z-index: 1;
 }
 
 .gate-section-title {
@@ -531,6 +529,8 @@ a { color: inherit; text-decoration: none; }
   color: var(--text);
   text-align: center;
   margin-bottom: 48px;
+  position: relative;
+  z-index: 2;
 }
 
 .gate-features-grid {
@@ -539,6 +539,8 @@ a { color: inherit; text-decoration: none; }
   gap: 24px;
   width: 100%;
   max-width: 960px;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 900px) {
@@ -558,7 +560,26 @@ a { color: inherit; text-decoration: none; }
 /* ─── TABLET/IPAD GATE FIX ─── */
 @media (min-width: 641px) and (max-width: 1024px) {
   .gate-hero {
-    padding: 80px 32px 110px;
+    padding: 60px 32px 48px;
+  }
+  .gate-stats {
+    padding: 48px 32px;
+  }
+  .gate-stats-grid {
+    gap: 20px;
+    max-width: 680px;
+  }
+  .gate-stat-card {
+    padding: 28px 16px;
+  }
+  .gate-stat-number {
+    font-size: clamp(36px, 6vw, 48px);
+  }
+  .gate-features {
+    padding: 48px 32px;
+  }
+  .gate-features-grid {
+    gap: 16px;
   }
 }
 
@@ -580,7 +601,7 @@ a { color: inherit; text-decoration: none; }
     margin-top: 8px;
   }
   .gate-tagline {
-    font-size: clamp(16px, 3.8vw, 22px);
+    font-size: clamp(15px, 3.8vw, 20px);
     margin-top: 16px;
   }
   /* Hide long description on mobile — hero email form replaces it */
@@ -618,20 +639,24 @@ a { color: inherit; text-decoration: none; }
     font-size: 13px;
     width: 100%;
   }
+  .gate-stats {
+    padding: 32px 20px;
+  }
+  .gate-stats-grid {
+    gap: 8px;
+  }
   .gate-stat-card {
-    padding: 20px 16px;
+    padding: 20px 12px;
   }
   .gate-stat-number {
-    font-size: clamp(32px, 8vw, 42px);
+    font-size: clamp(28px, 8vw, 38px);
   }
   .gate-stat-label {
-    font-size: 12px;
+    font-size: 11px;
     margin-top: 4px;
   }
   .gate-scroll-indicator {
-    position: static;
-    transform: none;
-    margin-top: 24px;
+    margin-top: 20px;
   }
   .gate-email {
     padding: 32px 20px 48px;
@@ -4564,14 +4589,14 @@ a { color: inherit; text-decoration: none; }
 
 <!-- ═══════════════ GATE ═══════════════ -->
 <div id="gate">
-  <!-- Section 1: Hero -->
+  <!-- Section 1: Hero — Brand + Gate -->
   <section class="gate-hero">
     <div class="gate-glow"></div>
     <div class="gate-hero-content">
       <div class="gate-eyebrow" id="gate-eyebrow">The Investor's Edge</div>
       <div class="gate-logo">AURI<span>GEN</span></div>
       <div class="gate-sub" id="gate-sub">County Resource Directory</div>
-      <div class="gate-tagline" id="gate-tagline">Research All 50 States. Find Your Edge in Tax Liens & Deeds.</div>
+      <div class="gate-tagline" id="gate-tagline">Aurigen doesn't just tell you the rules.<br>It tells you when they change.</div>
       <div class="gate-description" id="gate-description">Auction signups, interest rates, redemption periods, county links, investor scores, and beginner tips — all in one place.</div>
       <button class="gate-hero-cta" id="gate-enter-btn" onclick="handleGateEnter()">See What's Inside</button>
       <div class="hero-email-or" id="hero-email-or">or</div>
@@ -4589,28 +4614,28 @@ a { color: inherit; text-decoration: none; }
         <div class="hero-email-error" id="hero-email-error"></div>
         <p class="hero-email-fine" id="hero-email-fine">Explore 3 states free. No credit card required.</p>
       </div>
-
-      <!-- Stats inline in hero -->
-      <div class="gate-hero-stats" id="gate-stats-section">
-        <div class="gate-stats-grid">
-          <div class="gate-stat-card">
-            <div class="gate-stat-number" data-target="51">0</div>
-            <div class="gate-stat-label" id="gate-stat-label-1">States + DC Covered</div>
-          </div>
-          <div class="gate-stat-card">
-            <div class="gate-stat-number" data-target="5000" data-suffix="+">0</div>
-            <div class="gate-stat-label" id="gate-stat-label-2">Taxing Jurisdictions</div>
-          </div>
-          <div class="gate-stat-card">
-            <div class="gate-stat-number" data-target="3">0</div>
-            <div class="gate-stat-label" id="gate-stat-label-3">Free States to Start</div>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="gate-scroll-indicator">
       <span class="gate-scroll-text" id="gate-scroll-text">Scroll</span>
       <span class="gate-scroll-chevron">&#8595;</span>
+    </div>
+  </section>
+
+  <!-- Section 2: Social Proof Stats -->
+  <section class="gate-stats gate-section" id="gate-stats-section">
+    <div class="gate-stats-grid">
+      <div class="gate-stat-card">
+        <div class="gate-stat-number" data-target="51">0</div>
+        <div class="gate-stat-label" id="gate-stat-label-1">States + DC Covered</div>
+      </div>
+      <div class="gate-stat-card">
+        <div class="gate-stat-number" data-target="3000" data-suffix="+">0</div>
+        <div class="gate-stat-label" id="gate-stat-label-2">Taxing Jurisdictions</div>
+      </div>
+      <div class="gate-stat-card">
+        <div class="gate-stat-number" data-target="7">0</div>
+        <div class="gate-stat-label" id="gate-stat-label-3">Free States to Start</div>
+      </div>
     </div>
   </section>
 
@@ -7419,16 +7444,37 @@ function setupMobileCodeTrigger() {
   });
 }
 
-// Animate gate stats when scrolled into view
+// Animate gate stats when scrolled into view — wire to real data
 function animateGateStats() {
-  const statsSection = document.getElementById('gate-stats-section');
+  var statsSection = document.getElementById('gate-stats-section');
   if (!statsSection) return;
 
+  // Compute real counts from loaded state data
+  var statesData = window.STATES_EN || window.STATES_ES || [];
+  var stateCount = statesData.length || 51;
+  var jurisdictionCount = 0;
+  statesData.forEach(function(s) {
+    if (s.counties && Array.isArray(s.counties)) {
+      jurisdictionCount += s.counties.length;
+    }
+  });
+  // Floor to nearest 100 for cleaner display, minimum 3000
+  if (jurisdictionCount < 3000) jurisdictionCount = 3000;
+  else jurisdictionCount = Math.floor(jurisdictionCount / 100) * 100;
+
+  var freeStates = ['FL','IL','AZ','TX','NJ','GA','OH'];
+  var freeCount = freeStates.length;
+
+  // Update data-target attributes with real values
+  var statNumbers = statsSection.querySelectorAll('.gate-stat-number');
+  if (statNumbers[0]) statNumbers[0].dataset.target = stateCount;
+  if (statNumbers[1]) { statNumbers[1].dataset.target = jurisdictionCount; statNumbers[1].dataset.suffix = '+'; }
+  if (statNumbers[2]) statNumbers[2].dataset.target = freeCount;
+
   function fireCounters() {
-    const statNumbers = statsSection.querySelectorAll('.gate-stat-number');
-    statNumbers.forEach(el => {
-      const target = parseInt(el.dataset.target, 10) || 0;
-      const suffix = el.dataset.suffix || '';
+    statNumbers.forEach(function(el) {
+      var target = parseInt(el.dataset.target, 10) || 0;
+      var suffix = el.dataset.suffix || '';
       animateNumber(el, target, suffix, 1500);
     });
   }
