@@ -30,6 +30,31 @@ exports.handler = async (event) => {
     return { statusCode: 400, headers, body: JSON.stringify({ error: 'Invalid JSON' }) };
   }
 
+  // ── Email Capture ────────────────────────────────────────
+  if (body.action === 'capture-email') {
+    const email = (body.email || '').trim().toLowerCase();
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ success: false, message: 'Invalid email.' })
+      };
+    }
+
+    const lang = body.lang || 'en';
+    const timestamp = body.timestamp || new Date().toISOString();
+
+    // Log to Netlify function logs (visible in Netlify dashboard > Functions > Logs)
+    console.log(`[LEAD CAPTURED] email=${email} lang=${lang} ts=${timestamp}`);
+
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({ success: true, email })
+    };
+  }
+
   // ── Code Validation ───────────────────────────────────────
   if (body.action === 'validate-code') {
     const submitted = (body.code || '').trim().toUpperCase();
