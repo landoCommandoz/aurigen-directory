@@ -2153,7 +2153,17 @@ a { color: inherit; text-decoration: none; }
   font-size: 32px;
   letter-spacing: 0.06em;
   color: var(--accent);
+  transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
+
+.result-value.updating {
+  opacity: 0.4;
+  transform: scale(0.96);
+}
+
+.result-value.positive { color: var(--accent); }
+.result-value.negative { color: var(--red); }
+.result-value.green { color: var(--green); }
 
 .result-sub {
   font-size: 11px;
@@ -4450,7 +4460,7 @@ a { color: inherit; text-decoration: none; }
                   <div class="field-label">Hold Period (months)</div>
                   <input class="field-input" id="az-months" type="number" min="0" max="600" placeholder="24" oninput="calcAnalyzer()">
                 </div>
-                <div class="field-group" id="az-arv-group">
+                <div class="field-group" id="az-arv-group" style="display:none">
                   <div class="field-label">Estimated Property ARV ($) <span style="color:var(--text-muted)">(deed only)</span></div>
                   <input class="field-input" id="az-arv" type="number" min="0" placeholder="85000" oninput="calcAnalyzer()">
                 </div>
@@ -4462,6 +4472,7 @@ a { color: inherit; text-decoration: none; }
                   <div class="field-label">Penalty / Bonus Rate (%)</div>
                   <input class="field-input" id="az-penalty" type="number" min="0" max="100" placeholder="0" oninput="calcAnalyzer()">
                 </div>
+                <button class="calc-btn" onclick="calcAnalyzer()">Calculate</button>
               </div>
             </div>
 
@@ -4489,6 +4500,10 @@ a { color: inherit; text-decoration: none; }
                   <div class="result-display">
                     <div class="result-label">Total Costs</div>
                     <div class="result-value" id="az-total-costs" style="font-size:20px">—</div>
+                  </div>
+                  <div class="result-display" style="grid-column:1/-1;">
+                    <div class="result-label">Monthly Income</div>
+                    <div class="result-value" id="az-monthly" style="font-size:22px">—</div>
                   </div>
                 </div>
                 <div id="az-deed-results" style="display:none;margin-top:10px;">
@@ -5619,6 +5634,7 @@ const I18N = {
     analyzerInterest: 'Interest + Penalty',
     analyzerTotalCosts: 'Total Costs',
     analyzerEquity: 'Equity if Redeemed at ARV',
+    analyzerMonthly: 'Monthly Income',
     analyzerDisclaimer: 'Educational estimate only — not financial, legal, or investment advice. Results are not guaranteed and do not account for all variables. Verify statutory rates with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.',
     // Valuation Agent
     valTitle: 'Atlas — Valuation Agent',
@@ -5961,6 +5977,7 @@ const I18N = {
     analyzerInterest: 'Interes + Penalizacion',
     analyzerTotalCosts: 'Costos Totales',
     analyzerEquity: 'Patrimonio si se Redime al ARV',
+    analyzerMonthly: 'Ingreso Mensual',
     analyzerDisclaimer: 'Estimacion educativa solamente — no es asesoramiento financiero, legal ni de inversiones. Los resultados no estan garantizados y no contemplan todas las variables. Verifique tasas estatutarias con fuentes oficiales del condado antes de operar. Aurigen Collective no es un asesor de inversiones licenciado.',
     // Valuation Agent
     valTitle: 'Atlas — Agente de Valoracion',
@@ -6526,7 +6543,7 @@ function updateAnalyzerStrings() {
 
   // Result labels
   const resultLabels = document.querySelectorAll('#tools-analyzer .result-label');
-  const resultKeys = ['analyzerTotalReturn', 'analyzerRoi', 'analyzerAnnualized', 'analyzerInterest', 'analyzerTotalCosts', 'analyzerEquity'];
+  const resultKeys = ['analyzerTotalReturn', 'analyzerRoi', 'analyzerAnnualized', 'analyzerInterest', 'analyzerTotalCosts', 'analyzerMonthly', 'analyzerEquity'];
   resultLabels.forEach((label, i) => {
     if (resultKeys[i]) label.textContent = t(resultKeys[i]);
   });
@@ -7000,7 +7017,7 @@ async function submitCode() {
   }
 }
 
-// Allow Enter key on gate inputs
+// Allow Enter key on gate inputs + analyzer fallback listeners
 document.addEventListener('DOMContentLoaded', () => {
   const codeInput = document.getElementById('gate-code-input');
   if (codeInput) codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') submitCode(); });
@@ -7010,6 +7027,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const heroEmailInput = document.getElementById('hero-email-input');
   if (heroEmailInput) heroEmailInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleHeroEmail(); });
+
+  // Fallback: attach change listeners to analyzer inputs for browsers
+  // that may not fire oninput reliably on number inputs
+  ['az-type','az-price','az-rate','az-months','az-arv','az-costs','az-penalty'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('change', calcAnalyzer);
+  });
 });
 
 function enterApp(animate) {
@@ -7088,6 +7112,7 @@ function switchToolsTab(panel, btn) {
   if (target) target.classList.add('active');
   if (panel === 'saved') buildSaved();
   if (panel === 'profile') buildProfileRecs();
+  if (panel === 'analyzer') calcAnalyzer();
 }
 
 // ── State List ───────────────────────────────────────────────
@@ -8213,9 +8238,24 @@ function buildProfileRecs() {
 }
 
 // ── Deal Analyzer ─────────────────────────────────────────────
+function setResultValue(id, text, colorClass) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('updating');
+  setTimeout(() => {
+    el.textContent = text;
+    el.classList.remove('positive', 'negative', 'green');
+    if (colorClass) el.classList.add(colorClass);
+    el.style.color = '';
+    el.classList.remove('updating');
+  }, 100);
+}
+
 function calcAnalyzer() {
   dnaTrackEvent('analyzer_use');
   const type = document.getElementById('az-type')?.value;
+
+  // Read raw values — use isNaN to properly detect empty fields
   const rawPrice = parseFloat(document.getElementById('az-price')?.value);
   const rawRate = parseFloat(document.getElementById('az-rate')?.value);
   const rawMonths = parseFloat(document.getElementById('az-months')?.value);
@@ -8224,12 +8264,12 @@ function calcAnalyzer() {
   const rawPenalty = parseFloat(document.getElementById('az-penalty')?.value);
 
   // Clamp: reject negatives, cap rate/penalty at 100%, cap hold period at 600 months
-  const price = Math.max(0, rawPrice || 0);
-  const rate = Math.max(0, Math.min(rawRate || 0, 100));
-  const months = Math.max(0, Math.min(rawMonths || 0, 600));
-  const arv = Math.max(0, rawArv || 0);
-  const costs = Math.max(0, rawCosts || 0);
-  const penalty = Math.max(0, Math.min(rawPenalty || 0, 100));
+  const price = isNaN(rawPrice) ? 0 : Math.max(0, rawPrice);
+  const rate = isNaN(rawRate) ? 0 : Math.max(0, Math.min(rawRate, 100));
+  const months = isNaN(rawMonths) ? 0 : Math.max(0, Math.min(rawMonths, 600));
+  const arv = isNaN(rawArv) ? 0 : Math.max(0, rawArv);
+  const costs = isNaN(rawCosts) ? 0 : Math.max(0, rawCosts);
+  const penalty = isNaN(rawPenalty) ? 0 : Math.max(0, Math.min(rawPenalty, 100));
 
   // Show/hide deed-specific fields
   const arvGroup = document.getElementById('az-arv-group');
@@ -8238,10 +8278,11 @@ function calcAnalyzer() {
   if (deedResults) deedResults.style.display = type === 'deed' && arv > 0 ? '' : 'none';
 
   // Reset all result fields when key inputs are missing
-  if (!price || !months) {
-    ['az-return','az-roi','az-annualized','az-interest','az-total-costs'].forEach(id => {
+  const resultIds = ['az-return','az-roi','az-annualized','az-interest','az-total-costs','az-monthly'];
+  if (price <= 0 || months <= 0) {
+    resultIds.forEach(id => {
       const el = document.getElementById(id);
-      if (el) el.textContent = '—';
+      if (el) { el.textContent = '\u2014'; el.classList.remove('positive','negative','green'); el.style.color = ''; }
     });
     const resetSub = document.getElementById('az-return-sub');
     if (resetSub) resetSub.textContent = '';
@@ -8263,36 +8304,26 @@ function calcAnalyzer() {
   const netReturn = totalReturn - totalCosts;
   const roi = totalCosts > 0 ? (netReturn / totalCosts) * 100 : 0;
   const annualizedROI = months > 0 ? (Math.pow(1 + roi / 100, 12 / months) - 1) * 100 : 0;
+  const monthlyIncome = months > 0 ? netReturn / months : 0;
 
-  const fmt = n => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-  const fmtPct = n => n.toFixed(1) + '%';
+  const fmt = n => (n < 0 ? '-' : '') + '$' + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmtPct = n => n.toFixed(2) + '%';
 
-  // Show actual net return including losses — never clamp to $0
-  const returnEl = document.getElementById('az-return');
-  if (returnEl) {
-    returnEl.textContent = fmt(netReturn);
-    returnEl.style.color = netReturn >= 0 ? 'var(--accent)' : 'var(--red)';
-  }
+  // Animated result updates with color coding
+  setResultValue('az-return', fmt(netReturn), netReturn >= 0 ? 'positive' : 'negative');
 
   const sub = document.getElementById('az-return-sub');
-  if (sub) sub.textContent = `Net after $${costs.toLocaleString()} in costs`;
+  if (sub) sub.textContent = 'Net after ' + fmt(costs) + ' in costs';
 
-  const roiEl = document.getElementById('az-roi');
-  if (roiEl) { roiEl.textContent = fmtPct(roi); roiEl.style.color = roi >= 0 ? 'var(--accent)' : 'var(--red)'; }
-
-  const annEl = document.getElementById('az-annualized');
-  if (annEl) { annEl.textContent = fmtPct(annualizedROI); annEl.style.color = annualizedROI >= 0 ? 'var(--green)' : 'var(--red)'; }
-
-  const intEl = document.getElementById('az-interest');
-  if (intEl) intEl.textContent = fmt(interest + penaltyEarned);
-
-  const tcEl = document.getElementById('az-total-costs');
-  if (tcEl) tcEl.textContent = fmt(totalCosts);
+  setResultValue('az-roi', fmtPct(roi), roi >= 0 ? 'positive' : 'negative');
+  setResultValue('az-annualized', fmtPct(annualizedROI), annualizedROI >= 0 ? 'green' : 'negative');
+  setResultValue('az-interest', fmt(interest + penaltyEarned), 'positive');
+  setResultValue('az-total-costs', fmt(totalCosts), '');
+  setResultValue('az-monthly', fmt(monthlyIncome), monthlyIncome >= 0 ? 'green' : 'negative');
 
   if (type === 'deed' && arv > 0) {
     const equity = arv - totalCosts;
-    const eqEl = document.getElementById('az-equity');
-    if (eqEl) { eqEl.textContent = fmt(equity); eqEl.style.color = equity >= 0 ? 'var(--green)' : 'var(--red)'; }
+    setResultValue('az-equity', fmt(equity), equity >= 0 ? 'green' : 'negative');
   }
 }
 
