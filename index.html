@@ -8019,23 +8019,7 @@ async function submitInlineCode() {
   if (!input) return;
   var code = input.value.trim();
   if (!code) return;
-  // Check master password
-  var master = [65,85,82,73,71,69,78,50,48,50,54].map(function(c){return String.fromCharCode(c);}).join('');
-  if (code === master) {
-    state.isPaid = true;
-    storageSet('aug_paid', true);
-    updateMapLockState();
-    var modal = document.getElementById('inline-code-modal');
-    if (modal) modal.remove();
-    // Refresh all views
-    buildStateList();
-    buildDealTape();
-    if (typeof buildAuctionPulse === 'function') buildAuctionPulse();
-    if (typeof populateVersusDropdowns === 'function') populateVersusDropdowns();
-    navigate(state.activeTab, false);
-    return;
-  }
-  // Try Netlify validation
+  // ALL code validation is server-side only — no client-side secrets
   try {
     var res = await fetch(NETLIFY_FN, {
       method: 'POST',
@@ -8196,25 +8180,7 @@ async function submitCode() {
   input.disabled = true;
   errorEl.classList.remove('show');
 
-  // Master password check (obfuscated)
-  const _mp = [65,85,82,73,71,69,78,50,48,50,54].map(c=>String.fromCharCode(c)).join('');
-  if (code.toUpperCase() === _mp) {
-    state.isPaid = true;
-    storageSet('aug_paid', true);
-    updateMapLockState();
-    trackEvent('gate_enter', { method: 'code' });
-    if (state.entered) {
-      buildStateList();
-      buildSpotlight();
-      buildProfileRecs();
-      closeStateModal();
-      updateDebug();
-      return;
-    }
-    enterApp(true);
-    return;
-  }
-
+  // ALL code validation is server-side only — no client-side secrets
   try {
     const res = await fetch(NETLIFY_FN, {
       method: 'POST',

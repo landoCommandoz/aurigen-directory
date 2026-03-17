@@ -20,7 +20,7 @@ Built for seminar audiences and self-directed real estate investors.
 ## Live URLs
 - Production: https://statuesque-bublanina-330b9d.netlify.app
 - Backup: https://hilarious-llama-2933ac.netlify.app
-- Master password: AURIGEN2026
+- Master password: [STORED IN NETLIFY ENV VAR: VALID_CODES — never commit to source]
 - Stripe paywall: https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00
 - Booking (Investor Clarity Call): https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4
 
