@@ -2390,9 +2390,131 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════
-   FOOTER DISCLAIMER — hidden, text moved to nav
+   FOOTER DISCLAIMER
 ═══════════════════════════════════════════════ */
-.app-footer-disclaimer { display: none; }
+.app-footer-disclaimer {
+  padding: 10px 16px;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.5;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+.app-footer-disclaimer a { color: var(--accent); text-decoration: underline; }
+.app-footer-disclaimer a:hover { color: var(--text); }
+
+/* ═══════════════════════════════════════════════
+   LEGAL MODALS (ToS + Privacy Policy)
+═══════════════════════════════════════════════ */
+.legal-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.legal-modal-overlay.open { opacity: 1; visibility: visible; }
+.legal-modal-sheet {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: 92%;
+  max-width: 640px;
+  max-height: 85dvh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+.legal-modal-overlay.open .legal-modal-sheet { transform: translateY(0); }
+.legal-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.legal-modal-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+.legal-modal-close {
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: var(--text-dim);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.legal-modal-close:hover { background: rgba(255,255,255,0.15); }
+.legal-modal-body {
+  padding: 20px 24px 28px;
+  overflow-y: auto;
+  min-height: 0;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+.legal-modal-body h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 20px 0 8px;
+}
+.legal-modal-body h3:first-child { margin-top: 0; }
+.legal-modal-body p { margin: 0 0 10px; }
+.legal-modal-body ul { margin: 0 0 10px; padding-left: 20px; }
+.legal-modal-body li { margin-bottom: 4px; }
+.legal-modal-body strong { color: var(--text); }
+
+/* ═══════════════════════════════════════════════
+   STATE MODAL DISCLAIMER BANNER
+═══════════════════════════════════════════════ */
+.state-modal-disclaimer-banner {
+  padding: 8px 14px;
+  background: rgba(200,168,75,0.08);
+  border: 1px solid rgba(200,168,75,0.18);
+  border-radius: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+/* ═══════════════════════════════════════════════
+   GATE EMAIL CONSENT
+═══════════════════════════════════════════════ */
+.gate-email-consent {
+  font-size: 11px;
+  color: var(--text-muted);
+  max-width: 340px;
+  line-height: 1.5;
+  margin-top: 6px;
+}
+.gate-email-consent a {
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 /* ═══════════════════════════════════════════════
    LANGUAGE TOGGLE
@@ -2574,6 +2696,7 @@ a { color: inherit; text-decoration: none; }
       <button class="gate-email-submit" id="gate-email-submit" onclick="handleEmailGate()">Unlock Free Access</button>
       <div class="gate-email-error" id="gate-email-error"></div>
       <p class="gate-email-fine" id="gate-email-fine">We'll send you investor tips. Unsubscribe anytime.</p>
+      <p class="gate-email-consent" id="gate-email-consent">By entering your email, you agree to our <a onclick="openLegalModal('tos')">Terms of Service</a> and <a onclick="openLegalModal('privacy')">Privacy Policy</a>.</p>
     </div>
     <div class="gate-code-toggle">
       <span id="gate-code-toggle-text">Already have an access code?</span>
@@ -2854,8 +2977,10 @@ a { color: inherit; text-decoration: none; }
   </div><!-- end main-content -->
 
   <!-- FOOTER DISCLAIMER -->
-  <div class="app-footer-disclaimer">
-    Aurigen County Resource Directory is an educational research tool. Nothing in this content constitutes investment, legal, or financial advice. Always verify data with official county sources before transacting. © 2026 Aurigen Collective | <a href="/cdn-cgi/l/email-protection#f0bc919e949f9eb08498959185829997959ede939f9d" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="b1fdd0dfd5dedff1c5d9d4d0c4c3d8d6d4df9fd2dedc">[email&#160;protected]</span></a>
+  <div class="app-footer-disclaimer" id="app-footer-disclaimer">
+    Aurigen County Resource Directory is an educational research tool. Nothing in this content constitutes investment, legal, or financial advice. Always verify data with official county sources before transacting.
+    <a href="javascript:void(0)" onclick="openLegalModal('tos')" id="footer-tos-link">Terms of Service</a> |
+    <a href="javascript:void(0)" onclick="openLegalModal('privacy')" id="footer-privacy-link">Privacy Policy</a> | © 2026 Aurigen Collective | <a href="/cdn-cgi/l/email-protection#f0bc919e949f9eb08498959185829997959ede939f9d" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="b1fdd0dfd5dedff1c5d9d4d0c4c3d8d6d4df9fd2dedc">[email&#160;protected]</span></a>
   </div>
 
   <!-- BOTTOM NAV -->
@@ -2895,6 +3020,28 @@ a { color: inherit; text-decoration: none; }
     <button class="modal-close" onclick="closeStateModal()">✕</button>
     <div class="modal-header" id="modal-header"></div>
     <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- TERMS OF SERVICE MODAL -->
+<div id="tos-modal" class="legal-modal-overlay" onclick="if(event.target===this)closeLegalModal('tos')">
+  <div class="legal-modal-sheet">
+    <div class="legal-modal-header">
+      <div class="legal-modal-title" id="tos-modal-title">Terms of Service</div>
+      <button class="legal-modal-close" onclick="closeLegalModal('tos')">&#10005;</button>
+    </div>
+    <div class="legal-modal-body" id="tos-modal-body"></div>
+  </div>
+</div>
+
+<!-- PRIVACY POLICY MODAL -->
+<div id="privacy-modal" class="legal-modal-overlay" onclick="if(event.target===this)closeLegalModal('privacy')">
+  <div class="legal-modal-sheet">
+    <div class="legal-modal-header">
+      <div class="legal-modal-title" id="privacy-modal-title">Privacy Policy</div>
+      <button class="legal-modal-close" onclick="closeLegalModal('privacy')">&#10005;</button>
+    </div>
+    <div class="legal-modal-body" id="privacy-modal-body"></div>
   </div>
 </div>
 
@@ -3113,7 +3260,7 @@ const I18N = {
     paywallCta: 'Unlock Now',
     paywallHaveCode: 'Already have an access code?',
     paywallEnterCode: 'Enter it here',
-    paywallDisclaimer: 'All sales final. Educational use only. See Terms of Service. Aurigen Collective is not a licensed investment advisor.',
+    paywallDisclaimer: 'All sales final. Educational use only. <a href="javascript:void(0)" onclick="openLegalModal(\'tos\')" style="color:var(--accent);text-decoration:underline;cursor:pointer;">See Terms of Service</a>. Aurigen Collective is not a licensed investment advisor.',
     // Debug
     debugTitle: 'DEBUG - remove before deploy',
     debugEntered: 'entered',
@@ -3143,7 +3290,14 @@ const I18N = {
     stratBeginner: 'Beginner',
     stratAdvanced: 'Experienced',
     // Language toggle
-    langToggle: 'EN'
+    langToggle: 'EN',
+    // Legal modals
+    tosTitle: 'Terms of Service',
+    privacyTitle: 'Privacy Policy',
+    gateEmailConsent: 'By entering your email, you agree to our <a onclick="openLegalModal(\'tos\')">Terms of Service</a> and <a onclick="openLegalModal(\'privacy\')">Privacy Policy</a>.',
+    stateDisclaimerBanner: 'For informational purposes only. Not investment advice.',
+    footerTos: 'Terms of Service',
+    footerPrivacy: 'Privacy Policy'
   },
   es: {
     // Gate - Hero
@@ -3312,7 +3466,7 @@ const I18N = {
     paywallCta: 'Desbloquear Ahora',
     paywallHaveCode: 'Ya tiene un codigo de acceso?',
     paywallEnterCode: 'Ingreselo aqui',
-    paywallDisclaimer: 'Ventas finales. Solo uso educativo. Ver Terminos de Servicio. Aurigen Collective no es un asesor de inversiones licenciado.',
+    paywallDisclaimer: 'Ventas finales. Solo uso educativo. <a href="javascript:void(0)" onclick="openLegalModal(\'tos\')" style="color:var(--accent);text-decoration:underline;cursor:pointer;">Ver Terminos de Servicio</a>. Aurigen Collective no es un asesor de inversiones licenciado.',
     // Debug
     debugTitle: 'DEBUG - eliminar antes de desplegar',
     debugEntered: 'ingresado',
@@ -3342,7 +3496,14 @@ const I18N = {
     stratBeginner: 'Principiante',
     stratAdvanced: 'Experimentado',
     // Language toggle
-    langToggle: 'ES'
+    langToggle: 'ES',
+    // Legal modals
+    tosTitle: 'Terminos de Servicio',
+    privacyTitle: 'Politica de Privacidad',
+    gateEmailConsent: 'Al ingresar tu correo, aceptas nuestros <a onclick="openLegalModal(\'tos\')">Terminos de Servicio</a> y <a onclick="openLegalModal(\'privacy\')">Politica de Privacidad</a>.',
+    stateDisclaimerBanner: 'Solo con fines informativos. No es asesoramiento de inversion.',
+    footerTos: 'Terminos de Servicio',
+    footerPrivacy: 'Politica de Privacidad'
   }
 };
 
@@ -3405,6 +3566,9 @@ function applyLanguage() {
 
   // Update debug panel
   updateDebug();
+
+  // Update legal text
+  if (typeof updateLegalText === 'function') updateLegalText();
 
   // If already entered app, re-render all views
   if (state.entered) {
@@ -4236,6 +4400,7 @@ function openState(id) {
 
   // PREVIEW SECTION — visible to free and paid users
   const previewHTML = `
+    <div class="state-modal-disclaimer-banner">${t('stateDisclaimerBanner')}</div>
     ${bBadge}
     ${!s.beginnerFriendly && s.notBeginnerReason ? `<div class="modal-note" style="margin-bottom:14px;color:var(--red);font-size:12px;">${s.notBeginnerReason}</div>` : ''}
 
@@ -5045,6 +5210,159 @@ function closeMobilePanel() { setMapView('map'); }
 function toggleDebug() {
   const panel = document.getElementById('debug-panel');
   if (panel) panel.classList.toggle('show');
+}
+
+// ═══════════════════════════════════════════════════════════
+//  LEGAL MODALS — Terms of Service + Privacy Policy
+// ═══════════════════════════════════════════════════════════
+var LEGAL_CONTENT = {
+  tos: {
+    en: '<h3>1. Acceptance of Terms</h3>' +
+      '<p>By accessing or using the Aurigen County Resource Directory ("Service"), you agree to be bound by these Terms of Service. If you do not agree, do not use the Service.</p>' +
+      '<h3>2. License to Use</h3>' +
+      '<p>We grant you a limited, non-exclusive, non-transferable, revocable license to access and use the Service for your personal, non-commercial research purposes. You may not redistribute, resell, or share your account credentials with others.</p>' +
+      '<h3>3. No Investment Advice</h3>' +
+      '<p><strong>The Service is an educational research tool only.</strong> Nothing in this directory constitutes investment, legal, tax, or financial advice. All data (interest rates, redemption periods, auction details, county links, investor scores) is provided for informational purposes. You must independently verify all information with official county and state sources before making any investment decisions. Aurigen Collective is not a licensed investment advisor, broker, or attorney.</p>' +
+      '<h3>4. Payment and Refund Policy</h3>' +
+      '<p>Paid access is a one-time purchase processed through Stripe. <strong>All sales are final.</strong> Due to the immediate delivery of digital content, refunds are not available. If you experience technical issues preventing access, contact support@theaurigen.com within 14 days of purchase for assistance.</p>' +
+      '<h3>5. Data Accuracy Disclaimer</h3>' +
+      '<p>Tax lien and tax deed laws change frequently. While we make reasonable efforts to keep data current, we do not guarantee the accuracy, completeness, or timeliness of any information. State laws, interest rates, redemption periods, and auction procedures may change without notice. Always verify with official sources.</p>' +
+      '<h3>6. Limitation of Liability</h3>' +
+      '<p>To the maximum extent permitted by law, Aurigen Collective and its owners, employees, and agents shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of or reliance on the Service, including but not limited to investment losses, missed opportunities, or inaccurate data.</p>' +
+      '<h3>7. Data Usage</h3>' +
+      '<p>We collect your email address to provide access to the Service and send occasional educational content. We use localStorage in your browser to remember preferences (language, saved states). See our Privacy Policy for full details.</p>' +
+      '<h3>8. Account Termination</h3>' +
+      '<p>We reserve the right to terminate or suspend access to the Service at our sole discretion, without notice, for conduct that we believe violates these Terms or is harmful to other users or the Service.</p>' +
+      '<h3>9. Changes to Terms</h3>' +
+      '<p>We may update these Terms at any time. Continued use of the Service after changes constitutes acceptance of the updated Terms.</p>' +
+      '<h3>10. Contact</h3>' +
+      '<p>Questions about these Terms? Email <strong>support@theaurigen.com</strong>.</p>' +
+      '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Last updated: March 2026</p>',
+    es: '<h3>1. Aceptacion de Terminos</h3>' +
+      '<p>Al acceder o utilizar el Directorio de Recursos por Condado de Aurigen ("Servicio"), usted acepta estos Terminos de Servicio. Si no esta de acuerdo, no utilice el Servicio.</p>' +
+      '<h3>2. Licencia de Uso</h3>' +
+      '<p>Le otorgamos una licencia limitada, no exclusiva, intransferible y revocable para acceder y utilizar el Servicio con fines de investigacion personal y no comercial. No puede redistribuir, revender ni compartir sus credenciales de cuenta con terceros.</p>' +
+      '<h3>3. Sin Asesoramiento de Inversion</h3>' +
+      '<p><strong>El Servicio es una herramienta de investigacion educativa unicamente.</strong> Nada en este directorio constituye asesoramiento de inversion, legal, fiscal o financiero. Todos los datos (tasas de interes, periodos de redencion, detalles de subastas, enlaces de condados, puntajes de inversor) se proporcionan solo con fines informativos. Usted debe verificar independientemente toda la informacion con fuentes oficiales del condado y del estado antes de tomar cualquier decision de inversion. Aurigen Collective no es un asesor de inversiones, corredor o abogado con licencia.</p>' +
+      '<h3>4. Politica de Pagos y Reembolsos</h3>' +
+      '<p>El acceso pago es una compra unica procesada a traves de Stripe. <strong>Todas las ventas son finales.</strong> Debido a la entrega inmediata de contenido digital, no se ofrecen reembolsos. Si experimenta problemas tecnicos que le impidan acceder, contacte a support@theaurigen.com dentro de los 14 dias posteriores a la compra para recibir asistencia.</p>' +
+      '<h3>5. Descargo de Responsabilidad sobre Precision de Datos</h3>' +
+      '<p>Las leyes de gravamenes y escrituras fiscales cambian frecuentemente. Aunque hacemos esfuerzos razonables para mantener los datos actualizados, no garantizamos la precision, integridad o actualidad de la informacion. Las leyes estatales, tasas de interes, periodos de redencion y procedimientos de subasta pueden cambiar sin previo aviso. Siempre verifique con fuentes oficiales.</p>' +
+      '<h3>6. Limitacion de Responsabilidad</h3>' +
+      '<p>En la maxima medida permitida por la ley, Aurigen Collective y sus propietarios, empleados y agentes no seran responsables de ningun dano directo, indirecto, incidental, consecuente o punitivo que surja de su uso o confianza en el Servicio, incluyendo pero no limitado a perdidas de inversion, oportunidades perdidas o datos inexactos.</p>' +
+      '<h3>7. Uso de Datos</h3>' +
+      '<p>Recopilamos su direccion de correo electronico para proporcionar acceso al Servicio y enviar contenido educativo ocasional. Utilizamos localStorage en su navegador para recordar preferencias (idioma, estados guardados). Consulte nuestra Politica de Privacidad para mas detalles.</p>' +
+      '<h3>8. Terminacion de Cuenta</h3>' +
+      '<p>Nos reservamos el derecho de terminar o suspender el acceso al Servicio a nuestra sola discrecion, sin previo aviso, por conducta que consideremos que viola estos Terminos o que es perjudicial para otros usuarios o el Servicio.</p>' +
+      '<h3>9. Cambios en los Terminos</h3>' +
+      '<p>Podemos actualizar estos Terminos en cualquier momento. El uso continuado del Servicio despues de los cambios constituye la aceptacion de los Terminos actualizados.</p>' +
+      '<h3>10. Contacto</h3>' +
+      '<p>Preguntas sobre estos Terminos? Escriba a <strong>support@theaurigen.com</strong>.</p>' +
+      '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Ultima actualizacion: Marzo 2026</p>'
+  },
+  privacy: {
+    en: '<h3>1. Information We Collect</h3>' +
+      '<p><strong>Email Address:</strong> Collected when you sign up for free access or make a purchase. Used to deliver the Service and send occasional educational content.</p>' +
+      '<p><strong>Payment Information:</strong> Processed securely by Stripe. We do not store your credit card number, CVV, or full billing details on our servers. Stripe handles all payment data under their own privacy policy.</p>' +
+      '<p><strong>Browser Storage (localStorage):</strong> We store preferences locally in your browser, including: language preference, saved states, access status, and session data. This data never leaves your device and is not transmitted to our servers.</p>' +
+      '<p><strong>Usage Data:</strong> We may collect anonymized usage data such as pages visited, features used, and general interaction patterns to improve the Service.</p>' +
+      '<h3>2. How We Use Your Information</h3>' +
+      '<ul>' +
+      '<li>To provide and maintain the Service</li>' +
+      '<li>To process your purchase via Stripe</li>' +
+      '<li>To send you educational content and product updates (you can unsubscribe at any time)</li>' +
+      '<li>To improve the Service based on usage patterns</li>' +
+      '</ul>' +
+      '<h3>3. Third-Party Services</h3>' +
+      '<p>We use the following third-party services that may process your data:</p>' +
+      '<ul>' +
+      "<li><strong>Stripe:</strong> Payment processing. Subject to <a href=\"https://stripe.com/privacy\" target=\"_blank\" style=\"color:var(--accent)\">Stripe's Privacy Policy</a>.</li>" +
+      "<li><strong>Netlify:</strong> Hosting and serverless functions. Subject to <a href=\"https://www.netlify.com/privacy/\" target=\"_blank\" style=\"color:var(--accent)\">Netlify's Privacy Policy</a>.</li>" +
+      '</ul>' +
+      '<h3>4. Data Retention</h3>' +
+      '<p>We retain your email address for as long as your account is active or as needed to provide the Service. You may request deletion of your data at any time by contacting us.</p>' +
+      '<h3>5. Your Rights</h3>' +
+      '<p>You have the right to:</p>' +
+      '<ul>' +
+      '<li>Access the personal data we hold about you</li>' +
+      '<li>Request correction of inaccurate data</li>' +
+      '<li>Request deletion of your data</li>' +
+      '<li>Unsubscribe from marketing emails at any time</li>' +
+      '<li>Clear localStorage data by clearing your browser data</li>' +
+      '</ul>' +
+      '<h3>6. Data Security</h3>' +
+      '<p>We implement reasonable security measures to protect your information. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.</p>' +
+      "<h3>7. Children's Privacy</h3>" +
+      '<p>The Service is not directed to individuals under 18. We do not knowingly collect personal information from children.</p>' +
+      '<h3>8. Changes to This Policy</h3>' +
+      '<p>We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on this page.</p>' +
+      '<h3>9. Contact Us</h3>' +
+      '<p>For privacy-related questions or to exercise your rights, email <strong>support@theaurigen.com</strong>.</p>' +
+      '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Last updated: March 2026</p>',
+    es: '<h3>1. Informacion que Recopilamos</h3>' +
+      '<p><strong>Direccion de Correo Electronico:</strong> Se recopila cuando se registra para acceso gratuito o realiza una compra. Se utiliza para proporcionar el Servicio y enviar contenido educativo ocasional.</p>' +
+      '<p><strong>Informacion de Pago:</strong> Procesada de forma segura por Stripe. No almacenamos su numero de tarjeta de credito, CVV o datos completos de facturacion en nuestros servidores. Stripe maneja todos los datos de pago bajo su propia politica de privacidad.</p>' +
+      '<p><strong>Almacenamiento del Navegador (localStorage):</strong> Almacenamos preferencias localmente en su navegador, incluyendo: preferencia de idioma, estados guardados, estado de acceso y datos de sesion. Estos datos nunca salen de su dispositivo y no se transmiten a nuestros servidores.</p>' +
+      '<p><strong>Datos de Uso:</strong> Podemos recopilar datos de uso anonimizados como paginas visitadas, funciones utilizadas y patrones de interaccion generales para mejorar el Servicio.</p>' +
+      '<h3>2. Como Usamos su Informacion</h3>' +
+      '<ul>' +
+      '<li>Para proporcionar y mantener el Servicio</li>' +
+      '<li>Para procesar su compra a traves de Stripe</li>' +
+      '<li>Para enviarle contenido educativo y actualizaciones del producto (puede cancelar la suscripcion en cualquier momento)</li>' +
+      '<li>Para mejorar el Servicio basado en patrones de uso</li>' +
+      '</ul>' +
+      '<h3>3. Servicios de Terceros</h3>' +
+      '<p>Utilizamos los siguientes servicios de terceros que pueden procesar sus datos:</p>' +
+      '<ul>' +
+      '<li><strong>Stripe:</strong> Procesamiento de pagos. Sujeto a la <a href="https://stripe.com/privacy" target="_blank" style="color:var(--accent)">Politica de Privacidad de Stripe</a>.</li>' +
+      '<li><strong>Netlify:</strong> Alojamiento y funciones sin servidor. Sujeto a la <a href="https://www.netlify.com/privacy/" target="_blank" style="color:var(--accent)">Politica de Privacidad de Netlify</a>.</li>' +
+      '</ul>' +
+      '<h3>4. Retencion de Datos</h3>' +
+      '<p>Retenemos su direccion de correo electronico mientras su cuenta este activa o sea necesario para proporcionar el Servicio. Puede solicitar la eliminacion de sus datos en cualquier momento contactandonos.</p>' +
+      '<h3>5. Sus Derechos</h3>' +
+      '<p>Usted tiene derecho a:</p>' +
+      '<ul>' +
+      '<li>Acceder a los datos personales que tenemos sobre usted</li>' +
+      '<li>Solicitar la correccion de datos inexactos</li>' +
+      '<li>Solicitar la eliminacion de sus datos</li>' +
+      '<li>Cancelar la suscripcion a correos de marketing en cualquier momento</li>' +
+      '<li>Borrar datos de localStorage limpiando los datos de su navegador</li>' +
+      '</ul>' +
+      '<h3>6. Seguridad de Datos</h3>' +
+      '<p>Implementamos medidas de seguridad razonables para proteger su informacion. Sin embargo, ningun metodo de transmision por Internet es 100% seguro y no podemos garantizar seguridad absoluta.</p>' +
+      '<h3>7. Privacidad de Menores</h3>' +
+      '<p>El Servicio no esta dirigido a menores de 18 anos. No recopilamos intencionalmente informacion personal de menores.</p>' +
+      '<h3>8. Cambios a Esta Politica</h3>' +
+      '<p>Podemos actualizar esta Politica de Privacidad periodicamente. Le notificaremos de cualquier cambio material publicando la nueva politica en esta pagina.</p>' +
+      '<h3>9. Contactenos</h3>' +
+      '<p>Para preguntas relacionadas con privacidad o para ejercer sus derechos, escriba a <strong>support@theaurigen.com</strong>.</p>' +
+      '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Ultima actualizacion: Marzo 2026</p>'
+  }
+};
+
+function openLegalModal(type) {
+  var modal = document.getElementById(type === 'tos' ? 'tos-modal' : 'privacy-modal');
+  if (!modal) return;
+  var lang = state && state.lang ? state.lang : 'en';
+  var titleEl = document.getElementById(type === 'tos' ? 'tos-modal-title' : 'privacy-modal-title');
+  var bodyEl = document.getElementById(type === 'tos' ? 'tos-modal-body' : 'privacy-modal-body');
+  if (titleEl) titleEl.textContent = type === 'tos' ? t('tosTitle') : t('privacyTitle');
+  if (bodyEl) bodyEl.innerHTML = LEGAL_CONTENT[type][lang] || LEGAL_CONTENT[type]['en'];
+  modal.classList.add('open');
+}
+
+function closeLegalModal(type) {
+  var modal = document.getElementById(type === 'tos' ? 'tos-modal' : 'privacy-modal');
+  if (modal) modal.classList.remove('open');
+}
+
+function updateLegalText() {
+  var consent = document.getElementById('gate-email-consent');
+  if (consent) consent.innerHTML = t('gateEmailConsent');
+  var fTos = document.getElementById('footer-tos-link');
+  if (fTos) fTos.textContent = t('footerTos');
+  var fPriv = document.getElementById('footer-privacy-link');
+  if (fPriv) fPriv.textContent = t('footerPrivacy');
 }
 
 function updateDebug() {
