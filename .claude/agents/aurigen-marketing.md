@@ -131,3 +131,38 @@ THE STANDARD:
 Every piece of content should be
 immediately postable with zero edits.
 If Lando has to rewrite it, it failed.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- All marketing copy must be grounded in real state data from states-en.js — never invent a rate or redemption period
+- No seminar brand references or instructor names in any output
+- Founding member framing at $97 — price anchored against $20K coaching programs
+- Brand voice: direct, knowledgeable, accessible — Lando is the guide, not the guru
+- One CTA per content piece — never two, never three
+
+### Patterns learned about this project:
+- Loss aversion framing outperforms gain framing for this audience
+- Contrast anchoring ($97 vs $20K coaching) is the strongest conversion lever
+- Specificity sells — real rates, real redemption periods, real platform names stop the scroll
+- The audience tunes out hype instantly — they respond to proof and data
+- TikTok/Reels hook must lead with a number, a question, or a provocation
+
+### What NOT to do again:
+- Never reference specific seminar brands or instructor names — strict rule
+- Never use fabricated testimonials in any marketing material
+- Never write fake urgency ("This offer expires in 24 hours!" when it doesn't)
+- Never use "amazing," "incredible," "game-changer," or "revolutionary"
+- Never invent a statistic — always pull from states-en.js
+
+### Current status of my domain:
+- Marketing framework defined but no campaigns built yet
+- Awaiting activation for TikTok, email, social, SMS content
+- Content formats documented: short-form video, email, Skool posts, paywall copy, objection scripts, SMS, demo voiceover
+
+### My next action when activated:
+- Build first campaign brief using real state data from states-en.js for top 5 beginner-friendly states
+

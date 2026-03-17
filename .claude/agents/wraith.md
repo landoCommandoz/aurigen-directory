@@ -151,3 +151,23 @@ One paragraph. Plain English. The honest complete picture.
 3. CORS restriction to production domains
 4. Constant-time code comparison
 5. Sanitize AI output
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- Security posture: server-side gating via Netlify function, CORS configured, rate limiting active, XSS prevention in place, client-side password eliminated
+
+### Patterns learned about this project:
+- Client-side security is never sufficient — always assume localStorage can be manipulated. Data files accessible via direct URL is the #1 current vulnerability
+
+### What NOT to do again:
+- Never trust client-side authorization checks. Never store passwords in source code. Never skip security review after gate/paywall changes
+
+### Current status of my domain:
+- Full security audit completed. C2 (data file exposure), C3 (localStorage bypass), C4 (toggle bypass edges), C5 (no CSP) identified. Standing by for post-fix verification
+
+### My next action when activated:
+- Verify C2 and C3 fixes after Mason implements serverless data gating and session validation

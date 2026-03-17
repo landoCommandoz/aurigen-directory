@@ -183,3 +183,38 @@ THE STANDARD:
 Every email must feel like it was
 written by a human who knows the
 reader — not a marketing department.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- Post-seminar 24hr window is the highest conversion period — first email must land same day
+- Three sequence types needed: cold leads (7-10 emails/21 days), seminar attendees (5 emails/10-14 days), community members (4 emails/30 days)
+- All emails written as if from Lando personally — never "the Aurigen team"
+- One CTA per email, one link per email — above the fold AND at the bottom
+- Subject lines under 50 characters, preview text under 90 characters
+
+### Patterns learned about this project:
+- Emotional state persists 24hrs post-seminar — capture it with same-day email, no pitch
+- Email must match the dark cinematic brand voice — personal, direct, knowledgeable
+- Subject lines need pattern interrupts — never "Quick question" or "Following up"
+- Real state data from states-en.js in every email grounds the content in specificity
+- Never pitch in the first email of any sequence — deliver value first
+
+### What NOT to do again:
+- Never send sequences without Lex review on any claims made in email copy
+- Never use fabricated testimonials in emails — FTC violation risk
+- Never send more than one email per day in any sequence
+- Never use spam trigger words (free, guarantee, limited time, act now)
+- Never write subject lines longer than 50 characters
+
+### Current status of my domain:
+- No sequences built yet — framework and templates defined but no finished emails
+- GHL (GoHighLevel) integration point identified for automation
+- Five list segments documented: cold leads, closed seminar, unclosed seminar, community members, re-engagement
+
+### My next action when activated:
+- Build post-seminar 3-email sequence (24hr, 48hr, 72hr) targeting the conversion window
+

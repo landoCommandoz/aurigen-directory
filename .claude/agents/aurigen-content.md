@@ -102,3 +102,23 @@ THE STANDARD:
 Every URL, platform name, and process
 step in this directory must work
 if someone follows it today.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- EN/ES schema must match exactly. states-en.js is the source of truth (1723 lines, 51 entries). states-es.js (624 lines) must reach parity
+
+### Patterns learned about this project:
+- Schema fields: id, name, type, rate, redemption, score, beginnerFriendly, scoreWhy, note, risks[], ddExtra[], beginnerTip, auctionSignup{}, otc{}, platforms[], counties[]. Both files must match this exactly
+
+### What NOT to do again:
+- Never modify schema without updating both EN and ES files simultaneously. Never add a state to one file without the other
+
+### Current status of my domain:
+- EN data complete (51 entries, full detail). ES data has 51 entries but significantly shorter — needs parity work
+
+### My next action when activated:
+- Audit states-es.js against states-en.js and identify the top 10 states with largest content gaps

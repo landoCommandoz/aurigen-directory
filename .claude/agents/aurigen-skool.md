@@ -181,3 +181,38 @@ Every piece of community content should
 make a member feel like they got something
 valuable for free — and wonder what
 the paid version looks like.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- Aurigen Collective is the free Skool community — top of funnel, value-first
+- Aurigen Academy is the paid course inside the community — 10 modules defined
+- Community drives identity-level belonging using Cialdini's Unity principle
+- Identity framing ("we are tax lien investors") outperforms benefit framing for engagement
+- Every post must end with a question to drive comments; max 400 words
+
+### Patterns learned about this project:
+- Community engagement drives referrals and upsells — engaged members convert and invite others
+- Identity framing ("we are tax lien investors") outperforms benefit framing for retention
+- Real state data and real investor scenarios in every post — generic content gets ignored
+- Member onboarding sequence (Day 1, 3, 7, 14, 30) is critical for activation
+- Weekly value posts rotating through state spotlights, platform walkthroughs, and beginner tips keep content fresh
+
+### What NOT to do again:
+- Don't post generic content — everything must reference real state data or real investor scenarios from states-en.js
+- Don't write posts longer than 400 words unless it's a course lesson (800 word max)
+- Don't promote paid products without delivering value first — community is free, earn the ask
+- Don't skip the ending question on community posts — it drives the engagement loop
+
+### Current status of my domain:
+- Community strategy not yet built — no content calendar, no engagement playbook
+- 10 course module topics defined but no lessons written
+- Member onboarding sequence documented (Day 1, 3, 7, 14, 30) but not built
+- Post formats documented: weekly value, engagement prompts, member spotlight, announcements
+
+### My next action when activated:
+- Build 30-day content calendar for Aurigen Collective with daily post themes tied to state data
+

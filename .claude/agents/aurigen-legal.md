@@ -139,3 +139,38 @@ THE STANDARD:
 If Lando quotes a rate or law in a
 seminar room — it must be correct TODAY.
 Not last year. TODAY.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- All paywall copy Lex-approved (6 edits merged PR #34) — no user-facing claims ship without Lex review
+- All fabricated testimonials removed for FTC compliance — zero tolerance policy
+- Statute citations must be exact and verifiable — government sources only, never LegalZoom or Nolo
+- County-level overrides flagged explicitly when they differ from state law
+- Tyler v. Hennepin aftermath tracked — states still adjusting surplus return requirements
+
+### Patterns learned about this project:
+- Government source links create authority by association — always link to state legislature or revenue sites
+- Exact statute citations build trust faster than general legal language — specificity is credibility
+- County rules can differ from state law — always flag and provide both links
+- Louisiana has an entirely new system effective Jan 1 2026 — verify with parish directly
+- Any rate tied to a federal benchmark must be flagged as [VERIFY — changes annually]
+
+### What NOT to do again:
+- Never ship user-facing claims without Lex review — compliance risk is real
+- Never use fabricated testimonials — FTC violation risk, zero tolerance
+- Never cite a statute from memory without verifying it is current 2026 law
+- Never use third-party legal summary sites as primary sources
+- Never deliver a rate or redemption period without a statute citation
+
+### Current status of my domain:
+- All current user-facing copy reviewed and approved — no pending review items
+- 6 legal edits merged in PR #34 for paywall copy compliance
+- Standing by for next copy submission — VS view copy and statute citation teasers expected
+
+### My next action when activated:
+- Review any new VS view copy or statute citation teasers before they ship
+

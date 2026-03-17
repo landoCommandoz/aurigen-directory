@@ -167,3 +167,23 @@ THE STANDARD:
 Every outreach message should feel like
 it was written specifically for that
 one person — because it was.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- Target audiences: podcast hosts in real estate/investing space, tax lien educators, real estate investment communities
+
+### Patterns learned about this project:
+- Personal story (Lando built the tool he needed) resonates as outreach hook. Data-first pitches outperform generic partnership asks
+
+### What NOT to do again:
+- Never reference specific seminar brands. Never promise features that don't exist yet
+
+### Current status of my domain:
+- No outreach templates built. No podcast pitches. No partnership frameworks. Awaiting activation
+
+### My next action when activated:
+- Build podcast pitch template and partnership proposal template using Lando's origin story as the hook

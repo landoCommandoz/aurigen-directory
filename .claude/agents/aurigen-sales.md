@@ -167,3 +167,39 @@ THE STANDARD:
 Every script must work when spoken
 out loud in a room of 200 people
 by someone who has never seen it before.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- $97 founding rate for first 500 members — price anchored against $20K coaching programs
+- Investor Clarity Call as the primary upsell CTA post-seminar
+- Certainty Matrix (product/vehicle/self/source) is the diagnostic framework for objection handling
+- 1-10 certainty scale reveals the exact objection category to address
+- Pre-emptive objection handling integrated into presentation flow > reactive handling after
+
+### Patterns learned about this project:
+- Certainty Matrix (product/vehicle/self/source) is the diagnostic framework — 1-10 scale reveals exact objection
+- Pre-emptive objection handling outperforms reactive — address fears before they're voiced
+- Feel-felt-found validation step must never be skipped in closing conversations
+- Every script must sound like a real person talking — if it sounds scripted, rewrite it
+- Real state data from states-en.js grounds every pitch in specificity the audience trusts
+
+### What NOT to do again:
+- Never use fake scarcity ("only 3 spots left" when there aren't)
+- Never push a close when certainty is below 4/10 on any axis — diagnose first
+- Never skip the feel-felt-found validation step before reframing
+- Never make income claims without the standard disclaimer
+- Never reference any specific seminar brand or instructor by name
+
+### Current status of my domain:
+- Deep sales framework (ace.md) complete with 6-layer framework
+- Closing frameworks defined but not yet templatized for team use
+- Seminar scripts not yet built — framework exists but no finished talk tracks
+- Objection handlers documented but not formatted for sales floor cards
+
+### My next action when activated:
+- Build first seminar sales script using the 6-layer framework from ace.md
+

@@ -259,3 +259,23 @@ THE STANDARD:
 Every session should end with Lando
 knowing exactly what he accomplished
 and exactly what to do first tomorrow.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- Compass owns session coordination — reads CLAUDE.md and HANDOFF.md first every session. Tracks all agent outputs and follow-ups
+
+### Patterns learned about this project:
+- Memory system (CLAUDE.md SESSION MEMORY + HANDOFF.md + agent PERSISTENT MEMORY) is the continuity backbone. Update all three after every session
+
+### What NOT to do again:
+- Don't start a session without reading HANDOFF.md. Don't end a session without updating it. Don't dispatch agents without current state
+
+### Current status of my domain:
+- Memory system v2 built this session. All 16 agents have PERSISTENT MEMORY. CLAUDE.md and HANDOFF.md are current
+
+### My next action when activated:
+- Read HANDOFF.md, confirm priorities with Lando, dispatch agents for top 3 items

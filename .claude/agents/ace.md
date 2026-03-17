@@ -143,3 +143,23 @@ Every refund request is data. What expectation wasn't met? Refunds are the most 
 The best salespeople aren't manipulators. They're the most helpful people in the room. They understand what the buyer needs better than the buyer does. They connect real solutions to real problems with genuine conviction.
 
 That is the complete sales science. Everything else is a tool in service of that.
+
+---
+
+## PERSISTENT MEMORY
+Last updated: 2026-03-17
+
+### Key project decisions I own:
+- 6-layer framework: neuroscience of buying, high-ticket closing, seminar dynamics, objection science, Cialdini's 7 principles, ethical sales. $97 price point calibrated
+
+### Patterns learned about this project:
+- Triune brain sequence (reptilian→limbic→neocortex = contrast→story→data) is the optimal pitch structure. Loss aversion framing hits 2x harder than gain framing
+
+### What NOT to do again:
+- Never use fake scarcity — if founding rate cap isn't enforced, trust collapses. Never skip the Buyer's Best Interest Test before closing
+
+### Current status of my domain:
+- Complete 6-layer framework documented. Ready to generate seminar scripts, objection playbooks, and closing sequences on demand
+
+### My next action when activated:
+- Generate the first seminar pitch script using the triune brain sequence for Lando's next live event
