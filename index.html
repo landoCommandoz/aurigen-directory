@@ -563,8 +563,18 @@ a { color: inherit; text-decoration: none; }
 @media (min-width: 641px) and (max-width: 1024px) {
   .gate-hero {
     padding: 60px 32px 40px;
+    display: block;
+    position: relative;
+  }
+  .gate-hero-content {
+    margin: 0 auto;
+  }
+  .hero-email-wrap {
+    margin-left: auto;
+    margin-right: auto;
   }
   .gate-stats {
+    display: block;
     padding: 48px 32px;
     margin-top: 32px;
   }
@@ -580,11 +590,21 @@ a { color: inherit; text-decoration: none; }
     font-size: clamp(36px, 6vw, 48px);
   }
   .gate-features {
+    display: block;
     padding: 48px 32px;
     margin-top: 48px;
   }
   .gate-features-grid {
     gap: 16px;
+  }
+  .gate-email {
+    display: block;
+  }
+  .gate-email-form {
+    margin: 0 auto;
+  }
+  .gate-price {
+    display: block;
   }
 }
 
@@ -5052,7 +5072,7 @@ a { color: inherit; text-decoration: none; }
     <button class="exit-close" id="exit-close-btn" aria-label="Close">&times;</button>
     <div class="exit-eyebrow" id="exit-eyebrow">Before You Go</div>
     <h2 class="exit-headline" id="exit-headline">Wait &mdash; Don&rsquo;t Miss Your Free State Access</h2>
-    <p class="exit-body" id="exit-body">Get instant access to 7 states free. See which counties are best for tax lien and tax deed investing.</p>
+    <p class="exit-body" id="exit-body">Get instant access to 3 states free. See which counties are best for tax lien and tax deed investing.</p>
     <button class="exit-cta" id="exit-cta">Unlock Free Access</button>
     <button class="exit-dismiss" id="exit-dismiss">No thanks</button>
   </div>
@@ -5269,13 +5289,13 @@ a { color: inherit; text-decoration: none; }
       <!-- Valuation Agent Sub-view -->
       <div class="tools-panel" id="tools-valuation">
         <div class="view-header" style="padding:16px 20px 8px;">
-          <div class="view-title" id="val-title">Atlas — Valuation Agent</div>
-          <div class="view-sub" id="val-sub">Ask about your business value, growth levers, and exit strategy</div>
+          <div class="view-title" id="val-title">Atlas — Investment Valuation Agent</div>
+          <div class="view-sub" id="val-sub">Analyze tax lien and deed investments — returns, risks, and deal structure</div>
         </div>
         <div class="advisor-messages" id="val-messages">
           <div class="msg msg-sage">
             <strong>Atlas</strong><br>
-            I'm Atlas — your business valuation advisor. Tell me about your business (revenue, subscribers, pricing, growth) and I'll estimate its value and show you exactly how to increase it. Try: "My app makes $4,900/mo from 100 subscribers at $49/mo — what's it worth?"
+            I'm Atlas — your tax lien and deed investment valuation agent. Tell me about a deal (purchase price, interest rate, redemption period, county) and I'll break down the expected return, risk factors, and whether it fits your portfolio. Try: "I'm looking at a $5,000 tax lien in Florida at 18% — what's my expected return over 12 months?"
           </div>
           <div class="advisor-typing" id="val-typing">
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
@@ -5436,8 +5456,8 @@ a { color: inherit; text-decoration: none; }
   <!-- FOOTER DISCLAIMER -->
   <div class="app-footer-disclaimer" id="app-footer-disclaimer">
     Aurigen County Resource Directory is an educational research tool. Nothing in this content constitutes investment, legal, or financial advice. Always verify data with official county sources before transacting.
-    <a href="javascript:void(0)" onclick="openLegalModal('tos')" id="footer-tos-link">Terms of Service</a> |
-    <a href="javascript:void(0)" onclick="openLegalModal('privacy')" id="footer-privacy-link">Privacy Policy</a> | © 2026 Aurigen Collective | <a href="/cdn-cgi/l/email-protection#f0bc919e949f9eb08498959185829997959ede939f9d" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="b1fdd0dfd5dedff1c5d9d4d0c4c3d8d6d4df9fd2dedc">[email&#160;protected]</span></a>
+    <a href="#" onclick="openLegalModal('tos');return false;" id="footer-tos-link">Terms of Service</a> |
+    <a href="#" onclick="openLegalModal('privacy');return false;" id="footer-privacy-link">Privacy Policy</a> | © 2026 Aurigen Collective | <a href="/cdn-cgi/l/email-protection#f0bc919e949f9eb08498959185829997959ede939f9d" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="b1fdd0dfd5dedff1c5d9d4d0c4c3d8d6d4df9fd2dedc">[email&#160;protected]</span></a>
   </div>
 
   <!-- BOTTOM NAV -->
@@ -5543,29 +5563,7 @@ a { color: inherit; text-decoration: none; }
   </div>
 </div>
 
-<!-- DEBUG PANEL -->
-<div id="debug-panel">
-  <div>⚙ DEBUG — remove before deploy</div>
-  <div id="debug-content"></div>
-</div>
-
-<!-- FEATURE FLAG ADMIN PANEL -->
-<div id="ff-admin-panel">
-  <div class="ff-admin-header">
-    <div class="ff-admin-title">Feature Flags</div>
-    <button class="ff-admin-close" onclick="FF.closeAdmin()">&#10005;</button>
-  </div>
-  <div class="ff-admin-actions">
-    <button class="ff-admin-btn" onclick="FF.exportFlags()">Export</button>
-    <button class="ff-admin-btn" onclick="FF.importFlags()">Import</button>
-    <button class="ff-admin-btn danger" onclick="FF.resetAll()">Reset All</button>
-  </div>
-  <div class="ff-admin-body" id="ff-admin-body"></div>
-  <div class="ff-admin-footer">
-    Feature flags are for internal testing only.<br>
-    Priority: URL param &gt; localStorage &gt; default
-  </div>
-</div>
+<!-- Debug and feature flag panels removed for production -->
 
 <!-- ADMIN PANEL — Analytics Section (visible when ?admin=true) -->
 <div id="admin-panel-analytics" style="display:none;position:fixed;top:0;right:0;width:380px;max-width:90vw;height:100vh;background:var(--bg);border-left:1px solid var(--border);z-index:999;overflow-y:auto;padding:24px;box-shadow:-4px 0 24px rgba(0,0,0,0.6);">
@@ -6389,9 +6387,9 @@ const I18N = {
     analyzerMonthly: 'Monthly Income',
     analyzerDisclaimer: 'Educational estimate only — not financial, legal, or investment advice. Results are not guaranteed and do not account for all variables. Verify statutory rates with official county sources before transacting. Aurigen Collective is not a licensed investment advisor.',
     // Valuation Agent
-    valTitle: 'Atlas — Valuation Agent',
-    valSub: 'Ask about your business value, growth levers, and exit strategy',
-    valWelcome: "I'm Atlas — your business valuation advisor. Tell me about your business (revenue, subscribers, pricing, growth) and I'll estimate its value and show you exactly how to increase it. Try: \"My app makes $4,900/mo from 100 subscribers at $49/mo — what's it worth?\"",
+    valTitle: 'Atlas — Investment Valuation Agent',
+    valSub: 'Analyze tax lien and deed investments — returns, risks, and deal structure',
+    valWelcome: "I'm Atlas — your tax lien and deed investment valuation agent. Tell me about a deal (purchase price, interest rate, redemption period, county) and I'll break down the expected return, risk factors, and whether it fits your portfolio. Try: \"I'm looking at a $5,000 tax lien in Florida at 18% — what's my expected return over 12 months?\"",
     valPlaceholder: 'Ask Atlas about your business value...',
     valError: 'Atlas is temporarily unavailable.',
     // Advisor
@@ -6491,7 +6489,7 @@ const I18N = {
     paywallCta: 'Unlock Now',
     paywallHaveCode: 'Already have an access code?',
     paywallEnterCode: 'Enter it here',
-    paywallDisclaimer: 'All sales final. Educational use only. <a href="javascript:void(0)" onclick="openLegalModal(\'tos\')" style="color:var(--accent);text-decoration:underline;cursor:pointer;">See Terms of Service</a>. Aurigen Collective is not a licensed investment advisor.',
+    paywallDisclaimer: 'All sales final. Educational use only. <a href="#" onclick="openLegalModal(\'tos\');return false;" style="color:var(--accent);text-decoration:underline;cursor:pointer;">See Terms of Service</a>. Aurigen Collective is not a licensed investment advisor.',
     // P1 Conversion Optimization
     unlockToSee: 'Unlock to see',
     paywallDynamicSub: '{countyPart}step-by-step auction signup',
@@ -6555,7 +6553,7 @@ const I18N = {
     // Exit intent
     exitEyebrow: 'Before You Go',
     exitHeadline: "Wait \u2014 Don\u2019t Miss Your Free State Access",
-    exitBody: 'Get instant access to 7 states free. See which counties are best for tax lien and tax deed investing.',
+    exitBody: 'Get instant access to 3 states free. See which counties are best for tax lien and tax deed investing.',
     exitCta: 'Unlock Free Access',
     exitDismiss: 'No thanks',
     // Legal modals
@@ -6770,9 +6768,9 @@ const I18N = {
     analyzerMonthly: 'Ingreso Mensual',
     analyzerDisclaimer: 'Estimacion educativa solamente — no es asesoramiento financiero, legal ni de inversiones. Los resultados no estan garantizados y no contemplan todas las variables. Verifique tasas estatutarias con fuentes oficiales del condado antes de operar. Aurigen Collective no es un asesor de inversiones licenciado.',
     // Valuation Agent
-    valTitle: 'Atlas — Agente de Valoracion',
-    valSub: 'Pregunte sobre el valor de su negocio, palancas de crecimiento y estrategia de salida',
-    valWelcome: 'Soy Atlas — su asesor de valoracion de negocios. Cuenteme sobre su negocio (ingresos, suscriptores, precios, crecimiento) y estimare su valor y le mostrare exactamente como aumentarlo.',
+    valTitle: 'Atlas — Agente de Valoracion de Inversiones',
+    valSub: 'Analice inversiones en gravamenes y escrituras fiscales — rendimientos, riesgos y estructura',
+    valWelcome: 'Soy Atlas — su agente de valoracion de inversiones en gravamenes y escrituras fiscales. Cuenteme sobre un trato (precio de compra, tasa de interes, periodo de redencion, condado) y le mostrare el rendimiento esperado, factores de riesgo y si encaja en su portafolio.',
     valPlaceholder: 'Pregunte a Atlas sobre el valor de su negocio...',
     valError: 'Atlas no esta disponible temporalmente.',
     // Advisor
@@ -6872,7 +6870,7 @@ const I18N = {
     paywallCta: 'Desbloquear Ahora',
     paywallHaveCode: 'Ya tiene un codigo de acceso?',
     paywallEnterCode: 'Ingreselo aqui',
-    paywallDisclaimer: 'Ventas finales. Solo uso educativo. <a href="javascript:void(0)" onclick="openLegalModal(\'tos\')" style="color:var(--accent);text-decoration:underline;cursor:pointer;">Ver Terminos de Servicio</a>. Aurigen Collective no es un asesor de inversiones licenciado.',
+    paywallDisclaimer: 'Ventas finales. Solo uso educativo. <a href="#" onclick="openLegalModal(\'tos\');return false;" style="color:var(--accent);text-decoration:underline;cursor:pointer;">Ver Terminos de Servicio</a>. Aurigen Collective no es un asesor de inversiones licenciado.',
     // P1 Conversion Optimization
     unlockToSee: 'Desbloquear para ver',
     paywallDynamicSub: '{countyPart}registro paso a paso para subastas',
@@ -6936,7 +6934,7 @@ const I18N = {
     // Exit intent
     exitEyebrow: 'Antes de Irte',
     exitHeadline: 'Espera \u2014 No Te Pierdas Tu Acceso Gratuito',
-    exitBody: 'Obtene acceso instantaneo a 7 estados gratis. Descubri cuales condados son mejores para invertir en gravamenes y escrituras fiscales.',
+    exitBody: 'Obtene acceso instantaneo a 3 estados gratis. Descubri cuales condados son mejores para invertir en gravamenes y escrituras fiscales.',
     exitCta: 'Desbloquear Acceso Gratis',
     exitDismiss: 'No gracias',
     // Legal modals
@@ -7642,7 +7640,14 @@ window.addEventListener('load', async () => {
     } else {
       // Gate visible — ensure scroll starts at top (brand header visible)
       var gateEl = document.getElementById('gate');
-      if (gateEl) gateEl.scrollTop = 0;
+      if (gateEl) {
+        gateEl.scrollTop = 0;
+        // Force scroll reset after paint — prevents iOS/iPad from scrolling past wordmark
+        requestAnimationFrame(function() {
+          gateEl.scrollTop = 0;
+          window.scrollTo(0, 0);
+        });
+      }
       // Initialize gate animations
       animateGateStats();
       // Analytics: gate_view
@@ -7862,9 +7867,22 @@ function animateGateStats(retryCount) {
   // Compute real counts from loaded state data
   var statesData = window.STATES_EN || window.STATES_ES || [];
 
-  // If data not loaded yet, retry up to 10 times (covers slow iPad loads)
-  if (statesData.length === 0 && retryCount < 10) {
-    setTimeout(function() { animateGateStats(retryCount + 1); }, 300);
+  // If data not loaded yet, retry up to 20 times at increasing intervals (covers slow iPad loads)
+  if (statesData.length === 0 && retryCount < 20) {
+    var delay = retryCount < 10 ? 300 : 500;
+    setTimeout(function() { animateGateStats(retryCount + 1); }, delay);
+    return;
+  }
+
+  // Fallback: even if data never loaded, still show hardcoded targets from HTML
+  if (statesData.length === 0) {
+    // Use the data-target values already in the HTML (51, 3000, 3)
+    var fallbackNumbers = statsSection.querySelectorAll('.gate-stat-number');
+    fallbackNumbers.forEach(function(el) {
+      var target = parseInt(el.dataset.target, 10) || 0;
+      var suffix = el.dataset.suffix || '';
+      if (target > 0) animateNumber(el, target, suffix, 1500);
+    });
     return;
   }
 
@@ -7999,11 +8017,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroEmailInput = document.getElementById('hero-email-input');
   if (heroEmailInput) heroEmailInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleHeroEmail(); });
 
-  // Fallback: attach change listeners to analyzer inputs for browsers
-  // that may not fire oninput reliably on number inputs
+  // Fallback: attach change + input + blur listeners to analyzer inputs
+  // Covers iPad/iOS where oninput may not fire reliably on number inputs
   ['az-type','az-price','az-rate','az-months','az-arv','az-costs','az-penalty'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.addEventListener('change', calcAnalyzer);
+    if (el) {
+      el.addEventListener('change', calcAnalyzer);
+      el.addEventListener('input', calcAnalyzer);
+      el.addEventListener('blur', calcAnalyzer);
+    }
   });
 });
 
@@ -10156,7 +10178,15 @@ setInterval(function() { dnaTrackEvent('session_tick'); }, 30000);
 function buildStatePulse() {
   var list = document.getElementById('pulse-list');
   var summary = document.getElementById('pulse-summary');
-  if (!list || !summary || !STATES) return;
+  if (!list || !summary) return;
+  // Guard: ensure STATES is populated before rendering
+  if (!STATES || STATES.length === 0) {
+    // Retry once after short delay (covers late iPad data loads)
+    setTimeout(function() {
+      if (STATES && STATES.length > 0) buildStatePulse();
+    }, 500);
+    return;
+  }
 
   var counts = { compliant: 0, 'non-compliant': 0, pending: 0 };
   var sorted = STATES.slice().sort(function(a, b) {
@@ -10683,19 +10713,32 @@ function pathwayRenderStep() {
         }
       }, 50);
     } else {
+      // Quiz not taken — show fallback top 3 states by beginner score
+      var fallbackStates = (STATES || []).filter(function(s) {
+        return FREE_STATES.has(s.id) || state.isPaid;
+      }).sort(function(a, b) { return b.score - a.score; }).slice(0, 3);
+
+      var fallbackCards = '';
+      fallbackStates.forEach(function(s) {
+        fallbackCards += '<div class="pathway-state-pick-item" onclick="state.pathwaySelectedState=\'' + s.id + '\';pathwaySaveProgress();pathwayRenderStep();">' +
+          '<div><div style="font-weight:600;font-size:14px;">' + s.name + '</div>' +
+          '<div style="font-size:11px;color:var(--text-dim);">' + typeShortLabel(s.type) + ' · ' + s.rate + '</div></div>' +
+          '<div class="dna-state-card-match" style="color:var(--green);">' + s.score + '/100</div></div>';
+      });
+
       container.innerHTML = '<div class="pathway-step-content active">' +
         '<div class="pathway-step-title">' + t('pathwayStep1') + '</div>' +
         '<div class="pathway-step-sub">' + t('dnaQuizSub') + '</div>' +
-        '<div id="pathway-quiz-inline"></div></div>';
-      // Render quiz inline inside pathway
-      setTimeout(function() {
-        const inlineQuiz = document.getElementById('pathway-quiz-inline');
-        if (inlineQuiz) {
-          inlineQuiz.innerHTML = '<div class="dna-empty-msg">' + t('dnaTopStatesNone') +
-            '<br><br><button class="dna-quiz-btn primary" onclick="switchDnaTab(\'profile\')" style="margin-top:8px;">' +
-            t('dnaQuizFinish').replace('See My Profile', t('dnaQuizFinish')) + '</button></div>';
-        }
-      }, 50);
+        '<div style="margin:16px 0 12px;font-size:13px;color:var(--text-dim);">Top states by investor score:</div>' +
+        '<div class="pathway-state-pick">' + fallbackCards + '</div>' +
+        '<div style="margin-top:16px;text-align:center;">' +
+        '<button class="dna-quiz-btn primary" onclick="switchDnaTab(\'profile\')" style="margin-top:8px;">' + t('dnaStartQuiz') + '</button>' +
+        '<div style="font-size:11px;color:var(--text-muted);margin-top:8px;">Take the Investor DNA quiz for personalized state matches</div>' +
+        '</div>' +
+        '<div class="pathway-nav"><div></div>' +
+        '<button class="pathway-nav-btn primary" onclick="pathwayNext()"' +
+        (state.pathwaySelectedState ? '' : ' disabled') + '>' + t('pathwayNext') + '</button>' +
+        '</div></div>';
     }
 
   } else if (step === 1) {
@@ -10838,10 +10881,15 @@ function pathwaySelectState(id) {
 }
 
 function pathwayNext() {
-  if (state.pathwayStep === 0 && !state.dnaCompleted) return;
+  // Step 0: allow progression if quiz completed OR a fallback state was selected
+  if (state.pathwayStep === 0 && !state.dnaCompleted && !state.pathwaySelectedState) return;
   if (state.pathwayStep === 1 && !state.pathwaySelectedState) return;
   if (state.pathwayStep < 4) {
     state.pathwayStep++;
+    // Skip matched states (step 1) if coming from step 0 with a pre-selected fallback state and no quiz
+    if (state.pathwayStep === 1 && !state.dnaCompleted && state.pathwaySelectedState) {
+      state.pathwayStep = 2;
+    }
     pathwaySaveProgress();
     pathwayRender();
   }
