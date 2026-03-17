@@ -204,8 +204,8 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── HERO SECTION ─── */
 .gate-hero {
-  min-height: 90vh;
-  min-height: 90dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
   min-height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
@@ -213,8 +213,8 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   text-align: center;
   position: relative;
-  padding: 60px 24px;
-  overflow: hidden;
+  padding: 80px 24px 100px;
+  overflow: visible;
 }
 
 .gate-glow {
@@ -554,14 +554,23 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
+/* ─── TABLET/IPAD GATE FIX ─── */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .gate-hero {
+    padding: 80px 32px 110px;
+  }
+}
+
 /* ─── MOBILE GATE TIGHTENING ─── */
 @media (max-width: 640px) {
   .gate-hero {
     min-height: 100vh;
     min-height: 100dvh;
     min-height: -webkit-fill-available;
-    padding: 48px 20px 60px;
-    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+    padding: 60px 20px 100px;
+    padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+    justify-content: flex-start;
+    padding-top: max(60px, 12vh);
   }
   .gate-logo {
     font-size: clamp(48px, 12vw, 72px);
@@ -9583,7 +9592,7 @@ function dnaDrawRadar() {
   if (!container) return;
   container.innerHTML = '';
 
-  const size = 300;
+  const size = 380;
   const cx = size / 2;
   const cy = size / 2;
   const radius = 110;
@@ -9672,7 +9681,7 @@ function dnaDrawRadar() {
   // Labels
   axes.forEach(function(ax, i) {
     const angle = angleSlice * i - Math.PI / 2;
-    const labelR = radius + 22;
+    const labelR = radius + 28;
     const lx = labelR * Math.cos(angle);
     const ly = labelR * Math.sin(angle);
     const anchor = Math.abs(lx) < 5 ? 'middle' : (lx > 0 ? 'start' : 'end');
@@ -10030,7 +10039,7 @@ function dnaDrawRadarInto(container) {
   if (!container) return;
   container.innerHTML = '';
 
-  const size = 300;
+  const size = 380;
   const cx = size / 2;
   const cy = size / 2;
   const radius = 110;
@@ -10084,7 +10093,7 @@ function dnaDrawRadarInto(container) {
 
   axes.forEach(function(ax, i) {
     const angle = angleSlice * i - Math.PI / 2;
-    const labelR = radius + 22;
+    const labelR = radius + 28;
     const lx = labelR * Math.cos(angle);
     const ly = labelR * Math.sin(angle);
     g.append('text').attr('class', 'dna-radar-label')
@@ -10440,7 +10449,7 @@ function buildQrCode() {
   if (!container) return;
   container.style.display = '';
 
-  var liveUrl = 'https://statuesque-bublanina-330b9d.netlify.app';
+  var liveUrl = 'https://theaurigen.com';
   var qrSvg = generateQrSvg(liveUrl, 200);
 
   container.innerHTML =
@@ -10453,7 +10462,7 @@ function buildQrCode() {
 }
 
 function copyDirectoryLink(btn) {
-  var url = 'https://statuesque-bublanina-330b9d.netlify.app';
+  var url = 'https://theaurigen.com';
   try {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(url).then(function() {
