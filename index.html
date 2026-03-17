@@ -103,29 +103,34 @@ function loadLanguageFile(lang) {
   --red:          #e05555;
   --green:        #4caf82;
 
-  /* Map colors — premium cinematic palette */
+  /* Map colors — Bloomberg-grade cinematic palette */
   --map-state:    #12121c;
-  --map-locked:   #16161f;
+  --map-locked:   #2A2A35;
   --map-hover:    #e8c547;
   --map-label-bg: rgba(255,248,230,0.92);
-  --map-lien:     #b8943a;
-  --map-lien-dim: rgba(160,128,50,0.35);
-  --map-deed:     #2a9d8f;
-  --map-deed-dim: rgba(42,157,143,0.3);
-  --map-rdeed:    #d48a3a;
-  --map-rdeed-dim: rgba(212,138,58,0.3);
-  --map-both:     #7c5cbf;
-  --map-both-dim: rgba(124,92,191,0.3);
-  --map-lien-glow: rgba(184,148,58,0.4);
-  --map-deed-glow: rgba(42,157,143,0.35);
-  --map-rdeed-glow: rgba(212,138,58,0.35);
-  --map-both-glow: rgba(124,92,191,0.35);
-  --rdeed:        #d48a3a;
-  --rdeed-dim:    rgba(212,138,58,0.12);
+  --color-lien:   #C9A84C;
+  --color-deed:   #2DD4BF;
+  --color-rdeed:  #F97316;
+  --color-both:   #8B5CF6;
+  --color-locked: #2A2A35;
+  --map-lien:     var(--color-lien);
+  --map-lien-dim: rgba(201,168,76,0.4);
+  --map-deed:     var(--color-deed);
+  --map-deed-dim: rgba(45,212,191,0.35);
+  --map-rdeed:    var(--color-rdeed);
+  --map-rdeed-dim: rgba(249,115,22,0.35);
+  --map-both:     var(--color-both);
+  --map-both-dim: rgba(139,92,246,0.35);
+  --map-lien-glow: rgba(201,168,76,0.5);
+  --map-deed-glow: rgba(45,212,191,0.45);
+  --map-rdeed-glow: rgba(249,115,22,0.45);
+  --map-both-glow: rgba(139,92,246,0.45);
+  --rdeed:        #F97316;
+  --rdeed-dim:    rgba(249,115,22,0.12);
 
   /* Map container cinematic gradient */
-  --map-bg-inner: #151520;
-  --map-bg-outer: #0c0c12;
+  --map-bg-inner: #111118;
+  --map-bg-outer: #0d0d0d;
 
   /* Z-index scale */
   --z-map:    10;
@@ -1882,6 +1887,86 @@ a { color: inherit; text-decoration: none; }
   flex: 1;
   position: relative;
   z-index: 0;
+}
+
+/* State hover/selected transitions */
+.state-shape {
+  transition: filter 0.15s ease, opacity 0.15s ease;
+}
+
+/* Selected state pulsing border */
+@keyframes statePulse {
+  0%, 100% { stroke-opacity: 1; stroke-width: 2; }
+  50% { stroke-opacity: 0.5; stroke-width: 1.2; }
+}
+.state-shape.state-selected {
+  animation: statePulse 1.8s ease-in-out infinite;
+}
+
+/* On-map color legend — bottom-left */
+.map-color-legend {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 16px;
+  background: rgba(13,13,13,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  pointer-events: none;
+}
+.map-color-legend .mcl-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.map-color-legend .mcl-swatch {
+  width: 14px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.map-color-legend .mcl-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+/* Locked state texture overlay pattern */
+.locked-texture-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.08;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 4px,
+    rgba(255,255,255,0.15) 4px,
+    rgba(255,255,255,0.15) 5px
+  );
+  mix-blend-mode: overlay;
+}
+
+/* Legend responsive */
+@media (max-width: 640px) {
+  .map-color-legend {
+    bottom: 8px;
+    left: 8px;
+    padding: 8px 12px;
+    gap: 4px;
+  }
+  .map-color-legend .mcl-swatch { width: 10px; height: 7px; }
+  .map-color-legend .mcl-label { font-size: 8px; }
 }
 
 /* Map paywall: blur + lock overlay when not paid */
@@ -5366,6 +5451,13 @@ a { color: inherit; text-decoration: none; }
         <!-- Map -->
         <div id="map-container">
           <svg id="map-svg"></svg>
+          <div class="map-color-legend">
+            <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-lien);box-shadow:0 0 6px var(--map-lien-glow)"></div><span class="mcl-label">Lien</span></div>
+            <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-deed);box-shadow:0 0 6px var(--map-deed-glow)"></div><span class="mcl-label">Deed</span></div>
+            <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-both);box-shadow:0 0 6px var(--map-both-glow)"></div><span class="mcl-label">Both</span></div>
+            <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-rdeed);box-shadow:0 0 6px var(--map-rdeed-glow)"></div><span class="mcl-label">R. Deed</span></div>
+            <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-locked);border:1px solid rgba(255,255,255,0.1)"></div><span class="mcl-label">Locked</span></div>
+          </div>
           <div id="map-lock-overlay">
             <svg class="map-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -8444,12 +8536,28 @@ async function initMap() {
       .attr('fill', 'none').attr('stroke', 'rgba(255,255,255,0.018)').attr('stroke-width', 0.5);
     svg.append('rect').attr('width', w).attr('height', h).attr('fill', 'url(#map-grid)');
 
-    // Subtle glow filter for free states
-    const glowFilter = defs.append('filter').attr('id','state-glow').attr('x','-10%').attr('y','-10%').attr('width','120%').attr('height','120%');
-    glowFilter.append('feGaussianBlur').attr('in','SourceGraphic').attr('stdDeviation','2').attr('result','blur');
-    const glowMerge = glowFilter.append('feMerge');
-    glowMerge.append('feMergeNode').attr('in','blur');
-    glowMerge.append('feMergeNode').attr('in','SourceGraphic');
+    // Glow filters per state type for hover/active effects
+    function addGlowFilter(id, color, stdDev) {
+      var f = defs.append('filter').attr('id', id).attr('x','-20%').attr('y','-20%').attr('width','140%').attr('height','140%');
+      f.append('feGaussianBlur').attr('in','SourceGraphic').attr('stdDeviation', stdDev || '2').attr('result','blur');
+      var m = f.append('feMerge');
+      m.append('feMergeNode').attr('in','blur');
+      m.append('feMergeNode').attr('in','SourceGraphic');
+      return f;
+    }
+    addGlowFilter('state-glow', null, '2');
+    addGlowFilter('glow-lien', '#C9A84C', '3');
+    addGlowFilter('glow-deed', '#2DD4BF', '3');
+    addGlowFilter('glow-rdeed', '#F97316', '3');
+    addGlowFilter('glow-both', '#8B5CF6', '3');
+
+    // Locked state hash pattern
+    var lockPat = defs.append('pattern').attr('id','lock-hash')
+      .attr('width', 6).attr('height', 6).attr('patternUnits','userSpaceOnUse')
+      .attr('patternTransform','rotate(45)');
+    lockPat.append('rect').attr('width',6).attr('height',6).attr('fill','none');
+    lockPat.append('line').attr('x1',0).attr('y1',0).attr('x2',0).attr('y2',6)
+      .attr('stroke','rgba(255,255,255,0.06)').attr('stroke-width',1.5);
 
     const projection = d3.geoAlbersUsa()
       .scale(w * 1.18)
@@ -8503,46 +8611,98 @@ async function initMap() {
     function getOpacity(sid) {
       const s = stateMap[sid];
       if (!s) return 0.15;
-      return (FREE_STATES.has(sid) || state.isPaid) ? 1 : 0.25;
+      return (FREE_STATES.has(sid) || state.isPaid) ? 1 : 0.55;
+    }
+
+    function getGlowFilter(sid) {
+      const s = stateMap[sid];
+      if (!s) return null;
+      if (!(FREE_STATES.has(sid) || state.isPaid)) return null;
+      var k = typeKey(s.type);
+      return 'url(#glow-' + k + ')';
     }
 
     const features = topojson.feature(us, us.objects.states).features;
     const g = svg.append('g');
 
-    // State fills
+    // State fills — bold type-based coloring
+    var selectedStateEl = null;
+
     g.selectAll('path.state-shape')
       .data(features)
       .enter().append('path')
-      .attr('class', 'state-shape')
+      .attr('class', d => {
+        var sid = fipsToId[String(d.id).padStart(2,'0')];
+        var s = stateMap[sid];
+        var cls = 'state-shape';
+        if (s) cls += ' state-type-' + typeKey(s.type);
+        if (sid && !(FREE_STATES.has(sid) || state.isPaid)) cls += ' state-locked';
+        return cls;
+      })
       .attr('d', path)
       .attr('fill', d => getColor(fipsToId[String(d.id).padStart(2,'0')]))
-      .attr('stroke', 'rgba(255,255,255,0.06)')
-      .attr('stroke-width', 0.5)
+      .attr('stroke', '#1a1a2e')
+      .attr('stroke-width', 0.7)
       .style('cursor', 'pointer')
       .style('opacity', d => getOpacity(fipsToId[String(d.id).padStart(2,'0')]))
       .attr('filter', d => {
-        const sid = fipsToId[String(d.id).padStart(2,'0')];
-        return (FREE_STATES.has(sid) || state.isPaid) ? 'url(#state-glow)' : null;
+        var sid = fipsToId[String(d.id).padStart(2,'0')];
+        return getGlowFilter(sid);
       })
-      .on('click', (event, d) => {
-        const sid = fipsToId[String(d.id).padStart(2,'0')];
+      .on('click', function(event, d) {
+        var sid = fipsToId[String(d.id).padStart(2,'0')];
         if (!sid) return;
-        openState(sid);  // openState handles free/locked/paid routing internally
+        // Deselect previous
+        if (selectedStateEl) {
+          d3.select(selectedStateEl).classed('state-selected', false)
+            .attr('stroke', '#1a1a2e').attr('stroke-width', 0.7);
+        }
+        // Select this state
+        var s = stateMap[sid];
+        var selColor = s ? getColor(sid) : '#C9A84C';
+        d3.select(this).classed('state-selected', true)
+          .attr('stroke', selColor).attr('stroke-width', 2);
+        selectedStateEl = this;
+        openState(sid);
       })
       .on('mouseenter', function(event, d) {
-        const sid = fipsToId[String(d.id).padStart(2,'0')];
-        if (sid) d3.select(this).attr('fill', mapColors.hover).style('opacity', 1);
+        var sid = fipsToId[String(d.id).padStart(2,'0')];
+        if (!sid) return;
+        var s = stateMap[sid];
+        var k = s ? typeKey(s.type) : 'lien';
+        // Brightness boost + type-colored glow
+        d3.select(this)
+          .style('filter', 'brightness(1.3) drop-shadow(0 0 8px ' + getColor(sid) + ')')
+          .style('opacity', 1);
       })
       .on('mouseleave', function(event, d) {
-        const sid = fipsToId[String(d.id).padStart(2,'0')];
-        d3.select(this).attr('fill', getColor(sid)).style('opacity', getOpacity(sid));
+        var sid = fipsToId[String(d.id).padStart(2,'0')];
+        var isSelected = d3.select(this).classed('state-selected');
+        d3.select(this)
+          .style('filter', null)
+          .attr('filter', getGlowFilter(sid))
+          .style('opacity', getOpacity(sid));
       });
 
-    // Border mesh
+    // Overlay hash pattern on locked states
+    g.selectAll('path.state-lock-overlay')
+      .data(features.filter(function(d) {
+        var sid = fipsToId[String(d.id).padStart(2,'0')];
+        return sid && !(FREE_STATES.has(sid) || state.isPaid);
+      }))
+      .enter().append('path')
+      .attr('class', 'state-lock-overlay')
+      .attr('d', path)
+      .attr('fill', 'url(#lock-hash)')
+      .attr('stroke', 'none')
+      .style('pointer-events', 'none')
+      .style('opacity', 0.6);
+
+    // Border mesh — high contrast
     g.append('path')
       .datum(topojson.mesh(us, us.objects.states, (a,b) => a !== b))
       .attr('d', path).attr('fill','none')
-      .attr('stroke', 'rgba(255,255,255,0.04)').attr('stroke-width', 0.5);
+      .attr('stroke', '#1a1a2e').attr('stroke-width', 0.6);
 
     // State labels — premium styling with drop shadow
     const TINY = new Set(['RI','DC','DE','NH','VT','MD','CT','MA','NJ']);
@@ -8570,8 +8730,10 @@ async function initMap() {
       const isFree = FREE_STATES.has(sid) || state.isPaid;
       const s = stateMap[sid];
       const score = (s && isFree) ? s.score : null;
-      const labelColor = isFree ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.3)';
-      const fontSize = w < 500 ? '6.5px' : w < 768 ? '8px' : w < 1024 ? '8.5px' : '10px';
+      const labelColor = isFree ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.35)';
+      // Hide labels below 430px (mobile), show from 430px+
+      if (w < 430) return;
+      const fontSize = w < 500 ? '6px' : w < 768 ? '8px' : w < 1024 ? '9px' : '10px';
 
       labelG.append('text')
         .attr('x', cx).attr('y', cy - (score !== null ? 5 : 0))
