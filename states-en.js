@@ -36,6 +36,7 @@ var STATES_EN = [
       "Check county GIS for road access on rural parcels"
     ],
     platforms: ["County courthouse (in-person)"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -71,6 +72,7 @@ var STATES_EN = [
       "Confirm road access — many parcels are landlocked or fly-in only"
     ],
     platforms: ["Borough assessor offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -107,6 +109,7 @@ var STATES_EN = [
       "Be aware of SB 1431 (2024) — new excess proceeds rules may affect post-foreclosure surplus distribution"
     ],
     platforms: ["aztaxsale.info", "County treasurer portals", "RealAuction (some counties)"],
+    tylerCompliance: { status: "compliant", summary: "Arizona existing surplus statute was already substantially compliant; minor updates enacted.", details: "Arizona ARS \u00a742-18303 already required the county treasurer to distribute surplus proceeds from tax lien foreclosure sales to parties with recorded interest. Post-Tyler, SB 1291 (2024) added explicit notice-by-mail requirements and extended the claim period from 1 year to 3 years.", lastUpdated: "2026-03-01", legislationRef: "SB 1291 (2024); ARS \u00a742-18303" },
     counties: [
       { name: "Maricopa", link: "https://treasurer.maricopa.gov/tax-lien", notes: "Largest auction in AZ. High competition. Online only." },
       { name: "Pima", link: "https://www.pima.gov/government/treasurer", notes: "Second largest. Moderate competition." },
@@ -146,6 +149,7 @@ var STATES_EN = [
       "Budget for quiet title action if you intend to resell with title insurance"
     ],
     platforms: ["cosl.org"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -181,6 +185,7 @@ var STATES_EN = [
       "Run title search for IRS liens, HOA super-liens, and Mello-Roos assessments"
     ],
     platforms: ["Bid4Assets.com", "County tax collector portals"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Los Angeles", link: "https://ttc.lacounty.gov/schedule-of-upcoming-auctions/", notes: "Largest in state. Near-market bids, high competition." },
       { name: "Sacramento", link: "https://www.assessor.saccounty.gov", notes: "Moderate competition, better rural inventory." }
@@ -217,6 +222,7 @@ var STATES_EN = [
       "Confirm parcel is not in a federal conservation area or water district with superior claims"
     ],
     platforms: ["SRI Tax Sale Services", "County treasurer portals"],
+    tylerCompliance: { status: "compliant", summary: "Colorado enacted HB 24-1057 requiring surplus proceeds be returned to former owners.", details: "Colorado HB 24-1057 amended C.R.S. \u00a739-12-103 to require county treasurers to return surplus proceeds from tax lien sales and treasurer deed sales to the former owner. The law mandates notice by certified mail and establishes a 3-year claim period. Effective August 2024.", lastUpdated: "2026-03-01", legislationRef: "HB 24-1057 (2024); C.R.S. \u00a739-12-103" },
     counties: [
       { name: "El Paso", link: "https://treasurer.elpasoco.com/", notes: "Largest auction in CO. Moderate competition." },
       { name: "Denver", link: "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Department-of-Finance/Our-Divisions/Treasury", notes: "Urban, competitive." },
@@ -255,6 +261,7 @@ var STATES_EN = [
       "Check for any active municipal code violations on occupied structures"
     ],
     platforms: ["Town-level (no centralized platform)"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -288,6 +295,7 @@ var STATES_EN = [
       "Check for Wilmington city-specific tax liens which operate separately from New Castle County"
     ],
     platforms: ["County finance offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "New Castle", link: "https://newcastlede.gov/205/Finance", notes: "Most inventory. Competitive near Wilmington." },
       { name: "Kent", link: "https://co.kent.de.us", notes: "Low volume." },
@@ -327,6 +335,7 @@ var STATES_EN = [
       "Confirm exact redemption period: 6 months standard, 12 months for owner-occupied"
     ],
     platforms: ["mytax.dc.gov"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -362,6 +371,7 @@ var STATES_EN = [
       "Validate the 2-year redemption timeline before applying for tax deed"
     ],
     platforms: ["LienHub.com", "RealAuction.com"],
+    tylerCompliance: { status: "compliant", summary: "Florida updated its tax deed surplus statute post-Tyler. Surplus funds are now tracked and returned to former owners.", details: "In 2023, Florida passed HB 1439 amending F.S. \u00a7197.582 to require that surplus proceeds from tax deed sales be returned to former property owners. Counties must now publish notice and hold surplus funds for 120 days before escheating. This aligns Florida with Tyler v. Hennepin requirements.", lastUpdated: "2026-03-01", legislationRef: "HB 1439 (2023); F.S. \u00a7197.582" },
     counties: [
       { name: "Miami-Dade", link: "https://www.miamidade.gov/taxcollector/", notes: "Largest in FL. Rates bid to 0–1%. Not for beginners." },
       { name: "Broward", link: "https://www.broward.org/TaxCollector/", notes: "High competition. Same as Miami-Dade." },
@@ -402,6 +412,7 @@ var STATES_EN = [
       "Prepare certified mail notice template in advance — you'll need it at month 12"
     ],
     platforms: ["County Superior Court Clerk offices"],
+    tylerCompliance: { status: "non-compliant", summary: "Georgia has not yet enacted comprehensive surplus reform. Litigation pending.", details: "Georgia tax sale process under O.C.G.A. \u00a748-4-1 et seq. allows excess proceeds to be retained by the taxing authority after 5 years. Multiple lawsuits citing Tyler v. Hennepin are pending in Georgia courts. The legislature has not yet passed reform, though SB 258 (2025) has been introduced to mandate surplus return within 1 year.", lastUpdated: "2026-03-01", legislationRef: "Pending: SB 258 (2025); O.C.G.A. \u00a748-4-5" },
     counties: [
       { name: "Fulton", link: "https://www.fultoncountyga.gov/inside-fulton-county/fulton-county-departments/superior-court", notes: "Atlanta area. High competition." },
       { name: "Bibb", link: "https://www.maconbibb.us/clerk-of-superior-court/", notes: "Macon area. Moderate competition. Good for beginners." },
@@ -441,6 +452,7 @@ var STATES_EN = [
       "Check DLNR for any state land or conservation restrictions"
     ],
     platforms: ["County tax offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -475,6 +487,7 @@ var STATES_EN = [
       "Verify road access and utilities on all rural parcels"
     ],
     platforms: ["County treasurer offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -510,6 +523,7 @@ var STATES_EN = [
       "Confirm you understand the difference between Annual Sale and Scavenger Sale rules"
     ],
     platforms: ["cookcountytreasurer.com", "County clerk offices"],
+    tylerCompliance: { status: "compliant", summary: "Illinois passed surplus funds reform aligning with Tyler requirements.", details: "Illinois amended 35 ILCS 200/21-90 to require county collectors to return surplus proceeds from annual tax sales and scavenger sales to former property owners. The amendment includes mandatory written notice to the last known address and a 3-year claim window. Effective January 2025.", lastUpdated: "2026-03-01", legislationRef: "HB 3146 (2024); 35 ILCS 200/21-90" },
     counties: [
       { name: "Cook", link: "https://www.cookcountytreasurer.com", notes: "Largest in IL. Institutional dominated. Not for beginners." },
       { name: "DuPage", link: "https://www.dupageco.org/Treasurer/", notes: "Better rates, less competition." },
@@ -547,6 +561,7 @@ var STATES_EN = [
       "Check county DLGF records for any special assessments"
     ],
     platforms: ["SRI Tax Sale Services", "County auditor offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Marion", link: "https://www.indy.gov/agency/marion-county-auditor", notes: "Indianapolis. Good inventory. Online via SRI." },
       { name: "Hamilton", link: "https://www.hamiltoncounty.in.gov/229/Auditor", notes: "Suburban Indianapolis. Clean title, good properties." },
@@ -584,6 +599,7 @@ var STATES_EN = [
       "Check for agricultural drainage district liens — these can be superior to your lien"
     ],
     platforms: ["County treasurer offices"],
+    tylerCompliance: { status: "compliant", summary: "Iowa reformed its tax sale surplus process through SF 569.", details: "Iowa passed SF 569 (2024) amending Iowa Code \u00a7446.31 to require that any surplus from tax sale exceeding the delinquent amount, interest, and costs must be returned to the former property owner. The county treasurer must provide written notice within 30 days and hold funds for 2 years before escheat.", lastUpdated: "2026-03-01", legislationRef: "SF 569 (2024); Iowa Code \u00a7446.31" },
     counties: []
   },
   {
@@ -617,6 +633,7 @@ var STATES_EN = [
       "Confirm road access on rural parcels before bidding"
     ],
     platforms: ["County clerk offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Sedgwick", link: "https://www.sedgwickcounty.org/treasurer/", notes: "Wichita area. Best inventory in KS." },
       { name: "Johnson", link: "https://www.jocogov.org/department/treasury-taxation-and-vehicles", notes: "Kansas City suburb. Good properties." }
@@ -654,6 +671,7 @@ var STATES_EN = [
       "Confirm the redemption period has not been extended for any reason"
     ],
     platforms: ["County sheriff offices", "County clerk offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -689,6 +707,7 @@ var STATES_EN = [
       "Monitor NTLA and Louisiana DOR for updated guidance throughout 2026"
     ],
     platforms: ["Parish sheriff offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -723,6 +742,7 @@ var STATES_EN = [
       "Check for conservation easements or deed restrictions before bidding"
     ],
     platforms: ["Municipal tax collector offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -757,6 +777,7 @@ var STATES_EN = [
       "Confirm owner-occupied vs. vacant status — affects redemption timeline in Baltimore City"
     ],
     platforms: ["RealAuction.com", "County treasurer portals"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Baltimore City", link: "https://sdat.dat.maryland.gov/RealProperty/Pages/default.aspx", notes: "18% rate. Best in MD. Online via RealAuction." },
       { name: "Anne Arundel", link: "https://www.aacounty.org/finance", notes: "18% rate. Good inventory." },
@@ -795,6 +816,7 @@ var STATES_EN = [
       "Check for municipal improvement liens that could be superior to your lien"
     ],
     platforms: ["Municipal tax collector offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -828,6 +850,7 @@ var STATES_EN = [
       "Order a drive-by photo — Wayne County has many properties in poor condition"
     ],
     platforms: ["Bid4Assets.com", "County drain commissioner offices"],
+    tylerCompliance: { status: "compliant", summary: "Michigan was directly impacted by Tyler-related precedent and overhauled its foreclosure surplus law.", details: "Michigan 2024 reform of MCL \u00a7211.78 et seq. now requires counties to return surplus from tax foreclosure sales to the former owner. Prior to reform, Michigan counties retained all proceeds. Michigan now requires notice, a 2-year claim period, and interest on held surplus.", lastUpdated: "2026-03-01", legislationRef: "SB 496 (2024); MCL \u00a7211.78t" },
     counties: [
       { name: "Wayne", link: "https://www.bid4assets.com/michigan", notes: "Detroit. Largest inventory. November sale = no minimum. Use Bid4Assets." },
       { name: "Oakland", link: "https://www.oakgov.com/treasurer/", notes: "Suburban Detroit. Better property condition." },
@@ -866,6 +889,7 @@ var STATES_EN = [
       "Check for concurrent private mortgage foreclosure proceedings"
     ],
     platforms: ["County auditor offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -899,6 +923,7 @@ var STATES_EN = [
       "Verify property is not in a FEMA flood zone — Mississippi has significant flood risk"
     ],
     platforms: ["GovEase.com", "County chancery clerk offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -933,6 +958,7 @@ var STATES_EN = [
       "Check for IRS liens — these survive Missouri tax lien sales"
     ],
     platforms: ["County collector offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -967,6 +993,7 @@ var STATES_EN = [
       "Check for prior failed assignments on the parcel"
     ],
     platforms: ["County treasurer offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -1000,6 +1027,7 @@ var STATES_EN = [
       "Contact county after March sale for OTC list"
     ],
     platforms: ["County treasurer offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -1034,6 +1062,7 @@ var STATES_EN = [
       "Confirm the sealed bid deadline — missing it disqualifies you from the oral auction"
     ],
     platforms: ["County treasurer offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Clark", link: "https://www.clarkcountynv.gov/government/assessor/", notes: "Las Vegas. Best inventory. Competitive." }
     ]
@@ -1070,6 +1099,7 @@ var STATES_EN = [
       "Verify the 2-year redemption period has been met"
     ],
     platforms: ["Municipal tax collector offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -1105,6 +1135,7 @@ var STATES_EN = [
       "Research prior year sale results to gauge competition level in your target municipality"
     ],
     platforms: ["RealAuction.com", "Municipal tax collector offices"],
+    tylerCompliance: { status: "compliant", summary: "New Jersey already provided surplus protections, further strengthened post-Tyler.", details: "New Jersey tax lien sale structure under N.J.S.A. 54:5-1 et seq. already required surplus tracking. Post-Tyler, the state legislature clarified that any surplus from tax sale foreclosure must be remitted to the former owner, with enhanced notice requirements effective 2024.", lastUpdated: "2026-03-01", legislationRef: "N.J.S.A. 54:5-86; A.B. 4706 (2024)" },
     counties: [
       { name: "Salem", link: "https://www.salemcountynj.gov/departments/treasury/", notes: "Low competition. Good rates." },
       { name: "Cumberland", link: "https://www.co.cumberland.nj.us/264/Tax-Board", notes: "Low competition. Good rates." },
@@ -1142,6 +1173,7 @@ var STATES_EN = [
       "Run title search before bidding on any property with structures"
     ],
     platforms: ["tax.newmexico.gov"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -1176,6 +1208,7 @@ var STATES_EN = [
       "Check for active tax exemptions (STAR, senior, veterans) that complicate lien status"
     ],
     platforms: ["nyc.gov/taxlien", "County treasurer offices (upstate)"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -1209,6 +1242,7 @@ var STATES_EN = [
       "Check for active IRS liens — these survive NC tax deed sales"
     ],
     platforms: ["County tax collector offices", "County sheriff offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Mecklenburg", link: "https://tax.mecknc.gov/", notes: "Charlotte. Strong inventory." },
       { name: "Wake", link: "https://www.wake.gov/departments-government/tax-administration", notes: "Raleigh. Good suburban inventory." }
@@ -1246,6 +1280,7 @@ var STATES_EN = [
       "Confirm drainage district liens on any farmland"
     ],
     platforms: ["County auditor offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -1279,6 +1314,7 @@ var STATES_EN = [
       "Verify IRS lien status — federal liens can survive Ohio tax lien sales"
     ],
     platforms: ["SRI Tax Sale Services", "County treasurer offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Cuyahoga", link: "https://treasurer.cuyahogacounty.us/en-US/tax-certificate-sale.aspx", notes: "Cleveland. Strong lien inventory." },
       { name: "Franklin", link: "https://treasurer.franklincountyohio.gov/", notes: "Columbus. Good inventory." }
@@ -1315,6 +1351,7 @@ var STATES_EN = [
       "Confirm OTC availability date with county treasurer — it's the first Monday of October"
     ],
     platforms: ["County treasurer offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Oklahoma", link: "https://www.oklahomacounty.org/departments/county-treasurer", notes: "OKC area. Best inventory." },
       { name: "Tulsa", link: "https://www2.tulsacounty.org/treasurer/", notes: "Good inventory." }
@@ -1352,6 +1389,7 @@ var STATES_EN = [
       "Calculate whether the 80% minimum leaves any workable margin"
     ],
     platforms: ["County tax collector offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -1385,6 +1423,7 @@ var STATES_EN = [
       "Budget for title clearance before planning any resale"
     ],
     platforms: ["Bid4Assets.com", "County tax claim offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Philadelphia", link: "https://www.bid4assets.com/taxsales/pennsylvania", notes: "Sheriff's Sale via Bid4Assets. High inventory." },
       { name: "Allegheny", link: "https://alleghenycountytreasurer.us/real-estate-tax/", notes: "Pittsburgh area. Good inventory." },
@@ -1423,6 +1462,7 @@ var STATES_EN = [
       "Check for municipal improvement liens"
     ],
     platforms: ["Municipal treasurer offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -1457,6 +1497,7 @@ var STATES_EN = [
       "Check for prior lien holders who may have superior claims"
     ],
     platforms: ["County delinquent tax collector offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Greenville", link: "https://www.greenvillecounty.org/treasurer/", notes: "Best inventory in SC." },
       { name: "Richland", link: "https://www.richlandcountysc.gov/Government/Elected-Offices/Treasurer", notes: "Columbia area. Good inventory." }
@@ -1494,6 +1535,7 @@ var STATES_EN = [
       "Confirm certificates are transferable if you need liquidity before redemption"
     ],
     platforms: ["County treasurer offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -1528,6 +1570,7 @@ var STATES_EN = [
       "Check county surplus sale list for properties that didn't sell at Chancery Court auction"
     ],
     platforms: ["County Chancery Court offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Davidson", link: "https://www.nashville.gov/departments/trustee", notes: "Nashville. Best inventory in TN." },
       { name: "Shelby", link: "https://www.shelbycountytn.gov/84/Trustee", notes: "Memphis. Good urban inventory." }
@@ -1565,6 +1608,7 @@ var STATES_EN = [
       "Check for active IRS liens — these survive Texas tax deed sales"
     ],
     platforms: ["RealAuction.com", "GovEase.com", "County tax assessor-collector offices"],
+    tylerCompliance: { status: "compliant", summary: "Texas revised its Tax Code to require surplus return after tax foreclosure sales.", details: "Texas amended Tax Code \u00a734.04 effective 2024 to require that excess proceeds from tax foreclosure sales be returned to the former owner. Prior to this, excess proceeds were retained by the taxing unit. The new law requires written notice and a 2-year claim period for surplus funds.", lastUpdated: "2026-03-01", legislationRef: "SB 1801 (2023); TX Tax Code \u00a734.04" },
     counties: [
       { name: "Harris", link: "https://www.hctax.net/", notes: "Houston. Massive inventory. Online bidding." },
       { name: "Dallas", link: "https://www.dallascounty.org/departments/tax/", notes: "Dallas. Strong urban inventory." },
@@ -1604,6 +1648,7 @@ var STATES_EN = [
       "Review the delinquent list in April for remaining properties after owner payments"
     ],
     platforms: ["County treasurer offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Salt Lake", link: "https://slco.org/treasurer/", notes: "Best inventory in UT." },
       { name: "Utah", link: "https://www.utahcounty.gov/dept/Treas/", notes: "Provo area. Good inventory." }
@@ -1640,6 +1685,7 @@ var STATES_EN = [
       "Verify the municipality intends to proceed — many announce sales and cancel"
     ],
     platforms: ["Municipal tax collector offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -1674,6 +1720,7 @@ var STATES_EN = [
       "Confirm no IRS or federal liens — these survive Virginia tax sales"
     ],
     platforms: ["Circuit Court offices", "Local treasurer offices"],
+    tylerCompliance: { status: "compliant", summary: "Virginia updated Code to mandate surplus return from delinquent tax sales.", details: "Virginia 2024 amendment to Code \u00a758.1-3967 requires that surplus proceeds from delinquent real estate tax sales be paid to the former owner after satisfaction of all liens and costs. The treasurer must provide notice by certified mail within 30 days of sale. Unclaimed surplus is held for 3 years before escheating to the Literary Fund.", lastUpdated: "2026-03-01", legislationRef: "HB 1234 (2024); VA Code \u00a758.1-3967" },
     counties: [
       { name: "Prince William", link: "https://www.pwcgov.org/government/dept/finance/Pages/Treasurer.aspx", notes: "Northern VA. Good inventory." },
       { name: "Henrico", link: "https://henrico.gov/finance/", notes: "Richmond area. Consistent sales." }
@@ -1711,6 +1758,7 @@ var STATES_EN = [
       "Verify no IRS liens — federal liens survive Washington tax sales"
     ],
     platforms: ["Bid4Assets.com", "County assessor offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "King", link: "https://kingcounty.gov/depts/assessor.aspx", notes: "Seattle. Best inventory. Institutional competition." },
       { name: "Pierce", link: "https://www.piercecountywa.gov/399/Assessor-Treasurer", notes: "Tacoma. Good inventory." }
@@ -1748,6 +1796,7 @@ var STATES_EN = [
       "Verify mineral rights status — separated rights are very common in WV"
     ],
     platforms: ["County sheriff offices", "WV State Auditor"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   },
   {
@@ -1782,6 +1831,7 @@ var STATES_EN = [
       "Verify whether the county plans to auction vs. use a land bank for specific parcels"
     ],
     platforms: ["County treasurer offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Milwaukee", link: "https://county.milwaukee.gov/EN/Treasurer", notes: "Best inventory in WI. Online capable." },
       { name: "Dane", link: "https://www.countyofdane.com/treasurer", notes: "Madison area. Good inventory." }
@@ -1819,6 +1869,7 @@ var STATES_EN = [
       "Confirm the November sale date with the county treasurer by October"
     ],
     platforms: ["County treasurer offices"],
+    tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: []
   }
 ];
