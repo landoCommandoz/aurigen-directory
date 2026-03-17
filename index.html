@@ -933,6 +933,51 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════
+   DEAL TAPE — TikTok-style Scenario Feed
+═══════════════════════════════════════════════ */
+#view-dealtape{position:absolute;inset:0;bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+.deal-tape-feed{height:100%;overflow-y:scroll;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;min-height:0}
+.deal-tape-card{height:100%;min-height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px 20px;position:relative;overflow:hidden}
+.deal-tape-card::before{content:'';position:absolute;inset:0;background:linear-gradient(170deg,rgba(200,168,75,0.06) 0%,rgba(10,10,12,0.95) 40%,var(--bg) 100%);pointer-events:none;z-index:0}
+.deal-tape-inner{position:relative;z-index:1;width:100%;max-width:420px;display:flex;flex-direction:column;gap:16px}
+.deal-tape-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);opacity:0.8}
+.deal-tape-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,5vw,30px);letter-spacing:0.04em;color:var(--text);line-height:1.15}
+.deal-tape-title .dt-amount{color:var(--accent)}
+.deal-tape-stats{display:flex;gap:10px;flex-wrap:wrap}
+.deal-tape-stat{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:8px 12px;display:flex;flex-direction:column;gap:2px;flex:1;min-width:70px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.deal-tape-stat-label{font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted)}
+.deal-tape-stat-value{font-family:'DM Mono',monospace;font-size:13px;color:var(--text);font-weight:500}
+.deal-tape-outcomes{display:flex;flex-direction:column;gap:10px}
+.deal-tape-outcome{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:12px 14px;position:relative;overflow:hidden}
+.deal-tape-outcome-bar{position:absolute;left:0;top:0;bottom:0;border-radius:10px 0 0 10px;opacity:0.10;transition:width 1.2s cubic-bezier(0.22,1,0.36,1);width:0}
+.deal-tape-outcome.best .deal-tape-outcome-bar{background:var(--green)}
+.deal-tape-outcome.likely .deal-tape-outcome-bar{background:var(--accent)}
+.deal-tape-outcome.worst .deal-tape-outcome-bar{background:var(--red)}
+.deal-tape-outcome-label{font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;position:relative;z-index:1}
+.deal-tape-outcome-text{font-size:13px;color:var(--text);position:relative;z-index:1;line-height:1.35}
+.deal-tape-outcome-text .dt-highlight{color:var(--accent);font-weight:600}
+.deal-tape-score-row{display:flex;align-items:center;gap:8px}
+.deal-tape-score-badge{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:14px;font-weight:600;color:var(--bg);flex-shrink:0}
+.deal-tape-score-badge.high{background:var(--green)}
+.deal-tape-score-badge.mid{background:var(--accent)}
+.deal-tape-score-badge.low{background:var(--red)}
+.deal-tape-score-label{font-size:11px;color:var(--text-dim)}
+.deal-tape-score-beginner{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:500;margin-left:auto}
+.deal-tape-score-beginner.yes{background:rgba(76,175,130,0.15);color:var(--green)}
+.deal-tape-score-beginner.no{background:rgba(224,85,85,0.15);color:var(--red)}
+.deal-tape-cta{display:flex;gap:10px}
+.deal-tape-cta-btn{flex:1;padding:12px 16px;border-radius:10px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.04em;cursor:pointer;transition:all 0.2s ease;text-align:center}
+.deal-tape-cta-btn.primary{background:var(--accent);color:var(--bg)}
+.deal-tape-cta-btn.primary:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.deal-tape-cta-btn.locked{background:rgba(255,255,255,0.06);color:var(--accent);border:1px solid var(--accent-border)}
+.deal-tape-cta-btn.locked:hover{background:rgba(200,168,75,0.12)}
+.deal-tape-swipe-hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--text-muted);animation:dtSwipeHint 2s ease-in-out infinite;pointer-events:none;z-index:2}
+.deal-tape-swipe-hint span{font-size:9px;letter-spacing:0.1em;text-transform:uppercase}
+.deal-tape-swipe-hint svg{width:16px;height:16px;opacity:0.5}
+@keyframes dtSwipeHint{0%,100%{opacity:0.6;transform:translateX(-50%) translateY(0)}50%{opacity:1;transform:translateX(-50%) translateY(-4px)}}
+.deal-tape-counter{position:absolute;top:12px;right:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);z-index:2}
+
+/* ═══════════════════════════════════════════════
    TOOLS / ACCOUNT SUB-TABS
 ═══════════════════════════════════════════════ */
 .tools-tabs {
@@ -2851,6 +2896,12 @@ a { color: inherit; text-decoration: none; }
       </div>
     </div>
 
+
+    <!-- DEAL TAPE VIEW -->
+    <div id="view-dealtape" class="view">
+      <div class="deal-tape-feed" id="deal-tape-feed"></div>
+    </div>
+
   </div><!-- end main-content -->
 
   <!-- FOOTER DISCLAIMER -->
@@ -2877,6 +2928,12 @@ a { color: inherit; text-decoration: none; }
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       </span>
       <span class="nav-label">Advisor</span>
+    </button>
+    <button class="nav-item" data-tab="dealtape" onclick="navigate('dealtape')">
+      <span class="nav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
+      </span>
+      <span class="nav-label">Deal Tape</span>
     </button>
     <button class="nav-item" data-tab="account" onclick="navigate('account')">
       <span class="nav-icon">
@@ -2917,6 +2974,9 @@ const NETLIFY_FN = '/.netlify/functions/aurigen';
 const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4';
 
 // Free states (top 7 by score)
+
+// ── Feature Flag: Deal Tape ──────────────────────────────────
+var ff_deal_tape = true;
 const FREE_STATES = new Set(['FL', 'IL', 'AZ']);
 
 // ── Type helpers ─────────────────────────────────────────────
@@ -2997,6 +3057,7 @@ const I18N = {
     navLegal: 'Legal',
     navGlossary: 'Glossary',
     navAccount: 'Account',
+    navDealTape: 'Deal Tape',
     navProfile: 'Profile',
     navSaved: 'Saved',
     // Map view
@@ -3142,6 +3203,31 @@ const I18N = {
     stratPassive: 'Passive Income',
     stratBeginner: 'Beginner',
     stratAdvanced: 'Experienced',
+    // Deal Tape
+    dtNav: 'Deal Tape',
+    dtEyebrow: 'INVESTMENT SCENARIO',
+    dtTaxLien: 'Tax Lien',
+    dtTaxDeed: 'Tax Deed',
+    dtBestCase: 'Best Case',
+    dtLikelyCase: 'Likely Case',
+    dtWorstCase: 'Worst Case',
+    dtReturn: 'return',
+    dtIn: 'in',
+    dtMonths: 'months',
+    dtRedemption: 'Property redeems \u2014 you get principal + interest',
+    dtRepairs: 'Property needs repairs',
+    dtInEstimated: 'in estimated repairs',
+    dtType: 'Type',
+    dtRate: 'Rate',
+    dtRedeem: 'Redeem',
+    dtScore: 'Score',
+    dtExplore: 'Explore',
+    dtUnlock: 'Unlock Full Analysis',
+    dtSwipe: 'Swipe for next deal',
+    dtBeginnerYes: 'Beginner OK',
+    dtBeginnerNo: 'Advanced',
+    dtInvestorScore: 'Investor Score',
+    dtOf: 'of',
     // Language toggle
     langToggle: 'EN'
   },
@@ -3196,6 +3282,7 @@ const I18N = {
     navLegal: 'Legal',
     navGlossary: 'Glosario',
     navAccount: 'Cuenta',
+    navDealTape: 'Cinta de Ofertas',
     navProfile: 'Perfil',
     navSaved: 'Guardados',
     // Map view
@@ -3341,6 +3428,31 @@ const I18N = {
     stratPassive: 'Ingreso Pasivo',
     stratBeginner: 'Principiante',
     stratAdvanced: 'Experimentado',
+    // Deal Tape
+    dtNav: 'Cinta de Ofertas',
+    dtEyebrow: 'ESCENARIO DE INVERSION',
+    dtTaxLien: 'Gravamen Fiscal',
+    dtTaxDeed: 'Escritura Fiscal',
+    dtBestCase: 'Mejor Caso',
+    dtLikelyCase: 'Caso Probable',
+    dtWorstCase: 'Peor Caso',
+    dtReturn: 'retorno',
+    dtIn: 'en',
+    dtMonths: 'meses',
+    dtRedemption: 'La propiedad se redime \u2014 recibes capital + intereses',
+    dtRepairs: 'La propiedad necesita reparaciones',
+    dtInEstimated: 'en reparaciones estimadas',
+    dtType: 'Tipo',
+    dtRate: 'Tasa',
+    dtRedeem: 'Redencion',
+    dtScore: 'Puntaje',
+    dtExplore: 'Explorar',
+    dtUnlock: 'Desbloquear Analisis Completo',
+    dtSwipe: 'Desliza para la siguiente oferta',
+    dtBeginnerYes: 'Para Principiantes',
+    dtBeginnerNo: 'Avanzado',
+    dtInvestorScore: 'Puntaje de Inversor',
+    dtOf: 'de',
     // Language toggle
     langToggle: 'ES'
   }
@@ -3415,6 +3527,8 @@ function applyLanguage() {
     buildSaved();
     buildSpotlight();
     buildProfileRecs();
+
+    buildDealTape();
 
     // Update view headers
     updateViewHeaders();
@@ -3505,7 +3619,7 @@ function updateGateStrings() {
 
 function updateNavStrings() {
   const navItems = document.querySelectorAll('.nav-item');
-  const navKeys = ['navMap', 'navAnalyze', 'navAdvisor', 'navAccount'];
+  const navKeys = ['navMap', 'navAnalyze', 'navAdvisor', 'navDealTape', 'navAccount'];
   navItems.forEach((item, i) => {
     const label = item.querySelector('.nav-label');
     if (label && navKeys[i]) label.textContent = t(navKeys[i]);
@@ -3908,6 +4022,7 @@ function navigate(tab, animate = true) {
   });
 
   // Tab-specific actions
+  if (tab === 'dealtape') { buildDealTape(); }
   if (tab === 'account') { buildSaved(); buildProfileRecs(); }
   if (tab === 'map' && state.mapReady) {
     const svg = d3.select('#map-svg');
@@ -4558,6 +4673,179 @@ function buildSpotlight() {
       </div>
     `;
   }).join('');
+}
+
+
+// ── Deal Tape — TikTok-style Scenario Feed ───────────────────
+var _dealTapeBuilt = false;
+
+function buildDealTape() {
+  if (!ff_deal_tape) return;
+  // Feature flag check
+  if (typeof FF !== 'undefined' && FF.get && !FF.get('deal_tape')) return;
+
+  var container = document.getElementById('deal-tape-feed');
+  if (!container || !STATES || STATES.length === 0) return;
+
+  // Generate scenarios from state data
+  var scenarios = generateDealScenarios();
+  if (scenarios.length === 0) return;
+
+  var total = scenarios.length;
+
+  container.innerHTML = scenarios.map(function(sc, idx) {
+    var isFree = FREE_STATES.has(sc.stateId) || state.isPaid;
+    var scoreClass = sc.score >= 70 ? 'high' : sc.score >= 40 ? 'mid' : 'low';
+    var beginnerClass = sc.beginnerFriendly ? 'yes' : 'no';
+    var beginnerLabel = sc.beginnerFriendly ? t('dtBeginnerYes') : t('dtBeginnerNo');
+    var typeLabel = sc.isLien ? t('dtTaxLien') : t('dtTaxDeed');
+
+    var bestText = '<span class="dt-highlight">' + sc.bestReturn + '% ' + t('dtReturn') + '</span> = <span class="dt-highlight">$' + sc.bestDollars.toLocaleString() + '</span> ' + t('dtIn') + ' ' + sc.holdMonths + ' ' + t('dtMonths');
+    var likelyText = '<span class="dt-highlight">' + sc.likelyReturn + '% ' + t('dtReturn') + '</span> = <span class="dt-highlight">$' + sc.likelyDollars.toLocaleString() + '</span> ' + t('dtIn') + ' ' + sc.holdMonths + ' ' + t('dtMonths');
+    var worstText = sc.isLien
+      ? t('dtRedemption')
+      : t('dtRepairs') + ' — <span class="dt-highlight">$' + sc.repairCost.toLocaleString() + '</span> ' + t('dtInEstimated');
+
+    var ctaHtml;
+    if (isFree) {
+      ctaHtml = '<button class="deal-tape-cta-btn primary" onclick="navigate(\'map\'); setTimeout(function(){openState(\'' + sc.stateId + '\')},300)">' + t('dtExplore') + ' ' + sc.stateName + '</button>';
+    } else {
+      ctaHtml = '<button class="deal-tape-cta-btn locked" onclick="openPaywall(\'' + sc.stateId + '\')">' + t('dtUnlock') + '</button>';
+    }
+
+    return '<div class="deal-tape-card" data-card-index="' + idx + '">' +
+      '<div class="deal-tape-counter">' + (idx + 1) + ' ' + t('dtOf') + ' ' + total + '</div>' +
+      '<div class="deal-tape-inner">' +
+        '<div class="deal-tape-eyebrow">' + t('dtEyebrow') + '</div>' +
+        '<div class="deal-tape-title"><span class="dt-amount">$' + sc.amount.toLocaleString() + '</span> ' + typeLabel + ' ' + t('dtIn') + ' ' + sc.county + ', ' + sc.stateName + '</div>' +
+        '<div class="deal-tape-stats">' +
+          '<div class="deal-tape-stat"><div class="deal-tape-stat-label">' + t('dtType') + '</div><div class="deal-tape-stat-value">' + typeLabel + '</div></div>' +
+          '<div class="deal-tape-stat"><div class="deal-tape-stat-label">' + t('dtRate') + '</div><div class="deal-tape-stat-value">' + sc.rate + '</div></div>' +
+          '<div class="deal-tape-stat"><div class="deal-tape-stat-label">' + t('dtRedeem') + '</div><div class="deal-tape-stat-value">' + sc.redemption + '</div></div>' +
+        '</div>' +
+        '<div class="deal-tape-outcomes">' +
+          '<div class="deal-tape-outcome best"><div class="deal-tape-outcome-bar"></div><div class="deal-tape-outcome-label">' + t('dtBestCase') + '</div><div class="deal-tape-outcome-text">' + bestText + '</div></div>' +
+          '<div class="deal-tape-outcome likely"><div class="deal-tape-outcome-bar"></div><div class="deal-tape-outcome-label">' + t('dtLikelyCase') + '</div><div class="deal-tape-outcome-text">' + likelyText + '</div></div>' +
+          '<div class="deal-tape-outcome worst"><div class="deal-tape-outcome-bar"></div><div class="deal-tape-outcome-label">' + t('dtWorstCase') + '</div><div class="deal-tape-outcome-text">' + worstText + '</div></div>' +
+        '</div>' +
+        '<div class="deal-tape-score-row">' +
+          '<div class="deal-tape-score-badge ' + scoreClass + '">' + sc.score + '</div>' +
+          '<div class="deal-tape-score-label">' + t('dtInvestorScore') + '</div>' +
+          '<div class="deal-tape-score-beginner ' + beginnerClass + '">' + beginnerLabel + '</div>' +
+        '</div>' +
+        '<div class="deal-tape-cta">' + ctaHtml + '</div>' +
+      '</div>' +
+      (idx === 0 ? '<div class="deal-tape-swipe-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg><span>' + t('dtSwipe') + '</span></div>' : '') +
+    '</div>';
+  }).join('');
+
+  // Animate outcome bars on scroll into view
+  requestAnimationFrame(function() { animateDealTapeBars(container); });
+  _dealTapeBuilt = true;
+}
+
+function generateDealScenarios() {
+  if (!STATES || STATES.length === 0) return [];
+
+  // Pick 12 random states, shuffled each visit
+  var pool = STATES.slice();
+  shuffleArray(pool);
+  var selected = pool.slice(0, Math.min(12, pool.length));
+
+  return selected.map(function(s) {
+    var isLien = (s.type === 'lien' || s.type === 'both');
+    var rateNum = parseRateNumber(s.rate);
+    var holdMonths = isLien ? randomInt(6, 24) : randomInt(3, 12);
+
+    // Investment amount: liens $2K-$15K, deeds $8K-$50K
+    var minAmt = isLien ? 2000 : 8000;
+    var maxAmt = isLien ? 15000 : 50000;
+    var amount = roundToNearest(randomInt(minAmt, maxAmt), 500);
+
+    var bestReturn = rateNum;
+    var bestDollars = Math.round(amount * (rateNum / 100) * (holdMonths / 12));
+    var likelyReturn = Math.round(rateNum * 0.7 * 10) / 10;
+    var likelyDollars = Math.round(amount * (likelyReturn / 100) * (holdMonths / 12));
+    var repairCost = roundToNearest(randomInt(3000, 25000), 1000);
+
+    // Pick a county name or use state name
+    var county = 'County';
+    if (s.counties && s.counties.length > 0) {
+      county = s.counties[randomInt(0, s.counties.length - 1)].name;
+    } else {
+      // Generate a plausible county reference
+      county = s.name;
+    }
+
+    return {
+      stateId: s.id,
+      stateName: s.name,
+      type: s.type,
+      isLien: isLien,
+      rate: s.rate,
+      redemption: s.redemption,
+      score: s.score,
+      beginnerFriendly: s.beginnerFriendly,
+      amount: amount,
+      holdMonths: holdMonths,
+      bestReturn: bestReturn,
+      bestDollars: bestDollars,
+      likelyReturn: likelyReturn,
+      likelyDollars: likelyDollars,
+      repairCost: repairCost,
+      county: county
+    };
+  });
+}
+
+function parseRateNumber(rateStr) {
+  if (!rateStr) return 8;
+  var m = rateStr.match(/(\d+\.?\d*)/);
+  if (m) return parseFloat(m[1]);
+  return 8; // fallback
+}
+
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function roundToNearest(val, nearest) {
+  return Math.round(val / nearest) * nearest;
+}
+
+function shuffleArray(arr) {
+  for (var i = arr.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+  }
+  return arr;
+}
+
+function animateDealTapeBars(container) {
+  if (!container) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var bars = entry.target.querySelectorAll('.deal-tape-outcome-bar');
+        setTimeout(function() {
+          if (bars[0]) bars[0].style.width = '85%';
+          if (bars[1]) bars[1].style.width = '60%';
+          if (bars[2]) bars[2].style.width = '35%';
+        }, 200);
+        // Hide swipe hint after first scroll
+        var hint = entry.target.querySelector('.deal-tape-swipe-hint');
+        if (hint) hint.style.display = 'none';
+      } else {
+        // Reset bars when card leaves viewport
+        var bars = entry.target.querySelectorAll('.deal-tape-outcome-bar');
+        bars.forEach(function(b) { b.style.width = '0'; });
+      }
+    });
+  }, { root: container, threshold: 0.5 });
+
+  container.querySelectorAll('.deal-tape-card').forEach(function(card) {
+    observer.observe(card);
+  });
 }
 
 // ── Glossary ─────────────────────────────────────────────────
