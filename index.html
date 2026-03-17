@@ -621,8 +621,8 @@ a { color: inherit; text-decoration: none; }
 
 .gate-price-savings {
   display: inline-block;
-  background: rgba(76,175,80,0.12);
-  color: #66bb6a;
+  background: rgba(200,168,75,0.12);
+  color: var(--accent);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -630,7 +630,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 100px;
   margin-top: 12px;
   margin-bottom: 16px;
-  border: 1px solid rgba(76,175,80,0.2);
+  border: 1px solid rgba(200,168,75,0.25);
 }
 
 .gate-price-note {
@@ -2544,22 +2544,7 @@ a { color: inherit; text-decoration: none; }
     </div>
   </section>
 
-  <!-- Section 4: Price Anchor -->
-  <section class="gate-price gate-section">
-    <div class="gate-price-community" id="gate-price-community">Join the Aurigen Collective — a growing community of tax lien & deed investors</div>
-    <div class="gate-price-card">
-      <div class="gate-price-card-glow"></div>
-      <div class="gate-price-badge">FOUNDING MEMBER RATE</div>
-      <div class="gate-price-display">
-        <span class="gate-price-old">$297</span>
-        <span class="gate-price-current">$97</span>
-      </div>
-      <div class="gate-price-savings">SAVE $200</div>
-      <div class="gate-price-note" id="gate-price-note">One-time · Lifetime Access · No Recurring Fees</div>
-    </div>
-  </section>
-
-  <!-- Section 5: Email Capture — conversion point after value is established -->
+  <!-- Section 4: Email Capture — free gate comes first -->
   <section class="gate-email gate-section" id="gate-email-section">
     <h2 class="gate-email-title" id="gate-email-title">Start Free — Explore 3 States</h2>
     <p class="gate-email-desc" id="gate-email-desc">Enter your email to unlock Florida, Illinois, and Arizona — no credit card required.</p>
@@ -2593,6 +2578,21 @@ a { color: inherit; text-decoration: none; }
     </div>
     <div class="gate-disclaimer" id="gate-disclaimer">
       Educational research tool. Not investment advice.
+    </div>
+  </section>
+
+  <!-- Section 5: Price Anchor — paid upgrade after free email gate -->
+  <section class="gate-price gate-section">
+    <div class="gate-price-community" id="gate-price-community">Join the Aurigen Collective — a growing community of tax lien & deed investors</div>
+    <div class="gate-price-card">
+      <div class="gate-price-card-glow"></div>
+      <div class="gate-price-badge">FOUNDING MEMBER RATE</div>
+      <div class="gate-price-display">
+        <span class="gate-price-old">$297</span>
+        <span class="gate-price-current">$97</span>
+      </div>
+      <div class="gate-price-savings">SAVE $200</div>
+      <div class="gate-price-note" id="gate-price-note">One-time · Lifetime Access · No Recurring Fees</div>
     </div>
   </section>
 </div>
