@@ -4790,6 +4790,15 @@ a { color: inherit; text-decoration: none; }
   </div>
 </div>
 
+<!-- ADMIN PANEL — Analytics Section (visible when ?admin=true) -->
+<div id="admin-panel-analytics" style="display:none;position:fixed;top:0;right:0;width:380px;max-width:90vw;height:100vh;background:var(--bg);border-left:1px solid var(--border);z-index:999;overflow-y:auto;padding:24px;box-shadow:-4px 0 24px rgba(0,0,0,0.6);">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.1em;color:var(--text);">Admin Panel</div>
+    <button onclick="document.getElementById('admin-panel-analytics').style.display='none'" style="background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer;">&#10005;</button>
+  </div>
+  <div id="admin-analytics-section"></div>
+</div>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ═══════════════════════════════════════════════════════════
 //  FEATURE FLAG SYSTEM
@@ -6554,6 +6563,145 @@ function storageSet(key, val) {
   try { localStorage.setItem(key, JSON.stringify(val)); } catch(e) {}
 }
 
+// ── Analytics Tracking Layer ─────────────────────────────────
+// Feature flag: ff_analytics_events
+// Logs to console (when ?debug=true), pushes to window.dataLayer (GTM-compatible),
+// stores event counts in localStorage for the admin panel.
+const _analyticsDebug = (new URLSearchParams(window.location.search)).get('debug') === 'true';
+const _analyticsEnabled = (function() {
+  // Check URL param first, then localStorage, then default to true
+  const urlVal = (new URLSearchParams(window.location.search)).get('ff_analytics_events');
+  if (urlVal !== null) return urlVal === 'true' || urlVal === '1';
+  try {
+    const stored = localStorage.getItem('ff_analytics_events');
+    if (stored !== null) return stored === 'true' || stored === '1';
+  } catch(e) {}
+  return true; // enabled by default
+})();
+
+window.dataLayer = window.dataLayer || [];
+
+function trackEvent(name, data) {
+  if (!_analyticsEnabled) return;
+
+  var eventObj = { event: name, timestamp: Date.now() };
+  if (data && typeof data === 'object') {
+    for (var k in data) {
+      if (data.hasOwnProperty(k)) eventObj[k] = data[k];
+    }
+  }
+
+  // 1. Console logging in debug mode
+  if (_analyticsDebug) {
+    console.log('%c[Analytics]%c ' + name, 'color:#c8a84b;font-weight:bold', 'color:inherit', data || '');
+  }
+
+  // 2. Push to dataLayer (GTM-compatible)
+  try {
+    window.dataLayer.push(eventObj);
+  } catch(e) {}
+
+  // 3. Increment count in localStorage
+  try {
+    var counts = JSON.parse(localStorage.getItem('aug_analytics_counts') || '{}');
+    counts[name] = (counts[name] || 0) + 1;
+    localStorage.setItem('aug_analytics_counts', JSON.stringify(counts));
+  } catch(e) {}
+}
+
+function _getAnalyticsCounts() {
+  try {
+    return JSON.parse(localStorage.getItem('aug_analytics_counts') || '{}');
+  } catch(e) { return {}; }
+}
+
+function _resetAnalyticsCounts() {
+  try { localStorage.removeItem('aug_analytics_counts'); } catch(e) {}
+}
+
+// Stub for vs_comparison — call this when the State Versus feature is built
+// Usage: trackVsComparison('FL', 'AZ')
+function trackVsComparison(id1, id2) {
+  trackEvent('vs_comparison', { states: [id1, id2] });
+}
+
+// ── Admin Panel (Analytics Section) ──────────────────────────
+const _isAdmin = (new URLSearchParams(window.location.search)).get('admin') === 'true';
+
+function buildAnalyticsAdmin() {
+  if (!_isAdmin) return;
+
+  var container = document.getElementById('admin-analytics-section');
+  if (!container) return;
+
+  var counts = _getAnalyticsCounts();
+  var eventNames = [
+    'gate_view', 'gate_email_submit', 'gate_enter',
+    'paywall_view', 'paywall_cta_click', 'state_open',
+    'sage_conversation_start', 'vs_comparison',
+    'analyzer_calculate', 'booking_cta_click'
+  ];
+
+  var rows = eventNames.map(function(name) {
+    return '<tr><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text);font-family:\'DM Mono\',monospace;font-size:13px;">' +
+      name + '</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--accent);font-weight:600;text-align:right;font-size:14px;">' +
+      (counts[name] || 0) + '</td></tr>';
+  }).join('');
+
+  // Also show any extra events not in the predefined list
+  for (var k in counts) {
+    if (counts.hasOwnProperty(k) && eventNames.indexOf(k) === -1) {
+      rows += '<tr><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text-dim);font-family:\'DM Mono\',monospace;font-size:13px;">' +
+        k + '</td><td style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--accent);font-weight:600;text-align:right;font-size:14px;">' +
+        (counts[k] || 0) + '</td></tr>';
+    }
+  }
+
+  var totalEvents = 0;
+  for (var j in counts) { if (counts.hasOwnProperty(j)) totalEvents += counts[j]; }
+
+  container.innerHTML = '<div style="margin-bottom:16px;">' +
+    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--accent);margin-bottom:4px;">Analytics Events</div>' +
+    '<div style="font-size:12px;color:var(--text-muted);">Feature flag: ff_analytics_events (' + (_analyticsEnabled ? 'ON' : 'OFF') + ') &middot; Total: ' + totalEvents + ' events</div>' +
+    '</div>' +
+    '<table style="width:100%;border-collapse:collapse;background:var(--bg2);border-radius:8px;overflow:hidden;border:1px solid var(--border);">' +
+    '<thead><tr>' +
+    '<th style="padding:10px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);border-bottom:1px solid var(--border);background:var(--bg3);">Event</th>' +
+    '<th style="padding:10px 12px;text-align:right;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);border-bottom:1px solid var(--border);background:var(--bg3);">Count</th>' +
+    '</tr></thead><tbody>' + rows + '</tbody></table>' +
+    '<div style="display:flex;gap:10px;margin-top:14px;">' +
+    '<button onclick="resetAnalyticsAdmin()" style="flex:1;padding:10px;background:var(--bg3);border:1px solid var(--border);color:var(--red);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">Reset Counts</button>' +
+    '<button onclick="exportAnalyticsAdmin()" style="flex:1;padding:10px;background:var(--bg3);border:1px solid var(--border);color:var(--accent);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">Export Events (JSON)</button>' +
+    '</div>';
+}
+
+function resetAnalyticsAdmin() {
+  _resetAnalyticsCounts();
+  buildAnalyticsAdmin();
+}
+
+function exportAnalyticsAdmin() {
+  try {
+    var json = JSON.stringify(window.dataLayer || [], null, 2);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(json).then(function() {
+        alert('Copied ' + (window.dataLayer || []).length + ' events to clipboard.');
+      });
+    } else {
+      // Fallback
+      var ta = document.createElement('textarea');
+      ta.value = json;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      alert('Copied ' + (window.dataLayer || []).length + ' events to clipboard.');
+    }
+  } catch(e) {
+    alert('Export failed: ' + e.message);
+  }
+}
+
 // ── Init ─────────────────────────────────────────────────────
 window.addEventListener('load', async () => {
   try {
@@ -6591,11 +6739,20 @@ window.addEventListener('load', async () => {
     // Mobile code trigger: type "aurigen" on gate
     setupMobileCodeTrigger();
 
+    // Show admin analytics panel if ?admin=true
+    if (_isAdmin) {
+      var adminPanel = document.getElementById('admin-panel-analytics');
+      if (adminPanel) adminPanel.style.display = 'block';
+      buildAnalyticsAdmin();
+    }
+
     if (state.entered) {
       enterApp(false);
     } else {
       // Gate visible — initialize gate animations
       animateGateStats();
+      // Analytics: gate_view
+      trackEvent('gate_view');
     }
 
     updateDebug();
@@ -6695,11 +6852,17 @@ function handleEmailGate() {
     // Silent catch — server capture is best-effort
   }
 
+  // Analytics: gate_email_submit
+  if (typeof trackEvent === 'function') trackEvent('gate_email_submit', { email_provided: true });
+
   // Clear error if any
   if (errorEl) errorEl.classList.remove('show');
 
   // Disable button during transition
   if (submitBtn) submitBtn.disabled = true;
+
+  // Analytics: gate_enter via email
+  trackEvent('gate_enter', { method: 'email' });
 
   // Enter the app with free access (7 states)
   enterApp(true);
@@ -6788,6 +6951,7 @@ async function submitCode() {
   if (code.toUpperCase() === _mp) {
     state.isPaid = true;
     storageSet('aug_paid', true);
+    trackEvent('gate_enter', { method: 'code' });
     if (state.entered) {
       buildStateList();
       buildSpotlight();
@@ -6812,6 +6976,7 @@ async function submitCode() {
     if (data.valid) {
       state.isPaid = true;
       storageSet('aug_paid', true);
+      trackEvent('gate_enter', { method: 'paid' });
       if (state.entered) {
         buildStateList();
         buildSpotlight();
@@ -7198,6 +7363,9 @@ function openState(id) {
   const isFreeState = FREE_STATES.has(id);
   const isSaved = state.savedStates.includes(id);
 
+  // Analytics: state_open
+  trackEvent('state_open', { state_id: id, state_name: s.name, is_free: isFreeState, is_paid: isPaid });
+
   // Locked states (not free, not paid) → straight to paywall
   if (!isFreeState && !isPaid) { dnaTrackEvent('locked_click'); openPaywall(id); return; }
 
@@ -7315,7 +7483,7 @@ function openState(id) {
             ? '<div class="paywall-price-anchor" style="margin-bottom:4px;"><span class="paywall-price-old">$297</span><span style="font-size:18px;font-weight:700;color:var(--accent);">$97</span></div>'
             : '<div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>'}
           <div style="font-size:11px;color:var(--text-muted);margin-bottom:16px;">${t('paywallPriceNote')}</div>
-          <a href="${stripeUrl()}" target="_blank" class="paywall-btn">${t('paywallCta')}</a>
+          <a href="${stripeUrl()}" target="_blank" class="paywall-btn" onclick="if(typeof trackEvent==='function')trackEvent('paywall_cta_click',{state_id:'${s.id}'})">${t('paywallCta')}</a>
           <div style="font-size:12px;color:var(--text-dim);margin-top:12px;">
             ${t('paywallHaveCode')}
             <button onclick="closeStateModal();showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">${t('paywallEnterCode')}</button>
@@ -7421,7 +7589,7 @@ function openState(id) {
     ${countiesHTML}
 
     <div style="margin-top:20px;text-align:center;">
-      <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="paywall-btn" style="display:inline-block;text-decoration:none;font-size:14px;padding:12px 28px;">
+      <a href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="paywall-btn" style="display:inline-block;text-decoration:none;font-size:14px;padding:12px 28px;" onclick="trackEvent('booking_cta_click',{source:'state_detail'})">
         ${t('modalBookCall') || 'Book an Investor Clarity Call'} \u2197
       </a>
       <div style="font-size:11px;color:var(--text-muted);margin-top:8px;">Free 1-on-1 strategy session</div>
@@ -7457,6 +7625,9 @@ function openPaywall(id) {
   state.activeState = id;
   const s = (STATES || []).find(x => x.id === id);
   const name = s ? s.name : 'This State';
+
+  // Analytics: paywall_view
+  if (typeof trackEvent === 'function') trackEvent('paywall_view', { state_id: id, state_name: name });
 
   // ── Escalating paywall: track clicks (ff_escalating_paywall) ──
   const clickCount = FF.isEnabled('escalating_paywall') ? _trackLockedClick() : _getLockedClicks();
@@ -7515,7 +7686,7 @@ function openPaywall(id) {
       ${escalationHTML}
       ${priceHTML}
       <div class="paywall-price-note">${t('paywallPriceNote')}</div>
-      <a href="${stripeUrl()}" target="_blank" class="paywall-btn">${t('paywallCta')}</a>
+      <a href="${stripeUrl()}" target="_blank" class="paywall-btn" onclick="if(typeof trackEvent==='function')trackEvent('paywall_cta_click',{state_id:'${id}'})">${t('paywallCta')}</a>
       <div style="font-size:12px;color:var(--text-dim);">
         ${t('paywallHaveCode')}
         <button onclick="closeStateModal();showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">${t('paywallEnterCode')}</button>
@@ -8077,6 +8248,12 @@ function calcAnalyzer() {
     return;
   }
 
+  // Analytics: analyzer_calculate (debounced — only fires when key inputs are valid)
+  if (!calcAnalyzer._lastTrack || Date.now() - calcAnalyzer._lastTrack > 2000) {
+    calcAnalyzer._lastTrack = Date.now();
+    trackEvent('analyzer_calculate', { state_id: state.activeState || null });
+  }
+
   const annualRate = rate / 100;
   const monthlyRate = annualRate / 12;
   const interest = price * monthlyRate * months;
@@ -8232,6 +8409,11 @@ async function sendAdvisorMessage() {
 
   const sendBtn = document.getElementById('advisor-send');
   if (sendBtn) sendBtn.disabled = true;
+
+  // Analytics: sage_conversation_start (first message only)
+  if (state.advisorHistory.length === 0) {
+    trackEvent('sage_conversation_start', { is_free_user: !state.isPaid });
+  }
 
   // Add user message
   appendAdvisorMsg('user', msg);
