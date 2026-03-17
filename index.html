@@ -458,13 +458,11 @@ a { color: inherit; text-decoration: none; }
   50% { transform: translateY(8px); opacity: 1; }
 }
 
-/* ─── STATS SECTION ─── */
-.gate-stats {
-  padding: 60px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-top: 1px solid rgba(255,255,255,0.04);
+/* ─── STATS (inline in hero) ─── */
+.gate-hero-stats {
+  margin-top: 32px;
+  width: 100%;
+  max-width: 800px;
 }
 
 .gate-stats-grid {
@@ -472,13 +470,16 @@ a { color: inherit; text-decoration: none; }
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   width: 100%;
-  max-width: 800px;
 }
 
 @media (max-width: 640px) {
+  .gate-hero-stats {
+    margin-top: 24px;
+    max-width: 100%;
+  }
   .gate-stats-grid {
-    grid-template-columns: 1fr;
-    max-width: 320px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
   }
 }
 
@@ -564,25 +565,23 @@ a { color: inherit; text-decoration: none; }
 /* ─── MOBILE GATE TIGHTENING ─── */
 @media (max-width: 640px) {
   .gate-hero {
-    min-height: 100vh;
-    min-height: 100dvh;
-    min-height: -webkit-fill-available;
-    padding: 60px 20px 100px;
-    padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+    min-height: auto;
+    padding: 48px 20px 32px;
+    padding-top: max(48px, env(safe-area-inset-top, 0px));
+    padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
     justify-content: flex-start;
-    padding-top: max(60px, 12vh);
   }
   .gate-logo {
     font-size: clamp(48px, 12vw, 72px);
     letter-spacing: 0.1em;
   }
-  /* Hide subtitle on mobile for punchier hero */
   .gate-sub {
-    display: none;
+    font-size: clamp(12px, 2.5vw, 15px);
+    margin-top: 8px;
   }
   .gate-tagline {
     font-size: clamp(16px, 3.8vw, 22px);
-    margin-top: 20px;
+    margin-top: 16px;
   }
   /* Hide long description on mobile — hero email form replaces it */
   .gate-description {
@@ -591,14 +590,18 @@ a { color: inherit; text-decoration: none; }
   .gate-hero-cta {
     padding: 16px 40px;
     font-size: 14px;
-    margin-top: 28px;
+    margin-top: 24px;
     min-width: auto;
     width: 100%;
     max-width: 300px;
   }
+  .hero-email-or {
+    margin-top: 10px;
+    margin-bottom: -4px;
+  }
   .hero-email-wrap {
     max-width: 100%;
-    margin-top: 20px;
+    margin-top: 16px;
   }
   .hero-email-form {
     flex-direction: column;
@@ -615,10 +618,20 @@ a { color: inherit; text-decoration: none; }
     font-size: 13px;
     width: 100%;
   }
+  .gate-stat-card {
+    padding: 20px 16px;
+  }
+  .gate-stat-number {
+    font-size: clamp(32px, 8vw, 42px);
+  }
+  .gate-stat-label {
+    font-size: 12px;
+    margin-top: 4px;
+  }
   .gate-scroll-indicator {
-    position: absolute;
-    bottom: 20px;
-    margin-top: 0;
+    position: static;
+    transform: none;
+    margin-top: 24px;
   }
   .gate-email {
     padding: 32px 20px 48px;
@@ -628,15 +641,6 @@ a { color: inherit; text-decoration: none; }
   }
   .gate-email-title {
     font-size: clamp(28px, 6vw, 42px);
-  }
-  .gate-stats {
-    padding: 40px 20px;
-  }
-  .gate-stat-card {
-    padding: 32px 24px;
-  }
-  .gate-stats-grid {
-    gap: 20px;
   }
   .gate-features {
     padding: 40px 20px;
@@ -4585,28 +4589,28 @@ a { color: inherit; text-decoration: none; }
         <div class="hero-email-error" id="hero-email-error"></div>
         <p class="hero-email-fine" id="hero-email-fine">Explore 3 states free. No credit card required.</p>
       </div>
+
+      <!-- Stats inline in hero -->
+      <div class="gate-hero-stats" id="gate-stats-section">
+        <div class="gate-stats-grid">
+          <div class="gate-stat-card">
+            <div class="gate-stat-number" data-target="51">0</div>
+            <div class="gate-stat-label" id="gate-stat-label-1">States + DC Covered</div>
+          </div>
+          <div class="gate-stat-card">
+            <div class="gate-stat-number" data-target="5000" data-suffix="+">0</div>
+            <div class="gate-stat-label" id="gate-stat-label-2">Taxing Jurisdictions</div>
+          </div>
+          <div class="gate-stat-card">
+            <div class="gate-stat-number" data-target="3">0</div>
+            <div class="gate-stat-label" id="gate-stat-label-3">Free States to Start</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="gate-scroll-indicator">
       <span class="gate-scroll-text" id="gate-scroll-text">Scroll</span>
       <span class="gate-scroll-chevron">&#8595;</span>
-    </div>
-  </section>
-
-  <!-- Section 2: Stats Bar -->
-  <section class="gate-stats gate-section" id="gate-stats-section">
-    <div class="gate-stats-grid">
-      <div class="gate-stat-card">
-        <div class="gate-stat-number" data-target="50">0</div>
-        <div class="gate-stat-label" id="gate-stat-label-1">States + DC Covered</div>
-      </div>
-      <div class="gate-stat-card">
-        <div class="gate-stat-number" data-target="5000" data-suffix="+">0</div>
-        <div class="gate-stat-label" id="gate-stat-label-2">Taxing Jurisdictions</div>
-      </div>
-      <div class="gate-stat-card">
-        <div class="gate-stat-number" data-target="3">0</div>
-        <div class="gate-stat-label" id="gate-stat-label-3">Free States to Start</div>
-      </div>
     </div>
   </section>
 
@@ -7353,24 +7357,17 @@ function animateGateStats() {
   const statsSection = document.getElementById('gate-stats-section');
   if (!statsSection) return;
 
-  let animated = false;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !animated) {
-        animated = true;
-        const statNumbers = statsSection.querySelectorAll('.gate-stat-number');
-        statNumbers.forEach(el => {
-          const target = parseInt(el.dataset.target, 10) || 0;
-          const suffix = el.dataset.suffix || '';
-          animateNumber(el, target, suffix, 1500);
-        });
-        observer.disconnect();
-      }
+  function fireCounters() {
+    const statNumbers = statsSection.querySelectorAll('.gate-stat-number');
+    statNumbers.forEach(el => {
+      const target = parseInt(el.dataset.target, 10) || 0;
+      const suffix = el.dataset.suffix || '';
+      animateNumber(el, target, suffix, 1500);
     });
-  }, { threshold: 0.3 });
+  }
 
-  observer.observe(statsSection);
+  // Fire immediately after a short delay for paint
+  setTimeout(fireCounters, 400);
 }
 
 function animateNumber(el, target, suffix, duration) {
