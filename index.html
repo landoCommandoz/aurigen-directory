@@ -3,8 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-<title>Aurigen County Resource Directory</title>
+<title>Aurigen County Resource Directory — Tax Lien & Deed Investor Research</title>
+<meta name="description" content="Research tax liens and tax deeds across all 50 states + DC. Auction signups, interest rates, redemption periods, county links, and investor scores in one searchable directory.">
+<meta property="og:title" content="Aurigen County Resource Directory">
+<meta property="og:description" content="Research tax liens and tax deeds across all 50 states + DC. Auction signups, interest rates, county links, and investor scores.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aurigen-directory.netlify.app">
+<meta property="og:image" content="https://aurigen-directory.netlify.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aurigen County Resource Directory">
+<meta name="twitter:description" content="Tax lien & deed investor research for all 50 states + DC. Auction signups, rates, county links.">
+<meta name="twitter:image" content="https://aurigen-directory.netlify.app/og-image.png">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Aurigen County Resource Directory",
+  "description": "Tax lien and tax deed investor research directory covering all 50 U.S. states and DC.",
+  "url": "https://aurigen-directory.netlify.app",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "97.00",
+    "priceCurrency": "USD"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "Aurigen Collective",
+    "email": "support@theaurigen.com"
+  }
+}
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <script>
@@ -95,7 +126,7 @@ function loadLanguageFile(lang) {
   --purple-dim:   rgba(167,139,250,0.12);
   --text:         #f0f0f0;
   --text-dim:     #888896;
-  --text-muted:   #76768a;
+  --text-muted:   #8585a0;
   --border:       rgba(255,255,255,0.07);
   --border-hover: rgba(255,255,255,0.14);
   --shadow:       0 8px 32px rgba(0,0,0,0.5);
@@ -5159,11 +5190,11 @@ a { color: inherit; text-decoration: none; }
     <div class="gate-glow"></div>
     <div class="gate-hero-content">
       <div class="gate-eyebrow" id="gate-eyebrow">The Investor's Edge</div>
-      <div class="gate-logo">AURI<span>GEN</span></div>
+      <h1 class="gate-logo" style="margin:0;">AURI<span>GEN</span></h1>
       <div class="gate-sub" id="gate-sub">County Resource Directory</div>
-      <div class="gate-tagline" id="gate-tagline">Aurigen doesn't just tell you the rules.<br>It tells you when they change.</div>
+      <div class="gate-tagline" id="gate-tagline">Auction schedules, interest rates, and redemption periods — all in one place.</div>
       <div class="gate-description" id="gate-description">Auction signups, interest rates, redemption periods, county links, investor scores, and beginner tips — all in one place.</div>
-      <div id="beginner-reassurance" style="margin-top:12px;font-size:13px;color:#34e0cc;font-weight:500;letter-spacing:0.02em;opacity:0;animation:fadeUp 0.6s 0.85s ease forwards;">New to tax liens? Good — every state is rated for beginner-friendliness, and Sage (our AI advisor) answers any question you have, plain English.</div>
+      <div id="beginner-reassurance" style="margin-top:12px;font-size:13px;color:var(--accent);font-weight:500;letter-spacing:0.02em;opacity:0;animation:fadeUp 0.6s 0.85s ease forwards;">Every state is rated for beginner-friendliness. Paid members get Sage, our AI research advisor, for plain-English answers on any state.</div>
       <button class="gate-hero-cta" id="gate-enter-btn" onclick="handleGateEnter()">Explore the Directory Free</button>
       <div class="hero-email-or" id="hero-email-or">or</div>
       <div class="hero-email-wrap">
@@ -5225,7 +5256,7 @@ a { color: inherit; text-decoration: none; }
       </div>
       <div class="gate-feature-card">
         <div class="gate-feature-icon">&#127970;</div>
-        <div class="gate-feature-title" id="gate-feature-3-title">County-Level Data</div>
+        <div class="gate-feature-title" id="gate-feature-3-title">County Tax Office Links</div>
         <div class="gate-feature-desc" id="gate-feature-3-desc">Direct links to county tax offices, assessors, and GIS systems</div>
       </div>
       <div class="gate-feature-card">
@@ -5260,8 +5291,11 @@ a { color: inherit; text-decoration: none; }
       />
       <button class="gate-email-submit" id="gate-email-submit" onclick="handleEmailGate()">Unlock Free Access</button>
       <div class="gate-email-error" id="gate-email-error"></div>
-      <p class="gate-email-fine" id="gate-email-fine">We'll send you investor tips. Unsubscribe anytime.</p>
-      <p class="gate-email-consent" id="gate-email-consent">By entering your email, you agree to our <a onclick="openLegalModal('tos')">Terms of Service</a> and <a onclick="openLegalModal('privacy')">Privacy Policy</a>.</p>
+      <label class="gate-email-consent-check" id="gate-email-consent-check" style="display:flex;align-items:flex-start;gap:8px;margin-top:10px;font-size:12px;color:var(--text-dim);cursor:pointer;text-align:left;">
+        <input type="checkbox" id="gate-email-consent-cb" style="margin-top:2px;accent-color:var(--accent);flex-shrink:0;">
+        <span>I agree to receive investor tips and updates from Aurigen. Unsubscribe anytime.</span>
+      </label>
+      <p class="gate-email-consent" id="gate-email-consent">By entering your email, you agree to our <a onclick="openLegalModal('tos')" style="color:var(--accent);cursor:pointer;">Terms of Service</a> and <a onclick="openLegalModal('privacy')" style="color:var(--accent);cursor:pointer;">Privacy Policy</a>.</p>
     </div>
     <div class="gate-code-toggle">
       <span id="gate-code-toggle-text">Already have an access code?</span>
@@ -5286,15 +5320,13 @@ a { color: inherit; text-decoration: none; }
 
   <!-- Section 5: Price Anchor — paid upgrade after free email gate -->
   <section class="gate-price gate-section" id="gate-price-section">
-    <div class="gate-price-community" id="gate-price-community">Join the Aurigen Collective — a growing community of tax lien & deed investors</div>
+    <div class="gate-price-community" id="gate-price-community"><a href="https://www.skool.com/aurigen" target="_blank" style="color:var(--accent);text-decoration:underline;">Join the Aurigen Collective</a> — a community of tax lien & deed investors</div>
     <div class="gate-price-card" id="gate-price-card">
       <div class="gate-price-card-glow"></div>
       <div class="gate-price-badge" id="gate-price-badge">INTRODUCTORY RATE</div>
       <div class="gate-price-display">
-        <span class="gate-price-old">$297</span>
         <span class="gate-price-current">$97</span>
       </div>
-      <div class="gate-price-savings">SAVE $200</div>
 
       <!-- WHAT YOU GET LIST -->
       <ul id="gate-price-includes" style="list-style:none;padding:0;margin:20px 0 24px;text-align:left;font-size:14px;color:var(--text-dim);line-height:2;">
@@ -5306,7 +5338,7 @@ a { color: inherit; text-decoration: none; }
         <li>&#10003; AI Research Advisor (Sage) — ask anything, get sourced answers</li>
         <li>&#10003; Deal Analyzer — calculate ROI on any lien or deed investment</li>
         <li>&#10003; Bilingual access (English + Spanish)</li>
-        <li>&#10003; Lifetime updates — data verified and refreshed quarterly</li>
+        <li>&#10003; Data reviewed and updated regularly from official government sources</li>
       </ul>
 
       <!-- WHY NOW -->
@@ -5316,7 +5348,7 @@ a { color: inherit; text-decoration: none; }
 
       <!-- RISK REVERSAL -->
       <div id="gate-price-guarantee" style="font-size:13px;color:var(--text-dim);margin-bottom:20px;line-height:1.6;">
-        Not sure yet? Start with 3 free states. If the full directory doesn't meet your expectations within 30 days, email <a href="mailto:support@theaurigen.com" style="color:var(--accent);text-decoration:underline;">support@theaurigen.com</a> and we'll work with you to make it right — including a full refund if needed. <a href="#" onclick="openLegalModal('tos');return false;" style="color:var(--accent);text-decoration:underline;">See our refund policy for details.</a>
+        Not sure yet? Start with 3 free states. If the full directory doesn't meet your expectations within 30 days, email <a href="mailto:support@theaurigen.com" style="color:var(--accent);text-decoration:underline;">support@theaurigen.com</a> and we'll work with you to make it right — including a full refund if needed. <a href="#" onclick="openLegalModal('refund');return false;" style="color:var(--accent);text-decoration:underline;">See our refund policy for details.</a>
       </div>
 
       <div class="gate-price-note" id="gate-price-note">One-time payment · Access for the life of the product · No recurring fees</div>
@@ -5330,7 +5362,7 @@ a { color: inherit; text-decoration: none; }
 
     <!-- PRICE JUSTIFICATION -->
     <div id="price-justification" style="margin-top:20px;font-size:13px;color:var(--text-dim);line-height:1.7;max-width:440px;text-align:center;">
-      A single title search costs $75–$150. One bad bid on the wrong county costs thousands. Aurigen gives you the research layer that helps you avoid common pitfalls — for every state, for less than the cost of one due diligence report.
+      Professional due diligence services typically cost hundreds per property. Aurigen gives you the research layer for less — auction schedules, interest rates, redemption periods, and county links for all 50 states + DC.
     </div>
   </section>
 
@@ -5413,7 +5445,7 @@ a { color: inherit; text-decoration: none; }
           <div class="map-legend">
             <div class="legend-item"><div class="legend-dot" style="background:var(--map-lien);box-shadow:0 0 8px var(--map-lien-glow)"></div>Lien</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--map-deed);box-shadow:0 0 8px var(--map-deed-glow)"></div>Deed</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--map-rdeed);box-shadow:0 0 8px var(--map-rdeed-glow)"></div>R. Deed</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--map-rdeed);box-shadow:0 0 8px var(--map-rdeed-glow)"></div><span title="Redeemable Deed">R. Deed</span></div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--map-both);box-shadow:0 0 8px var(--map-both-glow)"></div>Both</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--accent);border:1px solid var(--accent-border)"></div><svg width="10" height="10" viewBox="0 0 24 24" fill="var(--text-muted)" style="vertical-align:middle;margin-right:2px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="var(--text-muted)" stroke-width="2"/></svg>Locked</div>
           </div>
@@ -5427,7 +5459,7 @@ a { color: inherit; text-decoration: none; }
             <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-lien);box-shadow:0 0 6px var(--map-lien-glow)"></div><span class="mcl-label">Lien</span></div>
             <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-deed);box-shadow:0 0 6px var(--map-deed-glow)"></div><span class="mcl-label">Deed</span></div>
             <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-both);box-shadow:0 0 6px var(--map-both-glow)"></div><span class="mcl-label">Both</span></div>
-            <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-rdeed);box-shadow:0 0 6px var(--map-rdeed-glow)"></div><span class="mcl-label">R. Deed</span></div>
+            <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-rdeed);box-shadow:0 0 6px var(--map-rdeed-glow)"></div><span class="mcl-label"><span title="Redeemable Deed">R. Deed</span></span></div>
             <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-locked);border:1px solid rgba(255,255,255,0.1)"></div><span class="mcl-label">Locked</span></div>
           </div>
           <div id="map-lock-overlay">
@@ -5436,8 +5468,8 @@ a { color: inherit; text-decoration: none; }
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
             <div class="map-lock-text">Full Map Access Requires Upgrade</div>
-            <a class="map-lock-cta" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Unlock Full Access</a>
-            <div class="map-lock-sub">One-time payment · Lifetime access · All 51 states</div>
+            <a class="map-lock-cta" href="#" onclick="handleUpgradeCTA(event)">Unlock Full Access</a>
+            <div class="map-lock-sub">One-time payment · Lifetime access · 50 States + DC</div>
           </div>
         </div>
 
@@ -5701,17 +5733,16 @@ a { color: inherit; text-decoration: none; }
 
   <!-- FOOTER DISCLAIMER -->
   <div class="app-footer-disclaimer" id="app-footer-disclaimer">
-    Aurigen County Resource Directory is an educational research tool. Nothing in this content constitutes investment, legal, or financial advice. Always verify data with official county sources before transacting. State data compiled from publicly available government sources and state statutory code. Last reviewed: March 2026.
-    <br><br>
-    <span style="font-size:10px;color:var(--text-muted);line-height:1.5;">Aurigen Directory is a research reference tool, not investment, legal, or tax advice. Always consult a qualified professional and conduct independent due diligence before making any investment decision.</span>
+    Aurigen County Resource Directory is an educational research tool, not investment, legal, or tax advice. Always consult a qualified professional and verify data with official county sources before making any investment decision. Data compiled from publicly available government sources. Last reviewed: March 2026.
     <br><br>
     <a href="#" onclick="openLegalModal('tos');return false;" id="footer-tos-link">Terms of Service</a> |
-    <a href="#" onclick="openLegalModal('privacy');return false;" id="footer-privacy-link">Privacy Policy</a> | © 2026 Aurigen Collective | <a href="/cdn-cgi/l/email-protection#f0bc919e949f9eb08498959185829997959ede939f9d" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="b1fdd0dfd5dedff1c5d9d4d0c4c3d8d6d4df9fd2dedc">[email&#160;protected]</span></a>
+    <a href="#" onclick="openLegalModal('privacy');return false;" id="footer-privacy-link">Privacy Policy</a> |
+    <a href="#" onclick="openLegalModal('refund');return false;" id="footer-refund-link">Refund Policy</a> | © 2026 Aurigen Collective | <a href="mailto:support@theaurigen.com" style="color:var(--accent)">support@theaurigen.com</a>
   </div>
 
   <!-- BOTTOM NAV -->
   <nav id="bottom-nav">
-    <button class="nav-item active" data-tab="map" onclick="navigate('map')">
+    <button class="nav-item active" data-tab="map" onclick="navigate('map')" aria-label="Explore map">
       <span class="nav-icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
       </span>
@@ -5784,7 +5815,7 @@ a { color: inherit; text-decoration: none; }
 <div id="state-modal" onclick="handleModalBackdrop(event)">
   <div class="state-modal-sheet">
     <div class="modal-drag-handle"></div>
-    <button class="modal-close" onclick="closeStateModal()">✕</button>
+    <button class="modal-close" onclick="closeStateModal()" aria-label="Close state details">✕</button>
     <div class="modal-header" id="modal-header"></div>
     <div class="modal-body" id="modal-body"></div>
   </div>
@@ -5812,7 +5843,24 @@ a { color: inherit; text-decoration: none; }
   </div>
 </div>
 
+<!-- REFUND POLICY MODAL -->
+<div id="refund-modal" class="legal-modal-overlay" onclick="if(event.target===this)closeLegalModal('refund')">
+  <div class="legal-modal-sheet">
+    <div class="legal-modal-header">
+      <div class="legal-modal-title" id="refund-modal-title">Refund Policy</div>
+      <button class="legal-modal-close" onclick="closeLegalModal('refund')">&#10005;</button>
+    </div>
+    <div class="legal-modal-body" id="refund-modal-body"></div>
+  </div>
+</div>
+
 <!-- Debug and feature flag panels removed for production -->
+
+<!-- COOKIE CONSENT BANNER -->
+<div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(13,13,13,0.97);border-top:1px solid var(--border);padding:14px 20px;z-index:998;align-items:center;justify-content:center;gap:16px;font-size:13px;color:var(--text-dim);">
+  <span>This site uses browser storage (cookies and localStorage) to remember your preferences and access status. <a href="#" onclick="openLegalModal('privacy');return false;" style="color:var(--accent);text-decoration:underline;">Privacy Policy</a></span>
+  <button onclick="acceptCookies()" style="background:var(--accent);color:#0d0d0d;border:none;padding:8px 20px;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;white-space:nowrap;letter-spacing:0.04em;">Accept</button>
+</div>
 
 <!-- ADMIN PANEL — Analytics Section (visible when ?admin=true) -->
 <div id="admin-panel-analytics" style="display:none;position:fixed;top:0;right:0;width:380px;max-width:90vw;height:100vh;background:var(--bg);border-left:1px solid var(--border);z-index:999;overflow-y:auto;padding:24px;box-shadow:-4px 0 24px rgba(0,0,0,0.6);">
@@ -6507,6 +6555,18 @@ const FREE_STATES = new Set(['FL','IL','AZ']);
 // Single source of truth for paid/free access state.
 // All reads and writes to state.isPaid route through here.
 const AccessManager = {
+  /** Access levels: 0 = unauthenticated, 1 = email captured (free), 2 = paid */
+  getLevel: function() {
+    if (state.isPaid) return 2;
+    if (state.entered) return 1;
+    return 0;
+  },
+
+  /** Check if user has provided an email */
+  hasEmail: function() {
+    try { return !!localStorage.getItem('aug_email'); } catch(e) { return false; }
+  },
+
   /** Check if a state ID is accessible (free or paid) */
   canAccess: function(stateId) {
     return FREE_STATES.has(stateId) || state.isPaid;
@@ -6517,6 +6577,7 @@ const AccessManager = {
     state.isPaid = true;
     storageSet('aug_paid', true);
     if (token) storageSet('aug_token', token);
+    NavManager.applyTabVisibility();
   },
 
   /** Revoke paid access — clears in-memory flag + localStorage */
@@ -6602,6 +6663,13 @@ const LanguageManager = {
 // Derives tab/content visibility from AccessManager.
 // Every content-gating check routes through here.
 const NavManager = {
+  /** Tabs visible at each access level (cumulative — higher levels see everything below) */
+  LEVEL_TABS: {
+    0: [],                                             // Level 0: no tabs (gate visible)
+    1: ['map', 'tools', 'dna', 'account'],             // Level 1: free tier
+    2: ['map', 'pulse', 'tools', 'advisor', 'versus', 'dealtape', 'dna', 'auctions', 'account'] // Level 2: all
+  },
+
   /** Can user view this state's content? (free state OR paid user) */
   canViewState: function(stateId) {
     return AccessManager.canAccess(stateId);
@@ -6610,6 +6678,16 @@ const NavManager = {
   /** Is user on the paid tier? Shorthand for content gates. */
   hasPaidAccess: function() {
     return AccessManager.isPaid();
+  },
+
+  /** Show/hide nav tabs based on access level. Call on enterApp and after upgrade. */
+  applyTabVisibility: function() {
+    var level = AccessManager.getLevel();
+    var allowed = this.LEVEL_TABS[level] || [];
+    document.querySelectorAll('.nav-item').forEach(function(btn) {
+      var tab = btn.dataset.tab;
+      btn.style.display = allowed.indexOf(tab) !== -1 ? '' : 'none';
+    });
   }
 };
 
@@ -6667,7 +6745,7 @@ const I18N = {
     gateFeature2Title: 'Auction Signup Guides',
     gateFeature2Desc: "Step-by-step instructions for every state's auction platform",
     gateFeature3Title: 'County-Level Data',
-    gateFeature3Desc: 'Direct links to county tax offices, assessors, and GIS systems',
+    gateFeature3Desc: 'Direct links to available county tax offices and GIS systems',
     gateFeature4Title: 'Deal Analyzer',
     gateFeature4Desc: 'Calculate ROI on any tax lien or deed investment instantly',
     gateFeature5Title: 'AI Research Advisor',
@@ -6675,7 +6753,7 @@ const I18N = {
     gateFeature6Title: 'Beginner Ratings',
     gateFeature6Desc: 'Know which states are beginner-friendly and which to avoid',
     // Gate - Price
-    gatePriceCommunity: 'Join the Aurigen Collective — a growing community of tax lien & deed investors',
+    gatePriceCommunity: 'Join the Aurigen Collective — a community of tax lien & deed investors',
     gatePriceNote: 'One-time payment · Introductory rate · Lifetime access',
     // Gate - Email
     gateEmailTitle: 'Start Free — Explore 3 States',
@@ -6709,7 +6787,7 @@ const I18N = {
     mapPanelSub: 'Select a state to view details',
     legendLien: 'Lien',
     legendDeed: 'Deed',
-    legendRdeed: 'R. Deed',
+    legendRdeed: '<span title="Redeemable Deed">R. Deed</span>',
     legendBoth: 'Both',
     legendLocked: 'Locked',
     mapFallback: 'Map unavailable — tap Retry to reload.',
@@ -6810,14 +6888,14 @@ const I18N = {
     vsWhySpreadsheetAurigen: 'Side-by-side comparison <span>built in</span> — always current',
     vsWhyCourseLabel: 'Paid Courses',
     vsWhyCourseAlt: '$500–$2,000 for info that goes stale in 6 months',
-    vsWhyCourseAurigen: '<span>$97 lifetime</span> — data refreshed quarterly',
+    vsWhyCourseAurigen: '<span>$97 one-time</span> — data updated regularly from official sources',
     vsWhyForumsLabel: 'Forums & Groups',
     vsWhyForumsAlt: 'Scattered tips, outdated threads, conflicting advice',
     vsWhyForumsAurigen: '<span>Statute-cited</span> data you can verify yourself',
     vsWhyEdge1: '<span>Bilingual EN/ES</span> — the only tax lien directory with full Spanish translations',
     vsWhyEdge2: '<span>Tyler v. Hennepin tracking</span> — real-time compliance status for every state\'s surplus rules',
     vsWhyEdge3: '<span>Verified statute citations</span> — every rate and redemption period linked to the actual state code',
-    vsWhyBottom: 'Aurigen replaces <strong>40+ hours of research</strong> with one searchable directory — bilingual, statute-cited, and tracking Tyler v. Hennepin compliance across all 51 jurisdictions.',
+    vsWhyBottom: 'Aurigen replaces <strong>40+ hours of research</strong> with one searchable directory — bilingual, statute-cited, and tracking Tyler v. Hennepin compliance across all 50 states + DC.',
     // State Modal
     modalBeginnerYes: 'Beginner Friendly',
     modalBeginnerNo: 'Not Recommended for Beginners',
@@ -7068,7 +7146,7 @@ const I18N = {
     gateFeature6Title: 'Calificaciones para Principiantes',
     gateFeature6Desc: 'Conoce cuales estados son aptos para principiantes y cuales evitar',
     // Gate - Price
-    gatePriceCommunity: 'Unete al Colectivo Aurigen — una comunidad creciente de inversores en gravamenes y escrituras fiscales',
+    gatePriceCommunity: 'Unete al Colectivo Aurigen — una comunidad de inversores en gravamenes y escrituras fiscales',
     gatePriceNote: 'Pago unico · Tarifa introductoria · Acceso de por vida',
     // Gate - Email
     gateEmailTitle: 'Comienza Gratis — Explora 3 Estados',
@@ -7210,7 +7288,7 @@ const I18N = {
     vsWhyEdge1: '<span>Bilingüe EN/ES</span> — el único directorio de gravámenes fiscales con traducción completa al español',
     vsWhyEdge2: '<span>Seguimiento Tyler v. Hennepin</span> — estado de cumplimiento en tiempo real para las reglas de excedentes de cada estado',
     vsWhyEdge3: '<span>Citas de estatutos verificadas</span> — cada tasa y período de redención vinculado al código estatal real',
-    vsWhyBottom: 'Aurigen reemplaza <strong>más de 40 horas de investigación</strong> con un directorio buscable — bilingüe, con citas de estatutos, y seguimiento del cumplimiento Tyler v. Hennepin en las 51 jurisdicciones.',
+    vsWhyBottom: 'Aurigen reemplaza <strong>más de 40 horas de investigación</strong> con un directorio buscable — bilingüe, con citas de estatutos, y seguimiento del cumplimiento Tyler v. Hennepin en los 50 estados + DC.',
     // State Modal
     modalBeginnerYes: 'Apto para Principiantes',
     modalBeginnerNo: 'No Recomendado para Principiantes',
@@ -8011,11 +8089,13 @@ window.addEventListener('load', async () => {
     // Mobile code trigger: type "aurigen" on gate
     setupMobileCodeTrigger();
 
-    // Show admin analytics panel if ?admin=true
-    if (_isAdmin) {
-      var adminPanel = document.getElementById('admin-panel-analytics');
+    // Admin panel: only show for ?admin=true AND Level 2 (paid). Remove from DOM otherwise.
+    var adminPanel = document.getElementById('admin-panel-analytics');
+    if (_isAdmin && AccessManager.getLevel() >= 2) {
       if (adminPanel) adminPanel.style.display = 'block';
       buildAnalyticsAdmin();
+    } else if (adminPanel) {
+      adminPanel.remove();
     }
 
     if (state.mobileQr || state.entered) {
@@ -8037,6 +8117,9 @@ window.addEventListener('load', async () => {
       trackEvent('gate_view');
     }
 
+    // Cookie consent banner (show on first visit)
+    initCookieConsent();
+
     updateDebug();
   } catch(err) {
     console.error('Init error:', err);
@@ -8045,11 +8128,23 @@ window.addEventListener('load', async () => {
 });
 
 // ── Gate ─────────────────────────────────────────────────────
+/** Route upgrade CTAs: Level 0 → email gate first, Level 1+ → Stripe */
+function handleUpgradeCTA(e) {
+  if (e) e.preventDefault();
+  if (AccessManager.getLevel() < 1) {
+    // No email captured yet — show email gate first
+    openPaywall();
+    return;
+  }
+  // Level 1+ — go to Stripe
+  window.open(stripeUrl(), '_blank');
+}
+
 function handleGateEnter() {
-  // Scroll to email capture section
-  const emailSection = document.getElementById('gate-email-section');
-  if (emailSection) {
-    emailSection.scrollIntoView({ behavior: 'smooth' });
+  // Scroll to features section (differentiates from "Unlock Free Access" which focuses email)
+  var features = document.getElementById('gate-features-title');
+  if (features) {
+    features.scrollIntoView({ behavior: 'smooth' });
   }
 }
 
@@ -8094,7 +8189,17 @@ function handleEmailGate() {
   const input = document.getElementById('gate-email-input');
   const errorEl = document.getElementById('gate-email-error');
   const submitBtn = document.getElementById('gate-email-submit');
+  const consentCb = document.getElementById('gate-email-consent-cb');
   const email = input ? input.value.trim() : '';
+
+  // Consent checkbox required
+  if (consentCb && !consentCb.checked) {
+    if (errorEl) {
+      errorEl.textContent = 'Please agree to receive updates to continue.';
+      errorEl.classList.add('show');
+    }
+    return;
+  }
 
   // Basic email regex validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -8227,30 +8332,16 @@ function setupMobileCodeTrigger() {
   });
 }
 
-// Animate gate stats when scrolled into view — derived from real STATES data
-function animateGateStats(retryCount) {
+// Animate gate stats when scrolled into view — known product constants
+function animateGateStats() {
   var statsSection = document.getElementById('gate-stats-section');
   if (!statsSection) return;
 
-  retryCount = retryCount || 0;
-
-  // Compute real counts from loaded state data
-  var statesData = window.STATES_EN || window.STATES_ES || [];
-
-  // If data not loaded yet, retry up to 20 times at increasing intervals (covers slow iPad loads)
-  if (statesData.length === 0 && retryCount < 20) {
-    var delay = retryCount < 10 ? 300 : 500;
-    setTimeout(function() { animateGateStats(retryCount + 1); }, delay);
-    return;
-  }
-
-  // If data never loaded after all retries, leave placeholders — do not show fabricated numbers
-  if (statesData.length === 0) return;
-
-  // Derive counts from actual data
-  var stateCount = statesData.length;
-  var calendarCount = stateCount; // One auction calendar per state/territory
-  var freeCount = FREE_STATES.size;
+  // Gate stats are marketing constants about the total product offering.
+  // Do NOT derive from loaded data — free-tier fetch returns only 3 states.
+  var stateCount = 51;      // 50 states + DC
+  var calendarCount = 51;   // One auction calendar per state/territory
+  var freeCount = FREE_STATES.size; // 3 (FL, IL, AZ)
 
   // Update data-target attributes with real values
   var statNumbers = statsSection.querySelectorAll('.gate-stat-number');
@@ -8406,6 +8497,9 @@ function enterApp(animate) {
   const gate = document.getElementById('gate');
   gate.classList.add('hidden');
 
+  // Gate nav tabs before any view renders
+  NavManager.applyTabVisibility();
+
   // Init all views
   buildStateList();
   buildGlossary();
@@ -8453,10 +8547,12 @@ function navigate(tab, animate = true) {
   });
 
   // Tab-specific actions
+  if (tab === 'advisor') { applyAdvisorGate(); }
+  if (tab === 'tools') { applyToolsGate(); }
   if (tab === 'versus') { populateVersusDropdowns(); }
   if (tab === 'dealtape') { buildDealTape(); }
-  if (tab === 'account') { buildSaved(); buildProfileRecs(); if (typeof buildQrCode === 'function') buildQrCode(); }
-  if (tab === 'dna') { if (typeof dnaRenderProfile === 'function') dnaRenderProfile(); if (typeof pathwayRender === 'function') pathwayRender(); }
+  if (tab === 'account') { applyAccountGate(); }
+  if (tab === 'dna') { applyDnaGate(); }
   if (tab === 'auctions' && typeof buildAuctionPulse === 'function') { buildAuctionPulse(); }
   if (tab === 'pulse') { buildStatePulse(); }
   if (tab === 'map' && state.mapReady) {
@@ -8474,6 +8570,20 @@ function navigate(tab, animate = true) {
 
 // ── Tools / Account Sub-tab Switch ──────────────────────────
 function switchToolsTab(panel, btn) {
+  var level = AccessManager.getLevel();
+
+  // Gate: Deal Analyzer requires Level 1+
+  if (panel === 'analyzer' && level < 1) {
+    showToolsGateOverlay('tools-analyzer', 'Unlock the Deal Analyzer — enter your email to get free access.');
+    return;
+  }
+  // Gate: Legal and Glossary require Level 1+
+  if ((panel === 'legal' || panel === 'glossary') && level < 1) {
+    var label = panel === 'legal' ? 'Legal Library' : 'Glossary';
+    showToolsGateOverlay('tools-' + panel, label + ' requires free access. Enter your email to unlock.');
+    return;
+  }
+
   const parent = btn.closest('.view');
   if (!parent) return;
   parent.querySelectorAll('.tools-tab').forEach(t => t.classList.remove('active'));
@@ -8484,6 +8594,59 @@ function switchToolsTab(panel, btn) {
   if (panel === 'saved') buildSaved();
   if (panel === 'profile') buildProfileRecs();
   if (panel === 'analyzer') calcAnalyzer();
+}
+
+/** Gate DNA tab for Level 0 users */
+function applyDnaGate() {
+  if (AccessManager.getLevel() >= 1) {
+    if (typeof dnaRenderProfile === 'function') dnaRenderProfile();
+    if (typeof pathwayRender === 'function') pathwayRender();
+    return;
+  }
+  var dnaView = document.getElementById('view-dna');
+  if (dnaView) {
+    var scrollBody = dnaView.querySelector('.scroll-body') || dnaView;
+    scrollBody.innerHTML =
+      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;padding:40px 20px;">' +
+        '<div style="font-size:16px;color:var(--text-dim);margin-bottom:24px;">Complete your investor profile — enter your email to get started.</div>' +
+        '<button onclick="handleGateEnter();" style="background:var(--accent);color:#0d0d0d;border:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;">GET FREE ACCESS</button>' +
+      '</div>';
+  }
+}
+
+/** Gate Account tab for Level 0 users */
+function applyAccountGate() {
+  if (AccessManager.getLevel() >= 1) {
+    buildSaved(); buildProfileRecs();
+    if (typeof buildQrCode === 'function') buildQrCode();
+    return;
+  }
+  var profile = document.getElementById('tools-profile');
+  if (profile) {
+    profile.innerHTML =
+      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;padding:40px 20px;">' +
+        '<div style="font-size:16px;color:var(--text-dim);margin-bottom:24px;">Create your free account to save states and track your research.</div>' +
+        '<button onclick="handleGateEnter();" style="background:var(--accent);color:#0d0d0d;border:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;">GET FREE ACCESS</button>' +
+      '</div>';
+  }
+}
+
+/** Gate the entire Tools view for Level 0 users */
+function applyToolsGate() {
+  if (AccessManager.getLevel() >= 1) return; // Level 1+ can access tools
+  showToolsGateOverlay('tools-analyzer', 'Unlock the Deal Analyzer and research tools — enter your email to get free access.');
+}
+
+/** Show a gate overlay inside a tools panel */
+function showToolsGateOverlay(panelId, message) {
+  var panel = document.getElementById(panelId);
+  if (!panel) return;
+  panel.innerHTML =
+    '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;padding:40px 20px;">' +
+      '<div style="font-size:16px;color:var(--text-dim);margin-bottom:24px;">' + message + '</div>' +
+      '<button onclick="handleGateEnter();" style="background:var(--accent);color:#0d0d0d;border:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;">GET FREE ACCESS</button>' +
+    '</div>';
+  panel.classList.add('active');
 }
 
 // ── State List ───────────────────────────────────────────────
@@ -8569,7 +8732,7 @@ async function initMap() {
     // Re-inject lock overlay (cleared by innerHTML reset)
     var lockOverlay = document.createElement('div');
     lockOverlay.id = 'map-lock-overlay';
-    lockOverlay.innerHTML = '<svg class="map-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><div class="map-lock-text">Full Map Access Requires Upgrade</div><a class="map-lock-cta" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Unlock Full Access</a><div class="map-lock-sub">One-time payment \u00b7 Lifetime access \u00b7 All 51 states</div>';
+    lockOverlay.innerHTML = '<svg class="map-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><div class="map-lock-text">Full Map Access Requires Upgrade</div><a class="map-lock-cta" href="#" onclick="handleUpgradeCTA(event)">Unlock Full Access</a><div class="map-lock-sub">One-time payment \u00b7 Lifetime access \u00b7 50 States + DC</div>';
     container.appendChild(lockOverlay);
 
     const svg = d3.select('#map-svg');
@@ -8972,9 +9135,7 @@ function openState(id) {
           <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.5;">
             Get auction signup steps, county links, full risks list, due diligence checklists, and OTC availability for all 50 states + DC.
           </div>
-          ${FF.isEnabled('paywall_price_anchor')
-            ? '<div class="paywall-price-anchor" style="margin-bottom:4px;"><span class="paywall-price-old">$297</span><span style="font-size:18px;font-weight:700;color:var(--accent);">$97</span></div>'
-            : '<div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>'}
+          <div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>
           <div style="font-size:11px;color:var(--text-muted);margin-bottom:16px;">${t('paywallPriceNote')}</div>
           <a href="${stripeUrl()}" target="_blank" class="paywall-btn" onclick="if(typeof trackEvent==='function')trackEvent('paywall_cta_click',{state_id:'${s.id}'})">${t('paywallCta')}</a>
           <div style="font-size:12px;color:var(--text-dim);margin-top:12px;">
@@ -9156,17 +9317,8 @@ function openPaywall(id) {
     }
   }
 
-  // ── Price anchor (ff_paywall_price_anchor) ──
-  let priceHTML;
-  if (FF.isEnabled('paywall_price_anchor')) {
-    priceHTML = `
-      <div class="paywall-price-anchor">
-        <span class="paywall-price-old">$297</span>
-        <span class="paywall-price-current">${t('paywallPrice')}</span>
-      </div>`;
-  } else {
-    priceHTML = '<div class="paywall-price">' + t('paywallPrice') + '</div>';
-  }
+  // ── Price display ──
+  let priceHTML = '<div class="paywall-price">' + t('paywallPrice') + '</div>';
 
   document.getElementById('modal-header').innerHTML = `
     <div class="modal-state-name" style="color:var(--text-dim)">${name}</div>
@@ -9868,6 +10020,38 @@ function calcAnalyzer() {
 }
 
 // ── AI Advisor ────────────────────────────────────────────────
+
+/** Gate the advisor view: Level < 2 sees paywall instead of chat */
+function applyAdvisorGate() {
+  var container = document.getElementById('advisor-messages');
+  var inputBar = document.querySelector('.advisor-input-bar');
+  var input = document.getElementById('advisor-input');
+  var sendBtn = document.getElementById('advisor-send');
+
+  if (AccessManager.getLevel() >= 2) {
+    // Paid user — enable input, show welcome if first visit
+    if (input) input.disabled = false;
+    if (sendBtn) sendBtn.disabled = false;
+    if (inputBar) inputBar.style.display = '';
+    return;
+  }
+
+  // Level 0 or 1 — disable input, replace content with paywall
+  if (input) input.disabled = true;
+  if (sendBtn) sendBtn.disabled = true;
+  if (inputBar) inputBar.style.display = 'none';
+
+  if (container) {
+    container.innerHTML =
+      '<div class="msg msg-sage">' +
+        '<strong>Sage</strong><br>' +
+        'Sage is a paid feature. Unlock full access to ask Sage anything about all 50 states + DC.<br><br>' +
+        '<a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;">UNLOCK NOW</a><br>' +
+        '<span style="font-size:12px;color:var(--text-dim);">' + t('paywallHaveCode') + ' <button onclick="showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">' + t('paywallEnterCode') + '</button></span>' +
+      '</div>';
+  }
+}
+
 async function sendAdvisorMessage() {
   dnaTrackEvent('ai_question');
   if (!NavManager.hasPaidAccess()) {
@@ -9937,14 +10121,7 @@ function appendAdvisorMsg(role, text) {
   const div = document.createElement('div');
   div.className = `msg msg-${role}`;
   if (role === 'sage') {
-    var label = document.createElement('strong');
-    label.textContent = 'Sage';
-    div.appendChild(label);
-    div.appendChild(document.createElement('br'));
-    text.split('\n').forEach(function(line, i) {
-      if (i > 0) div.appendChild(document.createElement('br'));
-      div.appendChild(document.createTextNode(line));
-    });
+    div.innerHTML = '<strong>Sage</strong><br>' + text;
   } else {
     div.textContent = text;
   }
@@ -10259,6 +10436,23 @@ function toggleDebug() {
     if (overlay) overlay.classList.remove('active');
   }
 
+  // Handle the final email capture from exit intent fallback
+  window.handleExitFinalEmail = function() {
+    var input = document.getElementById('exit-final-email');
+    var email = input ? input.value.trim() : '';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+    try { localStorage.setItem('aug_email', email); } catch(e) {}
+    try {
+      fetch(NETLIFY_FN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'capture-email', email: email, lang: state.lang || 'en', timestamp: new Date().toISOString() })
+      }).catch(function() {});
+    } catch(e) {}
+    hideExitPopup();
+    enterApp(true);
+  };
+
   // Desktop: mouseout from viewport top
   document.addEventListener('mouseout', function(e) {
     if (e.clientY <= 0) showExitPopup();
@@ -10283,7 +10477,22 @@ function toggleDebug() {
     }
 
     var dismissBtn = document.getElementById('exit-dismiss');
-    if (dismissBtn) dismissBtn.addEventListener('click', hideExitPopup);
+    if (dismissBtn) dismissBtn.addEventListener('click', function() {
+      // After dismiss, show final inline email capture
+      var modal = document.querySelector('.exit-modal');
+      if (modal && !AccessManager.hasEmail()) {
+        modal.innerHTML =
+          '<div style="text-align:center;padding:20px;">' +
+            '<div style="font-size:14px;color:var(--text-dim);margin-bottom:16px;">At least grab your free state access \u2192</div>' +
+            '<div style="display:flex;gap:8px;max-width:320px;margin:0 auto;">' +
+              '<input type="email" id="exit-final-email" placeholder="you@email.com" style="flex:1;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:14px;">' +
+              '<button onclick="handleExitFinalEmail()" style="background:var(--accent);color:#0d0d0d;border:none;padding:10px 20px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;">GO</button>' +
+            '</div>' +
+          '</div>';
+      } else {
+        hideExitPopup();
+      }
+    });
 
     var closeBtn = document.getElementById('exit-close-btn');
     if (closeBtn) closeBtn.addEventListener('click', hideExitPopup);
@@ -10429,23 +10638,67 @@ var LEGAL_CONTENT = {
       '<h3>9. Contactenos</h3>' +
       '<p>Para preguntas relacionadas con privacidad o para ejercer sus derechos, escriba a <strong>support@theaurigen.com</strong>.</p>' +
       '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Ultima actualizacion: Marzo 2026</p>'
+  },
+  refund: {
+    en: '<h3>Refund Policy</h3>' +
+      '<p>Your satisfaction matters. If the Aurigen County Resource Directory does not meet your expectations, you may request a <strong>full refund within 30 days</strong> of purchase — no questions asked.</p>' +
+      '<h3>How to Request a Refund</h3>' +
+      '<p>Email <strong>support@theaurigen.com</strong> with your purchase email address and the word "refund" in the subject line. Refunds are processed within 5–7 business days.</p>' +
+      '<h3>Conditions</h3>' +
+      '<ul>' +
+      '<li>Refund requests must be submitted within 30 days of the original purchase date.</li>' +
+      '<li>After 30 days, all sales are final.</li>' +
+      '<li>Access to paid features will be revoked upon refund.</li>' +
+      '</ul>' +
+      '<h3>Contact</h3>' +
+      '<p>Questions? Email <strong>support@theaurigen.com</strong>.</p>' +
+      '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Last updated: March 2026</p>',
+    es: '<h3>Politica de Reembolso</h3>' +
+      '<p>Su satisfaccion importa. Si el Directorio de Recursos por Condado de Aurigen no cumple con sus expectativas, puede solicitar un <strong>reembolso completo dentro de los 30 dias</strong> posteriores a la compra — sin preguntas.</p>' +
+      '<h3>Como Solicitar un Reembolso</h3>' +
+      '<p>Envie un correo a <strong>support@theaurigen.com</strong> con su direccion de correo de compra y la palabra "reembolso" en el asunto. Los reembolsos se procesan en 5-7 dias habiles.</p>' +
+      '<h3>Condiciones</h3>' +
+      '<ul>' +
+      '<li>Las solicitudes de reembolso deben enviarse dentro de los 30 dias posteriores a la fecha de compra original.</li>' +
+      '<li>Despues de 30 dias, todas las ventas son finales.</li>' +
+      '<li>El acceso a funciones de pago se revocara tras el reembolso.</li>' +
+      '</ul>' +
+      '<h3>Contacto</h3>' +
+      '<p>Preguntas? Escriba a <strong>support@theaurigen.com</strong>.</p>' +
+      '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Ultima actualizacion: Marzo 2026</p>'
   }
 };
 
 function openLegalModal(type) {
-  var modal = document.getElementById(type === 'tos' ? 'tos-modal' : 'privacy-modal');
+  var modal = document.getElementById(type + '-modal');
   if (!modal) return;
   var lang = state && state.lang ? state.lang : 'en';
-  var titleEl = document.getElementById(type === 'tos' ? 'tos-modal-title' : 'privacy-modal-title');
-  var bodyEl = document.getElementById(type === 'tos' ? 'tos-modal-body' : 'privacy-modal-body');
-  if (titleEl) titleEl.textContent = type === 'tos' ? t('tosTitle') : t('privacyTitle');
-  if (bodyEl) bodyEl.innerHTML = LEGAL_CONTENT[type][lang] || LEGAL_CONTENT[type]['en'];
+  var titleEl = document.getElementById(type + '-modal-title');
+  var bodyEl = document.getElementById(type + '-modal-body');
+  var titles = { tos: t('tosTitle'), privacy: t('privacyTitle'), refund: 'Refund Policy' };
+  if (titleEl) titleEl.textContent = titles[type] || type;
+  if (bodyEl && LEGAL_CONTENT[type]) bodyEl.innerHTML = LEGAL_CONTENT[type][lang] || LEGAL_CONTENT[type]['en'];
   modal.classList.add('open');
 }
 
 function closeLegalModal(type) {
-  var modal = document.getElementById(type === 'tos' ? 'tos-modal' : 'privacy-modal');
+  var modal = document.getElementById(type + '-modal');
   if (modal) modal.classList.remove('open');
+}
+
+// Cookie consent
+function acceptCookies() {
+  try { localStorage.setItem('aug_cookie_consent', 'true'); } catch(e) {}
+  var banner = document.getElementById('cookie-consent');
+  if (banner) banner.style.display = 'none';
+}
+
+function initCookieConsent() {
+  try {
+    if (localStorage.getItem('aug_cookie_consent') === 'true') return;
+  } catch(e) { return; }
+  var banner = document.getElementById('cookie-consent');
+  if (banner) banner.style.display = 'flex';
 }
 
 function updateLegalText() {
@@ -11788,6 +12041,8 @@ function detectMobileDevice() {
 }
 
 function shouldShowA2hs() {
+  // Gate to Level 1+ — Level 0 should not see install prompt
+  if (typeof AccessManager !== 'undefined' && AccessManager.getLevel() < 1) return false;
   // Only on mobile, only if not dismissed, only if not already in standalone mode
   var device = detectMobileDevice();
   if (!device) return false;

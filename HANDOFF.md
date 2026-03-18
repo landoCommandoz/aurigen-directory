@@ -5,7 +5,7 @@
 2026-03-18
 
 ### LAST SESSION SUMMARY:
-MASON BUILD SESSION — 6-phase implementation + Knox QA pass.
+MASON BUILD SESSION — 6-phase implementation + 80-issue master directive (7 sprints) + Knox QA.
 
 **ACE (Sales):** Delivered 60-second seminar pitch (148 words). Structure: Hook + Pain + Solution + Social Proof + Close. Ready to deliver at next live event.
 
@@ -71,22 +71,36 @@ Priority: C2+C3 together first via server-side session validation.
 
 **Knox QA: 15/15 PASS** — All checks passed. Branch cleared for merge.
 
+**80-Issue Master Directive — 7 Sprints on `claude/morning-checkin-aurigen-HC3BD`:**
+- Sprint 1: Critical access fixes (#001-#008) — AccessManager revalidation, free state rendering, stats hardcoded, nav gating
+- Sprint 2: Legal/FTC compliance (#009-#019) — ToS/Privacy/Refund modals, cookie consent, marketing consent checkbox, FTC copy fixes
+- Sprint 3: Functional features (#020-#036) — Feature flags, admin panel, email-before-Stripe, exit intent, legal modal system
+- Sprint 4: Copy/brand consistency (#037-#053) — i18n cleanup, placeholder fixes, tab label consistency
+- Sprint 5: Technical debt (#054-#072) — Dead code removal, accessibility (ARIA, focus traps, skip nav), JSON-LD schema, meta tags
+- Sprint 6: Conversion optimization (#073-#078) — og:image meta tag (verified: email gate, exit intent, statute teasers, VS handler already done)
+- Sprint 7: Visual polish (#079-#080) — WCAG contrast fix (--text-muted), visual audit pass
+
 ### WHAT WAS MERGED THIS SESSION:
 PR pending manual creation (proxy 403 on direct push to main). Branch is ready.
 
 ### WHAT IS CURRENTLY PENDING:
 - **MERGE PR**: `claude/morning-checkin-aurigen-HC3BD` → `main` (create PR manually on GitHub)
+- **Knox full 80-item regression** on merged main
+- **Lex legal review sign-off** on all FTC fixes
 - C2 fix: states-en.js/states-es.js publicly accessible — serverless data gating still needed
 - ~~C3 fix: localStorage paid bypass~~ — **RESOLVED** (server-side only validation)
 - ~~FTC: fabricated social proof~~ — **RESOLVED** (real data-derived stats)
 - ~~FTC: Deal Tape disclaimer~~ — **RESOLVED**
+- ~~FTC: $297 strikethrough~~ — **RESOLVED** (Sprint 2)
+- ~~FTC: pressure copy~~ — **RESOLVED** (Sprint 2)
 - Hero section redesign from Prism audit
+- og:image asset needed — Prism to create 1200x630 social share image
 - VS view testimonial carousel needs real customer quotes
 - First Deal page navigation incomplete
 - ES translations parity work (states-es.js significantly shorter than EN)
 
 ### WHAT BROKE OR REGRESSED:
-- Stats display shows 0,0,0 on iPad intermittently — not yet root-caused
+- Stats display shows 0,0,0 on iPad intermittently — hardcoded values should fix this
 - Language toggle bypass was patched but may not be fully closed per Wraith analysis
 - No other known regressions from merged PRs
 
@@ -100,27 +114,25 @@ PR pending manual creation (proxy 403 on direct push to main). Branch is ready.
 - **C5 (Low)**: No CSP header configured
 
 ### OPEN LEGAL/FTC ITEMS:
-- **CRITICAL**: Social proof ticker shows fabricated random number (50-500) — remove or make real
-- **CRITICAL**: "Founding member" 500-cap claim unverified — enforce or remove
-- **CRITICAL**: Deal Tape section missing required disclaimer
-- **WARNING**: $297 strikethrough pricing — verify original price exists
-- **WARNING**: Escalating pressure copy on paywall — soften language
-- **WARNING**: "Returns" language needs disclaimer
-- **WARNING**: "Monthly Income" label needs context
-- **WARNING**: "Investor's Edge" language needs review
+- ~~**CRITICAL**: Social proof ticker~~ — **RESOLVED** (removed, replaced with real data)
+- **CRITICAL**: "Founding member" 500-cap claim unverified — needs Lando confirmation
+- ~~**CRITICAL**: Deal Tape missing disclaimer~~ — **RESOLVED** (Sprint 2)
+- ~~**WARNING**: $297 strikethrough pricing~~ — **RESOLVED** (Sprint 2)
+- ~~**WARNING**: Escalating pressure copy~~ — **RESOLVED** (Sprint 2)
+- ~~**WARNING**: "Returns" language~~ — **RESOLVED** (Sprint 4)
+- ~~**WARNING**: "Monthly Income" label~~ — **RESOLVED** (Sprint 4)
+- ~~**WARNING**: "Investor's Edge" language~~ — **RESOLVED** (Sprint 4)
 
 ### NEXT SESSION STARTS WITH:
 **PRIORITY ORDER (Revenue Impact → Risk Reduction → Foundation Building):**
 
-1. **FTC CRITICAL FIXES** (Risk Reduction — legal exposure)
-   - Remove fabricated social proof ticker OR connect to real data
-   - Verify/enforce founding member 500-cap OR remove claim
-   - Add Deal Tape disclaimer
-   - Owner: Lex review → Mason implementation
+1. **MERGE & VERIFY** — Create PR, merge to main, confirm Netlify deploy
+   - Knox: Full 80-item regression on merged main
+   - Lex: Legal review sign-off
 
-2. **C2+C3 SECURITY FIX** (Risk Reduction — revenue protection)
-   - Implement server-side session validation
-   - Gate state data behind authenticated endpoint
+2. **C2 SECURITY FIX** (Risk Reduction — revenue protection)
+   - Gate state data behind authenticated endpoint (get-states.js partially built)
+   - ~~C3 localStorage bypass~~ — RESOLVED
    - Owner: Mason implementation → Wraith verification
 
 3. **HERO SECTION REDESIGN** (Revenue Impact — conversion)
@@ -141,10 +153,9 @@ PR pending manual creation (proxy 403 on direct push to main). Branch is ready.
 
 ### OPEN QUESTIONS FOR LANDO:
 - Is the 500 founding member cap real? If so, where is the counter? If not, remove the claim.
-- Is $297 a real price point that existed? If not, remove strikethrough.
 - Do we have ANY real customer testimonials yet?
 - What is the GHL pipeline status — can we deploy email sequences this week?
-- Which is more urgent: security fixes or FTC compliance fixes?
+- Need og:image asset (1200x630) — Prism to create, deploy to /og-image.png
 
 ### AGENT STATUS:
 **Ace:** Seminar pitch delivered (148 words). Ready for objection playbooks and follow-up scripts.
