@@ -774,7 +774,7 @@ a { color: inherit; text-decoration: none; }
 
 .gate-price-card {
   background: rgba(200,168,75,0.04);
-  border: 1.5px solid rgba(200,168,75,0.25);
+  border: 1.5px solid var(--accent-glow);
   border-radius: 24px;
   padding: 48px 56px;
   position: relative;
@@ -822,12 +822,12 @@ a { color: inherit; text-decoration: none; }
   color: var(--accent);
   letter-spacing: 0.04em;
   line-height: 1;
-  text-shadow: 0 0 40px rgba(200,168,75,0.3);
+  text-shadow: 0 0 40px var(--accent-border);
 }
 
 .gate-price-savings {
   display: inline-block;
-  background: rgba(200,168,75,0.12);
+  background: var(--accent-dim);
   color: var(--accent);
   font-size: 13px;
   font-weight: 700;
@@ -836,7 +836,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 100px;
   margin-top: 12px;
   margin-bottom: 16px;
-  border: 1px solid rgba(200,168,75,0.25);
+  border: 1px solid var(--accent-glow);
 }
 
 .gate-price-note {
@@ -910,7 +910,7 @@ a { color: inherit; text-decoration: none; }
   max-width: 420px;
   margin: 0 auto;
   background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(200,168,75,0.12);
+  border: 1px solid var(--accent-dim);
   border-radius: 16px;
   padding: 28px 32px;
   backdrop-filter: blur(12px);
@@ -1013,7 +1013,7 @@ a { color: inherit; text-decoration: none; }
   opacity: 0;
   animation: fadeUp 0.4s ease forwards;
   background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(200,168,75,0.12);
+  border: 1px solid var(--accent-dim);
   border-radius: 16px;
   padding: 28px 32px;
   backdrop-filter: blur(12px);
@@ -1186,7 +1186,7 @@ a { color: inherit; text-decoration: none; }
 .deal-tape-cta-btn.primary{background:var(--accent);color:var(--bg)}
 .deal-tape-cta-btn.primary:hover{filter:brightness(1.1);transform:translateY(-1px)}
 .deal-tape-cta-btn.locked{background:rgba(255,255,255,0.06);color:var(--accent);border:1px solid var(--accent-border)}
-.deal-tape-cta-btn.locked:hover{background:rgba(200,168,75,0.12)}
+.deal-tape-cta-btn.locked:hover{background:var(--accent-dim)}
 .deal-tape-swipe-hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--text-muted);animation:dtSwipeHint 2s ease-in-out infinite;pointer-events:none;z-index:2}
 .deal-tape-swipe-hint span{font-size:9px;letter-spacing:0.1em;text-transform:uppercase}
 .deal-tape-swipe-hint svg{width:16px;height:16px;opacity:0.5}
@@ -1350,30 +1350,6 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-muted);
   font-style: italic;
   margin-top: 4px;
-}
-
-/* ═══════════════════════════════════════════════
-   SOCIAL PROOF TICKER
-═══════════════════════════════════════════════ */
-.social-proof-ticker {
-  width: 100%;
-  background: rgba(200,168,75,0.06);
-  border-bottom: 1px solid rgba(200,168,75,0.1);
-  padding: 6px 20px;
-  font-size: 12px;
-  color: var(--text-dim);
-  text-align: center;
-  flex-shrink: 0;
-  min-height: 28px;
-  position: relative;
-  overflow: hidden;
-}
-.social-proof-ticker .ticker-msg {
-  transition: opacity 0.5s ease;
-  opacity: 1;
-}
-.social-proof-ticker .ticker-msg.fade-out {
-  opacity: 0;
 }
 
 /* ═══════════════════════════════════════════════
@@ -1916,7 +1892,7 @@ a { color: inherit; text-decoration: none; }
   background: rgba(13,13,13,0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid var(--border-hover);
   border-radius: 10px;
   pointer-events: none;
 }
@@ -3342,7 +3318,7 @@ a { color: inherit; text-decoration: none; }
   top: 8px;
   left: 8px;
   background: rgba(0,0,0,0.85);
-  border: 1px solid rgba(200,168,75,0.3);
+  border: 1px solid var(--accent-border);
   border-radius: 8px;
   padding: 8px 12px;
   font-family: 'DM Mono', monospace;
@@ -3930,7 +3906,7 @@ a { color: inherit; text-decoration: none; }
   margin-top: 16px;
   padding: 16px 20px;
   background: rgba(200,168,75,0.04);
-  border: 1px solid rgba(200,168,75,0.12);
+  border: 1px solid var(--accent-dim);
   border-radius: 12px;
 }
 .vs-why-edge {
@@ -4179,7 +4155,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 .exit-cta:hover {
-  background: #d4b45a;
+  background: var(--accent);
+  filter: brightness(1.1);
   transform: translateY(-1px);
 }
 
@@ -5214,15 +5191,15 @@ a { color: inherit; text-decoration: none; }
   <section class="gate-stats gate-section" id="gate-stats-section">
     <div class="gate-stats-grid">
       <div class="gate-stat-card">
-        <div class="gate-stat-number" data-target="51">0</div>
-        <div class="gate-stat-label" id="gate-stat-label-1">States + DC Covered</div>
+        <div class="gate-stat-number" data-target="0">—</div>
+        <div class="gate-stat-label" id="gate-stat-label-1">50 States + DC</div>
       </div>
       <div class="gate-stat-card">
-        <div class="gate-stat-number" data-target="3000" data-suffix="+">0</div>
-        <div class="gate-stat-label" id="gate-stat-label-2">Taxing Jurisdictions</div>
+        <div class="gate-stat-number" data-target="0">—</div>
+        <div class="gate-stat-label" id="gate-stat-label-2">Auction Calendars</div>
       </div>
       <div class="gate-stat-card">
-        <div class="gate-stat-number" data-target="3">0</div>
+        <div class="gate-stat-number" data-target="0">—</div>
         <div class="gate-stat-label" id="gate-stat-label-3">Free States to Start</div>
       </div>
     </div>
@@ -5312,7 +5289,7 @@ a { color: inherit; text-decoration: none; }
     <div class="gate-price-community" id="gate-price-community">Join the Aurigen Collective — a growing community of tax lien & deed investors</div>
     <div class="gate-price-card" id="gate-price-card">
       <div class="gate-price-card-glow"></div>
-      <div class="gate-price-badge" id="gate-price-badge">FOUNDING MEMBER RATE — LIMITED</div>
+      <div class="gate-price-badge" id="gate-price-badge">INTRODUCTORY RATE</div>
       <div class="gate-price-display">
         <span class="gate-price-old">$297</span>
         <span class="gate-price-current">$97</span>
@@ -5323,7 +5300,7 @@ a { color: inherit; text-decoration: none; }
       <ul id="gate-price-includes" style="list-style:none;padding:0;margin:20px 0 24px;text-align:left;font-size:14px;color:var(--text-dim);line-height:2;">
         <li>&#10003; All 50 states + DC — investor scores, interest rates, redemption periods</li>
         <li>&#10003; Step-by-step auction signup guides with direct platform links</li>
-        <li>&#10003; 3,000+ county-level links to tax offices, assessors & GIS</li>
+        <li>&#10003; County-level links to tax offices, assessors & GIS maps</li>
         <li>&#10003; OTC (over-the-counter) availability for every state</li>
         <li>&#10003; Due diligence checklists and risk breakdowns per state</li>
         <li>&#10003; AI Research Advisor (Sage) — ask anything, get sourced answers</li>
@@ -5334,7 +5311,7 @@ a { color: inherit; text-decoration: none; }
 
       <!-- WHY NOW -->
       <div id="gate-price-urgency" style="font-size:13px;color:var(--accent);font-weight:600;margin-bottom:12px;letter-spacing:0.04em;">
-        Founding rate locks in at $97. When we hit 500 members, the price goes to $297.
+        Introductory rate — $97 one-time. Price subject to change.
       </div>
 
       <!-- RISK REVERSAL -->
@@ -5397,11 +5374,6 @@ a { color: inherit; text-decoration: none; }
     <span class="lang-flag" id="lang-flag-icon"></span>
     <span class="lang-label" id="lang-label-text"></span>
   </button>
-
-  <!-- SOCIAL PROOF TICKER (ff_social_proof) -->
-  <div class="social-proof-ticker" id="social-proof-ticker" style="display:none;">
-    <span class="ticker-msg" id="ticker-msg"></span>
-  </div>
 
   <div class="main-content">
 
@@ -5921,7 +5893,7 @@ var FF = (function() {
     conversion_optimization: {
       type: TYPE_BOOLEAN,
       default: false,
-      description: 'Optimized gate flow with urgency triggers and social proof',
+      description: 'Optimized gate flow with conversion triggers',
       category: 'gate'
     },
     gate_layout: {
@@ -6015,12 +5987,6 @@ var FF = (function() {
       type: TYPE_BOOLEAN,
       default: false,
       description: 'Cache state data for offline access via Service Worker',
-      category: 'experiment'
-    },
-    social_proof_banner: {
-      type: TYPE_BOOLEAN,
-      default: false,
-      description: 'Show live purchase notifications toast',
       category: 'experiment'
     },
     gamification: {
@@ -6537,6 +6503,116 @@ function stripeUrl() {
 var ff_deal_tape = true;
 const FREE_STATES = new Set(['FL','IL','AZ']);
 
+// ── AccessManager ───────────────────────────────────────────
+// Single source of truth for paid/free access state.
+// All reads and writes to state.isPaid route through here.
+const AccessManager = {
+  /** Check if a state ID is accessible (free or paid) */
+  canAccess: function(stateId) {
+    return FREE_STATES.has(stateId) || state.isPaid;
+  },
+
+  /** Grant paid access — sets in-memory flag + persists to localStorage */
+  grant: function(token) {
+    state.isPaid = true;
+    storageSet('aug_paid', true);
+    if (token) storageSet('aug_token', token);
+  },
+
+  /** Revoke paid access — clears in-memory flag + localStorage */
+  revoke: function() {
+    state.isPaid = false;
+    storageSet('aug_paid', false);
+    try { localStorage.removeItem('aug_token'); } catch(e) {}
+  },
+
+  /** Restore access state from localStorage (safe fallback to false) */
+  restore: function() {
+    try {
+      var stored = localStorage.getItem('aug_paid');
+      state.isPaid = stored === 'true' || stored === true;
+    } catch(e) {
+      state.isPaid = false;
+    }
+  },
+
+  /** Revalidate access synchronously from localStorage (security check) */
+  revalidate: function() {
+    try {
+      var stored = localStorage.getItem('aug_paid');
+      state.isPaid = stored === 'true' || stored === true;
+    } catch(e) {
+      state.isPaid = false;
+    }
+  },
+
+  /** Read current paid status (read-only) */
+  isPaid: function() {
+    return state.isPaid;
+  }
+};
+
+// ── LanguageManager ─────────────────────────────────────────
+// Centralizes language state, toggle logic, and re-entrancy guard.
+const LanguageManager = {
+  _busy: false,
+
+  /** Get current language code ('en' or 'es') */
+  current: function() {
+    return state.lang;
+  },
+
+  /** Toggle between 'en' and 'es'. Re-entrancy safe. */
+  toggle: function() {
+    if (LanguageManager._busy) return;
+    LanguageManager._busy = true;
+
+    // Revalidate access before any language operation
+    AccessManager.revalidate();
+
+    state.lang = state.lang === 'en' ? 'es' : 'en';
+    storageSet('aurigen_lang', state.lang);
+
+    loadLanguageFile(state.lang).then(function() {
+      LanguageManager.apply();
+    }).catch(function(e) {
+      console.error('Failed to load language file:', e);
+      // Revert on failure
+      state.lang = state.lang === 'en' ? 'es' : 'en';
+      storageSet('aurigen_lang', state.lang);
+    }).finally(function() {
+      LanguageManager._busy = false;
+    });
+  },
+
+  /** Apply current language to STATES array (does NOT re-render UI) */
+  apply: function() {
+    AccessManager.revalidate();
+    STATES = state.lang === 'es' && window.STATES_ES ? window.STATES_ES : (window.STATES_EN || []);
+  },
+
+  /** Restore language preference from localStorage */
+  restore: function() {
+    var saved = storageGet('aurigen_lang', 'en');
+    state.lang = (saved === 'es') ? 'es' : 'en';
+  }
+};
+
+// ── NavManager ──────────────────────────────────────────────
+// Derives tab/content visibility from AccessManager.
+// Every content-gating check routes through here.
+const NavManager = {
+  /** Can user view this state's content? (free state OR paid user) */
+  canViewState: function(stateId) {
+    return AccessManager.canAccess(stateId);
+  },
+
+  /** Is user on the paid tier? Shorthand for content gates. */
+  hasPaidAccess: function() {
+    return AccessManager.isPaid();
+  }
+};
+
 // (P1 conversion flags merged into var FF FLAG_DEFINITIONS above)
 
 // ── Type helpers ─────────────────────────────────────────────
@@ -6581,8 +6657,8 @@ const I18N = {
     heroEmailError: 'Please enter a valid email address.',
     gateScrollText: 'Scroll',
     // Gate - Stats
-    gateStatLabel1: 'States + DC Covered',
-    gateStatLabel2: 'Taxing Jurisdictions',
+    gateStatLabel1: '50 States + DC',
+    gateStatLabel2: 'Auction Calendars',
     gateStatLabel3: 'Free States to Start',
     // Gate - Features
     gateFeaturesTitle: 'What You Get',
@@ -6600,7 +6676,7 @@ const I18N = {
     gateFeature6Desc: 'Know which states are beginner-friendly and which to avoid',
     // Gate - Price
     gatePriceCommunity: 'Join the Aurigen Collective — a growing community of tax lien & deed investors',
-    gatePriceNote: 'One-time payment · Founding Member Rate · Access for the life of the product',
+    gatePriceNote: 'One-time payment · Introductory rate · Lifetime access',
     // Gate - Email
     gateEmailTitle: 'Start Free — Explore 3 States',
     gateEmailDesc: 'Enter your email to unlock Florida, Illinois, and Arizona — no credit card required.',
@@ -6774,7 +6850,7 @@ const I18N = {
     paywallTitle: 'Unlock Full Access',
     paywallSub: 'Get verified data on all 50 states - interest rates, redemption periods, auction signup guides, OTC availability, county links, and investor scores.',
     paywallPrice: '$97',
-    paywallPriceNote: 'One-time payment · Founding Member Rate · Access for the life of the product',
+    paywallPriceNote: 'One-time payment · Introductory rate · Lifetime access',
     paywallCta: 'Get Full Access \u2014 $97',
     paywallHaveCode: 'Already have an access code?',
     paywallEnterCode: 'Enter it here',
@@ -6833,6 +6909,7 @@ const I18N = {
     dtExplore: 'Explore',
     dtUnlock: 'Unlock Full Analysis',
     dtSwipe: 'Swipe for next deal',
+    dtDisclaimer: 'These scenarios are hypothetical illustrations based on publicly available state data. They are not predictions, guarantees, or investment advice. Actual returns depend on property conditions, local market factors, and legal variables not modeled here. Always verify with official county sources and consult a licensed professional before investing.',
     dtBeginnerYes: 'Beginner OK',
     dtBeginnerNo: 'Advanced',
     dtInvestorScore: 'Investor Score',
@@ -6933,9 +7010,6 @@ const I18N = {
     auctionFreeState: 'FREE',
     auctionUnlockDetails: 'Unlock to see details',
     auctionPlatform: 'Platform',
-    // Social Proof
-    socialProofMsg1: 'investors researching',
-    socialProofMsg2: 'right now',
     // Shareable Cards
     shareBtn: 'Share',
     shareCardScore: 'Investor Score',
@@ -6976,8 +7050,8 @@ const I18N = {
     heroEmailError: 'Por favor ingresa un correo valido.',
     gateScrollText: 'Desplazar',
     // Gate - Stats
-    gateStatLabel1: 'Estados + DC Cubiertos',
-    gateStatLabel2: 'Jurisdicciones Fiscales',
+    gateStatLabel1: '50 Estados + DC',
+    gateStatLabel2: 'Calendarios de Subasta',
     gateStatLabel3: 'Estados Gratis para Empezar',
     // Gate - Features
     gateFeaturesTitle: 'Lo Que Obtienes',
@@ -6995,7 +7069,7 @@ const I18N = {
     gateFeature6Desc: 'Conoce cuales estados son aptos para principiantes y cuales evitar',
     // Gate - Price
     gatePriceCommunity: 'Unete al Colectivo Aurigen — una comunidad creciente de inversores en gravamenes y escrituras fiscales',
-    gatePriceNote: 'Pago unico · Tarifa de Miembro Fundador · Acceso durante la vida del producto',
+    gatePriceNote: 'Pago unico · Tarifa introductoria · Acceso de por vida',
     // Gate - Email
     gateEmailTitle: 'Comienza Gratis — Explora 3 Estados',
     gateEmailDesc: 'Ingresa tu correo para desbloquear Florida, Illinois y Arizona — sin tarjeta de credito.',
@@ -7169,7 +7243,7 @@ const I18N = {
     paywallTitle: 'Desbloquear Acceso Completo',
     paywallSub: 'Obtenga datos verificados de los 50 estados - tasas de interes, periodos de redencion, guias de registro de subastas, disponibilidad OTC, enlaces de condados y puntajes de inversor.',
     paywallPrice: '$97',
-    paywallPriceNote: 'Pago unico · Tarifa de Miembro Fundador · Acceso durante la vida del producto',
+    paywallPriceNote: 'Pago unico · Tarifa introductoria · Acceso de por vida',
     paywallCta: 'Acceso Completo \u2014 $97',
     paywallHaveCode: 'Ya tiene un codigo de acceso?',
     paywallEnterCode: 'Ingreselo aqui',
@@ -7228,6 +7302,7 @@ const I18N = {
     dtExplore: 'Explorar',
     dtUnlock: 'Desbloquear Analisis Completo',
     dtSwipe: 'Desliza para la siguiente oferta',
+    dtDisclaimer: 'Estos escenarios son ilustraciones hipoteticas basadas en datos estatales publicos. No son predicciones, garantias ni asesoramiento de inversion. Los rendimientos reales dependen de las condiciones de la propiedad, factores del mercado local y variables legales no modeladas aqui. Siempre verifique con fuentes oficiales del condado y consulte a un profesional autorizado antes de invertir.',
     dtBeginnerYes: 'Para Principiantes',
     dtBeginnerNo: 'Avanzado',
     dtInvestorScore: 'Puntaje de Inversor',
@@ -7328,9 +7403,6 @@ const I18N = {
     auctionFreeState: 'GRATIS',
     auctionUnlockDetails: 'Desbloquear para ver detalles',
     auctionPlatform: 'Plataforma',
-    // Social Proof
-    socialProofMsg1: 'inversores investigando',
-    socialProofMsg2: 'ahora mismo',
     // Shareable Cards
     shareBtn: 'Compartir',
     shareCardScore: 'Puntaje de Inversor',
@@ -7365,7 +7437,6 @@ var FEATURE_FLAGS = {
   ff_return_visit: true,
   ff_premium_onboarding: true,
   ff_auction_pulse: true,
-  ff_social_proof: true,
   ff_shareable_cards: true,
   ff_qr_code: true
 };
@@ -7526,7 +7597,7 @@ function applyLanguage() {
         if (!sid) return;
         var s = stateMap[sid];
         if (!s) return;
-        var isFree = FREE_STATES.has(sid) || state.isPaid;
+        var isFree = NavManager.canViewState(sid);
         d3.select(this)
           .style('opacity', isFree ? 1 : 0.25)
           .attr('filter', isFree ? 'url(#state-glow)' : null);
@@ -7541,13 +7612,11 @@ function applyLanguage() {
 
     // Re-render Phase 2 features on language switch
     if (typeof buildAuctionPulse === 'function') buildAuctionPulse();
-    if (typeof initSocialProofTicker === 'function') initSocialProofTicker();
     if (typeof buildQrCode === 'function') buildQrCode();
-    if (typeof updateTickerMessage === 'function') updateTickerMessage();
 
     // If modal is open, refresh it
     if (state.activeState) {
-      const isFree = FREE_STATES.has(state.activeState) || state.isPaid;
+      const isFree = NavManager.canViewState(state.activeState);
       if (isFree) openState(state.activeState);
       else openPaywall(state.activeState);
     }
@@ -8158,7 +8227,7 @@ function setupMobileCodeTrigger() {
   });
 }
 
-// Animate gate stats when scrolled into view — wire to real data
+// Animate gate stats when scrolled into view — derived from real STATES data
 function animateGateStats(retryCount) {
   var statsSection = document.getElementById('gate-stats-section');
   if (!statsSection) return;
@@ -8175,43 +8244,25 @@ function animateGateStats(retryCount) {
     return;
   }
 
-  // Fallback: even if data never loaded, still show hardcoded targets from HTML
-  if (statesData.length === 0) {
-    // Use the data-target values already in the HTML (51, 3000, 3)
-    var fallbackNumbers = statsSection.querySelectorAll('.gate-stat-number');
-    fallbackNumbers.forEach(function(el) {
-      var target = parseInt(el.dataset.target, 10) || 0;
-      var suffix = el.dataset.suffix || '';
-      if (target > 0) animateNumber(el, target, suffix, 1500);
-    });
-    return;
-  }
+  // If data never loaded after all retries, leave placeholders — do not show fabricated numbers
+  if (statesData.length === 0) return;
 
-  var stateCount = statesData.length || 51;
-  var jurisdictionCount = 0;
-  statesData.forEach(function(s) {
-    if (s.counties && Array.isArray(s.counties)) {
-      jurisdictionCount += s.counties.length;
-    }
-  });
-  // Floor to nearest 100 for cleaner display, minimum 3000
-  if (jurisdictionCount < 3000) jurisdictionCount = 3000;
-  else jurisdictionCount = Math.floor(jurisdictionCount / 100) * 100;
-
-  var freeStates = ['FL','IL','AZ'];
-  var freeCount = freeStates.length;
+  // Derive counts from actual data
+  var stateCount = statesData.length;
+  var calendarCount = stateCount; // One auction calendar per state/territory
+  var freeCount = FREE_STATES.size;
 
   // Update data-target attributes with real values
   var statNumbers = statsSection.querySelectorAll('.gate-stat-number');
   if (statNumbers[0]) statNumbers[0].dataset.target = stateCount;
-  if (statNumbers[1]) { statNumbers[1].dataset.target = jurisdictionCount; statNumbers[1].dataset.suffix = '+'; }
+  if (statNumbers[1]) statNumbers[1].dataset.target = calendarCount;
   if (statNumbers[2]) statNumbers[2].dataset.target = freeCount;
 
   function fireCounters() {
     statNumbers.forEach(function(el) {
       var target = parseInt(el.dataset.target, 10) || 0;
       var suffix = el.dataset.suffix || '';
-      animateNumber(el, target, suffix, 1500);
+      if (target > 0) animateNumber(el, target, suffix, 1500);
     });
   }
 
@@ -8283,7 +8334,7 @@ async function submitCode() {
   input.disabled = true;
   errorEl.classList.remove('show');
 
-  // ALL code validation is server-side only — no client-side secrets
+  // All code validation is server-side only — no client-side secrets
   try {
     const res = await fetch(NETLIFY_FN, {
       method: 'POST',
@@ -8448,7 +8499,7 @@ function buildStateList() {
   });
 
   container.innerHTML = sorted.map(s => {
-    const isFree = FREE_STATES.has(s.id) || state.isPaid;
+    const isFree = NavManager.canViewState(s.id);
     const badgeClass = typeBadgeClass(s.type);
     const typeLabel = typeShortLabel(s.type);
     const scoreClass = (s.score >= 75) ? 'state-list-score high-score' : 'state-list-score';
@@ -8604,20 +8655,20 @@ async function initMap() {
     function getColor(sid) {
       const s = stateMap[sid];
       if (!s) return mapColors.state;
-      const isFree = FREE_STATES.has(sid) || state.isPaid;
+      const isFree = NavManager.canViewState(sid);
       return typeMapColor(s.type, isFree, mapColors);
     }
 
     function getOpacity(sid) {
       const s = stateMap[sid];
       if (!s) return 0.15;
-      return (FREE_STATES.has(sid) || state.isPaid) ? 1 : 0.55;
+      return NavManager.canViewState(sid) ? 1 : 0.55;
     }
 
     function getGlowFilter(sid) {
       const s = stateMap[sid];
       if (!s) return null;
-      if (!(FREE_STATES.has(sid) || state.isPaid)) return null;
+      if (!NavManager.canViewState(sid)) return null;
       var k = typeKey(s.type);
       return 'url(#glow-' + k + ')';
     }
@@ -8636,7 +8687,7 @@ async function initMap() {
         var s = stateMap[sid];
         var cls = 'state-shape';
         if (s) cls += ' state-type-' + typeKey(s.type);
-        if (sid && !(FREE_STATES.has(sid) || state.isPaid)) cls += ' state-locked';
+        if (sid && !NavManager.canViewState(sid)) cls += ' state-locked';
         return cls;
       })
       .attr('d', path)
@@ -8688,7 +8739,7 @@ async function initMap() {
     g.selectAll('path.state-lock-overlay')
       .data(features.filter(function(d) {
         var sid = fipsToId[String(d.id).padStart(2,'0')];
-        return sid && !(FREE_STATES.has(sid) || state.isPaid);
+        return sid && !NavManager.canViewState(sid);
       }))
       .enter().append('path')
       .attr('class', 'state-lock-overlay')
@@ -8727,7 +8778,7 @@ async function initMap() {
       const off = LABEL_OFFSETS[sid] || [0, 0];
       const cx = c[0] + off[0], cy = c[1] + off[1];
 
-      const isFree = FREE_STATES.has(sid) || state.isPaid;
+      const isFree = NavManager.canViewState(sid);
       const s = stateMap[sid];
       const score = (s && isFree) ? s.score : null;
       const labelColor = isFree ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.35)';
@@ -8780,7 +8831,7 @@ async function initMap() {
 function updateMapLockState() {
   var mc = document.getElementById('map-container');
   if (!mc) return;
-  if (state.isPaid) {
+  if (NavManager.hasPaidAccess()) {
     mc.classList.remove('map-locked');
   } else {
     mc.classList.add('map-locked');
@@ -8797,7 +8848,7 @@ function openState(id) {
   // ff_return_visit: store last viewed state for return visit recognition
   try { storageSet('aug_last_viewed_state', id); } catch(e) {}
 
-  const isPaid = state.isPaid;
+  const isPaid = NavManager.hasPaidAccess();
   const isFreeState = FREE_STATES.has(id);
   const isSaved = state.savedStates.includes(id);
 
@@ -8805,7 +8856,7 @@ function openState(id) {
   trackEvent('state_open', { state_id: id, state_name: s.name, is_free: isFreeState, is_paid: isPaid });
 
   // Locked states (not free, not paid) → straight to paywall
-  if (!isFreeState && !isPaid) { dnaTrackEvent('locked_click'); openPaywall(id); return; }
+  if (!NavManager.canViewState(id)) { dnaTrackEvent('locked_click'); openPaywall(id); return; }
 
   // Track state view for DNA behavior
   dnaTrackEvent('state_view', { id: s.id, type: s.type });
@@ -9243,7 +9294,7 @@ function buildSpotlight() {
   if (!container || !STATES || STATES.length === 0) return;
 
   const top = [...STATES]
-    .filter(s => FREE_STATES.has(s.id) || state.isPaid)
+    .filter(s => NavManager.canViewState(s.id))
     .sort((a, b) => b.score - a.score)
     .slice(0, 10);
 
@@ -9280,7 +9331,7 @@ function buildDealTape() {
   var container = document.getElementById('deal-tape-feed');
   if (!container || !STATES || STATES.length === 0) return;
 
-  if (!state.isPaid) {
+  if (!NavManager.hasPaidAccess()) {
     container.innerHTML =
       '<div class="deal-tape-card" style="filter:blur(6px);pointer-events:none;opacity:0.5;">' +
         '<div class="deal-tape-inner" style="padding:24px;">' +
@@ -9305,7 +9356,7 @@ function buildDealTape() {
   var total = scenarios.length;
 
   container.innerHTML = scenarios.map(function(sc, idx) {
-    var isFree = FREE_STATES.has(sc.stateId) || state.isPaid;
+    var isFree = NavManager.canViewState(sc.stateId);
     var scoreClass = sc.score >= 70 ? 'high' : sc.score >= 40 ? 'mid' : 'low';
     var beginnerClass = sc.beginnerFriendly ? 'yes' : 'no';
     var beginnerLabel = sc.beginnerFriendly ? t('dtBeginnerYes') : t('dtBeginnerNo');
@@ -9349,6 +9400,11 @@ function buildDealTape() {
       (idx === 0 ? '<div class="deal-tape-swipe-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg><span>' + t('dtSwipe') + '</span></div>' : '') +
     '</div>';
   }).join('');
+
+  // Append educational disclaimer (FTC compliance)
+  container.innerHTML += '<div style="text-align:center;padding:24px 20px 32px;font-size:11px;color:var(--text-muted);line-height:1.6;max-width:480px;margin:0 auto;">' +
+    t('dtDisclaimer') +
+    '</div>';
 
   // Animate outcome bars on scroll into view
   requestAnimationFrame(function() { animateDealTapeBars(container); });
@@ -9682,7 +9738,7 @@ function buildProfileRecs() {
   if (strat.includes('beginner')) filtered = filtered.filter(s => s.beginnerFriendly);
 
   const top = filtered
-    .filter(s => FREE_STATES.has(s.id) || state.isPaid)
+    .filter(s => NavManager.canViewState(s.id))
     .sort((a, b) => b.score - a.score)
     .slice(0, 5);
 
@@ -9722,7 +9778,7 @@ function setResultValue(id, text, colorClass) {
 }
 
 function calcAnalyzer() {
-  if (!state.isPaid) {
+  if (!NavManager.hasPaidAccess()) {
     var resultArea = document.getElementById('az-return');
     if (resultArea && resultArea.parentElement) {
       var wrap = resultArea.closest('.calc-results') || resultArea.parentElement;
@@ -9814,7 +9870,7 @@ function calcAnalyzer() {
 // ── AI Advisor ────────────────────────────────────────────────
 async function sendAdvisorMessage() {
   dnaTrackEvent('ai_question');
-  if (!state.isPaid) {
+  if (!NavManager.hasPaidAccess()) {
     appendAdvisorMsg('sage', 'Sage is a paid feature. Unlock full access to ask Sage anything about all 50 states.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;">UNLOCK NOW</a><br><span style="font-size:12px;color:var(--text-dim);">' + t('paywallHaveCode') + ' <button onclick="showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">' + t('paywallEnterCode') + '</button></span>');
     return;
   }
@@ -9831,7 +9887,7 @@ async function sendAdvisorMessage() {
 
   // Analytics: sage_conversation_start (first message only)
   if (state.advisorHistory.length === 0) {
-    trackEvent('sage_conversation_start', { is_free_user: !state.isPaid });
+    trackEvent('sage_conversation_start', { is_free_user: !NavManager.hasPaidAccess() });
   }
 
   // Add user message
@@ -9839,7 +9895,7 @@ async function sendAdvisorMessage() {
   state.advisorHistory.push({ role: 'user', content: msg });
 
   // ff_free_ai_messages: increment Sage message count for free users
-  if (!state.isPaid && ffEnabled('ff_free_ai_messages')) {
+  if (!NavManager.hasPaidAccess() && ffEnabled('ff_free_ai_messages')) {
     storageSet('aug_ai_sage_count', storageGet('aug_ai_sage_count', 0) + 1);
   }
 
@@ -9931,7 +9987,7 @@ function populateVersusDropdowns() {
     sorted.forEach(function(s) {
       var opt = document.createElement('option');
       opt.value = s.id;
-      var isFree = FREE_STATES.has(s.id) || state.isPaid;
+      var isFree = NavManager.canViewState(s.id);
       opt.textContent = s.name + (isFree ? '' : ' \uD83D\uDD12');
       sel.appendChild(opt);
     });
@@ -9951,7 +10007,7 @@ function runVersus() {
     return;
   }
 
-  if (!state.isPaid) {
+  if (!NavManager.hasPaidAccess()) {
     showFeaturePaywall('vs-result', t('vsPaywallMsg'));
     return;
   }
@@ -9960,8 +10016,8 @@ function runVersus() {
   var sB = STATES.find(function(s) { return s.id === idB; });
   if (!sA || !sB) return;
 
-  var freeA = FREE_STATES.has(idA) || state.isPaid;
-  var freeB = FREE_STATES.has(idB) || state.isPaid;
+  var freeA = NavManager.canViewState(idA);
+  var freeB = NavManager.canViewState(idB);
 
   var html = '<div class="vs-table">';
   var winsA = 0;
@@ -10526,7 +10582,7 @@ function updateDebug() {
   if (!content) return;
   content.innerHTML = `
     ${t('debugEntered')}: ${state.entered}<br>
-    ${t('debugIsPaid')}: ${state.isPaid}<br>
+    ${t('debugIsPaid')}: ${NavManager.hasPaidAccess()}<br>
     ${t('debugActiveTab')}: ${state.activeTab}<br>
     ${t('debugActiveState')}: ${state.activeState || t('debugNone')}<br>
     ${t('debugSavedStates')}: [${state.savedStates.join(', ')}]<br>
@@ -10604,7 +10660,7 @@ function buildStatePulse() {
   var html = '';
   sorted.forEach(function(s) {
     var tc = s.tylerCompliance || { status: 'pending', summary: '' };
-    var isFree = FREE_STATES.has(s.id) || state.isPaid;
+    var isFree = NavManager.canViewState(s.id);
     var summaryText = tc.summary || '';
     var lockIcon = !isFree ? '<svg class="pulse-lock-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>' : '';
 
@@ -10624,7 +10680,7 @@ function buildTylerComplianceHTML(s) {
   var tc = s.tylerCompliance;
   if (!tc) return '';
 
-  var isFree = FREE_STATES.has(s.id) || state.isPaid;
+  var isFree = NavManager.canViewState(s.id);
   var statusLabel = tc.status === 'compliant' ? t('tylerCompliant') : tc.status === 'non-compliant' ? t('tylerNonCompliant') : t('tylerPending');
   var badgeDot = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' +
     (tc.status === 'compliant' ? 'var(--green)' : tc.status === 'non-compliant' ? 'var(--red)' : 'var(--accent)') + '"></span>';
@@ -10758,7 +10814,7 @@ function dnaSelectOption(qIdx, optIdx) {
 function dnaQuizNext() {
   if (state.dnaAnswers[state.dnaQuizStep] === null) return;
   // Gate after first question for free users
-  if (!state.isPaid && state.dnaQuizStep >= 0) {
+  if (!NavManager.hasPaidAccess() && state.dnaQuizStep >= 0) {
     showFeaturePaywall('dna-quiz-area', 'Complete your investor profile with full access.');
     return;
   }
@@ -11016,7 +11072,7 @@ function dnaRenderTopStates() {
   container.innerHTML = matched.map(function(m) {
     const s = m.state;
     const pct = Math.round(m.score);
-    const isFree = FREE_STATES.has(s.id) || state.isPaid;
+    const isFree = NavManager.canViewState(s.id);
     const clickAction = isFree ? "openState('" + s.id + "')" : "openPaywall('" + s.id + "')";
     const tLabel = typeShortLabel(s.type);
     return '<div class="dna-state-card" onclick="' + clickAction + '">' +
@@ -11109,7 +11165,7 @@ function pathwayRenderStep() {
     } else {
       // Quiz not taken — show fallback top 3 states by beginner score
       var fallbackStates = (STATES || []).filter(function(s) {
-        return FREE_STATES.has(s.id) || state.isPaid;
+        return NavManager.canViewState(s.id);
       }).sort(function(a, b) { return b.score - a.score; }).slice(0, 3);
 
       var fallbackCards = '';
@@ -11428,7 +11484,7 @@ function buildAuctionPulse() {
   if (titleEl) titleEl.textContent = t('auctionTitle');
   if (subEl) subEl.textContent = t('auctionSub');
 
-  if (!state.isPaid) {
+  if (!NavManager.hasPaidAccess()) {
     showFeaturePaywall('auction-list', 'Unlock to see upcoming auctions in your target states.');
     return;
   }
@@ -11445,7 +11501,7 @@ function buildAuctionPulse() {
     var aDate = getAuctionDate(s.id);
     var daysLeft = getDaysUntil(aDate);
     var filterType = getAuctionTypeFilter(s.type);
-    var isFree = FREE_STATES.has(s.id) || state.isPaid;
+    var isFree = NavManager.canViewState(s.id);
     return { state: s, auctionDate: aDate, daysLeft: daysLeft, filterType: filterType, isFree: isFree };
   });
 
@@ -11462,7 +11518,7 @@ function buildAuctionPulse() {
     var badgeClass = typeBadgeClass(s.type);
     var typeLabel = typeShortLabel(s.type);
     var daysText = item.daysLeft === 1 ? t('auctionDayLeft') : t('auctionDaysLeft');
-    var freeBadge = (FREE_STATES.has(s.id) && !state.isPaid)
+    var freeBadge = (FREE_STATES.has(s.id) && !NavManager.hasPaidAccess())
       ? '<span class="auction-card-star">&#9733; ' + t('auctionFreeState') + '</span>'
       : '';
     var platformName = s.auctionSignup && s.auctionSignup.platform ? s.auctionSignup.platform : '';
@@ -11499,42 +11555,7 @@ function initAuctionPulse() {
 }
 
 // ═══════════════════════════════════════════════════════════
-//  FEATURE 2: SOCIAL PROOF TICKER
-//  Feature flag: ff_social_proof
-// ═══════════════════════════════════════════════════════════
-
-var _tickerInterval = null;
-
-function initSocialProofTicker() {
-  if (!ffEnabled('ff_social_proof')) return;
-  if (!state.entered) return;
-  var ticker = document.getElementById('social-proof-ticker');
-  if (!ticker) return;
-  ticker.style.display = '';
-  updateTickerMessage();
-  if (_tickerInterval) clearInterval(_tickerInterval);
-  _tickerInterval = setInterval(function() {
-    var msg = document.getElementById('ticker-msg');
-    if (!msg) return;
-    msg.classList.add('fade-out');
-    setTimeout(function() {
-      updateTickerMessage();
-      msg.classList.remove('fade-out');
-    }, 500);
-  }, 4000);
-}
-
-function updateTickerMessage() {
-  if (!STATES || STATES.length === 0) return;
-  var msg = document.getElementById('ticker-msg');
-  if (!msg) return;
-  var randomState = STATES[Math.floor(Math.random() * STATES.length)];
-  var count = Math.floor(Math.random() * 451) + 50; // 50-500
-  msg.textContent = count + ' ' + t('socialProofMsg1') + ' ' + randomState.name + ' ' + t('socialProofMsg2');
-}
-
-// ═══════════════════════════════════════════════════════════
-//  FEATURE 3: SHAREABLE STATE CARDS
+//  FEATURE 2: SHAREABLE STATE CARDS
 //  Feature flag: ff_shareable_cards
 // ═══════════════════════════════════════════════════════════
 
@@ -11631,7 +11652,7 @@ function downloadBlob(blob, fileName) {
 }
 
 // ═══════════════════════════════════════════════════════════
-//  FEATURE 4: QR CODE GENERATOR
+//  FEATURE 3: QR CODE GENERATOR
 //  Feature flag: ff_qr_code
 //  Generates a QR-like SVG pattern (visual representation)
 // ═══════════════════════════════════════════════════════════
@@ -11853,7 +11874,6 @@ function initA2hs() {
   function initNewFeatures() {
     if (!state.entered) return;
     initAuctionPulse();
-    initSocialProofTicker();
     buildQrCode();
     initA2hs();
   }
