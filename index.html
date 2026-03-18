@@ -5161,9 +5161,9 @@ a { color: inherit; text-decoration: none; }
       <div class="gate-eyebrow" id="gate-eyebrow">The Investor's Edge</div>
       <div class="gate-logo">AURI<span>GEN</span></div>
       <div class="gate-sub" id="gate-sub">County Resource Directory</div>
-      <div class="gate-tagline" id="gate-tagline">Aurigen doesn't just tell you the rules.<br>It tells you when they change.</div>
+      <div class="gate-tagline" id="gate-tagline">Auction schedules, interest rates, and redemption periods — all in one place.</div>
       <div class="gate-description" id="gate-description">Auction signups, interest rates, redemption periods, county links, investor scores, and beginner tips — all in one place.</div>
-      <div id="beginner-reassurance" style="margin-top:12px;font-size:13px;color:#34e0cc;font-weight:500;letter-spacing:0.02em;opacity:0;animation:fadeUp 0.6s 0.85s ease forwards;">New to tax liens? Good — every state is rated for beginner-friendliness, and Sage (our AI advisor) answers any question you have, plain English.</div>
+      <div id="beginner-reassurance" style="margin-top:12px;font-size:13px;color:var(--accent);font-weight:500;letter-spacing:0.02em;opacity:0;animation:fadeUp 0.6s 0.85s ease forwards;">Every state is rated for beginner-friendliness. Paid members get Sage, our AI research advisor, for plain-English answers on any state.</div>
       <button class="gate-hero-cta" id="gate-enter-btn" onclick="handleGateEnter()">Explore the Directory Free</button>
       <div class="hero-email-or" id="hero-email-or">or</div>
       <div class="hero-email-wrap">
@@ -5260,8 +5260,11 @@ a { color: inherit; text-decoration: none; }
       />
       <button class="gate-email-submit" id="gate-email-submit" onclick="handleEmailGate()">Unlock Free Access</button>
       <div class="gate-email-error" id="gate-email-error"></div>
-      <p class="gate-email-fine" id="gate-email-fine">We'll send you investor tips. Unsubscribe anytime.</p>
-      <p class="gate-email-consent" id="gate-email-consent">By entering your email, you agree to our <a onclick="openLegalModal('tos')">Terms of Service</a> and <a onclick="openLegalModal('privacy')">Privacy Policy</a>.</p>
+      <label class="gate-email-consent-check" id="gate-email-consent-check" style="display:flex;align-items:flex-start;gap:8px;margin-top:10px;font-size:12px;color:var(--text-dim);cursor:pointer;text-align:left;">
+        <input type="checkbox" id="gate-email-consent-cb" style="margin-top:2px;accent-color:var(--accent);flex-shrink:0;">
+        <span>I agree to receive investor tips and updates from Aurigen. Unsubscribe anytime.</span>
+      </label>
+      <p class="gate-email-consent" id="gate-email-consent">By entering your email, you agree to our <a onclick="openLegalModal('tos')" style="color:var(--accent);cursor:pointer;">Terms of Service</a> and <a onclick="openLegalModal('privacy')" style="color:var(--accent);cursor:pointer;">Privacy Policy</a>.</p>
     </div>
     <div class="gate-code-toggle">
       <span id="gate-code-toggle-text">Already have an access code?</span>
@@ -5286,15 +5289,13 @@ a { color: inherit; text-decoration: none; }
 
   <!-- Section 5: Price Anchor — paid upgrade after free email gate -->
   <section class="gate-price gate-section" id="gate-price-section">
-    <div class="gate-price-community" id="gate-price-community">Join the Aurigen Collective — a growing community of tax lien & deed investors</div>
+    <div class="gate-price-community" id="gate-price-community">Join the Aurigen Collective — a community of tax lien & deed investors</div>
     <div class="gate-price-card" id="gate-price-card">
       <div class="gate-price-card-glow"></div>
       <div class="gate-price-badge" id="gate-price-badge">INTRODUCTORY RATE</div>
       <div class="gate-price-display">
-        <span class="gate-price-old">$297</span>
         <span class="gate-price-current">$97</span>
       </div>
-      <div class="gate-price-savings">SAVE $200</div>
 
       <!-- WHAT YOU GET LIST -->
       <ul id="gate-price-includes" style="list-style:none;padding:0;margin:20px 0 24px;text-align:left;font-size:14px;color:var(--text-dim);line-height:2;">
@@ -5306,7 +5307,7 @@ a { color: inherit; text-decoration: none; }
         <li>&#10003; AI Research Advisor (Sage) — ask anything, get sourced answers</li>
         <li>&#10003; Deal Analyzer — calculate ROI on any lien or deed investment</li>
         <li>&#10003; Bilingual access (English + Spanish)</li>
-        <li>&#10003; Lifetime updates — data verified and refreshed quarterly</li>
+        <li>&#10003; Data reviewed and updated regularly from official government sources</li>
       </ul>
 
       <!-- WHY NOW -->
@@ -5316,7 +5317,7 @@ a { color: inherit; text-decoration: none; }
 
       <!-- RISK REVERSAL -->
       <div id="gate-price-guarantee" style="font-size:13px;color:var(--text-dim);margin-bottom:20px;line-height:1.6;">
-        Not sure yet? Start with 3 free states. If the full directory doesn't meet your expectations within 30 days, email <a href="mailto:support@theaurigen.com" style="color:var(--accent);text-decoration:underline;">support@theaurigen.com</a> and we'll work with you to make it right — including a full refund if needed. <a href="#" onclick="openLegalModal('tos');return false;" style="color:var(--accent);text-decoration:underline;">See our refund policy for details.</a>
+        Not sure yet? Start with 3 free states. If the full directory doesn't meet your expectations within 30 days, email <a href="mailto:support@theaurigen.com" style="color:var(--accent);text-decoration:underline;">support@theaurigen.com</a> and we'll work with you to make it right — including a full refund if needed. <a href="#" onclick="openLegalModal('refund');return false;" style="color:var(--accent);text-decoration:underline;">See our refund policy for details.</a>
       </div>
 
       <div class="gate-price-note" id="gate-price-note">One-time payment · Access for the life of the product · No recurring fees</div>
@@ -5330,7 +5331,7 @@ a { color: inherit; text-decoration: none; }
 
     <!-- PRICE JUSTIFICATION -->
     <div id="price-justification" style="margin-top:20px;font-size:13px;color:var(--text-dim);line-height:1.7;max-width:440px;text-align:center;">
-      A single title search costs $75–$150. One bad bid on the wrong county costs thousands. Aurigen gives you the research layer that helps you avoid common pitfalls — for every state, for less than the cost of one due diligence report.
+      Professional due diligence services typically cost hundreds per property. Aurigen gives you the research layer for less — auction schedules, interest rates, redemption periods, and county links for all 50 states + DC.
     </div>
   </section>
 
@@ -5706,7 +5707,8 @@ a { color: inherit; text-decoration: none; }
     <span style="font-size:10px;color:var(--text-muted);line-height:1.5;">Aurigen Directory is a research reference tool, not investment, legal, or tax advice. Always consult a qualified professional and conduct independent due diligence before making any investment decision.</span>
     <br><br>
     <a href="#" onclick="openLegalModal('tos');return false;" id="footer-tos-link">Terms of Service</a> |
-    <a href="#" onclick="openLegalModal('privacy');return false;" id="footer-privacy-link">Privacy Policy</a> | © 2026 Aurigen Collective | <a href="/cdn-cgi/l/email-protection#f0bc919e949f9eb08498959185829997959ede939f9d" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="b1fdd0dfd5dedff1c5d9d4d0c4c3d8d6d4df9fd2dedc">[email&#160;protected]</span></a>
+    <a href="#" onclick="openLegalModal('privacy');return false;" id="footer-privacy-link">Privacy Policy</a> |
+    <a href="#" onclick="openLegalModal('refund');return false;" id="footer-refund-link">Refund Policy</a> | © 2026 Aurigen Collective | <a href="mailto:support@theaurigen.com" style="color:var(--accent)">support@theaurigen.com</a>
   </div>
 
   <!-- BOTTOM NAV -->
@@ -5812,7 +5814,24 @@ a { color: inherit; text-decoration: none; }
   </div>
 </div>
 
+<!-- REFUND POLICY MODAL -->
+<div id="refund-modal" class="legal-modal-overlay" onclick="if(event.target===this)closeLegalModal('refund')">
+  <div class="legal-modal-sheet">
+    <div class="legal-modal-header">
+      <div class="legal-modal-title" id="refund-modal-title">Refund Policy</div>
+      <button class="legal-modal-close" onclick="closeLegalModal('refund')">&#10005;</button>
+    </div>
+    <div class="legal-modal-body" id="refund-modal-body"></div>
+  </div>
+</div>
+
 <!-- Debug and feature flag panels removed for production -->
+
+<!-- COOKIE CONSENT BANNER -->
+<div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(13,13,13,0.97);border-top:1px solid var(--border);padding:14px 20px;z-index:998;align-items:center;justify-content:center;gap:16px;font-size:13px;color:var(--text-dim);">
+  <span>This site uses browser storage (cookies and localStorage) to remember your preferences and access status. <a href="#" onclick="openLegalModal('privacy');return false;" style="color:var(--accent);text-decoration:underline;">Privacy Policy</a></span>
+  <button onclick="acceptCookies()" style="background:var(--accent);color:#0d0d0d;border:none;padding:8px 20px;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;white-space:nowrap;letter-spacing:0.04em;">Accept</button>
+</div>
 
 <!-- ADMIN PANEL — Analytics Section (visible when ?admin=true) -->
 <div id="admin-panel-analytics" style="display:none;position:fixed;top:0;right:0;width:380px;max-width:90vw;height:100vh;background:var(--bg);border-left:1px solid var(--border);z-index:999;overflow-y:auto;padding:24px;box-shadow:-4px 0 24px rgba(0,0,0,0.6);">
@@ -6705,7 +6724,7 @@ const I18N = {
     gateFeature6Title: 'Beginner Ratings',
     gateFeature6Desc: 'Know which states are beginner-friendly and which to avoid',
     // Gate - Price
-    gatePriceCommunity: 'Join the Aurigen Collective — a growing community of tax lien & deed investors',
+    gatePriceCommunity: 'Join the Aurigen Collective — a community of tax lien & deed investors',
     gatePriceNote: 'One-time payment · Introductory rate · Lifetime access',
     // Gate - Email
     gateEmailTitle: 'Start Free — Explore 3 States',
@@ -6840,7 +6859,7 @@ const I18N = {
     vsWhySpreadsheetAurigen: 'Side-by-side comparison <span>built in</span> — always current',
     vsWhyCourseLabel: 'Paid Courses',
     vsWhyCourseAlt: '$500–$2,000 for info that goes stale in 6 months',
-    vsWhyCourseAurigen: '<span>$97 lifetime</span> — data refreshed quarterly',
+    vsWhyCourseAurigen: '<span>$97 one-time</span> — data updated regularly from official sources',
     vsWhyForumsLabel: 'Forums & Groups',
     vsWhyForumsAlt: 'Scattered tips, outdated threads, conflicting advice',
     vsWhyForumsAurigen: '<span>Statute-cited</span> data you can verify yourself',
@@ -7098,7 +7117,7 @@ const I18N = {
     gateFeature6Title: 'Calificaciones para Principiantes',
     gateFeature6Desc: 'Conoce cuales estados son aptos para principiantes y cuales evitar',
     // Gate - Price
-    gatePriceCommunity: 'Unete al Colectivo Aurigen — una comunidad creciente de inversores en gravamenes y escrituras fiscales',
+    gatePriceCommunity: 'Unete al Colectivo Aurigen — una comunidad de inversores en gravamenes y escrituras fiscales',
     gatePriceNote: 'Pago unico · Tarifa introductoria · Acceso de por vida',
     // Gate - Email
     gateEmailTitle: 'Comienza Gratis — Explora 3 Estados',
@@ -8069,6 +8088,9 @@ window.addEventListener('load', async () => {
       trackEvent('gate_view');
     }
 
+    // Cookie consent banner (show on first visit)
+    initCookieConsent();
+
     updateDebug();
   } catch(err) {
     console.error('Init error:', err);
@@ -8126,7 +8148,17 @@ function handleEmailGate() {
   const input = document.getElementById('gate-email-input');
   const errorEl = document.getElementById('gate-email-error');
   const submitBtn = document.getElementById('gate-email-submit');
+  const consentCb = document.getElementById('gate-email-consent-cb');
   const email = input ? input.value.trim() : '';
+
+  // Consent checkbox required
+  if (consentCb && !consentCb.checked) {
+    if (errorEl) {
+      errorEl.textContent = 'Please agree to receive updates to continue.';
+      errorEl.classList.add('show');
+    }
+    return;
+  }
 
   // Basic email regex validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -9027,9 +9059,7 @@ function openState(id) {
           <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.5;">
             Get auction signup steps, county links, full risks list, due diligence checklists, and OTC availability for all 50 states + DC.
           </div>
-          ${FF.isEnabled('paywall_price_anchor')
-            ? '<div class="paywall-price-anchor" style="margin-bottom:4px;"><span class="paywall-price-old">$297</span><span style="font-size:18px;font-weight:700;color:var(--accent);">$97</span></div>'
-            : '<div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>'}
+          <div style="font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;">$97</div>
           <div style="font-size:11px;color:var(--text-muted);margin-bottom:16px;">${t('paywallPriceNote')}</div>
           <a href="${stripeUrl()}" target="_blank" class="paywall-btn" onclick="if(typeof trackEvent==='function')trackEvent('paywall_cta_click',{state_id:'${s.id}'})">${t('paywallCta')}</a>
           <div style="font-size:12px;color:var(--text-dim);margin-top:12px;">
@@ -9211,17 +9241,8 @@ function openPaywall(id) {
     }
   }
 
-  // ── Price anchor (ff_paywall_price_anchor) ──
-  let priceHTML;
-  if (FF.isEnabled('paywall_price_anchor')) {
-    priceHTML = `
-      <div class="paywall-price-anchor">
-        <span class="paywall-price-old">$297</span>
-        <span class="paywall-price-current">${t('paywallPrice')}</span>
-      </div>`;
-  } else {
-    priceHTML = '<div class="paywall-price">' + t('paywallPrice') + '</div>';
-  }
+  // ── Price display ──
+  let priceHTML = '<div class="paywall-price">' + t('paywallPrice') + '</div>';
 
   document.getElementById('modal-header').innerHTML = `
     <div class="modal-state-name" style="color:var(--text-dim)">${name}</div>
@@ -10509,23 +10530,67 @@ var LEGAL_CONTENT = {
       '<h3>9. Contactenos</h3>' +
       '<p>Para preguntas relacionadas con privacidad o para ejercer sus derechos, escriba a <strong>support@theaurigen.com</strong>.</p>' +
       '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Ultima actualizacion: Marzo 2026</p>'
+  },
+  refund: {
+    en: '<h3>Refund Policy</h3>' +
+      '<p>Your satisfaction matters. If the Aurigen County Resource Directory does not meet your expectations, you may request a <strong>full refund within 30 days</strong> of purchase — no questions asked.</p>' +
+      '<h3>How to Request a Refund</h3>' +
+      '<p>Email <strong>support@theaurigen.com</strong> with your purchase email address and the word "refund" in the subject line. Refunds are processed within 5–7 business days.</p>' +
+      '<h3>Conditions</h3>' +
+      '<ul>' +
+      '<li>Refund requests must be submitted within 30 days of the original purchase date.</li>' +
+      '<li>After 30 days, all sales are final.</li>' +
+      '<li>Access to paid features will be revoked upon refund.</li>' +
+      '</ul>' +
+      '<h3>Contact</h3>' +
+      '<p>Questions? Email <strong>support@theaurigen.com</strong>.</p>' +
+      '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Last updated: March 2026</p>',
+    es: '<h3>Politica de Reembolso</h3>' +
+      '<p>Su satisfaccion importa. Si el Directorio de Recursos por Condado de Aurigen no cumple con sus expectativas, puede solicitar un <strong>reembolso completo dentro de los 30 dias</strong> posteriores a la compra — sin preguntas.</p>' +
+      '<h3>Como Solicitar un Reembolso</h3>' +
+      '<p>Envie un correo a <strong>support@theaurigen.com</strong> con su direccion de correo de compra y la palabra "reembolso" en el asunto. Los reembolsos se procesan en 5-7 dias habiles.</p>' +
+      '<h3>Condiciones</h3>' +
+      '<ul>' +
+      '<li>Las solicitudes de reembolso deben enviarse dentro de los 30 dias posteriores a la fecha de compra original.</li>' +
+      '<li>Despues de 30 dias, todas las ventas son finales.</li>' +
+      '<li>El acceso a funciones de pago se revocara tras el reembolso.</li>' +
+      '</ul>' +
+      '<h3>Contacto</h3>' +
+      '<p>Preguntas? Escriba a <strong>support@theaurigen.com</strong>.</p>' +
+      '<p style="margin-top:20px;font-size:11px;color:var(--text-muted);">Ultima actualizacion: Marzo 2026</p>'
   }
 };
 
 function openLegalModal(type) {
-  var modal = document.getElementById(type === 'tos' ? 'tos-modal' : 'privacy-modal');
+  var modal = document.getElementById(type + '-modal');
   if (!modal) return;
   var lang = state && state.lang ? state.lang : 'en';
-  var titleEl = document.getElementById(type === 'tos' ? 'tos-modal-title' : 'privacy-modal-title');
-  var bodyEl = document.getElementById(type === 'tos' ? 'tos-modal-body' : 'privacy-modal-body');
-  if (titleEl) titleEl.textContent = type === 'tos' ? t('tosTitle') : t('privacyTitle');
-  if (bodyEl) bodyEl.innerHTML = LEGAL_CONTENT[type][lang] || LEGAL_CONTENT[type]['en'];
+  var titleEl = document.getElementById(type + '-modal-title');
+  var bodyEl = document.getElementById(type + '-modal-body');
+  var titles = { tos: t('tosTitle'), privacy: t('privacyTitle'), refund: 'Refund Policy' };
+  if (titleEl) titleEl.textContent = titles[type] || type;
+  if (bodyEl && LEGAL_CONTENT[type]) bodyEl.innerHTML = LEGAL_CONTENT[type][lang] || LEGAL_CONTENT[type]['en'];
   modal.classList.add('open');
 }
 
 function closeLegalModal(type) {
-  var modal = document.getElementById(type === 'tos' ? 'tos-modal' : 'privacy-modal');
+  var modal = document.getElementById(type + '-modal');
   if (modal) modal.classList.remove('open');
+}
+
+// Cookie consent
+function acceptCookies() {
+  try { localStorage.setItem('aug_cookie_consent', 'true'); } catch(e) {}
+  var banner = document.getElementById('cookie-consent');
+  if (banner) banner.style.display = 'none';
+}
+
+function initCookieConsent() {
+  try {
+    if (localStorage.getItem('aug_cookie_consent') === 'true') return;
+  } catch(e) { return; }
+  var banner = document.getElementById('cookie-consent');
+  if (banner) banner.style.display = 'flex';
 }
 
 function updateLegalText() {
