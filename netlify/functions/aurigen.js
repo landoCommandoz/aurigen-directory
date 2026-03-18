@@ -11,6 +11,7 @@ const crypto = require('crypto');
 
 // ── CORS: Restrict to production domains only ─────────────────
 const ALLOWED_ORIGINS = [
+  'https://aurigen-directory.netlify.app',
   'https://statuesque-bublanina-330b9d.netlify.app',
   'https://hilarious-llama-2933ac.netlify.app'
 ];

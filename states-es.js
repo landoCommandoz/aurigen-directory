@@ -748,3 +748,4 @@ var STATES_ES = [
     platforms:["Oficinas del tesorero del condado"],tylerCompliance:{status:"pending",summary:"Estado pendiente — monitoreando acción legislativa.",details:"Cumplimiento con Tyler v. Hennepin (2023) está siendo monitoreado por Aurigen.",lastUpdated:"2026-03-01",legislationRef:""},counties:[]
   }
 ];
+if (typeof module !== 'undefined') module.exports = STATES_ES;

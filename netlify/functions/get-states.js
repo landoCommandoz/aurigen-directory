@@ -10,6 +10,7 @@ const path = require('path');
 const FREE_IDS = new Set(['FL', 'IL', 'AZ']);
 
 const ALLOWED_ORIGINS = [
+  'https://aurigen-directory.netlify.app',
   'https://statuesque-bublanina-330b9d.netlify.app',
   'https://hilarious-llama-2933ac.netlify.app'
 ];

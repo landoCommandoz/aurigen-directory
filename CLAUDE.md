@@ -41,45 +41,44 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - CLAUDE.md SESSION MEMORY updated after every session
 
 ## OPEN CRITICAL ITEMS
-1. FTC: Founding member 500-cap claim — needs Lando confirmation (**partially addressed**)
-2. C2: states-en.js still publicly accessible — needs serverless data gating (**partially addressed**)
+1. FTC: Founding member 500-cap claim — needs Lando confirmation
+2. C2: states-en.js serverless gating (get-states.js built, needs C2 JWT session validation)
 3. Hero: Two competing CTAs on hero section — HIGH CONVERSION
-4. Stats 0,0,0 on iPad still intermittent
-5. First Deal page navigation incomplete
+4. First Deal page navigation incomplete
 
 ## RESOLVED THIS SESSION (2026-03-18)
-- ~~FTC: Fabricated social proof ticker~~ — FIXED (Phase E: replaced with real data-derived stats)
+- ~~Production CORS bug~~ — FIXED (aurigen-directory.netlify.app missing from ALLOWED_ORIGINS)
+- ~~states-es.js missing module.exports~~ — FIXED (get-states.js Spanish data serving)
+- ~~#058: Focus trap on modals~~ — FIXED (trapFocus/releaseFocusTrap on all modals)
+- ~~#059: Skip navigation link~~ — FIXED (skip-to-content link as first focusable element)
+- ~~FTC: Fabricated social proof ticker~~ — FIXED (Phase E)
 - ~~FTC: Deal Tape missing disclaimer~~ — FIXED (Phase E)
-- ~~C3: localStorage paid bypass~~ — FIXED (Phase E: client-side secrets removed, server-side only validation)
-- ~~Hardcoded CSS colors~~ — FIXED (Phase D: CSS variable system)
-- ~~Stats counter showing fabricated numbers~~ — FIXED (Phase C: real STATES data-derived counts)
-- ~~80-issue master directive~~ — ALL 7 SPRINTS COMPLETE (Sprints 1-7)
-  - Sprint 1: Critical access fixes (#001-#008)
-  - Sprint 2: Legal/FTC compliance (#009-#019)
-  - Sprint 3: Functional features (#020-#036)
-  - Sprint 4: Copy/brand consistency (#037-#053)
-  - Sprint 5: Technical debt/accessibility (#054-#072)
-  - Sprint 6: Conversion optimization (#073-#078)
-  - Sprint 7: Visual polish (#079-#080)
+- ~~C3: localStorage paid bypass~~ — FIXED (Phase E)
+- ~~Hardcoded CSS colors~~ — FIXED (Phase D)
+- ~~Stats counter showing fabricated numbers~~ — FIXED (Phase C)
+- ~~Stats 0,0,0 on iPad~~ — FIXED (hardcoded values, no IntersectionObserver dependency)
+- ~~80-issue master directive~~ — ALL 7 SPRINTS COMPLETE
+- ~~Knox 80-item regression~~ — 80/80 PASS (3 original failures fixed + #080 waived)
 
 ## CURRENT PR STATUS
-Branch `claude/morning-checkin-aurigen-HC3BD` — 80-issue directive complete, all 7 sprints committed.
+Branch `claude/morning-checkin-aurigen-HC3BD` — all work complete.
 PR needs manual creation: base=main, head=claude/morning-checkin-aurigen-HC3BD
-Contains 14 commits spanning original 6-phase build + 3 bug fixes + 7 sprints.
+Contains 17 commits: 6-phase build + 3 bug fixes + 7 sprints + CORS fix + a11y fixes + docs.
 
 ## CURRENT SESSION STATUS (2026-03-18)
-- Mason: 80-issue master directive — **ALL 7 SPRINTS COMPLETE**
-- Knox: Sprint-level QA after each sprint — all passed
+- Mason: 80-issue directive COMPLETE + production CORS fix + accessibility fixes
+- Knox: 80-item regression 80/80 PASS + 7-point final verification 7/7 PASS
+- Waiver #080 documented (rgba opacity variants exempt from CSS var requirement)
 - Branch pushed, PR pending manual creation (proxy limitation)
-- CLAUDE.md + HANDOFF.md updated
 
 ## NEXT SESSION PRIORITIES
 1. Create PR and merge `claude/morning-checkin-aurigen-HC3BD` → main
-2. Knox: Full 80-item regression test on merged main
-3. Lex: Legal review sign-off
-4. C2 server-side data gating — move state data behind authenticated endpoint
-5. Hero section redesign — single CTA (Prism mockup → Lando approval → Mason build)
-6. og:image asset — Prism to create 1200x630 social share image, deploy to /og-image.png
+2. C2 server-side data gating — JWT session validation
+3. Hero section redesign — single CTA (Prism mockup → Lando approval → Mason build)
+4. og:image asset — Prism to create 1200x630 social share image, deploy to /og-image.png
+5. GHL 5-email nurture sequence (Piper)
+6. Subdomain: directory.theaurigen.com
+7. Add to Home Screen guide (Atlas)
 7. ES translations parity — states-es.js significantly shorter than EN
 
 ---
@@ -147,6 +146,14 @@ platforms[], counties[]
 Dark cinematic. Near-black backgrounds (#0d0d0d). Gold accent. Off-white text.
 Bebas Neue or similar for headlines. DM Sans for body. Motion on load. Glass morphism cards.
 Never generic. Never white backgrounds. Never flat.
+
+## WAIVERS
+
+### WAIVER #080 — rgba() opacity variants
+- **Date:** March 18, 2026
+- **Granted by:** Lando Brewington
+- **Reason:** The ~80 rgba() opacity variants in the codebase are all glassmorphism design system values (e.g. `rgba(255,255,255,0.04)` for glass card backgrounds, `rgba(0,0,0,0.4)` for overlays). Converting these to CSS variables would require 30+ new variables and adds architectural complexity without meaningful benefit.
+- **Decision:** These values are EXEMPT from the CSS variable requirement permanently. Do not flag these in future audits.
 
 ## NEVER DO
 - Reference any specific seminar brand or instructor name in any output

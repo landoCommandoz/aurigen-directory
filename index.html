@@ -192,6 +192,23 @@ button { cursor: pointer; font-family: inherit; }
 input, textarea { font-family: inherit; }
 a { color: inherit; text-decoration: none; }
 
+/* Skip navigation link — accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 8px 16px;
+  z-index: 9999;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -5183,6 +5200,9 @@ a { color: inherit; text-decoration: none; }
 </head>
 <body>
 
+<!-- Skip navigation for keyboard users -->
+<a href="#app" class="skip-link">Skip to main content</a>
+
 <!-- ═══════════════ GATE ═══════════════ -->
 <div id="gate">
   <!-- Section 1: Hero — Brand + Gate -->
@@ -9378,12 +9398,61 @@ function openPaywall(id) {
   openModal();
 }
 
+// ── Focus Trap — Accessibility ─────────────────────────────
+var _activeFocusTrap = null;
+var _focusTrapTrigger = null;
+
+function trapFocus(modal) {
+  releaseFocusTrap();
+  _focusTrapTrigger = document.activeElement;
+  var focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  if (!focusable.length) return;
+  var first = focusable[0];
+  var last = focusable[focusable.length - 1];
+  function handler(e) {
+    if (e.key === 'Escape') {
+      // Find and click the close button
+      var closeBtn = modal.querySelector('.modal-close, .legal-modal-close, .exit-close');
+      if (closeBtn) closeBtn.click();
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    // Re-query in case content changed
+    var els = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (!els.length) return;
+    var f = els[0];
+    var l = els[els.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === f) { e.preventDefault(); l.focus(); }
+    } else {
+      if (document.activeElement === l) { e.preventDefault(); f.focus(); }
+    }
+  }
+  modal.addEventListener('keydown', handler);
+  _activeFocusTrap = { modal: modal, handler: handler };
+  setTimeout(function() { first.focus(); }, 50);
+}
+
+function releaseFocusTrap() {
+  if (_activeFocusTrap) {
+    _activeFocusTrap.modal.removeEventListener('keydown', _activeFocusTrap.handler);
+    _activeFocusTrap = null;
+  }
+  if (_focusTrapTrigger && _focusTrapTrigger.focus) {
+    try { _focusTrapTrigger.focus(); } catch(e) {}
+    _focusTrapTrigger = null;
+  }
+}
+
 function openModal() {
-  document.getElementById('state-modal').classList.add('open');
+  var modal = document.getElementById('state-modal');
+  modal.classList.add('open');
+  trapFocus(modal.querySelector('.state-modal-sheet') || modal);
 }
 
 function closeStateModal() {
   document.getElementById('state-modal').classList.remove('open');
+  releaseFocusTrap();
   state.activeState = null;
   updateDebug();
 }
@@ -10428,12 +10497,16 @@ function toggleDebug() {
     markExitSeen();
     updateExitText();
     var overlay = document.getElementById('exit-popup');
-    if (overlay) overlay.classList.add('active');
+    if (overlay) {
+      overlay.classList.add('active');
+      trapFocus(overlay.querySelector('.exit-modal') || overlay);
+    }
   }
 
   function hideExitPopup() {
     var overlay = document.getElementById('exit-popup');
     if (overlay) overlay.classList.remove('active');
+    releaseFocusTrap();
   }
 
   // Handle the final email capture from exit intent fallback
@@ -10679,11 +10752,13 @@ function openLegalModal(type) {
   if (titleEl) titleEl.textContent = titles[type] || type;
   if (bodyEl && LEGAL_CONTENT[type]) bodyEl.innerHTML = LEGAL_CONTENT[type][lang] || LEGAL_CONTENT[type]['en'];
   modal.classList.add('open');
+  trapFocus(modal.querySelector('.legal-modal-sheet') || modal);
 }
 
 function closeLegalModal(type) {
   var modal = document.getElementById(type + '-modal');
   if (modal) modal.classList.remove('open');
+  releaseFocusTrap();
 }
 
 // Cookie consent
