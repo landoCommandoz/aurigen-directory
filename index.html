@@ -6537,6 +6537,101 @@ function stripeUrl() {
 var ff_deal_tape = true;
 const FREE_STATES = new Set(['FL','IL','AZ']);
 
+// ── AccessManager ───────────────────────────────────────────
+// Single source of truth for paid/free access state.
+// All reads and writes to state.isPaid route through here.
+const AccessManager = {
+  /** Check if a state ID is accessible (free or paid) */
+  canAccess: function(stateId) {
+    return FREE_STATES.has(stateId) || state.isPaid;
+  },
+
+  /** Grant paid access — sets in-memory flag + persists to localStorage */
+  grant: function(token) {
+    state.isPaid = true;
+    storageSet('aug_paid', true);
+    if (token) storageSet('aug_token', token);
+  },
+
+  /** Revoke paid access — clears in-memory flag + localStorage */
+  revoke: function() {
+    state.isPaid = false;
+    storageSet('aug_paid', false);
+    try { localStorage.removeItem('aug_token'); } catch(e) {}
+  },
+
+  /** Restore access state from localStorage (safe fallback to false) */
+  restore: function() {
+    try {
+      var stored = localStorage.getItem('aug_paid');
+      state.isPaid = stored === 'true' || stored === true;
+    } catch(e) {
+      state.isPaid = false;
+    }
+  },
+
+  /** Revalidate access synchronously from localStorage (security check) */
+  revalidate: function() {
+    try {
+      var stored = localStorage.getItem('aug_paid');
+      state.isPaid = stored === 'true' || stored === true;
+    } catch(e) {
+      state.isPaid = false;
+    }
+  },
+
+  /** Read current paid status (read-only) */
+  isPaid: function() {
+    return state.isPaid;
+  }
+};
+
+// ── LanguageManager ─────────────────────────────────────────
+// Centralizes language state, toggle logic, and re-entrancy guard.
+const LanguageManager = {
+  _busy: false,
+
+  /** Get current language code ('en' or 'es') */
+  current: function() {
+    return state.lang;
+  },
+
+  /** Toggle between 'en' and 'es'. Re-entrancy safe. */
+  toggle: function() {
+    if (LanguageManager._busy) return;
+    LanguageManager._busy = true;
+
+    // Revalidate access before any language operation
+    AccessManager.revalidate();
+
+    state.lang = state.lang === 'en' ? 'es' : 'en';
+    storageSet('aurigen_lang', state.lang);
+
+    loadLanguageFile(state.lang).then(function() {
+      LanguageManager.apply();
+    }).catch(function(e) {
+      console.error('Failed to load language file:', e);
+      // Revert on failure
+      state.lang = state.lang === 'en' ? 'es' : 'en';
+      storageSet('aurigen_lang', state.lang);
+    }).finally(function() {
+      LanguageManager._busy = false;
+    });
+  },
+
+  /** Apply current language to STATES array (does NOT re-render UI) */
+  apply: function() {
+    AccessManager.revalidate();
+    STATES = state.lang === 'es' && window.STATES_ES ? window.STATES_ES : (window.STATES_EN || []);
+  },
+
+  /** Restore language preference from localStorage */
+  restore: function() {
+    var saved = storageGet('aurigen_lang', 'en');
+    state.lang = (saved === 'es') ? 'es' : 'en';
+  }
+};
+
 // (P1 conversion flags merged into var FF FLAG_DEFINITIONS above)
 
 // ── Type helpers ─────────────────────────────────────────────
