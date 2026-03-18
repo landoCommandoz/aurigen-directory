@@ -41,26 +41,30 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - CLAUDE.md SESSION MEMORY updated after every session
 
 ## OPEN CRITICAL ITEMS
-1. states-en.js still publicly accessible (C2)
-2. localStorage paid bypass still possible (C3)
-3. Language toggle bypass not fully closed
-4. Stats 0,0,0 on iPad still intermittent
-5. First Deal page navigation incomplete
+1. FTC: Fabricated social proof ticker (random 50-500 number) — CRITICAL
+2. FTC: Founding member 500-cap claim unverified — CRITICAL
+3. FTC: Deal Tape missing disclaimer — CRITICAL
+4. C2: states-en.js still publicly accessible — CRITICAL SECURITY
+5. C3: localStorage paid bypass still possible — CRITICAL SECURITY
+6. Hero: Two competing CTAs on hero section — HIGH CONVERSION
+7. Stats 0,0,0 on iPad still intermittent
+8. First Deal page navigation incomplete
 
 ## CURRENT PR STATUS
 All waves 1-4 merged to main.
-Next PR: VS view objection handler + testimonial carousel (pending real customers)
+Next PR: FTC compliance fixes (Lex audit items) + C2/C3 security fixes
 
 ## CURRENT SESSION STATUS
-- Agent depth rebuilds Section 1 (batch 1+2): COMPLETE — 8 agents rebuilt (Cipher, Knox, Recon, Wraith, Ace, Compass, Scout, Rally, Atlas + existing)
-- Agent depth rebuilds Section 2: COMPLETE — Rally, Scout, Compass, Atlas rebuilt with full-depth frameworks
-- All 16+ agents now have PERSISTENT MEMORY blocks and depth intelligence
+- FULL TEAM ACTIVATION COMPLETE — 12 agents dispatched, all reported
+- Deliverables produced: seminar pitch (Ace), TikTok script (Blaze), topical authority map (Atlas), FTC audit (Lex), email sequence (Piper), onboarding playbook (Rally), partnership profiles (Scout), blue ocean analysis (Recon), tech debt list (Mason), regression tests (Knox), security scan (Wraith), hero audit (Prism)
+- All agent PERSISTENT MEMORY blocks updated with session outputs
+- HANDOFF.md updated with full agent status and prioritized action list
 
 ## NEXT SESSION PRIORITIES
-1. C2 fix — serverless data gating
-2. C3 fix — server-side session validation
-3. VS view objection handler
-4. Statute citation teasers on locked states
+1. FTC critical fixes — remove fabricated social proof, verify/remove 500-cap claim, add Deal Tape disclaimer
+2. C2+C3 security fix — server-side session validation + data gating
+3. Hero section redesign — fix competing CTAs
+4. Email sequence deployment — Piper's post-seminar sequence in GHL
 
 ---
 

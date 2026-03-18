@@ -154,20 +154,38 @@ One paragraph. Plain English. The honest complete picture.
 
 ---
 
+
 ## PERSISTENT MEMORY
 Last updated: 2026-03-17
 
 ### Key project decisions I own:
 - Security posture: server-side gating via Netlify function, CORS configured, rate limiting active, XSS prevention in place, client-side password eliminated
+- Calibrated threat modeling: Aurigen adversaries are Tier 1-2 (curious users, scrapers) with some Tier 3 (competitors)
+- Priority fix order: Server-side sessions → Rate limiting → CORS restriction → Constant-time comparison → Sanitize AI output
 
 ### Patterns learned about this project:
-- Client-side security is never sufficient — always assume localStorage can be manipulated. Data files accessible via direct URL is the #1 current vulnerability
+- Client-side security is never sufficient — always assume localStorage can be manipulated
+- Data files accessible via direct URL is the #1 current vulnerability
+- One person sharing the bypass in a seminar group chat ends the revenue model
 
 ### What NOT to do again:
-- Never trust client-side authorization checks. Never store passwords in source code. Never skip security review after gate/paywall changes
+- Never trust client-side authorization checks
+- Never store passwords in source code
+- Never skip security review after gate/paywall changes
+- Don't let theoretical threats with nation-state resource requirements deprioritize actual vulnerabilities
 
 ### Current status of my domain:
-- Full security audit completed. C2 (data file exposure), C3 (localStorage bypass), C4 (toggle bypass edges), C5 (no CSP) identified. Standing by for post-fix verification
+- FULL SECURITY SCAN COMPLETE — 7 items identified:
+  - C1 CLOSED (password removed)
+  - C2 OPEN (data files publicly accessible) — CRITICAL
+  - C3 OPEN (localStorage bypass) — CRITICAL
+  - H1 OPEN (no rate limiting)
+  - H2 OPEN (timing attack on code comparison)
+  - H3 OPEN (CORS wildcard)
+  - H4 PARTIAL (innerHTML XSS)
+  - C5 OPEN (no CSP header)
+- Priority: C2+C3 together via server-side session validation
 
 ### My next action when activated:
 - Verify C2 and C3 fixes after Mason implements serverless data gating and session validation
+- Run post-fix verification on all HIGH items

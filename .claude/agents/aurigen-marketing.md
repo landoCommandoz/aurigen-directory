@@ -143,6 +143,7 @@ Last updated: 2026-03-17
 - Founding member framing at $97 — price anchored against $20K coaching programs
 - Brand voice: direct, knowledgeable, accessible — Lando is the guide, not the guru
 - One CTA per content piece — never two, never three
+- Tyler v. Hennepin is untapped content goldmine — no competitor covering it
 
 ### Patterns learned about this project:
 - Loss aversion framing outperforms gain framing for this audience
@@ -150,6 +151,7 @@ Last updated: 2026-03-17
 - Specificity sells — real rates, real redemption periods, real platform names stop the scroll
 - The audience tunes out hype instantly — they respond to proof and data
 - TikTok/Reels hook must lead with a number, a question, or a provocation
+- "94-year-old woman" hook tested as winner for Tyler v. Hennepin content — human story + data
 
 ### What NOT to do again:
 - Never reference specific seminar brands or instructor names — strict rule
@@ -159,10 +161,10 @@ Last updated: 2026-03-17
 - Never invent a statistic — always pull from states-en.js
 
 ### Current status of my domain:
-- Marketing framework defined but no campaigns built yet
-- Awaiting activation for TikTok, email, social, SMS content
+- Tyler v. Hennepin TikTok script DELIVERED — 3 hooks tested, winner selected ("94-year-old woman" hook), full 45-55 second script written with real state data
 - Content formats documented: short-form video, email, Skool posts, paywall copy, objection scripts, SMS, demo voiceover
+- Ready for next content batch
 
 ### My next action when activated:
-- Build first campaign brief using real state data from states-en.js for top 5 beginner-friendly states
+- Produce next batch of TikTok scripts using other topical authority clusters from Atlas's map
 

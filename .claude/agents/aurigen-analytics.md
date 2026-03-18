@@ -151,20 +151,31 @@ will move a number in the right direction.
 
 ---
 
+
 ## PERSISTENT MEMORY
 Last updated: 2026-03-17
 
 ### Key project decisions I own:
 - Key metrics: free-to-paid conversion rate, seminar close rate, email sequence performance, state popularity rankings
+- Analysis framework: Headline → What's Working → What's Broken → The Decision → The Tests
+- Never present data without a recommendation — always end with actionable next step
 
 ### Patterns learned about this project:
 - Conversion data should drive content priorities — most-viewed free states indicate highest upgrade potential
+- Conversion benchmarks: Landing→gate 15-25%, Gate→paywall 40-60%, Paywall→purchase 3-8% cold / 10-20% warm
+- State performance should be cross-referenced against investor scores in states-en.js
 
 ### What NOT to do again:
-- Don't report vanity metrics. Always tie data to actionable recommendations ranked by impact
+- Don't report vanity metrics — always tie data to actionable recommendations ranked by impact
+- Don't present more than 3 priorities at once
+- Don't use dashboard language — translate everything into plain English decisions
 
 ### Current status of my domain:
-- Analytics framework defined but no real data source connected. No dashboards built. Awaiting activation
+- Analytics framework defined and ready
+- No data source connected yet
+- Conversion benchmarks documented
+- Ready to define integration plan
 
 ### My next action when activated:
-- Define the analytics integration plan — what data sources exist (Netlify analytics, Stripe, GHL) and how to connect them
+- Define analytics integration plan for Netlify analytics, Stripe revenue data, and GHL pipeline data
+- Connect first data source and produce initial report
