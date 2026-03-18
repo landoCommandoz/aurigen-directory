@@ -6,7 +6,6 @@
 //
 // Also handles Advisor (AI) requests when action=advisor
 
-const Anthropic = require('@anthropic-ai/sdk');
 const crypto = require('crypto');
 
 // ── CORS: Restrict to production domains only ─────────────────
@@ -59,7 +58,9 @@ function createAccessToken(secret) {
 }
 
 exports.handler = async (event) => {
+  console.log('[AURIGEN] Function invoked, method=' + event.httpMethod + ' action=' + (JSON.parse(event.body || '{}').action || 'none'));
   const origin = (event.headers && (event.headers['origin'] || event.headers['Origin'])) || '';
+  console.log('[AURIGEN] Origin=' + origin + ' allowed=' + ALLOWED_ORIGINS.includes(origin));
   const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
 
   const headers = {
@@ -149,9 +150,12 @@ exports.handler = async (event) => {
 
   // ── Code Validation ───────────────────────────────────────
   if (body.action === 'validate-code') {
+    console.log('[VALIDATE] Handler entered');
     // Rate limit by IP
     const clientIp = (event.headers && (event.headers['x-forwarded-for'] || event.headers['client-ip'])) || 'unknown';
+    console.log('[VALIDATE] clientIp=' + clientIp);
     if (isRateLimited(clientIp)) {
+      console.log('[VALIDATE] Rate limited');
       return {
         statusCode: 429,
         headers,
@@ -160,6 +164,7 @@ exports.handler = async (event) => {
     }
 
     const submitted = (body.code || '').trim().toUpperCase();
+    console.log('[VALIDATE] submitted=' + submitted + ' len=' + submitted.length);
 
     if (!submitted) {
       return {
@@ -174,8 +179,10 @@ exports.handler = async (event) => {
       .split(',')
       .map(c => c.trim().toUpperCase())
       .filter(Boolean);
+    console.log('[VALIDATE] validCodes count=' + validCodes.length + ' lengths=[' + validCodes.map(c => c.length).join(',') + ']');
 
     if (safeCodeMatch(submitted, validCodes)) {
+      console.log('[VALIDATE] Match SUCCESS');
       const tokenSecret = process.env.TOKEN_SECRET;
       const response = { valid: true };
       if (tokenSecret) {
@@ -187,6 +194,7 @@ exports.handler = async (event) => {
         body: JSON.stringify(response)
       };
     } else {
+      console.log('[VALIDATE] Match FAILED');
       return {
         statusCode: 200,
         headers,
@@ -209,6 +217,7 @@ exports.handler = async (event) => {
       };
     }
 
+    const Anthropic = require('@anthropic-ai/sdk');
     const client = new Anthropic({ apiKey });
 
     const history = Array.isArray(body.history) ? body.history.slice(-10) : [];
@@ -248,6 +257,7 @@ exports.handler = async (event) => {
       };
     }
 
+    const Anthropic = require('@anthropic-ai/sdk');
     const client = new Anthropic({ apiKey });
     const history = Array.isArray(body.history) ? body.history.slice(-10) : [];
     const messages = history.length > 0 ? history : [{ role: 'user', content: body.message || '' }];
