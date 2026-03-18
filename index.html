@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-<title>Aurigen County Resource Directory</title>
+<title>Aurigen County Resource Directory — Tax Lien & Deed Investor Research</title>
+<meta name="description" content="Research tax liens and tax deeds across all 50 states + DC. Auction signups, interest rates, redemption periods, county links, and investor scores in one searchable directory.">
+<meta property="og:title" content="Aurigen County Resource Directory">
+<meta property="og:description" content="Research tax liens and tax deeds across all 50 states + DC. Auction signups, interest rates, county links, and investor scores.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aurigen-directory.netlify.app">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aurigen County Resource Directory">
+<meta name="twitter:description" content="Tax lien & deed investor research for all 50 states + DC. Auction signups, rates, county links.">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
@@ -5225,7 +5233,7 @@ a { color: inherit; text-decoration: none; }
       </div>
       <div class="gate-feature-card">
         <div class="gate-feature-icon">&#127970;</div>
-        <div class="gate-feature-title" id="gate-feature-3-title">County-Level Data</div>
+        <div class="gate-feature-title" id="gate-feature-3-title">County Tax Office Links</div>
         <div class="gate-feature-desc" id="gate-feature-3-desc">Direct links to county tax offices, assessors, and GIS systems</div>
       </div>
       <div class="gate-feature-card">
@@ -5414,7 +5422,7 @@ a { color: inherit; text-decoration: none; }
           <div class="map-legend">
             <div class="legend-item"><div class="legend-dot" style="background:var(--map-lien);box-shadow:0 0 8px var(--map-lien-glow)"></div>Lien</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--map-deed);box-shadow:0 0 8px var(--map-deed-glow)"></div>Deed</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--map-rdeed);box-shadow:0 0 8px var(--map-rdeed-glow)"></div>R. Deed</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--map-rdeed);box-shadow:0 0 8px var(--map-rdeed-glow)"></div><span title="Redeemable Deed">R. Deed</span></div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--map-both);box-shadow:0 0 8px var(--map-both-glow)"></div>Both</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--accent);border:1px solid var(--accent-border)"></div><svg width="10" height="10" viewBox="0 0 24 24" fill="var(--text-muted)" style="vertical-align:middle;margin-right:2px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="var(--text-muted)" stroke-width="2"/></svg>Locked</div>
           </div>
@@ -5428,7 +5436,7 @@ a { color: inherit; text-decoration: none; }
             <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-lien);box-shadow:0 0 6px var(--map-lien-glow)"></div><span class="mcl-label">Lien</span></div>
             <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-deed);box-shadow:0 0 6px var(--map-deed-glow)"></div><span class="mcl-label">Deed</span></div>
             <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-both);box-shadow:0 0 6px var(--map-both-glow)"></div><span class="mcl-label">Both</span></div>
-            <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-rdeed);box-shadow:0 0 6px var(--map-rdeed-glow)"></div><span class="mcl-label">R. Deed</span></div>
+            <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-rdeed);box-shadow:0 0 6px var(--map-rdeed-glow)"></div><span class="mcl-label"><span title="Redeemable Deed">R. Deed</span></span></div>
             <div class="mcl-row"><div class="mcl-swatch" style="background:var(--color-locked);border:1px solid rgba(255,255,255,0.1)"></div><span class="mcl-label">Locked</span></div>
           </div>
           <div id="map-lock-overlay">
@@ -5702,9 +5710,7 @@ a { color: inherit; text-decoration: none; }
 
   <!-- FOOTER DISCLAIMER -->
   <div class="app-footer-disclaimer" id="app-footer-disclaimer">
-    Aurigen County Resource Directory is an educational research tool. Nothing in this content constitutes investment, legal, or financial advice. Always verify data with official county sources before transacting. State data compiled from publicly available government sources and state statutory code. Last reviewed: March 2026.
-    <br><br>
-    <span style="font-size:10px;color:var(--text-muted);line-height:1.5;">Aurigen Directory is a research reference tool, not investment, legal, or tax advice. Always consult a qualified professional and conduct independent due diligence before making any investment decision.</span>
+    Aurigen County Resource Directory is an educational research tool, not investment, legal, or tax advice. Always consult a qualified professional and verify data with official county sources before making any investment decision. Data compiled from publicly available government sources. Last reviewed: March 2026.
     <br><br>
     <a href="#" onclick="openLegalModal('tos');return false;" id="footer-tos-link">Terms of Service</a> |
     <a href="#" onclick="openLegalModal('privacy');return false;" id="footer-privacy-link">Privacy Policy</a> |
@@ -6716,7 +6722,7 @@ const I18N = {
     gateFeature2Title: 'Auction Signup Guides',
     gateFeature2Desc: "Step-by-step instructions for every state's auction platform",
     gateFeature3Title: 'County-Level Data',
-    gateFeature3Desc: 'Direct links to county tax offices, assessors, and GIS systems',
+    gateFeature3Desc: 'Direct links to available county tax offices and GIS systems',
     gateFeature4Title: 'Deal Analyzer',
     gateFeature4Desc: 'Calculate ROI on any tax lien or deed investment instantly',
     gateFeature5Title: 'AI Research Advisor',
@@ -6758,7 +6764,7 @@ const I18N = {
     mapPanelSub: 'Select a state to view details',
     legendLien: 'Lien',
     legendDeed: 'Deed',
-    legendRdeed: 'R. Deed',
+    legendRdeed: '<span title="Redeemable Deed">R. Deed</span>',
     legendBoth: 'Both',
     legendLocked: 'Locked',
     mapFallback: 'Map unavailable — tap Retry to reload.',
