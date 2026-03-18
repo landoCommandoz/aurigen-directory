@@ -6517,6 +6517,7 @@ const AccessManager = {
     state.isPaid = true;
     storageSet('aug_paid', true);
     if (token) storageSet('aug_token', token);
+    NavManager.applyTabVisibility();
   },
 
   /** Revoke paid access — clears in-memory flag + localStorage */
@@ -6602,6 +6603,9 @@ const LanguageManager = {
 // Derives tab/content visibility from AccessManager.
 // Every content-gating check routes through here.
 const NavManager = {
+  /** Tabs that require paid access */
+  PAID_TABS: ['pulse', 'advisor', 'versus', 'dealtape'],
+
   /** Can user view this state's content? (free state OR paid user) */
   canViewState: function(stateId) {
     return AccessManager.canAccess(stateId);
@@ -6610,6 +6614,18 @@ const NavManager = {
   /** Is user on the paid tier? Shorthand for content gates. */
   hasPaidAccess: function() {
     return AccessManager.isPaid();
+  },
+
+  /** Show/hide nav tabs based on paid status. Call on enterApp and after upgrade. */
+  applyTabVisibility: function() {
+    var isPaid = this.hasPaidAccess();
+    var self = this;
+    document.querySelectorAll('.nav-item').forEach(function(btn) {
+      var tab = btn.dataset.tab;
+      if (self.PAID_TABS.indexOf(tab) !== -1) {
+        btn.style.display = isPaid ? '' : 'none';
+      }
+    });
   }
 };
 
@@ -8227,30 +8243,16 @@ function setupMobileCodeTrigger() {
   });
 }
 
-// Animate gate stats when scrolled into view — derived from real STATES data
-function animateGateStats(retryCount) {
+// Animate gate stats when scrolled into view — known product constants
+function animateGateStats() {
   var statsSection = document.getElementById('gate-stats-section');
   if (!statsSection) return;
 
-  retryCount = retryCount || 0;
-
-  // Compute real counts from loaded state data
-  var statesData = window.STATES_EN || window.STATES_ES || [];
-
-  // If data not loaded yet, retry up to 20 times at increasing intervals (covers slow iPad loads)
-  if (statesData.length === 0 && retryCount < 20) {
-    var delay = retryCount < 10 ? 300 : 500;
-    setTimeout(function() { animateGateStats(retryCount + 1); }, delay);
-    return;
-  }
-
-  // If data never loaded after all retries, leave placeholders — do not show fabricated numbers
-  if (statesData.length === 0) return;
-
-  // Derive counts from actual data
-  var stateCount = statesData.length;
-  var calendarCount = stateCount; // One auction calendar per state/territory
-  var freeCount = FREE_STATES.size;
+  // Gate stats are marketing constants about the total product offering.
+  // Do NOT derive from loaded data — free-tier fetch returns only 3 states.
+  var stateCount = 51;      // 50 states + DC
+  var calendarCount = 51;   // One auction calendar per state/territory
+  var freeCount = FREE_STATES.size; // 3 (FL, IL, AZ)
 
   // Update data-target attributes with real values
   var statNumbers = statsSection.querySelectorAll('.gate-stat-number');
@@ -8405,6 +8407,9 @@ function enterApp(animate) {
 
   const gate = document.getElementById('gate');
   gate.classList.add('hidden');
+
+  // Gate nav tabs before any view renders
+  NavManager.applyTabVisibility();
 
   // Init all views
   buildStateList();
@@ -9937,14 +9942,7 @@ function appendAdvisorMsg(role, text) {
   const div = document.createElement('div');
   div.className = `msg msg-${role}`;
   if (role === 'sage') {
-    var label = document.createElement('strong');
-    label.textContent = 'Sage';
-    div.appendChild(label);
-    div.appendChild(document.createElement('br'));
-    text.split('\n').forEach(function(line, i) {
-      if (i > 0) div.appendChild(document.createElement('br'));
-      div.appendChild(document.createTextNode(line));
-    });
+    div.innerHTML = '<strong>Sage</strong><br>' + text;
   } else {
     div.textContent = text;
   }
