@@ -5289,7 +5289,7 @@ a { color: inherit; text-decoration: none; }
 
   <!-- Section 5: Price Anchor — paid upgrade after free email gate -->
   <section class="gate-price gate-section" id="gate-price-section">
-    <div class="gate-price-community" id="gate-price-community">Join the Aurigen Collective — a community of tax lien & deed investors</div>
+    <div class="gate-price-community" id="gate-price-community"><a href="https://www.skool.com/aurigen" target="_blank" style="color:var(--accent);text-decoration:underline;">Join the Aurigen Collective</a> — a community of tax lien & deed investors</div>
     <div class="gate-price-card" id="gate-price-card">
       <div class="gate-price-card-glow"></div>
       <div class="gate-price-badge" id="gate-price-badge">INTRODUCTORY RATE</div>
@@ -5437,8 +5437,8 @@ a { color: inherit; text-decoration: none; }
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
             <div class="map-lock-text">Full Map Access Requires Upgrade</div>
-            <a class="map-lock-cta" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Unlock Full Access</a>
-            <div class="map-lock-sub">One-time payment · Lifetime access · All 51 states</div>
+            <a class="map-lock-cta" href="#" onclick="handleUpgradeCTA(event)">Unlock Full Access</a>
+            <div class="map-lock-sub">One-time payment · Lifetime access · 50 States + DC</div>
           </div>
         </div>
 
@@ -6866,7 +6866,7 @@ const I18N = {
     vsWhyEdge1: '<span>Bilingual EN/ES</span> — the only tax lien directory with full Spanish translations',
     vsWhyEdge2: '<span>Tyler v. Hennepin tracking</span> — real-time compliance status for every state\'s surplus rules',
     vsWhyEdge3: '<span>Verified statute citations</span> — every rate and redemption period linked to the actual state code',
-    vsWhyBottom: 'Aurigen replaces <strong>40+ hours of research</strong> with one searchable directory — bilingual, statute-cited, and tracking Tyler v. Hennepin compliance across all 51 jurisdictions.',
+    vsWhyBottom: 'Aurigen replaces <strong>40+ hours of research</strong> with one searchable directory — bilingual, statute-cited, and tracking Tyler v. Hennepin compliance across all 50 states + DC.',
     // State Modal
     modalBeginnerYes: 'Beginner Friendly',
     modalBeginnerNo: 'Not Recommended for Beginners',
@@ -7259,7 +7259,7 @@ const I18N = {
     vsWhyEdge1: '<span>Bilingüe EN/ES</span> — el único directorio de gravámenes fiscales con traducción completa al español',
     vsWhyEdge2: '<span>Seguimiento Tyler v. Hennepin</span> — estado de cumplimiento en tiempo real para las reglas de excedentes de cada estado',
     vsWhyEdge3: '<span>Citas de estatutos verificadas</span> — cada tasa y período de redención vinculado al código estatal real',
-    vsWhyBottom: 'Aurigen reemplaza <strong>más de 40 horas de investigación</strong> con un directorio buscable — bilingüe, con citas de estatutos, y seguimiento del cumplimiento Tyler v. Hennepin en las 51 jurisdicciones.',
+    vsWhyBottom: 'Aurigen reemplaza <strong>más de 40 horas de investigación</strong> con un directorio buscable — bilingüe, con citas de estatutos, y seguimiento del cumplimiento Tyler v. Hennepin en los 50 estados + DC.',
     // State Modal
     modalBeginnerYes: 'Apto para Principiantes',
     modalBeginnerNo: 'No Recomendado para Principiantes',
@@ -8099,11 +8099,23 @@ window.addEventListener('load', async () => {
 });
 
 // ── Gate ─────────────────────────────────────────────────────
+/** Route upgrade CTAs: Level 0 → email gate first, Level 1+ → Stripe */
+function handleUpgradeCTA(e) {
+  if (e) e.preventDefault();
+  if (AccessManager.getLevel() < 1) {
+    // No email captured yet — show email gate first
+    openPaywall();
+    return;
+  }
+  // Level 1+ — go to Stripe
+  window.open(stripeUrl(), '_blank');
+}
+
 function handleGateEnter() {
-  // Scroll to email capture section
-  const emailSection = document.getElementById('gate-email-section');
-  if (emailSection) {
-    emailSection.scrollIntoView({ behavior: 'smooth' });
+  // Scroll to features section (differentiates from "Unlock Free Access" which focuses email)
+  var features = document.getElementById('gate-features-title');
+  if (features) {
+    features.scrollIntoView({ behavior: 'smooth' });
   }
 }
 
@@ -8510,8 +8522,8 @@ function navigate(tab, animate = true) {
   if (tab === 'tools') { applyToolsGate(); }
   if (tab === 'versus') { populateVersusDropdowns(); }
   if (tab === 'dealtape') { buildDealTape(); }
-  if (tab === 'account') { buildSaved(); buildProfileRecs(); if (typeof buildQrCode === 'function') buildQrCode(); }
-  if (tab === 'dna') { if (typeof dnaRenderProfile === 'function') dnaRenderProfile(); if (typeof pathwayRender === 'function') pathwayRender(); }
+  if (tab === 'account') { applyAccountGate(); }
+  if (tab === 'dna') { applyDnaGate(); }
   if (tab === 'auctions' && typeof buildAuctionPulse === 'function') { buildAuctionPulse(); }
   if (tab === 'pulse') { buildStatePulse(); }
   if (tab === 'map' && state.mapReady) {
@@ -8553,6 +8565,41 @@ function switchToolsTab(panel, btn) {
   if (panel === 'saved') buildSaved();
   if (panel === 'profile') buildProfileRecs();
   if (panel === 'analyzer') calcAnalyzer();
+}
+
+/** Gate DNA tab for Level 0 users */
+function applyDnaGate() {
+  if (AccessManager.getLevel() >= 1) {
+    if (typeof dnaRenderProfile === 'function') dnaRenderProfile();
+    if (typeof pathwayRender === 'function') pathwayRender();
+    return;
+  }
+  var dnaView = document.getElementById('view-dna');
+  if (dnaView) {
+    var scrollBody = dnaView.querySelector('.scroll-body') || dnaView;
+    scrollBody.innerHTML =
+      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;padding:40px 20px;">' +
+        '<div style="font-size:16px;color:var(--text-dim);margin-bottom:24px;">Complete your investor profile — enter your email to get started.</div>' +
+        '<button onclick="handleGateEnter();" style="background:var(--accent);color:#0d0d0d;border:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;">GET FREE ACCESS</button>' +
+      '</div>';
+  }
+}
+
+/** Gate Account tab for Level 0 users */
+function applyAccountGate() {
+  if (AccessManager.getLevel() >= 1) {
+    buildSaved(); buildProfileRecs();
+    if (typeof buildQrCode === 'function') buildQrCode();
+    return;
+  }
+  var profile = document.getElementById('tools-profile');
+  if (profile) {
+    profile.innerHTML =
+      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;padding:40px 20px;">' +
+        '<div style="font-size:16px;color:var(--text-dim);margin-bottom:24px;">Create your free account to save states and track your research.</div>' +
+        '<button onclick="handleGateEnter();" style="background:var(--accent);color:#0d0d0d;border:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;">GET FREE ACCESS</button>' +
+      '</div>';
+  }
 }
 
 /** Gate the entire Tools view for Level 0 users */
@@ -8656,7 +8703,7 @@ async function initMap() {
     // Re-inject lock overlay (cleared by innerHTML reset)
     var lockOverlay = document.createElement('div');
     lockOverlay.id = 'map-lock-overlay';
-    lockOverlay.innerHTML = '<svg class="map-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><div class="map-lock-text">Full Map Access Requires Upgrade</div><a class="map-lock-cta" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Unlock Full Access</a><div class="map-lock-sub">One-time payment \u00b7 Lifetime access \u00b7 All 51 states</div>';
+    lockOverlay.innerHTML = '<svg class="map-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><div class="map-lock-text">Full Map Access Requires Upgrade</div><a class="map-lock-cta" href="#" onclick="handleUpgradeCTA(event)">Unlock Full Access</a><div class="map-lock-sub">One-time payment \u00b7 Lifetime access \u00b7 50 States + DC</div>';
     container.appendChild(lockOverlay);
 
     const svg = d3.select('#map-svg');
@@ -10360,6 +10407,23 @@ function toggleDebug() {
     if (overlay) overlay.classList.remove('active');
   }
 
+  // Handle the final email capture from exit intent fallback
+  window.handleExitFinalEmail = function() {
+    var input = document.getElementById('exit-final-email');
+    var email = input ? input.value.trim() : '';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+    try { localStorage.setItem('aug_email', email); } catch(e) {}
+    try {
+      fetch(NETLIFY_FN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'capture-email', email: email, lang: state.lang || 'en', timestamp: new Date().toISOString() })
+      }).catch(function() {});
+    } catch(e) {}
+    hideExitPopup();
+    enterApp(true);
+  };
+
   // Desktop: mouseout from viewport top
   document.addEventListener('mouseout', function(e) {
     if (e.clientY <= 0) showExitPopup();
@@ -10384,7 +10448,22 @@ function toggleDebug() {
     }
 
     var dismissBtn = document.getElementById('exit-dismiss');
-    if (dismissBtn) dismissBtn.addEventListener('click', hideExitPopup);
+    if (dismissBtn) dismissBtn.addEventListener('click', function() {
+      // After dismiss, show final inline email capture
+      var modal = document.querySelector('.exit-modal');
+      if (modal && !AccessManager.hasEmail()) {
+        modal.innerHTML =
+          '<div style="text-align:center;padding:20px;">' +
+            '<div style="font-size:14px;color:var(--text-dim);margin-bottom:16px;">At least grab your free state access \u2192</div>' +
+            '<div style="display:flex;gap:8px;max-width:320px;margin:0 auto;">' +
+              '<input type="email" id="exit-final-email" placeholder="you@email.com" style="flex:1;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:14px;">' +
+              '<button onclick="handleExitFinalEmail()" style="background:var(--accent);color:#0d0d0d;border:none;padding:10px 20px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;">GO</button>' +
+            '</div>' +
+          '</div>';
+      } else {
+        hideExitPopup();
+      }
+    });
 
     var closeBtn = document.getElementById('exit-close-btn');
     if (closeBtn) closeBtn.addEventListener('click', hideExitPopup);
@@ -11933,6 +12012,8 @@ function detectMobileDevice() {
 }
 
 function shouldShowA2hs() {
+  // Gate to Level 1+ — Level 0 should not see install prompt
+  if (typeof AccessManager !== 'undefined' && AccessManager.getLevel() < 1) return false;
   // Only on mobile, only if not dismissed, only if not already in standalone mode
   var device = detectMobileDevice();
   if (!device) return false;
