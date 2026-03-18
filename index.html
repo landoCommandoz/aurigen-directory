@@ -6632,6 +6632,21 @@ const LanguageManager = {
   }
 };
 
+// ── NavManager ──────────────────────────────────────────────
+// Derives tab/content visibility from AccessManager.
+// Every content-gating check routes through here.
+const NavManager = {
+  /** Can user view this state's content? (free state OR paid user) */
+  canViewState: function(stateId) {
+    return AccessManager.canAccess(stateId);
+  },
+
+  /** Is user on the paid tier? Shorthand for content gates. */
+  hasPaidAccess: function() {
+    return AccessManager.isPaid();
+  }
+};
+
 // (P1 conversion flags merged into var FF FLAG_DEFINITIONS above)
 
 // ── Type helpers ─────────────────────────────────────────────
@@ -7621,7 +7636,7 @@ function applyLanguage() {
         if (!sid) return;
         var s = stateMap[sid];
         if (!s) return;
-        var isFree = FREE_STATES.has(sid) || state.isPaid;
+        var isFree = NavManager.canViewState(sid);
         d3.select(this)
           .style('opacity', isFree ? 1 : 0.25)
           .attr('filter', isFree ? 'url(#state-glow)' : null);
@@ -7642,7 +7657,7 @@ function applyLanguage() {
 
     // If modal is open, refresh it
     if (state.activeState) {
-      const isFree = FREE_STATES.has(state.activeState) || state.isPaid;
+      const isFree = NavManager.canViewState(state.activeState);
       if (isFree) openState(state.activeState);
       else openPaywall(state.activeState);
     }
@@ -8563,7 +8578,7 @@ function buildStateList() {
   });
 
   container.innerHTML = sorted.map(s => {
-    const isFree = FREE_STATES.has(s.id) || state.isPaid;
+    const isFree = NavManager.canViewState(s.id);
     const badgeClass = typeBadgeClass(s.type);
     const typeLabel = typeShortLabel(s.type);
     const scoreClass = (s.score >= 75) ? 'state-list-score high-score' : 'state-list-score';
@@ -8719,20 +8734,20 @@ async function initMap() {
     function getColor(sid) {
       const s = stateMap[sid];
       if (!s) return mapColors.state;
-      const isFree = FREE_STATES.has(sid) || state.isPaid;
+      const isFree = NavManager.canViewState(sid);
       return typeMapColor(s.type, isFree, mapColors);
     }
 
     function getOpacity(sid) {
       const s = stateMap[sid];
       if (!s) return 0.15;
-      return (FREE_STATES.has(sid) || state.isPaid) ? 1 : 0.55;
+      return NavManager.canViewState(sid) ? 1 : 0.55;
     }
 
     function getGlowFilter(sid) {
       const s = stateMap[sid];
       if (!s) return null;
-      if (!(FREE_STATES.has(sid) || state.isPaid)) return null;
+      if (!NavManager.canViewState(sid)) return null;
       var k = typeKey(s.type);
       return 'url(#glow-' + k + ')';
     }
@@ -8751,7 +8766,7 @@ async function initMap() {
         var s = stateMap[sid];
         var cls = 'state-shape';
         if (s) cls += ' state-type-' + typeKey(s.type);
-        if (sid && !(FREE_STATES.has(sid) || state.isPaid)) cls += ' state-locked';
+        if (sid && !NavManager.canViewState(sid)) cls += ' state-locked';
         return cls;
       })
       .attr('d', path)
@@ -8803,7 +8818,7 @@ async function initMap() {
     g.selectAll('path.state-lock-overlay')
       .data(features.filter(function(d) {
         var sid = fipsToId[String(d.id).padStart(2,'0')];
-        return sid && !(FREE_STATES.has(sid) || state.isPaid);
+        return sid && !NavManager.canViewState(sid);
       }))
       .enter().append('path')
       .attr('class', 'state-lock-overlay')
@@ -8842,7 +8857,7 @@ async function initMap() {
       const off = LABEL_OFFSETS[sid] || [0, 0];
       const cx = c[0] + off[0], cy = c[1] + off[1];
 
-      const isFree = FREE_STATES.has(sid) || state.isPaid;
+      const isFree = NavManager.canViewState(sid);
       const s = stateMap[sid];
       const score = (s && isFree) ? s.score : null;
       const labelColor = isFree ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.35)';
@@ -8895,7 +8910,7 @@ async function initMap() {
 function updateMapLockState() {
   var mc = document.getElementById('map-container');
   if (!mc) return;
-  if (state.isPaid) {
+  if (NavManager.hasPaidAccess()) {
     mc.classList.remove('map-locked');
   } else {
     mc.classList.add('map-locked');
@@ -8912,7 +8927,7 @@ function openState(id) {
   // ff_return_visit: store last viewed state for return visit recognition
   try { storageSet('aug_last_viewed_state', id); } catch(e) {}
 
-  const isPaid = state.isPaid;
+  const isPaid = NavManager.hasPaidAccess();
   const isFreeState = FREE_STATES.has(id);
   const isSaved = state.savedStates.includes(id);
 
@@ -8920,7 +8935,7 @@ function openState(id) {
   trackEvent('state_open', { state_id: id, state_name: s.name, is_free: isFreeState, is_paid: isPaid });
 
   // Locked states (not free, not paid) → straight to paywall
-  if (!isFreeState && !isPaid) { dnaTrackEvent('locked_click'); openPaywall(id); return; }
+  if (!NavManager.canViewState(id)) { dnaTrackEvent('locked_click'); openPaywall(id); return; }
 
   // Track state view for DNA behavior
   dnaTrackEvent('state_view', { id: s.id, type: s.type });
@@ -9358,7 +9373,7 @@ function buildSpotlight() {
   if (!container || !STATES || STATES.length === 0) return;
 
   const top = [...STATES]
-    .filter(s => FREE_STATES.has(s.id) || state.isPaid)
+    .filter(s => NavManager.canViewState(s.id))
     .sort((a, b) => b.score - a.score)
     .slice(0, 10);
 
@@ -9395,7 +9410,7 @@ function buildDealTape() {
   var container = document.getElementById('deal-tape-feed');
   if (!container || !STATES || STATES.length === 0) return;
 
-  if (!state.isPaid) {
+  if (!NavManager.hasPaidAccess()) {
     container.innerHTML =
       '<div class="deal-tape-card" style="filter:blur(6px);pointer-events:none;opacity:0.5;">' +
         '<div class="deal-tape-inner" style="padding:24px;">' +
@@ -9420,7 +9435,7 @@ function buildDealTape() {
   var total = scenarios.length;
 
   container.innerHTML = scenarios.map(function(sc, idx) {
-    var isFree = FREE_STATES.has(sc.stateId) || state.isPaid;
+    var isFree = NavManager.canViewState(sc.stateId);
     var scoreClass = sc.score >= 70 ? 'high' : sc.score >= 40 ? 'mid' : 'low';
     var beginnerClass = sc.beginnerFriendly ? 'yes' : 'no';
     var beginnerLabel = sc.beginnerFriendly ? t('dtBeginnerYes') : t('dtBeginnerNo');
@@ -9797,7 +9812,7 @@ function buildProfileRecs() {
   if (strat.includes('beginner')) filtered = filtered.filter(s => s.beginnerFriendly);
 
   const top = filtered
-    .filter(s => FREE_STATES.has(s.id) || state.isPaid)
+    .filter(s => NavManager.canViewState(s.id))
     .sort((a, b) => b.score - a.score)
     .slice(0, 5);
 
@@ -9837,7 +9852,7 @@ function setResultValue(id, text, colorClass) {
 }
 
 function calcAnalyzer() {
-  if (!state.isPaid) {
+  if (!NavManager.hasPaidAccess()) {
     var resultArea = document.getElementById('az-return');
     if (resultArea && resultArea.parentElement) {
       var wrap = resultArea.closest('.calc-results') || resultArea.parentElement;
@@ -9929,7 +9944,7 @@ function calcAnalyzer() {
 // ── AI Advisor ────────────────────────────────────────────────
 async function sendAdvisorMessage() {
   dnaTrackEvent('ai_question');
-  if (!state.isPaid) {
+  if (!NavManager.hasPaidAccess()) {
     appendAdvisorMsg('sage', 'Sage is a paid feature. Unlock full access to ask Sage anything about all 50 states.<br><br><a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;">UNLOCK NOW</a><br><span style="font-size:12px;color:var(--text-dim);">' + t('paywallHaveCode') + ' <button onclick="showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">' + t('paywallEnterCode') + '</button></span>');
     return;
   }
@@ -9946,7 +9961,7 @@ async function sendAdvisorMessage() {
 
   // Analytics: sage_conversation_start (first message only)
   if (state.advisorHistory.length === 0) {
-    trackEvent('sage_conversation_start', { is_free_user: !state.isPaid });
+    trackEvent('sage_conversation_start', { is_free_user: !NavManager.hasPaidAccess() });
   }
 
   // Add user message
@@ -9954,7 +9969,7 @@ async function sendAdvisorMessage() {
   state.advisorHistory.push({ role: 'user', content: msg });
 
   // ff_free_ai_messages: increment Sage message count for free users
-  if (!state.isPaid && ffEnabled('ff_free_ai_messages')) {
+  if (!NavManager.hasPaidAccess() && ffEnabled('ff_free_ai_messages')) {
     storageSet('aug_ai_sage_count', storageGet('aug_ai_sage_count', 0) + 1);
   }
 
@@ -10046,7 +10061,7 @@ function populateVersusDropdowns() {
     sorted.forEach(function(s) {
       var opt = document.createElement('option');
       opt.value = s.id;
-      var isFree = FREE_STATES.has(s.id) || state.isPaid;
+      var isFree = NavManager.canViewState(s.id);
       opt.textContent = s.name + (isFree ? '' : ' \uD83D\uDD12');
       sel.appendChild(opt);
     });
@@ -10066,7 +10081,7 @@ function runVersus() {
     return;
   }
 
-  if (!state.isPaid) {
+  if (!NavManager.hasPaidAccess()) {
     showFeaturePaywall('vs-result', t('vsPaywallMsg'));
     return;
   }
@@ -10075,8 +10090,8 @@ function runVersus() {
   var sB = STATES.find(function(s) { return s.id === idB; });
   if (!sA || !sB) return;
 
-  var freeA = FREE_STATES.has(idA) || state.isPaid;
-  var freeB = FREE_STATES.has(idB) || state.isPaid;
+  var freeA = NavManager.canViewState(idA);
+  var freeB = NavManager.canViewState(idB);
 
   var html = '<div class="vs-table">';
   var winsA = 0;
@@ -10641,7 +10656,7 @@ function updateDebug() {
   if (!content) return;
   content.innerHTML = `
     ${t('debugEntered')}: ${state.entered}<br>
-    ${t('debugIsPaid')}: ${state.isPaid}<br>
+    ${t('debugIsPaid')}: ${NavManager.hasPaidAccess()}<br>
     ${t('debugActiveTab')}: ${state.activeTab}<br>
     ${t('debugActiveState')}: ${state.activeState || t('debugNone')}<br>
     ${t('debugSavedStates')}: [${state.savedStates.join(', ')}]<br>
@@ -10719,7 +10734,7 @@ function buildStatePulse() {
   var html = '';
   sorted.forEach(function(s) {
     var tc = s.tylerCompliance || { status: 'pending', summary: '' };
-    var isFree = FREE_STATES.has(s.id) || state.isPaid;
+    var isFree = NavManager.canViewState(s.id);
     var summaryText = tc.summary || '';
     var lockIcon = !isFree ? '<svg class="pulse-lock-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>' : '';
 
@@ -10739,7 +10754,7 @@ function buildTylerComplianceHTML(s) {
   var tc = s.tylerCompliance;
   if (!tc) return '';
 
-  var isFree = FREE_STATES.has(s.id) || state.isPaid;
+  var isFree = NavManager.canViewState(s.id);
   var statusLabel = tc.status === 'compliant' ? t('tylerCompliant') : tc.status === 'non-compliant' ? t('tylerNonCompliant') : t('tylerPending');
   var badgeDot = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' +
     (tc.status === 'compliant' ? 'var(--green)' : tc.status === 'non-compliant' ? 'var(--red)' : 'var(--accent)') + '"></span>';
@@ -10873,7 +10888,7 @@ function dnaSelectOption(qIdx, optIdx) {
 function dnaQuizNext() {
   if (state.dnaAnswers[state.dnaQuizStep] === null) return;
   // Gate after first question for free users
-  if (!state.isPaid && state.dnaQuizStep >= 0) {
+  if (!NavManager.hasPaidAccess() && state.dnaQuizStep >= 0) {
     showFeaturePaywall('dna-quiz-area', 'Complete your investor profile with full access.');
     return;
   }
@@ -11131,7 +11146,7 @@ function dnaRenderTopStates() {
   container.innerHTML = matched.map(function(m) {
     const s = m.state;
     const pct = Math.round(m.score);
-    const isFree = FREE_STATES.has(s.id) || state.isPaid;
+    const isFree = NavManager.canViewState(s.id);
     const clickAction = isFree ? "openState('" + s.id + "')" : "openPaywall('" + s.id + "')";
     const tLabel = typeShortLabel(s.type);
     return '<div class="dna-state-card" onclick="' + clickAction + '">' +
@@ -11224,7 +11239,7 @@ function pathwayRenderStep() {
     } else {
       // Quiz not taken — show fallback top 3 states by beginner score
       var fallbackStates = (STATES || []).filter(function(s) {
-        return FREE_STATES.has(s.id) || state.isPaid;
+        return NavManager.canViewState(s.id);
       }).sort(function(a, b) { return b.score - a.score; }).slice(0, 3);
 
       var fallbackCards = '';
@@ -11543,7 +11558,7 @@ function buildAuctionPulse() {
   if (titleEl) titleEl.textContent = t('auctionTitle');
   if (subEl) subEl.textContent = t('auctionSub');
 
-  if (!state.isPaid) {
+  if (!NavManager.hasPaidAccess()) {
     showFeaturePaywall('auction-list', 'Unlock to see upcoming auctions in your target states.');
     return;
   }
@@ -11560,7 +11575,7 @@ function buildAuctionPulse() {
     var aDate = getAuctionDate(s.id);
     var daysLeft = getDaysUntil(aDate);
     var filterType = getAuctionTypeFilter(s.type);
-    var isFree = FREE_STATES.has(s.id) || state.isPaid;
+    var isFree = NavManager.canViewState(s.id);
     return { state: s, auctionDate: aDate, daysLeft: daysLeft, filterType: filterType, isFree: isFree };
   });
 
@@ -11577,7 +11592,7 @@ function buildAuctionPulse() {
     var badgeClass = typeBadgeClass(s.type);
     var typeLabel = typeShortLabel(s.type);
     var daysText = item.daysLeft === 1 ? t('auctionDayLeft') : t('auctionDaysLeft');
-    var freeBadge = (FREE_STATES.has(s.id) && !state.isPaid)
+    var freeBadge = (FREE_STATES.has(s.id) && !NavManager.hasPaidAccess())
       ? '<span class="auction-card-star">&#9733; ' + t('auctionFreeState') + '</span>'
       : '';
     var platformName = s.auctionSignup && s.auctionSignup.platform ? s.auctionSignup.platform : '';
