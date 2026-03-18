@@ -6507,6 +6507,18 @@ const FREE_STATES = new Set(['FL','IL','AZ']);
 // Single source of truth for paid/free access state.
 // All reads and writes to state.isPaid route through here.
 const AccessManager = {
+  /** Access levels: 0 = unauthenticated, 1 = email captured (free), 2 = paid */
+  getLevel: function() {
+    if (state.isPaid) return 2;
+    if (state.entered) return 1;
+    return 0;
+  },
+
+  /** Check if user has provided an email */
+  hasEmail: function() {
+    try { return !!localStorage.getItem('aug_email'); } catch(e) { return false; }
+  },
+
   /** Check if a state ID is accessible (free or paid) */
   canAccess: function(stateId) {
     return FREE_STATES.has(stateId) || state.isPaid;
@@ -6603,8 +6615,12 @@ const LanguageManager = {
 // Derives tab/content visibility from AccessManager.
 // Every content-gating check routes through here.
 const NavManager = {
-  /** Tabs that require paid access */
-  PAID_TABS: ['pulse', 'advisor', 'versus', 'dealtape'],
+  /** Tabs visible at each access level (cumulative — higher levels see everything below) */
+  LEVEL_TABS: {
+    0: [],                                             // Level 0: no tabs (gate visible)
+    1: ['map', 'tools', 'dna', 'account'],             // Level 1: free tier
+    2: ['map', 'pulse', 'tools', 'advisor', 'versus', 'dealtape', 'dna', 'auctions', 'account'] // Level 2: all
+  },
 
   /** Can user view this state's content? (free state OR paid user) */
   canViewState: function(stateId) {
@@ -6616,15 +6632,13 @@ const NavManager = {
     return AccessManager.isPaid();
   },
 
-  /** Show/hide nav tabs based on paid status. Call on enterApp and after upgrade. */
+  /** Show/hide nav tabs based on access level. Call on enterApp and after upgrade. */
   applyTabVisibility: function() {
-    var isPaid = this.hasPaidAccess();
-    var self = this;
+    var level = AccessManager.getLevel();
+    var allowed = this.LEVEL_TABS[level] || [];
     document.querySelectorAll('.nav-item').forEach(function(btn) {
       var tab = btn.dataset.tab;
-      if (self.PAID_TABS.indexOf(tab) !== -1) {
-        btn.style.display = isPaid ? '' : 'none';
-      }
+      btn.style.display = allowed.indexOf(tab) !== -1 ? '' : 'none';
     });
   }
 };
@@ -8027,11 +8041,13 @@ window.addEventListener('load', async () => {
     // Mobile code trigger: type "aurigen" on gate
     setupMobileCodeTrigger();
 
-    // Show admin analytics panel if ?admin=true
-    if (_isAdmin) {
-      var adminPanel = document.getElementById('admin-panel-analytics');
+    // Admin panel: only show for ?admin=true AND Level 2 (paid). Remove from DOM otherwise.
+    var adminPanel = document.getElementById('admin-panel-analytics');
+    if (_isAdmin && AccessManager.getLevel() >= 2) {
       if (adminPanel) adminPanel.style.display = 'block';
       buildAnalyticsAdmin();
+    } else if (adminPanel) {
+      adminPanel.remove();
     }
 
     if (state.mobileQr || state.entered) {
@@ -8458,6 +8474,8 @@ function navigate(tab, animate = true) {
   });
 
   // Tab-specific actions
+  if (tab === 'advisor') { applyAdvisorGate(); }
+  if (tab === 'tools') { applyToolsGate(); }
   if (tab === 'versus') { populateVersusDropdowns(); }
   if (tab === 'dealtape') { buildDealTape(); }
   if (tab === 'account') { buildSaved(); buildProfileRecs(); if (typeof buildQrCode === 'function') buildQrCode(); }
@@ -8479,6 +8497,20 @@ function navigate(tab, animate = true) {
 
 // ── Tools / Account Sub-tab Switch ──────────────────────────
 function switchToolsTab(panel, btn) {
+  var level = AccessManager.getLevel();
+
+  // Gate: Deal Analyzer requires Level 1+
+  if (panel === 'analyzer' && level < 1) {
+    showToolsGateOverlay('tools-analyzer', 'Unlock the Deal Analyzer — enter your email to get free access.');
+    return;
+  }
+  // Gate: Legal and Glossary require Level 1+
+  if ((panel === 'legal' || panel === 'glossary') && level < 1) {
+    var label = panel === 'legal' ? 'Legal Library' : 'Glossary';
+    showToolsGateOverlay('tools-' + panel, label + ' requires free access. Enter your email to unlock.');
+    return;
+  }
+
   const parent = btn.closest('.view');
   if (!parent) return;
   parent.querySelectorAll('.tools-tab').forEach(t => t.classList.remove('active'));
@@ -8489,6 +8521,24 @@ function switchToolsTab(panel, btn) {
   if (panel === 'saved') buildSaved();
   if (panel === 'profile') buildProfileRecs();
   if (panel === 'analyzer') calcAnalyzer();
+}
+
+/** Gate the entire Tools view for Level 0 users */
+function applyToolsGate() {
+  if (AccessManager.getLevel() >= 1) return; // Level 1+ can access tools
+  showToolsGateOverlay('tools-analyzer', 'Unlock the Deal Analyzer and research tools — enter your email to get free access.');
+}
+
+/** Show a gate overlay inside a tools panel */
+function showToolsGateOverlay(panelId, message) {
+  var panel = document.getElementById(panelId);
+  if (!panel) return;
+  panel.innerHTML =
+    '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;padding:40px 20px;">' +
+      '<div style="font-size:16px;color:var(--text-dim);margin-bottom:24px;">' + message + '</div>' +
+      '<button onclick="handleGateEnter();" style="background:var(--accent);color:#0d0d0d;border:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;">GET FREE ACCESS</button>' +
+    '</div>';
+  panel.classList.add('active');
 }
 
 // ── State List ───────────────────────────────────────────────
@@ -9873,6 +9923,38 @@ function calcAnalyzer() {
 }
 
 // ── AI Advisor ────────────────────────────────────────────────
+
+/** Gate the advisor view: Level < 2 sees paywall instead of chat */
+function applyAdvisorGate() {
+  var container = document.getElementById('advisor-messages');
+  var inputBar = document.querySelector('.advisor-input-bar');
+  var input = document.getElementById('advisor-input');
+  var sendBtn = document.getElementById('advisor-send');
+
+  if (AccessManager.getLevel() >= 2) {
+    // Paid user — enable input, show welcome if first visit
+    if (input) input.disabled = false;
+    if (sendBtn) sendBtn.disabled = false;
+    if (inputBar) inputBar.style.display = '';
+    return;
+  }
+
+  // Level 0 or 1 — disable input, replace content with paywall
+  if (input) input.disabled = true;
+  if (sendBtn) sendBtn.disabled = true;
+  if (inputBar) inputBar.style.display = 'none';
+
+  if (container) {
+    container.innerHTML =
+      '<div class="msg msg-sage">' +
+        '<strong>Sage</strong><br>' +
+        'Sage is a paid feature. Unlock full access to ask Sage anything about all 50 states + DC.<br><br>' +
+        '<a href="' + stripeUrl() + '" target="_blank" style="display:inline-block;background:var(--accent);color:#0d0d0d;padding:14px 32px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;">UNLOCK NOW</a><br>' +
+        '<span style="font-size:12px;color:var(--text-dim);">' + t('paywallHaveCode') + ' <button onclick="showCodeInput();" style="background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;">' + t('paywallEnterCode') + '</button></span>' +
+      '</div>';
+  }
+}
+
 async function sendAdvisorMessage() {
   dnaTrackEvent('ai_question');
   if (!NavManager.hasPaidAccess()) {
