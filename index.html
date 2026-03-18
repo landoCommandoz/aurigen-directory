@@ -5214,15 +5214,15 @@ a { color: inherit; text-decoration: none; }
   <section class="gate-stats gate-section" id="gate-stats-section">
     <div class="gate-stats-grid">
       <div class="gate-stat-card">
-        <div class="gate-stat-number" data-target="51">0</div>
+        <div class="gate-stat-number" data-target="0">—</div>
         <div class="gate-stat-label" id="gate-stat-label-1">States + DC Covered</div>
       </div>
       <div class="gate-stat-card">
-        <div class="gate-stat-number" data-target="3000" data-suffix="+">0</div>
-        <div class="gate-stat-label" id="gate-stat-label-2">Taxing Jurisdictions</div>
+        <div class="gate-stat-number" data-target="0">—</div>
+        <div class="gate-stat-label" id="gate-stat-label-2">Counties Indexed</div>
       </div>
       <div class="gate-stat-card">
-        <div class="gate-stat-number" data-target="3">0</div>
+        <div class="gate-stat-number" data-target="0">—</div>
         <div class="gate-stat-label" id="gate-stat-label-3">Free States to Start</div>
       </div>
     </div>
@@ -6692,7 +6692,7 @@ const I18N = {
     gateScrollText: 'Scroll',
     // Gate - Stats
     gateStatLabel1: 'States + DC Covered',
-    gateStatLabel2: 'Taxing Jurisdictions',
+    gateStatLabel2: 'Counties Indexed',
     gateStatLabel3: 'Free States to Start',
     // Gate - Features
     gateFeaturesTitle: 'What You Get',
@@ -7087,7 +7087,7 @@ const I18N = {
     gateScrollText: 'Desplazar',
     // Gate - Stats
     gateStatLabel1: 'Estados + DC Cubiertos',
-    gateStatLabel2: 'Jurisdicciones Fiscales',
+    gateStatLabel2: 'Condados Indexados',
     gateStatLabel3: 'Estados Gratis para Empezar',
     // Gate - Features
     gateFeaturesTitle: 'Lo Que Obtienes',
@@ -8268,7 +8268,7 @@ function setupMobileCodeTrigger() {
   });
 }
 
-// Animate gate stats when scrolled into view — wire to real data
+// Animate gate stats when scrolled into view — derived from real STATES data
 function animateGateStats(retryCount) {
   var statsSection = document.getElementById('gate-stats-section');
   if (!statsSection) return;
@@ -8285,43 +8285,30 @@ function animateGateStats(retryCount) {
     return;
   }
 
-  // Fallback: even if data never loaded, still show hardcoded targets from HTML
-  if (statesData.length === 0) {
-    // Use the data-target values already in the HTML (51, 3000, 3)
-    var fallbackNumbers = statsSection.querySelectorAll('.gate-stat-number');
-    fallbackNumbers.forEach(function(el) {
-      var target = parseInt(el.dataset.target, 10) || 0;
-      var suffix = el.dataset.suffix || '';
-      if (target > 0) animateNumber(el, target, suffix, 1500);
-    });
-    return;
-  }
+  // If data never loaded after all retries, leave placeholders — do not show fabricated numbers
+  if (statesData.length === 0) return;
 
-  var stateCount = statesData.length || 51;
-  var jurisdictionCount = 0;
+  // Derive all counts from actual data — no hardcoded floors or inflated values
+  var stateCount = statesData.length;
+  var countyCount = 0;
   statesData.forEach(function(s) {
     if (s.counties && Array.isArray(s.counties)) {
-      jurisdictionCount += s.counties.length;
+      countyCount += s.counties.length;
     }
   });
-  // Floor to nearest 100 for cleaner display, minimum 3000
-  if (jurisdictionCount < 3000) jurisdictionCount = 3000;
-  else jurisdictionCount = Math.floor(jurisdictionCount / 100) * 100;
-
-  var freeStates = ['FL','IL','AZ'];
-  var freeCount = freeStates.length;
+  var freeCount = FREE_STATES.size;
 
   // Update data-target attributes with real values
   var statNumbers = statsSection.querySelectorAll('.gate-stat-number');
   if (statNumbers[0]) statNumbers[0].dataset.target = stateCount;
-  if (statNumbers[1]) { statNumbers[1].dataset.target = jurisdictionCount; statNumbers[1].dataset.suffix = '+'; }
+  if (statNumbers[1]) { statNumbers[1].dataset.target = countyCount; delete statNumbers[1].dataset.suffix; }
   if (statNumbers[2]) statNumbers[2].dataset.target = freeCount;
 
   function fireCounters() {
     statNumbers.forEach(function(el) {
       var target = parseInt(el.dataset.target, 10) || 0;
       var suffix = el.dataset.suffix || '';
-      animateNumber(el, target, suffix, 1500);
+      if (target > 0) animateNumber(el, target, suffix, 1500);
     });
   }
 
