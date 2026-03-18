@@ -5215,11 +5215,11 @@ a { color: inherit; text-decoration: none; }
     <div class="gate-stats-grid">
       <div class="gate-stat-card">
         <div class="gate-stat-number" data-target="0">—</div>
-        <div class="gate-stat-label" id="gate-stat-label-1">States + DC Covered</div>
+        <div class="gate-stat-label" id="gate-stat-label-1">50 States + DC</div>
       </div>
       <div class="gate-stat-card">
         <div class="gate-stat-number" data-target="0">—</div>
-        <div class="gate-stat-label" id="gate-stat-label-2">Counties Indexed</div>
+        <div class="gate-stat-label" id="gate-stat-label-2">Auction Calendars</div>
       </div>
       <div class="gate-stat-card">
         <div class="gate-stat-number" data-target="0">—</div>
@@ -6691,8 +6691,8 @@ const I18N = {
     heroEmailError: 'Please enter a valid email address.',
     gateScrollText: 'Scroll',
     // Gate - Stats
-    gateStatLabel1: 'States + DC Covered',
-    gateStatLabel2: 'Counties Indexed',
+    gateStatLabel1: '50 States + DC',
+    gateStatLabel2: 'Auction Calendars',
     gateStatLabel3: 'Free States to Start',
     // Gate - Features
     gateFeaturesTitle: 'What You Get',
@@ -7086,8 +7086,8 @@ const I18N = {
     heroEmailError: 'Por favor ingresa un correo valido.',
     gateScrollText: 'Desplazar',
     // Gate - Stats
-    gateStatLabel1: 'Estados + DC Cubiertos',
-    gateStatLabel2: 'Condados Indexados',
+    gateStatLabel1: '50 Estados + DC',
+    gateStatLabel2: 'Calendarios de Subasta',
     gateStatLabel3: 'Estados Gratis para Empezar',
     // Gate - Features
     gateFeaturesTitle: 'Lo Que Obtienes',
@@ -8288,20 +8288,15 @@ function animateGateStats(retryCount) {
   // If data never loaded after all retries, leave placeholders — do not show fabricated numbers
   if (statesData.length === 0) return;
 
-  // Derive all counts from actual data — no hardcoded floors or inflated values
+  // Derive counts from actual data
   var stateCount = statesData.length;
-  var countyCount = 0;
-  statesData.forEach(function(s) {
-    if (s.counties && Array.isArray(s.counties)) {
-      countyCount += s.counties.length;
-    }
-  });
+  var calendarCount = stateCount; // One auction calendar per state/territory
   var freeCount = FREE_STATES.size;
 
   // Update data-target attributes with real values
   var statNumbers = statsSection.querySelectorAll('.gate-stat-number');
   if (statNumbers[0]) statNumbers[0].dataset.target = stateCount;
-  if (statNumbers[1]) { statNumbers[1].dataset.target = countyCount; delete statNumbers[1].dataset.suffix; }
+  if (statNumbers[1]) statNumbers[1].dataset.target = calendarCount;
   if (statNumbers[2]) statNumbers[2].dataset.target = freeCount;
 
   function fireCounters() {
