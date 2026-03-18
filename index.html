@@ -13,6 +13,27 @@
 <meta name="twitter:title" content="Aurigen County Resource Directory">
 <meta name="twitter:description" content="Tax lien & deed investor research for all 50 states + DC. Auction signups, rates, county links.">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Aurigen County Resource Directory",
+  "description": "Tax lien and tax deed investor research directory covering all 50 U.S. states and DC.",
+  "url": "https://aurigen-directory.netlify.app",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "97.00",
+    "priceCurrency": "USD"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "Aurigen Collective",
+    "email": "support@theaurigen.com"
+  }
+}
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <script>
@@ -5167,7 +5188,7 @@ a { color: inherit; text-decoration: none; }
     <div class="gate-glow"></div>
     <div class="gate-hero-content">
       <div class="gate-eyebrow" id="gate-eyebrow">The Investor's Edge</div>
-      <div class="gate-logo">AURI<span>GEN</span></div>
+      <h1 class="gate-logo" style="margin:0;">AURI<span>GEN</span></h1>
       <div class="gate-sub" id="gate-sub">County Resource Directory</div>
       <div class="gate-tagline" id="gate-tagline">Auction schedules, interest rates, and redemption periods — all in one place.</div>
       <div class="gate-description" id="gate-description">Auction signups, interest rates, redemption periods, county links, investor scores, and beginner tips — all in one place.</div>
@@ -5719,7 +5740,7 @@ a { color: inherit; text-decoration: none; }
 
   <!-- BOTTOM NAV -->
   <nav id="bottom-nav">
-    <button class="nav-item active" data-tab="map" onclick="navigate('map')">
+    <button class="nav-item active" data-tab="map" onclick="navigate('map')" aria-label="Explore map">
       <span class="nav-icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
       </span>
@@ -5792,7 +5813,7 @@ a { color: inherit; text-decoration: none; }
 <div id="state-modal" onclick="handleModalBackdrop(event)">
   <div class="state-modal-sheet">
     <div class="modal-drag-handle"></div>
-    <button class="modal-close" onclick="closeStateModal()">✕</button>
+    <button class="modal-close" onclick="closeStateModal()" aria-label="Close state details">✕</button>
     <div class="modal-header" id="modal-header"></div>
     <div class="modal-body" id="modal-body"></div>
   </div>
