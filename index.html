@@ -1353,30 +1353,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════
-   SOCIAL PROOF TICKER
-═══════════════════════════════════════════════ */
-.social-proof-ticker {
-  width: 100%;
-  background: rgba(200,168,75,0.06);
-  border-bottom: 1px solid rgba(200,168,75,0.1);
-  padding: 6px 20px;
-  font-size: 12px;
-  color: var(--text-dim);
-  text-align: center;
-  flex-shrink: 0;
-  min-height: 28px;
-  position: relative;
-  overflow: hidden;
-}
-.social-proof-ticker .ticker-msg {
-  transition: opacity 0.5s ease;
-  opacity: 1;
-}
-.social-proof-ticker .ticker-msg.fade-out {
-  opacity: 0;
-}
-
-/* ═══════════════════════════════════════════════
    SHAREABLE STATE CARDS — Share Button
 ═══════════════════════════════════════════════ */
 .share-state-btn {
@@ -5313,7 +5289,7 @@ a { color: inherit; text-decoration: none; }
     <div class="gate-price-community" id="gate-price-community">Join the Aurigen Collective — a growing community of tax lien & deed investors</div>
     <div class="gate-price-card" id="gate-price-card">
       <div class="gate-price-card-glow"></div>
-      <div class="gate-price-badge" id="gate-price-badge">FOUNDING MEMBER RATE — LIMITED</div>
+      <div class="gate-price-badge" id="gate-price-badge">INTRODUCTORY RATE</div>
       <div class="gate-price-display">
         <span class="gate-price-old">$297</span>
         <span class="gate-price-current">$97</span>
@@ -5324,7 +5300,7 @@ a { color: inherit; text-decoration: none; }
       <ul id="gate-price-includes" style="list-style:none;padding:0;margin:20px 0 24px;text-align:left;font-size:14px;color:var(--text-dim);line-height:2;">
         <li>&#10003; All 50 states + DC — investor scores, interest rates, redemption periods</li>
         <li>&#10003; Step-by-step auction signup guides with direct platform links</li>
-        <li>&#10003; 3,000+ county-level links to tax offices, assessors & GIS</li>
+        <li>&#10003; County-level links to tax offices, assessors & GIS maps</li>
         <li>&#10003; OTC (over-the-counter) availability for every state</li>
         <li>&#10003; Due diligence checklists and risk breakdowns per state</li>
         <li>&#10003; AI Research Advisor (Sage) — ask anything, get sourced answers</li>
@@ -5335,7 +5311,7 @@ a { color: inherit; text-decoration: none; }
 
       <!-- WHY NOW -->
       <div id="gate-price-urgency" style="font-size:13px;color:var(--accent);font-weight:600;margin-bottom:12px;letter-spacing:0.04em;">
-        Founding rate locks in at $97. When we hit 500 members, the price goes to $297.
+        Introductory rate — $97 one-time. Price subject to change.
       </div>
 
       <!-- RISK REVERSAL -->
@@ -5398,11 +5374,6 @@ a { color: inherit; text-decoration: none; }
     <span class="lang-flag" id="lang-flag-icon"></span>
     <span class="lang-label" id="lang-label-text"></span>
   </button>
-
-  <!-- SOCIAL PROOF TICKER (ff_social_proof) -->
-  <div class="social-proof-ticker" id="social-proof-ticker" style="display:none;">
-    <span class="ticker-msg" id="ticker-msg"></span>
-  </div>
 
   <div class="main-content">
 
@@ -6711,7 +6682,7 @@ const I18N = {
     gateFeature6Desc: 'Know which states are beginner-friendly and which to avoid',
     // Gate - Price
     gatePriceCommunity: 'Join the Aurigen Collective — a growing community of tax lien & deed investors',
-    gatePriceNote: 'One-time payment · Founding Member Rate · Access for the life of the product',
+    gatePriceNote: 'One-time payment · Introductory rate · Lifetime access',
     // Gate - Email
     gateEmailTitle: 'Start Free — Explore 3 States',
     gateEmailDesc: 'Enter your email to unlock Florida, Illinois, and Arizona — no credit card required.',
@@ -6885,7 +6856,7 @@ const I18N = {
     paywallTitle: 'Unlock Full Access',
     paywallSub: 'Get verified data on all 50 states - interest rates, redemption periods, auction signup guides, OTC availability, county links, and investor scores.',
     paywallPrice: '$97',
-    paywallPriceNote: 'One-time payment · Founding Member Rate · Access for the life of the product',
+    paywallPriceNote: 'One-time payment · Introductory rate · Lifetime access',
     paywallCta: 'Get Full Access \u2014 $97',
     paywallHaveCode: 'Already have an access code?',
     paywallEnterCode: 'Enter it here',
@@ -6944,6 +6915,7 @@ const I18N = {
     dtExplore: 'Explore',
     dtUnlock: 'Unlock Full Analysis',
     dtSwipe: 'Swipe for next deal',
+    dtDisclaimer: 'These scenarios are hypothetical illustrations based on publicly available state data. They are not predictions, guarantees, or investment advice. Actual returns depend on property conditions, local market factors, and legal variables not modeled here. Always verify with official county sources and consult a licensed professional before investing.',
     dtBeginnerYes: 'Beginner OK',
     dtBeginnerNo: 'Advanced',
     dtInvestorScore: 'Investor Score',
@@ -7044,9 +7016,6 @@ const I18N = {
     auctionFreeState: 'FREE',
     auctionUnlockDetails: 'Unlock to see details',
     auctionPlatform: 'Platform',
-    // Social Proof
-    socialProofMsg1: 'investors researching',
-    socialProofMsg2: 'right now',
     // Shareable Cards
     shareBtn: 'Share',
     shareCardScore: 'Investor Score',
@@ -7106,7 +7075,7 @@ const I18N = {
     gateFeature6Desc: 'Conoce cuales estados son aptos para principiantes y cuales evitar',
     // Gate - Price
     gatePriceCommunity: 'Unete al Colectivo Aurigen — una comunidad creciente de inversores en gravamenes y escrituras fiscales',
-    gatePriceNote: 'Pago unico · Tarifa de Miembro Fundador · Acceso durante la vida del producto',
+    gatePriceNote: 'Pago unico · Tarifa introductoria · Acceso de por vida',
     // Gate - Email
     gateEmailTitle: 'Comienza Gratis — Explora 3 Estados',
     gateEmailDesc: 'Ingresa tu correo para desbloquear Florida, Illinois y Arizona — sin tarjeta de credito.',
@@ -7280,7 +7249,7 @@ const I18N = {
     paywallTitle: 'Desbloquear Acceso Completo',
     paywallSub: 'Obtenga datos verificados de los 50 estados - tasas de interes, periodos de redencion, guias de registro de subastas, disponibilidad OTC, enlaces de condados y puntajes de inversor.',
     paywallPrice: '$97',
-    paywallPriceNote: 'Pago unico · Tarifa de Miembro Fundador · Acceso durante la vida del producto',
+    paywallPriceNote: 'Pago unico · Tarifa introductoria · Acceso de por vida',
     paywallCta: 'Acceso Completo \u2014 $97',
     paywallHaveCode: 'Ya tiene un codigo de acceso?',
     paywallEnterCode: 'Ingreselo aqui',
@@ -7339,6 +7308,7 @@ const I18N = {
     dtExplore: 'Explorar',
     dtUnlock: 'Desbloquear Analisis Completo',
     dtSwipe: 'Desliza para la siguiente oferta',
+    dtDisclaimer: 'Estos escenarios son ilustraciones hipoteticas basadas en datos estatales publicos. No son predicciones, garantias ni asesoramiento de inversion. Los rendimientos reales dependen de las condiciones de la propiedad, factores del mercado local y variables legales no modeladas aqui. Siempre verifique con fuentes oficiales del condado y consulte a un profesional autorizado antes de invertir.',
     dtBeginnerYes: 'Para Principiantes',
     dtBeginnerNo: 'Avanzado',
     dtInvestorScore: 'Puntaje de Inversor',
@@ -7439,9 +7409,6 @@ const I18N = {
     auctionFreeState: 'GRATIS',
     auctionUnlockDetails: 'Desbloquear para ver detalles',
     auctionPlatform: 'Plataforma',
-    // Social Proof
-    socialProofMsg1: 'inversores investigando',
-    socialProofMsg2: 'ahora mismo',
     // Shareable Cards
     shareBtn: 'Compartir',
     shareCardScore: 'Puntaje de Inversor',
@@ -7476,7 +7443,6 @@ var FEATURE_FLAGS = {
   ff_return_visit: true,
   ff_premium_onboarding: true,
   ff_auction_pulse: true,
-  ff_social_proof: true,
   ff_shareable_cards: true,
   ff_qr_code: true
 };
@@ -7652,9 +7618,7 @@ function applyLanguage() {
 
     // Re-render Phase 2 features on language switch
     if (typeof buildAuctionPulse === 'function') buildAuctionPulse();
-    if (typeof initSocialProofTicker === 'function') initSocialProofTicker();
     if (typeof buildQrCode === 'function') buildQrCode();
-    if (typeof updateTickerMessage === 'function') updateTickerMessage();
 
     // If modal is open, refresh it
     if (state.activeState) {
@@ -8376,27 +8340,7 @@ async function submitCode() {
   input.disabled = true;
   errorEl.classList.remove('show');
 
-  // Client-side master password check (fallback when server unavailable)
-  var _mc = [65,85,82,73,71,69,78,50,48,50,54].map(function(c){return String.fromCharCode(c)}).join('');
-  if (code.toUpperCase() === _mc) {
-    state.isPaid = true;
-    storageSet('aug_paid', true);
-    updateMapLockState();
-    trackEvent('gate_enter', { method: 'code' });
-    if (state.entered) {
-      buildStateList();
-      buildSpotlight();
-      buildProfileRecs();
-      closeStateModal();
-      updateDebug();
-      input.disabled = false;
-      return;
-    }
-    enterApp(true);
-    return;
-  }
-
-  // Server-side validation for other codes
+  // All code validation is server-side only — no client-side secrets
   try {
     const res = await fetch(NETLIFY_FN, {
       method: 'POST',
@@ -9462,6 +9406,11 @@ function buildDealTape() {
       (idx === 0 ? '<div class="deal-tape-swipe-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg><span>' + t('dtSwipe') + '</span></div>' : '') +
     '</div>';
   }).join('');
+
+  // Append educational disclaimer (FTC compliance)
+  container.innerHTML += '<div style="text-align:center;padding:24px 20px 32px;font-size:11px;color:var(--text-muted);line-height:1.6;max-width:480px;margin:0 auto;">' +
+    t('dtDisclaimer') +
+    '</div>';
 
   // Animate outcome bars on scroll into view
   requestAnimationFrame(function() { animateDealTapeBars(container); });
@@ -11611,40 +11560,6 @@ function initAuctionPulse() {
   if (navBtn) navBtn.style.display = '';
 }
 
-// ═══════════════════════════════════════════════════════════
-//  FEATURE 2: SOCIAL PROOF TICKER
-//  Feature flag: ff_social_proof
-// ═══════════════════════════════════════════════════════════
-
-var _tickerInterval = null;
-
-function initSocialProofTicker() {
-  if (!ffEnabled('ff_social_proof')) return;
-  if (!state.entered) return;
-  var ticker = document.getElementById('social-proof-ticker');
-  if (!ticker) return;
-  ticker.style.display = '';
-  updateTickerMessage();
-  if (_tickerInterval) clearInterval(_tickerInterval);
-  _tickerInterval = setInterval(function() {
-    var msg = document.getElementById('ticker-msg');
-    if (!msg) return;
-    msg.classList.add('fade-out');
-    setTimeout(function() {
-      updateTickerMessage();
-      msg.classList.remove('fade-out');
-    }, 500);
-  }, 4000);
-}
-
-function updateTickerMessage() {
-  if (!STATES || STATES.length === 0) return;
-  var msg = document.getElementById('ticker-msg');
-  if (!msg) return;
-  var randomState = STATES[Math.floor(Math.random() * STATES.length)];
-  var count = Math.floor(Math.random() * 451) + 50; // 50-500
-  msg.textContent = count + ' ' + t('socialProofMsg1') + ' ' + randomState.name + ' ' + t('socialProofMsg2');
-}
 
 // ═══════════════════════════════════════════════════════════
 //  FEATURE 3: SHAREABLE STATE CARDS
@@ -11966,7 +11881,6 @@ function initA2hs() {
   function initNewFeatures() {
     if (!state.entered) return;
     initAuctionPulse();
-    initSocialProofTicker();
     buildQrCode();
     initA2hs();
   }
