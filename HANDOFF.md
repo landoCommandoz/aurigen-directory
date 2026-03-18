@@ -80,36 +80,44 @@ Priority: C2+C3 together first via server-side session validation.
 - Sprint 6: Conversion optimization (#073-#078) — og:image meta tag (verified: email gate, exit intent, statute teasers, VS handler already done)
 - Sprint 7: Visual polish (#079-#080) — WCAG contrast fix (--text-muted), visual audit pass
 
+**Production CORS Fix:**
+- Root cause: `aurigen-directory.netlify.app` missing from ALLOWED_ORIGINS in aurigen.js and get-states.js
+- Fix: Added production domain to both serverless functions
+- Also fixed: `states-es.js` missing `module.exports` (broke Spanish data via get-states.js)
+
+**Accessibility Fixes (#058 + #059):**
+- #058: Reusable `trapFocus()`/`releaseFocusTrap()` applied to state modal, legal modals, exit intent
+- #059: Skip-to-content link as first focusable element after `<body>`
+
+**Waiver Documentation:**
+- #080 rgba() opacity variants permanently exempted from CSS variable requirement
+
 ### WHAT WAS MERGED THIS SESSION:
 PR pending manual creation (proxy 403 on direct push to main). Branch is ready.
 
 ### WHAT IS CURRENTLY PENDING:
 - **MERGE PR**: `claude/morning-checkin-aurigen-HC3BD` → `main` (create PR manually on GitHub)
-- **Knox full 80-item regression** on merged main
-- **Lex legal review sign-off** on all FTC fixes
-- C2 fix: states-en.js/states-es.js publicly accessible — serverless data gating still needed
-- ~~C3 fix: localStorage paid bypass~~ — **RESOLVED** (server-side only validation)
-- ~~FTC: fabricated social proof~~ — **RESOLVED** (real data-derived stats)
-- ~~FTC: Deal Tape disclaimer~~ — **RESOLVED**
-- ~~FTC: $297 strikethrough~~ — **RESOLVED** (Sprint 2)
-- ~~FTC: pressure copy~~ — **RESOLVED** (Sprint 2)
+- C2 fix: JWT session validation for serverless data gating (get-states.js partially built)
 - Hero section redesign from Prism audit
 - og:image asset needed — Prism to create 1200x630 social share image
+- GHL 5-email nurture sequence (Piper)
+- Subdomain: directory.theaurigen.com
+- Add to Home Screen guide (Atlas)
 - VS view testimonial carousel needs real customer quotes
 - First Deal page navigation incomplete
 - ES translations parity work (states-es.js significantly shorter than EN)
 
 ### WHAT BROKE OR REGRESSED:
-- Stats display shows 0,0,0 on iPad intermittently — hardcoded values should fix this
-- Language toggle bypass was patched but may not be fully closed per Wraith analysis
-- No other known regressions from merged PRs
+- ~~Stats display 0,0,0 on iPad~~ — **FIXED** (hardcoded values)
+- ~~Production CORS error on code submission~~ — **FIXED** (domain added to ALLOWED_ORIGINS)
+- No known regressions
 
 ### OPEN SECURITY ITEMS:
-- **C2 (Critical)**: states-en.js and states-es.js publicly accessible via direct URL
+- **C2 (Critical)**: states data gated via get-states.js but needs JWT session validation
 - ~~**C3 (Critical)**: localStorage paid bypass~~ — **CLOSED** (2026-03-18, Phase E)
-- **H1 (High)**: No rate limiting on code validation endpoint
-- **H2 (High)**: Timing attack on code comparison — needs crypto.timingSafeEqual()
-- **H3 (High)**: CORS wildcard allows any origin
+- ~~**H1 (High)**: No rate limiting~~ — **CLOSED** (rateLimitMap in aurigen.js)
+- ~~**H2 (High)**: Timing attack~~ — **CLOSED** (crypto.timingSafeEqual in safeCodeMatch)
+- ~~**H3 (High)**: CORS wildcard~~ — **CLOSED** (explicit ALLOWED_ORIGINS list)
 - **H4 (High)**: innerHTML XSS via AI advisor response — needs DOMPurify
 - **C5 (Low)**: No CSP header configured
 
@@ -123,15 +131,16 @@ PR pending manual creation (proxy 403 on direct push to main). Branch is ready.
 - ~~**WARNING**: "Monthly Income" label~~ — **RESOLVED** (Sprint 4)
 - ~~**WARNING**: "Investor's Edge" language~~ — **RESOLVED** (Sprint 4)
 
+### KNOWN WAIVERS:
+- **#080**: rgba() opacity variants permanently exempt from CSS variable requirement (granted 2026-03-18 by Lando)
+
 ### NEXT SESSION STARTS WITH:
 **PRIORITY ORDER (Revenue Impact → Risk Reduction → Foundation Building):**
 
 1. **MERGE & VERIFY** — Create PR, merge to main, confirm Netlify deploy
-   - Knox: Full 80-item regression on merged main
-   - Lex: Legal review sign-off
 
 2. **C2 SECURITY FIX** (Risk Reduction — revenue protection)
-   - Gate state data behind authenticated endpoint (get-states.js partially built)
+   - JWT session validation for get-states.js
    - ~~C3 localStorage bypass~~ — RESOLVED
    - Owner: Mason implementation → Wraith verification
 
