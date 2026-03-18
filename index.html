@@ -5893,7 +5893,7 @@ var FF = (function() {
     conversion_optimization: {
       type: TYPE_BOOLEAN,
       default: false,
-      description: 'Optimized gate flow with urgency triggers and social proof',
+      description: 'Optimized gate flow with conversion triggers',
       category: 'gate'
     },
     gate_layout: {
@@ -5987,12 +5987,6 @@ var FF = (function() {
       type: TYPE_BOOLEAN,
       default: false,
       description: 'Cache state data for offline access via Service Worker',
-      category: 'experiment'
-    },
-    social_proof_banner: {
-      type: TYPE_BOOLEAN,
-      default: false,
-      description: 'Show live purchase notifications toast',
       category: 'experiment'
     },
     gamification: {
@@ -11560,9 +11554,8 @@ function initAuctionPulse() {
   if (navBtn) navBtn.style.display = '';
 }
 
-
 // ═══════════════════════════════════════════════════════════
-//  FEATURE 3: SHAREABLE STATE CARDS
+//  FEATURE 2: SHAREABLE STATE CARDS
 //  Feature flag: ff_shareable_cards
 // ═══════════════════════════════════════════════════════════
 
@@ -11659,7 +11652,7 @@ function downloadBlob(blob, fileName) {
 }
 
 // ═══════════════════════════════════════════════════════════
-//  FEATURE 4: QR CODE GENERATOR
+//  FEATURE 3: QR CODE GENERATOR
 //  Feature flag: ff_qr_code
 //  Generates a QR-like SVG pattern (visual representation)
 // ═══════════════════════════════════════════════════════════
