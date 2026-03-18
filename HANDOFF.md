@@ -61,36 +61,33 @@ Priority: C2+C3 together first via server-side session validation.
 - Cormorant Garamond third typeface not in design system
 
 ### WHAT WAS BUILT THIS SESSION (2026-03-18):
-**Mason 6-Phase Implementation on `claude/morning-checkin-aurigen-HC3BD`:**
-- Phase A: AccessManager + LanguageManager — centralized access control objects
-- Phase B: NavManager — all content visibility wired through AccessManager
-- Phase C: Stats counter fix — real STATES data-derived counts, 51 auction calendars
-- Phase D: CSS variable system — all hardcoded colors replaced with custom properties
-- Phase E: Security hardening (C3 fix) + FTC compliance — removed client-side secrets, server-side only validation, removed fabricated social proof ticker, added Deal Tape disclaimer
-- Phase F: Polish pass — dead code removal, numbering fix, copy cleanup
 
-**Knox QA: 15/15 PASS** — All checks passed. Branch cleared for merge.
+**GROUND-UP REBUILD — Phase 1 Foundation COMPLETE:**
+Old 12,000-line monolith replaced with modular architecture.
+Every file has one job. Max 400 lines per file.
 
-**80-Issue Master Directive — 7 Sprints on `claude/morning-checkin-aurigen-HC3BD`:**
-- Sprint 1: Critical access fixes (#001-#008) — AccessManager revalidation, free state rendering, stats hardcoded, nav gating
-- Sprint 2: Legal/FTC compliance (#009-#019) — ToS/Privacy/Refund modals, cookie consent, marketing consent checkbox, FTC copy fixes
-- Sprint 3: Functional features (#020-#036) — Feature flags, admin panel, email-before-Stripe, exit intent, legal modal system
-- Sprint 4: Copy/brand consistency (#037-#053) — i18n cleanup, placeholder fixes, tab label consistency
-- Sprint 5: Technical debt (#054-#072) — Dead code removal, accessibility (ARIA, focus traps, skip nav), JSON-LD schema, meta tags
-- Sprint 6: Conversion optimization (#073-#078) — og:image meta tag (verified: email gate, exit intent, statute teasers, VS handler already done)
-- Sprint 7: Visual polish (#079-#080) — WCAG contrast fix (--text-muted), visual audit pass
+New file structure:
+- index.html (77 lines) — Shell only, loads CSS + JS
+- css/base.css (153 lines) — Variables, reset, typography
+- css/gate.css (400 lines) — Gate screen styles
+- css/nav.css (72 lines) — Navigation styles
+- js/access.js (80 lines) — AccessManager (single source of truth)
+- js/language.js (53 lines) — LanguageManager (EN/ES toggle)
+- js/nav.js (112 lines) — NavManager (tab visibility by level)
+- js/gate.js (320 lines) — Gate screen logic (email + code forms)
+- js/app.js (240 lines) — App orchestrator (tab routing)
+- netlify/functions/aurigen.js (271 lines) — Serverless API (rebuilt)
+- legal/terms-of-service.txt — Lex-written ToS
+- legal/privacy-policy.txt — Lex-written Privacy Policy
+- legal/refund-policy.txt — Lex-written Refund Policy
 
-**Production CORS Fix:**
-- Root cause: `aurigen-directory.netlify.app` missing from ALLOWED_ORIGINS in aurigen.js and get-states.js
-- Fix: Added production domain to both serverless functions
-- Also fixed: `states-es.js` missing `module.exports` (broke Spanish data via get-states.js)
+Knox verification: 7/7 PASS on Phase 1
+Lex legal documents: 3/3 delivered
 
-**Accessibility Fixes (#058 + #059):**
-- #058: Reusable `trapFocus()`/`releaseFocusTrap()` applied to state modal, legal modals, exit intent
-- #059: Skip-to-content link as first focusable element after `<body>`
-
-**Waiver Documentation:**
-- #080 rgba() opacity variants permanently exempted from CSS variable requirement
+**Production CORS Fix (from earlier session):**
+- aurigen-directory.netlify.app added to ALLOWED_ORIGINS
+- states-es.js module.exports added
+- Anthropic SDK lazy-loaded (was crashing on cold start)
 
 ### WHAT WAS MERGED THIS SESSION:
 PR pending manual creation (proxy 403 on direct push to main). Branch is ready.
