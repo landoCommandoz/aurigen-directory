@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
   <style>
     /* === CSS VARIABLES === */
     :root {
@@ -350,6 +351,305 @@
     .ticker-item .up { color: var(--hybrid); }
     .ticker-item .down { color: var(--deed); }
     .ticker-item .neutral { color: var(--lien); }
+
+    /* === MAP TAB LAYOUT === */
+    #panel-map {
+      display: none;
+      flex-direction: row;
+      flex: 1;
+      min-height: 0;
+      height: 100%;
+    }
+    #panel-map.active {
+      display: flex;
+    }
+
+    /* --- Sidebar --- */
+    #map-sidebar {
+      width: 260px;
+      min-width: 260px;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      background: var(--bg2);
+      border-right: 1px solid var(--border);
+    }
+    #state-search {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg);
+      border: none;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      outline: none;
+      transition: border-color 0.2s var(--transition);
+    }
+    #state-search:focus { border-bottom-color: var(--accent-mid); }
+    #state-search::placeholder { color: var(--text3); }
+    #state-list {
+      flex: 1;
+      overflow-y: auto;
+      min-height: 0;
+    }
+    #state-list::-webkit-scrollbar { width: 4px; }
+    #state-list::-webkit-scrollbar-track { background: transparent; }
+    #state-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .sli {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      cursor: pointer;
+      border-left: 2px solid transparent;
+      transition: background 0.15s var(--transition), border-color 0.15s var(--transition);
+    }
+    .sli:hover { background: var(--accent-dim); }
+    .sli.active {
+      background: var(--accent-dim);
+      border-left-color: var(--accent);
+    }
+    .sli.locked { opacity: 0.35; cursor: not-allowed; }
+    .sli-abbr {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      width: 28px;
+      flex-shrink: 0;
+    }
+    .sli.active .sli-abbr { color: var(--accent); }
+    .sli-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--text2);
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sli-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .sli-dot.lien { background: var(--lien); }
+    .sli-dot.deed { background: var(--deed); }
+    .sli-dot.hybrid { background: var(--hybrid); }
+    .sli-lock {
+      font-size: 10px;
+      color: var(--text3);
+      flex-shrink: 0;
+    }
+
+    /* --- Map Center --- */
+    #map-center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+      min-width: 0;
+      position: relative;
+      background: var(--bg);
+    }
+    #d3-map {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+    }
+    #d3-map svg {
+      width: 100%;
+      height: 100%;
+    }
+    #d3-map .state-path {
+      stroke: var(--bg);
+      stroke-width: 0.5;
+      cursor: pointer;
+      transition: opacity 0.15s var(--transition);
+    }
+    #d3-map .state-path:hover { opacity: 0.8; }
+    #d3-map .state-path.active { stroke: var(--accent); stroke-width: 1.5; }
+    #d3-map .state-path.locked { opacity: 0.25; cursor: not-allowed; }
+    #map-legend {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      display: flex;
+      gap: 14px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: var(--text2);
+    }
+    .legend-item { display: flex; align-items: center; gap: 5px; }
+    .legend-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    /* --- Detail Panel --- */
+    #map-detail {
+      width: 300px;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      background: var(--bg2);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+    }
+    #map-detail::-webkit-scrollbar { width: 4px; }
+    #map-detail::-webkit-scrollbar-track { background: transparent; }
+    #map-detail::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    #detail-empty {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--text3);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+    }
+    #detail-loaded { display: none; padding: 20px 16px; }
+    #detail-loaded.visible { display: block; }
+    #dl-lock { display: none; padding: 20px 16px; text-align: center; }
+    #dl-lock.visible { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-height: 200px; }
+    .dl-header {
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    #dl-abbr {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text2);
+    }
+    #dl-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    #dl-badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: var(--radius);
+      margin-top: 6px;
+    }
+    #dl-badge.lien { background: var(--accent-dim); color: var(--lien); border: 1px solid var(--lien); }
+    #dl-badge.deed { background: var(--accent-dim); color: var(--deed); border: 1px solid var(--deed); }
+    #dl-badge.hybrid { background: var(--accent-dim); color: var(--hybrid); border: 1px solid var(--hybrid); }
+    .dl-section {
+      margin-bottom: 16px;
+    }
+    .dl-section-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--text3);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .dl-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .dl-row-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--text2);
+      letter-spacing: 0.05em;
+    }
+    .dl-row-value {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--text);
+      font-weight: 700;
+    }
+    .dl-cta {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      margin-top: 20px;
+      background: transparent;
+      border: 1px solid var(--accent-mid);
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.2s var(--transition), box-shadow 0.2s var(--transition);
+    }
+    .dl-cta:hover {
+      background: var(--accent-dim);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .dl-cta.primary {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+    .dl-cta.primary:hover {
+      box-shadow: 0 0 24px var(--accent-glow);
+    }
+    .dl-lock-icon { font-size: 28px; color: var(--text3); }
+    .dl-lock-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--text2);
+      letter-spacing: 0.1em;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* --- Tooltip --- */
+    #map-tooltip {
+      position: fixed;
+      pointer-events: none;
+      z-index: 500;
+      background: var(--bg3);
+      border: 1px solid var(--border-hover);
+      padding: 8px 12px;
+      border-radius: var(--radius);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--text);
+      letter-spacing: 0.05em;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transition: opacity 0.15s var(--transition);
+      white-space: nowrap;
+    }
+    #map-tooltip.visible { opacity: 1; }
+
+    /* --- Mobile: hide sidebar/detail below 1024px --- */
+    @media (max-width: 1024px) {
+      #map-sidebar { display: none; }
+      #map-detail { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -392,7 +692,60 @@
     <div id="nav-tier-badge">FREE</div>
   </nav>
   <div id="main-content">
-    <div class="tab-panel active" id="panel-map"></div>
+    <div class="tab-panel active" id="panel-map">
+      <!-- Sidebar: state list -->
+      <div id="map-sidebar">
+        <input type="text" id="state-search" placeholder="Search states..." oninput="filterStateList(this.value)">
+        <div id="state-list"></div>
+      </div>
+      <!-- Center: D3 map -->
+      <div id="map-center">
+        <div id="d3-map"></div>
+        <div id="map-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--lien)"></div>Tax Lien</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--deed)"></div>Tax Deed</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--hybrid)"></div>Hybrid</div>
+        </div>
+      </div>
+      <!-- Right: detail panel -->
+      <div id="map-detail">
+        <div id="detail-empty">
+          <div>&#9670;</div>
+          <div>SELECT A STATE</div>
+        </div>
+        <div id="detail-loaded">
+          <div class="dl-header">
+            <div id="dl-abbr"></div>
+            <div id="dl-name"></div>
+            <div id="dl-badge"></div>
+          </div>
+          <div class="dl-section">
+            <div class="dl-section-title">Key Metrics</div>
+            <div class="dl-row"><span class="dl-row-label">Rate / Penalty</span><span class="dl-row-value" id="dl-rate"></span></div>
+            <div class="dl-row"><span class="dl-row-label">Redemption</span><span class="dl-row-value" id="dl-redemption"></span></div>
+            <div class="dl-row"><span class="dl-row-label">Bid Method</span><span class="dl-row-value" id="dl-bid"></span></div>
+            <div class="dl-row"><span class="dl-row-label">Penalty</span><span class="dl-row-value" id="dl-penalty"></span></div>
+          </div>
+          <div class="dl-section">
+            <div class="dl-section-title">Auction</div>
+            <div class="dl-row"><span class="dl-row-label">Platform</span><span class="dl-row-value" id="dl-platform"></span></div>
+            <div class="dl-row"><span class="dl-row-label">Frequency</span><span class="dl-row-value" id="dl-frequency"></span></div>
+          </div>
+          <div class="dl-section">
+            <div class="dl-section-title">Legal</div>
+            <div class="dl-row"><span class="dl-row-label">Statute</span><span class="dl-row-value" id="dl-statute"></span></div>
+          </div>
+          <a class="dl-cta" href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener">Book Investor Clarity Call</a>
+        </div>
+        <div id="dl-lock">
+          <div class="dl-lock-icon">&#128274;</div>
+          <div class="dl-lock-text">This state requires<br>full access to view.</div>
+          <a class="dl-cta primary" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Upgrade — Full Access</a>
+        </div>
+      </div>
+      <!-- Tooltip -->
+      <div id="map-tooltip"></div>
+    </div>
     <div class="tab-panel" id="panel-tools"></div>
     <div class="tab-panel" id="panel-advisor"></div>
     <div class="tab-panel" id="panel-account"></div>
@@ -533,10 +886,204 @@ function buildTicker() {
   });
 }
 
-// === BOOT SEQUENCE (placeholder — filled in Chunk 3) ===
+// === STATE DATA (free states — full detail) ===
+const STATE_DATA = {
+  FL: { rate: '18%', redemption: '2 years', bid: 'Interest-rate down', penalty: '5% + 18%/yr', platform: 'LienHub', frequency: 'Annual (May-Jun)', statute: 'FL Stat § 197.432' },
+  IL: { rate: '36% penalty', redemption: '2.5 years', bid: 'Rotational', penalty: '36% over 2.5yr', platform: 'GovEase', frequency: 'Annual (Oct-Nov)', statute: '35 ILCS 200/21-215' },
+  AZ: { rate: '16%', redemption: '3 years', bid: 'Interest-rate down', penalty: 'Up to 16%/yr', platform: 'RealAuction', frequency: 'Annual (Feb)', statute: 'ARS § 42-18112' }
+};
+
+// === ALL 51 JURISDICTIONS ===
+const ALL_STATES = [
+  {abbr:'AL',name:'Alabama',type:'lien'},{abbr:'AK',name:'Alaska',type:'deed'},
+  {abbr:'AZ',name:'Arizona',type:'lien'},{abbr:'AR',name:'Arkansas',type:'deed'},
+  {abbr:'CA',name:'California',type:'deed'},{abbr:'CO',name:'Colorado',type:'lien'},
+  {abbr:'CT',name:'Connecticut',type:'lien'},{abbr:'DE',name:'Delaware',type:'deed'},
+  {abbr:'DC',name:'District of Columbia',type:'lien'},{abbr:'FL',name:'Florida',type:'lien'},
+  {abbr:'GA',name:'Georgia',type:'deed'},{abbr:'HI',name:'Hawaii',type:'hybrid'},
+  {abbr:'ID',name:'Idaho',type:'deed'},{abbr:'IL',name:'Illinois',type:'lien'},
+  {abbr:'IN',name:'Indiana',type:'lien'},{abbr:'IA',name:'Iowa',type:'lien'},
+  {abbr:'KS',name:'Kansas',type:'deed'},{abbr:'KY',name:'Kentucky',type:'lien'},
+  {abbr:'LA',name:'Louisiana',type:'deed'},{abbr:'ME',name:'Maine',type:'deed'},
+  {abbr:'MD',name:'Maryland',type:'lien'},{abbr:'MA',name:'Massachusetts',type:'deed'},
+  {abbr:'MI',name:'Michigan',type:'deed'},{abbr:'MN',name:'Minnesota',type:'deed'},
+  {abbr:'MS',name:'Mississippi',type:'lien'},{abbr:'MO',name:'Missouri',type:'lien'},
+  {abbr:'MT',name:'Montana',type:'lien'},{abbr:'NE',name:'Nebraska',type:'lien'},
+  {abbr:'NV',name:'Nevada',type:'deed'},{abbr:'NH',name:'New Hampshire',type:'lien'},
+  {abbr:'NJ',name:'New Jersey',type:'lien'},{abbr:'NM',name:'New Mexico',type:'deed'},
+  {abbr:'NY',name:'New York',type:'lien'},{abbr:'NC',name:'North Carolina',type:'deed'},
+  {abbr:'ND',name:'North Dakota',type:'lien'},{abbr:'OH',name:'Ohio',type:'hybrid'},
+  {abbr:'OK',name:'Oklahoma',type:'lien'},{abbr:'OR',name:'Oregon',type:'deed'},
+  {abbr:'PA',name:'Pennsylvania',type:'deed'},{abbr:'RI',name:'Rhode Island',type:'deed'},
+  {abbr:'SC',name:'South Carolina',type:'deed'},{abbr:'SD',name:'South Dakota',type:'lien'},
+  {abbr:'TN',name:'Tennessee',type:'hybrid'},{abbr:'TX',name:'Texas',type:'deed'},
+  {abbr:'UT',name:'Utah',type:'deed'},{abbr:'VT',name:'Vermont',type:'lien'},
+  {abbr:'VA',name:'Virginia',type:'deed'},{abbr:'WA',name:'Washington',type:'deed'},
+  {abbr:'WV',name:'West Virginia',type:'lien'},{abbr:'WI',name:'Wisconsin',type:'deed'},
+  {abbr:'WY',name:'Wyoming',type:'lien'}
+];
+
+const FREE_STATES = ['FL','IL','AZ'];
+
+// === FIPS → ABBR LOOKUP ===
+const FIPS_TO_ABBR = {
+  '01':'AL','02':'AK','04':'AZ','05':'AR','06':'CA','08':'CO','09':'CT','10':'DE',
+  '11':'DC','12':'FL','13':'GA','15':'HI','16':'ID','17':'IL','18':'IN','19':'IA',
+  '20':'KS','21':'KY','22':'LA','23':'ME','24':'MD','25':'MA','26':'MI','27':'MN',
+  '28':'MS','29':'MO','30':'MT','31':'NE','32':'NV','33':'NH','34':'NJ','35':'NM',
+  '36':'NY','37':'NC','38':'ND','39':'OH','40':'OK','41':'OR','42':'PA','44':'RI',
+  '45':'SC','46':'SD','47':'TN','48':'TX','49':'UT','50':'VT','51':'VA','53':'WA',
+  '54':'WV','55':'WI','56':'WY'
+};
+
+const TYPE_COLORS = { lien: 'var(--lien)', deed: 'var(--deed)', hybrid: 'var(--hybrid)' };
+
+// === RENDER STATE LIST ===
+function renderStateList(filter) {
+  const list = document.getElementById('state-list');
+  list.innerHTML = '';
+  const q = (filter || '').toLowerCase();
+  ALL_STATES.forEach(s => {
+    if (q && !s.name.toLowerCase().includes(q) && !s.abbr.toLowerCase().includes(q)) return;
+    const locked = APP.tier < 2 && !FREE_STATES.includes(s.abbr);
+    const div = document.createElement('div');
+    div.className = 'sli' + (locked ? ' locked' : '') + (APP.selectedState === s.abbr ? ' active' : '');
+    div.innerHTML = `<span class="sli-abbr">${s.abbr}</span><span class="sli-name">${s.name}</span><span class="sli-dot ${s.type}"></span>${locked ? '<span class="sli-lock">&#128274;</span>' : ''}`;
+    div.onclick = () => selectState(s.abbr);
+    list.appendChild(div);
+  });
+}
+
+function filterStateList(val) { renderStateList(val); }
+
+// === SELECT STATE ===
+function selectState(abbr) {
+  const st = ALL_STATES.find(s => s.abbr === abbr);
+  if (!st) return;
+  const locked = APP.tier < 2 && !FREE_STATES.includes(abbr);
+  APP.selectedState = abbr;
+
+  // Update sidebar active
+  document.querySelectorAll('.sli').forEach(el => {
+    el.classList.toggle('active', el.querySelector('.sli-abbr').textContent === abbr);
+  });
+
+  // Update map active
+  document.querySelectorAll('#d3-map .state-path').forEach(p => {
+    p.classList.toggle('active', p.dataset.abbr === abbr);
+  });
+
+  const empty = document.getElementById('detail-empty');
+  const loaded = document.getElementById('detail-loaded');
+  const lock = document.getElementById('dl-lock');
+
+  if (locked) {
+    empty.style.display = 'none';
+    loaded.classList.remove('visible');
+    lock.classList.add('visible');
+    return;
+  }
+
+  lock.classList.remove('visible');
+  empty.style.display = 'none';
+  loaded.classList.add('visible');
+
+  document.getElementById('dl-abbr').textContent = abbr;
+  document.getElementById('dl-name').textContent = st.name;
+
+  const badge = document.getElementById('dl-badge');
+  badge.textContent = st.type.toUpperCase();
+  badge.className = st.type;
+
+  const data = STATE_DATA[abbr];
+  document.getElementById('dl-rate').textContent = data ? data.rate : '—';
+  document.getElementById('dl-redemption').textContent = data ? data.redemption : '—';
+  document.getElementById('dl-bid').textContent = data ? data.bid : '—';
+  document.getElementById('dl-penalty').textContent = data ? data.penalty : '—';
+  document.getElementById('dl-platform').textContent = data ? data.platform : '—';
+  document.getElementById('dl-frequency').textContent = data ? data.frequency : '—';
+  document.getElementById('dl-statute').textContent = data ? data.statute : '—';
+}
+
+function showUpgradePrompt() {
+  window.open('https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00', '_blank');
+}
+
+// === D3 MAP ===
+function initMap() {
+  const container = document.getElementById('d3-map');
+  const w = container.clientWidth || 800;
+  const h = container.clientHeight || 500;
+
+  const svg = d3.select(container).append('svg')
+    .attr('viewBox', `0 0 ${w} ${h}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+
+  const projection = d3.geoAlbersUsa().fitSize([w, h], { type: 'Sphere' });
+  const path = d3.geoPath().projection(projection);
+  const tooltip = document.getElementById('map-tooltip');
+
+  // Build lookup: abbr → type
+  const typeMap = {};
+  ALL_STATES.forEach(s => { typeMap[s.abbr] = s.type; });
+
+  d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
+    .then(us => {
+      const states = topojson.feature(us, us.objects.states).features;
+
+      // Remap projection to fit actual geometry
+      projection.fitSize([w, h], topojson.feature(us, us.objects.states));
+
+      svg.selectAll('.state-path')
+        .data(states)
+        .join('path')
+        .attr('class', d => {
+          const fips = String(d.id).padStart(2, '0');
+          const abbr = FIPS_TO_ABBR[fips] || '';
+          const locked = APP.tier < 2 && !FREE_STATES.includes(abbr);
+          return 'state-path' + (locked ? ' locked' : '');
+        })
+        .attr('d', path)
+        .attr('data-abbr', d => {
+          const fips = String(d.id).padStart(2, '0');
+          return FIPS_TO_ABBR[fips] || '';
+        })
+        .attr('fill', d => {
+          const fips = String(d.id).padStart(2, '0');
+          const abbr = FIPS_TO_ABBR[fips] || '';
+          const t = typeMap[abbr] || 'deed';
+          const colors = { lien: '#5A8FA8', deed: '#A8625A', hybrid: '#5AA880' };
+          return colors[t];
+        })
+        .on('mousemove', (event, d) => {
+          const fips = String(d.id).padStart(2, '0');
+          const abbr = FIPS_TO_ABBR[fips] || '';
+          const st = ALL_STATES.find(s => s.abbr === abbr);
+          if (!st) return;
+          const locked = APP.tier < 2 && !FREE_STATES.includes(abbr);
+          tooltip.innerHTML = locked
+            ? `${abbr} — <span style="color:var(--text3)">LOCKED</span>`
+            : `${abbr} · ${st.name} · ${st.type.toUpperCase()}`;
+          tooltip.classList.add('visible');
+          tooltip.style.left = (event.clientX + 14) + 'px';
+          tooltip.style.top = (event.clientY - 10) + 'px';
+        })
+        .on('mouseleave', () => { tooltip.classList.remove('visible'); })
+        .on('click', (event, d) => {
+          const fips = String(d.id).padStart(2, '0');
+          const abbr = FIPS_TO_ABBR[fips] || '';
+          selectState(abbr);
+        });
+    })
+    .catch(() => {
+      container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text3);font-family:Space Mono,monospace;font-size:11px;letter-spacing:0.1em;">MAP UNAVAILABLE — CHECK CONNECTION</div>';
+    });
+}
+
+// === BOOT ===
 function bootApp() {
-  // Map initializes in Chunk 2
-  if (typeof initMap === 'function') initMap();
+  renderStateList();
+  initMap();
 }
 
 // === RESTORE SESSION ===
