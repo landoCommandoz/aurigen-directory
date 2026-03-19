@@ -61,24 +61,24 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - ~~Knox 80-item regression~~ — 80/80 PASS (3 original failures fixed + #080 waived)
 
 ## CURRENT PR STATUS
-Branch `claude/morning-checkin-aurigen-HC3BD` — all work complete.
-PR needs manual creation: base=main, head=claude/morning-checkin-aurigen-HC3BD
-Contains 17 commits: 6-phase build + 3 bug fixes + 7 sprints + CORS fix + a11y fixes + docs.
+Branch `claude/morning-checkin-aurigen-HC3BD` — Phase 1 rebuild complete.
+Contains: CORS fix + Anthropic lazy-load fix + full Phase 1 modular rebuild.
 
 ## CURRENT SESSION STATUS (2026-03-18)
-- Mason: 80-issue directive COMPLETE + production CORS fix + accessibility fixes
-- Knox: 80-item regression 80/80 PASS + 7-point final verification 7/7 PASS
-- Waiver #080 documented (rgba opacity variants exempt from CSS var requirement)
-- Branch pushed, PR pending manual creation (proxy limitation)
+- Mason: Phase 1 COMPLETE — 9 steps, 7 new files, index.html rebuilt (12K→77 lines)
+- Knox: Phase 1 7/7 PASS
+- Lex: 3 legal documents delivered (ToS, Privacy, Refund) — stored in /legal/
+- Architecture: every file under 400 lines, one job per file
+- Phase 2 (core features) is NEXT
 
 ## NEXT SESSION PRIORITIES
-1. Create PR and merge `claude/morning-checkin-aurigen-HC3BD` → main
-2. C2 server-side data gating — JWT session validation
-3. Hero section redesign — single CTA (Prism mockup → Lando approval → Mason build)
-4. og:image asset — Prism to create 1200x630 social share image, deploy to /og-image.png
-5. GHL 5-email nurture sequence (Piper)
-6. Subdomain: directory.theaurigen.com
-7. Add to Home Screen guide (Atlas)
+1. Phase 2: Core features (map, analyzer, sage, pulse, dna, versus, auctions, account)
+2. Phase 3: Legal modal integration (use /legal/ docs written by Lex)
+3. Phase 4: Conversion optimization (exit intent, statute teasers, OG tags)
+4. Phase 5: Performance and SEO (structured data, a11y audit, PWA)
+5. C2 JWT session validation for get-states.js
+6. og:image asset (Prism)
+7. GHL 5-email nurture sequence (Piper)
 7. ES translations parity — states-es.js significantly shorter than EN
 
 ---

@@ -1,0 +1,400 @@
+/* ═══════════════════════════════════════════════
+   AURIGEN — GATE CSS
+   Gate screen: hero, email, code, stats, pricing
+═══════════════════════════════════════════════ */
+
+/* ── Gate Container ────────────────────────────── */
+
+#gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--bg-primary);
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+#gate.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+/* ── Hero ──────────────────────────────────────── */
+
+.gate-hero {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+  position: relative;
+}
+
+.gate-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gate-eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(64px, 12vw, 120px);
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-logo span {
+  color: var(--accent);
+}
+
+.gate-tagline {
+  font-size: 16px;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 5vw, 48px);
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  max-width: 700px;
+  line-height: 1.15;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-subheadline {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 540px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Email Form ────────────────────────────────── */
+
+.gate-email-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-email-input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  font-size: 16px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.gate-email-input:focus {
+  border-color: var(--accent);
+}
+
+.gate-email-input::placeholder {
+  color: var(--text-dim);
+}
+
+.gate-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: left;
+  width: 100%;
+}
+
+.gate-consent input[type="checkbox"] {
+  margin-top: 2px;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+
+.gate-btn-primary {
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--bg-primary);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.gate-btn-primary:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-accent);
+}
+
+.gate-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Code Input ────────────────────────────────── */
+
+.gate-code-toggle {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-code-toggle:hover {
+  color: var(--accent);
+}
+
+.gate-code-form {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-code-form.visible {
+  display: flex;
+}
+
+.gate-code-input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.gate-code-input:focus {
+  border-color: var(--accent);
+}
+
+.gate-code-input.error {
+  border-color: var(--color-error);
+  animation: shake 0.4s;
+}
+
+.gate-code-error {
+  font-size: 13px;
+  color: var(--color-error);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.gate-code-error.show {
+  opacity: 1;
+}
+
+/* ── Stats Row ─────────────────────────────────── */
+
+.gate-stats {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-stat {
+  text-align: center;
+}
+
+.gate-stat-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 6vw, 56px);
+  color: var(--accent);
+  line-height: 1;
+}
+
+.gate-stat-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+
+/* ── Legal Links ───────────────────────────────── */
+
+.gate-legal {
+  margin-top: 20px;
+  font-size: 11px;
+  color: var(--text-dim);
+  position: relative;
+  z-index: 1;
+}
+
+.gate-legal a {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.gate-legal a:hover {
+  color: var(--accent);
+}
+
+/* ── Pricing Section ───────────────────────────── */
+
+.gate-pricing {
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.gate-pricing-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--border-accent);
+  border-radius: 100px;
+  padding: 6px 18px;
+  margin-bottom: 16px;
+}
+
+.gate-pricing-amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 72px;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.gate-pricing-note {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.gate-pricing-features {
+  list-style: none;
+  text-align: left;
+  max-width: 380px;
+  margin: 0 auto 32px;
+}
+
+.gate-pricing-features li {
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.gate-pricing-features li::before {
+  content: '\2713 ';
+  color: var(--color-success);
+  margin-right: 8px;
+}
+
+/* ── Animations ────────────────────────────────── */
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.gate-hero > * {
+  animation: fadeUp 0.6s var(--ease) both;
+}
+
+.gate-hero > *:nth-child(1) { animation-delay: 0ms; }
+.gate-hero > *:nth-child(2) { animation-delay: 60ms; }
+.gate-hero > *:nth-child(3) { animation-delay: 120ms; }
+.gate-hero > *:nth-child(4) { animation-delay: 180ms; }
+.gate-hero > *:nth-child(5) { animation-delay: 240ms; }
+.gate-hero > *:nth-child(6) { animation-delay: 300ms; }
+.gate-hero > *:nth-child(7) { animation-delay: 360ms; }
+.gate-hero > *:nth-child(8) { animation-delay: 420ms; }
+.gate-hero > *:nth-child(9) { animation-delay: 480ms; }
+.gate-hero > *:nth-child(10) { animation-delay: 540ms; }
+
+/* ── Mobile ────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .gate-hero {
+    padding: 32px 20px;
+  }
+
+  .gate-stats {
+    gap: 16px;
+  }
+
+  .gate-glow {
+    width: 400px;
+    height: 400px;
+  }
+}
