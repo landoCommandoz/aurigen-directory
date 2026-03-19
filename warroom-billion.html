@@ -645,6 +645,282 @@
     }
     #map-tooltip.visible { opacity: 1; }
 
+    /* === TOOLS TAB === */
+    #panel-tools {
+      display: none;
+      flex-direction: row;
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+    }
+    #panel-tools.active { display: flex; }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 24px;
+      align-content: start;
+      width: 100%;
+    }
+    .tool-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      transition: border-color 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s cubic-bezier(0.16,1,0.3,1);
+    }
+    .tool-card:hover {
+      border-color: var(--accent-mid);
+      box-shadow: var(--shadow-accent);
+    }
+    .tool-card-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: var(--text2);
+      text-transform: uppercase;
+    }
+    .tool-card-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 0.06em;
+      color: var(--text);
+    }
+    .tool-card-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+    .tool-input {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      padding: 8px 12px;
+      outline: none;
+      border-radius: var(--radius);
+      transition: border-color 0.3s var(--transition), box-shadow 0.3s var(--transition);
+      width: 100%;
+    }
+    .tool-input:focus {
+      border-color: var(--accent-mid);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+    .tool-input::placeholder { color: var(--text3); }
+    .tool-btn {
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid var(--accent-mid);
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: var(--radius);
+      transition: background 0.2s var(--transition), box-shadow 0.2s var(--transition);
+      align-self: flex-start;
+    }
+    .tool-btn:hover {
+      background: var(--accent-dim);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .tool-result {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--border);
+      padding: 12px;
+      border-radius: 2px;
+      display: none;
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+    .tool-result.show { display: block; }
+    .tool-locked-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,10,0.85);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border-radius: 2px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: var(--text2);
+      letter-spacing: 0.1em;
+    }
+
+    /* === ADVISOR TAB === */
+    #panel-advisor {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+    }
+    #panel-advisor.active { display: flex; }
+    #advisor-messages {
+      flex: 1;
+      overflow-y: auto;
+      min-height: 0;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    #advisor-messages::-webkit-scrollbar { width: 4px; }
+    #advisor-messages::-webkit-scrollbar-track { background: transparent; }
+    #advisor-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .msg {
+      max-width: 70%;
+      padding: 12px 16px;
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .msg.user {
+      align-self: flex-end;
+      background: var(--accent-dim);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .msg.sage {
+      align-self: flex-start;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .msg-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      color: var(--text2);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    #advisor-input-bar {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    #advisor-input {
+      flex: 1;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      padding: 12px 16px;
+      outline: none;
+      border-radius: var(--radius);
+      transition: border-color 0.3s var(--transition), box-shadow 0.3s var(--transition);
+    }
+    #advisor-input:focus {
+      border-color: var(--accent-mid);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+    #advisor-input::placeholder { color: var(--text3); }
+    #advisor-send {
+      padding: 12px 20px;
+      background: transparent;
+      border: 1px solid var(--accent-mid);
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: var(--radius);
+      transition: background 0.2s var(--transition), box-shadow 0.2s var(--transition);
+    }
+    #advisor-send:hover {
+      background: var(--accent-dim);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    /* === ACCOUNT TAB === */
+    #panel-account {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      gap: 24px;
+      overflow-y: auto;
+      flex: 1;
+      min-height: 0;
+    }
+    #panel-account.active { display: flex; }
+    .account-card {
+      width: min(480px, 100%);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .account-tier-badge {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      letter-spacing: 0.1em;
+      color: var(--text2);
+    }
+    .account-tier-badge.paid { color: var(--accent); }
+    .account-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .account-row:last-child { border-bottom: none; }
+    .account-row-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text2);
+    }
+    .account-row-value {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .account-upgrade-cta {
+      width: 100%;
+      text-align: center;
+      padding: 14px;
+      background: transparent;
+      border: 1px solid var(--accent-mid);
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      display: block;
+      transition: background 0.2s var(--transition), box-shadow 0.2s var(--transition);
+    }
+    .account-upgrade-cta:hover {
+      background: var(--accent-dim);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
     /* --- Mobile: hide sidebar/detail below 1024px --- */
     @media (max-width: 1024px) {
       #map-sidebar { display: none; }
@@ -746,9 +1022,92 @@
       <!-- Tooltip -->
       <div id="map-tooltip"></div>
     </div>
-    <div class="tab-panel" id="panel-tools"></div>
-    <div class="tab-panel" id="panel-advisor"></div>
-    <div class="tab-panel" id="panel-account"></div>
+    <div class="tab-panel" id="panel-tools">
+      <div class="tools-grid">
+        <!-- Card 1: Deal Analyzer -->
+        <div class="tool-card" id="tool-deal">
+          <div class="tool-card-label">Calculator</div>
+          <div class="tool-card-title">Deal Analyzer</div>
+          <div class="tool-card-desc">Estimate annual yield and 2-year return on a tax lien or deed purchase.</div>
+          <input class="tool-input" id="inp-price" type="number" placeholder="Purchase price ($)">
+          <input class="tool-input" id="inp-tax" type="number" placeholder="Annual tax ($)">
+          <button class="tool-btn" onclick="runDealAnalyzer()">Analyze</button>
+          <div class="tool-result" id="result-deal"></div>
+        </div>
+        <!-- Card 2: Auction Pulse -->
+        <div class="tool-card" id="tool-pulse">
+          <div class="tool-card-label">Intelligence</div>
+          <div class="tool-card-title">Auction Pulse</div>
+          <div class="tool-card-desc">Check key auction metrics for a state — rate, redemption, and platform.</div>
+          <input class="tool-input" id="inp-pulse-state" type="text" placeholder="State abbreviation (e.g. FL)">
+          <button class="tool-btn" onclick="runAuctionPulse()">Check Pulse</button>
+          <div class="tool-result" id="result-pulse"></div>
+        </div>
+        <!-- Card 3: Investor DNA -->
+        <div class="tool-card" id="tool-dna">
+          <div class="tool-card-label">Strategy</div>
+          <div class="tool-card-title">Investor DNA</div>
+          <div class="tool-card-desc">Generate a personalized investment profile based on your risk tolerance.</div>
+          <select class="tool-input" id="inp-dna">
+            <option value="Conservative">Conservative</option>
+            <option value="Moderate" selected>Moderate</option>
+            <option value="Aggressive">Aggressive</option>
+          </select>
+          <button class="tool-btn" onclick="runInvestorDNA()">Generate Profile</button>
+          <div class="tool-result" id="result-dna"></div>
+          <div class="tool-locked-overlay" id="lock-dna">
+            <div>&#128274;</div>
+            <div>FULL ACCESS REQUIRED</div>
+            <a class="tool-btn" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Upgrade</a>
+          </div>
+        </div>
+        <!-- Card 4: State Comparison -->
+        <div class="tool-card" id="tool-compare">
+          <div class="tool-card-label">Analysis</div>
+          <div class="tool-card-title">State Comparison</div>
+          <div class="tool-card-desc">Compare two states side-by-side on rate, redemption, and platform.</div>
+          <input class="tool-input" id="inp-state-a" type="text" placeholder="State A (e.g. FL)">
+          <input class="tool-input" id="inp-state-b" type="text" placeholder="State B (e.g. AZ)">
+          <button class="tool-btn" onclick="runStateCompare()">Compare</button>
+          <div class="tool-result" id="result-compare"></div>
+          <div class="tool-locked-overlay" id="lock-compare">
+            <div>&#128274;</div>
+            <div>FULL ACCESS REQUIRED</div>
+            <a class="tool-btn" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Upgrade</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-panel" id="panel-advisor">
+      <div id="advisor-messages">
+        <div class="msg sage">
+          <div class="msg-label">Sage</div>
+          Welcome to Aurigen Intelligence. I can answer questions about tax lien investing, redemption periods, bidding strategies, and due diligence. What would you like to explore?
+        </div>
+      </div>
+      <div id="advisor-input-bar">
+        <input id="advisor-input" type="text" placeholder="Ask Sage anything about tax liens..." autocomplete="off">
+        <button id="advisor-send" onclick="sendAdvisorMessage()">Send</button>
+      </div>
+    </div>
+    <div class="tab-panel" id="panel-account">
+      <div class="account-card">
+        <div class="account-tier-badge" id="acct-tier-badge">FREE ACCESS</div>
+        <div class="account-row">
+          <span class="account-row-label">Email</span>
+          <span class="account-row-value" id="acct-email">&mdash;</span>
+        </div>
+        <div class="account-row">
+          <span class="account-row-label">Access Level</span>
+          <span class="account-row-value" id="acct-level">Free</span>
+        </div>
+        <div class="account-row">
+          <span class="account-row-label">States Available</span>
+          <span class="account-row-value" id="acct-states">FL, IL, AZ</span>
+        </div>
+        <a class="account-upgrade-cta" id="acct-upgrade" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Upgrade to Full Access</a>
+      </div>
+    </div>
   </div>
   <div id="status-bar">
     <div id="ticker-track"></div>
@@ -1084,6 +1443,203 @@ function initMap() {
 function bootApp() {
   renderStateList();
   initMap();
+  initAccount();
+  runBootAnimation();
+}
+
+// === TOOL FUNCTIONS ===
+function runDealAnalyzer() {
+  const price = parseFloat(document.getElementById('inp-price').value);
+  const tax = parseFloat(document.getElementById('inp-tax').value);
+  const el = document.getElementById('result-deal');
+  if (!price || !tax || price <= 0 || tax <= 0) {
+    el.textContent = 'ERROR: Both fields must be positive numbers.';
+    el.classList.add('show');
+    return;
+  }
+  const yield2 = ((tax / price) * 100).toFixed(2);
+  const ret2 = (yield2 * 2).toFixed(2);
+  el.textContent = 'PURCHASE $' + price.toLocaleString() + ' | TAX $' + tax.toLocaleString() + '/YR | YIELD ' + yield2 + '% | 2YR RETURN ' + ret2 + '%';
+  el.classList.add('show');
+}
+
+function runAuctionPulse() {
+  const abbr = (document.getElementById('inp-pulse-state').value || '').trim().toUpperCase();
+  const el = document.getElementById('result-pulse');
+  const data = STATE_DATA[abbr];
+  if (data) {
+    el.textContent = 'RATE: ' + data.rate + ' | REDEMPTION: ' + data.redemption + ' | PLATFORM: ' + data.platform;
+  } else {
+    el.textContent = 'STATE NOT IN DATABASE \u2014 TRY FL, IL, OR AZ';
+  }
+  el.classList.add('show');
+}
+
+function runInvestorDNA() {
+  const val = document.getElementById('inp-dna').value;
+  const el = document.getElementById('result-dna');
+  const profiles = {
+    Conservative: 'PROFILE: Lien-focused. Target 12-18% states. Priority: FL, NJ, MD. Low risk, stable returns.',
+    Moderate: 'PROFILE: Mixed portfolio. Lien + hybrid states. Target 18-36%. Priority: IL, AZ, CO.',
+    Aggressive: 'PROFILE: Deed-focused. Target OTC and hybrid. Priority: TX, GA, MI. Higher upside, higher risk.'
+  };
+  el.textContent = profiles[val] || profiles.Moderate;
+  el.classList.add('show');
+}
+
+function runStateCompare() {
+  const a = (document.getElementById('inp-state-a').value || '').trim().toUpperCase();
+  const b = (document.getElementById('inp-state-b').value || '').trim().toUpperCase();
+  const el = document.getElementById('result-compare');
+  const dA = STATE_DATA[a];
+  const dB = STATE_DATA[b];
+  if (!dA && !dB) {
+    el.textContent = 'NEITHER ' + a + ' NOR ' + b + ' IN DATABASE \u2014 TRY FL, IL, OR AZ';
+  } else if (!dA) {
+    el.textContent = a + ' NOT IN DATABASE \u2014 TRY FL, IL, OR AZ';
+  } else if (!dB) {
+    el.textContent = b + ' NOT IN DATABASE \u2014 TRY FL, IL, OR AZ';
+  } else {
+    el.innerHTML =
+      '<div>RATE: ' + a + ' ' + dA.rate + ' | ' + b + ' ' + dB.rate + '</div>' +
+      '<div>REDEMPTION: ' + a + ' ' + dA.redemption + ' | ' + b + ' ' + dB.redemption + '</div>' +
+      '<div>PLATFORM: ' + a + ' ' + dA.platform + ' | ' + b + ' ' + dB.platform + '</div>';
+  }
+  el.classList.add('show');
+}
+
+// === ADVISOR FUNCTIONS ===
+function sendAdvisorMessage() {
+  const input = document.getElementById('advisor-input');
+  const text = (input.value || '').trim();
+  if (!text) return;
+  const msgs = document.getElementById('advisor-messages');
+
+  // Add user message
+  const userDiv = document.createElement('div');
+  userDiv.className = 'msg user';
+  userDiv.innerHTML = '<div class="msg-label">You</div>' + escapeHtml(text);
+  msgs.appendChild(userDiv);
+  input.value = '';
+  msgs.scrollTop = msgs.scrollHeight;
+
+  // Typing indicator
+  const typing = document.createElement('div');
+  typing.className = 'msg sage';
+  typing.innerHTML = '<div class="msg-label">Sage</div>...';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(function() {
+    const response = getAdvisorResponse(text);
+    typing.innerHTML = '<div class="msg-label">Sage</div>' + response;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 800);
+}
+
+function escapeHtml(str) {
+  var div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function getAdvisorResponse(input) {
+  var q = input.toLowerCase();
+  if (q.includes('redemption')) return 'Redemption periods vary by state. Florida offers a 2-year redemption at 18% interest. Illinois has a 2.5-year period with a 36% penalty structure. Arizona gives 3 years at up to 16%. Shorter periods mean faster capital cycling but potentially fewer opportunities.';
+  if (q.includes('rate') || q.includes('interest')) return 'Tax lien interest rates are set by state statute. Florida caps at 18% annually (bid down). Illinois charges 36% penalty over the redemption period. Arizona starts at 16% and bidders compete down. Higher rates attract more competition.';
+  if (q.includes('bid') || q.includes('auction')) return 'Bidding methods differ: Florida and Arizona use interest-rate-down bidding where investors compete by accepting lower rates. Illinois uses a rotational system. Understanding the bid method is critical \u2014 it directly impacts your effective yield.';
+  if (q.includes('florida') || q.includes(' fl')) return 'Florida: Tax lien state. 18% max rate, 2-year redemption, interest-rate-down bidding. Platform: LienHub. Statute: FL Stat \u00A7 197.432. Excellent OTC availability. Start with smaller counties like Putnam or Levy.';
+  if (q.includes('illinois') || q.includes(' il')) return 'Illinois: Tax lien state. 36% penalty structure, 2.5-year redemption, rotational bidding. Platform: GovEase. Statute: 35 ILCS 200/21-215. Avoid Cook County as a beginner \u2014 try downstate counties.';
+  if (q.includes('arizona') || q.includes(' az')) return 'Arizona: Tax lien state. Up to 16% rate, 3-year redemption, interest-rate-down bidding. Platform: RealAuction. Statute: ARS \u00A7 42-18112. Best OTC program in the country \u2014 start with Pinal or Yavapai counties.';
+  if (q.includes('upgrade') || q.includes('access')) return 'Full access unlocks all 51 jurisdictions with detailed metrics, auction intel, and strategy tools. Visit the Account tab to upgrade.';
+  return 'That\u2019s a great question for a strategy call. Book a free Investor Clarity Call to go deeper on this topic.';
+}
+
+// Allow Enter key to send advisor messages
+document.addEventListener('DOMContentLoaded', function() {
+  var inp = document.getElementById('advisor-input');
+  if (inp) inp.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') sendAdvisorMessage();
+  });
+});
+
+// === ACCOUNT FUNCTIONS ===
+function initAccount() {
+  var badge = document.getElementById('acct-tier-badge');
+  var email = document.getElementById('acct-email');
+  var level = document.getElementById('acct-level');
+  var states = document.getElementById('acct-states');
+  var upgrade = document.getElementById('acct-upgrade');
+  var lockDna = document.getElementById('lock-dna');
+  var lockCompare = document.getElementById('lock-compare');
+
+  if (APP.tier >= 2) {
+    badge.textContent = 'FULL ACCESS';
+    badge.classList.add('paid');
+    level.textContent = 'Full Access';
+    states.textContent = 'All 51 Jurisdictions';
+    if (upgrade) upgrade.style.display = 'none';
+    if (lockDna) lockDna.style.display = 'none';
+    if (lockCompare) lockCompare.style.display = 'none';
+  } else {
+    badge.textContent = 'FREE ACCESS';
+    badge.classList.remove('paid');
+    level.textContent = 'Free';
+    states.textContent = 'FL, IL, AZ';
+    if (upgrade) upgrade.style.display = 'block';
+    if (lockDna) lockDna.style.display = 'flex';
+    if (lockCompare) lockCompare.style.display = 'flex';
+  }
+  email.textContent = APP.email || '\u2014';
+}
+
+// === BOOT ANIMATION ===
+function runBootAnimation() {
+  var ease = 'cubic-bezier(0.16,1,0.3,1)';
+  var targets = [
+    { el: document.getElementById('top-nav'), delay: 0 },
+    { el: document.getElementById('nav-logo'), delay: 150 },
+    { el: null, delay: 250, tabs: true },
+    { el: document.getElementById('map-sidebar'), delay: 450 },
+    { el: document.getElementById('d3-map'), delay: 550 },
+    { el: document.getElementById('map-detail'), delay: 650 },
+    { el: document.getElementById('status-bar'), delay: 800 }
+  ];
+
+  // Set initial hidden state
+  targets.forEach(function(t) {
+    if (t.tabs) {
+      document.querySelectorAll('.nav-tab').forEach(function(tab) {
+        tab.style.opacity = '0';
+        tab.style.transform = 'translateY(-4px)';
+      });
+    } else if (t.el) {
+      t.el.style.opacity = '0';
+      t.el.style.transform = t.delay === 150 ? 'scale(0.9)' :
+        t.delay === 450 ? 'translateX(-20px)' :
+        t.delay === 650 ? 'translateX(20px)' :
+        'translateY(-8px)';
+    }
+  });
+
+  // Animate in
+  targets.forEach(function(t) {
+    if (t.tabs) {
+      document.querySelectorAll('.nav-tab').forEach(function(tab, i) {
+        setTimeout(function() {
+          tab.style.transition = 'opacity 0.4s ' + ease + ', transform 0.4s ' + ease;
+          tab.style.opacity = '1';
+          tab.style.transform = 'translateY(0)';
+        }, t.delay + i * 60);
+      });
+    } else if (t.el) {
+      setTimeout(function() {
+        t.el.style.transition = 'opacity 0.5s ' + ease + ', transform 0.5s ' + ease;
+        t.el.style.opacity = '1';
+        t.el.style.transform = 'none';
+      }, t.delay);
+    }
+  });
 }
 
 // === RESTORE SESSION ===
