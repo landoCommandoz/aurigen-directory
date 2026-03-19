@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>AURIGEN — Intelligence Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <style>
+    /* === CSS VARIABLES === */
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #0f0f0f;
+      --bg3: #141414;
+      --accent: #C9A84C;
+      --accent-dim: rgba(201,168,76,0.08);
+      --accent-mid: rgba(201,168,76,0.4);
+      --accent-glow: rgba(201,168,76,0.15);
+      --text: #e8e0d0;
+      --text2: #6a6258;
+      --text3: #3a3530;
+      --border: rgba(201,168,76,0.1);
+      --border-hover: rgba(201,168,76,0.3);
+      --lien: #5A8FA8;
+      --deed: #A8625A;
+      --hybrid: #5AA880;
+      --shadow: 0 8px 32px rgba(0,0,0,0.6);
+      --shadow-accent: 0 0 40px rgba(201,168,76,0.08);
+      --radius: 2px;
+      --transition: cubic-bezier(0.16,1,0.3,1);
+    }
+
+    /* === RESET === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      width: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      overflow: hidden;
+    }
+
+    /* === KEYFRAMES === */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes pulse-border {
+      0%, 100% { border-color: rgba(201,168,76,0.1); }
+      50%       { border-color: rgba(201,168,76,0.4); }
+    }
+    @keyframes scan-line {
+      0%   { top: 0%; }
+      100% { top: 100%; }
+    }
+    @keyframes ticker-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes cursor-blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* === GATE SCREEN === */
+    #gate {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      overflow: hidden;
+    }
+    #gate::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #gate-scan {
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-mid), transparent);
+      opacity: 0.3;
+      animation: scan-line 4s linear infinite;
+      pointer-events: none;
+    }
+    #gate-wordmark {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 12vw, 120px);
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+      min-height: 1.2em;
+      display: flex;
+      align-items: center;
+    }
+    #gate-wordmark .letter {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s var(--transition), transform 0.4s var(--transition);
+    }
+    #gate-wordmark .letter.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #gate-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 0.8em;
+      background: var(--accent);
+      margin-left: 4px;
+      animation: cursor-blink 1s step-end infinite;
+      vertical-align: middle;
+    }
+    #gate-subtitle {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(8px, 1.2vw, 11px);
+      letter-spacing: 0.3em;
+      color: var(--text2);
+      text-transform: uppercase;
+      margin-bottom: 64px;
+      opacity: 0;
+      animation: fadeIn 0.6s var(--transition) 1.4s forwards;
+    }
+    #gate-divider {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, var(--accent-mid), transparent);
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeIn 0.4s var(--transition) 1.6s forwards;
+    }
+    #gate-form {
+      width: min(420px, 90vw);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      opacity: 0;
+      animation: fadeUp 0.6s var(--transition) 1.8s forwards;
+    }
+    .gate-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .gate-input-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: var(--text2);
+      text-transform: uppercase;
+    }
+    .gate-input-row {
+      display: flex;
+      gap: 8px;
+    }
+    .gate-input {
+      flex: 1;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      padding: 12px 16px;
+      outline: none;
+      border-radius: var(--radius);
+      transition: border-color 0.3s var(--transition), box-shadow 0.3s var(--transition);
+      animation: pulse-border 4s ease-in-out infinite;
+    }
+    .gate-input:focus {
+      border-color: var(--accent-mid);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+      animation: none;
+    }
+    .gate-input::placeholder { color: var(--text3); }
+    .gate-btn {
+      padding: 12px 20px;
+      background: transparent;
+      border: 1px solid var(--accent-mid);
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: background 0.2s var(--transition), box-shadow 0.2s var(--transition);
+    }
+    .gate-btn:hover {
+      background: var(--accent-dim);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .gate-btn:active { transform: scale(0.98); }
+    #gate-separator {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--text3);
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+    }
+    #gate-separator::before, #gate-separator::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    #gate-message {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-align: center;
+      min-height: 16px;
+      transition: color 0.3s;
+    }
+    #gate-message.error { color: var(--deed); }
+    #gate-message.success { color: var(--hybrid); }
+
+    /* === APP SHELL (hidden until gate clears) === */
+    #app {
+      height: 100dvh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s var(--transition);
+    }
+    #app.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* === TOP NAV === */
+    #top-nav {
+      height: 48px;
+      min-height: 48px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 0;
+      position: relative;
+      z-index: 100;
+    }
+    #nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-right: 32px;
+      flex-shrink: 0;
+    }
+    .nav-tab {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text2);
+      padding: 0 16px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+    }
+    .nav-tab:hover { color: var(--text); }
+    .nav-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    #nav-spacer { flex: 1; }
+    #nav-tier-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--text2);
+      text-transform: uppercase;
+    }
+    #nav-tier-badge.paid {
+      border-color: var(--accent-mid);
+      color: var(--accent);
+    }
+
+    /* === MAIN CONTENT === */
+    #main-content {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    /* === TABS === */
+    .tab-panel {
+      display: none;
+      flex: 1;
+      min-height: 0;
+    }
+    .tab-panel.active {
+      display: flex;
+    }
+
+    /* === STATUS BAR === */
+    #status-bar {
+      height: 28px;
+      min-height: 28px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    #ticker-track {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker-scroll 30s linear infinite;
+    }
+    .ticker-item {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--text2);
+      padding: 0 32px;
+    }
+    .ticker-item .up { color: var(--hybrid); }
+    .ticker-item .down { color: var(--deed); }
+    .ticker-item .neutral { color: var(--lien); }
+  </style>
+</head>
+<body>
+
+<!-- GATE SCREEN -->
+<div id="gate">
+  <div id="gate-scan"></div>
+  <div id="gate-wordmark"><span id="gate-letters"></span><span id="gate-cursor"></span></div>
+  <div id="gate-subtitle">Intelligence Platform for Tax Lien &amp; Tax Deed Investors</div>
+  <div id="gate-divider"></div>
+  <div id="gate-form">
+    <div class="gate-input-group">
+      <div class="gate-input-label">Free Access — FL, IL, AZ</div>
+      <div class="gate-input-row">
+        <input class="gate-input" id="gate-email" type="email" placeholder="your@email.com" autocomplete="off">
+        <button class="gate-btn" onclick="submitEmail()">Request Access</button>
+      </div>
+    </div>
+    <div id="gate-separator">OR</div>
+    <div class="gate-input-group">
+      <div class="gate-input-label">Full Access — All 51 Jurisdictions</div>
+      <div class="gate-input-row">
+        <input class="gate-input" id="gate-code" type="text" placeholder="Access code" autocomplete="off">
+        <button class="gate-btn" onclick="submitCode()">Unlock</button>
+      </div>
+    </div>
+    <div id="gate-message"></div>
+  </div>
+</div>
+
+<!-- APP SHELL -->
+<div id="app">
+  <nav id="top-nav">
+    <div id="nav-logo">AURIGEN</div>
+    <div class="nav-tab active" id="tab-map" onclick="switchTab('map')">Map</div>
+    <div class="nav-tab" id="tab-tools" onclick="switchTab('tools')">Tools</div>
+    <div class="nav-tab" id="tab-advisor" onclick="switchTab('advisor')">Advisor</div>
+    <div class="nav-tab" id="tab-account" onclick="switchTab('account')">Account</div>
+    <div id="nav-spacer"></div>
+    <div id="nav-tier-badge">FREE</div>
+  </nav>
+  <div id="main-content">
+    <div class="tab-panel active" id="panel-map"></div>
+    <div class="tab-panel" id="panel-tools"></div>
+    <div class="tab-panel" id="panel-advisor"></div>
+    <div class="tab-panel" id="panel-account"></div>
+  </div>
+  <div id="status-bar">
+    <div id="ticker-track"></div>
+  </div>
+</div>
+
+<script>
+// === STATE ===
+const APP = {
+  tier: 0,          // 0=gate, 1=free, 2=paid
+  email: null,
+  activeTab: 'map',
+  freeStates: ['FL','IL','AZ'],
+  selectedState: null
+};
+
+// === GATE ANIMATION ===
+(function animateWordmark() {
+  const word = 'AURIGEN';
+  const container = document.getElementById('gate-letters');
+  word.split('').forEach((ch, i) => {
+    const span = document.createElement('span');
+    span.className = 'letter';
+    span.textContent = ch;
+    container.appendChild(span);
+    setTimeout(() => span.classList.add('visible'), 200 + i * 120);
+  });
+  setTimeout(() => {
+    document.getElementById('gate-cursor').style.display = 'none';
+  }, 200 + word.length * 120 + 800);
+})();
+
+// === GATE LOGIC ===
+function setGateMessage(msg, type) {
+  const el = document.getElementById('gate-message');
+  el.textContent = msg;
+  el.className = 'gate-' + type;
+}
+
+function submitEmail() {
+  const email = document.getElementById('gate-email').value.trim();
+  if (!email || !email.includes('@')) {
+    setGateMessage('Enter a valid email address.', 'error');
+    return;
+  }
+  setGateMessage('Verifying...', '');
+  // Mock: grant free access
+  setTimeout(() => {
+    APP.tier = 1;
+    APP.email = email;
+    enterApp();
+  }, 800);
+}
+
+function submitCode() {
+  const code = document.getElementById('gate-code').value.trim().toUpperCase();
+  if (!code) {
+    setGateMessage('Enter your access code.', 'error');
+    return;
+  }
+  setGateMessage('Validating...', '');
+  fetch('/.netlify/functions/aurigen', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'validate-code', code })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.valid) {
+      APP.tier = 2;
+      try { localStorage.setItem('aurigen_tier', '2'); } catch(e) {}
+      enterApp();
+    } else {
+      setGateMessage('Invalid code. Try again.', 'error');
+    }
+  })
+  .catch(() => {
+    setGateMessage('Connection error. Try again.', 'error');
+  });
+}
+
+function enterApp() {
+  const gate = document.getElementById('gate');
+  const app = document.getElementById('app');
+  gate.style.opacity = '0';
+  gate.style.transition = 'opacity 0.8s cubic-bezier(0.16,1,0.3,1)';
+  setTimeout(() => { gate.style.display = 'none'; }, 800);
+  app.classList.add('visible');
+  updateTierBadge();
+  buildTicker();
+  // App boot sequence fires after gate closes
+  setTimeout(bootApp, 400);
+}
+
+function updateTierBadge() {
+  const badge = document.getElementById('nav-tier-badge');
+  if (APP.tier >= 2) {
+    badge.textContent = 'FULL ACCESS';
+    badge.classList.add('paid');
+  } else {
+    badge.textContent = 'FREE';
+    badge.classList.remove('paid');
+  }
+}
+
+// === TAB SWITCHING ===
+function switchTab(name) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+  APP.activeTab = name;
+}
+
+// === TICKER ===
+function buildTicker() {
+  const items = [
+    { label: 'FL LIEN RATE', value: '18%', cls: 'up' },
+    { label: 'IL PENALTY', value: '36%', cls: 'up' },
+    { label: 'AZ INTEREST', value: '16%', cls: 'up' },
+    { label: 'REDEMPTION PERIOD', value: 'FL 2YR · IL 2.5YR · AZ 3YR', cls: 'neutral' },
+    { label: 'BID METHOD', value: 'FL INTEREST-DOWN · IL ROTATIONAL · AZ INTEREST-DOWN', cls: 'neutral' },
+    { label: 'PLATFORM', value: 'FL LIENHUB · IL GOVEASE · AZ REALAUCTION', cls: 'neutral' },
+    { label: 'AURIGEN', value: 'INTELLIGENCE PLATFORM', cls: 'neutral' },
+  ];
+  const track = document.getElementById('ticker-track');
+  // Duplicate for seamless loop
+  [1,2].forEach(() => {
+    items.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'ticker-item';
+      div.innerHTML = `${item.label} <span class="${item.cls}">${item.value}</span>`;
+      track.appendChild(div);
+    });
+  });
+}
+
+// === BOOT SEQUENCE (placeholder — filled in Chunk 3) ===
+function bootApp() {
+  // Map initializes in Chunk 2
+  if (typeof initMap === 'function') initMap();
+}
+
+// === RESTORE SESSION ===
+(function restoreSession() {
+  try {
+    const tier = localStorage.getItem('aurigen_tier');
+    if (tier === '2') {
+      APP.tier = 2;
+      enterApp();
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>
