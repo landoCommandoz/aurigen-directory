@@ -38,6 +38,8 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<!-- states-data-v2.js: Enhanced state data with statute, keyNotes, investorAlert, pendingLegislation -->
+<script type="module" src="states-data-v2.js"></script>
 <script>
 // ═══════════════════════════════════════════════════════════
 //  DYNAMIC LANGUAGE FILE LOADER
@@ -6670,6 +6672,7 @@ const LanguageManager = {
   apply: function() {
     AccessManager.revalidate();
     STATES = state.lang === 'es' && window.STATES_ES ? window.STATES_ES : (window.STATES_EN || []);
+    mergeV2Data();
   },
 
   /** Restore language preference from localStorage */
@@ -7583,6 +7586,73 @@ let state = {
 // ── Active STATES array (switches between EN/ES) ─────────────
 let STATES = [];
 
+// ═══════════════════════════════════════════════════════════
+//  V2 DATA ADAPTER
+//  Merges states-data-v2.js fields into the active STATES array.
+//  - Enriches existing entries (matched by code→id) with v2 fields
+//  - Appends v2-only entries with old-schema compatibility shim
+// ═══════════════════════════════════════════════════════════
+function mergeV2Data() {
+  var v2 = window.STATES_V2;
+  if (!v2 || !v2.length || !STATES || !STATES.length) return;
+
+  // Build lookup of existing STATES by id
+  var existingById = {};
+  STATES.forEach(function(s) { existingById[s.id] = s; });
+
+  v2.forEach(function(v) {
+    var existing = existingById[v.code];
+    if (existing) {
+      // Enrich existing entry with v2-only fields
+      existing.statute       = v.statute       || existing.statute;
+      existing.officialLink  = v.officialLink  || existing.officialLink;
+      existing.keyNotes      = v.keyNotes      || existing.keyNotes;
+      existing.investorAlert = v.investorAlert || existing.investorAlert;
+      existing.bidMethod     = v.bidMethod     || existing.bidMethod;
+      existing.auctionPlatformV2 = v.auctionPlatform || existing.auctionPlatformV2;
+      existing.auctionTimingV2   = v.auctionTiming   || existing.auctionTimingV2;
+      existing.rateNote      = v.rateNote      || existing.rateNote;
+      if (v.pendingLegislation && v.pendingLegislation.length) {
+        existing.pendingLegislation = v.pendingLegislation;
+      }
+    } else {
+      // v2-only entry — create old-schema compatible object
+      STATES.push({
+        id:               v.code,
+        name:             v.name,
+        type:             v.type,
+        rate:             v.rate,
+        redemption:       v.redemption,
+        score:            0,
+        beginnerFriendly: false,
+        notBeginnerReason: '',
+        scoreWhy:         '',
+        note:             v.rateNote || '',
+        typeWhy:          '',
+        rateWhy:          v.rateNote || '',
+        beginnerTip:      '',
+        risks:            [],
+        ddExtra:          [],
+        auctionSignup:    null,
+        otc:              null,
+        platforms:        [v.auctionPlatform || ''],
+        tylerCompliance:  null,
+        counties:         [],
+        // v2 fields
+        statute:          v.statute,
+        officialLink:     v.officialLink,
+        keyNotes:         v.keyNotes || [],
+        investorAlert:    v.investorAlert,
+        bidMethod:        v.bidMethod,
+        auctionPlatformV2: v.auctionPlatform,
+        auctionTimingV2:  v.auctionTiming,
+        rateNote:         v.rateNote,
+        pendingLegislation: v.pendingLegislation || []
+      });
+    }
+  });
+}
+
 // ── i18n Helper ──────────────────────────────────────────────
 function t(key) {
   return (I18N[state.lang] && I18N[state.lang][key]) || I18N.en[key] || key;
@@ -7634,6 +7704,9 @@ function applyLanguage() {
   // Switch active STATES array based on currently loaded file
   // Rule 7: only one file loaded at a time
   STATES = state.lang === 'es' && window.STATES_ES ? window.STATES_ES : (window.STATES_EN || []);
+
+  // Merge v2 enhanced data (statute, keyNotes, investorAlert, pendingLegislation)
+  mergeV2Data();
 
   // Update language toggle button
   const flagIcon = document.getElementById('lang-flag-icon');
@@ -9075,6 +9148,7 @@ function openState(id) {
   // PREVIEW SECTION — visible to free and paid users
   const previewHTML = `
     <div class="state-modal-disclaimer-banner">${t('stateDisclaimerBanner')}</div>
+    ${s.investorAlert ? `<div style="background:rgba(224,85,85,0.12);border:1px solid var(--red);border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:13px;color:var(--red);line-height:1.6;">${s.investorAlert}</div>` : ''}
     ${bBadge}
     ${!s.beginnerFriendly && s.notBeginnerReason ? `<div class="modal-note" style="margin-bottom:14px;color:var(--red);font-size:12px;">${s.notBeginnerReason}</div>` : ''}
 
@@ -9120,7 +9194,10 @@ function openState(id) {
       + (s.ddExtra ? s.ddExtra.length : 0)
       + (s.counties ? s.counties.length : 0)
       + (s.auctionSignup ? 1 : 0)
-      + (s.otc ? 1 : 0));
+      + (s.otc ? 1 : 0)
+      + (s.keyNotes ? s.keyNotes.length : 0)
+      + (s.pendingLegislation && s.pendingLegislation.length ? 1 : 0)
+      + (s.statute ? 1 : 0));
 
     document.getElementById('modal-body').innerHTML = `
       ${previewHTML}
@@ -9257,6 +9334,35 @@ function openState(id) {
       <div class="modal-section">
         <div class="modal-section-title">${t('modalDdChecklist')}</div>
         <ul class="dd-checklist">${s.ddExtra.map(d => `<li><span class="dd-check-icon">\u2610</span><span>${d}</span></li>`).join('')}</ul>
+      </div>
+    ` : ''}
+
+    ${s.keyNotes && s.keyNotes.length ? `
+      <div class="modal-section">
+        <div class="modal-section-title">Investor Key Notes</div>
+        <ul class="modal-list" style="list-style:none;padding:0;margin:0;">
+          ${s.keyNotes.map(n => '<li style="padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;line-height:1.5;color:var(--text-dim);"><span style="color:var(--accent);margin-right:8px;">&#9670;</span>' + n + '</li>').join('')}
+        </ul>
+      </div>
+    ` : ''}
+
+    ${s.statute || s.officialLink ? `
+      <div class="modal-section">
+        <div class="modal-section-title">Legal Citation</div>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+          ${s.statute ? '<div style="font-size:13px;color:var(--text);font-weight:600;font-family:\'DM Mono\',monospace;margin-bottom:6px;">' + s.statute + '</div>' : ''}
+          ${s.bidMethod ? '<div style="font-size:12px;color:var(--text-dim);margin-bottom:4px;"><strong>Bid method:</strong> ' + s.bidMethod + '</div>' : ''}
+          ${s.auctionPlatformV2 ? '<div style="font-size:12px;color:var(--text-dim);margin-bottom:4px;"><strong>Platform:</strong> ' + s.auctionPlatformV2 + '</div>' : ''}
+          ${s.auctionTimingV2 ? '<div style="font-size:12px;color:var(--text-dim);margin-bottom:8px;"><strong>Timing:</strong> ' + s.auctionTimingV2 + '</div>' : ''}
+          ${s.officialLink ? '<a href="' + s.officialLink + '" target="_blank" rel="noopener noreferrer" style="font-size:12px;color:var(--accent);text-decoration:underline;">View Official Statute &#8599;</a>' : ''}
+        </div>
+      </div>
+    ` : ''}
+
+    ${s.pendingLegislation && s.pendingLegislation.length ? `
+      <div class="modal-section">
+        <div class="modal-section-title" style="color:var(--accent);">Legislative Watch</div>
+        ${s.pendingLegislation.map(function(leg) { return '<div style="background:rgba(200,168,75,0.08);border:1px solid var(--accent-border);border-radius:8px;padding:12px 14px;margin-bottom:8px;"><div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:4px;">' + leg.bill + '</div><div style="font-size:12px;color:var(--text-dim);line-height:1.5;margin-bottom:6px;">' + leg.summary + '</div><div style="display:flex;gap:12px;font-size:11px;color:var(--text-muted);"><span><strong>Status:</strong> ' + leg.status + '</span>' + (leg.effectiveDate ? '<span><strong>Effective:</strong> ' + leg.effectiveDate + '</span>' : '') + '</div></div>'; }).join('')}
       </div>
     ` : ''}
 
