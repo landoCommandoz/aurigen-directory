@@ -419,6 +419,183 @@ export const statesData = [
     ],
     investorAlert: "\u26A0\uFE0F NYC is NOT accessible for retail tax lien investors. Land bank transition underway. Mayor Adams vetoed 4 reform bills Dec 31, 2025. Upstate New York only for individual investors.",
     clarityCallCTA: true
+  },
+
+  // ── 19. Oregon ────────────────────────────────────────────
+  {
+    code: "OR",
+    name: "Oregon",
+    type: "deed",
+    rate: "N/A — deed state, no lien product",
+    rateNote: "County auctions property after 3-year delinquency",
+    redemption: "None after sale",
+    bidMethod: "Highest bidder",
+    statute: "ORS Ch. 312 (2025 update)",
+    officialLink: "https://www.oregonlegislature.gov/bills_laws/ors/ors312.html",
+    auctionPlatform: "County-run — online and in-person varies",
+    auctionTiming: "Varies by county",
+    keyNotes: [
+      "3-year delinquency before county can auction",
+      "No post-sale redemption — buyer takes clean title",
+      "2025 ORS 312.510 update — verify current county procedures"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 20. Washington ────────────────────────────────────────
+  {
+    code: "WA",
+    name: "Washington",
+    type: "deed",
+    rate: "N/A — deed state, no lien product",
+    rateNote: "County auctions property — clean title conveyed",
+    redemption: "None after sale",
+    bidMethod: "Highest bidder",
+    statute: "RCW Ch. 84.64",
+    officialLink: "https://app.leg.wa.gov/RCW/default.aspx?cite=84.64",
+    auctionPlatform: "County treasurer — online and in-person varies",
+    auctionTiming: "Winter (most counties)",
+    keyNotes: [
+      "Clean title conveyed at sale — no post-sale redemption",
+      "Minimum bid includes all taxes, fees, penalties",
+      "Seattle-area properties attract institutional competition"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 21. West Virginia ─────────────────────────────────────
+  {
+    code: "WV",
+    name: "West Virginia",
+    type: "lien",
+    rate: "12% on BID amount",
+    rateNote: "Interest on bid amount — not on tax amount. Sheriff-run process",
+    redemption: "18 months",
+    bidMethod: "Highest bidder (premium bid)",
+    statute: "WV Code §11A-3-9",
+    officialLink: "https://code.wvlegislature.gov/11A-3-9/",
+    auctionPlatform: "Sheriff-run — in-person",
+    auctionTiming: "October–November",
+    keyNotes: [
+      "12% is on the BID amount — not just the tax amount",
+      "High redemption rate (~70–80%) — most liens pay out, rarely reach deed",
+      "Sheriff conducts sales — not county treasurer"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 22. Vermont ───────────────────────────────────────────
+  {
+    code: "VT",
+    name: "Vermont",
+    type: "redeemable",
+    rate: "N/A",
+    rateNote: "255 towns each run their own sales — highly fragmented",
+    redemption: "1 year (standard)",
+    bidMethod: "Highest bidder",
+    statute: "32 V.S.A. §5251",
+    officialLink: "https://legislature.vermont.gov/statutes/section/32/135/05251",
+    auctionPlatform: "Town-run — in-person",
+    auctionTiming: "Varies by town",
+    keyNotes: [
+      "255 towns run independent sales — no centralized system",
+      "State liens may survive tax deed sale — title research critical",
+      "Land Court action recommended for clean title"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 23. South Dakota ──────────────────────────────────────
+  {
+    code: "SD",
+    name: "South Dakota",
+    type: "lien",
+    rate: "Bid-down to lowest rate accepted",
+    rateNote: "Bid-down system — investor accepts lowest rate willing to take",
+    redemption: "3 years + 60-day notice period",
+    bidMethod: "Bid-down interest rate",
+    statute: "SDCL §10-23",
+    officialLink: "https://sdlegislature.gov/Statutes/10/23",
+    auctionPlatform: "County treasurer — in-person",
+    auctionTiming: "December",
+    keyNotes: [
+      "December auction — one annual sale per county",
+      "3-year redemption plus mandatory 60-day notice before deed",
+      "Low population, rural land heavy — limited inventory"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 24. Oklahoma ──────────────────────────────────────────
+  {
+    code: "OK",
+    name: "Oklahoma",
+    type: "deed",
+    rate: "N/A — deed state, no lien product",
+    rateNote: "County auctions property — no post-sale redemption",
+    redemption: "None after sale",
+    bidMethod: "Highest bidder",
+    statute: "68 O.S. §3101",
+    officialLink: "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=138625",
+    auctionPlatform: "County-run — in-person",
+    auctionTiming: "June (most counties)",
+    keyNotes: [
+      "No post-sale redemption — buyer takes immediate title",
+      "June auction annual timing",
+      "Rural land opportunities in eastern Oklahoma"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 25. Missouri ──────────────────────────────────────────
+  {
+    code: "MO",
+    name: "Missouri",
+    type: "deed",
+    rate: "N/A — deed state, no lien product",
+    rateNote: "Multiple offering system — 3rd+ offering is fastest path to deed",
+    redemption: "None after sale",
+    bidMethod: "Highest bidder",
+    statute: "RSMo Ch. 140",
+    officialLink: "https://revisor.mo.gov/main/OneChapter.aspx?chapter=140",
+    auctionPlatform: "County collector — in-person",
+    auctionTiming: "Varies by county",
+    keyNotes: [
+      "Multi-offering system: 1st offering minimum bid = taxes+fees; 3rd+ offering = any bid accepted",
+      "3rd offering properties are fastest path to deed acquisition",
+      "No post-sale redemption"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 26. Kentucky ──────────────────────────────────────────
+  {
+    code: "KY",
+    name: "Kentucky",
+    type: "lien",
+    rate: "Varies — set by 3rd-party purchaser within statutory limits",
+    rateNote: "No single fixed statewide rate — purchaser sets rate on each certificate",
+    redemption: "Until foreclosure sale (pre-sale redemption only); 6 months additional if sold below 2/3 appraised value",
+    bidMethod: "Highest bidder (sheriff sells certificates of delinquency)",
+    statute: "KRS §134.420 et seq.",
+    officialLink: "https://revenue.ky.gov/ClerkNetwork/Documents/DelinquentCollectionManual20062.pdf",
+    auctionPlatform: "County sheriff — in-person",
+    auctionTiming: "April–June (most counties)",
+    keyNotes: [
+      "Sheriff sells Certificates of Delinquency — 3rd party purchasers buy tax bills directly",
+      "50-day notice requirement after purchase",
+      "Circuit court foreclosure required to obtain deed — no automatic conversion",
+      "High redemption rate — most certificates pay out"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
   }
 
 ];
