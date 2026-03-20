@@ -294,17 +294,9 @@ var App = {
   // ── Language Toggle ─────────────────────────────
 
   toggleLang: function () {
+    // Both STATES_EN and STATES_ES are already loaded via static script tags.
+    // toggle() calls apply() which picks the correct one from memory.
     LanguageManager.toggle();
-    // Reload state data for new language
-    var lang = LanguageManager.getLang();
-    var token = AccessManager.getToken();
-    var headers = {};
-    if (token) headers['Authorization'] = 'Bearer ' + token;
-
-    fetch('/.netlify/functions/get-states?lang=' + lang, { headers: headers })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
-      .then(function (js) { new Function(js)(); LanguageManager.apply(); })
-      .catch(function (e) { console.error('[APP] Lang data reload failed:', e); });
   },
 
   _setupLangToggle: function () {

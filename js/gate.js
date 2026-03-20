@@ -279,15 +279,10 @@ function handleCodeSubmit() {
 // ── Reload State Data ───────────────────────────
 
 function reloadStateData() {
-  var lang = (window.LanguageManager ? LanguageManager.getLang() : window._initialLang) || 'en';
-  var token = AccessManager.getToken();
-  var headers = {};
-  if (token) headers['Authorization'] = 'Bearer ' + token;
-
-  return fetch('/.netlify/functions/get-states?lang=' + lang, { headers: headers })
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
-    .then(function (js) { new Function(js)(); })
-    .catch(function (e) { console.error('[GATE] State data reload failed:', e); });
+  // State data is already loaded via static script tags (STATES_EN, STATES_ES).
+  // LanguageManager.apply() will pick the correct one.
+  // This is a no-op that returns a resolved promise for call-site compatibility.
+  return Promise.resolve();
 }
 
 // ── Enter App ───────────────────────────────────
