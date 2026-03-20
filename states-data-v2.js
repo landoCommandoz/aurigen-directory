@@ -243,6 +243,182 @@ export const statesData = [
     ],
     investorAlert: null,
     clarityCallCTA: true
+  },
+
+  // ── 11. Ohio ──────────────────────────────────────────────
+  {
+    code: "OH",
+    name: "Ohio",
+    type: "lien",
+    rate: "18% max / 6% floor",
+    rateNote: "Bid-down interest rate — floor is 6%, cannot go lower",
+    redemption: "1 year",
+    bidMethod: "Bid-down interest rate",
+    statute: "ORC §5721.30",
+    officialLink: "https://codes.ohio.gov/ohio-revised-code/section-5721.30",
+    auctionPlatform: "SRI / county-run (varies)",
+    auctionTiming: "Year-round, varies by county",
+    keyNotes: [
+      "6% floor is investor protection — rate cannot be bid below 6%",
+      "Bulk sales dominate large counties like Cuyahoga and Franklin",
+      "1-year redemption is shorter than most lien states"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 12. Mississippi ───────────────────────────────────────
+  {
+    code: "MS",
+    name: "Mississippi",
+    type: "lien",
+    rate: "18% annualized (1.5%/month)",
+    rateNote: "Fixed rate — overbid earns NO interest",
+    redemption: "2 years",
+    bidMethod: "Premium bid (highest dollar)",
+    statute: "Miss. Code §27-45-3",
+    officialLink: "https://law.justia.com/codes/mississippi/chapter-45/",
+    auctionPlatform: "County-run, in-person",
+    auctionTiming: "August–September (most counties)",
+    keyNotes: [
+      "1.5% per month fixed — strong predictable return",
+      "Overbid amount earns zero interest — bid only up to tax amount",
+      "2-year redemption gives owner two full years"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 13. Minnesota ─────────────────────────────────────────
+  {
+    code: "MN",
+    name: "Minnesota",
+    type: "forfeiture",
+    rate: "7% (2026 rate — down from 8% in 2025)",
+    rateNote: "State forfeiture system — not a retail lien purchase state",
+    redemption: "3 years before state takes title",
+    bidMethod: "N/A — forfeiture system, not public lien auction",
+    statute: "MN Statutes Ch. 279–282",
+    officialLink: "https://www.revisor.mn.gov/statutes/cite/281",
+    auctionPlatform: "County-run deed sales only after forfeiture",
+    auctionTiming: "Varies by county",
+    keyNotes: [
+      "Minnesota is a FORFEITURE state — the state takes title after 3 years, then counties sell deeds",
+      "Retail investors cannot purchase tax liens — only post-forfeiture deed sales",
+      "2026 interest rate: 7% (confirmed down from 8% in 2025)"
+    ],
+    investorAlert: "\u26A0\uFE0F Minnesota is NOT a tax lien investing state. The state takes title through forfeiture after 3 years. Retail investors can only bid on post-forfeiture county deed sales — not purchase liens.",
+    clarityCallCTA: true
+  },
+
+  // ── 14. Montana ───────────────────────────────────────────
+  {
+    code: "MT",
+    name: "Montana",
+    type: "lien",
+    rate: "10% fixed",
+    rateNote: "Fixed rate — no bidding",
+    redemption: "3 years (residential)",
+    bidMethod: "Highest bidder (premium bid)",
+    statute: "MCA §15-18-111",
+    officialLink: "https://leg.mt.gov/bills/mca/title_0150/chapter_0180/part_0010/section_0110/0150-0180-0010-0110.html",
+    auctionPlatform: "County treasurer — in-person",
+    auctionTiming: "July (most counties)",
+    keyNotes: [
+      "10% fixed rate — predictable",
+      "3-year residential redemption is standard for lien states",
+      "Low inventory state — rural land heavy"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 15. Nebraska ──────────────────────────────────────────
+  {
+    code: "NE",
+    name: "Nebraska",
+    type: "lien",
+    rate: "14% fixed",
+    rateNote: "Fixed rate — no bidding",
+    redemption: "3 years",
+    bidMethod: "Highest bidder (premium bid)",
+    statute: "NRS §77-1824",
+    officialLink: "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1824",
+    auctionPlatform: "County treasurer — in-person and online (varies)",
+    auctionTiming: "March (most counties)",
+    keyNotes: [
+      "14% fixed is above average for lien states",
+      "3-year redemption standard",
+      "After 3 years, apply for treasurer's deed"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 16. Wyoming ───────────────────────────────────────────
+  {
+    code: "WY",
+    name: "Wyoming",
+    type: "lien",
+    rate: "15% fixed",
+    rateNote: "Fixed rate — no bidding",
+    redemption: "4 years",
+    bidMethod: "Highest bidder (premium bid)",
+    statute: "WY Statute §39-13-108",
+    officialLink: "https://wyoleg.gov/statutes/compress/title39.pdf",
+    auctionPlatform: "County treasurer — in-person",
+    auctionTiming: "September–November (varies by county)",
+    keyNotes: [
+      "4-year redemption is the LONGEST in the US — capital is tied up",
+      "15% fixed rate compensates for long hold",
+      "Low population state — limited inventory but less competition"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 17. North Dakota ──────────────────────────────────────
+  {
+    code: "ND",
+    name: "North Dakota",
+    type: "hybrid",
+    rate: "9% fixed",
+    rateNote: "County holds liens — retail investors buy deed sales only",
+    redemption: "3 years (county holds lien during this period)",
+    bidMethod: "Highest bidder",
+    statute: "NDCC §57-28-04",
+    officialLink: "https://www.legis.nd.gov/cencode/t57c28.pdf",
+    auctionPlatform: "County commissioner — in-person",
+    auctionTiming: "Varies by county",
+    keyNotes: [
+      "Hybrid: county holds the lien — retail investors cannot buy liens directly",
+      "Investors access market through post-redemption deed sales only",
+      "Low inventory, rural, agricultural land heavy"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 18. New York ──────────────────────────────────────────
+  {
+    code: "NY",
+    name: "New York",
+    type: "lien",
+    rate: "14% max (upstate)",
+    rateNote: "Upstate only for retail investors — NYC is institutional",
+    redemption: "2 years (minimum)",
+    bidMethod: "Bid-down interest rate (upstate)",
+    statute: "RPTL §1110",
+    officialLink: "https://www.nysenate.gov/legislation/laws/RPT/1110",
+    auctionPlatform: "Varies by municipality — online and in-person",
+    auctionTiming: "Varies by county",
+    keyNotes: [
+      "NYC has transitioned toward land bank model — institutional only, retail access essentially closed",
+      "Upstate counties (Albany, Erie, Monroe) accessible for retail investors",
+      "Adams vetoed 4 NYC reform bills December 31, 2025 — NYC market status in flux"
+    ],
+    investorAlert: "\u26A0\uFE0F NYC is NOT accessible for retail tax lien investors. Land bank transition underway. Mayor Adams vetoed 4 reform bills Dec 31, 2025. Upstate New York only for individual investors.",
+    clarityCallCTA: true
   }
 
 ];
