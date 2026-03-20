@@ -1065,6 +1065,208 @@ export const statesData = [
     investorAlert: null,
     pendingLegislation: [],
     clarityCallCTA: true
+  },
+
+  // ── 46. Connecticut ───────────────────────────────────────
+  {
+    code: "CT",
+    name: "Connecticut",
+    type: "redeemable",
+    rate: "18% per year on total purchase price (≈9% if redeemed at 6 months)",
+    rateNote: "Annual rate on full purchase price — 6-month standard redemption window",
+    redemption: "6 months standard / 60 days if property abandoned",
+    bidMethod: "Highest bidder",
+    statute: "CGS §12-157 (2025)",
+    officialLink: "https://codes.findlaw.com/ct/title-12-taxation/ct-gen-st-sect-12-157/",
+    auctionPlatform: "Township-run — 169 townships across 8 counties each run independent sales",
+    auctionTiming: "Year-round — varies by township",
+    keyNotes: [
+      "169 townships each run independent sales — no centralized system",
+      "Deed executed within 2 weeks, held unrecorded at town clerk for 6-month window",
+      "After redemption expires: deed records, title passes free and clear",
+      "18% annualized but effective return is ~9% if redeemed at 6-month mark",
+      "Abandoned property: redemption window shrinks to 60 days"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 47. Delaware ──────────────────────────────────────────
+  {
+    code: "DE",
+    name: "Delaware",
+    type: "redeemable",
+    rate: "N/A — premium bid deed state",
+    rateNote: "No statutory interest rate — deed state with short redemption window",
+    redemption: "60 days (standard) / 1 year (alternative procedure)",
+    bidMethod: "Premium bid (highest dollar) — sheriff conducts sale",
+    statute: "Del. Code Ann. tit. 9 §8729; §8771",
+    officialLink: "https://delcode.delaware.gov/title9/c087/index.html",
+    auctionPlatform: "Sheriff-run — 3 counties only (Kent, New Castle, Sussex)",
+    auctionTiming: "Varies by county",
+    keyNotes: [
+      "Only 3 counties hold tax deed sales — very low inventory state",
+      "Sheriff conducts all sales — not county treasurer",
+      "Standard redemption: 60 days after court approval of sale",
+      "Alternative procedure available with 1-year redemption — Del. Code tit. 9 §8771",
+      "Dept. of Finance must approve final bid before redemption clock starts"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 48. New Hampshire ─────────────────────────────────────
+  {
+    code: "NH",
+    name: "New Hampshire",
+    type: "lien",
+    rate: "18% per year during 2-year redemption / 14% on subsequent tax payments",
+    rateNote: "Municipal lien system — investor buys at tax sale, municipality takes deed after 2 years",
+    redemption: "2 years (tax sale to municipality deed) + 3 years additional from municipality",
+    bidMethod: "Highest bidder (premium bid)",
+    statute: "RSA Ch. 80 — esp. §80:19, §80:32, §80:76, §80:89",
+    officialLink: "https://gc.nh.gov/rsa/html/V/80/80-mrg.htm",
+    auctionPlatform: "Town/municipality-run — in-person",
+    auctionTiming: "Varies by municipality",
+    keyNotes: [
+      "18% on unpaid balance during 2-year redemption — strong rate",
+      "After 2 years unredeemed: municipality takes deed via collector's deed",
+      "Former owner then has 3 MORE years to redeem from municipality (15% assessed value penalty)",
+      "Clean title per First NH Bank v. Town of Windham (1994) — deed wipes encumbrances",
+      "Surplus proceeds must be returned to former owner (Polonsky v. Bedford, 2020)"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 49. Nevada ────────────────────────────────────────────
+  {
+    code: "NV",
+    name: "Nevada",
+    type: "deed",
+    rate: "N/A — deed state, no retail lien product",
+    rateNote: "County holds in trust 2 years before retail auction — investor takes clean title at sale",
+    redemption: "None after purchase — 2-year period is PRE-SALE (county holds it)",
+    bidMethod: "Highest bidder — county treasurer runs auction",
+    statute: "NRS §361.595; NRS §361.600",
+    officialLink: "https://www.leg.state.nv.us/nrs/nrs-361.html",
+    auctionPlatform: "County treasurer — online and in-person (year-round)",
+    auctionTiming: "Year-round",
+    keyNotes: [
+      "The 2-year period is BEFORE the investor buys — county holds deed in trust, owner can redeem during that window",
+      "Once investor purchases at auction: NO redemption period — immediate clean title",
+      "2-year challenge period per NRS §361.600 — title companies will not insure during this window",
+      "Clark County (Las Vegas) has highest volume — competitive market",
+      "Quitclaim deed issued — not warranty deed"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 50. Kentucky ──────────────────────────────────────────
+  {
+    code: "KY",
+    name: "Kentucky",
+    type: "lien",
+    rate: "Varies — set by 3rd-party purchaser within statutory limits",
+    rateNote: "No fixed statewide rate — purchaser sets rate per certificate within statutory bounds",
+    redemption: "Until foreclosure sale (pre-sale redemption); 6 months additional if sold below 2/3 appraised value",
+    bidMethod: "Highest bidder — sheriff sells Certificates of Delinquency",
+    statute: "KRS §134.420 et seq.",
+    officialLink: "https://revenue.ky.gov/ClerkNetwork/Documents/DelinquentCollectionManual20062.pdf",
+    auctionPlatform: "County sheriff — in-person",
+    auctionTiming: "April–June (most counties)",
+    keyNotes: [
+      "Sheriff sells Certificates of Delinquency — investors purchase tax bills directly",
+      "50-day notice requirement after purchase to notify owner",
+      "Circuit court foreclosure required to obtain deed — no automatic conversion",
+      "Owner can redeem at any time before foreclosure sale is complete",
+      "High redemption rate — most certificates pay out as interest income"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 51. New Mexico ────────────────────────────────────────
+  {
+    code: "NM",
+    name: "New Mexico",
+    type: "deed",
+    rate: "N/A — state-run deed auction, no retail lien product",
+    rateNote: "NM Taxation & Revenue Dept. runs state-level auction — not county-based",
+    redemption: "2 years (former owner can challenge in District Court)",
+    bidMethod: "Highest bidder (competitive)",
+    statute: "NMSA 1978 §7-38-67; §7-38-70",
+    officialLink: "https://www.tax.newmexico.gov/businesses/wp-content/uploads/sites/4/2023/11/New-TERMS-OF-THE-PROPERTY-TAX-DIVISION-PUBLIC-AUCTION-SALES-online-11-16-2023.pdf",
+    auctionPlatform: "NM Taxation & Revenue Department — state-run",
+    auctionTiming: "Year-round",
+    keyNotes: [
+      "State-run auction — NM Taxation & Revenue Dept. conducts sales, not counties",
+      "3 years delinquent before state schedules auction",
+      "Deed grants fee simple absolute — wipes prior interests per §7-38-70",
+      "Buyer CANNOT enter property until deed is recorded",
+      "2-year window for former owner to challenge in District Court",
+      "120-day federal IRS redemption may apply — always check for federal liens"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 52. Rhode Island ──────────────────────────────────────
+  {
+    code: "RI",
+    name: "Rhode Island",
+    type: "redeemable",
+    rate: "18% per year",
+    rateNote: "Highest bidder — redemption open until Superior Court forecloses right",
+    redemption: "1 year from sale — continues until court enters final foreclosure decree",
+    bidMethod: "Highest bidder",
+    statute: "RIGL §44-9",
+    officialLink: "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/INDEX.htm",
+    auctionPlatform: "Municipal tax collector — varies by city/town",
+    auctionTiming: "Year-round — East Providence 2026 sale confirmed April 15, 2026",
+    keyNotes: [
+      "1-year standard redemption but owner can continue redeeming until court enters final foreclosure decree",
+      "Investor must file Superior Court action to cut off redemption after 1 year",
+      "18% annualized rate — strong return for a redeemable state",
+      "High redemption rate — primarily interest income play",
+      "East Providence 2026 sale: April 15, 2026 confirmed"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 53. Washington DC ─────────────────────────────────────
+  {
+    code: "DC",
+    name: "Washington D.C.",
+    type: "lien",
+    rate: "18% per year (1.5%/month) after lien sold — 10%/year pre-sale",
+    rateNote: "Certificate of sale purchased at auction — NOT a deed. Court-supervised foreclosure required.",
+    redemption: "Minimum 6 months before foreclosure can be filed — open until court signs final order (~18 months total)",
+    bidMethod: "Highest bidder — 20% deposit required",
+    statute: "DC Code §47-1330 et seq.; §47-1360; §47-1370; §47-1382",
+    officialLink: "https://otr.cfo.dc.gov/page/real-property-tax-sale",
+    auctionPlatform: "DC Office of Tax and Revenue — in-person (Marion S. Barry Jr. Building)",
+    auctionTiming: "Annual July sale — 2025 sale confirmed July 16, 2025. Discount sale December 2025.",
+    keyNotes: [
+      "Investor buys certificate of sale — NOT a deed. Title requires court foreclosure.",
+      "6-month wait before foreclosure can be filed — minimum 18-month total timeline to deed",
+      "Overbid earns ZERO interest — bid only up to tax amount",
+      "~98% of liens redeem — DC is an interest income market, not a deed acquisition market",
+      "Owner-occupied residential with 5 or fewer units: surplus returned to former owner after subsequent sale",
+      "20% deposit required at time of bid"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
   }
 
 ];
