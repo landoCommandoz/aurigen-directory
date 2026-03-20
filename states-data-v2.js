@@ -596,6 +596,77 @@ export const statesData = [
     ],
     investorAlert: null,
     clarityCallCTA: true
+  },
+
+  // ── 27. Georgia ───────────────────────────────────────────
+  {
+    code: "GA",
+    name: "Georgia",
+    type: "redeemable",
+    rate: "20% year 1 / 10% year 2+",
+    rateNote: "Premium penalty on purchase price — not interest rate bidding",
+    redemption: "12 months",
+    bidMethod: "Premium bid (highest dollar)",
+    statute: "OCGA §48-4-42",
+    officialLink: "https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=&pdocfullpath=%2Fshared%2Fdocument%2Fstatutes-legislation%2Furn%3AcontentItem%3A5YD9-KJC1-FGRY-B4V1-00000-00&pdcontentcomponentid=234186",
+    auctionPlatform: "County tax commissioner — in-person",
+    auctionTiming: "Monthly (first Tuesday of every month)",
+    keyNotes: [
+      "20% penalty if redeemed in year 1 — one of the highest redeemable returns in the US",
+      "10% penalty per year if NOT redeemed after year 1",
+      "Investor CANNOT take possession during 12-month redemption period",
+      "Barment action required after redemption expires to clear title",
+      "Monthly auctions every first Tuesday — high frequency access"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 28. Texas ─────────────────────────────────────────────
+  {
+    code: "TX",
+    name: "Texas",
+    type: "redeemable",
+    rate: "25% year 1 / 50% year 2 (homestead/ag) — 25% flat (commercial, 180 days)",
+    rateNote: "Penalty on purchase price. Homestead/ag = 2-year window. Commercial = 180 days.",
+    redemption: "2 years (homestead/agricultural) / 180 days (commercial)",
+    bidMethod: "Premium bid (highest dollar)",
+    statute: "TX Tax Code §34.21",
+    officialLink: "https://statutes.capitol.texas.gov/Docs/TX/htm/TX.34.htm",
+    auctionPlatform: "County courthouse steps — in-person (254 counties)",
+    auctionTiming: "Monthly (first Tuesday of every month, all 254 counties)",
+    keyNotes: [
+      "Highest redeemable penalty in the US — 25% year 1 on homestead",
+      "Commercial properties: 180-day redemption only — faster resolution",
+      "Investor CAN take possession and collect rent during redemption period",
+      "254 counties all auction same day — first Tuesday monthly",
+      "Acts 2025, 89th Legislature update confirmed December 4, 2025"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 29. Tennessee ─────────────────────────────────────────
+  {
+    code: "TN",
+    name: "Tennessee",
+    type: "redeemable",
+    rate: "12% per year on purchase price",
+    rateNote: "Annual rate on full purchase price — sliding redemption window",
+    redemption: "30 days to 365 days depending on length of delinquency",
+    bidMethod: "Premium bid",
+    statute: "TCA §67-5-2701",
+    officialLink: "https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=&pdocfullpath=%2Fshared%2Fdocument%2Fstatutes-legislation%2Furn%3AcontentItem%3A4WX6-FH80-R03N-P18H-00000-00&pdcontentcomponentid=234194",
+    auctionPlatform: "County-run — varies by county",
+    auctionTiming: "Varies by county",
+    keyNotes: [
+      "Redemption window slides based on how long property was delinquent — shorter delinquency = shorter redemption",
+      "Anti-speculation rule: investor cannot flip immediately after deed clears",
+      "Court-ordered sale process — judicial involvement required",
+      "12% on full purchase price — lower return than GA or TX but lower competition"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
   }
 
 ];
