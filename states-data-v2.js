@@ -21,13 +21,9 @@
 //
 // ────────────────────────────────────────────────────────────────
 
-export const schemaVersion = "1.0.0";
+var STATES_V2_SCHEMA = "1.0.0";
 
-// Also expose as window global when loaded via <script type="module">
-// This allows the legacy index.html adapter to access v2 data
-const _setGlobal = typeof window !== 'undefined';
-
-export const statesData = [
+var STATES_V2 = [
 
   // ── 1. Florida ─────────────────────────────────────────────
   {
@@ -1275,5 +1271,5 @@ export const statesData = [
 
 ];
 
-// Set window global for legacy script access
-if (_setGlobal) window.STATES_V2 = statesData;
+// Expose as window global for access from other scripts
+if (typeof window !== 'undefined') window.STATES_V2 = STATES_V2;

@@ -44,7 +44,12 @@
   <!-- Modals -->
   <div id="modals"></div>
 
-  <!-- State Data Loader -->
+  <!-- State Data — static script tags, no serverless dependency -->
+  <script src="/states-en.js"></script>
+  <script src="/states-es.js"></script>
+  <script src="/states-data-v2.js"></script>
+
+  <!-- Language detection -->
   <script>
   (function () {
     var lang = 'en';
@@ -52,23 +57,13 @@
     if (lang !== 'es') lang = 'en';
     window._initialLang = lang;
 
-    var token = null;
-    try { token = localStorage.getItem('aug_token'); } catch (e) {}
+    // Verify data loaded — log visibly if missing
+    if (!window.STATES_EN || !window.STATES_EN.length) console.error('[INIT] STATES_EN missing or empty — states-en.js failed to load');
+    if (!window.STATES_ES || !window.STATES_ES.length) console.error('[INIT] STATES_ES missing or empty — states-es.js failed to load');
+    if (!window.STATES_V2 || !window.STATES_V2.length) console.error('[INIT] STATES_V2 missing or empty — states-data-v2.js failed to load');
 
-    var headers = {};
-    if (token) headers['Authorization'] = 'Bearer ' + token;
-
-    // Load state data from serverless function + v2 enhanced data in parallel
-    var statesFetch = fetch('/.netlify/functions/get-states?lang=' + lang, { headers: headers })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
-      .then(function (js) { new Function(js)(); })
-      .catch(function (e) { console.error('[INIT] State data load failed:', e); });
-
-    var v2Fetch = import('./states-data-v2.js')
-      .then(function (mod) { window.STATES_V2 = mod.statesData; })
-      .catch(function (e) { console.error('[INIT] V2 data load failed:', e); });
-
-    window._stateDataReady = Promise.all([statesFetch, v2Fetch]);
+    // Data is already in memory — signal ready immediately
+    window._stateDataReady = Promise.resolve();
   })();
   </script>
 
