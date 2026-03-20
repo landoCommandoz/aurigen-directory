@@ -110,6 +110,10 @@ var App = {
         html += '<span>' + (s.redemption || '—') + '</span>';
         if (s.investorScore !== undefined) html += '<span>Score: ' + s.investorScore + '</span>';
         html += '</div>';
+        // v2: investorAlert indicator on card
+        if (s.investorAlert) {
+          html += '<div style="font-size:11px;color:var(--color-error,#e05555);margin-top:6px;line-height:1.4;">\u26A0\uFE0F Alert</div>';
+        }
       }
 
       html += '</div>';
@@ -183,7 +187,6 @@ var App = {
 
   openState: function (id) {
     if (!AccessManager.canAccessState(id)) {
-      // Show locked prompt
       console.log('[APP] State locked: ' + id);
       return;
     }
@@ -193,8 +196,99 @@ var App = {
       if (states[i].id === id) { s = states[i]; break; }
     }
     if (!s) return;
-    console.log('[APP] Open state: ' + s.name);
-    // State panel rendering will be expanded in Phase 2
+
+    var typeColor = s.type === 'lien' ? 'var(--color-lien)' :
+                    s.type === 'deed' ? 'var(--color-deed)' :
+                    s.type === 'hybrid' ? 'var(--color-hybrid)' : 'var(--color-rdeed)';
+
+    var html = '<div style="position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:flex-end;justify-content:center;" onclick="if(event.target===this)App.closeStatePanel()">';
+    html += '<div style="background:var(--bg-secondary,#111116);border-radius:16px 16px 0 0;width:100%;max-width:600px;max-height:85vh;overflow-y:auto;padding:24px 20px 40px;" onclick="event.stopPropagation()">';
+
+    // Drag handle
+    html += '<div style="width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;"></div>';
+
+    // Header
+    html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">';
+    html += '<h2 style="font-family:\'Bebas Neue\',sans-serif;font-size:28px;letter-spacing:0.04em;margin:0;color:var(--text-primary)">' + s.name + '</h2>';
+    html += '<button onclick="App.closeStatePanel()" style="background:none;border:none;color:var(--text-dim);font-size:24px;cursor:pointer;padding:4px;">\u2715</button>';
+    html += '</div>';
+    html += '<span style="font-size:11px;color:' + typeColor + ';text-transform:uppercase;font-weight:700;letter-spacing:0.05em">' + s.type + '</span>';
+
+    // investorAlert banner
+    if (s.investorAlert) {
+      html += '<div style="background:rgba(224,85,85,0.12);border:1px solid var(--color-error,#e05555);border-radius:8px;padding:12px 14px;margin-top:14px;font-size:13px;color:var(--color-error,#e05555);line-height:1.6;">' + s.investorAlert + '</div>';
+    }
+
+    // Stat cards
+    html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;">';
+    html += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px;"><div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Rate</div><div style="font-size:14px;font-weight:600;color:var(--text-primary)">' + (s.rate || '—') + '</div></div>';
+    html += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px;"><div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Redemption</div><div style="font-size:14px;font-weight:600;color:var(--text-primary)">' + (s.redemption || '—') + '</div></div>';
+    html += '</div>';
+
+    // rateNote
+    if (s.rateNote) {
+      html += '<div style="font-size:12px;color:var(--text-secondary);margin-top:10px;line-height:1.5;font-style:italic;">' + s.rateNote + '</div>';
+    }
+
+    // keyNotes
+    if (s.keyNotes && s.keyNotes.length) {
+      html += '<div style="margin-top:20px;"><div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em;">Investor Key Notes</div>';
+      html += '<ul style="list-style:none;padding:0;margin:0;">';
+      for (var k = 0; k < s.keyNotes.length; k++) {
+        html += '<li style="padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;line-height:1.5;color:var(--text-secondary);"><span style="color:var(--accent);margin-right:8px;">&#9670;</span>' + s.keyNotes[k] + '</li>';
+      }
+      html += '</ul></div>';
+    }
+
+    // Legal citation (statute + officialLink + bidMethod + platform + timing)
+    if (s.statute || s.officialLink) {
+      html += '<div style="margin-top:20px;"><div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em;">Legal Citation</div>';
+      html += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">';
+      if (s.statute) html += '<div style="font-size:13px;color:var(--text-primary);font-weight:600;font-family:\'Space Mono\',monospace;margin-bottom:6px;">' + s.statute + '</div>';
+      if (s.bidMethod) html += '<div style="font-size:12px;color:var(--text-secondary);margin-bottom:4px;"><strong>Bid method:</strong> ' + s.bidMethod + '</div>';
+      if (s.auctionPlatformV2) html += '<div style="font-size:12px;color:var(--text-secondary);margin-bottom:4px;"><strong>Platform:</strong> ' + s.auctionPlatformV2 + '</div>';
+      if (s.auctionTimingV2) html += '<div style="font-size:12px;color:var(--text-secondary);margin-bottom:8px;"><strong>Timing:</strong> ' + s.auctionTimingV2 + '</div>';
+      if (s.officialLink) html += '<a href="' + s.officialLink + '" target="_blank" rel="noopener noreferrer" style="font-size:12px;color:var(--accent);text-decoration:underline;">View Official Statute &#8599;</a>';
+      html += '</div></div>';
+    }
+
+    // pendingLegislation
+    if (s.pendingLegislation && s.pendingLegislation.length) {
+      html += '<div style="margin-top:20px;"><div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em;">Legislative Watch</div>';
+      for (var p = 0; p < s.pendingLegislation.length; p++) {
+        var leg = s.pendingLegislation[p];
+        html += '<div style="background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.3);border-radius:8px;padding:12px 14px;margin-bottom:8px;">';
+        html += '<div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:4px;">' + leg.bill + '</div>';
+        html += '<div style="font-size:12px;color:var(--text-secondary);line-height:1.5;margin-bottom:6px;">' + leg.summary + '</div>';
+        html += '<div style="display:flex;gap:12px;font-size:11px;color:var(--text-dim);">';
+        html += '<span><strong>Status:</strong> ' + leg.status + '</span>';
+        if (leg.effectiveDate) html += '<span><strong>Effective:</strong> ' + leg.effectiveDate + '</span>';
+        html += '</div></div>';
+      }
+      html += '</div>';
+    }
+
+    // Note / overview (from old schema)
+    if (s.note) {
+      html += '<div style="margin-top:20px;"><div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em;">Overview</div>';
+      html += '<div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">' + s.note + '</div></div>';
+    }
+
+    // Disclaimer
+    html += '<div style="margin-top:20px;padding:12px;background:var(--bg-card);border-radius:8px;font-size:11px;color:var(--text-dim);line-height:1.6;border:1px solid var(--border);">';
+    html += 'This information is for educational purposes only and does not constitute legal, financial, or investment advice. Always verify current laws and consult professionals before investing.';
+    html += '</div>';
+
+    html += '</div></div>';
+
+    // Render into modals container
+    var modals = document.getElementById('modals');
+    if (modals) modals.innerHTML = html;
+  },
+
+  closeStatePanel: function () {
+    var modals = document.getElementById('modals');
+    if (modals) modals.innerHTML = '';
   },
 
   // ── Language Toggle ─────────────────────────────

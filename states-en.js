@@ -76,39 +76,41 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "AZ", name: "Arizona", type: "lien", rate: "Up to 16%", redemption: "3 years",
+    id: "AZ", name: "Arizona", type: "lien", rate: "16% per year simple interest", redemption: "3 years",
     score: 78, beginnerFriendly: true,
     scoreWhy: "High statutory rate, fully online auctions, excellent year-round OTC availability. One of the best beginner states in the country.",
-    note: "Arizona conducts reverse-bid auctions in February where investors compete to accept lower interest rates from the 16% ceiling. Unsold liens go to direct purchase (OTC) year-round at the county level. Statutes: ARS §42-18053 (16% rate), §42-18112 (auction), §42-18114 (bid-down), §42-18122 (OTC), §42-18201 (foreclosure).",
+    note: "Arizona conducts reverse-bid auctions in February where investors compete to accept lower interest rates from the 16% ceiling in 1% increments. Unsold liens go to direct purchase (OTC) year-round at the full 16% rate. After 3-year redemption, lien holder must file judicial foreclosure in Superior Court (not a treasurer's deed). Only 1-2% of liens reach foreclosure. 15 counties, Maricopa (Phoenix) is the largest market. Must foreclose within 10 years or lien becomes invalid. Statutes: ARS §42-18053 (16% rate), §42-18112 (auction), §42-18114 (bid-down), §42-18122 (OTC), §42-18201 (foreclosure), §42-18204 (deed).",
     typeWhy: "Arizona sells tax lien certificates, not property. The investor holds the lien while the owner retains title and has 3 years to redeem. Liens are auctioned via reverse-bid format starting at 16%. ARS §42-18053, §42-18112.",
-    rateWhy: "Arizona sets a statutory ceiling of 16% annual interest, then uses a reverse-bid auction where investors compete by accepting progressively lower rates. ARS §42-18053, §42-18114.",
+    rateWhy: "Arizona sets a statutory ceiling of 16% annual simple interest, then uses a reverse-bid auction where investors compete by accepting progressively lower rates in 1% increments. 0% bids are accepted. Unsold liens available OTC at the full 16%. ARS §42-18053, §42-18114.",
     auctionSignup: {
-      platform: "County-specific (most use county treasurer portals; Maricopa uses an online system)",
+      platform: "RealAuction (majority of counties)",
       steps: [
-        "Go to your target county treasurer's website — find all Arizona county treasurers at aztaxsale.info or each county's individual site",
-        "Create an account 2 weeks before the auction date (usually February)",
-        "Fund your account via ACH or wire transfer — minimum deposits vary by county",
-        "Bid online during the auction window — you're bidding DOWN from 16% to win the certificate"
+        "Go to your target county treasurer's website or RealAuction.com — find Arizona county treasurers at aztaxsale.info",
+        "Create an account 2 weeks before the auction date (February annually)",
+        "Fund your account via ACH or wire transfer — certified funds only. Minimum deposits vary by county",
+        "Bid online during the auction window — you're bidding DOWN from 16% in 1% increments to win the certificate"
       ],
-      depositInfo: "Maricopa requires pre-funding. Most counties require wire or ACH before auction day.",
-      directLink: "https://treasurer.maricopa.gov/tax-lien"
+      depositInfo: "Varies by county. Certified funds only (cash, cashier's check, money order). Maricopa requires pre-funding.",
+      directLink: "https://www.realauction.com"
     },
     beginnerTip: "Start with Pinal or Yavapai counties — less competition than Maricopa. OTC purchases are available year-round at 16% in most counties. Go to the county treasurer's office directly and ask for the unsold lien list.",
-    otc: { available: true, note: "Unsold liens available year-round directly from county treasurers at the statutory 16% rate. Best OTC program in the country for beginners." },
+    otc: { available: true, note: "Unsold liens available year-round directly from county treasurers at the full statutory 16% rate. Best OTC program in the country for beginners — no auction competition." },
     risks: [
       "Maricopa and Pima counties are saturated — institutional buyers push rates to 0–3%",
-      "3-year holding period before initiating judicial foreclosure via Superior Court (ARS §42-18201) — not a treasurer's deed",
-      "Many parcels are undeveloped desert with no road access or development potential",
-      "Check for active water rights and irrigation district liens",
-      "Confirm parcel is not state trust land"
+      "3-year holding period before initiating judicial foreclosure via Superior Court (ARS §42-18201) — requires 30-day certified-mail notice before filing",
+      "Only 1-2% of liens result in property acquisition — most are redeemed",
+      "Easements and improvement district liens (Title 48/Title 9) survive foreclosure per ARS §42-18204",
+      "Must foreclose within 10 years or lien becomes invalid — set calendar reminders",
+      "Many parcels are undeveloped desert with no road access or development potential"
     ],
     ddExtra: [
       "Run parcel through county GIS to confirm road access and zoning",
       "Verify no irrigation district or water district secondary liens",
       "Check ADWR (Arizona Department of Water Resources) for water rights status on agricultural parcels",
-      "Be aware of SB 1431 (2024) — new excess proceeds rules may affect post-foreclosure surplus distribution"
+      "Fractions of a month are counted as whole months for interest calculation",
+      "Be aware of SB 1291 (2024) — extended surplus claim period from 1 year to 3 years"
     ],
-    platforms: ["aztaxsale.info", "County treasurer portals", "RealAuction (some counties)"],
+    platforms: ["RealAuction.com", "aztaxsale.info", "County treasurer portals"],
     tylerCompliance: { status: "compliant", summary: "Arizona existing surplus statute was already substantially compliant; minor updates enacted.", details: "Arizona ARS \u00a742-18303 already required the county treasurer to distribute surplus proceeds from tax lien foreclosure sales to parties with recorded interest. Post-Tyler, SB 1291 (2024) added explicit notice-by-mail requirements and extended the claim period from 1 year to 3 years.", lastUpdated: "2026-03-01", legislationRef: "SB 1291 (2024); ARS \u00a742-18303" },
     counties: [
       { name: "Maricopa", link: "https://treasurer.maricopa.gov/tax-lien", notes: "Largest auction in AZ. High competition. Online only." },
@@ -192,36 +194,40 @@ var STATES_EN = [
     ]
   },
   {
-    id: "CO", name: "Colorado", type: "lien", rate: "Federal Discount Rate + 9%", redemption: "3 years",
+    id: "CO", name: "Colorado", type: "lien", rate: "Federal Discount Rate + 9% (14% for 2025, floor 8%)", redemption: "3 years",
     score: 52, beginnerFriendly: true,
     scoreWhy: "Online auctions and solid OTC availability in rural counties. Rate fluctuates with the Federal Discount Rate but is competitive.",
-    note: "Colorado holds online county tax lien sales. Rate = Federal Discount Rate + 9% (calculated annually). Unsold liens available for direct purchase. Statute: CRS §39-11-101.",
+    note: "Colorado holds online county tax lien sales in November. Rate = Federal Discount Rate (Sept 1) + 9%, rounded to nearest whole %, floor 8%. 2025 rate = 14%. Rate locks for certificate life. Bidding is premium bid-up (NOT rate bid-down) — highest premium over face amount wins. Premium is NOT interest-bearing. CRITICAL: HB 24-1056 (July 2024) changed the deed process — deeds are NO LONGER auto-issued to lien holders. After 3-year redemption, property goes to public auction. Lien holder has 8 business days to match winning bid. Certificates auto-cancel after 15 years (CRS §39-11-148). 64 counties. Statutes: CRS §39-11-101 through §39-12-113 (sale/redemption); CRS §39-11.5 (Treasurer's Deed public auction, HB 24-1056).",
     typeWhy: "Colorado sells tax lien certificates — the investor purchases the right to collect delinquent taxes plus interest, not the property itself. The owner retains title during the 3-year redemption window. CRS §39-11-101.",
-    rateWhy: "Colorado ties its tax lien interest rate to the Federal Discount Rate plus a statutory 9% premium, recalculated annually. This formula-based approach adjusts with monetary policy. CRS §39-11-101.",
+    rateWhy: "Colorado ties its tax lien interest rate to the Federal Discount Rate plus a statutory 9% premium, recalculated annually (floor 8%). 2025 rate = 14%. The rate is NOT bid-down at auction — it's fixed statewide. Investors compete by bidding premium over face amount. CRS §39-11-101.",
     auctionSignup: {
-      platform: "SRI Tax Sale Services or county-specific portals",
+      platform: "RealAuction (majority of counties)",
       steps: [
         "Find your target county's treasurer at colorado.gov/treasury or Google '[county name] CO treasurer tax lien sale'",
-        "Register on the county's auction platform (many use SRI Tax Sale Services at sriservices.com)",
-        "Submit ACH or wire deposit per county instructions — typically 2 weeks before auction",
-        "Bid online during the auction window"
+        "Register on the county's auction platform (majority use RealAuction; some use county portals)",
+        "Submit ACH or wire deposit per county instructions — typically 2 weeks before November auction. W-9 required.",
+        "Bid online during the auction window — you're bidding PREMIUM OVER face amount, NOT rate"
       ],
-      depositInfo: "Deposit required. Amount varies by county. Confirm with county treasurer.",
-      directLink: "https://sriservices.com/taxsales/colorado"
+      depositInfo: "Varies by county. Common: 10% of intended bid (El Paso). Some flat fee ($75 Garfield). W-9 required.",
+      directLink: "https://www.realauction.com"
     },
     beginnerTip: "Look at rural eastern Colorado counties (Kiowa, Cheyenne, Kit Carson) for OTC purchases at the full rate with zero auction competition.",
     otc: { available: true, note: "Unsold liens available for direct purchase from county treasurers after annual sale." },
     risks: [
-      "Rate fluctuates annually with the Federal Discount Rate — calculate the current rate before bidding",
+      "Rate fluctuates annually with the Federal Discount Rate — verify current rate before bidding (2025 = 14%, floor 8%)",
+      "HB 24-1056 (July 2024): Deeds NO LONGER auto-issued to lien holder — property goes to public auction after 3-year redemption. Lien holder has 8 business days to match winning bid.",
+      "Premium paid at auction is NOT interest-bearing — avoid overbidding",
       "HOA and special improvement district liens can compete with or survive tax sales",
-      "Some parcels are landlocked agricultural land with limited development potential"
+      "IRS federal tax liens survive if IRS not notified (120-day federal redemption)",
+      "Certificates auto-cancel after 15 years (CRS §39-11-148)"
     ],
     ddExtra: [
-      "Verify the current rate by calling the county treasurer — it changes annually",
+      "Verify the current rate by calling the county treasurer — it changes annually based on Sept 1 Federal Discount Rate",
       "Check for HOA liens and special improvement district assessments",
-      "Confirm parcel is not in a federal conservation area or water district with superior claims"
+      "Confirm parcel is not in a federal conservation area or water district with superior claims",
+      "Treasurer's Deed conveys unmarketable title for 7 years — budget for quiet title action"
     ],
-    platforms: ["SRI Tax Sale Services", "County treasurer portals"],
+    platforms: ["RealAuction.com", "County treasurer portals"],
     tylerCompliance: { status: "compliant", summary: "Colorado enacted HB 24-1057 requiring surplus proceeds be returned to former owners.", details: "Colorado HB 24-1057 amended C.R.S. \u00a739-12-103 to require county treasurers to return surplus proceeds from tax lien sales and treasurer deed sales to the former owner. The law mandates notice by certified mail and establishes a 3-year claim period. Effective August 2024.", lastUpdated: "2026-03-01", legislationRef: "HB 24-1057 (2024); C.R.S. \u00a739-12-103" },
     counties: [
       { name: "El Paso", link: "https://treasurer.elpasoco.com/", notes: "Largest auction in CO. Moderate competition." },
@@ -339,12 +345,12 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "FL", name: "Florida", type: "hybrid", rate: "Up to 18% (5% minimum on redemption)", redemption: "2 years",
+    id: "FL", name: "Florida", type: "hybrid", rate: "18% per year (reverse bid from ceiling)", redemption: "2 years from April 1 of issuance year",
     score: 82, beginnerFriendly: true,
     scoreWhy: "Massive inventory, two parallel profit paths (lien + deed), fully online, year-round OTC availability. One of the top states in the country.",
-    note: "Florida is a hybrid state with two parallel auction tracks. (1) Annual tax certificate sale online before June 1 — reverse bid auction starting at 18%. (2) After 2-year redemption, lienholder applies for tax deed and property goes to public auction at RealAuction. OTC available year-round via LienHub. Statutes: FL Stat §197.172 (rate), §197.432 (sale), §197.4725 (OTC), §197.472 (redemption), §197.502 (deed application).",
-    typeWhy: "Florida is a hybrid state operating two parallel systems: tax lien certificates are sold at an annual reverse-bid auction, and after the 2-year redemption period expires, the property goes to a separate tax deed auction. FL Stat §197.432, §197.502.",
-    rateWhy: "Florida caps the lien interest rate at 18% and uses a reverse-bid auction where investors bid the rate down. A statutory minimum 5% penalty applies on any redemption regardless of the winning bid rate. FL Stat §197.172, §197.472.",
+    note: "Florida is a hybrid state with two parallel auction tracks. (1) Annual tax certificate sale online before June 1 — reverse bid auction starting at 18% in 0.25% increments. Ties resolved by RNG. County takes unsold at 18%. Min 5% face value guarantee on all certificates (§197.432). (2) After 2-year redemption (from April 1 of issuance year), certificate holder applies for tax deed (§197.502) — must pay off all other outstanding certificates. Clerk conducts title search, publishes notice, holds public auction. 3-6 months from application to deed sale. 67 counties each run their own sale. County-held certificates accrue at 18%. OTC available year-round via LienHub. Statutes: FL Stat §197.172 (rate), §197.432 (certificate sale), §197.4725 (OTC), §197.472 (redemption), §197.502 (deed application), §197.552 (deed issuance/lien survival).",
+    typeWhy: "Florida is a hybrid state operating two parallel systems: tax lien certificates are sold at an annual reverse-bid auction, and after the 2-year redemption period expires, the certificate holder applies for a separate tax deed auction. FL Stat §197.432, §197.502.",
+    rateWhy: "Florida caps the lien interest rate at 18% and uses a reverse-bid auction where investors bid the rate down in 0.25% increments. A statutory minimum 5% penalty applies on any redemption regardless of the winning bid rate. No interest accrues during the 60-day post-delinquency window (§197.172). FL Stat §197.172, §197.472.",
     auctionSignup: {
       platform: "LienHub.com (primary) + RealAuction.com (deed sales)",
       steps: [
@@ -361,14 +367,17 @@ var STATES_EN = [
     otc: { available: true, note: "Unsold tax certificates available year-round on LienHub.com. Start here — guaranteed 18% rate, no competition, no bidding." },
     risks: [
       "Miami-Dade and Broward: institutional buyers push rates to 0–1% — avoid for beginners",
-      "Tax deed title is generally not insurable without quiet title action",
-      "Government liens (code enforcement, municipal utilities) can survive tax deed sale",
-      "5% mandatory minimum interest applies on all redemptions except 0% bids (§197.472). Separate rule: no interest accrues during 60-day post-delinquency window (§197.172)"
+      "Tax deed title is generally not insurable without quiet title action — FL Stat §95.192 provides 4-year safe harbor",
+      "Municipal/county/special district liens and community development district liens survive per §197.552",
+      "Federal tax liens survive 120 days (IRS redemption right)",
+      "5% mandatory minimum interest applies on all redemptions except 0% bids (§197.472). No interest accrues during 60-day post-delinquency window (§197.172)",
+      "Homestead-exempt properties with <$250 delinquency auto-struck to county at 18%"
     ],
     ddExtra: [
       "Verify OTC inventory on LienHub for direct purchase certificates",
       "Confirm no government code compliance liens — contact the municipality directly",
-      "Validate the 2-year redemption timeline before applying for tax deed"
+      "Validate the 2-year redemption timeline (from April 1 of issuance year) before applying for tax deed",
+      "Tax collector earns 5% commission on delinquent taxes — factor into cost analysis"
     ],
     platforms: ["LienHub.com", "RealAuction.com"],
     tylerCompliance: { status: "compliant", summary: "Florida updated its tax deed surplus statute post-Tyler. Surplus funds are now tracked and returned to former owners.", details: "In 2023, Florida passed HB 1439 amending F.S. \u00a7197.582 to require that surplus proceeds from tax deed sales be returned to former property owners. Counties must now publish notice and hold surplus funds for 120 days before escheating. This aligns Florida with Tyler v. Hennepin requirements.", lastUpdated: "2026-03-01", legislationRef: "HB 1439 (2023); F.S. \u00a7197.582" },
@@ -491,13 +500,13 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "IL", name: "Illinois", type: "lien", rate: "Up to 9%/6mo (18%/yr) + penalties", redemption: "2.5–3 years",
+    id: "IL", name: "Illinois", type: "lien", rate: "9% per 6-month period (18% annualized)", redemption: "2–2.5 years",
     score: 63, beginnerFriendly: false,
     notBeginnerReason: "Cook County (Chicago) is dominated by institutional buyers pushing rates to 0%. Complex Scavenger Sale rules. Requires attorney for foreclosure.",
     scoreWhy: "High statutory penalties and massive inventory — but institutional dominance in Cook and complex legal process require experience.",
-    note: "Illinois holds Annual Sales (county-level, competitive bidding) and Scavenger Sales (Cook County, special rules for long-delinquent properties). Interest rate bid down from 9%/6mo (reduced from 18% by Public Act 100-1070, effective 2019). Penalty resets to 12%/6mo in forfeiture. Foreclosure requires specialized attorney. Statute: 35 ILCS 200/21-215.",
-    typeWhy: "Illinois sells tax lien certificates — investors purchase the right to collect delinquent taxes, not the property. The owner retains title during the 2.5-3 year redemption period before the lienholder can petition for a deed. 35 ILCS 200/21-215.",
-    rateWhy: "Illinois caps the lien penalty at 9% per 6-month period (reduced from 18% by Public Act 100-1070, effective 2019) and uses a bid-down auction format. In forfeiture, the penalty resets to 12% per 6-month period. 35 ILCS 200/21-215.",
+    note: "Illinois holds Annual Sales (county-level, competitive bidding) and Scavenger Sales (Cook County, biennial in odd years for 3+ year delinquent properties). CRITICAL: The penalty is on the TAX AMOUNT, not the bid amount. Max 9% per 6-month period (reduced from 18%/6mo effective ~Jan 2022). Compounds: bid% × certificate at 6mo, 2× at 12mo, 3× at 18mo, etc. Subtaxing (subsequent taxes) carries separate 12%/year penalty. Redemption: 2 years (residential 1-6 units), 2.5 years for certificates issued on/after Jan 1 2024, 6 months for vacant non-farm/commercial at scavenger sales. Foreclosure requires Circuit Court petition (35 ILCS 200/22-30, 22-40). 102 counties. Statute: 35 ILCS 200/21-215 (penalty bids), 200/21-350 (redemption), 200/22-30 (tax deed).",
+    typeWhy: "Illinois sells tax lien certificates — investors purchase the right to collect delinquent taxes, not the property. The owner retains title during the 2-2.5 year redemption period before the lienholder can petition for a deed. 35 ILCS 200/21-215.",
+    rateWhy: "Illinois caps the lien penalty at 9% per 6-month period (reduced from 18% effective ~Jan 2022) and uses a bid-down auction format. CRITICAL: This is a PENALTY on the TAX AMOUNT, not the bid amount. Subtaxing carries a separate 12%/year penalty. 35 ILCS 200/21-215.",
     auctionSignup: {
       platform: "County-specific (Cook uses its own system; others vary)",
       steps: [
@@ -513,16 +522,18 @@ var STATES_EN = [
     otc: { available: false, note: "No OTC. Unsold liens go to forfeiture status — contact county for purchase." },
     risks: [
       "Cook County: institutional buyers push rates to 0% — not viable for individual investors",
-      "Penalty resets to 12% per 6 months in forfeiture — understand this before buying",
-      "Scavenger Sale rules differ significantly from Annual Sale",
-      "Foreclosure process requires specialized Illinois tax lien attorney"
+      "CRITICAL: Penalty is on the TAX AMOUNT, not the bid — fundamentally different from interest-rate states",
+      "Subtaxing (subsequent tax payments) carries separate 12%/year penalty",
+      "Scavenger Sale rules differ significantly from Annual Sale — shorter redemption, different bidding",
+      "Foreclosure process requires specialized Illinois tax lien attorney and Circuit Court petition"
     ],
     ddExtra: [
       "Verify the current open tax year balance with the county collector before bidding",
       "Check PACER for active bankruptcy proceedings",
-      "Confirm you understand the difference between Annual Sale and Scavenger Sale rules"
+      "Confirm you understand the difference between Annual Sale and Scavenger Sale rules",
+      "Cook County uses cooktaxsale.com; many other counties use GovEase (govease.com)"
     ],
-    platforms: ["cookcountytreasurer.com", "County clerk offices"],
+    platforms: ["cookcountytreasurer.com", "GovEase", "County clerk offices"],
     tylerCompliance: { status: "compliant", summary: "Illinois passed surplus funds reform aligning with Tyler requirements.", details: "Illinois amended 35 ILCS 200/21-90 to require county collectors to return surplus proceeds from annual tax sales and scavenger sales to former property owners. The amendment includes mandatory written notice to the last known address and a 3-year claim window. Effective January 2025.", lastUpdated: "2026-03-01", legislationRef: "HB 3146 (2024); 35 ILCS 200/21-90" },
     counties: [
       { name: "Cook", link: "https://www.cookcountytreasurer.com", notes: "Largest in IL. Institutional dominated. Not for beginners." },
@@ -531,36 +542,38 @@ var STATES_EN = [
     ]
   },
   {
-    id: "IN", name: "Indiana", type: "lien", rate: "10% (0–6mo) / 15% (6–12mo)", redemption: "1 year",
+    id: "IN", name: "Indiana", type: "lien", rate: "10% (0–6mo) / 15% (6–12mo) flat penalties", redemption: "1 year (120 days Commissioner's Sale)",
     score: 69, beginnerFriendly: true,
     scoreWhy: "Two auction windows annually, clear tiered penalty structure, and online participation available in many counties.",
-    note: "Indiana holds two annual lien sales: Fall Sale (October) and Judgment Sale (January). Penalty: 10% if redeemed within 6 months, 15% months 7–12. Overbid earns 10%. Statute: IC §6-1.1-24.",
-    typeWhy: "Indiana sells tax lien certificates at two annual sales (Fall and Judgment). The investor purchases the lien while the property owner retains title during the 1-year redemption period. IC §6-1.1-24.",
-    rateWhy: "Indiana uses a tiered penalty structure: 10% if the owner redeems within the first 6 months, escalating to 15% for months 7-12. These are flat penalties on the lien amount, not annualized interest rates. IC §6-1.1-24.",
+    note: "Indiana holds two annual lien sales: Fall County Tax Sale (Aug-Oct, standard 1-year redemption) and Commissioner's Certificate Sale (unsold parcels, 120-day redemption, lower minimums, less competition). CRITICAL: 10%/15% are FLAT penalties, not annualized — 10% in 6 months = ~20% annualized equivalent. Penalties apply to MINIMUM BID only — overbid earns just 5%/year. Avoid overbidding. After redemption expires, certificate holder must petition Circuit Court for tax deed within 6 months or lien terminates (IC §6-1.1-25-7(a)). 92 counties. Statute: IC §6-1.1-24 (sale), IC §6-1.1-25 (redemption/deeds), IC §6-1.1-25-2 (redemption amount), IC §6-1.1-25-4 (period).",
+    typeWhy: "Indiana sells tax lien certificates at two annual sales (Fall and Commissioner's). The investor purchases the lien while the property owner retains title during the 1-year redemption period (120 days for Commissioner's Sale). IC §6-1.1-24.",
+    rateWhy: "Indiana uses a tiered flat penalty structure: 10% if the owner redeems within the first 6 months, escalating to 15% for months 7-12. These are FLAT penalties on the minimum bid amount, not annualized interest rates. Overbid earns only 5%/year. IC §6-1.1-25-2.",
     auctionSignup: {
-      platform: "SRI Tax Sale Services (sriservices.com) — most Indiana counties",
+      platform: "SRI Inc. / Zeus Auction (zeusauction.com) — most Indiana counties",
       steps: [
-        "Go to sriservices.com and select Indiana",
+        "Go to zeusauction.com and select Indiana",
         "Create an account and find your target county's upcoming sale",
-        "Register online — most Indiana counties use SRI for online bidding",
+        "Register online — majority of Indiana counties use SRI's Zeus Auction platform for online bidding",
         "Fund your account via ACH or wire before the auction date"
       ],
-      depositInfo: "Deposit required. Varies by county. Most counties require pre-funding through SRI.",
-      directLink: "https://sriservices.com/taxsales/indiana"
+      depositInfo: "Varies by county. SRI registration required. Most counties require pre-funding.",
+      directLink: "https://zeusauction.com"
     },
     beginnerTip: "Indiana is one of the most beginner-friendly lien states. SRI Tax Sale Services lets you bid from your computer. Start with Marion (Indianapolis) or Hamilton county — good inventory and clear online process.",
-    otc: { available: true, note: "OTC certificates available from counties after the Fall Sale. Contact county auditor directly." },
+    otc: { available: true, note: "OTC certificates available from counties after the Fall Sale. Contact county auditor directly. Commissioner's Certificate Sale offers unsold parcels with 120-day redemption." },
     risks: [
-      "Overbid earns only 10% — manage your bid carefully",
-      "Verify whether the county holds a Fall Sale (October) or Spring Sale — not all counties hold both",
-      "Check for active drug seizure or civil forfeiture proceedings on the property"
+      "Overbid earns only 5%/year — avoid overbidding. Penalties apply only to minimum bid amount.",
+      "Must petition Circuit Court for tax deed within 6 months after redemption expires or lien terminates (IC §6-1.1-25-7(a))",
+      "Check for active drug seizure or civil forfeiture proceedings on the property",
+      "IRS 120-day redemption right if notified — easements and governmental liens may survive"
     ],
     ddExtra: [
-      "Confirm which sale type (A or B) the county is holding before you plan your calendar",
+      "Two sales per year: Fall County Tax Sale (Aug-Oct, 1yr redemption) + Commissioner's Certificate Sale (120-day redemption, lower minimums)",
       "Verify no active drug seizure or civil forfeiture on the parcel",
-      "Check county DLGF records for any special assessments"
+      "Check county DLGF records for any special assessments",
+      "Set calendar reminder: must file for deed within 6 months after redemption expires"
     ],
-    platforms: ["SRI Tax Sale Services", "County auditor offices"],
+    platforms: ["Zeus Auction (SRI Inc.)", "County auditor offices"],
     tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Marion", link: "https://www.indy.gov/agency/marion-county-auditor", notes: "Indianapolis. Good inventory. Online via SRI." },
@@ -569,36 +582,39 @@ var STATES_EN = [
     ]
   },
   {
-    id: "IA", name: "Iowa", type: "lien", rate: "24%", redemption: "2 years",
+    id: "IA", name: "Iowa", type: "lien", rate: "24% per year (2% per month) — highest fixed rate in the U.S.", redemption: "1 year 9 months (21 months) + 90-day notice",
     score: 74, beginnerFriendly: true,
-    scoreWhy: "Highest statutory lien rate in the country at 24%. Strong legal framework. Online participation available. Critical: must send 90-day notice at month 21 or certificate voids.",
-    note: "Iowa holds its annual tax lien sale in June. Rate is a flat 24% per year. After 2 years, lienholder must send 90-day notice to owner to initiate deed process — failure to do so at the 21-month mark voids the certificate. Statute: Iowa Code §446.",
-    typeWhy: "Iowa sells tax lien certificates at its annual June sale. The investor holds the lien while the owner has 2 years to redeem. Iowa Code §446.",
-    rateWhy: "Iowa sets a statutory flat rate of 24% per annum on tax lien certificates — one of the highest fixed rates in the country. This rate is not auction-determined; all certificates earn the same 24%. Iowa Code §446.",
+    scoreWhy: "Highest fixed statutory lien rate in the country at 24%. Strong legal framework. Online participation available. Critical: strict compliance deadlines — miss them and certificate cancels.",
+    note: "Iowa holds its annual tax lien sale on the third Monday of June statewide. Rate is a flat 24%/year (2%/month) — highest fixed rate in the U.S. NOT bid down at auction. UNIQUE BID METHOD: Bidding is on percentage of property OWNERSHIP, not on rate or price. Lowest percentage interest wins. CRITICAL DEADLINES: After 21 months, holder MUST serve 90-day notice on owner + all parties of record (§447.9). After 90 days, file affidavit with Treasurer (§447.12). If affidavit NOT filed within 3 YEARS of sale, certificate automatically CANCELLED — total loss (§446.37). 99 counties. Statute: Iowa Code §446 (sales), §447 (redemption), §447.9 (90-day notice), §447.12 (affidavit), §446.37 (cancellation).",
+    typeWhy: "Iowa sells tax lien certificates at its annual June sale. The investor holds the lien while the owner has 21 months before the 90-day notice period begins. Iowa Code §446.",
+    rateWhy: "Iowa sets a statutory flat rate of 24% per annum (2% per month) on tax lien certificates — the highest fixed rate in the country. This rate is NOT auction-determined or bid-down; all certificates earn the same 24%. Iowa Code §446.",
     auctionSignup: {
-      platform: "County treasurer (varies — some online, some in-person)",
+      platform: "Iowa Tax Auction / GovEase (split by county)",
       steps: [
-        "Find your target county treasurer at iowa.gov/counties",
-        "Contact the treasurer to confirm the June sale date and registration requirements",
-        "Register in advance — online participation available in some counties",
-        "Fund via wire or cashier's check per county instructions"
+        "Go to iowataxauction.com or govease.com and find your target county's June sale",
+        "Create an account and register — ~$40 non-refundable registration fee + W-9 required",
+        "Third Monday of June statewide — register in advance",
+        "Full payment required at sale. Certified funds only."
       ],
-      depositInfo: "Varies by county.",
-      directLink: "https://revenue.iowa.gov/topics/property-tax"
+      depositInfo: "~$40 non-refundable registration + W-9. Full payment at sale.",
+      directLink: "https://www.iowataxauction.com"
     },
-    beginnerTip: "Iowa's 24% rate is the best in the country. The critical rule: set a calendar reminder to send your 90-day notice at exactly 21 months from purchase. Missing this deadline voids your certificate. That's the #1 mistake Iowa investors make.",
+    beginnerTip: "Iowa's 24% rate is the best in the country. TWO critical rules: (1) Set a calendar reminder to serve your 90-day notice at exactly 21 months (§447.9). (2) File affidavit with Treasurer within 3 YEARS of sale or certificate auto-cancels (§446.37). Missing either deadline = total loss. That's the #1 mistake Iowa investors make.",
     otc: { available: false, note: "Liens not sold at auction must be purchased directly from the county — contact treasurer after the June sale." },
     risks: [
-      "Must send 90-day notice at 21 months — missing this voids the certificate permanently",
+      "CRITICAL: Must serve 90-day notice at 21 months (§447.9) — missing this blocks deed",
+      "CRITICAL: Must file affidavit within 3 YEARS of sale or certificate auto-cancels — total loss (§446.37)",
+      "Bidding is on percentage of property ownership, not rate — unique mechanism",
       "Agricultural land dominates inventory in many counties — limited development potential",
-      "OTC purchases require direct county contact after the June sale"
+      "Agricultural drainage district liens can be superior to your lien"
     ],
     ddExtra: [
-      "Set a hard calendar reminder for month 21 — send 90-day notice via certified mail",
+      "Set TWO hard calendar reminders: month 21 (serve 90-day notice via certified mail) and year 3 (file affidavit deadline)",
+      "Bidding is on ownership %, not rate — lowest percentage interest wins",
       "Subscribe to the county treasurer's mailing list for the June auction date",
       "Check for agricultural drainage district liens — these can be superior to your lien"
     ],
-    platforms: ["County treasurer offices"],
+    platforms: ["Iowa Tax Auction", "GovEase", "County treasurer offices"],
     tylerCompliance: { status: "compliant", summary: "Iowa reformed its tax sale surplus process through SF 569.", details: "Iowa passed SF 569 (2024) amending Iowa Code \u00a7446.31 to require that any surplus from tax sale exceeding the delinquent amount, interest, and costs must be returned to the former property owner. The county treasurer must provide written notice within 30 days and hold funds for 2 years before escheat.", lastUpdated: "2026-03-01", legislationRef: "SF 569 (2024); Iowa Code \u00a7446.31" },
     counties: []
   },
@@ -746,37 +762,39 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "MD", name: "Maryland", type: "lien", rate: "6–24% (varies by county)", redemption: "6 months (9 months owner-occupied in Baltimore City)",
+    id: "MD", name: "Maryland", type: "lien", rate: "6%–24% (EXTREME county variation)", redemption: "No fixed period — owner may redeem until foreclosed by court order",
     score: 77, beginnerFriendly: true,
-    scoreWhy: "Shortest redemption period in the country (6 months), strong rates in Baltimore City and Anne Arundel, and multiple counties on RealAuction.",
-    note: "Maryland conducts annual tax lien sales, typically in May–June. Interest rates vary: most counties 6%, Anne Arundel and Baltimore City up to 18%. Redemption: 6 months standard, 9 months for owner-occupied in Baltimore City. Statute: MD Tax-Property Code §14-820.",
-    typeWhy: "Maryland sells tax lien certificates at annual county-level sales. The investor purchases the lien and the property owner retains title during a 6-month redemption period (9 months for owner-occupied in Baltimore City). MD Tax-Property Code §14-820.",
-    rateWhy: "Maryland allows each county to set its own interest rate within a 6-24% statutory range — most counties use 6%, while Anne Arundel and Baltimore City go up to 18-24%. MD Tax-Property Code §14-820.",
+    scoreWhy: "Strong rates in Baltimore City, Anne Arundel, and PG County. Multiple counties on Bid4Assets. Foreclosure filing allowed after just 6 months.",
+    note: "Maryland conducts annual tax lien sales, typically May–August. CRITICAL: Rate varies DRAMATICALLY by county — statutory default 6% (§14-820(a)), but counties may set own rate (§14-820(b)). Montgomery/PG County: 20%. Anne Arundel: 18%. Baltimore County: 12%. Rural: 6%. ALWAYS verify county rate before bidding. Bidding is bid-UP (highest bidder wins total delinquent + overbid). No fixed redemption period — owner may redeem until right foreclosed by court order. Foreclosure filing allowed after 6 months (non-owner-occupied) or 9 months (owner-occupied residential). Certificate void if no foreclosure filed within 2 years (§14-833). Baltimore City: $750 minimum threshold. 23 counties + Baltimore City. Statute: MD Tax-Property Code §14-808 through §14-854; §14-820 (rate); §14-828 (redemption amount); §14-836 (foreclosure parties).",
+    typeWhy: "Maryland sells tax lien certificates at annual county-level sales. The investor purchases the lien and the property owner retains title until foreclosed by court order. Foreclosure filing allowed after 6 months (9 months for owner-occupied in Baltimore City). MD Tax-Property Code §14-820.",
+    rateWhy: "Maryland allows each county to set its own interest rate — statutory default 6% (§14-820(a)) but counties set rates up to 24% (§14-820(b)). Montgomery/PG: 20%. Anne Arundel: 18%. Baltimore County: 12%. Rural: 6%. ALWAYS verify the specific county rate before registering.",
     auctionSignup: {
-      platform: "RealAuction.com (most counties) + county-specific for others",
+      platform: "Bid4Assets (multiple counties) + direct county sales",
       steps: [
-        "Go to reauction.com and search for Maryland counties",
-        "Create an account and register for your target county's annual tax sale",
-        "Fund your account via ACH or wire transfer before the auction date",
-        "Bid online during the auction window"
+        "Go to bid4assets.com and search for Maryland counties",
+        "Create an account and register for your target county's annual tax sale (May–August)",
+        "Fund your account — full payment shortly after winning. Varies by county.",
+        "Bid online during the auction window — you're bidding UP (highest bid wins)"
       ],
-      depositInfo: "Deposit required. Varies by county. Most counties require pre-funding through RealAuction.",
-      directLink: "https://reauction.com"
+      depositInfo: "Full payment shortly after winning. Varies by county.",
+      directLink: "https://www.bid4assets.com"
     },
-    beginnerTip: "Start with Baltimore City or Anne Arundel County for the 18% rate. The 6-month redemption window is the shortest in the country — faster capital cycle than any other lien state.",
+    beginnerTip: "Start with Baltimore City (18%), Anne Arundel (18%), or PG County (20%) for the best rates. Foreclosure filing after just 6 months means faster capital cycle than most lien states. ALWAYS verify the specific county rate — rural counties may only pay 6%.",
     otc: { available: false, note: "No statewide OTC. Check county treasurer for any unsold certificates after annual sale." },
     risks: [
-      "Rate varies significantly by county — confirm before bidding (not all counties offer 18%)",
-      "Baltimore City: owner-occupied properties have 9-month extended redemption",
+      "EXTREME county variation: rates range 6%–24% — ALWAYS verify specific county rate before bidding",
+      "Certificate expires if no foreclosure filed within 2 years (§14-833) — set calendar reminder",
+      "Baltimore City: owner-occupied properties have 9-month extended protection, $750 minimum threshold",
       "Water and sewer liens from municipalities can be substantial — verify before bidding",
-      "Short 6-month window means you need to move quickly on execution"
+      "Must comply within 90 days of judgment or court may strike it (§14-847)"
     ],
     ddExtra: [
-      "Verify the specific county rate before registering",
+      "Verify the specific county rate before registering — ranges from 6% to 24%",
       "Check for water, sewer, and municipal utility liens — these can exceed the tax lien value",
-      "Confirm owner-occupied vs. vacant status — affects redemption timeline in Baltimore City"
+      "Confirm owner-occupied vs. vacant status — affects foreclosure waiting period",
+      "Certificate holder files foreclosure complaint in Circuit Court — judicial foreclosure IS the title clearance mechanism"
     ],
-    platforms: ["RealAuction.com", "County treasurer portals"],
+    platforms: ["Bid4Assets.com", "County treasurer portals"],
     tylerCompliance: { status: "pending", summary: "Status pending \u2014 monitoring for legislative action.", details: "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.", lastUpdated: "2026-03-01", legislationRef: "" },
     counties: [
       { name: "Baltimore City", link: "https://sdat.dat.maryland.gov/RealProperty/Pages/default.aspx", notes: "18% rate. Best in MD. Online via RealAuction." },
@@ -1103,38 +1121,40 @@ var STATES_EN = [
     counties: []
   },
   {
-    id: "NJ", name: "New Jersey", type: "lien", rate: "18% + penalties", redemption: "2 years",
+    id: "NJ", name: "New Jersey", type: "lien", rate: "18% per year + premium bids", redemption: "2 years (private holders); 6 months (municipality-held)",
     score: 76, beginnerFriendly: false,
-    notBeginnerReason: "567 municipalities with varying competition. North NJ rates bid to 0%. Premium bids required in many municipalities. Bankruptcy risk within 90 days can void certificate.",
-    scoreWhy: "Strong 18% rate and massive deal flow, but institutional dominance in northern NJ and bankruptcy risk require experience.",
-    note: "New Jersey has 567 municipalities, 98%+ conducting annual tax sales. Rate bid down from 18%. Premiums often required. Bankruptcy within 90 days of purchase can void the certificate per Third Circuit ruling. Statute: NJSA §54:5-1.",
-    typeWhy: "New Jersey sells tax lien certificates at municipal-level auctions across 567 municipalities. The investor holds the lien while the owner retains title during a 2-year redemption period. NJSA §54:5-1.",
-    rateWhy: "New Jersey caps the interest rate at 18% and uses a bid-down auction format. Investors frequently must pay premiums above the lien which reduce effective yield. NJSA §54:5-1.",
+    notBeginnerReason: "565 municipalities with varying competition. North NJ rates bid to 0% then premium bids of $10K-$50K+. Bankruptcy risk within 90 days can void certificate.",
+    scoreWhy: "Strong 18% rate and massive deal flow, but institutional dominance in northern NJ and premium bid risk require experience.",
+    note: "New Jersey has 565 municipalities, 98%+ conducting annual tax sales. UNIQUE PREMIUM BID STRUCTURE: Bidding starts at 18% and goes DOWN in 0.25% increments. Once bidding reaches 0%, bidders switch to PREMIUM BIDS — cash amounts paid ABOVE the lien amount. Premium held in escrow by municipality. If owner redeems within 5 years, premium refunded. If NOT redeemed within 5 years, municipality KEEPS the premium. Urban NJ premiums routinely $10K-$50K+. Separate redemption penalty: 2% ($200-$5K), 4% ($5K-$10K), 6% (over $10K) on original certificate only. NJ uses STRICT FORECLOSURE — no public sale, title vests directly in lien holder upon final court judgment (NJSA §54:5-104.64). Owner can redeem until final judgment. Subsequent municipal liens survive per §54:5-87, all others extinguished. Statute: NJSA §54:5-1 et seq.; §54:5-32 (sale/premium); §54:5-86 (foreclosure timing); §54:5-104.64 (judgment effect).",
+    typeWhy: "New Jersey sells tax lien certificates at municipal-level auctions across 565 municipalities. The investor holds the lien while the owner retains title during a 2-year redemption period (6 months for municipality-held). NJSA §54:5-1.",
+    rateWhy: "New Jersey caps the interest rate at 18% and uses a bid-down auction, then switches to PREMIUM BIDS once rate reaches 0%. Premium is NOT refundable if owner doesn't redeem within 5 years — this is a material risk. NJSA §54:5-32.",
     auctionSignup: {
-      platform: "RealAuction.com (most municipalities) + municipal-specific",
+      platform: "GovEase (many municipalities) + municipal-specific portals",
       steps: [
-        "Go to reauction.com and search for New Jersey municipalities",
+        "Go to govease.com and search for New Jersey municipalities, or check your target municipality's website",
         "Create an account and register for your target municipality's annual sale",
-        "Fund your account via ACH or wire transfer before the auction date",
-        "Bid online — you're bidding the interest rate DOWN from 18%, then up on premium"
+        "Fund your account per municipality instructions",
+        "Bid online — interest rate DOWN from 18% in 0.25% increments, then switch to PREMIUM bidding (highest premium wins)"
       ],
-      depositInfo: "Varies by municipality. Most require pre-funding through RealAuction.",
-      directLink: "https://reauction.com"
+      depositInfo: "Varies by municipality. Check individual municipality sale notices.",
+      directLink: "https://www.govease.com"
     },
-    beginnerTip: "Start with South Jersey municipalities (Salem, Cumberland, Cape May counties) — lower competition and better rates than North Jersey. Avoid Bergen, Essex, and Hudson counties where rates go to 0%.",
+    beginnerTip: "Start with South Jersey municipalities (Salem, Cumberland, Cape May counties) — lower competition and better rates than North Jersey. Avoid Bergen, Essex, and Hudson counties where rates go to 0% and premiums exceed $10K. Remember: premium is forfeited after 5 years if not redeemed.",
     otc: { available: false, note: "No OTC program." },
     risks: [
+      "PREMIUM RISK: Premium dollars NOT refundable if owner does not redeem within 5 years — material investor risk. Urban premiums routinely $10K-$50K+.",
       "Bankruptcy within 90 days can void your certificate — check PACER after purchase",
-      "North NJ rates go to 0% — not viable for individual investors",
-      "Premium bids reduce effective yield significantly",
-      "567 municipalities mean 567 different registration processes"
+      "North NJ rates go to 0% with massive premiums — not viable for individual investors",
+      "565 municipalities mean 565 different registration processes and schedules",
+      "Subsequent taxes ('sub liens') create NEW certificates with priority over prior ones"
     ],
     ddExtra: [
       "Check PACER for bankruptcy filings after purchase — critical in NJ",
       "Confirm municipality-specific registration deadlines before the sale",
-      "Research prior year sale results to gauge competition level in your target municipality"
+      "Research prior year sale results to gauge competition level and premium amounts",
+      "NJ uses strict foreclosure — title vests directly in lien holder, no public sale (NJSA §54:5-104.64)"
     ],
-    platforms: ["RealAuction.com", "Municipal tax collector offices"],
+    platforms: ["GovEase", "Municipal tax collector offices"],
     tylerCompliance: { status: "compliant", summary: "New Jersey already provided surplus protections, further strengthened post-Tyler.", details: "New Jersey tax lien sale structure under N.J.S.A. 54:5-1 et seq. already required surplus tracking. Post-Tyler, the state legislature clarified that any surplus from tax sale foreclosure must be remitted to the former owner, with enhanced notice requirements effective 2024.", lastUpdated: "2026-03-01", legislationRef: "N.J.S.A. 54:5-86; A.B. 4706 (2024)" },
     counties: [
       { name: "Salem", link: "https://www.salemcountynj.gov/departments/treasury/", notes: "Low competition. Good rates." },
