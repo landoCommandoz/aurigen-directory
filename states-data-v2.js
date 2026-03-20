@@ -820,6 +820,251 @@ export const statesData = [
     investorAlert: null,
     pendingLegislation: [],
     clarityCallCTA: true
+  },
+
+  // ── 36. Alaska ────────────────────────────────────────────
+  {
+    code: "AK",
+    name: "Alaska",
+    type: "deed",
+    rate: "N/A — deed state, no lien product",
+    rateNote: "Borough system — not county-based",
+    redemption: "None after sale",
+    bidMethod: "Varies by borough municipality",
+    statute: "AS §29.45.330",
+    officialLink: "https://www.akleg.gov/basis/statutes.asp#29.45.330",
+    auctionPlatform: "Borough-run — in-person and online varies",
+    auctionTiming: "Varies by borough",
+    keyNotes: [
+      "Alaska uses boroughs not counties — 19 organized boroughs plus unorganized areas",
+      "Low inventory state — remote and rural parcels dominate",
+      "Bidding method varies by municipality — always contact borough directly before registering"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 37. Arkansas ──────────────────────────────────────────
+  {
+    code: "AR",
+    name: "Arkansas",
+    type: "deed",
+    rate: "N/A — deed state, no lien product",
+    rateNote: "30-day redemption only — fastest deed resolution in the US",
+    redemption: "30 days only",
+    bidMethod: "Highest bidder",
+    statute: "Ark. Code §26-37-101",
+    officialLink: "https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=&pdocfullpath=%2Fshared%2Fdocument%2Fstatutes-legislation%2Furn%3AcontentItem%3A5PCX-GT41-JNCK-22SR-00000-00&pdcontentcomponentid=234148",
+    auctionPlatform: "County-run — in-person",
+    auctionTiming: "Year-round",
+    keyNotes: [
+      "30-day redemption is one of the shortest in the US — fast resolution for investors",
+      "Strong rural land state — Ozarks and Delta regions offer volume",
+      "Clean title conveyed after 30-day window closes"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 38. Hawaii ────────────────────────────────────────────
+  {
+    code: "HI",
+    name: "Hawaii",
+    type: "redeemable",
+    rate: "12% per year on purchase price",
+    rateNote: "Annual rate — 1-year post-sale redemption window",
+    redemption: "1 year",
+    bidMethod: "Highest bidder",
+    statute: "HRS §246-60",
+    officialLink: "https://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm",
+    auctionPlatform: "County tax collector — in-person",
+    auctionTiming: "Varies by county",
+    keyNotes: [
+      "Redeemable deed state — deed conveyed at sale but owner has 1 year to redeem",
+      "4 counties only (Honolulu, Maui, Hawaii, Kauai) — very limited inventory",
+      "High property values mean high minimum bids — capital intensive",
+      "12% on purchase price during redemption period"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 39. Idaho ─────────────────────────────────────────────
+  {
+    code: "ID",
+    name: "Idaho",
+    type: "deed",
+    rate: "N/A — deed state, no lien product",
+    rateNote: "No post-sale redemption — buyer takes clean title",
+    redemption: "None after sale",
+    bidMethod: "Highest bidder (oral auction)",
+    statute: "Idaho Code §63-1001",
+    officialLink: "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1001/",
+    auctionPlatform: "County commissioner — in-person",
+    auctionTiming: "Varies by county",
+    keyNotes: [
+      "No post-sale redemption — immediate clean title",
+      "Housing shortage driving strong demand statewide",
+      "Boise-area properties attract heavy competition — best value in rural eastern and northern Idaho"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 40. Kansas ────────────────────────────────────────────
+  {
+    code: "KS",
+    name: "Kansas",
+    type: "hybrid",
+    rate: "12% fixed",
+    rateNote: "Lien phase earns 12% — court action required to convert to deed",
+    redemption: "3 years",
+    bidMethod: "Highest bidder",
+    statute: "K.S.A. §79-2803",
+    officialLink: "https://kslegislature.org/li_2024/b2023_24/statute/079_000_0000_chapter/079_028_0000_article/079_028_0003_section/079_028_0003_k/",
+    auctionPlatform: "County treasurer — in-person",
+    auctionTiming: "September (most counties)",
+    keyNotes: [
+      "12% fixed rate on lien phase",
+      "3-year redemption before deed eligible",
+      "Court action required to obtain deed — no automatic conversion",
+      "Rural ag land heavy — Wichita metro has more competition"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 41. Maine ─────────────────────────────────────────────
+  {
+    code: "ME",
+    name: "Maine",
+    type: "lien",
+    rate: "18% max",
+    rateNote: "18-month redemption via tax lien mortgage — municipal process",
+    redemption: "18 months",
+    bidMethod: "Municipal-controlled",
+    statute: "Me. Rev. Stat. tit. 36 §943",
+    officialLink: "https://legislature.maine.gov/statutes/36/title36sec943.html",
+    auctionPlatform: "Municipal — varies by town",
+    auctionTiming: "Year-round",
+    keyNotes: [
+      "Tax lien mortgage system — municipality holds lien, not sold directly to investors in most cases",
+      "After 18 months unredeemed, municipality forecloses and may sell property",
+      "PL 2025, c. 351 update — verify current municipal procedures",
+      "Retail investor access is limited — primarily municipal sales of foreclosed properties"
+    ],
+    investorAlert: null,
+    pendingLegislation: [
+      {
+        bill: "PL 2025, c. 351",
+        summary: "2025 update to Maine tax lien mortgage procedures. Verify current municipal requirements before transacting.",
+        status: "passed",
+        effectiveDate: "2025"
+      }
+    ],
+    clarityCallCTA: true
+  },
+
+  // ── 42. Utah ──────────────────────────────────────────────
+  {
+    code: "UT",
+    name: "Utah",
+    type: "deed",
+    rate: "N/A — deed state, no lien product",
+    rateNote: "Statewide same-day auction — all counties sell on same day in May",
+    redemption: "None after sale",
+    bidMethod: "Highest bidder (premium bid)",
+    statute: "Utah Code §59-2-1351",
+    officialLink: "https://le.utah.gov/xcode/Title59/Chapter2/59-2-S1351.html",
+    auctionPlatform: "County treasurer — in-person (all counties same day)",
+    auctionTiming: "May — all counties statewide on same day",
+    keyNotes: [
+      "All 29 counties auction on the same day in May — investor must choose which county to attend",
+      "No post-sale redemption — clean title conveyed",
+      "Always research water rights on Utah properties — water rights are separate from land and critical in this state",
+      "Salt Lake and Utah County properties attract heavy competition"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 43. Virginia ──────────────────────────────────────────
+  {
+    code: "VA",
+    name: "Virginia",
+    type: "deed",
+    rate: "N/A — deed state, no lien product",
+    rateNote: "Judicial process — court-ordered sale",
+    redemption: "None after judicial sale",
+    bidMethod: "Highest bidder (premium bid)",
+    statute: "VA Code §58.1-3965",
+    officialLink: "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3965/",
+    auctionPlatform: "County-run — in-person",
+    auctionTiming: "Varies by county",
+    keyNotes: [
+      "Judicial sale process — court involvement required",
+      "Rural Southwest and Southside Virginia offer best investor opportunity",
+      "Northern Virginia (NoVA) has essentially no accessible inventory — prices too high for tax deed plays",
+      "Clean title after judicial sale"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 44. Wisconsin ─────────────────────────────────────────
+  {
+    code: "WI",
+    name: "Wisconsin",
+    type: "deed",
+    rate: "N/A — deed state, no lien product",
+    rateNote: "Year-round sales — clean title conveyed",
+    redemption: "None after sale",
+    bidMethod: "Highest bidder",
+    statute: "WI Statutes §74.53",
+    officialLink: "https://docs.legis.wisconsin.gov/statutes/statutes/74/53",
+    auctionPlatform: "County-run — in-person and online varies",
+    auctionTiming: "Year-round",
+    keyNotes: [
+      "Year-round sales across all 72 counties",
+      "Rural Wisconsin strong for land and recreational property",
+      "Environmental title risks in industrial counties — always check DNR records before bidding on former industrial land",
+      "Clean title conveyed at sale"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 45. Alabama ───────────────────────────────────────────
+  {
+    code: "AL",
+    name: "Alabama",
+    type: "lien",
+    rate: "12% fixed",
+    rateNote: "Bid-down interest rate — converted from deed state in 2018",
+    redemption: "3 years (auto-converts to deed)",
+    bidMethod: "Bid-down interest rate",
+    statute: "AL Code §40-10-180",
+    officialLink: "https://alison.legislature.state.al.us/codeofalabama/1975/coatoc.htm",
+    auctionPlatform: "County-run — in-person",
+    auctionTiming: "April–June (most counties)",
+    keyNotes: [
+      "Converted from deed to lien state via Act 2018-577 — pre-2018 research is outdated",
+      "12% fixed bid-down rate",
+      "3-year redemption then automatic deed conversion",
+      "Foreclosure still required for fully clean insurable title post-conversion",
+      "67 counties — strong rural land inventory"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
   }
 
 ];
