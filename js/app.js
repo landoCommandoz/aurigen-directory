@@ -190,7 +190,7 @@ var App = {
       console.log('[APP] State locked: ' + id);
       return;
     }
-    var states = window.STATES || [];
+    var states = window.STATES || window.STATES_EN || [];
     var s = null;
     for (var i = 0; i < states.length; i++) {
       if (states[i].id === id) { s = states[i]; break; }
