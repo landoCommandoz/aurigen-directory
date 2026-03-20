@@ -354,6 +354,7 @@
 
     /* === MAP TAB LAYOUT === */
     #panel-map {
+      position: relative;
       display: none;
       flex-direction: row;
       flex: 1;
@@ -1594,6 +1595,7 @@ function initMap() {
 
 // === BOOT ===
 function bootApp() {
+  switchView('map');
   renderStateList();
   initMap();
   initAccount();
