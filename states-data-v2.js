@@ -667,6 +667,159 @@ export const statesData = [
     ],
     investorAlert: null,
     clarityCallCTA: true
+  },
+
+  // ── 30. Michigan ──────────────────────────────────────────
+  {
+    code: "MI",
+    name: "Michigan",
+    type: "deed",
+    rate: "12% year 1 / 18% year 2 (pre-foreclosure interest)",
+    rateNote: "3-year forfeiture process — public auction after foreclosure",
+    redemption: "3 years total (forfeiture process)",
+    bidMethod: "Highest bidder",
+    statute: "MCL §211.78",
+    officialLink: "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78",
+    auctionPlatform: "Michigan Land Bank / county-run (GovEase in many counties)",
+    auctionTiming: "July–September (most counties)",
+    keyNotes: [
+      "3-year process: year 1 forfeiture notice, year 2 foreclosure judgment, year 3 auction",
+      "Tyler v. Hennepin ruling now requires surplus proceeds returned to former owner",
+      "Strong rural opportunity in northern Michigan and Upper Peninsula",
+      "Wayne County (Detroit) has highest volume — heavy institutional competition"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 31. California ────────────────────────────────────────
+  {
+    code: "CA",
+    name: "California",
+    type: "deed",
+    rate: "N/A — deed state, no lien product",
+    rateNote: "County auctions property — 1-year challenge period after sale",
+    redemption: "None after sale — but 1-year challenge period",
+    bidMethod: "Highest bidder",
+    statute: "CA Revenue & Tax Code §3712",
+    officialLink: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=3712&lawCode=RTC",
+    auctionPlatform: "GovEase (LA County and most major counties)",
+    auctionTiming: "Year-round — LA County 2026 confirmed April and June via GovEase",
+    keyNotes: [
+      "1-year challenge period after sale — title companies will not insure during this window",
+      "IRS liens survive tax deed sale — always check federal liens before bidding",
+      "LA County 2026 auctions: April and June confirmed on GovEase",
+      "High competition in coastal counties — best value in Central Valley and inland"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 32. North Carolina ────────────────────────────────────
+  {
+    code: "NC",
+    name: "North Carolina",
+    type: "deed",
+    rate: "N/A — deed state, no lien product",
+    rateNote: "Unique upset bid process — sale not final until 10-day window closes",
+    redemption: "None after final sale",
+    bidMethod: "Highest bidder — subject to upset bid period",
+    statute: "NC GS §105-374",
+    officialLink: "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-374.html",
+    auctionPlatform: "County-run — in-person and online varies",
+    auctionTiming: "Year-round",
+    keyNotes: [
+      "UNIQUE: 10-day upset bid window after winning bid — any party can overbid by 5% within 10 days",
+      "Sale is NOT final until 10-day upset bid period expires with no higher offer",
+      "No post-sale redemption once upset bid period closes",
+      "Growing market — Charlotte and Triangle metro attract competition"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 33. Pennsylvania ──────────────────────────────────────
+  {
+    code: "PA",
+    name: "Pennsylvania",
+    type: "deed",
+    rate: "N/A — deed state, no lien product",
+    rateNote: "TWO-SALE SYSTEM: Upset sale (dangerous) vs Judicial/Repository sale (clean title)",
+    redemption: "None after judicial sale",
+    bidMethod: "Highest bidder",
+    statute: "72 P.S. §5860.601",
+    officialLink: "https://www.legis.state.pa.us/cfdocs/legis/LI/uconsCheck.cfm?txtType=HTM&yr=1947&sessInd=0&smthLwInd=0&act=542&chpt=6&sctn=1&subsctn=0",
+    auctionPlatform: "County-run — in-person",
+    auctionTiming: "Year-round",
+    keyNotes: [
+      "CRITICAL: Upset sale = surviving liens (mortgages may remain) — dangerous for investors",
+      "Judicial sale and Repository sale = clean title, all liens wiped",
+      "Always confirm which type of sale before bidding — upset vs judicial is the difference between clean and clouded title",
+      "Philadelphia and Pittsburgh have high volume — mostly judicial sales"
+    ],
+    investorAlert: "⚠️ Pennsylvania has TWO sale types. Upset Sale: surviving liens remain on title — buying here can mean inheriting a mortgage. Judicial/Repository Sale: clean title. ALWAYS confirm sale type before bidding.",
+    pendingLegislation: [],
+    clarityCallCTA: true
+  },
+
+  // ── 34. Louisiana ─────────────────────────────────────────
+  {
+    code: "LA",
+    name: "Louisiana",
+    type: "lien",
+    rate: "0.7%–1.0%/month (8.4%–12% annualized)",
+    rateNote: "Bid-down interest rate — NEW 2026 SYSTEM replacing ownership bid-down",
+    redemption: "3 years",
+    bidMethod: "Bid-down interest rate",
+    statute: "La. Rev. Stat. §47:2154",
+    officialLink: "https://www.legis.la.gov/legis/Law.aspx?d=99775",
+    auctionPlatform: "Varies by parish",
+    auctionTiming: "Varies by parish",
+    keyNotes: [
+      "NEW SYSTEM effective January 1 2026 — old ownership bid-down system eliminated",
+      "Bid-down interest rate: investor accepts lowest monthly rate willing to take",
+      "3-year redemption period — judicial foreclosure required after",
+      "7-year statute of limitations on challenges to tax sale title",
+      "Mandatory certified mail notices to owner and lienholders required"
+    ],
+    investorAlert: "⚠️ MAJOR 2026 LAW CHANGE: Louisiana converted from ownership bid-down to interest rate bid-down effective January 1, 2026 (Acts 2024, No. 409). ALL pre-2026 research on Louisiana tax sales is outdated. Do not apply old system rules.",
+    pendingLegislation: [
+      {
+        bill: "Acts 2024, No. 409",
+        summary: "Complete overhaul of Louisiana tax sale system — replaced ownership percentage bid-down with interest rate bid-down model. Effective January 1, 2026.",
+        status: "passed",
+        effectiveDate: "January 1, 2026"
+      }
+    ],
+    clarityCallCTA: true
+  },
+
+  // ── 35. Massachusetts ─────────────────────────────────────
+  {
+    code: "MA",
+    name: "Massachusetts",
+    type: "hybrid",
+    rate: "14%",
+    rateNote: "Municipal tax taking — Land Court required for clean title",
+    redemption: "Until Land Court decree (no fixed period)",
+    bidMethod: "Municipal-controlled process",
+    statute: "MGL Ch. 60",
+    officialLink: "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60",
+    auctionPlatform: "Municipal — varies by city/town",
+    auctionTiming: "Year-round",
+    keyNotes: [
+      "Municipality initiates tax taking — not a traditional auction",
+      "Land Court action required to obtain clean, insurable title",
+      "14% statutory rate on the taking amount",
+      "Bulk sales used in some municipalities — individual retail access limited",
+      "Boston and Cambridge have essentially no retail investor access"
+    ],
+    investorAlert: null,
+    pendingLegislation: [],
+    clarityCallCTA: true
   }
 
 ];
