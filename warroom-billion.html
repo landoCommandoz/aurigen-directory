@@ -921,10 +921,146 @@
       box-shadow: 0 0 20px var(--accent-glow);
     }
 
+    /* === VIEW TOGGLE BAR === */
+    #view-toggle-bar {
+      position: absolute;
+      top: 12px;
+      right: 316px;
+      z-index: 110;
+      display: flex;
+      gap: 2px;
+      background: rgba(10,10,10,0.85);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 2px;
+    }
+    .view-toggle-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text2);
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 6px 14px;
+      cursor: pointer;
+      border-radius: 1px;
+      transition: color 0.2s var(--transition), background 0.2s var(--transition), border-color 0.2s var(--transition);
+      white-space: nowrap;
+    }
+    .view-toggle-btn:hover { color: var(--text); }
+    .view-toggle-btn.active {
+      color: var(--accent);
+      background: var(--accent-dim);
+      border-color: var(--accent-mid);
+    }
+
+    /* === FLIP BOARD === */
+    #flip-board-wrap {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      min-height: 0;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    #flip-board-wrap.active { display: flex; }
+    #flip-board-header {
+      display: grid;
+      grid-template-columns: 48px 64px 1fr 100px 100px 80px;
+      gap: 0;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+      flex-shrink: 0;
+    }
+    .fb-col-head {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    #flip-board-body {
+      flex: 1;
+      overflow-y: auto;
+      min-height: 0;
+    }
+    #flip-board-body::-webkit-scrollbar { width: 4px; }
+    #flip-board-body::-webkit-scrollbar-track { background: transparent; }
+    #flip-board-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .fb-row {
+      display: grid;
+      grid-template-columns: 48px 64px 1fr 100px 100px 80px;
+      gap: 0;
+      padding: 8px 16px;
+      border-bottom: 1px solid rgba(201,168,76,0.04);
+      cursor: pointer;
+      transition: background 0.15s var(--transition);
+      align-items: center;
+    }
+    .fb-row:hover { background: var(--accent-dim); }
+    .fb-row.active { background: var(--accent-dim); border-left: 2px solid var(--accent); }
+    .fb-row.locked { opacity: 0.3; }
+    .fb-rank {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--text3);
+      letter-spacing: 0.05em;
+    }
+    .fb-code {
+      font-family: 'Space Mono', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+    }
+    .fb-code.lien { color: var(--lien); }
+    .fb-code.deed { color: var(--deed); }
+    .fb-code.hybrid { color: var(--hybrid); }
+    .fb-name {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--text);
+      letter-spacing: 0.06em;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .fb-yield, .fb-redempt {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--text);
+      letter-spacing: 0.04em;
+    }
+    .fb-type-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 1px;
+      text-align: center;
+      width: fit-content;
+    }
+    .fb-type-badge.lien { color: var(--lien); border: 1px solid var(--lien); background: rgba(90,143,168,0.08); }
+    .fb-type-badge.deed { color: var(--deed); border: 1px solid var(--deed); background: rgba(168,98,90,0.08); }
+    .fb-type-badge.hybrid { color: var(--hybrid); border: 1px solid var(--hybrid); background: rgba(90,168,128,0.08); }
+    .fb-lock-icon { font-size: 10px; color: var(--text3); margin-left: 4px; }
+    .fb-cell-flip {
+      display: inline-block;
+      position: relative;
+    }
+    .fb-char {
+      display: inline-block;
+      transition: transform 0.08s linear;
+    }
+
     /* --- Mobile: hide sidebar/detail below 1024px --- */
     @media (max-width: 1024px) {
       #map-sidebar { display: none; }
       #map-detail { display: none; }
+      #view-toggle-bar { right: 12px; }
+      #flip-board-header { grid-template-columns: 36px 48px 1fr 72px 72px 60px; padding: 8px 10px; }
+      .fb-row { grid-template-columns: 36px 48px 1fr 72px 72px 60px; padding: 6px 10px; }
     }
   </style>
 </head>
@@ -969,6 +1105,23 @@
   </nav>
   <div id="main-content">
     <div class="tab-panel active" id="panel-map">
+      <!-- View Toggle -->
+      <div id="view-toggle-bar">
+        <button class="view-toggle-btn active" id="btn-view-map" onclick="switchView('map')">&#9707; Map</button>
+        <button class="view-toggle-btn" id="btn-view-board" onclick="switchView('board')">&#8942; Board</button>
+      </div>
+      <!-- Flip Board (hidden by default) -->
+      <div id="flip-board-wrap">
+        <div id="flip-board-header">
+          <div class="fb-col-head">#</div>
+          <div class="fb-col-head">Code</div>
+          <div class="fb-col-head">Jurisdiction</div>
+          <div class="fb-col-head">Yield %</div>
+          <div class="fb-col-head">Redempt</div>
+          <div class="fb-col-head">Type</div>
+        </div>
+        <div id="flip-board-body"></div>
+      </div>
       <!-- Sidebar: state list -->
       <div id="map-sidebar">
         <input type="text" id="state-search" placeholder="Search states..." oninput="filterStateList(this.value)">
@@ -1641,6 +1794,148 @@ function runBootAnimation() {
     }
   });
 }
+
+// === VIEW TOGGLE (MAP / BOARD) ===
+var currentView = 'map';
+
+function switchView(view) {
+  currentView = view;
+  var sidebar = document.getElementById('map-sidebar');
+  var center = document.getElementById('map-center');
+  var board = document.getElementById('flip-board-wrap');
+  var btnMap = document.getElementById('btn-view-map');
+  var btnBoard = document.getElementById('btn-view-board');
+
+  if (view === 'board') {
+    sidebar.style.display = 'none';
+    center.style.display = 'none';
+    board.classList.add('active');
+    btnMap.classList.remove('active');
+    btnBoard.classList.add('active');
+    renderFlipBoard();
+  } else {
+    sidebar.style.display = '';
+    center.style.display = '';
+    board.classList.remove('active');
+    btnMap.classList.add('active');
+    btnBoard.classList.remove('active');
+  }
+}
+
+// === SOLARI FLIP BOARD ENGINE ===
+var FLIP_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.%§—·';
+var FLIP_STEPS = 8;
+var FLIP_INTERVAL = 35;
+
+function solariFlip(el, targetText, delay) {
+  var len = targetText.length;
+  el.textContent = '';
+  var chars = [];
+  for (var i = 0; i < len; i++) {
+    var span = document.createElement('span');
+    span.className = 'fb-char';
+    span.textContent = FLIP_CHARS[Math.floor(Math.random() * FLIP_CHARS.length)];
+    el.appendChild(span);
+    chars.push(span);
+  }
+
+  chars.forEach(function(span, idx) {
+    var step = 0;
+    var target = targetText[idx];
+    setTimeout(function() {
+      var interval = setInterval(function() {
+        step++;
+        if (step >= FLIP_STEPS) {
+          span.textContent = target;
+          clearInterval(interval);
+        } else {
+          span.textContent = FLIP_CHARS[Math.floor(Math.random() * FLIP_CHARS.length)];
+        }
+      }, FLIP_INTERVAL);
+    }, delay + idx * 25);
+  });
+}
+
+function renderFlipBoard() {
+  var body = document.getElementById('flip-board-body');
+  body.innerHTML = '';
+  var filter = (document.getElementById('state-search').value || '').toLowerCase();
+
+  ALL_STATES.forEach(function(s, i) {
+    if (filter && s.name.toLowerCase().indexOf(filter) === -1 && s.abbr.toLowerCase().indexOf(filter) === -1) return;
+    var locked = APP.tier < 2 && !FREE_STATES.includes(s.abbr);
+    var data = STATE_DATA[s.abbr];
+    var yieldText = data ? data.rate : (locked ? '———' : '—');
+    var redemptText = data ? data.redemption : (locked ? '———' : '—');
+
+    var row = document.createElement('div');
+    row.className = 'fb-row' + (locked ? ' locked' : '') + (APP.selectedState === s.abbr ? ' active' : '');
+    row.onclick = function() { selectState(s.abbr); highlightBoardRow(s.abbr); };
+
+    // Rank
+    var rankEl = document.createElement('div');
+    rankEl.className = 'fb-rank';
+    rankEl.textContent = String(i + 1).padStart(2, '0');
+
+    // Code
+    var codeEl = document.createElement('div');
+    codeEl.className = 'fb-code ' + s.type;
+    codeEl.textContent = s.abbr;
+
+    // Name (flip)
+    var nameEl = document.createElement('div');
+    nameEl.className = 'fb-name';
+
+    // Yield (flip)
+    var yieldEl = document.createElement('div');
+    yieldEl.className = 'fb-yield';
+
+    // Redemption (flip)
+    var redemptEl = document.createElement('div');
+    redemptEl.className = 'fb-redempt';
+
+    // Type badge
+    var typeEl = document.createElement('div');
+    var badge = document.createElement('span');
+    badge.className = 'fb-type-badge ' + s.type;
+    badge.textContent = s.type.toUpperCase();
+    typeEl.appendChild(badge);
+    if (locked) {
+      var lockIcon = document.createElement('span');
+      lockIcon.className = 'fb-lock-icon';
+      lockIcon.innerHTML = '&#128274;';
+      typeEl.appendChild(lockIcon);
+    }
+
+    row.appendChild(rankEl);
+    row.appendChild(codeEl);
+    row.appendChild(nameEl);
+    row.appendChild(yieldEl);
+    row.appendChild(redemptEl);
+    row.appendChild(typeEl);
+    body.appendChild(row);
+
+    // Stagger flip animations per row
+    var rowDelay = i * 40;
+    solariFlip(nameEl, s.name.toUpperCase(), rowDelay);
+    solariFlip(yieldEl, yieldText.toUpperCase(), rowDelay + 80);
+    solariFlip(redemptEl, redemptText.toUpperCase(), rowDelay + 160);
+  });
+}
+
+function highlightBoardRow(abbr) {
+  document.querySelectorAll('.fb-row').forEach(function(r) {
+    var code = r.querySelector('.fb-code');
+    r.classList.toggle('active', code && code.textContent === abbr);
+  });
+}
+
+// Hook existing filter to also update board
+var _origFilterStateList = filterStateList;
+filterStateList = function(val) {
+  _origFilterStateList(val);
+  if (currentView === 'board') renderFlipBoard();
+};
 
 // === RESTORE SESSION ===
 (function restoreSession() {
