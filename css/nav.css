@@ -1,0 +1,72 @@
+/* ═══════════════════════════════════════════════
+   AURIGEN — NAV CSS
+   Bottom navigation bar
+═══════════════════════════════════════════════ */
+
+#bottom-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: var(--nav-height);
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  padding: 0 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  flex-shrink: 0;
+}
+
+#bottom-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 56px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  font-size: 10px;
+  transition: color var(--transition), background var(--transition);
+  white-space: nowrap;
+}
+
+.nav-tab:hover {
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.04);
+}
+
+.nav-tab.active {
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.nav-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.nav-label {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ── Mobile ────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  #bottom-nav {
+    justify-content: flex-start;
+  }
+
+  .nav-tab {
+    min-width: 48px;
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+}
