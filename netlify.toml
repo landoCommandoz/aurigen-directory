@@ -24,20 +24,6 @@
   status = 301
   force = true
 
-# ── SECURITY: Block direct access to state data files ──────────
-# Data is now served through /.netlify/functions/get-states
-[[redirects]]
-  from = "/states-en.js"
-  to = "/index.html"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/states-es.js"
-  to = "/index.html"
-  status = 301
-  force = true
-
 # ── API proxy ─────────────────────────────────────────────────
 [[redirects]]
   from = "/api/*"
