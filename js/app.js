@@ -4,6 +4,7 @@
 
 var App = {
   _initialized: false,
+  _exploreView: 'map', // 'map' or 'list' — map is default
 
   init: function () {
     if (this._initialized) return;
@@ -78,15 +79,44 @@ var App = {
   // ── Explore Tab ─────────────────────────────────
 
   _renderExplore: function (container) {
-    var states = window.STATES || window.STATES_EN || [];
-    var level = AccessManager.getLevel();
     var lang = LanguageManager.getLang();
+    var view = this._exploreView;
 
     var html = '<div style="padding:20px;">';
-    html += '<h2 style="font-family:\'Bebas Neue\',sans-serif;font-size:28px;letter-spacing:0.04em;margin-bottom:16px;color:var(--text-primary)">';
+    html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">';
+    html += '<h2 style="font-family:\'Bebas Neue\',sans-serif;font-size:28px;letter-spacing:0.04em;margin:0;color:var(--text-primary)">';
     html += (lang === 'es' ? 'Explorar Estados' : 'Explore States');
     html += '</h2>';
-    html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">';
+    html += '<div class="explore-view-toggle">';
+    html += '<button class="explore-view-btn' + (view === 'map' ? ' active' : '') + '" onclick="App.setExploreView(\'map\')">&#9707; ' + (lang === 'es' ? 'Mapa' : 'Map') + '</button>';
+    html += '<button class="explore-view-btn' + (view === 'list' ? ' active' : '') + '" onclick="App.setExploreView(\'list\')">&#8942; ' + (lang === 'es' ? 'Lista' : 'List') + '</button>';
+    html += '</div></div>';
+
+    if (view === 'map') {
+      html += MapManager.getHTML();
+    } else {
+      html += this._getListHTML();
+    }
+
+    html += '</div>';
+    container.innerHTML = html;
+
+    // Init D3 map after DOM is ready
+    if (view === 'map') {
+      MapManager.init();
+    }
+  },
+
+  setExploreView: function (view) {
+    this._exploreView = view;
+    var content = document.getElementById('tab-content');
+    if (content) this._renderExplore(content);
+  },
+
+  _getListHTML: function () {
+    var states = window.STATES || window.STATES_EN || [];
+    var lang = LanguageManager.getLang();
+    var html = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">';
 
     for (var i = 0; i < states.length; i++) {
       var s = states[i];
@@ -106,11 +136,10 @@ var App = {
         html += '<div style="font-size:13px;color:var(--text-dim);">\uD83D\uDD12 ' + (lang === 'es' ? 'Desbloquear con acceso completo' : 'Unlock with full access') + '</div>';
       } else {
         html += '<div style="font-size:13px;color:var(--text-secondary);display:flex;gap:12px;">';
-        html += '<span>' + (s.rate || '—') + '</span>';
-        html += '<span>' + (s.redemption || '—') + '</span>';
+        html += '<span>' + (s.rate || '\u2014') + '</span>';
+        html += '<span>' + (s.redemption || '\u2014') + '</span>';
         if (s.investorScore !== undefined) html += '<span>Score: ' + s.investorScore + '</span>';
         html += '</div>';
-        // v2: investorAlert indicator on card
         if (s.investorAlert) {
           html += '<div style="font-size:11px;color:var(--color-error,#e05555);margin-top:6px;line-height:1.4;">\u26A0\uFE0F Alert</div>';
         }
@@ -119,8 +148,8 @@ var App = {
       html += '</div>';
     }
 
-    html += '</div></div>';
-    container.innerHTML = html;
+    html += '</div>';
+    return html;
   },
 
   // ── Tools Tab ───────────────────────────────────
