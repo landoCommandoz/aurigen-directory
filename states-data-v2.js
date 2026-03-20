@@ -89,6 +89,160 @@ export const statesData = [
     ],
     investorAlert: null,
     clarityCallCTA: true
+  },
+
+  // ── 4. Illinois ───────────────────────────────────────────
+  {
+    code: "IL",
+    name: "Illinois",
+    type: "lien",
+    rate: "9% per 6 months (18% annualized)",
+    rateNote: "Penalty on TAX amount only — not on overbid",
+    redemption: "2.5 years (30 months)",
+    bidMethod: "Bid-down interest rate",
+    statute: "35 ILCS 200/21-215",
+    officialLink: "https://www.ilga.gov/legislation/ilcs/ilcs4.asp?ActID=596&SeqStart=148700000&SeqEnd=149900000",
+    auctionPlatform: "SRI / BidSpencer / county-run (varies)",
+    auctionTiming: "Varies by county — mostly fall",
+    keyNotes: [
+      "Interest earned on tax amount only — not on premium overbid",
+      "Cook County is largest volume in state — institutional dominated",
+      "2.5-year redemption is longer than most lien states"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 5. Arizona ────────────────────────────────────────────
+  {
+    code: "AZ",
+    name: "Arizona",
+    type: "lien",
+    rate: "16% max",
+    rateNote: "Bid-down interest rate — investor accepts lowest rate",
+    redemption: "3 years",
+    bidMethod: "Bid-down interest rate",
+    statute: "ARS §42-18112",
+    officialLink: "https://www.azleg.gov/ars/42/18112.htm",
+    auctionPlatform: "Online (GovEase / county-run — Pima confirmed online Feb 2026)",
+    auctionTiming: "February (most counties)",
+    keyNotes: [
+      "16% max is strong for a bid-down state",
+      "After 3 years investor can apply for treasurer's deed",
+      "Pima County 2026 sale confirmed online via GovEase"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 6. New Jersey ─────────────────────────────────────────
+  {
+    code: "NJ",
+    name: "New Jersey",
+    type: "lien",
+    rate: "18% max",
+    rateNote: "Premium bid below 1% of lien; 18% on amounts over $200",
+    redemption: "2 years minimum before foreclosure can begin",
+    bidMethod: "Premium bid (dollar overbid for liens under threshold)",
+    statute: "NJSA §54:5-32",
+    officialLink: "https://www.njleg.state.nj.us/Bills/Bills/2024/S2052_I1.PDF",
+    auctionPlatform: "Varies by municipality — online and in-person",
+    auctionTiming: "Year-round, varies by municipality",
+    keyNotes: [
+      "Premium bid system — you bid a dollar amount over lien, not an interest rate",
+      "18% statutory rate applies on amounts over $200",
+      "S2052 pending 2026 — monitor for reform"
+    ],
+    investorAlert: "\u26A0\uFE0F S2052 pending in 2026 NJ legislature — proposed changes to tax sale law. Verify current status before transacting.",
+    clarityCallCTA: true
+  },
+
+  // ── 7. Colorado ───────────────────────────────────────────
+  {
+    code: "CO",
+    name: "Colorado",
+    type: "lien",
+    rate: "Federal Discount Rate (Sept 1) + 9 points — 2025 rate ~14%",
+    rateNote: "Variable rate — resets annually September 1",
+    redemption: "3 years",
+    bidMethod: "Highest bidder (premium bid)",
+    statute: "CRS §39-11.5",
+    officialLink: "https://leg.colorado.gov/sites/default/files/images/olls/crs2024-title-39.pdf",
+    auctionPlatform: "Mix of online and in-person by county",
+    auctionTiming: "October–November (most counties)",
+    keyNotes: [
+      "Rate resets every September 1 — confirm current year rate before investing",
+      "HB 24-1056 (July 2024): deeds no longer auto-issued after lien maturity — public auction now required",
+      "Overbid earns no interest — bid only up to tax amount"
+    ],
+    investorAlert: "\u26A0\uFE0F HB 24-1056 effective July 2024: Tax deeds are NO LONGER automatically issued after lien maturity. A public auction is now required. Pre-2024 research on deed acquisition process is outdated.",
+    clarityCallCTA: true
+  },
+
+  // ── 8. Maryland ───────────────────────────────────────────
+  {
+    code: "MD",
+    name: "Maryland",
+    type: "lien",
+    rate: "6%–24% depending on county",
+    rateNote: "Rate set by each county — NEVER a flat statewide rate",
+    redemption: "6 months (owner-occupied residential) to 2 years (other)",
+    bidMethod: "Bid-down interest rate (most counties)",
+    statute: "MD Tax-Property §14-808",
+    officialLink: "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-808",
+    auctionPlatform: "Online and in-person — varies by county",
+    auctionTiming: "May–June (most counties)",
+    keyNotes: [
+      "Rate varies by county — Baltimore City 18%, Montgomery County 6%, always verify county-specific rate",
+      "Redemption period also varies — residential shorter than commercial",
+      "One of the more complex states — county variation is significant"
+    ],
+    investorAlert: "\u26A0\uFE0F Do NOT apply a single rate to Maryland. Every county sets its own rate between 6%–24%. Always verify with the specific county tax collector before investing.",
+    clarityCallCTA: true
+  },
+
+  // ── 9. Indiana ────────────────────────────────────────────
+  {
+    code: "IN",
+    name: "Indiana",
+    type: "lien",
+    rate: "10% (months 0–6) / 15% (months 6–12)",
+    rateNote: "Flat penalty — NOT annualized. Applied to minimum bid amount",
+    redemption: "1 year",
+    bidMethod: "Highest bidder (premium bid)",
+    statute: "IC §6-1.1-24",
+    officialLink: "https://iga.in.gov/legislative/laws/2024/ic/titles/006/#6-1.1-24",
+    auctionPlatform: "SRI (most counties) / county-run",
+    auctionTiming: "August–October (most counties)",
+    keyNotes: [
+      "10% penalty is flat — not annualized. You earn 10% if redeemed in month 1 OR month 6",
+      "15% if redeemed in months 6–12 — still flat",
+      "After 1 year, petition court for tax deed"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
+  },
+
+  // ── 10. South Carolina ────────────────────────────────────
+  {
+    code: "SC",
+    name: "South Carolina",
+    type: "lien",
+    rate: "3%–12% sliding scale by redemption month",
+    rateNote: "Penalty increases by month held: 3% months 0–3, up to 12% by month 12",
+    redemption: "12 months",
+    bidMethod: "Premium bid",
+    statute: "SC Code §12-51-90",
+    officialLink: "https://www.scstatehouse.gov/code/t12c051.php",
+    auctionPlatform: "Varies by county — online and in-person",
+    auctionTiming: "October–November (most counties)",
+    keyNotes: [
+      "Sliding penalty scale — earlier redemption earns less; later earns more up to 12%",
+      "Strict compliance doctrine — procedural errors can void the lien",
+      "Rural counties offer strong rural land opportunities"
+    ],
+    investorAlert: null,
+    clarityCallCTA: true
   }
 
 ];
