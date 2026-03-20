@@ -23,9 +23,11 @@
       --text3: #3a3530;
       --border: rgba(201,168,76,0.1);
       --border-hover: rgba(201,168,76,0.3);
-      --lien: #5A8FA8;
-      --deed: #A8625A;
-      --hybrid: #5AA880;
+      --lien: #F59E0B;
+      --deed: #0EA5E9;
+      --hybrid: #84CC16;
+      --rdeed: #F43F5E;
+      --forfeiture: #64748B;
       --shadow: 0 8px 32px rgba(0,0,0,0.6);
       --shadow-accent: 0 0 40px rgba(201,168,76,0.08);
       --radius: 2px;
@@ -244,11 +246,49 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.8s var(--transition);
+      position: relative;
+      background: linear-gradient(180deg, #020810 0%, #010508 50%, #020810 100%);
     }
     #app.visible {
       opacity: 1;
       pointer-events: all;
     }
+    /* Deep Ocean layers */
+    #app::before,
+    #app::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* Caustic light blobs */
+    #app::before {
+      background:
+        radial-gradient(ellipse 30% 20% at 20% 25%, rgba(14,165,233,0.07) 0%, transparent 50%),
+        radial-gradient(ellipse 25% 15% at 65% 40%, rgba(14,165,233,0.06) 0%, transparent 45%),
+        radial-gradient(ellipse 20% 25% at 80% 70%, rgba(14,165,233,0.05) 0%, transparent 40%),
+        radial-gradient(ellipse 35% 18% at 40% 75%, rgba(14,165,233,0.06) 0%, transparent 45%),
+        radial-gradient(ellipse 15% 20% at 10% 80%, rgba(14,165,233,0.04) 0%, transparent 40%);
+    }
+    /* Depth gradient + vignette */
+    #app::after {
+      background:
+        linear-gradient(180deg, rgba(14,165,233,0.03) 0%, transparent 30%, rgba(1,30,60,0.25) 100%),
+        radial-gradient(ellipse 100% 100% at 50% 50%, transparent 30%, rgba(1,4,10,0.88) 100%);
+    }
+    /* Grain overlay */
+    .deep-ocean-grain {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+    /* Ensure app children sit above ocean layers */
+    #top-nav, #main-content, #status-bar { position: relative; z-index: 1; }
 
     /* === TOP NAV === */
     #top-nav {
@@ -447,6 +487,8 @@
     .sli-dot.lien { background: var(--lien); }
     .sli-dot.deed { background: var(--deed); }
     .sli-dot.hybrid { background: var(--hybrid); }
+    .sli-dot.redeemable { background: var(--rdeed); }
+    .sli-dot.forfeiture { background: var(--forfeiture); }
     .sli-lock {
       font-size: 10px;
       color: var(--text3);
@@ -562,6 +604,8 @@
     #dl-badge.lien { background: var(--accent-dim); color: var(--lien); border: 1px solid var(--lien); }
     #dl-badge.deed { background: var(--accent-dim); color: var(--deed); border: 1px solid var(--deed); }
     #dl-badge.hybrid { background: var(--accent-dim); color: var(--hybrid); border: 1px solid var(--hybrid); }
+    #dl-badge.redeemable { background: var(--accent-dim); color: var(--rdeed); border: 1px solid var(--rdeed); }
+    #dl-badge.forfeiture { background: var(--accent-dim); color: var(--forfeiture); border: 1px solid var(--forfeiture); }
     .dl-section {
       margin-bottom: 16px;
     }
@@ -1022,6 +1066,8 @@
     .fb-code.lien { color: var(--lien); }
     .fb-code.deed { color: var(--deed); }
     .fb-code.hybrid { color: var(--hybrid); }
+    .fb-code.redeemable { color: var(--rdeed); }
+    .fb-code.forfeiture { color: var(--forfeiture); }
     .fb-name {
       font-family: 'Space Mono', monospace;
       font-size: 11px;
@@ -1046,9 +1092,11 @@
       text-align: center;
       width: fit-content;
     }
-    .fb-type-badge.lien { color: var(--lien); border: 1px solid var(--lien); background: rgba(90,143,168,0.08); }
-    .fb-type-badge.deed { color: var(--deed); border: 1px solid var(--deed); background: rgba(168,98,90,0.08); }
-    .fb-type-badge.hybrid { color: var(--hybrid); border: 1px solid var(--hybrid); background: rgba(90,168,128,0.08); }
+    .fb-type-badge.lien { color: var(--lien); border: 1px solid var(--lien); background: rgba(245,158,11,0.08); }
+    .fb-type-badge.deed { color: var(--deed); border: 1px solid var(--deed); background: rgba(14,165,233,0.08); }
+    .fb-type-badge.hybrid { color: var(--hybrid); border: 1px solid var(--hybrid); background: rgba(132,204,22,0.08); }
+    .fb-type-badge.redeemable { color: var(--rdeed); border: 1px solid var(--rdeed); background: rgba(244,63,94,0.08); }
+    .fb-type-badge.forfeiture { color: var(--forfeiture); border: 1px solid var(--forfeiture); background: rgba(100,116,139,0.08); }
     .fb-lock-icon { font-size: 10px; color: var(--text3); margin-left: 4px; }
     .fb-cell-flip {
       display: inline-block;
@@ -1098,6 +1146,7 @@
 
 <!-- APP SHELL -->
 <div id="app">
+  <div class="deep-ocean-grain"></div>
   <nav id="top-nav">
     <div id="nav-logo">AURIGEN</div>
     <div class="nav-tab active" id="tab-map" onclick="switchTab('map')">Map</div>
@@ -1139,7 +1188,9 @@
           <div id="map-legend">
             <div class="legend-item"><div class="legend-dot" style="background:var(--lien)"></div>Tax Lien</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--deed)"></div>Tax Deed</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--rdeed)"></div>Redeemable</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--hybrid)"></div>Hybrid</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--forfeiture)"></div>Forfeiture</div>
           </div>
         </div>
         <!-- Right: detail panel -->
@@ -1455,7 +1506,7 @@ const FIPS_TO_ABBR = {
   '54':'WV','55':'WI','56':'WY'
 };
 
-const TYPE_COLORS = { lien: 'var(--lien)', deed: 'var(--deed)', hybrid: 'var(--hybrid)' };
+const TYPE_COLORS = { lien: 'var(--lien)', deed: 'var(--deed)', hybrid: 'var(--hybrid)', redeemable: 'var(--rdeed)', forfeiture: 'var(--forfeiture)' };
 
 // === RENDER STATE LIST ===
 function renderStateList(filter) {
@@ -1571,7 +1622,7 @@ function initMap() {
           const fips = String(d.id).padStart(2, '0');
           const abbr = FIPS_TO_ABBR[fips] || '';
           const t = typeMap[abbr] || 'deed';
-          const colors = { lien: '#5A8FA8', deed: '#A8625A', hybrid: '#5AA880' };
+          const colors = { lien: '#F59E0B', deed: '#0EA5E9', hybrid: '#84CC16', redeemable: '#F43F5E', forfeiture: '#64748B' };
           return colors[t];
         })
         .on('mousemove', (event, d) => {
