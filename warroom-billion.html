@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>AURIGEN — Intelligence Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
   <style>
@@ -356,13 +356,19 @@
     #panel-map {
       position: relative;
       display: none;
-      flex-direction: row;
+      flex-direction: column;
       flex: 1;
       min-height: 0;
       height: 100%;
     }
     #panel-map.active {
       display: flex;
+    }
+    #map-row {
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+      min-height: 0;
     }
 
     /* --- Sidebar --- */
@@ -924,36 +930,34 @@
 
     /* === VIEW TOGGLE BAR === */
     #view-toggle-bar {
-      position: absolute;
-      top: 12px;
-      right: 316px;
-      z-index: 110;
       display: flex;
-      gap: 2px;
-      background: rgba(10,10,10,0.85);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 2px;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 6px 12px;
+      flex-shrink: 0;
     }
     .view-toggle-btn {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.12em;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text2);
-      background: transparent;
-      border: 1px solid transparent;
-      padding: 6px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 6px 18px;
       cursor: pointer;
-      border-radius: 1px;
+      border-radius: 2px;
       transition: color 0.2s var(--transition), background 0.2s var(--transition), border-color 0.2s var(--transition);
       white-space: nowrap;
     }
-    .view-toggle-btn:hover { color: var(--text); }
+    .view-toggle-btn:hover { color: var(--text); border-color: var(--border-hover); }
     .view-toggle-btn.active {
       color: var(--accent);
       background: var(--accent-dim);
-      border-color: var(--accent-mid);
+      border-color: var(--accent);
     }
 
     /* === FLIP BOARD === */
@@ -1059,7 +1063,6 @@
     @media (max-width: 1024px) {
       #map-sidebar { display: none; }
       #map-detail { display: none; }
-      #view-toggle-bar { right: 12px; }
       #flip-board-header { grid-template-columns: 36px 48px 1fr 72px 72px 60px; padding: 8px 10px; }
       .fb-row { grid-template-columns: 36px 48px 1fr 72px 72px 60px; padding: 6px 10px; }
     }
@@ -1111,70 +1114,73 @@
         <button class="view-toggle-btn active" id="btn-view-map" onclick="switchView('map')">&#9707; Map</button>
         <button class="view-toggle-btn" id="btn-view-board" onclick="switchView('board')">&#8942; List</button>
       </div>
-      <!-- Flip Board (hidden by default) -->
-      <div id="flip-board-wrap">
-        <div id="flip-board-header">
-          <div class="fb-col-head">#</div>
-          <div class="fb-col-head">Code</div>
-          <div class="fb-col-head">Jurisdiction</div>
-          <div class="fb-col-head">Yield %</div>
-          <div class="fb-col-head">Redempt</div>
-          <div class="fb-col-head">Type</div>
-        </div>
-        <div id="flip-board-body"></div>
-      </div>
-      <!-- Sidebar: state list -->
-      <div id="map-sidebar">
-        <input type="text" id="state-search" placeholder="Search states..." oninput="filterStateList(this.value)">
-        <div id="state-list"></div>
-      </div>
-      <!-- Center: D3 map -->
-      <div id="map-center">
-        <div id="d3-map"></div>
-        <div id="map-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:var(--lien)"></div>Tax Lien</div>
-          <div class="legend-item"><div class="legend-dot" style="background:var(--deed)"></div>Tax Deed</div>
-          <div class="legend-item"><div class="legend-dot" style="background:var(--hybrid)"></div>Hybrid</div>
-        </div>
-      </div>
-      <!-- Right: detail panel -->
-      <div id="map-detail">
-        <div id="detail-empty">
-          <div>&#9670;</div>
-          <div>SELECT A STATE</div>
-        </div>
-        <div id="detail-loaded">
-          <div class="dl-header">
-            <div id="dl-abbr"></div>
-            <div id="dl-name"></div>
-            <div id="dl-badge"></div>
+      <!-- Map content row -->
+      <div id="map-row">
+        <!-- Flip Board (hidden by default) -->
+        <div id="flip-board-wrap">
+          <div id="flip-board-header">
+            <div class="fb-col-head">#</div>
+            <div class="fb-col-head">Code</div>
+            <div class="fb-col-head">Jurisdiction</div>
+            <div class="fb-col-head">Yield %</div>
+            <div class="fb-col-head">Redempt</div>
+            <div class="fb-col-head">Type</div>
           </div>
-          <div class="dl-section">
-            <div class="dl-section-title">Key Metrics</div>
-            <div class="dl-row"><span class="dl-row-label">Rate / Penalty</span><span class="dl-row-value" id="dl-rate"></span></div>
-            <div class="dl-row"><span class="dl-row-label">Redemption</span><span class="dl-row-value" id="dl-redemption"></span></div>
-            <div class="dl-row"><span class="dl-row-label">Bid Method</span><span class="dl-row-value" id="dl-bid"></span></div>
-            <div class="dl-row"><span class="dl-row-label">Penalty</span><span class="dl-row-value" id="dl-penalty"></span></div>
-          </div>
-          <div class="dl-section">
-            <div class="dl-section-title">Auction</div>
-            <div class="dl-row"><span class="dl-row-label">Platform</span><span class="dl-row-value" id="dl-platform"></span></div>
-            <div class="dl-row"><span class="dl-row-label">Frequency</span><span class="dl-row-value" id="dl-frequency"></span></div>
-          </div>
-          <div class="dl-section">
-            <div class="dl-section-title">Legal</div>
-            <div class="dl-row"><span class="dl-row-label">Statute</span><span class="dl-row-value" id="dl-statute"></span></div>
-          </div>
-          <a class="dl-cta" href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener">Book Investor Clarity Call</a>
+          <div id="flip-board-body"></div>
         </div>
-        <div id="dl-lock">
-          <div class="dl-lock-icon">&#128274;</div>
-          <div class="dl-lock-text">This state requires<br>full access to view.</div>
-          <a class="dl-cta primary" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Upgrade — Full Access</a>
+        <!-- Sidebar: state list -->
+        <div id="map-sidebar">
+          <input type="text" id="state-search" placeholder="Search states..." oninput="filterStateList(this.value)">
+          <div id="state-list"></div>
         </div>
+        <!-- Center: D3 map -->
+        <div id="map-center">
+          <div id="d3-map"></div>
+          <div id="map-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--lien)"></div>Tax Lien</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--deed)"></div>Tax Deed</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--hybrid)"></div>Hybrid</div>
+          </div>
+        </div>
+        <!-- Right: detail panel -->
+        <div id="map-detail">
+          <div id="detail-empty">
+            <div>&#9670;</div>
+            <div>SELECT A STATE</div>
+          </div>
+          <div id="detail-loaded">
+            <div class="dl-header">
+              <div id="dl-abbr"></div>
+              <div id="dl-name"></div>
+              <div id="dl-badge"></div>
+            </div>
+            <div class="dl-section">
+              <div class="dl-section-title">Key Metrics</div>
+              <div class="dl-row"><span class="dl-row-label">Rate / Penalty</span><span class="dl-row-value" id="dl-rate"></span></div>
+              <div class="dl-row"><span class="dl-row-label">Redemption</span><span class="dl-row-value" id="dl-redemption"></span></div>
+              <div class="dl-row"><span class="dl-row-label">Bid Method</span><span class="dl-row-value" id="dl-bid"></span></div>
+              <div class="dl-row"><span class="dl-row-label">Penalty</span><span class="dl-row-value" id="dl-penalty"></span></div>
+            </div>
+            <div class="dl-section">
+              <div class="dl-section-title">Auction</div>
+              <div class="dl-row"><span class="dl-row-label">Platform</span><span class="dl-row-value" id="dl-platform"></span></div>
+              <div class="dl-row"><span class="dl-row-label">Frequency</span><span class="dl-row-value" id="dl-frequency"></span></div>
+            </div>
+            <div class="dl-section">
+              <div class="dl-section-title">Legal</div>
+              <div class="dl-row"><span class="dl-row-label">Statute</span><span class="dl-row-value" id="dl-statute"></span></div>
+            </div>
+            <a class="dl-cta" href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener">Book Investor Clarity Call</a>
+          </div>
+          <div id="dl-lock">
+            <div class="dl-lock-icon">&#128274;</div>
+            <div class="dl-lock-text">This state requires<br>full access to view.</div>
+            <a class="dl-cta primary" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Upgrade — Full Access</a>
+          </div>
+        </div>
+        <!-- Tooltip -->
+        <div id="map-tooltip"></div>
       </div>
-      <!-- Tooltip -->
-      <div id="map-tooltip"></div>
     </div>
     <div class="tab-panel" id="panel-tools">
       <div class="tools-grid">
