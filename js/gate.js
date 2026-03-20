@@ -225,7 +225,8 @@ function handleEmailSubmit(e) {
     .then(function (data) {
       if (data.success) {
         AccessManager.grant(1);
-        enterApp();
+        var ready = window._stateDataReady || Promise.resolve();
+        ready.then(function () { enterApp(); }).catch(function () { enterApp(); });
       } else {
         if (btn) btn.disabled = false;
       }
@@ -312,8 +313,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var level = AccessManager.restore();
 
   if (level >= 1) {
-    // Already authenticated — skip gate
-    enterApp();
+    // Already authenticated — wait for state data then enter
+    var ready = window._stateDataReady || Promise.resolve();
+    ready.then(function () { enterApp(); }).catch(function () { enterApp(); });
   } else {
     renderGate();
   }

@@ -58,16 +58,19 @@
     var headers = {};
     if (token) headers['Authorization'] = 'Bearer ' + token;
 
-    // Load state data from serverless function
-    window._stateDataReady = fetch('/.netlify/functions/get-states?lang=' + lang, { headers: headers })
+    // Load state data from serverless function + v2 enhanced data in parallel
+    var statesFetch = fetch('/.netlify/functions/get-states?lang=' + lang, { headers: headers })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then(function (js) { new Function(js)(); })
       .catch(function (e) { console.error('[INIT] State data load failed:', e); });
+
+    var v2Fetch = import('./states-data-v2.js')
+      .then(function (mod) { window.STATES_V2 = mod.statesData; })
+      .catch(function (e) { console.error('[INIT] V2 data load failed:', e); });
+
+    window._stateDataReady = Promise.all([statesFetch, v2Fetch]);
   })();
   </script>
-
-  <!-- Enhanced state data (v2) — statute, keyNotes, investorAlert, pendingLegislation -->
-  <script type="module" src="states-data-v2.js"></script>
 
   <!-- Core JS — load order matters -->
   <script src="/js/access.js"></script>
