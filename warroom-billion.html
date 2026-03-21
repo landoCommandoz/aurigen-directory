@@ -1976,7 +1976,8 @@ function updateMapSelection() {
       p.style.stroke = typeColor;
       p.style.filter = 'drop-shadow(0 0 12px ' + typeColor + '66)';
     } else {
-      p.style.fill = '';
+      var st = ALL_STATES.find(function(s) { return s.abbr === abbr; });
+      p.style.fill = st ? (TYPE_FILL[st.type] || 'rgba(255,255,255,0.025)') : 'rgba(255,255,255,0.025)';
       p.style.stroke = '';
       p.style.filter = '';
     }
