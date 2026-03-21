@@ -2020,6 +2020,13 @@ function initMap() {
           return 'state-path' + (locked ? ' locked' : '');
         })
         .attr('d', path)
+        .style('fill', function(d) {
+          var fips = String(d.id).padStart(2, '0');
+          var abbr = FIPS_TO_ABBR[fips] || '';
+          var s = ALL_STATES.find(function(st) { return st.abbr === abbr; });
+          if (!s) return 'rgba(255,255,255,0.025)';
+          return TYPE_FILL[s.type] || 'rgba(255,255,255,0.025)';
+        })
         .attr('data-abbr', function(d) {
           var fips = String(d.id).padStart(2, '0');
           return FIPS_TO_ABBR[fips] || '';
