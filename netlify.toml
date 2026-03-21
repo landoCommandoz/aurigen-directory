@@ -2,6 +2,12 @@
   publish = "."
   functions = "netlify/functions"
 
+# ── ROOT: Serve warroom-billion.html as landing page ─────────
+[[redirects]]
+  from = "/"
+  to = "/warroom-billion.html"
+  status = 200
+
 # ── SECURITY: Block direct access to sensitive markdown files ─
 # force = true required because files exist as static assets
 # These MUST come before the API splat redirect
