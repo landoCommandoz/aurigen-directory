@@ -1980,6 +1980,39 @@ function updateMapSelection() {
       p.style.filter = '';
     }
   });
+  // Update labels
+  if (mapSvg) {
+    updateMapLabels();
+  }
+}
+
+function updateMapLabels() {
+  if (!mapSvg) return;
+  mapSvg.selectAll('.state-label')
+    .attr('fill', function(d) {
+      var fips = String(d.id).padStart(2, '0');
+      var abbr = FIPS_TO_ABBR[fips];
+      var s = ALL_STATES.find(function(st) { return st.abbr === abbr; });
+      if (!s) return 'rgba(255,255,255,0.3)';
+      return TYPE_FILL[s.type] || 'rgba(255,255,255,0.3)';
+    })
+    .attr('fill-opacity', function(d) {
+      var fips = String(d.id).padStart(2, '0');
+      var abbr = FIPS_TO_ABBR[fips];
+      return APP.selectedState === abbr ? 1 : 0.7;
+    })
+    .attr('font-weight', function(d) {
+      var fips = String(d.id).padStart(2, '0');
+      var abbr = FIPS_TO_ABBR[fips];
+      return APP.selectedState === abbr ? '700' : '400';
+    });
+}
+
+function resetMapLabels() {
+  if (!mapSvg) return;
+  mapSvg.selectAll('.state-label')
+    .attr('fill-opacity', 0.7)
+    .attr('font-weight', '400');
 }
 
 function showUpgradePrompt() {
@@ -1987,45 +2020,54 @@ function showUpgradePrompt() {
 }
 
 // === D3 MAP ===
+var mapSvg = null;
+
 function initMap() {
   var container = document.getElementById('d3-map');
-  var w = container.clientWidth || 800;
-  var h = container.clientHeight || 500;
-
-  var svg = d3.select(container).append('svg')
-    .attr('viewBox', '0 0 ' + w + ' ' + h)
-    .attr('preserveAspectRatio', 'xMidYMid meet');
-
-  var projection = d3.geoAlbersUsa().fitSize([w, h], { type: 'Sphere' });
-  var path = d3.geoPath().projection(projection);
+  var w = container.clientWidth || 960;
+  var h = container.clientHeight || 600;
   var tooltip = document.getElementById('map-tooltip');
 
-  // Build lookup: abbr → type
-  var typeMap = {};
-  ALL_STATES.forEach(function(s) { typeMap[s.abbr] = s.type; });
+  var svg = d3.select(container).append('svg')
+    .attr('viewBox', '0 0 960 600')
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+  mapSvg = svg;
 
-  d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
+  fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
+    .then(function(r) { return r.json(); })
     .then(function(us) {
-      var states = topojson.feature(us, us.objects.states).features;
-      projection.fitSize([w, h], topojson.feature(us, us.objects.states));
+      var states = topojson.feature(us, us.objects.states);
+      var projection = d3.geoAlbersUsa().scale(1000).translate([480, 300]);
+      var pathGen = d3.geoPath().projection(projection);
 
+      // Draw state fills
       svg.selectAll('.state-path')
-        .data(states)
-        .join('path')
+        .data(states.features)
+        .enter().append('path')
         .attr('class', function(d) {
           var fips = String(d.id).padStart(2, '0');
           var abbr = FIPS_TO_ABBR[fips] || '';
           var locked = APP.tier < 2 && !FREE_STATES.includes(abbr);
           return 'state-path' + (locked ? ' locked' : '');
         })
-        .attr('d', path)
+        .attr('d', pathGen)
         .attr('fill', function(d) {
-          var abbr = FIPS_TO_ABBR[String(d.id).padStart(2, '0')];
-          if (!abbr) return 'rgba(255,255,255,0.025)';
+          var fips = String(d.id).padStart(2, '0');
+          var abbr = FIPS_TO_ABBR[fips];
           var s = ALL_STATES.find(function(st) { return st.abbr === abbr; });
           if (!s) return 'rgba(255,255,255,0.025)';
           return TYPE_FILL[s.type] || 'rgba(255,255,255,0.025)';
         })
+        .attr('fill-opacity', 0.22)
+        .attr('stroke', function(d) {
+          var fips = String(d.id).padStart(2, '0');
+          var abbr = FIPS_TO_ABBR[fips];
+          var s = ALL_STATES.find(function(st) { return st.abbr === abbr; });
+          if (!s) return 'rgba(0,212,255,0.12)';
+          return TYPE_FILL[s.type] || 'rgba(0,212,255,0.12)';
+        })
+        .attr('stroke-opacity', 0.4)
+        .attr('stroke-width', 0.8)
         .attr('data-abbr', function(d) {
           var fips = String(d.id).padStart(2, '0');
           return FIPS_TO_ABBR[fips] || '';
@@ -2049,6 +2091,42 @@ function initMap() {
           var abbr = FIPS_TO_ABBR[fips] || '';
           selectState(abbr);
         });
+
+      // Draw state abbreviation labels
+      svg.selectAll('.state-label')
+        .data(states.features)
+        .enter().append('text')
+        .attr('class', 'state-label')
+        .attr('transform', function(d) {
+          var c = pathGen.centroid(d);
+          return c && !isNaN(c[0]) ? 'translate(' + c[0] + ',' + c[1] + ')' : 'translate(-999,-999)';
+        })
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'central')
+        .attr('font-family', "'Space Mono', monospace")
+        .attr('font-size', '7px')
+        .attr('font-weight', '400')
+        .attr('fill', function(d) {
+          var fips = String(d.id).padStart(2, '0');
+          var abbr = FIPS_TO_ABBR[fips];
+          var s = ALL_STATES.find(function(st) { return st.abbr === abbr; });
+          if (!s) return 'rgba(255,255,255,0.3)';
+          return TYPE_FILL[s.type] || 'rgba(255,255,255,0.3)';
+        })
+        .attr('fill-opacity', 0.9)
+        .attr('pointer-events', 'none')
+        .text(function(d) {
+          var fips = String(d.id).padStart(2, '0');
+          return FIPS_TO_ABBR[fips] || '';
+        });
+
+      // Border mesh
+      svg.append('path')
+        .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+        .attr('fill', 'none')
+        .attr('stroke', 'rgba(0,0,0,0.3)')
+        .attr('stroke-width', 0.5)
+        .attr('d', pathGen);
     })
     .catch(function() {
       container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:rgba(0,212,255,0.3);font-family:Space Mono,monospace;font-size:11px;letter-spacing:0.1em;">MAP UNAVAILABLE \u2014 CHECK CONNECTION</div>';
