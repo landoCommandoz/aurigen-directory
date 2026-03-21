@@ -23,11 +23,10 @@
       --text3: #3a3530;
       --border: rgba(201,168,76,0.1);
       --border-hover: rgba(201,168,76,0.3);
-      --lien: #F59E0B;
-      --deed: #0EA5E9;
-      --hybrid: #84CC16;
-      --rdeed: #F43F5E;
-      --forfeiture: #64748B;
+      --lien: #FFBE0B;
+      --deed: #00D4FF;
+      --hybrid: #BF5FFF;
+      --rdeed: #FF2D55;
       --shadow: 0 8px 32px rgba(0,0,0,0.6);
       --shadow-accent: 0 0 40px rgba(201,168,76,0.08);
       --radius: 2px;
@@ -488,7 +487,6 @@
     .sli-dot.deed { background: var(--deed); }
     .sli-dot.hybrid { background: var(--hybrid); }
     .sli-dot.redeemable { background: var(--rdeed); }
-    .sli-dot.forfeiture { background: var(--forfeiture); }
     .sli-lock {
       font-size: 10px;
       color: var(--text3);
@@ -605,7 +603,6 @@
     #dl-badge.deed { background: var(--accent-dim); color: var(--deed); border: 1px solid var(--deed); }
     #dl-badge.hybrid { background: var(--accent-dim); color: var(--hybrid); border: 1px solid var(--hybrid); }
     #dl-badge.redeemable { background: var(--accent-dim); color: var(--rdeed); border: 1px solid var(--rdeed); }
-    #dl-badge.forfeiture { background: var(--accent-dim); color: var(--forfeiture); border: 1px solid var(--forfeiture); }
     .dl-section {
       margin-bottom: 16px;
     }
@@ -1067,7 +1064,6 @@
     .fb-code.deed { color: var(--deed); }
     .fb-code.hybrid { color: var(--hybrid); }
     .fb-code.redeemable { color: var(--rdeed); }
-    .fb-code.forfeiture { color: var(--forfeiture); }
     .fb-name {
       font-family: 'Space Mono', monospace;
       font-size: 11px;
@@ -1092,11 +1088,10 @@
       text-align: center;
       width: fit-content;
     }
-    .fb-type-badge.lien { color: var(--lien); border: 1px solid var(--lien); background: rgba(245,158,11,0.08); }
-    .fb-type-badge.deed { color: var(--deed); border: 1px solid var(--deed); background: rgba(14,165,233,0.08); }
-    .fb-type-badge.hybrid { color: var(--hybrid); border: 1px solid var(--hybrid); background: rgba(132,204,22,0.08); }
-    .fb-type-badge.redeemable { color: var(--rdeed); border: 1px solid var(--rdeed); background: rgba(244,63,94,0.08); }
-    .fb-type-badge.forfeiture { color: var(--forfeiture); border: 1px solid var(--forfeiture); background: rgba(100,116,139,0.08); }
+    .fb-type-badge.lien { color: var(--lien); border: 1px solid var(--lien); background: rgba(255,190,11,0.08); }
+    .fb-type-badge.deed { color: var(--deed); border: 1px solid var(--deed); background: rgba(0,212,255,0.08); }
+    .fb-type-badge.hybrid { color: var(--hybrid); border: 1px solid var(--hybrid); background: rgba(191,95,255,0.08); }
+    .fb-type-badge.redeemable { color: var(--rdeed); border: 1px solid var(--rdeed); background: rgba(255,45,85,0.08); }
     .fb-lock-icon { font-size: 10px; color: var(--text3); margin-left: 4px; }
     .fb-cell-flip {
       display: inline-block;
@@ -1190,7 +1185,6 @@
             <div class="legend-item"><div class="legend-dot" style="background:var(--deed)"></div>Tax Deed</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--rdeed)"></div>Redeemable</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--hybrid)"></div>Hybrid</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--forfeiture)"></div>Forfeiture</div>
           </div>
         </div>
         <!-- Right: detail panel -->
@@ -1476,7 +1470,7 @@ const ALL_STATES = [
   {abbr:'KS',name:'Kansas',type:'deed'},{abbr:'KY',name:'Kentucky',type:'lien'},
   {abbr:'LA',name:'Louisiana',type:'deed'},{abbr:'ME',name:'Maine',type:'deed'},
   {abbr:'MD',name:'Maryland',type:'lien'},{abbr:'MA',name:'Massachusetts',type:'deed'},
-  {abbr:'MI',name:'Michigan',type:'deed'},{abbr:'MN',name:'Minnesota',type:'deed'},
+  {abbr:'MI',name:'Michigan',type:'deed'},{abbr:'MN',name:'Minnesota',type:'hybrid'},
   {abbr:'MS',name:'Mississippi',type:'lien'},{abbr:'MO',name:'Missouri',type:'lien'},
   {abbr:'MT',name:'Montana',type:'lien'},{abbr:'NE',name:'Nebraska',type:'lien'},
   {abbr:'NV',name:'Nevada',type:'deed'},{abbr:'NH',name:'New Hampshire',type:'lien'},
@@ -1506,7 +1500,7 @@ const FIPS_TO_ABBR = {
   '54':'WV','55':'WI','56':'WY'
 };
 
-const TYPE_COLORS = { lien: 'var(--lien)', deed: 'var(--deed)', hybrid: 'var(--hybrid)', redeemable: 'var(--rdeed)', forfeiture: 'var(--forfeiture)' };
+const TYPE_COLORS = { lien: 'var(--lien)', deed: 'var(--deed)', hybrid: 'var(--hybrid)', redeemable: 'var(--rdeed)' };
 
 // === RENDER STATE LIST ===
 function renderStateList(filter) {
@@ -1622,7 +1616,7 @@ function initMap() {
           const fips = String(d.id).padStart(2, '0');
           const abbr = FIPS_TO_ABBR[fips] || '';
           const t = typeMap[abbr] || 'deed';
-          const colors = { lien: '#F59E0B', deed: '#0EA5E9', hybrid: '#84CC16', redeemable: '#F43F5E', forfeiture: '#64748B' };
+          const colors = { lien: '#FFBE0B', deed: '#00D4FF', hybrid: '#BF5FFF', redeemable: '#FF2D55' };
           return colors[t];
         })
         .on('mousemove', (event, d) => {
