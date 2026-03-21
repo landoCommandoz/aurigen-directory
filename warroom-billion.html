@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>AURIGEN — Intelligence Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
   <style>
@@ -391,278 +391,483 @@
     .ticker-item .down { color: var(--deed); }
     .ticker-item .neutral { color: var(--lien); }
 
-    /* === MAP TAB LAYOUT === */
+    /* === MAP TAB LAYOUT (Section 6B) === */
     #panel-map {
       position: relative;
       display: none;
       flex-direction: column;
       flex: 1;
       min-height: 0;
-      height: 100%;
     }
-    #panel-map.active {
-      display: flex;
-    }
-    #map-row {
-      display: flex;
-      flex-direction: row;
-      flex: 1;
-      min-height: 0;
-    }
+    #panel-map.active { display: flex; }
 
-    /* --- Sidebar --- */
-    #map-sidebar {
-      width: 260px;
-      min-width: 260px;
+    /* --- Explore Header --- */
+    #explore-header {
       display: flex;
-      flex-direction: column;
-      min-height: 0;
-      background: var(--bg2);
-      border-right: 1px solid var(--border);
+      align-items: flex-end;
+      justify-content: space-between;
+      background: rgba(1,4,12,0.9);
+      border-bottom: 1px solid rgba(0,212,255,0.1);
+      padding: 0 16px;
+      flex-shrink: 0;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
-    #state-search {
-      width: 100%;
-      padding: 10px 14px;
-      background: var(--bg);
-      border: none;
-      border-bottom: 1px solid var(--border);
-      color: var(--text);
+    .explore-tabs {
+      display: flex;
+      gap: 0;
+    }
+    .explore-tab {
       font-family: 'Space Mono', monospace;
       font-size: 10px;
-      letter-spacing: 0.1em;
-      outline: none;
-      transition: border-color 0.2s var(--transition);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: rgba(0,212,255,0.3);
+      transition: color 0.2s var(--transition), border-color 0.2s var(--transition);
+      white-space: nowrap;
     }
-    #state-search:focus { border-bottom-color: var(--accent-mid); }
-    #state-search::placeholder { color: var(--text3); }
-    #state-list {
-      flex: 1;
-      overflow-y: auto;
-      min-height: 0;
+    .explore-tab:hover { color: rgba(0,212,255,0.6); }
+    .explore-tab.active {
+      color: #FFBE0B;
+      border-bottom-color: #FFBE0B;
     }
-    #state-list::-webkit-scrollbar { width: 4px; }
-    #state-list::-webkit-scrollbar-track { background: transparent; }
-    #state-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-    .sli {
+    .explore-legend {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      cursor: pointer;
-      border-left: 2px solid transparent;
-      transition: background 0.15s var(--transition), border-color 0.15s var(--transition);
+      gap: 14px;
+      padding-bottom: 8px;
     }
-    .sli:hover { background: var(--accent-dim); }
-    .sli.active {
-      background: var(--accent-dim);
-      border-left-color: var(--accent);
-    }
-    .sli.locked { opacity: 0.35; cursor: not-allowed; }
-    .sli-abbr {
+    .explore-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
       font-family: 'Space Mono', monospace;
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 7px;
       letter-spacing: 0.1em;
-      color: var(--text);
-      width: 28px;
-      flex-shrink: 0;
-    }
-    .sli.active .sli-abbr { color: var(--accent); }
-    .sli-name {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      color: var(--text2);
-      flex: 1;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
-    .sli-dot {
+    .explore-legend-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
       flex-shrink: 0;
     }
-    .sli-dot.lien { background: var(--lien); }
-    .sli-dot.deed { background: var(--deed); }
-    .sli-dot.hybrid { background: var(--hybrid); }
-    .sli-dot.redeemable { background: var(--rdeed); }
-    .sli-lock {
-      font-size: 10px;
-      color: var(--text3);
-      flex-shrink: 0;
+    .explore-legend-count {
+      opacity: 0.6;
+      margin-left: 2px;
     }
 
-    /* --- Map Center --- */
-    #map-center {
+    /* --- Map View (full page) --- */
+    #map-view {
       flex: 1;
       display: flex;
       flex-direction: column;
+      min-height: 0;
+      position: relative;
+    }
+    #map-view.hidden { display: none; }
+    #d3-map {
+      flex: 1;
+      min-height: 0;
+      display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 0;
-      min-width: 0;
-      position: relative;
-      background: var(--bg);
-    }
-    #d3-map {
-      width: 100%;
-      height: 100%;
-      min-height: 0;
     }
     #d3-map svg {
       width: 100%;
+      max-width: 680px;
       height: 100%;
     }
     #d3-map .state-path {
-      stroke: var(--bg);
+      fill: rgba(255,255,255,0.025);
+      stroke: rgba(0,212,255,0.12);
       stroke-width: 0.5;
       cursor: pointer;
-      transition: opacity 0.15s var(--transition);
+      transition: fill 0.25s ease, stroke 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+      transform-origin: center;
+      transform-box: fill-box;
     }
-    #d3-map .state-path:hover { opacity: 0.8; }
-    #d3-map .state-path.active { stroke: var(--accent); stroke-width: 1.5; }
+    #d3-map .state-path:hover { fill: rgba(255,255,255,0.06); }
+    #d3-map .state-path.selected { stroke-width: 1.5; transform: scale(1.1); }
     #d3-map .state-path.locked { opacity: 0.25; cursor: not-allowed; }
-    #map-legend {
+    #map-legend-glass {
       position: absolute;
       bottom: 12px;
       left: 12px;
       display: flex;
       gap: 14px;
+      padding: 8px 12px;
+      background: rgba(1,4,12,0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0,212,255,0.08);
+      border-radius: 4px;
       font-family: 'Space Mono', monospace;
-      font-size: 9px;
+      font-size: 8px;
       letter-spacing: 0.08em;
-      color: var(--text2);
+      color: rgba(255,255,255,0.4);
     }
     .legend-item { display: flex; align-items: center; gap: 5px; }
-    .legend-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-    }
-
-    /* --- Detail Panel --- */
-    #map-detail {
-      width: 300px;
-      min-width: 300px;
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
-      background: var(--bg2);
-      border-left: 1px solid var(--border);
-      overflow-y: auto;
-    }
-    #map-detail::-webkit-scrollbar { width: 4px; }
-    #map-detail::-webkit-scrollbar-track { background: transparent; }
-    #map-detail::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-    #detail-empty {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: var(--text3);
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-    }
-    #detail-loaded { display: none; padding: 20px 16px; }
-    #detail-loaded.visible { display: block; }
-    #dl-lock { display: none; padding: 20px 16px; text-align: center; }
-    #dl-lock.visible { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-height: 200px; }
-    .dl-header {
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-    #dl-abbr {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--text2);
-    }
-    #dl-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px;
-      letter-spacing: 0.05em;
-      color: var(--text);
-      line-height: 1.1;
-    }
-    #dl-badge {
-      display: inline-block;
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 2px 8px;
-      border-radius: var(--radius);
-      margin-top: 6px;
-    }
-    #dl-badge.lien { background: var(--accent-dim); color: var(--lien); border: 1px solid var(--lien); }
-    #dl-badge.deed { background: var(--accent-dim); color: var(--deed); border: 1px solid var(--deed); }
-    #dl-badge.hybrid { background: var(--accent-dim); color: var(--hybrid); border: 1px solid var(--hybrid); }
-    #dl-badge.redeemable { background: var(--accent-dim); color: var(--rdeed); border: 1px solid var(--rdeed); }
-    .dl-section {
-      margin-bottom: 16px;
-    }
-    .dl-section-title {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      color: var(--text3);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .dl-row {
+    .legend-dot { width: 6px; height: 6px; border-radius: 50%; }
+    #map-footer {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 5px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .dl-row-label {
+      padding: 6px 16px;
       font-family: 'Space Mono', monospace;
+      font-size: 6px;
+      color: rgba(0,212,255,0.15);
+      letter-spacing: 0.15em;
+      flex-shrink: 0;
+    }
+    #map-bg-glow {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      transition: background 0.6s ease;
+    }
+
+    /* --- List View (full page) --- */
+    #list-view {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      min-height: 0;
+    }
+    #list-view.active { display: flex; }
+
+    /* Search + Filter bar */
+    #list-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: rgba(1,4,12,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,212,255,0.1);
+      flex-shrink: 0;
+    }
+    #list-search-wrap {
+      position: relative;
+      max-width: 340px;
+      flex: 1;
+    }
+    #list-search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
       font-size: 10px;
-      color: var(--text2);
+      color: rgba(0,212,255,0.25);
+      pointer-events: none;
+    }
+    #list-search {
+      width: 100%;
+      padding: 8px 32px 8px 30px;
+      background: rgba(0,212,255,0.05);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 5px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: #f0f0f0;
+      letter-spacing: 0.06em;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    #list-search:focus { border-color: rgba(0,212,255,0.4); }
+    #list-search::placeholder { color: rgba(0,212,255,0.25); }
+    #list-search-clear {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(0,212,255,0.3);
+      font-size: 12px;
+      cursor: pointer;
+      display: none;
+      padding: 2px 4px;
+    }
+    #list-count {
+      font-family: 'Space Mono', monospace;
+      font-size: 7px;
+      color: rgba(0,212,255,0.3);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .filter-pills {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .filter-pill {
+      font-family: 'Space Mono', monospace;
+      font-size: 7px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 3px;
+      cursor: pointer;
+      border: 1px solid rgba(0,212,255,0.12);
+      background: rgba(0,212,255,0.04);
+      color: rgba(0,212,255,0.4);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .filter-pill:hover { border-color: rgba(0,212,255,0.25); }
+    .filter-pill.active-all { background: rgba(0,212,255,0.08); border-color: rgba(0,212,255,0.3); color: rgba(0,212,255,0.7); }
+    .filter-pill.active-lien { background: rgba(255,190,11,0.16); border-color: rgba(255,190,11,0.55); color: #FFBE0B; }
+    .filter-pill.active-deed { background: rgba(0,212,255,0.16); border-color: rgba(0,212,255,0.55); color: #00D4FF; }
+    .filter-pill.active-redeemable { background: rgba(255,45,85,0.16); border-color: rgba(255,45,85,0.55); color: #FF2D55; }
+    .filter-pill.active-hybrid { background: rgba(191,95,255,0.16); border-color: rgba(191,95,255,0.55); color: #BF5FFF; }
+
+    /* Column headers */
+    #list-col-headers {
+      display: grid;
+      grid-template-columns: 28px 8px 1fr 56px 58px 80px;
+      gap: 0;
+      padding: 6px 12px;
+      background: rgba(0,0,0,0.4);
+      border-bottom: 1px solid rgba(0,212,255,0.08);
+      flex-shrink: 0;
+    }
+    .list-col-head {
+      font-family: 'Space Mono', monospace;
+      font-size: 6px;
+      letter-spacing: 0.2em;
+      color: rgba(0,212,255,0.3);
+      text-transform: uppercase;
+    }
+    .list-col-head.right { text-align: right; }
+
+    /* Scrollable rows */
+    #list-rows {
+      flex: 1;
+      overflow-y: auto;
+      min-height: 0;
+    }
+    #list-rows::-webkit-scrollbar { width: 4px; }
+    #list-rows::-webkit-scrollbar-track { background: transparent; }
+    #list-rows::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.1); border-radius: 2px; }
+    .list-row {
+      display: grid;
+      grid-template-columns: 28px 8px 1fr 56px 58px 80px;
+      gap: 0;
+      padding: 6px 12px;
+      border-bottom: 1px solid rgba(0,212,255,0.04);
+      cursor: pointer;
+      align-items: center;
+      transition: background 0.15s ease;
+      border-left: 2px solid transparent;
+    }
+    .list-row:hover { background: rgba(0,212,255,0.04); }
+    .list-row.selected { border-left-color: var(--type-color, #FFBE0B); }
+    .list-row.locked { opacity: 0.3; }
+    .list-row-rank {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      color: rgba(0,212,255,0.2);
       letter-spacing: 0.05em;
     }
-    .dl-row-value {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      color: var(--text);
-      font-weight: 700;
+    .list-row-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 1px;
     }
-    .dl-cta {
+    .list-row-name {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--text);
+      letter-spacing: 0.06em;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .list-row-yield, .list-row-redempt {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: var(--text);
+      letter-spacing: 0.04em;
+      text-align: right;
+    }
+    .list-row-type {
+      text-align: right;
+    }
+    .list-type-badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 7px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 2px;
+    }
+    .list-type-badge.lien { color: #FFBE0B; border: 1px solid rgba(255,190,11,0.4); background: rgba(255,190,11,0.08); }
+    .list-type-badge.deed { color: #00D4FF; border: 1px solid rgba(0,212,255,0.4); background: rgba(0,212,255,0.08); }
+    .list-type-badge.hybrid { color: #BF5FFF; border: 1px solid rgba(191,95,255,0.4); background: rgba(191,95,255,0.08); }
+    .list-type-badge.redeemable { color: #FF2D55; border: 1px solid rgba(255,45,85,0.4); background: rgba(255,45,85,0.08); }
+    .fb-char {
+      display: inline-block;
+      transition: transform 0.08s linear;
+    }
+    #list-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: rgba(0,212,255,0.2);
+      letter-spacing: 0.18em;
+    }
+
+    /* --- Detail Panel (bottom overlay) --- */
+    #detail-panel {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 600;
+      background: rgba(1,4,12,0.95);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 0;
+      display: none;
+    }
+    #detail-panel.visible {
+      display: block;
+      animation: panelUp 380ms cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes panelUp {
+      from { transform: translateY(110%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    #detail-shimmer {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--type-color, #FFBE0B) 50%, transparent 100%);
+    }
+    #detail-inner {
+      padding: 16px 18px 22px;
+    }
+    #detail-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    #detail-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 0.06em;
+      line-height: 1;
+    }
+    #detail-type-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 7px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    #detail-close {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px;
+      color: rgba(255,255,255,0.4);
+      font-size: 14px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s ease;
+    }
+    #detail-close:hover { background: rgba(255,255,255,0.1); }
+    .detail-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .detail-stat-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-left: 2px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 9px 10px;
+    }
+    .detail-stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 6px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .detail-stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.05em;
+    }
+    .detail-signal-bar {
+      height: 3px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 2px;
+      margin-top: 6px;
+      overflow: hidden;
+    }
+    .detail-signal-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+    #detail-alert {
+      display: none;
+      padding: 8px 10px;
+      margin-bottom: 12px;
+      background: rgba(255,45,85,0.07);
+      border: 1px solid rgba(255,45,85,0.2);
+      border-left: 2px solid #FF2D55;
+      border-radius: 3px;
+      font-family: 'Space Mono', monospace;
+      font-size: 7px;
+      color: #FF2D55;
+      letter-spacing: 0.1em;
+      animation: blink 1.4s infinite;
+    }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+    #detail-cta {
       display: block;
       width: 100%;
       text-align: center;
       padding: 12px;
-      margin-top: 20px;
-      background: transparent;
-      border: 1px solid var(--accent-mid);
-      color: var(--accent);
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      border-radius: 3px;
       text-decoration: none;
-      border-radius: var(--radius);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: background 0.2s var(--transition), box-shadow 0.2s var(--transition);
+      transition: background 0.2s ease, box-shadow 0.2s ease;
     }
-    .dl-cta:hover {
-      background: var(--accent-dim);
-      box-shadow: 0 0 20px var(--accent-glow);
+    #detail-lock {
+      display: none;
+      text-align: center;
+      padding: 16px 18px 22px;
     }
-    .dl-cta.primary {
-      background: var(--accent);
-      color: var(--bg);
-      border-color: var(--accent);
-    }
-    .dl-cta.primary:hover {
-      box-shadow: 0 0 24px var(--accent-glow);
-    }
+    #detail-lock.visible { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-height: 120px; }
     .dl-lock-icon { font-size: 28px; color: var(--text3); }
     .dl-lock-text {
       font-family: 'Space Mono', monospace;
@@ -672,23 +877,41 @@
       text-align: center;
       line-height: 1.6;
     }
+    .dl-cta {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      background: var(--accent);
+      color: var(--bg);
+      border: 1px solid var(--accent);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: box-shadow 0.2s ease;
+    }
+    .dl-cta:hover { box-shadow: 0 0 24px var(--accent-glow); }
 
     /* --- Tooltip --- */
     #map-tooltip {
       position: fixed;
       pointer-events: none;
-      z-index: 500;
-      background: var(--bg3);
-      border: 1px solid var(--border-hover);
+      z-index: 700;
+      background: rgba(1,4,12,0.9);
+      border: 1px solid rgba(0,212,255,0.2);
       padding: 8px 12px;
-      border-radius: var(--radius);
+      border-radius: 4px;
       font-family: 'Space Mono', monospace;
       font-size: 10px;
-      color: var(--text);
+      color: #f0f0f0;
       letter-spacing: 0.05em;
-      box-shadow: var(--shadow);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
       opacity: 0;
-      transition: opacity 0.15s var(--transition);
+      transition: opacity 0.15s ease;
       white-space: nowrap;
     }
     #map-tooltip.visible { opacity: 1; }
@@ -969,145 +1192,12 @@
       box-shadow: 0 0 20px var(--accent-glow);
     }
 
-    /* === VIEW TOGGLE BAR === */
-    #view-toggle-bar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 4px;
-      background: var(--bg2);
-      border-bottom: 1px solid var(--border);
-      padding: 6px 12px;
-      flex-shrink: 0;
-    }
-    .view-toggle-btn {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text2);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 6px 18px;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: color 0.2s var(--transition), background 0.2s var(--transition), border-color 0.2s var(--transition);
-      white-space: nowrap;
-    }
-    .view-toggle-btn:hover { color: var(--text); border-color: var(--border-hover); }
-    .view-toggle-btn.active {
-      color: var(--accent);
-      background: var(--accent-dim);
-      border-color: var(--accent);
-    }
-
-    /* === FLIP BOARD === */
-    #flip-board-wrap {
-      display: none;
-      flex: 1;
-      flex-direction: column;
-      min-height: 0;
-      background: var(--bg);
-      overflow: hidden;
-    }
-    #flip-board-wrap.active { display: flex; }
-    #flip-board-header {
-      display: grid;
-      grid-template-columns: 48px 64px 1fr 100px 100px 80px;
-      gap: 0;
-      padding: 10px 16px;
-      border-bottom: 1px solid var(--border);
-      background: var(--bg2);
-      flex-shrink: 0;
-    }
-    .fb-col-head {
-      font-family: 'Space Mono', monospace;
-      font-size: 8px;
-      letter-spacing: 0.25em;
-      color: var(--accent);
-      text-transform: uppercase;
-    }
-    #flip-board-body {
-      flex: 1;
-      overflow-y: auto;
-      min-height: 0;
-    }
-    #flip-board-body::-webkit-scrollbar { width: 4px; }
-    #flip-board-body::-webkit-scrollbar-track { background: transparent; }
-    #flip-board-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-    .fb-row {
-      display: grid;
-      grid-template-columns: 48px 64px 1fr 100px 100px 80px;
-      gap: 0;
-      padding: 8px 16px;
-      border-bottom: 1px solid rgba(201,168,76,0.04);
-      cursor: pointer;
-      transition: background 0.15s var(--transition);
-      align-items: center;
-    }
-    .fb-row:hover { background: var(--accent-dim); }
-    .fb-row.active { background: var(--accent-dim); border-left: 2px solid var(--accent); }
-    .fb-row.locked { opacity: 0.3; }
-    .fb-rank {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      color: var(--text3);
-      letter-spacing: 0.05em;
-    }
-    .fb-code {
-      font-family: 'Space Mono', monospace;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-    }
-    .fb-code.lien { color: var(--lien); }
-    .fb-code.deed { color: var(--deed); }
-    .fb-code.hybrid { color: var(--hybrid); }
-    .fb-code.redeemable { color: var(--rdeed); }
-    .fb-name {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      color: var(--text);
-      letter-spacing: 0.06em;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .fb-yield, .fb-redempt {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      color: var(--text);
-      letter-spacing: 0.04em;
-    }
-    .fb-type-badge {
-      font-family: 'Space Mono', monospace;
-      font-size: 8px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 2px 6px;
-      border-radius: 1px;
-      text-align: center;
-      width: fit-content;
-    }
-    .fb-type-badge.lien { color: var(--lien); border: 1px solid var(--lien); background: rgba(255,190,11,0.08); }
-    .fb-type-badge.deed { color: var(--deed); border: 1px solid var(--deed); background: rgba(0,212,255,0.08); }
-    .fb-type-badge.hybrid { color: var(--hybrid); border: 1px solid var(--hybrid); background: rgba(191,95,255,0.08); }
-    .fb-type-badge.redeemable { color: var(--rdeed); border: 1px solid var(--rdeed); background: rgba(255,45,85,0.08); }
-    .fb-lock-icon { font-size: 10px; color: var(--text3); margin-left: 4px; }
-    .fb-cell-flip {
-      display: inline-block;
-      position: relative;
-    }
-    .fb-char {
-      display: inline-block;
-      transition: transform 0.08s linear;
-    }
-
-    /* --- Mobile: hide sidebar/detail below 1024px --- */
-    @media (max-width: 1024px) {
-      #map-sidebar { display: none; }
-      #map-detail { display: none; }
-      #flip-board-header { grid-template-columns: 36px 48px 1fr 72px 72px 60px; padding: 8px 10px; }
-      .fb-row { grid-template-columns: 36px 48px 1fr 72px 72px 60px; padding: 6px 10px; }
+    /* --- Mobile responsive --- */
+    @media (max-width: 768px) {
+      .explore-legend { display: none; }
+      .detail-stats { grid-template-columns: 1fr; }
+      #list-toolbar { flex-wrap: wrap; }
+      .filter-pills { flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -1153,79 +1243,78 @@
   </nav>
   <div id="main-content">
     <div class="tab-panel active" id="panel-map">
-      <!-- View Toggle -->
-      <div id="view-toggle-bar">
-        <button class="view-toggle-btn active" id="btn-view-map" onclick="switchView('map')">&#9707; Map</button>
-        <button class="view-toggle-btn" id="btn-view-board" onclick="switchView('board')">&#8942; List</button>
+      <!-- Explore Header: tabs + legend -->
+      <div id="explore-header">
+        <div class="explore-tabs">
+          <button class="explore-tab active" id="etab-map" onclick="switchExploreTab('map')">&#9707; MAP</button>
+          <button class="explore-tab" id="etab-list" onclick="switchExploreTab('list')">&#8801; LIST</button>
+        </div>
+        <div class="explore-legend" id="explore-legend"></div>
       </div>
-      <!-- Map content row -->
-      <div id="map-row">
-        <!-- Flip Board (hidden by default) -->
-        <div id="flip-board-wrap">
-          <div id="flip-board-header">
-            <div class="fb-col-head">#</div>
-            <div class="fb-col-head">Code</div>
-            <div class="fb-col-head">Jurisdiction</div>
-            <div class="fb-col-head">Yield %</div>
-            <div class="fb-col-head">Redempt</div>
-            <div class="fb-col-head">Type</div>
-          </div>
-          <div id="flip-board-body"></div>
+
+      <!-- MAP VIEW -->
+      <div id="map-view">
+        <div id="map-bg-glow"></div>
+        <div id="d3-map"></div>
+        <div id="map-legend-glass">
+          <div class="legend-item"><div class="legend-dot" style="background:#FFBE0B"></div>Tax Lien</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#00D4FF"></div>Tax Deed</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#FF2D55"></div>Redeemable</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#BF5FFF"></div>Hybrid</div>
         </div>
-        <!-- Sidebar: state list -->
-        <div id="map-sidebar">
-          <input type="text" id="state-search" placeholder="Search states..." oninput="filterStateList(this.value)">
-          <div id="state-list"></div>
+        <div id="map-footer">
+          <span>AURIGEN &middot; TAX INVESTMENT INTELLIGENCE &middot; 2026</span>
+          <span>51 JURISDICTIONS</span>
         </div>
-        <!-- Center: D3 map -->
-        <div id="map-center">
-          <div id="d3-map"></div>
-          <div id="map-legend">
-            <div class="legend-item"><div class="legend-dot" style="background:var(--lien)"></div>Tax Lien</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--deed)"></div>Tax Deed</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--rdeed)"></div>Redeemable</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--hybrid)"></div>Hybrid</div>
-          </div>
-        </div>
-        <!-- Right: detail panel -->
-        <div id="map-detail">
-          <div id="detail-empty">
-            <div>&#9670;</div>
-            <div>SELECT A STATE</div>
-          </div>
-          <div id="detail-loaded">
-            <div class="dl-header">
-              <div id="dl-abbr"></div>
-              <div id="dl-name"></div>
-              <div id="dl-badge"></div>
-            </div>
-            <div class="dl-section">
-              <div class="dl-section-title">Key Metrics</div>
-              <div class="dl-row"><span class="dl-row-label">Rate / Penalty</span><span class="dl-row-value" id="dl-rate"></span></div>
-              <div class="dl-row"><span class="dl-row-label">Redemption</span><span class="dl-row-value" id="dl-redemption"></span></div>
-              <div class="dl-row"><span class="dl-row-label">Bid Method</span><span class="dl-row-value" id="dl-bid"></span></div>
-              <div class="dl-row"><span class="dl-row-label">Penalty</span><span class="dl-row-value" id="dl-penalty"></span></div>
-            </div>
-            <div class="dl-section">
-              <div class="dl-section-title">Auction</div>
-              <div class="dl-row"><span class="dl-row-label">Platform</span><span class="dl-row-value" id="dl-platform"></span></div>
-              <div class="dl-row"><span class="dl-row-label">Frequency</span><span class="dl-row-value" id="dl-frequency"></span></div>
-            </div>
-            <div class="dl-section">
-              <div class="dl-section-title">Legal</div>
-              <div class="dl-row"><span class="dl-row-label">Statute</span><span class="dl-row-value" id="dl-statute"></span></div>
-            </div>
-            <a class="dl-cta" href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener">Book Investor Clarity Call</a>
-          </div>
-          <div id="dl-lock">
-            <div class="dl-lock-icon">&#128274;</div>
-            <div class="dl-lock-text">This state requires<br>full access to view.</div>
-            <a class="dl-cta primary" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Upgrade — Full Access</a>
-          </div>
-        </div>
-        <!-- Tooltip -->
-        <div id="map-tooltip"></div>
       </div>
+
+      <!-- LIST VIEW -->
+      <div id="list-view">
+        <div id="list-toolbar">
+          <div id="list-search-wrap">
+            <span id="list-search-icon">&#8981;</span>
+            <input type="text" id="list-search" placeholder="Search state, code, or type&hellip;">
+            <button id="list-search-clear" onclick="clearListSearch()">&times;</button>
+          </div>
+          <div id="list-count"></div>
+          <div class="filter-pills" id="filter-pills"></div>
+        </div>
+        <div id="list-col-headers">
+          <div class="list-col-head">#</div>
+          <div class="list-col-head">&middot;</div>
+          <div class="list-col-head">JURISDICTION</div>
+          <div class="list-col-head right">YIELD</div>
+          <div class="list-col-head right">REDEMPT</div>
+          <div class="list-col-head right">TYPE</div>
+        </div>
+        <div id="list-rows"></div>
+        <div id="list-empty" style="display:none"></div>
+      </div>
+
+      <!-- DETAIL PANEL (bottom overlay) -->
+      <div id="detail-panel">
+        <div id="detail-shimmer"></div>
+        <div id="detail-inner">
+          <div id="detail-header">
+            <div>
+              <div id="detail-title"></div>
+              <div id="detail-type-label"></div>
+            </div>
+            <button id="detail-close" onclick="closeDetail()">&times;</button>
+          </div>
+          <div class="detail-stats" id="detail-stats"></div>
+          <div id="detail-alert">&#9889; 2026 LEGISLATIVE ALERT &mdash; VERIFY BEFORE TRANSACTING</div>
+          <a id="detail-cta" href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener">BOOK INVESTOR CLARITY CALL</a>
+        </div>
+        <div id="detail-lock">
+          <div class="dl-lock-icon">&#128274;</div>
+          <div class="dl-lock-text">This state requires<br>full access to view.</div>
+          <a class="dl-cta" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Upgrade &mdash; Full Access</a>
+        </div>
+      </div>
+
+      <!-- Tooltip -->
+      <div id="map-tooltip"></div>
     </div>
     <div class="tab-panel" id="panel-tools">
       <div class="tools-grid">
@@ -1500,73 +1589,398 @@ const FIPS_TO_ABBR = {
   '54':'WV','55':'WI','56':'WY'
 };
 
-const TYPE_COLORS = { lien: 'var(--lien)', deed: 'var(--deed)', hybrid: 'var(--hybrid)', redeemable: 'var(--rdeed)' };
+// === TYPE COLOR SYSTEM ===
+// System 1 — TYPE_FILL: raw hex for D3 path fills and JS color lookups
+var TYPE_FILL = {
+  lien: '#FFBE0B',
+  deed: '#00D4FF',
+  redeemable: '#FF2D55',
+  hybrid: '#BF5FFF'
+};
 
-// === RENDER STATE LIST ===
-function renderStateList(filter) {
-  const list = document.getElementById('state-list');
-  list.innerHTML = '';
-  const q = (filter || '').toLowerCase();
-  ALL_STATES.forEach(s => {
-    if (q && !s.name.toLowerCase().includes(q) && !s.abbr.toLowerCase().includes(q)) return;
-    const locked = APP.tier < 2 && !FREE_STATES.includes(s.abbr);
-    const div = document.createElement('div');
-    div.className = 'sli' + (locked ? ' locked' : '') + (APP.selectedState === s.abbr ? ' active' : '');
-    div.innerHTML = `<span class="sli-abbr">${s.abbr}</span><span class="sli-name">${s.name}</span><span class="sli-dot ${s.type}"></span>${locked ? '<span class="sli-lock">&#128274;</span>' : ''}`;
-    div.onclick = () => selectState(s.abbr);
-    list.appendChild(div);
+// System 2 — TYPE_COLORS: CSS var references for styled elements
+var TYPE_COLORS = { lien: 'var(--lien)', deed: 'var(--deed)', hybrid: 'var(--hybrid)', redeemable: 'var(--rdeed)' };
+
+// Type display labels
+var TYPE_LABELS = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDEE', hybrid: 'HYBR' };
+var TYPE_FULL = { lien: 'TAX LIEN', deed: 'TAX DEED', redeemable: 'REDEEMABLE DEED', hybrid: 'HYBRID' };
+
+// Current explore state
+var exploreView = 'map';
+var listFilter = 'all';
+var listQuery = '';
+var boardKey = 0;
+
+// === BUILD LEGEND COUNTS ===
+function buildExploreLegend() {
+  var legend = document.getElementById('explore-legend');
+  if (!legend) return;
+  var counts = { lien: 0, deed: 0, redeemable: 0, hybrid: 0 };
+  ALL_STATES.forEach(function(s) { if (counts[s.type] !== undefined) counts[s.type]++; });
+  legend.innerHTML = '';
+  var items = [
+    { key: 'lien', label: 'TAX LIEN', color: '#FFBE0B' },
+    { key: 'deed', label: 'TAX DEED', color: '#00D4FF' },
+    { key: 'redeemable', label: 'REDEEMABLE', color: '#FF2D55' },
+    { key: 'hybrid', label: 'HYBRID', color: '#BF5FFF' }
+  ];
+  items.forEach(function(it) {
+    var div = document.createElement('div');
+    div.className = 'explore-legend-item';
+    div.innerHTML = '<div class="explore-legend-dot" style="background:' + it.color + '"></div>' +
+      it.label + ' <span class="explore-legend-count">[' + counts[it.key] + ']</span>';
+    legend.appendChild(div);
   });
 }
 
-function filterStateList(val) { renderStateList(val); }
+// === EXPLORE TAB SWITCHING ===
+function switchExploreTab(view) {
+  exploreView = view;
+  APP.selectedState = null;
+  closeDetail();
+
+  var mapView = document.getElementById('map-view');
+  var listView = document.getElementById('list-view');
+  var tabMap = document.getElementById('etab-map');
+  var tabList = document.getElementById('etab-list');
+
+  if (view === 'list') {
+    mapView.classList.add('hidden');
+    listView.classList.add('active');
+    tabMap.classList.remove('active');
+    tabList.classList.add('active');
+    boardKey++;
+    renderListView();
+  } else {
+    mapView.classList.remove('hidden');
+    listView.classList.remove('active');
+    tabMap.classList.add('active');
+    tabList.classList.remove('active');
+    updateMapSelection();
+  }
+}
+
+// === BUILD FILTER PILLS ===
+function buildFilterPills() {
+  var wrap = document.getElementById('filter-pills');
+  if (!wrap) return;
+  var pills = [
+    { key: 'all', label: 'ALL', cls: 'active-all' },
+    { key: 'lien', label: 'LIEN', cls: 'active-lien' },
+    { key: 'deed', label: 'DEED', cls: 'active-deed' },
+    { key: 'redeemable', label: 'RDEE', cls: 'active-redeemable' },
+    { key: 'hybrid', label: 'HYBR', cls: 'active-hybrid' }
+  ];
+  wrap.innerHTML = '';
+  pills.forEach(function(p) {
+    var btn = document.createElement('button');
+    btn.className = 'filter-pill' + (listFilter === p.key ? ' ' + p.cls : '');
+    btn.textContent = p.label;
+    btn.onclick = function() {
+      listFilter = p.key;
+      boardKey++;
+      buildFilterPills();
+      renderListView();
+    };
+    wrap.appendChild(btn);
+  });
+}
+
+// === SEARCH ===
+function setupListSearch() {
+  var input = document.getElementById('list-search');
+  var clear = document.getElementById('list-search-clear');
+  if (!input) return;
+  input.addEventListener('input', function() {
+    listQuery = input.value;
+    clear.style.display = listQuery.length > 0 ? 'block' : 'none';
+    boardKey++;
+    renderListView();
+  });
+}
+
+function clearListSearch() {
+  var input = document.getElementById('list-search');
+  input.value = '';
+  listQuery = '';
+  document.getElementById('list-search-clear').style.display = 'none';
+  boardKey++;
+  renderListView();
+}
+
+// === SOLARI FLIP ENGINE ===
+var FLIP_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.%\u00A7\u2014\u00B7';
+var FLIP_STEPS = 8;
+var FLIP_INTERVAL = 34;
+
+function solariFlip(el, targetText, delay) {
+  var len = targetText.length;
+  el.textContent = '';
+  var chars = [];
+  for (var i = 0; i < len; i++) {
+    var span = document.createElement('span');
+    span.className = 'fb-char';
+    span.textContent = FLIP_CHARS[Math.floor(Math.random() * FLIP_CHARS.length)];
+    el.appendChild(span);
+    chars.push(span);
+  }
+  chars.forEach(function(span, idx) {
+    var step = 0;
+    var target = targetText[idx];
+    setTimeout(function() {
+      var interval = setInterval(function() {
+        step++;
+        if (step >= FLIP_STEPS) {
+          span.textContent = target;
+          clearInterval(interval);
+        } else {
+          span.textContent = FLIP_CHARS[Math.floor(Math.random() * FLIP_CHARS.length)];
+        }
+      }, FLIP_INTERVAL);
+    }, delay + idx * 20);
+  });
+}
+
+// === RENDER LIST VIEW ===
+function renderListView() {
+  var rows = document.getElementById('list-rows');
+  var empty = document.getElementById('list-empty');
+  var countEl = document.getElementById('list-count');
+  if (!rows) return;
+  rows.innerHTML = '';
+
+  var q = listQuery.toLowerCase();
+  var filtered = ALL_STATES.filter(function(s) {
+    var passFilter = listFilter === 'all' || s.type === listFilter;
+    var passQuery = !q || s.abbr.toLowerCase().indexOf(q) !== -1 ||
+      s.name.toLowerCase().indexOf(q) !== -1 || s.type.toLowerCase().indexOf(q) !== -1;
+    return passFilter && passQuery;
+  });
+
+  countEl.textContent = filtered.length + ' / ' + ALL_STATES.length;
+
+  if (filtered.length === 0) {
+    rows.style.display = 'none';
+    empty.style.display = 'flex';
+    empty.textContent = 'NO RESULTS FOR "' + listQuery.toUpperCase() + '"';
+    return;
+  }
+  rows.style.display = '';
+  empty.style.display = 'none';
+
+  filtered.forEach(function(s, i) {
+    var locked = APP.tier < 2 && !FREE_STATES.includes(s.abbr);
+    var data = STATE_DATA[s.abbr];
+    var yieldText = data ? data.rate : (locked ? '\u2014\u2014\u2014' : '\u2014');
+    var redemptText = data ? data.redemption : (locked ? '\u2014\u2014\u2014' : '\u2014');
+    var typeColor = TYPE_FILL[s.type] || '#FFBE0B';
+    var typeLabel = TYPE_LABELS[s.type] || s.type.toUpperCase().substring(0, 4);
+
+    var row = document.createElement('div');
+    row.className = 'list-row' + (locked ? ' locked' : '') + (APP.selectedState === s.abbr ? ' selected' : '');
+    if (APP.selectedState === s.abbr) row.style.setProperty('--type-color', typeColor);
+    row.style.background = APP.selectedState === s.abbr
+      ? 'linear-gradient(90deg, ' + typeColor + '18, transparent)'
+      : '';
+    row.onclick = function() { selectState(s.abbr); };
+
+    // Rank
+    var rankEl = document.createElement('div');
+    rankEl.className = 'list-row-rank';
+    rankEl.textContent = String(i + 1).padStart(2, '0');
+
+    // Dot
+    var dotEl = document.createElement('div');
+    dotEl.className = 'list-row-dot';
+    dotEl.style.background = typeColor;
+
+    // Name (flip)
+    var nameEl = document.createElement('div');
+    nameEl.className = 'list-row-name';
+
+    // Yield (flip)
+    var yieldEl = document.createElement('div');
+    yieldEl.className = 'list-row-yield';
+
+    // Redemption (flip)
+    var redemptEl = document.createElement('div');
+    redemptEl.className = 'list-row-redempt';
+
+    // Type badge
+    var typeWrap = document.createElement('div');
+    typeWrap.className = 'list-row-type';
+    var badge = document.createElement('span');
+    badge.className = 'list-type-badge ' + s.type;
+    badge.textContent = typeLabel;
+    typeWrap.appendChild(badge);
+
+    row.appendChild(rankEl);
+    row.appendChild(dotEl);
+    row.appendChild(nameEl);
+    row.appendChild(yieldEl);
+    row.appendChild(redemptEl);
+    row.appendChild(typeWrap);
+    rows.appendChild(row);
+
+    // Solari flip animation staggered per row
+    var rowDelay = i * 40;
+    solariFlip(nameEl, s.name.toUpperCase(), rowDelay);
+    solariFlip(yieldEl, yieldText.toUpperCase(), rowDelay + 80);
+    solariFlip(redemptEl, redemptText.toUpperCase(), rowDelay + 160);
+  });
+
+  // Auto-scroll to selected
+  if (APP.selectedState) {
+    var sel = rows.querySelector('.list-row.selected');
+    if (sel) sel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
 
 // === SELECT STATE ===
 function selectState(abbr) {
-  const st = ALL_STATES.find(s => s.abbr === abbr);
+  var st = ALL_STATES.find(function(s) { return s.abbr === abbr; });
   if (!st) return;
-  const locked = APP.tier < 2 && !FREE_STATES.includes(abbr);
-  APP.selectedState = abbr;
+  var locked = APP.tier < 2 && !FREE_STATES.includes(abbr);
+  var typeColor = TYPE_FILL[st.type] || '#FFBE0B';
+  var typeGlow = typeColor + '66';
 
-  // Update sidebar active
-  document.querySelectorAll('.sli').forEach(el => {
-    el.classList.toggle('active', el.querySelector('.sli-abbr').textContent === abbr);
-  });
-
-  // Update map active
-  document.querySelectorAll('#d3-map .state-path').forEach(p => {
-    p.classList.toggle('active', p.dataset.abbr === abbr);
-  });
-
-  const empty = document.getElementById('detail-empty');
-  const loaded = document.getElementById('detail-loaded');
-  const lock = document.getElementById('dl-lock');
-
-  if (locked) {
-    empty.style.display = 'none';
-    loaded.classList.remove('visible');
-    lock.classList.add('visible');
+  // Toggle: click same state to deselect
+  if (APP.selectedState === abbr) {
+    APP.selectedState = null;
+    closeDetail();
+    updateMapSelection();
+    if (exploreView === 'list') renderListView();
     return;
   }
 
-  lock.classList.remove('visible');
-  empty.style.display = 'none';
-  loaded.classList.add('visible');
+  APP.selectedState = abbr;
 
-  document.getElementById('dl-abbr').textContent = abbr;
-  document.getElementById('dl-name').textContent = st.name;
+  // Update map selection
+  updateMapSelection();
 
-  const badge = document.getElementById('dl-badge');
-  badge.textContent = st.type.toUpperCase();
-  badge.className = st.type;
+  // Update list selection
+  if (exploreView === 'list') renderListView();
 
-  const data = STATE_DATA[abbr];
-  document.getElementById('dl-rate').textContent = data ? data.rate : '—';
-  document.getElementById('dl-redemption').textContent = data ? data.redemption : '—';
-  document.getElementById('dl-bid').textContent = data ? data.bid : '—';
-  document.getElementById('dl-penalty').textContent = data ? data.penalty : '—';
-  document.getElementById('dl-platform').textContent = data ? data.platform : '—';
-  document.getElementById('dl-frequency').textContent = data ? data.frequency : '—';
-  document.getElementById('dl-statute').textContent = data ? data.statute : '—';
+  // Update background glow
+  var glow = document.getElementById('map-bg-glow');
+  if (glow) glow.style.background = 'radial-gradient(ellipse 60% 40% at 50% 60%, ' + typeColor + '0A, transparent 70%)';
+
+  // Show detail panel
+  var panel = document.getElementById('detail-panel');
+  var inner = document.getElementById('detail-inner');
+  var lockEl = document.getElementById('detail-lock');
+  var shimmer = document.getElementById('detail-shimmer');
+
+  shimmer.style.setProperty('--type-color', typeColor);
+  shimmer.style.background = 'linear-gradient(90deg, transparent 0%, ' + typeColor + ' 50%, transparent 100%)';
+  panel.style.borderTopColor = typeColor + '70';
+
+  if (locked) {
+    inner.style.display = 'none';
+    lockEl.classList.add('visible');
+    panel.classList.remove('visible');
+    void panel.offsetWidth;
+    panel.classList.add('visible');
+    return;
+  }
+
+  lockEl.classList.remove('visible');
+  inner.style.display = '';
+
+  // Title
+  var title = document.getElementById('detail-title');
+  title.textContent = abbr + ' \u2014 ' + st.name;
+  title.style.color = typeColor;
+  title.style.textShadow = '0 0 30px ' + typeGlow;
+
+  // Type label
+  var typeLabel = document.getElementById('detail-type-label');
+  var fullType = TYPE_FULL[st.type] || st.type.toUpperCase();
+  typeLabel.textContent = fullType;
+  if (st.investorAlert) typeLabel.textContent += '  \u00B7  \u26A1 2026 ALERT';
+
+  // Stats
+  var data = STATE_DATA[abbr];
+  var rate = data ? data.rate : '\u2014';
+  var redemption = data ? data.redemption : '\u2014';
+  var score = data ? '85' : '\u2014';
+  var rateDecimal = parseFloat(rate) / 100 || 0;
+
+  var statsEl = document.getElementById('detail-stats');
+  statsEl.innerHTML = '';
+  var statItems = [
+    { label: 'YIELD RATE', value: rate },
+    { label: 'REDEMPTION', value: redemption },
+    { label: 'SIGNAL', value: score, bar: true }
+  ];
+  statItems.forEach(function(item) {
+    var box = document.createElement('div');
+    box.className = 'detail-stat-box';
+    box.style.borderLeftColor = typeColor + '8C';
+    var lbl = document.createElement('div');
+    lbl.className = 'detail-stat-label';
+    lbl.textContent = item.label;
+    var val = document.createElement('div');
+    val.className = 'detail-stat-value';
+    val.textContent = item.value;
+    val.style.color = typeColor;
+    box.appendChild(lbl);
+    box.appendChild(val);
+    if (item.bar) {
+      var barWrap = document.createElement('div');
+      barWrap.className = 'detail-signal-bar';
+      var fill = document.createElement('div');
+      fill.className = 'detail-signal-fill';
+      fill.style.background = 'linear-gradient(90deg, ' + typeColor + ', ' + typeColor + ')';
+      fill.style.boxShadow = '0 0 10px ' + typeGlow;
+      fill.style.width = '0%';
+      barWrap.appendChild(fill);
+      box.appendChild(barWrap);
+      setTimeout(function() { fill.style.width = (rateDecimal * 100) + '%'; }, 100);
+    }
+    statsEl.appendChild(box);
+  });
+
+  // Alert
+  var alertEl = document.getElementById('detail-alert');
+  alertEl.style.display = st.investorAlert ? 'block' : 'none';
+
+  // CTA
+  var cta = document.getElementById('detail-cta');
+  cta.style.background = typeColor + '2E';
+  cta.style.border = '1px solid ' + typeColor + '8C';
+  cta.style.color = typeColor;
+
+  // Show panel
+  panel.classList.remove('visible');
+  void panel.offsetWidth;
+  panel.classList.add('visible');
+}
+
+function closeDetail() {
+  var panel = document.getElementById('detail-panel');
+  if (panel) panel.classList.remove('visible');
+  var glow = document.getElementById('map-bg-glow');
+  if (glow) glow.style.background = '';
+}
+
+function updateMapSelection() {
+  document.querySelectorAll('#d3-map .state-path').forEach(function(p) {
+    var abbr = p.dataset.abbr;
+    var selected = APP.selectedState === abbr;
+    p.classList.toggle('selected', selected);
+    if (selected) {
+      var st = ALL_STATES.find(function(s) { return s.abbr === abbr; });
+      var typeColor = TYPE_FILL[st ? st.type : 'deed'];
+      p.style.fill = typeColor + '28';
+      p.style.stroke = typeColor;
+      p.style.filter = 'drop-shadow(0 0 12px ' + typeColor + '66)';
+    } else {
+      p.style.fill = '';
+      p.style.stroke = '';
+      p.style.filter = '';
+    }
+  });
 }
 
 function showUpgradePrompt() {
@@ -1575,79 +1989,71 @@ function showUpgradePrompt() {
 
 // === D3 MAP ===
 function initMap() {
-  const container = document.getElementById('d3-map');
-  const w = container.clientWidth || 800;
-  const h = container.clientHeight || 500;
+  var container = document.getElementById('d3-map');
+  var w = container.clientWidth || 800;
+  var h = container.clientHeight || 500;
 
-  const svg = d3.select(container).append('svg')
-    .attr('viewBox', `0 0 ${w} ${h}`)
+  var svg = d3.select(container).append('svg')
+    .attr('viewBox', '0 0 ' + w + ' ' + h)
     .attr('preserveAspectRatio', 'xMidYMid meet');
 
-  const projection = d3.geoAlbersUsa().fitSize([w, h], { type: 'Sphere' });
-  const path = d3.geoPath().projection(projection);
-  const tooltip = document.getElementById('map-tooltip');
+  var projection = d3.geoAlbersUsa().fitSize([w, h], { type: 'Sphere' });
+  var path = d3.geoPath().projection(projection);
+  var tooltip = document.getElementById('map-tooltip');
 
   // Build lookup: abbr → type
-  const typeMap = {};
-  ALL_STATES.forEach(s => { typeMap[s.abbr] = s.type; });
+  var typeMap = {};
+  ALL_STATES.forEach(function(s) { typeMap[s.abbr] = s.type; });
 
   d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
-    .then(us => {
-      const states = topojson.feature(us, us.objects.states).features;
-
-      // Remap projection to fit actual geometry
+    .then(function(us) {
+      var states = topojson.feature(us, us.objects.states).features;
       projection.fitSize([w, h], topojson.feature(us, us.objects.states));
 
       svg.selectAll('.state-path')
         .data(states)
         .join('path')
-        .attr('class', d => {
-          const fips = String(d.id).padStart(2, '0');
-          const abbr = FIPS_TO_ABBR[fips] || '';
-          const locked = APP.tier < 2 && !FREE_STATES.includes(abbr);
+        .attr('class', function(d) {
+          var fips = String(d.id).padStart(2, '0');
+          var abbr = FIPS_TO_ABBR[fips] || '';
+          var locked = APP.tier < 2 && !FREE_STATES.includes(abbr);
           return 'state-path' + (locked ? ' locked' : '');
         })
         .attr('d', path)
-        .attr('data-abbr', d => {
-          const fips = String(d.id).padStart(2, '0');
+        .attr('data-abbr', function(d) {
+          var fips = String(d.id).padStart(2, '0');
           return FIPS_TO_ABBR[fips] || '';
         })
-        .attr('fill', d => {
-          const fips = String(d.id).padStart(2, '0');
-          const abbr = FIPS_TO_ABBR[fips] || '';
-          const t = typeMap[abbr] || 'deed';
-          const colors = { lien: '#FFBE0B', deed: '#00D4FF', hybrid: '#BF5FFF', redeemable: '#FF2D55' };
-          return colors[t];
-        })
-        .on('mousemove', (event, d) => {
-          const fips = String(d.id).padStart(2, '0');
-          const abbr = FIPS_TO_ABBR[fips] || '';
-          const st = ALL_STATES.find(s => s.abbr === abbr);
+        .on('mousemove', function(event, d) {
+          var fips = String(d.id).padStart(2, '0');
+          var abbr = FIPS_TO_ABBR[fips] || '';
+          var st = ALL_STATES.find(function(s) { return s.abbr === abbr; });
           if (!st) return;
-          const locked = APP.tier < 2 && !FREE_STATES.includes(abbr);
+          var locked = APP.tier < 2 && !FREE_STATES.includes(abbr);
           tooltip.innerHTML = locked
-            ? `${abbr} — <span style="color:var(--text3)">LOCKED</span>`
-            : `${abbr} · ${st.name} · ${st.type.toUpperCase()}`;
+            ? abbr + ' \u2014 <span style="color:rgba(0,212,255,0.3)">LOCKED</span>'
+            : abbr + ' \u00B7 ' + st.name + ' \u00B7 ' + st.type.toUpperCase();
           tooltip.classList.add('visible');
           tooltip.style.left = (event.clientX + 14) + 'px';
           tooltip.style.top = (event.clientY - 10) + 'px';
         })
-        .on('mouseleave', () => { tooltip.classList.remove('visible'); })
-        .on('click', (event, d) => {
-          const fips = String(d.id).padStart(2, '0');
-          const abbr = FIPS_TO_ABBR[fips] || '';
+        .on('mouseleave', function() { tooltip.classList.remove('visible'); })
+        .on('click', function(event, d) {
+          var fips = String(d.id).padStart(2, '0');
+          var abbr = FIPS_TO_ABBR[fips] || '';
           selectState(abbr);
         });
     })
-    .catch(() => {
-      container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text3);font-family:Space Mono,monospace;font-size:11px;letter-spacing:0.1em;">MAP UNAVAILABLE — CHECK CONNECTION</div>';
+    .catch(function() {
+      container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:rgba(0,212,255,0.3);font-family:Space Mono,monospace;font-size:11px;letter-spacing:0.1em;">MAP UNAVAILABLE \u2014 CHECK CONNECTION</div>';
     });
 }
 
 // === BOOT ===
 function bootApp() {
-  switchView('map');
-  renderStateList();
+  buildExploreLegend();
+  buildFilterPills();
+  setupListSearch();
   initMap();
   initAccount();
   runBootAnimation();
@@ -1806,10 +2212,9 @@ function runBootAnimation() {
     { el: document.getElementById('top-nav'), delay: 0 },
     { el: document.getElementById('nav-logo'), delay: 150 },
     { el: null, delay: 250, tabs: true },
-    { el: document.getElementById('map-sidebar'), delay: 450 },
+    { el: document.getElementById('explore-header'), delay: 400 },
     { el: document.getElementById('d3-map'), delay: 550 },
-    { el: document.getElementById('map-detail'), delay: 650 },
-    { el: document.getElementById('status-bar'), delay: 800 }
+    { el: document.getElementById('status-bar'), delay: 700 }
   ];
 
   // Set initial hidden state
@@ -1821,10 +2226,7 @@ function runBootAnimation() {
       });
     } else if (t.el) {
       t.el.style.opacity = '0';
-      t.el.style.transform = t.delay === 150 ? 'scale(0.9)' :
-        t.delay === 450 ? 'translateX(-20px)' :
-        t.delay === 650 ? 'translateX(20px)' :
-        'translateY(-8px)';
+      t.el.style.transform = 'translateY(-8px)';
     }
   });
 
@@ -1847,148 +2249,6 @@ function runBootAnimation() {
     }
   });
 }
-
-// === VIEW TOGGLE (MAP / BOARD) ===
-var currentView = 'map';
-
-function switchView(view) {
-  currentView = view;
-  var sidebar = document.getElementById('map-sidebar');
-  var center = document.getElementById('map-center');
-  var board = document.getElementById('flip-board-wrap');
-  var btnMap = document.getElementById('btn-view-map');
-  var btnBoard = document.getElementById('btn-view-board');
-
-  if (view === 'board') {
-    sidebar.style.display = 'none';
-    center.style.display = 'none';
-    board.classList.add('active');
-    btnMap.classList.remove('active');
-    btnBoard.classList.add('active');
-    renderFlipBoard();
-  } else {
-    sidebar.style.display = '';
-    center.style.display = '';
-    board.classList.remove('active');
-    btnMap.classList.add('active');
-    btnBoard.classList.remove('active');
-  }
-}
-
-// === SOLARI FLIP BOARD ENGINE ===
-var FLIP_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.%§—·';
-var FLIP_STEPS = 8;
-var FLIP_INTERVAL = 35;
-
-function solariFlip(el, targetText, delay) {
-  var len = targetText.length;
-  el.textContent = '';
-  var chars = [];
-  for (var i = 0; i < len; i++) {
-    var span = document.createElement('span');
-    span.className = 'fb-char';
-    span.textContent = FLIP_CHARS[Math.floor(Math.random() * FLIP_CHARS.length)];
-    el.appendChild(span);
-    chars.push(span);
-  }
-
-  chars.forEach(function(span, idx) {
-    var step = 0;
-    var target = targetText[idx];
-    setTimeout(function() {
-      var interval = setInterval(function() {
-        step++;
-        if (step >= FLIP_STEPS) {
-          span.textContent = target;
-          clearInterval(interval);
-        } else {
-          span.textContent = FLIP_CHARS[Math.floor(Math.random() * FLIP_CHARS.length)];
-        }
-      }, FLIP_INTERVAL);
-    }, delay + idx * 25);
-  });
-}
-
-function renderFlipBoard() {
-  var body = document.getElementById('flip-board-body');
-  body.innerHTML = '';
-  var filter = (document.getElementById('state-search').value || '').toLowerCase();
-
-  ALL_STATES.forEach(function(s, i) {
-    if (filter && s.name.toLowerCase().indexOf(filter) === -1 && s.abbr.toLowerCase().indexOf(filter) === -1) return;
-    var locked = APP.tier < 2 && !FREE_STATES.includes(s.abbr);
-    var data = STATE_DATA[s.abbr];
-    var yieldText = data ? data.rate : (locked ? '———' : '—');
-    var redemptText = data ? data.redemption : (locked ? '———' : '—');
-
-    var row = document.createElement('div');
-    row.className = 'fb-row' + (locked ? ' locked' : '') + (APP.selectedState === s.abbr ? ' active' : '');
-    row.onclick = function() { selectState(s.abbr); highlightBoardRow(s.abbr); };
-
-    // Rank
-    var rankEl = document.createElement('div');
-    rankEl.className = 'fb-rank';
-    rankEl.textContent = String(i + 1).padStart(2, '0');
-
-    // Code
-    var codeEl = document.createElement('div');
-    codeEl.className = 'fb-code ' + s.type;
-    codeEl.textContent = s.abbr;
-
-    // Name (flip)
-    var nameEl = document.createElement('div');
-    nameEl.className = 'fb-name';
-
-    // Yield (flip)
-    var yieldEl = document.createElement('div');
-    yieldEl.className = 'fb-yield';
-
-    // Redemption (flip)
-    var redemptEl = document.createElement('div');
-    redemptEl.className = 'fb-redempt';
-
-    // Type badge
-    var typeEl = document.createElement('div');
-    var badge = document.createElement('span');
-    badge.className = 'fb-type-badge ' + s.type;
-    badge.textContent = s.type.toUpperCase();
-    typeEl.appendChild(badge);
-    if (locked) {
-      var lockIcon = document.createElement('span');
-      lockIcon.className = 'fb-lock-icon';
-      lockIcon.innerHTML = '&#128274;';
-      typeEl.appendChild(lockIcon);
-    }
-
-    row.appendChild(rankEl);
-    row.appendChild(codeEl);
-    row.appendChild(nameEl);
-    row.appendChild(yieldEl);
-    row.appendChild(redemptEl);
-    row.appendChild(typeEl);
-    body.appendChild(row);
-
-    // Stagger flip animations per row
-    var rowDelay = i * 40;
-    solariFlip(nameEl, s.name.toUpperCase(), rowDelay);
-    solariFlip(yieldEl, yieldText.toUpperCase(), rowDelay + 80);
-    solariFlip(redemptEl, redemptText.toUpperCase(), rowDelay + 160);
-  });
-}
-
-function highlightBoardRow(abbr) {
-  document.querySelectorAll('.fb-row').forEach(function(r) {
-    var code = r.querySelector('.fb-code');
-    r.classList.toggle('active', code && code.textContent === abbr);
-  });
-}
-
-// Hook existing filter to also update board
-var _origFilterStateList = filterStateList;
-filterStateList = function(val) {
-  _origFilterStateList(val);
-  if (currentView === 'board') renderFlipBoard();
-};
 
 // === RESTORE SESSION ===
 (function restoreSession() {
