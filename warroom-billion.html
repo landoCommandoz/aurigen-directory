@@ -1975,8 +1975,7 @@ function updateMapSelection() {
       p.style.stroke = typeColor;
       p.style.filter = 'drop-shadow(0 0 12px ' + typeColor + '66)';
     } else {
-      var st = ALL_STATES.find(function(s) { return s.abbr === abbr; });
-      p.style.fill = st ? (TYPE_FILL[st.type] || 'rgba(255,255,255,0.025)') : 'rgba(255,255,255,0.025)';
+      p.style.fill = '';
       p.style.stroke = '';
       p.style.filter = '';
     }
@@ -2020,9 +2019,9 @@ function initMap() {
           return 'state-path' + (locked ? ' locked' : '');
         })
         .attr('d', path)
-        .style('fill', function(d) {
-          var fips = String(d.id).padStart(2, '0');
-          var abbr = FIPS_TO_ABBR[fips] || '';
+        .attr('fill', function(d) {
+          var abbr = FIPS_TO_ABBR[String(d.id).padStart(2, '0')];
+          if (!abbr) return 'rgba(255,255,255,0.025)';
           var s = ALL_STATES.find(function(st) { return st.abbr === abbr; });
           if (!s) return 'rgba(255,255,255,0.025)';
           return TYPE_FILL[s.type] || 'rgba(255,255,255,0.025)';
