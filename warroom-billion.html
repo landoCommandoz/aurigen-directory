@@ -486,7 +486,6 @@
       height: 100%;
     }
     #d3-map .state-path {
-      fill: rgba(255,255,255,0.025);
       stroke: rgba(0,212,255,0.12);
       stroke-width: 0.5;
       cursor: pointer;
@@ -494,7 +493,7 @@
       transform-origin: center;
       transform-box: fill-box;
     }
-    #d3-map .state-path:hover { fill: rgba(255,255,255,0.06); }
+    #d3-map .state-path:hover { opacity: 0.85; }
     #d3-map .state-path.selected { stroke-width: 1.5; transform: scale(1.1); }
     #d3-map .state-path.locked { opacity: 0.25; cursor: not-allowed; }
     #map-legend-glass {
