@@ -505,6 +505,12 @@
     .counties-list::-webkit-scrollbar-track{background:transparent}
     .counties-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
 
+    /* === DISCLAIMER FOOTER === */
+    #disclaimer-footer{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(1,4,12,0.95);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,0.06);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px}
+    #disclaimer-footer p{font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.02em;line-height:1.5;max-width:900px;text-align:center;margin:0}
+    #disclaimer-footer a{color:rgba(212,160,23,0.6);text-decoration:underline;text-underline-offset:2px}
+    #disclaimer-footer a:hover{color:#d4a017}
+
     /* === TOOLS TAB === */
     #panel-tools {
       display: none;
@@ -1525,6 +1531,13 @@ function linkifyPlatform(text){
   return result;
 }
 
+function safeHref(url){
+  if(!url||typeof url!=='string') return '';
+  var trimmed=url.trim();
+  if(/^https?:\/\//i.test(trimmed)) return trimmed;
+  return '';
+}
+
 function shortenPlatform(text){
   if(!text) return '';
   // Extract the main platform name, strip parenthetical/description
@@ -1603,7 +1616,7 @@ function showDetail(s) {
   var stTiming=s.auctionTiming||'';
 
   if(counties.length===0){
-    countiesEl.innerHTML='<div class="counties-empty">County data coming soon.<br><a href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener">Book an Investor Clarity Call</a> for '+n+' county details.</div>';
+    countiesEl.innerHTML='<div class="counties-empty">County data coming soon.<br><a href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener">Book an Investor Clarity Call</a> for '+escapeHtml(n)+' county details.</div>';
   } else {
     var cHtml='<div class="counties-header" onclick="toggleCounties()">'+
       '<span class="counties-label">COUNTIES</span>'+
@@ -1612,12 +1625,15 @@ function showDetail(s) {
     '</div>';
     cHtml+='<div class="counties-list" id="counties-list">';
     counties.forEach(function(co){
-      var nameTag=co.link?'<a class="county-name" href="'+co.link+'" target="_blank" rel="noopener">'+co.name+'</a>':'<span class="county-name">'+co.name+'</span>';
+      var safeName=escapeHtml(co.name||'');
+      var safeLink=safeHref(co.link);
+      var nameTag=safeLink?'<a class="county-name" href="'+safeLink+'" target="_blank" rel="noopener">'+safeName+'</a>':'<span class="county-name">'+safeName+'</span>';
       var platText=co.platform||stPlatform;
-      var platPill=platText?'<span class="county-pill platform">'+shortenPlatform(platText)+'</span>':'';
-      var timPill=stTiming?'<span class="county-pill timing">'+stTiming+'</span>':'';
+      var platPill=platText?'<span class="county-pill platform">'+escapeHtml(shortenPlatform(platText))+'</span>':'';
+      var timPill=stTiming?'<span class="county-pill timing">'+escapeHtml(stTiming)+'</span>':'';
       var otcPill=hasOtc?'<span class="county-pill otc">OTC</span>':'';
-      var notes=co.notes?'<span class="county-notes" title="'+co.notes.replace(/"/g,'&quot;')+'">'+co.notes+'</span>':'';
+      var safeNotes=co.notes?escapeHtml(co.notes):'';
+      var notes=safeNotes?'<span class="county-notes" title="'+safeNotes.replace(/"/g,'&quot;')+'">'+safeNotes+'</span>':'';
       cHtml+='<div class="county-row">'+nameTag+platPill+otcPill+timPill+notes+'</div>';
     });
     cHtml+='</div>';
@@ -1846,5 +1862,8 @@ function runBootAnimation() {
   } catch(e) {}
 })();
 </script>
+<footer id="disclaimer-footer">
+  <p>This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting. <a href="/legal/" target="_blank" rel="noopener">Legal</a></p>
+</footer>
 </body>
 </html>
