@@ -484,7 +484,7 @@
     #panel-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}
     .stat-box{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:12px 14px;border-left-width:2px}
     .stat-label{font-family:'DM Sans',sans-serif;font-size:10px;color:#aaaaaa;letter-spacing:0.1em;margin-bottom:6px;text-transform:uppercase;font-weight:600}
-    .stat-value{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.04em;font-weight:700;color:#f0f0f0}
+    .stat-value{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.04em;font-weight:700;color:#f0f0f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     #panel-alert{display:none;padding:12px 18px;background:rgba(255,45,85,0.08);border-bottom:1px solid rgba(255,45,85,0.2);font-family:'DM Sans',sans-serif;font-size:12px;color:#FF2D55;letter-spacing:0.04em;line-height:1.5;font-weight:600;animation:alertPulse 2s ease-in-out infinite}
     #panel-alert.visible{display:block}
     @keyframes alertPulse{0%,100%{opacity:1}50%{opacity:0.6}}
@@ -2042,6 +2042,126 @@ function clearCountySearch(){
   if(input){input.value='';filterCounties('');}
 }
 
+// Shorten stat box values for scannable display
+function shortenRate(raw, type) {
+  if (!raw || raw === 'N/A') {
+    if (type === 'deed' || type === 'forfeiture') return 'N/A \u2014 Deed';
+    return 'N/A';
+  }
+  var s = String(raw);
+  // "N/A — deed state..." or "N/A — ..."
+  if (/^N\/A/i.test(s)) {
+    if (/deed/i.test(s) || type === 'deed') return 'N/A \u2014 Deed';
+    return 'N/A';
+  }
+  // "Bid-down..." → "Bid-Down"
+  if (/^bid.?down/i.test(s)) return 'Bid-Down';
+  // "Varies" → "Varies"
+  if (/^varies/i.test(s)) return 'Varies';
+  // "0.7%–1.0%/month (8.4%–12% annualized)" → "8.4%–12%"
+  var m = s.match(/(\d+\.?\d*%)\s*[\u2013\-]\s*(\d+\.?\d*%)\s*annualized/i);
+  if (m) return m[1] + '\u2013' + m[2];
+  // "9% per 6 months (18% annualized)" → "18%"
+  m = s.match(/(\d+%)\s*annualized/i);
+  if (m) return m[1];
+  // "6%–24% depending on county" or "3%–12% sliding..." → "6%–24%"
+  m = s.match(/^(\d+\.?\d*%)\s*[\u2013\-]\s*(\d+\.?\d*%)/);
+  if (m) return m[1] + '\u2013' + m[2];
+  // TX: "25% year 1 / 50% year 2 (homestead/ag)..." → "25% / 50%"
+  m = s.match(/^(\d+%)\s*(?:year\s*\d\S*\s*)?\/\s*(\d+%)/i);
+  if (m) return m[1] + ' / ' + m[2];
+  // "10% (months 0–6) / 15% (months 6–12)" → "10% / 15%"
+  m = s.match(/^(\d+%)\s*\([^)]*\)\s*\/\s*(\d+%)/);
+  if (m) return m[1] + ' / ' + m[2];
+  // "20% year 1 / 10% year 2+" → "20% / 10%"
+  m = s.match(/^(\d+%)\s*year\s*\d[^\/]*\/\s*(\d+%)/i);
+  if (m) return m[1] + ' / ' + m[2];
+  // "18% max / 6% floor" → "18% / 6%"
+  m = s.match(/^(\d+%)\s*\w+\s*\/\s*(\d+%)/);
+  if (m) return m[1] + ' / ' + m[2];
+  // "Federal Discount Rate ... ~14%" → "~14%"
+  m = s.match(/~(\d+%)/);
+  if (m) return '~' + m[1];
+  // "18% max" → "18%"
+  m = s.match(/^(\d+%)\s*max/i);
+  if (m) return m[1];
+  // "18% per year on total purchase price (≈9%...)" → "18%"
+  m = s.match(/^(\d+\.?\d*%)\s*(?:per\s*year|fixed|on\s|max)/i);
+  if (m) return m[1];
+  // Simple "XX%" or "XX% fixed"
+  m = s.match(/^(\d+\.?\d*%)/);
+  if (m) return m[1];
+  // Fallback: truncate at first paren/dash/comma
+  var cut = s.replace(/\s*[\(\u2014\u2013,].*/,'');
+  return cut.length > 16 ? cut.substring(0,14) + '\u2026' : cut;
+}
+
+function shortenRedemption(raw) {
+  if (!raw || raw === 'N/A') return 'N/A';
+  var s = String(raw);
+  // "None after sale" → "None"
+  if (/^none/i.test(s)) return 'None';
+  // "Until ..." or "Minimum 6 months before..." → extract the period
+  // "2 years (homestead/agricultural) / 180 days (commercial)" → "180d \u2013 2 Yrs"
+  var periods = [];
+  var rx = /(\d+\.?\d*)\s*(year|yr|month|mo|day|d)s?/gi;
+  var match;
+  while ((match = rx.exec(s)) !== null) {
+    var num = parseFloat(match[1]);
+    var unit = match[2].toLowerCase();
+    var days;
+    if (unit === 'year' || unit === 'yr') days = num * 365;
+    else if (unit === 'month' || unit === 'mo') days = num * 30;
+    else days = num;
+    var label;
+    if (unit === 'year' || unit === 'yr') {
+      if (num === 1) label = '1 Year';
+      else if (num % 1 !== 0) label = num + ' Years';
+      else label = num + ' Years';
+    }
+    else if (unit === 'month' || unit === 'mo') label = num + ' Mo';
+    else label = num + ' Days';
+    periods.push({ days: days, label: label });
+  }
+  if (periods.length === 0) {
+    // No numeric period found — truncate
+    var cut = s.replace(/\s*[\(\u2014\u2013].*/,'');
+    return cut.length > 14 ? cut.substring(0,12) + '\u2026' : cut;
+  }
+  if (periods.length === 1) return periods[0].label;
+  // Deduplicate near-equal periods (e.g. "2.5 years (30 months)")
+  periods.sort(function(a,b){ return a.days - b.days; });
+  var unique = [periods[0]];
+  for (var p = 1; p < periods.length; p++) {
+    if (Math.abs(periods[p].days - unique[unique.length-1].days) > unique[unique.length-1].days * 0.15) {
+      unique.push(periods[p]);
+    }
+  }
+  if (unique.length === 1) return unique[0].label;
+  // Multiple periods: show range shortest–longest
+  var shortest = unique[0];
+  var longest = unique[unique.length - 1];
+  return shortest.label + ' \u2013 ' + longest.label;
+}
+
+function shortenBidMethod(raw) {
+  if (!raw || raw === 'N/A') return 'N/A';
+  var s = String(raw);
+  if (/^bid.?down/i.test(s)) return 'Bid-Down';
+  if (/^premium/i.test(s)) return 'Premium Bid';
+  if (/^highest/i.test(s)) return 'Highest Bidder';
+  if (/^rotat/i.test(s)) return 'Rotational';
+  if (/^over.the.counter/i.test(s)) return 'Over-the-Counter';
+  if (/^municipal/i.test(s)) return 'Municipal';
+  if (/^N\/A/i.test(s)) return 'N/A';
+  if (/^varies/i.test(s)) return 'Varies';
+  // Remove parentheticals
+  var cut = s.replace(/\s*\([^)]*\)/g, '').trim();
+  // Take first 3 words max
+  var words = cut.split(/\s+/).slice(0, 3).join(' ');
+  return words;
+}
+
 function showDetail(s) {
   var t=s._v2type||s.type||s.t; var mapType=s.type; var c=s.abbr||s.c; var n=s.name||s.n||c;
   var rate=s.rate||s.y||'N/A'; var redemption=s.redemption||s.r||'N/A';
@@ -2092,10 +2212,13 @@ function showDetail(s) {
     rationaleEl.innerHTML='';
   }
 
-  // Stats: yield, redemption, bid method
+  // Stats: yield, redemption, bid method — short display values
   var bidMethod=s.bidMethod||'N/A';
+  var rateShort=shortenRate(rate, t);
+  var redemptionShort=shortenRedemption(redemption);
+  var bidMethodShort=shortenBidMethod(bidMethod);
   document.getElementById('panel-stats').innerHTML=[
-    ['YIELD RATE',rate],['REDEMPTION',redemption],['BID METHOD',bidMethod]
+    ['YIELD RATE',escapeHtml(rateShort)],['REDEMPTION',escapeHtml(redemptionShort)],['BID METHOD',escapeHtml(bidMethodShort)]
   ].map(function(a){ return '<div class="stat-box" style="border-left-color:'+color+'88"><div class="stat-label">'+a[0]+'</div><div class="stat-value" style="color:'+color+'">'+a[1]+'</div></div>'; }).join('');
 
   // Key notes
