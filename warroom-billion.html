@@ -828,6 +828,7 @@
       width: 260px; min-width: 260px; background: rgba(255,255,255,0.02);
       border-right: 1px solid var(--border); overflow-y: auto; flex-shrink: 0;
       height: 100%; min-height: 0;
+      will-change: transform; transform: translateZ(0);
     }
     .auctions-sidebar-inner { padding: 16px; display: flex; flex-direction: column; gap: 16px; }
     .auctions-search-wrap {
@@ -879,6 +880,7 @@
     .auctions-main {
       flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column;
       overflow-y: auto; padding: 20px 24px;
+      will-change: transform; transform: translateZ(0);
     }
     .auctions-header { margin-bottom: 16px; }
     .auctions-title-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
@@ -910,8 +912,9 @@
     .auction-card {
       display: grid; grid-template-columns: 64px 1fr auto;
       gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-      align-items: start; animation: fadeUp 0.3s var(--transition) both;
+      align-items: start;
     }
+    .auction-card.animate-in { animation: fadeUp 0.3s var(--transition) both; }
     .auction-card:hover { background: rgba(255,255,255,0.015); }
 
     /* Date block */
@@ -977,10 +980,10 @@
       text-transform: uppercase; padding: 8px 16px; background: transparent;
       border: 1px solid var(--accent-mid); color: var(--accent); border-radius: var(--radius);
       cursor: pointer; white-space: nowrap; min-height: 44px; min-width: 44px;
-      transition: background 0.2s, box-shadow 0.2s;
+      transition: background 0.2s;
     }
     .auction-btn-register:hover {
-      background: var(--accent-dim); box-shadow: 0 0 16px var(--accent-glow);
+      background: var(--accent-dim);
     }
     .auction-btn-clarity {
       font-family: 'DM Sans', sans-serif; font-size: 10px; color: var(--text2);
@@ -1002,6 +1005,10 @@
     .auctions-empty {
       text-align: center; padding: 48px 16px; color: var(--text2);
       font-family: 'DM Sans', sans-serif; font-size: 14px;
+    }
+    .auctions-sentinel {
+      padding: 16px; text-align: center; font-family: 'Space Mono', monospace;
+      font-size: 10px; color: var(--text2); letter-spacing: 0.1em;
     }
 
     /* Interstitial modal */
@@ -2391,10 +2398,114 @@ function setAuctionMonth(m) {
   renderAuctions();
 }
 
+// Debounce helper
+var _auctionsSearchTimer = null;
 function filterAuctions() {
-  var el = document.getElementById('auctions-search');
-  _auctionsFilters.search = el ? el.value.trim().toLowerCase() : '';
-  renderAuctions();
+  clearTimeout(_auctionsSearchTimer);
+  _auctionsSearchTimer = setTimeout(function() {
+    var el = document.getElementById('auctions-search');
+    _auctionsFilters.search = el ? el.value.trim().toLowerCase() : '';
+    renderAuctions();
+  }, 150);
+}
+
+// Windowed rendering state
+var _auctionsFiltered = [];
+var _auctionsRendered = 0;
+var _auctionsBatchSize = 30;
+var _auctionsObserver = null;
+var _auctionsIsInitialRender = true;
+var _auctionsCurrentMonth = '';
+
+var TYPE_LABELS_SHORT = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDBL', hybrid: 'HYBRID', forfeiture: 'FORFEIT' };
+var CLARITY_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4';
+
+// Build HTML for a single auction card
+function buildCardHtml(e, animate) {
+  var dateBlock;
+  if (e.date && e.date.confirmed && e.date.day > 0) {
+    dateBlock = '<div class="auction-date-block">' +
+      '<span class="auction-date-month">' + escapeHtml(e.date.month.substring(0,3)) + '</span>' +
+      '<span class="auction-date-day">' + e.date.day + '</span></div>';
+  } else if (e.date) {
+    dateBlock = '<div class="auction-date-block">' +
+      '<span class="auction-date-est">' + escapeHtml(e.date.display) + '</span></div>';
+  } else {
+    dateBlock = '<div class="auction-date-block"><span class="auction-date-est">TBD</span></div>';
+  }
+
+  var typePill = '<span class="auction-pill type-' + escapeHtml(e.type) + '">' + escapeHtml(TYPE_LABELS_SHORT[e.type] || e.type) + '</span>';
+
+  var platPill = '';
+  if (e.platform && e.platform !== 'Unknown') {
+    var platSafe = escapeHtml(e.platform);
+    if (e.platformUrl && /^https?:\/\//i.test(e.platformUrl)) {
+      platPill = '<span class="auction-pill platform auction-interstitial-trigger" data-url="' + escapeHtml(e.platformUrl) + '" title="Visit ' + platSafe + '" style="cursor:pointer">' + platSafe + ' &#8599;</span>';
+    } else {
+      platPill = '<span class="auction-pill platform">' + platSafe + '</span>';
+    }
+  }
+
+  var ratePill = e.rate ? '<span class="auction-pill rate">' + escapeHtml(e.rate) + '</span>' : '';
+  var alertBadge = e.alert ? '<span class="auction-alert-badge">&#9888; ' + escapeHtml(e.alert) + '</span>' : '';
+  var noteHtml = e.note ? '<div class="auction-card-note">' + escapeHtml(e.note) + '</div>' : '';
+
+  var registerUrl = e.platformUrl && /^https?:\/\//i.test(e.platformUrl) ? e.platformUrl : '';
+  var registerBtn = registerUrl ?
+    '<button class="auction-btn-register auction-interstitial-trigger" data-url="' + escapeHtml(registerUrl) + '">Register &#8594;</button>' :
+    '<button class="auction-btn-register" disabled style="opacity:0.3;cursor:default">Register &#8594;</button>';
+
+  var clarityBtn = '<button class="auction-btn-clarity" onclick="window.open(\'' + CLARITY_URL + '\',\'_blank\')">Clarity Call</button>';
+
+  return '<div class="auction-card' + (animate ? ' animate-in' : '') + '">' +
+    dateBlock +
+    '<div class="auction-card-body">' +
+      '<div class="auction-card-title">' + escapeHtml(e.stateName) + (e.county !== 'Statewide' ? ' &mdash; ' + escapeHtml(e.county) + ' County' : ' &mdash; Statewide') + '</div>' +
+      '<div class="auction-card-pills">' + typePill + platPill + ratePill + '</div>' +
+      alertBadge + noteHtml +
+    '</div>' +
+    '<div class="auction-card-actions">' + registerBtn + clarityBtn + '</div>' +
+  '</div>';
+}
+
+// Append next batch of cards
+function appendAuctionsBatch() {
+  var container = document.getElementById('auctions-cards');
+  if (!container || _auctionsRendered >= _auctionsFiltered.length) return;
+
+  var end = Math.min(_auctionsRendered + _auctionsBatchSize, _auctionsFiltered.length);
+  var html = '';
+  var animate = _auctionsIsInitialRender;
+
+  for (var i = _auctionsRendered; i < end; i++) {
+    var e = _auctionsFiltered[i];
+    var monthLabel = e.date ? e.date.month.substring(0,3).toUpperCase() + (e.date.year ? ' ' + e.date.year : '') : 'TBD';
+    if (monthLabel !== _auctionsCurrentMonth) {
+      _auctionsCurrentMonth = monthLabel;
+      html += '<div class="auctions-month-divider">' + escapeHtml(monthLabel) + '</div>';
+    }
+    html += buildCardHtml(e, animate);
+  }
+  _auctionsRendered = end;
+  _auctionsIsInitialRender = false;
+
+  // Remove existing sentinel before appending
+  var oldSentinel = container.querySelector('.auctions-sentinel');
+  if (oldSentinel) oldSentinel.remove();
+
+  // Append batch
+  var frag = document.createElement('div');
+  frag.innerHTML = html;
+  while (frag.firstChild) container.appendChild(frag.firstChild);
+
+  // Add sentinel if more to load
+  if (_auctionsRendered < _auctionsFiltered.length) {
+    var sentinel = document.createElement('div');
+    sentinel.className = 'auctions-sentinel';
+    sentinel.textContent = 'Loading more...';
+    container.appendChild(sentinel);
+    if (_auctionsObserver) _auctionsObserver.observe(sentinel);
+  }
 }
 
 function renderAuctions() {
@@ -2402,7 +2513,7 @@ function renderAuctions() {
   var f = _auctionsFilters;
 
   // Apply filters
-  var filtered = entries.filter(function(e) {
+  _auctionsFiltered = entries.filter(function(e) {
     if (f.search) {
       var q = f.search;
       var hay = (e.stateName + ' ' + e.stateCode + ' ' + e.county + ' ' + e.platform).toLowerCase();
@@ -2418,88 +2529,40 @@ function renderAuctions() {
     return true;
   });
 
+  // Reset windowing state
+  _auctionsRendered = 0;
+  _auctionsCurrentMonth = '';
+  _auctionsIsInitialRender = true;
+
   // Update count
   var countEl = document.getElementById('auctions-count');
-  if (countEl) countEl.textContent = filtered.length + ' result' + (filtered.length !== 1 ? 's' : '');
+  if (countEl) countEl.textContent = _auctionsFiltered.length + ' result' + (_auctionsFiltered.length !== 1 ? 's' : '');
 
   var container = document.getElementById('auctions-cards');
   if (!container) return;
 
-  if (filtered.length === 0) {
+  // Clean up previous observer
+  if (_auctionsObserver) _auctionsObserver.disconnect();
+
+  if (_auctionsFiltered.length === 0) {
     container.innerHTML = '<div class="auctions-empty">No auctions match your filters.</div>';
     return;
   }
 
-  // Group by month
-  var html = '';
-  var currentMonth = '';
-  var TYPE_LABELS_SHORT = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDBL', hybrid: 'HYBRID', forfeiture: 'FORFEIT' };
-  var CLARITY_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4';
+  container.innerHTML = '';
 
-  filtered.forEach(function(e, idx) {
-    var monthLabel = e.date ? e.date.month.substring(0,3).toUpperCase() + (e.date.year ? ' ' + e.date.year : '') : 'TBD';
-    if (monthLabel !== currentMonth) {
-      currentMonth = monthLabel;
-      html += '<div class="auctions-month-divider">' + escapeHtml(monthLabel) + '</div>';
-    }
-
-    // Date block
-    var dateBlock;
-    if (e.date && e.date.confirmed && e.date.day > 0) {
-      dateBlock = '<div class="auction-date-block">' +
-        '<span class="auction-date-month">' + escapeHtml(e.date.month.substring(0,3)) + '</span>' +
-        '<span class="auction-date-day">' + e.date.day + '</span></div>';
-    } else if (e.date) {
-      dateBlock = '<div class="auction-date-block">' +
-        '<span class="auction-date-est">' + escapeHtml(e.date.display) + '</span></div>';
-    } else {
-      dateBlock = '<div class="auction-date-block"><span class="auction-date-est">TBD</span></div>';
-    }
-
-    // Type pill
-    var typePill = '<span class="auction-pill type-' + escapeHtml(e.type) + '">' + escapeHtml(TYPE_LABELS_SHORT[e.type] || e.type) + '</span>';
-
-    // Platform pill
-    var platPill = '';
-    if (e.platform && e.platform !== 'Unknown') {
-      var platSafe = escapeHtml(e.platform);
-      if (e.platformUrl && /^https?:\/\//i.test(e.platformUrl)) {
-        platPill = '<span class="auction-pill platform auction-interstitial-trigger" data-url="' + escapeHtml(e.platformUrl) + '" title="Visit ' + platSafe + '" style="cursor:pointer">' + platSafe + ' &#8599;</span>';
-      } else {
-        platPill = '<span class="auction-pill platform">' + platSafe + '</span>';
+  // Set up IntersectionObserver for infinite scroll
+  _auctionsObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        _auctionsObserver.unobserve(entry.target);
+        appendAuctionsBatch();
       }
-    }
+    });
+  }, { root: container.closest('.auctions-main'), rootMargin: '200px' });
 
-    // Rate pill
-    var ratePill = e.rate ? '<span class="auction-pill rate">' + escapeHtml(e.rate) + '</span>' : '';
-
-    // Alert badge
-    var alertBadge = e.alert ? '<span class="auction-alert-badge">&#9888; ' + escapeHtml(e.alert) + '</span>' : '';
-
-    // Note
-    var noteHtml = e.note ? '<div class="auction-card-note">' + escapeHtml(e.note) + '</div>' : '';
-
-    // Register button
-    var registerUrl = e.platformUrl && /^https?:\/\//i.test(e.platformUrl) ? e.platformUrl : '';
-    var registerBtn = registerUrl ?
-      '<button class="auction-btn-register auction-interstitial-trigger" data-url="' + escapeHtml(registerUrl) + '">Register &#8594;</button>' :
-      '<button class="auction-btn-register" disabled style="opacity:0.3;cursor:default">Register &#8594;</button>';
-
-    // Clarity call
-    var clarityBtn = '<button class="auction-btn-clarity" onclick="window.open(\'' + CLARITY_URL + '\',\'_blank\')">Clarity Call</button>';
-
-    html += '<div class="auction-card" style="animation-delay:' + (idx * 0.02) + 's">' +
-      dateBlock +
-      '<div class="auction-card-body">' +
-        '<div class="auction-card-title">' + escapeHtml(e.stateName) + (e.county !== 'Statewide' ? ' &mdash; ' + escapeHtml(e.county) + ' County' : ' &mdash; Statewide') + '</div>' +
-        '<div class="auction-card-pills">' + typePill + platPill + ratePill + '</div>' +
-        alertBadge + noteHtml +
-      '</div>' +
-      '<div class="auction-card-actions">' + registerBtn + clarityBtn + '</div>' +
-    '</div>';
-  });
-
-  container.innerHTML = html;
+  // Render first batch
+  appendAuctionsBatch();
 }
 
 // Interstitial
