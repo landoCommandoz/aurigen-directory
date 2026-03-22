@@ -513,6 +513,93 @@
       .mfp-filter-btn{min-height:44px}
       .mfp-show-all{min-height:44px}
     }
+
+    /* === DNA INVESTOR PROFILER === */
+    #panel-dna{display:none;flex-direction:column;flex:1;min-height:0}
+    #panel-dna.active{display:flex}
+    .dna-layout{display:flex;flex:1;min-height:0}
+    .dna-quiz{flex:1;overflow-y:auto;min-height:0;display:flex;flex-direction:column}
+    .dna-quiz-inner{max-width:600px;width:100%;margin:0 auto;padding:40px 32px}
+    .dna-progress-bar-wrap{position:relative;margin-bottom:32px}
+    .dna-progress-bar{height:2px;background:var(--accent);width:0%;transition:width 400ms ease-out;border-radius:1px}
+    .dna-progress-bar-wrap::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,0.06);border-radius:1px;z-index:-1}
+    .dna-progress-label{font-family:'Space Mono',monospace;font-size:8px;color:var(--text2);letter-spacing:0.12em;float:right;margin-top:6px}
+    .dna-question-area{min-height:320px}
+    .dna-step-label{font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.12em;font-style:italic;margin-bottom:12px}
+    .dna-question-text{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,42px);color:var(--text);letter-spacing:0.04em;line-height:1.1;margin-bottom:24px}
+    .dna-options{display:flex;flex-direction:column;gap:10px}
+    .dna-option{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:6px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);cursor:pointer;transition:all 150ms ease-out}
+    .dna-option:hover{transform:translateX(4px);border-color:var(--accent-mid);background:rgba(201,168,76,0.04)}
+    .dna-option.selected{border-color:var(--accent);background:rgba(201,168,76,0.08)}
+    .dna-option-letter{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:12px;color:var(--text2);flex-shrink:0;transition:all 150ms ease-out}
+    .dna-option.selected .dna-option-letter{background:var(--accent);border-color:var(--accent);color:#0a0a0a;font-weight:700}
+    .dna-option-text{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);line-height:1.4}
+    .dna-option-sub{font-size:12px;color:var(--text2);margin-top:2px}
+    .dna-nav{display:flex;justify-content:space-between;align-items:center;margin-top:32px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.04)}
+    .dna-btn-back{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text2);background:none;border:1px solid rgba(255,255,255,0.1);border-radius:5px;padding:10px 20px;cursor:pointer;transition:all 150ms ease-out}
+    .dna-btn-back:hover{border-color:rgba(255,255,255,0.25);color:var(--text)}
+    .dna-btn-back:disabled{opacity:0.3;pointer-events:none}
+    .dna-btn-next{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#0a0a0a;background:var(--accent);border:none;border-radius:5px;padding:10px 28px;cursor:pointer;transition:all 150ms ease-out;letter-spacing:0.04em}
+    .dna-btn-next:hover{filter:brightness(1.1)}
+    .dna-btn-next:disabled{opacity:0.3;pointer-events:none;filter:none}
+
+    /* Profile Card */
+    .dna-card-wrap{width:320px;flex-shrink:0;padding:24px 16px 24px 0;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow-y:auto}
+    .dna-card{background:rgba(15,15,20,0.85);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:20px;animation:dnaPulseInit 2s ease-in-out infinite}
+    @keyframes dnaPulseInit{0%,100%{border-color:rgba(255,255,255,0.06)}50%{border-color:rgba(201,168,76,0.2)}}
+    .dna-card.complete{animation:dnaGlow 600ms ease-out forwards}
+    @keyframes dnaGlow{0%{box-shadow:0 0 0 rgba(201,168,76,0)}40%{box-shadow:0 0 40px rgba(201,168,76,0.4)}100%{box-shadow:0 0 20px rgba(201,168,76,0.2)}}
+    .dna-card-label{font-family:'Space Mono',monospace;font-size:8px;color:var(--accent);letter-spacing:0.15em;margin-bottom:4px}
+    .dna-card-archetype{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);letter-spacing:0.04em;line-height:1.1;transition:opacity 200ms ease-out}
+    .dna-card-strategy{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--text2);margin-top:4px;line-height:1.4;transition:opacity 200ms ease-out}
+    .dna-card-section-label{font-family:'Space Mono',monospace;font-size:7px;color:var(--text2);letter-spacing:0.15em;margin-bottom:8px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06)}
+    .dna-match-row{display:flex;align-items:center;gap:8px;padding:6px 0;transition:opacity 200ms ease-out}
+    .dna-match-rank{font-family:'Space Mono',monospace;font-size:9px;color:var(--text2);width:20px;flex-shrink:0}
+    .dna-match-row:first-of-type .dna-match-rank{color:var(--accent)}
+    .dna-match-name{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);flex:1}
+    .dna-match-rate{font-family:'Space Mono',monospace;font-size:9px;color:var(--text2);flex-shrink:0;margin-right:4px}
+    .dna-match-pct{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:var(--accent);flex-shrink:0;min-width:32px;text-align:right}
+    .dna-match-row:first-of-type .dna-match-name{color:var(--accent)}
+    .dna-signal-row{display:flex;align-items:center;justify-content:space-between;padding:4px 0}
+    .dna-signal-label{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--text2)}
+    .dna-signal-dots{display:flex;gap:4px}
+    .dna-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.08);transition:background 200ms ease-out}
+    .dna-dot.filled{background:var(--accent)}
+    .dna-cta-primary{display:block;text-align:center;width:100%;padding:12px;background:var(--accent);color:#0a0a0a;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.06em;border-radius:5px;text-decoration:none;transition:filter 150ms ease-out;margin-top:16px}
+    .dna-cta-primary:hover{filter:brightness(1.1)}
+    .dna-cta-secondary{display:block;width:100%;padding:10px;background:none;border:1px solid rgba(255,255,255,0.1);color:var(--text2);font-family:'DM Sans',sans-serif;font-size:12px;border-radius:5px;cursor:pointer;margin-top:8px;transition:all 150ms ease-out;text-align:center}
+    .dna-cta-secondary:hover{border-color:rgba(255,255,255,0.25);color:var(--text)}
+    .dna-cta-share{display:block;width:100%;padding:8px;background:none;border:none;color:var(--text2);font-family:'DM Sans',sans-serif;font-size:11px;cursor:pointer;margin-top:6px;transition:color 150ms;text-align:center}
+    .dna-cta-share:hover{color:var(--accent)}
+    .dna-card-completion{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text2);line-height:1.6;max-width:280px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06)}
+    .dna-disclaimer{font-family:'DM Sans',sans-serif;font-size:10px;color:var(--text3);padding:10px 20px;border-top:1px solid rgba(255,255,255,0.04);flex-shrink:0;line-height:1.5}
+    .dna-disclaimer a{color:var(--text2);text-decoration:underline}
+
+    /* DNA mobile progress */
+    .dna-mobile-progress{display:none}
+    .dna-mobile-bar{height:3px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
+    .dna-mobile-bar-fill{height:100%;background:var(--accent);width:0%;transition:width 400ms ease-out}
+    .dna-mobile-archetype{font-family:'DM Sans',sans-serif;font-size:10px;color:var(--text2);margin-top:4px}
+
+    /* DNA question animations */
+    @keyframes dnaSlideIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes dnaSlideOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(-30px)}}
+    .dna-q-enter{animation:dnaSlideIn 200ms ease-out forwards}
+    .dna-q-exit{animation:dnaSlideOut 200ms ease-out forwards}
+    @keyframes dnaOptionIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+    @media(max-width:768px){
+      .dna-layout{flex-direction:column}
+      .dna-card-wrap{width:100%;padding:0 16px 16px;position:static;max-height:none}
+      .dna-card{display:none}
+      .dna-mobile-progress{display:block;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.04)}
+      .dna-card.complete{display:block}
+      .dna-quiz-inner{padding:24px 16px}
+      .dna-option{min-height:44px}
+      .dna-btn-back,.dna-btn-next{min-height:44px}
+      .dna-cta-primary,.dna-cta-secondary{min-height:44px}
+    }
+
     #search-bar{display:flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(1,4,12,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,212,255,0.1);flex-shrink:0}
     #search-wrap{position:relative;max-width:280px;flex:1}
     #search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-family:'Space Mono',monospace;font-size:12px;color:rgba(0,212,255,0.35)}
@@ -1420,6 +1507,7 @@
     <div id="nav-logo">AURIGEN</div>
     <div class="nav-tab active" id="tab-map" onclick="switchTab('map')">Map</div>
     <div class="nav-tab" id="tab-tools" onclick="switchTab('tools')">Tools</div>
+    <div class="nav-tab" id="tab-dna" onclick="switchTab('dna')">DNA</div>
     <div class="nav-tab" id="tab-advisor" onclick="switchTab('advisor')">Advisor</div>
     <div class="nav-tab" id="tab-auctions" onclick="switchTab('auctions')">Auctions</div>
     <div class="nav-tab" id="tab-versus" onclick="switchTab('versus')">Versus</div>
@@ -1597,6 +1685,63 @@
         </div>
       </div>
     </div>
+    <!-- DNA INVESTOR PROFILER -->
+    <div class="tab-panel" id="panel-dna">
+      <div class="dna-layout">
+        <!-- LEFT: QUIZ -->
+        <div class="dna-quiz" id="dna-quiz">
+          <div class="dna-quiz-inner">
+            <div class="dna-progress-bar-wrap">
+              <div class="dna-progress-bar" id="dna-progress-bar"></div>
+              <span class="dna-progress-label" id="dna-progress-label">Question 1 of 6</span>
+            </div>
+            <div class="dna-question-area" id="dna-question-area"></div>
+            <div class="dna-nav" id="dna-nav">
+              <button class="dna-btn-back" id="dna-back" onclick="dnaPrev()">Back</button>
+              <button class="dna-btn-next" id="dna-next" onclick="dnaNext()" disabled>Continue</button>
+            </div>
+          </div>
+        </div>
+        <!-- RIGHT: PROFILE CARD -->
+        <div class="dna-card-wrap">
+          <div class="dna-card" id="dna-card">
+            <div class="dna-card-header" id="dna-card-header">
+              <div class="dna-card-label" id="dna-card-label">INVESTOR DNA</div>
+              <div class="dna-card-archetype" id="dna-card-archetype">&mdash;</div>
+              <div class="dna-card-strategy" id="dna-card-strategy">Answer questions to build your profile</div>
+            </div>
+            <div class="dna-card-matches" id="dna-card-matches">
+              <div class="dna-card-section-label">TOP MATCHES</div>
+              <div class="dna-match-row"><span class="dna-match-rank">#1</span><span class="dna-match-name">&mdash;</span><span class="dna-match-pct">&mdash;</span></div>
+              <div class="dna-match-row"><span class="dna-match-rank">#2</span><span class="dna-match-name">&mdash;</span><span class="dna-match-pct">&mdash;</span></div>
+              <div class="dna-match-row"><span class="dna-match-rank">#3</span><span class="dna-match-name">&mdash;</span><span class="dna-match-pct">&mdash;</span></div>
+            </div>
+            <div class="dna-card-signals" id="dna-card-signals">
+              <div class="dna-card-section-label">PROFILE SIGNALS</div>
+              <div class="dna-signal-row" data-signal="risk"><span class="dna-signal-label">Risk Tolerance</span><span class="dna-signal-dots" id="dna-dots-risk"></span></div>
+              <div class="dna-signal-row" data-signal="capital"><span class="dna-signal-label">Capital Range</span><span class="dna-signal-dots" id="dna-dots-capital"></span></div>
+              <div class="dna-signal-row" data-signal="timeline"><span class="dna-signal-label">Timeline Horizon</span><span class="dna-signal-dots" id="dna-dots-timeline"></span></div>
+              <div class="dna-signal-row" data-signal="strategy"><span class="dna-signal-label">Strategy Type</span><span class="dna-signal-dots" id="dna-dots-strategy"></span></div>
+            </div>
+            <div class="dna-card-cta" id="dna-card-cta" style="display:none">
+              <a class="dna-cta-primary" href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener noreferrer">Book Investor Clarity Call &rarr;</a>
+              <button class="dna-cta-secondary" onclick="dnaRetake()">Retake Quiz</button>
+              <button class="dna-cta-share" onclick="dnaShareProfile()">&#128248; Share your profile</button>
+            </div>
+            <div class="dna-card-completion" id="dna-card-completion" style="display:none">
+              Your profile is ready. The fastest path from here is a Clarity Call &mdash; bring this profile and a specialist will map out your first auction plan around these states.
+            </div>
+          </div>
+          <!-- MOBILE: slim progress bar shown before completion -->
+          <div class="dna-mobile-progress" id="dna-mobile-progress">
+            <div class="dna-mobile-bar"><div class="dna-mobile-bar-fill" id="dna-mobile-bar-fill"></div></div>
+            <span class="dna-mobile-archetype" id="dna-mobile-archetype">&mdash;</span>
+          </div>
+        </div>
+      </div>
+      <div class="dna-disclaimer">Tax lien and tax deed investing involves risk including potential loss of principal. Rates shown are statutory maximums &mdash; actual returns vary. This profiler is for educational purposes only and does not constitute investment advice. <a href="/legal/" target="_blank" rel="noopener">Legal</a></div>
+    </div>
+
     <div class="tab-panel" id="panel-advisor">
       <div id="advisor-messages">
         <div class="sage-welcome" id="sage-welcome">
@@ -3841,6 +3986,418 @@ function vsGenerateInsights(a, b, rateA, rateB, redA, redB, onA, onB) {
 
   return out.slice(0, 3);
 }
+
+// ═══════════════════════════════════════════════════════════
+// DNA INVESTOR PROFILER
+// ═══════════════════════════════════════════════════════════
+
+var DNA_QUESTIONS = [
+  {
+    id: 'goal', step: 'One', label: 'Goal',
+    text: "What\u2019s your #1 goal?",
+    options: [
+      {key:'A', text:'Returns', sub:'I want interest income'},
+      {key:'B', text:'The property', sub:'I want to acquire real estate'},
+      {key:'C', text:'Both', sub:'Open to either outcome'}
+    ]
+  },
+  {
+    id: 'capital', step: 'Two', label: 'Capital',
+    text: 'How much are you starting with?',
+    options: [
+      {key:'A', text:'Under $5,000', sub:''},
+      {key:'B', text:'$5,000 \u2013 $25,000', sub:''},
+      {key:'C', text:'$25,000 \u2013 $100,000', sub:''},
+      {key:'D', text:'$100,000+', sub:''}
+    ]
+  },
+  {
+    id: 'involvement', step: 'Three', label: 'Involvement',
+    text: 'How hands-on do you want to be?',
+    options: [
+      {key:'A', text:'Fully online', sub:'Bid from anywhere'},
+      {key:'B', text:'Some travel is fine', sub:''},
+      {key:'C', text:'In-person preferred', sub:'I like being there'}
+    ]
+  },
+  {
+    id: 'timeline', step: 'Four', label: 'Timeline',
+    text: 'When do you want your first return?',
+    options: [
+      {key:'A', text:'Under 6 months', sub:''},
+      {key:'B', text:'6 months to 2 years', sub:''},
+      {key:'C', text:'2\u20134 years', sub:'I\u2019m patient'},
+      {key:'D', text:'I want the property itself', sub:''}
+    ]
+  },
+  {
+    id: 'risk', step: 'Five', label: 'Risk',
+    text: "What\u2019s your risk tolerance?",
+    options: [
+      {key:'A', text:'Conservative', sub:'Protect capital first'},
+      {key:'B', text:'Moderate', sub:'Balanced approach'},
+      {key:'C', text:'Aggressive', sub:'Maximize rate'}
+    ]
+  },
+  {
+    id: 'experience', step: 'Six', label: 'Experience',
+    text: 'Where are you in your journey?',
+    options: [
+      {key:'A', text:'Complete beginner', sub:''},
+      {key:'B', text:'Some experience', sub:'Done research'},
+      {key:'C', text:'Experienced', sub:'Already investing'}
+    ]
+  }
+];
+
+var dnaCurrentQ = 0;
+var dnaAnswers = {};
+
+function dnaInit() {
+  dnaCurrentQ = 0;
+  dnaAnswers = {};
+  dnaRenderQuestion(0);
+  dnaUpdateCard();
+  dnaUpdateProgress();
+  document.getElementById('dna-card').classList.remove('complete');
+  document.getElementById('dna-card-cta').style.display = 'none';
+  document.getElementById('dna-card-completion').style.display = 'none';
+  document.getElementById('dna-card').style.animation = '';
+  void document.getElementById('dna-card').offsetHeight;
+  document.getElementById('dna-card').style.animation = 'dnaPulseInit 2s ease-in-out infinite';
+}
+
+function dnaRenderQuestion(idx) {
+  var q = DNA_QUESTIONS[idx];
+  var area = document.getElementById('dna-question-area');
+  var selected = dnaAnswers[q.id] || null;
+  var html = '<div class="dna-q-enter">' +
+    '<div class="dna-step-label">Question ' + escapeHtml(q.step) + ' \u2014 ' + escapeHtml(q.label) + '</div>' +
+    '<div class="dna-question-text">' + escapeHtml(q.text) + '</div>' +
+    '<div class="dna-options">';
+  q.options.forEach(function(opt, i) {
+    var isSel = selected === opt.key;
+    html += '<div class="dna-option' + (isSel ? ' selected' : '') + '" onclick="dnaSelectOption(\'' + q.id + '\',\'' + opt.key + '\')" style="animation:dnaOptionIn 200ms ease-out ' + (i * 60) + 'ms both">' +
+      '<div class="dna-option-letter">' + escapeHtml(opt.key) + '</div>' +
+      '<div><div class="dna-option-text">' + escapeHtml(opt.text) + '</div>' +
+      (opt.sub ? '<div class="dna-option-sub">' + escapeHtml(opt.sub) + '</div>' : '') +
+      '</div></div>';
+  });
+  html += '</div></div>';
+  area.innerHTML = html;
+
+  // Nav state
+  document.getElementById('dna-back').disabled = idx === 0;
+  var nextBtn = document.getElementById('dna-next');
+  nextBtn.disabled = !selected;
+  nextBtn.textContent = idx === DNA_QUESTIONS.length - 1 ? 'Finish' : 'Continue';
+}
+
+function dnaSelectOption(qId, key) {
+  dnaAnswers[qId] = key;
+  // Re-render to show selection
+  dnaRenderQuestion(dnaCurrentQ);
+  document.getElementById('dna-next').disabled = false;
+  // Live update card after every answer
+  dnaUpdateCard();
+}
+
+function dnaNext() {
+  if (dnaCurrentQ < DNA_QUESTIONS.length - 1) {
+    dnaCurrentQ++;
+    dnaRenderQuestion(dnaCurrentQ);
+    dnaUpdateProgress();
+  } else {
+    // Quiz complete
+    dnaComplete();
+  }
+}
+
+function dnaPrev() {
+  if (dnaCurrentQ > 0) {
+    dnaCurrentQ--;
+    dnaRenderQuestion(dnaCurrentQ);
+    dnaUpdateProgress();
+  }
+}
+
+function dnaUpdateProgress() {
+  var pct = ((dnaCurrentQ) / DNA_QUESTIONS.length) * 100;
+  document.getElementById('dna-progress-bar').style.width = pct + '%';
+  document.getElementById('dna-progress-label').textContent = 'Question ' + (dnaCurrentQ + 1) + ' of 6';
+  // Mobile progress
+  var mobFill = document.getElementById('dna-mobile-bar-fill');
+  if (mobFill) mobFill.style.width = pct + '%';
+}
+
+function dnaComplete() {
+  document.getElementById('dna-progress-bar').style.width = '100%';
+  document.getElementById('dna-progress-label').textContent = 'Complete';
+  var mobFill = document.getElementById('dna-mobile-bar-fill');
+  if (mobFill) mobFill.style.width = '100%';
+
+  var card = document.getElementById('dna-card');
+  card.style.animation = 'none';
+  card.classList.add('complete');
+  document.getElementById('dna-card-label').textContent = 'INVESTOR DNA \u00b7 COMPLETE';
+  document.getElementById('dna-card-cta').style.display = 'block';
+  document.getElementById('dna-card-completion').style.display = 'block';
+  dnaUpdateCard();
+
+  // Replace quiz area with result summary
+  var area = document.getElementById('dna-question-area');
+  var arch = dnaGetArchetype();
+  area.innerHTML = '<div class="dna-q-enter">' +
+    '<div class="dna-step-label">Profile Complete</div>' +
+    '<div class="dna-question-text">' + escapeHtml(arch.name) + '</div>' +
+    '<div class="dna-option-text" style="color:var(--text2);line-height:1.6;max-width:460px">' + escapeHtml(arch.desc) + '</div>' +
+    '</div>';
+  document.getElementById('dna-nav').style.display = 'none';
+}
+
+function dnaRetake() {
+  document.getElementById('dna-nav').style.display = 'flex';
+  dnaInit();
+}
+
+// === ARCHETYPE SCORING ===
+var DNA_ARCHETYPES = {
+  yield: {name:'Yield Maximizer', desc:'You prioritize consistent returns through tax lien certificates. Online auctions and statutory interest rates are your primary tools. Mid-range capital deployed across multiple jurisdictions for diversified yield.', strategy:'Tax Lien \u00b7 Online \u00b7 Returns Focus'},
+  hunter: {name:'Deal Hunter', desc:'You target property acquisition through tax deed sales. Higher capital, tolerance for travel, and aggressive positioning at auctions define your approach. You want the asset, not just the interest.', strategy:'Tax Deed \u00b7 Property Acquisition'},
+  patient: {name:'Patient Capitalist', desc:'You take the long view \u2014 deploying capital into higher-rate liens with multi-year redemption periods. Conservative risk management with an emphasis on capital preservation and compounding statutory returns.', strategy:'Long Hold \u00b7 Conservative \u00b7 High Rate'},
+  local: {name:'Local Operator', desc:'You prefer boots-on-the-ground investing \u2014 attending county auctions in person, building relationships with local officials, and developing deep expertise in specific jurisdictions.', strategy:'In-Person \u00b7 County Specific'},
+  portfolio: {name:'Portfolio Builder', desc:'You approach tax investing as a structured portfolio allocation. High capital, diversified across investment types and geographies, with the experience to manage complexity at scale.', strategy:'Diversified \u00b7 High Capital \u00b7 Experienced'}
+};
+
+function dnaScoreArchetypes() {
+  var a = dnaAnswers;
+  var scores = {yield:0, hunter:0, patient:0, local:0, portfolio:0};
+
+  // Yield Maximizer
+  if (a.goal === 'A') scores.yield += 3;
+  if (a.capital === 'B' || a.capital === 'C') scores.yield += 2;
+  if (a.involvement === 'A') scores.yield += 3;
+  if (a.timeline === 'B') scores.yield += 2;
+  if (a.risk === 'B' || a.risk === 'C') scores.yield += 2;
+
+  // Deal Hunter
+  if (a.goal === 'B') scores.hunter += 3;
+  if (a.capital === 'C' || a.capital === 'D') scores.hunter += 2;
+  if (a.involvement === 'B' || a.involvement === 'C') scores.hunter += 1;
+  if (a.timeline === 'D') scores.hunter += 3;
+  if (a.risk === 'C') scores.hunter += 2;
+
+  // Patient Capitalist
+  if (a.goal === 'A') scores.patient += 2;
+  if (a.capital === 'C' || a.capital === 'D') scores.patient += 2;
+  if (a.involvement === 'A' || a.involvement === 'B') scores.patient += 1;
+  if (a.timeline === 'C') scores.patient += 3;
+  if (a.risk === 'A') scores.patient += 3;
+
+  // Local Operator
+  if (a.goal === 'C') scores.local += 2;
+  if (a.capital === 'B' || a.capital === 'C') scores.local += 1;
+  if (a.involvement === 'C') scores.local += 3;
+  if (a.timeline === 'B' || a.timeline === 'C') scores.local += 2;
+  if (a.experience === 'B' || a.experience === 'C') scores.local += 1;
+
+  // Portfolio Builder
+  if (a.goal === 'C') scores.portfolio += 1;
+  if (a.capital === 'D') scores.portfolio += 3;
+  if (a.involvement === 'A' || a.involvement === 'B') scores.portfolio += 2;
+  if (a.timeline === 'B' || a.timeline === 'C') scores.portfolio += 2;
+  if (a.experience === 'C') scores.portfolio += 3;
+
+  return scores;
+}
+
+function dnaGetArchetype() {
+  var scores = dnaScoreArchetypes();
+  var best = 'yield';
+  var bestScore = 0;
+  Object.keys(scores).forEach(function(k) {
+    if (scores[k] > bestScore) { bestScore = scores[k]; best = k; }
+  });
+  return DNA_ARCHETYPES[best];
+}
+
+// === STATE MATCHING ENGINE ===
+// All scoring derived from STATES_V2 data fields — not hardcoded
+
+var DNA_BEGINNER_STATES = ['FL', 'AZ', 'IA'];
+
+function dnaParseRate(rateStr) {
+  if (!rateStr || rateStr === 'N/A') return 0;
+  // Extract first percentage number
+  var m = String(rateStr).match(/(\d+\.?\d*)%/);
+  return m ? parseFloat(m[1]) : 0;
+}
+
+function dnaParseRedemptionMonths(rStr) {
+  if (!rStr || rStr === 'N/A') return 0;
+  var s = String(rStr).toLowerCase();
+  if (/none|no redempt/i.test(s)) return 0;
+  var mo = s.match(/(\d+)\s*months?/i);
+  if (mo) return parseInt(mo[1]);
+  var yr = s.match(/([\d.]+)\s*years?/i);
+  if (yr) return Math.round(parseFloat(yr[1]) * 12);
+  var dy = s.match(/(\d+)\s*days?/i);
+  if (dy) return Math.round(parseInt(dy[1]) / 30);
+  return 12; // default fallback
+}
+
+function dnaIsOnline(platformStr) {
+  if (!platformStr) return false;
+  var s = platformStr.toLowerCase();
+  return /online|realauction|govease|bid4assets|sri |civicsource/i.test(s);
+}
+
+function dnaHasOTC(stateCode) {
+  // Check STATES_EN for OTC availability
+  if (typeof STATES_EN !== 'undefined') {
+    var found = STATES_EN.find(function(s) { return (s.id || s.abbr || s.c) === stateCode; });
+    if (found && found.otc && found.otc.available) return true;
+  }
+  return false;
+}
+
+function dnaScoreStates() {
+  var a = dnaAnswers;
+  var results = [];
+  var maxScore = 0;
+
+  ALL_STATES.forEach(function(s) {
+    var code = s.abbr || s.c;
+    var t = s._v2type || s.type || '';
+    var rate = dnaParseRate(s.rate);
+    var redemptionMo = dnaParseRedemptionMonths(s.redemption);
+    var score = 0;
+
+    // ONLINE BONUS
+    if (a.involvement === 'A' && dnaIsOnline(s.auctionPlatform)) score += 20;
+
+    // RATE BONUS
+    score += rate;
+
+    // CAPITAL FIT
+    if (a.capital === 'A' && dnaHasOTC(code)) score += 15;
+    if (a.capital === 'D' && (t === 'deed' || t === 'redeemable')) score += 10;
+
+    // TIMELINE FIT
+    if (a.timeline === 'A' && redemptionMo > 0 && redemptionMo < 12) score += 20;
+    if (a.timeline === 'C' && redemptionMo > 24) score += 10;
+
+    // GOAL FIT
+    if (a.goal === 'B' && (t === 'deed' || t === 'redeemable')) score += 25;
+    if (a.goal === 'A' && t === 'lien') score += 20;
+
+    // BEGINNER FIT
+    if (a.experience === 'A' && DNA_BEGINNER_STATES.indexOf(code) >= 0) score += 15;
+
+    results.push({code: code, name: s.name, rate: s.rate, type: t, score: score});
+    if (score > maxScore) maxScore = score;
+  });
+
+  // Sort by score descending
+  results.sort(function(a, b) { return b.score - a.score; });
+
+  // Calculate percentages
+  if (maxScore > 0) {
+    results.forEach(function(r) {
+      r.pct = Math.min(99, Math.round((r.score / maxScore) * 100));
+    });
+  }
+
+  return results.slice(0, 3);
+}
+
+// === PROFILE CARD UPDATES ===
+
+function dnaUpdateCard() {
+  var answeredCount = Object.keys(dnaAnswers).length;
+  var a = dnaAnswers;
+
+  // Archetype — update after Q2
+  var archEl = document.getElementById('dna-card-archetype');
+  var stratEl = document.getElementById('dna-card-strategy');
+  if (answeredCount >= 2) {
+    var arch = dnaGetArchetype();
+    archEl.textContent = arch.name;
+    stratEl.textContent = arch.strategy;
+    var mobArch = document.getElementById('dna-mobile-archetype');
+    if (mobArch) mobArch.textContent = arch.name;
+  } else {
+    archEl.innerHTML = '&mdash;';
+    stratEl.textContent = 'Answer questions to build your profile';
+  }
+
+  // Top state matches — update after each answer
+  var matchesEl = document.getElementById('dna-card-matches');
+  if (answeredCount >= 1) {
+    var top3 = dnaScoreStates();
+    var matchHtml = '<div class="dna-card-section-label">TOP MATCHES</div>';
+    top3.forEach(function(m, i) {
+      var rateShort = shortenRate(m.rate, m.type);
+      matchHtml += '<div class="dna-match-row" style="transition:opacity 200ms ease-out">' +
+        '<span class="dna-match-rank">#' + (i + 1) + '</span>' +
+        '<span class="dna-match-name">' + escapeHtml(m.name) + '</span>' +
+        '<span class="dna-match-rate">' + escapeHtml(rateShort) + '</span>' +
+        '<span class="dna-match-pct">' + m.pct + '%</span>' +
+      '</div>';
+    });
+    matchesEl.innerHTML = matchHtml;
+  }
+
+  // Profile signals (dot bars)
+  dnaUpdateDots('risk', a.risk ? ({A:1,B:3,C:5})[a.risk] || 0 : 0);
+  dnaUpdateDots('capital', a.capital ? ({A:1,B:2,C:4,D:5})[a.capital] || 0 : 0);
+  dnaUpdateDots('timeline', a.timeline ? ({A:1,B:2,C:4,D:3})[a.timeline] || 0 : 0);
+  dnaUpdateDots('strategy', answeredCount >= 2 ? (function() {
+    var arch = dnaGetArchetype();
+    if (arch.name === 'Yield Maximizer') return 2;
+    if (arch.name === 'Deal Hunter') return 4;
+    if (arch.name === 'Patient Capitalist') return 3;
+    if (arch.name === 'Local Operator') return 5;
+    if (arch.name === 'Portfolio Builder') return 4;
+    return 0;
+  })() : 0);
+}
+
+function dnaUpdateDots(signal, filled) {
+  var el = document.getElementById('dna-dots-' + signal);
+  if (!el) return;
+  var html = '';
+  for (var i = 0; i < 5; i++) {
+    html += '<span class="dna-dot' + (i < filled ? ' filled' : '') + '"></span>';
+  }
+  el.innerHTML = html;
+}
+
+function dnaShareProfile() {
+  var arch = dnaGetArchetype();
+  var top3 = dnaScoreStates();
+  var text = 'My Aurigen Investor DNA: ' + arch.name + '\n' +
+    'Strategy: ' + arch.strategy + '\n' +
+    'Top Matches: ' + top3.map(function(m) { return m.name + ' (' + m.pct + '%)'; }).join(', ') + '\n' +
+    'Build yours at aurigen-directory.netlify.app';
+  try {
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.querySelector('.dna-cta-share');
+      if (btn) { var orig = btn.textContent; btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = orig; }, 2000); }
+    });
+  } catch(e) { /* clipboard not available */ }
+}
+
+// Initialize DNA when tab is first switched to
+var dnaInitialized = false;
+var origSwitchTabDna = switchTab;
+switchTab = function(name) {
+  origSwitchTabDna(name);
+  if (name === 'dna' && !dnaInitialized) {
+    dnaInitialized = true;
+    dnaInit();
+  }
+};
 </script>
 <footer id="disclaimer-footer">
   <p>This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting. <a href="/legal/" target="_blank" rel="noopener">Legal</a></p>
