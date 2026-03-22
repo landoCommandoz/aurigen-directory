@@ -423,7 +423,7 @@
     #map-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;position:relative;padding:16px}
     #map-svg{width:100%;max-width:720px;height:auto}
     #ambient-glow{position:absolute;inset:0;pointer-events:none;transition:background 0.5s}
-    #map-legend{position:absolute;bottom:8px;left:16px;display:flex;flex-direction:column;gap:5px;padding:8px 12px;background:rgba(1,4,12,0.85);backdrop-filter:blur(12px);border:1px solid rgba(0,212,255,0.08);border-radius:4px}
+    #map-legend{position:absolute;bottom:8px;left:16px;display:flex;flex-direction:column;gap:5px;padding:8px 12px;background:rgba(1,4,12,0.85);backdrop-filter:blur(12px);border:1px solid rgba(0,212,255,0.08);border-radius:4px;pointer-events:none}
     .mleg-item{display:flex;align-items:center;gap:7px}
     .mleg-swatch{width:10px;height:10px;border-radius:2px}
     .mleg-txt{font-family:'Space Mono',monospace;font-size:7px;color:rgba(255,255,255,0.4);letter-spacing:0.1em}
@@ -506,9 +506,9 @@
     .counties-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
 
     /* === DISCLAIMER FOOTER === */
-    #disclaimer-footer{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(1,4,12,0.95);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,0.06);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px}
+    #disclaimer-footer{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(1,4,12,0.95);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,0.06);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;pointer-events:none}
     #disclaimer-footer p{font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.02em;line-height:1.5;max-width:900px;text-align:center;margin:0}
-    #disclaimer-footer a{color:rgba(212,160,23,0.6);text-decoration:underline;text-underline-offset:2px}
+    #disclaimer-footer a{color:rgba(212,160,23,0.6);text-decoration:underline;text-underline-offset:2px;pointer-events:auto}
     #disclaimer-footer a:hover{color:#d4a017}
 
     /* === TOOLS TAB === */
@@ -1324,6 +1324,7 @@ function initMap() {
         .attr('fill','none')
         .attr('stroke','rgba(0,0,0,0.3)')
         .attr('stroke-width',0.5)
+        .attr('pointer-events','none')
         .attr('d',pathGen);
 
       buildLegend();
