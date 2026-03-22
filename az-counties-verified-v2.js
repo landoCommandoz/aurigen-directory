@@ -125,95 +125,80 @@ const AZ_STATE_RULES = {
 
 window.COUNTY_DATA = window.COUNTY_DATA || {};
 window.COUNTY_DATA['AZ'] = [
-  {
+  {...AZ_STATE_RULES, 
     county:"Apache",
     auction:{url:"https://www.apachecountyaz.gov/Treasurer", saleUrl:"https://apache.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 18, 2026", note:"Bidding opens Feb 4"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://www.apachecountyaz.gov/Treasurer"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://www.apachecountyaz.gov/Treasurer"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"Cochise",
     auction:{url:"https://www.cochise.az.gov/treasurer", saleUrl:"https://cochise.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 2026"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://www.cochise.az.gov/treasurer"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://www.cochise.az.gov/treasurer"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"Coconino",
     auction:{url:"https://www.coconino.az.gov/376/Tax-Liens", saleUrl:"https://coconino.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 10, 2026", note:"Published AZ Daily Sun Jan 20 2026"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://www.coconino.az.gov/376/Tax-Liens"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://www.coconino.az.gov/376/Tax-Liens"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"Gila",
     auction:{url:"https://www.gilacountyaz.gov/government/treasurer/tax_lein_sale.php", saleUrl:"https://gila.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 2026"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://www.gilacountyaz.gov/government/treasurer/tax_lein_sale.php"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://www.gilacountyaz.gov/government/treasurer/tax_lein_sale.php"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"Graham",
     auction:{url:"https://www.graham.az.gov/362/Tax-Sale-Lien-Guidelines", saleUrl:"https://graham.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 25, 2026", note:"2024 taxes sold; foreclosure after 3 yrs"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://www.graham.az.gov/362/Tax-Sale-Lien-Guidelines"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://www.graham.az.gov/362/Tax-Sale-Lien-Guidelines"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"Greenlee",
     auction:{url:"https://greenlee.az.gov/tax-lien-sale-faq/", saleUrl:"https://greenlee.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 2026"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://greenlee.az.gov/tax-lien-sale-faq/"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://greenlee.az.gov/tax-lien-sale-faq/"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"La Paz",
     auction:{url:"https://lapaztreas.com/tax-lien-sale-1", saleUrl:"https://lapaz.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 25, 2026", note:"List published Feb 11 2026 in Parker Pioneer"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://lapaztreas.com/tax-lien-sale-1"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://lapaztreas.com/tax-lien-sale-1"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"Maricopa",
     auction:{url:"https://treasurer.maricopa.gov/Pages/LoadPage?page=LiensAndResearch", saleUrl:"https://maricopa.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 10, 2026", note:"Bidding opens Jan 16; $500 min deposit"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://treasurer.maricopa.gov/Pages/LoadPage?page=LiensAndResearch", availableWhen:"Year-round except Jan–Mar; in-person or mail", note:"Assignments available starting March 3 2025 for 2023 certs"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://treasurer.maricopa.gov/Pages/LoadPage?page=LiensAndResearch", availableWhen:"Year-round except Jan–Mar; in-person or mail", note:"Assignments available starting March 3 2025 for 2023 certs"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"Mohave",
     auction:{url:"https://www.mohave.gov/departments/treasurer/tax-liens/tax-lien-sale/", saleUrl:"https://mohave.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 2026"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://www.mohave.gov/departments/treasurer/tax-liens/tax-lien-sale/"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://www.mohave.gov/departments/treasurer/tax-liens/tax-lien-sale/"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"Navajo",
     auction:{url:"https://www.navajocountyaz.gov/459/February-Lien-Sale-Instructions", saleUrl:"https://navajo.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 11, 2026", note:"7am MST; bidding opens Feb 3"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://www.navajocountyaz.gov/459/February-Lien-Sale-Instructions"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://www.navajocountyaz.gov/459/February-Lien-Sale-Instructions"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"Pima",
     auction:{url:"https://www.to.pima.gov/taxLienSale/", saleUrl:"https://pima.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 26, 2026", note:"Registration Feb 2–19; first batch closes 8am MST"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://www.to.pima.gov/taxLienSale/", availableWhen:"Year-round EXCEPT Jan, Feb, March", note:"$50 data fee for parcel list (updated monthly)"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://www.to.pima.gov/taxLienSale/", availableWhen:"Year-round EXCEPT Jan, Feb, March", note:"$50 data fee for parcel list (updated monthly)"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"Pinal",
     auction:{url:"https://www.pinal.gov/780/Tax-Lien-Sale", saleUrl:"https://pinal.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 12, 2026", note:"Deposit via wire/ACH day before sale"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://www.pinal.gov/780/Tax-Lien-Sale"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://www.pinal.gov/780/Tax-Lien-Sale"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"Santa Cruz",
     auction:{url:"https://www.santacruzcountyaz.gov/317/Treasurer", saleUrl:"https://santacruz.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 10, 2026", note:"CC/debit deadline Feb 3; ACH only after sale"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://www.santacruzcountyaz.gov/317/Treasurer"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://www.santacruzcountyaz.gov/317/Treasurer"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"Yavapai",
     auction:{url:"https://www.yavapaiaz.gov/Mapping-and-Properties/Property-Taxes/Treasurers-Office/Treasurers-Tax-Lien-Sale", saleUrl:"https://yavapai.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 10, 2026"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://www.yavapaiaz.gov/Mapping-and-Properties/Property-Taxes/Treasurers-Office/Treasurers-Tax-Lien-Sale"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://www.yavapaiaz.gov/Mapping-and-Properties/Property-Taxes/Treasurers-Office/Treasurers-Tax-Lien-Sale"}, verified:true
   },
-  {
+  {...AZ_STATE_RULES, 
     county:"Yuma",
     auction:{url:"https://www.yumacountyaz.gov/government/treasurer/tax-lien-information", saleUrl:"https://yuma.arizonataxsale.com", platform:"RealAuction", saleDate2026:"February 2026"},
-    otc:{...AZ_STATE_RULES.otc, url:"https://www.yumacountyaz.gov/government/treasurer/tax-lien-information"},
-    ...AZ_STATE_RULES, verified:true
+    otc:{...AZ_STATE_RULES.otc, url:"https://www.yumacountyaz.gov/government/treasurer/tax-lien-information"}, verified:true
   },
 ];
 

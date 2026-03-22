@@ -70,16 +70,15 @@ const HI_STATE_RULES = {
 };
 
 window.COUNTY_DATA['HI'] = [
-  {
+  {...HI_STATE_RULES, 
     county: "Honolulu",
     note: "City and County of Honolulu — covers entire island of Oahu (~70% of HI population)",
     url: "https://realproperty.honolulu.gov",
     platform: "In-person (city/county-run)",
     saleFrequency: "Annual — contact Real Property Assessment Division for scheduled dates",
-    alert: "⚡ Largest HI market. Contact city treasury for current sale dates.",
-    ...HI_STATE_RULES, verified: true
+    alert: "⚡ Largest HI market. Contact city treasury for current sale dates.", verified: true
   },
-  {
+  {...HI_STATE_RULES, 
     county: "Maui",
     note: "County of Maui — includes Maui, Molokai, Lanai islands. Lowest effective property tax rate in US.",
     url: "https://www.mauicounty.gov/faq.aspx?TID=115",
@@ -87,10 +86,9 @@ window.COUNTY_DATA['HI'] = [
     saleFrequency: "Annual — posted at least 4 weeks prior; advertised in Honolulu Star-Advertiser, Maui News, Molokai Dispatch",
     taxCodeAuth: "Maui County Code Chapter 3.48",
     surplusMCC: "Surplus disposed per MCC §3.48.285 + HRS §246-63",
-    titleRecording: "County records deed with Bureau of Conveyances or Land Court within 60 days",
-    ...HI_STATE_RULES, verified: true
+    titleRecording: "County records deed with Bureau of Conveyances or Land Court within 60 days", verified: true
   },
-  {
+  {...HI_STATE_RULES, 
     county: "Hawaii",
     note: "County of Hawaii — Big Island. Deed transfers at purchase; 1-year redemption recognized by RPT.",
     url: "https://hawaiipropertytax.com/tax-sale/",
@@ -98,16 +96,14 @@ window.COUNTY_DATA['HI'] = [
     saleFrequency: "Annual — contact RPT for current dates",
     taxCodeAuth: "Hawaii County Code Chapter 19",
     otcNote: "Chapter 19 does NOT include provisions to convey unsold properties to county",
-    alert: "⚡ RPT advises purchasers: do NOT develop property until 1-year redemption period expires",
-    ...HI_STATE_RULES, verified: true
+    alert: "⚡ RPT advises purchasers: do NOT develop property until 1-year redemption period expires", verified: true
   },
-  {
+  {...HI_STATE_RULES, 
     county: "Kauai",
     note: "County of Kauai — includes Kauai, Niihau, Lehua, Kaula islands.",
     url: "https://www.kauai.gov/Government/Departments-Agencies/Finance/Real-Property-Tax",
     platform: "In-person — County Finance Dept",
-    saleFrequency: "Annual — contact Finance Dept for scheduled dates",
-    ...HI_STATE_RULES, verified: true
+    saleFrequency: "Annual — contact Finance Dept for scheduled dates", verified: true
   }
 ];
 window.COUNTY_DATA['HI_STATE_RULES'] = HI_STATE_RULES;
@@ -229,7 +225,7 @@ const ID_COUNTIES = [
   {county:"Valley",url:"https://www.co.valley.id.us/treasurer",platform:"In-person",saleMonth:"Summer/Fall"},
   {county:"Washington",url:"https://www.co.washington.id.us/treasurer",platform:"In-person",saleMonth:"Summer/Fall"},
 ];
-window.COUNTY_DATA['ID'] = ID_COUNTIES.map(c => ({...c, ...ID_STATE_RULES, verified: true}));
+window.COUNTY_DATA['ID'] = ID_COUNTIES.map(c => ({...ID_STATE_RULES, ...c, verified: true}));
 window.COUNTY_DATA['ID_STATE_RULES'] = ID_STATE_RULES;
 
 // ─────────────────────────────────────────────────────────
@@ -323,7 +319,7 @@ const MT_COUNTIES = [
   "Wheatland","Wibaux","Yellowstone"
 ];
 
-window.COUNTY_DATA['MT'] = MT_COUNTIES.map(name => ({
+window.COUNTY_DATA['MT'] = MT_COUNTIES.map(name => ({...MT_STATE_RULES, 
   county: name,
   url: name === "Yellowstone"
     ? "https://www.yellowstonecountymt.gov/treasurer/TaxSales.asp"
@@ -332,7 +328,6 @@ window.COUNTY_DATA['MT'] = MT_COUNTIES.map(name => ({
       : `https://${name.toLowerCase().replace(/\s/g,'')}countymt.gov/treasurer`,
   platform: "County Treasurer (in-person or electronic per MCA §15-18-220)",
   saleWindow: "Within 60 days of tax deed application (after 3-yr redemption expires)",
-  ...MT_STATE_RULES,
   verified: true,
   notes: name === "Yellowstone" ? ["⚡ Lottery randomizer for assignment list. Delinquent list published on website (Excel + Web). Subsequent taxes: June 1–July 30."] : []
 }));
@@ -418,7 +413,7 @@ const ND_COUNTIES = [
   "Ward","Wells","Williams"
 ];
 
-window.COUNTY_DATA['ND'] = ND_COUNTIES.map(name => ({
+window.COUNTY_DATA['ND'] = ND_COUNTIES.map(name => ({...ND_STATE_RULES, 
   county: name,
   url: name === "Williams"
     ? "https://www.williamsnd.com/tax-foreclosure-properties/"
@@ -427,7 +422,6 @@ window.COUNTY_DATA['ND'] = ND_COUNTIES.map(name => ({
       : `https://www.${name.toLowerCase().replace(/\s/g,'')}countynd.gov/auditor`,
   platform: "County Auditor Office — in-person",
   saleDate: "3rd Tuesday of November",
-  ...ND_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['ND_STATE_RULES'] = ND_STATE_RULES;
@@ -512,7 +506,7 @@ const SD_COUNTIES = [
   "Spink","Stanley","Sully","Todd","Tripp","Turner","Union","Walworth","Yankton","Ziebach"
 ];
 
-window.COUNTY_DATA['SD'] = SD_COUNTIES.map(name => ({
+window.COUNTY_DATA['SD'] = SD_COUNTIES.map(name => ({...SD_STATE_RULES, 
   county: name,
   url: name === "Pennington"
     ? "https://pennco.org/?SEC=00961D41-46CB-456F-B4C4-DD8811C80A00"
@@ -523,7 +517,6 @@ window.COUNTY_DATA['SD'] = SD_COUNTIES.map(name => ({
         : `https://${name.toLowerCase().replace(/\s/g,'')}.sdcounties.org/treasurer`,
   platform: "County Treasurer — in-person",
   saleFrequency: "Annual — typically December",
-  ...SD_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['SD_STATE_RULES'] = SD_STATE_RULES;

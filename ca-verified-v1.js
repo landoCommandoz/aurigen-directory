@@ -225,9 +225,8 @@ const CA_COUNTIES = [
   {county:"Yuba",url:"https://www.yubacounty.net/treasurer",platform:"Bid4Assets",saleMonth:"As scheduled"},
 ];
 
-window.COUNTY_DATA['CA'] = CA_COUNTIES.map(c => ({
+window.COUNTY_DATA['CA'] = CA_COUNTIES.map(c => ({...CA_STATE_RULES, 
   ...c,
-  ...CA_STATE_RULES,
   verified: true,
   // Preserve county-specific overrides
   url: c.url,

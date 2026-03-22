@@ -191,7 +191,7 @@ const NJ_STATE_RULES = {
 
 window.COUNTY_DATA = window.COUNTY_DATA || {};
 window.COUNTY_DATA['NJ'] = [
-  {
+  {...NJ_STATE_RULES, 
     county: "Atlantic",
     countyClerk: {url:"https://www.atlantic-county.org/clerk/default.asp", note:"Record TSC here within 90 days"},
     auction: {
@@ -200,10 +200,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Includes Atlantic City, Egg Harbor, Galloway, Hamilton, Pleasantville and 20+ other municipalities"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Bergen",
     countyClerk: {url:"https://www.co.bergen.nj.us/county-clerk", note:"Record TSC here within 90 days"},
     auction: {
@@ -212,10 +211,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "70 municipalities including Teaneck (Jan 2026), Fort Lee, Hackensack, Paramus"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Burlington",
     countyClerk: {url:"https://www.co.burlington.nj.us/192/County-Clerk", note:"Record TSC here within 90 days"},
     auction: {
@@ -224,10 +222,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Includes Burlington City, Evesham, Moorestown, Mt. Holly, Stafford (Ocean County border)"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Camden",
     countyClerk: {url:"https://www.camdencounty.com/service/county-clerk/", note:"Record TSC here within 90 days"},
     auction: {
@@ -236,11 +233,10 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Camden City: April 6, 2026 online. Others check TCTANJ board.",
       note: "⚡ Camden City sale April 6 2026 — 2025 and prior delinquencies"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true,
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true,
     alert:"⚡ Camden City online sale April 6 2026 confirmed"
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Cape May",
     countyClerk: {url:"https://www.capemaycountynj.gov/180/County-Clerk", note:"Record TSC here within 90 days"},
     auction: {
@@ -249,10 +245,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Cape May City: fall 2026 (date TBD). Others check TCTANJ board.",
       note: "Cape May City 2026 fall sale TBD — posted on capemaycity.com"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Cumberland",
     countyClerk: {url:"https://www.co.cumberland.nj.us/county_clerk", note:"Record TSC here within 90 days"},
     auction: {
@@ -261,10 +256,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Includes Bridgeton, Millville, Vineland (largest cities)"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Essex",
     countyClerk: {url:"https://www.essexcountynj.org/county-clerk/", note:"Record TSC here within 90 days"},
     auction: {
@@ -273,10 +267,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Includes Newark (largest city in NJ), Irvington, East Orange, Montclair"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Gloucester",
     countyClerk: {url:"https://www.gloucestercountynj.gov/county-clerk", note:"Record TSC here within 90 days"},
     auction: {
@@ -285,10 +278,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Includes Deptford, Washington, Monroe, Woodbury"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Hudson",
     countyClerk: {url:"https://www.hudsoncountynj.gov/government/offices/county-clerk", note:"Record TSC here within 90 days"},
     auction: {
@@ -297,10 +289,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Includes Jersey City (2nd largest NJ city), Bayonne, Hoboken, Union City, Kearny"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Hunterdon",
     countyClerk: {url:"https://www.co.hunterdon.nj.us/clerk.htm", note:"Record TSC here within 90 days"},
     auction: {
@@ -309,10 +300,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Mostly small rural townships"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Mercer",
     countyClerk: {url:"https://www.mercercounty.org/government/county-clerk", note:"Record TSC here within 90 days"},
     auction: {
@@ -321,10 +311,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Includes Trenton (state capital), Princeton, Hamilton, Lawrence"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Middlesex",
     countyClerk: {url:"https://www.middlesexcountynj.gov/government/departments/county-clerk", note:"Record TSC here within 90 days"},
     auction: {
@@ -333,10 +322,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Includes New Brunswick, Edison, Woodbridge, Piscataway, Sayreville"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Monmouth",
     countyClerk: {url:"https://www.co.monmouth.nj.us/county_clerk.aspx", note:"Record TSC here within 90 days"},
     auction: {
@@ -345,10 +333,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Includes Asbury Park, Long Branch, Freehold, Middletown, Brick (border)"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Morris",
     countyClerk: {url:"https://www.morriscountynj.gov/Departments/County-Clerk", note:"Record TSC here within 90 days"},
     auction: {
@@ -357,10 +344,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Includes Morristown, Parsippany, Rockaway, Dover"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Ocean",
     countyClerk: {url:"https://www.co.ocean.nj.us/OC/Clerk/Pages/default.aspx", note:"Record TSC here within 90 days"},
     auction: {
@@ -369,11 +355,10 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Stafford Twp: February 13, 2026 electronic. Others check TCTANJ.",
       note: "⚡ Stafford Township confirmed Feb 13 2026 electronic sale. Includes Toms River, Brick, Stafford, Lakewood."
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true,
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true,
     alert:"⚡ Stafford Twp electronic sale Feb 13 2026 confirmed"
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Passaic",
     countyClerk: {url:"https://www.passaiccountynj.org/government/offices/county_clerk", note:"Record TSC here within 90 days"},
     auction: {
@@ -382,10 +367,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Includes Paterson, Clifton, Passaic, Wayne, West Milford"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Salem",
     countyClerk: {url:"https://www.salemcountynj.gov/county-clerk/", note:"Record TSC here within 90 days"},
     auction: {
@@ -394,10 +378,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Small rural county — lower competition, higher chance of unsold certs"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Somerset",
     countyClerk: {url:"https://www.co.somerset.nj.us/government/county-offices/county-clerk", note:"Record TSC here within 90 days"},
     auction: {
@@ -406,10 +389,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Includes Bridgewater, Franklin, Warren, Bound Brook"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Sussex",
     countyClerk: {url:"https://www.sussexcountynj.gov/government/offices/county-clerk", note:"Record TSC here within 90 days"},
     auction: {
@@ -418,10 +400,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Rural county — lower competition generally"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Union",
     countyClerk: {url:"https://www.ucnj.org/county-clerk/", note:"Record TSC here within 90 days"},
     auction: {
@@ -430,10 +411,9 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Includes Elizabeth (4th largest NJ city), Linden, Union, Plainfield, Cranford"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
-  {
+  {...NJ_STATE_RULES, 
     county: "Warren",
     countyClerk: {url:"https://www.co.warren.nj.us/county-clerk.html", note:"Record TSC here within 90 days"},
     auction: {
@@ -442,8 +422,7 @@ window.COUNTY_DATA['NJ'] = [
       saleDate2026: "Multiple municipalities — check TCTANJ board",
       note: "Rural county — lower competition generally"
     },
-    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"},
-    ...NJ_STATE_RULES, verified:true
+    otc: {...NJ_STATE_RULES.otc, url:"https://www.tctanj.org/cn/webpage.cfm?tpid=14659"}, verified:true
   },
 ];
 

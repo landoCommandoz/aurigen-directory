@@ -91,6 +91,17 @@
   // Normalize platform name for filtering
   function normPlatform(raw) {
     if (!raw) return 'Unknown';
+    // If platform is an object (e.g. {anchorage:"...", fnsb:"..."}), extract first string value
+    if (typeof raw === 'object' && raw !== null) {
+      var keys = Object.keys(raw);
+      for (var k = 0; k < keys.length; k++) {
+        if (typeof raw[keys[k]] === 'string' && raw[keys[k]].length > 0) {
+          raw = raw[keys[k]];
+          break;
+        }
+      }
+      if (typeof raw === 'object') return 'In-Person';
+    }
     var s = String(raw);
     if (/realauction/i.test(s)) return 'RealAuction';
     if (/govease/i.test(s)) return 'GovEase';
@@ -99,7 +110,7 @@
     if (/linebarger/i.test(s)) return 'Linebarger';
     if (/sri/i.test(s) && !/santa cruz/i.test(s)) return 'SRI';
     if (/civicsource/i.test(s)) return 'CivicSource';
-    if (/in.person/i.test(s) || /courthouse/i.test(s)) return 'In-Person';
+    if (/in.person/i.test(s) || /courthouse/i.test(s) || /sealed.bid/i.test(s) || /public.auction/i.test(s)) return 'In-Person';
     if (/realtaxlien/i.test(s)) return 'RealTaxLien';
     if (/taxcertsale/i.test(s)) return 'TaxCertSale';
     return s.length > 20 ? s.substring(0,20) : s;

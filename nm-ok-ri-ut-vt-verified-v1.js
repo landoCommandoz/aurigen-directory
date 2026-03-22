@@ -95,12 +95,11 @@ const NM_COUNTIES = [
   "San Juan","San Miguel","Santa Fe","Sierra","Socorro","Taos","Torrance","Union","Valencia"
 ];
 
-window.COUNTY_DATA['NM'] = NM_COUNTIES.map(name => ({
+window.COUNTY_DATA['NM'] = NM_COUNTIES.map(name => ({...NM_STATE_RULES, 
   county: name,
   url: "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
   platform: "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
   saleAdministrator: "State of New Mexico PTD — not county treasurer",
-  ...NM_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['NM_STATE_RULES'] = NM_STATE_RULES;
@@ -208,7 +207,7 @@ const OK_COUNTIES = [
   "Woods","Woodward"
 ];
 
-window.COUNTY_DATA['OK'] = OK_COUNTIES.map(name => ({
+window.COUNTY_DATA['OK'] = OK_COUNTIES.map(name => ({...OK_STATE_RULES, 
   county: name,
   url: name === "Oklahoma"
     ? "https://docs.oklahomacounty.org/treasurer/TaxLiens.asp"
@@ -218,7 +217,6 @@ window.COUNTY_DATA['OK'] = OK_COUNTIES.map(name => ({
   platform: name === "Oklahoma" ? "Online + in-person" : "In-person courthouse",
   taxSaleDate2026: "October 5, 2026 (1st Monday October)",
   resaleDate2026: "June 8, 2026 (2nd Monday June)",
-  ...OK_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['OK_STATE_RULES'] = OK_STATE_RULES;
@@ -309,11 +307,10 @@ const RI_COUNTIES = [
   {county:"Washington",municipalities:9,url:"https://www.southkingstownri.com/tax-collector"},
 ];
 
-window.COUNTY_DATA['RI'] = RI_COUNTIES.map(c => ({
+window.COUNTY_DATA['RI'] = RI_COUNTIES.map(c => ({...RI_STATE_RULES, 
   ...c,
   platform: "Municipal tax collector — in-person / CivicSource (Providence confirmed)",
   note: `${c.municipalities} municipalities. Each runs independent lien sale. ⚡ East Providence 2026: April 15. Providence 2026: Spring (CivicSource). Check individual city/town for exact date.`,
-  ...RI_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['RI_STATE_RULES'] = RI_STATE_RULES;
@@ -433,11 +430,10 @@ const UT_COUNTIES = [
   {county:"Weber",url:"https://www.webercountyutah.gov/Clerk_Auditor/tax_sale.php"},
 ];
 
-window.COUNTY_DATA['UT'] = UT_COUNTIES.map(c => ({
+window.COUNTY_DATA['UT'] = UT_COUNTIES.map(c => ({...UT_STATE_RULES, 
   ...c,
   platform: c.county === "Utah" ? "Online auction + in-person (Utah County Auditor)" : c.county === "Weber" ? "In-person — Weber Center, Ogden" : "In-person courthouse / county auditor",
   saleDate2026: c.county === "Weber" ? "May 21, 2026 — CONFIRMED" : "3rd Thursday May 2026 — check county auditor site",
-  ...UT_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['UT_STATE_RULES'] = UT_STATE_RULES;
@@ -538,11 +534,10 @@ const VT_COUNTIES = [
   {county:"Windsor",municipalities:25,url:"https://windsordeeds.com"},
 ];
 
-window.COUNTY_DATA['VT'] = VT_COUNTIES.map(c => ({
+window.COUNTY_DATA['VT'] = VT_COUNTIES.map(c => ({...VT_STATE_RULES, 
   ...c,
   platform: "Municipal tax collector — in-person public auction",
   note: `${c.municipalities} municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies.`,
-  ...VT_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['VT_STATE_RULES'] = VT_STATE_RULES;
