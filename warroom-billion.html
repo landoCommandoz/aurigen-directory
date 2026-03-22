@@ -1776,7 +1776,7 @@ var TYPE_FILL = {
 var TYPE_COLORS = { lien: 'var(--lien)', deed: 'var(--deed)', hybrid: 'var(--hybrid)', redeemable: 'var(--rdeed)', forfeiture: 'var(--forfeiture)' };
 
 // Type display labels
-var TYPE_LABELS = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDEE', hybrid: 'HYBR', forfeiture: 'FORFEIT' };
+var TYPE_LABELS = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDBL DEED', hybrid: 'HYBR', forfeiture: 'FORFEIT' };
 var TYPE_FULL = { lien: 'TAX LIEN', deed: 'TAX DEED', redeemable: 'REDEEMABLE DEED', hybrid: 'HYBRID', forfeiture: 'TAX FORFEITURE' };
 
 // Current explore state
@@ -1797,7 +1797,8 @@ function buildLegend() {
   Object.keys(TYPES).forEach(function(t){ counts[t] = ALL_STATES.filter(function(s){ return (s._v2type||s.type)===t; }).length; });
   document.getElementById('type-legend').innerHTML = Object.entries(TYPES).map(function(e){
     var k=e[0], v=e[1];
-    return '<div class="leg-item"><div class="leg-dot" style="background:'+v.color+';box-shadow:0 0 6px '+v.color+'"></div><span class="leg-label">'+v.label.split(' ').pop()+' '+counts[k]+'</span></div>';
+    var short=k==='redeemable'?'RDBL DEED':v.label.split(' ').pop();
+    return '<div class="leg-item"><div class="leg-dot" style="background:'+v.color+';box-shadow:0 0 6px '+v.color+'"></div><span class="leg-label">'+short+' '+counts[k]+'</span></div>';
   }).join('');
   document.getElementById('map-legend').innerHTML = Object.entries(TYPES).map(function(e){
     var k=e[0], v=e[1];
@@ -1805,7 +1806,7 @@ function buildLegend() {
   }).join('');
   document.getElementById('filter-pills').innerHTML = [
     ['all','ALL',null],['lien','LIEN','lien'],['deed','DEED','deed'],
-    ['redeemable','RDEE','redeemable'],['hybrid','HYBR','hybrid'],['forfeiture','FORFEIT','forfeiture']
+    ['redeemable','RDBL','redeemable'],['hybrid','HYBR','hybrid'],['forfeiture','FORFEIT','forfeiture']
   ].map(function(a){ return '<button class="pill" id="pill-'+a[0]+'" onclick="setFilter(\''+a[0]+'\')">'+a[1]+'</button>'; }).join('');
   updatePills();
 }
@@ -3073,9 +3074,9 @@ function runVersusCompare() {
   document.getElementById('vs-name-b').textContent = b.name;
   var badgeA = document.getElementById('vs-badge-a');
   var badgeB = document.getElementById('vs-badge-b');
-  badgeA.textContent = a.type.toUpperCase();
+  badgeA.textContent = TYPE_FULL[a.type] || a.type.toUpperCase();
   badgeA.setAttribute('data-type', a.type);
-  badgeB.textContent = b.type.toUpperCase();
+  badgeB.textContent = TYPE_FULL[b.type] || b.type.toUpperCase();
   badgeB.setAttribute('data-type', b.type);
 
   // Metrics
