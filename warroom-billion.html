@@ -448,8 +448,8 @@
     .row-num{font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(0,212,255,0.3)}
     .row-dot{width:5px;height:5px;border-radius:1px;margin-top:2px;flex-shrink:0}
     .row-name{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;color:#f0f0f0;letter-spacing:0.02em}
-    .row-yield{font-family:'DM Sans',sans-serif;font-size:13px;color:#cccccc;text-align:right}
-    .row-redempt{font-family:'DM Sans',sans-serif;font-size:13px;color:#cccccc;text-align:right}
+    .row-yield{font-family:'DM Sans',sans-serif;font-size:12px;color:#cccccc;text-align:right;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .row-redempt{font-family:'DM Sans',sans-serif;font-size:12px;color:#cccccc;text-align:right;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .row-badge{display:flex;justify-content:flex-end;align-items:center}
     .badge{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;padding:3px 7px;border-radius:3px;border:1px solid;letter-spacing:0.06em}
     #empty-state{display:none;align-items:center;justify-content:center;height:100%;font-family:'Space Mono',monospace;font-size:9px;color:rgba(0,212,255,0.2);letter-spacing:0.18em}
@@ -474,7 +474,8 @@
     #panel-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
     .meta-chip{font-family:'DM Sans',sans-serif;font-size:12px;color:#e0e0e0;letter-spacing:0.03em;padding:6px 10px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.15);border-radius:4px;display:inline-flex;align-items:center;gap:6px}
     .meta-chip .chip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-    .meta-chip a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+    .meta-chip a{color:#e0e0e0;text-decoration:underline;text-underline-offset:2px;transition:color 0.15s}
+    .meta-chip a:hover{color:#FFD700}
     #panel-cta{width:100%;margin-top:16px;padding:14px;border-radius:4px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.18em;transition:all 0.2s}
 
     /* === TOOLS TAB === */
@@ -760,6 +761,10 @@
       #list-toolbar { flex-wrap: wrap; }
       .filter-pills { flex-wrap: wrap; }
       #detail-panel-inner { width:100%;height:95%;max-height:95vh;border-radius:6px 6px 0 0 }
+      #col-headers{grid-template-columns:28px 8px 1fr 80px}
+      .state-row{grid-template-columns:28px 8px 1fr 80px}
+      .col-h.col-yield,.col-h.col-redempt,.row-yield,.row-redempt{display:none}
+      #panel-stats{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -849,8 +854,8 @@
           <span class="col-h">#</span>
           <span class="col-h">&middot;</span>
           <span class="col-h">JURISDICTION</span>
-          <span class="col-h r">YIELD</span>
-          <span class="col-h r">REDEMPT</span>
+          <span class="col-h r col-yield">YIELD</span>
+          <span class="col-h r col-redempt">REDEMPT</span>
           <span class="col-h r">TYPE</span>
         </div>
         <div id="rows-container">
@@ -1370,8 +1375,8 @@ function renderList() {
       '<span class="row-num">'+String(i+1).padStart(2,'0')+'</span>'+
       '<div class="row-dot" style="background:'+color+';box-shadow:0 0 4px '+color+'"></div>'+
       '<span class="row-name">'+n.toUpperCase()+'</span>'+
-      '<span class="row-yield" style="color:'+color+'">'+rate+'</span>'+
-      '<span class="row-redempt">'+redemption+'</span>'+
+      '<span class="row-yield" title="'+rate.replace(/"/g,'&quot;')+'" style="color:'+color+'">'+rate+'</span>'+
+      '<span class="row-redempt" title="'+redemption.replace(/"/g,'&quot;')+'">'+redemption+'</span>'+
       '<div class="row-badge"><span class="badge" style="color:#fff;background:'+color+';border-color:'+color+'">'+badge+'</span></div>'+
     '</div>';
   }).join('');
@@ -1398,6 +1403,28 @@ function clearSearch() {
 }
 
 function setFilter(f){activeFilter=f;selectedState=null;closeDetail();updatePills();renderList();}
+
+// Platform name → URL lookup
+var PLATFORM_URLS={
+  'GovEase':'https://www.govease.com',
+  'Bid4Assets':'https://www.bid4assets.com',
+  'RealAuction':'https://www.realauction.com',
+  'CivicSource':'https://www.civicsource.com',
+  'SRI':'https://www.sri-taxsale.com',
+  'PublicSurplus':'https://www.publicsurplus.com',
+  'iowataxauction.com':'https://www.iowataxauction.com',
+  'cosl.org':'https://cosl.org',
+  'BidSpencer':'https://www.bidspencer.com',
+  'Michigan Land Bank':'https://www.michiganlandbank.org'
+};
+function linkifyPlatform(text){
+  var result=text;
+  Object.keys(PLATFORM_URLS).forEach(function(name){
+    var re=new RegExp('('+name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+    result=result.replace(re,'<a href="'+PLATFORM_URLS[name]+'" target="_blank" rel="noopener">$1 \u2197</a>');
+  });
+  return result;
+}
 
 function showDetail(s) {
   var t=s._v2type||s.type||s.t; var mapType=s.type; var c=s.abbr||s.c; var n=s.name||s.n||c;
@@ -1447,7 +1474,7 @@ function showDetail(s) {
     var statLink=s.officialLink?'<a href="'+s.officialLink+'" target="_blank" rel="noopener">'+s.statute+'</a>':s.statute;
     metaHtml.push('<span class="meta-chip">'+chipDot('#FFD700')+statLink+'</span>');
   }
-  if(s.auctionPlatform) metaHtml.push('<span class="meta-chip">'+chipDot('#00D4FF')+s.auctionPlatform+'</span>');
+  if(s.auctionPlatform) metaHtml.push('<span class="meta-chip">'+chipDot('#00D4FF')+linkifyPlatform(s.auctionPlatform)+'</span>');
   if(s.auctionTiming) metaHtml.push('<span class="meta-chip">'+chipDot('#FF6B35')+s.auctionTiming+'</span>');
   if(s.rateNote) metaHtml.push('<span class="meta-chip">'+chipDot('#BF5FFF')+s.rateNote+'</span>');
   document.getElementById('panel-meta').innerHTML=metaHtml.join('');
