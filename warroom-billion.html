@@ -479,12 +479,24 @@
     #panel-shimmer{height:1px;border-radius:6px 6px 0 0}
     #panel-body{padding:20px 22px 24px;position:relative}
     #panel-close{position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:4px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:10}
-    #panel-title{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:0.06em;line-height:1}
+    #panel-title{font-family:'Bebas Neue',sans-serif;letter-spacing:0.06em;line-height:1;display:flex;flex-direction:column;gap:2px;word-break:normal;overflow-wrap:normal}
+    #panel-title .title-abbr{font-size:14px;letter-spacing:0.2em;opacity:0.5}
+    #panel-title .title-name{font-size:clamp(24px, 5vw, 48px)}
     #panel-type{font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.15em;margin-top:6px;font-weight:600}
     #panel-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}
-    .stat-box{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:12px 14px;border-left-width:2px}
+    .stat-box{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:12px 14px;border-left-width:2px;position:relative;cursor:default}
+    .stat-box.has-detail{cursor:pointer}
+    .stat-box .stat-info{position:absolute;top:6px;right:6px;font-size:10px;color:var(--text2);line-height:1;pointer-events:none;display:none}
+    .stat-box.has-detail .stat-info{display:block}
     .stat-label{font-family:'DM Sans',sans-serif;font-size:10px;color:#aaaaaa;letter-spacing:0.1em;margin-bottom:6px;text-transform:uppercase;font-weight:600}
     .stat-value{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.04em;font-weight:700;color:#f0f0f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .stat-popover{position:absolute;left:50%;z-index:500;background:rgba(20,20,28,0.96);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(8px);border-radius:8px;padding:12px 14px;max-width:260px;width:max-content;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.6;pointer-events:none;opacity:0;transform:translateX(-50%) translateY(4px);transition:opacity 150ms ease-out, transform 150ms ease-out;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+    .stat-popover.above{bottom:calc(100% + 10px);top:auto}
+    .stat-popover.below{top:calc(100% + 10px);bottom:auto}
+    .stat-popover.visible{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+    .stat-popover::after{content:'';position:absolute;left:50%;transform:translateX(-50%);border:6px solid transparent}
+    .stat-popover.above::after{top:100%;border-top-color:rgba(20,20,28,0.96)}
+    .stat-popover.below::after{bottom:100%;border-bottom-color:rgba(20,20,28,0.96)}
     #panel-alert{display:none;padding:12px 18px;background:rgba(255,45,85,0.08);border-bottom:1px solid rgba(255,45,85,0.2);font-family:'DM Sans',sans-serif;font-size:12px;color:#FF2D55;letter-spacing:0.04em;line-height:1.5;font-weight:600;animation:alertPulse 2s ease-in-out infinite}
     #panel-alert.visible{display:block}
     @keyframes alertPulse{0%,100%{opacity:1}50%{opacity:0.6}}
@@ -1845,33 +1857,7 @@ function updatePills() {
   });
 }
 
-function shortenRate(rate, type) {
-  if(!rate) return 'N/A';
-  var r=rate;
-  if(type==='forfeiture') return 'Forfeiture';
-  if(/N\/A|no lien|deed state/i.test(r)) return 'No Lien';
-  // "9% per 6 months (18% annualized)" → "18% ann."
-  var ann=r.match(/(\d+%)\s*annualized/i); if(ann) return ann[1]+' ann.';
-  // "Federal Discount Rate + 9 points" → "Fed+9"
-  if(/federal discount/i.test(r)) { var pts=r.match(/\+\s*(\d+)/); return pts?'Fed+'+pts[1]:'Fed rate'; }
-  // "6%–24% depending on county" → "6–24%"
-  var range=r.match(/(\d+)%\s*[–\-—to]+\s*(\d+)%/); if(range) return range[1]+'–'+range[2]+'%';
-  // "20% year 1 / 10% year 2+" → "20/10%"
-  var split=r.match(/(\d+)%\s*year\s*1\s*\/\s*(\d+)%/i); if(split) return split[1]+'/'+split[2]+'%';
-  // "25% year 1 / 50% year 2" → "25/50%"
-  // "10% (months 0–6) / 15% (months 6–12)" → "10/15%"
-  var dual=r.match(/(\d+)%.*?\/\s*(\d+)%/); if(dual) return dual[1]+'/'+dual[2]+'%';
-  // "0.7%–1.0%/month" → "0.7–1%/mo"
-  var moRange=r.match(/([\d.]+)%\s*[–\-]\s*([\d.]+)%\s*\/\s*month/i); if(moRange) return moRange[1]+'–'+moRange[2]+'%/mo';
-  // "12% on BID amount" → "12%"
-  // "18% max / 6% floor" → "18% max"
-  // Simple: extract first percentage
-  var pct=r.match(/(\d+(?:\.\d+)?%(?:\s*(?:max|fixed|floor))?)/i); if(pct) return pct[1];
-  // "Bid-down to lowest rate" → "Bid-down"
-  if(/bid.?down/i.test(r)) return 'Bid-down';
-  if(/varies/i.test(r)) return 'Varies';
-  return r.length>10?r.slice(0,8)+'…':r;
-}
+// shortenRate defined below (consolidated at line ~2058)
 
 function shortenHold(redemption, type) {
   if(!redemption) return 'N/A';
@@ -2162,6 +2148,87 @@ function shortenBidMethod(raw) {
   return words;
 }
 
+// Build detail text for a stat box popover
+function buildStatDetail(shortVal, fullVal, noteVal, keyNotes, topicRx) {
+  var parts = [];
+  // Add the full value if it differs meaningfully from the short value
+  if (fullVal && shortVal.toLowerCase() !== fullVal.toLowerCase() && fullVal.length > shortVal.length + 4) {
+    parts.push(fullVal);
+  }
+  // Add the rate/bid note if present
+  if (noteVal && noteVal.length > 0) {
+    parts.push(noteVal);
+  }
+  // Add matching keyNotes
+  if (keyNotes && keyNotes.length > 0) {
+    keyNotes.forEach(function(note) {
+      if (topicRx.test(note)) {
+        // Avoid duplicating text already in parts
+        var dominated = false;
+        for (var i = 0; i < parts.length; i++) {
+          if (parts[i].indexOf(note) !== -1 || note.indexOf(parts[i]) !== -1) { dominated = true; break; }
+        }
+        if (!dominated) parts.push(note);
+      }
+    });
+  }
+  // Cap at 3 items for readability
+  if (parts.length > 3) parts = parts.slice(0, 3);
+  return parts.join(' \u2022 ');
+}
+
+// Stat box popover interaction
+var _activePopover = null;
+function dismissStatPopover() {
+  if (_activePopover) {
+    _activePopover.classList.remove('visible');
+    setTimeout(function() { if (_activePopover && !_activePopover.classList.contains('visible')) _activePopover.remove(); _activePopover = null; }, 160);
+  }
+}
+
+function showStatPopover(box) {
+  dismissStatPopover();
+  var detail = box.getAttribute('data-detail');
+  if (!detail) return;
+  var pop = document.createElement('div');
+  pop.className = 'stat-popover';
+  pop.textContent = detail;
+  box.appendChild(pop);
+  // Position: above if enough space, below otherwise
+  var boxRect = box.getBoundingClientRect();
+  if (boxRect.top > 180) {
+    pop.classList.add('above');
+  } else {
+    pop.classList.add('below');
+  }
+  _activePopover = pop;
+  requestAnimationFrame(function() { pop.classList.add('visible'); });
+}
+
+// Desktop: hover
+document.addEventListener('mouseenter', function(e) {
+  var box = e.target.closest('.stat-box.has-detail');
+  if (box) showStatPopover(box);
+}, true);
+document.addEventListener('mouseleave', function(e) {
+  var box = e.target.closest('.stat-box.has-detail');
+  if (box) dismissStatPopover();
+}, true);
+// Mobile: tap
+document.addEventListener('click', function(e) {
+  var box = e.target.closest('.stat-box.has-detail');
+  if (box) {
+    if (_activePopover && _activePopover.parentElement === box) {
+      dismissStatPopover();
+    } else {
+      showStatPopover(box);
+    }
+    e.stopPropagation();
+  } else {
+    dismissStatPopover();
+  }
+});
+
 function showDetail(s) {
   var t=s._v2type||s.type||s.t; var mapType=s.type; var c=s.abbr||s.c; var n=s.name||s.n||c;
   var rate=s.rate||s.y||'N/A'; var redemption=s.redemption||s.r||'N/A';
@@ -2185,8 +2252,9 @@ function showDetail(s) {
     alertEl.classList.remove('visible');
   }
 
-  document.getElementById('panel-title').style.cssText="font-family:'Bebas Neue',sans-serif;font-size:36px;color:"+color+";letter-spacing:0.06em;line-height:1;text-shadow:0 0 30px "+glw;
-  document.getElementById('panel-title').textContent=c+' \u2014 '+n;
+  var titleEl=document.getElementById('panel-title');
+  titleEl.style.cssText="color:"+color+";text-shadow:0 0 30px "+glw;
+  titleEl.innerHTML='<span class="title-abbr">'+escapeHtml(c)+'</span><span class="title-name">'+escapeHtml(n)+'</span>';
   document.getElementById('panel-type').textContent=labels[t]||t.toUpperCase();
 
   // Type rationale block
@@ -2212,14 +2280,29 @@ function showDetail(s) {
     rationaleEl.innerHTML='';
   }
 
-  // Stats: yield, redemption, bid method — short display values
+  // Stats: yield, redemption, bid method — short display values + detail popovers
   var bidMethod=s.bidMethod||'N/A';
   var rateShort=shortenRate(rate, t);
   var redemptionShort=shortenRedemption(redemption);
   var bidMethodShort=shortenBidMethod(bidMethod);
+
+  // Build detail text for each stat box from full values + keyNotes
+  var rateDetail=buildStatDetail(rateShort, rate, s.rateNote, s.keyNotes, /rate|interest|penalty|yield|bid.?down|%/i);
+  var redemptionDetail=buildStatDetail(redemptionShort, redemption, null, s.keyNotes, /redemption|redeem|foreclos|deed|title|challenge/i);
+  var bidMethodDetail=buildStatDetail(bidMethodShort, bidMethod, null, s.keyNotes, /bid|auction|premium|overbid|sheriff|municipal|highest/i);
+
   document.getElementById('panel-stats').innerHTML=[
-    ['YIELD RATE',escapeHtml(rateShort)],['REDEMPTION',escapeHtml(redemptionShort)],['BID METHOD',escapeHtml(bidMethodShort)]
-  ].map(function(a){ return '<div class="stat-box" style="border-left-color:'+color+'88"><div class="stat-label">'+a[0]+'</div><div class="stat-value" style="color:'+color+'">'+a[1]+'</div></div>'; }).join('');
+    ['YIELD RATE',escapeHtml(rateShort),rateDetail],
+    ['REDEMPTION',escapeHtml(redemptionShort),redemptionDetail],
+    ['BID METHOD',escapeHtml(bidMethodShort),bidMethodDetail]
+  ].map(function(a){
+    var hasDetail=a[2]&&a[2].length>0;
+    return '<div class="stat-box'+(hasDetail?' has-detail':'')+'" style="border-left-color:'+color+'88"'+(hasDetail?' data-detail="'+escapeHtml(a[2])+'"':'')+'>'
+      +'<span class="stat-info">\u24D8</span>'
+      +'<div class="stat-label">'+a[0]+'</div>'
+      +'<div class="stat-value" style="color:'+color+'">'+a[1]+'</div>'
+      +'</div>';
+  }).join('');
 
   // Key notes
   var notesEl=document.getElementById('panel-notes');
