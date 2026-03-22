@@ -484,19 +484,17 @@
     #panel-title .title-name{font-size:clamp(24px, 5vw, 48px)}
     #panel-type{font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.15em;margin-top:6px;font-weight:600}
     #panel-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}
+    .stat-box-wrap{position:relative}
     .stat-box{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:12px 14px;border-left-width:2px;position:relative;cursor:default}
     .stat-box.has-detail{cursor:pointer}
     .stat-box .stat-info{position:absolute;top:6px;right:6px;font-size:10px;color:var(--text2);line-height:1;pointer-events:none;display:none}
     .stat-box.has-detail .stat-info{display:block}
     .stat-label{font-family:'DM Sans',sans-serif;font-size:10px;color:#aaaaaa;letter-spacing:0.1em;margin-bottom:6px;text-transform:uppercase;font-weight:600}
     .stat-value{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.04em;font-weight:700;color:#f0f0f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .stat-popover{position:absolute;left:50%;z-index:500;background:rgba(20,20,28,0.96);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(8px);border-radius:8px;padding:12px 14px;max-width:260px;width:max-content;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.6;pointer-events:none;opacity:0;transform:translateX(-50%) translateY(4px);transition:opacity 150ms ease-out, transform 150ms ease-out;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
-    .stat-popover.above{bottom:calc(100% + 10px);top:auto}
-    .stat-popover.below{top:calc(100% + 10px);bottom:auto}
-    .stat-popover.visible{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
-    .stat-popover::after{content:'';position:absolute;left:50%;transform:translateX(-50%);border:6px solid transparent}
-    .stat-popover.above::after{top:100%;border-top-color:rgba(20,20,28,0.96)}
-    .stat-popover.below::after{bottom:100%;border-bottom-color:rgba(20,20,28,0.96)}
+    .stat-popover{position:absolute;left:50%;z-index:500;background:rgba(20,20,28,0.96);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(8px);border-radius:8px;padding:12px 14px;max-width:260px;width:max-content;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.6;pointer-events:none;opacity:0;transform:translateX(-50%) translateY(4px);transition:opacity 150ms ease-out,transform 150ms ease-out;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+    .stat-popover{bottom:calc(100% + 10px)}
+    .stat-popover::after{content:'';position:absolute;left:50%;transform:translateX(-50%);border:6px solid transparent;top:100%;border-top-color:rgba(20,20,28,0.96)}
+    .stat-box-wrap:hover .stat-popover,.stat-popover.mobile-open{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
     #panel-alert{display:none;padding:12px 18px;background:rgba(255,45,85,0.08);border-bottom:1px solid rgba(255,45,85,0.2);font-family:'DM Sans',sans-serif;font-size:12px;color:#FF2D55;letter-spacing:0.04em;line-height:1.5;font-weight:600;animation:alertPulse 2s ease-in-out infinite}
     #panel-alert.visible{display:block}
     @keyframes alertPulse{0%,100%{opacity:1}50%{opacity:0.6}}
@@ -2177,55 +2175,26 @@ function buildStatDetail(shortVal, fullVal, noteVal, keyNotes, topicRx) {
   return parts.join(' \u2022 ');
 }
 
-// Stat box popover interaction
-var _activePopover = null;
-function dismissStatPopover() {
-  if (_activePopover) {
-    _activePopover.classList.remove('visible');
-    setTimeout(function() { if (_activePopover && !_activePopover.classList.contains('visible')) _activePopover.remove(); _activePopover = null; }, 160);
-  }
+// Stat box popover — mobile tap toggle (desktop hover is CSS-only)
+var _mobilePopover = null;
+function dismissMobilePopover() {
+  if (_mobilePopover) { _mobilePopover.classList.remove('mobile-open'); _mobilePopover = null; }
 }
-
-function showStatPopover(box) {
-  dismissStatPopover();
-  var detail = box.getAttribute('data-detail');
-  if (!detail) return;
-  var pop = document.createElement('div');
-  pop.className = 'stat-popover';
-  pop.textContent = detail;
-  box.appendChild(pop);
-  // Position: above if enough space, below otherwise
-  var boxRect = box.getBoundingClientRect();
-  if (boxRect.top > 180) {
-    pop.classList.add('above');
-  } else {
-    pop.classList.add('below');
-  }
-  _activePopover = pop;
-  requestAnimationFrame(function() { pop.classList.add('visible'); });
-}
-
-// Desktop: hover
-document.addEventListener('mouseenter', function(e) {
-  var box = e.target.closest('.stat-box.has-detail');
-  if (box) showStatPopover(box);
-}, true);
-document.addEventListener('mouseleave', function(e) {
-  var box = e.target.closest('.stat-box.has-detail');
-  if (box) dismissStatPopover();
-}, true);
-// Mobile: tap
 document.addEventListener('click', function(e) {
-  var box = e.target.closest('.stat-box.has-detail');
-  if (box) {
-    if (_activePopover && _activePopover.parentElement === box) {
-      dismissStatPopover();
+  var wrap = e.target.closest('.stat-box-wrap');
+  if (wrap) {
+    var pop = wrap.querySelector('.stat-popover');
+    if (!pop) return;
+    if (pop === _mobilePopover) {
+      dismissMobilePopover();
     } else {
-      showStatPopover(box);
+      dismissMobilePopover();
+      pop.classList.add('mobile-open');
+      _mobilePopover = pop;
     }
     e.stopPropagation();
   } else {
-    dismissStatPopover();
+    dismissMobilePopover();
   }
 });
 
@@ -2297,10 +2266,14 @@ function showDetail(s) {
     ['BID METHOD',escapeHtml(bidMethodShort),bidMethodDetail]
   ].map(function(a){
     var hasDetail=a[2]&&a[2].length>0;
-    return '<div class="stat-box'+(hasDetail?' has-detail':'')+'" style="border-left-color:'+color+'88"'+(hasDetail?' data-detail="'+escapeHtml(a[2])+'"':'')+'>'
+    var popoverHtml=hasDetail?'<div class="stat-popover">'+escapeHtml(a[2])+'</div>':'';
+    return '<div class="stat-box-wrap">'
+      +'<div class="stat-box'+(hasDetail?' has-detail':'')+'" style="border-left-color:'+color+'88">'
       +'<span class="stat-info">\u24D8</span>'
       +'<div class="stat-label">'+a[0]+'</div>'
       +'<div class="stat-value" style="color:'+color+'">'+a[1]+'</div>'
+      +'</div>'
+      +popoverHtml
       +'</div>';
   }).join('');
 
@@ -2826,11 +2799,12 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// Keyboard: Escape closes interstitial and drawer
+// Keyboard: Escape closes interstitial, drawer, and popovers
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     closeInterstitial();
     closeAuctionsDrawer();
+    dismissMobilePopover();
   }
 });
 
