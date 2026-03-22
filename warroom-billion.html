@@ -10,6 +10,22 @@
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
   <script src="states-data-v2.js"></script>
   <script src="states-en.js"></script>
+  <!-- County data (window.COUNTY_DATA) — 15 verified files, 51 jurisdictions -->
+  <script src="fl-counties-verified-v2.js"></script>
+  <script src="il-counties-verified-v2.js"></script>
+  <script src="az-counties-verified-v2.js"></script>
+  <script src="nj-counties-verified-v1.js"></script>
+  <script src="ia-counties-verified-v1.js"></script>
+  <script src="oh-tx-ga-al-mi-verified-v1.js"></script>
+  <script src="in-co-md-sc-wa-verified-v1.js"></script>
+  <script src="pa-nc-ny-mn-or-verified-v1.js"></script>
+  <script src="va-ct-tn-ky-nv-verified-v1.js"></script>
+  <script src="ms-la-wv-ar-de-verified-v1.js"></script>
+  <script src="hi-id-mt-nd-sd-verified-v1.js"></script>
+  <script src="ks-me-ma-ne-nh-verified-v1.js"></script>
+  <script src="nm-ok-ri-ut-vt-verified-v1.js"></script>
+  <script src="wi-wy-ak-mo-dc-verified-v1.js"></script>
+  <script src="ca-verified-v1.js"></script>
   <style>
     /* === CSS VARIABLES === */
     :root {
@@ -497,6 +513,10 @@
     .county-pill.platform{color:#00d2c8;background:rgba(0,210,200,0.1);border:1px solid rgba(0,210,200,0.2)}
     .county-pill.otc{color:#00e676;background:rgba(0,230,118,0.1);border:1px solid rgba(0,230,118,0.25)}
     .county-pill.timing{color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);font-size:9px}
+    .county-pill.redemption{color:#BF5FFF;background:rgba(191,95,255,0.1);border:1px solid rgba(191,95,255,0.2);font-size:9px}
+    .county-pill.platform a{color:inherit;text-decoration:none}
+    .county-pill.platform a:hover{text-decoration:underline}
+    .county-alert{font-family:'DM Sans',sans-serif;font-size:10px;color:#FF6B35;background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);padding:2px 6px;border-radius:3px;white-space:nowrap;flex-shrink:0}
     .county-notes{font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.35);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .counties-empty{font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);padding:16px 0;line-height:1.6;text-align:center}
     .counties-empty a{color:#d4a017;text-decoration:underline;text-underline-offset:2px}
@@ -1173,17 +1193,27 @@ var ALL_STATES = (function() {
   });
 })();
 
-// === MERGE COUNTY DATA FROM STATES_EN ===
+// === MERGE COUNTY DATA — window.COUNTY_DATA primary, STATES_EN fallback ===
 (function() {
-  if (typeof STATES_EN === 'undefined') return;
+  var CD = (typeof window !== 'undefined' && window.COUNTY_DATA) ? window.COUNTY_DATA : {};
   var enMap = {};
-  STATES_EN.forEach(function(s) { enMap[s.id] = s; });
+  if (typeof STATES_EN !== 'undefined') {
+    STATES_EN.forEach(function(s) { enMap[s.id] = s; });
+  }
   ALL_STATES.forEach(function(s) {
-    var en = enMap[s.abbr];
-    if (!en) return;
-    s.counties = en.counties || [];
-    s.otc = en.otc || null;
-    s.auctionSignup = en.auctionSignup || null;
+    var abbr = s.abbr;
+    // Primary: window.COUNTY_DATA['XX'] from verified county files
+    if (CD[abbr] && CD[abbr].length > 0) {
+      s.countyData = CD[abbr];           // full schema array
+      s.countyRules = CD[abbr + '_STATE_RULES'] || null;
+    }
+    // Fallback: states-en.js thin arrays
+    var en = enMap[abbr];
+    if (en) {
+      if (!s.countyData) s.counties = en.counties || [];
+      s.otc = en.otc || null;
+      s.auctionSignup = en.auctionSignup || null;
+    }
   });
 })();
 
@@ -1609,34 +1639,87 @@ function showDetail(s) {
   if(s.rateNote) metaHtml.push('<span class="meta-chip">'+chipDot('#BF5FFF')+s.rateNote+'</span>');
   document.getElementById('panel-meta').innerHTML=metaHtml.join('');
 
-  // Counties section
+  // Counties section — uses window.COUNTY_DATA (full) or states-en.js (thin fallback)
   var countiesEl=document.getElementById('panel-counties');
-  var counties=s.counties||[];
+  var fullCounties=s.countyData||null;
+  var thinCounties=s.counties||[];
+  var countyRules=s.countyRules||null;
   var hasOtc=s.otc&&s.otc.available;
   var stPlatform=s.auctionPlatform||'';
   var stTiming=s.auctionTiming||'';
+  var stRedemption=s.redemption||'';
 
-  if(counties.length===0){
+  // Normalize: build unified array from whichever source is available
+  // Handles 4 schemas: flat (co.url), nested (co.auction.url), NJ (co.countyClerk), thin (co.name/co.link)
+  var rows=[];
+  var rulesRd=(countyRules&&countyRules.redemption)?countyRules.redemption.period||'':'';
+  var rulesAu=(countyRules&&countyRules.auction)?countyRules.auction.frequency||'':'';
+  if(fullCounties&&fullCounties.length>0){
+    fullCounties.forEach(function(co){
+      // Resolve URL: flat co.url OR nested co.auction.url
+      var auc=co.auction||{};
+      var coUrl=co.url||auc.url||auc.saleUrl||'';
+      var coPlat=co.platform||auc.platform||stPlatform;
+      var coTiming=auc.saleDate2026||auc.frequency||rulesAu||stTiming;
+      var coOtc=(co.otc&&co.otc.url)?true:hasOtc;
+      var coNotes=co.saleType||auc.note||'';
+      rows.push({
+        name:co.county||'',
+        link:coUrl,
+        platform:coPlat,
+        timing:coTiming,
+        otc:coOtc,
+        redemption:rulesRd||stRedemption,
+        notes:coNotes
+      });
+    });
+  } else if(thinCounties.length>0){
+    thinCounties.forEach(function(co){
+      rows.push({
+        name:co.name||'',
+        link:co.link||'',
+        platform:co.platform||stPlatform,
+        timing:stTiming,
+        otc:hasOtc,
+        redemption:stRedemption,
+        notes:co.notes||''
+      });
+    });
+  }
+
+  if(rows.length===0){
     countiesEl.innerHTML='<div class="counties-empty">County data coming soon.<br><a href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener">Book an Investor Clarity Call</a> for '+escapeHtml(n)+' county details.</div>';
   } else {
-    var cLabel=counties.length===1?'COUNTY':'COUNTIES';
+    var cLabel=rows.length===1?'COUNTY':'COUNTIES';
     var cHtml='<div class="counties-header" onclick="toggleCounties()">'+
       '<span class="counties-label">'+cLabel+'</span>'+
-      '<span class="counties-count">'+counties.length+'</span>'+
+      '<span class="counties-count">'+rows.length+'</span>'+
       '<span class="counties-chevron" id="counties-chevron">\u25BC</span>'+
     '</div>';
     cHtml+='<div class="counties-list" id="counties-list">';
-    counties.forEach(function(co){
-      var safeName=escapeHtml(co.name||'');
-      var safeLink=safeHref(co.link);
+    rows.forEach(function(r){
+      var safeName=escapeHtml(r.name);
+      var safeLink=safeHref(r.link);
+      // County name — clickable link to official auction page
       var nameTag=safeLink?'<a class="county-name" href="'+safeLink+'" target="_blank" rel="noopener">'+safeName+'</a>':'<span class="county-name">'+safeName+'</span>';
-      var platText=co.platform||stPlatform;
-      var platPill=platText?'<span class="county-pill platform">'+escapeHtml(shortenPlatform(platText))+'</span>':'';
-      var timPill=stTiming?'<span class="county-pill timing">'+escapeHtml(stTiming)+'</span>':'';
-      var otcPill=hasOtc?'<span class="county-pill otc">OTC</span>':'';
-      var safeNotes=co.notes?escapeHtml(co.notes):'';
-      var notes=safeNotes?'<span class="county-notes" title="'+safeNotes.replace(/"/g,'&quot;')+'">'+safeNotes+'</span>':'';
-      cHtml+='<div class="county-row">'+nameTag+platPill+otcPill+timPill+notes+'</div>';
+      // Platform pill — clickable if URL known
+      var platPill='';
+      if(r.platform){
+        var platSafe=escapeHtml(shortenPlatform(r.platform));
+        var platUrl=PLATFORM_URLS[shortenPlatform(r.platform)]||'';
+        if(platUrl){platPill='<span class="county-pill platform"><a href="'+platUrl+'" target="_blank" rel="noopener">'+platSafe+'</a></span>';}
+        else{platPill='<span class="county-pill platform">'+platSafe+'</span>';}
+      }
+      // OTC badge
+      var otcPill=r.otc?'<span class="county-pill otc">OTC</span>':'';
+      // Timing pill
+      var timPill=r.timing?'<span class="county-pill timing">'+escapeHtml(r.timing)+'</span>':'';
+      // Redemption pill
+      var redPill=r.redemption?'<span class="county-pill redemption">'+escapeHtml(r.redemption)+'</span>':'';
+      // Notes
+      var safeNotes=r.notes?escapeHtml(r.notes):'';
+      var noteSpan=safeNotes?'<span class="county-notes" title="'+safeNotes.replace(/"/g,'&quot;')+'">'+safeNotes+'</span>':'';
+      cHtml+='<div class="county-row">'+nameTag+platPill+otcPill+timPill+redPill+noteSpan+'</div>';
     });
     cHtml+='</div>';
     countiesEl.innerHTML=cHtml;
