@@ -715,11 +715,22 @@
       margin-bottom: 4px;
       text-transform: uppercase;
     }
+    #advisor-disclaimer {
+      flex-shrink: 0;
+      padding: 8px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: var(--text2);
+      text-align: center;
+      line-height: 1.5;
+      border-top: 1px solid var(--border);
+    }
+    #advisor-disclaimer a { color: var(--accent); text-decoration: underline; }
     #advisor-input-bar {
       display: flex;
       flex-direction: row;
       gap: 8px;
-      padding: 16px 24px;
+      padding: 12px 16px calc(12px + 50px) 16px;
       border-top: 1px solid var(--border);
       flex-shrink: 0;
     }
@@ -1388,6 +1399,7 @@
           Welcome to Aurigen Intelligence. I can answer questions about tax lien investing, redemption periods, bidding strategies, and due diligence. What would you like to explore?
         </div>
       </div>
+      <div id="advisor-disclaimer">Investment involves risk. This tool is for informational purposes only and does not constitute financial advice. <a href="/legal/" target="_blank" rel="noopener">Legal</a></div>
       <div id="advisor-input-bar">
         <input id="advisor-input" type="text" placeholder="Ask Sage anything about tax liens..." autocomplete="off">
         <button id="advisor-send" onclick="sendAdvisorMessage()">Send</button>
