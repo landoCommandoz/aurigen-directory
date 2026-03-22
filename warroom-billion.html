@@ -440,18 +440,17 @@
     #result-count{font-family:'Space Mono',monospace;font-size:7px;color:rgba(0,212,255,0.3);flex-shrink:0}
     #filter-pills{display:flex;gap:4px}
     .pill{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:0.1em;padding:4px 8px;border-radius:3px;cursor:pointer;border:1px solid;background:rgba(0,212,255,0.04);border-color:rgba(0,212,255,0.12);color:rgba(0,212,255,0.4);transition:all 0.15s}
-    #col-headers{display:grid;grid-template-columns:28px 8px 1fr 72px 74px 80px;gap:8px;padding:6px 16px;background:rgba(0,0,0,0.4);border-bottom:1px solid rgba(0,212,255,0.08);flex-shrink:0}
+    #col-headers{display:grid;grid-template-columns:28px 56px 1fr 90px 90px;gap:8px;padding:6px 16px;background:rgba(0,0,0,0.4);border-bottom:1px solid rgba(0,212,255,0.08);flex-shrink:0}
     .col-h{font-family:'DM Sans',sans-serif;font-size:9px;color:rgba(0,212,255,0.4);letter-spacing:0.12em;font-weight:600}
     .col-h.r{text-align:right}
     #rows-container{flex:1;overflow-y:auto;min-height:0}
-    .state-row{display:grid;grid-template-columns:28px 8px 1fr 72px 74px 80px;gap:8px;padding:10px 16px;cursor:pointer;border-left:2px solid transparent;border-bottom:1px solid rgba(0,212,255,0.04);transition:all 0.15s;align-items:center}
+    .state-row{display:grid;grid-template-columns:28px 56px 1fr 90px 90px;gap:8px;padding:10px 16px;cursor:pointer;border-left:2px solid transparent;border-bottom:1px solid rgba(0,212,255,0.04);transition:all 0.15s;align-items:center}
     .row-num{font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(0,212,255,0.3)}
-    .row-dot{width:5px;height:5px;border-radius:1px;margin-top:2px;flex-shrink:0}
-    .row-name{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;color:#f0f0f0;letter-spacing:0.02em}
-    .row-yield{font-family:'DM Sans',sans-serif;font-size:12px;color:#cccccc;text-align:right;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .row-redempt{font-family:'DM Sans',sans-serif;font-size:12px;color:#cccccc;text-align:right;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .row-badge{display:flex;justify-content:flex-end;align-items:center}
+    .row-badge{display:flex;align-items:center}
     .badge{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;padding:3px 7px;border-radius:3px;border:1px solid;letter-spacing:0.06em}
+    .row-name{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;color:#f0f0f0;letter-spacing:0.02em}
+    .row-yield{font-family:'DM Sans',sans-serif;font-size:12px;color:#cccccc;text-align:right;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .row-redempt{font-family:'DM Sans',sans-serif;font-size:12px;color:#cccccc;text-align:right;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     #empty-state{display:none;align-items:center;justify-content:center;height:100%;font-family:'Space Mono',monospace;font-size:9px;color:rgba(0,212,255,0.2);letter-spacing:0.18em}
     #detail-panel{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.7);align-items:center;justify-content:center}
     #detail-panel.open{display:flex}
@@ -761,8 +760,8 @@
       #list-toolbar { flex-wrap: wrap; }
       .filter-pills { flex-wrap: wrap; }
       #detail-panel-inner { width:100%;height:95%;max-height:95vh;border-radius:6px 6px 0 0 }
-      #col-headers{grid-template-columns:28px 8px 1fr 80px}
-      .state-row{grid-template-columns:28px 8px 1fr 80px}
+      #col-headers{grid-template-columns:28px 56px 1fr}
+      .state-row{grid-template-columns:28px 56px 1fr}
       .col-h.col-yield,.col-h.col-redempt,.row-yield,.row-redempt{display:none}
       #panel-stats{grid-template-columns:1fr}
     }
@@ -852,11 +851,10 @@
         </div>
         <div id="col-headers">
           <span class="col-h">#</span>
-          <span class="col-h">&middot;</span>
+          <span class="col-h">TYPE</span>
           <span class="col-h">JURISDICTION</span>
           <span class="col-h r col-yield">YIELD</span>
           <span class="col-h r col-redempt">REDEMPT</span>
-          <span class="col-h r">TYPE</span>
         </div>
         <div id="rows-container">
           <div id="empty-state">NO RESULTS</div>
@@ -1175,8 +1173,8 @@ var TYPE_FILL = {
 var TYPE_COLORS = { lien: 'var(--lien)', deed: 'var(--deed)', hybrid: 'var(--hybrid)', redeemable: 'var(--rdeed)', forfeiture: 'var(--forfeiture)' };
 
 // Type display labels
-var TYPE_LABELS = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDEE', hybrid: 'HYBR', forfeiture: 'FORF' };
-var TYPE_FULL = { lien: 'TAX LIEN', deed: 'TAX DEED', redeemable: 'REDEEMABLE DEED', hybrid: 'HYBRID', forfeiture: 'FORFEITURE' };
+var TYPE_LABELS = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDEE', hybrid: 'HYBR', forfeiture: 'FORFEIT' };
+var TYPE_FULL = { lien: 'TAX LIEN', deed: 'TAX DEED', redeemable: 'REDEEMABLE DEED', hybrid: 'HYBRID', forfeiture: 'TAX FORFEITURE' };
 
 // Current explore state
 var selectedState = null;
@@ -1190,7 +1188,7 @@ function buildLegend() {
     deed:{label:"TAX DEED",color:"#00D4FF"},
     redeemable:{label:"REDEEMABLE DEED",color:"#FF2D55"},
     hybrid:{label:"HYBRID",color:"#BF5FFF"},
-    forfeiture:{label:"FORFEITURE",color:"#FF6B35"}
+    forfeiture:{label:"TAX FORFEITURE",color:"#FF6B35"}
   };
   var counts = {};
   Object.keys(TYPES).forEach(function(t){ counts[t] = ALL_STATES.filter(function(s){ return (s._v2type||s.type)===t; }).length; });
@@ -1204,7 +1202,7 @@ function buildLegend() {
   }).join('');
   document.getElementById('filter-pills').innerHTML = [
     ['all','ALL',null],['lien','LIEN','lien'],['deed','DEED','deed'],
-    ['redeemable','RDEE','redeemable'],['hybrid','HYBR','hybrid'],['forfeiture','FORF','forfeiture']
+    ['redeemable','RDEE','redeemable'],['hybrid','HYBR','hybrid'],['forfeiture','FORFEIT','forfeiture']
   ].map(function(a){ return '<button class="pill" id="pill-'+a[0]+'" onclick="setFilter(\''+a[0]+'\')">'+a[1]+'</button>'; }).join('');
   updatePills();
 }
@@ -1369,15 +1367,14 @@ function renderList() {
     var rate=s.rate||s.y||'N/A'; var redemption=s.redemption||s.r||'N/A';
     var color=colors[t]||'#00D4FF';
     var isSel=selectedState===c;
-    var badge=t==='redeemable'?'RDEE':t.toUpperCase().slice(0,4);
+    var badge=TYPE_LABELS[t]||t.toUpperCase().slice(0,4);
     return '<div class="state-row" id="row-'+c+'" onclick="selectFromList(\''+c+'\')"'+
       ' style="background:'+(isSel?'linear-gradient(90deg,'+color+'15,transparent)':'transparent')+';border-left-color:'+(isSel?color:'transparent')+'">'+
       '<span class="row-num">'+String(i+1).padStart(2,'0')+'</span>'+
-      '<div class="row-dot" style="background:'+color+';box-shadow:0 0 4px '+color+'"></div>'+
+      '<div class="row-badge"><span class="badge" style="color:#fff;background:'+color+';border-color:'+color+'">'+badge+'</span></div>'+
       '<span class="row-name">'+n.toUpperCase()+'</span>'+
       '<span class="row-yield" title="'+rate.replace(/"/g,'&quot;')+'" style="color:'+color+'">'+rate+'</span>'+
       '<span class="row-redempt" title="'+redemption.replace(/"/g,'&quot;')+'">'+redemption+'</span>'+
-      '<div class="row-badge"><span class="badge" style="color:#fff;background:'+color+';border-color:'+color+'">'+badge+'</span></div>'+
     '</div>';
   }).join('');
   container.innerHTML=html+'<div id="empty-state" style="display:none">NO RESULTS</div>';
@@ -1431,7 +1428,7 @@ function showDetail(s) {
   var rate=s.rate||s.y||'N/A'; var redemption=s.redemption||s.r||'N/A';
   var colors={lien:'#FFBE0B',deed:'#00D4FF',redeemable:'#FF2D55',hybrid:'#BF5FFF',forfeiture:'#FF6B35'};
   var glows={lien:'rgba(255,190,11,0.4)',deed:'rgba(0,212,255,0.4)',redeemable:'rgba(255,45,85,0.4)',hybrid:'rgba(191,95,255,0.4)',forfeiture:'rgba(255,107,53,0.4)'};
-  var labels={lien:'TAX LIEN',deed:'TAX DEED',redeemable:'REDEEMABLE DEED',hybrid:'HYBRID',forfeiture:'FORFEITURE'};
+  var labels={lien:'TAX LIEN',deed:'TAX DEED',redeemable:'REDEEMABLE DEED',hybrid:'HYBRID',forfeiture:'TAX FORFEITURE'};
   var color=colors[t]||colors[mapType]||'#00D4FF';
   var glw=glows[t]||glows[mapType]||'rgba(0,212,255,0.4)';
   var panel=document.getElementById('detail-panel');
