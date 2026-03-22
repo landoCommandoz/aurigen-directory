@@ -94,7 +94,7 @@ var STATES_EN = [
       directLink: "https://www.realauction.com"
     },
     beginnerTip: "Start with Pinal or Yavapai counties — less competition than Maricopa. OTC purchases are available year-round at 16% in most counties. Go to the county treasurer's office directly and ask for the unsold lien list.",
-    otc: { available: true, note: "Unsold liens available year-round directly from county treasurers at the full statutory 16% rate. Best OTC program in the country for beginners — no auction competition." },
+    otc: { available: true, note: "Unsold liens available year-round directly from county treasurers at the full statutory 16% rate. One of the most accessible OTC programs for beginners — no auction competition." },
     risks: [
       "Maricopa and Pima counties are saturated — institutional buyers push rates to 0–3%",
       "3-year holding period before initiating judicial foreclosure via Superior Court (ARS §42-18201) — requires 30-day certified-mail notice before filing",
@@ -293,7 +293,7 @@ var STATES_EN = [
     otc: { available: false, note: "No OTC program." },
     risks: [
       "Very limited inventory — 3 counties total",
-      "Low deal flow makes this an unreliable primary strategy",
+      "Low auction activity makes this an unreliable primary strategy",
       "Competitive in New Castle County (Wilmington area)"
     ],
     ddExtra: [
@@ -347,7 +347,7 @@ var STATES_EN = [
   {
     id: "FL", name: "Florida", type: "hybrid", rate: "18% per year (reverse bid from ceiling)", redemption: "2 years from April 1 of issuance year",
     score: 82, beginnerFriendly: true,
-    scoreWhy: "Massive inventory, two parallel profit paths (lien + deed), fully online, year-round OTC availability. One of the top states in the country.",
+    scoreWhy: "Massive inventory, two parallel investment strategies (lien + deed), fully online, year-round OTC availability. One of the top states in the country.",
     note: "Florida is a hybrid state with two parallel auction tracks. (1) Annual tax certificate sale online before June 1 — reverse bid auction starting at 18% in 0.25% increments. Ties resolved by RNG. County takes unsold at 18%. Min 5% face value guarantee on all certificates (§197.432). (2) After 2-year redemption (from April 1 of issuance year), certificate holder applies for tax deed (§197.502) — must pay off all other outstanding certificates. Clerk conducts title search, publishes notice, holds public auction. 3-6 months from application to deed sale. 67 counties each run their own sale. County-held certificates accrue at 18%. OTC available year-round via LienHub. Statutes: FL Stat §197.172 (rate), §197.432 (certificate sale), §197.4725 (OTC), §197.472 (redemption), §197.502 (deed application), §197.552 (deed issuance/lien survival).",
     typeWhy: "Florida is a hybrid state operating two parallel systems: tax lien certificates are sold at an annual reverse-bid auction, and after the 2-year redemption period expires, the certificate holder applies for a separate tax deed auction. FL Stat §197.432, §197.502.",
     rateWhy: "Florida caps the lien interest rate at 18% and uses a reverse-bid auction where investors bid the rate down in 0.25% increments. A statutory minimum 5% penalty applies on any redemption regardless of the winning bid rate. No interest accrues during the 60-day post-delinquency window (§197.172). FL Stat §197.172, §197.472.",
@@ -364,7 +364,7 @@ var STATES_EN = [
       directLink: "https://lienhub.com"
     },
     beginnerTip: "Your best first move in Florida is LienHub OTC — buy unsold certificates year-round at the full 18% statutory rate with zero competition and no auction schedule to wait for. Skip the live auctions entirely until you're comfortable. When you're ready to shop inventory, start with smaller counties like Citrus, Hernando, or Levy for less saturated supply.",
-    otc: { available: true, note: "Unsold tax certificates available year-round on LienHub.com. Start here — guaranteed 18% rate, no competition, no bidding." },
+    otc: { available: true, note: "Unsold tax certificates available year-round on LienHub.com. Start here — statutory 18% rate, no competition, no bidding." },
     risks: [
       "Miami-Dade and Broward: institutional buyers push rates to 0–1% — avoid for beginners",
       "Tax deed title is generally not insurable without quiet title action — FL Stat §95.192 provides 4-year safe harbor",
@@ -392,7 +392,7 @@ var STATES_EN = [
   {
     id: "GA", name: "Georgia", type: "redeemable deed", rate: "20% yr1 + 10%/yr after", redemption: "1 year",
     score: 71, beginnerFriendly: true,
-    scoreWhy: "Monthly auctions every first Tuesday statewide, strong penalty structure, and consistent deal flow make Georgia excellent for active investors.",
+    scoreWhy: "Monthly auctions every first Tuesday statewide, strong penalty structure, and consistent auction activity make Georgia excellent for active investors.",
     note: "Georgia is a redeemable deed state. Investor receives the tax deed at auction but owner retains 1-year right of redemption. Redemption cost = bid price + 20% premium (year 1) + 10% per additional year. After 12 months, investor can execute via certified mail notice. Statute: OCGA §48-4-1.",
     typeWhy: "Georgia is a redeemable deed state — the investor receives the tax deed at auction, but the original owner retains a 1-year statutory right of redemption. OCGA §48-4-1.",
     rateWhy: "Georgia imposes a 20% penalty on the full purchase price if the owner redeems in year 1, plus an additional 10% per year thereafter. These are penalties on the auction price, not interest on the tax amount owed. OCGA §48-4-1.",
@@ -578,7 +578,7 @@ var STATES_EN = [
     counties: [
       { name: "Marion", link: "https://www.indy.gov/agency/marion-county-auditor", notes: "Indianapolis. Good inventory. Online via SRI." },
       { name: "Hamilton", link: "https://www.hamiltoncounty.in.gov/229/Auditor", notes: "Suburban Indianapolis. Clean title, good properties." },
-      { name: "Allen", link: "https://www.allencounty.us/egov/apps/document/center.egov?view=item;id=30578", notes: "Fort Wayne area. Consistent deal flow." }
+      { name: "Allen", link: "https://www.allencounty.us/egov/apps/document/center.egov?view=item;id=30578", notes: "Fort Wayne area. Regular auction activity." }
     ]
   },
   {
@@ -825,7 +825,7 @@ var STATES_EN = [
     otc: { available: false, note: "No OTC program." },
     risks: [
       "Land Court process is required for insurable title — adds $3,000–$8,000 in costs",
-      "Many municipalities auction every 2–3 years — limited deal flow",
+      "Many municipalities auction every 2–3 years — limited auction activity",
       "Metro areas (Boston, Cambridge) require significant capital for any meaningful position"
     ],
     ddExtra: [
@@ -1124,7 +1124,7 @@ var STATES_EN = [
     id: "NJ", name: "New Jersey", type: "lien", rate: "18% per year + premium bids", redemption: "2 years (private holders); 6 months (municipality-held)",
     score: 76, beginnerFriendly: false,
     notBeginnerReason: "565 municipalities with varying competition. North NJ rates bid to 0% then premium bids of $10K-$50K+. Bankruptcy risk within 90 days can void certificate.",
-    scoreWhy: "Strong 18% rate and massive deal flow, but institutional dominance in northern NJ and premium bid risk require experience.",
+    scoreWhy: "Strong 18% rate and massive auction activity, but institutional dominance in northern NJ and premium bid risk require experience.",
     note: "New Jersey has 565 municipalities, 98%+ conducting annual tax sales. UNIQUE PREMIUM BID STRUCTURE: Bidding starts at 18% and goes DOWN in 0.25% increments. Once bidding reaches 0%, bidders switch to PREMIUM BIDS — cash amounts paid ABOVE the lien amount. Premium held in escrow by municipality. If owner redeems within 5 years, premium refunded. If NOT redeemed within 5 years, municipality KEEPS the premium. Urban NJ premiums routinely $10K-$50K+. Separate redemption penalty: 2% ($200-$5K), 4% ($5K-$10K), 6% (over $10K) on original certificate only. NJ uses STRICT FORECLOSURE — no public sale, title vests directly in lien holder upon final court judgment (NJSA §54:5-104.64). Owner can redeem until final judgment. Subsequent municipal liens survive per §54:5-87, all others extinguished. Statute: NJSA §54:5-1 et seq.; §54:5-32 (sale/premium); §54:5-86 (foreclosure timing); §54:5-104.64 (judgment effect).",
     typeWhy: "New Jersey sells tax lien certificates at municipal-level auctions across 565 municipalities. The investor holds the lien while the owner retains title during a 2-year redemption period (6 months for municipality-held). NJSA §54:5-1.",
     rateWhy: "New Jersey caps the interest rate at 18% and uses a bid-down auction, then switches to PREMIUM BIDS once rate reaches 0%. Premium is NOT refundable if owner doesn't redeem within 5 years — this is a material risk. NJSA §54:5-32.",
@@ -1599,7 +1599,7 @@ var STATES_EN = [
   {
     id: "TX", name: "Texas", type: "redeemable deed", rate: "25% yr1 / 50% yr2 (penalty on redemption)", redemption: "180 days (non-homestead/non-ag) / 2 years (homestead/ag)",
     score: 81, beginnerFriendly: true,
-    scoreWhy: "Monthly statewide auctions every first Tuesday, massive deal flow, excellent struck-off OTC opportunities. One of the most active deed markets in the country.",
+    scoreWhy: "Monthly statewide auctions every first Tuesday, massive auction activity, excellent struck-off OTC opportunities. One of the most active deed markets in the country.",
     note: "Texas is a redeemable deed state. Monthly auctions on the first Tuesday statewide. Investor gets deed at auction but owner can redeem. Redemption penalty: 25% year 1, 50% year 2, calculated on full auction price — not just back taxes. Commercial: 180-day redemption. Homestead/agricultural: 2 years. Struck-off properties often skip redemption entirely. Statute: TX Tax Code §34.21.",
     typeWhy: "Texas is a redeemable deed state — the investor receives the property deed at auction, but the original owner retains a statutory right of redemption (180 days for non-homestead, 2 years for homestead/agricultural). TX Tax Code §34.21.",
     rateWhy: "Texas imposes a 25% penalty in year 1 and 50% in year 2 on the full auction purchase price — these are statutory penalties, not annual interest rates. TX Tax Code §34.21(a).",

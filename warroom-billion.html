@@ -9,6 +9,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
   <script src="states-data-v2.js"></script>
+  <script src="states-en.js"></script>
   <style>
     /* === CSS VARIABLES === */
     :root {
@@ -422,7 +423,7 @@
     #map-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;position:relative;padding:16px}
     #map-svg{width:100%;max-width:720px;height:auto}
     #ambient-glow{position:absolute;inset:0;pointer-events:none;transition:background 0.5s}
-    #map-legend{position:absolute;bottom:8px;left:16px;display:flex;flex-direction:column;gap:5px;padding:8px 12px;background:rgba(1,4,12,0.85);backdrop-filter:blur(12px);border:1px solid rgba(0,212,255,0.08);border-radius:4px}
+    #map-legend{position:absolute;bottom:8px;left:16px;display:flex;flex-direction:column;gap:5px;padding:8px 12px;background:rgba(1,4,12,0.85);backdrop-filter:blur(12px);border:1px solid rgba(0,212,255,0.08);border-radius:4px;pointer-events:none}
     .mleg-item{display:flex;align-items:center;gap:7px}
     .mleg-swatch{width:10px;height:10px;border-radius:2px}
     .mleg-txt{font-family:'Space Mono',monospace;font-size:7px;color:rgba(255,255,255,0.4);letter-spacing:0.1em}
@@ -440,41 +441,75 @@
     #result-count{font-family:'Space Mono',monospace;font-size:7px;color:rgba(0,212,255,0.3);flex-shrink:0}
     #filter-pills{display:flex;gap:4px}
     .pill{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:0.1em;padding:4px 8px;border-radius:3px;cursor:pointer;border:1px solid;background:rgba(0,212,255,0.04);border-color:rgba(0,212,255,0.12);color:rgba(0,212,255,0.4);transition:all 0.15s}
-    #col-headers{display:grid;grid-template-columns:28px 8px 1fr 56px 58px 80px;gap:8px;padding:6px 16px;background:rgba(0,0,0,0.4);border-bottom:1px solid rgba(0,212,255,0.08);flex-shrink:0}
-    .col-h{font-family:'Space Mono',monospace;font-size:6px;color:rgba(0,212,255,0.3);letter-spacing:0.2em}
+    #col-headers{display:grid;grid-template-columns:28px 56px 1fr 172px;gap:8px;padding:6px 16px;background:rgba(0,0,0,0.4);border-bottom:1px solid rgba(0,212,255,0.08);flex-shrink:0}
+    .col-h{font-family:'DM Sans',sans-serif;font-size:9px;color:rgba(0,212,255,0.4);letter-spacing:0.12em;font-weight:600}
     .col-h.r{text-align:right}
     #rows-container{flex:1;overflow-y:auto;min-height:0}
-    .state-row{display:grid;grid-template-columns:28px 8px 1fr 56px 58px 80px;gap:8px;padding:8px 16px;cursor:pointer;border-left:2px solid transparent;border-bottom:1px solid rgba(0,212,255,0.04);transition:all 0.15s}
-    .row-num{font-family:'Space Mono',monospace;font-size:8px;color:rgba(0,212,255,0.2)}
-    .row-dot{width:5px;height:5px;border-radius:1px;margin-top:2px;flex-shrink:0}
-    .row-name{font-family:'Space Mono',monospace;font-size:9px;color:#f0f0f0;letter-spacing:0.05em}
-    .row-yield{font-family:'Space Mono',monospace;font-size:9px;text-align:right}
-    .row-redempt{font-family:'Space Mono',monospace;font-size:8px;color:#aaaaaa;text-align:right}
-    .row-badge{display:flex;justify-content:flex-end}
-    .badge{font-family:'Space Mono',monospace;font-size:7px;padding:2px 5px;border-radius:2px;border:1px solid;letter-spacing:0.05em}
+    .state-row{display:grid;grid-template-columns:28px 56px 1fr 172px;gap:8px;padding:10px 16px;cursor:pointer;border-left:2px solid transparent;border-bottom:1px solid rgba(0,212,255,0.04);transition:all 0.15s;align-items:center}
+    .row-num{font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(0,212,255,0.3)}
+    .row-badge{display:flex;align-items:center}
+    .badge{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;padding:3px 7px;border-radius:3px;border:1px solid;letter-spacing:0.06em}
+    .row-name{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;color:#f0f0f0;letter-spacing:0.02em}
+    .row-stats{display:flex;gap:6px;justify-content:flex-end;align-items:center}
+    .stat-pill{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;height:22px;line-height:22px;padding:0 8px;border-radius:4px;border:1px solid;white-space:nowrap;max-width:80px;overflow:hidden;text-overflow:ellipsis}
+    .pill-rate{color:#d4a017;background:rgba(212,160,23,0.15);border-color:rgba(212,160,23,0.4)}
+    .pill-hold{color:#00d2c8;background:rgba(0,210,200,0.1);border-color:rgba(0,210,200,0.3)}
     #empty-state{display:none;align-items:center;justify-content:center;height:100%;font-family:'Space Mono',monospace;font-size:9px;color:rgba(0,212,255,0.2);letter-spacing:0.18em}
     #detail-panel{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.7);align-items:center;justify-content:center}
     #detail-panel.open{display:flex}
     #detail-panel-inner{position:relative;width:90%;max-width:800px;max-height:90vh;overflow-y:auto;background:rgba(1,4,12,0.97);backdrop-filter:blur(30px);border-radius:6px;animation:panelUp 300ms ease-out forwards}
     @keyframes panelUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
     #panel-shimmer{height:1px;border-radius:6px 6px 0 0}
-    #panel-body{padding:16px 18px 22px;position:relative}
+    #panel-body{padding:20px 22px 24px;position:relative}
     #panel-close{position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:4px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:10}
     #panel-title{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:0.06em;line-height:1}
-    #panel-type{font-family:'Space Mono',monospace;font-size:7px;color:rgba(255,255,255,0.3);letter-spacing:0.2em;margin-top:4px}
-    #panel-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
-    .stat-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:9px 10px;border-left-width:2px}
-    .stat-label{font-family:'Space Mono',monospace;font-size:6px;color:rgba(255,255,255,0.2);letter-spacing:0.2em;margin-bottom:4px}
-    .stat-value{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.05em}
-    #panel-alert{display:none;padding:10px 16px;background:rgba(255,45,85,0.08);border-bottom:1px solid rgba(255,45,85,0.2);font-family:'Space Mono',monospace;font-size:8px;color:#FF2D55;letter-spacing:0.08em;line-height:1.5;animation:alertPulse 2s ease-in-out infinite}
+    #panel-type{font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.15em;margin-top:6px;font-weight:600}
+    #panel-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}
+    .stat-box{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:12px 14px;border-left-width:2px}
+    .stat-label{font-family:'DM Sans',sans-serif;font-size:10px;color:#aaaaaa;letter-spacing:0.1em;margin-bottom:6px;text-transform:uppercase;font-weight:600}
+    .stat-value{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.04em;font-weight:700;color:#f0f0f0}
+    #panel-alert{display:none;padding:12px 18px;background:rgba(255,45,85,0.08);border-bottom:1px solid rgba(255,45,85,0.2);font-family:'DM Sans',sans-serif;font-size:12px;color:#FF2D55;letter-spacing:0.04em;line-height:1.5;font-weight:600;animation:alertPulse 2s ease-in-out infinite}
     #panel-alert.visible{display:block}
     @keyframes alertPulse{0%,100%{opacity:1}50%{opacity:0.6}}
-    #panel-notes{margin-top:10px}
-    .panel-note{font-family:'Space Mono',monospace;font-size:7px;color:rgba(255,255,255,0.45);letter-spacing:0.04em;line-height:1.6;padding:3px 0 3px 12px;border-left:1px solid rgba(255,255,255,0.08)}
-    #panel-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-    .meta-chip{font-family:'Space Mono',monospace;font-size:6px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;padding:4px 8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:3px}
-    .meta-chip a{color:inherit;text-decoration:underline;text-underline-offset:2px}
-    #panel-cta{width:100%;margin-top:12px;padding:12px;border-radius:3px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.2em;transition:all 0.2s}
+    #panel-notes{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+    .panel-note{font-family:'DM Sans',sans-serif;font-size:13px;color:#cccccc;letter-spacing:0.01em;line-height:1.6;padding:6px 0 6px 14px;border-left:2px solid rgba(255,255,255,0.1)}
+    #panel-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .meta-chip{font-family:'DM Sans',sans-serif;font-size:12px;color:#e0e0e0;letter-spacing:0.03em;padding:6px 10px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.15);border-radius:4px;display:inline-flex;align-items:center;gap:6px}
+    .meta-chip .chip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+    .meta-chip a{color:#e0e0e0;text-decoration:underline;text-underline-offset:2px;transition:color 0.15s}
+    .meta-chip a:hover{color:#FFD700}
+    #panel-cta{width:100%;margin-top:16px;margin-bottom:48px;padding:14px;border-radius:4px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.18em;transition:all 0.2s}
+
+    /* === COUNTIES SECTION === */
+    #panel-counties{margin-top:16px}
+    .counties-header{display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px 0;border-top:1px solid rgba(255,255,255,0.06);user-select:none}
+    .counties-header:hover{opacity:0.85}
+    .counties-label{font-family:'Bebas Neue',sans-serif;font-size:14px;color:rgba(255,255,255,0.5);letter-spacing:0.15em}
+    .counties-count{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#d4a017;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.3);padding:1px 7px;border-radius:10px;line-height:16px}
+    .counties-chevron{font-size:10px;color:rgba(255,255,255,0.3);transition:transform 0.2s}
+    .counties-list{max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:2px;padding-top:6px}
+    .counties-list.collapsed{display:none}
+    .county-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:4px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);transition:background 0.15s}
+    .county-row:hover{background:rgba(255,255,255,0.05)}
+    .county-name{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#e8e8e8;text-decoration:none;flex-shrink:0}
+    .county-name:hover{color:#FFD700}
+    .county-pill{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;padding:2px 6px;border-radius:3px;white-space:nowrap;flex-shrink:0}
+    .county-pill.platform{color:#00d2c8;background:rgba(0,210,200,0.1);border:1px solid rgba(0,210,200,0.2)}
+    .county-pill.otc{color:#00e676;background:rgba(0,230,118,0.1);border:1px solid rgba(0,230,118,0.25)}
+    .county-pill.timing{color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);font-size:9px}
+    .county-notes{font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.35);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .counties-empty{font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);padding:16px 0;line-height:1.6;text-align:center}
+    .counties-empty a{color:#d4a017;text-decoration:underline;text-underline-offset:2px}
+    .counties-empty a:hover{color:#FFD700}
+    .counties-list::-webkit-scrollbar{width:4px}
+    .counties-list::-webkit-scrollbar-track{background:transparent}
+    .counties-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
+
+    /* === DISCLAIMER FOOTER === */
+    #disclaimer-footer{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(1,4,12,0.95);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,0.06);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;pointer-events:none}
+    #disclaimer-footer p{font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.02em;line-height:1.5;max-width:900px;text-align:center;margin:0}
+    #disclaimer-footer a{color:rgba(212,160,23,0.6);text-decoration:underline;text-underline-offset:2px;pointer-events:auto}
+    #disclaimer-footer a:hover{color:#d4a017}
 
     /* === TOOLS TAB === */
     #panel-tools {
@@ -758,7 +793,14 @@
       .detail-stats { grid-template-columns: 1fr; }
       #list-toolbar { flex-wrap: wrap; }
       .filter-pills { flex-wrap: wrap; }
-      #detail-panel-inner { width:100%;height:95%;max-height:95vh;border-radius:6px 6px 0 0 }
+      #detail-panel-inner { width:100%;height:95%;max-height:95vh;border-radius:6px 6px 0 0;padding-bottom:56px }
+      #col-headers{grid-template-columns:28px 56px 1fr}
+      .state-row{grid-template-columns:28px 56px 1fr}
+      .col-h.col-stats,.row-stats{display:none}
+      #panel-stats{grid-template-columns:1fr}
+      .county-row{flex-wrap:wrap}
+      .county-pill.timing{display:none}
+      .county-notes{white-space:normal;width:100%;padding-left:0}
     }
   </style>
 </head>
@@ -846,11 +888,9 @@
         </div>
         <div id="col-headers">
           <span class="col-h">#</span>
-          <span class="col-h">&middot;</span>
+          <span class="col-h">TYPE</span>
           <span class="col-h">JURISDICTION</span>
-          <span class="col-h r">YIELD</span>
-          <span class="col-h r">REDEMPT</span>
-          <span class="col-h r">TYPE</span>
+          <span class="col-h r col-stats">STATS</span>
         </div>
         <div id="rows-container">
           <div id="empty-state">NO RESULTS</div>
@@ -869,6 +909,7 @@
             <div id="panel-stats"></div>
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
+            <div id="panel-counties"></div>
             <button id="panel-cta" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4')">BOOK INVESTOR CLARITY CALL</button>
           </div>
         </div>
@@ -1132,6 +1173,20 @@ var ALL_STATES = (function() {
   });
 })();
 
+// === MERGE COUNTY DATA FROM STATES_EN ===
+(function() {
+  if (typeof STATES_EN === 'undefined') return;
+  var enMap = {};
+  STATES_EN.forEach(function(s) { enMap[s.id] = s; });
+  ALL_STATES.forEach(function(s) {
+    var en = enMap[s.abbr];
+    if (!en) return;
+    s.counties = en.counties || [];
+    s.otc = en.otc || null;
+    s.auctionSignup = en.auctionSignup || null;
+  });
+})();
+
 // === STATE_DATA (powers Pulse + Compare tools — all 51 states) ===
 var STATE_DATA = {};
 ALL_STATES.forEach(function(s) {
@@ -1169,8 +1224,8 @@ var TYPE_FILL = {
 var TYPE_COLORS = { lien: 'var(--lien)', deed: 'var(--deed)', hybrid: 'var(--hybrid)', redeemable: 'var(--rdeed)', forfeiture: 'var(--forfeiture)' };
 
 // Type display labels
-var TYPE_LABELS = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDEE', hybrid: 'HYBR', forfeiture: 'FORF' };
-var TYPE_FULL = { lien: 'TAX LIEN', deed: 'TAX DEED', redeemable: 'REDEEMABLE DEED', hybrid: 'HYBRID', forfeiture: 'FORFEITURE' };
+var TYPE_LABELS = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDEE', hybrid: 'HYBR', forfeiture: 'FORFEIT' };
+var TYPE_FULL = { lien: 'TAX LIEN', deed: 'TAX DEED', redeemable: 'REDEEMABLE DEED', hybrid: 'HYBRID', forfeiture: 'TAX FORFEITURE' };
 
 // Current explore state
 var selectedState = null;
@@ -1184,7 +1239,7 @@ function buildLegend() {
     deed:{label:"TAX DEED",color:"#00D4FF"},
     redeemable:{label:"REDEEMABLE DEED",color:"#FF2D55"},
     hybrid:{label:"HYBRID",color:"#BF5FFF"},
-    forfeiture:{label:"FORFEITURE",color:"#FF6B35"}
+    forfeiture:{label:"TAX FORFEITURE",color:"#FF6B35"}
   };
   var counts = {};
   Object.keys(TYPES).forEach(function(t){ counts[t] = ALL_STATES.filter(function(s){ return (s._v2type||s.type)===t; }).length; });
@@ -1198,7 +1253,7 @@ function buildLegend() {
   }).join('');
   document.getElementById('filter-pills').innerHTML = [
     ['all','ALL',null],['lien','LIEN','lien'],['deed','DEED','deed'],
-    ['redeemable','RDEE','redeemable'],['hybrid','HYBR','hybrid'],['forfeiture','FORF','forfeiture']
+    ['redeemable','RDEE','redeemable'],['hybrid','HYBR','hybrid'],['forfeiture','FORFEIT','forfeiture']
   ].map(function(a){ return '<button class="pill" id="pill-'+a[0]+'" onclick="setFilter(\''+a[0]+'\')">'+a[1]+'</button>'; }).join('');
   updatePills();
 }
@@ -1269,6 +1324,7 @@ function initMap() {
         .attr('fill','none')
         .attr('stroke','rgba(0,0,0,0.3)')
         .attr('stroke-width',0.5)
+        .attr('pointer-events','none')
         .attr('d',pathGen);
 
       buildLegend();
@@ -1337,11 +1393,63 @@ function updatePills() {
   });
 }
 
+function shortenRate(rate, type) {
+  if(!rate) return 'N/A';
+  var r=rate;
+  if(type==='forfeiture') return 'Forfeiture';
+  if(/N\/A|no lien|deed state/i.test(r)) return 'No Lien';
+  // "9% per 6 months (18% annualized)" → "18% ann."
+  var ann=r.match(/(\d+%)\s*annualized/i); if(ann) return ann[1]+' ann.';
+  // "Federal Discount Rate + 9 points" → "Fed+9"
+  if(/federal discount/i.test(r)) { var pts=r.match(/\+\s*(\d+)/); return pts?'Fed+'+pts[1]:'Fed rate'; }
+  // "6%–24% depending on county" → "6–24%"
+  var range=r.match(/(\d+)%\s*[–\-—to]+\s*(\d+)%/); if(range) return range[1]+'–'+range[2]+'%';
+  // "20% year 1 / 10% year 2+" → "20/10%"
+  var split=r.match(/(\d+)%\s*year\s*1\s*\/\s*(\d+)%/i); if(split) return split[1]+'/'+split[2]+'%';
+  // "25% year 1 / 50% year 2" → "25/50%"
+  // "10% (months 0–6) / 15% (months 6–12)" → "10/15%"
+  var dual=r.match(/(\d+)%.*?\/\s*(\d+)%/); if(dual) return dual[1]+'/'+dual[2]+'%';
+  // "0.7%–1.0%/month" → "0.7–1%/mo"
+  var moRange=r.match(/([\d.]+)%\s*[–\-]\s*([\d.]+)%\s*\/\s*month/i); if(moRange) return moRange[1]+'–'+moRange[2]+'%/mo';
+  // "12% on BID amount" → "12%"
+  // "18% max / 6% floor" → "18% max"
+  // Simple: extract first percentage
+  var pct=r.match(/(\d+(?:\.\d+)?%(?:\s*(?:max|fixed|floor))?)/i); if(pct) return pct[1];
+  // "Bid-down to lowest rate" → "Bid-down"
+  if(/bid.?down/i.test(r)) return 'Bid-down';
+  if(/varies/i.test(r)) return 'Varies';
+  return r.length>10?r.slice(0,8)+'…':r;
+}
+
+function shortenHold(redemption, type) {
+  if(!redemption) return 'N/A';
+  var r=redemption;
+  if(type==='forfeiture') return '3yr';
+  if(/none after|no redempt/i.test(r)) return 'No Redempt';
+  // "2 years (lien); none post-deed sale" → "2yr"
+  // "21 months" → "21mo"
+  // "2.5 years (30 months)" → "30mo"
+  var mo=r.match(/(\d+)\s*months/i); if(mo) return mo[1]+'mo';
+  // "3 years" / "4 years" → "3yr" / "4yr"
+  var yr=r.match(/([\d.]+)\s*years?\b/i);
+  if(yr) {
+    var suffix='yr';
+    if(/minimum|min/i.test(r)) suffix='yr min';
+    return yr[1]+suffix;
+  }
+  // "30 days" / "60 days" → "30d" / "60d"
+  var dy=r.match(/(\d+)\s*days?\b/i); if(dy) return dy[1]+'d';
+  // "Until Land Court" / "Until foreclosure"
+  if(/until/i.test(r)) return 'Varies';
+  if(/varies/i.test(r)) return 'Varies';
+  return r.length>10?r.slice(0,8)+'…':r;
+}
+
 function renderList() {
   var q=searchQuery.toLowerCase();
   var filtered=ALL_STATES.filter(function(s){
-    var t=s._v2type||s.type||s.t;
-    var c=s.abbr||s.c;
+    var t=s._v2type||s.type||s.t||'';
+    var c=s.abbr||s.c||'';
     var n=s.name||s.n||'';
     var fOk=activeFilter==='all'||t===activeFilter;
     var qOk=!q||c.toLowerCase().indexOf(q)>=0||n.toLowerCase().indexOf(q)>=0||t.indexOf(q)>=0;
@@ -1350,6 +1458,7 @@ function renderList() {
   document.getElementById('result-count').textContent=filtered.length+' / '+ALL_STATES.length;
   var container=document.getElementById('rows-container');
   var empty=document.getElementById('empty-state');
+  if(!empty){empty=document.createElement('div');empty.id='empty-state';container.appendChild(empty);}
   if(filtered.length===0){
     empty.style.display='flex';
     empty.textContent='NO RESULTS FOR "'+searchQuery.toUpperCase()+'"';
@@ -1357,22 +1466,27 @@ function renderList() {
   }
   empty.style.display='none';
   var colors={lien:'#FFBE0B',deed:'#00D4FF',redeemable:'#FF2D55',hybrid:'#BF5FFF',forfeiture:'#FF6B35'};
-  container.innerHTML=filtered.map(function(s,i){
+  var html=filtered.map(function(s,i){
     var t=s.type||s.t; var c=s.abbr||s.c; var n=s.name||s.n||c;
     var rate=s.rate||s.y||'N/A'; var redemption=s.redemption||s.r||'N/A';
     var color=colors[t]||'#00D4FF';
     var isSel=selectedState===c;
-    var badge=t==='redeemable'?'RDEE':t.toUpperCase().slice(0,4);
+    var vt=s._v2type||t;
+    var badge=TYPE_LABELS[vt]||vt.toUpperCase().slice(0,6);
+    var ratePill=shortenRate(rate,vt);
+    var holdPill=shortenHold(redemption,vt);
     return '<div class="state-row" id="row-'+c+'" onclick="selectFromList(\''+c+'\')"'+
       ' style="background:'+(isSel?'linear-gradient(90deg,'+color+'15,transparent)':'transparent')+';border-left-color:'+(isSel?color:'transparent')+'">'+
       '<span class="row-num">'+String(i+1).padStart(2,'0')+'</span>'+
-      '<div class="row-dot" style="background:'+color+';box-shadow:0 0 4px '+color+'"></div>'+
-      '<span class="row-name" style="color:'+(isSel?'#fff':'#f0f0f0')+'">'+n.toUpperCase()+'</span>'+
-      '<span class="row-yield" style="color:'+color+'">'+rate+'</span>'+
-      '<span class="row-redempt">'+redemption+'</span>'+
       '<div class="row-badge"><span class="badge" style="color:#fff;background:'+color+';border-color:'+color+'">'+badge+'</span></div>'+
+      '<span class="row-name">'+n.toUpperCase()+'</span>'+
+      '<div class="row-stats" title="'+rate.replace(/"/g,'&quot;')+' | '+redemption.replace(/"/g,'&quot;')+'">'+
+        '<span class="stat-pill pill-rate">'+ratePill+'</span>'+
+        '<span class="stat-pill pill-hold">'+holdPill+'</span>'+
+      '</div>'+
     '</div>';
   }).join('');
+  container.innerHTML=html+'<div id="empty-state" style="display:none">NO RESULTS</div>';
 }
 
 function selectFromList(abbr) {
@@ -1396,12 +1510,58 @@ function clearSearch() {
 
 function setFilter(f){activeFilter=f;selectedState=null;closeDetail();updatePills();renderList();}
 
+// Platform name → URL lookup
+var PLATFORM_URLS={
+  'GovEase':'https://www.govease.com',
+  'Bid4Assets':'https://www.bid4assets.com',
+  'RealAuction':'https://www.realauction.com',
+  'CivicSource':'https://www.civicsource.com',
+  'SRI':'https://www.sri-taxsale.com',
+  'PublicSurplus':'https://www.publicsurplus.com',
+  'iowataxauction.com':'https://www.iowataxauction.com',
+  'cosl.org':'https://cosl.org',
+  'BidSpencer':'https://www.bidspencer.com',
+  'Michigan Land Bank':'https://www.michiganlandbank.org'
+};
+function linkifyPlatform(text){
+  var result=text;
+  Object.keys(PLATFORM_URLS).forEach(function(name){
+    var re=new RegExp('('+name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+    result=result.replace(re,'<a href="'+PLATFORM_URLS[name]+'" target="_blank" rel="noopener">$1 \u2197</a>');
+  });
+  return result;
+}
+
+function safeHref(url){
+  if(!url||typeof url!=='string') return '';
+  var trimmed=url.trim();
+  if(/^https?:\/\//i.test(trimmed)) return trimmed;
+  return '';
+}
+
+function shortenPlatform(text){
+  if(!text) return '';
+  // Extract the main platform name, strip parenthetical/description
+  var m=text.match(/^([A-Za-z0-9.]+(?:\.com)?)/);
+  if(m) return m[1];
+  if(text.length>18) return text.slice(0,16)+'\u2026';
+  return text;
+}
+
+function toggleCounties(){
+  var list=document.getElementById('counties-list');
+  var chev=document.getElementById('counties-chevron');
+  if(!list)return;
+  list.classList.toggle('collapsed');
+  chev.textContent=list.classList.contains('collapsed')?'\u25B6':'\u25BC';
+}
+
 function showDetail(s) {
   var t=s._v2type||s.type||s.t; var mapType=s.type; var c=s.abbr||s.c; var n=s.name||s.n||c;
   var rate=s.rate||s.y||'N/A'; var redemption=s.redemption||s.r||'N/A';
   var colors={lien:'#FFBE0B',deed:'#00D4FF',redeemable:'#FF2D55',hybrid:'#BF5FFF',forfeiture:'#FF6B35'};
   var glows={lien:'rgba(255,190,11,0.4)',deed:'rgba(0,212,255,0.4)',redeemable:'rgba(255,45,85,0.4)',hybrid:'rgba(191,95,255,0.4)',forfeiture:'rgba(255,107,53,0.4)'};
-  var labels={lien:'TAX LIEN',deed:'TAX DEED',redeemable:'REDEEMABLE DEED',hybrid:'HYBRID',forfeiture:'FORFEITURE'};
+  var labels={lien:'TAX LIEN',deed:'TAX DEED',redeemable:'REDEEMABLE DEED',hybrid:'HYBRID',forfeiture:'TAX FORFEITURE'};
   var color=colors[t]||colors[mapType]||'#00D4FF';
   var glw=glows[t]||glows[mapType]||'rgba(0,212,255,0.4)';
   var panel=document.getElementById('detail-panel');
@@ -1427,7 +1587,7 @@ function showDetail(s) {
   var bidMethod=s.bidMethod||'N/A';
   document.getElementById('panel-stats').innerHTML=[
     ['YIELD RATE',rate],['REDEMPTION',redemption],['BID METHOD',bidMethod]
-  ].map(function(a){ return '<div class="stat-box" style="border-left-color:'+color+'88"><div class="stat-label">'+a[0]+'</div><div class="stat-value" style="color:'+color+';font-family:Bebas Neue,sans-serif">'+a[1]+'</div></div>'; }).join('');
+  ].map(function(a){ return '<div class="stat-box" style="border-left-color:'+color+'88"><div class="stat-label">'+a[0]+'</div><div class="stat-value" style="color:'+color+'">'+a[1]+'</div></div>'; }).join('');
 
   // Key notes
   var notesEl=document.getElementById('panel-notes');
@@ -1439,14 +1599,48 @@ function showDetail(s) {
 
   // Meta chips: statute, platform, timing
   var metaHtml=[];
+  var chipDot=function(c){return '<span class="chip-dot" style="background:'+c+'"></span>';};
   if(s.statute){
     var statLink=s.officialLink?'<a href="'+s.officialLink+'" target="_blank" rel="noopener">'+s.statute+'</a>':s.statute;
-    metaHtml.push('<span class="meta-chip">\u00A7 '+statLink+'</span>');
+    metaHtml.push('<span class="meta-chip">'+chipDot('#FFD700')+statLink+'</span>');
   }
-  if(s.auctionPlatform) metaHtml.push('<span class="meta-chip">\u25B6 '+s.auctionPlatform+'</span>');
-  if(s.auctionTiming) metaHtml.push('<span class="meta-chip">\u23F0 '+s.auctionTiming+'</span>');
-  if(s.rateNote) metaHtml.push('<span class="meta-chip">\u2139 '+s.rateNote+'</span>');
+  if(s.auctionPlatform) metaHtml.push('<span class="meta-chip">'+chipDot('#00D4FF')+linkifyPlatform(s.auctionPlatform)+'</span>');
+  if(s.auctionTiming) metaHtml.push('<span class="meta-chip">'+chipDot('#FF6B35')+s.auctionTiming+'</span>');
+  if(s.rateNote) metaHtml.push('<span class="meta-chip">'+chipDot('#BF5FFF')+s.rateNote+'</span>');
   document.getElementById('panel-meta').innerHTML=metaHtml.join('');
+
+  // Counties section
+  var countiesEl=document.getElementById('panel-counties');
+  var counties=s.counties||[];
+  var hasOtc=s.otc&&s.otc.available;
+  var stPlatform=s.auctionPlatform||'';
+  var stTiming=s.auctionTiming||'';
+
+  if(counties.length===0){
+    countiesEl.innerHTML='<div class="counties-empty">County data coming soon.<br><a href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener">Book an Investor Clarity Call</a> for '+escapeHtml(n)+' county details.</div>';
+  } else {
+    var cLabel=counties.length===1?'COUNTY':'COUNTIES';
+    var cHtml='<div class="counties-header" onclick="toggleCounties()">'+
+      '<span class="counties-label">'+cLabel+'</span>'+
+      '<span class="counties-count">'+counties.length+'</span>'+
+      '<span class="counties-chevron" id="counties-chevron">\u25BC</span>'+
+    '</div>';
+    cHtml+='<div class="counties-list" id="counties-list">';
+    counties.forEach(function(co){
+      var safeName=escapeHtml(co.name||'');
+      var safeLink=safeHref(co.link);
+      var nameTag=safeLink?'<a class="county-name" href="'+safeLink+'" target="_blank" rel="noopener">'+safeName+'</a>':'<span class="county-name">'+safeName+'</span>';
+      var platText=co.platform||stPlatform;
+      var platPill=platText?'<span class="county-pill platform">'+escapeHtml(shortenPlatform(platText))+'</span>':'';
+      var timPill=stTiming?'<span class="county-pill timing">'+escapeHtml(stTiming)+'</span>':'';
+      var otcPill=hasOtc?'<span class="county-pill otc">OTC</span>':'';
+      var safeNotes=co.notes?escapeHtml(co.notes):'';
+      var notes=safeNotes?'<span class="county-notes" title="'+safeNotes.replace(/"/g,'&quot;')+'">'+safeNotes+'</span>':'';
+      cHtml+='<div class="county-row">'+nameTag+platPill+otcPill+timPill+notes+'</div>';
+    });
+    cHtml+='</div>';
+    countiesEl.innerHTML=cHtml;
+  }
 
   document.getElementById('panel-cta').style.cssText="width:100%;margin-top:12px;padding:12px;border-radius:3px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.2em;background:"+color+"28;border:1px solid "+color+"88;color:"+color+";box-shadow:0 4px 20px "+glw;
   panel.classList.add('open');
@@ -1571,7 +1765,7 @@ function getAdvisorResponse(input) {
   if (q.includes('bid') || q.includes('auction')) return 'Bidding methods differ: Florida and Arizona use interest-rate-down bidding where investors compete by accepting lower rates. Illinois uses a rotational system. Understanding the bid method is critical \u2014 it directly impacts your effective yield.';
   if (q.includes('florida') || q.includes(' fl')) return 'Florida: Tax lien state. 18% max rate, 2-year redemption, interest-rate-down bidding. Platform: LienHub. Statute: FL Stat \u00A7 197.432. Excellent OTC availability. Start with smaller counties like Putnam or Levy.';
   if (q.includes('illinois') || q.includes(' il')) return 'Illinois: Tax lien state. 36% penalty structure, 2.5-year redemption, rotational bidding. Platform: GovEase. Statute: 35 ILCS 200/21-215. Avoid Cook County as a beginner \u2014 try downstate counties.';
-  if (q.includes('arizona') || q.includes(' az')) return 'Arizona: Tax lien state. Up to 16% rate, 3-year redemption, interest-rate-down bidding. Platform: RealAuction. Statute: ARS \u00A7 42-18112. Best OTC program in the country \u2014 start with Pinal or Yavapai counties.';
+  if (q.includes('arizona') || q.includes(' az')) return 'Arizona: Tax lien state. Up to 16% rate, 3-year redemption, interest-rate-down bidding. Platform: RealAuction. Statute: ARS \u00A7 42-18112. One of the most accessible OTC programs \u2014 start with Pinal or Yavapai counties.';
   if (q.includes('upgrade') || q.includes('access')) return 'Full access unlocks all 51 jurisdictions with detailed metrics, auction intel, and strategy tools. Visit the Account tab to upgrade.';
   return 'That\u2019s a great question for a strategy call. Book a free Investor Clarity Call to go deeper on this topic.';
 }
@@ -1670,5 +1864,8 @@ function runBootAnimation() {
   } catch(e) {}
 })();
 </script>
+<footer id="disclaimer-footer">
+  <p>This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting. <a href="/legal/" target="_blank" rel="noopener">Legal</a></p>
+</footer>
 </body>
 </html>
