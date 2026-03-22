@@ -60,16 +60,13 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - ~~80-issue master directive~~ — ALL 7 SPRINTS COMPLETE
 - ~~Knox 80-item regression~~ — 80/80 PASS (3 original failures fixed + #080 waived)
 
-## CURRENT PR STATUS
-Branch `claude/morning-checkin-aurigen-HC3BD` — Phase 1 rebuild complete.
-Contains: CORS fix + Anthropic lazy-load fix + full Phase 1 modular rebuild.
-
-## CURRENT SESSION STATUS (2026-03-18)
-- Mason: Phase 1 COMPLETE — 9 steps, 7 new files, index.html rebuilt (12K→77 lines)
-- Knox: Phase 1 7/7 PASS
-- Lex: 3 legal documents delivered (ToS, Privacy, Refund) — stored in /legal/
+## CURRENT SESSION STATUS (2026-03-22)
+- Phase 1 COMPLETE — Foundation rebuild (9 steps, 7 new files, index.html 12K→77 lines) + county data layer (TYPE_RATIONALE, county search/filter, /legal page)
+- Knox: Phase 1 7/7 PASS + 9/9 PASS (county data layer)
+- Lex: 3 legal documents (ToS, Privacy, Refund) in /legal/ + legal/index.html methodology page — PASS
+- Cipher: escapeHtml() on all dynamic strings — PASS
 - Architecture: every file under 400 lines, one job per file
-- Phase 2 (core features) is NEXT
+- Phase 2 (core features) is NEXT — 8 features, all OPEN
 
 ## NEXT SESSION PRIORITIES
 1. Phase 2: Core features (map, analyzer, sage, pulse, dna, versus, auctions, account)
