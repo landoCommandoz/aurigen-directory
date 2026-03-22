@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+  <script src="states-data-v2.js"></script>
   <style>
     /* === CSS VARIABLES === */
     :root {
@@ -27,6 +28,7 @@
       --deed: #00D4FF;
       --hybrid: #BF5FFF;
       --rdeed: #FF2D55;
+      --forfeiture: #FF6B35;
       --shadow: 0 8px 32px rgba(0,0,0,0.6);
       --shadow-accent: 0 0 40px rgba(201,168,76,0.08);
       --radius: 2px;
@@ -463,6 +465,14 @@
     .stat-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:9px 10px;border-left-width:2px}
     .stat-label{font-family:'Space Mono',monospace;font-size:6px;color:rgba(255,255,255,0.2);letter-spacing:0.2em;margin-bottom:4px}
     .stat-value{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.05em}
+    #panel-alert{display:none;padding:10px 16px;background:rgba(255,45,85,0.08);border-bottom:1px solid rgba(255,45,85,0.2);font-family:'Space Mono',monospace;font-size:8px;color:#FF2D55;letter-spacing:0.08em;line-height:1.5;animation:alertPulse 2s ease-in-out infinite}
+    #panel-alert.visible{display:block}
+    @keyframes alertPulse{0%,100%{opacity:1}50%{opacity:0.6}}
+    #panel-notes{margin-top:10px}
+    .panel-note{font-family:'Space Mono',monospace;font-size:7px;color:rgba(255,255,255,0.45);letter-spacing:0.04em;line-height:1.6;padding:3px 0 3px 12px;border-left:1px solid rgba(255,255,255,0.08)}
+    #panel-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .meta-chip{font-family:'Space Mono',monospace;font-size:6px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;padding:4px 8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:3px}
+    .meta-chip a{color:inherit;text-decoration:underline;text-underline-offset:2px}
     #panel-cta{width:100%;margin-top:12px;padding:12px;border-radius:3px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.2em;transition:all 0.2s}
 
     /* === TOOLS TAB === */
@@ -848,11 +858,14 @@
       <!-- DETAIL PANEL -->
       <div id="detail-panel">
         <div id="panel-shimmer"></div>
+        <div id="panel-alert"></div>
         <div id="panel-body">
           <button id="panel-close" onclick="closeDetail()">&times;</button>
           <div id="panel-title"></div>
           <div id="panel-type"></div>
           <div id="panel-stats"></div>
+          <div id="panel-notes"></div>
+          <div id="panel-meta"></div>
           <button id="panel-cta" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4')">BOOK INVESTOR CLARITY CALL</button>
         </div>
       </div>
@@ -1080,42 +1093,50 @@ function buildTicker() {
   });
 }
 
-// === STATE DATA (free states — full detail) ===
-const STATE_DATA = {
-  FL: { rate: '18%', redemption: '2 years', bid: 'Interest-rate down', penalty: '5% + 18%/yr', platform: 'LienHub', frequency: 'Annual (May-Jun)', statute: 'FL Stat § 197.432' },
-  IL: { rate: '36% penalty', redemption: '2.5 years', bid: 'Rotational', penalty: '36% over 2.5yr', platform: 'GovEase', frequency: 'Annual (Oct-Nov)', statute: '35 ILCS 200/21-215' },
-  AZ: { rate: '16%', redemption: '3 years', bid: 'Interest-rate down', penalty: 'Up to 16%/yr', platform: 'RealAuction', frequency: 'Annual (Feb)', statute: 'ARS § 42-18112' }
-};
+// === ALL 51 JURISDICTIONS (powered by STATES_V2) ===
+// Normalize STATES_V2 → ALL_STATES adapter. Dedup by keeping last occurrence of each code.
+var ALL_STATES = (function() {
+  var seen = {};
+  var deduped = [];
+  var i, s;
+  // Walk backwards so last occurrence wins, then reverse to preserve order
+  for (i = STATES_V2.length - 1; i >= 0; i--) {
+    s = STATES_V2[i];
+    if (!seen[s.code]) {
+      seen[s.code] = true;
+      deduped.unshift(s);
+    }
+  }
+  return deduped.map(function(s) {
+    var mapType = s.type === 'forfeiture' ? 'hybrid' : s.type;
+    return {
+      abbr: s.code,
+      name: s.name,
+      type: mapType,
+      rate: s.rate || 'N/A',
+      redemption: s.redemption || 'N/A',
+      rateNote: s.rateNote || null,
+      bidMethod: s.bidMethod || null,
+      statute: s.statute || null,
+      officialLink: s.officialLink || null,
+      auctionPlatform: s.auctionPlatform || null,
+      auctionTiming: s.auctionTiming || null,
+      keyNotes: s.keyNotes || [],
+      investorAlert: s.investorAlert || null,
+      _v2type: s.type  // preserve original for display labels
+    };
+  });
+})();
 
-// === ALL 51 JURISDICTIONS ===
-const ALL_STATES = [
-  {abbr:'AL',name:'Alabama',type:'lien'},{abbr:'AK',name:'Alaska',type:'deed'},
-  {abbr:'AZ',name:'Arizona',type:'lien'},{abbr:'AR',name:'Arkansas',type:'deed'},
-  {abbr:'CA',name:'California',type:'deed'},{abbr:'CO',name:'Colorado',type:'lien'},
-  {abbr:'CT',name:'Connecticut',type:'lien'},{abbr:'DE',name:'Delaware',type:'deed'},
-  {abbr:'DC',name:'District of Columbia',type:'lien'},{abbr:'FL',name:'Florida',type:'lien'},
-  {abbr:'GA',name:'Georgia',type:'deed'},{abbr:'HI',name:'Hawaii',type:'hybrid'},
-  {abbr:'ID',name:'Idaho',type:'deed'},{abbr:'IL',name:'Illinois',type:'lien'},
-  {abbr:'IN',name:'Indiana',type:'lien'},{abbr:'IA',name:'Iowa',type:'lien'},
-  {abbr:'KS',name:'Kansas',type:'deed'},{abbr:'KY',name:'Kentucky',type:'lien'},
-  {abbr:'LA',name:'Louisiana',type:'deed'},{abbr:'ME',name:'Maine',type:'deed'},
-  {abbr:'MD',name:'Maryland',type:'lien'},{abbr:'MA',name:'Massachusetts',type:'deed'},
-  {abbr:'MI',name:'Michigan',type:'deed'},{abbr:'MN',name:'Minnesota',type:'hybrid'},
-  {abbr:'MS',name:'Mississippi',type:'lien'},{abbr:'MO',name:'Missouri',type:'lien'},
-  {abbr:'MT',name:'Montana',type:'lien'},{abbr:'NE',name:'Nebraska',type:'lien'},
-  {abbr:'NV',name:'Nevada',type:'deed'},{abbr:'NH',name:'New Hampshire',type:'lien'},
-  {abbr:'NJ',name:'New Jersey',type:'lien'},{abbr:'NM',name:'New Mexico',type:'deed'},
-  {abbr:'NY',name:'New York',type:'lien'},{abbr:'NC',name:'North Carolina',type:'deed'},
-  {abbr:'ND',name:'North Dakota',type:'lien'},{abbr:'OH',name:'Ohio',type:'hybrid'},
-  {abbr:'OK',name:'Oklahoma',type:'lien'},{abbr:'OR',name:'Oregon',type:'deed'},
-  {abbr:'PA',name:'Pennsylvania',type:'deed'},{abbr:'RI',name:'Rhode Island',type:'deed'},
-  {abbr:'SC',name:'South Carolina',type:'deed'},{abbr:'SD',name:'South Dakota',type:'lien'},
-  {abbr:'TN',name:'Tennessee',type:'hybrid'},{abbr:'TX',name:'Texas',type:'deed'},
-  {abbr:'UT',name:'Utah',type:'deed'},{abbr:'VT',name:'Vermont',type:'lien'},
-  {abbr:'VA',name:'Virginia',type:'deed'},{abbr:'WA',name:'Washington',type:'deed'},
-  {abbr:'WV',name:'West Virginia',type:'lien'},{abbr:'WI',name:'Wisconsin',type:'deed'},
-  {abbr:'WY',name:'Wyoming',type:'lien'}
-];
+// === STATE_DATA (powers Pulse + Compare tools — all 51 states) ===
+var STATE_DATA = {};
+ALL_STATES.forEach(function(s) {
+  STATE_DATA[s.abbr] = {
+    rate: s.rate,
+    redemption: s.redemption,
+    platform: s.auctionPlatform || 'N/A'
+  };
+});
 
 const FREE_STATES = ['FL','IL','AZ'];
 
@@ -1136,15 +1157,16 @@ var TYPE_FILL = {
   lien: '#FFBE0B',
   deed: '#00D4FF',
   redeemable: '#FF2D55',
-  hybrid: '#BF5FFF'
+  hybrid: '#BF5FFF',
+  forfeiture: '#FF6B35'
 };
 
 // System 2 — TYPE_COLORS: CSS var references for styled elements
-var TYPE_COLORS = { lien: 'var(--lien)', deed: 'var(--deed)', hybrid: 'var(--hybrid)', redeemable: 'var(--rdeed)' };
+var TYPE_COLORS = { lien: 'var(--lien)', deed: 'var(--deed)', hybrid: 'var(--hybrid)', redeemable: 'var(--rdeed)', forfeiture: 'var(--forfeiture)' };
 
 // Type display labels
-var TYPE_LABELS = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDEE', hybrid: 'HYBR' };
-var TYPE_FULL = { lien: 'TAX LIEN', deed: 'TAX DEED', redeemable: 'REDEEMABLE DEED', hybrid: 'HYBRID' };
+var TYPE_LABELS = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDEE', hybrid: 'HYBR', forfeiture: 'FORF' };
+var TYPE_FULL = { lien: 'TAX LIEN', deed: 'TAX DEED', redeemable: 'REDEEMABLE DEED', hybrid: 'HYBRID', forfeiture: 'FORFEITURE' };
 
 // Current explore state
 var selectedState = null;
@@ -1157,7 +1179,8 @@ function buildLegend() {
     lien:{label:"TAX LIEN",color:"#FFBE0B"},
     deed:{label:"TAX DEED",color:"#00D4FF"},
     redeemable:{label:"REDEEMABLE DEED",color:"#FF2D55"},
-    hybrid:{label:"HYBRID",color:"#BF5FFF"}
+    hybrid:{label:"HYBRID",color:"#BF5FFF"},
+    forfeiture:{label:"FORFEITURE",color:"#FF6B35"}
   };
   var counts = {};
   Object.keys(TYPES).forEach(function(t){ counts[t] = ALL_STATES.filter(function(s){ return (s.t||s.type)===t; }).length; });
@@ -1171,7 +1194,7 @@ function buildLegend() {
   }).join('');
   document.getElementById('filter-pills').innerHTML = [
     ['all','ALL',null],['lien','LIEN','lien'],['deed','DEED','deed'],
-    ['redeemable','RDEE','redeemable'],['hybrid','HYBR','hybrid']
+    ['redeemable','RDEE','redeemable'],['hybrid','HYBR','hybrid'],['forfeiture','FORF','forfeiture']
   ].map(function(a){ return '<button class="pill" id="pill-'+a[0]+'" onclick="setFilter(\''+a[0]+'\')">'+a[1]+'</button>'; }).join('');
   updatePills();
 }
@@ -1259,7 +1282,7 @@ function updateMapColors() {
       .attr('stroke-width',isSel?2:0.8);
     if(isSel && s){
       var t=s.type||s.t;
-      var glow={lien:'rgba(255,190,11,0.08)',deed:'rgba(0,212,255,0.08)',redeemable:'rgba(255,45,85,0.08)',hybrid:'rgba(191,95,255,0.08)'};
+      var glow={lien:'rgba(255,190,11,0.08)',deed:'rgba(0,212,255,0.08)',redeemable:'rgba(255,45,85,0.08)',hybrid:'rgba(191,95,255,0.08)',forfeiture:'rgba(255,107,53,0.08)'};
       document.getElementById('ambient-glow').style.background='radial-gradient(ellipse 60% 60% at 50% 50%,'+(glow[t]||'transparent')+' 0%,transparent 70%)';
     }
   });
@@ -1296,7 +1319,7 @@ function switchExploreView(tab) {
 function updatePills() {
   document.querySelectorAll('.pill').forEach(function(p){
     var k=p.id.replace('pill-','');
-    var colors={lien:'#FFBE0B',deed:'#00D4FF',redeemable:'#FF2D55',hybrid:'#BF5FFF'};
+    var colors={lien:'#FFBE0B',deed:'#00D4FF',redeemable:'#FF2D55',hybrid:'#BF5FFF',forfeiture:'#FF6B35'};
     var c=colors[k];
     if(k===activeFilter){
       p.style.background=c?(c+'28'):'rgba(0,212,255,0.12)';
@@ -1329,7 +1352,7 @@ function renderList() {
     container.innerHTML=''; container.appendChild(empty); return;
   }
   empty.style.display='none';
-  var colors={lien:'#FFBE0B',deed:'#00D4FF',redeemable:'#FF2D55',hybrid:'#BF5FFF'};
+  var colors={lien:'#FFBE0B',deed:'#00D4FF',redeemable:'#FF2D55',hybrid:'#BF5FFF',forfeiture:'#FF6B35'};
   container.innerHTML=filtered.map(function(s,i){
     var t=s.type||s.t; var c=s.abbr||s.c; var n=s.name||s.n||c;
     var rate=s.rate||s.y||'N/A'; var redemption=s.redemption||s.r||'N/A';
@@ -1370,22 +1393,57 @@ function clearSearch() {
 function setFilter(f){activeFilter=f;selectedState=null;closeDetail();updatePills();renderList();}
 
 function showDetail(s) {
-  var t=s.type||s.t; var c=s.abbr||s.c; var n=s.name||s.n||c;
+  var t=s._v2type||s.type||s.t; var mapType=s.type; var c=s.abbr||s.c; var n=s.name||s.n||c;
   var rate=s.rate||s.y||'N/A'; var redemption=s.redemption||s.r||'N/A';
-  var colors={lien:'#FFBE0B',deed:'#00D4FF',redeemable:'#FF2D55',hybrid:'#BF5FFF'};
-  var glows={lien:'rgba(255,190,11,0.4)',deed:'rgba(0,212,255,0.4)',redeemable:'rgba(255,45,85,0.4)',hybrid:'rgba(191,95,255,0.4)'};
-  var labels={lien:'TAX LIEN',deed:'TAX DEED',redeemable:'REDEEMABLE DEED',hybrid:'HYBRID'};
-  var color=colors[t]||'#00D4FF'; var glow=glows[t]||'rgba(0,212,255,0.4)';
+  var colors={lien:'#FFBE0B',deed:'#00D4FF',redeemable:'#FF2D55',hybrid:'#BF5FFF',forfeiture:'#FF6B35'};
+  var glows={lien:'rgba(255,190,11,0.4)',deed:'rgba(0,212,255,0.4)',redeemable:'rgba(255,45,85,0.4)',hybrid:'rgba(191,95,255,0.4)',forfeiture:'rgba(255,107,53,0.4)'};
+  var labels={lien:'TAX LIEN',deed:'TAX DEED',redeemable:'REDEEMABLE DEED',hybrid:'HYBRID',forfeiture:'FORFEITURE'};
+  var color=colors[t]||colors[mapType]||'#00D4FF';
+  var glw=glows[t]||glows[mapType]||'rgba(0,212,255,0.4)';
   var panel=document.getElementById('detail-panel');
   panel.style.borderTop='1px solid '+color+'66';
-  document.getElementById('panel-shimmer').style.cssText='height:1px;background:linear-gradient(90deg,transparent,'+color+',transparent);box-shadow:0 0 16px '+glow;
-  document.getElementById('panel-title').style.cssText="font-family:'Bebas Neue',sans-serif;font-size:36px;color:"+color+";letter-spacing:0.06em;line-height:1;text-shadow:0 0 30px "+glow;
+  document.getElementById('panel-shimmer').style.cssText='height:1px;background:linear-gradient(90deg,transparent,'+color+',transparent);box-shadow:0 0 16px '+glw;
+
+  // Investor alert — top of panel, above everything
+  var alertEl=document.getElementById('panel-alert');
+  if(s.investorAlert){
+    alertEl.textContent=s.investorAlert;
+    alertEl.classList.add('visible');
+  } else {
+    alertEl.textContent='';
+    alertEl.classList.remove('visible');
+  }
+
+  document.getElementById('panel-title').style.cssText="font-family:'Bebas Neue',sans-serif;font-size:36px;color:"+color+";letter-spacing:0.06em;line-height:1;text-shadow:0 0 30px "+glw;
   document.getElementById('panel-title').textContent=c+' \u2014 '+n;
   document.getElementById('panel-type').textContent=labels[t]||t.toUpperCase();
+
+  // Stats: yield, redemption, bid method
+  var bidMethod=s.bidMethod||'N/A';
   document.getElementById('panel-stats').innerHTML=[
-    ['YIELD RATE',rate],['REDEMPTION',redemption],['TYPE',(labels[t]||t).split(' ').pop()]
+    ['YIELD RATE',rate],['REDEMPTION',redemption],['BID METHOD',bidMethod]
   ].map(function(a){ return '<div class="stat-box" style="border-left-color:'+color+'88"><div class="stat-label">'+a[0]+'</div><div class="stat-value" style="color:'+color+';font-family:Bebas Neue,sans-serif">'+a[1]+'</div></div>'; }).join('');
-  document.getElementById('panel-cta').style.cssText="width:100%;margin-top:12px;padding:12px;border-radius:3px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.2em;background:"+color+"28;border:1px solid "+color+"88;color:"+color+";box-shadow:0 4px 20px "+glow;
+
+  // Key notes
+  var notesEl=document.getElementById('panel-notes');
+  if(s.keyNotes&&s.keyNotes.length>0){
+    notesEl.innerHTML=s.keyNotes.map(function(note){ return '<div class="panel-note">\u2022 '+note+'</div>'; }).join('');
+  } else {
+    notesEl.innerHTML='';
+  }
+
+  // Meta chips: statute, platform, timing
+  var metaHtml=[];
+  if(s.statute){
+    var statLink=s.officialLink?'<a href="'+s.officialLink+'" target="_blank" rel="noopener">'+s.statute+'</a>':s.statute;
+    metaHtml.push('<span class="meta-chip">\u00A7 '+statLink+'</span>');
+  }
+  if(s.auctionPlatform) metaHtml.push('<span class="meta-chip">\u25B6 '+s.auctionPlatform+'</span>');
+  if(s.auctionTiming) metaHtml.push('<span class="meta-chip">\u23F0 '+s.auctionTiming+'</span>');
+  if(s.rateNote) metaHtml.push('<span class="meta-chip">\u2139 '+s.rateNote+'</span>');
+  document.getElementById('panel-meta').innerHTML=metaHtml.join('');
+
+  document.getElementById('panel-cta').style.cssText="width:100%;margin-top:12px;padding:12px;border-radius:3px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.2em;background:"+color+"28;border:1px solid "+color+"88;color:"+color+";box-shadow:0 4px 20px "+glw;
   panel.classList.add('open');
 }
 
@@ -1394,6 +1452,8 @@ function closeDetail() {
   var panel=document.getElementById('detail-panel');
   panel.classList.remove('open');
   panel.style.display='none';
+  var alertEl=document.getElementById('panel-alert');
+  if(alertEl) alertEl.classList.remove('visible');
   setTimeout(function(){ if(!panel.classList.contains('open')) panel.style.display=''; },10);
   resetMapColors();
 }
@@ -1428,7 +1488,7 @@ function runAuctionPulse() {
   if (data) {
     el.textContent = 'RATE: ' + data.rate + ' | REDEMPTION: ' + data.redemption + ' | PLATFORM: ' + data.platform;
   } else {
-    el.textContent = 'STATE NOT IN DATABASE \u2014 TRY FL, IL, OR AZ';
+    el.textContent = 'STATE NOT FOUND \u2014 ENTER A 2-LETTER STATE CODE (E.G. FL, TX, CO)';
   }
   el.classList.add('show');
 }
@@ -1452,11 +1512,11 @@ function runStateCompare() {
   const dA = STATE_DATA[a];
   const dB = STATE_DATA[b];
   if (!dA && !dB) {
-    el.textContent = 'NEITHER ' + a + ' NOR ' + b + ' IN DATABASE \u2014 TRY FL, IL, OR AZ';
+    el.textContent = 'NEITHER ' + a + ' NOR ' + b + ' IN DATABASE \u2014 ENTER A 2-LETTER STATE CODE';
   } else if (!dA) {
-    el.textContent = a + ' NOT IN DATABASE \u2014 TRY FL, IL, OR AZ';
+    el.textContent = a + ' NOT IN DATABASE \u2014 ENTER A 2-LETTER STATE CODE';
   } else if (!dB) {
-    el.textContent = b + ' NOT IN DATABASE \u2014 TRY FL, IL, OR AZ';
+    el.textContent = b + ' NOT IN DATABASE \u2014 ENTER A 2-LETTER STATE CODE';
   } else {
     el.innerHTML =
       '<div>RATE: ' + a + ' ' + dA.rate + ' | ' + b + ' ' + dB.rate + '</div>' +
