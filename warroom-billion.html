@@ -447,9 +447,9 @@
     .state-row{display:grid;grid-template-columns:28px 8px 1fr 56px 58px 80px;gap:8px;padding:8px 16px;cursor:pointer;border-left:2px solid transparent;border-bottom:1px solid rgba(0,212,255,0.04);transition:all 0.15s}
     .row-num{font-family:'Space Mono',monospace;font-size:8px;color:rgba(0,212,255,0.2)}
     .row-dot{width:5px;height:5px;border-radius:1px;margin-top:2px;flex-shrink:0}
-    .row-name{font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,255,255,0.7);letter-spacing:0.05em}
+    .row-name{font-family:'Space Mono',monospace;font-size:9px;color:#f0f0f0;letter-spacing:0.05em}
     .row-yield{font-family:'Space Mono',monospace;font-size:9px;text-align:right}
-    .row-redempt{font-family:'Space Mono',monospace;font-size:8px;color:rgba(255,255,255,0.4);text-align:right}
+    .row-redempt{font-family:'Space Mono',monospace;font-size:8px;color:#aaaaaa;text-align:right}
     .row-badge{display:flex;justify-content:flex-end}
     .badge{font-family:'Space Mono',monospace;font-size:7px;padding:2px 5px;border-radius:2px;border:1px solid;letter-spacing:0.05em}
     #empty-state{display:none;align-items:center;justify-content:center;height:100%;font-family:'Space Mono',monospace;font-size:9px;color:rgba(0,212,255,0.2);letter-spacing:0.18em}
@@ -1183,7 +1183,7 @@ function buildLegend() {
     forfeiture:{label:"FORFEITURE",color:"#FF6B35"}
   };
   var counts = {};
-  Object.keys(TYPES).forEach(function(t){ counts[t] = ALL_STATES.filter(function(s){ return (s.t||s.type)===t; }).length; });
+  Object.keys(TYPES).forEach(function(t){ counts[t] = ALL_STATES.filter(function(s){ return (s._v2type||s.type)===t; }).length; });
   document.getElementById('type-legend').innerHTML = Object.entries(TYPES).map(function(e){
     var k=e[0], v=e[1];
     return '<div class="leg-item"><div class="leg-dot" style="background:'+v.color+';box-shadow:0 0 6px '+v.color+'"></div><span class="leg-label">'+v.label.split(' ').pop()+' '+counts[k]+'</span></div>';
@@ -1336,7 +1336,7 @@ function updatePills() {
 function renderList() {
   var q=searchQuery.toLowerCase();
   var filtered=ALL_STATES.filter(function(s){
-    var t=s.type||s.t;
+    var t=s._v2type||s.type||s.t;
     var c=s.abbr||s.c;
     var n=s.name||s.n||'';
     var fOk=activeFilter==='all'||t===activeFilter;
@@ -1363,10 +1363,10 @@ function renderList() {
       ' style="background:'+(isSel?'linear-gradient(90deg,'+color+'15,transparent)':'transparent')+';border-left-color:'+(isSel?color:'transparent')+'">'+
       '<span class="row-num">'+String(i+1).padStart(2,'0')+'</span>'+
       '<div class="row-dot" style="background:'+color+';box-shadow:0 0 4px '+color+'"></div>'+
-      '<span class="row-name" style="color:'+(isSel?'#fff':'rgba(255,255,255,0.7)')+'">'+n.toUpperCase()+'</span>'+
+      '<span class="row-name" style="color:'+(isSel?'#fff':'#f0f0f0')+'">'+n.toUpperCase()+'</span>'+
       '<span class="row-yield" style="color:'+color+'">'+rate+'</span>'+
       '<span class="row-redempt">'+redemption+'</span>'+
-      '<div class="row-badge"><span class="badge" style="color:'+color+';border-color:'+color+'66">'+badge+'</span></div>'+
+      '<div class="row-badge"><span class="badge" style="color:#fff;background:'+color+';border-color:'+color+'">'+badge+'</span></div>'+
     '</div>';
   }).join('');
 }
