@@ -478,7 +478,7 @@
     .meta-chip .chip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
     .meta-chip a{color:#e0e0e0;text-decoration:underline;text-underline-offset:2px;transition:color 0.15s}
     .meta-chip a:hover{color:#FFD700}
-    #panel-cta{width:100%;margin-top:16px;padding:14px;border-radius:4px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.18em;transition:all 0.2s}
+    #panel-cta{width:100%;margin-top:16px;margin-bottom:48px;padding:14px;border-radius:4px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.18em;transition:all 0.2s}
 
     /* === COUNTIES SECTION === */
     #panel-counties{margin-top:16px}
@@ -793,7 +793,7 @@
       .detail-stats { grid-template-columns: 1fr; }
       #list-toolbar { flex-wrap: wrap; }
       .filter-pills { flex-wrap: wrap; }
-      #detail-panel-inner { width:100%;height:95%;max-height:95vh;border-radius:6px 6px 0 0 }
+      #detail-panel-inner { width:100%;height:95%;max-height:95vh;border-radius:6px 6px 0 0;padding-bottom:56px }
       #col-headers{grid-template-columns:28px 56px 1fr}
       .state-row{grid-template-columns:28px 56px 1fr}
       .col-h.col-stats,.row-stats{display:none}
@@ -1619,8 +1619,9 @@ function showDetail(s) {
   if(counties.length===0){
     countiesEl.innerHTML='<div class="counties-empty">County data coming soon.<br><a href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener">Book an Investor Clarity Call</a> for '+escapeHtml(n)+' county details.</div>';
   } else {
+    var cLabel=counties.length===1?'COUNTY':'COUNTIES';
     var cHtml='<div class="counties-header" onclick="toggleCounties()">'+
-      '<span class="counties-label">COUNTIES</span>'+
+      '<span class="counties-label">'+cLabel+'</span>'+
       '<span class="counties-count">'+counties.length+'</span>'+
       '<span class="counties-chevron" id="counties-chevron">\u25BC</span>'+
     '</div>';
@@ -1764,7 +1765,7 @@ function getAdvisorResponse(input) {
   if (q.includes('bid') || q.includes('auction')) return 'Bidding methods differ: Florida and Arizona use interest-rate-down bidding where investors compete by accepting lower rates. Illinois uses a rotational system. Understanding the bid method is critical \u2014 it directly impacts your effective yield.';
   if (q.includes('florida') || q.includes(' fl')) return 'Florida: Tax lien state. 18% max rate, 2-year redemption, interest-rate-down bidding. Platform: LienHub. Statute: FL Stat \u00A7 197.432. Excellent OTC availability. Start with smaller counties like Putnam or Levy.';
   if (q.includes('illinois') || q.includes(' il')) return 'Illinois: Tax lien state. 36% penalty structure, 2.5-year redemption, rotational bidding. Platform: GovEase. Statute: 35 ILCS 200/21-215. Avoid Cook County as a beginner \u2014 try downstate counties.';
-  if (q.includes('arizona') || q.includes(' az')) return 'Arizona: Tax lien state. Up to 16% rate, 3-year redemption, interest-rate-down bidding. Platform: RealAuction. Statute: ARS \u00A7 42-18112. Best OTC program in the country \u2014 start with Pinal or Yavapai counties.';
+  if (q.includes('arizona') || q.includes(' az')) return 'Arizona: Tax lien state. Up to 16% rate, 3-year redemption, interest-rate-down bidding. Platform: RealAuction. Statute: ARS \u00A7 42-18112. One of the most accessible OTC programs \u2014 start with Pinal or Yavapai counties.';
   if (q.includes('upgrade') || q.includes('access')) return 'Full access unlocks all 51 jurisdictions with detailed metrics, auction intel, and strategy tools. Visit the Account tab to upgrade.';
   return 'That\u2019s a great question for a strategy call. Book a free Investor Clarity Call to go deeper on this topic.';
 }
