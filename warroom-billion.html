@@ -1506,11 +1506,11 @@
   <nav id="top-nav">
     <div id="nav-logo">AURIGEN</div>
     <div class="nav-tab active" id="tab-map" onclick="switchTab('map')">Map</div>
-    <div class="nav-tab" id="tab-tools" onclick="switchTab('tools')">Tools</div>
-    <div class="nav-tab" id="tab-dna" onclick="switchTab('dna')">DNA</div>
-    <div class="nav-tab" id="tab-advisor" onclick="switchTab('advisor')">Advisor</div>
     <div class="nav-tab" id="tab-auctions" onclick="switchTab('auctions')">Auctions</div>
     <div class="nav-tab" id="tab-versus" onclick="switchTab('versus')">Versus</div>
+    <div class="nav-tab" id="tab-dna" onclick="switchTab('dna')">DNA</div>
+    <div class="nav-tab" id="tab-advisor" onclick="switchTab('advisor')">Advisor</div>
+    <div class="nav-tab" id="tab-tools" onclick="switchTab('tools')">Tools</div>
     <div class="nav-tab" id="tab-account" onclick="switchTab('account')">Account</div>
     <div id="nav-spacer"></div>
     <div id="nav-tier-badge">FREE</div>
@@ -3175,6 +3175,7 @@ function runStateCompare() {
 // === ADVISOR FUNCTIONS ===
 var _sageHistory = [];
 var _sageQuestionCount = 0;
+var _sageLastCTATurn = -10; // FREQUENCY RULE: track last turn a CTA was shown
 var _sageFirstResponse = true;
 
 function askSageChip(btn) {
@@ -3222,7 +3223,9 @@ function sendAdvisorMessage() {
   var delay = 600 + Math.floor(Math.random() * 600);
   setTimeout(function() {
     var response = getAdvisorResponse(text);
+    var hasCTA = response.indexOf('[CTA]') !== -1;
     var rendered = response.replace(/\[CTA\]/g, renderSageCTA());
+    if (hasCTA) _sageLastCTATurn = _sageQuestionCount;
     if (_sageFirstResponse) {
       rendered += '<div style="margin-top:10px;font-size:11px;color:var(--text3);line-height:1.5;">Rates and rules vary by state and county \u2014 always verify with the official authority before transacting.</div>';
       _sageFirstResponse = false;
@@ -3594,7 +3597,11 @@ function findSageState(q) {
 function getAdvisorResponse(input) {
   var q = input.toLowerCase();
   var stateKey = findSageState(q);
-  var needsCTA = _sageQuestionCount >= 3;
+  // FREQUENCY RULE: Never deploy CTA on back-to-back responses.
+  // If CTA was just shown and investor did not engage — wait at least 2 more exchanges.
+  // Cold factual questions do not trigger a CTA.
+  var ctaGap = _sageQuestionCount - _sageLastCTATurn;
+  var needsCTA = _sageQuestionCount >= 3 && ctaGap >= 3;
 
   // State-specific query
   if (stateKey && SAGE_STATES[stateKey]) {
@@ -3975,7 +3982,7 @@ function vsGenerateInsights(a, b, rateA, rateB, redA, redB, onA, onB) {
   // Type difference
   if (out.length < 3 && a.type !== b.type) {
     var typeExplain = {
-      lien: 'a debt instrument — you earn interest while the owner retains the property',
+      lien: 'a debt instrument — interest accrues per statute while the owner retains the property',
       deed: 'a property acquisition — you receive the deed directly at sale',
       hybrid: 'a hybrid system offering both lien and deed pathways',
       redeemable: 'a redeemable deed — you acquire the deed but the owner may redeem within a statutory window',
