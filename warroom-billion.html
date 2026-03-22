@@ -832,6 +832,53 @@
       .county-pill.timing{display:none}
       .county-notes{white-space:normal;width:100%;padding-left:0}
     }
+
+    /* --- Type rationale block --- */
+    .type-rationale {
+      margin: 10px 0 18px 0;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+    }
+    .rationale-short {
+      margin: 0 0 8px 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .rationale-why {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .rationale-why summary {
+      cursor: pointer;
+      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      list-style: none;
+      user-select: none;
+    }
+    .rationale-why summary::-webkit-details-marker {
+      display: none;
+    }
+    .rationale-why[open] summary {
+      margin-bottom: 8px;
+    }
+    .rationale-why p {
+      margin: 0 0 8px 0;
+      line-height: 1.5;
+      color: #aaaaaa;
+    }
+    .rationale-legal-link {
+      font-size: 11px;
+      color: var(--accent-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .rationale-legal-link:hover {
+      color: var(--accent);
+    }
   </style>
 </head>
 <body>
@@ -936,6 +983,7 @@
             <button id="panel-close" onclick="closeDetail()">&times;</button>
             <div id="panel-title"></div>
             <div id="panel-type"></div>
+            <div id="panel-rationale"></div>
             <div id="panel-stats"></div>
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
@@ -1202,6 +1250,30 @@ var ALL_STATES = (function() {
     };
   });
 })();
+
+// === TYPE RATIONALE — classification methodology per state type ===
+var TYPE_RATIONALE = {
+  lien: {
+    short: "You purchase the tax debt — not the property. The owner repays you with interest during the redemption period.",
+    why: "Some platforms classify this state as a deed state because the process ends in a deed sale if unredeemed. We label by the investor entry point: you buy a lien certificate first. Both labels are used in the industry."
+  },
+  deed: {
+    short: "You purchase the property itself at auction. Ownership transfers to the winning bidder.",
+    why: "Certain sources may list this state as hybrid or lien-eligible because some counties allow both mechanisms. We classify by the dominant statutory instrument available to investors statewide."
+  },
+  redeemable: {
+    short: "You purchase a deed, but the original owner has a legal window to reclaim the property after the sale.",
+    why: "Sometimes called a 'redeemable tax deed' or incorrectly grouped with deed states. The post-sale redemption right is the distinguishing factor — it changes your strategy and timeline significantly."
+  },
+  hybrid: {
+    short: "Counties in this state may conduct either lien or deed sales depending on local rules. Confirm the method with each county before bidding.",
+    why: "Hybrid states appear as lien states on some maps and deed states on others — both can be accurate depending on the county. We label it hybrid to prevent investors from assuming a single statewide mechanism."
+  },
+  forfeiture: {
+    short: "This state uses a forfeiture process. Property is surrendered to the state after multi-year delinquency, then made available through a separate state disposition process.",
+    why: "Minnesota's system does not fit cleanly into lien or deed. We classify it separately so investors are not misled into applying lien or deed strategies to a fundamentally different process."
+  }
+};
 
 // === MERGE COUNTY DATA — window.COUNTY_DATA primary, STATES_EN fallback ===
 (function() {
@@ -1656,6 +1728,29 @@ function showDetail(s) {
   document.getElementById('panel-title').style.cssText="font-family:'Bebas Neue',sans-serif;font-size:36px;color:"+color+";letter-spacing:0.06em;line-height:1;text-shadow:0 0 30px "+glw;
   document.getElementById('panel-title').textContent=c+' \u2014 '+n;
   document.getElementById('panel-type').textContent=labels[t]||t.toUpperCase();
+
+  // Type rationale block
+  var rawType=(t||'').toLowerCase();
+  var typeKey=rawType.indexOf('redeemable')!==-1?'redeemable'
+    :rawType.indexOf('forfeiture')!==-1?'forfeiture'
+    :rawType.indexOf('hybrid')!==-1?'hybrid'
+    :rawType.indexOf('deed')!==-1?'deed'
+    :rawType.indexOf('lien')!==-1?'lien'
+    :null;
+  var rationale=typeKey?TYPE_RATIONALE[typeKey]:null;
+  var rationaleEl=document.getElementById('panel-rationale');
+  if(rationale){
+    rationaleEl.innerHTML='<div class="type-rationale">'
+      +'<p class="rationale-short">'+escapeHtml(rationale.short)+'</p>'
+      +'<details class="rationale-why">'
+      +'<summary>\u24D8 Why is this labeled differently on other maps?</summary>'
+      +'<p>'+escapeHtml(rationale.why)+'</p>'
+      +'<a href="/legal" target="_blank" rel="noopener noreferrer" class="rationale-legal-link">'
+      +'View our full classification methodology \u2192</a>'
+      +'</details></div>';
+  } else {
+    rationaleEl.innerHTML='';
+  }
 
   // Stats: yield, redemption, bid method
   var bidMethod=s.bidMethod||'N/A';
