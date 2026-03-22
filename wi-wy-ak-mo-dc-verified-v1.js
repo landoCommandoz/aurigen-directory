@@ -95,7 +95,7 @@ const WI_COUNTIES = [
   "Waushara","Winnebago","Wood"
 ];
 
-window.COUNTY_DATA['WI'] = WI_COUNTIES.map(name => ({
+window.COUNTY_DATA['WI'] = WI_COUNTIES.map(name => ({...WI_STATE_RULES, 
   county: name,
   url: name === "Lafayette"
     ? "https://www.lafayettecountywi.org/treasurer/page/property-tax-foreclosure-sale"
@@ -108,7 +108,6 @@ window.COUNTY_DATA['WI'] = WI_COUNTIES.map(name => ({
           : `https://www.co.${name.toLowerCase().replace(/\s\./g,'').replace(/\s/g,'.')}.wi.us/treasurer`,
   platform: "County treasurer/clerk — in-person or online per county",
   certIssuanceDate: "September 1 annually",
-  ...WI_STATE_RULES,
   verified: true,
   delinquencyNote: name === "Milwaukee" ? "⚡ Milwaukee: 18%/yr (1.5%/month)" : "1%/month (12%/yr)"
 }));
@@ -219,11 +218,10 @@ const WY_COUNTIES = [
   {county:"Weston",url:"https://www.westoncountywy.gov/treasurer/tax-sale"},
 ];
 
-window.COUNTY_DATA['WY'] = WY_COUNTIES.map(c => ({
+window.COUNTY_DATA['WY'] = WY_COUNTIES.map(c => ({...WY_STATE_RULES, 
   ...c,
   platform: "In-person county courthouse/fairgrounds",
   saleDate2026: c.county === "Teton" ? "August 5, 2026 — CONFIRMED (pre-reg Aug 3–4)" : "Late July or early August 2026 — check county treasurer site",
-  ...WY_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['WY_STATE_RULES'] = WY_STATE_RULES;
@@ -343,10 +341,9 @@ const AK_BOROUGHS = [
   {county:"Nome Census Area",url:"https://commerce.alaska.gov/web/dcra"},
 ];
 
-window.COUNTY_DATA['AK'] = AK_BOROUGHS.map(b => ({
+window.COUNTY_DATA['AK'] = AK_BOROUGHS.map(b => ({...AK_STATE_RULES, 
   ...b,
   platform: "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
-  ...AK_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['AK_STATE_RULES'] = AK_STATE_RULES;
@@ -461,7 +458,7 @@ const MO_COUNTIES = [
   "City of St. Louis"
 ];
 
-window.COUNTY_DATA['MO'] = MO_COUNTIES.map(name => ({
+window.COUNTY_DATA['MO'] = MO_COUNTIES.map(name => ({...MO_STATE_RULES, 
   county: name,
   url: name === "Greene"
     ? "https://greenecountymo.gov/collector/faq/tax_sale.php"
@@ -474,7 +471,6 @@ window.COUNTY_DATA['MO'] = MO_COUNTIES.map(name => ({
           : `https://www.${name.toLowerCase().replace(/\s\./g,'').replace(/\s/g,'')}.mo.us/collector`,
   platform: name === "Jackson" || name === "St. Louis" || name === "Greene" ? "CivicSource (online) + in-person" : "In-person courthouse",
   saleDate2026: "August 24, 2026 (4th Monday August)",
-  ...MO_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['MO_STATE_RULES'] = MO_STATE_RULES;
@@ -564,13 +560,12 @@ const DC_STATE_RULES = {
   results: { lastSaleUrl: null, avgRateBid: null, totalLiensSold: null, totalValue: null }
 };
 
-window.COUNTY_DATA['DC'] = [{
+window.COUNTY_DATA['DC'] = [{...DC_STATE_RULES, 
   county: "District of Columbia",
   url: "https://otr.cfo.dc.gov/page/real-property-tax-sale",
   platform: "OTR Online Auction (annual July) + OTC year-round",
   saleDate2026: "Expected July 2026 (3rd week typical) — check otr.cfo.dc.gov",
   otcUrl: "https://otr.cfo.dc.gov/page/real-property-tax-sale",
-  ...DC_STATE_RULES,
   verified: true
 }];
 window.COUNTY_DATA['DC_STATE_RULES'] = DC_STATE_RULES;

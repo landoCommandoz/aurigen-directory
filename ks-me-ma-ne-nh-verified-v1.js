@@ -91,7 +91,7 @@ const KS_COUNTIES = [
   "Wichita","Wilson","Woodson","Wyandotte"
 ];
 
-window.COUNTY_DATA['KS'] = KS_COUNTIES.map(name => ({
+window.COUNTY_DATA['KS'] = KS_COUNTIES.map(name => ({...KS_STATE_RULES, 
   county: name,
   url: name === "Sedgwick"
     ? "https://www.sedgwickcounty.org/treasurer/tax-foreclosure-auctions/"
@@ -106,7 +106,6 @@ window.COUNTY_DATA['KS'] = KS_COUNTIES.map(name => ({
             : `https://www.${name.toLowerCase().replace(/\s/g,'')}county.org/treasurer`,
   platform: name === "Sedgwick" || name === "Shawnee" ? "CivicSource (online)" : "In-person / CivicSource",
   saleFrequency: "Annual or as scheduled — contact county counselor",
-  ...KS_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['KS_STATE_RULES'] = KS_STATE_RULES;
@@ -212,12 +211,11 @@ const ME_COUNTIES = [
   {county:"York",municipalities:32,registryUrl:"https://www.yorkdeeds.com"},
 ];
 
-window.COUNTY_DATA['ME'] = ME_COUNTIES.map(c => ({
+window.COUNTY_DATA['ME'] = ME_COUNTIES.map(c => ({...ME_STATE_RULES, 
   ...c,
   url: c.registryUrl,
   platform: "Municipal treasurer / RE broker (§943-C)",
   note: `${c.municipalities} municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C.`,
-  ...ME_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['ME_STATE_RULES'] = ME_STATE_RULES;
@@ -311,11 +309,10 @@ const MA_COUNTIES = [
   {county:"Worcester",municipalities:60,url:"https://www.worcesterdeeds.com"},
 ];
 
-window.COUNTY_DATA['MA'] = MA_COUNTIES.map(c => ({
+window.COUNTY_DATA['MA'] = MA_COUNTIES.map(c => ({...MA_STATE_RULES, 
   ...c,
   platform: "Municipal Treasurer / Land Court",
   note: `${c.municipalities} municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%.`,
-  ...MA_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['MA_STATE_RULES'] = MA_STATE_RULES;
@@ -407,7 +404,7 @@ const NE_COUNTIES = [
   "Wheeler","York"
 ];
 
-window.COUNTY_DATA['NE'] = NE_COUNTIES.map(name => ({
+window.COUNTY_DATA['NE'] = NE_COUNTIES.map(name => ({...NE_STATE_RULES, 
   county: name,
   url: name === "Gage"
     ? "https://gagecountyne.gov/treasurer/"
@@ -420,7 +417,6 @@ window.COUNTY_DATA['NE'] = NE_COUNTIES.map(name => ({
           : `https://${name.toLowerCase().replace(/\s/g,'')}county.ne.gov/treasurer`,
   platform: "In-person county treasurer",
   saleDate2026: "March 2, 2026",
-  ...NE_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['NE_STATE_RULES'] = NE_STATE_RULES;
@@ -516,11 +512,10 @@ const NH_COUNTIES = [
   {county:"Sullivan",municipalities:15,url:"https://www.sullivancountynh.gov/registry"},
 ];
 
-window.COUNTY_DATA['NH'] = NH_COUNTIES.map(c => ({
+window.COUNTY_DATA['NH'] = NH_COUNTIES.map(c => ({...NH_STATE_RULES, 
   ...c,
   platform: "Municipal auction / NHTaxDeedAuctions.com (statewide aggregator)",
   note: `${c.municipalities} municipalities. Each runs independent lien + deed process. Excess proceeds via Superior Court interpleader per RSA 80:88 (Polonsky + Tyler compliant).`,
-  ...NH_STATE_RULES,
   verified: true
 }));
 window.COUNTY_DATA['NH_STATE_RULES'] = NH_STATE_RULES;
