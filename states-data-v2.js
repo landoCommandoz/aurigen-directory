@@ -47,29 +47,7 @@ var STATES_V2 = [
     clarityCallCTA: true
   },
 
-  // ── 2. Louisiana ───────────────────────────────────────────
-  {
-    code: "LA",
-    name: "Louisiana",
-    type: "lien",
-    rate: "0.7%\u20131.0%/month (8.4%\u201312% annualized)",
-    rateNote: "Bid-down interest rate \u2014 new 2026 system",
-    redemption: "3 years",
-    bidMethod: "Bid-down interest rate",
-    statute: "La. Rev. Stat. \u00A747:2154",
-    officialLink: "https://www.legis.la.gov/legis/Law.aspx?d=99775",
-    auctionPlatform: "Varies by parish",
-    auctionTiming: "Varies by parish",
-    keyNotes: [
-      "New system effective January 1 2026 \u2014 old ownership bid-down eliminated",
-      "Judicial foreclosure required after 3-year redemption",
-      "7-year statute of limitations on challenges"
-    ],
-    investorAlert: "\u26A0\uFE0F MAJOR 2026 LAW CHANGE: Louisiana converted from ownership bid-down to interest rate bid-down effective January 1, 2026 (Acts 2024, No. 409). Do not apply pre-2026 research to this state.",
-    clarityCallCTA: true
-  },
-
-  // ── 3. Iowa ────────────────────────────────────────────────
+  // ── 2. Iowa (LA moved to entry 34 — deduplicated) ────────────────────────────────────────────────
   {
     code: "IA",
     name: "Iowa",
@@ -575,28 +553,7 @@ var STATES_V2 = [
     clarityCallCTA: true
   },
 
-  // ── 26. Kentucky ──────────────────────────────────────────
-  {
-    code: "KY",
-    name: "Kentucky",
-    type: "lien",
-    rate: "Varies — set by 3rd-party purchaser within statutory limits",
-    rateNote: "No single fixed statewide rate — purchaser sets rate on each certificate",
-    redemption: "Until foreclosure sale (pre-sale redemption only); 6 months additional if sold below 2/3 appraised value",
-    bidMethod: "Highest bidder (sheriff sells certificates of delinquency)",
-    statute: "KRS §134.420 et seq.",
-    officialLink: "https://revenue.ky.gov/ClerkNetwork/Documents/DelinquentCollectionManual20062.pdf",
-    auctionPlatform: "County sheriff — in-person",
-    auctionTiming: "April–June (most counties)",
-    keyNotes: [
-      "Sheriff sells Certificates of Delinquency — 3rd party purchasers buy tax bills directly",
-      "50-day notice requirement after purchase",
-      "Circuit court foreclosure required to obtain deed — no automatic conversion",
-      "High redemption rate — most certificates pay out"
-    ],
-    investorAlert: null,
-    clarityCallCTA: true
-  },
+  // ── 26. (KY moved to entry 50 — deduplicated)
 
   // ── 27. Georgia ───────────────────────────────────────────
   {

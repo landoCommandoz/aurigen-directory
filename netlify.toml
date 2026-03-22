@@ -7,6 +7,7 @@
   from = "/"
   to = "/warroom-billion.html"
   status = 200
+  force = true
 
 # ── SECURITY: Block direct access to sensitive markdown files ─
 # force = true required because files exist as static assets
