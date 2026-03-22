@@ -9,6 +9,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
   <script src="states-data-v2.js"></script>
+  <script src="states-en.js"></script>
   <style>
     /* === CSS VARIABLES === */
     :root {
@@ -479,6 +480,31 @@
     .meta-chip a:hover{color:#FFD700}
     #panel-cta{width:100%;margin-top:16px;padding:14px;border-radius:4px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.18em;transition:all 0.2s}
 
+    /* === COUNTIES SECTION === */
+    #panel-counties{margin-top:16px}
+    .counties-header{display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px 0;border-top:1px solid rgba(255,255,255,0.06);user-select:none}
+    .counties-header:hover{opacity:0.85}
+    .counties-label{font-family:'Bebas Neue',sans-serif;font-size:14px;color:rgba(255,255,255,0.5);letter-spacing:0.15em}
+    .counties-count{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#d4a017;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.3);padding:1px 7px;border-radius:10px;line-height:16px}
+    .counties-chevron{font-size:10px;color:rgba(255,255,255,0.3);transition:transform 0.2s}
+    .counties-list{max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:2px;padding-top:6px}
+    .counties-list.collapsed{display:none}
+    .county-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:4px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);transition:background 0.15s}
+    .county-row:hover{background:rgba(255,255,255,0.05)}
+    .county-name{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#e8e8e8;text-decoration:none;flex-shrink:0}
+    .county-name:hover{color:#FFD700}
+    .county-pill{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;padding:2px 6px;border-radius:3px;white-space:nowrap;flex-shrink:0}
+    .county-pill.platform{color:#00d2c8;background:rgba(0,210,200,0.1);border:1px solid rgba(0,210,200,0.2)}
+    .county-pill.otc{color:#00e676;background:rgba(0,230,118,0.1);border:1px solid rgba(0,230,118,0.25)}
+    .county-pill.timing{color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);font-size:9px}
+    .county-notes{font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.35);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .counties-empty{font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);padding:16px 0;line-height:1.6;text-align:center}
+    .counties-empty a{color:#d4a017;text-decoration:underline;text-underline-offset:2px}
+    .counties-empty a:hover{color:#FFD700}
+    .counties-list::-webkit-scrollbar{width:4px}
+    .counties-list::-webkit-scrollbar-track{background:transparent}
+    .counties-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
+
     /* === TOOLS TAB === */
     #panel-tools {
       display: none;
@@ -766,6 +792,9 @@
       .state-row{grid-template-columns:28px 56px 1fr}
       .col-h.col-stats,.row-stats{display:none}
       #panel-stats{grid-template-columns:1fr}
+      .county-row{flex-wrap:wrap}
+      .county-pill.timing{display:none}
+      .county-notes{white-space:normal;width:100%;padding-left:0}
     }
   </style>
 </head>
@@ -874,6 +903,7 @@
             <div id="panel-stats"></div>
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
+            <div id="panel-counties"></div>
             <button id="panel-cta" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4')">BOOK INVESTOR CLARITY CALL</button>
           </div>
         </div>
@@ -1134,6 +1164,20 @@ var ALL_STATES = (function() {
       investorAlert: s.investorAlert || null,
       _v2type: s.type  // preserve original for display labels
     };
+  });
+})();
+
+// === MERGE COUNTY DATA FROM STATES_EN ===
+(function() {
+  if (typeof STATES_EN === 'undefined') return;
+  var enMap = {};
+  STATES_EN.forEach(function(s) { enMap[s.id] = s; });
+  ALL_STATES.forEach(function(s) {
+    var en = enMap[s.abbr];
+    if (!en) return;
+    s.counties = en.counties || [];
+    s.otc = en.otc || null;
+    s.auctionSignup = en.auctionSignup || null;
   });
 })();
 
@@ -1481,6 +1525,23 @@ function linkifyPlatform(text){
   return result;
 }
 
+function shortenPlatform(text){
+  if(!text) return '';
+  // Extract the main platform name, strip parenthetical/description
+  var m=text.match(/^([A-Za-z0-9.]+(?:\.com)?)/);
+  if(m) return m[1];
+  if(text.length>18) return text.slice(0,16)+'\u2026';
+  return text;
+}
+
+function toggleCounties(){
+  var list=document.getElementById('counties-list');
+  var chev=document.getElementById('counties-chevron');
+  if(!list)return;
+  list.classList.toggle('collapsed');
+  chev.textContent=list.classList.contains('collapsed')?'\u25B6':'\u25BC';
+}
+
 function showDetail(s) {
   var t=s._v2type||s.type||s.t; var mapType=s.type; var c=s.abbr||s.c; var n=s.name||s.n||c;
   var rate=s.rate||s.y||'N/A'; var redemption=s.redemption||s.r||'N/A';
@@ -1533,6 +1594,35 @@ function showDetail(s) {
   if(s.auctionTiming) metaHtml.push('<span class="meta-chip">'+chipDot('#FF6B35')+s.auctionTiming+'</span>');
   if(s.rateNote) metaHtml.push('<span class="meta-chip">'+chipDot('#BF5FFF')+s.rateNote+'</span>');
   document.getElementById('panel-meta').innerHTML=metaHtml.join('');
+
+  // Counties section
+  var countiesEl=document.getElementById('panel-counties');
+  var counties=s.counties||[];
+  var hasOtc=s.otc&&s.otc.available;
+  var stPlatform=s.auctionPlatform||'';
+  var stTiming=s.auctionTiming||'';
+
+  if(counties.length===0){
+    countiesEl.innerHTML='<div class="counties-empty">County data coming soon.<br><a href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener">Book an Investor Clarity Call</a> for '+n+' county details.</div>';
+  } else {
+    var cHtml='<div class="counties-header" onclick="toggleCounties()">'+
+      '<span class="counties-label">COUNTIES</span>'+
+      '<span class="counties-count">'+counties.length+'</span>'+
+      '<span class="counties-chevron" id="counties-chevron">\u25BC</span>'+
+    '</div>';
+    cHtml+='<div class="counties-list" id="counties-list">';
+    counties.forEach(function(co){
+      var nameTag=co.link?'<a class="county-name" href="'+co.link+'" target="_blank" rel="noopener">'+co.name+'</a>':'<span class="county-name">'+co.name+'</span>';
+      var platText=co.platform||stPlatform;
+      var platPill=platText?'<span class="county-pill platform">'+shortenPlatform(platText)+'</span>':'';
+      var timPill=stTiming?'<span class="county-pill timing">'+stTiming+'</span>':'';
+      var otcPill=hasOtc?'<span class="county-pill otc">OTC</span>':'';
+      var notes=co.notes?'<span class="county-notes" title="'+co.notes.replace(/"/g,'&quot;')+'">'+co.notes+'</span>':'';
+      cHtml+='<div class="county-row">'+nameTag+platPill+otcPill+timPill+notes+'</div>';
+    });
+    cHtml+='</div>';
+    countiesEl.innerHTML=cHtml;
+  }
 
   document.getElementById('panel-cta').style.cssText="width:100%;margin-top:12px;padding:12px;border-radius:3px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.2em;background:"+color+"28;border:1px solid "+color+"88;color:"+color+";box-shadow:0 4px 20px "+glw;
   panel.classList.add('open');
