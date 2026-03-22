@@ -525,6 +525,16 @@
     .counties-list::-webkit-scrollbar-track{background:transparent}
     .counties-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
 
+    /* === COUNTY SEARCH BAR === */
+    .county-search-wrap{position:relative;margin-bottom:6px}
+    .county-search-input{width:100%;height:36px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:0 32px 0 10px;font-family:'DM Sans',sans-serif;font-size:13px;color:#e0e0e0;outline:none;box-sizing:border-box}
+    .county-search-input:focus{border-color:#00d2c8}
+    .county-search-input::placeholder{color:rgba(255,255,255,0.3)}
+    .county-search-clear{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:22px;height:22px;background:none;border:none;color:rgba(255,255,255,0.4);font-size:16px;cursor:pointer;display:none;padding:0;line-height:22px;text-align:center;border-radius:3px}
+    .county-search-clear:hover{color:#e0e0e0;background:rgba(255,255,255,0.08)}
+    .county-no-results{font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);padding:16px 0;text-align:center;display:none}
+    @media(max-width:600px){.county-search-input{height:44px;font-size:14px}}
+
     /* === DISCLAIMER FOOTER === */
     #disclaimer-footer{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(1,4,12,0.95);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,0.06);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;pointer-events:none}
     #disclaimer-footer p{font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.02em;line-height:1.5;max-width:900px;text-align:center;margin:0}
@@ -1581,9 +1591,43 @@ function shortenPlatform(text){
 function toggleCounties(){
   var list=document.getElementById('counties-list');
   var chev=document.getElementById('counties-chevron');
+  var sw=document.getElementById('county-search-wrap');
+  var nr=document.getElementById('county-no-results');
   if(!list)return;
   list.classList.toggle('collapsed');
-  chev.textContent=list.classList.contains('collapsed')?'\u25B6':'\u25BC';
+  var isCollapsed=list.classList.contains('collapsed');
+  chev.textContent=isCollapsed?'\u25B6':'\u25BC';
+  if(sw)sw.style.display=isCollapsed?'none':'block';
+  if(nr&&isCollapsed)nr.style.display='none';
+  if(isCollapsed)clearCountySearch();
+}
+
+function filterCounties(val){
+  var query=val.toLowerCase().trim();
+  var list=document.getElementById('counties-list');
+  var badge=document.getElementById('counties-count-badge');
+  var clearBtn=document.getElementById('county-search-clear');
+  var noResults=document.getElementById('county-no-results');
+  if(!list)return;
+  clearBtn.style.display=query?'block':'none';
+  var rows=list.querySelectorAll('.county-row');
+  var visible=0;
+  for(var i=0;i<rows.length;i++){
+    var name=rows[i].getAttribute('data-county-name')||'';
+    var match=!query||name.indexOf(query)!==-1;
+    rows[i].style.display=match?'':'none';
+    if(match)visible++;
+  }
+  if(badge){
+    if(query){badge.textContent=visible+'/'+window._countyTotal;}
+    else{badge.textContent=window._countyTotal;}
+  }
+  if(noResults){noResults.style.display=(query&&visible===0)?'block':'none';}
+}
+
+function clearCountySearch(){
+  var input=document.getElementById('county-search-input');
+  if(input){input.value='';filterCounties('');}
 }
 
 function showDetail(s) {
@@ -1691,12 +1735,20 @@ function showDetail(s) {
     countiesEl.innerHTML='<div class="counties-empty">County data coming soon.<br><a href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener">Book an Investor Clarity Call</a> for '+escapeHtml(n)+' county details.</div>';
   } else {
     var cLabel=rows.length===1?'COUNTY':'COUNTIES';
+    var showSearch=rows.length>5;
     var cHtml='<div class="counties-header" onclick="toggleCounties()">'+
       '<span class="counties-label">'+cLabel+'</span>'+
-      '<span class="counties-count">'+rows.length+'</span>'+
+      '<span class="counties-count" id="counties-count-badge">'+rows.length+'</span>'+
       '<span class="counties-chevron" id="counties-chevron">\u25BC</span>'+
     '</div>';
+    if(showSearch){
+      cHtml+='<div class="county-search-wrap" id="county-search-wrap">'+
+        '<input type="text" class="county-search-input" id="county-search-input" placeholder="Search counties..." oninput="filterCounties(this.value)" autocomplete="off" spellcheck="false">'+
+        '<button class="county-search-clear" id="county-search-clear" onclick="clearCountySearch()" aria-label="Clear search">\u00D7</button>'+
+      '</div>';
+    }
     cHtml+='<div class="counties-list" id="counties-list">';
+    window._countyTotal=rows.length;
     rows.forEach(function(r){
       var safeName=escapeHtml(r.name);
       var safeLink=safeHref(r.link);
@@ -1719,9 +1771,10 @@ function showDetail(s) {
       // Notes
       var safeNotes=r.notes?escapeHtml(r.notes):'';
       var noteSpan=safeNotes?'<span class="county-notes" title="'+safeNotes.replace(/"/g,'&quot;')+'">'+safeNotes+'</span>':'';
-      cHtml+='<div class="county-row">'+nameTag+platPill+otcPill+timPill+redPill+noteSpan+'</div>';
+      cHtml+='<div class="county-row" data-county-name="'+escapeHtml(r.name.toLowerCase())+'">'+nameTag+platPill+otcPill+timPill+redPill+noteSpan+'</div>';
     });
     cHtml+='</div>';
+    if(showSearch){cHtml+='<div class="county-no-results" id="county-no-results">No counties match your search</div>';}
     countiesEl.innerHTML=cHtml;
   }
 
