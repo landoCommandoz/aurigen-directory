@@ -26,6 +26,7 @@
   <script src="nm-ok-ri-ut-vt-verified-v1.js"></script>
   <script src="wi-wy-ak-mo-dc-verified-v1.js"></script>
   <script src="ca-verified-v1.js"></script>
+  <script src="js/auctions-data.js"></script>
   <style>
     /* === CSS VARIABLES === */
     :root {
@@ -817,8 +818,273 @@
       box-shadow: 0 0 20px var(--accent-glow);
     }
 
+    /* === AUCTIONS TAB — Concept C === */
+    #panel-auctions { padding: 0; overflow: hidden; }
+    #panel-auctions.active { display: flex; }
+    .auctions-layout {
+      display: flex; width: 100%; height: 100%; min-height: 0;
+    }
+    .auctions-sidebar {
+      width: 260px; min-width: 260px; background: rgba(255,255,255,0.02);
+      border-right: 1px solid var(--border); overflow-y: auto; flex-shrink: 0;
+    }
+    .auctions-sidebar-inner { padding: 16px; display: flex; flex-direction: column; gap: 16px; }
+    .auctions-search-wrap {
+      position: relative; display: flex; align-items: center;
+    }
+    .auctions-search-icon {
+      position: absolute; left: 10px; color: var(--text2); font-size: 14px; pointer-events: none;
+    }
+    .auctions-search {
+      width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px;
+      padding: 10px 12px 10px 30px; border-radius: var(--radius); outline: none;
+      transition: border-color 0.2s;
+    }
+    .auctions-search:focus { border-color: var(--accent-mid); }
+    .auctions-search::placeholder { color: var(--text3); }
+    .auctions-filter-group { display: flex; flex-direction: column; gap: 6px; }
+    .auctions-filter-label {
+      font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.2em;
+      color: var(--text2); text-transform: uppercase;
+    }
+    .auctions-checkboxes { display: flex; flex-direction: column; gap: 4px; }
+    .auctions-cb-row {
+      display: flex; align-items: center; gap: 8px; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--text);
+      padding: 4px 0; user-select: none;
+    }
+    .auctions-cb-row input[type=checkbox] {
+      accent-color: var(--accent); width: 14px; height: 14px; cursor: pointer;
+    }
+    .auctions-cb-count {
+      margin-left: auto; font-family: 'Space Mono', monospace; font-size: 10px;
+      color: var(--text2);
+    }
+    .auctions-month-list { display: flex; flex-direction: column; gap: 2px; }
+    .auctions-month-row {
+      display: flex; align-items: center; gap: 8px; cursor: pointer;
+      padding: 5px 8px; border-radius: var(--radius); font-family: 'DM Sans', sans-serif;
+      font-size: 12px; color: var(--text); transition: background 0.15s;
+    }
+    .auctions-month-row:hover { background: rgba(255,255,255,0.04); }
+    .auctions-month-row.active { background: var(--accent-dim); color: var(--accent); }
+    .auctions-month-count {
+      margin-left: auto; font-family: 'Space Mono', monospace; font-size: 10px;
+      color: var(--text2);
+    }
+
+    /* Main content area */
+    .auctions-main {
+      flex: 1; min-width: 0; display: flex; flex-direction: column;
+      overflow-y: auto; padding: 20px 24px;
+    }
+    .auctions-header { margin-bottom: 16px; }
+    .auctions-title-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    .auctions-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 0.08em;
+      color: var(--accent); line-height: 1;
+    }
+    .auctions-count {
+      font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
+      color: var(--text2); text-transform: uppercase;
+    }
+    .auctions-filter-toggle {
+      display: none; /* shown on mobile */ margin-left: auto; background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border); color: var(--text); font-family: 'Space Mono', monospace;
+      font-size: 10px; letter-spacing: 0.1em; padding: 8px 14px; border-radius: var(--radius);
+      cursor: pointer; min-height: 44px;
+    }
+    .auctions-filter-toggle:hover { border-color: var(--accent-mid); }
+
+    /* Cards list */
+    .auctions-cards { display: flex; flex-direction: column; gap: 0; }
+    .auctions-month-divider {
+      font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.12em;
+      color: var(--text2); padding: 16px 0 8px 0; border-bottom: 1px solid var(--border);
+      margin-top: 8px;
+    }
+    .auctions-month-divider:first-child { margin-top: 0; }
+
+    .auction-card {
+      display: grid; grid-template-columns: 64px 1fr auto;
+      gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      align-items: start; animation: fadeUp 0.3s var(--transition) both;
+    }
+    .auction-card:hover { background: rgba(255,255,255,0.015); }
+
+    /* Date block */
+    .auction-date-block {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 6px 4px; min-height: 52px; width: 58px;
+    }
+    .auction-date-month {
+      font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.15em;
+      color: var(--accent); text-transform: uppercase;
+    }
+    .auction-date-day {
+      font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--text); line-height: 1;
+    }
+    .auction-date-est {
+      font-family: 'Space Mono', monospace; font-size: 8px; color: var(--text2);
+      letter-spacing: 0.1em; text-align: center; line-height: 1.3;
+    }
+
+    /* Card body */
+    .auction-card-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    .auction-card-title {
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+      color: var(--text); line-height: 1.3;
+    }
+    .auction-card-pills { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .auction-pill {
+      font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.08em;
+      padding: 3px 8px; border-radius: 2px; text-transform: uppercase; white-space: nowrap;
+    }
+    .auction-pill.type-lien { background: rgba(255,190,11,0.12); color: var(--lien); border: 1px solid rgba(255,190,11,0.2); }
+    .auction-pill.type-deed { background: rgba(0,212,255,0.1); color: var(--deed); border: 1px solid rgba(0,212,255,0.2); }
+    .auction-pill.type-redeemable { background: rgba(255,45,85,0.1); color: var(--rdeed); border: 1px solid rgba(255,45,85,0.2); }
+    .auction-pill.type-hybrid { background: rgba(191,95,255,0.1); color: var(--hybrid); border: 1px solid rgba(191,95,255,0.2); }
+    .auction-pill.type-forfeiture { background: rgba(255,107,53,0.1); color: var(--forfeiture); border: 1px solid rgba(255,107,53,0.2); }
+    .auction-pill.platform {
+      background: rgba(255,255,255,0.04); color: var(--text); border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer; transition: border-color 0.15s;
+    }
+    .auction-pill.platform:hover { border-color: var(--accent-mid); }
+    .auction-pill.rate { background: rgba(201,168,76,0.08); color: var(--accent); border: 1px solid rgba(201,168,76,0.15); }
+    .auction-card-note {
+      font-family: 'DM Sans', sans-serif; font-size: 11px; color: var(--text2); line-height: 1.4;
+    }
+
+    /* Alert badge */
+    .auction-alert-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: rgba(255,45,85,0.1); border: 1px solid rgba(255,45,85,0.25);
+      color: #FF2D55; font-family: 'Space Mono', monospace; font-size: 9px;
+      letter-spacing: 0.06em; padding: 4px 8px; border-radius: 2px;
+      animation: alertPulse 2s ease-in-out infinite;
+    }
+
+    /* Card actions */
+    .auction-card-actions {
+      display: flex; flex-direction: column; gap: 6px; align-items: flex-end;
+      flex-shrink: 0;
+    }
+    .auction-btn-register {
+      font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 8px 16px; background: transparent;
+      border: 1px solid var(--accent-mid); color: var(--accent); border-radius: var(--radius);
+      cursor: pointer; white-space: nowrap; min-height: 44px; min-width: 44px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .auction-btn-register:hover {
+      background: var(--accent-dim); box-shadow: 0 0 16px var(--accent-glow);
+    }
+    .auction-btn-clarity {
+      font-family: 'DM Sans', sans-serif; font-size: 10px; color: var(--text2);
+      background: none; border: none; cursor: pointer; text-decoration: underline;
+      text-underline-offset: 2px; padding: 4px; min-height: 44px; display: flex;
+      align-items: center;
+    }
+    .auction-btn-clarity:hover { color: var(--accent); }
+
+    /* Disclaimer */
+    .auctions-disclaimer {
+      margin-top: 24px; padding: 16px 0; border-top: 1px solid var(--border);
+      font-family: 'DM Sans', sans-serif; font-size: 11px; color: var(--text2);
+      line-height: 1.6;
+    }
+    .auctions-disclaimer a { color: var(--accent); text-decoration: underline; }
+
+    /* Empty state */
+    .auctions-empty {
+      text-align: center; padding: 48px 16px; color: var(--text2);
+      font-family: 'DM Sans', sans-serif; font-size: 14px;
+    }
+
+    /* Interstitial modal */
+    .auctions-interstitial {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.75); backdrop-filter: blur(8px);
+      align-items: center; justify-content: center;
+    }
+    .auctions-interstitial.open { display: flex; }
+    .auctions-interstitial-inner {
+      background: rgba(10,10,10,0.98); border: 1px solid var(--border);
+      border-radius: 6px; padding: 32px; max-width: 480px; width: 90%;
+      animation: panelUp 300ms ease-out forwards;
+    }
+    .auctions-interstitial-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.06em;
+      color: var(--text); margin-bottom: 12px;
+    }
+    .auctions-interstitial-body {
+      font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text2);
+      line-height: 1.7; margin-bottom: 24px;
+    }
+    .auctions-interstitial-actions { display: flex; gap: 12px; }
+    .auctions-interstitial-continue {
+      flex: 1; padding: 12px 20px; background: transparent;
+      border: 1px solid var(--accent-mid); color: var(--accent);
+      font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; cursor: pointer; border-radius: var(--radius);
+      min-height: 44px; transition: background 0.2s, box-shadow 0.2s;
+    }
+    .auctions-interstitial-continue:hover {
+      background: var(--accent-dim); box-shadow: 0 0 16px var(--accent-glow);
+    }
+    .auctions-interstitial-cancel {
+      padding: 12px 20px; background: transparent;
+      border: 1px solid rgba(255,255,255,0.1); color: var(--text2);
+      font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; cursor: pointer; border-radius: var(--radius);
+      min-height: 44px; transition: border-color 0.2s;
+    }
+    .auctions-interstitial-cancel:hover { border-color: rgba(255,255,255,0.25); }
+
+    /* Mobile filter drawer */
+    .auctions-drawer-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1500;
+      background: rgba(0,0,0,0.6);
+    }
+    .auctions-drawer-overlay.open { display: block; }
+    .auctions-drawer {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 1501;
+      background: var(--bg2); border-top: 1px solid var(--border);
+      border-radius: 12px 12px 0 0; max-height: 70vh; overflow-y: auto;
+      transform: translateY(100%); transition: transform 0.3s var(--transition);
+    }
+    .auctions-drawer.open { transform: translateY(0); }
+    .auctions-drawer-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; border-bottom: 1px solid var(--border);
+    }
+    .auctions-drawer-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.06em;
+      color: var(--text);
+    }
+    .auctions-drawer-close {
+      width: 36px; height: 36px; border-radius: var(--radius);
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text); font-size: 20px; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; min-height: 44px; min-width: 44px;
+    }
+    .auctions-drawer-body { padding: 16px 20px; }
+
     /* --- Mobile responsive --- */
     @media (max-width: 768px) {
+      .auctions-sidebar { display: none; }
+      .auctions-filter-toggle { display: flex; align-items: center; gap: 6px; }
+      .auctions-main { padding: 14px 12px; }
+      .auction-card { grid-template-columns: 52px 1fr; gap: 10px; }
+      .auction-card-actions {
+        grid-column: 1 / -1; flex-direction: row; align-items: stretch;
+      }
+      .auction-btn-register { flex: 1; text-align: center; }
+      .auction-btn-clarity { min-height: 44px; justify-content: center; }
+      .auctions-interstitial-actions { flex-direction: column; }
+      .auctions-interstitial-continue, .auctions-interstitial-cancel { width: 100%; }
       .explore-legend { display: none; }
       .detail-stats { grid-template-columns: 1fr; }
       #list-toolbar { flex-wrap: wrap; }
@@ -917,6 +1183,7 @@
     <div class="nav-tab active" id="tab-map" onclick="switchTab('map')">Map</div>
     <div class="nav-tab" id="tab-tools" onclick="switchTab('tools')">Tools</div>
     <div class="nav-tab" id="tab-advisor" onclick="switchTab('advisor')">Advisor</div>
+    <div class="nav-tab" id="tab-auctions" onclick="switchTab('auctions')">Auctions</div>
     <div class="nav-tab" id="tab-account" onclick="switchTab('account')">Account</div>
     <div id="nav-spacer"></div>
     <div id="nav-tier-badge">FREE</div>
@@ -1061,6 +1328,71 @@
         <button id="advisor-send" onclick="sendAdvisorMessage()">Send</button>
       </div>
     </div>
+    <!-- AUCTIONS TAB — Concept C -->
+    <div class="tab-panel" id="panel-auctions">
+      <div class="auctions-layout">
+        <!-- LEFT SIDEBAR -->
+        <aside class="auctions-sidebar" id="auctions-sidebar">
+          <div class="auctions-sidebar-inner">
+            <div class="auctions-search-wrap">
+              <span class="auctions-search-icon">&#8981;</span>
+              <input class="auctions-search" id="auctions-search" type="text" placeholder="Search state, county, platform..." oninput="filterAuctions()">
+            </div>
+            <div class="auctions-filter-group">
+              <div class="auctions-filter-label">TYPE</div>
+              <div class="auctions-checkboxes" id="auctions-type-filters"></div>
+            </div>
+            <div class="auctions-filter-group">
+              <div class="auctions-filter-label">PLATFORM</div>
+              <div class="auctions-checkboxes" id="auctions-platform-filters"></div>
+            </div>
+            <div class="auctions-filter-group">
+              <div class="auctions-filter-label">MONTH</div>
+              <div class="auctions-month-list" id="auctions-month-filters"></div>
+            </div>
+          </div>
+        </aside>
+        <!-- MAIN CONTENT -->
+        <div class="auctions-main">
+          <div class="auctions-header">
+            <div class="auctions-title-row">
+              <h2 class="auctions-title">AUCTIONS</h2>
+              <span class="auctions-count" id="auctions-count">0 results</span>
+              <button class="auctions-filter-toggle" id="auctions-filter-toggle" onclick="toggleAuctionsSidebar()" aria-label="Toggle filters">
+                <span class="auctions-filter-icon">&#9776;</span> Filters
+              </button>
+            </div>
+          </div>
+          <div class="auctions-cards" id="auctions-cards"></div>
+          <div class="auctions-disclaimer">
+            Tax lien and tax deed investing involves risk, including potential loss of principal. Past performance does not guarantee future results. Auction dates and details are provided for informational purposes only &mdash; verify directly with the county or platform before registering. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUCTIONS INTERSTITIAL MODAL -->
+    <div class="auctions-interstitial" id="auctions-interstitial" onclick="if(event.target===this)closeInterstitial()">
+      <div class="auctions-interstitial-inner">
+        <h3 class="auctions-interstitial-title">You're Leaving Aurigen</h3>
+        <p class="auctions-interstitial-body">You're about to visit a third-party auction platform not owned, operated, or affiliated with Aurigen. Auction dates, deposit requirements, and registration procedures are provided for informational purposes only &mdash; always verify details directly with the county or platform before registering. Tax lien and tax deed investing involves risk, including potential loss of principal. Past performance does not guarantee future results.</p>
+        <div class="auctions-interstitial-actions">
+          <button class="auctions-interstitial-continue" id="interstitial-continue" onclick="confirmInterstitial()">Continue to Platform</button>
+          <button class="auctions-interstitial-cancel" onclick="closeInterstitial()">Go Back</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUCTIONS MOBILE FILTER DRAWER -->
+    <div class="auctions-drawer-overlay" id="auctions-drawer-overlay" onclick="closeAuctionsDrawer()"></div>
+    <div class="auctions-drawer" id="auctions-drawer">
+      <div class="auctions-drawer-header">
+        <span class="auctions-drawer-title">Filters</span>
+        <button class="auctions-drawer-close" onclick="closeAuctionsDrawer()">&times;</button>
+      </div>
+      <div class="auctions-drawer-body" id="auctions-drawer-body"></div>
+    </div>
+
     <div class="tab-panel" id="panel-account">
       <div class="account-card">
         <div class="account-tier-badge" id="acct-tier-badge">FREE ACCESS</div>
@@ -1890,6 +2222,7 @@ function closeDetail() {
 function bootApp() {
   initMap();
   initAccount();
+  initAuctionsTab();
   runBootAnimation();
 }
 
@@ -1988,6 +2321,239 @@ function escapeHtml(str) {
   div.textContent = str;
   return div.innerHTML;
 }
+
+// === AUCTIONS TAB ===
+var _auctionsFilters = { search: '', types: [], platforms: [], month: null };
+var _interstitialUrl = '';
+
+function initAuctionsTab() {
+  if (!window.AUCTION_ENTRIES || !window.AUCTION_META) return;
+  var meta = window.AUCTION_META;
+
+  // Build type checkboxes
+  var typeHtml = '';
+  var typeLabels = { lien: 'Lien', deed: 'Deed', redeemable: 'Redeemable', hybrid: 'Hybrid', forfeiture: 'Forfeiture' };
+  Object.keys(meta.types).forEach(function(t) {
+    typeHtml += '<label class="auctions-cb-row"><input type="checkbox" value="' + escapeHtml(t) + '" onchange="updateAuctionTypeFilter()">' +
+      escapeHtml(typeLabels[t] || t) + '<span class="auctions-cb-count">' + meta.types[t] + '</span></label>';
+  });
+  var typeEl = document.getElementById('auctions-type-filters');
+  if (typeEl) typeEl.innerHTML = typeHtml;
+
+  // Build platform checkboxes (top 10 by count)
+  var platArr = Object.keys(meta.platforms).sort(function(a,b){ return meta.platforms[b] - meta.platforms[a]; }).slice(0, 10);
+  var platHtml = '';
+  platArr.forEach(function(p) {
+    platHtml += '<label class="auctions-cb-row"><input type="checkbox" value="' + escapeHtml(p) + '" onchange="updateAuctionPlatformFilter()">' +
+      escapeHtml(p) + '<span class="auctions-cb-count">' + meta.platforms[p] + '</span></label>';
+  });
+  var platEl = document.getElementById('auctions-platform-filters');
+  if (platEl) platEl.innerHTML = platHtml;
+
+  // Build month list
+  var monthOrder = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var monthHtml = '<div class="auctions-month-row active" onclick="setAuctionMonth(null)">All months<span class="auctions-month-count">' + meta.total + '</span></div>';
+  monthOrder.forEach(function(m) {
+    if (meta.monthCounts[m]) {
+      monthHtml += '<div class="auctions-month-row" onclick="setAuctionMonth(\'' + m + '\')">' + m +
+        '<span class="auctions-month-count">' + meta.monthCounts[m] + '</span></div>';
+    }
+  });
+  var monthEl = document.getElementById('auctions-month-filters');
+  if (monthEl) monthEl.innerHTML = monthHtml;
+
+  renderAuctions();
+}
+
+function updateAuctionTypeFilter() {
+  var checks = document.querySelectorAll('#auctions-type-filters input:checked');
+  _auctionsFilters.types = [];
+  checks.forEach(function(c) { _auctionsFilters.types.push(c.value); });
+  renderAuctions();
+}
+
+function updateAuctionPlatformFilter() {
+  var checks = document.querySelectorAll('#auctions-platform-filters input:checked');
+  _auctionsFilters.platforms = [];
+  checks.forEach(function(c) { _auctionsFilters.platforms.push(c.value); });
+  renderAuctions();
+}
+
+function setAuctionMonth(m) {
+  _auctionsFilters.month = m;
+  var rows = document.querySelectorAll('#auctions-month-filters .auctions-month-row');
+  rows.forEach(function(r) { r.classList.remove('active'); });
+  if (!m) { rows[0].classList.add('active'); }
+  else {
+    rows.forEach(function(r) { if (r.textContent.trim().indexOf(m) === 0) r.classList.add('active'); });
+  }
+  renderAuctions();
+}
+
+function filterAuctions() {
+  var el = document.getElementById('auctions-search');
+  _auctionsFilters.search = el ? el.value.trim().toLowerCase() : '';
+  renderAuctions();
+}
+
+function renderAuctions() {
+  var entries = window.AUCTION_ENTRIES || [];
+  var f = _auctionsFilters;
+
+  // Apply filters
+  var filtered = entries.filter(function(e) {
+    if (f.search) {
+      var q = f.search;
+      var hay = (e.stateName + ' ' + e.stateCode + ' ' + e.county + ' ' + e.platform).toLowerCase();
+      if (hay.indexOf(q) === -1) return false;
+    }
+    if (f.types.length > 0 && f.types.indexOf(e.type) === -1) return false;
+    if (f.platforms.length > 0 && f.platforms.indexOf(e.platform) === -1) return false;
+    if (f.month && e.date && e.date.month) {
+      if (e.date.month.substring(0,3) !== f.month) return false;
+    } else if (f.month && !e.date) {
+      return false;
+    }
+    return true;
+  });
+
+  // Update count
+  var countEl = document.getElementById('auctions-count');
+  if (countEl) countEl.textContent = filtered.length + ' result' + (filtered.length !== 1 ? 's' : '');
+
+  var container = document.getElementById('auctions-cards');
+  if (!container) return;
+
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="auctions-empty">No auctions match your filters.</div>';
+    return;
+  }
+
+  // Group by month
+  var html = '';
+  var currentMonth = '';
+  var TYPE_LABELS_SHORT = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDBL', hybrid: 'HYBRID', forfeiture: 'FORFEIT' };
+  var CLARITY_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4';
+
+  filtered.forEach(function(e, idx) {
+    var monthLabel = e.date ? e.date.month.substring(0,3).toUpperCase() + (e.date.year ? ' ' + e.date.year : '') : 'TBD';
+    if (monthLabel !== currentMonth) {
+      currentMonth = monthLabel;
+      html += '<div class="auctions-month-divider">' + escapeHtml(monthLabel) + '</div>';
+    }
+
+    // Date block
+    var dateBlock;
+    if (e.date && e.date.confirmed && e.date.day > 0) {
+      dateBlock = '<div class="auction-date-block">' +
+        '<span class="auction-date-month">' + escapeHtml(e.date.month.substring(0,3)) + '</span>' +
+        '<span class="auction-date-day">' + e.date.day + '</span></div>';
+    } else if (e.date) {
+      dateBlock = '<div class="auction-date-block">' +
+        '<span class="auction-date-est">' + escapeHtml(e.date.display) + '</span></div>';
+    } else {
+      dateBlock = '<div class="auction-date-block"><span class="auction-date-est">TBD</span></div>';
+    }
+
+    // Type pill
+    var typePill = '<span class="auction-pill type-' + escapeHtml(e.type) + '">' + escapeHtml(TYPE_LABELS_SHORT[e.type] || e.type) + '</span>';
+
+    // Platform pill
+    var platPill = '';
+    if (e.platform && e.platform !== 'Unknown') {
+      var platSafe = escapeHtml(e.platform);
+      if (e.platformUrl && /^https?:\/\//i.test(e.platformUrl)) {
+        platPill = '<span class="auction-pill platform" onclick="openInterstitial(\'' + escapeHtml(e.platformUrl.replace(/'/g, '\\\'')) + '\')" title="Visit ' + platSafe + '">' + platSafe + ' &#8599;</span>';
+      } else {
+        platPill = '<span class="auction-pill platform">' + platSafe + '</span>';
+      }
+    }
+
+    // Rate pill
+    var ratePill = e.rate ? '<span class="auction-pill rate">' + escapeHtml(e.rate) + '</span>' : '';
+
+    // Alert badge
+    var alertBadge = e.alert ? '<span class="auction-alert-badge">&#9888; ' + escapeHtml(e.alert) + '</span>' : '';
+
+    // Note
+    var noteHtml = e.note ? '<div class="auction-card-note">' + escapeHtml(e.note) + '</div>' : '';
+
+    // Register button
+    var registerUrl = e.platformUrl && /^https?:\/\//i.test(e.platformUrl) ? e.platformUrl : '';
+    var registerBtn = registerUrl ?
+      '<button class="auction-btn-register" onclick="openInterstitial(\'' + escapeHtml(registerUrl.replace(/'/g, '\\\'')) + '\')">Register &#8594;</button>' :
+      '<button class="auction-btn-register" disabled style="opacity:0.3;cursor:default">Register &#8594;</button>';
+
+    // Clarity call
+    var clarityBtn = '<button class="auction-btn-clarity" onclick="window.open(\'' + CLARITY_URL + '\',\'_blank\')">Clarity Call</button>';
+
+    html += '<div class="auction-card" style="animation-delay:' + (idx * 0.02) + 's">' +
+      dateBlock +
+      '<div class="auction-card-body">' +
+        '<div class="auction-card-title">' + escapeHtml(e.stateName) + (e.county !== 'Statewide' ? ' &mdash; ' + escapeHtml(e.county) + ' County' : ' &mdash; Statewide') + '</div>' +
+        '<div class="auction-card-pills">' + typePill + platPill + ratePill + '</div>' +
+        alertBadge + noteHtml +
+      '</div>' +
+      '<div class="auction-card-actions">' + registerBtn + clarityBtn + '</div>' +
+    '</div>';
+  });
+
+  container.innerHTML = html;
+}
+
+// Interstitial
+function openInterstitial(url) {
+  if (!url || !/^https?:\/\//i.test(url)) return;
+  _interstitialUrl = url;
+  var modal = document.getElementById('auctions-interstitial');
+  if (modal) {
+    modal.classList.add('open');
+    // Focus trap
+    var cont = document.getElementById('interstitial-continue');
+    if (cont) cont.focus();
+  }
+}
+
+function confirmInterstitial() {
+  if (_interstitialUrl) {
+    window.open(_interstitialUrl, '_blank', 'noopener,noreferrer');
+  }
+  closeInterstitial();
+}
+
+function closeInterstitial() {
+  _interstitialUrl = '';
+  var modal = document.getElementById('auctions-interstitial');
+  if (modal) modal.classList.remove('open');
+}
+
+// Mobile drawer
+function toggleAuctionsSidebar() {
+  var overlay = document.getElementById('auctions-drawer-overlay');
+  var drawer = document.getElementById('auctions-drawer');
+  if (!overlay || !drawer) return;
+  // Clone sidebar filters into drawer
+  var sidebar = document.getElementById('auctions-sidebar');
+  var body = document.getElementById('auctions-drawer-body');
+  if (sidebar && body) body.innerHTML = sidebar.querySelector('.auctions-sidebar-inner').innerHTML;
+  overlay.classList.add('open');
+  drawer.classList.add('open');
+}
+
+function closeAuctionsDrawer() {
+  var overlay = document.getElementById('auctions-drawer-overlay');
+  var drawer = document.getElementById('auctions-drawer');
+  if (overlay) overlay.classList.remove('open');
+  if (drawer) drawer.classList.remove('open');
+}
+
+// Keyboard: Escape closes interstitial and drawer
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeInterstitial();
+    closeAuctionsDrawer();
+  }
+});
 
 function getAdvisorResponse(input) {
   var q = input.toLowerCase();
