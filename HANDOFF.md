@@ -2,10 +2,10 @@
 ## Updated after every session. Read before every session.
 
 ### LAST SESSION DATE:
-2026-03-18
+2026-03-22
 
 ### LAST SESSION SUMMARY:
-MASON BUILD SESSION — 6-phase implementation + 80-issue master directive (7 sprints) + Knox QA.
+Documentation update — Phase 1 status corrected to include county data layer work (TYPE_RATIONALE, county search/filter, legal/index.html). Phase 2 (8 core features) confirmed all OPEN.
 
 **ACE (Sales):** Delivered 60-second seminar pitch (148 words). Structure: Hook + Pain + Solution + Social Proof + Close. Ready to deliver at next live event.
 
@@ -90,10 +90,9 @@ Lex legal documents: 3/3 delivered
 - Anthropic SDK lazy-loaded (was crashing on cold start)
 
 ### WHAT WAS MERGED THIS SESSION:
-PR pending manual creation (proxy 403 on direct push to main). Branch is ready.
+- PR #79: county data layer (TYPE_RATIONALE, county search/filter, legal/index.html) — merged to main
 
 ### WHAT IS CURRENTLY PENDING:
-- **MERGE PR**: `claude/morning-checkin-aurigen-HC3BD` → `main` (create PR manually on GitHub)
 - C2 fix: JWT session validation for serverless data gating (get-states.js partially built)
 - Hero section redesign from Prism audit
 - og:image asset needed — Prism to create 1200x630 social share image
@@ -134,7 +133,8 @@ PR pending manual creation (proxy 403 on direct push to main). Branch is ready.
 ### NEXT SESSION STARTS WITH:
 **PRIORITY ORDER (Revenue Impact → Risk Reduction → Foundation Building):**
 
-1. **MERGE & VERIFY** — Create PR, merge to main, confirm Netlify deploy
+1. **PHASE 2: CORE FEATURES** (8 features, all OPEN)
+   - map, analyzer, sage, pulse, dna, versus, auctions, account
 
 2. **C2 SECURITY FIX** (Risk Reduction — revenue protection)
    - JWT session validation for get-states.js
