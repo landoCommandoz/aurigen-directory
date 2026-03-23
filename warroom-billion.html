@@ -883,6 +883,344 @@
       #pulse-drawer { width: 100%; }
     }
 
+    /* === JOURNEY BAR === */
+    #journey-bar {
+      height: 36px;
+      min-height: 36px;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .jb-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text2);
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+    .jb-steps { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+    .jb-step {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      border: 1px solid var(--border);
+      color: var(--text2);
+    }
+    .jb-step.done {
+      border-color: rgba(201,168,76,0.3);
+      color: var(--accent);
+      background: rgba(201,168,76,0.06);
+    }
+    .jb-step.current {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: rgba(45,212,192,0.06);
+    }
+    .jb-arrow { font-size: 8px; color: var(--text2); }
+    .jb-ready {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--green);
+    }
+    .jb-ready-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulseBadge 2s ease-in-out infinite;
+    }
+    .jb-mobile-label { display: none; }
+    @media(max-width:768px) {
+      .jb-label, .jb-steps, .jb-arrow { display: none; }
+      .jb-mobile-label {
+        display: block;
+        font-family: 'Space Mono', monospace;
+        font-size: 9px;
+        color: var(--text2);
+      }
+    }
+
+    /* === NEXT STEP CARD === */
+    .next-step-card {
+      position: relative;
+      background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(45,212,192,0.04));
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 12px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      overflow: hidden;
+    }
+    .next-step-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--teal));
+    }
+    .next-step-arrow {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .next-step-content { flex: 1; min-width: 140px; }
+    .next-step-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .next-step-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .next-step-sub {
+      font-size: 11px;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+    .next-step-btn {
+      background: var(--accent);
+      color: #08080b;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .next-step-btn:hover { opacity: 0.85; }
+
+    /* === DNA PROFILE TAG === */
+    .dna-profile-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: var(--teal);
+      background: rgba(45,212,192,0.08);
+      border: 1px solid rgba(45,212,192,0.2);
+      padding: 3px 8px;
+      border-radius: 20px;
+      margin-top: 4px;
+    }
+
+    /* === DNA BANNER (Analyzer) === */
+    .da-dna-banner {
+      background: rgba(45,212,192,0.06);
+      border: 1px solid rgba(45,212,192,0.2);
+      border-radius: 10px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: var(--text);
+    }
+    .da-dna-banner-icon { font-size: 16px; }
+    .da-dna-banner-text { flex: 1; line-height: 1.4; }
+    .da-dna-banner-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--text2);
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 10px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* === SUMMARY PAGE === */
+    .summary-container {
+      padding: 24px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .summary-header {
+      margin-bottom: 24px;
+    }
+    .summary-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .summary-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.1em;
+      color: var(--text);
+    }
+    .summary-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .summary-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .summary-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .summary-card-icon { font-size: 16px; }
+    .summary-card-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    .summary-card-badge.teal { background: rgba(45,212,192,0.12); color: var(--teal); }
+    .summary-card-badge.green { background: rgba(74,222,128,0.12); color: var(--green); }
+    .summary-card-badge.pink { background: rgba(232,93,138,0.12); color: var(--pink); }
+    .summary-card-badge.muted { background: rgba(255,255,255,0.06); color: var(--text2); }
+    .summary-card-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text2);
+      margin-bottom: 4px;
+    }
+    .summary-card-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .summary-card-sub {
+      font-size: 11px;
+      color: var(--text2);
+      line-height: 1.4;
+    }
+    .summary-cta {
+      position: relative;
+      background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(45,212,192,0.05));
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 14px;
+      padding: 24px;
+      overflow: hidden;
+    }
+    .summary-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--teal));
+    }
+    .summary-cta-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .summary-cta-sub {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      max-width: 500px;
+    }
+    .summary-cta-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--accent);
+      color: #08080b;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      min-height: 48px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      margin-bottom: 12px;
+    }
+    .summary-cta-btn:hover { opacity: 0.85; }
+    .summary-share-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--text2);
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      padding: 8px;
+    }
+    .summary-share-btn:hover { color: var(--text); }
+    .summary-empty {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--text2);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .summary-empty-btn {
+      display: inline-block;
+      margin-top: 16px;
+      background: var(--accent);
+      color: #08080b;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    @media(max-width:768px) {
+      .summary-cards { grid-template-columns: 1fr; }
+      .summary-container { padding: 16px; }
+    }
+
     /* === MAIN CONTENT === */
     #main-content {
       flex: 1;
@@ -2192,6 +2530,7 @@
       <a class="mobile-nav-upgrade" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Full Access &rarr;</a>
     </div>
   </div>
+  <div id="journey-bar"></div>
   <div id="main-content">
     <div class="tab-panel active" id="panel-map">
       <!-- Header -->
@@ -2300,6 +2639,7 @@
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
             <div id="panel-counties"></div>
+            <div id="map-next-step"></div>
             <button id="panel-cta" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4')">BOOK INVESTOR CLARITY CALL</button>
           </div>
         </div>
@@ -2310,6 +2650,7 @@
       <div class="tools-subnav" id="tools-subnav">
         <button class="tools-subnav-btn active" onclick="switchToolsPanel('analyzer')">Deal Analyzer</button>
         <button class="tools-subnav-btn" onclick="switchToolsPanel('quick')">Quick Tools</button>
+        <button class="tools-subnav-btn" id="summary-tab-btn" onclick="switchToolsPanel('summary')" style="display:none">My Summary</button>
       </div>
 
       <!-- SUB-PANEL: Deal Analyzer (Concept C) -->
@@ -2376,8 +2717,13 @@
 
           <!-- Disclaimer -->
           <div class="da-disclaimer">Rates shown are statutory maximums. Actual returns depend on competitive bidding and redemption outcomes. Bid-down states typically yield below the statutory ceiling in competitive counties. This is not financial advice. Always verify with the official county or state authority before transacting.</div>
+          <div id="analyzer-next-step"></div>
+          <div id="da-dna-banner-area"></div>
         </div>
       </div>
+
+      <!-- SUB-PANEL: Summary -->
+      <div class="tools-subpanel" id="tools-panel-summary"></div>
 
       <!-- SUB-PANEL: Quick Tools (original cards) -->
       <div class="tools-subpanel" id="tools-panel-quick">
@@ -2552,6 +2898,7 @@
           <div class="auctions-disclaimer">
             Tax lien and tax deed investing involves risk, including potential loss of principal. Past performance does not guarantee future results. Auction dates and details are provided for informational purposes only &mdash; verify directly with the county or platform before registering. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a>
           </div>
+          <div id="auctions-next-step"></div>
         </div>
       </div>
     </div>
@@ -2601,6 +2948,7 @@
         <div class="vs-metrics" id="vs-metrics"></div>
         <div class="vs-insights" id="vs-insights"></div>
         <div class="vs-disclaimer">Investment involves risk. Data shown reflects statutory provisions and may vary by county. This is not financial advice. Consult a qualified professional before investing.</div>
+        <div id="versus-next-step"></div>
         <div class="tool-locked-overlay" id="lock-versus">
           <div>&#128274;</div>
           <div>FULL ACCESS REQUIRED</div>
@@ -5827,6 +6175,596 @@ function daOpenInVersus() {
   } catch(e) { /* localStorage not available */ }
   switchTab('versus');
 }
+
+// ═══════════════════════════════════════════════════════════
+// PHASE 3 — FUNNEL INTELLIGENCE
+// ═══════════════════════════════════════════════════════════
+
+// === PROFILE HELPERS ===
+function getProfile() {
+  try {
+    var raw = localStorage.getItem('aurigen_profile');
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+
+function saveProfile(updates) {
+  try {
+    var current = getProfile() || {};
+    var keys = Object.keys(updates);
+    for (var i = 0; i < keys.length; i++) {
+      current[keys[i]] = updates[keys[i]];
+    }
+    current.lastUpdated = Date.now();
+    localStorage.setItem('aurigen_profile', JSON.stringify(current));
+    renderJourneyBar();
+    return current;
+  } catch(e) { return null; }
+}
+
+function updateJourneyStep(step) {
+  var profile = getProfile() || {};
+  var steps = profile.journeySteps || {};
+  steps[step] = true;
+  saveProfile({ journeySteps: steps });
+}
+
+function profileTopStateCodes() {
+  var p = getProfile();
+  if (!p || !p.topStates || !p.topStates.length) return null;
+  return p.topStates.map(function(s) { return s.code; });
+}
+
+// === ITEM 1: JOURNEY BAR ===
+var JOURNEY_STEPS = [
+  { key: 'mapExplored', label: 'Explore Map' },
+  { key: 'statesCompared', label: 'Compare States' },
+  { key: 'dnaComplete', label: 'Build Profile' },
+  { key: 'analyzerUsed', label: 'Run Numbers' },
+  { key: 'callBooked', label: 'Clarity Call' }
+];
+
+function renderJourneyBar() {
+  var bar = document.getElementById('journey-bar');
+  if (!bar) return;
+  var profile = getProfile();
+  var steps = (profile && profile.journeySteps) || {};
+  var doneCount = 0;
+  var currentIdx = -1;
+
+  JOURNEY_STEPS.forEach(function(s, i) {
+    if (steps[s.key]) doneCount++;
+    else if (currentIdx === -1) currentIdx = i;
+  });
+
+  var html = '<span class="jb-label">Your Journey</span><div class="jb-steps">';
+  JOURNEY_STEPS.forEach(function(s, i) {
+    if (i > 0) html += '<span class="jb-arrow">\u2192</span>';
+    var cls = steps[s.key] ? 'done' : (i === currentIdx ? 'current' : '');
+    html += '<span class="jb-step ' + cls + '">' + (steps[s.key] ? '\u2713 ' : '') + escapeHtml(s.label) + '</span>';
+  });
+  html += '</div>';
+
+  // Mobile
+  html += '<span class="jb-mobile-label">Step ' + (currentIdx >= 0 ? currentIdx + 1 : 5) + ' of 5</span>';
+
+  // Ready indicator
+  if (doneCount >= 2 && !steps.callBooked) {
+    html += '<span class="jb-ready"><span class="jb-ready-dot"></span>Ready for your call</span>';
+  }
+
+  bar.innerHTML = html;
+}
+
+// === ITEM 2: NEXT STEP CARDS ===
+function buildNextStepHtml(title, sub, btnText, onclick) {
+  return '<div class="next-step-card">' +
+    '<span class="next-step-arrow">\u2192</span>' +
+    '<div class="next-step-content">' +
+      '<div class="next-step-label">Next Step</div>' +
+      '<div class="next-step-title">' + escapeHtml(title) + '</div>' +
+      '<div class="next-step-sub">' + escapeHtml(sub) + '</div>' +
+    '</div>' +
+    '<button class="next-step-btn" onclick="' + onclick + '">' + escapeHtml(btnText) + '</button>' +
+  '</div>';
+}
+
+function renderNextStepCards() {
+  var profile = getProfile() || {};
+  var steps = profile.journeySteps || {};
+
+  // Map modal — rendered dynamically in showDetail, skip here
+
+  // Versus
+  var vsEl = document.getElementById('versus-next-step');
+  if (vsEl) {
+    if (!steps.dnaComplete) {
+      vsEl.innerHTML = buildNextStepHtml(
+        'Find out which state fits your profile',
+        'The DNA quiz takes 2 minutes and matches your goals to the right states',
+        'Take DNA Quiz \u2192',
+        "switchTab('dna')"
+      );
+    } else { vsEl.innerHTML = ''; }
+  }
+
+  // Analyzer
+  var daEl = document.getElementById('analyzer-next-step');
+  if (daEl) {
+    daEl.innerHTML = buildNextStepHtml(
+      'There\u2019s an auction coming up in your states',
+      'Check upcoming dates and registration deadlines',
+      'View Auctions \u2192',
+      "switchTab('auctions')"
+    );
+  }
+
+  // Auctions
+  var aucEl = document.getElementById('auctions-next-step');
+  if (aucEl) {
+    aucEl.innerHTML = buildNextStepHtml(
+      'You\u2019re ready for your call',
+      'You\u2019ve explored states, run your numbers, and seen your auction dates. The Clarity Call is where this becomes a plan.',
+      'Book Clarity Call \u2192',
+      "window.open('https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4','_blank')"
+    );
+  }
+}
+
+// Map modal next step — called from showDetail
+function renderMapNextStep(stateCode, stateName) {
+  var el = document.getElementById('map-next-step');
+  if (!el) return;
+  el.innerHTML = buildNextStepHtml(
+    'See how ' + escapeHtml(stateName) + ' compares',
+    'Open Versus with this state pre-loaded',
+    'Compare in Versus \u2192',
+    "closeDetail();try{localStorage.setItem('versus_state_a','" + escapeHtml(stateCode) + "')}catch(e){}switchTab('versus')"
+  );
+}
+
+// === ITEM 3: DNA PROFILE PERSISTENCE ===
+// Wrap dnaFinish to save profile
+var _origDnaFinishForProfile = typeof dnaFinish === 'function' ? dnaFinish : null;
+
+function dnaSaveToProfile() {
+  var arch = dnaGetArchetype();
+  var top3 = dnaScoreStates();
+  var topStates = top3.map(function(m) {
+    return { code: m.code, name: m.name, rate: m.rate, match: m.pct };
+  });
+  saveProfile({
+    archetype: arch.name.toLowerCase().replace(/\s+/g, '-'),
+    archetypeLabel: arch.name,
+    strategyLabel: arch.strategy,
+    topStates: topStates,
+    dnaComplete: true
+  });
+  updateJourneyStep('dnaComplete');
+  renderNextStepCards();
+
+  // Show next step in DNA area
+  var area = document.getElementById('dna-question-area');
+  if (area) {
+    var profile = getProfile();
+    var topName = (profile && profile.topStates && profile.topStates[0]) ? profile.topStates[0].name : 'your top match';
+    area.innerHTML += buildNextStepHtml(
+      'Run the numbers on your top match',
+      'See what ' + escapeHtml(topName) + ' could return on your investment',
+      'Open Analyzer \u2192',
+      "switchTab('tools');switchToolsPanel('analyzer')"
+    );
+  }
+}
+
+// === ITEM 4: ANALYZER PRE-LOADS DNA ===
+function daPreloadFromDna() {
+  var profile = getProfile();
+  var bannerArea = document.getElementById('da-dna-banner-area');
+  if (!bannerArea) return;
+
+  if (profile && profile.topStates && profile.topStates.length >= 2) {
+    var codeA = profile.topStates[0].code;
+    var codeB = profile.topStates[1].code;
+    var selA = document.getElementById('da-select-a');
+    var selB = document.getElementById('da-select-b');
+    if (selA && selB) {
+      selA.value = codeA;
+      selB.value = codeB;
+      daCalculate();
+    }
+    bannerArea.innerHTML = '<div class="da-dna-banner">' +
+      '<span class="da-dna-banner-icon">\uD83E\uDDEC</span>' +
+      '<span class="da-dna-banner-text">Your DNA profile matched you to <strong>' + escapeHtml(profile.topStates[0].name) + '</strong> and <strong>' + escapeHtml(profile.topStates[1].name) + '</strong>. Pre-loaded for you.</span>' +
+      '<button class="da-dna-banner-btn" onclick="this.parentElement.remove()">Change States</button>' +
+    '</div>';
+  } else {
+    bannerArea.innerHTML = '<div class="da-dna-banner" style="border-color:var(--border);background:rgba(255,255,255,0.02)">' +
+      '<span class="da-dna-banner-icon">\uD83E\uDDEC</span>' +
+      '<span class="da-dna-banner-text">Take the DNA quiz to get personalized state matches \u2192</span>' +
+      '<button class="da-dna-banner-btn" onclick="switchTab(\'dna\')">Take Quiz</button>' +
+    '</div>';
+  }
+}
+
+function daTrackUsage() {
+  var selA = document.getElementById('da-select-a');
+  var selB = document.getElementById('da-select-b');
+  if (!selA || !selB) return;
+  var rA = daCalcState(selA.value);
+  var rB = daCalcState(selB.value);
+  var winner = (rA && rB && !rA.isDeed && !rB.isDeed) ? (rA.interest >= rB.interest ? rA : rB) : (rA && !rA.isDeed ? rA : rB);
+  var bestReturn = null;
+  if (winner && !winner.isDeed) {
+    bestReturn = {
+      state: winner.stateName,
+      interest: Math.round(winner.interest),
+      total: Math.round(winner.total),
+      yield: winner.effectiveYield.toFixed(1) + '%'
+    };
+  }
+  saveProfile({
+    analyzerAmount: daAmount,
+    analyzerScenario: daScenario,
+    analyzerBestReturn: bestReturn,
+    analyzerUsed: true
+  });
+  updateJourneyStep('analyzerUsed');
+  // Show summary tab
+  var summaryBtn = document.getElementById('summary-tab-btn');
+  if (summaryBtn) summaryBtn.style.display = '';
+}
+
+// === ITEM 5: VERSUS PRE-LOADS DNA ===
+function vsPreloadFromDna() {
+  var profile = getProfile();
+  if (!profile || !profile.topStates || profile.topStates.length < 2) return;
+  var selA = document.getElementById('vs-select-a');
+  var selB = document.getElementById('vs-select-b');
+  if (!selA || !selB) return;
+  // Only preload if no localStorage override from Analyzer
+  try {
+    if (localStorage.getItem('versus_state_a')) return;
+  } catch(e) {}
+  selA.value = profile.topStates[0].code;
+  selB.value = profile.topStates[1].code;
+}
+
+function vsShowDnaTags() {
+  var profile = getProfile();
+  if (!profile || !profile.topStates) return;
+  var codes = profile.topStates.map(function(s) { return s.code; });
+  ['a', 'b'].forEach(function(side) {
+    var sel = document.getElementById('vs-select-' + side);
+    var nameEl = document.getElementById('vs-name-' + side);
+    if (!sel || !nameEl) return;
+    var existing = nameEl.parentElement.querySelector('.dna-profile-tag');
+    if (existing) existing.remove();
+    if (codes.indexOf(sel.value) >= 0) {
+      var tag = document.createElement('div');
+      tag.className = 'dna-profile-tag';
+      tag.textContent = '\u2713 From your DNA profile';
+      nameEl.parentElement.appendChild(tag);
+    }
+  });
+}
+
+function vsTrackUsage() {
+  var selA = document.getElementById('vs-select-a');
+  var selB = document.getElementById('vs-select-b');
+  if (!selA || !selB) return;
+  saveProfile({
+    statesCompared: [selA.value, selB.value]
+  });
+  updateJourneyStep('statesCompared');
+}
+
+// === ITEM 6: SAGE READS DNA ARCHETYPE ===
+function getSageProfileContext() {
+  var profile = getProfile();
+  if (!profile || !profile.dnaComplete || !profile.archetypeLabel) return '';
+  var stateList = '';
+  if (profile.topStates) {
+    stateList = profile.topStates.map(function(s) {
+      return escapeHtml(s.name) + ' (' + escapeHtml(s.rate) + ')';
+    }).join(', ');
+  }
+  return '\n\nINVESTOR PROFILE CONTEXT:\nThis investor has completed the DNA quiz. Their profile:\n' +
+    '- Archetype: ' + escapeHtml(profile.archetypeLabel) + '\n' +
+    '- Strategy: ' + escapeHtml(profile.strategyLabel) + '\n' +
+    '- Top States: ' + stateList + '\n' +
+    'Reference this profile naturally when relevant. Do not announce it immediately.';
+}
+
+// === ITEM 7: PULSE READS FROM PROFILE ===
+// Override pulseGetDnaStates to read from profile
+pulseGetDnaStates = function() {
+  var codes = profileTopStateCodes();
+  if (codes) return codes;
+  // Fallback to live quiz
+  if (typeof dnaScoreStates === 'function') {
+    try {
+      var top = dnaScoreStates();
+      if (top && top.length > 0) return top.map(function(m) { return m.code; });
+    } catch(e) {}
+  }
+  return null;
+};
+
+// === ITEM 8: AUCTIONS SORTS DNA STATES FIRST ===
+var _origRenderAuctions = typeof renderAuctions === 'function' ? renderAuctions : null;
+renderAuctions = function() {
+  if (_origRenderAuctions) _origRenderAuctions();
+  // After render, mark DNA matches
+  var codes = profileTopStateCodes();
+  if (!codes) return;
+  document.querySelectorAll('.auction-card').forEach(function(card) {
+    // Check card text for state code match
+    var titleEl = card.querySelector('.auction-card-title');
+    if (!titleEl) return;
+    var text = titleEl.textContent;
+    var matched = codes.some(function(c) {
+      var state = ALL_STATES.find(function(s) { return (s.abbr || s.c) === c; });
+      return state && text.indexOf(state.name) >= 0;
+    });
+    if (matched) {
+      var pills = card.querySelector('.auction-card-pills');
+      if (pills && !pills.querySelector('.auction-dna-match')) {
+        var tag = document.createElement('span');
+        tag.className = 'auction-pill auction-dna-match';
+        tag.style.cssText = 'background:rgba(74,222,128,0.12);color:var(--green);border:1px solid rgba(74,222,128,0.15)';
+        tag.textContent = '\uD83C\uDFAF Your Match';
+        pills.appendChild(tag);
+      }
+    }
+  });
+};
+
+// === MAP EXPLORATION TRACKING ===
+function trackMapExploration(stateCode) {
+  var profile = getProfile() || {};
+  var viewed = profile.statesViewed || [];
+  if (viewed.indexOf(stateCode) === -1) {
+    viewed.push(stateCode);
+  }
+  saveProfile({ statesViewed: viewed });
+  if (viewed.length >= 1) {
+    updateJourneyStep('mapExplored');
+  }
+}
+
+// === ITEM 9: PRE-CALL SUMMARY PAGE ===
+function renderSummaryPage() {
+  var panel = document.getElementById('tools-panel-summary');
+  if (!panel) return;
+  var profile = getProfile();
+
+  // Show/hide tab button
+  var btn = document.getElementById('summary-tab-btn');
+  if (btn) {
+    btn.style.display = (profile && (profile.dnaComplete || profile.analyzerUsed)) ? '' : 'none';
+  }
+
+  if (!profile || (!profile.dnaComplete && !profile.analyzerUsed)) {
+    panel.innerHTML = '<div class="summary-empty">' +
+      'Your summary builds as you explore.<br>Start with the DNA quiz to see your investor profile here.' +
+      '<br><button class="summary-empty-btn" onclick="switchTab(\'dna\')">Take DNA Quiz \u2192</button>' +
+    '</div>';
+    return;
+  }
+
+  var html = '<div class="summary-container">';
+  html += '<div class="summary-header"><div class="summary-eyebrow">Pre-Call Summary</div><div class="summary-title">YOUR INVESTOR BRIEF</div></div>';
+  html += '<div class="summary-cards">';
+
+  // Card 1 — Archetype
+  html += '<div class="summary-card"><div class="summary-card-head">' +
+    '<span class="summary-card-icon">\uD83E\uDDEC</span>' +
+    '<span class="summary-card-badge ' + (profile.dnaComplete ? 'teal' : 'muted') + '">' + (profile.dnaComplete ? 'Profile Complete' : 'In Progress') + '</span>' +
+    '</div>' +
+    '<div class="summary-card-label">Your Archetype</div>' +
+    '<div class="summary-card-value">' + escapeHtml(profile.archetypeLabel || '\u2014') + '</div>' +
+    '<div class="summary-card-sub">' + escapeHtml(profile.strategyLabel || '') + '</div></div>';
+
+  // Card 2 — Top States
+  var stateNames = (profile.topStates || []).map(function(s) { return escapeHtml(s.name); }).join(' \u00b7 ');
+  var matchPcts = (profile.topStates || []).map(function(s) { return escapeHtml(s.name) + ' ' + s.match + '%'; }).join(', ');
+  html += '<div class="summary-card"><div class="summary-card-head">' +
+    '<span class="summary-card-icon">\uD83D\uDDFA\uFE0F</span>' +
+    '<span class="summary-card-badge teal">' + (profile.topStates ? profile.topStates.length + ' States' : '0') + '</span>' +
+    '</div>' +
+    '<div class="summary-card-label">Top Matched States</div>' +
+    '<div class="summary-card-value">' + (stateNames || '\u2014') + '</div>' +
+    '<div class="summary-card-sub">' + matchPcts + '</div></div>';
+
+  // Card 3 — Best Return
+  if (profile.analyzerUsed && profile.analyzerBestReturn) {
+    var br = profile.analyzerBestReturn;
+    html += '<div class="summary-card"><div class="summary-card-head">' +
+      '<span class="summary-card-icon">\uD83D\uDCC8</span>' +
+      '<span class="summary-card-badge green">Analyzed</span>' +
+      '</div>' +
+      '<div class="summary-card-label">Best Return Scenario</div>' +
+      '<div class="summary-card-value">$' + (br.interest || 0).toLocaleString() + ' on $' + (profile.analyzerAmount || 0).toLocaleString() + '</div>' +
+      '<div class="summary-card-sub">' + escapeHtml(br.state || '') + ' \u00b7 ' + escapeHtml(profile.analyzerScenario || '') + ' \u00b7 ' + escapeHtml(br.yield || '') + '/yr</div></div>';
+  } else {
+    html += '<div class="summary-card" style="opacity:0.5"><div class="summary-card-head">' +
+      '<span class="summary-card-icon">\uD83D\uDCC8</span>' +
+      '<span class="summary-card-badge muted">Not Yet</span>' +
+      '</div>' +
+      '<div class="summary-card-label">Best Return Scenario</div>' +
+      '<div class="summary-card-value">\u2014</div>' +
+      '<div class="summary-card-sub">Run the Deal Analyzer to see projected returns</div></div>';
+  }
+
+  // Card 4 — Next Auction
+  var nextAuction = null;
+  var now = Date.now();
+  var codes = profileTopStateCodes();
+  if (codes && typeof PULSE_ALERTS !== 'undefined') {
+    var candidates = PULSE_ALERTS.filter(function(a) {
+      if (a.type !== 'upcoming' || !a.date) return false;
+      return a.dnaStates.some(function(s) { return codes.indexOf(s) >= 0; });
+    }).sort(function(a, b) { return new Date(a.date) - new Date(b.date); });
+    if (candidates.length > 0) {
+      var d = new Date(candidates[0].date);
+      var days = Math.max(0, Math.ceil((d - now) / 86400000));
+      nextAuction = { alert: candidates[0], days: days };
+    }
+  }
+  if (nextAuction) {
+    var badgeCls = nextAuction.days < 30 ? 'pink' : 'muted';
+    html += '<div class="summary-card"><div class="summary-card-head">' +
+      '<span class="summary-card-icon">\uD83D\uDCC5</span>' +
+      '<span class="summary-card-badge ' + badgeCls + '">' + nextAuction.days + ' Days</span>' +
+      '</div>' +
+      '<div class="summary-card-label">Next Auction in Your States</div>' +
+      '<div class="summary-card-value">' + escapeHtml(nextAuction.alert.title) + '</div>' +
+      '<div class="summary-card-sub">' + nextAuction.days + ' days away \u00b7 ' + escapeHtml(nextAuction.alert.location) + '</div></div>';
+  } else {
+    html += '<div class="summary-card"><div class="summary-card-head">' +
+      '<span class="summary-card-icon">\uD83D\uDCC5</span>' +
+      '<span class="summary-card-badge muted">Pending</span>' +
+      '</div>' +
+      '<div class="summary-card-label">Next Auction</div>' +
+      '<div class="summary-card-value">\u2014</div>' +
+      '<div class="summary-card-sub">Check the Auctions tab for upcoming dates</div></div>';
+  }
+
+  html += '</div>'; // close summary-cards
+
+  // CTA block
+  var BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4';
+  html += '<div class="summary-cta">' +
+    '<div class="summary-cta-title">BOOK YOUR INVESTOR CLARITY CALL</div>' +
+    '<div class="summary-cta-sub">Your profile is built. Your numbers are run. A specialist will map out your execution plan \u2014 which counties to target, how much to allocate, and what to do at the auction.</div>' +
+    '<a class="summary-cta-btn" href="' + BOOKING_URL + '" target="_blank" rel="noopener noreferrer">Book Now \u2014 It\u2019s Free \u2192</a>' +
+    '<button class="summary-share-btn" onclick="shareSummary()">\uD83D\uDCF8 Share your summary</button>' +
+  '</div>';
+
+  html += '</div>'; // close summary-container
+  panel.innerHTML = html;
+}
+
+function shareSummary() {
+  var profile = getProfile();
+  if (!profile) return;
+  var stateList = (profile.topStates || []).map(function(s) { return s.name + ' (' + s.rate + ')'; }).join(', ');
+  var text = 'My Aurigen Investor Profile\n' +
+    '\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n' +
+    'Archetype: ' + (profile.archetypeLabel || 'N/A') + '\n' +
+    'Strategy: ' + (profile.strategyLabel || 'N/A') + '\n' +
+    'Top States: ' + (stateList || 'N/A') + '\n';
+  if (profile.analyzerBestReturn) {
+    text += 'Best Return: $' + profile.analyzerBestReturn.interest + ' projected on $' + profile.analyzerAmount + ' \u2014 ' + profile.analyzerBestReturn.state + ', ' + profile.analyzerScenario + '\n';
+  }
+  text += '\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n' +
+    'Rates are statutory maximums. Not financial advice.\n' +
+    'Built with Aurigen \u00b7 aurigen-directory.netlify.app';
+  try {
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.querySelector('.summary-share-btn');
+      if (btn) { var orig = btn.innerHTML; btn.textContent = 'Copied!'; setTimeout(function() { btn.innerHTML = orig; }, 2000); }
+    });
+  } catch(e) {}
+}
+
+// === WIRING — Hook into existing functions ===
+
+// Wire: showDetail → track map exploration + render map next step
+var _origShowDetail = showDetail;
+showDetail = function(s) {
+  _origShowDetail(s);
+  var code = s.abbr || s.c;
+  var name = s.name || s.n || code;
+  trackMapExploration(code);
+  renderMapNextStep(code, name);
+};
+
+// Wire: DNA finish → save profile
+var _origDnaFinishIdx = null;
+// Find the function that shows "Profile Complete" and hook into it
+// dnaNext handles the finish when idx === DNA_QUESTIONS.length - 1
+var _origDnaNext = typeof dnaNext === 'function' ? dnaNext : null;
+if (_origDnaNext) {
+  var _origDnaNextFn = dnaNext;
+  dnaNext = function() {
+    var wasDone = document.getElementById('dna-card-completion');
+    var wasDoneVisible = wasDone && wasDone.style.display === 'block';
+    _origDnaNextFn();
+    var isDoneNow = wasDone && wasDone.style.display === 'block';
+    if (!wasDoneVisible && isDoneNow) {
+      dnaSaveToProfile();
+    }
+  };
+}
+
+// Wire: daCalculate → track usage (debounced)
+var _daCalcCount = 0;
+var _origDaCalculate = daCalculate;
+daCalculate = function() {
+  _origDaCalculate();
+  _daCalcCount++;
+  if (_daCalcCount >= 2) { // Track after at least one user interaction
+    daTrackUsage();
+  }
+};
+
+// Wire: initVersusTab → pre-load DNA states
+var _origInitVersus = initVersusTab;
+initVersusTab = function() {
+  _origInitVersus();
+  vsPreloadFromDna();
+};
+
+// Wire: runVersusCompare → track + show tags
+var _origRunVersus = runVersusCompare;
+runVersusCompare = function() {
+  _origRunVersus();
+  vsShowDnaTags();
+  vsTrackUsage();
+};
+
+// Wire: Sage → inject DNA context
+var _origGetAdvisorResponse = getAdvisorResponse;
+getAdvisorResponse = function(text) {
+  var response = _origGetAdvisorResponse(text);
+  // Add profile-aware responses for specific questions
+  var lower = text.toLowerCase();
+  var profile = getProfile();
+  if (profile && profile.dnaComplete && profile.topStates) {
+    if (/which state|best state|where should|recommend/i.test(lower)) {
+      var stateList = profile.topStates.map(function(s) { return s.name + ' (' + s.rate + ')'; }).join(', ');
+      return 'Based on your DNA profile as a ' + profile.archetypeLabel + ', your top matched states are: ' + stateList + '. ' + response;
+    }
+  }
+  return response;
+};
+
+// Wire: Auctions tab → track journey step
+var _origSwitchTabPhase3 = switchTab;
+switchTab = function(name) {
+  _origSwitchTabPhase3(name);
+  if (name === 'auctions') {
+    updateJourneyStep('alertsViewed');
+  }
+  if (name === 'tools') {
+    setTimeout(function() { daPreloadFromDna(); renderSummaryPage(); }, 100);
+  }
+  renderNextStepCards();
+};
+
+// === INIT PHASE 3 ===
+renderJourneyBar();
+renderNextStepCards();
+// Show summary tab if profile exists
+(function() {
+  var p = getProfile();
+  var btn = document.getElementById('summary-tab-btn');
+  if (btn && p && (p.dnaComplete || p.analyzerUsed)) {
+    btn.style.display = '';
+  }
+})();
 </script>
 <!-- PULSE DRAWER -->
 <div id="pulse-overlay" onclick="closePulseDrawer()"></div>
