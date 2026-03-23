@@ -60,23 +60,112 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - ~~80-issue master directive~~ — ALL 7 SPRINTS COMPLETE
 - ~~Knox 80-item regression~~ — 80/80 PASS (3 original failures fixed + #080 waived)
 
-## CURRENT SESSION STATUS (2026-03-22)
+## CURRENT SESSION STATUS (2026-03-23)
 - Phase 1 COMPLETE — Foundation rebuild (9 steps, 7 new files, index.html 12K→77 lines) + county data layer (TYPE_RATIONALE, county search/filter, /legal page)
+- Phase 2 in progress — 6/8 core tools complete
 - Knox: Phase 1 7/7 PASS + 9/9 PASS (county data layer)
 - Lex: 3 legal documents (ToS, Privacy, Refund) in /legal/ + legal/index.html methodology page — PASS
 - Cipher: escapeHtml() on all dynamic strings — PASS
 - Architecture: every file under 400 lines, one job per file
-- Phase 2 (core features) is NEXT — 8 features, all OPEN
 
-## NEXT SESSION PRIORITIES
-1. Phase 2: Core features (map, analyzer, sage, pulse, dna, versus, auctions, account)
-2. Phase 3: Legal modal integration (use /legal/ docs written by Lex)
-3. Phase 4: Conversion optimization (exit intent, statute teasers, OG tags)
-4. Phase 5: Performance and SEO (structured data, a11y audit, PWA)
-5. C2 JWT session validation for get-states.js
-6. og:image asset (Prism)
-7. GHL 5-email nurture sequence (Piper)
-7. ES translations parity — states-es.js significantly shorter than EN
+## MASTER PHASE PLAN
+
+### PHASE 1 — FOUNDATION ✅ COMPLETE
+Map, List, State Detail Modal, County Data Layer,
+Type Rationale, Legal Page, All 51 jurisdictions,
+Classification methodology, FTC compliance layer
+
+### PHASE 2 — CORE TOOLS (6/8 complete)
+Goal: Give investors everything they need to feel informed
+
+- ✅ Auctions — full calendar, filter, interstitial
+- ✅ Versus — side by side state comparison
+- ✅ Sage v1 — AI advisor, soft close, CTA cards
+- ✅ Map Filter Panel — B2 hide behavior
+- ✅ DNA — investor profiler, live card, archetypes
+- ✅ Analyzer — deal calculator, two-state compare
+- ⬜ Pulse — personalized alert feed
+- ⬜ Account — tier management, upgrade flow
+
+### PHASE 3 — FUNNEL INTELLIGENCE
+Goal: Connect every tool into a single journey toward the Clarity Call. Make the platform feel like one experience, not a collection of tools.
+
+- ⬜ Journey Bar — persistent progress tracker across all tabs
+- ⬜ Next Step Cards — guided handoff between every tool
+- ⬜ DNA profile persistence — archetype + top states stored in localStorage, read by all tools
+- ⬜ Analyzer pre-loads DNA top matches
+- ⬜ Versus pre-loads DNA top 2 matches
+- ⬜ Sage reads investor archetype from DNA
+- ⬜ Pulse filtered to DNA matched states
+- ⬜ Auctions tab sorts DNA matched states first
+- ⬜ Pre-Call Summary page — full investor journey compiled into one page before Clarity Call
+
+### PHASE 4 — FEAR KILLERS
+Goal: Remove every objection between the investor and their first bid. Each tool kills one specific investor fear.
+
+- ⬜ **SCOUT** (Fast — 1 session)
+  Fear: Due diligence — "What if I bid on a property with hidden problems?"
+  State-specific due diligence checklist generator. Adapts by lien/deed/redeemable.
+  Toggle items checked/flagged. Progress ring.
+  CTA: "Bring This Checklist to Your Call →"
+
+- ⬜ **WARBOOK** (Fast — 1 session)
+  Fear: Competition — "Am I competing against hedge funds?"
+  Competition rating per state: Low/Moderate/High/Institutional. Surfaces OTC opportunities, lower-competition counties, tactical edges. Radar-style visual.
+  CTA: "Get Your County-Level Edge →"
+
+- ⬜ **DEADLINES** (Medium — 2 sessions)
+  Fear: Timing — "What if I miss the auction?"
+  Countdown dashboard for up to 3 target states. Pre-loaded from DNA. Reverse-engineered timeline: auction date, registration deadline, deposit deadline, platform setup, post-sale filings. Color: green → gold → pulsing red.
+  CTA: "Finalize Your Strategy Before [Date] →"
+
+- ⬜ **RECON** (Medium — 2 sessions)
+  Fear: Process — "I don't know what happens at an actual auction."
+  State-specific auction walkthrough. Step by step from registration to winning bid. Expands per step with real forms, deposit amounts, platform details. Vertical gold node timeline.
+  CTA: "Lock In Your Strategy →"
+
+- ⬜ **DOSSIER** (Medium — 2 sessions)
+  Fear: Execution — "Can I actually do this?"
+  Single-page printable investor briefing. Compiles: DNA archetype, top states, Analyzer results, competition assessment, 5-step action plan. Formatted as professional investment memo. "CONFIDENTIAL — PREPARED FOR [INVESTOR]" watermark.
+  CTA: "Book Your Strategy Session →"
+  Secondary: Save as PDF / Copy to clipboard
+
+### PHASE 5 — SECURITY SPRINT
+Goal: Production-ready before public launch
+
+- ⬜ JWT-gated serverless function for state data
+- ⬜ Server-side session validation
+- ⬜ Full security audit — @cipher + @phantom + @wraith
+- ⬜ localStorage tier bypass fix
+- ⬜ C2 server-side gating
+
+### PHASE 6 — GROWTH
+Goal: Scale the audience
+
+- ⬜ GHL 5-email nurture sequence — @piper
+- ⬜ Custom subdomain: directory.theaurigen.com
+- ⬜ Skool community integration — @rally
+- ⬜ Bilingual toggle — states-es.js fully wired
+- ⬜ og:image asset — @prism
+- ⬜ Scout partnership outreach
+- ⬜ Add to Home Screen guide — @atlas
+- ⬜ Sage v2 — more genuine conversation, reduced CTA frequency
+
+### THE ENDGAME
+When all 6 phases are complete, an investor:
+1. Lands on Map — immediately sees value
+2. Clicks a state — gets real data with context
+3. Compares in Versus — pre-loaded from click
+4. Takes DNA quiz — gets their archetype
+5. Runs numbers in Analyzer — pre-loaded from DNA
+6. Sees competition landscape in Warbook
+7. Runs due diligence with Scout
+8. Tracks deadlines in Deadlines
+9. Watches Pulse — sees auction in 14 days
+10. Opens Dossier — everything in one document
+11. Clicks "Book Your Strategy Session →"
+
+90% closed before they ever talk to a human.
 
 ---
 

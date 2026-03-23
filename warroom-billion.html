@@ -1032,10 +1032,9 @@
     /* === TOOLS TAB === */
     #panel-tools {
       display: none;
-      flex-direction: row;
+      flex-direction: column;
       flex: 1;
       min-height: 0;
-      overflow-y: auto;
     }
     #panel-tools.active { display: flex; }
     .tools-grid {
@@ -1142,6 +1141,74 @@
       font-size: 9px;
       color: var(--text2);
       letter-spacing: 0.1em;
+    }
+
+    /* === TOOLS SUB-NAV & DEAL ANALYZER === */
+    .tools-subnav{display:flex;gap:0;padding:0 24px;border-bottom:1px solid var(--border);flex-shrink:0;background:rgba(1,4,12,0.6)}
+    .tools-subnav-btn{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;padding:10px 18px;background:none;border:none;border-bottom:2px solid transparent;color:var(--text2);cursor:pointer;transition:all 150ms ease-out}
+    .tools-subnav-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+    .tools-subnav-btn:hover{color:var(--text)}
+    .tools-subpanel{display:none;flex:1;overflow-y:auto;min-height:0}
+    .tools-subpanel.active{display:block}
+    .da-container{max-width:1000px;margin:0 auto;padding:32px 24px}
+    .da-header{margin-bottom:24px}
+    .da-eyebrow{font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.15em;margin-bottom:4px}
+    .da-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,38px);color:var(--text);letter-spacing:0.04em;line-height:1.1}
+    .da-sub{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text2);margin-top:6px;line-height:1.5}
+    .da-shared-card{display:flex;gap:24px;align-items:flex-end;padding:20px 24px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;margin-bottom:20px}
+    .da-slider-group{flex:1}
+    .da-slider-label{font-family:'Space Mono',monospace;font-size:8px;color:var(--text2);letter-spacing:0.12em;margin-bottom:6px}
+    .da-slider-value{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--accent);letter-spacing:0.04em;line-height:1;margin-bottom:10px}
+    .da-range{-webkit-appearance:none;width:100%;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;outline:none;cursor:pointer}
+    .da-range::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 8px rgba(201,168,76,0.3);cursor:pointer;transition:transform 150ms}
+    .da-range::-webkit-slider-thumb:hover{transform:scale(1.15)}
+    .da-range::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 8px rgba(201,168,76,0.3);cursor:pointer}
+    .da-slider-range{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:7px;color:var(--text3);margin-top:4px}
+    .da-scenario-group{flex-shrink:0}
+    .da-scenario-toggle{display:flex;gap:0;border:1px solid var(--border);border-radius:5px;overflow:hidden}
+    .da-scenario-btn{font-family:'DM Sans',sans-serif;font-size:11px;padding:8px 14px;background:transparent;border:none;color:var(--text2);cursor:pointer;transition:all 150ms ease-out;white-space:nowrap}
+    .da-scenario-btn.active{background:rgba(201,168,76,0.08);color:var(--accent);border-color:var(--accent)}
+    .da-scenario-btn:hover{color:var(--text)}
+    .da-columns{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+    .da-col{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:20px;transition:border-color 200ms ease-out}
+    .da-col.winner{border-color:rgba(201,168,76,0.4)}
+    .da-col-header{margin-bottom:16px}
+    .da-select{width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:4px;padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);outline:none;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236a6258'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+    .da-select:focus{border-color:var(--accent-mid)}
+    .da-select option{background:#111116;color:var(--text)}
+    .da-col-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .da-meta-badge{font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;padding:3px 8px;border-radius:3px;border:1px solid;letter-spacing:0.06em}
+    .da-meta-pill{font-family:'Space Mono',monospace;font-size:8px;padding:3px 8px;border-radius:3px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--text2)}
+    .da-winner-badge{display:none;font-family:'Space Mono',monospace;font-size:7px;letter-spacing:0.12em;color:#4ade80;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);padding:3px 8px;border-radius:3px;margin-left:auto}
+    .da-col.winner .da-winner-badge{display:inline-block}
+    .da-result-box{padding:16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:5px;text-align:center;margin-bottom:14px}
+    .da-result-label{font-family:'Space Mono',monospace;font-size:8px;color:var(--text2);letter-spacing:0.12em;margin-bottom:4px}
+    .da-result-value{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--accent);letter-spacing:0.04em;line-height:1.1;transition:color 200ms}
+    .da-col.winner .da-result-value{color:#4ade80}
+    .da-result-msg{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text2);line-height:1.6;padding:16px;text-align:center}
+    .da-breakdown{display:flex;flex-direction:column;gap:6px}
+    .da-breakdown-row{display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:12px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+    .da-breakdown-label{color:var(--text2)}
+    .da-breakdown-value{color:var(--text);font-weight:600}
+    .da-breakdown-note{font-family:'DM Sans',sans-serif;font-size:10px;color:var(--text3);font-style:italic;padding:4px 0}
+    .da-bottom-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 0;border-top:1px solid rgba(255,255,255,0.04)}
+    .da-insight{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text2);line-height:1.6;flex:1}
+    .da-bottom-btns{display:flex;gap:8px;flex-shrink:0}
+    .da-cta-primary{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;padding:10px 20px;background:var(--accent);color:#0a0a0a;border:none;border-radius:5px;text-decoration:none;cursor:pointer;transition:filter 150ms;white-space:nowrap;text-align:center}
+    .da-cta-primary:hover{filter:brightness(1.1)}
+    .da-cta-ghost{font-family:'DM Sans',sans-serif;font-size:12px;padding:10px 20px;background:none;border:1px solid rgba(255,255,255,0.1);color:var(--text2);border-radius:5px;cursor:pointer;transition:all 150ms;white-space:nowrap}
+    .da-cta-ghost:hover{border-color:rgba(255,255,255,0.25);color:var(--text)}
+    .da-disclaimer{font-family:'DM Sans',sans-serif;font-size:10px;color:var(--text3);line-height:1.5;padding:16px 0;border-top:1px solid rgba(255,255,255,0.04);margin-top:8px}
+
+    @media(max-width:768px){
+      .da-shared-card{flex-direction:column;gap:16px;align-items:stretch}
+      .da-columns{grid-template-columns:1fr}
+      .da-bottom-row{flex-direction:column;align-items:stretch}
+      .da-bottom-btns{flex-direction:column}
+      .da-cta-primary,.da-cta-ghost{width:100%;text-align:center;min-height:44px;display:flex;align-items:center;justify-content:center}
+      .da-range::-webkit-slider-thumb{width:44px;height:44px}
+      .da-range::-moz-range-thumb{width:44px;height:44px}
+      .da-scenario-btn{min-height:44px;padding:8px 10px;font-size:10px}
     }
 
     /* === ADVISOR TAB === */
@@ -1831,11 +1898,11 @@
   <nav id="top-nav">
     <div id="nav-logo">AURIGEN</div>
     <div class="nav-tab active" id="tab-map" onclick="switchTab('map')">Map</div>
-    <div class="nav-tab" id="tab-tools" onclick="switchTab('tools')">Tools</div>
-    <div class="nav-tab" id="tab-dna" onclick="switchTab('dna')">DNA</div>
-    <div class="nav-tab" id="tab-advisor" onclick="switchTab('advisor')">Advisor</div>
     <div class="nav-tab" id="tab-auctions" onclick="switchTab('auctions')">Auctions</div>
     <div class="nav-tab" id="tab-versus" onclick="switchTab('versus')">Versus</div>
+    <div class="nav-tab" id="tab-dna" onclick="switchTab('dna')">DNA</div>
+    <div class="nav-tab" id="tab-advisor" onclick="switchTab('advisor')">Advisor</div>
+    <div class="nav-tab" id="tab-tools" onclick="switchTab('tools')">Tools</div>
     <div class="nav-tab" id="tab-account" onclick="switchTab('account')">Account</div>
     <div id="nav-spacer"></div>
     <div id="pulse-bell" onclick="togglePulseDrawer()" aria-label="Open alerts"><span aria-hidden="true">🔔</span><span id="pulse-badge" class="hidden">0</span></div>
@@ -1956,57 +2023,133 @@
       </div>
     </div>
     <div class="tab-panel" id="panel-tools">
-      <div class="tools-grid">
-        <!-- Card 1: Deal Analyzer -->
-        <div class="tool-card" id="tool-deal">
-          <div class="tool-card-label">Calculator</div>
-          <div class="tool-card-title">Deal Analyzer</div>
-          <div class="tool-card-desc">Estimate annual yield and 2-year return on a tax lien or deed purchase.</div>
-          <input class="tool-input" id="inp-price" type="number" placeholder="Purchase price ($)">
-          <input class="tool-input" id="inp-tax" type="number" placeholder="Annual tax ($)">
-          <button class="tool-btn" onclick="runDealAnalyzer()">Analyze</button>
-          <div class="tool-result" id="result-deal"></div>
-        </div>
-        <!-- Card 2: Auction Pulse -->
-        <div class="tool-card" id="tool-pulse">
-          <div class="tool-card-label">Intelligence</div>
-          <div class="tool-card-title">Auction Pulse</div>
-          <div class="tool-card-desc">Check key auction metrics for a state — rate, redemption, and platform.</div>
-          <input class="tool-input" id="inp-pulse-state" type="text" placeholder="State abbreviation (e.g. FL)">
-          <button class="tool-btn" onclick="runAuctionPulse()">Check Pulse</button>
-          <div class="tool-result" id="result-pulse"></div>
-        </div>
-        <!-- Card 3: Investor DNA -->
-        <div class="tool-card" id="tool-dna">
-          <div class="tool-card-label">Strategy</div>
-          <div class="tool-card-title">Investor DNA</div>
-          <div class="tool-card-desc">Generate a personalized investment profile based on your risk tolerance.</div>
-          <select class="tool-input" id="inp-dna">
-            <option value="Conservative">Conservative</option>
-            <option value="Moderate" selected>Moderate</option>
-            <option value="Aggressive">Aggressive</option>
-          </select>
-          <button class="tool-btn" onclick="runInvestorDNA()">Generate Profile</button>
-          <div class="tool-result" id="result-dna"></div>
-          <div class="tool-locked-overlay" id="lock-dna">
-            <div>&#128274;</div>
-            <div>FULL ACCESS REQUIRED</div>
-            <a class="tool-btn" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Upgrade</a>
+      <!-- Tools Sub-Nav -->
+      <div class="tools-subnav" id="tools-subnav">
+        <button class="tools-subnav-btn active" onclick="switchToolsPanel('analyzer')">Deal Analyzer</button>
+        <button class="tools-subnav-btn" onclick="switchToolsPanel('quick')">Quick Tools</button>
+      </div>
+
+      <!-- SUB-PANEL: Deal Analyzer (Concept C) -->
+      <div class="tools-subpanel active" id="tools-panel-analyzer">
+        <div class="da-container">
+          <div class="da-header">
+            <div class="da-eyebrow">Deal Analyzer</div>
+            <div class="da-title">Compare Returns Side by Side</div>
+            <div class="da-sub">Enter one investment amount &mdash; compare two states instantly.</div>
           </div>
+
+          <!-- Shared Inputs -->
+          <div class="da-shared-card">
+            <div class="da-slider-group">
+              <div class="da-slider-label">Investment Amount</div>
+              <div class="da-slider-value" id="da-amount-display">$10,000</div>
+              <input type="range" class="da-range" id="da-amount" min="1000" max="250000" step="500" value="10000" oninput="daUpdateAmount(this.value)">
+              <div class="da-slider-range"><span>$1,000</span><span>$250,000</span></div>
+            </div>
+            <div class="da-scenario-group">
+              <div class="da-slider-label">Scenario</div>
+              <div class="da-scenario-toggle" id="da-scenario-toggle">
+                <button class="da-scenario-btn" data-scenario="conservative" onclick="daSetScenario('conservative')">Conservative</button>
+                <button class="da-scenario-btn active" data-scenario="realistic" onclick="daSetScenario('realistic')">Realistic</button>
+                <button class="da-scenario-btn" data-scenario="optimistic" onclick="daSetScenario('optimistic')">Optimistic</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Two Column Comparison -->
+          <div class="da-columns">
+            <div class="da-col" id="da-col-a">
+              <div class="da-col-header" id="da-col-header-a">
+                <select class="da-select" id="da-select-a" onchange="daCalculate()"></select>
+                <div class="da-col-meta" id="da-col-meta-a"></div>
+              </div>
+              <div class="da-result-box" id="da-result-a">
+                <div class="da-result-label">Projected Return</div>
+                <div class="da-result-value" id="da-return-a">&mdash;</div>
+              </div>
+              <div class="da-breakdown" id="da-breakdown-a"></div>
+            </div>
+            <div class="da-col" id="da-col-b">
+              <div class="da-col-header" id="da-col-header-b">
+                <select class="da-select" id="da-select-b" onchange="daCalculate()"></select>
+                <div class="da-col-meta" id="da-col-meta-b"></div>
+              </div>
+              <div class="da-result-box" id="da-result-b">
+                <div class="da-result-label">Projected Return</div>
+                <div class="da-result-value" id="da-return-b">&mdash;</div>
+              </div>
+              <div class="da-breakdown" id="da-breakdown-b"></div>
+            </div>
+          </div>
+
+          <!-- Bottom Row -->
+          <div class="da-bottom-row">
+            <div class="da-insight" id="da-insight"></div>
+            <div class="da-bottom-btns">
+              <a class="da-cta-primary" href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener noreferrer">Book Clarity Call &rarr;</a>
+              <button class="da-cta-ghost" onclick="daOpenInVersus()">Open in Versus &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Disclaimer -->
+          <div class="da-disclaimer">Rates shown are statutory maximums. Actual returns depend on competitive bidding and redemption outcomes. Bid-down states typically yield below the statutory ceiling in competitive counties. This is not financial advice. Always verify with the official county or state authority before transacting.</div>
         </div>
-        <!-- Card 4: State Comparison -->
-        <div class="tool-card" id="tool-compare">
-          <div class="tool-card-label">Analysis</div>
-          <div class="tool-card-title">State Comparison</div>
-          <div class="tool-card-desc">Compare two states side-by-side on rate, redemption, and platform.</div>
-          <input class="tool-input" id="inp-state-a" type="text" placeholder="State A (e.g. FL)">
-          <input class="tool-input" id="inp-state-b" type="text" placeholder="State B (e.g. AZ)">
-          <button class="tool-btn" onclick="runStateCompare()">Compare</button>
-          <div class="tool-result" id="result-compare"></div>
-          <div class="tool-locked-overlay" id="lock-compare">
-            <div>&#128274;</div>
-            <div>FULL ACCESS REQUIRED</div>
-            <a class="tool-btn" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Upgrade</a>
+      </div>
+
+      <!-- SUB-PANEL: Quick Tools (original cards) -->
+      <div class="tools-subpanel" id="tools-panel-quick">
+        <div class="tools-grid">
+          <!-- Card 1: Deal Analyzer (legacy) -->
+          <div class="tool-card" id="tool-deal">
+            <div class="tool-card-label">Calculator</div>
+            <div class="tool-card-title">Deal Analyzer</div>
+            <div class="tool-card-desc">Estimate annual yield and 2-year return on a tax lien or deed purchase.</div>
+            <input class="tool-input" id="inp-price" type="number" placeholder="Purchase price ($)">
+            <input class="tool-input" id="inp-tax" type="number" placeholder="Annual tax ($)">
+            <button class="tool-btn" onclick="runDealAnalyzer()">Analyze</button>
+            <div class="tool-result" id="result-deal"></div>
+          </div>
+          <!-- Card 2: Auction Pulse -->
+          <div class="tool-card" id="tool-pulse">
+            <div class="tool-card-label">Intelligence</div>
+            <div class="tool-card-title">Auction Pulse</div>
+            <div class="tool-card-desc">Check key auction metrics for a state &mdash; rate, redemption, and platform.</div>
+            <input class="tool-input" id="inp-pulse-state" type="text" placeholder="State abbreviation (e.g. FL)">
+            <button class="tool-btn" onclick="runAuctionPulse()">Check Pulse</button>
+            <div class="tool-result" id="result-pulse"></div>
+          </div>
+          <!-- Card 3: Investor DNA -->
+          <div class="tool-card" id="tool-dna">
+            <div class="tool-card-label">Strategy</div>
+            <div class="tool-card-title">Investor DNA</div>
+            <div class="tool-card-desc">Generate a personalized investment profile based on your risk tolerance.</div>
+            <select class="tool-input" id="inp-dna">
+              <option value="Conservative">Conservative</option>
+              <option value="Moderate" selected>Moderate</option>
+              <option value="Aggressive">Aggressive</option>
+            </select>
+            <button class="tool-btn" onclick="runInvestorDNA()">Generate Profile</button>
+            <div class="tool-result" id="result-dna"></div>
+            <div class="tool-locked-overlay" id="lock-dna">
+              <div>&#128274;</div>
+              <div>FULL ACCESS REQUIRED</div>
+              <a class="tool-btn" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Upgrade</a>
+            </div>
+          </div>
+          <!-- Card 4: State Comparison -->
+          <div class="tool-card" id="tool-compare">
+            <div class="tool-card-label">Analysis</div>
+            <div class="tool-card-title">State Comparison</div>
+            <div class="tool-card-desc">Compare two states side-by-side on rate, redemption, and platform.</div>
+            <input class="tool-input" id="inp-state-a" type="text" placeholder="State A (e.g. FL)">
+            <input class="tool-input" id="inp-state-b" type="text" placeholder="State B (e.g. AZ)">
+            <button class="tool-btn" onclick="runStateCompare()">Compare</button>
+            <div class="tool-result" id="result-compare"></div>
+            <div class="tool-locked-overlay" id="lock-compare">
+              <div>&#128274;</div>
+              <div>FULL ACCESS REQUIRED</div>
+              <a class="tool-btn" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Upgrade</a>
+            </div>
           </div>
         </div>
       </div>
@@ -3501,6 +3644,7 @@ function runStateCompare() {
 // === ADVISOR FUNCTIONS ===
 var _sageHistory = [];
 var _sageQuestionCount = 0;
+var _sageLastCTATurn = -10; // FREQUENCY RULE: track last turn a CTA was shown
 var _sageFirstResponse = true;
 
 function askSageChip(btn) {
@@ -3548,7 +3692,9 @@ function sendAdvisorMessage() {
   var delay = 600 + Math.floor(Math.random() * 600);
   setTimeout(function() {
     var response = getAdvisorResponse(text);
+    var hasCTA = response.indexOf('[CTA]') !== -1;
     var rendered = response.replace(/\[CTA\]/g, renderSageCTA());
+    if (hasCTA) _sageLastCTATurn = _sageQuestionCount;
     if (_sageFirstResponse) {
       rendered += '<div style="margin-top:10px;font-size:11px;color:var(--text3);line-height:1.5;">Rates and rules vary by state and county \u2014 always verify with the official authority before transacting.</div>';
       _sageFirstResponse = false;
@@ -3920,7 +4066,11 @@ function findSageState(q) {
 function getAdvisorResponse(input) {
   var q = input.toLowerCase();
   var stateKey = findSageState(q);
-  var needsCTA = _sageQuestionCount >= 3;
+  // FREQUENCY RULE: Never deploy CTA on back-to-back responses.
+  // If CTA was just shown and investor did not engage — wait at least 2 more exchanges.
+  // Cold factual questions do not trigger a CTA.
+  var ctaGap = _sageQuestionCount - _sageLastCTATurn;
+  var needsCTA = _sageQuestionCount >= 3 && ctaGap >= 3;
 
   // State-specific query
   if (stateKey && SAGE_STATES[stateKey]) {
@@ -4157,8 +4307,16 @@ function initVersusTab() {
   }).join('');
   selA.innerHTML = optionsHtml;
   selB.innerHTML = optionsHtml;
-  selA.value = 'FL';
-  selB.value = 'TX';
+  // Read localStorage pre-selection from Deal Analyzer, fallback to FL/TX
+  var preA = 'FL', preB = 'TX';
+  try {
+    var storedA = localStorage.getItem('versus_state_a');
+    var storedB = localStorage.getItem('versus_state_b');
+    if (storedA) { preA = storedA; localStorage.removeItem('versus_state_a'); }
+    if (storedB) { preB = storedB; localStorage.removeItem('versus_state_b'); }
+  } catch(e) { /* localStorage not available */ }
+  selA.value = preA;
+  selB.value = preB;
   selA.addEventListener('change', runVersusCompare);
   selB.addEventListener('change', runVersusCompare);
   runVersusCompare();
@@ -4301,7 +4459,7 @@ function vsGenerateInsights(a, b, rateA, rateB, redA, redB, onA, onB) {
   // Type difference
   if (out.length < 3 && a.type !== b.type) {
     var typeExplain = {
-      lien: 'a debt instrument — you earn interest while the owner retains the property',
+      lien: 'a debt instrument — interest accrues per statute while the owner retains the property',
       deed: 'a property acquisition — you receive the deed directly at sale',
       hybrid: 'a hybrid system offering both lien and deed pathways',
       redeemable: 'a redeemable deed — you acquire the deed but the owner may redeem within a statutory window',
@@ -4716,12 +4874,17 @@ function dnaShareProfile() {
 
 // Initialize DNA when tab is first switched to
 var dnaInitialized = false;
+var daInitialized = false;
 var origSwitchTabDna = switchTab;
 switchTab = function(name) {
   origSwitchTabDna(name);
   if (name === 'dna' && !dnaInitialized) {
     dnaInitialized = true;
     dnaInit();
+  }
+  if (name === 'tools' && !daInitialized) {
+    daInitialized = true;
+    daInit();
   }
 };
 
@@ -5021,6 +5184,298 @@ document.addEventListener('keydown', function(e) {
 
 // Init badge on load
 pulseUpdateBadge();
+
+// ═══════════════════════════════════════════════════════════
+// DEAL ANALYZER (Concept C)
+// ═══════════════════════════════════════════════════════════
+
+function switchToolsPanel(panel) {
+  document.querySelectorAll('.tools-subnav-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tools-subpanel').forEach(function(p) { p.classList.remove('active'); });
+  var btn = document.querySelector('.tools-subnav-btn[onclick*="' + panel + '"]');
+  if (btn) btn.classList.add('active');
+  var pnl = document.getElementById('tools-panel-' + panel);
+  if (pnl) pnl.classList.add('active');
+}
+
+var daScenario = 'realistic';
+var daAmount = 10000;
+
+function daInit() {
+  if (!window.STATES_V2) return;
+  var states = window.STATES_V2.slice().sort(function(a, b) { return a.name.localeCompare(b.name); });
+  var selA = document.getElementById('da-select-a');
+  var selB = document.getElementById('da-select-b');
+  if (!selA || !selB) return;
+  var html = states.map(function(s) {
+    return '<option value="' + escapeHtml(s.code) + '">' + escapeHtml(s.name) + '</option>';
+  }).join('');
+  selA.innerHTML = html;
+  selB.innerHTML = html;
+  selA.value = 'FL';
+  selB.value = 'IA';
+  daCalculate();
+}
+
+function daUpdateAmount(val) {
+  daAmount = parseInt(val);
+  document.getElementById('da-amount-display').textContent = '$' + daAmount.toLocaleString();
+  daCalculate();
+}
+
+function daSetScenario(s) {
+  daScenario = s;
+  document.querySelectorAll('.da-scenario-btn').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('data-scenario') === s);
+  });
+  daCalculate();
+}
+
+// === RATE & REDEMPTION PARSING (from STATES_V2 data) ===
+
+function daParseRate(rateStr) {
+  if (!rateStr || rateStr === 'N/A') return 0;
+  var m = String(rateStr).match(/(\d+\.?\d*)%/);
+  return m ? parseFloat(m[1]) / 100 : 0;
+}
+
+function daParseRedemptionYears(rStr) {
+  if (!rStr || rStr === 'N/A') return 1;
+  var s = String(rStr).toLowerCase();
+  if (/none|no redempt/i.test(s)) return 0;
+  var mo = s.match(/(\d+)\s*months?/i);
+  if (mo) return parseInt(mo[1]) / 12;
+  var yr = s.match(/([\d.]+)\s*years?/i);
+  if (yr) return parseFloat(yr[1]);
+  var dy = s.match(/(\d+)\s*days?/i);
+  if (dy) return parseInt(dy[1]) / 365;
+  return 1;
+}
+
+function daIsBidDown(state) {
+  var bm = (state.bidMethod || state.rateNote || '').toLowerCase();
+  return /bid.?down/i.test(bm);
+}
+
+// === MATH ENGINE ===
+// Pulls all values from states-data-v2.js fields — not hardcoded
+
+var DA_PENALTY_STATES = {
+  TX: function(principal, scenario) {
+    var rates = {conservative: {penalty:0.25, redemption:0.50}, realistic: {penalty:0.25, redemption:0.80}, optimistic: {penalty:0.50, redemption:0.95}};
+    var r = rates[scenario];
+    return {interest: principal * r.penalty * r.redemption, holdYears: 2, note: 'Penalty structure \u2014 not annual interest. Homestead/ag 2yr window.'};
+  },
+  GA: function(principal, scenario) {
+    var rates = {conservative: {penalty:0.20, redemption:0.50}, realistic: {penalty:0.20, redemption:0.80}, optimistic: {penalty:0.30, redemption:0.95}};
+    var r = rates[scenario];
+    return {interest: principal * r.penalty * r.redemption, holdYears: 1, note: 'Penalty structure \u2014 not annual interest.'};
+  },
+  TN: function(principal, scenario) {
+    var rates = {conservative: {penalty:0.10, redemption:0.50}, realistic: {penalty:0.10, redemption:0.80}, optimistic: {penalty:0.15, redemption:0.95}};
+    var r = rates[scenario];
+    return {interest: principal * r.penalty * r.redemption, holdYears: 1, note: 'Penalty structure \u2014 not annual interest.'};
+  },
+  IL: function(principal, scenario) {
+    var redemptionRates = {conservative:0.50, realistic:0.80, optimistic:0.95};
+    var interest = principal * 0.36 * redemptionRates[scenario];
+    return {interest: interest, holdYears: 2.5, note: '36% penalty structure \u2014 not annual interest.'};
+  }
+};
+
+function daCalcState(stateCode) {
+  var sv2 = window.STATES_V2 ? window.STATES_V2.find(function(s) { return s.code === stateCode; }) : null;
+  if (!sv2) return null;
+
+  var type = sv2.type;
+  var principal = daAmount;
+
+  // Deed states — no interest calculation
+  if (type === 'deed' || type === 'forfeiture') {
+    return {
+      isDeed: true,
+      type: type,
+      stateName: sv2.name,
+      rate: sv2.rate,
+      redemption: sv2.redemption,
+      bidMethod: sv2.bidMethod,
+      code: stateCode
+    };
+  }
+
+  // Special penalty states
+  if (DA_PENALTY_STATES[stateCode]) {
+    var pen = DA_PENALTY_STATES[stateCode](principal, daScenario);
+    var totalRecovered = principal + pen.interest;
+    var effYield = pen.holdYears > 0 ? (pen.interest / principal / pen.holdYears) * 100 : 0;
+    return {
+      isDeed: false,
+      type: type,
+      stateName: sv2.name,
+      rate: sv2.rate,
+      redemption: sv2.redemption,
+      bidMethod: sv2.bidMethod,
+      code: stateCode,
+      interest: pen.interest,
+      total: totalRecovered,
+      effectiveYield: effYield,
+      holdYears: pen.holdYears,
+      note: pen.note,
+      isPenalty: true,
+      isBidDown: false
+    };
+  }
+
+  // Standard lien / hybrid / redeemable
+  var statRate = daParseRate(sv2.rate);
+  var holdYears = daParseRedemptionYears(sv2.redemption);
+  if (holdYears <= 0) holdYears = 1;
+  var bidDown = daIsBidDown(sv2);
+
+  // Scenario multipliers
+  var rateMultiplier, redemptionRate;
+  if (bidDown) {
+    var rm = {conservative:0.40, realistic:0.75, optimistic:1.0};
+    rateMultiplier = rm[daScenario];
+  } else {
+    var rm2 = {conservative:0.80, realistic:0.95, optimistic:1.0};
+    rateMultiplier = rm2[daScenario];
+  }
+  var rr = {conservative:0.50, realistic:0.80, optimistic:0.95};
+  redemptionRate = rr[daScenario];
+
+  var effectiveRate = statRate * rateMultiplier;
+  var interest = principal * effectiveRate * holdYears * redemptionRate;
+  var totalRecovered = principal + interest;
+  var effYield = holdYears > 0 ? (interest / principal / holdYears) * 100 : 0;
+
+  return {
+    isDeed: false,
+    type: type,
+    stateName: sv2.name,
+    rate: sv2.rate,
+    redemption: sv2.redemption,
+    bidMethod: sv2.bidMethod,
+    code: stateCode,
+    interest: interest,
+    total: totalRecovered,
+    effectiveYield: effYield,
+    holdYears: holdYears,
+    note: bidDown ? 'Bid-down \u2014 actual rate varies by county competition' : null,
+    isPenalty: false,
+    isBidDown: bidDown
+  };
+}
+
+function daCalculate() {
+  var selA = document.getElementById('da-select-a');
+  var selB = document.getElementById('da-select-b');
+  if (!selA || !selB) return;
+  var codeA = selA.value;
+  var codeB = selB.value;
+  var rA = daCalcState(codeA);
+  var rB = daCalcState(codeB);
+
+  daRenderColumn('a', rA);
+  daRenderColumn('b', rB);
+  daRenderWinner(rA, rB);
+  daRenderInsight(rA, rB);
+}
+
+function daRenderColumn(side, r) {
+  if (!r) return;
+  var metaEl = document.getElementById('da-col-meta-' + side);
+  var resultEl = document.getElementById('da-result-' + side);
+  var breakdownEl = document.getElementById('da-breakdown-' + side);
+  var colEl = document.getElementById('da-col-' + side);
+
+  // Type badge + stat pills
+  var colors = {lien:'#FFBE0B',deed:'#00D4FF',redeemable:'#FF2D55',hybrid:'#BF5FFF',forfeiture:'#FF6B35'};
+  var typeLabels = {lien:'TAX LIEN',deed:'TAX DEED',redeemable:'RDBL DEED',hybrid:'HYBRID',forfeiture:'FORFEITURE'};
+  var c = colors[r.type] || '#00D4FF';
+  var tl = typeLabels[r.type] || r.type.toUpperCase();
+  var rateShort = shortenRate(r.rate, r.type);
+  var holdShort = shortenHold(r.redemption, r.type);
+  var bidShort = r.bidMethod ? (r.bidMethod.length > 20 ? r.bidMethod.slice(0, 18) + '\u2026' : r.bidMethod) : 'N/A';
+
+  metaEl.innerHTML =
+    '<span class="da-meta-badge" style="color:' + c + ';border-color:' + c + '44;background:' + c + '15">' + escapeHtml(tl) + '</span>' +
+    '<span class="da-winner-badge">BETTER RETURN</span>' +
+    '<span class="da-meta-pill">' + escapeHtml(rateShort) + '</span>' +
+    '<span class="da-meta-pill">' + escapeHtml(holdShort) + '</span>' +
+    '<span class="da-meta-pill">' + escapeHtml(bidShort) + '</span>';
+
+  if (r.isDeed) {
+    resultEl.innerHTML = '<div class="da-result-msg">' + escapeHtml(r.stateName) + ' is a ' + escapeHtml(tl) + ' state. Returns come from property resale, not interest payments. This calculator works with lien and redeemable deed states.</div>';
+    breakdownEl.innerHTML = '';
+    colEl.classList.remove('winner');
+    return;
+  }
+
+  var dollarFmt = function(n) { return '$' + Math.round(n).toLocaleString(); };
+  resultEl.innerHTML =
+    '<div class="da-result-label">Projected Return</div>' +
+    '<div class="da-result-value" id="da-return-' + side + '">' + dollarFmt(r.interest) + '</div>';
+
+  var bHtml =
+    '<div class="da-breakdown-row"><span class="da-breakdown-label">Interest Earned</span><span class="da-breakdown-value">' + dollarFmt(r.interest) + '</span></div>' +
+    '<div class="da-breakdown-row"><span class="da-breakdown-label">Total Recovered</span><span class="da-breakdown-value">' + dollarFmt(r.total) + '</span></div>' +
+    '<div class="da-breakdown-row"><span class="da-breakdown-label">Effective Annual Yield</span><span class="da-breakdown-value">' + r.effectiveYield.toFixed(1) + '%</span></div>' +
+    '<div class="da-breakdown-row"><span class="da-breakdown-label">Hold Period</span><span class="da-breakdown-value">' + (r.holdYears < 1 ? Math.round(r.holdYears * 12) + ' mo' : r.holdYears.toFixed(1) + ' yr') + '</span></div>';
+  if (r.note) {
+    bHtml += '<div class="da-breakdown-note">' + escapeHtml(r.note) + '</div>';
+  }
+  breakdownEl.innerHTML = bHtml;
+}
+
+function daRenderWinner(rA, rB) {
+  var colA = document.getElementById('da-col-a');
+  var colB = document.getElementById('da-col-b');
+  colA.classList.remove('winner');
+  colB.classList.remove('winner');
+
+  if (!rA || !rB) return;
+  // Both deed = no winner
+  if (rA.isDeed && rB.isDeed) return;
+  // One deed = other wins
+  if (rA.isDeed && !rB.isDeed) { colB.classList.add('winner'); return; }
+  if (rB.isDeed && !rA.isDeed) { colA.classList.add('winner'); return; }
+  // Compare interest
+  if (rA.interest > rB.interest) colA.classList.add('winner');
+  else if (rB.interest > rA.interest) colB.classList.add('winner');
+}
+
+function daRenderInsight(rA, rB) {
+  var el = document.getElementById('da-insight');
+  if (!el || !rA || !rB) return;
+  if (rA.isDeed && rB.isDeed) {
+    el.textContent = 'Both states are deed states. Returns come from property resale \u2014 use the Versus tab for a full side-by-side comparison.';
+    return;
+  }
+  if (rA.isDeed || rB.isDeed) {
+    var lien = rA.isDeed ? rB : rA;
+    var deed = rA.isDeed ? rA : rB;
+    el.textContent = escapeHtml(lien.stateName) + ' offers statutory interest returns while ' + escapeHtml(deed.stateName) + ' is a deed state focused on property acquisition \u2014 different investment vehicles entirely.';
+    return;
+  }
+  // Both calculable
+  var winner = rA.interest >= rB.interest ? rA : rB;
+  var loser = rA.interest >= rB.interest ? rB : rA;
+  var holdComp = winner.holdYears > loser.holdYears ? 'longer' : (winner.holdYears < loser.holdYears ? 'shorter' : 'similar');
+  var bidComp = winner.isBidDown ? 'competitive bidding' : 'less competitive bidding';
+  el.textContent = escapeHtml(winner.stateName) + ' shows a higher statutory rate with ' + bidComp + ' \u2014 but requires a ' + holdComp + ' hold period.';
+}
+
+function daOpenInVersus() {
+  var selA = document.getElementById('da-select-a');
+  var selB = document.getElementById('da-select-b');
+  if (!selA || !selB) return;
+  try {
+    localStorage.setItem('versus_state_a', selA.value);
+    localStorage.setItem('versus_state_b', selB.value);
+  } catch(e) { /* localStorage not available */ }
+  switchTab('versus');
+}
 </script>
 <!-- PULSE DRAWER -->
 <div id="pulse-overlay" onclick="closePulseDrawer()"></div>
