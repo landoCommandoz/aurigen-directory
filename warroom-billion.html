@@ -67,6 +67,7 @@
       font-family: 'DM Sans', sans-serif;
       font-size: 14px;
       overflow: hidden;
+      overflow-x: hidden;
     }
 
     /* === KEYFRAMES === */
@@ -266,6 +267,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.8s var(--transition);
@@ -368,6 +370,159 @@
     #nav-tier-badge.paid {
       border-color: var(--accent-mid);
       color: var(--accent);
+    }
+
+    /* === MOBILE NAV HAMBURGER === */
+    #nav-active-label {
+      display: none;
+      flex: 1;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding-left: 12px;
+    }
+    #hamburger-btn {
+      display: none;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg3);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+      padding: 0;
+      flex-shrink: 0;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    #hamburger-btn:hover { border-color: var(--accent); }
+    #hamburger-btn.active {
+      border-color: var(--accent);
+      background: rgba(201,168,76,0.08);
+    }
+    .hamburger-line {
+      display: block;
+      width: 16px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 1px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    #hamburger-btn.active .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(4px, 4px);
+    }
+    #hamburger-btn.active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    #hamburger-btn.active .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(4px, -4px);
+    }
+
+    /* Mobile nav drawer */
+    #mobile-nav-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 499;
+      background: rgba(0,0,0,0.6);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    #mobile-nav-overlay.open { opacity: 1; pointer-events: auto; }
+    #mobile-nav-drawer {
+      position: fixed;
+      top: 48px;
+      right: 0;
+      bottom: 0;
+      width: 240px;
+      z-index: 500;
+      background: var(--bg2);
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.25s ease-out;
+    }
+    #mobile-nav-drawer.open { transform: translateX(0); }
+    .mobile-nav-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text2);
+    }
+    .mobile-nav-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0;
+    }
+    .mobile-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text2);
+      cursor: pointer;
+      min-height: 44px;
+      transition: color 0.2s, background 0.2s;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+    }
+    .mobile-nav-item:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+    .mobile-nav-item.active { color: var(--accent); background: rgba(201,168,76,0.06); }
+    .mobile-nav-item-icon { font-size: 16px; width: 20px; text-align: center; flex-shrink: 0; }
+    .mobile-nav-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 4px 20px;
+    }
+    .mobile-nav-footer {
+      border-top: 1px solid var(--border);
+      padding: 16px 20px;
+    }
+    .mobile-nav-upgrade {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--accent);
+      border: none;
+      border-radius: 4px;
+      padding: 12px;
+      cursor: pointer;
+      min-height: 44px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .mobile-nav-upgrade:hover { opacity: 0.85; }
+
+    @media(max-width:768px) {
+      .nav-tab { display: none !important; }
+      #nav-spacer { display: none !important; }
+      #nav-tier-badge { display: none !important; }
+      #nav-active-label { display: block; }
+      #hamburger-btn { display: flex; }
+      #nav-logo { margin-right: 0; }
+      #top-nav { padding: 0 12px; gap: 8px; }
     }
 
     /* === PULSE BELL === */
@@ -697,6 +852,7 @@
       display: flex;
       min-height: 0;
       overflow: hidden;
+      overflow-x: hidden;
     }
 
     /* === TABS === */
@@ -1024,10 +1180,55 @@
     @media(max-width:600px){.county-search-input{height:44px;font-size:14px}}
 
     /* === DISCLAIMER FOOTER === */
-    #disclaimer-footer{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(1,4,12,0.95);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,0.06);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;pointer-events:none}
+    #disclaimer-footer{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(1,4,12,0.95);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,0.06);pointer-events:none}
+    #disclaimer-full{padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px}
     #disclaimer-footer p{font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.02em;line-height:1.5;max-width:900px;text-align:center;margin:0}
     #disclaimer-footer a{color:rgba(212,160,23,0.6);text-decoration:underline;text-underline-offset:2px;pointer-events:auto}
     #disclaimer-footer a:hover{color:#d4a017}
+
+    /* Mobile collapsed disclaimer */
+    .disclaimer-collapsed{display:none}
+    .disclaimer-expand-panel{display:none}
+
+    @media(max-width:768px){
+      #disclaimer-full{display:none}
+      .disclaimer-collapsed{
+        display:flex;align-items:center;justify-content:center;gap:8px;
+        padding:8px 16px;pointer-events:auto;
+      }
+      .disclaimer-short{
+        font-size:10px;color:var(--text2);font-family:'Space Mono',monospace;
+        letter-spacing:0.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+      }
+      .disclaimer-expand-link{
+        font-size:10px;color:var(--accent);font-weight:600;
+        font-family:'Space Mono',monospace;cursor:pointer;white-space:nowrap;flex-shrink:0;
+        background:none;border:none;pointer-events:auto;
+      }
+      .disclaimer-expand-panel{
+        overflow:hidden;max-height:0;transition:max-height 250ms ease-out;
+        border-top:1px solid rgba(201,168,76,0.2);background:var(--bg2);pointer-events:auto;
+      }
+      .disclaimer-expand-panel.open{max-height:300px}
+      .disclaimer-panel-inner{padding:16px}
+      .disclaimer-panel-head{
+        display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;
+      }
+      .disclaimer-panel-label{
+        font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;
+        text-transform:uppercase;color:var(--accent);
+      }
+      .disclaimer-panel-collapse{
+        font-size:12px;color:var(--text2);cursor:pointer;background:none;border:none;
+        font-family:'Space Mono',monospace;pointer-events:auto;
+      }
+      .disclaimer-panel-text{
+        font-size:11px;color:var(--text2);line-height:1.6;margin-bottom:10px;
+      }
+      .disclaimer-panel-link{
+        font-size:11px;color:var(--accent);font-weight:700;text-decoration:none;
+      }
+    }
 
     /* === TOOLS TAB === */
     #panel-tools {
@@ -1747,11 +1948,13 @@
     @media (max-width: 768px) {
       .auctions-sidebar { display: none; }
       .auctions-filter-toggle { display: flex; align-items: center; gap: 6px; }
-      .auctions-main { padding: 14px 12px 64px; }
-      .auction-card { grid-template-columns: 52px 1fr; gap: 10px; }
+      .auctions-main { padding: 14px 12px 64px; overflow-x: hidden; }
+      .auctions-cards { overflow-x: hidden; }
+      .auction-card { grid-template-columns: 52px 1fr; gap: 10px; overflow: hidden; }
       .auction-card-actions {
         grid-column: 1 / -1; flex-direction: row; align-items: stretch;
       }
+      .auction-pill { word-break: break-word; white-space: normal; }
       .auction-btn-register { flex: 1; text-align: center; }
       .auction-btn-clarity { min-height: 44px; justify-content: center; }
       .auctions-interstitial-actions { flex-direction: column; }
@@ -1904,10 +2107,29 @@
     <div class="nav-tab" id="tab-advisor" onclick="switchTab('advisor')">Advisor</div>
     <div class="nav-tab" id="tab-tools" onclick="switchTab('tools')">Tools</div>
     <div class="nav-tab" id="tab-account" onclick="switchTab('account')">Account</div>
+    <span id="nav-active-label">Map</span>
     <div id="nav-spacer"></div>
     <div id="pulse-bell" onclick="togglePulseDrawer()" aria-label="Open alerts"><span aria-hidden="true">🔔</span><span id="pulse-badge" class="hidden">0</span></div>
+    <button id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
     <div id="nav-tier-badge">FREE</div>
   </nav>
+  <div id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
+  <div id="mobile-nav-drawer">
+    <div class="mobile-nav-header">Navigation</div>
+    <div class="mobile-nav-items">
+      <button class="mobile-nav-item active" data-tab="map" onclick="mobileNavTo('map')"><span class="mobile-nav-item-icon">🗺</span>Map</button>
+      <button class="mobile-nav-item" data-tab="tools" onclick="mobileNavTo('tools')"><span class="mobile-nav-item-icon">🔨</span>Tools</button>
+      <button class="mobile-nav-item" data-tab="advisor" onclick="mobileNavTo('advisor')"><span class="mobile-nav-item-icon">🤖</span>Advisor</button>
+      <button class="mobile-nav-item" data-tab="auctions" onclick="mobileNavTo('auctions')"><span class="mobile-nav-item-icon">📅</span>Auctions</button>
+      <button class="mobile-nav-item" data-tab="versus" onclick="mobileNavTo('versus')"><span class="mobile-nav-item-icon">⚖️</span>Versus</button>
+      <button class="mobile-nav-item" data-tab="dna" onclick="mobileNavTo('dna')"><span class="mobile-nav-item-icon">🧬</span>DNA</button>
+      <div class="mobile-nav-divider"></div>
+      <button class="mobile-nav-item" data-tab="account" onclick="mobileNavTo('account')"><span class="mobile-nav-item-icon">👤</span>Account</button>
+    </div>
+    <div class="mobile-nav-footer">
+      <a class="mobile-nav-upgrade" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00" target="_blank" rel="noopener">Full Access &rarr;</a>
+    </div>
+  </div>
   <div id="main-content">
     <div class="tab-panel active" id="panel-map">
       <!-- Header -->
@@ -5182,6 +5404,74 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape' && _pulseOpen) closePulseDrawer();
 });
 
+// === MOBILE DISCLAIMER TOGGLE ===
+function toggleDisclaimer() {
+  var panel = document.getElementById('disclaimer-panel');
+  var toggle = document.getElementById('disclaimer-toggle');
+  if (!panel || !toggle) return;
+  var isOpen = panel.classList.contains('open');
+  if (isOpen) {
+    panel.classList.remove('open');
+    toggle.innerHTML = 'Legal &uarr;';
+  } else {
+    panel.classList.add('open');
+    toggle.innerHTML = 'Legal &darr;';
+  }
+}
+
+// === MOBILE HAMBURGER NAV ===
+var _mobileNavOpen = false;
+var MOBILE_NAV_LABELS = {
+  map: 'Map', tools: 'Tools', dna: 'DNA', advisor: 'Advisor',
+  auctions: 'Auctions', versus: 'Versus', account: 'Account'
+};
+
+function toggleMobileNav() {
+  if (_mobileNavOpen) closeMobileNav();
+  else openMobileNav();
+}
+
+function openMobileNav() {
+  _mobileNavOpen = true;
+  document.getElementById('mobile-nav-overlay').classList.add('open');
+  document.getElementById('mobile-nav-drawer').classList.add('open');
+  document.getElementById('hamburger-btn').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileNav() {
+  _mobileNavOpen = false;
+  document.getElementById('mobile-nav-overlay').classList.remove('open');
+  document.getElementById('mobile-nav-drawer').classList.remove('open');
+  document.getElementById('hamburger-btn').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function mobileNavTo(tab) {
+  closeMobileNav();
+  switchTab(tab);
+}
+
+function updateMobileNavState(tab) {
+  var label = document.getElementById('nav-active-label');
+  if (label) label.textContent = MOBILE_NAV_LABELS[tab] || tab;
+  document.querySelectorAll('.mobile-nav-item').forEach(function(item) {
+    item.classList.toggle('active', item.getAttribute('data-tab') === tab);
+  });
+}
+
+// Wrap switchTab to update mobile nav state
+var _origSwitchTabMobile = switchTab;
+switchTab = function(name) {
+  _origSwitchTabMobile(name);
+  updateMobileNavState(name);
+};
+
+// Escape key closes mobile nav
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && _mobileNavOpen) closeMobileNav();
+});
+
 // Init badge on load
 pulseUpdateBadge();
 
@@ -5493,7 +5783,23 @@ function daOpenInVersus() {
 </div>
 
 <footer id="disclaimer-footer">
-  <p>This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting. <a href="/legal/" target="_blank" rel="noopener">Legal</a></p>
+  <div id="disclaimer-full">
+    <p>This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting. <a href="/legal/" target="_blank" rel="noopener">Legal</a></p>
+  </div>
+  <div class="disclaimer-expand-panel" id="disclaimer-panel">
+    <div class="disclaimer-panel-inner">
+      <div class="disclaimer-panel-head">
+        <span class="disclaimer-panel-label">Legal Disclaimer</span>
+        <button class="disclaimer-panel-collapse" onclick="toggleDisclaimer()">&darr; Collapse</button>
+      </div>
+      <div class="disclaimer-panel-text">This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting.</div>
+      <a class="disclaimer-panel-link" href="/legal/" target="_blank" rel="noopener noreferrer">View Full Legal Page &rarr;</a>
+    </div>
+  </div>
+  <div class="disclaimer-collapsed">
+    <span class="disclaimer-short">Educational only &middot; Not investment advice</span>
+    <button class="disclaimer-expand-link" id="disclaimer-toggle" onclick="toggleDisclaimer()">Legal &uarr;</button>
+  </div>
 </footer>
 </body>
 </html>
