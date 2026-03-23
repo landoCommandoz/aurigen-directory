@@ -51,6 +51,10 @@
       --shadow-accent: 0 0 40px rgba(201,168,76,0.08);
       --radius: 2px;
       --transition: cubic-bezier(0.16,1,0.3,1);
+      --pink: #E85D8A;
+      --blue: #4A9EFF;
+      --green: #4ADE80;
+      --teal: #2DD4C0;
     }
 
     /* === RESET === */
@@ -364,6 +368,327 @@
     #nav-tier-badge.paid {
       border-color: var(--accent-mid);
       color: var(--accent);
+    }
+
+    /* === PULSE BELL === */
+    #pulse-bell {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      margin-right: 10px;
+      flex-shrink: 0;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    #pulse-bell:hover { border-color: var(--accent); }
+    #pulse-bell.active {
+      border-color: var(--pink);
+      background: rgba(232,93,138,0.1);
+    }
+    #pulse-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--pink);
+      border: 2px solid var(--bg);
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulseBadge 2s ease-in-out infinite;
+    }
+    #pulse-badge.hidden { display: none; }
+    @keyframes pulseBadge {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* === PULSE OVERLAY === */
+    #pulse-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 900;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    #pulse-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* === PULSE DRAWER === */
+    #pulse-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 380px;
+      z-index: 910;
+      background: var(--bg);
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s var(--transition);
+    }
+    #pulse-drawer.open { transform: translateX(0); }
+
+    .pulse-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .pulse-header-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.1em;
+      color: var(--text);
+    }
+    .pulse-header-count {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--pink);
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    .pulse-header-close {
+      margin-left: auto;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: var(--text2);
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .pulse-header-close:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+
+    /* Filter tabs */
+    .pulse-filters {
+      display: flex;
+      gap: 6px;
+      padding: 10px 16px;
+      overflow-x: auto;
+      flex-shrink: 0;
+      border-bottom: 1px solid var(--border);
+      -webkit-overflow-scrolling: touch;
+    }
+    .pulse-filter-tab {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: transparent;
+      color: var(--text2);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .pulse-filter-tab:hover { border-color: var(--accent); color: var(--text); }
+    .pulse-filter-tab.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(201,168,76,0.08);
+    }
+
+    /* Profile strip */
+    .pulse-profile {
+      padding: 10px 16px;
+      font-size: 11px;
+      color: var(--text2);
+      background: rgba(45,212,192,0.04);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      line-height: 1.5;
+    }
+    .pulse-profile-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .pulse-profile a {
+      color: var(--accent);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .pulse-profile a:hover { text-decoration: underline; }
+    .pulse-state-name { color: var(--teal); font-weight: 700; }
+
+    /* Alert feed */
+    .pulse-feed {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 0;
+    }
+
+    /* Alert card */
+    .pulse-alert {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      border-left-width: 3px;
+      transition: border-color 0.2s, opacity 0.2s, transform 0.2s;
+    }
+    .pulse-alert:hover { border-color: rgba(201,168,76,0.2); }
+    .pulse-alert.type-critical { border-left-color: var(--pink); }
+    .pulse-alert.type-upcoming { border-left-color: var(--accent); }
+    .pulse-alert.type-intel    { border-left-color: var(--blue); }
+    .pulse-alert.type-match    { border-left-color: var(--green); }
+
+    .pulse-alert-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .pulse-alert-icon { font-size: 14px; flex-shrink: 0; }
+    .pulse-alert-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      flex: 1;
+      line-height: 1.3;
+    }
+    .pulse-alert-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 7px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+    .pulse-alert-badge.critical { background: rgba(232,93,138,0.15); color: var(--pink); }
+    .pulse-alert-badge.upcoming { background: rgba(201,168,76,0.15); color: var(--accent); }
+    .pulse-alert-badge.intel    { background: rgba(74,158,255,0.15); color: var(--blue); }
+    .pulse-alert-badge.match    { background: rgba(74,222,128,0.15); color: var(--green); }
+
+    .pulse-alert-body {
+      font-size: 11px;
+      color: var(--text2);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .pulse-alert-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .pulse-alert-location {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: var(--text2);
+      opacity: 0.7;
+    }
+    .pulse-alert-action {
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 700;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      transition: opacity 0.2s;
+    }
+    .pulse-alert-action:hover { opacity: 0.7; }
+
+    /* CTA block */
+    .pulse-cta {
+      padding: 16px;
+      border-top: 1px solid var(--border);
+      background: var(--bg3);
+      flex-shrink: 0;
+    }
+    .pulse-cta-headline {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .pulse-cta-sub {
+      font-size: 11px;
+      color: var(--text2);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .pulse-cta-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--accent);
+      border: none;
+      border-radius: 6px;
+      padding: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      min-height: 44px;
+    }
+    .pulse-cta-btn:hover { opacity: 0.85; }
+
+    .pulse-disclaimer {
+      font-size: 9px;
+      color: var(--text2);
+      opacity: 0.5;
+      padding: 6px 16px 10px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    /* Pulse empty */
+    .pulse-empty {
+      text-align: center;
+      color: var(--text2);
+      font-size: 12px;
+      padding: 40px 20px;
+    }
+
+    @media (max-width: 768px) {
+      #pulse-drawer { width: 100%; }
     }
 
     /* === MAIN CONTENT === */
@@ -1513,6 +1838,7 @@
     <div class="nav-tab" id="tab-versus" onclick="switchTab('versus')">Versus</div>
     <div class="nav-tab" id="tab-account" onclick="switchTab('account')">Account</div>
     <div id="nav-spacer"></div>
+    <div id="pulse-bell" onclick="togglePulseDrawer()" aria-label="Open alerts"><span aria-hidden="true">🔔</span><span id="pulse-badge" class="hidden">0</span></div>
     <div id="nav-tier-badge">FREE</div>
   </nav>
   <div id="main-content">
@@ -4398,7 +4724,319 @@ switchTab = function(name) {
     dnaInit();
   }
 };
+
+// === PULSE BELL DRAWER ===
+var PULSE_ALERTS = [
+  {
+    id: 'iowa-apr-2026',
+    type: 'upcoming',
+    icon: '\uD83D\uDCC5',
+    title: 'Iowa statewide lien sale \u2014 14 days',
+    body: 'Your #2 DNA match has a confirmed statewide auction April 14. Registration deadline April 10. Random selection \u2014 no competitive rate pressure.',
+    state: 'IA',
+    location: 'IA \u00B7 Statewide \u00B7 County Treasurer',
+    action: 'View in Auctions',
+    actionTab: 'auctions',
+    dnaStates: ['IA'],
+    date: '2026-04-14',
+    regDeadline: '2026-04-10'
+  },
+  {
+    id: 'louisiana-2026-system',
+    type: 'critical',
+    icon: '\u26A0\uFE0F',
+    title: 'Louisiana: Entirely new system launched Jan 1, 2026',
+    body: 'Bid-down interest replaces ownership bid-down. New foreclosure process now in effect. Verify all data before transacting.',
+    state: 'LA',
+    location: 'LA \u00B7 Statewide \u00B7 All parishes',
+    action: 'View Statute',
+    actionTab: null,
+    dnaStates: [],
+    date: '2026-01-01'
+  },
+  {
+    id: 'pinal-otc-2026',
+    type: 'match',
+    icon: '\uD83C\uDFAF',
+    title: 'Pinal County AZ \u2014 OTC liens available now',
+    body: 'Matches your DNA profile. Direct purchase, no competitive bidding. 16% statutory rate. Confirmed Feb 2026.',
+    state: 'AZ',
+    location: 'AZ \u00B7 Pinal County \u00B7 RealAuction OTC',
+    action: 'View County',
+    actionTab: 'map',
+    dnaStates: ['AZ'],
+    date: null
+  },
+  {
+    id: 'miami-dade-may-2026',
+    type: 'intel',
+    icon: '\uD83D\uDCCA',
+    title: 'Miami-Dade FL \u2014 May 2026 sale confirmed',
+    body: '1,200+ certificates expected. Highly competitive \u2014 bid-down rates averaged 3\u20136% in prime zip codes. Target smaller or inland certificates.',
+    state: 'FL',
+    location: 'FL \u00B7 Miami-Dade \u00B7 RealAuction',
+    action: 'Open Auctions',
+    actionTab: 'auctions',
+    dnaStates: ['FL'],
+    date: '2026-05-12'
+  },
+  {
+    id: 'sedgwick-ks-alert',
+    type: 'critical',
+    icon: '\u26A0\uFE0F',
+    title: 'Sedgwick County KS \u2014 CivicSource sale cancelled',
+    body: 'The annual CivicSource sale has been cancelled. County is transitioning platforms. Verify before registering.',
+    state: 'KS',
+    location: 'KS \u00B7 Sedgwick County',
+    action: 'View Alert',
+    actionTab: null,
+    dnaStates: [],
+    date: null
+  },
+  {
+    id: 'montgomery-md-2026',
+    type: 'critical',
+    icon: '\u26A0\uFE0F',
+    title: 'Montgomery County MD \u2014 platform change',
+    body: 'Montgomery County has switched auction platforms. Verify current registration process before the May sale.',
+    state: 'MD',
+    location: 'MD \u00B7 Montgomery County',
+    action: 'View Alert',
+    actionTab: null,
+    dnaStates: [],
+    date: null
+  }
+];
+
+var _pulseOpen = false;
+var _pulseFilter = 'all';
+var PULSE_FILTER_TABS = [
+  { key: 'all', label: 'All' },
+  { key: 'critical', label: '\u26A0 Critical' },
+  { key: 'upcoming', label: '\uD83D\uDCC5 Upcoming' },
+  { key: 'intel', label: '\uD83D\uDCCA Intel' },
+  { key: 'match', label: '\uD83C\uDFAF Matches' }
+];
+
+function pulseGetDnaStates() {
+  // Try to get DNA top states from the live quiz results
+  if (typeof dnaScoreStates === 'function') {
+    try {
+      var top = dnaScoreStates();
+      if (top && top.length > 0) {
+        return top.map(function(m) { return m.code; });
+      }
+    } catch(e) { /* not initialized */ }
+  }
+  return null;
+}
+
+function pulseGetUnreadCount() {
+  var lastSeen = null;
+  try { lastSeen = localStorage.getItem('pulse_last_seen'); } catch(e) {}
+  if (!lastSeen) return PULSE_ALERTS.length;
+  return 0;
+}
+
+function pulseUpdateBadge() {
+  var badge = document.getElementById('pulse-badge');
+  if (!badge) return;
+  var count = pulseGetUnreadCount();
+  if (count > 0) {
+    badge.textContent = count > 9 ? '9+' : String(count);
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
+}
+
+function pulseMarkSeen() {
+  try { localStorage.setItem('pulse_last_seen', String(Date.now())); } catch(e) {}
+  var badge = document.getElementById('pulse-badge');
+  if (badge) badge.classList.add('hidden');
+}
+
+function togglePulseDrawer() {
+  if (_pulseOpen) {
+    closePulseDrawer();
+  } else {
+    openPulseDrawer();
+  }
+}
+
+function openPulseDrawer() {
+  _pulseOpen = true;
+  document.getElementById('pulse-overlay').classList.add('open');
+  document.getElementById('pulse-drawer').classList.add('open');
+  document.getElementById('pulse-bell').classList.add('active');
+  pulseMarkSeen();
+  pulseUpdateHeaderCount();
+  pulseRenderFilters();
+  pulseRenderProfile();
+  pulseRenderFeed();
+  pulseRenderCta();
+  // Trap focus
+  if (typeof trapFocus === 'function') trapFocus(document.getElementById('pulse-drawer'));
+}
+
+function closePulseDrawer() {
+  _pulseOpen = false;
+  document.getElementById('pulse-overlay').classList.remove('open');
+  document.getElementById('pulse-drawer').classList.remove('open');
+  document.getElementById('pulse-bell').classList.remove('active');
+  if (typeof releaseFocusTrap === 'function') releaseFocusTrap();
+}
+
+function pulseUpdateHeaderCount() {
+  var el = document.getElementById('pulse-new-count');
+  if (el) el.textContent = PULSE_ALERTS.length + ' New';
+}
+
+function pulseRenderFilters() {
+  var cont = document.getElementById('pulse-filters');
+  if (!cont) return;
+  var html = '';
+  PULSE_FILTER_TABS.forEach(function(tab) {
+    html += '<button class="pulse-filter-tab' + (tab.key === _pulseFilter ? ' active' : '') + '" onclick="pulseSetFilter(\'' + tab.key + '\')">' + escapeHtml(tab.label) + '</button>';
+  });
+  cont.innerHTML = html;
+}
+
+function pulseSetFilter(key) {
+  _pulseFilter = key;
+  pulseRenderFilters();
+  pulseRenderFeed();
+}
+
+function pulseRenderProfile() {
+  var el = document.getElementById('pulse-profile');
+  if (!el) return;
+  var dnaStates = pulseGetDnaStates();
+  if (dnaStates && dnaStates.length > 0) {
+    el.innerHTML = '<span class="pulse-profile-dot"></span>Showing alerts for ' +
+      dnaStates.map(function(s) { return '<span class="pulse-state-name">' + escapeHtml(s) + '</span>'; }).join(' \u00B7 ') +
+      ' \u2014 your DNA matched states';
+  } else {
+    el.innerHTML = '<span class="pulse-profile-dot"></span>Showing all alerts \u2014 <a onclick="pulseGoToDna()">take the DNA quiz</a> to personalize this feed';
+  }
+}
+
+function pulseGoToDna() {
+  closePulseDrawer();
+  switchTab('dna');
+}
+
+function pulseFilteredAlerts() {
+  var dnaStates = pulseGetDnaStates();
+  var alerts = PULSE_ALERTS.slice();
+
+  // Sort DNA-matching alerts to top
+  if (dnaStates && dnaStates.length > 0) {
+    alerts.sort(function(a, b) {
+      var aMatch = a.dnaStates.some(function(s) { return dnaStates.indexOf(s) >= 0; }) ? 0 : 1;
+      var bMatch = b.dnaStates.some(function(s) { return dnaStates.indexOf(s) >= 0; }) ? 0 : 1;
+      return aMatch - bMatch;
+    });
+  }
+
+  // Apply type filter
+  if (_pulseFilter !== 'all') {
+    alerts = alerts.filter(function(a) { return a.type === _pulseFilter; });
+  }
+
+  return alerts;
+}
+
+function pulseRenderFeed() {
+  var cont = document.getElementById('pulse-feed');
+  if (!cont) return;
+  var alerts = pulseFilteredAlerts();
+  if (alerts.length === 0) {
+    cont.innerHTML = '<div class="pulse-empty">No alerts match this filter.</div>';
+    return;
+  }
+  var html = '';
+  alerts.forEach(function(a, i) {
+    html += '<div class="pulse-alert type-' + escapeHtml(a.type) + '" style="animation:fadeUp 200ms ease-out ' + (i * 50) + 'ms both">' +
+      '<div class="pulse-alert-head">' +
+        '<span class="pulse-alert-icon">' + a.icon + '</span>' +
+        '<span class="pulse-alert-title">' + escapeHtml(a.title) + '</span>' +
+        '<span class="pulse-alert-badge ' + escapeHtml(a.type) + '">' + escapeHtml(a.type) + '</span>' +
+      '</div>' +
+      '<div class="pulse-alert-body">' + escapeHtml(a.body) + '</div>' +
+      '<div class="pulse-alert-footer">' +
+        '<span class="pulse-alert-location">' + escapeHtml(a.location) + '</span>' +
+        (a.actionTab ? '<button class="pulse-alert-action" onclick="pulseAction(\'' + escapeHtml(a.actionTab) + '\')">' + escapeHtml(a.action) + '</button>' : '<span class="pulse-alert-action" style="opacity:0.5">' + escapeHtml(a.action) + '</span>') +
+      '</div>' +
+    '</div>';
+  });
+  cont.innerHTML = html;
+}
+
+function pulseAction(tab) {
+  closePulseDrawer();
+  switchTab(tab);
+}
+
+function pulseRenderCta() {
+  var cont = document.getElementById('pulse-cta');
+  if (!cont) return;
+  var dnaStates = pulseGetDnaStates();
+  var upcoming = null;
+  var now = Date.now();
+  var BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4';
+
+  // Find earliest upcoming auction in DNA matched states
+  if (dnaStates && dnaStates.length > 0) {
+    var candidates = PULSE_ALERTS.filter(function(a) {
+      if (a.type !== 'upcoming' || !a.date) return false;
+      return a.dnaStates.some(function(s) { return dnaStates.indexOf(s) >= 0; });
+    }).sort(function(a, b) {
+      return new Date(a.date) - new Date(b.date);
+    });
+    if (candidates.length > 0) {
+      var d = new Date(candidates[0].date);
+      var diff = Math.max(0, Math.ceil((d - now) / 86400000));
+      upcoming = { alert: candidates[0], days: diff };
+    }
+  }
+
+  if (upcoming) {
+    cont.innerHTML =
+      '<div class="pulse-cta-headline">' + escapeHtml(upcoming.alert.state) + ' auction in ' + upcoming.days + ' days</div>' +
+      '<div class="pulse-cta-sub">Registration closes ' + escapeHtml(upcoming.alert.regDeadline || 'soon') + '. Most investors book their Clarity Call before the deadline \u2014 not after.</div>' +
+      '<a class="pulse-cta-btn" href="' + BOOKING_URL + '" target="_blank" rel="noopener noreferrer">Book Clarity Call \u2192</a>';
+  } else {
+    cont.innerHTML =
+      '<div class="pulse-cta-headline">Ready to build your strategy?</div>' +
+      '<div class="pulse-cta-sub">Book a Clarity Call to turn your research into an execution plan.</div>' +
+      '<a class="pulse-cta-btn" href="' + BOOKING_URL + '" target="_blank" rel="noopener noreferrer">Book Clarity Call \u2192</a>';
+  }
+}
+
+// Keyboard: Escape closes drawer
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && _pulseOpen) closePulseDrawer();
+});
+
+// Init badge on load
+pulseUpdateBadge();
 </script>
+<!-- PULSE DRAWER -->
+<div id="pulse-overlay" onclick="closePulseDrawer()"></div>
+<div id="pulse-drawer" role="dialog" aria-label="Pulse alerts">
+  <div class="pulse-header">
+    <span class="pulse-header-title">PULSE</span>
+    <span class="pulse-header-count" id="pulse-new-count">0 New</span>
+    <button class="pulse-header-close" onclick="closePulseDrawer()" aria-label="Close">&times;</button>
+  </div>
+  <div class="pulse-filters" id="pulse-filters"></div>
+  <div class="pulse-profile" id="pulse-profile"></div>
+  <div class="pulse-feed" id="pulse-feed"></div>
+  <div class="pulse-cta" id="pulse-cta"></div>
+  <div class="pulse-disclaimer">Dates based on published schedules &mdash; verify with official authority.</div>
+</div>
+
 <footer id="disclaimer-footer">
   <p>This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting. <a href="/legal/" target="_blank" rel="noopener">Legal</a></p>
 </footer>
