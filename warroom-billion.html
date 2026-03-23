@@ -2361,6 +2361,10 @@
       #list-toolbar { flex-wrap: wrap; }
       .filter-pills { flex-wrap: wrap; }
       #detail-panel-inner { width:100%;height:95%;max-height:95vh;border-radius:6px 6px 0 0;padding-bottom:56px }
+      #map-next-step { position:sticky;bottom:0;z-index:10;background:var(--bg2);border-top:1px solid rgba(201,168,76,0.2);padding:8px 0 }
+      #map-next-step .next-step-card { margin-top:0;padding:12px 14px;border-radius:0;border:none;background:none }
+      #map-next-step .next-step-arrow, #map-next-step .next-step-content { display:none }
+      #map-next-step .next-step-btn { width:100%;min-height:48px;justify-content:center;text-align:center;font-size:11px }
       #col-headers{grid-template-columns:28px 56px 1fr}
       .state-row{grid-template-columns:28px 56px 1fr}
       .col-h.col-stats,.row-stats{display:none}
@@ -2638,8 +2642,8 @@
             <div id="panel-stats"></div>
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
-            <div id="panel-counties"></div>
             <div id="map-next-step"></div>
+            <div id="panel-counties"></div>
             <button id="panel-cta" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4')">BOOK INVESTOR CLARITY CALL</button>
           </div>
         </div>
@@ -6315,12 +6319,16 @@ function renderNextStepCards() {
 function renderMapNextStep(stateCode, stateName) {
   var el = document.getElementById('map-next-step');
   if (!el) return;
-  el.innerHTML = buildNextStepHtml(
-    'See how ' + escapeHtml(stateName) + ' compares',
-    'Open Versus with this state pre-loaded',
-    'Compare in Versus \u2192',
-    "closeDetail();try{localStorage.setItem('versus_state_a','" + escapeHtml(stateCode) + "')}catch(e){}switchTab('versus')"
-  );
+  var action = "closeDetail();saveProfile({lastClickedState:'" + escapeHtml(stateCode) + "'});try{localStorage.setItem('versus_state_a','" + escapeHtml(stateCode) + "')}catch(e){}switchTab('versus')";
+  el.innerHTML = '<div class="next-step-card">' +
+    '<span class="next-step-arrow">\u2192</span>' +
+    '<div class="next-step-content">' +
+      '<div class="next-step-label">Next Step</div>' +
+      '<div class="next-step-title">See how ' + escapeHtml(stateName) + ' compares</div>' +
+      '<div class="next-step-sub">Open Versus with this state pre-loaded</div>' +
+    '</div>' +
+    '<button class="next-step-btn" onclick="' + action + '">Compare ' + escapeHtml(stateName) + ' in Versus \u2192</button>' +
+  '</div>';
 }
 
 // === ITEM 3: DNA PROFILE PERSISTENCE ===
@@ -6418,14 +6426,22 @@ function daTrackUsage() {
 // === ITEM 5: VERSUS PRE-LOADS DNA ===
 function vsPreloadFromDna() {
   var profile = getProfile();
-  if (!profile || !profile.topStates || profile.topStates.length < 2) return;
   var selA = document.getElementById('vs-select-a');
   var selB = document.getElementById('vs-select-b');
   if (!selA || !selB) return;
-  // Only preload if no localStorage override from Analyzer
+  // localStorage override from Analyzer or map click takes priority
   try {
     if (localStorage.getItem('versus_state_a')) return;
   } catch(e) {}
+  // Map click: pre-load State A from lastClickedState
+  if (profile && profile.lastClickedState) {
+    selA.value = profile.lastClickedState;
+    // Clear it so it doesn't persist across sessions
+    saveProfile({ lastClickedState: null });
+    return;
+  }
+  // DNA profile: pre-load both from top states
+  if (!profile || !profile.topStates || profile.topStates.length < 2) return;
   selA.value = profile.topStates[0].code;
   selB.value = profile.topStates[1].code;
 }
