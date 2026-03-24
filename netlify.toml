@@ -2,12 +2,23 @@
   publish = "."
   functions = "netlify/functions"
 
-# ── ROOT: Serve warroom-billion.html as landing page ─────────
+# ── ROOT: Serve gate as landing page ─────────
 [[redirects]]
   from = "/"
-  to = "/warroom-billion.html"
+  to = "/gate.html"
   status = 200
   force = true
+
+# ── PLATFORM: Authenticated access routes ─────────
+[[redirects]]
+  from = "/platform"
+  to = "/warroom-billion.html"
+  status = 200
+
+[[redirects]]
+  from = "/access"
+  to = "/warroom-billion.html"
+  status = 200
 
 # ── SECURITY: Block direct access to sensitive markdown files ─
 # force = true required because files exist as static assets

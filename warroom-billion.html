@@ -2986,6 +2986,21 @@
 </div>
 
 <script>
+// === GATE CHECK — redirect to landing if no access ===
+(function() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('paid') === 'true') {
+      localStorage.setItem('aurigen_access', 'paid');
+    }
+    var access = localStorage.getItem('aurigen_access');
+    if (!access) {
+      window.location.href = '/';
+      return;
+    }
+  } catch(e) {}
+})();
+
 // === STATE ===
 const APP = {
   tier: 0,          // 0=gate, 1=free, 2=paid
