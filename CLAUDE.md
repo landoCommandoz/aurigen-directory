@@ -46,7 +46,14 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 3. Hero: Two competing CTAs on hero section — HIGH CONVERSION
 4. First Deal page navigation incomplete
 
-## RESOLVED THIS SESSION (2026-03-18)
+## RESOLVED THIS SESSION (2026-03-24)
+- ~~Free tier showed "FL, IL, AZ" instead of "All 51 States"~~ — FIXED (Account tab + Sage response updated)
+- ~~County list expanded by default, pushing CTA below fold~~ — FIXED (collapsed by default, toggle chevron, search hidden until expand)
+- ~~Paid features accessible via scroll/click on free tier~~ — FIXED (hard lock: pointer-events:none, blur, opacity:0.15 on locked panels)
+- ~~Locked tabs had no preview of what's behind paywall~~ — FIXED (walkthrough overlays: label + preview img + description + CTA on all 7 locked features)
+- ~~Knox QA on 3 UX fixes~~ — 48/48 PASS (1 advisory: Pulse lock missing preview-img, non-blocking)
+
+## RESOLVED PRIOR SESSIONS
 - ~~Production CORS bug~~ — FIXED (aurigen-directory.netlify.app missing from ALLOWED_ORIGINS)
 - ~~states-es.js missing module.exports~~ — FIXED (get-states.js Spanish data serving)
 - ~~#058: Focus trap on modals~~ — FIXED (trapFocus/releaseFocusTrap on all modals)
@@ -60,13 +67,15 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - ~~80-issue master directive~~ — ALL 7 SPRINTS COMPLETE
 - ~~Knox 80-item regression~~ — 80/80 PASS (3 original failures fixed + #080 waived)
 
-## CURRENT SESSION STATUS (2026-03-23)
-- Phase 1 COMPLETE — Foundation rebuild (9 steps, 7 new files, index.html 12K→77 lines) + county data layer (TYPE_RATIONALE, county search/filter, /legal page)
-- Phase 2 in progress — 6/8 core tools complete
-- Knox: Phase 1 7/7 PASS + 9/9 PASS (county data layer)
-- Lex: 3 legal documents (ToS, Privacy, Refund) in /legal/ + legal/index.html methodology page — PASS
-- Cipher: escapeHtml() on all dynamic strings — PASS
-- Architecture: every file under 400 lines, one job per file
+## CURRENT SESSION STATUS (2026-03-24)
+- Phase 1 COMPLETE — Foundation rebuild + county data layer
+- Phase 2 in progress — 6/8 core tools complete + Scout tool added
+- Phase 3 partially wired — Journey bar, DNA persistence, Versus pre-load
+- warroom-billion.html (7346 lines) — consolidated build with all features
+- 3 UX fixes shipped: free tier messaging, county collapse, hard lock + walkthrough previews
+- Knox: 48/48 PASS on UX fixes
+- Prelaunch FTC audit passed (noreferrer, disclaimers, Stripe URL sync)
+- Access control system: free tier sees all 51 states, paid features locked with walkthrough overlays
 
 ## MASTER PHASE PLAN
 
