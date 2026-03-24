@@ -373,8 +373,7 @@
           <div class="gate-divider-line"></div>
         </div>
 
-        <!-- TODO: Add Stripe link — replace # with actual Stripe payment link -->
-        <a class="gate-paid-btn" href="#" onclick="return false;">
+        <a class="gate-paid-btn" href="https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00">
           <span>Unlock Full Platform</span>
           <span class="gate-paid-badge">$197 &middot; One Time</span>
         </a>
@@ -484,6 +483,15 @@ function handleSubmit(e) {
   // Redirect regardless of fetch result
   window.location.href = '/platform';
 }
+
+// Tab sync — if paid in another tab, redirect to platform
+try {
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'aurigen_access' && e.newValue === 'paid') {
+      window.location.href = '/platform';
+    }
+  });
+} catch(e) {}
 </script>
 </body>
 </html>

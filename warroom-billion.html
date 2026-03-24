@@ -1170,8 +1170,7 @@
 
     /* --- Explore Section (replaced) --- */
     #header{position:relative;z-index:10;background:rgba(1,4,12,0.95);border-bottom:1px solid rgba(0,212,255,0.08);flex-shrink:0}
-    #shimmer{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#FFBE0B 18%,#00D4FF 42%,#FF2D55 62%,#BF5FFF 80%,transparent);background-size:200% auto;animation:sweep 5s linear infinite}
-    @keyframes sweep{from{background-position:200% center}to{background-position:-200% center}}
+    #shimmer{position:absolute;top:0;left:0;right:0;height:1px;background:rgba(255,255,255,0.15)}
     #header-top{display:flex;align-items:center;justify-content:space-between;padding:12px 20px 6px}
     .brand-name{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#FFBE0B;letter-spacing:0.06em;line-height:1}
     .brand-sub{font-family:'Space Mono',monospace;font-size:7px;color:rgba(0,212,255,0.3);letter-spacing:0.28em;margin-top:2px}
@@ -2357,6 +2356,126 @@
       .vs-state-name{font-size:32px}
     }
     @media(min-width:769px) and (max-width:1024px){.vs-metrics{grid-template-columns:repeat(2,1fr)}}
+
+    /* === SCOUT — DUE DILIGENCE TOOL === */
+    #panel-scout{flex-direction:column;min-height:0;position:relative}
+    .scout-layout{display:flex;flex:1;min-height:0}
+    .scout-sidebar{width:300px;flex-shrink:0;border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;padding:20px 16px}
+    .scout-sidebar-hdr{margin-bottom:16px}
+    .scout-sidebar-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--accent);letter-spacing:0.04em;line-height:1}
+    .scout-sidebar-sub{font-family:'Space Mono',monospace;font-size:9px;color:var(--text2);letter-spacing:0.12em;margin-top:4px}
+    .scout-new-btn{width:100%;padding:10px;border:1px solid var(--accent);border-radius:6px;background:transparent;color:var(--accent);font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:16px;transition:background 0.2s}
+    .scout-new-btn:hover{background:rgba(201,168,76,0.08)}
+    .scout-deal-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;cursor:pointer;margin-bottom:8px;position:relative;transition:border-color 0.2s,background 0.2s}
+    .scout-deal-card.active{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.04)}
+    .scout-deal-card:hover{border-color:rgba(201,168,76,0.2)}
+    .scout-deal-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;padding-right:20px}
+    .scout-deal-meta{font-size:10px;color:var(--text2);margin-bottom:8px}
+    .scout-deal-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:4px}
+    .scout-deal-bar-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.3s}
+    .scout-deal-steps{font-family:'Space Mono',monospace;font-size:9px;color:var(--text2)}
+    .scout-deal-del{position:absolute;top:8px;right:8px;width:20px;height:20px;border:none;background:transparent;color:var(--text2);cursor:pointer;font-size:12px;opacity:0;transition:opacity 0.2s;display:flex;align-items:center;justify-content:center;border-radius:4px}
+    .scout-deal-card:hover .scout-deal-del{opacity:1}
+    .scout-deal-del:hover{background:rgba(232,93,138,0.15);color:var(--pink)}
+    .scout-main{flex:1;overflow-y:auto;padding:24px;min-height:0}
+    .scout-disclaimer{font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;color:rgba(255,255,255,0.25);text-align:center;line-height:1.6;padding:10px 20px;border-bottom:1px solid rgba(255,255,255,0.04);flex-shrink:0}
+    .scout-disclaimer a{color:var(--text2);text-decoration:underline}
+    .scout-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;text-align:center;padding:40px}
+    .scout-empty-icon{font-size:36px;opacity:0.5}
+    .scout-empty-title{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--text);letter-spacing:0.04em}
+    .scout-empty-sub{font-size:12px;color:var(--text2);max-width:280px;line-height:1.5}
+    .scout-hdr{margin-bottom:24px}
+    .scout-hdr-name{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);letter-spacing:0.04em;line-height:1}
+    .scout-hdr-meta{font-family:'Space Mono',monospace;font-size:10px;color:var(--text2);letter-spacing:0.08em;margin-top:4px}
+    .scout-hdr-progress{margin-top:12px}
+    .scout-hdr-progress-text{font-size:12px;color:var(--text2);margin-bottom:6px}
+    .scout-hdr-progress-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+    .scout-hdr-progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.3s}
+    .scout-complete-banner{background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:10px;padding:16px 20px;display:flex;align-items:center;gap:12px;margin-bottom:20px}
+    .scout-complete-icon{width:24px;height:24px;border-radius:50%;background:rgba(74,222,128,0.2);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+    .scout-complete-text{flex:1}
+    .scout-complete-title{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--green);letter-spacing:0.04em}
+    .scout-complete-sub{font-size:11px;color:var(--text2);line-height:1.5;margin-top:2px}
+    .scout-copy-btn{border:1px solid rgba(74,222,128,0.3);background:transparent;color:var(--green);padding:8px 14px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background 0.2s}
+    .scout-copy-btn:hover{background:rgba(74,222,128,0.08)}
+    .scout-step{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:10px;transition:border-color 0.2s}
+    .scout-step.completed{border-color:rgba(201,168,76,0.25)}
+    .scout-step.flagged{border-color:rgba(232,93,138,0.3)}
+    .scout-step-hdr{padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+    .scout-step-num{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);font-family:'Space Mono',monospace;font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s}
+    .scout-step.completed .scout-step-num{background:var(--accent);color:#06060a;border-color:var(--accent)}
+    .scout-step.flagged .scout-step-num{background:rgba(232,93,138,0.15);color:var(--pink);border-color:rgba(232,93,138,0.3)}
+    .scout-step-info{flex:1;min-width:0}
+    .scout-step-name{font-size:13px;font-weight:600;color:var(--text)}
+    .scout-step-what{font-size:11px;color:var(--text2);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .scout-step-actions{display:flex;align-items:center;gap:8px}
+    .scout-flag-btn{background:none;border:none;cursor:pointer;font-size:14px;opacity:0.4;transition:opacity 0.2s;padding:4px}
+    .scout-flag-btn:hover,.scout-flag-btn.active{opacity:1}
+    .scout-chevron{font-size:10px;color:var(--text2);transition:transform 0.2s;padding:4px}
+    .scout-step.open .scout-chevron{transform:rotate(180deg)}
+    .scout-step-body{padding:0 16px 16px;border-top:1px solid var(--border);display:none}
+    .scout-step.open .scout-step-body{display:block}
+    .scout-section-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.12em;text-transform:uppercase;margin:14px 0 6px}
+    .scout-section-label.why{color:var(--accent)}
+    .scout-section-label.how{color:var(--accent)}
+    .scout-section-label.where{color:var(--accent)}
+    .scout-section-label.redflags{color:var(--pink)}
+    .scout-section-label.protip{color:var(--accent)}
+    .scout-section-label.notes{color:var(--text2)}
+    .scout-section-text{font-size:12px;color:var(--text2);line-height:1.6}
+    .scout-how-list{list-style:none;padding:0;counter-reset:how}
+    .scout-how-list li{font-size:12px;color:var(--text2);line-height:1.6;padding-left:20px;position:relative;margin-bottom:4px}
+    .scout-how-list li::before{counter-increment:how;content:counter(how) ".";position:absolute;left:0;font-family:'Space Mono',monospace;font-size:10px;color:var(--accent)}
+    .scout-where-link{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);border-radius:5px;padding:6px 12px;font-size:11px;color:var(--teal);text-decoration:none;transition:border-color 0.2s}
+    .scout-where-link:hover{border-color:var(--teal)}
+    .scout-redflag-list{list-style:none;padding:0}
+    .scout-redflag-list li{font-size:11px;color:var(--text2);line-height:1.6;padding-left:22px;position:relative;margin-bottom:2px}
+    .scout-redflag-list li::before{content:'\u26A0\uFE0F';position:absolute;left:0;font-size:10px}
+    .scout-protip{border-left:2px solid var(--accent);padding-left:12px;font-style:italic;font-size:12px;color:var(--text2);line-height:1.6}
+    .scout-notes-area{width:100%;min-height:60px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 10px;resize:vertical}
+    .scout-notes-area:focus{outline:none;border-color:rgba(201,168,76,0.3)}
+    .scout-step-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+    .scout-flag-toggle{background:none;border:1px solid var(--border);border-radius:5px;padding:6px 12px;font-size:11px;color:var(--text2);cursor:pointer;transition:all 0.2s}
+    .scout-flag-toggle:hover,.scout-flag-toggle.active{border-color:rgba(232,93,138,0.3);color:var(--pink);background:rgba(232,93,138,0.08)}
+    .scout-complete-btn{border:1px solid var(--accent);border-radius:5px;padding:6px 14px;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--accent)}
+    .scout-complete-btn:hover{background:rgba(201,168,76,0.08)}
+    .scout-complete-btn.done{background:var(--accent);color:#06060a;border-color:var(--accent)}
+    .scout-source{font-family:'Space Mono',monospace;font-size:8px;color:var(--text2);opacity:0.5;margin-top:10px}
+    /* Scout Modal */
+    .scout-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:flex;align-items:center;justify-content:center;animation:fadeIn 200ms ease-out}
+    .scout-modal{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:28px 24px;max-width:420px;width:90%;position:relative}
+    .scout-modal-title{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--text);letter-spacing:0.04em;margin-bottom:16px}
+    .scout-modal label{display:block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--text2);text-transform:uppercase;margin-bottom:4px;margin-top:12px}
+    .scout-modal input,.scout-modal select{width:100%;padding:10px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px}
+    .scout-modal input:focus,.scout-modal select:focus{outline:none;border-color:rgba(201,168,76,0.3)}
+    .scout-modal select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%236a6258' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+    .scout-modal-btns{display:flex;gap:10px;margin-top:20px}
+    .scout-modal-primary{flex:1;padding:12px;border:none;border-radius:6px;background:var(--accent);color:#06060a;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:opacity 0.2s}
+    .scout-modal-primary:hover{opacity:0.9}
+    .scout-modal-ghost{flex:1;padding:12px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--text2);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;cursor:pointer;transition:border-color 0.2s}
+    .scout-modal-ghost:hover{border-color:var(--text2)}
+    /* Scout mobile */
+    @media(max-width:768px){
+      .scout-sidebar{display:none}
+      .scout-mobile-select{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border);flex-shrink:0}
+      .scout-mobile-dropdown{flex:1;padding:8px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:12px;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%236a6258' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+      .scout-mobile-new{padding:8px 14px;border:1px solid var(--accent);border-radius:6px;background:transparent;color:var(--accent);font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap}
+      .scout-main{padding:16px}
+    }
+    @media(min-width:769px){.scout-mobile-select{display:none}}
+
+    /* === WELCOME OVERLAY (post-payment) === */
+    #welcome-overlay{position:fixed;inset:0;background:rgba(6,6,10,0.97);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;animation:welcomeFadeIn 400ms ease-out forwards}
+    @keyframes welcomeFadeIn{from{opacity:0}to{opacity:1}}
+    #welcome-card{background:var(--bg2,#0f0f0f);border:1px solid rgba(201,168,76,0.3);border-radius:16px;padding:40px;text-align:center;max-width:420px;width:90%;position:relative;overflow:hidden;transform:translateY(20px);opacity:0;animation:welcomeCardIn 500ms 200ms ease-out forwards}
+    @keyframes welcomeCardIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+    #welcome-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent,#C9A84C),var(--teal,#2DD4C0))}
+    .welcome-sparkle{font-size:36px;margin-bottom:16px;display:inline-block;animation:welcomeSpin 1s ease-out}
+    @keyframes welcomeSpin{from{transform:scale(0) rotate(-180deg);opacity:0}to{transform:scale(1) rotate(0deg);opacity:1}}
+    .welcome-title{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:0.04em;color:var(--accent,#C9A84C);line-height:1;margin-bottom:12px}
+    .welcome-subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--text2,#6a6258);line-height:1.6;max-width:320px;margin:0 auto 28px}
+    .welcome-btn{width:100%;background:var(--accent,#C9A84C);color:#06060a;border:none;padding:14px;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:opacity 0.2s}
+    .welcome-btn:hover{opacity:0.9}
   </style>
 </head>
 <body>
@@ -2372,6 +2491,7 @@
     <div class="nav-tab" id="tab-dna" onclick="switchTab('dna')">DNA</div>
     <div class="nav-tab" id="tab-advisor" onclick="switchTab('advisor')">Advisor</div>
     <div class="nav-tab" id="tab-tools" onclick="switchTab('tools')">Tools</div>
+    <div class="nav-tab" id="tab-scout" onclick="switchTab('scout')">Scout</div>
     <div class="nav-tab" id="tab-account" onclick="switchTab('account')">Account</div>
     <span id="nav-active-label">Map</span>
     <div id="nav-spacer"></div>
@@ -2825,6 +2945,37 @@
       </div>
     </div>
 
+    <!-- SCOUT — DUE DILIGENCE TOOL -->
+    <div class="tab-panel" id="panel-scout">
+      <div class="scout-disclaimer">This checklist is for educational and research purposes only. It does not constitute legal, financial, or investment advice. Always conduct independent due diligence and consult a qualified professional before investing. <a href="/legal/" target="_blank" rel="noopener">Legal</a></div>
+      <div class="scout-layout">
+        <div class="scout-sidebar">
+          <div class="scout-sidebar-hdr">
+            <div class="scout-sidebar-title">SCOUT</div>
+            <div class="scout-sidebar-sub">DUE DILIGENCE TRACKER</div>
+          </div>
+          <button class="scout-new-btn" onclick="scoutNewDeal()">+ New Deal</button>
+          <div id="scout-deal-list"></div>
+        </div>
+        <div class="scout-mobile-select">
+          <select class="scout-mobile-dropdown" id="scout-mobile-dd" onchange="scoutSelectDeal(this.value)">
+            <option value="">Select a deal...</option>
+          </select>
+          <button class="scout-mobile-new" onclick="scoutNewDeal()">+ New</button>
+        </div>
+        <div class="scout-main" id="scout-main">
+          <div class="scout-empty" id="scout-empty">
+            <div class="scout-empty-icon">🔍</div>
+            <div class="scout-empty-title">Start Your Due Diligence</div>
+            <div class="scout-empty-sub">Create a new deal to begin the 10-step checklist every investor should complete before bidding.</div>
+            <button class="scout-new-btn" onclick="scoutNewDeal()" style="max-width:200px;margin-top:8px">+ New Deal</button>
+          </div>
+          <div id="scout-checklist" style="display:none"></div>
+        </div>
+      </div>
+      <div class="paywall-lock" id="lock-scout-tab" style="display:none"><span class="paywall-lock-icon">🔒</span><span class="paywall-lock-title">Scout Due Diligence</span><span class="paywall-lock-sub">10-step due diligence checklist for every deal you evaluate. Track progress, flag issues, and share results.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Unlock Full Access &mdash; $197</a></div>
+    </div>
+
     <div class="tab-panel" id="panel-account">
       <div class="account-card">
         <div class="account-tier-badge" id="acct-tier-badge">FREE ACCESS</div>
@@ -2854,7 +3005,8 @@
 (function() {
   try {
     var params = new URLSearchParams(window.location.search);
-    if (params.get('paid') === 'true') {
+    var justPaid = params.get('paid') === 'true';
+    if (justPaid) {
       localStorage.setItem('aurigen_access', 'paid');
     }
     var access = localStorage.getItem('aurigen_access');
@@ -2862,8 +3014,37 @@
       window.location.href = '/';
       return;
     }
+    // Show welcome overlay for fresh payment
+    if (justPaid) {
+      document.addEventListener('DOMContentLoaded', function() {
+        var overlay = document.createElement('div');
+        overlay.id = 'welcome-overlay';
+        overlay.innerHTML =
+          '<div id="welcome-card">' +
+            '<div class="welcome-sparkle">\u2728</div>' +
+            '<div class="welcome-title">FULL ACCESS UNLOCKED</div>' +
+            '<div class="welcome-subtitle">Welcome to the complete Aurigen platform. Every county. Every tool. Every auction. Yours forever.</div>' +
+            '<button class="welcome-btn" id="welcome-dismiss">Explore the Full Platform \u2192</button>' +
+          '</div>';
+        document.body.appendChild(overlay);
+        document.getElementById('welcome-dismiss').addEventListener('click', function() {
+          overlay.remove();
+          history.replaceState(null, '', window.location.pathname);
+          location.reload();
+        });
+      });
+    }
   } catch(e) {}
 })();
+
+// === TAB SYNC — auto-reload when another tab unlocks paid ===
+try {
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'aurigen_access' && e.newValue === 'paid') {
+      location.reload();
+    }
+  });
+} catch(e) {}
 
 // === STATE ===
 const APP = {
@@ -2896,7 +3077,7 @@ var STRIPE_URL = 'https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02';
 
 function applyAccessLocks() {
   // Tab-level locks (paid only)
-  var tabLocks = ['lock-dna-tab', 'lock-advisor-tab', 'lock-tools-tab', 'lock-versus'];
+  var tabLocks = ['lock-dna-tab', 'lock-advisor-tab', 'lock-tools-tab', 'lock-versus', 'lock-scout-tab'];
   tabLocks.forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.style.display = IS_PAID ? 'none' : 'flex';
@@ -6678,6 +6859,404 @@ renderNextStepCards();
   if (btn && p && (p.dnaComplete || p.analyzerUsed)) {
     btn.style.display = '';
   }
+})();
+
+// === SCOUT — DUE DILIGENCE TOOL ===
+var SCOUT_STEPS = [
+  {
+    name: 'Lien/Deed Verification',
+    what: 'Confirm certificate or deed is valid, current, and correctly assigned to the right parcel.',
+    why: 'Clerical errors in county records are more common than most investors expect. A misrecorded parcel number or incorrect assignment can render a certificate worthless \u2014 meaning you paid real money for something you cannot enforce or foreclose on.',
+    how: ['Pull original certificate number from county tax collector','Match parcel ID on certificate to county assessor parcel map','Confirm no prior redemption has been recorded','Verify assignment chain if certificate was purchased OTC or from a third party'],
+    whereText: 'County Tax Collector',
+    whereUrl: '',
+    redFlags: ['Parcel ID mismatch','Prior redemption on record','Broken assignment chain','Certificate issued on exempt property (church, government, homestead in some states)'],
+    proTip: 'Always cross-reference the parcel ID against the county GIS map \u2014 not just the text record. Mapping errors catch what text searches miss.',
+    source: 'NTLA Best Practices \u00b7 ntla.org'
+  },
+  {
+    name: 'Property Type + Zoning',
+    what: 'Identify what the property is and whether it has legal use restrictions.',
+    why: 'A tax lien on a landlocked vacant lot with no road access or a property zoned agricultural only in a flood zone can be near impossible to sell \u2014 making redemption unlikely and the asset worthless if you end up with the deed.',
+    how: ['Pull property classification from county assessor','Check zoning designation at city or county planning dept','Look for flood zone designation via FEMA Flood Map Service Center','Confirm legal access \u2014 road frontage or recorded easement'],
+    whereText: 'FEMA Flood Map',
+    whereUrl: 'https://msc.fema.gov',
+    redFlags: ['Landlocked parcel','Flood Zone AE or VE designation','Agricultural-only zoning','Mobile home on land not owned','Condemned status'],
+    proTip: 'Check the FEMA flood map before anything else on vacant land. A parcel in a high-risk flood zone has near-zero resale value regardless of assessed value.',
+    source: 'FEMA msc.fema.gov'
+  },
+  {
+    name: 'IRS Federal Tax Lien',
+    what: 'Search for any IRS federal tax liens recorded against the property owner.',
+    why: 'Under IRC Section 6323, the IRS has a 120-day right of redemption after a tax deed sale. In some states federal liens survive the tax sale entirely \u2014 leaving you with a property subject to federal debt you didn\u2019t create.',
+    how: ['Search county recorder for federal tax lien filings under owner name','Search PACER for active federal court judgments against the owner','Confirm your state\u2019s treatment of federal liens post-sale with county attorney'],
+    whereText: 'Search PACER',
+    whereUrl: 'https://pacer.gov',
+    redFlags: ['Active IRS lien recorded within 30 days of tax sale','Multiple IRS liens','Owner is business entity with IRS issues'],
+    proTip: 'The 120-day IRS redemption window applies even after you receive a deed. Do not spend money on improvements until that window closes.',
+    source: 'IRC \u00a7 6323 \u00b7 IRS.gov'
+  },
+  {
+    name: 'HOA Super-Lien Check',
+    what: 'Determine if an HOA lien exists and whether it has super-priority over your investment.',
+    why: 'In Nevada, Colorado, Florida, Maryland, and Washington D.C., HOA liens can have super-priority \u2014 the HOA can foreclose and wipe out your tax lien entirely before you can act.',
+    how: ['Check county recorder for HOA lien filings against the parcel','Confirm whether your state grants HOA super-lien priority','If HOA exists \u2014 contact them directly to get current balance','Factor HOA balance into your maximum bid calculation'],
+    whereText: 'Community Associations Institute',
+    whereUrl: 'https://caionline.org',
+    redFlags: ['Active HOA foreclosure filed','HOA balance exceeding equity','Super-lien state with large arrears'],
+    proTip: 'In Nevada, HOA super-lien priority covers up to 9 months of unpaid dues \u2014 that can exceed $10,000. Always call the HOA directly before bidding.',
+    source: 'CAI \u00b7 caionline.org'
+  },
+  {
+    name: 'Environmental Lien Search',
+    what: 'Check for EPA Superfund designation, underground storage tanks, or environmental contamination.',
+    why: 'Under CERCLA, property owners \u2014 including investors who acquire through tax deed \u2014 can be held liable for cleanup costs regardless of whether they caused contamination. Cleanup costs routinely exceed property value.',
+    how: ['Search EPA ECHO database for the address','Search EPA Superfund site list','Check state environmental agency for underground storage tank records','Look for prior industrial use (gas stations, dry cleaners, auto shops) in property history'],
+    whereText: 'EPA ECHO Database',
+    whereUrl: 'https://echo.epa.gov',
+    redFlags: ['Prior gas station or dry cleaner','EPA enforcement action on record','Underground storage tank registration','Any brownfield designation'],
+    proTip: 'Even a clean-looking property can have legacy contamination from a business that operated 30 years ago. Always check use history going back at least 20 years.',
+    source: 'CERCLA 42 U.S.C. \u00a7 9607 \u00b7 EPA.gov'
+  },
+  {
+    name: 'Title Chain + Encumbrances',
+    what: 'Pull the full chain of title to identify any liens, judgments, easements, or encumbrances that may survive the tax sale.',
+    why: 'Not all liens get wiped by a tax deed sale. Mechanics liens, some judgment liens, easements, and deed restrictions can survive \u2014 leaving you with hidden obligations. This is the step most new investors skip and regret most.',
+    how: ['Pull all recorded documents against the parcel at county recorder','Look for mechanics liens, judgment liens, or lis pendens','Identify all easements and deed restrictions in the chain','Confirm which encumbrances survive tax sale in your state'],
+    whereText: 'Search PACER',
+    whereUrl: 'https://pacer.gov',
+    redFlags: ['Lis pendens (active lawsuit)','Mechanics lien from recent work','Deed restriction limiting use','Utility easement consuming the lot'],
+    proTip: 'A lis pendens is a stop sign. Do not bid on any property with an active lis pendens until you understand exactly what the lawsuit is about. It can cloud title indefinitely.',
+    source: 'Nolo.com \u00b7 County recorder'
+  },
+  {
+    name: 'Property Condition + Code Violations',
+    what: 'Check municipal records for open code violations, demolition orders, or condemnation notices.',
+    why: 'A property with an active demolition order can be torn down by the municipality at the investor\u2019s expense after deed transfer. Open code violations become the new owner\u2019s responsibility and can cost tens of thousands to remediate.',
+    how: ['Search city or county building department for open permits and violations','Check for active condemnation or unsafe structure notices','Drive by or use Google Street View to assess visible condition','Search municipal court records for housing court cases against the property'],
+    whereText: 'Google Street View',
+    whereUrl: 'https://maps.google.com',
+    redFlags: ['Open demolition order','Active condemnation notice','Multiple open code violations','Visible structural collapse','Property boarded and posted'],
+    proTip: 'Call the building department directly and ask: \u201CAre there any open violations or orders on this parcel?\u201D They will tell you. Most investors never ask.',
+    source: 'HUD.gov \u00b7 Municipal records'
+  },
+  {
+    name: 'Equity Calculation',
+    what: 'Calculate whether enough equity exists in the property to make the investment worthwhile.',
+    why: 'If a property has no equity \u2014 meaning mortgage plus liens exceeds market value \u2014 the owner has no financial reason to redeem and you end up with a property worth less than what you paid.',
+    how: ['Pull estimated market value from county assessor (use 80% of assessed as conservative estimate)','Pull mortgage balance from county recorder \u2014 look for deed of trust or mortgage recording','Add all known liens to mortgage','Subtract total debt from market value \u2014 this is available equity','Investment is only safe if equity exceeds total debt by at least 20%'],
+    whereText: 'County Assessor Search',
+    whereUrl: '',
+    redFlags: ['Mortgage near or exceeding value','Multiple judgment liens','Equity below 20% after all debts'],
+    proTip: 'Never rely on assessed value alone. In many counties it lags market by 1\u20133 years. Pull 3 recent comparable sales to get a real number.',
+    source: 'Investopedia \u00b7 County assessor'
+  },
+  {
+    name: 'Redemption Probability',
+    what: 'Assess how likely the owner is to redeem before you can foreclose or apply for a deed.',
+    why: 'If your strategy is interest income you want high redemption. If your strategy is acquiring the property you want low redemption. Either way you need to know which you\u2019re getting before you bid.',
+    how: ['Check if property is owner-occupied (homestead exemption on assessor record)','Identify if owner is individual, LLC, or out-of-state entity','Check if owner has other tax delinquencies on record','Look at property condition \u2014 maintained or abandoned','Check length of delinquency \u2014 1 year vs 5 years tells you a lot'],
+    whereText: 'County Tax Records',
+    whereUrl: '',
+    redFlags: ['Absentee LLC owner','Multiple years delinquent','Property visibly abandoned','Owner delinquent on multiple parcels'],
+    proTip: 'Owner-occupied properties with homestead exemptions redeem at a very high rate. Absentee-owned vacant land with 4-year delinquency almost never redeems. Know which one you have before bidding.',
+    source: 'NTLA \u00b7 ntla.org'
+  },
+  {
+    name: 'Auction + Registration Confirmation',
+    what: 'Confirm the exact auction date, registration deadline, deposit requirement, and bidding rules.',
+    why: 'Missing registration means you cannot bid \u2014 period. Showing up without the correct deposit format means you cannot bid. Misunderstanding the bid method means you overbid and destroy your return.',
+    how: ['Go directly to county tax collector website \u2014 not a third-party site','Confirm auction date has not changed (counties reschedule)','Download and read the official auction rules document','Confirm registration deadline and exactly what is required','Confirm the bidding method for that specific county','Set calendar reminder for registration deadline \u2014 not auction date'],
+    whereText: 'RealAuction Platform',
+    whereUrl: 'https://realauction.com',
+    redFlags: ['Auction date changed with no notice','Registration requires docs you don\u2019t have in time','Deposit format you can\u2019t provide','Platform you\u2019ve never used before'],
+    proTip: 'Set your reminder for the registration deadline \u2014 not the auction date. Most investors who miss deals miss them at registration, not at the auction.',
+    source: 'County tax collector sites \u00b7 NTLA auction guidelines \u00b7 ntla.org'
+  }
+];
+
+var _scoutActiveDeal = null;
+
+function scoutGetDeals() {
+  try {
+    var raw = localStorage.getItem('aurigen_scout_deals');
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) { return []; }
+}
+
+function scoutSaveDeals(deals) {
+  try { localStorage.setItem('aurigen_scout_deals', JSON.stringify(deals)); } catch(e) {}
+}
+
+function scoutSaveDeal(deal) {
+  deal.updatedAt = Date.now();
+  var deals = scoutGetDeals();
+  var idx = deals.findIndex(function(d) { return d.id === deal.id; });
+  if (idx >= 0) deals[idx] = deal;
+  else deals.unshift(deal);
+  scoutSaveDeals(deals);
+}
+
+function scoutDeleteDeal(id) {
+  if (!confirm('Delete this deal? This cannot be undone.')) return;
+  var deals = scoutGetDeals().filter(function(d) { return d.id !== id; });
+  scoutSaveDeals(deals);
+  if (_scoutActiveDeal && _scoutActiveDeal.id === id) _scoutActiveDeal = null;
+  scoutRender();
+}
+
+function scoutCountComplete(deal) {
+  var c = 0;
+  for (var i = 1; i <= 10; i++) { if (deal.steps[i] && deal.steps[i].complete) c++; }
+  return c;
+}
+
+function scoutNewDeal() {
+  var states = window.STATES_V2 ? window.STATES_V2.slice().sort(function(a,b) { return a.name.localeCompare(b.name); }) : [];
+  var opts = '<option value="">Select state...</option>';
+  states.forEach(function(s) { opts += '<option value="' + escapeHtml(s.code) + '">' + escapeHtml(s.name) + '</option>'; });
+
+  var overlay = document.createElement('div');
+  overlay.className = 'scout-modal-overlay';
+  overlay.innerHTML =
+    '<div class="scout-modal">' +
+      '<div class="scout-modal-title">NEW DEAL</div>' +
+      '<form id="scout-new-form">' +
+        '<label>Deal Name *</label>' +
+        '<input name="name" required placeholder="e.g. 123 Main St" autocomplete="off">' +
+        '<label>Parcel ID or Address</label>' +
+        '<input name="parcel" placeholder="Parcel number or street address" autocomplete="off">' +
+        '<label>State</label>' +
+        '<select name="state">' + opts + '</select>' +
+        '<label>County</label>' +
+        '<input name="county" placeholder="County name" autocomplete="off">' +
+        '<div class="scout-modal-btns">' +
+          '<button type="button" class="scout-modal-ghost" onclick="this.closest(\'.scout-modal-overlay\').remove()">Cancel</button>' +
+          '<button type="submit" class="scout-modal-primary">Start Checklist \u2192</button>' +
+        '</div>' +
+      '</form>' +
+    '</div>';
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+
+  document.getElementById('scout-new-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var f = e.target;
+    var steps = {};
+    for (var i = 1; i <= 10; i++) steps[i] = { complete: false, notes: '', flag: false };
+    var deal = {
+      id: 'deal_' + Date.now(),
+      name: f.name.value.trim(),
+      parcel: f.parcel.value.trim(),
+      state: f.state.value,
+      county: f.county.value.trim(),
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+      steps: steps
+    };
+    scoutSaveDeal(deal);
+    _scoutActiveDeal = deal;
+    overlay.remove();
+    scoutRender();
+  });
+}
+
+function scoutSelectDeal(id) {
+  if (!id) { _scoutActiveDeal = null; scoutRender(); return; }
+  var deals = scoutGetDeals();
+  var deal = deals.find(function(d) { return d.id === id; });
+  if (deal) { _scoutActiveDeal = deal; scoutRender(); }
+}
+
+function scoutToggleStep(stepNum) {
+  var el = document.getElementById('scout-step-' + stepNum);
+  if (el) el.classList.toggle('open');
+}
+
+function scoutMarkComplete(stepNum) {
+  if (!_scoutActiveDeal) return;
+  _scoutActiveDeal.steps[stepNum].complete = !_scoutActiveDeal.steps[stepNum].complete;
+  scoutSaveDeal(_scoutActiveDeal);
+  scoutRender();
+}
+
+function scoutToggleFlag(stepNum) {
+  if (!_scoutActiveDeal) return;
+  _scoutActiveDeal.steps[stepNum].flag = !_scoutActiveDeal.steps[stepNum].flag;
+  scoutSaveDeal(_scoutActiveDeal);
+  scoutRender();
+}
+
+function scoutSaveNotes(stepNum, val) {
+  if (!_scoutActiveDeal) return;
+  _scoutActiveDeal.steps[stepNum].notes = val;
+  scoutSaveDeal(_scoutActiveDeal);
+  // Don't re-render — just save silently
+}
+
+function scoutCopySummary() {
+  if (!_scoutActiveDeal) return;
+  var d = _scoutActiveDeal;
+  var lines = ['Aurigen Scout \u2014 Due Diligence Report'];
+  lines.push('\u2501'.repeat(26));
+  lines.push('Deal: ' + d.name);
+  if (d.parcel) lines.push('Parcel: ' + d.parcel);
+  lines.push('State: ' + (d.state || '\u2014') + ' \u00b7 County: ' + (d.county || '\u2014'));
+  lines.push('\u2501'.repeat(26));
+  for (var i = 0; i < 10; i++) {
+    var st = d.steps[i + 1];
+    var icon = st.complete ? '\u2713' : (st.flag ? '!' : '\u25cb');
+    lines.push(icon + ' ' + SCOUT_STEPS[i].name);
+  }
+  lines.push('\u2501'.repeat(26));
+  lines.push(new Date().toLocaleDateString());
+  lines.push('Rates and rules are subject to change.');
+  lines.push('Always verify with official county sources and a licensed professional.');
+  lines.push('Built with Aurigen \u00b7 aurigendirectory.com');
+  try {
+    navigator.clipboard.writeText(lines.join('\n'));
+    var btn = document.getElementById('scout-copy-btn');
+    if (btn) { btn.textContent = '\u2713 Copied!'; setTimeout(function() { btn.textContent = '\uD83D\uDCCB Copy Summary'; }, 2000); }
+  } catch(e) {}
+}
+
+function scoutRender() {
+  var deals = scoutGetDeals();
+  var list = document.getElementById('scout-deal-list');
+  var dd = document.getElementById('scout-mobile-dd');
+  var main = document.getElementById('scout-main');
+  var empty = document.getElementById('scout-empty');
+  var cl = document.getElementById('scout-checklist');
+
+  // Sidebar deal list
+  var html = '';
+  deals.forEach(function(d) {
+    var cnt = scoutCountComplete(d);
+    var isActive = _scoutActiveDeal && _scoutActiveDeal.id === d.id;
+    html += '<div class="scout-deal-card' + (isActive ? ' active' : '') + '" onclick="scoutSelectDeal(\'' + d.id + '\')">' +
+      '<button class="scout-deal-del" onclick="event.stopPropagation();scoutDeleteDeal(\'' + d.id + '\')">\u2715</button>' +
+      '<div class="scout-deal-name">' + escapeHtml(d.name) + '</div>' +
+      '<div class="scout-deal-meta">' + escapeHtml(d.state || '\u2014') + ' \u00b7 ' + escapeHtml(d.county || '\u2014') + '</div>' +
+      '<div class="scout-deal-bar"><div class="scout-deal-bar-fill" style="width:' + (cnt * 10) + '%"></div></div>' +
+      '<div class="scout-deal-steps">' + cnt + '/10 steps</div>' +
+    '</div>';
+  });
+  if (list) list.innerHTML = html;
+
+  // Mobile dropdown
+  if (dd) {
+    var ddHtml = '<option value="">Select a deal...</option>';
+    deals.forEach(function(d) {
+      var sel = _scoutActiveDeal && _scoutActiveDeal.id === d.id ? ' selected' : '';
+      ddHtml += '<option value="' + d.id + '"' + sel + '>' + escapeHtml(d.name) + ' (' + scoutCountComplete(d) + '/10)</option>';
+    });
+    dd.innerHTML = ddHtml;
+  }
+
+  // Main content
+  if (!_scoutActiveDeal) {
+    empty.style.display = 'flex';
+    cl.style.display = 'none';
+    return;
+  }
+  empty.style.display = 'none';
+  cl.style.display = 'block';
+
+  var d = _scoutActiveDeal;
+  var cnt = scoutCountComplete(d);
+  var pct = cnt * 10;
+
+  var out = '';
+  // Header
+  out += '<div class="scout-hdr">' +
+    '<div class="scout-hdr-name">' + escapeHtml(d.name) + '</div>' +
+    '<div class="scout-hdr-meta">' + escapeHtml(d.state || '\u2014') + ' \u00b7 ' + escapeHtml(d.county || '\u2014') + (d.parcel ? ' \u00b7 ' + escapeHtml(d.parcel) : '') + '</div>' +
+    '<div class="scout-hdr-progress">' +
+      '<div class="scout-hdr-progress-text">' + cnt + ' of 10 steps complete</div>' +
+      '<div class="scout-hdr-progress-bar"><div class="scout-hdr-progress-fill" style="width:' + pct + '%"></div></div>' +
+    '</div>' +
+  '</div>';
+
+  // Complete banner
+  if (cnt === 10) {
+    out += '<div class="scout-complete-banner">' +
+      '<div class="scout-complete-icon">\u2713</div>' +
+      '<div class="scout-complete-text">' +
+        '<div class="scout-complete-title">Due Diligence Complete</div>' +
+        '<div class="scout-complete-sub">Always verify with a licensed title company or real estate attorney before transacting. Rates and rules vary by county.</div>' +
+      '</div>' +
+      '<button class="scout-copy-btn" id="scout-copy-btn" onclick="scoutCopySummary()">\uD83D\uDCCB Copy Summary</button>' +
+    '</div>';
+  }
+
+  // Steps
+  // Preserve which steps are open
+  var openSteps = {};
+  for (var oi = 1; oi <= 10; oi++) {
+    var oel = document.getElementById('scout-step-' + oi);
+    if (oel && oel.classList.contains('open')) openSteps[oi] = true;
+  }
+
+  for (var i = 0; i < 10; i++) {
+    var stepNum = i + 1;
+    var s = SCOUT_STEPS[i];
+    var st = d.steps[stepNum];
+    var classes = 'scout-step';
+    if (st.complete) classes += ' completed';
+    if (st.flag) classes += ' flagged';
+    if (openSteps[stepNum]) classes += ' open';
+
+    var numContent = st.complete ? '\u2713' : (st.flag ? '!' : stepNum);
+
+    out += '<div class="' + classes + '" id="scout-step-' + stepNum + '">' +
+      '<div class="scout-step-hdr" onclick="scoutToggleStep(' + stepNum + ')">' +
+        '<div class="scout-step-num">' + numContent + '</div>' +
+        '<div class="scout-step-info">' +
+          '<div class="scout-step-name">' + escapeHtml(s.name) + '</div>' +
+          '<div class="scout-step-what">' + escapeHtml(s.what) + '</div>' +
+        '</div>' +
+        '<div class="scout-step-actions">' +
+          '<button class="scout-flag-btn' + (st.flag ? ' active' : '') + '" onclick="event.stopPropagation();scoutToggleFlag(' + stepNum + ')" title="Flag issue">\uD83D\uDEA9</button>' +
+          '<span class="scout-chevron">\u25BC</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="scout-step-body">' +
+        '<div class="scout-section-label why">WHY IT MATTERS</div>' +
+        '<div class="scout-section-text">' + escapeHtml(s.why) + '</div>' +
+        '<div class="scout-section-label how">HOW TO DO IT</div>' +
+        '<ol class="scout-how-list">';
+    s.how.forEach(function(h) { out += '<li>' + escapeHtml(h) + '</li>'; });
+    out += '</ol>';
+    if (s.whereUrl) {
+      out += '<div class="scout-section-label where">WHERE</div>' +
+        '<a class="scout-where-link" href="' + escapeHtml(s.whereUrl) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(s.whereText) + ' \u2192</a>';
+    } else if (s.whereText) {
+      out += '<div class="scout-section-label where">WHERE</div>' +
+        '<span class="scout-section-text">' + escapeHtml(s.whereText) + '</span>';
+    }
+    out += '<div class="scout-section-label redflags">RED FLAGS</div><ul class="scout-redflag-list">';
+    s.redFlags.forEach(function(r) { out += '<li>' + escapeHtml(r) + '</li>'; });
+    out += '</ul>' +
+      '<div class="scout-section-label protip">PRO TIP</div>' +
+      '<div class="scout-protip">' + escapeHtml(s.proTip) + '</div>' +
+      '<div class="scout-section-label notes">YOUR NOTES</div>' +
+      '<textarea class="scout-notes-area" placeholder="Add your notes for this step..." oninput="scoutSaveNotes(' + stepNum + ',this.value)">' + escapeHtml(st.notes || '') + '</textarea>' +
+      '<div class="scout-step-footer">' +
+        '<button class="scout-flag-toggle' + (st.flag ? ' active' : '') + '" onclick="scoutToggleFlag(' + stepNum + ')">\uD83D\uDEA9 ' + (st.flag ? 'Flagged' : 'Flag Issue') + '</button>' +
+        '<button class="scout-complete-btn' + (st.complete ? ' done' : '') + '" onclick="scoutMarkComplete(' + stepNum + ')">' + (st.complete ? '\u2713 Completed' : 'Mark Complete \u2713') + '</button>' +
+      '</div>' +
+      '<div class="scout-source">' + escapeHtml(s.source) + '</div>' +
+    '</div></div>';
+  }
+
+  cl.innerHTML = out;
+}
+
+// Init scout on load
+(function() {
+  var deals = scoutGetDeals();
+  if (deals.length > 0) { _scoutActiveDeal = deals[0]; }
+  scoutRender();
 })();
 </script>
 <!-- PULSE DRAWER -->
