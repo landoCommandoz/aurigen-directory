@@ -836,6 +836,11 @@
       animation: pulseBadge 2s ease-in-out infinite;
     }
     .jb-mobile-label { display: none; }
+    .jb-cta-group { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .jb-book-btn { font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 600; padding: 4px 10px; border-radius: 4px; border: 1px solid var(--accent); background: rgba(201,168,76,0.1); color: var(--accent); cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+    .jb-book-btn:hover { background: rgba(201,168,76,0.18); }
+    .jb-dismiss-btn { font-family: 'Space Mono', monospace; font-size: 9px; padding: 4px 8px; border: none; background: transparent; color: var(--text2); cursor: pointer; white-space: nowrap; opacity: 0.6; transition: opacity 0.2s; }
+    .jb-dismiss-btn:hover { opacity: 1; }
     @media(max-width:768px) {
       .jb-label, .jb-steps, .jb-arrow { display: none; }
       .jb-mobile-label {
@@ -844,6 +849,9 @@
         font-size: 9px;
         color: var(--text2);
       }
+      .jb-cta-group { margin-left: auto; }
+      .jb-book-btn { font-size: 8px; padding: 3px 8px; }
+      .jb-dismiss-btn { font-size: 8px; }
     }
 
     /* === NEXT STEP CARD === */
@@ -2417,7 +2425,8 @@
     .scout-step-name{font-size:13px;font-weight:600;color:var(--text)}
     .scout-step-what{font-size:11px;color:var(--text2);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .scout-step-actions{display:flex;align-items:center;gap:8px}
-    .scout-flag-btn{background:none;border:none;cursor:pointer;font-size:14px;opacity:0.4;transition:opacity 0.2s;padding:4px}
+    .scout-flag-btn{background:none;border:none;cursor:pointer;opacity:0.4;transition:opacity 0.2s;padding:4px;width:22px;height:22px;display:flex;align-items:center;justify-content:center}
+    .scout-flag-btn::before{content:'';display:block;width:8px;height:8px;border-radius:50%;background:var(--pink)}
     .scout-flag-btn:hover,.scout-flag-btn.active{opacity:1}
     .scout-chevron{font-size:10px;color:var(--text2);transition:transform 0.2s;padding:4px}
     .scout-step.open .scout-chevron{transform:rotate(180deg)}
@@ -2438,13 +2447,14 @@
     .scout-where-link:hover{border-color:var(--teal)}
     .scout-redflag-list{list-style:none;padding:0}
     .scout-redflag-list li{font-size:11px;color:var(--text2);line-height:1.6;padding-left:22px;position:relative;margin-bottom:2px}
-    .scout-redflag-list li::before{content:'\u26A0\uFE0F';position:absolute;left:0;font-size:10px}
+    .scout-redflag-list li::before{content:'';position:absolute;left:4px;top:7px;width:6px;height:6px;border-radius:50%;background:var(--pink)}
     .scout-protip{border-left:2px solid var(--accent);padding-left:12px;font-style:italic;font-size:12px;color:var(--text2);line-height:1.6}
     .scout-notes-area{width:100%;min-height:60px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 10px;resize:vertical}
     .scout-notes-area:focus{outline:none;border-color:rgba(201,168,76,0.3)}
     .scout-step-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
     .scout-flag-toggle{background:none;border:1px solid var(--border);border-radius:5px;padding:6px 12px;font-size:11px;color:var(--text2);cursor:pointer;transition:all 0.2s}
     .scout-flag-toggle:hover,.scout-flag-toggle.active{border-color:rgba(232,93,138,0.3);color:var(--pink);background:rgba(232,93,138,0.08)}
+    .scout-flag-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;vertical-align:middle;margin-right:2px}
     .scout-complete-btn{border:1px solid var(--accent);border-radius:5px;padding:6px 14px;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--accent)}
     .scout-complete-btn:hover{background:rgba(201,168,76,0.08)}
     .scout-complete-btn.done{background:var(--accent);color:#06060a;border-color:var(--accent)}
@@ -2974,7 +2984,7 @@
         </div>
         <div class="scout-main" id="scout-main">
           <div class="scout-empty" id="scout-empty">
-            <div class="scout-empty-icon">🔍</div>
+            <div class="scout-empty-icon" style="width:36px;height:36px;border:2px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--accent);opacity:0.5">?</div>
             <div class="scout-empty-title">Start Your Due Diligence</div>
             <div class="scout-empty-sub">Create a new deal to begin the 10-step checklist every investor should complete before bidding.</div>
             <button class="scout-new-btn" onclick="scoutNewDeal()" style="max-width:200px;margin-top:8px">+ New Deal</button>
@@ -6351,6 +6361,31 @@ var JOURNEY_STEPS = [
   { key: 'callBooked', label: 'Clarity Call' }
 ];
 
+function isClarityDismissed() {
+  try {
+    var raw = localStorage.getItem('aurigen_clarity_dismissed');
+    if (!raw) return false;
+    var data = JSON.parse(raw);
+    // Reset if dismissed on a different day (new session = new day)
+    var today = new Date().toDateString();
+    if (data.date !== today) {
+      localStorage.removeItem('aurigen_clarity_dismissed');
+      return false;
+    }
+    return true;
+  } catch(e) { return false; }
+}
+
+function dismissClarityCall() {
+  try {
+    localStorage.setItem('aurigen_clarity_dismissed', JSON.stringify({ dismissed: true, date: new Date().toDateString(), ts: Date.now() }));
+  } catch(e) {}
+  renderJourneyBar();
+  // Also hide bottom platform CTA
+  var panelCta = document.getElementById('panel-cta');
+  if (panelCta) panelCta.style.display = 'none';
+}
+
 function renderJourneyBar() {
   var bar = document.getElementById('journey-bar');
   if (!bar) return;
@@ -6360,11 +6395,16 @@ function renderJourneyBar() {
   var steps = (profile && profile.journeySteps) || {};
   var doneCount = 0;
   var currentIdx = -1;
+  var dismissed = isClarityDismissed();
 
   JOURNEY_STEPS.forEach(function(s, i) {
     if (steps[s.key]) doneCount++;
     else if (currentIdx === -1) currentIdx = i;
   });
+
+  // Hide bottom CTA if dismissed
+  var panelCta = document.getElementById('panel-cta');
+  if (panelCta && dismissed) panelCta.style.display = 'none';
 
   var html = '<span class="jb-label">Your Journey</span><div class="jb-steps">';
   JOURNEY_STEPS.forEach(function(s, i) {
@@ -6377,8 +6417,18 @@ function renderJourneyBar() {
   // Mobile
   html += '<span class="jb-mobile-label">Step ' + (currentIdx >= 0 ? currentIdx + 1 : 5) + ' of 5</span>';
 
-  // Ready indicator
-  if (doneCount >= 2 && !steps.callBooked) {
+  // Clarity Call CTA — show when at least 2 steps done and call not booked
+  var hasCompletedOneStep = steps.dnaComplete || steps.analyzerUsed;
+  if (doneCount >= 2 && !steps.callBooked && !dismissed) {
+    html += '<div class="jb-cta-group">';
+    html += '<button class="jb-book-btn" onclick="window.open(\'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4\',\'_blank\')">Book Clarity Call \u2192</button>';
+    // Only show dismiss after they've completed Build Profile or Run Numbers
+    if (hasCompletedOneStep) {
+      html += '<button class="jb-dismiss-btn" onclick="dismissClarityCall()">Not ready yet</button>';
+    }
+    html += '</div>';
+  } else if (doneCount >= 2 && !steps.callBooked && dismissed) {
+    // Dismissed state — show subtle ready indicator only
     html += '<span class="jb-ready"><span class="jb-ready-dot"></span>Ready for your call</span>';
   }
 
@@ -6915,7 +6965,7 @@ var SCOUT_STEPS = [
     name: 'Lien/Deed Verification',
     what: 'Confirm certificate or deed is valid, current, and correctly assigned to the right parcel.',
     why: 'Clerical errors in county records are more common than most investors expect. A misrecorded parcel number or incorrect assignment can render a certificate worthless \u2014 meaning you paid real money for something you cannot enforce or foreclose on.',
-    how: ['Pull original certificate number from county tax collector','Match parcel ID on certificate to county assessor parcel map','Confirm no prior redemption has been recorded','Verify assignment chain if certificate was purchased OTC or from a third party'],
+    how: ['Pull original certificate number from county tax collector','Match parcel ID on certificate to county assessor parcel map','Confirm no prior redemption has been recorded','Verify assignment chain if certificate was purchased OTC or from a third party','Consult a licensed title company or real estate attorney before transacting'],
     whereText: 'County Tax Collector',
     whereUrl: '',
     redFlags: ['Parcel ID mismatch','Prior redemption on record','Broken assignment chain','Certificate issued on exempt property (church, government, homestead in some states)'],
@@ -6926,7 +6976,7 @@ var SCOUT_STEPS = [
     name: 'Property Type + Zoning',
     what: 'Identify what the property is and whether it has legal use restrictions.',
     why: 'A tax lien on a landlocked vacant lot with no road access or a property zoned agricultural only in a flood zone can be near impossible to sell \u2014 making redemption unlikely and the asset worthless if you end up with the deed.',
-    how: ['Pull property classification from county assessor','Check zoning designation at city or county planning dept','Look for flood zone designation via FEMA Flood Map Service Center','Confirm legal access \u2014 road frontage or recorded easement'],
+    how: ['Pull property classification from county assessor','Check zoning designation at city or county planning dept','Look for flood zone designation via FEMA Flood Map Service Center','Confirm legal access \u2014 road frontage or recorded easement','Verify property condition and value with a licensed appraiser or inspector'],
     whereText: 'FEMA Flood Map',
     whereUrl: 'https://msc.fema.gov',
     redFlags: ['Landlocked parcel','Flood Zone AE or VE designation','Agricultural-only zoning','Mobile home on land not owned','Condemned status'],
@@ -6937,7 +6987,7 @@ var SCOUT_STEPS = [
     name: 'IRS Federal Tax Lien',
     what: 'Search for any IRS federal tax liens recorded against the property owner.',
     why: 'Under IRC Section 6323, the IRS has a 120-day right of redemption after a tax deed sale. In some states federal liens survive the tax sale entirely \u2014 leaving you with a property subject to federal debt you didn\u2019t create.',
-    how: ['Search county recorder for federal tax lien filings under owner name','Search PACER for active federal court judgments against the owner','Confirm your state\u2019s treatment of federal liens post-sale with county attorney'],
+    how: ['Search county recorder for federal tax lien filings under owner name','Search PACER for active federal court judgments against the owner','Consult a licensed real estate attorney to confirm your state\u2019s treatment of federal liens post-sale'],
     whereText: 'Search PACER',
     whereUrl: 'https://pacer.gov',
     redFlags: ['Active IRS lien recorded within 30 days of tax sale','Multiple IRS liens','Owner is business entity with IRS issues'],
@@ -6959,7 +7009,7 @@ var SCOUT_STEPS = [
     name: 'Environmental Lien Search',
     what: 'Check for EPA Superfund designation, underground storage tanks, or environmental contamination.',
     why: 'Under CERCLA, property owners \u2014 including investors who acquire through tax deed \u2014 can be held liable for cleanup costs regardless of whether they caused contamination. Cleanup costs routinely exceed property value.',
-    how: ['Search EPA ECHO database for the address','Search EPA Superfund site list','Check state environmental agency for underground storage tank records','Look for prior industrial use (gas stations, dry cleaners, auto shops) in property history'],
+    how: ['Search EPA ECHO database for the address','Search EPA Superfund site list','Check state environmental agency for underground storage tank records','Look for prior industrial use (gas stations, dry cleaners, auto shops) in property history','Consult a licensed environmental professional for any property with potential contamination history'],
     whereText: 'EPA ECHO Database',
     whereUrl: 'https://echo.epa.gov',
     redFlags: ['Prior gas station or dry cleaner','EPA enforcement action on record','Underground storage tank registration','Any brownfield designation'],
@@ -6970,7 +7020,7 @@ var SCOUT_STEPS = [
     name: 'Title Chain + Encumbrances',
     what: 'Pull the full chain of title to identify any liens, judgments, easements, or encumbrances that may survive the tax sale.',
     why: 'Not all liens get wiped by a tax deed sale. Mechanics liens, some judgment liens, easements, and deed restrictions can survive \u2014 leaving you with hidden obligations. This is the step most new investors skip and regret most.',
-    how: ['Pull all recorded documents against the parcel at county recorder','Look for mechanics liens, judgment liens, or lis pendens','Identify all easements and deed restrictions in the chain','Confirm which encumbrances survive tax sale in your state'],
+    how: ['Pull all recorded documents against the parcel at county recorder','Look for mechanics liens, judgment liens, or lis pendens','Identify all easements and deed restrictions in the chain','Confirm which encumbrances survive tax sale in your state','Consult a licensed title company or real estate attorney before transacting'],
     whereText: 'Search PACER',
     whereUrl: 'https://pacer.gov',
     redFlags: ['Lis pendens (active lawsuit)','Mechanics lien from recent work','Deed restriction limiting use','Utility easement consuming the lot'],
@@ -6981,7 +7031,7 @@ var SCOUT_STEPS = [
     name: 'Property Condition + Code Violations',
     what: 'Check municipal records for open code violations, demolition orders, or condemnation notices.',
     why: 'A property with an active demolition order can be torn down by the municipality at the investor\u2019s expense after deed transfer. Open code violations become the new owner\u2019s responsibility and can cost tens of thousands to remediate.',
-    how: ['Search city or county building department for open permits and violations','Check for active condemnation or unsafe structure notices','Drive by or use Google Street View to assess visible condition','Search municipal court records for housing court cases against the property'],
+    how: ['Search city or county building department for open permits and violations','Check for active condemnation or unsafe structure notices','Drive by or use Google Street View to assess visible condition','Search municipal court records for housing court cases against the property','Verify property condition with a licensed inspector before transacting'],
     whereText: 'Google Street View',
     whereUrl: 'https://maps.google.com',
     redFlags: ['Open demolition order','Active condemnation notice','Multiple open code violations','Visible structural collapse','Property boarded and posted'],
@@ -6992,7 +7042,7 @@ var SCOUT_STEPS = [
     name: 'Equity Calculation',
     what: 'Calculate whether enough equity exists in the property to make the investment worthwhile.',
     why: 'If a property has no equity \u2014 meaning mortgage plus liens exceeds market value \u2014 the owner has no financial reason to redeem and you end up with a property worth less than what you paid.',
-    how: ['Pull estimated market value from county assessor (use 80% of assessed as conservative estimate)','Pull mortgage balance from county recorder \u2014 look for deed of trust or mortgage recording','Add all known liens to mortgage','Subtract total debt from market value \u2014 this is available equity','Investment is only safe if equity exceeds total debt by at least 20%'],
+    how: ['Pull estimated market value from county assessor (use 80% of assessed as conservative estimate)','Pull mortgage balance from county recorder \u2014 look for deed of trust or mortgage recording','Add all known liens to mortgage','Subtract total debt from market value \u2014 this is available equity','Many investors look for equity exceeding total debt by at least 20% as a general guideline \u2014 verify with a licensed appraiser'],
     whereText: 'County Assessor Search',
     whereUrl: '',
     redFlags: ['Mortgage near or exceeding value','Multiple judgment liens','Equity below 20% after all debts'],
@@ -7164,7 +7214,7 @@ function scoutCopySummary() {
   try {
     navigator.clipboard.writeText(lines.join('\n'));
     var btn = document.getElementById('scout-copy-btn');
-    if (btn) { btn.textContent = '\u2713 Copied!'; setTimeout(function() { btn.textContent = '\uD83D\uDCCB Copy Summary'; }, 2000); }
+    if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy Summary'; }, 2000); }
   } catch(e) {}
 }
 
@@ -7233,7 +7283,7 @@ function scoutRender() {
         '<div class="scout-complete-title">Due Diligence Complete</div>' +
         '<div class="scout-complete-sub">Always verify with a licensed title company or real estate attorney before transacting. Rates and rules vary by county.</div>' +
       '</div>' +
-      '<button class="scout-copy-btn" id="scout-copy-btn" onclick="scoutCopySummary()">\uD83D\uDCCB Copy Summary</button>' +
+      '<button class="scout-copy-btn" id="scout-copy-btn" onclick="scoutCopySummary()">Copy Summary</button>' +
     '</div>';
   }
 
@@ -7264,7 +7314,7 @@ function scoutRender() {
           '<div class="scout-step-what">' + escapeHtml(s.what) + '</div>' +
         '</div>' +
         '<div class="scout-step-actions">' +
-          '<button class="scout-flag-btn' + (st.flag ? ' active' : '') + '" onclick="event.stopPropagation();scoutToggleFlag(' + stepNum + ')" title="Flag issue">\uD83D\uDEA9</button>' +
+          '<button class="scout-flag-btn' + (st.flag ? ' active' : '') + '" onclick="event.stopPropagation();scoutToggleFlag(' + stepNum + ')" title="Flag issue"></button>' +
           '<span class="scout-chevron">\u25BC</span>' +
         '</div>' +
       '</div>' +
@@ -7290,7 +7340,7 @@ function scoutRender() {
       '<div class="scout-section-label notes">YOUR NOTES</div>' +
       '<textarea class="scout-notes-area" placeholder="Add your notes for this step..." oninput="scoutSaveNotes(' + stepNum + ',this.value)">' + escapeHtml(st.notes || '') + '</textarea>' +
       '<div class="scout-step-footer">' +
-        '<button class="scout-flag-toggle' + (st.flag ? ' active' : '') + '" onclick="scoutToggleFlag(' + stepNum + ')">\uD83D\uDEA9 ' + (st.flag ? 'Flagged' : 'Flag Issue') + '</button>' +
+        '<button class="scout-flag-toggle' + (st.flag ? ' active' : '') + '" onclick="scoutToggleFlag(' + stepNum + ')"><span class="scout-flag-dot"></span> ' + (st.flag ? 'Flagged' : 'Flag Issue') + '</button>' +
         '<button class="scout-complete-btn' + (st.complete ? ' done' : '') + '" onclick="scoutMarkComplete(' + stepNum + ')">' + (st.complete ? '\u2713 Completed' : 'Mark Complete \u2713') + '</button>' +
       '</div>' +
       '<div class="scout-source">' + escapeHtml(s.source) + '</div>' +
