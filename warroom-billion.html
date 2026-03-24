@@ -2516,7 +2516,7 @@
       <button class="mobile-nav-item" data-tab="account" onclick="mobileNavTo('account')"><span class="mobile-nav-item-icon">👤</span>Account</button>
     </div>
     <div class="mobile-nav-footer">
-      <a class="mobile-nav-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener">Full Access &rarr;</a>
+      <a class="mobile-nav-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Full Access &rarr;</a>
     </div>
   </div>
   <div id="journey-bar"></div>
@@ -2752,7 +2752,7 @@
             <div class="tool-locked-overlay" id="lock-dna">
               <div>&#128274;</div>
               <div>FULL ACCESS REQUIRED</div>
-              <a class="tool-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener">Upgrade</a>
+              <a class="tool-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Upgrade</a>
             </div>
           </div>
           <!-- Card 4: State Comparison -->
@@ -2767,7 +2767,7 @@
             <div class="tool-locked-overlay" id="lock-compare">
               <div>&#128274;</div>
               <div>FULL ACCESS REQUIRED</div>
-              <a class="tool-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener">Upgrade</a>
+              <a class="tool-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Upgrade</a>
             </div>
           </div>
         </div>
@@ -2827,7 +2827,7 @@
           </div>
         </div>
       </div>
-      <div class="dna-disclaimer">Tax lien and tax deed investing involves risk including potential loss of principal. Rates shown are statutory maximums &mdash; actual returns vary. This profiler is for educational purposes only and does not constitute investment advice. <a href="/legal/" target="_blank" rel="noopener">Legal</a></div>
+      <div class="dna-disclaimer">Tax lien and tax deed investing involves risk including potential loss of principal. Rates shown are statutory maximums &mdash; actual returns vary. This profiler is for educational purposes only and does not constitute investment advice. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a></div>
       <div class="paywall-lock" id="lock-dna-tab" style="display:none"><span class="paywall-lock-icon">🔒</span><span class="paywall-lock-title">DNA Investor Profiler</span><span class="paywall-lock-sub">Discover your investor archetype and top matched states.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Unlock Full Access &mdash; $197</a></div>
     </div>
 
@@ -2844,7 +2844,7 @@
           </div>
         </div>
       </div>
-      <div id="advisor-disclaimer">Tax lien and tax deed investing involves risk including potential loss of principal. This tool is for informational purposes only and does not constitute financial, legal, or investment advice. <a href="/legal/" target="_blank" rel="noopener">Legal</a></div>
+      <div id="advisor-disclaimer">Tax lien and tax deed investing involves risk including potential loss of principal. This tool is for informational purposes only and does not constitute financial, legal, or investment advice. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a></div>
       <div id="advisor-input-bar">
         <input id="advisor-input" type="text" placeholder="Ask Sage anything about tax liens..." autocomplete="off">
         <button id="advisor-send" onclick="sendAdvisorMessage()">Send</button>
@@ -2947,7 +2947,7 @@
 
     <!-- SCOUT — DUE DILIGENCE TOOL -->
     <div class="tab-panel" id="panel-scout">
-      <div class="scout-disclaimer">This checklist is for educational and research purposes only. It does not constitute legal, financial, or investment advice. Always conduct independent due diligence and consult a qualified professional before investing. <a href="/legal/" target="_blank" rel="noopener">Legal</a></div>
+      <div class="scout-disclaimer">This checklist is for educational and research purposes only. It does not constitute legal, financial, or investment advice. Always conduct independent due diligence and consult a qualified professional before investing. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a></div>
       <div class="scout-layout">
         <div class="scout-sidebar">
           <div class="scout-sidebar-hdr">
@@ -2991,7 +2991,7 @@
           <span class="account-row-label">States Available</span>
           <span class="account-row-value" id="acct-states">FL, IL, AZ</span>
         </div>
-        <a class="account-upgrade-cta" id="acct-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener">Upgrade to Full Access</a>
+        <a class="account-upgrade-cta" id="acct-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Upgrade to Full Access</a>
       </div>
     </div>
   </div>
@@ -3851,7 +3851,7 @@ function linkifyPlatform(text){
   var result=text;
   Object.keys(PLATFORM_URLS).forEach(function(name){
     var re=new RegExp('('+name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
-    result=result.replace(re,'<a href="'+PLATFORM_URLS[name]+'" target="_blank" rel="noopener">$1 \u2197</a>');
+    result=result.replace(re,'<a href="'+PLATFORM_URLS[name]+'" target="_blank" rel="noopener noreferrer">$1 \u2197</a>');
   });
   return result;
 }
@@ -4177,7 +4177,7 @@ function showDetail(s) {
   var metaHtml=[];
   var chipDot=function(c){return '<span class="chip-dot" style="background:'+c+'"></span>';};
   if(s.statute){
-    var statLink=s.officialLink?'<a href="'+s.officialLink+'" target="_blank" rel="noopener">'+s.statute+'</a>':s.statute;
+    var statLink=s.officialLink?'<a href="'+s.officialLink+'" target="_blank" rel="noopener noreferrer">'+s.statute+'</a>':s.statute;
     metaHtml.push('<span class="meta-chip">'+chipDot('#FFD700')+statLink+'</span>');
   }
   if(s.auctionPlatform) metaHtml.push('<span class="meta-chip">'+chipDot('#00D4FF')+linkifyPlatform(s.auctionPlatform)+'</span>');
@@ -4234,7 +4234,7 @@ function showDetail(s) {
   }
 
   if(rows.length===0){
-    countiesEl.innerHTML='<div class="counties-empty">County data coming soon.<br><a href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener">Book an Investor Clarity Call</a> for '+escapeHtml(n)+' county details.</div>';
+    countiesEl.innerHTML='<div class="counties-empty">County data coming soon.<br><a href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener noreferrer">Book an Investor Clarity Call</a> for '+escapeHtml(n)+' county details.</div>';
   } else {
     var cLabel=rows.length===1?'COUNTY':'COUNTIES';
     var showSearch=rows.length>5;
@@ -4255,13 +4255,13 @@ function showDetail(s) {
       var safeName=escapeHtml(r.name);
       var safeLink=safeHref(r.link);
       // County name — clickable link to official auction page
-      var nameTag=safeLink?'<a class="county-name" href="'+safeLink+'" target="_blank" rel="noopener">'+safeName+'</a>':'<span class="county-name">'+safeName+'</span>';
+      var nameTag=safeLink?'<a class="county-name" href="'+safeLink+'" target="_blank" rel="noopener noreferrer">'+safeName+'</a>':'<span class="county-name">'+safeName+'</span>';
       // Platform pill — clickable if URL known
       var platPill='';
       if(r.platform){
         var platSafe=escapeHtml(shortenPlatform(r.platform));
         var platUrl=PLATFORM_URLS[shortenPlatform(r.platform)]||'';
-        if(platUrl){platPill='<span class="county-pill platform"><a href="'+platUrl+'" target="_blank" rel="noopener">'+platSafe+'</a></span>';}
+        if(platUrl){platPill='<span class="county-pill platform"><a href="'+platUrl+'" target="_blank" rel="noopener noreferrer">'+platSafe+'</a></span>';}
         else{platPill='<span class="county-pill platform">'+platSafe+'</span>';}
       }
       // OTC badge
@@ -4382,7 +4382,7 @@ function renderSageCTA() {
   return '<div class="sage-cta-card">' +
     '<div class="sage-cta-title">Book an Investor Clarity Call</div>' +
     '<div class="sage-cta-desc">Map out your specific budget, target states, and timeline with a real strategist — free, no pressure.</div>' +
-    '<a class="sage-cta-btn" href="' + CLARITY_URL + '" target="_blank" rel="noopener">Book Now \u2192</a>' +
+    '<a class="sage-cta-btn" href="' + CLARITY_URL + '" target="_blank" rel="noopener noreferrer">Book Now \u2192</a>' +
     '</div>';
 }
 
@@ -5879,7 +5879,7 @@ function pulseRenderCta() {
   if (upcoming) {
     cont.innerHTML =
       '<div class="pulse-cta-headline">' + escapeHtml(upcoming.alert.state) + ' auction in ' + upcoming.days + ' days</div>' +
-      '<div class="pulse-cta-sub">Registration closes ' + escapeHtml(upcoming.alert.regDeadline || 'soon') + '. Most investors book their Clarity Call before the deadline \u2014 not after.</div>' +
+      '<div class="pulse-cta-sub">Registration closes ' + escapeHtml(upcoming.alert.regDeadline || 'soon') + '. Book your Clarity Call while you still have time to prepare.</div>' +
       '<a class="pulse-cta-btn" href="' + BOOKING_URL + '" target="_blank" rel="noopener noreferrer">Book Clarity Call \u2192</a>';
   } else {
     cont.innerHTML =
@@ -7276,7 +7276,7 @@ function scoutRender() {
 
 <footer id="disclaimer-footer">
   <div id="disclaimer-full">
-    <p>This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting. <a href="/legal/" target="_blank" rel="noopener">Legal</a></p>
+    <p>This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a></p>
   </div>
   <div class="disclaimer-expand-panel" id="disclaimer-panel">
     <div class="disclaimer-panel-inner">
