@@ -96,187 +96,16 @@
       50%       { opacity: 0; }
     }
 
-    /* === GATE SCREEN === */
-    #gate {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      background: var(--bg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      overflow: hidden;
-    }
-    #gate::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    #gate-scan {
-      position: absolute;
-      left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-mid), transparent);
-      opacity: 0.3;
-      animation: scan-line 4s linear infinite;
-      pointer-events: none;
-    }
-    #gate-wordmark {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(64px, 12vw, 120px);
-      letter-spacing: 0.25em;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 8px;
-      min-height: 1.2em;
-      display: flex;
-      align-items: center;
-    }
-    #gate-wordmark .letter {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.4s var(--transition), transform 0.4s var(--transition);
-    }
-    #gate-wordmark .letter.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    #gate-cursor {
-      display: inline-block;
-      width: 3px;
-      height: 0.8em;
-      background: var(--accent);
-      margin-left: 4px;
-      animation: cursor-blink 1s step-end infinite;
-      vertical-align: middle;
-    }
-    #gate-subtitle {
-      font-family: 'Space Mono', monospace;
-      font-size: clamp(8px, 1.2vw, 11px);
-      letter-spacing: 0.3em;
-      color: var(--text2);
-      text-transform: uppercase;
-      margin-bottom: 64px;
-      opacity: 0;
-      animation: fadeIn 0.6s var(--transition) 1.4s forwards;
-    }
-    #gate-divider {
-      width: 1px;
-      height: 48px;
-      background: linear-gradient(to bottom, transparent, var(--accent-mid), transparent);
-      margin-bottom: 48px;
-      opacity: 0;
-      animation: fadeIn 0.4s var(--transition) 1.6s forwards;
-    }
-    #gate-form {
-      width: min(420px, 90vw);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      opacity: 0;
-      animation: fadeUp 0.6s var(--transition) 1.8s forwards;
-    }
-    .gate-input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .gate-input-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      color: var(--text2);
-      text-transform: uppercase;
-    }
-    .gate-input-row {
-      display: flex;
-      gap: 8px;
-    }
-    .gate-input {
-      flex: 1;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 14px;
-      padding: 12px 16px;
-      outline: none;
-      border-radius: var(--radius);
-      transition: border-color 0.3s var(--transition), box-shadow 0.3s var(--transition);
-      animation: pulse-border 4s ease-in-out infinite;
-    }
-    .gate-input:focus {
-      border-color: var(--accent-mid);
-      box-shadow: 0 0 0 3px var(--accent-dim);
-      animation: none;
-    }
-    .gate-input::placeholder { color: var(--text3); }
-    .gate-btn {
-      padding: 12px 20px;
-      background: transparent;
-      border: 1px solid var(--accent-mid);
-      color: var(--accent);
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: var(--radius);
-      white-space: nowrap;
-      transition: background 0.2s var(--transition), box-shadow 0.2s var(--transition);
-    }
-    .gate-btn:hover {
-      background: var(--accent-dim);
-      box-shadow: 0 0 20px var(--accent-glow);
-    }
-    .gate-btn:active { transform: scale(0.98); }
-    #gate-separator {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      color: var(--text3);
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.2em;
-    }
-    #gate-separator::before, #gate-separator::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-    #gate-message {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-align: center;
-      min-height: 16px;
-      transition: color 0.3s;
-    }
-    #gate-message.error { color: var(--deed); }
-    #gate-message.success { color: var(--hybrid); }
-
-    /* === APP SHELL (hidden until gate clears) === */
+    /* === APP SHELL === */
     #app {
       height: 100dvh;
       width: 100%;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.8s var(--transition);
+      opacity: 1;
       position: relative;
       background: linear-gradient(180deg, #020810 0%, #010508 50%, #020810 100%);
-    }
-    #app.visible {
-      opacity: 1;
-      pointer-events: all;
     }
     /* Deep Ocean layers */
     #app::before,
@@ -2470,32 +2299,6 @@
 </head>
 <body>
 
-<!-- GATE SCREEN -->
-<div id="gate">
-  <div id="gate-scan"></div>
-  <div id="gate-wordmark"><span id="gate-letters"></span><span id="gate-cursor"></span></div>
-  <div id="gate-subtitle">Intelligence Platform for Tax Lien &amp; Tax Deed Investors</div>
-  <div id="gate-divider"></div>
-  <div id="gate-form">
-    <div class="gate-input-group">
-      <div class="gate-input-label">Free Access — FL, IL, AZ</div>
-      <div class="gate-input-row">
-        <input class="gate-input" id="gate-email" type="email" placeholder="your@email.com" autocomplete="off">
-        <button class="gate-btn" onclick="submitEmail()">Request Access</button>
-      </div>
-    </div>
-    <div id="gate-separator">OR</div>
-    <div class="gate-input-group">
-      <div class="gate-input-label">Full Access — All 51 Jurisdictions</div>
-      <div class="gate-input-row">
-        <input class="gate-input" id="gate-code" type="text" placeholder="Access code" autocomplete="off">
-        <button class="gate-btn" onclick="submitCode()">Unlock</button>
-      </div>
-    </div>
-    <div id="gate-message"></div>
-  </div>
-</div>
-
 <!-- APP SHELL -->
 <div id="app">
   <div class="deep-ocean-grain"></div>
@@ -3010,83 +2813,24 @@ const APP = {
   selectedState: null
 };
 
-// === GATE ANIMATION ===
-(function animateWordmark() {
-  const word = 'AURIGEN';
-  const container = document.getElementById('gate-letters');
-  word.split('').forEach((ch, i) => {
-    const span = document.createElement('span');
-    span.className = 'letter';
-    span.textContent = ch;
-    container.appendChild(span);
-    setTimeout(() => span.classList.add('visible'), 200 + i * 120);
-  });
-  setTimeout(() => {
-    document.getElementById('gate-cursor').style.display = 'none';
-  }, 200 + word.length * 120 + 800);
+// === APP INIT ===
+// Read tier from localStorage (set by gate.html)
+(function initFromGate() {
+  try {
+    var access = localStorage.getItem('aurigen_access');
+    if (access === 'paid') APP.tier = 2;
+    else APP.tier = 1;
+    var email = localStorage.getItem('aurigen_email');
+    if (email) APP.email = email;
+  } catch(e) {}
 })();
 
-// === GATE LOGIC ===
-function setGateMessage(msg, type) {
-  const el = document.getElementById('gate-message');
-  el.textContent = msg;
-  el.className = 'gate-' + type;
-}
-
-function submitEmail() {
-  const email = document.getElementById('gate-email').value.trim();
-  if (!email || !email.includes('@')) {
-    setGateMessage('Enter a valid email address.', 'error');
-    return;
-  }
-  setGateMessage('Verifying...', '');
-  // Mock: grant free access
-  setTimeout(() => {
-    APP.tier = 1;
-    APP.email = email;
-    enterApp();
-  }, 800);
-}
-
-function submitCode() {
-  const code = document.getElementById('gate-code').value.trim().toUpperCase();
-  if (!code) {
-    setGateMessage('Enter your access code.', 'error');
-    return;
-  }
-  setGateMessage('Validating...', '');
-  fetch('/.netlify/functions/aurigen', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ action: 'validate-code', code })
-  })
-  .then(r => r.json())
-  .then(data => {
-    if (data.valid) {
-      APP.tier = 2;
-      try { localStorage.setItem('aurigen_tier', '2'); } catch(e) {}
-      enterApp();
-    } else {
-      setGateMessage('Invalid code. Try again.', 'error');
-    }
-  })
-  .catch(() => {
-    setGateMessage('Connection error. Try again.', 'error');
-  });
-}
-
-function enterApp() {
-  const gate = document.getElementById('gate');
-  const app = document.getElementById('app');
-  gate.style.opacity = '0';
-  gate.style.transition = 'opacity 0.8s cubic-bezier(0.16,1,0.3,1)';
-  setTimeout(() => { gate.style.display = 'none'; }, 800);
-  app.classList.add('visible');
+// Boot app immediately — no second gate
+(function() {
   updateTierBadge();
   buildTicker();
-  // App boot sequence fires after gate closes
-  setTimeout(bootApp, 400);
-}
+  bootApp();
+})();
 
 function updateTierBadge() {
   const badge = document.getElementById('nav-tier-badge');
@@ -4933,17 +4677,6 @@ function runBootAnimation() {
     }
   });
 }
-
-// === RESTORE SESSION ===
-(function restoreSession() {
-  try {
-    const tier = localStorage.getItem('aurigen_tier');
-    if (tier === '2') {
-      APP.tier = 2;
-      enterApp();
-    }
-  } catch(e) {}
-})();
 
 // === VERSUS TAB ===
 function initVersusTab() {
