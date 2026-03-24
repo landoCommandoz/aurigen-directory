@@ -765,9 +765,11 @@
       transition: opacity 0.2s;
     }
     .paywall-lock-btn:hover { opacity: 0.85; }
+    .paywall-lock-btn-sub{display:block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.05em;color:rgba(201,168,76,0.7);margin-top:4px;font-weight:400}
+    .detail-upgrade-sub{display:block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.05em;color:rgba(6,6,10,0.6);margin-top:4px;font-weight:400}
     .walkthrough-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent)}
     .walkthrough-desc{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--text2);line-height:1.7;max-width:340px;text-align:center}
-    .walkthrough-preview-img{width:100%;max-width:340px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);overflow:hidden;filter:blur(4px);opacity:0.4;pointer-events:none;user-select:none;padding:14px 16px}
+    .walkthrough-preview-img{width:100%;max-width:340px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);overflow:hidden;filter:blur(4px);opacity:0.6;pointer-events:none;user-select:none;padding:14px 16px}
     .wk-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
     .wk-row:last-child{border-bottom:none}
     .wk-badge{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.08em;padding:2px 6px;border-radius:3px;white-space:nowrap}
@@ -867,7 +869,9 @@
     .jb-cta-group { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
     .jb-book-btn { font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 600; padding: 4px 10px; border-radius: 4px; border: 1px solid var(--accent); background: rgba(201,168,76,0.1); color: var(--accent); cursor: pointer; white-space: nowrap; transition: background 0.2s; }
     .jb-book-btn:hover { background: rgba(201,168,76,0.18); }
-    .jb-dismiss-btn { font-family: 'Space Mono', monospace; font-size: 9px; padding: 4px 8px; border: none; background: transparent; color: var(--text2); cursor: pointer; white-space: nowrap; opacity: 0.6; transition: opacity 0.2s; }
+    .jb-step-locked { opacity: 0.5; }
+    .jb-step-locked:hover { opacity: 0.8; }
+    .jb-dismiss-btn { font-family: 'Space Mono', monospace; font-size: 9px; padding: 4px 8px; border: none; background: transparent; color: var(--text2); cursor: pointer; white-space: nowrap; min-width: fit-content; opacity: 0.6; transition: opacity 0.2s; }
     .jb-dismiss-btn:hover { opacity: 1; }
     @media(max-width:768px) {
       .jb-label, .jb-steps, .jb-arrow { display: none; }
@@ -1938,7 +1942,7 @@
     }
     #panel-account.active { display: flex; }
     .account-card {
-      width: min(480px, 100%);
+      width: min(600px, 100%);
       background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: 2px;
@@ -1993,6 +1997,17 @@
       background: var(--accent-dim);
       box-shadow: 0 0 20px var(--accent-glow);
     }
+    .acct-upgrade-sub{display:block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.05em;color:rgba(201,168,76,0.7);margin-top:4px;font-weight:400}
+
+    /* Value card grid */
+    .value-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+    @media(max-width:520px){.value-grid{grid-template-columns:1fr}}
+    .value-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:6px}
+    .value-card-name{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.06em;color:var(--accent)}
+    .value-card-desc{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;color:var(--text2);line-height:1.5}
+    .value-card-badge{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.06em;color:var(--teal);background:rgba(45,212,192,0.1);padding:3px 8px;border-radius:3px;width:fit-content}
+    .value-total{font-family:'Space Mono',monospace;font-size:11px;color:var(--text2);text-align:center;margin-top:8px;line-height:1.6}
+    .value-section-label{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--text);text-align:center;margin-bottom:4px}
 
     /* === AUCTIONS TAB — Concept C === */
     #panel-auctions { padding: 0; overflow: hidden; }
@@ -2675,14 +2690,14 @@
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
             <div id="map-next-step"></div>
-            <div id="panel-counties"></div>
             <button id="panel-cta" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4')">BOOK INVESTOR CLARITY CALL</button>
+            <div id="panel-counties"></div>
           </div>
         </div>
       </div>
     </div>
     <div class="tab-panel" id="panel-tools">
-      <div class="paywall-lock" id="lock-tools-tab" style="display:none"><span class="walkthrough-label">UNLOCK DEAL ANALYZER</span><div class="walkthrough-preview-img"><div class="wk-label">Purchase Price</div><div class="wk-input">$12,500</div><div class="wk-label" style="margin-top:6px">Back Taxes Owed</div><div class="wk-input">$3,200</div><div class="wk-label" style="margin-top:6px">After Repair Value</div><div class="wk-input">$85,000</div><div class="wk-card"><div class="wk-result"><span>Projected ROI</span><span class="wk-result-val">18.0%</span></div><div class="wk-result"><span>Yield on Cost</span><span class="wk-result-val">$2,250</span></div><div class="wk-result"><span>Margin of Safety</span><span class="wk-result-val">81.5%</span></div></div></div><span class="walkthrough-desc">Run real numbers on any deal. Enter purchase price, back taxes, ARV. Get projected ROI, margin of safety, and a clear go/no-go signal.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
+      <div class="paywall-lock" id="lock-tools-tab" style="display:none"><span class="walkthrough-label">UNLOCK DEAL ANALYZER</span><div class="walkthrough-preview-img"><div class="wk-label">Purchase Price</div><div class="wk-input">$12,500</div><div class="wk-label" style="margin-top:6px">Back Taxes Owed</div><div class="wk-input">$3,200</div><div class="wk-label" style="margin-top:6px">After Repair Value</div><div class="wk-input">$85,000</div><div class="wk-card"><div class="wk-result"><span>Projected ROI</span><span class="wk-result-val">18.0%</span></div><div class="wk-result"><span>Yield on Cost</span><span class="wk-result-val">$2,250</span></div><div class="wk-result"><span>Margin of Safety</span><span class="wk-result-val">81.5%</span></div></div></div><span class="walkthrough-desc">Run real numbers on any deal. Enter purchase price, back taxes, ARV. Get projected ROI, margin of safety, and a clear go/no-go signal.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
       <!-- Tools Sub-Nav -->
       <div class="tools-subnav" id="tools-subnav">
         <button class="tools-subnav-btn active" onclick="switchToolsPanel('analyzer')">Deal Analyzer</button>
@@ -2875,7 +2890,7 @@
         </div>
       </div>
       <div class="dna-disclaimer">Tax lien and tax deed investing involves risk including potential loss of principal. Rates shown are statutory maximums &mdash; actual returns vary. This profiler is for educational purposes only and does not constitute investment advice. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a></div>
-      <div class="paywall-lock" id="lock-dna-tab" style="display:none"><span class="walkthrough-label">UNLOCK DNA PROFILER</span><div class="walkthrough-preview-img"><div style="font-family:'Space Mono',monospace;font-size:8px;color:var(--accent);letter-spacing:0.1em;margin-bottom:6px">STEP ONE</div><div style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:10px">What&#39;s your #1 goal?</div><div class="wk-opt"><div class="wk-radio selected"></div><span class="wk-text">Returns</span><span class="wk-text-sub">I want interest income</span></div><div class="wk-opt"><div class="wk-radio"></div><span class="wk-text">The property</span><span class="wk-text-sub">I want to acquire real estate</span></div><div class="wk-opt"><div class="wk-radio"></div><span class="wk-text">Both</span><span class="wk-text-sub">Open to either outcome</span></div></div><span class="walkthrough-desc">Answer 6 questions. Get your investor archetype &mdash; Lien Collector, Deed Hunter, or Hybrid. Every other tool in the platform adapts to your profile.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
+      <div class="paywall-lock" id="lock-dna-tab" style="display:none"><span class="walkthrough-label">UNLOCK DNA PROFILER</span><div class="walkthrough-preview-img"><div style="font-family:'Space Mono',monospace;font-size:8px;color:var(--accent);letter-spacing:0.1em;margin-bottom:6px">STEP ONE</div><div style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:10px">What&#39;s your #1 goal?</div><div class="wk-opt"><div class="wk-radio selected"></div><span class="wk-text">Returns</span><span class="wk-text-sub">I want interest income</span></div><div class="wk-opt"><div class="wk-radio"></div><span class="wk-text">The property</span><span class="wk-text-sub">I want to acquire real estate</span></div><div class="wk-opt"><div class="wk-radio"></div><span class="wk-text">Both</span><span class="wk-text-sub">Open to either outcome</span></div></div><span class="walkthrough-desc">Answer 6 questions. Get your investor archetype &mdash; Lien Collector, Deed Hunter, or Hybrid. Every other tool in the platform adapts to your profile.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
     </div>
 
     <div class="tab-panel" id="panel-advisor">
@@ -2896,7 +2911,7 @@
         <input id="advisor-input" type="text" placeholder="Ask Sage anything about tax liens..." autocomplete="off">
         <button id="advisor-send" onclick="sendAdvisorMessage()">Send</button>
       </div>
-      <div class="paywall-lock" id="lock-advisor-tab" style="display:none"><span class="walkthrough-label">UNLOCK SAGE AI ADVISOR</span><div class="walkthrough-preview-img"><div style="display:flex;flex-direction:column;gap:8px"><div class="wk-bubble user">Which states are best for beginners with under $5,000?</div><div class="wk-bubble sage">Florida and Arizona are strong starting points. Florida offers up to 18% statutory interest on tax liens with a well-organized online auction system through county platforms. Arizona runs at 16% with shorter redemption windows...</div></div></div><span class="walkthrough-desc">Ask Sage anything about tax lien or tax deed investing. Gets smarter the more you use the platform &mdash; trained on your DNA profile and the states you&rsquo;re watching.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
+      <div class="paywall-lock" id="lock-advisor-tab" style="display:none"><span class="walkthrough-label">UNLOCK SAGE AI ADVISOR</span><div class="walkthrough-preview-img"><div style="display:flex;flex-direction:column;gap:8px"><div class="wk-bubble user">Which states are best for beginners with under $5,000?</div><div class="wk-bubble sage">Florida and Arizona are strong starting points. Florida offers up to 18% statutory interest on tax liens with a well-organized online auction system through county platforms. Arizona runs at 16% with shorter redemption windows...</div></div></div><span class="walkthrough-desc">Ask Sage anything about tax lien or tax deed investing. Gets smarter the more you use the platform &mdash; trained on your DNA profile and the states you&rsquo;re watching.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
     </div>
     <!-- AUCTIONS TAB — Concept C -->
     <div class="tab-panel" id="panel-auctions">
@@ -2940,7 +2955,7 @@
           <div id="auctions-next-step"></div>
         </div>
       </div>
-      <div class="paywall-lock" id="lock-auctions-tab" style="display:none"><span class="walkthrough-label">UNLOCK AUCTIONS</span><div class="walkthrough-preview-img"><div class="wk-row"><span class="wk-badge lien">FL</span><span class="wk-text">Broward County</span><span class="wk-text-sub">Jun 1, 2026</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">TX</span><span class="wk-text">Harris County</span><span class="wk-text-sub">Jul 8, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge lien">AZ</span><span class="wk-text">Maricopa County</span><span class="wk-text-sub">Feb 4, 2027</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">GA</span><span class="wk-text">Fulton County</span><span class="wk-text-sub">Aug 12, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div></div><span class="walkthrough-desc">Live and upcoming auction calendar across all 51 states. Filter by state, format, and date. Never miss a sale in your target market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
+      <div class="paywall-lock" id="lock-auctions-tab" style="display:none"><span class="walkthrough-label">UNLOCK AUCTIONS</span><div class="walkthrough-preview-img"><div class="wk-row"><span class="wk-badge lien">FL</span><span class="wk-text">Broward County</span><span class="wk-text-sub">Jun 1, 2026</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">TX</span><span class="wk-text">Harris County</span><span class="wk-text-sub">Jul 8, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge lien">AZ</span><span class="wk-text">Maricopa County</span><span class="wk-text-sub">Feb 4, 2027</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">GA</span><span class="wk-text">Fulton County</span><span class="wk-text-sub">Aug 12, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div></div><span class="walkthrough-desc">Live and upcoming auction calendar across all 51 states. Filter by state, format, and date. Never miss a sale in your target market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
     </div>
 
     <!-- AUCTIONS INTERSTITIAL MODAL -->
@@ -2989,7 +3004,7 @@
         <div class="vs-insights" id="vs-insights"></div>
         <div class="vs-disclaimer">Investment involves risk. Data shown reflects statutory provisions and may vary by county. This is not financial advice. Consult a qualified professional before investing.</div>
         <div id="versus-next-step"></div>
-        <div class="paywall-lock lock-versus-override" id="lock-versus" style="display:none"><span class="walkthrough-label">UNLOCK VERSUS</span><div class="walkthrough-preview-img"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><span class="wk-badge lien" style="font-size:9px;padding:3px 8px">Florida</span><span style="font-size:10px;color:var(--text2)">vs</span><span class="wk-badge deed" style="font-size:9px;padding:3px 8px">Texas</span></div><div class="wk-row"><span class="wk-text-sub" style="width:70px;flex-shrink:0">Yield Rate</span><span class="wk-text" style="text-align:center">18%</span><span class="wk-text" style="text-align:center">N/A</span></div><div class="wk-row"><span class="wk-text-sub" style="width:70px;flex-shrink:0">Redemption</span><span class="wk-text" style="text-align:center">2 yrs</span><span class="wk-text" style="text-align:center">None</span></div><div class="wk-row"><span class="wk-text-sub" style="width:70px;flex-shrink:0">Type</span><span class="wk-text" style="text-align:center">Lien</span><span class="wk-text" style="text-align:center">Deed</span></div></div><span class="walkthrough-desc">Compare any two states side by side &mdash; rates, redemption periods, bid methods, deed timelines. Built for investors choosing their next market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
+        <div class="paywall-lock lock-versus-override" id="lock-versus" style="display:none"><span class="walkthrough-label">UNLOCK VERSUS</span><div class="walkthrough-preview-img"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><span class="wk-badge lien" style="font-size:9px;padding:3px 8px">Florida</span><span style="font-size:10px;color:var(--text2)">vs</span><span class="wk-badge deed" style="font-size:9px;padding:3px 8px">Texas</span></div><div class="wk-row"><span class="wk-text-sub" style="width:70px;flex-shrink:0">Yield Rate</span><span class="wk-text" style="text-align:center">18%</span><span class="wk-text" style="text-align:center">N/A</span></div><div class="wk-row"><span class="wk-text-sub" style="width:70px;flex-shrink:0">Redemption</span><span class="wk-text" style="text-align:center">2 yrs</span><span class="wk-text" style="text-align:center">None</span></div><div class="wk-row"><span class="wk-text-sub" style="width:70px;flex-shrink:0">Type</span><span class="wk-text" style="text-align:center">Lien</span><span class="wk-text" style="text-align:center">Deed</span></div></div><span class="walkthrough-desc">Compare any two states side by side &mdash; rates, redemption periods, bid methods, deed timelines. Built for investors choosing their next market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
       </div>
     </div>
 
@@ -3021,7 +3036,7 @@
           <div id="scout-checklist" style="display:none"></div>
         </div>
       </div>
-      <div class="paywall-lock" id="lock-scout-tab" style="display:none"><span class="walkthrough-label">UNLOCK SCOUT</span><div class="walkthrough-preview-img"><div class="wk-step-hdr"><div class="wk-step-num">1</div><div><div class="wk-text" style="font-weight:600">Lien/Deed Verification</div><div class="wk-text-sub">Confirm certificate or deed is valid and correctly assigned</div></div></div><div style="padding-left:30px"><div class="wk-label">HOW TO DO IT</div><div class="wk-text-sub" style="margin:2px 0">1. Pull original certificate number from county tax collector</div><div class="wk-text-sub" style="margin:2px 0">2. Match parcel ID on certificate to county assessor map</div><div class="wk-label" style="margin-top:6px">YOUR NOTES</div><div class="wk-input" style="min-height:24px"></div></div></div><span class="walkthrough-desc">10-step due diligence checklist for any property. Walk through title, liens, condition, comparables, and exit strategy before you spend a dollar.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
+      <div class="paywall-lock" id="lock-scout-tab" style="display:none"><span class="walkthrough-label">UNLOCK SCOUT</span><div class="walkthrough-preview-img"><div class="wk-step-hdr"><div class="wk-step-num">1</div><div><div class="wk-text" style="font-weight:600">Lien/Deed Verification</div><div class="wk-text-sub">Confirm certificate or deed is valid and correctly assigned</div></div></div><div style="padding-left:30px"><div class="wk-label">HOW TO DO IT</div><div class="wk-text-sub" style="margin:2px 0">1. Pull original certificate number from county tax collector</div><div class="wk-text-sub" style="margin:2px 0">2. Match parcel ID on certificate to county assessor map</div><div class="wk-label" style="margin-top:6px">YOUR NOTES</div><div class="wk-input" style="min-height:24px"></div></div></div><span class="walkthrough-desc">10-step due diligence checklist for any property. Walk through title, liens, condition, comparables, and exit strategy before you spend a dollar.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
     </div>
 
     <div class="tab-panel" id="panel-account">
@@ -3043,7 +3058,53 @@
           <span class="account-row-label">Locked Features</span>
           <span class="account-row-value" id="acct-locked">Counties, DNA, Versus, Analyzer, Sage, Scout, Auctions, Pulse</span>
         </div>
-        <a class="account-upgrade-cta" id="acct-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Upgrade to Full Access</a>
+        <div id="acct-value-section" class="acct-value-section">
+          <div class="value-section-label">WHAT YOU UNLOCK</div>
+          <div class="value-grid">
+            <div class="value-card">
+              <div class="value-card-name">County Directory</div>
+              <div class="value-card-desc">3,200+ counties with auction links, platforms, and due diligence data</div>
+              <div class="value-card-badge">$497/yr elsewhere</div>
+            </div>
+            <div class="value-card">
+              <div class="value-card-name">DNA Investor Profiler</div>
+              <div class="value-card-desc">6 questions. Get your investor archetype. Every tool adapts to you.</div>
+              <div class="value-card-badge">$197/yr elsewhere</div>
+            </div>
+            <div class="value-card">
+              <div class="value-card-name">Versus Comparison</div>
+              <div class="value-card-desc">Side-by-side state comparison. Pick your market with real data.</div>
+              <div class="value-card-badge">$297/yr elsewhere</div>
+            </div>
+            <div class="value-card">
+              <div class="value-card-name">Deal Analyzer</div>
+              <div class="value-card-desc">Run real ROI numbers before you spend a dollar on any deal.</div>
+              <div class="value-card-badge">$49/mo elsewhere</div>
+            </div>
+            <div class="value-card">
+              <div class="value-card-name">Sage AI Advisor</div>
+              <div class="value-card-desc">Ask anything about tax lien or deed investing. Trained on your DNA profile.</div>
+              <div class="value-card-badge">$200/mo elsewhere</div>
+            </div>
+            <div class="value-card">
+              <div class="value-card-name">Scout Due Diligence</div>
+              <div class="value-card-desc">10-step checklist for every deal. Title, liens, condition, exit.</div>
+              <div class="value-card-badge">$99/mo elsewhere</div>
+            </div>
+            <div class="value-card">
+              <div class="value-card-name">Auctions Calendar</div>
+              <div class="value-card-desc">Live and upcoming sales across all 51 states. Never miss a sale.</div>
+              <div class="value-card-badge">$197/mo elsewhere</div>
+            </div>
+            <div class="value-card">
+              <div class="value-card-name">Pulse Alerts</div>
+              <div class="value-card-desc">Real-time notifications when new auctions drop in your states.</div>
+              <div class="value-card-badge">$49/mo elsewhere</div>
+            </div>
+          </div>
+          <div class="value-total">Total value if purchased separately: $1,500+/year &mdash; yours for $197 once.</div>
+        </div>
+        <a class="account-upgrade-cta" id="acct-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="acct-upgrade-sub">Comparable tools charge $200+/month. You pay once.</span></a>
       </div>
     </div>
   </div>
@@ -3183,7 +3244,7 @@ function applyCountyLock() {
   lock.innerHTML = '<span class="paywall-lock-icon">\uD83D\uDD12</span>' +
     '<span class="paywall-lock-title">County Data</span>' +
     '<span class="paywall-lock-sub">Unlock all county details, platform links, and OTC availability.</span>' +
-    '<a class="paywall-lock-btn" href="' + STRIPE_URL + '" target="_blank" rel="noopener noreferrer">Unlock Full Access \u2014 $197</a>';
+    '<a class="paywall-lock-btn" href="' + STRIPE_URL + '" target="_blank" rel="noopener noreferrer">Unlock Full Access \u2014 $197<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a>';
   countiesEl.appendChild(lock);
 }
 
@@ -3202,7 +3263,7 @@ function applyAuctionLock() {
   lock.innerHTML = '<span class="paywall-lock-icon">\uD83D\uDD12</span>' +
     '<span class="paywall-lock-title">Full Auction Calendar</span>' +
     '<span class="paywall-lock-sub">Unlock all auction dates, registration deadlines, and platform links.</span>' +
-    '<a class="paywall-lock-btn" href="' + STRIPE_URL + '" target="_blank" rel="noopener noreferrer">Unlock Full Access \u2014 $197</a>';
+    '<a class="paywall-lock-btn" href="' + STRIPE_URL + '" target="_blank" rel="noopener noreferrer">Unlock Full Access \u2014 $197<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a>';
   container.appendChild(lock);
 }
 
@@ -3221,7 +3282,7 @@ function applyPulseLock() {
   lock.innerHTML = '<span class="paywall-lock-icon">\uD83D\uDD12</span>' +
     '<span class="paywall-lock-title">All Alerts</span>' +
     '<span class="paywall-lock-sub">Unlock full alert feed with law changes and auction updates.</span>' +
-    '<a class="paywall-lock-btn" href="' + STRIPE_URL + '" target="_blank" rel="noopener noreferrer">Unlock Full Access \u2014 $197</a>';
+    '<a class="paywall-lock-btn" href="' + STRIPE_URL + '" target="_blank" rel="noopener noreferrer">Unlock Full Access \u2014 $197<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a>';
   feed.appendChild(lock);
 }
 
@@ -4314,7 +4375,7 @@ function showDetail(s) {
     var cHtml='';
     // Upgrade CTA above counties for free users
     if(!IS_PAID){
-      cHtml+='<a class="detail-upgrade-cta" href="'+STRIPE_URL+'" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS \u2014 $197 ONE TIME</a>';
+      cHtml+='<a class="detail-upgrade-cta" href="'+STRIPE_URL+'" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS \u2014 $197 ONE TIME<span class="detail-upgrade-sub">Comparable tools charge $200+/month. You pay once.</span></a>';
     }
     cHtml+='<div class="counties-header" onclick="toggleCounties()">'+
       '<span class="counties-label">View '+rows.length+' '+cLabel+'</span>'+
@@ -5017,6 +5078,7 @@ function initAccount() {
   var lockCompare = document.getElementById('lock-compare');
   var lockVersus = document.getElementById('lock-versus');
 
+  var valueSection = document.getElementById('acct-value-section');
   if (APP.tier >= 2) {
     badge.textContent = 'FULL ACCESS';
     badge.classList.add('paid');
@@ -5025,6 +5087,7 @@ function initAccount() {
     var lockedRow = document.getElementById('acct-locked');
     if (lockedRow) lockedRow.parentElement.style.display = 'none';
     if (upgrade) upgrade.style.display = 'none';
+    if (valueSection) valueSection.style.display = 'none';
     if (lockDna) lockDna.style.display = 'none';
     if (lockCompare) lockCompare.style.display = 'none';
     if (lockVersus) lockVersus.style.display = 'none';
@@ -5036,6 +5099,7 @@ function initAccount() {
     var locked = document.getElementById('acct-locked');
     if (locked) locked.textContent = 'Counties, DNA, Versus, Analyzer, Sage, Scout, Auctions, Pulse';
     if (upgrade) upgrade.style.display = 'block';
+    if (valueSection) valueSection.style.display = 'block';
     if (lockDna) lockDna.style.display = 'flex';
     if (lockCompare) lockCompare.style.display = 'flex';
     if (lockVersus) lockVersus.style.display = 'flex';
@@ -6415,11 +6479,13 @@ function dismissClarityCall() {
   if (panelCta) panelCta.style.display = 'none';
 }
 
+// Steps that require paid access
+var LOCKED_STEP_KEYS = { statesCompared: 'versus', dnaComplete: 'dna-tab', analyzerUsed: 'tools-tab' };
+var LOCKED_STEP_TABS = { statesCompared: 'lock-versus', dnaComplete: 'lock-dna-tab', analyzerUsed: 'lock-tools-tab' };
+
 function renderJourneyBar() {
   var bar = document.getElementById('journey-bar');
   if (!bar) return;
-  // Hide journey bar for free users — replaced by walkthrough previews on locked tabs
-  if (!IS_PAID) { bar.style.display = 'none'; return; }
   var profile = getProfile();
   var steps = (profile && profile.journeySteps) || {};
   var doneCount = 0;
@@ -6438,30 +6504,43 @@ function renderJourneyBar() {
   var html = '<span class="jb-label">Your Journey</span><div class="jb-steps">';
   JOURNEY_STEPS.forEach(function(s, i) {
     if (i > 0) html += '<span class="jb-arrow">\u2192</span>';
+    var isLocked = !IS_PAID && LOCKED_STEP_KEYS[s.key];
     var cls = steps[s.key] ? 'done' : (i === currentIdx ? 'current' : '');
-    html += '<span class="jb-step ' + cls + '">' + (steps[s.key] ? '\u2713 ' : '') + escapeHtml(s.label) + '</span>';
+    if (isLocked) cls += ' jb-step-locked';
+    var lockId = LOCKED_STEP_TABS[s.key] || '';
+    var onclick = isLocked ? ' onclick="showLockedPreview(\'' + lockId + '\')" style="cursor:pointer"' : '';
+    html += '<span class="jb-step ' + cls + '"' + onclick + '>' + (steps[s.key] ? '\u2713 ' : '') + (isLocked ? '\uD83D\uDD12 ' : '') + escapeHtml(s.label) + '</span>';
   });
   html += '</div>';
 
   // Mobile
   html += '<span class="jb-mobile-label">Step ' + (currentIdx >= 0 ? currentIdx + 1 : 5) + ' of 5</span>';
 
-  // Clarity Call CTA — show when at least 2 steps done and call not booked
-  var hasCompletedOneStep = steps.dnaComplete || steps.analyzerUsed;
-  if (doneCount >= 2 && !steps.callBooked && !dismissed) {
-    html += '<div class="jb-cta-group">';
-    html += '<button class="jb-book-btn" onclick="window.open(\'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4\',\'_blank\')">Book Clarity Call \u2192</button>';
-    // Only show dismiss after they've completed Build Profile or Run Numbers
-    if (hasCompletedOneStep) {
-      html += '<button class="jb-dismiss-btn" onclick="dismissClarityCall()">Not ready yet</button>';
+  // Clarity Call CTA — only for paid users with 2+ steps done
+  if (IS_PAID) {
+    var hasCompletedOneStep = steps.dnaComplete || steps.analyzerUsed;
+    if (doneCount >= 2 && !steps.callBooked && !dismissed) {
+      html += '<div class="jb-cta-group">';
+      html += '<button class="jb-book-btn" onclick="window.open(\'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4\',\'_blank\')">Book Clarity Call \u2192</button>';
+      if (hasCompletedOneStep) {
+        html += '<button class="jb-dismiss-btn" onclick="dismissClarityCall()">Not ready yet</button>';
+      }
+      html += '</div>';
+    } else if (doneCount >= 2 && !steps.callBooked && dismissed) {
+      html += '<span class="jb-ready"><span class="jb-ready-dot"></span>Ready for your call</span>';
     }
-    html += '</div>';
-  } else if (doneCount >= 2 && !steps.callBooked && dismissed) {
-    // Dismissed state — show subtle ready indicator only
-    html += '<span class="jb-ready"><span class="jb-ready-dot"></span>Ready for your call</span>';
   }
 
   bar.innerHTML = html;
+}
+
+// Show locked preview when free user clicks a locked journey step
+function showLockedPreview(lockId) {
+  if (!lockId) return;
+  // Map lock IDs to their tab names for switching
+  var tabMap = { 'lock-versus': 'versus', 'lock-dna-tab': 'dna', 'lock-tools-tab': 'tools' };
+  var tabName = tabMap[lockId];
+  if (tabName) switchTab(tabName);
 }
 
 // === ITEM 2: NEXT STEP CARDS ===
@@ -7399,7 +7478,7 @@ function scoutRender() {
   <div class="pulse-feed" id="pulse-feed"></div>
   <div class="pulse-cta" id="pulse-cta"></div>
   <div class="pulse-disclaimer">Dates based on published schedules &mdash; verify with official authority.</div>
-  <div class="paywall-lock" id="lock-pulse" style="display:none"><span class="walkthrough-label">UNLOCK PULSE</span><span class="walkthrough-desc">Real-time alerts when new auctions drop in your watched states. Set it once &mdash; Pulse notifies you.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
+  <div class="paywall-lock" id="lock-pulse" style="display:none"><span class="walkthrough-label">UNLOCK PULSE</span><span class="walkthrough-desc">Real-time alerts when new auctions drop in your watched states. Set it once &mdash; Pulse notifies you.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
 </div>
 
 <footer id="disclaimer-footer">

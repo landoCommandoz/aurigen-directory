@@ -240,6 +240,27 @@
       text-transform: uppercase;
     }
 
+    /* Paid sub */
+    .gate-paid-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      color: rgba(201,168,76,0.7);
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    /* Upgrade hint */
+    .gate-upgrade-hint {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: rgba(201,168,76,0.6);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
     /* Disclaimer */
     .gate-disclaimer {
       font-size: 11px;
@@ -356,15 +377,15 @@
         </div>
       </div>
 
-      <h1 class="gate-headline">Your First Deal<br>Starts <em>Here.</em></h1>
-      <p class="gate-sub">Every statute. Every auction platform. Every county &mdash; researched and waiting. The work is done. Now it&rsquo;s your move.</p>
+      <h1 class="gate-headline">STOP RESEARCHING<br>TAX LIENS <em>THE HARD WAY</em></h1>
+      <p class="gate-sub">The county-by-county intelligence platform built for serious investors. Free access. No credit card.</p>
 
       <div class="gate-form-wrap">
-        <div class="gate-form-label">Get Free Access &mdash; No Credit Card</div>
+        <div class="gate-form-label">Enter your email to access the platform</div>
         <form name="aurigen-leads" method="POST" data-netlify="true" onsubmit="handleSubmit(event)">
           <input type="hidden" name="form-name" value="aurigen-leads">
           <input class="gate-input" type="email" name="email" required placeholder="Enter your email address" autocomplete="email">
-          <button class="gate-submit" type="submit">Access the Platform &rarr;</button>
+          <button class="gate-submit" type="submit">GET FREE ACCESS &rarr;</button>
         </form>
 
         <div class="gate-divider">
@@ -374,9 +395,12 @@
         </div>
 
         <a class="gate-paid-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02">
-          <span>Unlock Full Platform</span>
-          <span class="gate-paid-badge">$197 &middot; One Time</span>
+          <span>UNLOCK FULL ACCESS &mdash; $197 ONE TIME</span>
+          <span class="gate-paid-badge">$197</span>
         </a>
+        <div class="gate-paid-sub">Comparable tools charge $200+/month. You pay once.</div>
+
+        <div class="gate-upgrade-hint">$197 one-time upgrade unlocks the full county directory + 8 professional investor tools</div>
 
         <div class="gate-disclaimer">Free tier includes the map, calculator, and state-level data. Full platform access is a one-time purchase of $197. This platform is for educational and informational purposes only. It does not constitute investment, legal, or financial advice. <a href="/legal/" style="color:rgba(201,168,76,0.6);text-decoration:underline">Legal</a></div>
       </div>
