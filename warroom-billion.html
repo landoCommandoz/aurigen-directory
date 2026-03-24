@@ -3937,7 +3937,7 @@ function renderList() {
       ' style="background:'+(isSel?'linear-gradient(90deg,'+color+'15,transparent)':'transparent')+';border-left-color:'+(isSel?color:'transparent')+'">'+
       '<span class="row-num">'+String(i+1).padStart(2,'0')+'</span>'+
       '<div class="row-badge"><span class="badge" style="color:#fff;background:'+color+';border-color:'+color+'">'+badge+'</span></div>'+
-      '<span class="row-name">'+n.toUpperCase()+'</span>'+
+      '<span class="row-name">'+escapeHtml(n.toUpperCase())+'</span>'+
       '<div class="row-stats" title="'+rate.replace(/"/g,'&quot;')+' | '+redemption.replace(/"/g,'&quot;')+'">'+
         '<span class="stat-pill pill-rate">'+ratePill+'</span>'+
         '<span class="stat-pill pill-hold">'+holdPill+'</span>'+
@@ -4302,7 +4302,7 @@ function showDetail(s) {
   // Key notes
   var notesEl=document.getElementById('panel-notes');
   if(s.keyNotes&&s.keyNotes.length>0){
-    notesEl.innerHTML=s.keyNotes.map(function(note){ return '<div class="panel-note">\u2022 '+note+'</div>'; }).join('');
+    notesEl.innerHTML=s.keyNotes.map(function(note){ return '<div class="panel-note">\u2022 '+escapeHtml(note)+'</div>'; }).join('');
   } else {
     notesEl.innerHTML='';
   }
@@ -4311,12 +4311,12 @@ function showDetail(s) {
   var metaHtml=[];
   var chipDot=function(c){return '<span class="chip-dot" style="background:'+c+'"></span>';};
   if(s.statute){
-    var statLink=s.officialLink?'<a href="'+s.officialLink+'" target="_blank" rel="noopener noreferrer">'+s.statute+'</a>':s.statute;
+    var statLink=s.officialLink?'<a href="'+escapeHtml(s.officialLink)+'" target="_blank" rel="noopener noreferrer">'+escapeHtml(s.statute)+'</a>':escapeHtml(s.statute);
     metaHtml.push('<span class="meta-chip">'+chipDot('#FFD700')+statLink+'</span>');
   }
   if(s.auctionPlatform) metaHtml.push('<span class="meta-chip">'+chipDot('#00D4FF')+linkifyPlatform(s.auctionPlatform)+'</span>');
-  if(s.auctionTiming) metaHtml.push('<span class="meta-chip">'+chipDot('#FF6B35')+s.auctionTiming+'</span>');
-  if(s.rateNote) metaHtml.push('<span class="meta-chip">'+chipDot('#BF5FFF')+s.rateNote+'</span>');
+  if(s.auctionTiming) metaHtml.push('<span class="meta-chip">'+chipDot('#FF6B35')+escapeHtml(s.auctionTiming)+'</span>');
+  if(s.rateNote) metaHtml.push('<span class="meta-chip">'+chipDot('#BF5FFF')+escapeHtml(s.rateNote)+'</span>');
   document.getElementById('panel-meta').innerHTML=metaHtml.join('');
 
   // Counties section — uses window.COUNTY_DATA (full) or states-en.js (thin fallback)
@@ -4495,9 +4495,9 @@ function runStateCompare() {
     el.textContent = b + ' NOT IN DATABASE \u2014 ENTER A 2-LETTER STATE CODE';
   } else {
     el.innerHTML =
-      '<div>RATE: ' + a + ' ' + dA.rate + ' | ' + b + ' ' + dB.rate + '</div>' +
-      '<div>REDEMPTION: ' + a + ' ' + dA.redemption + ' | ' + b + ' ' + dB.redemption + '</div>' +
-      '<div>PLATFORM: ' + a + ' ' + dA.platform + ' | ' + b + ' ' + dB.platform + '</div>';
+      '<div>RATE: ' + escapeHtml(a) + ' ' + escapeHtml(dA.rate) + ' | ' + escapeHtml(b) + ' ' + escapeHtml(dB.rate) + '</div>' +
+      '<div>REDEMPTION: ' + escapeHtml(a) + ' ' + escapeHtml(dA.redemption) + ' | ' + escapeHtml(b) + ' ' + escapeHtml(dB.redemption) + '</div>' +
+      '<div>PLATFORM: ' + escapeHtml(a) + ' ' + escapeHtml(dA.platform) + ' | ' + escapeHtml(b) + ' ' + escapeHtml(dB.platform) + '</div>';
   }
   el.classList.add('show');
 }
