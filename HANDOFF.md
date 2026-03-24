@@ -2,105 +2,65 @@
 ## Updated after every session. Read before every session.
 
 ### LAST SESSION DATE:
-2026-03-22
+2026-03-24
 
 ### LAST SESSION SUMMARY:
-Documentation update — Phase 1 status corrected to include county data layer work (TYPE_RATIONALE, county search/filter, legal/index.html). Phase 2 (8 core features) confirmed all OPEN.
+3 UX fixes to warroom-billion.html — improved free tier messaging, county list UX, and paywall enforcement. Knox QA 48/48 PASS.
 
-**ACE (Sales):** Delivered 60-second seminar pitch (148 words). Structure: Hook + Pain + Solution + Social Proof + Close. Ready to deliver at next live event.
+**FIX 1 — Free Tier State Access:**
+- Account tab now shows "All 51 States" (map access) + "Locked Features" row listing gated tools
+- Sage AI response updated to explain "Features are what's locked, not states"
+- Paid users: "Locked Features" row hidden entirely
 
-**BLAZE (Marketing):** Produced 3 TikTok hooks for Tyler v. Hennepin content. Winner: "94-year-old woman" hook. Full 45-55 second script written with real state data from states-en.js.
+**FIX 2 — County List Collapsed:**
+- Counties list starts collapsed with right-pointing chevron
+- County search hidden until list expanded
+- Upgrade CTA rendered ABOVE counties header for free users (always visible)
 
-**ATLAS (Content):** Complete topical authority map created — 6 clusters, 110+ content pieces, 90-day calendar. Saved to .claude/content/topical-authority-map.md
+**FIX 3A — Hard Lock on Paid Features:**
+- `.tab-locked` class: `overflow:hidden`, children get `pointer-events:none; user-select:none; opacity:0.15; filter:blur(2px)`
+- Applied to all 6 locked panels: DNA, Advisor, Tools, Versus, Scout, Auctions
+- Removed for paid users via `applyAccessLocks()`
 
-**LEX (Legal):** FTC compliance audit completed. Found 12 issues total:
-- 3 CRITICAL: (1) Fabricated social proof ticker (random 50-500 number), (2) "Founding member" 500-cap scarcity claim unverified, (3) Deal Tape missing required disclaimer
-- 5 WARNING: $297 strikethrough pricing, escalating paywall pressure copy, "returns" language, "Monthly Income" label, "Investor's Edge" language
+**FIX 3B — Walkthrough Previews:**
+- All 7 locked features now have walkthrough overlays: label + preview image + description + CTA
+- Consistent "UNLOCK FULL ACCESS — $197 ONE TIME" button on all locks
+- Pulse lock works but missing preview-img (advisory, non-blocking)
 
-**PIPER (Email):** 5 subject lines + preview text for nurture sequence. Email 1 fully written (248 words, FL/AZ/IL data). Post-seminar sequence framework complete.
+**KNOX:** 48/48 checks passed across all fixes + additional verification
 
-**RALLY (Community):** Complete 8-touchpoint onboarding playbook (Hour 0 through Day 30). All messages written. 3 regional templates for Day 14. Manual for first 50 members, then GHL automation.
+### WHAT WAS BUILT THIS SESSION (2026-03-24):
 
-**SCOUT (Outreach):** 3 partnership outreach target profiles with full email + follow-up sequences. Targets: (1) Live event company, (2) Online course platform, (3) Real estate attorney.
+**3 UX FIXES to warroom-billion.html:**
+1. Free tier state access — Account tab shows "All 51 States" + locked features list
+2. County list collapsed by default — toggle chevron, CTA above fold
+3. Hard lock + walkthrough previews — blur/disable locked panels, 7 walkthrough overlays with preview images
 
-**RECON (Intel):** Blue ocean JTBD analysis complete. Aurigen position confirmed uncontested. Strategy canvas:
-- ELIMINATE: generic education/coaching
-- REDUCE: CTA frequency
-- RAISE: statute citations, Tyler tracking, OTC intelligence, bilingual data
-- CREATE: state comparison tool, First Lien Roadmap, regulatory change feed, county competition score
-FastLien identified as closest threat. Data freshness is #1 operational priority.
+Knox QA: 48/48 PASS
 
-**MASON (Builder):** Top 3 tech debt items identified:
-1. CRITICAL: localStorage paywall bypass (C3)
-2. HIGH: new Function() injection risk
-3. HIGH: states-es.js missing module.exports
-C2 architecture blueprint complete with 5 implementation gaps and priority order.
+### WHAT WAS BUILT PRIOR SESSIONS:
 
-**KNOX (QA):** 33 regression tests run across PRs #31-37. Smoke test: all syntax passes. Issues found:
-- MEDIUM: Duplicate A2HS implementation
-- MEDIUM: Accessibility gaps
-- LOW: Hardcoded colors
-- LOW: Stale "7 free states" comment
-
-**CIPHER-SECURITY (Wraith):** Security status:
-- C1 CLOSED (password removed)
-- C2 OPEN (data files publicly accessible)
-- C3 OPEN (localStorage bypass)
-- H1 OPEN (no rate limiting)
-- H2 OPEN (timing attack on code comparison)
-- H3 OPEN (CORS wildcard)
-- H4 PARTIAL (innerHTML XSS)
-- C5 OPEN (no CSP header)
-Priority: C2+C3 together first via server-side session validation.
-
-**PRISM (Creative):** Hero section audit score: 6/10. Issues found:
-- CRITICAL: Two competing CTAs on hero
-- Hardcoded teal color outside CSS vars
-- Eyebrow text invisible at 12px
-- Mobile hero too tall
-- Cormorant Garamond third typeface not in design system
-
-### WHAT WAS BUILT THIS SESSION (2026-03-18):
-
-**GROUND-UP REBUILD — Phase 1 Foundation COMPLETE:**
+**Phase 1 Foundation (2026-03-18):**
 Old 12,000-line monolith replaced with modular architecture.
-Every file has one job. Max 400 lines per file.
+Phase 1 complete: Map, List, State Detail Modal, County Data Layer.
 
-New file structure:
-- index.html (77 lines) — Shell only, loads CSS + JS
-- css/base.css (153 lines) — Variables, reset, typography
-- css/gate.css (400 lines) — Gate screen styles
-- css/nav.css (72 lines) — Navigation styles
-- js/access.js (80 lines) — AccessManager (single source of truth)
-- js/language.js (53 lines) — LanguageManager (EN/ES toggle)
-- js/nav.js (112 lines) — NavManager (tab visibility by level)
-- js/gate.js (320 lines) — Gate screen logic (email + code forms)
-- js/app.js (240 lines) — App orchestrator (tab routing)
-- netlify/functions/aurigen.js (271 lines) — Serverless API (rebuilt)
-- legal/terms-of-service.txt — Lex-written ToS
-- legal/privacy-policy.txt — Lex-written Privacy Policy
-- legal/refund-policy.txt — Lex-written Refund Policy
-
-Knox verification: 7/7 PASS on Phase 1
-Lex legal documents: 3/3 delivered
-
-**Production CORS Fix (from earlier session):**
-- aurigen-directory.netlify.app added to ALLOWED_ORIGINS
-- states-es.js module.exports added
-- Anthropic SDK lazy-loaded (was crashing on cold start)
+**warroom-billion.html — Consolidated Build:**
+7346-line single-file build with all Phase 2 features + access control + Scout tool.
+Includes: email gate, Stripe paywall, map, state detail, DNA, Sage, Versus, Analyzer, Scout, Auctions, Pulse drawer, Journey bar, Account tab.
 
 ### WHAT WAS MERGED THIS SESSION:
 - PR #79: county data layer (TYPE_RATIONALE, county search/filter, legal/index.html) — merged to main
 
 ### WHAT IS CURRENTLY PENDING:
+- Phase 2: Pulse + Account tabs (2 of 8 remaining)
+- Phase 3: Funnel intelligence — Journey bar partially wired, DNA persistence, tool interconnection
 - C2 fix: JWT session validation for serverless data gating (get-states.js partially built)
+- `/access?paid=true` URL bypass still works — needs server-side validation (Phase 5)
+- Pulse lock missing walkthrough-preview-img (advisory, non-blocking)
 - Hero section redesign from Prism audit
 - og:image asset needed — Prism to create 1200x630 social share image
 - GHL 5-email nurture sequence (Piper)
 - Subdomain: directory.theaurigen.com
-- Add to Home Screen guide (Atlas)
-- VS view testimonial carousel needs real customer quotes
-- First Deal page navigation incomplete
 - ES translations parity work (states-es.js significantly shorter than EN)
 
 ### WHAT BROKE OR REGRESSED:
@@ -133,29 +93,26 @@ Lex legal documents: 3/3 delivered
 ### NEXT SESSION STARTS WITH:
 **PRIORITY ORDER (Revenue Impact → Risk Reduction → Foundation Building):**
 
-1. **PHASE 2: CORE FEATURES** (8 features, all OPEN)
-   - map, analyzer, sage, pulse, dna, versus, auctions, account
+1. **PHASE 2: Remaining Tools** (2 of 8 remaining)
+   - Pulse — personalized alert feed
+   - Account — tier management, upgrade flow
 
-2. **C2 SECURITY FIX** (Risk Reduction — revenue protection)
+2. **PHASE 3: FUNNEL INTELLIGENCE** (connect all tools into one journey)
+   - Journey bar, Next Step Cards, DNA persistence across tools
+   - Pre-Call Summary page
+
+3. **C2 SECURITY FIX** (Risk Reduction — revenue protection)
    - JWT session validation for get-states.js
-   - ~~C3 localStorage bypass~~ — RESOLVED
+   - `/access?paid=true` bypass needs server-side fix
    - Owner: Mason implementation → Wraith verification
 
-3. **HERO SECTION REDESIGN** (Revenue Impact — conversion)
+4. **HERO SECTION REDESIGN** (Revenue Impact — conversion)
    - Fix competing CTAs (single clear action)
-   - Fix mobile hero height
-   - Replace hardcoded teal with CSS var
    - Owner: Prism mockup → Lando approval → Mason build
 
-4. **EMAIL SEQUENCE ACTIVATION** (Revenue Impact — nurture)
+5. **EMAIL SEQUENCE ACTIVATION** (Revenue Impact — nurture)
    - Deploy Piper's post-seminar 3-email sequence
-   - Set up in GHL
    - Owner: Piper content → Lando GHL setup
-
-5. **COMMUNITY ONBOARDING** (Foundation Building — retention)
-   - Implement Rally's 8-touchpoint playbook
-   - Manual for first 50, then automate
-   - Owner: Rally content → Lando Skool setup
 
 ### OPEN QUESTIONS FOR LANDO:
 - Is the 500 founding member cap real? If so, where is the counter? If not, remove the claim.
