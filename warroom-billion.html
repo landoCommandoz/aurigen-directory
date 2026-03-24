@@ -728,11 +728,7 @@
       gap: 10px;
       padding: 24px;
     }
-    .lock-versus-override {
-      background: rgba(6,6,10,0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
+    /* lock-versus-override removed — Versus uses vs-locked-wrap instead */
     .paywall-lock-icon { font-size: 24px; }
     .paywall-lock-title {
       font-family: 'Bebas Neue', sans-serif;
@@ -1173,7 +1169,8 @@
     }
     .tab-panel.tab-locked { overflow: hidden; }
     .tab-panel.tab-locked > *:not(.paywall-lock) { pointer-events: none; user-select: none; opacity: 0.15; filter: blur(2px); }
-    #panel-versus.tab-locked > *:not(.paywall-lock) { opacity: 0; filter: blur(8px); visibility: hidden; }
+    #panel-versus.tab-locked > *:not(.paywall-lock):not(.vs-locked-wrap) { opacity: 0; filter: blur(8px); visibility: hidden; }
+    #panel-versus.tab-locked .vs-locked-wrap { opacity: 1; visibility: visible; filter: none; pointer-events: auto; }
     .tab-panel.active {
       display: flex;
     }
@@ -2371,51 +2368,84 @@
       color: var(--accent);
     }
 
-    /* === VERSUS TAB === */
-    .vs-container{position:relative;flex:1;overflow-y:auto;padding:32px 24px 48px;min-height:0}
-    .vs-watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(120px,20vw,280px);color:rgba(255,255,255,0.04);pointer-events:none;user-select:none;letter-spacing:0.08em;white-space:nowrap;z-index:0}
-    .vs-hero{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;position:relative;z-index:1;margin-bottom:32px}
-    .vs-state-block{text-align:center}
-    .vs-select{width:100%;max-width:240px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:10px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--text);cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;text-transform:uppercase}
+    /* === VERSUS TAB — TERMINAL DESIGN === */
+    .vs-terminal{position:relative;flex:1;display:flex;flex-direction:column;min-height:0;background:#0a0a0f;overflow:hidden}
+    .vs-terminal::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.015) 2px,rgba(255,255,255,0.015) 4px);pointer-events:none;z-index:1}
+    .vs-terminal-inner{position:relative;z-index:2;flex:1;overflow-y:auto;padding:0;min-height:0;display:flex;flex-direction:column}
+    .vs-topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);flex-shrink:0}
+    .vs-topbar-dots{display:flex;gap:6px}
+    .vs-topbar-dots span{width:10px;height:10px;border-radius:50%}
+    .vs-topbar-dots span:nth-child(1){background:#FF5F57}
+    .vs-topbar-dots span:nth-child(2){background:#FEBC2E}
+    .vs-topbar-dots span:nth-child(3){background:#28C840}
+    .vs-topbar-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.5)}
+    .vs-topbar-status{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(0,255,136,0.6)}
+    .vs-cmd{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);font-family:'Space Mono',monospace;font-size:11px;color:rgba(0,255,136,0.7);white-space:nowrap;overflow-x:auto;flex-shrink:0}
+    .vs-cmd .vs-prompt{color:rgba(0,255,136,0.9)}
+    .vs-cmd .vs-flag{color:rgba(255,215,0,0.8)}
+    .vs-cmd .vs-val-a{color:#FFD700}
+    .vs-cmd .vs-val-b{color:#00D4FF}
+    .vs-selects{display:flex;gap:12px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;align-items:center}
+    .vs-selects label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4)}
+    .vs-select{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:6px 10px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--text);cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;text-transform:uppercase}
     .vs-select:focus{border-color:var(--accent)}
-    .vs-select option{background:#14141c;color:var(--text)}
-    .vs-state-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,56px);color:var(--text);letter-spacing:0.06em;margin-top:12px;line-height:1}
-    .vs-type-badge{display:inline-block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;padding:4px 12px;border-radius:3px;margin-top:8px;border:1px solid}
-    .vs-type-badge[data-type="lien"]{color:#00D4FF;border-color:rgba(0,212,255,0.3);background:rgba(0,212,255,0.08)}
-    .vs-type-badge[data-type="deed"]{color:#FF6B35;border-color:rgba(255,107,53,0.3);background:rgba(255,107,53,0.08)}
-    .vs-type-badge[data-type="hybrid"]{color:#FFD700;border-color:rgba(255,215,0,0.3);background:rgba(255,215,0,0.08)}
-    .vs-type-badge[data-type="redeemable"]{color:#00FF88;border-color:rgba(0,255,136,0.3);background:rgba(0,255,136,0.08)}
-    .vs-type-badge[data-type="forfeiture"]{color:#FF2D55;border-color:rgba(255,45,85,0.3);background:rgba(255,45,85,0.08)}
-    .vs-divider{display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 8px}
-    .vs-divider-line{width:2px;height:40px;background:linear-gradient(180deg,transparent,var(--accent),transparent)}
-    .vs-divider-text{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--accent);font-style:italic;line-height:1}
-    .vs-metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;position:relative;z-index:1;margin-bottom:28px}
-    .vs-tile{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;border-top:2px solid transparent}
-    .vs-tile-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text2);text-align:center;padding:10px 8px 6px}
-    .vs-tile-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,0.06)}
-    .vs-tile-cell{padding:10px 12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;color:var(--text);line-height:1.5;text-align:center}
-    .vs-tile-cell:first-child{border-right:1px solid rgba(255,255,255,0.06)}
-    .vs-tile.winner-a{border-top-color:var(--accent)}
-    .vs-tile.winner-b{border-top-color:var(--accent)}
-    .vs-tile.winner-a .vs-tile-cell:first-child{color:var(--accent)}
-    .vs-tile.winner-b .vs-tile-cell:last-child{color:var(--accent)}
-    .vs-insights{position:relative;z-index:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:16px 20px;margin-bottom:20px}
-    .vs-insights:empty{display:none}
-    .vs-insight-title{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);margin-bottom:10px}
-    .vs-insight-item{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.7;margin-bottom:6px}
-    .vs-insight-item:last-child{margin-bottom:0}
-    .vs-disclaimer{position:relative;z-index:1;font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;color:rgba(255,255,255,0.25);text-align:center;line-height:1.6;padding:12px 0}
+    .vs-select option{background:#0a0a0f;color:var(--text)}
+    .vs-select-a{border-color:rgba(255,215,0,0.3)}
+    .vs-select-b{border-color:rgba(0,212,255,0.3)}
+    .vs-data-area{flex:1;overflow-y:auto;min-height:0;padding:0 16px 16px}
+    .vs-col-headers{display:grid;grid-template-columns:160px 1fr 1fr;gap:0;padding:14px 0 8px;border-bottom:1px solid rgba(255,255,255,0.1)}
+    .vs-col-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+    .vs-col-state{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.06em;text-align:center}
+    .vs-col-state-a{color:#FFD700}
+    .vs-col-state-b{color:#00D4FF}
+    .vs-row{display:grid;grid-template-columns:160px 1fr 1fr;gap:0;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);align-items:center}
+    .vs-row:hover{background:rgba(255,255,255,0.02)}
+    .vs-row-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4)}
+    .vs-row-val{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.04em;text-transform:uppercase;color:var(--text);text-align:center;position:relative}
+    .vs-winner-badge{display:inline-block;font-family:'Space Mono',monospace;font-size:7px;letter-spacing:0.1em;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-left:6px;vertical-align:middle;background:rgba(0,255,136,0.12);color:#00FF88;border:1px solid rgba(0,255,136,0.25)}
+    .vs-analysis{margin:16px 0;padding:12px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:4px}
+    .vs-analysis-header{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,255,136,0.6);margin-bottom:10px}
+    .vs-analysis-item{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:6px}
+    .vs-analysis-item:last-child{margin-bottom:0}
+    .vs-analysis:empty{display:none}
+    .vs-footer{padding:10px 16px;border-top:1px solid rgba(255,255,255,0.06);font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+    .vs-cursor{display:inline-block;width:7px;height:13px;background:rgba(0,255,136,0.6);margin-left:4px;animation:vsBlink 1s step-end infinite}
+    @keyframes vsBlink{0%,100%{opacity:1}50%{opacity:0}}
+    .vs-disclaimer{font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;color:rgba(255,255,255,0.2);text-align:center;line-height:1.6;padding:8px 16px}
     #panel-versus .tool-locked-overlay{position:absolute;inset:0;z-index:10;border-radius:0}
-    @media(max-width:1024px){.vs-metrics{grid-template-columns:repeat(3,1fr)}}
+    /* Versus locked preview */
+    .vs-locked-wrap{position:relative;flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+    .vs-locked-bg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:40px;filter:blur(3px);opacity:0.12;pointer-events:none;user-select:none}
+    .vs-locked-bg-name{font-family:'Bebas Neue',sans-serif;font-size:48px;color:#fff;letter-spacing:0.06em}
+    .vs-locked-bg-rows{display:flex;flex-direction:column;gap:8px;width:80%;max-width:400px}
+    .vs-locked-bg-row{height:14px;border-radius:3px;background:rgba(255,255,255,0.3)}
+    .vs-locked-overlay{position:absolute;inset:0;background:rgba(6,6,10,0.88);z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;gap:16px}
+    .vs-locked-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent)}
+    .vs-locked-preview{width:100%;max-width:360px;border-radius:6px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);overflow:hidden;filter:blur(2px);opacity:0.5;pointer-events:none;user-select:none;padding:14px 16px}
+    .vs-locked-preview-headers{display:flex;justify-content:space-between;margin-bottom:10px}
+    .vs-locked-preview-hdr{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.06em}
+    .vs-locked-preview-hdr-a{color:rgba(255,215,0,0.6)}
+    .vs-locked-preview-hdr-b{color:rgba(0,212,255,0.6)}
+    .vs-locked-preview-row{height:10px;border-radius:2px;background:rgba(255,255,255,0.08);margin-bottom:6px}
+    .vs-locked-desc{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;color:var(--text2);line-height:1.7;max-width:380px;text-align:center}
+    .vs-locked-cta{display:block;width:100%;max-width:380px;padding:14px 20px;background:var(--accent);color:#0d0d0d;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-align:center;text-decoration:none;border-radius:4px;font-weight:700;transition:opacity 0.2s}
+    .vs-locked-cta:hover{opacity:0.9}
+    .vs-locked-sub{font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-align:center}
     @media(max-width:768px){
-      .vs-hero{grid-template-columns:1fr;gap:12px}
-      .vs-divider{flex-direction:row;padding:4px 0}
-      .vs-divider-line{width:40px;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
-      .vs-select{max-width:100%}
-      .vs-metrics{grid-template-columns:1fr}
-      .vs-state-name{font-size:32px}
+      .vs-col-headers,.vs-row{grid-template-columns:100px 1fr 1fr}
+      .vs-col-state{font-size:14px}
+      .vs-row-val{font-size:14px}
+      .vs-row-label{font-size:8px}
+      .vs-selects{flex-direction:column;gap:8px}
+      .vs-topbar-title{font-size:8px}
+      .vs-cmd{font-size:9px}
     }
-    @media(min-width:769px) and (max-width:1024px){.vs-metrics{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:375px){
+      .vs-col-headers,.vs-row{grid-template-columns:80px 1fr 1fr}
+      .vs-col-state{font-size:12px}
+      .vs-row-val{font-size:12px}
+      .vs-winner-badge{font-size:6px;padding:1px 4px;margin-left:3px}
+    }
 
     /* === SCOUT — DUE DILIGENCE TOOL === */
     #panel-scout{flex-direction:column;min-height:0}
@@ -2981,30 +3011,67 @@
     </div>
 
     <div class="tab-panel" id="panel-versus">
-      <div class="vs-container">
-        <div class="vs-watermark">VERSUS</div>
-        <div class="vs-hero">
-          <div class="vs-state-block">
-            <select class="vs-select" id="vs-select-a"></select>
-            <div class="vs-state-name" id="vs-name-a"></div>
-            <div class="vs-type-badge" id="vs-badge-a"></div>
+      <!-- PAID: Terminal layout -->
+      <div class="vs-terminal" id="vs-terminal-paid">
+        <div class="vs-terminal-inner">
+          <div class="vs-topbar">
+            <div class="vs-topbar-dots"><span></span><span></span><span></span></div>
+            <div class="vs-topbar-title">AURIGEN &mdash; VERSUS INTELLIGENCE</div>
+            <div class="vs-topbar-status">SECURE &middot; READ ONLY</div>
           </div>
-          <div class="vs-divider">
-            <div class="vs-divider-line"></div>
-            <div class="vs-divider-text">vs</div>
-            <div class="vs-divider-line"></div>
+          <div class="vs-cmd" id="vs-cmd-line"><span class="vs-prompt">$</span> aurigen compare <span class="vs-flag">--state-a=</span><span class="vs-val-a" id="vs-cmd-a">FL</span> <span class="vs-flag">--state-b=</span><span class="vs-val-b" id="vs-cmd-b">TX</span></div>
+          <div class="vs-selects">
+            <label>STATE A:</label>
+            <select class="vs-select vs-select-a" id="vs-select-a"></select>
+            <label>STATE B:</label>
+            <select class="vs-select vs-select-b" id="vs-select-b"></select>
           </div>
-          <div class="vs-state-block">
-            <select class="vs-select" id="vs-select-b"></select>
-            <div class="vs-state-name" id="vs-name-b"></div>
-            <div class="vs-type-badge" id="vs-badge-b"></div>
+          <div class="vs-data-area">
+            <div class="vs-col-headers">
+              <div class="vs-col-label">METRIC</div>
+              <div class="vs-col-state vs-col-state-a" id="vs-hdr-a">FLORIDA</div>
+              <div class="vs-col-state vs-col-state-b" id="vs-hdr-b">TEXAS</div>
+            </div>
+            <div id="vs-rows"></div>
+            <div class="vs-analysis" id="vs-analysis"></div>
+            <div class="vs-disclaimer">INVESTMENT INVOLVES RISK. DATA SHOWN REFLECTS STATUTORY PROVISIONS AND MAY VARY BY COUNTY. THIS IS NOT FINANCIAL ADVICE. CONSULT A QUALIFIED PROFESSIONAL BEFORE INVESTING.</div>
+            <div id="versus-next-step"></div>
+          </div>
+          <div class="vs-footer">
+            <span>AURIGEN VERSUS INTELLIGENCE v2.0</span>
+            <span>READY<span class="vs-cursor"></span></span>
           </div>
         </div>
-        <div class="vs-metrics" id="vs-metrics"></div>
-        <div class="vs-insights" id="vs-insights"></div>
-        <div class="vs-disclaimer">Investment involves risk. Data shown reflects statutory provisions and may vary by county. This is not financial advice. Consult a qualified professional before investing.</div>
-        <div id="versus-next-step"></div>
-        <div class="paywall-lock lock-versus-override" id="lock-versus" style="display:none"><span class="walkthrough-label">UNLOCK VERSUS</span><div class="walkthrough-preview-img"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><span class="wk-badge lien" style="font-size:9px;padding:3px 8px">Florida</span><span style="font-size:10px;color:var(--text2)">vs</span><span class="wk-badge deed" style="font-size:9px;padding:3px 8px">Texas</span></div><div class="wk-row"><span class="wk-text-sub" style="width:70px;flex-shrink:0">Yield Rate</span><span class="wk-text" style="text-align:center">18%</span><span class="wk-text" style="text-align:center">N/A</span></div><div class="wk-row"><span class="wk-text-sub" style="width:70px;flex-shrink:0">Redemption</span><span class="wk-text" style="text-align:center">2 yrs</span><span class="wk-text" style="text-align:center">None</span></div><div class="wk-row"><span class="wk-text-sub" style="width:70px;flex-shrink:0">Type</span><span class="wk-text" style="text-align:center">Lien</span><span class="wk-text" style="text-align:center">Deed</span></div></div><span class="walkthrough-desc">Compare any two states side by side &mdash; rates, redemption periods, bid methods, deed timelines. Built for investors choosing their next market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+      </div>
+      <!-- FREE: Locked preview -->
+      <div class="vs-locked-wrap" id="vs-locked-free" style="display:none">
+        <div class="vs-locked-bg">
+          <div class="vs-locked-bg-name">FLORIDA</div>
+          <div style="font-family:'Space Mono',monospace;font-size:14px;color:rgba(255,255,255,0.3)">VS</div>
+          <div class="vs-locked-bg-name">TEXAS</div>
+          <div class="vs-locked-bg-rows">
+            <div class="vs-locked-bg-row" style="width:100%"></div>
+            <div class="vs-locked-bg-row" style="width:85%"></div>
+            <div class="vs-locked-bg-row" style="width:92%"></div>
+            <div class="vs-locked-bg-row" style="width:78%"></div>
+            <div class="vs-locked-bg-row" style="width:88%"></div>
+          </div>
+        </div>
+        <div class="vs-locked-overlay">
+          <div class="vs-locked-eyebrow">UNLOCK VERSUS</div>
+          <div class="vs-locked-preview">
+            <div class="vs-locked-preview-headers">
+              <div class="vs-locked-preview-hdr vs-locked-preview-hdr-a">FLORIDA</div>
+              <div class="vs-locked-preview-hdr vs-locked-preview-hdr-b">TEXAS</div>
+            </div>
+            <div class="vs-locked-preview-row" style="width:100%"></div>
+            <div class="vs-locked-preview-row" style="width:90%"></div>
+            <div class="vs-locked-preview-row" style="width:80%"></div>
+          </div>
+          <div class="vs-locked-desc">Compare any two states side by side &mdash; yield rates, redemption periods, bid methods, and platforms. Built for investors choosing their next market.</div>
+          <a class="vs-locked-cta" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a>
+          <div class="vs-locked-sub">COMPARABLE TOOLS CHARGE $200+/MONTH &middot; YOU PAY ONCE</div>
+        </div>
       </div>
     </div>
 
@@ -3190,18 +3257,23 @@ var STRIPE_URL = 'https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02';
 
 function applyAccessLocks() {
   // Tab-level locks (paid only) — includes Auctions now
-  var tabLocks = ['lock-dna-tab', 'lock-advisor-tab', 'lock-tools-tab', 'lock-versus', 'lock-scout-tab', 'lock-auctions-tab'];
+  var tabLocks = ['lock-dna-tab', 'lock-advisor-tab', 'lock-tools-tab', 'lock-scout-tab', 'lock-auctions-tab'];
   tabLocks.forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.style.display = IS_PAID ? 'none' : 'flex';
   });
+
+  // Versus uses its own paid/free toggle (terminal vs locked preview)
+  var vsTerminal = document.getElementById('vs-terminal-paid');
+  var vsLocked = document.getElementById('vs-locked-free');
+  if (vsTerminal) vsTerminal.style.display = IS_PAID ? 'flex' : 'none';
+  if (vsLocked) vsLocked.style.display = IS_PAID ? 'none' : 'flex';
 
   // Hard lock: add tab-locked class to prevent interaction behind overlay
   var lockPanelMap = {
     'lock-dna-tab': 'panel-dna',
     'lock-advisor-tab': 'panel-advisor',
     'lock-tools-tab': 'panel-tools',
-    'lock-versus': 'panel-versus',
     'lock-scout-tab': 'panel-scout',
     'lock-auctions-tab': 'panel-auctions'
   };
@@ -5076,7 +5148,8 @@ function initAccount() {
   var upgrade = document.getElementById('acct-upgrade');
   var lockDna = document.getElementById('lock-dna');
   var lockCompare = document.getElementById('lock-compare');
-  var lockVersus = document.getElementById('lock-versus');
+  var vsTerminal = document.getElementById('vs-terminal-paid');
+  var vsLocked = document.getElementById('vs-locked-free');
 
   var valueSection = document.getElementById('acct-value-section');
   if (APP.tier >= 2) {
@@ -5090,7 +5163,8 @@ function initAccount() {
     if (valueSection) valueSection.style.display = 'none';
     if (lockDna) lockDna.style.display = 'none';
     if (lockCompare) lockCompare.style.display = 'none';
-    if (lockVersus) lockVersus.style.display = 'none';
+    if (vsTerminal) vsTerminal.style.display = 'flex';
+    if (vsLocked) vsLocked.style.display = 'none';
   } else {
     badge.textContent = 'FREE ACCESS';
     badge.classList.remove('paid');
@@ -5102,7 +5176,8 @@ function initAccount() {
     if (valueSection) valueSection.style.display = 'block';
     if (lockDna) lockDna.style.display = 'flex';
     if (lockCompare) lockCompare.style.display = 'flex';
-    if (lockVersus) lockVersus.style.display = 'flex';
+    if (vsTerminal) vsTerminal.style.display = 'none';
+    if (vsLocked) vsLocked.style.display = 'flex';
   }
   email.textContent = APP.email || '\u2014';
 }
@@ -5213,6 +5288,10 @@ function vsIsOnline(platform) {
   return lower.indexOf('online') !== -1 || lower.indexOf('realauction') !== -1 || lower.indexOf('govease') !== -1 || lower.indexOf('grant street') !== -1 || lower.indexOf('zeusauction') !== -1;
 }
 
+function vsWinnerBadge(label) {
+  return '<span class="vs-winner-badge">' + escapeHtml(label) + '</span>';
+}
+
 function runVersusCompare() {
   var codeA = document.getElementById('vs-select-a').value;
   var codeB = document.getElementById('vs-select-b').value;
@@ -5220,15 +5299,17 @@ function runVersusCompare() {
   var b = getStateByCode(codeB);
   if (!a || !b) return;
 
-  // Update hero
-  document.getElementById('vs-name-a').textContent = a.name;
-  document.getElementById('vs-name-b').textContent = b.name;
-  var badgeA = document.getElementById('vs-badge-a');
-  var badgeB = document.getElementById('vs-badge-b');
-  badgeA.textContent = TYPE_FULL[a.type] || a.type.toUpperCase();
-  badgeA.setAttribute('data-type', a.type);
-  badgeB.textContent = TYPE_FULL[b.type] || b.type.toUpperCase();
-  badgeB.setAttribute('data-type', b.type);
+  // Update command line
+  var cmdA = document.getElementById('vs-cmd-a');
+  var cmdB = document.getElementById('vs-cmd-b');
+  if (cmdA) cmdA.textContent = codeA;
+  if (cmdB) cmdB.textContent = codeB;
+
+  // Update column headers
+  var hdrA = document.getElementById('vs-hdr-a');
+  var hdrB = document.getElementById('vs-hdr-b');
+  if (hdrA) hdrA.textContent = a.name.toUpperCase();
+  if (hdrB) hdrB.textContent = b.name.toUpperCase();
 
   // Metrics
   var rateA = vsParseRate(a.rate);
@@ -5238,34 +5319,31 @@ function runVersusCompare() {
   var onA = vsIsOnline(a.auctionPlatform);
   var onB = vsIsOnline(b.auctionPlatform);
 
-  var tiles = [
-    { label: 'Yield Rate', valA: a.rate || '—', valB: b.rate || '—', winner: rateA > rateB ? 'a' : (rateB > rateA ? 'b' : '') },
-    { label: 'Redemption', valA: a.redemption || '—', valB: b.redemption || '—', winner: (redA > 0 && redB > 0) ? (redA < redB ? 'a' : (redB < redA ? 'b' : '')) : '' },
-    { label: 'Bid Method', valA: a.bidMethod || '—', valB: b.bidMethod || '—', winner: '' },
-    { label: 'Platform', valA: a.auctionPlatform || '—', valB: b.auctionPlatform || '—', winner: (onA && !onB) ? 'a' : (!onA && onB ? 'b' : '') },
-    { label: 'Type', valA: a.type ? a.type.charAt(0).toUpperCase() + a.type.slice(1) : '—', valB: b.type ? b.type.charAt(0).toUpperCase() + b.type.slice(1) : '—', winner: '' }
+  var rows = [
+    { label: 'TYPE', valA: (a.type || '—').toUpperCase(), valB: (b.type || '—').toUpperCase(), badgeA: '', badgeB: '' },
+    { label: 'YIELD RATE', valA: (a.rate || '—').toUpperCase(), valB: (b.rate || '—').toUpperCase(), badgeA: rateA > rateB ? 'HIGHER' : '', badgeB: rateB > rateA ? 'HIGHER' : '' },
+    { label: 'REDEMPTION', valA: (a.redemption || '—').toUpperCase(), valB: (b.redemption || '—').toUpperCase(), badgeA: (redA > 0 && redB > 0 && redA < redB) ? 'SHORTER' : '', badgeB: (redA > 0 && redB > 0 && redB < redA) ? 'SHORTER' : '' },
+    { label: 'BID METHOD', valA: (a.bidMethod || '—').toUpperCase(), valB: (b.bidMethod || '—').toUpperCase(), badgeA: '', badgeB: '' },
+    { label: 'PLATFORM', valA: (a.auctionPlatform || '—').toUpperCase(), valB: (b.auctionPlatform || '—').toUpperCase(), badgeA: (onA && !onB) ? 'ONLINE' : '', badgeB: (onB && !onA) ? 'ONLINE' : '' },
+    { label: 'BEGINNER', valA: a.beginnerFriendly ? 'YES' : 'NO', valB: b.beginnerFriendly ? 'YES' : 'NO', badgeA: (a.beginnerFriendly && !b.beginnerFriendly) ? 'ADVANTAGE' : '', badgeB: (b.beginnerFriendly && !a.beginnerFriendly) ? 'ADVANTAGE' : '' }
   ];
 
-  document.getElementById('vs-metrics').innerHTML = tiles.map(function(t) {
-    var cls = 'vs-tile';
-    if (t.winner === 'a') cls += ' winner-a';
-    if (t.winner === 'b') cls += ' winner-b';
-    return '<div class="' + cls + '">'
-      + '<div class="vs-tile-label">' + escapeHtml(t.label) + '</div>'
-      + '<div class="vs-tile-row">'
-      + '<div class="vs-tile-cell">' + escapeHtml(t.valA) + '</div>'
-      + '<div class="vs-tile-cell">' + escapeHtml(t.valB) + '</div>'
-      + '</div></div>';
+  document.getElementById('vs-rows').innerHTML = rows.map(function(r) {
+    return '<div class="vs-row">'
+      + '<div class="vs-row-label">' + escapeHtml(r.label) + '</div>'
+      + '<div class="vs-row-val">' + escapeHtml(r.valA) + (r.badgeA ? vsWinnerBadge(r.badgeA) : '') + '</div>'
+      + '<div class="vs-row-val">' + escapeHtml(r.valB) + (r.badgeB ? vsWinnerBadge(r.badgeB) : '') + '</div>'
+      + '</div>';
   }).join('');
 
-  // Insights
+  // Analysis output
   var insights = vsGenerateInsights(a, b, rateA, rateB, redA, redB, onA, onB);
-  var insEl = document.getElementById('vs-insights');
+  var analysisEl = document.getElementById('vs-analysis');
   if (insights.length > 0) {
-    insEl.innerHTML = '<div class="vs-insight-title">Key Insights</div>'
-      + insights.map(function(i) { return '<div class="vs-insight-item">' + escapeHtml(i) + '</div>'; }).join('');
+    analysisEl.innerHTML = '<div class="vs-analysis-header">&gt; ANALYSIS OUTPUT</div>'
+      + insights.map(function(i) { return '<div class="vs-analysis-item">' + escapeHtml(i) + '</div>'; }).join('');
   } else {
-    insEl.innerHTML = '';
+    analysisEl.innerHTML = '';
   }
 }
 
