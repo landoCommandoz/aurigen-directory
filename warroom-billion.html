@@ -728,6 +728,11 @@
       gap: 10px;
       padding: 24px;
     }
+    .lock-versus-override {
+      background: rgba(6,6,10,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
     .paywall-lock-icon { font-size: 24px; }
     .paywall-lock-title {
       font-family: 'Bebas Neue', sans-serif;
@@ -762,7 +767,30 @@
     .paywall-lock-btn:hover { opacity: 0.85; }
     .walkthrough-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent)}
     .walkthrough-desc{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--text2);line-height:1.7;max-width:340px;text-align:center}
-    .walkthrough-preview-img{width:100%;max-width:320px;aspect-ratio:16/9;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:0.1em}
+    .walkthrough-preview-img{width:100%;max-width:340px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);overflow:hidden;filter:blur(4px);opacity:0.4;pointer-events:none;user-select:none;padding:14px 16px}
+    .wk-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+    .wk-row:last-child{border-bottom:none}
+    .wk-badge{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.08em;padding:2px 6px;border-radius:3px;white-space:nowrap}
+    .wk-badge.lien{background:rgba(45,212,192,0.12);color:var(--teal)}
+    .wk-badge.deed{background:rgba(201,168,76,0.12);color:var(--accent)}
+    .wk-badge.online{background:rgba(74,222,128,0.1);color:var(--green);font-size:7px}
+    .wk-badge.person{background:rgba(232,93,138,0.1);color:var(--pink);font-size:7px}
+    .wk-text{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .wk-text-sub{font-size:9px;color:var(--text2)}
+    .wk-btn{font-size:8px;padding:3px 8px;border-radius:3px;border:1px solid rgba(201,168,76,0.3);color:var(--accent);background:transparent;white-space:nowrap}
+    .wk-input{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:6px 8px;font-size:10px;color:var(--text2);width:100%}
+    .wk-label{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:0.1em;color:var(--text2);text-transform:uppercase;margin-bottom:2px}
+    .wk-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:10px 12px;margin-top:6px}
+    .wk-bubble{border-radius:10px;padding:8px 12px;font-size:10px;line-height:1.5;max-width:85%}
+    .wk-bubble.user{background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.15);color:var(--text);margin-left:auto}
+    .wk-bubble.sage{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);color:var(--text2)}
+    .wk-step-hdr{display:flex;align-items:center;gap:8px;padding:6px 0}
+    .wk-step-num{width:22px;height:22px;border-radius:50%;border:1px solid rgba(201,168,76,0.3);font-family:'Space Mono',monospace;font-size:9px;display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0}
+    .wk-radio{width:12px;height:12px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);flex-shrink:0}
+    .wk-radio.selected{border-color:var(--accent);background:rgba(201,168,76,0.3)}
+    .wk-opt{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:10px;color:var(--text2)}
+    .wk-result{display:flex;justify-content:space-between;padding:4px 0;font-size:10px}
+    .wk-result-val{color:var(--accent);font-weight:600}
 
     /* County lock in modal */
     #panel-counties-lock {
@@ -1141,6 +1169,7 @@
     }
     .tab-panel.tab-locked { overflow: hidden; }
     .tab-panel.tab-locked > *:not(.paywall-lock) { pointer-events: none; user-select: none; opacity: 0.15; filter: blur(2px); }
+    #panel-versus.tab-locked > *:not(.paywall-lock) { opacity: 0; filter: blur(8px); visibility: hidden; }
     .tab-panel.active {
       display: flex;
     }
@@ -2653,7 +2682,7 @@
       </div>
     </div>
     <div class="tab-panel" id="panel-tools">
-      <div class="paywall-lock" id="lock-tools-tab" style="display:none"><span class="walkthrough-label">UNLOCK DEAL ANALYZER</span><div class="walkthrough-preview-img">ANALYZER PREVIEW</div><span class="walkthrough-desc">Run real numbers on any deal. Enter purchase price, back taxes, ARV. Get projected ROI, margin of safety, and a clear go/no-go signal.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
+      <div class="paywall-lock" id="lock-tools-tab" style="display:none"><span class="walkthrough-label">UNLOCK DEAL ANALYZER</span><div class="walkthrough-preview-img"><div class="wk-label">Purchase Price</div><div class="wk-input">$12,500</div><div class="wk-label" style="margin-top:6px">Back Taxes Owed</div><div class="wk-input">$3,200</div><div class="wk-label" style="margin-top:6px">After Repair Value</div><div class="wk-input">$85,000</div><div class="wk-card"><div class="wk-result"><span>Projected ROI</span><span class="wk-result-val">18.0%</span></div><div class="wk-result"><span>Yield on Cost</span><span class="wk-result-val">$2,250</span></div><div class="wk-result"><span>Margin of Safety</span><span class="wk-result-val">81.5%</span></div></div></div><span class="walkthrough-desc">Run real numbers on any deal. Enter purchase price, back taxes, ARV. Get projected ROI, margin of safety, and a clear go/no-go signal.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
       <!-- Tools Sub-Nav -->
       <div class="tools-subnav" id="tools-subnav">
         <button class="tools-subnav-btn active" onclick="switchToolsPanel('analyzer')">Deal Analyzer</button>
@@ -2846,7 +2875,7 @@
         </div>
       </div>
       <div class="dna-disclaimer">Tax lien and tax deed investing involves risk including potential loss of principal. Rates shown are statutory maximums &mdash; actual returns vary. This profiler is for educational purposes only and does not constitute investment advice. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a></div>
-      <div class="paywall-lock" id="lock-dna-tab" style="display:none"><span class="walkthrough-label">UNLOCK DNA PROFILER</span><div class="walkthrough-preview-img">DNA PREVIEW</div><span class="walkthrough-desc">Answer 6 questions. Get your investor archetype &mdash; Lien Collector, Deed Hunter, or Hybrid. Every other tool in the platform adapts to your profile.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
+      <div class="paywall-lock" id="lock-dna-tab" style="display:none"><span class="walkthrough-label">UNLOCK DNA PROFILER</span><div class="walkthrough-preview-img"><div style="font-family:'Space Mono',monospace;font-size:8px;color:var(--accent);letter-spacing:0.1em;margin-bottom:6px">STEP ONE</div><div style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:10px">What&#39;s your #1 goal?</div><div class="wk-opt"><div class="wk-radio selected"></div><span class="wk-text">Returns</span><span class="wk-text-sub">I want interest income</span></div><div class="wk-opt"><div class="wk-radio"></div><span class="wk-text">The property</span><span class="wk-text-sub">I want to acquire real estate</span></div><div class="wk-opt"><div class="wk-radio"></div><span class="wk-text">Both</span><span class="wk-text-sub">Open to either outcome</span></div></div><span class="walkthrough-desc">Answer 6 questions. Get your investor archetype &mdash; Lien Collector, Deed Hunter, or Hybrid. Every other tool in the platform adapts to your profile.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
     </div>
 
     <div class="tab-panel" id="panel-advisor">
@@ -2867,7 +2896,7 @@
         <input id="advisor-input" type="text" placeholder="Ask Sage anything about tax liens..." autocomplete="off">
         <button id="advisor-send" onclick="sendAdvisorMessage()">Send</button>
       </div>
-      <div class="paywall-lock" id="lock-advisor-tab" style="display:none"><span class="walkthrough-label">UNLOCK SAGE AI ADVISOR</span><div class="walkthrough-preview-img">SAGE PREVIEW</div><span class="walkthrough-desc">Ask Sage anything about tax lien or tax deed investing. Gets smarter the more you use the platform &mdash; trained on your DNA profile and the states you&rsquo;re watching.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
+      <div class="paywall-lock" id="lock-advisor-tab" style="display:none"><span class="walkthrough-label">UNLOCK SAGE AI ADVISOR</span><div class="walkthrough-preview-img"><div style="display:flex;flex-direction:column;gap:8px"><div class="wk-bubble user">Which states are best for beginners with under $5,000?</div><div class="wk-bubble sage">Florida and Arizona are strong starting points. Florida offers up to 18% statutory interest on tax liens with a well-organized online auction system through county platforms. Arizona runs at 16% with shorter redemption windows...</div></div></div><span class="walkthrough-desc">Ask Sage anything about tax lien or tax deed investing. Gets smarter the more you use the platform &mdash; trained on your DNA profile and the states you&rsquo;re watching.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
     </div>
     <!-- AUCTIONS TAB — Concept C -->
     <div class="tab-panel" id="panel-auctions">
@@ -2911,7 +2940,7 @@
           <div id="auctions-next-step"></div>
         </div>
       </div>
-      <div class="paywall-lock" id="lock-auctions-tab" style="display:none"><span class="walkthrough-label">UNLOCK AUCTIONS</span><div class="walkthrough-preview-img">AUCTIONS PREVIEW</div><span class="walkthrough-desc">Live and upcoming auction calendar across all 51 states. Filter by state, format, and date. Never miss a sale in your target market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
+      <div class="paywall-lock" id="lock-auctions-tab" style="display:none"><span class="walkthrough-label">UNLOCK AUCTIONS</span><div class="walkthrough-preview-img"><div class="wk-row"><span class="wk-badge lien">FL</span><span class="wk-text">Broward County</span><span class="wk-text-sub">Jun 1, 2026</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">TX</span><span class="wk-text">Harris County</span><span class="wk-text-sub">Jul 8, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge lien">AZ</span><span class="wk-text">Maricopa County</span><span class="wk-text-sub">Feb 4, 2027</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">GA</span><span class="wk-text">Fulton County</span><span class="wk-text-sub">Aug 12, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div></div><span class="walkthrough-desc">Live and upcoming auction calendar across all 51 states. Filter by state, format, and date. Never miss a sale in your target market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
     </div>
 
     <!-- AUCTIONS INTERSTITIAL MODAL -->
@@ -2960,7 +2989,7 @@
         <div class="vs-insights" id="vs-insights"></div>
         <div class="vs-disclaimer">Investment involves risk. Data shown reflects statutory provisions and may vary by county. This is not financial advice. Consult a qualified professional before investing.</div>
         <div id="versus-next-step"></div>
-        <div class="paywall-lock" id="lock-versus" style="display:none"><span class="walkthrough-label">UNLOCK VERSUS</span><div class="walkthrough-preview-img">VERSUS PREVIEW</div><span class="walkthrough-desc">Compare any two states side by side &mdash; rates, redemption periods, bid methods, deed timelines. Built for investors choosing their next market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
+        <div class="paywall-lock lock-versus-override" id="lock-versus" style="display:none"><span class="walkthrough-label">UNLOCK VERSUS</span><div class="walkthrough-preview-img"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><span class="wk-badge lien" style="font-size:9px;padding:3px 8px">Florida</span><span style="font-size:10px;color:var(--text2)">vs</span><span class="wk-badge deed" style="font-size:9px;padding:3px 8px">Texas</span></div><div class="wk-row"><span class="wk-text-sub" style="width:70px;flex-shrink:0">Yield Rate</span><span class="wk-text" style="text-align:center">18%</span><span class="wk-text" style="text-align:center">N/A</span></div><div class="wk-row"><span class="wk-text-sub" style="width:70px;flex-shrink:0">Redemption</span><span class="wk-text" style="text-align:center">2 yrs</span><span class="wk-text" style="text-align:center">None</span></div><div class="wk-row"><span class="wk-text-sub" style="width:70px;flex-shrink:0">Type</span><span class="wk-text" style="text-align:center">Lien</span><span class="wk-text" style="text-align:center">Deed</span></div></div><span class="walkthrough-desc">Compare any two states side by side &mdash; rates, redemption periods, bid methods, deed timelines. Built for investors choosing their next market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
       </div>
     </div>
 
@@ -2992,7 +3021,7 @@
           <div id="scout-checklist" style="display:none"></div>
         </div>
       </div>
-      <div class="paywall-lock" id="lock-scout-tab" style="display:none"><span class="walkthrough-label">UNLOCK SCOUT</span><div class="walkthrough-preview-img">SCOUT PREVIEW</div><span class="walkthrough-desc">10-step due diligence checklist for any property. Walk through title, liens, condition, comparables, and exit strategy before you spend a dollar.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
+      <div class="paywall-lock" id="lock-scout-tab" style="display:none"><span class="walkthrough-label">UNLOCK SCOUT</span><div class="walkthrough-preview-img"><div class="wk-step-hdr"><div class="wk-step-num">1</div><div><div class="wk-text" style="font-weight:600">Lien/Deed Verification</div><div class="wk-text-sub">Confirm certificate or deed is valid and correctly assigned</div></div></div><div style="padding-left:30px"><div class="wk-label">HOW TO DO IT</div><div class="wk-text-sub" style="margin:2px 0">1. Pull original certificate number from county tax collector</div><div class="wk-text-sub" style="margin:2px 0">2. Match parcel ID on certificate to county assessor map</div><div class="wk-label" style="margin-top:6px">YOUR NOTES</div><div class="wk-input" style="min-height:24px"></div></div></div><span class="walkthrough-desc">10-step due diligence checklist for any property. Walk through title, liens, condition, comparables, and exit strategy before you spend a dollar.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
     </div>
 
     <div class="tab-panel" id="panel-account">
