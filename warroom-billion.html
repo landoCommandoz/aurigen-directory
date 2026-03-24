@@ -760,6 +760,9 @@
       transition: opacity 0.2s;
     }
     .paywall-lock-btn:hover { opacity: 0.85; }
+    .walkthrough-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent)}
+    .walkthrough-desc{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--text2);line-height:1.7;max-width:340px;text-align:center}
+    .walkthrough-preview-img{width:100%;max-width:320px;aspect-ratio:16/9;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:0.1em}
 
     /* County lock in modal */
     #panel-counties-lock {
@@ -1126,7 +1129,10 @@
       display: none;
       flex: 1;
       min-height: 0;
+      position: relative;
     }
+    .tab-panel.tab-locked { overflow: hidden; }
+    .tab-panel.tab-locked > *:not(.paywall-lock) { pointer-events: none; user-select: none; opacity: 0.15; filter: blur(2px); }
     .tab-panel.active {
       display: flex;
     }
@@ -1433,6 +1439,8 @@
     .counties-list::-webkit-scrollbar{width:4px}
     .counties-list::-webkit-scrollbar-track{background:transparent}
     .counties-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
+    .detail-upgrade-cta{display:flex;align-items:center;justify-content:center;width:100%;text-align:center;background:var(--accent);color:#06060a;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;padding:12px 24px;border-radius:7px;text-decoration:none;margin:12px 0;cursor:pointer;transition:opacity 0.2s;min-height:44px;box-sizing:border-box}
+    .detail-upgrade-cta:hover{opacity:0.85}
 
     /* === COUNTY SEARCH BAR === */
     .county-search-wrap{position:relative;margin-bottom:6px}
@@ -2358,7 +2366,7 @@
     @media(min-width:769px) and (max-width:1024px){.vs-metrics{grid-template-columns:repeat(2,1fr)}}
 
     /* === SCOUT — DUE DILIGENCE TOOL === */
-    #panel-scout{flex-direction:column;min-height:0;position:relative}
+    #panel-scout{flex-direction:column;min-height:0}
     .scout-layout{display:flex;flex:1;min-height:0}
     .scout-sidebar{width:300px;flex-shrink:0;border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;padding:20px 16px}
     .scout-sidebar-hdr{margin-bottom:16px}
@@ -2634,8 +2642,8 @@
         </div>
       </div>
     </div>
-    <div class="tab-panel" id="panel-tools" style="position:relative">
-      <div class="paywall-lock" id="lock-tools-tab" style="display:none"><span class="paywall-lock-icon">🔒</span><span class="paywall-lock-title">Deal Analyzer &amp; Tools</span><span class="paywall-lock-sub">Compare returns, run scenarios, and build your investment thesis.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Unlock Full Access &mdash; $197</a></div>
+    <div class="tab-panel" id="panel-tools">
+      <div class="paywall-lock" id="lock-tools-tab" style="display:none"><span class="walkthrough-label">UNLOCK DEAL ANALYZER</span><div class="walkthrough-preview-img">ANALYZER PREVIEW</div><span class="walkthrough-desc">Run real numbers on any deal. Enter purchase price, back taxes, ARV. Get projected ROI, margin of safety, and a clear go/no-go signal.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
       <!-- Tools Sub-Nav -->
       <div class="tools-subnav" id="tools-subnav">
         <button class="tools-subnav-btn active" onclick="switchToolsPanel('analyzer')">Deal Analyzer</button>
@@ -2828,7 +2836,7 @@
         </div>
       </div>
       <div class="dna-disclaimer">Tax lien and tax deed investing involves risk including potential loss of principal. Rates shown are statutory maximums &mdash; actual returns vary. This profiler is for educational purposes only and does not constitute investment advice. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a></div>
-      <div class="paywall-lock" id="lock-dna-tab" style="display:none"><span class="paywall-lock-icon">🔒</span><span class="paywall-lock-title">DNA Investor Profiler</span><span class="paywall-lock-sub">Discover your investor archetype and top matched states.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Unlock Full Access &mdash; $197</a></div>
+      <div class="paywall-lock" id="lock-dna-tab" style="display:none"><span class="walkthrough-label">UNLOCK DNA PROFILER</span><div class="walkthrough-preview-img">DNA PREVIEW</div><span class="walkthrough-desc">Answer 6 questions. Get your investor archetype &mdash; Lien Collector, Deed Hunter, or Hybrid. Every other tool in the platform adapts to your profile.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
     </div>
 
     <div class="tab-panel" id="panel-advisor">
@@ -2849,7 +2857,7 @@
         <input id="advisor-input" type="text" placeholder="Ask Sage anything about tax liens..." autocomplete="off">
         <button id="advisor-send" onclick="sendAdvisorMessage()">Send</button>
       </div>
-      <div class="paywall-lock" id="lock-advisor-tab" style="display:none"><span class="paywall-lock-icon">🔒</span><span class="paywall-lock-title">Sage AI Advisor</span><span class="paywall-lock-sub">Get statute-backed answers to your tax lien and deed questions.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Unlock Full Access &mdash; $197</a></div>
+      <div class="paywall-lock" id="lock-advisor-tab" style="display:none"><span class="walkthrough-label">UNLOCK SAGE AI ADVISOR</span><div class="walkthrough-preview-img">SAGE PREVIEW</div><span class="walkthrough-desc">Ask Sage anything about tax lien or tax deed investing. Gets smarter the more you use the platform &mdash; trained on your DNA profile and the states you&rsquo;re watching.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
     </div>
     <!-- AUCTIONS TAB — Concept C -->
     <div class="tab-panel" id="panel-auctions">
@@ -2893,6 +2901,7 @@
           <div id="auctions-next-step"></div>
         </div>
       </div>
+      <div class="paywall-lock" id="lock-auctions-tab" style="display:none"><span class="walkthrough-label">UNLOCK AUCTIONS</span><div class="walkthrough-preview-img">AUCTIONS PREVIEW</div><span class="walkthrough-desc">Live and upcoming auction calendar across all 51 states. Filter by state, format, and date. Never miss a sale in your target market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
     </div>
 
     <!-- AUCTIONS INTERSTITIAL MODAL -->
@@ -2941,7 +2950,7 @@
         <div class="vs-insights" id="vs-insights"></div>
         <div class="vs-disclaimer">Investment involves risk. Data shown reflects statutory provisions and may vary by county. This is not financial advice. Consult a qualified professional before investing.</div>
         <div id="versus-next-step"></div>
-        <div class="paywall-lock" id="lock-versus" style="display:none"><span class="paywall-lock-icon">🔒</span><span class="paywall-lock-title">Versus Comparison</span><span class="paywall-lock-sub">Compare any two states side by side on rates, redemption, and platform.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Unlock Full Access &mdash; $197</a></div>
+        <div class="paywall-lock" id="lock-versus" style="display:none"><span class="walkthrough-label">UNLOCK VERSUS</span><div class="walkthrough-preview-img">VERSUS PREVIEW</div><span class="walkthrough-desc">Compare any two states side by side &mdash; rates, redemption periods, bid methods, deed timelines. Built for investors choosing their next market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
       </div>
     </div>
 
@@ -2973,7 +2982,7 @@
           <div id="scout-checklist" style="display:none"></div>
         </div>
       </div>
-      <div class="paywall-lock" id="lock-scout-tab" style="display:none"><span class="paywall-lock-icon">🔒</span><span class="paywall-lock-title">Scout Due Diligence</span><span class="paywall-lock-sub">10-step due diligence checklist for every deal you evaluate. Track progress, flag issues, and share results.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Unlock Full Access &mdash; $197</a></div>
+      <div class="paywall-lock" id="lock-scout-tab" style="display:none"><span class="walkthrough-label">UNLOCK SCOUT</span><div class="walkthrough-preview-img">SCOUT PREVIEW</div><span class="walkthrough-desc">10-step due diligence checklist for any property. Walk through title, liens, condition, comparables, and exit strategy before you spend a dollar.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
     </div>
 
     <div class="tab-panel" id="panel-account">
@@ -2988,8 +2997,12 @@
           <span class="account-row-value" id="acct-level">Free</span>
         </div>
         <div class="account-row">
-          <span class="account-row-label">States Available</span>
-          <span class="account-row-value" id="acct-states">FL, IL, AZ</span>
+          <span class="account-row-label">Map Access</span>
+          <span class="account-row-value" id="acct-states">All 51 States</span>
+        </div>
+        <div class="account-row">
+          <span class="account-row-label">Locked Features</span>
+          <span class="account-row-value" id="acct-locked">Counties, DNA, Versus, Analyzer, Sage, Scout, Auctions, Pulse</span>
         </div>
         <a class="account-upgrade-cta" id="acct-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Upgrade to Full Access</a>
       </div>
@@ -3076,11 +3089,28 @@ var IS_FREE = getAccessTier() === 'free' || IS_PAID;
 var STRIPE_URL = 'https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02';
 
 function applyAccessLocks() {
-  // Tab-level locks (paid only)
-  var tabLocks = ['lock-dna-tab', 'lock-advisor-tab', 'lock-tools-tab', 'lock-versus', 'lock-scout-tab'];
+  // Tab-level locks (paid only) — includes Auctions now
+  var tabLocks = ['lock-dna-tab', 'lock-advisor-tab', 'lock-tools-tab', 'lock-versus', 'lock-scout-tab', 'lock-auctions-tab'];
   tabLocks.forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.style.display = IS_PAID ? 'none' : 'flex';
+  });
+
+  // Hard lock: add tab-locked class to prevent interaction behind overlay
+  var lockPanelMap = {
+    'lock-dna-tab': 'panel-dna',
+    'lock-advisor-tab': 'panel-advisor',
+    'lock-tools-tab': 'panel-tools',
+    'lock-versus': 'panel-versus',
+    'lock-scout-tab': 'panel-scout',
+    'lock-auctions-tab': 'panel-auctions'
+  };
+  Object.keys(lockPanelMap).forEach(function(lockId) {
+    var panel = document.getElementById(lockPanelMap[lockId]);
+    if (panel) {
+      if (IS_PAID) { panel.classList.remove('tab-locked'); }
+      else { panel.classList.add('tab-locked'); }
+    }
   });
 
   // Existing tool card locks
@@ -3089,6 +3119,10 @@ function applyAccessLocks() {
     var el = document.getElementById(id);
     if (el) el.style.display = IS_PAID ? 'none' : 'flex';
   });
+
+  // Pulse drawer lock
+  var pulseLock = document.getElementById('lock-pulse');
+  if (pulseLock) pulseLock.style.display = IS_PAID ? 'none' : 'flex';
 
   // Upgrade CTA in account
   var upgrade = document.getElementById('acct-upgrade');
@@ -4238,18 +4272,23 @@ function showDetail(s) {
   } else {
     var cLabel=rows.length===1?'COUNTY':'COUNTIES';
     var showSearch=rows.length>5;
-    var cHtml='<div class="counties-header" onclick="toggleCounties()">'+
-      '<span class="counties-label">'+cLabel+'</span>'+
+    var cHtml='';
+    // Upgrade CTA above counties for free users
+    if(!IS_PAID){
+      cHtml+='<a class="detail-upgrade-cta" href="'+STRIPE_URL+'" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS \u2014 $197 ONE TIME</a>';
+    }
+    cHtml+='<div class="counties-header" onclick="toggleCounties()">'+
+      '<span class="counties-label">View '+rows.length+' '+cLabel+'</span>'+
       '<span class="counties-count" id="counties-count-badge">'+rows.length+'</span>'+
-      '<span class="counties-chevron" id="counties-chevron">\u25BC</span>'+
+      '<span class="counties-chevron" id="counties-chevron">\u25B6</span>'+
     '</div>';
     if(showSearch){
-      cHtml+='<div class="county-search-wrap" id="county-search-wrap">'+
+      cHtml+='<div class="county-search-wrap" id="county-search-wrap" style="display:none">'+
         '<input type="text" class="county-search-input" id="county-search-input" placeholder="Search counties..." oninput="filterCounties(this.value)" autocomplete="off" spellcheck="false">'+
         '<button class="county-search-clear" id="county-search-clear" onclick="clearCountySearch()" aria-label="Clear search">\u00D7</button>'+
       '</div>';
     }
-    cHtml+='<div class="counties-list" id="counties-list">';
+    cHtml+='<div class="counties-list collapsed" id="counties-list">';
     window._countyTotal=rows.length;
     rows.forEach(function(r){
       var safeName=escapeHtml(r.name);
@@ -4889,7 +4928,7 @@ function getAdvisorResponse(input) {
 
   // Platform / Aurigen features
   if (q.includes('upgrade') || q.includes('full access') || q.includes('account') || q.includes('what do i get') || q.includes('features') || q.includes('platform')) {
-    return 'Full Access unlocks county-level data for all 51 states, the Versus comparison tool, the Auctions calendar, and everything in the Tools tab as features roll out.\n\nThe free tier gives you the map, list, and state-level data for FL, IL, and AZ so you can evaluate before upgrading.\n\nVisit the Account tab to see your current tier and upgrade options.';
+    return 'Full Access unlocks county-level data, the Versus comparison tool, DNA Profiler, Deal Analyzer, Scout, Auctions calendar, and Pulse alerts.\n\nThe free tier gives you the map and state-level data for all 51 states \u2014 interest rates, redemption periods, bid methods, and an inline return calculator. Features are what\u2019s locked, not states.\n\nVisit the Account tab to see your current tier and upgrade options.';
   }
 
   // Legal / tax / financial advice boundary
@@ -4944,6 +4983,8 @@ function initAccount() {
     badge.classList.add('paid');
     level.textContent = 'Full Access';
     states.textContent = 'All 51 Jurisdictions';
+    var lockedRow = document.getElementById('acct-locked');
+    if (lockedRow) lockedRow.parentElement.style.display = 'none';
     if (upgrade) upgrade.style.display = 'none';
     if (lockDna) lockDna.style.display = 'none';
     if (lockCompare) lockCompare.style.display = 'none';
@@ -4952,7 +4993,9 @@ function initAccount() {
     badge.textContent = 'FREE ACCESS';
     badge.classList.remove('paid');
     level.textContent = 'Free';
-    states.textContent = 'FL, IL, AZ';
+    states.textContent = 'All 51 States';
+    var locked = document.getElementById('acct-locked');
+    if (locked) locked.textContent = 'Counties, DNA, Versus, Analyzer, Sage, Scout, Auctions, Pulse';
     if (upgrade) upgrade.style.display = 'block';
     if (lockDna) lockDna.style.display = 'flex';
     if (lockCompare) lockCompare.style.display = 'flex';
@@ -5743,6 +5786,9 @@ function openPulseDrawer() {
   document.getElementById('pulse-overlay').classList.add('open');
   document.getElementById('pulse-drawer').classList.add('open');
   document.getElementById('pulse-bell').classList.add('active');
+  // Show Pulse lock for free users
+  var pulseLock = document.getElementById('lock-pulse');
+  if (pulseLock) pulseLock.style.display = IS_PAID ? 'none' : 'flex';
   pulseMarkSeen();
   pulseUpdateHeaderCount();
   pulseRenderFilters();
@@ -6308,6 +6354,8 @@ var JOURNEY_STEPS = [
 function renderJourneyBar() {
   var bar = document.getElementById('journey-bar');
   if (!bar) return;
+  // Hide journey bar for free users — replaced by walkthrough previews on locked tabs
+  if (!IS_PAID) { bar.style.display = 'none'; return; }
   var profile = getProfile();
   var steps = (profile && profile.journeySteps) || {};
   var doneCount = 0;
@@ -7272,6 +7320,7 @@ function scoutRender() {
   <div class="pulse-feed" id="pulse-feed"></div>
   <div class="pulse-cta" id="pulse-cta"></div>
   <div class="pulse-disclaimer">Dates based on published schedules &mdash; verify with official authority.</div>
+  <div class="paywall-lock" id="lock-pulse" style="display:none"><span class="walkthrough-label">UNLOCK PULSE</span><span class="walkthrough-desc">Real-time alerts when new auctions drop in your watched states. Set it once &mdash; Pulse notifies you.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a></div>
 </div>
 
 <footer id="disclaimer-footer">
