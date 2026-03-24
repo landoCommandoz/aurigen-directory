@@ -2825,12 +2825,12 @@ const APP = {
   } catch(e) {}
 })();
 
-// Boot app immediately — no second gate
-(function() {
+// Boot app after all functions are defined
+document.addEventListener('DOMContentLoaded', function() {
   updateTierBadge();
   buildTicker();
   bootApp();
-})();
+});
 
 function updateTierBadge() {
   const badge = document.getElementById('nav-tier-badge');
