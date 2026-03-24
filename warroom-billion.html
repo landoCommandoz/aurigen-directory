@@ -1170,8 +1170,7 @@
 
     /* --- Explore Section (replaced) --- */
     #header{position:relative;z-index:10;background:rgba(1,4,12,0.95);border-bottom:1px solid rgba(0,212,255,0.08);flex-shrink:0}
-    #shimmer{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#FFBE0B 18%,#00D4FF 42%,#FF2D55 62%,#BF5FFF 80%,transparent);background-size:200% auto;animation:sweep 5s linear infinite}
-    @keyframes sweep{from{background-position:200% center}to{background-position:-200% center}}
+    #shimmer{position:absolute;top:0;left:0;right:0;height:1px;background:rgba(255,255,255,0.15)}
     #header-top{display:flex;align-items:center;justify-content:space-between;padding:12px 20px 6px}
     .brand-name{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#FFBE0B;letter-spacing:0.06em;line-height:1}
     .brand-sub{font-family:'Space Mono',monospace;font-size:7px;color:rgba(0,212,255,0.3);letter-spacing:0.28em;margin-top:2px}
@@ -2357,6 +2356,19 @@
       .vs-state-name{font-size:32px}
     }
     @media(min-width:769px) and (max-width:1024px){.vs-metrics{grid-template-columns:repeat(2,1fr)}}
+
+    /* === WELCOME OVERLAY (post-payment) === */
+    #welcome-overlay{position:fixed;inset:0;background:rgba(6,6,10,0.97);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;animation:welcomeFadeIn 400ms ease-out forwards}
+    @keyframes welcomeFadeIn{from{opacity:0}to{opacity:1}}
+    #welcome-card{background:var(--bg2,#0f0f0f);border:1px solid rgba(201,168,76,0.3);border-radius:16px;padding:40px;text-align:center;max-width:420px;width:90%;position:relative;overflow:hidden;transform:translateY(20px);opacity:0;animation:welcomeCardIn 500ms 200ms ease-out forwards}
+    @keyframes welcomeCardIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+    #welcome-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent,#C9A84C),var(--teal,#2DD4C0))}
+    .welcome-sparkle{font-size:36px;margin-bottom:16px;display:inline-block;animation:welcomeSpin 1s ease-out}
+    @keyframes welcomeSpin{from{transform:scale(0) rotate(-180deg);opacity:0}to{transform:scale(1) rotate(0deg);opacity:1}}
+    .welcome-title{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:0.04em;color:var(--accent,#C9A84C);line-height:1;margin-bottom:12px}
+    .welcome-subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--text2,#6a6258);line-height:1.6;max-width:320px;margin:0 auto 28px}
+    .welcome-btn{width:100%;background:var(--accent,#C9A84C);color:#06060a;border:none;padding:14px;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:opacity 0.2s}
+    .welcome-btn:hover{opacity:0.9}
   </style>
 </head>
 <body>
@@ -2854,7 +2866,8 @@
 (function() {
   try {
     var params = new URLSearchParams(window.location.search);
-    if (params.get('paid') === 'true') {
+    var justPaid = params.get('paid') === 'true';
+    if (justPaid) {
       localStorage.setItem('aurigen_access', 'paid');
     }
     var access = localStorage.getItem('aurigen_access');
@@ -2862,8 +2875,37 @@
       window.location.href = '/';
       return;
     }
+    // Show welcome overlay for fresh payment
+    if (justPaid) {
+      document.addEventListener('DOMContentLoaded', function() {
+        var overlay = document.createElement('div');
+        overlay.id = 'welcome-overlay';
+        overlay.innerHTML =
+          '<div id="welcome-card">' +
+            '<div class="welcome-sparkle">\u2728</div>' +
+            '<div class="welcome-title">FULL ACCESS UNLOCKED</div>' +
+            '<div class="welcome-subtitle">Welcome to the complete Aurigen platform. Every county. Every tool. Every auction. Yours forever.</div>' +
+            '<button class="welcome-btn" id="welcome-dismiss">Explore the Full Platform \u2192</button>' +
+          '</div>';
+        document.body.appendChild(overlay);
+        document.getElementById('welcome-dismiss').addEventListener('click', function() {
+          overlay.remove();
+          history.replaceState(null, '', window.location.pathname);
+          location.reload();
+        });
+      });
+    }
   } catch(e) {}
 })();
+
+// === TAB SYNC — auto-reload when another tab unlocks paid ===
+try {
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'aurigen_access' && e.newValue === 'paid') {
+      location.reload();
+    }
+  });
+} catch(e) {}
 
 // === STATE ===
 const APP = {
