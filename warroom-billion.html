@@ -2690,7 +2690,7 @@
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
             <div id="map-next-step"></div>
-            <button id="panel-cta" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4')">BOOK INVESTOR CLARITY CALL</button>
+            <button id="panel-cta" onclick="window.open('https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4','_blank','noopener,noreferrer')">BOOK INVESTOR CLARITY CALL</button>
             <div id="panel-counties"></div>
           </div>
         </div>
@@ -4697,7 +4697,7 @@ function buildCardHtml(e, animate) {
     '<button class="auction-btn-register auction-interstitial-trigger" data-url="' + escapeHtml(registerUrl) + '">Register &#8594;</button>' :
     '<button class="auction-btn-register" disabled style="opacity:0.3;cursor:default">Register &#8594;</button>';
 
-  var clarityBtn = '<button class="auction-btn-clarity" onclick="window.open(\'' + CLARITY_URL + '\',\'_blank\')">Clarity Call</button>';
+  var clarityBtn = '<button class="auction-btn-clarity" onclick="window.open(\'' + CLARITY_URL + '\',\'_blank\',\'noopener,noreferrer\')">Clarity Call</button>';
 
   return '<div class="auction-card' + (animate ? ' animate-in' : '') + '">' +
     dateBlock +
@@ -6521,7 +6521,7 @@ function renderJourneyBar() {
     var hasCompletedOneStep = steps.dnaComplete || steps.analyzerUsed;
     if (doneCount >= 2 && !steps.callBooked && !dismissed) {
       html += '<div class="jb-cta-group">';
-      html += '<button class="jb-book-btn" onclick="window.open(\'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4\',\'_blank\')">Book Clarity Call \u2192</button>';
+      html += '<button class="jb-book-btn" onclick="window.open(\'https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4\',\'_blank\',\'noopener,noreferrer\')">Book Clarity Call \u2192</button>';
       if (hasCompletedOneStep) {
         html += '<button class="jb-dismiss-btn" onclick="dismissClarityCall()">Not ready yet</button>';
       }
@@ -6593,7 +6593,7 @@ function renderNextStepCards() {
       'You\u2019re ready for your call',
       'You\u2019ve explored states, run your numbers, and seen your auction dates. The Clarity Call is where this becomes a plan.',
       'Book Clarity Call \u2192',
-      "window.open('https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4','_blank')"
+      "window.open('https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4','_blank','noopener,noreferrer')"
     );
   }
 }
