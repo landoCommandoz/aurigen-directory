@@ -2405,7 +2405,7 @@
     .vs-winner-badge{display:inline-block;font-family:'Space Mono',monospace;font-size:7px;letter-spacing:0.1em;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-left:6px;vertical-align:middle;background:rgba(0,255,136,0.12);color:#00FF88;border:1px solid rgba(0,255,136,0.25)}
     .vs-analysis{margin:16px 0;padding:12px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:4px}
     .vs-analysis-header{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,255,136,0.6);margin-bottom:10px}
-    .vs-analysis-item{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:6px}
+    .vs-analysis-item{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:6px;text-transform:uppercase}
     .vs-analysis-item:last-child{margin-bottom:0}
     .vs-analysis:empty{display:none}
     .vs-footer{padding:10px 16px;border-top:1px solid rgba(255,255,255,0.06);font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
@@ -2428,7 +2428,7 @@
     .vs-locked-preview-hdr-b{color:rgba(0,212,255,0.6)}
     .vs-locked-preview-row{height:10px;border-radius:2px;background:rgba(255,255,255,0.08);margin-bottom:6px}
     .vs-locked-desc{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;color:var(--text2);line-height:1.7;max-width:380px;text-align:center}
-    .vs-locked-cta{display:block;width:100%;max-width:380px;padding:14px 20px;background:var(--accent);color:#0d0d0d;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-align:center;text-decoration:none;border-radius:4px;font-weight:700;transition:opacity 0.2s}
+    .vs-locked-cta{display:block;width:100%;max-width:380px;padding:14px 20px;min-height:44px;background:var(--accent);color:#0d0d0d;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-align:center;text-decoration:none;border-radius:4px;font-weight:700;transition:opacity 0.2s;box-sizing:border-box}
     .vs-locked-cta:hover{opacity:0.9}
     .vs-locked-sub{font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-align:center}
     @media(max-width:768px){
@@ -3277,6 +3277,12 @@ function applyAccessLocks() {
     'lock-scout-tab': 'panel-scout',
     'lock-auctions-tab': 'panel-auctions'
   };
+  // Versus uses tab-locked for FOUC prevention (hides terminal until JS runs)
+  var versusPanel = document.getElementById('panel-versus');
+  if (versusPanel) {
+    if (IS_PAID) { versusPanel.classList.remove('tab-locked'); }
+    else { versusPanel.classList.add('tab-locked'); }
+  }
   Object.keys(lockPanelMap).forEach(function(lockId) {
     var panel = document.getElementById(lockPanelMap[lockId]);
     if (panel) {
