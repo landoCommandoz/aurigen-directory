@@ -1,102 +1,375 @@
-Aurigen County Resource Directory
-Privacy Policy
-Effective Date: March 18, 2026
-Last Updated: March 18, 2026
+** ATTORNEY REVIEW REQUIRED **
+This document was drafted as a framework and must be reviewed by a licensed
+attorney before publication. It does not constitute legal advice.
 
+
+================================================================================
+AURIGEN COUNTY INTELLIGENCE PLATFORM
+PRIVACY POLICY
+================================================================================
+
+Effective Date: [DATE]
+Last Updated: [DATE]
+
+--------------------------------------------------------------------------------
 1. INTRODUCTION
+--------------------------------------------------------------------------------
 
-This Privacy Policy describes how Landon Brewington ("we," "us," "our") collects, uses, and protects your information when you use the Aurigen County Resource Directory ("the Directory," "the Service") located at aurigen-directory.netlify.app. We are committed to protecting your privacy and being transparent about our data practices.
+This Privacy Policy describes how Landon Brewington [pending LLC formation]
+("Aurigen," "we," "us," "our") collects, uses, stores, and protects your
+information when you access or use the Aurigen County Intelligence Platform
+("the Platform," "the Service") located at aurigendirectory.com and any
+associated subdomains. By using the Platform, you consent to the data practices
+described in this Privacy Policy.
 
+We are committed to protecting your privacy and being transparent about our
+data practices. If you do not agree with the practices described in this
+Privacy Policy, please do not use the Platform.
+
+--------------------------------------------------------------------------------
 2. INFORMATION WE COLLECT
+--------------------------------------------------------------------------------
 
-We collect the following information:
+2.1 Information You Provide Directly
 
-(a) Email Address. When you sign up for free or paid access, we collect your email address. This is the only piece of personal information we collect directly.
+    (a) Email Address. When you register for free or paid access to the
+        Platform, we collect your email address via a gate form hosted on
+        Netlify Forms. This is the only piece of personally identifiable
+        information we collect directly.
 
-(b) We do NOT collect or store passwords, payment card numbers, billing addresses, or other sensitive financial data. All payment processing is handled entirely by Stripe (see Section 4).
+    (b) Payment Information. When you purchase full access, your payment is
+        processed entirely by Stripe, Inc. Stripe collects your payment card
+        number, expiration date, CVV, and billing information. We never see,
+        receive, store, or have access to your full card number, CVV, or
+        billing details. We may receive from Stripe a transaction confirmation,
+        the last four digits of your card, and your email address for order
+        fulfillment purposes.
 
-3. HOW WE USE YOUR EMAIL
+2.2 Information Collected Automatically
 
-Your email address is used for the following purposes:
+    (a) localStorage Data. The Platform uses your browser's localStorage to
+        store access preferences, language settings, investor profile data
+        (DNA archetype selections), and access tier flags. This data is stored
+        locally on your device, is never transmitted to our servers or any
+        third party, and contains no personally identifiable information.
 
-(a) Product Access. To deliver your access code and manage your access to the Directory.
+    (b) Server Logs. Netlify, our hosting provider, may automatically collect
+        standard server log data, including your IP address, browser type,
+        referring URL, and pages visited. This data is collected and retained
+        by Netlify in accordance with Netlify's own privacy policy and is not
+        directly accessed or used by us for tracking or profiling purposes.
 
-(b) Investor Tips and Educational Content. To send you educational emails about tax lien and tax deed investing.
+2.3 Information We Do NOT Collect
 
-(c) Product Updates. To notify you of updates, new features, or changes to the Directory.
+    We do NOT collect or store: passwords, Social Security numbers, government
+    identification numbers, physical addresses, phone numbers, financial
+    account numbers, or any biometric data.
 
-You may opt out of marketing emails at any time (see Section 6).
+--------------------------------------------------------------------------------
+3. HOW WE USE YOUR INFORMATION
+--------------------------------------------------------------------------------
 
+We use the information we collect for the following purposes:
+
+    (a) Platform Access. To deliver your access credentials and manage your
+        access to the Platform.
+
+    (b) Communications. To send you educational content, investor tips,
+        product updates, new feature announcements, and information about the
+        Aurigen platform and related services.
+
+    (c) Transaction Fulfillment. To process your purchase and confirm your
+        payment status.
+
+    (d) Service Improvement. To understand aggregate usage patterns and
+        improve the Platform. We do not build individual user profiles for
+        advertising purposes.
+
+    (e) Legal Compliance. To comply with applicable laws, regulations, or
+        legal processes.
+
+--------------------------------------------------------------------------------
 4. THIRD-PARTY SERVICE PROVIDERS
+--------------------------------------------------------------------------------
 
-We use the following third-party processors to operate the Service:
+We use the following third-party service providers to operate the Platform.
+Each provider processes data in accordance with its own privacy policy:
 
-(a) Stripe (Payment Processing). Stripe handles all payment transactions. When you make a purchase, your payment card data is collected and processed entirely by Stripe. We never see, access, or store your card number, CVV, or billing details. Stripe's privacy policy is available at https://stripe.com/privacy.
+    (a) Netlify (Hosting and Forms)
+        Purpose: Website hosting, serverless functions, and form submissions.
+        Data shared: Your email address (submitted via Netlify Forms), server
+        log data (collected automatically by Netlify).
+        Privacy policy: https://www.netlify.com/privacy/
 
-(b) GoHighLevel (Email Marketing and CRM). We use GoHighLevel to manage our email list and send marketing and educational emails. Your email address is stored in GoHighLevel for this purpose. GoHighLevel's privacy policy is available at https://www.gohighlevel.com/privacy-policy.
+    (b) Stripe, Inc. (Payment Processing)
+        Purpose: Processing one-time payments for full Platform access.
+        Data shared: Payment card information, billing details, and email
+        address — all collected and processed directly by Stripe. We never
+        see or store your full payment card details.
+        Privacy policy: https://stripe.com/privacy
 
-(c) Anthropic (AI Advisor). The Directory includes an AI-powered advisor feature. Queries submitted to the AI advisor are processed by Anthropic. No personally identifiable information (PII) is sent to Anthropic — only the text of your query.
+    (c) Google Fonts (Typography)
+        Purpose: Loading typefaces used in the Platform's user interface.
+        Data shared: When you load the Platform, your browser makes a request
+        to Google's font servers, which may receive your IP address and
+        browser information.
+        Privacy policy: https://policies.google.com/privacy
 
-5. DATA RETENTION
+    (d) GoHighLevel (Email Marketing and CRM)
+        Purpose: Managing email lists and sending marketing, educational, and
+        transactional emails.
+        Data shared: Your email address.
+        Privacy policy: https://www.gohighlevel.com/privacy-policy
 
-Your email address is retained in our systems for as long as you maintain access to the Directory, or until you request deletion. Upon a valid deletion request, we will remove your email address from our active databases and instruct our third-party processors to do the same, subject to any legal retention requirements.
+    (e) Anthropic (AI Features)
+        Purpose: Powering the AI advisor feature within the Platform.
+        Data shared: The text of queries you submit to the AI advisor. No
+        personally identifiable information is sent to Anthropic.
+        Privacy policy: https://www.anthropic.com/privacy
 
-6. YOUR RIGHTS
+4.2 We Do NOT Sell Your Data
 
-You have the following rights regarding your data:
+    We do not sell, rent, lease, or trade your personal information to any
+    third party for any purpose, including marketing or advertising. This
+    commitment applies to all users, regardless of jurisdiction.
 
-(a) Access. You may request a copy of the personal data we hold about you by emailing support@theaurigen.com.
+--------------------------------------------------------------------------------
+5. COOKIES AND LOCAL STORAGE
+--------------------------------------------------------------------------------
 
-(b) Deletion. You may request that we delete your email address and associated data by emailing support@theaurigen.com. We will process deletion requests within 30 days.
+    (a) Cookies. The Platform does not set first-party tracking cookies. We
+        do not use advertising cookies, retargeting pixels, or behavioral
+        tracking technologies. Third-party services (such as Netlify or
+        Stripe) may set their own cookies in accordance with their respective
+        privacy policies.
 
-(c) Opt-Out of Marketing. Every marketing email we send includes an unsubscribe link. You may opt out of marketing emails at any time by clicking that link. Opting out of marketing emails does not affect transactional emails related to your account access.
+    (b) localStorage. The Platform uses your browser's localStorage mechanism
+        to store the following non-personal data on your device:
+        - Language preference (English or Spanish)
+        - Access tier status (free or paid)
+        - Investor DNA archetype selections
+        - UI preferences (e.g., collapsed/expanded panel states)
 
-(d) Correction. You may request correction of inaccurate data by contacting us.
+        This data remains on your device, is not transmitted to our servers,
+        and can be cleared at any time by clearing your browser's site data.
 
-7. COOKIES AND LOCAL STORAGE
+    (c) No Third-Party Tracking. We do not use Google Analytics, Facebook
+        Pixel, or any third-party analytics or advertising tracking tools.
 
-(a) The Directory uses browser localStorage to maintain session state, such as your language preference and access status. This data is stored locally on your device and is not transmitted to any third-party tracking service.
+--------------------------------------------------------------------------------
+6. DATA RETENTION
+--------------------------------------------------------------------------------
 
-(b) We do NOT use third-party tracking cookies.
+    (a) Email addresses are retained for as long as you maintain access to
+        the Platform, or until you request deletion.
 
-(c) We do NOT use advertising pixels or retargeting technologies.
+    (b) Payment records are retained by Stripe in accordance with Stripe's
+        data retention policies and applicable financial regulations.
 
-8. CAN-SPAM COMPLIANCE
+    (c) localStorage data persists on your device until you clear your
+        browser data or uninstall your browser.
+
+    (d) Upon a valid deletion request, we will remove your email address from
+        our active databases and instruct our third-party processors to do
+        the same within 30 days, subject to any legal retention obligations.
+
+--------------------------------------------------------------------------------
+7. YOUR RIGHTS
+--------------------------------------------------------------------------------
+
+Regardless of your location, you have the following rights regarding your
+personal data:
+
+    (a) Right to Access. You may request a copy of the personal data we hold
+        about you.
+
+    (b) Right to Deletion. You may request that we delete your email address
+        and associated data from our systems.
+
+    (c) Right to Correction. You may request correction of any inaccurate
+        personal data.
+
+    (d) Right to Opt Out of Communications. Every marketing email we send
+        includes an unsubscribe link. You may opt out of marketing
+        communications at any time. Opting out of marketing emails does not
+        affect transactional emails related to your account access or
+        purchase confirmations.
+
+    (e) Right to Data Portability. You may request that we provide your
+        personal data in a structured, commonly used, machine-readable
+        format.
+
+To exercise any of these rights, contact us at [EMAIL]. We will respond to
+all requests within 30 days.
+
+--------------------------------------------------------------------------------
+8. GDPR COMPLIANCE — EUROPEAN ECONOMIC AREA USERS
+--------------------------------------------------------------------------------
+
+If you are located in the European Union, European Economic Area, or the
+United Kingdom, the following additional provisions apply:
+
+    (a) Lawful Basis for Processing. We process your personal data on the
+        following legal bases:
+        - Consent: You provide your email address voluntarily at sign-up.
+          You may withdraw consent at any time.
+        - Contractual Necessity: Processing your email and payment data is
+          necessary to deliver the service you purchased.
+        - Legitimate Interest: Sending you communications about the Platform
+          and related educational content, where such communications are
+          relevant to your use of the Service.
+
+    (b) Data Subject Rights. In addition to the rights listed in Section 7,
+        you have the right to:
+        - Restrict processing of your personal data
+        - Object to processing based on legitimate interest
+        - Lodge a complaint with your local data protection authority
+
+    (c) Data Protection Officer Requests. For GDPR-specific inquiries or to
+        exercise your rights under GDPR, contact us at [EMAIL]. We will
+        respond within 30 days.
+
+    (d) International Data Transfers. Your data may be processed and stored
+        in the United States. By using the Platform, you consent to the
+        transfer of your data to the United States. We rely on standard
+        contractual clauses and consent as the legal mechanisms for such
+        transfers.
+
+    (e) Data Minimization. We collect only the minimum data necessary to
+        provide the Service (your email address). We do not engage in
+        profiling or automated decision-making that produces legal effects
+        concerning you.
+
+--------------------------------------------------------------------------------
+9. CCPA COMPLIANCE — CALIFORNIA RESIDENTS
+--------------------------------------------------------------------------------
+
+If you are a California resident, the following additional provisions apply
+under the California Consumer Privacy Act (CCPA) and the California Privacy
+Rights Act (CPRA):
+
+    (a) Right to Know. You have the right to request that we disclose the
+        categories and specific pieces of personal information we have
+        collected about you, the categories of sources from which it was
+        collected, the business purpose for collecting it, and the categories
+        of third parties with whom it is shared.
+
+    (b) Right to Delete. You have the right to request deletion of your
+        personal information, subject to certain exceptions permitted by law.
+
+    (c) Right to Opt Out of Sale. We do not sell your personal information.
+        We have not sold personal information in the preceding 12 months. If
+        our practices change in the future, we will provide a "Do Not Sell
+        My Personal Information" link and update this policy.
+
+    (d) Right to Non-Discrimination. We will not discriminate against you for
+        exercising any of your CCPA rights. You will not receive different
+        pricing, a different quality of service, or be denied service for
+        exercising your rights.
+
+    (e) Categories of Personal Information Collected:
+        - Identifiers: email address
+        - Commercial information: purchase records (maintained by Stripe)
+        - Internet activity: server logs (maintained by Netlify)
+
+    (f) To exercise your rights under the CCPA, contact us at [EMAIL]. We
+        will verify your identity before processing your request and respond
+        within 45 days.
+
+--------------------------------------------------------------------------------
+10. CAN-SPAM COMPLIANCE
+--------------------------------------------------------------------------------
 
 In compliance with the CAN-SPAM Act:
 
-(a) Every email we send includes a clear and conspicuous unsubscribe link.
+    (a) Every marketing email we send includes a clear and conspicuous
+        unsubscribe link.
 
-(b) Unsubscribe requests are honored within 10 business days.
+    (b) Unsubscribe requests are honored within 10 business days.
 
-(c) Every email includes our physical mailing address.
+    (c) Every email includes our physical mailing address.
 
-(d) We do not use deceptive subject lines or false header information.
+    (d) We do not use deceptive subject lines or false header information.
 
-9. GDPR — EUROPEAN UNION USERS
+--------------------------------------------------------------------------------
+11. CHILDREN'S PRIVACY (COPPA)
+--------------------------------------------------------------------------------
 
-If you are located in the European Union or European Economic Area, we respect your rights under the General Data Protection Regulation (GDPR):
+The Platform is not directed at, marketed to, or intended for use by children
+under the age of 13. We do not knowingly collect personal information from
+children under 13. If we become aware that we have inadvertently collected
+personal information from a child under 13, we will promptly delete that
+information. If you believe a child under 13 has provided us with personal
+information, please contact us immediately at [EMAIL].
 
-(a) Legal Basis for Processing. We process your email address on the basis of your consent (provided at sign-up) and for the performance of our contract with you (delivering the product you purchased).
+The Platform is intended for users who are at least 18 years of age.
 
-(b) Data Subject Rights. You have the right to access, rectify, erase, restrict processing, object to processing, and request portability of your personal data. To exercise any of these rights, email support@theaurigen.com.
+--------------------------------------------------------------------------------
+12. DATA SECURITY
+--------------------------------------------------------------------------------
 
-(c) Data Transfers. Your data may be processed in the United States. By using the Service, you consent to the transfer of your data to the United States.
+We implement reasonable administrative, technical, and physical safeguards to
+protect your personal information from unauthorized access, disclosure,
+alteration, or destruction. These measures include:
 
-(d) We will respond to all GDPR-related requests within 30 days.
+    (a) HTTPS encryption for all data in transit.
+    (b) Secure third-party processors (Netlify, Stripe) that maintain their
+        own industry-standard security certifications.
+    (c) No storage of sensitive financial data on our systems.
 
-10. CHILDREN
+However, no method of electronic transmission or storage is 100% secure. We
+cannot guarantee absolute security of your data. You acknowledge and accept
+this inherent risk.
 
-The Directory is not intended for use by anyone under the age of 18. We do not knowingly collect personal information from children under 18. If we become aware that we have collected data from a child under 18, we will promptly delete that information.
+--------------------------------------------------------------------------------
+13. THIRD-PARTY LINKS
+--------------------------------------------------------------------------------
 
-11. DATA SECURITY
+The Platform may contain links to third-party websites, including government
+auction platforms, county assessor websites, and other external resources.
+These links are provided for your convenience and informational purposes only.
+We are not responsible for the privacy practices, content, or security of any
+third-party website. We encourage you to review the privacy policies of any
+third-party sites you visit.
 
-We take reasonable measures to protect your email address from unauthorized access, disclosure, alteration, or destruction. However, no method of electronic transmission or storage is 100% secure, and we cannot guarantee absolute security.
+--------------------------------------------------------------------------------
+14. CHANGES TO THIS PRIVACY POLICY
+--------------------------------------------------------------------------------
 
-12. CHANGES TO THIS PRIVACY POLICY
+We may update this Privacy Policy from time to time to reflect changes in our
+practices, technology, legal requirements, or other factors. When we make
+material changes:
 
-We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated effective date. Your continued use of the Service after any changes constitutes your acceptance of the revised Privacy Policy.
+    (a) We will update the "Last Updated" date at the top of this document.
 
-13. CONTACT
+    (b) For material changes that significantly affect how we handle your
+        personal data, we will make reasonable efforts to notify you via
+        email (if we have your email address) or by posting a prominent
+        notice on the Platform.
 
-For questions, data requests, or concerns about this Privacy Policy, contact us at: support@theaurigen.com
+    (c) Your continued use of the Platform after the effective date of any
+        changes constitutes your acceptance of the revised Privacy Policy.
+
+    (d) If you do not agree with the revised Privacy Policy, you should
+        discontinue use of the Platform and request deletion of your data.
+
+--------------------------------------------------------------------------------
+15. GOVERNING LAW
+--------------------------------------------------------------------------------
+
+This Privacy Policy shall be governed by and construed in accordance with the
+laws of the State of Utah, without regard to its conflict of law principles.
+
+--------------------------------------------------------------------------------
+16. CONTACT INFORMATION
+--------------------------------------------------------------------------------
+
+For questions, data requests, privacy concerns, or to exercise any of your
+rights under this Privacy Policy, contact us at:
+
+    Landon Brewington
+    [Aurigen — pending LLC formation]
+    Email: [EMAIL]
+    Mailing Address: [ADDRESS]
+
+We will respond to all inquiries within 30 days.
