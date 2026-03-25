@@ -1185,9 +1185,12 @@
       align-items: center;
       overflow: hidden;
       position: relative;
+      z-index: 2;
+      flex-shrink: 0;
     }
     #ticker-track {
       display: flex;
+      width: max-content;
       white-space: nowrap;
       animation: ticker-scroll 30s linear infinite;
     }
@@ -1201,6 +1204,7 @@
     .ticker-item .up { color: var(--hybrid); }
     .ticker-item .down { color: var(--deed); }
     .ticker-item .neutral { color: var(--lien); }
+    #ticker-track:hover { animation-play-state: paused; }
 
     /* === MAP TAB LAYOUT (Section 6B) === */
     #panel-map {
@@ -1491,7 +1495,7 @@
     @media(max-width:600px){.county-search-input{height:44px;font-size:14px}}
 
     /* === DISCLAIMER FOOTER === */
-    #disclaimer-footer{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(1,4,12,0.95);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,0.06);pointer-events:none}
+    #disclaimer-footer{position:relative;z-index:0;background:rgba(1,4,12,0.95);border-top:1px solid rgba(255,255,255,0.06);pointer-events:none;flex-shrink:0}
     #disclaimer-full{padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px}
     #disclaimer-footer p{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.02em;line-height:1.5;max-width:900px;text-align:center;margin:0}
     #disclaimer-footer a{color:rgba(212,160,23,0.6);text-decoration:underline;text-underline-offset:2px;pointer-events:auto}
@@ -3215,6 +3219,25 @@
   <div id="status-bar">
     <div id="ticker-track"></div>
   </div>
+  <footer id="disclaimer-footer">
+    <div id="disclaimer-full">
+      <p>This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a></p>
+    </div>
+    <div class="disclaimer-expand-panel" id="disclaimer-panel">
+      <div class="disclaimer-panel-inner">
+        <div class="disclaimer-panel-head">
+          <span class="disclaimer-panel-label">Legal Disclaimer</span>
+          <button class="disclaimer-panel-collapse" onclick="toggleDisclaimer()">&darr; Collapse</button>
+        </div>
+        <div class="disclaimer-panel-text">This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting.</div>
+        <a class="disclaimer-panel-link" href="/legal/" target="_blank" rel="noopener noreferrer">View Full Legal Page &rarr;</a>
+      </div>
+    </div>
+    <div class="disclaimer-collapsed">
+      <span class="disclaimer-short">Educational only &middot; Not investment advice</span>
+      <button class="disclaimer-expand-link" id="disclaimer-toggle" onclick="toggleDisclaimer()">Legal &uarr;</button>
+    </div>
+  </footer>
 </div>
 
 <script>
@@ -7627,25 +7650,5 @@ function scoutRender() {
   <div class="pulse-disclaimer">Dates based on published schedules &mdash; verify with official authority.</div>
   <div class="paywall-lock" id="lock-pulse" style="display:none"><span class="walkthrough-label">UNLOCK PULSE</span><span class="walkthrough-desc">Real-time alerts when new auctions drop in your watched states. Set it once &mdash; Pulse notifies you.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
 </div>
-
-<footer id="disclaimer-footer">
-  <div id="disclaimer-full">
-    <p>This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a></p>
-  </div>
-  <div class="disclaimer-expand-panel" id="disclaimer-panel">
-    <div class="disclaimer-panel-inner">
-      <div class="disclaimer-panel-head">
-        <span class="disclaimer-panel-label">Legal Disclaimer</span>
-        <button class="disclaimer-panel-collapse" onclick="toggleDisclaimer()">&darr; Collapse</button>
-      </div>
-      <div class="disclaimer-panel-text">This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting.</div>
-      <a class="disclaimer-panel-link" href="/legal/" target="_blank" rel="noopener noreferrer">View Full Legal Page &rarr;</a>
-    </div>
-  </div>
-  <div class="disclaimer-collapsed">
-    <span class="disclaimer-short">Educational only &middot; Not investment advice</span>
-    <button class="disclaimer-expand-link" id="disclaimer-toggle" onclick="toggleDisclaimer()">Legal &uarr;</button>
-  </div>
-</footer>
 </body>
 </html>
