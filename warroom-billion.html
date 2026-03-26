@@ -1927,6 +1927,12 @@
       box-shadow: 0 0 20px var(--accent-glow);
     }
     .acct-upgrade-sub{display:block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.05em;color:rgba(201,168,76,0.7);margin-top:4px;font-weight:400}
+    .language-toggle{margin-top:20px;padding:16px 0;border-top:1px solid var(--border)}
+    .lang-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--text2);margin-bottom:10px}
+    .lang-buttons{display:flex;gap:8px}
+    .lang-btn{flex:1;padding:10px 16px;min-height:44px;background:transparent;border:1px solid var(--border);border-radius:6px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--text2);cursor:pointer;transition:all 0.2s;text-align:center}
+    .lang-btn:hover{border-color:rgba(255,255,255,0.2);color:var(--text)}
+    .lang-btn.active{border-color:rgba(201,168,76,0.5);color:var(--accent);background:rgba(201,168,76,0.08)}
 
     /* Value card grid */
     .value-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
@@ -2500,19 +2506,19 @@
   <div class="deep-ocean-grain"></div>
   <nav id="top-nav">
     <div id="nav-logo">AURIGEN</div>
-    <div class="nav-tab active" id="tab-map" onclick="switchTab('map')">Map</div>
-    <div class="nav-tab" id="tab-auctions" onclick="switchTab('auctions')">Auctions</div>
-    <div class="nav-tab" id="tab-versus" onclick="switchTab('versus')">Versus</div>
-    <div class="nav-tab" id="tab-dna" onclick="switchTab('dna')">DNA</div>
-    <div class="nav-tab" id="tab-advisor" onclick="switchTab('advisor')">Advisor</div>
-    <div class="nav-tab" id="tab-tools" onclick="switchTab('tools')">Tools</div>
-    <div class="nav-tab" id="tab-scout" onclick="switchTab('scout')">Scout</div>
-    <div class="nav-tab" id="tab-account" onclick="switchTab('account')">Account</div>
-    <span id="nav-active-label">Map</span>
+    <div class="nav-tab active" id="tab-map" onclick="switchTab('map')" data-i18n="nav_map">Map</div>
+    <div class="nav-tab" id="tab-auctions" onclick="switchTab('auctions')" data-i18n="nav_auctions">Auctions</div>
+    <div class="nav-tab" id="tab-versus" onclick="switchTab('versus')" data-i18n="nav_versus">Versus</div>
+    <div class="nav-tab" id="tab-dna" onclick="switchTab('dna')" data-i18n="nav_dna">DNA</div>
+    <div class="nav-tab" id="tab-advisor" onclick="switchTab('advisor')" data-i18n="nav_advisor">Advisor</div>
+    <div class="nav-tab" id="tab-tools" onclick="switchTab('tools')" data-i18n="nav_tools">Tools</div>
+    <div class="nav-tab" id="tab-scout" onclick="switchTab('scout')" data-i18n="nav_scout">Scout</div>
+    <div class="nav-tab" id="tab-account" onclick="switchTab('account')" data-i18n="nav_account">Account</div>
+    <span id="nav-active-label" data-i18n="nav_map">Map</span>
     <div id="nav-spacer"></div>
     <div id="pulse-bell" onclick="togglePulseDrawer()" aria-label="Open alerts"><span aria-hidden="true">🔔</span><span id="pulse-badge" class="hidden">0</span></div>
     <button id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
-    <div id="nav-tier-badge">FREE</div>
+    <div id="nav-tier-badge" data-i18n="nav_tier_free">FREE</div>
   </nav>
   <div id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
   <div id="mobile-nav-drawer">
@@ -2521,17 +2527,17 @@
       <button class="mobile-nav-close" onclick="closeMobileNav()" aria-label="Close">&times;</button>
     </div>
     <div class="mobile-nav-items">
-      <button class="mobile-nav-item active" data-tab="map" onclick="mobileNavTo('map')"><span class="mobile-nav-item-icon">🗺</span>Map</button>
-      <button class="mobile-nav-item" data-tab="tools" onclick="mobileNavTo('tools')"><span class="mobile-nav-item-icon">🔨</span>Tools</button>
-      <button class="mobile-nav-item" data-tab="advisor" onclick="mobileNavTo('advisor')"><span class="mobile-nav-item-icon">🤖</span>Advisor</button>
-      <button class="mobile-nav-item" data-tab="auctions" onclick="mobileNavTo('auctions')"><span class="mobile-nav-item-icon">📅</span>Auctions</button>
-      <button class="mobile-nav-item" data-tab="versus" onclick="mobileNavTo('versus')"><span class="mobile-nav-item-icon">⚖️</span>Versus</button>
-      <button class="mobile-nav-item" data-tab="dna" onclick="mobileNavTo('dna')"><span class="mobile-nav-item-icon">🧬</span>DNA</button>
+      <button class="mobile-nav-item active" data-tab="map" onclick="mobileNavTo('map')"><span class="mobile-nav-item-icon">🗺</span><span data-i18n="nav_map">Map</span></button>
+      <button class="mobile-nav-item" data-tab="tools" onclick="mobileNavTo('tools')"><span class="mobile-nav-item-icon">🔨</span><span data-i18n="nav_tools">Tools</span></button>
+      <button class="mobile-nav-item" data-tab="advisor" onclick="mobileNavTo('advisor')"><span class="mobile-nav-item-icon">🤖</span><span data-i18n="nav_advisor">Advisor</span></button>
+      <button class="mobile-nav-item" data-tab="auctions" onclick="mobileNavTo('auctions')"><span class="mobile-nav-item-icon">📅</span><span data-i18n="nav_auctions">Auctions</span></button>
+      <button class="mobile-nav-item" data-tab="versus" onclick="mobileNavTo('versus')"><span class="mobile-nav-item-icon">⚖️</span><span data-i18n="nav_versus">Versus</span></button>
+      <button class="mobile-nav-item" data-tab="dna" onclick="mobileNavTo('dna')"><span class="mobile-nav-item-icon">🧬</span><span data-i18n="nav_dna">DNA</span></button>
       <div class="mobile-nav-divider"></div>
-      <button class="mobile-nav-item" data-tab="account" onclick="mobileNavTo('account')"><span class="mobile-nav-item-icon">👤</span>Account</button>
+      <button class="mobile-nav-item" data-tab="account" onclick="mobileNavTo('account')"><span class="mobile-nav-item-icon">👤</span><span data-i18n="nav_account">Account</span></button>
     </div>
     <div class="mobile-nav-footer">
-      <a class="mobile-nav-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Full Access &rarr;</a>
+      <a class="mobile-nav-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer" data-i18n="nav_mobile_upgrade">Full Access &rarr;</a>
     </div>
   </div>
   <div id="main-content">
@@ -2542,7 +2548,7 @@
         <div id="header-top">
           <div>
             <div class="brand-name">AURIGEN</div>
-            <div class="brand-sub">COUNTY RESOURCE DIRECTORY</div>
+            <div class="brand-sub" data-i18n="map_brand_sub">COUNTY RESOURCE DIRECTORY</div>
           </div>
           <div id="type-legend"></div>
         </div>
@@ -2558,13 +2564,13 @@
           <!-- LEFT: FILTER PANEL -->
           <div id="map-filter-panel">
             <div class="mfp-header">
-              <div class="mfp-title">State Intelligence</div>
-              <div class="mfp-subtitle" id="mfp-subtitle">51 jurisdictions &middot; Click any state</div>
+              <div class="mfp-title" data-i18n="mfp_title">State Intelligence</div>
+              <div class="mfp-subtitle" id="mfp-subtitle" data-i18n="mfp_subtitle">51 jurisdictions &middot; Click any state</div>
             </div>
             <div class="mfp-search">
               <div class="mfp-search-wrap">
                 <span class="mfp-search-icon">&#8981;</span>
-                <input class="mfp-search-input" id="mfp-search" type="text" placeholder="Search states&hellip;" oninput="handleMapSearch(this.value)">
+                <input class="mfp-search-input" id="mfp-search" type="text" placeholder="Search states&hellip;" data-i18n="mfp_search_placeholder" oninput="handleMapSearch(this.value)">
                 <button class="mfp-search-clear" id="mfp-search-clear" onclick="clearMapSearch()">&times;</button>
               </div>
             </div>
@@ -2583,8 +2589,8 @@
           </div>
         </div>
         <div id="map-footer">
-          <span class="footer-txt">AURIGEN &middot; TAX INVESTMENT INTELLIGENCE &middot; 2026</span>
-          <span class="footer-txt">51 JURISDICTIONS</span>
+          <span class="footer-txt" data-i18n="map_footer_left">AURIGEN &middot; TAX INVESTMENT INTELLIGENCE &middot; 2026</span>
+          <span class="footer-txt" data-i18n="map_footer_right">51 JURISDICTIONS</span>
         </div>
         <!-- MOBILE: filter FAB + drawer -->
         <button id="mfp-mobile-btn" onclick="toggleMobileDrawer()">&#9776;</button>
@@ -2648,7 +2654,7 @@
       </div>
     </div>
     <div class="tab-panel" id="panel-tools">
-      <div class="paywall-lock" id="lock-tools-tab" style="display:none"><span class="walkthrough-label">UNLOCK DEAL ANALYZER</span><div class="walkthrough-preview-img"><div class="wk-label">Purchase Price</div><div class="wk-input">$12,500</div><div class="wk-label" style="margin-top:6px">Back Taxes Owed</div><div class="wk-input">$3,200</div><div class="wk-label" style="margin-top:6px">After Repair Value</div><div class="wk-input">$85,000</div><div class="wk-card"><div class="wk-result"><span>Projected ROI</span><span class="wk-result-val">18.0%</span></div><div class="wk-result"><span>Yield on Cost</span><span class="wk-result-val">$2,250</span></div><div class="wk-result"><span>Margin of Safety</span><span class="wk-result-val">81.5%</span></div></div></div><span class="walkthrough-desc">Run real numbers on any deal. Enter purchase price, back taxes, ARV. Get projected ROI, margin of safety, and a clear go/no-go signal.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+      <div class="paywall-lock" id="lock-tools-tab" style="display:none"><span class="walkthrough-label" data-i18n="tools_lock_title">UNLOCK DEAL ANALYZER</span><div class="walkthrough-preview-img"><div class="wk-label">Purchase Price</div><div class="wk-input">$12,500</div><div class="wk-label" style="margin-top:6px">Back Taxes Owed</div><div class="wk-input">$3,200</div><div class="wk-label" style="margin-top:6px">After Repair Value</div><div class="wk-input">$85,000</div><div class="wk-card"><div class="wk-result"><span>Projected ROI</span><span class="wk-result-val">18.0%</span></div><div class="wk-result"><span>Yield on Cost</span><span class="wk-result-val">$2,250</span></div><div class="wk-result"><span>Margin of Safety</span><span class="wk-result-val">81.5%</span></div></div></div><span class="walkthrough-desc">Run real numbers on any deal. Enter purchase price, back taxes, ARV. Get projected ROI, margin of safety, and a clear go/no-go signal.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
       <!-- Tools Sub-Nav -->
       <div class="tools-subnav" id="tools-subnav">
         <button class="tools-subnav-btn active" onclick="switchToolsPanel('analyzer')">Deal Analyzer</button>
@@ -2847,7 +2853,7 @@
         </div>
       </div>
       <div class="dna-disclaimer">Tax lien and tax deed investing involves risk including potential loss of principal. Rates shown are statutory maximums &mdash; actual returns vary. This profiler is for educational purposes only and does not constitute investment advice. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a></div>
-      <div class="paywall-lock" id="lock-dna-tab" style="display:none"><span class="walkthrough-label">UNLOCK DNA PROFILER</span><div class="walkthrough-preview-img"><div style="font-family:'Space Mono',monospace;font-size:8px;color:var(--accent);letter-spacing:0.1em;margin-bottom:6px">STEP ONE</div><div style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:10px">What&#39;s your #1 goal?</div><div class="wk-opt"><div class="wk-radio selected"></div><span class="wk-text">Returns</span><span class="wk-text-sub">I want interest income</span></div><div class="wk-opt"><div class="wk-radio"></div><span class="wk-text">The property</span><span class="wk-text-sub">I want to acquire real estate</span></div><div class="wk-opt"><div class="wk-radio"></div><span class="wk-text">Both</span><span class="wk-text-sub">Open to either outcome</span></div></div><span class="walkthrough-desc">Answer 6 questions. Get your investor archetype &mdash; Yield Maximizer, Deal Hunter, Patient Capitalist, Local Operator, or Portfolio Builder. Every other tool in the platform adapts to your profile.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+      <div class="paywall-lock" id="lock-dna-tab" style="display:none"><span class="walkthrough-label" data-i18n="dna_lock_title">UNLOCK DNA PROFILER</span><div class="walkthrough-preview-img"><div style="font-family:'Space Mono',monospace;font-size:8px;color:var(--accent);letter-spacing:0.1em;margin-bottom:6px">STEP ONE</div><div style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:10px">What&#39;s your #1 goal?</div><div class="wk-opt"><div class="wk-radio selected"></div><span class="wk-text">Returns</span><span class="wk-text-sub">I want interest income</span></div><div class="wk-opt"><div class="wk-radio"></div><span class="wk-text">The property</span><span class="wk-text-sub">I want to acquire real estate</span></div><div class="wk-opt"><div class="wk-radio"></div><span class="wk-text">Both</span><span class="wk-text-sub">Open to either outcome</span></div></div><span class="walkthrough-desc">Answer 6 questions. Get your investor archetype &mdash; Yield Maximizer, Deal Hunter, Patient Capitalist, Local Operator, or Portfolio Builder. Every other tool in the platform adapts to your profile.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
     </div>
 
     <div class="tab-panel" id="panel-advisor">
@@ -2868,7 +2874,7 @@
         <input id="advisor-input" type="text" placeholder="Ask Sage anything about tax liens..." autocomplete="off">
         <button id="advisor-send" onclick="sendAdvisorMessage()">Send</button>
       </div>
-      <div class="paywall-lock" id="lock-advisor-tab" style="display:none"><span class="walkthrough-label">UNLOCK SAGE AI ADVISOR</span><div class="walkthrough-preview-img"><div style="display:flex;flex-direction:column;gap:8px"><div class="wk-bubble user">Which states are best for beginners with under $5,000?</div><div class="wk-bubble sage">Florida and Arizona are strong starting points. Florida offers up to 18% statutory interest on tax liens with a well-organized online auction system through county platforms. Arizona runs at 16% with shorter redemption windows...</div></div></div><span class="walkthrough-desc">Ask Sage anything about tax lien or tax deed investing. Gets smarter the more you use the platform &mdash; trained on your DNA profile and the states you&rsquo;re watching.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+      <div class="paywall-lock" id="lock-advisor-tab" style="display:none"><span class="walkthrough-label" data-i18n="sage_lock_title">UNLOCK SAGE AI ADVISOR</span><div class="walkthrough-preview-img"><div style="display:flex;flex-direction:column;gap:8px"><div class="wk-bubble user">Which states are best for beginners with under $5,000?</div><div class="wk-bubble sage">Florida and Arizona are strong starting points. Florida offers up to 18% statutory interest on tax liens with a well-organized online auction system through county platforms. Arizona runs at 16% with shorter redemption windows...</div></div></div><span class="walkthrough-desc">Ask Sage anything about tax lien or tax deed investing. Gets smarter the more you use the platform &mdash; trained on your DNA profile and the states you&rsquo;re watching.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
     </div>
     <!-- AUCTIONS TAB — Concept C -->
     <div class="tab-panel" id="panel-auctions">
@@ -2912,7 +2918,7 @@
           <div id="auctions-next-step"></div>
         </div>
       </div>
-      <div class="paywall-lock" id="lock-auctions-tab" style="display:none"><span class="walkthrough-label">UNLOCK AUCTIONS</span><div class="walkthrough-preview-img"><div class="wk-row"><span class="wk-badge lien">FL</span><span class="wk-text">Broward County</span><span class="wk-text-sub">Jun 1, 2026</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">TX</span><span class="wk-text">Harris County</span><span class="wk-text-sub">Jul 8, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge lien">AZ</span><span class="wk-text">Maricopa County</span><span class="wk-text-sub">Feb 4, 2027</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">GA</span><span class="wk-text">Fulton County</span><span class="wk-text-sub">Aug 12, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div></div><span class="walkthrough-desc">Live and upcoming auction calendar across all 51 states. Filter by state, format, and date. Never miss a sale in your target market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+      <div class="paywall-lock" id="lock-auctions-tab" style="display:none"><span class="walkthrough-label" data-i18n="auctions_lock_title">UNLOCK AUCTIONS</span><div class="walkthrough-preview-img"><div class="wk-row"><span class="wk-badge lien">FL</span><span class="wk-text">Broward County</span><span class="wk-text-sub">Jun 1, 2026</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">TX</span><span class="wk-text">Harris County</span><span class="wk-text-sub">Jul 8, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge lien">AZ</span><span class="wk-text">Maricopa County</span><span class="wk-text-sub">Feb 4, 2027</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">GA</span><span class="wk-text">Fulton County</span><span class="wk-text-sub">Aug 12, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div></div><span class="walkthrough-desc">Live and upcoming auction calendar across all 51 states. Filter by state, format, and date. Never miss a sale in your target market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
     </div>
 
     <!-- AUCTIONS INTERSTITIAL MODAL -->
@@ -2985,7 +2991,7 @@
           </div>
         </div>
         <div class="vs-locked-overlay">
-          <div class="vs-locked-eyebrow">UNLOCK VERSUS</div>
+          <div class="vs-locked-eyebrow" data-i18n="vs_lock_title">UNLOCK VERSUS</div>
           <div class="vs-locked-preview">
             <div class="vs-locked-preview-headers">
               <div class="vs-locked-preview-hdr vs-locked-preview-hdr-a">FLORIDA</div>
@@ -2995,9 +3001,9 @@
             <div class="vs-locked-preview-row" style="width:90%"></div>
             <div class="vs-locked-preview-row" style="width:80%"></div>
           </div>
-          <div class="vs-locked-desc">Compare any two states side by side &mdash; yield rates, redemption periods, bid methods, and platforms. Built for investors choosing their next market.</div>
-          <a class="vs-locked-cta" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a>
-          <div class="vs-locked-sub">COMPARABLE TOOLS CHARGE $200+/MONTH &middot; YOU PAY ONCE</div>
+          <div class="vs-locked-desc" data-i18n="vs_lock_desc">Compare any two states side by side &mdash; yield rates, redemption periods, bid methods, and platforms. Built for investors choosing their next market.</div>
+          <a class="vs-locked-cta" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer" data-i18n="paywall_cta">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</a>
+          <div class="vs-locked-sub" data-i18n="paywall_sub">COMPARABLE TOOLS CHARGE $200+/MONTH &middot; YOU PAY ONCE</div>
         </div>
       </div>
     </div>
@@ -3030,75 +3036,82 @@
           <div id="scout-checklist" style="display:none"></div>
         </div>
       </div>
-      <div class="paywall-lock" id="lock-scout-tab" style="display:none"><span class="walkthrough-label">UNLOCK SCOUT</span><div class="walkthrough-preview-img"><div class="wk-step-hdr"><div class="wk-step-num">1</div><div><div class="wk-text" style="font-weight:600">Lien/Deed Verification</div><div class="wk-text-sub">Confirm certificate or deed is valid and correctly assigned</div></div></div><div style="padding-left:30px"><div class="wk-label">HOW TO DO IT</div><div class="wk-text-sub" style="margin:2px 0">1. Pull original certificate number from county tax collector</div><div class="wk-text-sub" style="margin:2px 0">2. Match parcel ID on certificate to county assessor map</div><div class="wk-label" style="margin-top:6px">YOUR NOTES</div><div class="wk-input" style="min-height:24px"></div></div></div><span class="walkthrough-desc">10-step due diligence checklist for any property. Walk through title, liens, condition, comparables, and exit strategy before you spend a dollar.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+      <div class="paywall-lock" id="lock-scout-tab" style="display:none"><span class="walkthrough-label" data-i18n="scout_lock_title">UNLOCK SCOUT</span><div class="walkthrough-preview-img"><div class="wk-step-hdr"><div class="wk-step-num">1</div><div><div class="wk-text" style="font-weight:600">Lien/Deed Verification</div><div class="wk-text-sub">Confirm certificate or deed is valid and correctly assigned</div></div></div><div style="padding-left:30px"><div class="wk-label">HOW TO DO IT</div><div class="wk-text-sub" style="margin:2px 0">1. Pull original certificate number from county tax collector</div><div class="wk-text-sub" style="margin:2px 0">2. Match parcel ID on certificate to county assessor map</div><div class="wk-label" style="margin-top:6px">YOUR NOTES</div><div class="wk-input" style="min-height:24px"></div></div></div><span class="walkthrough-desc">10-step due diligence checklist for any property. Walk through title, liens, condition, comparables, and exit strategy before you spend a dollar.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
     </div>
 
     <div class="tab-panel" id="panel-account">
       <div class="account-card">
-        <div class="account-tier-badge" id="acct-tier-badge">FREE ACCESS</div>
+        <div class="account-tier-badge" id="acct-tier-badge" data-i18n="acct_tier_free">FREE ACCESS</div>
         <div class="account-row">
-          <span class="account-row-label">Email</span>
+          <span class="account-row-label" data-i18n="acct_email">Email</span>
           <span class="account-row-value" id="acct-email">&mdash;</span>
         </div>
         <div class="account-row">
-          <span class="account-row-label">Access Level</span>
-          <span class="account-row-value" id="acct-level">Free</span>
+          <span class="account-row-label" data-i18n="acct_level">Access Level</span>
+          <span class="account-row-value" id="acct-level" data-i18n="acct_level_free">Free</span>
         </div>
         <div class="account-row">
-          <span class="account-row-label">Map Access</span>
-          <span class="account-row-value" id="acct-states">All 51 States</span>
+          <span class="account-row-label" data-i18n="acct_map">Map Access</span>
+          <span class="account-row-value" id="acct-states" data-i18n="acct_map_val">All 51 States</span>
         </div>
         <div class="account-row">
-          <span class="account-row-label">Locked Features</span>
-          <span class="account-row-value" id="acct-locked">Counties, DNA, Versus, Analyzer, Sage, Scout, Auctions, Pulse</span>
+          <span class="account-row-label" data-i18n="acct_locked">Locked Features</span>
+          <span class="account-row-value" id="acct-locked" data-i18n="acct_locked_val">Counties, DNA, Versus, Analyzer, Sage, Scout, Auctions, Pulse</span>
         </div>
         <div id="acct-value-section" class="acct-value-section">
-          <div class="value-section-label">WHAT YOU UNLOCK</div>
+          <div class="value-section-label" data-i18n="acct_what_unlock">WHAT YOU UNLOCK</div>
           <div class="value-grid">
             <div class="value-card">
-              <div class="value-card-name">County Directory</div>
+              <div class="value-card-name" data-i18n="vc_county">County Directory</div>
               <div class="value-card-desc">3,200+ counties with auction links, platforms, and due diligence data</div>
               <div class="value-card-badge">$497/yr elsewhere</div>
             </div>
             <div class="value-card">
-              <div class="value-card-name">DNA Investor Profiler</div>
+              <div class="value-card-name" data-i18n="vc_dna">DNA Investor Profiler</div>
               <div class="value-card-desc">6 questions. Get your investor archetype. Every tool adapts to you.</div>
               <div class="value-card-badge">Included</div>
             </div>
             <div class="value-card">
-              <div class="value-card-name">Versus Comparison</div>
+              <div class="value-card-name" data-i18n="vc_versus">Versus Comparison</div>
               <div class="value-card-desc">Side-by-side state comparison. Pick your market with real data.</div>
               <div class="value-card-badge">Included</div>
             </div>
             <div class="value-card">
-              <div class="value-card-name">Deal Analyzer</div>
+              <div class="value-card-name" data-i18n="vc_analyzer">Deal Analyzer</div>
               <div class="value-card-desc">Run real ROI numbers before you spend a dollar on any deal.</div>
               <div class="value-card-badge">$49/mo elsewhere</div>
             </div>
             <div class="value-card">
-              <div class="value-card-name">Sage AI Advisor</div>
+              <div class="value-card-name" data-i18n="vc_sage">Sage AI Advisor</div>
               <div class="value-card-desc">Ask anything about tax lien or deed investing. Trained on your DNA profile.</div>
               <div class="value-card-badge">$200/mo elsewhere</div>
             </div>
             <div class="value-card">
-              <div class="value-card-name">Scout Due Diligence</div>
+              <div class="value-card-name" data-i18n="vc_scout">Scout Due Diligence</div>
               <div class="value-card-desc">10-step checklist for every deal. Title, liens, condition, exit.</div>
               <div class="value-card-badge">$99/mo elsewhere</div>
             </div>
             <div class="value-card">
-              <div class="value-card-name">Auctions Calendar</div>
+              <div class="value-card-name" data-i18n="vc_auctions">Auctions Calendar</div>
               <div class="value-card-desc">Live and upcoming sales across all 51 states. Never miss a sale.</div>
               <div class="value-card-badge">$197/mo elsewhere</div>
             </div>
             <div class="value-card">
-              <div class="value-card-name">Pulse Alerts</div>
+              <div class="value-card-name" data-i18n="vc_pulse">Pulse Alerts</div>
               <div class="value-card-desc">Real-time notifications when new auctions drop in your states.</div>
               <div class="value-card-badge">$49/mo elsewhere</div>
             </div>
           </div>
-          <div class="value-total">Total value if purchased separately: $1,500+/year &mdash; yours for $197 once.</div>
+          <div class="value-total" data-i18n="acct_value_total">Total value if purchased separately: $1,500+/year &mdash; yours for $197 once.</div>
         </div>
-        <a class="account-upgrade-cta" id="acct-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="acct-upgrade-sub">Comparable tools charge $200+/month. You pay once.</span></a>
+        <div class="language-toggle">
+          <div class="lang-label" data-i18n="lang_label">LANGUAGE / IDIOMA</div>
+          <div class="lang-buttons">
+            <button class="lang-btn active" id="lang-en" onclick="applyLanguage('en')">🇺🇸 English</button>
+            <button class="lang-btn" id="lang-es" onclick="applyLanguage('es')">🇲🇽 Español</button>
+          </div>
+        </div>
+        <a class="account-upgrade-cta" id="acct-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer"><span data-i18n="acct_upgrade">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</span><span class="acct-upgrade-sub" data-i18n="acct_upgrade_sub">Comparable tools charge $200+/month. You pay once.</span></a>
       </div>
     </div>
   </div>
@@ -3115,13 +3128,13 @@
           <span class="disclaimer-panel-label">Legal Disclaimer</span>
           <button class="disclaimer-panel-collapse" onclick="toggleDisclaimer()">&darr; Collapse</button>
         </div>
-        <div class="disclaimer-panel-text">This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting.</div>
-        <a class="disclaimer-panel-link" href="/legal/" target="_blank" rel="noopener noreferrer">View Full Legal Page &rarr;</a>
+        <div class="disclaimer-panel-text" data-i18n="disclaimer_full">This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting.</div>
+        <a class="disclaimer-panel-link" href="/legal/" target="_blank" rel="noopener noreferrer" data-i18n="disclaimer_view_full">View Full Legal Page &rarr;</a>
       </div>
     </div>
     <div class="disclaimer-collapsed">
-      <span class="disclaimer-short">Educational only &middot; Not investment advice</span>
-      <button class="disclaimer-expand-link" id="disclaimer-toggle" onclick="toggleDisclaimer()">Legal &uarr;</button>
+      <span class="disclaimer-short" data-i18n="disclaimer_short">Educational only &middot; Not investment advice</span>
+      <button class="disclaimer-expand-link" id="disclaimer-toggle" onclick="toggleDisclaimer()" data-i18n="disclaimer_legal">Legal &uarr;</button>
     </div>
   </footer>
 </div>
@@ -3171,6 +3184,274 @@ try {
     }
   });
 } catch(e) {}
+
+// === I18N — BILINGUAL SYSTEM ===
+var LANG = 'en';
+try { LANG = localStorage.getItem('aurigen_language') || 'en'; } catch(e) {}
+
+var I18N = {
+  en: {
+    // Nav
+    nav_map:'Map', nav_auctions:'Auctions', nav_versus:'Versus', nav_dna:'DNA',
+    nav_advisor:'Advisor', nav_tools:'Tools', nav_scout:'Scout', nav_account:'Account',
+    nav_tier_free:'FREE', nav_tier_paid:'FULL ACCESS',
+    nav_mobile_upgrade:'Full Access \u2192',
+    // Map header
+    map_brand_sub:'COUNTY RESOURCE DIRECTORY',
+    map_tab_map:'\u25C7  MAP', map_tab_list:'\u2261  LIST',
+    mfp_title:'State Intelligence', mfp_subtitle:'51 jurisdictions \u00B7 Click any state',
+    mfp_search_placeholder:'Search states\u2026',
+    mfp_filter_title:'FILTER BY TYPE',
+    type_lien:'Tax Lien', type_deed:'Tax Deed', type_redeemable:'Redeemable',
+    type_hybrid:'Hybrid', type_forfeiture:'Forfeiture', type_all:'ALL',
+    mfp_show_all:'Show All',
+    map_footer_left:'AURIGEN \u00B7 TAX INVESTMENT INTELLIGENCE \u00B7 2026',
+    map_footer_right:'51 JURISDICTIONS',
+    // State modal
+    stat_yield:'YIELD RATE', stat_redemption:'REDEMPTION', stat_bid:'BID METHOD',
+    detail_open:'Open Full Detail \u2192',
+    next_step:'Next Step',
+    next_step_compare:'See how {state} compares',
+    next_step_compare_sub:'Open Versus with this state pre-loaded',
+    next_step_compare_btn:'Compare {state} in Versus \u2192',
+    // Versus
+    vs_topbar_title:'AURIGEN \u2014 VERSUS INTELLIGENCE',
+    vs_topbar_status:'SECURE \u00B7 READ ONLY',
+    vs_cmd_prefix:'$ aurigen compare',
+    vs_state_a:'STATE A:', vs_state_b:'STATE B:',
+    vs_col_metric:'METRIC',
+    vs_type:'TYPE', vs_yield:'YIELD RATE', vs_redemption:'REDEMPTION',
+    vs_bid:'BID METHOD', vs_platform:'PLATFORM', vs_beginner:'BEGINNER',
+    vs_higher:'HIGHER', vs_shorter:'SHORTER', vs_online:'ONLINE', vs_advantage:'ADVANTAGE',
+    vs_analysis:'> ANALYSIS OUTPUT',
+    vs_disclaimer:'DATA SHOWN REFLECTS STATUTORY PROVISIONS \u00B7 MAY VARY BY COUNTY \u00B7 CONSULT A QUALIFIED PROFESSIONAL BEFORE INVESTING',
+    // Versus locked
+    vs_lock_title:'UNLOCK VERSUS',
+    vs_lock_desc:'Compare any two states side by side \u2014 yield rates, redemption periods, bid methods, and platforms. Built for investors choosing their next market.',
+    // DNA
+    dna_lock_title:'UNLOCK DNA PROFILER',
+    dna_lock_desc:'Answer 6 questions. Get your investor archetype \u2014 Yield Maximizer, Deal Hunter, Patient Capitalist, Local Operator, or Portfolio Builder. Every other tool in the platform adapts to your profile.',
+    dna_title:'INVESTOR DNA',
+    dna_continue:'Continue', dna_back:'Back',
+    dna_top_matches:'TOP MATCHES', dna_signals:'PROFILE SIGNALS',
+    dna_risk:'Risk Tolerance', dna_capital:'Capital Range',
+    dna_timeline:'Timeline Horizon', dna_strategy:'Strategy Type',
+    dna_retake:'Retake Quiz', dna_share:'\uD83D\uDCF8 Share your profile',
+    dna_completion:'Your profile is ready. Use the Analyzer to run your numbers, or open Versus to compare your top matches side by side.',
+    dna_disclaimer:'This quiz is for educational purposes only. Rates shown are statutory maximums \u2014 actual returns vary. This does not constitute investment advice.',
+    // Advisor / Sage
+    sage_lock_title:'UNLOCK SAGE AI ADVISOR',
+    sage_lock_desc:'Ask Sage anything about tax lien or deed investing. Gets smarter the more you use the platform \u2014 reads your DNA profile and adapts responses to your investor type.',
+    sage_placeholder:'Ask Sage anything\u2026',
+    sage_send:'Send',
+    sage_disclaimer:'Sage is an educational research assistant, not a financial advisor. It does not constitute financial, legal, or investment advice. Always verify information with official sources.',
+    // Tools / Analyzer
+    tools_lock_title:'UNLOCK DEAL ANALYZER',
+    tools_lock_desc:'Run real numbers on any deal. Enter purchase price, back taxes, ARV. Get projected ROI, margin of safety, and a clear go/no-go signal.',
+    da_tab_analyzer:'Deal Analyzer', da_tab_quick:'Quick Tools', da_tab_summary:'My Summary',
+    da_amount_label:'Investment Amount',
+    da_state_a:'STATE A', da_state_b:'STATE B',
+    da_conservative:'Conservative', da_realistic:'Realistic', da_optimistic:'Optimistic',
+    da_projected:'Projected Return', da_interest:'Interest Earned',
+    da_total:'Total Recovered', da_yield:'Effective Annual Yield',
+    da_hold:'Hold Period', da_better:'BETTER RETURN',
+    da_open_versus:'Open in Versus \u2192',
+    da_disclaimer:'Rates shown are statutory maximums. Actual returns depend on competitive bidding and redemption outcomes. Bid-down states typically yield below the statutory ceiling in competitive counties. This is not financial advice. Always verify with the official county or state authority before transacting.',
+    // Scout
+    scout_lock_title:'UNLOCK SCOUT',
+    scout_lock_desc:'10-step due diligence checklist for any property. Walk through title, liens, condition, comparables, and exit strategy before you spend a dollar.',
+    scout_title:'SCOUT', scout_sub:'DUE DILIGENCE TRACKER',
+    scout_new:'+ New Deal',
+    scout_why:'WHY IT MATTERS', scout_how:'HOW TO DO IT',
+    scout_where:'WHERE', scout_red:'RED FLAGS', scout_pro:'PRO TIP',
+    scout_notes:'YOUR NOTES', scout_notes_placeholder:'Add your notes for this step\u2026',
+    scout_complete:'Mark Complete', scout_flag:'Flag Issue',
+    scout_disclaimer:'This checklist is for educational and research purposes only. It does not constitute legal, financial, or investment advice. Always conduct independent due diligence and consult a qualified professional before investing.',
+    // Auctions
+    auctions_lock_title:'UNLOCK AUCTIONS',
+    auctions_lock_desc:'Live and upcoming auction calendar across all 51 states. Filter by state, format, and date. Never miss a sale in your target market.',
+    auctions_register:'Register \u2192',
+    auctions_online:'ONLINE', auctions_in_person:'IN-PERSON',
+    // Account
+    acct_tier_free:'FREE ACCESS', acct_tier_paid:'FULL ACCESS',
+    acct_email:'Email', acct_level:'Access Level', acct_level_free:'Free', acct_level_paid:'Full Access',
+    acct_map:'Map Access', acct_map_val:'All 51 States',
+    acct_locked:'Locked Features',
+    acct_locked_val:'Counties, DNA, Versus, Analyzer, Sage, Scout, Auctions, Pulse',
+    acct_what_unlock:'WHAT YOU UNLOCK',
+    vc_county:'County Directory', vc_dna:'DNA Investor Profiler',
+    vc_versus:'Versus Comparison', vc_analyzer:'Deal Analyzer',
+    vc_sage:'Sage AI Advisor', vc_scout:'Scout Due Diligence',
+    vc_auctions:'Auctions Calendar', vc_pulse:'Pulse Alerts',
+    acct_value_total:'Total value if purchased separately: $1,500+/year \u2014 yours for $197 once.',
+    acct_upgrade:'UNLOCK FULL ACCESS \u2014 $197 ONE TIME',
+    acct_upgrade_sub:'Comparable tools charge $200+/month. You pay once.',
+    lang_label:'LANGUAGE / IDIOMA',
+    // Paywall generic
+    paywall_cta:'UNLOCK FULL ACCESS \u2014 $197 ONE TIME',
+    paywall_sub:'Comparable tools charge $200+/month. You pay once.',
+    // Disclaimer
+    disclaimer_full:'This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change \u2014 verify with the official county or state authority before transacting.',
+    disclaimer_short:'Educational only \u00B7 Not investment advice',
+    disclaimer_legal:'Legal',
+    disclaimer_view_full:'View Full Legal Page \u2192',
+    // Ticker
+    ticker_aurigen:'AURIGEN', ticker_platform:'INTELLIGENCE PLATFORM',
+    // Pulse
+    pulse_title:'PULSE', pulse_new:'New',
+    pulse_disclaimer:'Dates based on published schedules \u2014 verify with official authority.',
+    pulse_lock_title:'UNLOCK PULSE',
+    pulse_lock_desc:'Real-time alerts when new auctions drop in your watched states. Set it once \u2014 Pulse notifies you.'
+  },
+  es: {
+    // Nav
+    nav_map:'Mapa', nav_auctions:'Subastas', nav_versus:'Comparar', nav_dna:'Perfil DNA',
+    nav_advisor:'Asesor', nav_tools:'Herramientas', nav_scout:'Scout', nav_account:'Cuenta',
+    nav_tier_free:'GRATIS', nav_tier_paid:'ACCESO COMPLETO',
+    nav_mobile_upgrade:'Acceso Completo \u2192',
+    // Map header
+    map_brand_sub:'DIRECTORIO DE RECURSOS POR CONDADO',
+    map_tab_map:'\u25C7  MAPA', map_tab_list:'\u2261  LISTA',
+    mfp_title:'Inteligencia Estatal', mfp_subtitle:'51 jurisdicciones \u00B7 Haz clic en cualquier estado',
+    mfp_search_placeholder:'Buscar estados\u2026',
+    mfp_filter_title:'FILTRAR POR TIPO',
+    type_lien:'Gravamen Fiscal', type_deed:'Escritura Fiscal', type_redeemable:'Redimible',
+    type_hybrid:'H\u00edbrido', type_forfeiture:'Decomiso', type_all:'TODOS',
+    mfp_show_all:'Mostrar Todo',
+    map_footer_left:'AURIGEN \u00B7 INTELIGENCIA DE INVERSI\u00d3N FISCAL \u00B7 2026',
+    map_footer_right:'51 JURISDICCIONES',
+    // State modal
+    stat_yield:'TASA DE RENDIMIENTO', stat_redemption:'REDENCI\u00d3N', stat_bid:'M\u00c9TODO DE PUJA',
+    detail_open:'Ver Detalle Completo \u2192',
+    next_step:'Siguiente Paso',
+    next_step_compare:'Ver c\u00f3mo se compara {state}',
+    next_step_compare_sub:'Abrir Versus con este estado precargado',
+    next_step_compare_btn:'Comparar {state} en Versus \u2192',
+    // Versus
+    vs_topbar_title:'AURIGEN \u2014 INTELIGENCIA VERSUS',
+    vs_topbar_status:'SEGURO \u00B7 SOLO LECTURA',
+    vs_cmd_prefix:'$ aurigen comparar',
+    vs_state_a:'ESTADO A:', vs_state_b:'ESTADO B:',
+    vs_col_metric:'M\u00c9TRICA',
+    vs_type:'TIPO', vs_yield:'TASA DE RENDIMIENTO', vs_redemption:'REDENCI\u00d3N',
+    vs_bid:'M\u00c9TODO DE PUJA', vs_platform:'PLATAFORMA', vs_beginner:'PRINCIPIANTE',
+    vs_higher:'MAYOR', vs_shorter:'M\u00c1S CORTO', vs_online:'EN L\u00cdNEA', vs_advantage:'VENTAJA',
+    vs_analysis:'> AN\u00c1LISIS',
+    vs_disclaimer:'LOS DATOS REFLEJAN DISPOSICIONES LEGALES \u00B7 PUEDEN VARIAR POR CONDADO \u00B7 CONSULTA A UN PROFESIONAL CALIFICADO ANTES DE INVERTIR',
+    // Versus locked
+    vs_lock_title:'DESBLOQUEAR VERSUS',
+    vs_lock_desc:'Compara dos estados lado a lado \u2014 tasas de rendimiento, per\u00edodos de redenci\u00f3n, m\u00e9todos de puja y plataformas. Dise\u00f1ado para inversores eligiendo su pr\u00f3ximo mercado.',
+    // DNA
+    dna_lock_title:'DESBLOQUEAR PERFIL DNA',
+    dna_lock_desc:'Responde 6 preguntas. Obt\u00e9n tu arquetipo de inversor \u2014 Maximizador de Rendimiento, Cazador de Negocios, Capitalista Paciente, Operador Local, o Constructor de Portafolio. Cada herramienta se adapta a tu perfil.',
+    dna_title:'ADN DE INVERSOR',
+    dna_continue:'Continuar', dna_back:'Atr\u00e1s',
+    dna_top_matches:'MEJORES COINCIDENCIAS', dna_signals:'SE\u00d1ALES DE PERFIL',
+    dna_risk:'Tolerancia al Riesgo', dna_capital:'Rango de Capital',
+    dna_timeline:'Horizonte de Tiempo', dna_strategy:'Tipo de Estrategia',
+    dna_retake:'Repetir Quiz', dna_share:'\uD83D\uDCF8 Compartir tu perfil',
+    dna_completion:'Tu perfil est\u00e1 listo. Usa el Analizador para calcular tus n\u00fameros, o abre Versus para comparar tus mejores coincidencias.',
+    dna_disclaimer:'Este quiz es solo para fines educativos. Las tasas mostradas son m\u00e1ximos legales \u2014 los rendimientos reales var\u00edan. No constituye asesoramiento de inversi\u00f3n.',
+    // Advisor / Sage
+    sage_lock_title:'DESBLOQUEAR ASESOR IA SAGE',
+    sage_lock_desc:'Pregunta a Sage cualquier cosa sobre inversi\u00f3n en grav\u00e1menes o escrituras fiscales. Se vuelve m\u00e1s inteligente mientras usas la plataforma \u2014 entrenado en tu perfil DNA y los estados que sigues.',
+    sage_placeholder:'Preg\u00fantale a Sage\u2026',
+    sage_send:'Enviar',
+    sage_disclaimer:'Sage es un asistente de investigaci\u00f3n educativa, no un asesor financiero. No constituye asesoramiento financiero, legal o de inversi\u00f3n. Siempre verifica la informaci\u00f3n con fuentes oficiales.',
+    // Tools / Analyzer
+    tools_lock_title:'DESBLOQUEAR ANALIZADOR DE NEGOCIOS',
+    tools_lock_desc:'Calcula n\u00fameros reales para cualquier negocio. Ingresa precio de compra, impuestos atrasados, ARV. Obt\u00e9n ROI proyectado, margen de seguridad y una se\u00f1al clara.',
+    da_tab_analyzer:'Analizador', da_tab_quick:'Herramientas R\u00e1pidas', da_tab_summary:'Mi Resumen',
+    da_amount_label:'Monto de Inversi\u00f3n',
+    da_state_a:'ESTADO A', da_state_b:'ESTADO B',
+    da_conservative:'Conservador', da_realistic:'Realista', da_optimistic:'Optimista',
+    da_projected:'Rendimiento Proyectado', da_interest:'Inter\u00e9s Ganado',
+    da_total:'Total Recuperado', da_yield:'Rendimiento Anual Efectivo',
+    da_hold:'Per\u00edodo de Tenencia', da_better:'MEJOR RENDIMIENTO',
+    da_open_versus:'Abrir en Versus \u2192',
+    da_disclaimer:'Las tasas mostradas son m\u00e1ximos legales. Los rendimientos reales dependen de la puja competitiva y los resultados de redenci\u00f3n. Los estados con puja descendente t\u00edpicamente rinden por debajo del techo legal en condados competitivos. Esto no es asesoramiento financiero. Siempre verifica con la autoridad oficial del condado o estado.',
+    // Scout
+    scout_lock_title:'DESBLOQUEAR SCOUT',
+    scout_lock_desc:'Lista de verificaci\u00f3n de debida diligencia de 10 pasos para cualquier propiedad. Revisa t\u00edtulo, grav\u00e1menes, condici\u00f3n, comparables y estrategia de salida antes de gastar un d\u00f3lar.',
+    scout_title:'SCOUT', scout_sub:'RASTREADOR DE DEBIDA DILIGENCIA',
+    scout_new:'+ Nuevo Negocio',
+    scout_why:'POR QU\u00c9 IMPORTA', scout_how:'C\u00d3MO HACERLO',
+    scout_where:'D\u00d3NDE', scout_red:'SE\u00d1ALES DE ALERTA', scout_pro:'CONSEJO PRO',
+    scout_notes:'TUS NOTAS', scout_notes_placeholder:'Agrega tus notas para este paso\u2026',
+    scout_complete:'Marcar Completo', scout_flag:'Marcar Problema',
+    scout_disclaimer:'Esta lista es solo para fines educativos y de investigaci\u00f3n. No constituye asesoramiento legal, financiero o de inversi\u00f3n. Siempre realiza una debida diligencia independiente y consulta con un profesional calificado antes de invertir.',
+    // Auctions
+    auctions_lock_title:'DESBLOQUEAR SUBASTAS',
+    auctions_lock_desc:'Calendario de subastas en vivo y pr\u00f3ximas en los 51 estados. Filtra por estado, formato y fecha. No te pierdas ninguna venta en tu mercado objetivo.',
+    auctions_register:'Registrarse \u2192',
+    auctions_online:'EN L\u00cdNEA', auctions_in_person:'EN PERSONA',
+    // Account
+    acct_tier_free:'ACCESO GRATUITO', acct_tier_paid:'ACCESO COMPLETO',
+    acct_email:'Email', acct_level:'Nivel de Acceso', acct_level_free:'Gratuito', acct_level_paid:'Acceso Completo',
+    acct_map:'Acceso al Mapa', acct_map_val:'Los 51 Estados',
+    acct_locked:'Funciones Bloqueadas',
+    acct_locked_val:'Condados, DNA, Versus, Analizador, Sage, Scout, Subastas, Pulse',
+    acct_what_unlock:'LO QUE DESBLOQUEAS',
+    vc_county:'Directorio de Condados', vc_dna:'Perfil de Inversor DNA',
+    vc_versus:'Comparaci\u00f3n Versus', vc_analyzer:'Analizador de Negocios',
+    vc_sage:'Asesor IA Sage', vc_scout:'Debida Diligencia Scout',
+    vc_auctions:'Calendario de Subastas', vc_pulse:'Alertas Pulse',
+    acct_value_total:'Valor total si se compra por separado: $1,500+/a\u00f1o \u2014 tuyo por $197 una vez.',
+    acct_upgrade:'DESBLOQUEAR ACCESO COMPLETO \u2014 $197 \u00daNICO PAGO',
+    acct_upgrade_sub:'Herramientas similares cobran $200+/mes. T\u00fa pagas una vez.',
+    lang_label:'LANGUAGE / IDIOMA',
+    // Paywall generic
+    paywall_cta:'DESBLOQUEAR ACCESO COMPLETO \u2014 $197 \u00daNICO PAGO',
+    paywall_sub:'Herramientas similares cobran $200+/mes. T\u00fa pagas una vez.',
+    // Disclaimer
+    disclaimer_full:'Este directorio es solo para fines informativos y educativos. No constituye asesoramiento de inversi\u00f3n, legal o financiero. Invertir en grav\u00e1menes y escrituras fiscales implica riesgo. Siempre realiza una debida diligencia independiente y consulta con un profesional calificado antes de invertir. Las tasas y reglas est\u00e1n sujetas a cambios \u2014 verifica con la autoridad oficial del condado o estado antes de realizar transacciones.',
+    disclaimer_short:'Solo educativo \u00B7 No es asesoramiento de inversi\u00f3n',
+    disclaimer_legal:'Legal',
+    disclaimer_view_full:'Ver P\u00e1gina Legal Completa \u2192',
+    // Ticker
+    ticker_aurigen:'AURIGEN', ticker_platform:'PLATAFORMA DE INTELIGENCIA',
+    // Pulse
+    pulse_title:'PULSE', pulse_new:'Nuevas',
+    pulse_disclaimer:'Fechas basadas en calendarios publicados \u2014 verifica con la autoridad oficial.',
+    pulse_lock_title:'DESBLOQUEAR PULSE',
+    pulse_lock_desc:'Alertas en tiempo real cuando nuevas subastas aparecen en tus estados. Conf\u00edguralo una vez \u2014 Pulse te notifica.'
+  }
+};
+
+function t(key) {
+  var strings = I18N[LANG] || I18N.en;
+  return strings[key] || (I18N.en[key] || key);
+}
+
+function applyLanguage(lang) {
+  LANG = lang || 'en';
+  try { localStorage.setItem('aurigen_language', LANG); } catch(e) {}
+  // Static data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    var val = t(key);
+    if (val) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = val;
+      } else {
+        el.textContent = val;
+      }
+    }
+  });
+  // data-i18n-html for elements needing innerHTML
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-html');
+    var val = t(key);
+    if (val) el.innerHTML = val;
+  });
+  // Update language toggle active state
+  var enBtn = document.getElementById('lang-en');
+  var esBtn = document.getElementById('lang-es');
+  if (enBtn) enBtn.classList.toggle('active', LANG === 'en');
+  if (esBtn) esBtn.classList.toggle('active', LANG === 'es');
+  // Update HTML lang attribute
+  document.documentElement.lang = LANG;
+}
 
 // === STATE ===
 const APP = {
@@ -3316,15 +3597,17 @@ document.addEventListener('DOMContentLoaded', function() {
   buildTicker();
   applyAccessLocks();
   bootApp();
+  // Apply saved language
+  applyLanguage(LANG);
 });
 
 function updateTierBadge() {
   const badge = document.getElementById('nav-tier-badge');
   if (APP.tier >= 2) {
-    badge.textContent = 'FULL ACCESS';
+    badge.textContent = t('nav_tier_paid');
     badge.classList.add('paid');
   } else {
-    badge.textContent = 'FREE';
+    badge.textContent = t('nav_tier_free');
     badge.classList.remove('paid');
   }
 }
@@ -7404,7 +7687,7 @@ function scoutRender() {
 <div id="pulse-overlay" onclick="closePulseDrawer()"></div>
 <div id="pulse-drawer" role="dialog" aria-label="Pulse alerts">
   <div class="pulse-header">
-    <span class="pulse-header-title">PULSE</span>
+    <span class="pulse-header-title" data-i18n="pulse_title">PULSE</span>
     <span class="pulse-header-count" id="pulse-new-count">0 New</span>
     <button class="pulse-header-close" onclick="closePulseDrawer()" aria-label="Close">&times;</button>
   </div>
@@ -7412,8 +7695,8 @@ function scoutRender() {
   <div class="pulse-profile" id="pulse-profile"></div>
   <div class="pulse-feed" id="pulse-feed"></div>
   <div class="pulse-cta" id="pulse-cta"></div>
-  <div class="pulse-disclaimer">Dates based on published schedules &mdash; verify with official authority.</div>
-  <div class="paywall-lock" id="lock-pulse" style="display:none"><span class="walkthrough-label">UNLOCK PULSE</span><span class="walkthrough-desc">Real-time alerts when new auctions drop in your watched states. Set it once &mdash; Pulse notifies you.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+  <div class="pulse-disclaimer" data-i18n="pulse_disclaimer">Dates based on published schedules &mdash; verify with official authority.</div>
+  <div class="paywall-lock" id="lock-pulse" style="display:none"><span class="walkthrough-label" data-i18n="pulse_lock_title">UNLOCK PULSE</span><span class="walkthrough-desc" data-i18n="pulse_lock_desc">Real-time alerts when new auctions drop in your watched states. Set it once &mdash; Pulse notifies you.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer"><span data-i18n="paywall_cta">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</span><span class="paywall-lock-btn-sub" data-i18n="paywall_sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
 </div>
 </body>
 </html>
