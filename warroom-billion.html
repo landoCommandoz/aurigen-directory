@@ -1090,6 +1090,7 @@
     }
     .tab-panel.tab-locked { overflow: hidden; }
     .tab-panel.tab-locked > *:not(.paywall-lock) { pointer-events: none; user-select: none; opacity: 0.15; filter: blur(2px); }
+    #panel-map.tab-locked > * { pointer-events: auto !important; user-select: auto !important; opacity: 1 !important; filter: none !important; }
     #panel-versus.tab-locked > *:not(.paywall-lock):not(.vs-locked-wrap) { opacity: 0; filter: blur(8px); visibility: hidden; }
     #panel-versus.tab-locked .vs-locked-wrap { opacity: 1; visibility: visible; filter: none; pointer-events: auto; }
     .tab-panel.active {
@@ -1152,8 +1153,8 @@
     .tab.active{color:#FFBE0B;border-bottom-color:#FFBE0B}
     .view{flex:1;display:flex;flex-direction:column;min-height:0;position:relative;z-index:1}
     .view.hidden{display:none}
-    #map-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;position:relative;padding:16px}
-    #map-svg{width:100%;max-width:720px;height:auto}
+    #map-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;position:relative;padding:16px;pointer-events:auto}
+    #map-svg{width:100%;max-width:720px;height:auto;pointer-events:auto}
     #ambient-glow{position:absolute;inset:0;pointer-events:none;transition:background 0.5s}
     #map-legend{position:absolute;bottom:8px;left:16px;display:flex;flex-direction:column;gap:5px;padding:8px 12px;background:rgba(1,4,12,0.85);backdrop-filter:blur(12px);border:1px solid rgba(0,212,255,0.08);border-radius:4px;pointer-events:none}
     .mleg-item{display:flex;align-items:center;gap:7px}
@@ -1161,7 +1162,7 @@
     .mleg-txt{font-family:'Space Mono',monospace;font-size:7px;color:rgba(255,255,255,0.4);letter-spacing:0.1em}
     #map-footer{display:flex;justify-content:space-between;padding:5px 20px;border-top:1px solid rgba(0,212,255,0.04);flex-shrink:0}
     .footer-txt{font-family:'Space Mono',monospace;font-size:6px;color:rgba(0,212,255,0.15);letter-spacing:0.15em}
-    .state-path{stroke-width:0.8;cursor:pointer;transition:all 0.2s}
+    .state-path{stroke-width:0.8;cursor:pointer;transition:all 0.2s;pointer-events:all}
     .state-label{pointer-events:none;font-family:'Space Mono',monospace;font-size:7px;fill-opacity:0.85}
 
     /* === MAP FILTER PANEL (B2) === */
