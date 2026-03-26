@@ -4443,7 +4443,8 @@ function showDetail(s) {
     countiesEl.innerHTML=cHtml;
   }
 
-  document.getElementById('panel-cta').style.cssText="width:100%;margin-top:12px;padding:12px;border-radius:3px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.2em;background:"+color+"28;border:1px solid "+color+"88;color:"+color+";box-shadow:0 4px 20px "+glw;
+  var panelCtaEl = document.getElementById('panel-cta');
+  if (panelCtaEl) panelCtaEl.style.cssText="width:100%;margin-top:12px;padding:12px;border-radius:3px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.2em;background:"+color+"28;border:1px solid "+color+"88;color:"+color+";box-shadow:0 4px 20px "+glw;
   panel.classList.add('open');
 }
 
