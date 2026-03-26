@@ -804,70 +804,6 @@
     }
 
     /* === NEXT STEP CARD === */
-    .next-step-card {
-      position: relative;
-      background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(45,212,192,0.04));
-      border: 1px solid rgba(201,168,76,0.25);
-      border-radius: 12px;
-      padding: 18px 22px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-      overflow: hidden;
-    }
-    .next-step-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--teal));
-    }
-    .next-step-arrow {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-    .next-step-content { flex: 1; min-width: 140px; }
-    .next-step-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-    .next-step-title {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 2px;
-    }
-    .next-step-sub {
-      font-size: 11px;
-      color: var(--text2);
-      line-height: 1.5;
-    }
-    .next-step-btn {
-      background: var(--accent);
-      color: #08080b;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-family: 'Space Mono', monospace;
-      font-size: 12px;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
-      white-space: nowrap;
-      text-decoration: none;
-      transition: opacity 0.2s;
-      min-height: 44px;
-      display: inline-flex;
-      align-items: center;
-    }
-    .next-step-btn:hover { opacity: 0.85; }
-
     /* === DNA PROFILE TAG === */
     .dna-profile-tag {
       display: inline-flex;
@@ -1384,7 +1320,7 @@
     .counties-chevron{font-size:10px;color:rgba(255,255,255,0.3);transition:transform 0.2s}
     .counties-list{max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:2px;padding-top:6px}
     .counties-list.collapsed{display:none}
-    .county-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:4px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);transition:background 0.15s}
+    .county-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:4px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);transition:background 0.15s;cursor:pointer;min-height:44px}
     .county-row:hover{background:rgba(255,255,255,0.05)}
     .county-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:#e8e8e8;text-decoration:none;flex-shrink:0}
     .county-name:hover{color:#FFD700}
@@ -2207,8 +2143,8 @@
       .auction-card {
         display: flex; flex-direction: column; gap: 0;
         background: var(--bg2); border: 1px solid var(--border);
-        border-radius: 10px; overflow: hidden; width: 100%;
-        position: relative;
+        border-radius: 10px; overflow: visible; width: 100%;
+        position: relative; min-height: auto;
       }
       .auction-card::before {
         content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
@@ -2220,7 +2156,7 @@
         display: none;
       }
       .auction-card-body {
-        padding: 12px 14px 8px; gap: 8px;
+        padding: 12px 14px 8px; gap: 8px; display: flex; flex-direction: column; min-height: auto; overflow: visible;
       }
       .auction-card-title { font-size: 13px; }
       .auction-card-pills { flex-wrap: wrap; gap: 6px; }
@@ -2237,10 +2173,6 @@
       #list-toolbar { flex-wrap: wrap; }
       .filter-pills { flex-wrap: wrap; }
       #detail-panel-inner { width:100%;height:95%;max-height:95vh;border-radius:6px 6px 0 0;padding-bottom:56px }
-      #map-next-step { position:sticky;bottom:0;z-index:10;background:var(--bg2);border-top:1px solid rgba(201,168,76,0.2);padding:8px 0 }
-      #map-next-step .next-step-card { margin-top:0;padding:12px 14px;border-radius:0;border:none;background:none }
-      #map-next-step .next-step-arrow, #map-next-step .next-step-content { display:none }
-      #map-next-step .next-step-btn { width:100%;min-height:48px;justify-content:center;text-align:center;font-size:11px }
       #col-headers{grid-template-columns:28px 56px 1fr}
       .state-row{grid-template-columns:28px 56px 1fr}
       .col-h.col-stats,.row-stats{display:none}
@@ -2647,7 +2579,7 @@
             <div id="panel-stats"></div>
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
-            <div id="map-next-step"></div>
+
             <div id="panel-counties"></div>
           </div>
         </div>
@@ -2733,7 +2665,6 @@
 
           <!-- Disclaimer -->
           <div class="da-disclaimer">Rates shown are statutory maximums. Actual returns depend on competitive bidding and redemption outcomes. Bid-down states typically yield below the statutory ceiling in competitive counties. This is not financial advice. Always verify with the official county or state authority before transacting.</div>
-          <div id="analyzer-next-step"></div>
           <div id="da-dna-banner-area"></div>
         </div>
       </div>
@@ -2915,7 +2846,6 @@
           <div class="auctions-disclaimer">
             Tax lien and tax deed investing involves risk, including potential loss of principal. Past performance does not guarantee future results. Auction dates and details are provided for informational purposes only &mdash; verify directly with the county or platform before registering. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a>
           </div>
-          <div id="auctions-next-step"></div>
         </div>
       </div>
       <div class="paywall-lock" id="lock-auctions-tab" style="display:none"><span class="walkthrough-label" data-i18n="auctions_lock_title">UNLOCK AUCTIONS</span><div class="walkthrough-preview-img"><div class="wk-row"><span class="wk-badge lien">FL</span><span class="wk-text">Broward County</span><span class="wk-text-sub">Jun 1, 2026</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">TX</span><span class="wk-text">Harris County</span><span class="wk-text-sub">Jul 8, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge lien">AZ</span><span class="wk-text">Maricopa County</span><span class="wk-text-sub">Feb 4, 2027</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">GA</span><span class="wk-text">Fulton County</span><span class="wk-text-sub">Aug 12, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div></div><span class="walkthrough-desc">Live and upcoming auction calendar across all 51 states. Filter by state, format, and date. Never miss a sale in your target market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
@@ -2968,7 +2898,6 @@
             <div id="vs-rows"></div>
             <div class="vs-analysis" id="vs-analysis"></div>
             <div class="vs-disclaimer">INVESTMENT INVOLVES RISK. DATA SHOWN REFLECTS STATUTORY PROVISIONS AND MAY VARY BY COUNTY. THIS IS NOT FINANCIAL ADVICE. CONSULT A QUALIFIED PROFESSIONAL BEFORE INVESTING.</div>
-            <div id="versus-next-step"></div>
           </div>
           <div class="vs-footer">
             <span>AURIGEN VERSUS INTELLIGENCE v2.0</span>
@@ -4719,7 +4648,8 @@ function showDetail(s) {
       // Notes
       var safeNotes=r.notes?escapeHtml(r.notes):'';
       var noteSpan=safeNotes?'<span class="county-notes" title="'+safeNotes.replace(/"/g,'&quot;')+'">'+safeNotes+'</span>':'';
-      cHtml+='<div class="county-row" data-county-name="'+escapeHtml(r.name.toLowerCase())+'">'+nameTag+platPill+otcPill+timPill+redPill+noteSpan+'</div>';
+      var rowClick=safeLink?' onclick="if(!event.target.closest(\'a\')){window.open(\''+safeLink.replace(/'/g,"\\'").replace(/"/g,'&quot;')+'\',\'_blank\',\'noopener,noreferrer\')}"':'';
+      cHtml+='<div class="county-row"'+rowClick+' data-county-name="'+escapeHtml(r.name.toLowerCase())+'">'+nameTag+platPill+otcPill+timPill+redPill+noteSpan+'</div>';
     });
     cHtml+='</div>';
     if(showSearch){cHtml+='<div class="county-no-results" id="county-no-results">No counties match your search</div>';}
@@ -6749,91 +6679,14 @@ function saveProfile(updates) {
     }
     current.lastUpdated = Date.now();
     localStorage.setItem('aurigen_profile', JSON.stringify(current));
-    renderJourneyBar();
     return current;
   } catch(e) { return null; }
 }
-
-function updateJourneyStep(step) {}
 
 function profileTopStateCodes() {
   var p = getProfile();
   if (!p || !p.topStates || !p.topStates.length) return null;
   return p.topStates.map(function(s) { return s.code; });
-}
-
-// Stubs — journey bar removed
-function renderJourneyBar() {}
-
-// === NEXT STEP CARDS ===
-function buildNextStepHtml(title, sub, btnText, onclick) {
-  return '<div class="next-step-card">' +
-    '<span class="next-step-arrow">\u2192</span>' +
-    '<div class="next-step-content">' +
-      '<div class="next-step-label">Next Step</div>' +
-      '<div class="next-step-title">' + escapeHtml(title) + '</div>' +
-      '<div class="next-step-sub">' + escapeHtml(sub) + '</div>' +
-    '</div>' +
-    '<button class="next-step-btn" onclick="' + onclick + '">' + escapeHtml(btnText) + '</button>' +
-  '</div>';
-}
-
-function renderNextStepCards() {
-  var profile = getProfile() || {};
-  var steps = profile.journeySteps || {};
-
-  // Map modal — rendered dynamically in showDetail, skip here
-
-  // Versus
-  var vsEl = document.getElementById('versus-next-step');
-  if (vsEl) {
-    if (!steps.dnaComplete) {
-      vsEl.innerHTML = buildNextStepHtml(
-        'Find out which state fits your profile',
-        'The DNA quiz takes 2 minutes and matches your goals to the right states',
-        'Take DNA Quiz \u2192',
-        "switchTab('dna')"
-      );
-    } else { vsEl.innerHTML = ''; }
-  }
-
-  // Analyzer
-  var daEl = document.getElementById('analyzer-next-step');
-  if (daEl) {
-    daEl.innerHTML = buildNextStepHtml(
-      'There\u2019s an auction coming up in your states',
-      'Check upcoming dates and registration deadlines',
-      'View Auctions \u2192',
-      "switchTab('auctions')"
-    );
-  }
-
-  // Auctions
-  var aucEl = document.getElementById('auctions-next-step');
-  if (aucEl) {
-    aucEl.innerHTML = buildNextStepHtml(
-      'Run due diligence on your target states',
-      'Use the Scout tool to build a state-specific checklist before your first auction.',
-      'Open Scout \u2192',
-      "switchTab('tools');switchToolsPanel('scout')"
-    );
-  }
-}
-
-// Map modal next step — called from showDetail
-function renderMapNextStep(stateCode, stateName) {
-  var el = document.getElementById('map-next-step');
-  if (!el) return;
-  var action = "closeDetail();saveProfile({lastClickedState:'" + escapeHtml(stateCode) + "'});try{localStorage.setItem('versus_state_a','" + escapeHtml(stateCode) + "')}catch(e){}switchTab('versus')";
-  el.innerHTML = '<div class="next-step-card">' +
-    '<span class="next-step-arrow">\u2192</span>' +
-    '<div class="next-step-content">' +
-      '<div class="next-step-label">Next Step</div>' +
-      '<div class="next-step-title">See how ' + escapeHtml(stateName) + ' compares</div>' +
-      '<div class="next-step-sub">Open Versus with this state pre-loaded</div>' +
-    '</div>' +
-    '<button class="next-step-btn" onclick="' + action + '">Compare ' + escapeHtml(stateName) + ' in Versus \u2192</button>' +
-  '</div>';
 }
 
 // === ITEM 3: DNA PROFILE PERSISTENCE ===
@@ -6853,21 +6706,6 @@ function dnaSaveToProfile() {
     topStates: topStates,
     dnaComplete: true
   });
-  updateJourneyStep('dnaComplete');
-  renderNextStepCards();
-
-  // Show next step in DNA area
-  var area = document.getElementById('dna-question-area');
-  if (area) {
-    var profile = getProfile();
-    var topName = (profile && profile.topStates && profile.topStates[0]) ? profile.topStates[0].name : 'your top match';
-    area.innerHTML += buildNextStepHtml(
-      'Run the numbers on your top match',
-      'See what ' + escapeHtml(topName) + ' could return on your investment',
-      'Open Analyzer \u2192',
-      "switchTab('tools');switchToolsPanel('analyzer')"
-    );
-  }
 }
 
 // === ITEM 4: ANALYZER PRE-LOADS DNA ===
@@ -6922,7 +6760,6 @@ function daTrackUsage() {
     analyzerBestReturn: bestReturn,
     analyzerUsed: true
   });
-  updateJourneyStep('analyzerUsed');
   // Show summary tab
   var summaryBtn = document.getElementById('summary-tab-btn');
   if (summaryBtn) summaryBtn.style.display = '';
@@ -6977,7 +6814,6 @@ function vsTrackUsage() {
   saveProfile({
     statesCompared: [selA.value, selB.value]
   });
-  updateJourneyStep('statesCompared');
 }
 
 // === ITEM 6: SAGE READS DNA ARCHETYPE ===
@@ -7051,7 +6887,6 @@ function trackMapExploration(stateCode) {
   }
   saveProfile({ statesViewed: viewed });
   if (viewed.length >= 1) {
-    updateJourneyStep('mapExplored');
   }
 }
 
@@ -7194,9 +7029,7 @@ var _origShowDetail = showDetail;
 showDetail = function(s) {
   _origShowDetail(s);
   var code = s.abbr || s.c;
-  var name = s.name || s.n || code;
   trackMapExploration(code);
-  renderMapNextStep(code, name);
   applyCountyLock();
 };
 
@@ -7260,22 +7093,17 @@ getAdvisorResponse = function(text) {
   return response;
 };
 
-// Wire: Auctions tab → track journey step
+// Wire: Tab switching hooks
 var _origSwitchTabPhase3 = switchTab;
 switchTab = function(name) {
   _origSwitchTabPhase3(name);
-  if (name === 'auctions') {
-    updateJourneyStep('alertsViewed');
-  }
   if (name === 'tools') {
+    switchToolsPanel('analyzer');
     setTimeout(function() { daPreloadFromDna(); renderSummaryPage(); }, 100);
   }
-  renderNextStepCards();
 };
 
 // === INIT PHASE 3 ===
-renderJourneyBar();
-renderNextStepCards();
 // Show summary tab if profile exists
 (function() {
   var p = getProfile();
