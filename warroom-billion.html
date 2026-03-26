@@ -803,85 +803,6 @@
       overflow: hidden;
     }
 
-    /* === JOURNEY BAR === */
-    #journey-bar {
-      height: 36px;
-      min-height: 36px;
-      background: var(--bg3);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-    .jb-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text2);
-      margin-right: 8px;
-      flex-shrink: 0;
-    }
-    .jb-steps { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-    .jb-step {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      padding: 3px 8px;
-      border-radius: 4px;
-      white-space: nowrap;
-      border: 1px solid var(--border);
-      color: var(--text2);
-    }
-    .jb-step.done {
-      border-color: rgba(201,168,76,0.3);
-      color: var(--accent);
-      background: rgba(201,168,76,0.06);
-    }
-    .jb-step.current {
-      border-color: var(--teal);
-      color: var(--teal);
-      background: rgba(45,212,192,0.06);
-    }
-    .jb-arrow { font-size: 8px; color: var(--text2); }
-    .jb-ready {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--green);
-    }
-    .jb-ready-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulseBadge 2s ease-in-out infinite;
-    }
-    .jb-mobile-label { display: none; }
-    .jb-cta-group { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-    .jb-book-btn { font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 600; padding: 4px 10px; border-radius: 4px; border: 1px solid var(--accent); background: rgba(201,168,76,0.1); color: var(--accent); cursor: pointer; white-space: nowrap; transition: background 0.2s; }
-    .jb-book-btn:hover { background: rgba(201,168,76,0.18); }
-    .jb-step-locked { opacity: 0.5; }
-    .jb-step-locked:hover { opacity: 0.8; }
-    .jb-dismiss-btn { font-family: 'Space Mono', monospace; font-size: 9px; padding: 4px 8px; border: none; background: transparent; color: var(--text2); cursor: pointer; white-space: nowrap; min-width: fit-content; opacity: 0.6; transition: opacity 0.2s; }
-    .jb-dismiss-btn:hover { opacity: 1; }
-    @media(max-width:768px) {
-      .jb-label, .jb-steps, .jb-arrow { display: none; }
-      .jb-mobile-label {
-        display: block;
-        font-family: 'Space Mono', monospace;
-        font-size: 9px;
-        color: var(--text2);
-      }
-      .jb-cta-group { margin-left: auto; }
-      .jb-book-btn { font-size: 8px; padding: 3px 8px; }
-      .jb-dismiss-btn { font-size: 8px; }
-    }
-
     /* === NEXT STEP CARD === */
     .next-step-card {
       position: relative;
@@ -2183,14 +2104,6 @@
     .auction-btn-register:hover {
       background: var(--accent-dim);
     }
-    .auction-btn-clarity {
-      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; color: var(--text2);
-      background: none; border: none; cursor: pointer; text-decoration: underline;
-      text-underline-offset: 2px; padding: 4px; min-height: 44px; display: flex;
-      align-items: center;
-    }
-    .auction-btn-clarity:hover { color: var(--accent); }
-
     /* Disclaimer */
     .auctions-disclaimer {
       margin-top: 24px; padding: 16px 0; border-top: 1px solid var(--border);
@@ -2248,18 +2161,6 @@
       min-height: 44px; transition: border-color 0.2s;
     }
     .auctions-interstitial-cancel:hover { border-color: rgba(255,255,255,0.25); }
-
-    /* === CONSULTATION TRANSITION MODAL === */
-    .consult-modal{display:none;position:fixed;inset:0;z-index:2000;background:rgba(6,6,10,0.85);align-items:center;justify-content:center;padding:24px}
-    .consult-modal.open{display:flex}
-    .consult-modal-inner{background:var(--bg2);border:1px solid var(--border);border-radius:8px;max-width:440px;width:100%;padding:40px 32px;text-align:center;display:flex;flex-direction:column;gap:16px;position:relative}
-    .consult-modal-heading{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.04em;color:var(--text);line-height:1.1}
-    .consult-modal-sub{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--text2);line-height:1.7;max-width:380px;margin:0 auto}
-    .consult-modal-note{font-family:'Space Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.06em}
-    .consult-modal-btn{display:block;width:100%;padding:14px 20px;min-height:44px;background:var(--accent);color:#0d0d0d;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-align:center;border:none;border-radius:4px;font-weight:700;cursor:pointer;transition:opacity 0.2s}
-    .consult-modal-btn:hover{opacity:0.9}
-    .consult-modal-ghost{display:block;width:100%;padding:12px 20px;min-height:44px;background:none;border:1px solid rgba(255,255,255,0.1);color:var(--text2);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-align:center;border-radius:4px;cursor:pointer;transition:all 0.2s}
-    .consult-modal-ghost:hover{border-color:rgba(255,255,255,0.25);color:var(--text)}
 
     /* Mobile filter drawer */
     .auctions-drawer-overlay {
@@ -2322,7 +2223,6 @@
         padding: 8px 14px 12px; gap: 8px;
       }
       .auction-btn-register { flex: 1; text-align: center; font-size: 9px; padding: 8px 10px; }
-      .auction-btn-clarity { min-height: 44px; justify-content: center; font-size: 9px; }
       .auctions-interstitial-actions { flex-direction: column; }
       .auctions-interstitial-continue, .auctions-interstitial-cancel { width: 100%; }
       .explore-legend { display: none; }
@@ -2633,7 +2533,6 @@
       <a class="mobile-nav-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">Full Access &rarr;</a>
     </div>
   </div>
-  <div id="journey-bar"></div>
   <div id="main-content">
     <div class="tab-panel active" id="panel-map">
       <!-- Header -->
@@ -2742,7 +2641,6 @@
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
             <div id="map-next-step"></div>
-            <button id="panel-cta" onclick="openConsultModal()">REQUEST A CONSULTATION &rarr;</button>
             <div id="panel-counties"></div>
           </div>
         </div>
@@ -2822,7 +2720,6 @@
           <div class="da-bottom-row">
             <div class="da-insight" id="da-insight"></div>
             <div class="da-bottom-btns">
-              <button class="da-cta-primary" onclick="openConsultModal()">Request a Consultation &rarr;</button>
               <button class="da-cta-ghost" onclick="daOpenInVersus()">Open in Versus &rarr;</button>
             </div>
           </div>
@@ -2934,12 +2831,11 @@
               <div class="dna-signal-row" data-signal="strategy"><span class="dna-signal-label">Strategy Type</span><span class="dna-signal-dots" id="dna-dots-strategy"></span></div>
             </div>
             <div class="dna-card-cta" id="dna-card-cta" style="display:none">
-              <button class="dna-cta-primary" onclick="openConsultModal()">Request a Consultation &rarr;</button>
               <button class="dna-cta-secondary" onclick="dnaRetake()">Retake Quiz</button>
               <button class="dna-cta-share" onclick="dnaShareProfile()">&#128248; Share your profile</button>
             </div>
             <div class="dna-card-completion" id="dna-card-completion" style="display:none">
-              Your profile is ready. The fastest path from here is a Clarity Call &mdash; bring this profile and a specialist will map out your first auction plan around these states.
+              Your profile is ready. Use the Analyzer to run your numbers, or open Versus to compare your top matches side by side.
             </div>
           </div>
           <!-- MOBILE: slim progress bar shown before completion -->
@@ -3027,17 +2923,6 @@
           <button class="auctions-interstitial-continue" id="interstitial-continue" onclick="confirmInterstitial()">Continue to Platform</button>
           <button class="auctions-interstitial-cancel" onclick="closeInterstitial()">Go Back</button>
         </div>
-      </div>
-    </div>
-
-    <!-- CONSULTATION TRANSITION MODAL -->
-    <div class="consult-modal" id="consult-modal" onclick="if(event.target===this)closeConsultModal()">
-      <div class="consult-modal-inner">
-        <div class="consult-modal-heading">READY TO GO DEEPER?</div>
-        <div class="consult-modal-sub">The Aurigen Collective works with serious investors on bespoke strategy, deal flow, and guided execution. Share where you are and what you&rsquo;re building &mdash; we&rsquo;ll take it from there.</div>
-        <div class="consult-modal-note">You&rsquo;re about to open theaurigen.com in a new tab.</div>
-        <button class="consult-modal-btn" onclick="window.open('https://theaurigen.com/#begin','_blank');closeConsultModal()">REQUEST A CONSULTATION &rarr;</button>
-        <button class="consult-modal-ghost" onclick="closeConsultModal()">NOT RIGHT NOW</button>
       </div>
     </div>
 
@@ -4506,7 +4391,7 @@ function showDetail(s) {
   }
 
   if(rows.length===0){
-    countiesEl.innerHTML='<div class="counties-empty">County data coming soon.<br><a href="#" onclick="event.preventDefault();openConsultModal()">Request a Consultation</a> for '+escapeHtml(n)+' county details.</div>';
+    countiesEl.innerHTML='<div class="counties-empty">County data coming soon for '+escapeHtml(n)+'.</div>';
   } else {
     var cLabel=rows.length===1?'COUNTY':'COUNTIES';
     var showSearch=rows.length>5;
@@ -4656,11 +4541,7 @@ function askSageChip(btn) {
 }
 
 function renderSageCTA() {
-  return '<div class="sage-cta-card">' +
-    '<div class="sage-cta-title">Request a Consultation</div>' +
-    '<div class="sage-cta-desc">The Aurigen Collective works with serious investors on bespoke strategy, deal flow, and guided execution.</div>' +
-    '<button class="sage-cta-btn" onclick="openConsultModal()">Request a Consultation \u2192</button>' +
-    '</div>';
+  return '';
 }
 
 function sendAdvisorMessage() {
@@ -4798,8 +4679,6 @@ var _auctionsIsInitialRender = true;
 var _auctionsCurrentMonth = '';
 
 var TYPE_LABELS_SHORT = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDBL', hybrid: 'HYBRID', forfeiture: 'FORFEIT' };
-var CLARITY_URL = 'https://theaurigen.com/#begin';
-
 // Build HTML for a single auction card
 function buildCardHtml(e, animate) {
   var dateBlock;
@@ -4835,8 +4714,6 @@ function buildCardHtml(e, animate) {
     '<button class="auction-btn-register auction-interstitial-trigger" data-url="' + escapeHtml(registerUrl) + '">Register &#8594;</button>' :
     '<button class="auction-btn-register" disabled style="opacity:0.3;cursor:default">Register &#8594;</button>';
 
-  var clarityBtn = '<button class="auction-btn-clarity" onclick="openConsultModal()">Consultation</button>';
-
   return '<div class="auction-card' + (animate ? ' animate-in' : '') + '">' +
     dateBlock +
     '<div class="auction-card-body">' +
@@ -4844,7 +4721,7 @@ function buildCardHtml(e, animate) {
       '<div class="auction-card-pills">' + typePill + platPill + ratePill + '</div>' +
       alertBadge + noteHtml +
     '</div>' +
-    '<div class="auction-card-actions">' + registerBtn + clarityBtn + '</div>' +
+    '<div class="auction-card-actions">' + registerBtn + '</div>' +
   '</div>';
 }
 
@@ -4971,15 +4848,9 @@ function closeInterstitial() {
   if (modal) modal.classList.remove('open');
 }
 
-// Consultation modal
-function openConsultModal() {
-  var modal = document.getElementById('consult-modal');
-  if (modal) modal.classList.add('open');
-}
-function closeConsultModal() {
-  var modal = document.getElementById('consult-modal');
-  if (modal) modal.classList.remove('open');
-}
+// Stub — consultation removed
+function openConsultModal() {}
+function closeConsultModal() {}
 
 // Mobile drawer
 function toggleAuctionsSidebar() {
@@ -5093,7 +4964,6 @@ function getAdvisorResponse(input) {
     if (s.platform) r += '\n\nPlatform: ' + s.platform + '.';
     if (s.statute) r += '\nStatute: ' + s.statute + '.';
     r += '\n\nOpen ' + name + ' on the Map or List tab to see full county-level data, platform links, and auction dates.';
-    if (needsCTA) r += '\n\nIf you want help building a strategy around ' + name + ', the Clarity Call is where that conversation happens.\n\n[CTA]';
     return r;
   }
 
@@ -5108,20 +4978,19 @@ function getAdvisorResponse(input) {
       return na + ' vs ' + nb + ':\n\n' +
         na + ': ' + a.type + ', ' + a.rate + ' rate, ' + a.redemption + ' redemption, ' + a.bid + '.\n' +
         nb + ': ' + b.type + ', ' + b.rate + ' rate, ' + b.redemption + ' redemption, ' + b.bid + '.\n\n' +
-        'These are fundamentally different vehicles. ' + na + ' is a ' + a.type.toLowerCase() + ' \u2014 ' + nb + ' is a ' + b.type.toLowerCase() + '. The Versus tab gives you a full side-by-side breakdown with all five metrics.' +
-        (needsCTA ? '\n\nWhich one fits your situation depends on your capital, timeline, and risk comfort. That\u2019s exactly what the Clarity Call is built for.\n\n[CTA]' : '');
+        'These are fundamentally different vehicles. ' + na + ' is a ' + a.type.toLowerCase() + ' \u2014 ' + nb + ' is a ' + b.type.toLowerCase() + '. The Versus tab gives you a full side-by-side breakdown with all five metrics.';
     }
     return 'The Versus tab lets you compare any two states side by side \u2014 rate, redemption, bid method, platform, and type. Pick your two states from the dropdowns and it does the breakdown for you. That\u2019s a Full Access feature.';
   }
 
   // Beginner / getting started
   if (q.includes('beginner') || q.includes('start') || q.includes('new to') || q.includes('first') || q.includes('getting started') || q.includes('where do i')) {
-    return 'For getting started, I\u2019d point you toward Florida, Arizona, or Iowa.\n\nFlorida and Arizona are fully online, well-documented, and have strong OTC programs so you can buy unsold liens without competitive bidding. Iowa uses random selection, which means you\u2019re not competing on rate at all.\n\nAll three have solid infrastructure for newer investors. Open any of them on the Map tab to see the full breakdown.\n\n[CTA]';
+    return 'For getting started, I\u2019d point you toward Florida, Arizona, or Iowa.\n\nFlorida and Arizona are fully online, well-documented, and have strong OTC programs so you can buy unsold liens without competitive bidding. Iowa uses random selection, which means you\u2019re not competing on rate at all.\n\nAll three have solid infrastructure for newer investors. Open any of them on the Map tab to see the full breakdown.';
   }
 
   // Budget questions
   if (q.includes('$') || q.includes('budget') || q.includes('money') || q.includes('capital') || q.includes('afford') || q.includes('how much')) {
-    return 'Entry points vary a lot by state and county. Some rural counties in deed states have minimum bids under $500. Iowa\u2019s random selection model can work at lower capital levels. OTC purchases \u2014 unsold liens you buy directly from the county \u2014 are often available at face value with no competition.\n\nThe real question is: what\u2019s your capital, and what\u2019s your timeline? That\u2019s a conversation that needs your specific numbers.\n\n[CTA]';
+    return 'Entry points vary a lot by state and county. Some rural counties in deed states have minimum bids under $500. Iowa\u2019s random selection model can work at lower capital levels. OTC purchases \u2014 unsold liens you buy directly from the county \u2014 are often available at face value with no competition.\n\nThe Deal Analyzer can help you run the numbers on different capital levels across any state.';
   }
 
   // Redemption
@@ -5141,7 +5010,7 @@ function getAdvisorResponse(input) {
 
   // Auction / how to register
   if (q.includes('auction') || q.includes('register') || q.includes('sign up') || q.includes('upcoming')) {
-    return 'The Auctions tab has every confirmed 2026 auction date we track. You can filter by state, county, platform, type, and month.\n\nGovEase and RealAuction are the two biggest online platforms. Most require registration 2-4 weeks before the sale, and some require a deposit.\n\nEach auction card has a REGISTER button that takes you to the platform after a legal acknowledgment.\n\nFor your first auction, start with a state you\u2019ve researched thoroughly. Florida and Arizona have the most investor-friendly online infrastructure.' + (needsCTA ? '\n\n[CTA]' : '');
+    return 'The Auctions tab has every confirmed 2026 auction date we track. You can filter by state, county, platform, type, and month.\n\nGovEase and RealAuction are the two biggest online platforms. Most require registration 2-4 weeks before the sale, and some require a deposit.\n\nEach auction card has a REGISTER button that takes you to the platform after a legal acknowledgment.\n\nFor your first auction, start with a state you\u2019ve researched thoroughly. Florida and Arizona have the most investor-friendly online infrastructure.';
   }
 
   // OTC
@@ -5156,7 +5025,7 @@ function getAdvisorResponse(input) {
 
   // Risk / safety / scam
   if (q.includes('risk') || q.includes('safe') || q.includes('scam') || q.includes('legit') || q.includes('lose money') || q.includes('dangerous')) {
-    return 'Valid concern. Tax lien and tax deed investing involves risk including potential loss of principal. There are bad actors in this space, which is exactly why Aurigen links directly to official state statutes and government sites \u2014 not third-party summaries.\n\nReal risks to understand: properties can be worthless, environmental liens survive tax sales, IRS liens survive, title issues can block resale, and competition can drive yields to near-zero in popular counties.\n\nThe best defense is due diligence. Pull the property record, verify it exists, check for senior liens, and understand the specific county\u2019s process before bidding.\n\n[CTA]';
+    return 'Valid concern. Tax lien and tax deed investing involves risk including potential loss of principal. There are bad actors in this space, which is exactly why Aurigen links directly to official state statutes and government sites \u2014 not third-party summaries.\n\nReal risks to understand: properties can be worthless, environmental liens survive tax sales, IRS liens survive, title issues can block resale, and competition can drive yields to near-zero in popular counties.\n\nThe best defense is due diligence. Pull the property record, verify it exists, check for senior liens, and understand the specific county\u2019s process before bidding. The Scout tool can help you build a state-specific due diligence checklist.';
   }
 
   // Quiet title
@@ -5181,7 +5050,7 @@ function getAdvisorResponse(input) {
 
   // Legal / tax / financial advice boundary
   if (q.includes('tax advice') || q.includes('lawyer') || q.includes('accountant') || q.includes('legal advice') || q.includes('cpa') || q.includes('financial advisor')) {
-    return 'That\u2019s the kind of question that needs a qualified professional who can look at your specific situation. I can tell you how the mechanism works \u2014 rates, redemption periods, bidding methods \u2014 but tax treatment, legal strategy, and financial planning need a CPA, attorney, or financial advisor.\n\nFor your strategy questions specifically, the Clarity Call is a good next step.\n\n[CTA]';
+    return 'That\u2019s the kind of question that needs a qualified professional who can look at your specific situation. I can tell you how the mechanism works \u2014 rates, redemption periods, bidding methods \u2014 but tax treatment, legal strategy, and financial planning need a CPA, attorney, or financial advisor.\n\nAlways consult a licensed professional before making investment decisions.';
   }
 
   // Greeting
@@ -5201,7 +5070,7 @@ function getAdvisorResponse(input) {
 
   // Fallback with CTA after enough questions
   if (needsCTA) {
-    return 'That\u2019s getting into territory where a general answer won\u2019t cut it \u2014 your situation has specific variables that matter. The Clarity Call exists for exactly this kind of conversation.\n\n[CTA]';
+    return 'That\u2019s getting into territory where a general answer won\u2019t cut it \u2014 your situation has specific variables that matter. Try narrowing your question to a specific state or topic and I can point you in the right direction.';
   }
 
   return 'I want to make sure I point you in the right direction on that. Try asking about a specific state, bidding methods, redemption periods, or how to get started \u2014 those are my strong suits.\n\nOr open the Map tab and click any state to see the full breakdown.';
@@ -6162,8 +6031,6 @@ function pulseRenderCta() {
   var dnaStates = pulseGetDnaStates();
   var upcoming = null;
   var now = Date.now();
-  var CONSULT_URL = 'https://theaurigen.com/#begin';
-
   // Find earliest upcoming auction in DNA matched states
   if (dnaStates && dnaStates.length > 0) {
     var candidates = PULSE_ALERTS.filter(function(a) {
@@ -6182,13 +6049,12 @@ function pulseRenderCta() {
   if (upcoming) {
     cont.innerHTML =
       '<div class="pulse-cta-headline">' + escapeHtml(upcoming.alert.state) + ' auction in ' + upcoming.days + ' days</div>' +
-      '<div class="pulse-cta-sub">Registration closes ' + escapeHtml(upcoming.alert.regDeadline || 'soon') + '. Request a consultation while you still have time to prepare.</div>' +
-      '<button class="pulse-cta-btn" onclick="openConsultModal()">Request a Consultation \u2192</button>';
+      '<div class="pulse-cta-sub">Registration closes ' + escapeHtml(upcoming.alert.regDeadline || 'soon') + '. Open the Auctions tab to register.</div>' +
+      '<button class="pulse-cta-btn" onclick="switchTab(\'auctions\')">View Auctions \u2192</button>';
   } else {
     cont.innerHTML =
-      '<div class="pulse-cta-headline">Ready to build your strategy?</div>' +
-      '<div class="pulse-cta-sub">Request a consultation to turn your research into an execution plan.</div>' +
-      '<button class="pulse-cta-btn" onclick="openConsultModal()">Request a Consultation \u2192</button>';
+      '<div class="pulse-cta-headline">Keep researching</div>' +
+      '<div class="pulse-cta-sub">Use the tools above to compare states, run your numbers, and build your due diligence checklist.</div>';
   }
 }
 
@@ -6603,12 +6469,7 @@ function saveProfile(updates) {
   } catch(e) { return null; }
 }
 
-function updateJourneyStep(step) {
-  var profile = getProfile() || {};
-  var steps = profile.journeySteps || {};
-  steps[step] = true;
-  saveProfile({ journeySteps: steps });
-}
+function updateJourneyStep(step) {}
 
 function profileTopStateCodes() {
   var p = getProfile();
@@ -6616,105 +6477,10 @@ function profileTopStateCodes() {
   return p.topStates.map(function(s) { return s.code; });
 }
 
-// === ITEM 1: JOURNEY BAR ===
-var JOURNEY_STEPS = [
-  { key: 'mapExplored', label: 'Explore Map' },
-  { key: 'statesCompared', label: 'Compare States' },
-  { key: 'dnaComplete', label: 'Build Profile' },
-  { key: 'analyzerUsed', label: 'Run Numbers' },
-  { key: 'callBooked', label: 'Clarity Call' }
-];
+// Stubs — journey bar removed
+function renderJourneyBar() {}
 
-function isClarityDismissed() {
-  try {
-    var raw = localStorage.getItem('aurigen_clarity_dismissed');
-    if (!raw) return false;
-    var data = JSON.parse(raw);
-    // Reset if dismissed on a different day (new session = new day)
-    var today = new Date().toDateString();
-    if (data.date !== today) {
-      localStorage.removeItem('aurigen_clarity_dismissed');
-      return false;
-    }
-    return true;
-  } catch(e) { return false; }
-}
-
-function dismissClarityCall() {
-  try {
-    localStorage.setItem('aurigen_clarity_dismissed', JSON.stringify({ dismissed: true, date: new Date().toDateString(), ts: Date.now() }));
-  } catch(e) {}
-  renderJourneyBar();
-  // Also hide bottom platform CTA
-  var panelCta = document.getElementById('panel-cta');
-  if (panelCta) panelCta.style.display = 'none';
-}
-
-// Steps that require paid access
-var LOCKED_STEP_KEYS = { statesCompared: 'versus', dnaComplete: 'dna-tab', analyzerUsed: 'tools-tab' };
-var LOCKED_STEP_TABS = { statesCompared: 'lock-versus', dnaComplete: 'lock-dna-tab', analyzerUsed: 'lock-tools-tab' };
-
-function renderJourneyBar() {
-  var bar = document.getElementById('journey-bar');
-  if (!bar) return;
-  var profile = getProfile();
-  var steps = (profile && profile.journeySteps) || {};
-  var doneCount = 0;
-  var currentIdx = -1;
-  var dismissed = isClarityDismissed();
-
-  JOURNEY_STEPS.forEach(function(s, i) {
-    if (steps[s.key]) doneCount++;
-    else if (currentIdx === -1) currentIdx = i;
-  });
-
-  // Hide bottom CTA if dismissed
-  var panelCta = document.getElementById('panel-cta');
-  if (panelCta && dismissed) panelCta.style.display = 'none';
-
-  var html = '<span class="jb-label">Your Journey</span><div class="jb-steps">';
-  JOURNEY_STEPS.forEach(function(s, i) {
-    if (i > 0) html += '<span class="jb-arrow">\u2192</span>';
-    var isLocked = !IS_PAID && LOCKED_STEP_KEYS[s.key];
-    var cls = steps[s.key] ? 'done' : (i === currentIdx ? 'current' : '');
-    if (isLocked) cls += ' jb-step-locked';
-    var lockId = LOCKED_STEP_TABS[s.key] || '';
-    var onclick = isLocked ? ' onclick="showLockedPreview(\'' + lockId + '\')" style="cursor:pointer"' : '';
-    html += '<span class="jb-step ' + cls + '"' + onclick + '>' + (steps[s.key] ? '\u2713 ' : '') + (isLocked ? '\uD83D\uDD12 ' : '') + escapeHtml(s.label) + '</span>';
-  });
-  html += '</div>';
-
-  // Mobile
-  html += '<span class="jb-mobile-label">Step ' + (currentIdx >= 0 ? currentIdx + 1 : 5) + ' of 5</span>';
-
-  // Clarity Call CTA — only for paid users with 2+ steps done
-  if (IS_PAID) {
-    var hasCompletedOneStep = steps.dnaComplete || steps.analyzerUsed;
-    if (doneCount >= 2 && !steps.callBooked && !dismissed) {
-      html += '<div class="jb-cta-group">';
-      html += '<button class="jb-book-btn" onclick="openConsultModal()">Request a Consultation \u2192</button>';
-      if (hasCompletedOneStep) {
-        html += '<button class="jb-dismiss-btn" onclick="dismissClarityCall()">Not ready yet</button>';
-      }
-      html += '</div>';
-    } else if (doneCount >= 2 && !steps.callBooked && dismissed) {
-      html += '<span class="jb-ready"><span class="jb-ready-dot"></span>Ready for your call</span>';
-    }
-  }
-
-  bar.innerHTML = html;
-}
-
-// Show locked preview when free user clicks a locked journey step
-function showLockedPreview(lockId) {
-  if (!lockId) return;
-  // Map lock IDs to their tab names for switching
-  var tabMap = { 'lock-versus': 'versus', 'lock-dna-tab': 'dna', 'lock-tools-tab': 'tools' };
-  var tabName = tabMap[lockId];
-  if (tabName) switchTab(tabName);
-}
-
-// === ITEM 2: NEXT STEP CARDS ===
+// === NEXT STEP CARDS ===
 function buildNextStepHtml(title, sub, btnText, onclick) {
   return '<div class="next-step-card">' +
     '<span class="next-step-arrow">\u2192</span>' +
@@ -6761,10 +6527,10 @@ function renderNextStepCards() {
   var aucEl = document.getElementById('auctions-next-step');
   if (aucEl) {
     aucEl.innerHTML = buildNextStepHtml(
-      'You\u2019re ready for your call',
-      'You\u2019ve explored states, run your numbers, and seen your auction dates. The Clarity Call is where this becomes a plan.',
-      'Request a Consultation \u2192',
-      "openConsultModal()"
+      'Run due diligence on your target states',
+      'Use the Scout tool to build a state-specific checklist before your first auction.',
+      'Open Scout \u2192',
+      "switchTab('tools');switchToolsPanel('scout')"
     );
   }
 }
@@ -7104,11 +6870,8 @@ function renderSummaryPage() {
 
   html += '</div>'; // close summary-cards
 
-  // CTA block
+  // Share block
   html += '<div class="summary-cta">' +
-    '<div class="summary-cta-title">REQUEST A CONSULTATION</div>' +
-    '<div class="summary-cta-sub">Your profile is built. Your numbers are run. The Aurigen Collective will map out your execution plan \u2014 which counties to target, how much to allocate, and what to do at the auction.</div>' +
-    '<button class="summary-cta-btn" onclick="openConsultModal()">Request a Consultation \u2192</button>' +
     '<button class="summary-share-btn" onclick="shareSummary()">\uD83D\uDCF8 Share your summary</button>' +
   '</div>';
 
