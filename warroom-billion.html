@@ -1982,13 +1982,17 @@
       border-radius: 2px; background: rgba(201,168,76,0.1); color: var(--accent);
       border: 1px solid rgba(201,168,76,0.15); letter-spacing: 0.06em;
     }
-    .auctions-cal-grid {
+    .auctions-cal-dow-row {
       display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;
-      width: 100%; box-sizing: border-box;
+      width: 100%; box-sizing: border-box; margin-bottom: 2px;
     }
     .auctions-cal-dow {
       font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.12em;
       color: var(--text2); text-align: center; padding: 6px 0; text-transform: uppercase;
+    }
+    .auctions-cal-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;
+      width: 100%; box-sizing: border-box;
     }
     .auctions-cal-cell {
       aspect-ratio: 1; display: flex; flex-direction: column; align-items: center;
@@ -2021,18 +2025,18 @@
 
     /* Day detail drawer */
     .auctions-day-drawer-overlay {
-      display: none; position: fixed; inset: 0; z-index: 1600;
+      display: none; position: fixed; inset: 0; z-index: 9000;
       background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
     }
     .auctions-day-drawer-overlay.open { display: block; }
     .auctions-day-drawer {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 1601;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 9001;
       background: var(--bg2); border-top: 1px solid var(--accent-mid);
-      border-radius: 16px 16px 0 0; max-height: 65vh; display: flex;
+      border-radius: 16px 16px 0 0; max-height: 65vh; display: none;
       flex-direction: column; transform: translateY(100%);
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .auctions-day-drawer.open { transform: translateY(0); }
+    .auctions-day-drawer.open { display: flex; transform: translateY(0); }
     .auctions-day-drawer-handle {
       width: 40px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.15);
       margin: 10px auto 0; flex-shrink: 0;
@@ -3029,24 +3033,10 @@
             <span class="auctions-cal-month" id="auctions-cal-month"></span>
             <button class="auctions-cal-arrow" onclick="navigateCalMonth(1)" aria-label="Next month">&#9654;</button>
           </div>
+          <div class="auctions-cal-dow-row" id="auctions-cal-dow-row"></div>
           <div class="auctions-cal-grid" id="auctions-cal-grid"></div>
           <!-- Quarterly groupings -->
           <div class="auctions-quarters" id="auctions-quarters"></div>
-          <!-- Day detail drawer (cards rendered inside) -->
-          <div class="auctions-day-drawer-overlay" id="auctions-day-overlay" onclick="closeDayDrawer()"></div>
-          <div class="auctions-day-drawer" id="auctions-day-drawer">
-            <div class="auctions-day-drawer-handle"></div>
-            <div class="auctions-day-drawer-header">
-              <div>
-                <div class="auctions-day-drawer-date" id="day-drawer-date"></div>
-                <div class="auctions-day-drawer-count" id="day-drawer-count"></div>
-              </div>
-              <button class="auctions-day-drawer-close" onclick="closeDayDrawer()" aria-label="Close">&times;</button>
-            </div>
-            <div class="auctions-day-drawer-body">
-              <div class="auctions-cards" id="day-drawer-cards"></div>
-            </div>
-          </div>
           <div class="auctions-disclaimer">
             Tax lien and tax deed investing involves risk, including potential loss of principal. Past performance does not guarantee future results. Auction dates and details are provided for informational purposes only &mdash; verify directly with the county or platform before registering. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a>
           </div>
@@ -5543,14 +5533,20 @@ function renderAuctions() {
   var monthLabel = document.getElementById('auctions-cal-month');
   if (monthLabel) monthLabel.textContent = _calMonthNames[_calMonth] + ' ' + _calYear;
 
+  // Day-of-week header row (separate from grid)
+  var dowRow = document.getElementById('auctions-cal-dow-row');
+  if (dowRow) {
+    var dowHtml = '';
+    _calDow.forEach(function(d) {
+      dowHtml += '<div class="auctions-cal-dow">' + d + '</div>';
+    });
+    dowRow.innerHTML = dowHtml;
+  }
+
   var grid = document.getElementById('auctions-cal-grid');
   if (!grid) return;
 
   var html = '';
-  // Day-of-week headers
-  _calDow.forEach(function(d) {
-    html += '<div class="auctions-cal-dow">' + d + '</div>';
-  });
 
   // First day of month and total days
   var firstDay = new Date(_calYear, _calMonth, 1).getDay();
@@ -5598,24 +5594,12 @@ function renderAuctions() {
   var quartersEl = document.getElementById('auctions-quarters');
   if (!quartersEl) return;
 
-  // Collect entries NOT in the current calendar month view — group by quarter
+  // Collect ALL filtered entries grouped by quarter (Q1=Jan-Mar, Q2=Apr-Jun, Q3=Jul-Sep, Q4=Oct-Dec)
   var quarterMap = {};
   var quarterOrder = [];
-  var currentMonthKey = _calYear + '-' + String(_calMonth + 1).padStart(2, '0');
 
   filtered.forEach(function(e) {
     if (!e.date || !e.date.year || e.date.day <= 0) return;
-    var mi = _calMonthNamesFull.indexOf(e.date.month);
-    if (mi === -1) {
-      for (var k = 0; k < _calMonthNamesFull.length; k++) {
-        if (_calMonthNamesFull[k].substring(0,3).toLowerCase() === e.date.month.substring(0,3).toLowerCase()) { mi = k; break; }
-      }
-    }
-    if (mi === -1) return;
-    // Skip entries in the current calendar month
-    var entryMonthKey = e.date.year + '-' + String(mi + 1).padStart(2, '0');
-    if (entryMonthKey === currentMonthKey) return;
-
     var qLabel = calGetQuarter(e);
     if (!qLabel) return;
     if (!quarterMap[qLabel]) {
@@ -8145,6 +8129,21 @@ function scoutRender() {
   <div class="pulse-cta" id="pulse-cta"></div>
   <div class="pulse-disclaimer" data-i18n="pulse_disclaimer">Dates based on published schedules &mdash; verify with official authority.</div>
   <div class="paywall-lock" id="lock-pulse" style="display:none"><span class="walkthrough-label" data-i18n="pulse_lock_title">UNLOCK PULSE</span><span class="walkthrough-desc" data-i18n="pulse_lock_desc">Real-time alerts when new auctions drop in your watched states. Set it once &mdash; Pulse notifies you.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer"><span data-i18n="paywall_cta">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</span><span class="paywall-lock-btn-sub" data-i18n="paywall_sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+</div>
+<!-- Day detail drawer — outside all scroll/flex containers for proper fixed positioning -->
+<div class="auctions-day-drawer-overlay" id="auctions-day-overlay" onclick="closeDayDrawer()"></div>
+<div class="auctions-day-drawer" id="auctions-day-drawer">
+  <div class="auctions-day-drawer-handle"></div>
+  <div class="auctions-day-drawer-header">
+    <div>
+      <div class="auctions-day-drawer-date" id="day-drawer-date"></div>
+      <div class="auctions-day-drawer-count" id="day-drawer-count"></div>
+    </div>
+    <button class="auctions-day-drawer-close" onclick="closeDayDrawer()" aria-label="Close">&times;</button>
+  </div>
+  <div class="auctions-day-drawer-body">
+    <div class="auctions-cards" id="day-drawer-cards"></div>
+  </div>
 </div>
 </body>
 </html>
