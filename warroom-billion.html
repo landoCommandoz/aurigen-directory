@@ -1080,10 +1080,11 @@
     #header-top{display:flex;align-items:center;justify-content:space-between;padding:12px 20px 6px}
     .brand-name{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#FFBE0B;letter-spacing:0.06em;line-height:1}
     .brand-sub{font-family:'Space Mono',monospace;font-size:7px;color:rgba(0,212,255,0.3);letter-spacing:0.28em;margin-top:2px}
-    #type-legend{display:flex;gap:14px;align-items:center}
-    .leg-item{display:flex;align-items:center;gap:5px}
-    .leg-dot{width:9px;height:9px;border-radius:50%}
-    .leg-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.08em}
+    #type-legend{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+    .leg-item{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;margin:0}
+    .leg-dot{width:8px;height:8px;border-radius:50%}
+    .leg-label{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;color:var(--text)}
+    .leg-count{font-family:'Bebas Neue',sans-serif;font-size:16px;line-height:1}
     #tabs{display:flex;padding:0 20px}
     .tab{background:none;border:none;cursor:pointer;padding:8px 16px 10px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;color:rgba(0,212,255,0.3);border-bottom:2px solid transparent;transition:all 0.2s}
     .tab.active{color:#FFBE0B;border-bottom-color:#FFBE0B}
@@ -2504,11 +2505,12 @@
     </div>
     <div class="mobile-nav-items">
       <button class="mobile-nav-item active" data-tab="map" onclick="mobileNavTo('map')"><span class="mobile-nav-item-icon">🗺</span><span data-i18n="nav_map">Map</span></button>
-      <button class="mobile-nav-item" data-tab="tools" onclick="mobileNavTo('tools')"><span class="mobile-nav-item-icon">🔨</span><span data-i18n="nav_tools">Tools</span></button>
-      <button class="mobile-nav-item" data-tab="advisor" onclick="mobileNavTo('advisor')"><span class="mobile-nav-item-icon">🤖</span><span data-i18n="nav_advisor">Advisor</span></button>
       <button class="mobile-nav-item" data-tab="auctions" onclick="mobileNavTo('auctions')"><span class="mobile-nav-item-icon">📅</span><span data-i18n="nav_auctions">Auctions</span></button>
       <button class="mobile-nav-item" data-tab="versus" onclick="mobileNavTo('versus')"><span class="mobile-nav-item-icon">⚖️</span><span data-i18n="nav_versus">Versus</span></button>
       <button class="mobile-nav-item" data-tab="dna" onclick="mobileNavTo('dna')"><span class="mobile-nav-item-icon">🧬</span><span data-i18n="nav_dna">DNA</span></button>
+      <button class="mobile-nav-item" data-tab="advisor" onclick="mobileNavTo('advisor')"><span class="mobile-nav-item-icon">🤖</span><span data-i18n="nav_advisor">Advisor</span></button>
+      <button class="mobile-nav-item" data-tab="tools" onclick="mobileNavTo('tools')"><span class="mobile-nav-item-icon">🔨</span><span data-i18n="nav_tools">Tools</span></button>
+      <button class="mobile-nav-item" data-tab="scout" onclick="mobileNavTo('scout')"><span class="mobile-nav-item-icon">🔍</span><span data-i18n="nav_scout">Scout</span></button>
       <div class="mobile-nav-divider"></div>
       <button class="mobile-nav-item" data-tab="account" onclick="mobileNavTo('account')"><span class="mobile-nav-item-icon">👤</span><span data-i18n="nav_account">Account</span></button>
     </div>
@@ -2623,6 +2625,7 @@
             <div id="panel-stats"></div>
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
+            <div id="panel-calc-lock"></div>
 
             <div id="panel-counties"></div>
           </div>
@@ -3756,10 +3759,10 @@ function buildLegend() {
   };
   var counts = {};
   Object.keys(TYPES).forEach(function(t){ counts[t] = ALL_STATES.filter(function(s){ return (s._v2type||s.type)===t; }).length; });
+  var PILL_LABELS={lien:'Tax Lien',deed:'Tax Deed',redeemable:'Redeemable',hybrid:'Hybrid',forfeiture:'Forfeiture'};
   document.getElementById('type-legend').innerHTML = Object.entries(TYPES).map(function(e){
     var k=e[0], v=e[1];
-    var short=k==='redeemable'?'RDBL DEED':v.label.split(' ').pop();
-    return '<div class="leg-item"><div class="leg-dot" style="background:'+v.color+';box-shadow:0 0 6px '+v.color+'"></div><span class="leg-label">'+short+' '+counts[k]+'</span></div>';
+    return '<div class="leg-item" style="border:1px solid '+v.color+'40;background:'+v.color+'14"><div class="leg-dot" style="background:'+v.color+';box-shadow:0 0 6px '+v.color+'"></div><span class="leg-label">'+(PILL_LABELS[k]||k)+'</span><span class="leg-count" style="color:'+v.color+'">'+counts[k]+'</span></div>';
   }).join('');
   document.getElementById('map-legend').innerHTML = Object.entries(TYPES).map(function(e){
     var k=e[0], v=e[1];
@@ -4616,6 +4619,20 @@ function showDetail(s) {
   if(s.rateNote) metaHtml.push('<span class="meta-chip">'+chipDot('#BF5FFF')+escapeHtml(s.rateNote)+'</span>');
   document.getElementById('panel-meta').innerHTML=metaHtml.join('');
 
+  // Calculator lock prompt for free users
+  var calcLockEl=document.getElementById('panel-calc-lock');
+  if(calcLockEl){
+    if(!IS_PAID){
+      calcLockEl.innerHTML='<div style="display:flex;align-items:center;gap:10px;margin-top:14px;padding:12px 14px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:8px">'
+        +'<span style="font-size:18px">\uD83D\uDCC8</span>'
+        +'<div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--text)">Return Calculator</div><div style="font-size:11px;color:var(--text2);margin-top:2px">Calculate your projected return on this state.</div></div>'
+        +'<a href="'+STRIPE_URL+'" target="_blank" rel="noopener noreferrer" style="font-family:\'Space Mono\',monospace;font-size:10px;color:var(--accent);text-decoration:none;white-space:nowrap;padding:6px 12px;border:1px solid var(--accent-mid);border-radius:4px">Unlock \u2192</a>'
+        +'</div>';
+    } else {
+      calcLockEl.innerHTML='';
+    }
+  }
+
   // Counties section — uses window.COUNTY_DATA (full) or states-en.js (thin fallback)
   var countiesEl=document.getElementById('panel-counties');
   var fullCounties=s.countyData||null;
@@ -5321,7 +5338,7 @@ function getAdvisorResponse(input) {
 
   // Platform / Aurigen features
   if (q.includes('upgrade') || q.includes('full access') || q.includes('account') || q.includes('what do i get') || q.includes('features') || q.includes('platform')) {
-    return 'Full Access unlocks county-level data, the Versus comparison tool, DNA Profiler, Deal Analyzer, Scout, Auctions calendar, and Pulse alerts.\n\nThe free tier gives you the map and state-level data for all 51 states \u2014 interest rates, redemption periods, bid methods, and an inline return calculator. Features are what\u2019s locked, not states.\n\nVisit the Account tab to see your current tier and upgrade options.';
+    return 'Full Access unlocks the Deal Analyzer, county-level data, Versus comparison, DNA Profiler, Scout, Auctions calendar, and Pulse alerts.\n\nThe free tier gives you the map and state-level data for all 51 states \u2014 interest rates, redemption periods, bid methods, and statute citations. Features are what\u2019s locked, not states.\n\nVisit the Account tab to see your current tier and upgrade options.';
   }
 
   // Legal / tax / financial advice boundary
