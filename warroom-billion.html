@@ -4728,13 +4728,181 @@ function closeDetail() {
   resetMapColors();
 }
 
+// === LIVE AUCTION DATA FETCH ===
+// Fetches live auction + alert data from Supabase via Netlify function.
+// Merges into existing AUCTION_ENTRIES / PULSE_ALERTS, then re-inits tabs.
+// Falls back silently to static data on any failure.
+
+function fetchLiveAuctionData() {
+  return fetch('/.netlify/functions/auctions')
+    .then(function(res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function(data) {
+      var liveAuctions = data.auctions || [];
+      var liveAlerts = data.alerts || [];
+
+      // --- Merge live auctions into AUCTION_ENTRIES ---
+      if (liveAuctions.length > 0) {
+        var MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        var MONTH_IDX = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11,
+          January:0,February:1,March:2,April:3,June:5,July:6,August:7,September:8,October:9,November:10,December:11};
+
+        // Build a dedup key set from existing entries
+        var existingKeys = {};
+        var existing = window.AUCTION_ENTRIES || [];
+        existing.forEach(function(e) {
+          var key = (e.stateCode || '') + '|' + (e.county || '') + '|' + (e.platform || '');
+          existingKeys[key] = true;
+        });
+
+        // Normalize platform name to match display convention
+        function normPlatformLive(raw) {
+          if (!raw) return 'Unknown';
+          var s = String(raw);
+          if (/realauction/i.test(s)) return 'RealAuction';
+          if (/govease/i.test(s)) return 'GovEase';
+          if (/bid4assets/i.test(s)) return 'Bid4Assets';
+          if (/sri/i.test(s)) return 'SRI';
+          if (/civicsource/i.test(s)) return 'CivicSource';
+          return s.charAt(0).toUpperCase() + s.slice(1);
+        }
+
+        // Normalize type
+        function normTypeLive(raw) {
+          if (!raw) return 'lien';
+          var s = String(raw).toLowerCase();
+          if (s === 'redeemable deed' || s === 'redeemable') return 'redeemable';
+          if (s === 'hybrid' || s === 'deed' || s === 'lien' || s === 'forfeiture') return s;
+          return 'lien';
+        }
+
+        // Parse YYYY-MM-DD into the date object buildCardHtml expects
+        function parseLiveDate(isoStr, status) {
+          if (!isoStr) return null;
+          var parts = isoStr.split('-');
+          if (parts.length !== 3) return null;
+          var year = parseInt(parts[0], 10);
+          var mi = parseInt(parts[1], 10) - 1;
+          var day = parseInt(parts[2], 10);
+          var month = MONTH_NAMES[mi] || 'Jan';
+          var confirmed = (status || '').toLowerCase() !== 'estimated';
+          if (confirmed && day > 0) {
+            return { month: month, day: day, year: year, sortKey: year * 10000 + mi * 100 + day, confirmed: true, display: month.substring(0,3) + ' ' + day };
+          }
+          return { month: month, day: day || 0, year: year, sortKey: year * 10000 + mi * 100 + (day || 0), confirmed: false, display: 'Est. ' + month.substring(0,3) + ' ' + year };
+        }
+
+        var newEntries = [];
+        liveAuctions.forEach(function(a) {
+          var dedupKey = (a.state_code || '') + '|' + (a.county || '') + '|' + normPlatformLive(a.platform);
+          if (existingKeys[dedupKey]) return; // skip duplicates
+          existingKeys[dedupKey] = true;
+
+          newEntries.push({
+            stateCode: a.state_code || '',
+            stateName: a.state || a.state_code || '',
+            county: a.county || 'Statewide',
+            type: normTypeLive(a.bid_method),
+            rate: null,
+            platform: normPlatformLive(a.platform),
+            platformUrl: a.platform_url || '',
+            date: parseLiveDate(a.auction_date, a.status),
+            dateRaw: a.auction_date || null,
+            note: '',
+            alert: null,
+            verified: false,
+            source: 'live'
+          });
+        });
+
+        if (newEntries.length > 0) {
+          var merged = existing.concat(newEntries);
+
+          // Re-sort: confirmed dates first, then estimated, then no-date
+          merged.sort(function(a, b) {
+            var aKey = a.date ? a.date.sortKey : 99999999;
+            var bKey = b.date ? b.date.sortKey : 99999999;
+            if (aKey !== bKey) return aKey - bKey;
+            if (a.stateName < b.stateName) return -1;
+            if (a.stateName > b.stateName) return 1;
+            return 0;
+          });
+
+          // Rebuild AUCTION_META
+          var monthCounts = {};
+          var platformSet = {};
+          var typeSet = {};
+          merged.forEach(function(e) {
+            if (e.date && e.date.month) {
+              var mk = e.date.month.substring(0,3);
+              monthCounts[mk] = (monthCounts[mk] || 0) + 1;
+            }
+            if (e.platform && e.platform !== 'Unknown') {
+              platformSet[e.platform] = (platformSet[e.platform] || 0) + 1;
+            }
+            typeSet[e.type] = (typeSet[e.type] || 0) + 1;
+          });
+
+          window.AUCTION_ENTRIES = merged;
+          window.AUCTION_META = {
+            total: merged.length,
+            monthCounts: monthCounts,
+            platforms: platformSet,
+            types: typeSet,
+            alerts: (window.AUCTION_META && window.AUCTION_META.alerts) || 0
+          };
+
+          console.log('[live] Merged ' + newEntries.length + ' live auctions. Total: ' + merged.length);
+        }
+      }
+
+      // --- Merge live alerts into PULSE_ALERTS ---
+      if (liveAlerts.length > 0) {
+        var TYPE_ICONS = { critical: '\u26A0\uFE0F', upcoming: '\uD83D\uDCC5', intel: '\uD83D\uDCCA', match: '\uD83C\uDFAF', info: '\uD83D\uDCC5' };
+        var existingAlertIds = {};
+        PULSE_ALERTS.forEach(function(a) { existingAlertIds[a.id] = true; });
+
+        liveAlerts.forEach(function(a) {
+          var alertId = 'live-' + (a.id || a.alert_text.substring(0, 20).replace(/\s+/g, '-'));
+          if (existingAlertIds[alertId]) return;
+          existingAlertIds[alertId] = true;
+
+          PULSE_ALERTS.push({
+            id: alertId,
+            type: a.type || 'info',
+            icon: TYPE_ICONS[a.type] || TYPE_ICONS.info,
+            title: a.alert_text || '',
+            body: '',
+            state: a.state_code || '',
+            location: (a.state_code || '') + ' \u00B7 Live Alert',
+            action: 'View',
+            actionTab: null,
+            dnaStates: a.state_code ? [a.state_code] : [],
+            date: a.date || null
+          });
+        });
+
+        console.log('[live] Merged ' + liveAlerts.length + ' live alerts. Total: ' + PULSE_ALERTS.length);
+      }
+    })
+    .catch(function(err) {
+      console.warn('[live] Fetch failed, using static data:', err.message);
+    });
+}
+
 // === BOOT ===
 function bootApp() {
   initMap();
   initAccount();
-  initAuctionsTab();
   initVersusTab();
   runBootAnimation();
+
+  // Fetch live data, then init/re-init the auctions tab
+  fetchLiveAuctionData().then(function() {
+    initAuctionsTab();
+  });
 }
 
 // === TOOL FUNCTIONS ===
