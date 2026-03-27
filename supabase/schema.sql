@@ -26,19 +26,22 @@ CREATE INDEX IF NOT EXISTS idx_auctions_active ON auctions (active);
 
 -- ── Pulse Alerts table ─────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS pulse_alerts (
-  id          BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  title       TEXT NOT NULL,
-  body        TEXT,
-  state_code  CHAR(2),
-  county      TEXT,
-  alert_type  TEXT DEFAULT 'info',             -- info | warning | deadline | new_auction
-  url         TEXT,
-  active      BOOLEAN DEFAULT TRUE,
-  created_at  TIMESTAMPTZ DEFAULT NOW()
+  id           BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  title        TEXT NOT NULL,
+  body         TEXT,
+  state_code   CHAR(2),
+  county       TEXT,
+  alert_type   TEXT DEFAULT 'info',             -- info | upcoming | warning | deadline | new_auction
+  auction_date DATE,                            -- links to the auction this alert is about
+  url          TEXT,
+  active       BOOLEAN DEFAULT TRUE,
+  created_at   TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE (state_code, county, auction_date)
 );
 
 CREATE INDEX IF NOT EXISTS idx_pulse_state ON pulse_alerts (state_code);
 CREATE INDEX IF NOT EXISTS idx_pulse_active ON pulse_alerts (active);
+CREATE INDEX IF NOT EXISTS idx_pulse_auction_date ON pulse_alerts (auction_date);
 
 -- ── Scrape Log table ───────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS scrape_log (

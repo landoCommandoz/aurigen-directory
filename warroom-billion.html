@@ -4985,9 +4985,11 @@ function fetchLiveAuctionData() {
     return { month: month, day: day || 0, year: year, sortKey: year * 10000 + mi * 100 + (day || 0), confirmed: false, display: 'Est. ' + month.substring(0,3) + ' ' + year };
   }
 
-  // Show loading state
+  // Show loading states
   var loadingEl = document.getElementById('auctions-loading');
   if (loadingEl) loadingEl.style.display = '';
+  var pulseLoadingEl = document.getElementById('pulse-feed-loading');
+  if (pulseLoadingEl) pulseLoadingEl.style.display = '';
 
   return fetch('/.netlify/functions/auctions')
     .then(function(res) {
@@ -5064,43 +5066,54 @@ function fetchLiveAuctionData() {
         console.log('[live] Replaced AUCTION_ENTRIES with ' + entries.length + ' live records');
       }
 
-      // --- Merge live alerts into PULSE_ALERTS ---
+      // --- Merge live alerts into PULSE_ALERTS (dedup by title) ---
       if (liveAlerts.length > 0) {
-        var TYPE_ICONS = { critical: '\u26A0\uFE0F', upcoming: '\uD83D\uDCC5', intel: '\uD83D\uDCA1', match: '\uD83C\uDFAF', info: '\uD83D\uDCC5' };
-        var existingAlertIds = {};
+        var TYPE_ICONS = { critical: '\u26A0\uFE0F', upcoming: '\uD83D\uDCC5', intel: '\uD83D\uDCA1', match: '\uD83C\uDFAF', info: '\uD83D\uDCC5', warning: '\u26A0\uFE0F' };
+        var existingTitles = {};
         if (typeof PULSE_ALERTS !== 'undefined') {
-          PULSE_ALERTS.forEach(function(a) { existingAlertIds[a.id] = true; });
+          PULSE_ALERTS.forEach(function(a) { existingTitles[(a.title || '').toLowerCase()] = true; });
         }
 
+        var addedCount = 0;
         liveAlerts.forEach(function(a) {
-          var alertId = 'live-' + (a.id || (a.title || a.alert_text || '').substring(0, 20).replace(/\s+/g, '-'));
-          if (existingAlertIds[alertId]) return;
-          existingAlertIds[alertId] = true;
+          var title = a.title || '';
+          if (!title || existingTitles[title.toLowerCase()]) return;
+          existingTitles[title.toLowerCase()] = true;
+
+          var alertType = a.alert_type || 'upcoming';
+          var loc = a.state_code || '';
+          if (a.county) loc += ' \u00B7 ' + a.county;
 
           PULSE_ALERTS.push({
-            id: alertId,
-            type: a.alert_type || a.type || 'info',
-            icon: TYPE_ICONS[a.alert_type || a.type] || TYPE_ICONS.info,
-            title: a.title || a.alert_text || '',
+            id: 'live-' + (a.id || addedCount),
+            type: alertType,
+            icon: TYPE_ICONS[alertType] || TYPE_ICONS.info,
+            title: title,
             body: a.body || '',
             state: a.state_code || '',
-            location: (a.state_code || '') + ' \u00B7 Live Alert',
-            action: 'View',
-            actionTab: null,
+            location: loc || 'Live Alert',
+            action: alertType === 'upcoming' ? 'View in Auctions' : 'View',
+            actionTab: alertType === 'upcoming' ? 'auctions' : null,
             dnaStates: a.state_code ? [a.state_code] : [],
-            date: a.date || null
+            date: a.auction_date || null
           });
+          addedCount++;
         });
 
-        console.log('[live] Added ' + liveAlerts.length + ' live alerts');
+        console.log('[live] Merged ' + addedCount + ' live alerts (deduped by title). Total: ' + PULSE_ALERTS.length);
       }
+
+      // Re-render Pulse badge with updated count
+      if (typeof pulseUpdateBadge === 'function') pulseUpdateBadge();
     })
     .catch(function(err) {
       console.warn('[live] Fetch failed, using static data:', err.message);
     })
     .then(function() {
-      // Hide loading state regardless of success/failure
+      // Hide loading states regardless of success/failure
       if (loadingEl) loadingEl.style.display = 'none';
+      var pulseLoading = document.getElementById('pulse-feed-loading');
+      if (pulseLoading) pulseLoading.style.display = 'none';
     });
 }
 
@@ -8145,7 +8158,12 @@ function scoutRender() {
   </div>
   <div class="pulse-filters" id="pulse-filters"></div>
   <div class="pulse-profile" id="pulse-profile"></div>
-  <div class="pulse-feed" id="pulse-feed"></div>
+  <div class="pulse-feed" id="pulse-feed">
+    <div class="auctions-loading" id="pulse-feed-loading" style="display:none">
+      <div class="auctions-loading-spinner"></div>
+      <div class="auctions-loading-text">Loading live alerts&hellip;</div>
+    </div>
+  </div>
   <div class="pulse-cta" id="pulse-cta"></div>
   <div class="pulse-disclaimer" data-i18n="pulse_disclaimer">Dates based on published schedules &mdash; verify with official authority.</div>
   <div class="paywall-lock" id="lock-pulse" style="display:none"><span class="walkthrough-label" data-i18n="pulse_lock_title">UNLOCK PULSE</span><span class="walkthrough-desc" data-i18n="pulse_lock_desc">Real-time alerts when new auctions drop in your watched states. Set it once &mdash; Pulse notifies you.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer"><span data-i18n="paywall_cta">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</span><span class="paywall-lock-btn-sub" data-i18n="paywall_sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
