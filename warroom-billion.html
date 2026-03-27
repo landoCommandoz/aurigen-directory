@@ -1246,6 +1246,8 @@
     .badge{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;padding:3px 7px;border-radius:3px;border:1px solid;letter-spacing:0.06em}
     .row-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:600;color:var(--text);letter-spacing:0.02em}
     .row-stats{display:flex;gap:6px;justify-content:flex-end;align-items:center}
+    .row-type-label{display:none}
+    .list-section-header{display:none}
     .stat-pill{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;height:22px;line-height:22px;padding:0 8px;border-radius:4px;border:1px solid;white-space:nowrap;max-width:80px;overflow:hidden;text-overflow:ellipsis}
     .pill-rate{color:#d4a017;background:rgba(212,160,23,0.15);border-color:rgba(212,160,23,0.4)}
     .pill-hold{color:#00d2c8;background:rgba(0,210,200,0.1);border-color:rgba(0,210,200,0.3)}
@@ -2145,26 +2147,30 @@
       .explore-legend { display: none; }
       .detail-stats { grid-template-columns: 1fr; }
       .brand-sub{display:none}
-      #col-headers{grid-template-columns:28px 56px 1fr}
-      .state-row:not([data-type]){grid-template-columns:28px 56px 1fr}
-      .col-h.col-stats,.row-stats:not(.mobile-show){}
+      #col-headers{display:none}
+      #search-bar{padding:8px 14px;gap:6px}
       #list-toolbar { flex-wrap: wrap; }
       .filter-pills { flex-wrap: wrap; }
-      /* Mobile card grid for list view */
-      #rows-container{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
-      .state-row{display:flex;flex-direction:column;gap:0;grid-template-columns:none;background:var(--bg3);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 12px;border-left:none;border-bottom:none;position:relative;overflow:hidden;min-height:auto}
-      .state-row::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:12px 12px 0 0}
+      /* Mobile compact list rows */
+      #rows-container{display:flex;flex-direction:column;padding:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+      .state-row{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,0.04);border-left:none;grid-template-columns:none;background:transparent;cursor:pointer;transition:background 0.15s;width:100%;overflow:hidden;min-height:auto;border-radius:0}
+      .state-row:active{background:rgba(255,255,255,0.03)}
+      .state-row::before{display:none}
       .row-num{display:none}
-      .row-badge{order:-1}
-      .row-badge .badge{font-size:8px;padding:1px 5px}
-      .row-name{font-size:15px;font-weight:700;color:var(--text);margin-top:4px;margin-bottom:2px;order:0;white-space:normal}
-      .row-stats{display:flex;flex-direction:column;gap:2px;margin-top:8px}
-      .stat-pill{font-size:9px}
-      .stat-pill.pill-rate{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);line-height:1}
-      .stat-pill.pill-hold{font-size:8px;color:var(--text3)}
-      /* Section headers in mobile grid */
-      .list-section-header{grid-column:1/-1;display:flex;align-items:center;gap:10px;padding:12px 4px 6px;font-family:'Space Mono',monospace;font-size:9px;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase}
+      .row-badge{display:flex;align-items:center;flex-shrink:0;order:0}
+      .row-badge .badge{width:8px;height:8px;border-radius:50%;padding:0;font-size:0;overflow:hidden;min-width:8px;min-height:8px}
+      .row-name{flex:1;font-size:15px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;order:1;margin:0}
+      .row-stats{display:flex;align-items:center;gap:6px;flex-shrink:0;order:2;margin:0;flex-direction:row;justify-content:flex-end}
+      .stat-pill{font-size:9px;height:auto;line-height:1;padding:0;border:none;background:none;max-width:none}
+      .stat-pill.pill-rate{font-family:'Bebas Neue',sans-serif;font-size:24px;color:#e8c96a;line-height:1;min-width:48px;text-align:right}
+      .stat-pill.pill-hold{display:none}
+      /* Section headers */
+      .list-section-header{display:flex;align-items:center;gap:8px;padding:10px 14px 5px;font-family:'Space Mono',monospace;font-size:9px;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase}
       .list-section-header::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06)}
+      /* Type label inline */
+      .row-type-label{display:inline;flex-shrink:0;font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.04em;margin-right:4px;white-space:nowrap;order:2}
+      /* Empty search state */
+      #empty-state{flex-direction:column;gap:6px;padding:40px 20px;text-align:center}
       #detail-panel-inner { width:calc(100vw - 32px);max-width:340px;height:auto;max-height:75vh;border-radius:20px;padding-bottom:0;overflow-y:auto;background:#0d0d14;border:1px solid rgba(201,168,76,0.2);box-shadow:0 24px 64px rgba(0,0,0,0.6);animation:panelUp 250ms ease-out forwards }
       #detail-panel{background:rgba(6,6,10,0.75);backdrop-filter:blur(2px)}
       #panel-body{padding:16px 18px 16px}
@@ -4166,6 +4172,7 @@ function shortenHold(redemption, type) {
   return r.length>10?r.slice(0,8)+'…':r;
 }
 
+var TYPE_ABBR={lien:'Lien',deed:'Deed',redeemable:'Rdbl',hybrid:'Hybrid',forfeiture:'Forf'};
 function buildStateRow(s,i,colors){
   var t=s.type||s.t; var c=s.abbr||s.c; var n=s.name||s.n||c;
   var rate=s.rate||s.y||'N/A'; var redemption=s.redemption||s.r||'N/A';
@@ -4175,12 +4182,14 @@ function buildStateRow(s,i,colors){
   var badge=TYPE_LABELS[vt]||vt.toUpperCase().slice(0,6);
   var ratePill=shortenRate(rate,vt);
   var holdPill=shortenHold(redemption,vt);
+  var typeAbbr=TYPE_ABBR[vt]||vt;
   return '<div class="state-row" id="row-'+c+'" onclick="selectFromList(\''+c+'\')"'+
     ' style="background:'+(isSel?'linear-gradient(90deg,'+color+'15,transparent)':'transparent')+';border-left-color:'+(isSel?color:'transparent')+'"'+
     ' data-type="'+vt+'">'+
     '<span class="row-num">'+String(i+1).padStart(2,'0')+'</span>'+
-    '<div class="row-badge"><span class="badge" style="color:#fff;background:'+color+';border-color:'+color+'">'+badge+'</span></div>'+
+    '<div class="row-badge"><span class="badge" style="color:#fff;background:'+color+';border-color:'+color+';box-shadow:0 0 5px '+color+'">'+badge+'</span></div>'+
     '<span class="row-name">'+escapeHtml(n.toUpperCase())+'</span>'+
+    '<span class="row-type-label" style="color:'+color+'">'+escapeHtml(typeAbbr)+'</span>'+
     '<div class="row-stats" title="'+rate.replace(/"/g,'&quot;')+' | '+redemption.replace(/"/g,'&quot;')+'">'+
       '<span class="stat-pill pill-rate">'+ratePill+'</span>'+
       '<span class="stat-pill pill-hold">'+holdPill+'</span>'+
@@ -4204,17 +4213,16 @@ function renderList() {
   if(!empty){empty=document.createElement('div');empty.id='empty-state';container.appendChild(empty);}
   if(filtered.length===0){
     empty.style.display='flex';
-    empty.textContent='NO RESULTS FOR "'+searchQuery.toUpperCase()+'"';
+    empty.innerHTML='\uD83D\uDD0D<div style="font-size:14px;color:#686880;margin-top:4px">No states found</div><div style="font-size:12px;color:#686880">Try searching by state name</div>';
     container.innerHTML=''; container.appendChild(empty); return;
   }
   empty.style.display='none';
   var colors={lien:'#FFBE0B',deed:'#00D4FF',redeemable:'#FF2D55',hybrid:'#BF5FFF',forfeiture:'#FF6B35'};
-  // Group by type for section headers
   var typeOrder=['lien','hybrid','redeemable','deed','forfeiture'];
   var typeLabels={lien:'Tax Lien States',hybrid:'Hybrid States',redeemable:'Redeemable Deed States',deed:'Tax Deed States',forfeiture:'Forfeiture States'};
   var isMobile=window.innerWidth<=768;
   var html='';
-  if(isMobile && activeFilter==='all' && !q){
+  if(isMobile){
     typeOrder.forEach(function(type){
       var group=filtered.filter(function(s){return(s._v2type||s.type||s.t)===type;});
       if(group.length===0) return;
