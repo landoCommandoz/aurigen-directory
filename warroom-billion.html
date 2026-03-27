@@ -142,7 +142,7 @@
       background-size: 128px 128px;
     }
     /* Ensure app children sit above ocean layers */
-    #top-nav, #main-content, #status-bar { position: relative; z-index: 1; }
+    #top-nav, #main-content { position: relative; z-index: 1; }
 
     /* === TOP NAV === */
     #top-nav {
@@ -1034,35 +1034,8 @@
     }
 
     /* === STATUS BAR === */
-    #status-bar {
-      height: 28px;
-      min-height: 28px;
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
-      z-index: 2;
-      flex-shrink: 0;
-    }
-    #ticker-track {
-      display: flex;
-      width: max-content;
-      white-space: nowrap;
-      animation: ticker-scroll 30s linear infinite;
-    }
-    .ticker-item {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      color: var(--text2);
-      padding: 0 32px;
-    }
-    .ticker-item .up { color: var(--hybrid); }
-    .ticker-item .down { color: var(--deed); }
-    .ticker-item .neutral { color: var(--lien); }
-    #ticker-track:hover { animation-play-state: paused; }
+    /* Status bar / ticker removed */
+    #status-bar{display:none}
 
     /* === MAP TAB LAYOUT (Section 6B) === */
     #panel-map {
@@ -3090,9 +3063,6 @@
       </div>
     </div>
   </div>
-  <div id="status-bar">
-    <div id="ticker-track"></div>
-  </div>
   <footer id="disclaimer-footer">
     <div id="disclaimer-full">
       <p>This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a></p>
@@ -3569,7 +3539,6 @@ function applyPulseLock() {
 // Boot app after all functions are defined
 document.addEventListener('DOMContentLoaded', function() {
   updateTierBadge();
-  buildTicker();
   applyAccessLocks();
   bootApp();
   // Apply saved language
