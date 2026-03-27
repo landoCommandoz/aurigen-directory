@@ -17,68 +17,95 @@ async function generatePulseAlerts() {
   let skipped = 0;
   let errors = 0;
 
-  // ── Part 1: Per-auction alerts for auctions within 90 days ──
-  const { data: upcoming, error: fetchErr } = await supabase
-    .from('auctions')
-    .select('state, state_code, county, auction_date, platform')
-    .eq('active', true)
-    .gte('auction_date', todayStr)
-    .lte('auction_date', cutoffStr)
-    .order('auction_date', { ascending: true });
+  console.log(`[pulse] Starting. today=${todayStr}, cutoff=${cutoffStr}`);
 
-  if (fetchErr) {
-    console.error('[pulse] Failed to fetch upcoming auctions:', fetchErr.message);
-  } else if (upcoming && upcoming.length > 0) {
-    console.log(`[pulse] Found ${upcoming.length} auctions within 90 days`);
+  // ── Part 1: Per-auction alerts for auctions within 90 days ──
+  let upcoming = null;
+  try {
+    const result = await supabase
+      .from('auctions')
+      .select('state, state_code, county, auction_date, platform')
+      .eq('active', true)
+      .gte('auction_date', todayStr)
+      .lte('auction_date', cutoffStr)
+      .order('auction_date', { ascending: true });
+
+    console.log('[pulse] Auctions query result — data:', result.data ? result.data.length : 'null', 'error:', JSON.stringify(result.error));
+    if (result.error) {
+      console.error('[pulse] Auctions query FULL error:', JSON.stringify(result.error, null, 2));
+    } else {
+      upcoming = result.data;
+    }
+  } catch (e) {
+    console.error('[pulse] Auctions query THREW:', e.message, e.stack);
+  }
+
+  if (upcoming && upcoming.length > 0) {
+    console.log(`[pulse] Found ${upcoming.length} auctions within 90 days. First:`, JSON.stringify(upcoming[0]));
 
     for (const a of upcoming) {
       const daysOut = Math.ceil((new Date(a.auction_date) - today) / 86400000);
       const stateName = a.state || getStateName(a.state_code) || a.state_code;
       const alertText = stateName + ' — ' + a.county + ' auction in ' + daysOut + ' day' + (daysOut !== 1 ? 's' : '');
 
-      const { error, status } = await supabase
-        .from('pulse_alerts')
-        .upsert(
-          {
-            alert_text: alertText,
-            type: 'upcoming',
-            state_code: a.state_code,
-            date: a.auction_date,
-            auction_date: a.auction_date,
-            active: true,
-          },
-          {
-            onConflict: 'state_code,auction_date',
-            ignoreDuplicates: true,
-          }
-        );
+      const payload = {
+        alert_text: alertText,
+        type: 'upcoming',
+        state_code: a.state_code,
+        date: a.auction_date,
+        auction_date: a.auction_date,
+        active: true,
+      };
 
-      if (error) {
-        console.warn('[pulse] Per-auction insert error:', error.message, '| state:', a.state_code, 'date:', a.auction_date);
+      console.log('[pulse] Part1 upsert payload:', JSON.stringify(payload));
+
+      try {
+        const { data: upsertData, error: upsertErr, status, statusText } = await supabase
+          .from('pulse_alerts')
+          .upsert(payload, { onConflict: 'state_code,auction_date', ignoreDuplicates: true })
+          .select();
+
+        console.log('[pulse] Part1 upsert response — status:', status, statusText, 'data:', JSON.stringify(upsertData), 'error:', JSON.stringify(upsertErr));
+
+        if (upsertErr) {
+          console.error('[pulse] Part1 upsert FULL error:', JSON.stringify(upsertErr, null, 2));
+          errors++;
+        } else if (upsertData && upsertData.length === 0) {
+          skipped++;
+        } else {
+          inserted++;
+        }
+      } catch (e) {
+        console.error('[pulse] Part1 upsert THREW:', e.message, e.stack);
         errors++;
-      } else if (status === 200) {
-        // 200 = existing row, no change
-        skipped++;
-      } else {
-        inserted++;
       }
     }
   } else {
-    console.log('[pulse] No auctions within 90 days');
+    console.log('[pulse] No auctions within 90 days (upcoming is', upcoming ? 'empty array' : 'null', ')');
   }
 
   // ── Part 2: State+platform summary alerts (all future auctions) ──
   let summaryCount = 0;
-  const { data: allFuture, error: allErr } = await supabase
-    .from('auctions')
-    .select('state, state_code, county, auction_date, platform')
-    .eq('active', true)
-    .gte('auction_date', todayStr)
-    .order('auction_date', { ascending: true });
+  let allFuture = null;
+  try {
+    const result = await supabase
+      .from('auctions')
+      .select('state, state_code, county, auction_date, platform')
+      .eq('active', true)
+      .gte('auction_date', todayStr)
+      .order('auction_date', { ascending: true });
 
-  if (allErr) {
-    console.error('[pulse] Failed to fetch all future auctions:', allErr.message);
-  } else if (allFuture && allFuture.length > 0) {
+    console.log('[pulse] All-future query result — data:', result.data ? result.data.length : 'null', 'error:', JSON.stringify(result.error));
+    if (result.error) {
+      console.error('[pulse] All-future query FULL error:', JSON.stringify(result.error, null, 2));
+    } else {
+      allFuture = result.data;
+    }
+  } catch (e) {
+    console.error('[pulse] All-future query THREW:', e.message, e.stack);
+  }
+
+  if (allFuture && allFuture.length > 0) {
     // Group by state_code + platform
     const groups = {};
     for (const a of allFuture) {
@@ -93,6 +120,8 @@ async function generatePulseAlerts() {
       }
     }
 
+    console.log('[pulse] Part2 groups:', Object.keys(groups).length);
+
     for (const key of Object.keys(groups)) {
       const g = groups[key];
       const stateName = g.state || getStateName(g.state_code) || g.state_code;
@@ -101,58 +130,73 @@ async function generatePulseAlerts() {
         ? countyList.join(', ')
         : countyList.slice(0, 3).join(', ') + ' + ' + (countyList.length - 3) + ' more';
       const title = stateName + ' — ' + g.count + ' upcoming ' + g.platform + ' auction' + (g.count !== 1 ? 's' : '');
-
       const alertText = title + '. ' + countyPreview + '. Next sale: ' + g.earliest;
 
-      const { error } = await supabase
-        .from('pulse_alerts')
-        .upsert(
-          {
-            alert_text: alertText,
-            type: 'intel',
-            state_code: g.state_code,
-            date: g.earliest,
-            auction_date: g.earliest,
-            active: true,
-          },
-          {
-            onConflict: 'state_code,auction_date',
-            ignoreDuplicates: false,
-          }
-        );
+      const payload = {
+        alert_text: alertText,
+        type: 'intel',
+        state_code: g.state_code,
+        date: g.earliest,
+        auction_date: g.earliest,
+        active: true,
+      };
 
-      if (error) {
-        console.warn('[pulse] Summary insert error:', error.message, '| state:', g.state_code, 'platform:', g.platform);
+      console.log('[pulse] Part2 upsert payload:', JSON.stringify(payload));
+
+      try {
+        const { data: upsertData, error: upsertErr, status, statusText } = await supabase
+          .from('pulse_alerts')
+          .upsert(payload, { onConflict: 'state_code,auction_date', ignoreDuplicates: false })
+          .select();
+
+        console.log('[pulse] Part2 upsert response — status:', status, statusText, 'data:', JSON.stringify(upsertData), 'error:', JSON.stringify(upsertErr));
+
+        if (upsertErr) {
+          console.error('[pulse] Part2 upsert FULL error:', JSON.stringify(upsertErr, null, 2));
+          errors++;
+        } else {
+          inserted++;
+          summaryCount++;
+        }
+      } catch (e) {
+        console.error('[pulse] Part2 upsert THREW:', e.message, e.stack);
         errors++;
-      } else {
-        inserted++;
-        summaryCount++;
       }
     }
   }
 
   // ── Cleanup: deactivate alerts for past auction dates ──
-  const { error: cleanErr } = await supabase
-    .from('pulse_alerts')
-    .update({ active: false })
-    .eq('active', true)
-    .not('auction_date', 'is', null)
-    .lt('auction_date', todayStr);
+  try {
+    const { data: cleanData, error: cleanErr } = await supabase
+      .from('pulse_alerts')
+      .update({ active: false })
+      .eq('active', true)
+      .not('auction_date', 'is', null)
+      .lt('auction_date', todayStr)
+      .select('id');
 
-  if (cleanErr) {
-    console.warn('[pulse] Cleanup error:', cleanErr.message);
+    console.log('[pulse] Cleanup — deactivated:', cleanData ? cleanData.length : 0, 'error:', JSON.stringify(cleanErr));
+    if (cleanErr) {
+      console.error('[pulse] Cleanup FULL error:', JSON.stringify(cleanErr, null, 2));
+    }
+  } catch (e) {
+    console.error('[pulse] Cleanup THREW:', e.message, e.stack);
   }
 
   console.log(`[pulse] Done. Inserted: ${inserted}, Skipped (dupes): ${skipped}, Errors: ${errors}`);
 
   // Log to scrape_log so it appears in the run history
-  await logScrapeRun({
-    platform: 'pulse_alerts',
-    records_found: (upcoming ? upcoming.length : 0) + summaryCount,
-    records_added: inserted,
-    errors: errors > 0 ? `${errors} insert errors` : null,
-    success: errors === 0,
-  });
+  try {
+    await logScrapeRun({
+      platform: 'pulse_alerts',
+      records_found: (upcoming ? upcoming.length : 0) + summaryCount,
+      records_added: inserted,
+      errors: errors > 0 ? `${errors} insert errors` : null,
+      success: errors === 0,
+    });
+  } catch (e) {
+    console.error('[pulse] logScrapeRun THREW:', e.message);
+  }
 
   return inserted;
 }
