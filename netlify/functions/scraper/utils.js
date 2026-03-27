@@ -76,38 +76,58 @@ async function upsertAuctions(records) {
 
 // ── Log a scrape run ─────────────────────────────────────────
 async function logScrapeRun({ platform, records_found, records_added, errors, success }) {
-  const supabase = getSupabase();
+  try {
+    const supabase = getSupabase();
 
-  const { error } = await supabase.from('scrape_log').insert({
-    platform,
-    records_found: records_found || 0,
-    records_added: records_added || 0,
-    errors:        errors ? String(errors) : null,
-    success:       success === true,
-    run_at:        new Date().toISOString(),
-  });
+    const { error } = await supabase.from('scrape_log').insert({
+      platform,
+      records_found: records_found || 0,
+      records_added: records_added || 0,
+      errors:        errors ? String(errors) : null,
+      success:       success === true,
+      run_at:        new Date().toISOString(),
+    });
 
-  if (error) {
-    console.error('[utils] Failed to write scrape_log:', error.message);
+    if (error) {
+      console.error('[utils] Failed to write scrape_log:', error.message);
+    }
+  } catch (e) {
+    console.error('[utils] logScrapeRun crashed:', e.message);
   }
 }
 
 // ── Deactivate past auctions ─────────────────────────────────
 // Marks any auction older than 30 days as inactive
 async function cleanupOldAuctions() {
-  const supabase = getSupabase();
-  const cutoff = new Date();
-  cutoff.setDate(cutoff.getDate() - 30);
+  try {
+    const supabase = getSupabase();
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - 30);
 
-  const { error } = await supabase
-    .from('auctions')
-    .update({ active: false })
-    .eq('active', true)
-    .lt('auction_date', cutoff.toISOString().split('T')[0]);
+    const { data, error } = await supabase
+      .from('auctions')
+      .update({ active: false })
+      .eq('active', true)
+      .lt('auction_date', cutoff.toISOString().split('T')[0])
+      .select('id');
 
-  if (error) {
-    console.error('[utils] Cleanup error:', error.message);
+    if (error) {
+      console.error('[utils] Cleanup error:', error.message);
+      return 0;
+    }
+    const count = data ? data.length : 0;
+    if (count > 0) console.log(`[cleanup] Deactivated ${count} past auctions`);
+    return count;
+  } catch (e) {
+    console.error('[utils] Cleanup crashed:', e.message);
+    return 0;
   }
+}
+
+// ── Clean text ───────────────────────────────────────────────
+function cleanText(str) {
+  if (!str) return '';
+  return str.replace(/[\r\n\t]+/g, ' ').replace(/\s+/g, ' ').replace(/[^\x20-\x7E]/g, '').trim();
 }
 
 // ── Date parsing ─────────────────────────────────────────────
@@ -120,11 +140,6 @@ function parseDate(raw) {
   // Already ISO format
   if (/^\d{4}-\d{2}-\d{2}$/.test(cleaned)) return cleaned;
 
-  const attempt = new Date(cleaned);
-  if (!isNaN(attempt.getTime())) {
-    return attempt.toISOString().split('T')[0];
-  }
-
   // MM/DD/YYYY
   const mdy = cleaned.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
   if (mdy) {
@@ -135,10 +150,25 @@ function parseDate(raw) {
   // Month DD, YYYY — e.g. "April 15, 2025"
   const named = cleaned.match(/^([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})$/);
   if (named) {
-    const attempt2 = new Date(`${named[1]} ${named[2]}, ${named[3]}`);
-    if (!isNaN(attempt2.getTime())) {
-      return attempt2.toISOString().split('T')[0];
+    const attempt = new Date(`${named[1]} ${named[2]}, ${named[3]}`);
+    if (!isNaN(attempt.getTime())) {
+      return attempt.toISOString().split('T')[0];
     }
+  }
+
+  // DD Month YYYY
+  const eu = cleaned.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/);
+  if (eu) {
+    const attempt = new Date(`${eu[2]} ${eu[1]}, ${eu[3]}`);
+    if (!isNaN(attempt.getTime())) {
+      return attempt.toISOString().split('T')[0];
+    }
+  }
+
+  // Fallback native parse
+  const attempt = new Date(cleaned);
+  if (!isNaN(attempt.getTime())) {
+    return attempt.toISOString().split('T')[0];
   }
 
   console.warn('[utils] Could not parse date:', raw);
@@ -162,12 +192,20 @@ const STATE_CODES = {
   'wisconsin': 'WI', 'wyoming': 'WY', 'district of columbia': 'DC',
 };
 
+const CODE_TO_STATE = Object.fromEntries(
+  Object.entries(STATE_CODES).map(([name, code]) => [code, name.replace(/\b\w/g, c => c.toUpperCase())])
+);
+
 function getStateCode(stateName) {
   if (!stateName) return null;
   const key = stateName.toLowerCase().trim();
-  // Already a 2-letter code
   if (/^[A-Z]{2}$/.test(stateName.trim())) return stateName.trim().toUpperCase();
   return STATE_CODES[key] || null;
+}
+
+function getStateName(code) {
+  if (!code) return null;
+  return CODE_TO_STATE[code.toUpperCase()] || code;
 }
 
 // ── Simple fetch with timeout ────────────────────────────────
@@ -197,7 +235,11 @@ module.exports = {
   upsertAuctions,
   logScrapeRun,
   cleanupOldAuctions,
+  cleanText,
   parseDate,
   getStateCode,
+  getStateName,
   fetchWithTimeout,
+  STATE_CODES,
+  CODE_TO_STATE,
 };
