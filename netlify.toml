@@ -49,7 +49,11 @@
   status = 200
 
 [functions]
+  directory = "netlify/functions"
   node_bundler = "esbuild"
+
+[functions."scraper"]
+  type = "background"
 
 # ── SECURITY: Prevent indexing of markdown files ──────────────
 [[headers]]
