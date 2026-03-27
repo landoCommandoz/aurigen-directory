@@ -5066,7 +5066,7 @@ function fetchLiveAuctionData() {
         console.log('[live] Replaced AUCTION_ENTRIES with ' + entries.length + ' live records');
       }
 
-      // --- Merge live alerts into PULSE_ALERTS (dedup by title) ---
+      // --- Merge live alerts into PULSE_ALERTS (dedup by alert_text) ---
       if (liveAlerts.length > 0) {
         var TYPE_ICONS = { critical: '\u26A0\uFE0F', upcoming: '\uD83D\uDCC5', intel: '\uD83D\uDCA1', match: '\uD83C\uDFAF', info: '\uD83D\uDCC5', warning: '\u26A0\uFE0F' };
         var existingTitles = {};
@@ -5076,31 +5076,30 @@ function fetchLiveAuctionData() {
 
         var addedCount = 0;
         liveAlerts.forEach(function(a) {
-          var title = a.title || '';
-          if (!title || existingTitles[title.toLowerCase()]) return;
-          existingTitles[title.toLowerCase()] = true;
+          var text = a.alert_text || '';
+          if (!text || existingTitles[text.toLowerCase()]) return;
+          existingTitles[text.toLowerCase()] = true;
 
-          var alertType = a.alert_type || 'upcoming';
+          var alertType = a.type || 'upcoming';
           var loc = a.state_code || '';
-          if (a.county) loc += ' \u00B7 ' + a.county;
 
           PULSE_ALERTS.push({
             id: 'live-' + (a.id || addedCount),
             type: alertType,
             icon: TYPE_ICONS[alertType] || TYPE_ICONS.info,
-            title: title,
-            body: a.body || '',
+            title: text,
+            body: '',
             state: a.state_code || '',
-            location: loc || 'Live Alert',
+            location: loc ? loc + ' \u00B7 Live Alert' : 'Live Alert',
             action: alertType === 'upcoming' ? 'View in Auctions' : 'View',
             actionTab: alertType === 'upcoming' ? 'auctions' : null,
             dnaStates: a.state_code ? [a.state_code] : [],
-            date: a.auction_date || null
+            date: a.auction_date || a.date || null
           });
           addedCount++;
         });
 
-        console.log('[live] Merged ' + addedCount + ' live alerts (deduped by title). Total: ' + PULSE_ALERTS.length);
+        console.log('[live] Merged ' + addedCount + ' live alerts (deduped by alert_text). Total: ' + PULSE_ALERTS.length);
       }
 
       // Re-render Pulse badge with updated count
