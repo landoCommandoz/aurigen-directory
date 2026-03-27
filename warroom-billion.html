@@ -1936,8 +1936,156 @@
     }
     .auctions-filter-toggle:hover { border-color: var(--accent-mid); }
 
-    /* Cards list */
+    /* Cards list (kept for day drawer card rendering) */
     .auctions-cards { display: flex; flex-direction: column; gap: 0; }
+
+    /* Calendar grid */
+    .auctions-cal-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 0 12px; margin-bottom: 8px; border-bottom: 1px solid var(--border);
+    }
+    .auctions-cal-month {
+      font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 0.1em;
+      color: var(--text); line-height: 1;
+    }
+    .auctions-cal-arrow {
+      background: none; border: 1px solid var(--border); color: var(--accent);
+      font-size: 18px; width: 36px; height: 36px; border-radius: var(--radius);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s, background 0.15s; min-height: 44px; min-width: 44px;
+    }
+    .auctions-cal-arrow:hover { border-color: var(--accent-mid); background: var(--accent-dim); }
+    .auctions-cal-dna-row {
+      display: flex; align-items: center; gap: 10px; padding: 8px 0 12px;
+    }
+    .auctions-cal-dna-toggle {
+      position: relative; width: 38px; height: 20px; background: rgba(255,255,255,0.08);
+      border-radius: 10px; cursor: pointer; border: 1px solid var(--border);
+      transition: background 0.2s; flex-shrink: 0;
+    }
+    .auctions-cal-dna-toggle.active { background: var(--accent-dim); border-color: var(--accent-mid); }
+    .auctions-cal-dna-toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 14px; height: 14px; border-radius: 50%; background: var(--text2);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .auctions-cal-dna-toggle.active::after { transform: translateX(18px); background: var(--accent); }
+    .auctions-cal-dna-label {
+      font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
+      color: var(--text2); text-transform: uppercase;
+    }
+    .auctions-cal-dna-states {
+      display: flex; gap: 4px; margin-left: auto;
+    }
+    .auctions-cal-dna-chip {
+      font-family: 'Space Mono', monospace; font-size: 9px; padding: 2px 6px;
+      border-radius: 2px; background: rgba(201,168,76,0.1); color: var(--accent);
+      border: 1px solid rgba(201,168,76,0.15); letter-spacing: 0.06em;
+    }
+    .auctions-cal-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;
+    }
+    .auctions-cal-dow {
+      font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.12em;
+      color: var(--text2); text-align: center; padding: 6px 0; text-transform: uppercase;
+    }
+    .auctions-cal-cell {
+      aspect-ratio: 1; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; background: rgba(255,255,255,0.015); border: 1px solid transparent;
+      border-radius: var(--radius); cursor: default; position: relative;
+      transition: border-color 0.15s, background 0.15s; min-height: 44px;
+    }
+    .auctions-cal-cell.empty { background: transparent; }
+    .auctions-cal-cell.has-auctions {
+      cursor: pointer; border-color: rgba(201,168,76,0.15);
+    }
+    .auctions-cal-cell.has-auctions:hover {
+      border-color: var(--accent-mid); background: var(--accent-dim);
+    }
+    .auctions-cal-cell.today { border-color: var(--accent-mid); }
+    .auctions-cal-cell.selected { background: var(--accent-dim); border-color: var(--accent); }
+    .auctions-cal-day-num {
+      font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--text); line-height: 1;
+    }
+    .auctions-cal-cell.empty .auctions-cal-day-num { visibility: hidden; }
+    .auctions-cal-cell.past .auctions-cal-day-num { color: var(--text2); opacity: 0.4; }
+    .auctions-cal-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+      margin-top: 3px; box-shadow: 0 0 6px rgba(201,168,76,0.4);
+    }
+    .auctions-cal-count {
+      font-family: 'Space Mono', monospace; font-size: 8px; color: var(--accent);
+      letter-spacing: 0.06em; margin-top: 1px;
+    }
+
+    /* Day detail drawer */
+    .auctions-day-drawer-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1600;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+    }
+    .auctions-day-drawer-overlay.open { display: block; }
+    .auctions-day-drawer {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 1601;
+      background: var(--bg2); border-top: 1px solid var(--accent-mid);
+      border-radius: 16px 16px 0 0; max-height: 65vh; display: flex;
+      flex-direction: column; transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .auctions-day-drawer.open { transform: translateY(0); }
+    .auctions-day-drawer-handle {
+      width: 40px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.15);
+      margin: 10px auto 0; flex-shrink: 0;
+    }
+    .auctions-day-drawer-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 20px 10px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+    }
+    .auctions-day-drawer-date {
+      font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+    .auctions-day-drawer-count {
+      font-family: 'Space Mono', monospace; font-size: 10px; color: var(--text2);
+      letter-spacing: 0.1em;
+    }
+    .auctions-day-drawer-close {
+      background: none; border: 1px solid var(--border); color: var(--text);
+      width: 36px; height: 36px; border-radius: var(--radius); cursor: pointer;
+      font-size: 18px; display: flex; align-items: center; justify-content: center;
+      min-height: 44px; min-width: 44px;
+    }
+    .auctions-day-drawer-close:hover { border-color: var(--accent-mid); }
+    .auctions-day-drawer-body {
+      overflow-y: auto; padding: 8px 20px 24px; flex: 1; min-height: 0;
+    }
+
+    /* Quarterly groupings below calendar */
+    .auctions-quarters { margin-top: 20px; display: flex; flex-direction: column; gap: 4px; }
+    .auctions-quarter {
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    }
+    .auctions-quarter-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; cursor: pointer; background: rgba(255,255,255,0.02);
+      transition: background 0.15s; min-height: 44px;
+    }
+    .auctions-quarter-header:hover { background: rgba(255,255,255,0.04); }
+    .auctions-quarter-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.1em;
+      color: var(--text);
+    }
+    .auctions-quarter-count {
+      font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
+      color: var(--text2); text-transform: uppercase;
+    }
+    .auctions-quarter-chevron {
+      color: var(--accent); font-size: 14px; transition: transform 0.2s; margin-left: 8px;
+    }
+    .auctions-quarter.open .auctions-quarter-chevron { transform: rotate(180deg); }
+    .auctions-quarter-body {
+      display: none; padding: 0 16px 12px; border-top: 1px solid var(--border);
+    }
+    .auctions-quarter.open .auctions-quarter-body { display: block; }
     .auctions-month-divider {
       font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.12em;
       color: var(--text2); padding: 16px 0 8px 0; border-bottom: 1px solid var(--border);
@@ -2113,6 +2261,13 @@
       .auctions-sidebar { display: none; }
       .auctions-filter-toggle { display: flex; align-items: center; gap: 6px; }
       .auctions-main { padding: 12px; overflow-x: hidden; }
+      .auctions-cal-month { font-size: 20px; }
+      .auctions-cal-day-num { font-size: 14px; }
+      .auctions-cal-cell { min-height: 38px; }
+      .auctions-cal-dot { width: 5px; height: 5px; margin-top: 2px; }
+      .auctions-cal-count { font-size: 7px; }
+      .auctions-cal-dna-row { flex-wrap: wrap; }
+      .auctions-quarter-title { font-size: 16px; }
       .auctions-cards { overflow-x: hidden; gap: 10px; display: flex; flex-direction: column; }
       .auction-card {
         display: flex; flex-direction: column; gap: 0;
@@ -2861,7 +3016,36 @@
               </button>
             </div>
           </div>
-          <div class="auctions-cards" id="auctions-cards"></div>
+          <!-- DNA state filter toggle -->
+          <div class="auctions-cal-dna-row" id="auctions-dna-row" style="display:none">
+            <div class="auctions-cal-dna-toggle" id="auctions-dna-toggle" onclick="toggleAuctionsDna()" role="switch" aria-label="Filter to DNA matches"></div>
+            <span class="auctions-cal-dna-label" id="auctions-dna-label">MY STATES</span>
+            <div class="auctions-cal-dna-states" id="auctions-dna-chips"></div>
+          </div>
+          <!-- Calendar nav + grid -->
+          <div class="auctions-cal-nav">
+            <button class="auctions-cal-arrow" onclick="navigateCalMonth(-1)" aria-label="Previous month">&#9664;</button>
+            <span class="auctions-cal-month" id="auctions-cal-month"></span>
+            <button class="auctions-cal-arrow" onclick="navigateCalMonth(1)" aria-label="Next month">&#9654;</button>
+          </div>
+          <div class="auctions-cal-grid" id="auctions-cal-grid"></div>
+          <!-- Quarterly groupings -->
+          <div class="auctions-quarters" id="auctions-quarters"></div>
+          <!-- Day detail drawer (cards rendered inside) -->
+          <div class="auctions-day-drawer-overlay" id="auctions-day-overlay" onclick="closeDayDrawer()"></div>
+          <div class="auctions-day-drawer" id="auctions-day-drawer">
+            <div class="auctions-day-drawer-handle"></div>
+            <div class="auctions-day-drawer-header">
+              <div>
+                <div class="auctions-day-drawer-date" id="day-drawer-date"></div>
+                <div class="auctions-day-drawer-count" id="day-drawer-count"></div>
+              </div>
+              <button class="auctions-day-drawer-close" onclick="closeDayDrawer()" aria-label="Close">&times;</button>
+            </div>
+            <div class="auctions-day-drawer-body">
+              <div class="auctions-cards" id="day-drawer-cards"></div>
+            </div>
+          </div>
           <div class="auctions-disclaimer">
             Tax lien and tax deed investing involves risk, including potential loss of principal. Past performance does not guarantee future results. Auction dates and details are provided for informational purposes only &mdash; verify directly with the county or platform before registering. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a>
           </div>
@@ -5072,6 +5256,9 @@ function initAuctionsTab() {
   var monthEl = document.getElementById('auctions-month-filters');
   if (monthEl) monthEl.innerHTML = monthHtml;
 
+  // Auto-enable DNA filter if user has a DNA profile
+  if (calGetDnaStates()) _calDnaOnly = true;
+
   renderAuctions();
 }
 
@@ -5111,13 +5298,15 @@ function filterAuctions() {
   }, 150);
 }
 
-// Windowed rendering state
+// Calendar state
 var _auctionsFiltered = [];
-var _auctionsRendered = 0;
-var _auctionsBatchSize = 30;
-var _auctionsObserver = null;
-var _auctionsIsInitialRender = true;
-var _auctionsCurrentMonth = '';
+var _calYear = new Date().getFullYear();
+var _calMonth = new Date().getMonth(); // 0-indexed
+var _calDnaOnly = false;
+var _calSelectedDate = null;
+var _calMonthNames = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+var _calMonthNamesFull = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var _calDow = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
 
 var TYPE_LABELS_SHORT = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDBL', hybrid: 'HYBRID', forfeiture: 'FORFEIT' };
 // Build HTML for a single auction card
@@ -5166,52 +5355,25 @@ function buildCardHtml(e, animate) {
   '</div>';
 }
 
-// Append next batch of cards
-function appendAuctionsBatch() {
-  var container = document.getElementById('auctions-cards');
-  if (!container || _auctionsRendered >= _auctionsFiltered.length) return;
-
-  var end = Math.min(_auctionsRendered + _auctionsBatchSize, _auctionsFiltered.length);
-  var html = '';
-  var animate = _auctionsIsInitialRender;
-
-  for (var i = _auctionsRendered; i < end; i++) {
-    var e = _auctionsFiltered[i];
-    var monthLabel = e.date ? e.date.month.substring(0,3).toUpperCase() + (e.date.year ? ' ' + e.date.year : '') : 'TBD';
-    if (monthLabel !== _auctionsCurrentMonth) {
-      _auctionsCurrentMonth = monthLabel;
-      html += '<div class="auctions-month-divider">' + escapeHtml(monthLabel) + '</div>';
-    }
-    html += buildCardHtml(e, animate);
+// Get DNA top state codes (returns array or null)
+function calGetDnaStates() {
+  if (typeof profileTopStateCodes === 'function') {
+    var codes = profileTopStateCodes();
+    if (codes && codes.length > 0) return codes.slice(0, 3);
   }
-  _auctionsRendered = end;
-  _auctionsIsInitialRender = false;
-
-  // Remove existing sentinel before appending
-  var oldSentinel = container.querySelector('.auctions-sentinel');
-  if (oldSentinel) oldSentinel.remove();
-
-  // Append batch
-  var frag = document.createElement('div');
-  frag.innerHTML = html;
-  while (frag.firstChild) container.appendChild(frag.firstChild);
-
-  // Add sentinel if more to load
-  if (_auctionsRendered < _auctionsFiltered.length) {
-    var sentinel = document.createElement('div');
-    sentinel.className = 'auctions-sentinel';
-    sentinel.textContent = 'Loading more...';
-    container.appendChild(sentinel);
-    if (_auctionsObserver) _auctionsObserver.observe(sentinel);
-  }
+  return null;
 }
 
-function renderAuctions() {
+// Apply all filters (sidebar + DNA) and return filtered entries
+function calFilterEntries() {
   var entries = window.AUCTION_ENTRIES || [];
   var f = _auctionsFilters;
+  var dnaCodes = _calDnaOnly ? calGetDnaStates() : null;
 
-  // Apply filters
-  _auctionsFiltered = entries.filter(function(e) {
+  return entries.filter(function(e) {
+    // DNA state filter
+    if (dnaCodes && dnaCodes.indexOf(e.stateCode) === -1) return false;
+    // Sidebar filters
     if (f.search) {
       var q = f.search;
       var hay = (e.stateName + ' ' + e.stateCode + ' ' + e.county + ' ' + e.platform).toLowerCase();
@@ -5219,48 +5381,252 @@ function renderAuctions() {
     }
     if (f.types.length > 0 && f.types.indexOf(e.type) === -1) return false;
     if (f.platforms.length > 0 && f.platforms.indexOf(e.platform) === -1) return false;
-    if (f.month && e.date && e.date.month) {
-      if (e.date.month.substring(0,3) !== f.month) return false;
-    } else if (f.month && !e.date) {
-      return false;
-    }
     return true;
   });
+}
 
-  // Reset windowing state
-  _auctionsRendered = 0;
-  _auctionsCurrentMonth = '';
-  _auctionsIsInitialRender = true;
+// Group entries by ISO date key (YYYY-MM-DD) for a given month
+function calGroupByDay(entries, year, month) {
+  var map = {};
+  entries.forEach(function(e) {
+    if (!e.date || !e.date.year || e.date.day <= 0) return;
+    var mi = _calMonthNamesFull.indexOf(e.date.month);
+    if (mi === -1) {
+      // Try 3-letter match
+      for (var k = 0; k < _calMonthNamesFull.length; k++) {
+        if (_calMonthNamesFull[k].substring(0,3).toLowerCase() === e.date.month.substring(0,3).toLowerCase()) { mi = k; break; }
+      }
+    }
+    if (mi === month && e.date.year === year) {
+      var key = year + '-' + String(mi + 1).padStart(2, '0') + '-' + String(e.date.day).padStart(2, '0');
+      if (!map[key]) map[key] = [];
+      map[key].push(e);
+    }
+  });
+  return map;
+}
+
+// Get quarter label for a date entry
+function calGetQuarter(e) {
+  if (!e.date || !e.date.year) return null;
+  var mi = _calMonthNamesFull.indexOf(e.date.month);
+  if (mi === -1) {
+    for (var k = 0; k < _calMonthNamesFull.length; k++) {
+      if (_calMonthNamesFull[k].substring(0,3).toLowerCase() === e.date.month.substring(0,3).toLowerCase()) { mi = k; break; }
+    }
+  }
+  if (mi === -1) return null;
+  var q = Math.floor(mi / 3) + 1;
+  return 'Q' + q + ' ' + e.date.year;
+}
+
+// Toggle DNA-only filter
+function toggleAuctionsDna() {
+  _calDnaOnly = !_calDnaOnly;
+  var tog = document.getElementById('auctions-dna-toggle');
+  if (tog) tog.classList.toggle('active', _calDnaOnly);
+  var label = document.getElementById('auctions-dna-label');
+  if (label) label.textContent = _calDnaOnly ? 'MY STATES' : 'ALL STATES';
+  renderAuctions();
+}
+
+// Navigate calendar month
+function navigateCalMonth(delta) {
+  _calMonth += delta;
+  if (_calMonth > 11) { _calMonth = 0; _calYear++; }
+  if (_calMonth < 0) { _calMonth = 11; _calYear--; }
+  renderAuctions();
+}
+
+// Open day detail drawer
+function openDayDrawer(dateKey) {
+  _calSelectedDate = dateKey;
+  var filtered = calFilterEntries();
+  var dayMap = calGroupByDay(filtered, _calYear, _calMonth);
+  var dayEntries = dayMap[dateKey] || [];
+
+  // Update header
+  var parts = dateKey.split('-');
+  var d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+  var dateEl = document.getElementById('day-drawer-date');
+  if (dateEl) dateEl.textContent = _calMonthNamesFull[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  var countEl = document.getElementById('day-drawer-count');
+  if (countEl) countEl.textContent = dayEntries.length + ' auction' + (dayEntries.length !== 1 ? 's' : '');
+
+  // Render cards
+  var container = document.getElementById('day-drawer-cards');
+  if (container) {
+    var html = '';
+    dayEntries.forEach(function(e) { html += buildCardHtml(e, true); });
+    container.innerHTML = html || '<div class="auctions-empty">No auctions on this date.</div>';
+  }
+
+  // Highlight selected cell
+  document.querySelectorAll('.auctions-cal-cell.selected').forEach(function(c) { c.classList.remove('selected'); });
+  var cell = document.querySelector('.auctions-cal-cell[data-date="' + dateKey + '"]');
+  if (cell) cell.classList.add('selected');
+
+  // Open drawer
+  var overlay = document.getElementById('auctions-day-overlay');
+  var drawer = document.getElementById('auctions-day-drawer');
+  if (overlay) overlay.classList.add('open');
+  if (drawer) drawer.classList.add('open');
+}
+
+// Close day detail drawer
+function closeDayDrawer() {
+  _calSelectedDate = null;
+  document.querySelectorAll('.auctions-cal-cell.selected').forEach(function(c) { c.classList.remove('selected'); });
+  var overlay = document.getElementById('auctions-day-overlay');
+  var drawer = document.getElementById('auctions-day-drawer');
+  if (overlay) overlay.classList.remove('open');
+  if (drawer) drawer.classList.remove('open');
+}
+
+// Toggle quarterly accordion
+function toggleQuarter(el) {
+  el.closest('.auctions-quarter').classList.toggle('open');
+}
+
+function renderAuctions() {
+  var filtered = calFilterEntries();
+  _auctionsFiltered = filtered;
 
   // Update count
   var countEl = document.getElementById('auctions-count');
-  if (countEl) countEl.textContent = _auctionsFiltered.length + ' result' + (_auctionsFiltered.length !== 1 ? 's' : '');
+  if (countEl) countEl.textContent = filtered.length + ' result' + (filtered.length !== 1 ? 's' : '');
 
-  var container = document.getElementById('auctions-cards');
-  if (!container) return;
+  // --- DNA toggle row ---
+  var dnaRow = document.getElementById('auctions-dna-row');
+  var dnaCodes = calGetDnaStates();
+  if (dnaRow) {
+    if (dnaCodes) {
+      dnaRow.style.display = '';
+      var tog = document.getElementById('auctions-dna-toggle');
+      if (tog) tog.classList.toggle('active', _calDnaOnly);
+      var label = document.getElementById('auctions-dna-label');
+      if (label) label.textContent = _calDnaOnly ? 'MY STATES' : 'ALL STATES';
+      var chips = document.getElementById('auctions-dna-chips');
+      if (chips) {
+        chips.innerHTML = dnaCodes.map(function(c) {
+          return '<span class="auctions-cal-dna-chip">' + escapeHtml(c) + '</span>';
+        }).join('');
+      }
+    } else {
+      dnaRow.style.display = 'none';
+    }
+  }
 
-  // Clean up previous observer
-  if (_auctionsObserver) _auctionsObserver.disconnect();
+  // --- Calendar grid ---
+  var dayMap = calGroupByDay(filtered, _calYear, _calMonth);
+  var monthLabel = document.getElementById('auctions-cal-month');
+  if (monthLabel) monthLabel.textContent = _calMonthNames[_calMonth] + ' ' + _calYear;
 
-  if (_auctionsFiltered.length === 0) {
-    container.innerHTML = '<div class="auctions-empty">No auctions match your filters.</div>';
+  var grid = document.getElementById('auctions-cal-grid');
+  if (!grid) return;
+
+  var html = '';
+  // Day-of-week headers
+  _calDow.forEach(function(d) {
+    html += '<div class="auctions-cal-dow">' + d + '</div>';
+  });
+
+  // First day of month and total days
+  var firstDay = new Date(_calYear, _calMonth, 1).getDay();
+  var daysInMonth = new Date(_calYear, _calMonth + 1, 0).getDate();
+  var today = new Date();
+  var todayKey = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+
+  // Empty cells before first day
+  for (var b = 0; b < firstDay; b++) {
+    html += '<div class="auctions-cal-cell empty"><span class="auctions-cal-day-num"></span></div>';
+  }
+
+  // Day cells
+  for (var d = 1; d <= daysInMonth; d++) {
+    var key = _calYear + '-' + String(_calMonth + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+    var dayEntries = dayMap[key];
+    var count = dayEntries ? dayEntries.length : 0;
+    var isPast = new Date(_calYear, _calMonth, d) < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    var isToday = key === todayKey;
+    var classes = 'auctions-cal-cell';
+    if (count > 0) classes += ' has-auctions';
+    if (isPast) classes += ' past';
+    if (isToday) classes += ' today';
+    if (key === _calSelectedDate) classes += ' selected';
+
+    html += '<div class="' + classes + '"' + (count > 0 ? ' data-date="' + key + '" onclick="openDayDrawer(\'' + key + '\')"' : '') + '>';
+    html += '<span class="auctions-cal-day-num">' + d + '</span>';
+    if (count > 0) {
+      html += '<span class="auctions-cal-dot"></span>';
+      if (count > 1) html += '<span class="auctions-cal-count">' + count + '</span>';
+    }
+    html += '</div>';
+  }
+
+  grid.innerHTML = html;
+
+  // --- Quarterly groupings below calendar ---
+  var quartersEl = document.getElementById('auctions-quarters');
+  if (!quartersEl) return;
+
+  // Collect entries NOT in the current calendar month view — group by quarter
+  var quarterMap = {};
+  var quarterOrder = [];
+  var currentMonthKey = _calYear + '-' + String(_calMonth + 1).padStart(2, '0');
+
+  filtered.forEach(function(e) {
+    if (!e.date || !e.date.year || e.date.day <= 0) return;
+    var mi = _calMonthNamesFull.indexOf(e.date.month);
+    if (mi === -1) {
+      for (var k = 0; k < _calMonthNamesFull.length; k++) {
+        if (_calMonthNamesFull[k].substring(0,3).toLowerCase() === e.date.month.substring(0,3).toLowerCase()) { mi = k; break; }
+      }
+    }
+    if (mi === -1) return;
+    // Skip entries in the current calendar month
+    var entryMonthKey = e.date.year + '-' + String(mi + 1).padStart(2, '0');
+    if (entryMonthKey === currentMonthKey) return;
+
+    var qLabel = calGetQuarter(e);
+    if (!qLabel) return;
+    if (!quarterMap[qLabel]) {
+      quarterMap[qLabel] = [];
+      quarterOrder.push(qLabel);
+    }
+    quarterMap[qLabel].push(e);
+  });
+
+  // Sort quarters chronologically
+  quarterOrder.sort(function(a, b) {
+    var pa = a.match(/Q(\d)\s+(\d+)/);
+    var pb = b.match(/Q(\d)\s+(\d+)/);
+    if (!pa || !pb) return 0;
+    var ka = parseInt(pa[2]) * 10 + parseInt(pa[1]);
+    var kb = parseInt(pb[2]) * 10 + parseInt(pb[1]);
+    return ka - kb;
+  });
+
+  if (quarterOrder.length === 0) {
+    quartersEl.innerHTML = '';
     return;
   }
 
-  container.innerHTML = '';
+  var qHtml = '';
+  quarterOrder.forEach(function(qLabel) {
+    var entries = quarterMap[qLabel];
+    qHtml += '<div class="auctions-quarter">';
+    qHtml += '<div class="auctions-quarter-header" onclick="toggleQuarter(this)">';
+    qHtml += '<span class="auctions-quarter-title">' + escapeHtml(qLabel) + '</span>';
+    qHtml += '<span><span class="auctions-quarter-count">' + entries.length + ' auction' + (entries.length !== 1 ? 's' : '') + '</span>';
+    qHtml += '<span class="auctions-quarter-chevron">&#9660;</span></span>';
+    qHtml += '</div>';
+    qHtml += '<div class="auctions-quarter-body">';
+    entries.forEach(function(e) { qHtml += buildCardHtml(e, false); });
+    qHtml += '</div></div>';
+  });
 
-  // Set up IntersectionObserver for infinite scroll
-  _auctionsObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        _auctionsObserver.unobserve(entry.target);
-        appendAuctionsBatch();
-      }
-    });
-  }, { root: container.closest('.auctions-main'), rootMargin: '200px' });
-
-  // Render first batch
-  appendAuctionsBatch();
+  quartersEl.innerHTML = qHtml;
 }
 
 // Interstitial
