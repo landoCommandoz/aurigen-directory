@@ -1986,6 +1986,7 @@
     }
     .auctions-cal-grid {
       display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;
+      width: 100%; box-sizing: border-box;
     }
     .auctions-cal-dow {
       font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.12em;
@@ -4986,16 +4987,36 @@ function fetchLiveAuctionData() {
           return { month: month, day: day || 0, year: year, sortKey: year * 10000 + mi * 100 + (day || 0), confirmed: false, display: 'Est. ' + month.substring(0,3) + ' ' + year };
         }
 
+        // Clean malformed county names from Supabase scraper data
+        function cleanCountyName(raw) {
+          if (!raw) return 'Statewide';
+          var s = String(raw).trim();
+          // Strip leading URL fragments ("com ", "s ", "http://...", "https://...")
+          s = s.replace(/^https?:\/\/\S+\s*/i, '');
+          s = s.replace(/^com\s+/i, '');
+          s = s.replace(/^s\s+/i, '');
+          // Strip leading noise phrases (e.g. "Municipality Opens URL")
+          s = s.replace(/^(Municipality|Opens?\s+URL|View\s+Details?|Click\s+Here)\s+/gi, '');
+          // Strip any remaining leading URL-like tokens
+          s = s.replace(/^\S*\.\S+\s+/g, '');
+          // Remove all occurrences of "County" (buildCardHtml adds it back)
+          s = s.replace(/\bCounty\b/gi, '').trim();
+          // Collapse multiple spaces
+          s = s.replace(/\s{2,}/g, ' ').trim();
+          return s || 'Statewide';
+        }
+
         var newEntries = [];
         liveAuctions.forEach(function(a) {
-          var dedupKey = (a.state_code || '') + '|' + (a.county || '') + '|' + normPlatformLive(a.platform);
+          var county = cleanCountyName(a.county);
+          var dedupKey = (a.state_code || '') + '|' + county + '|' + normPlatformLive(a.platform);
           if (existingKeys[dedupKey]) return; // skip duplicates
           existingKeys[dedupKey] = true;
 
           newEntries.push({
             stateCode: a.state_code || '',
             stateName: a.state || a.state_code || '',
-            county: a.county || 'Statewide',
+            county: county,
             type: normTypeLive(a.bid_method),
             rate: null,
             platform: normPlatformLive(a.platform),
@@ -5570,6 +5591,13 @@ function renderAuctions() {
       if (count > 1) html += '<span class="auctions-cal-count">' + count + '</span>';
     }
     html += '</div>';
+  }
+
+  // Trailing empty cells to complete the last row
+  var totalCells = firstDay + daysInMonth;
+  var trailing = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+  for (var t = 0; t < trailing; t++) {
+    html += '<div class="auctions-cal-cell empty"><span class="auctions-cal-day-num"></span></div>';
   }
 
   grid.innerHTML = html;
