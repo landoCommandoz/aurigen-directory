@@ -34,28 +34,27 @@ async function generatePulseAlerts() {
     for (const a of upcoming) {
       const daysOut = Math.ceil((new Date(a.auction_date) - today) / 86400000);
       const stateName = a.state || getStateName(a.state_code) || a.state_code;
-      const title = stateName + ' — ' + a.county + ' auction in ' + daysOut + ' day' + (daysOut !== 1 ? 's' : '');
+      const alertText = stateName + ' — ' + a.county + ' auction in ' + daysOut + ' day' + (daysOut !== 1 ? 's' : '');
 
       const { error, status } = await supabase
         .from('pulse_alerts')
         .upsert(
           {
-            title: title,
-            body: 'Upcoming ' + a.platform + ' auction on ' + a.auction_date + ' in ' + a.county + ', ' + stateName + '. Verify registration deadlines directly with the platform.',
+            alert_text: alertText,
+            type: 'upcoming',
             state_code: a.state_code,
-            county: a.county,
-            alert_type: 'upcoming',
+            date: a.auction_date,
             auction_date: a.auction_date,
             active: true,
           },
           {
-            onConflict: 'state_code,county,auction_date',
+            onConflict: 'state_code,auction_date',
             ignoreDuplicates: true,
           }
         );
 
       if (error) {
-        console.warn('[pulse] Per-auction insert error:', error.message, '| state:', a.state_code, 'county:', a.county);
+        console.warn('[pulse] Per-auction insert error:', error.message, '| state:', a.state_code, 'date:', a.auction_date);
         errors++;
       } else if (status === 200) {
         // 200 = existing row, no change
@@ -103,20 +102,21 @@ async function generatePulseAlerts() {
         : countyList.slice(0, 3).join(', ') + ' + ' + (countyList.length - 3) + ' more';
       const title = stateName + ' — ' + g.count + ' upcoming ' + g.platform + ' auction' + (g.count !== 1 ? 's' : '');
 
+      const alertText = title + '. ' + countyPreview + '. Next sale: ' + g.earliest;
+
       const { error } = await supabase
         .from('pulse_alerts')
         .upsert(
           {
-            title: title,
-            body: g.count + ' auction' + (g.count !== 1 ? 's' : '') + ' scheduled via ' + g.platform + ' across ' + countyList.length + ' count' + (countyList.length !== 1 ? 'ies' : 'y') + ': ' + countyPreview + '. Next sale: ' + g.earliest + '.',
+            alert_text: alertText,
+            type: 'intel',
             state_code: g.state_code,
-            county: '_summary_' + g.platform,
-            alert_type: 'intel',
+            date: g.earliest,
             auction_date: g.earliest,
             active: true,
           },
           {
-            onConflict: 'state_code,county,auction_date',
+            onConflict: 'state_code,auction_date',
             ignoreDuplicates: false,
           }
         );
