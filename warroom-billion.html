@@ -1150,9 +1150,9 @@
     .callout-animate{animation:calloutIn 250ms ease-out forwards}
 
     /* === MOBILE MAP FILTER === */
-    #mfp-mobile-btn{display:none;position:fixed;bottom:80px;right:16px;z-index:90;width:48px;height:48px;border-radius:24px;background:var(--accent);border:none;cursor:pointer;box-shadow:0 4px 16px rgba(201,168,76,0.3);align-items:center;justify-content:center;font-size:18px;color:#0a0a0a;transition:transform 150ms ease-out}
+    #mfp-mobile-btn{display:none;position:absolute;top:12px;right:12px;z-index:10;width:44px;height:44px;border-radius:50%;background:var(--accent);border:none;cursor:pointer;box-shadow:0 4px 16px rgba(201,168,76,0.4);align-items:center;justify-content:center;font-size:18px;color:#06060a;transition:transform 150ms ease-out}
     #mfp-mobile-btn:hover{transform:scale(1.06)}
-    #mfp-mobile-drawer{display:none;position:fixed;bottom:0;left:0;right:0;z-index:95;background:#111116;border-top:1px solid var(--border);border-radius:12px 12px 0 0;max-height:60vh;overflow-y:auto;transform:translateY(100%);transition:transform 300ms ease-out;padding:16px 16px 24px}
+    #mfp-mobile-drawer{display:none;position:absolute;top:0;left:0;right:0;z-index:15;background:var(--bg3);border-bottom:1px solid var(--border);border-radius:0 0 12px 12px;max-height:60vh;overflow-y:auto;transform:translateY(-100%);transition:transform 300ms ease-out;padding:16px 16px 24px}
     #mfp-mobile-drawer.open{transform:translateY(0)}
     #mfp-drawer-overlay{display:none;position:fixed;inset:0;z-index:94;background:rgba(0,0,0,0.5)}
     .mfp-drawer-handle{width:36px;height:4px;border-radius:2px;background:rgba(255,255,255,0.15);margin:0 auto 14px}
@@ -2528,7 +2528,6 @@
             <div class="brand-name">AURIGEN</div>
             <div class="brand-sub" data-i18n="map_brand_sub">COUNTY RESOURCE DIRECTORY</div>
           </div>
-          <div id="type-legend"></div>
         </div>
         <div id="tabs">
           <button class="tab active" onclick="switchExploreView('map')">&#9707;  MAP</button>
