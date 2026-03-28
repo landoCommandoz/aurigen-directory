@@ -127,7 +127,15 @@ async function cleanupOldAuctions() {
 // ── Clean text ───────────────────────────────────────────────
 function cleanText(str) {
   if (!str) return '';
-  return str.replace(/[\r\n\t]+/g, ' ').replace(/\s+/g, ' ').replace(/[^\x20-\x7E]/g, '').trim();
+  return str
+    .replace(/[\r\n\t]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(/[^\x20-\x7E]/g, '')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .trim();
 }
 
 // ── Clean county name ───────────────────────────────────────

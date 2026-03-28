@@ -6,11 +6,40 @@
 
 const { getSupabase, logScrapeRun, cleanText, fetchWithTimeout } = require('./utils');
 
+// ── SSRF protection — only fetch from known auction platform domains ─
+const ALLOWED_DOMAINS = [
+  'realauction.com',
+  'www.realauction.com',
+  'govease.com',
+  'www.govease.com',
+  'bid4assets.com',
+  'www.bid4assets.com',
+  'sri.com',
+  'www.sri.com',
+];
+
+function isAllowedUrl(url) {
+  try {
+    var parsed = new URL(url);
+    if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') return false;
+    var host = parsed.hostname.toLowerCase();
+    return ALLOWED_DOMAINS.some(function(d) {
+      return host === d || host.endsWith('.' + d);
+    });
+  } catch (e) {
+    return false;
+  }
+}
+
 // ── Rate-limited fetch ──────────────────────────────────────
 // 2 second delay between requests to avoid aggressive scraping
 let _lastFetchTime = 0;
 
 async function rateLimitedFetch(url, options) {
+  if (!isAllowedUrl(url)) {
+    console.error('[properties] Blocked fetch to disallowed URL:', url);
+    return null;
+  }
   const now = Date.now();
   const elapsed = now - _lastFetchTime;
   if (elapsed < 2000) {
@@ -145,6 +174,7 @@ function parseTableRow(trHtml) {
 async function fetchPropertyPage(url) {
   try {
     var response = await rateLimitedFetch(url);
+    if (!response) return null;
     if (!response.ok) {
       console.error('[properties] HTTP ' + response.status + ' from ' + url);
       return null;

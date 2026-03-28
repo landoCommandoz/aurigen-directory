@@ -24,6 +24,9 @@ CREATE INDEX IF NOT EXISTS idx_auctions_state_code ON auctions (state_code);
 CREATE INDEX IF NOT EXISTS idx_auctions_date ON auctions (auction_date);
 CREATE INDEX IF NOT EXISTS idx_auctions_active ON auctions (active);
 
+-- Enable RLS — only service role key can read/write
+ALTER TABLE auctions ENABLE ROW LEVEL SECURITY;
+
 -- ── Pulse Alerts table ─────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS pulse_alerts (
   id           BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -41,6 +44,9 @@ CREATE INDEX IF NOT EXISTS idx_pulse_state ON pulse_alerts (state_code);
 CREATE INDEX IF NOT EXISTS idx_pulse_active ON pulse_alerts (active);
 CREATE INDEX IF NOT EXISTS idx_pulse_auction_date ON pulse_alerts (auction_date);
 
+-- Enable RLS — only service role key can read/write
+ALTER TABLE pulse_alerts ENABLE ROW LEVEL SECURITY;
+
 -- ── Scrape Log table ───────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS scrape_log (
   id             BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -54,6 +60,9 @@ CREATE TABLE IF NOT EXISTS scrape_log (
 
 CREATE INDEX IF NOT EXISTS idx_scrape_log_platform ON scrape_log (platform);
 CREATE INDEX IF NOT EXISTS idx_scrape_log_ran_at ON scrape_log (ran_at);
+
+-- Enable RLS — only service role key can read/write
+ALTER TABLE scrape_log ENABLE ROW LEVEL SECURITY;
 
 -- ── Paid Users table (Stripe webhook → access verification) ───
 CREATE TABLE IF NOT EXISTS paid_users (
