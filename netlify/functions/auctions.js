@@ -1,5 +1,20 @@
 const { createClient } = require('@supabase/supabase-js');
 
+// Simple in-memory rate limiter for expensive endpoints (warbook)
+// Resets on cold start — lightweight protection, not a full solution
+const _rateLimitMap = {};
+const RATE_LIMIT_MAX = 10;
+const RATE_LIMIT_WINDOW_MS = 60000;
+function checkRateLimit(ip) {
+  const now = Date.now();
+  if (!_rateLimitMap[ip] || now - _rateLimitMap[ip].start > RATE_LIMIT_WINDOW_MS) {
+    _rateLimitMap[ip] = { start: now, count: 1 };
+    return true;
+  }
+  _rateLimitMap[ip].count++;
+  return _rateLimitMap[ip].count <= RATE_LIMIT_MAX;
+}
+
 const ALLOWED_ORIGINS = [
   'https://aurigendirectory.com',
   'https://www.aurigendirectory.com',
@@ -159,6 +174,11 @@ exports.handler = async (event) => {
 
     // Warbook aggregation endpoint
     if (params.type === 'warbook') {
+      // Rate limit: 10 req/min per IP
+      const clientIp = (event.headers || {})['x-forwarded-for'] || (event.headers || {})['client-ip'] || 'unknown';
+      if (!checkRateLimit(clientIp)) {
+        return { statusCode: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json', 'Retry-After': '60' }, body: JSON.stringify({ error: 'Rate limit exceeded. Try again in 60 seconds.' }) };
+      }
       // Paid-only gate
       const wbEmail = (params.email || '').toLowerCase().trim();
       if (!wbEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(wbEmail)) {

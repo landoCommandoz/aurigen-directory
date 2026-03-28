@@ -10,6 +10,24 @@
 //   SUPABASE_URL              — Supabase project URL
 //   SUPABASE_SERVICE_ROLE_KEY — Supabase service role key (bypasses RLS)
 
+var crypto = require('crypto');
+
+function base64url(buf) {
+  return Buffer.from(buf).toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+}
+
+function signJwt(payload, secret) {
+  var header = { alg: 'HS256', typ: 'JWT' };
+  var now = Math.floor(Date.now() / 1000);
+  payload.iat = now;
+  payload.exp = now + 86400; // 24 hours
+  var segments = [base64url(JSON.stringify(header)), base64url(JSON.stringify(payload))];
+  var sigInput = segments.join('.');
+  var sig = crypto.createHmac('sha256', secret).update(sigInput).digest();
+  segments.push(base64url(sig));
+  return segments.join('.');
+}
+
 const ALLOWED_ORIGINS = [
   'https://aurigen-directory.netlify.app',
   'https://statuesque-bublanina-330b9d.netlify.app',
@@ -163,11 +181,14 @@ exports.handler = async function(event) {
       // Still return verified — payment was confirmed by Stripe
     }
 
+    // Generate JWT for client-side session validation
+    var jwt = signJwt({ email: customerEmail, tier: 'paid' }, process.env.SUPABASE_SERVICE_ROLE_KEY);
+
     console.log('[VERIFY-SESSION] Payment verified for session:', session.id);
     return {
       statusCode: 200,
       headers: headers,
-      body: JSON.stringify({ verified: true, email: customerEmail })
+      body: JSON.stringify({ verified: true, email: customerEmail, jwt: jwt })
     };
 
   } catch (err) {

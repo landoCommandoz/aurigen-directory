@@ -2668,6 +2668,10 @@
     .warbook-loading{text-align:center;padding:40px 20px}
     .warbook-loading-spinner{width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
     .warbook-disclaimer{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:var(--text2);opacity:0.5;margin-top:20px;line-height:1.5;padding:0 12px}
+    .warbook-tip-wrap{position:relative;display:inline-flex;align-items:center;gap:4px}
+    .warbook-tip-icon{width:14px;height:14px;border-radius:50%;border:1px solid var(--border);font-size:9px;display:inline-flex;align-items:center;justify-content:center;color:var(--text2);cursor:help;flex-shrink:0}
+    .warbook-tip-card{display:none;position:absolute;top:100%;left:0;margin-top:6px;background:rgba(15,15,15,0.95);border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:10px 12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:var(--text2);line-height:1.5;width:260px;z-index:50;pointer-events:none}
+    .warbook-tip-wrap:hover .warbook-tip-card,.warbook-tip-wrap:focus-within .warbook-tip-card{display:block}
     @media(max-width:768px){
       .warbook-table th,.warbook-table td{padding:8px 6px;font-size:11px}
       .warbook-explore{display:none}
@@ -2706,6 +2710,72 @@
     .deadlines-disclaimer{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:var(--text2);opacity:0.5;margin-top:20px;line-height:1.5}
     @media(max-width:768px){
       .deadlines-grid{grid-template-columns:1fr}
+    }
+
+    /* === RECON === */
+    #panel-recon{flex-direction:column;min-height:0}
+    .recon-wrap{padding:20px;overflow-y:auto;flex:1;min-height:0}
+    .recon-hdr{margin-bottom:20px}
+    .recon-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);letter-spacing:0.04em;line-height:1}
+    .recon-sub{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:var(--text2);margin-top:6px;line-height:1.5}
+    .recon-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+    .recon-form label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--text2);text-transform:uppercase;display:block;margin-bottom:4px}
+    .recon-form select,.recon-form input{width:100%;padding:10px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px}
+    .recon-form select:focus,.recon-form input:focus{outline:none;border-color:rgba(201,168,76,0.3)}
+    .recon-start-btn{grid-column:1/-1;padding:12px;border:none;border-radius:6px;background:var(--accent);color:#06060a;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:opacity 0.2s}
+    .recon-start-btn:hover{opacity:0.9}
+    .recon-steps{margin-top:16px}
+    .recon-step{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px;transition:border-color 0.2s}
+    .recon-step.checked{border-color:rgba(201,168,76,0.25)}
+    .recon-step-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 0.2s;font-size:12px}
+    .recon-step.checked .recon-step-check{background:var(--accent);border-color:var(--accent);color:#06060a}
+    .recon-step-body{flex:1;min-width:0}
+    .recon-step-title{font-size:13px;font-weight:600;color:var(--text)}
+    .recon-step-desc{font-size:11px;color:var(--text2);margin-top:3px;line-height:1.5}
+    .recon-step-num{font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);margin-bottom:2px}
+    .recon-disclaimer{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:var(--text2);opacity:0.5;margin-top:20px;line-height:1.5}
+    @media(max-width:768px){
+      .recon-form{grid-template-columns:1fr}
+    }
+
+    /* === DOSSIER === */
+    #panel-dossier{flex-direction:column;min-height:0}
+    .dossier-wrap{padding:20px;overflow-y:auto;flex:1;min-height:0}
+    .dossier-hdr{margin-bottom:20px}
+    .dossier-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);letter-spacing:0.04em;line-height:1}
+    .dossier-sub{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:var(--text2);margin-top:6px;line-height:1.5}
+    .dossier-form{display:flex;gap:12px;align-items:flex-end;margin-bottom:20px;flex-wrap:wrap}
+    .dossier-form label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--text2);text-transform:uppercase;display:block;margin-bottom:4px}
+    .dossier-form select{padding:10px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;min-width:120px}
+    .dossier-form select:focus{outline:none;border-color:rgba(201,168,76,0.3)}
+    .dossier-gen-btn{padding:12px 20px;border:none;border-radius:6px;background:var(--accent);color:#06060a;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:opacity 0.2s;white-space:nowrap}
+    .dossier-gen-btn:hover{opacity:0.9}
+    .dossier-output{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px}
+    .dossier-section{margin-bottom:20px}
+    .dossier-section-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--accent);text-transform:uppercase;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(201,168,76,0.15)}
+    .dossier-row{display:flex;justify-content:space-between;padding:4px 0;font-size:13px}
+    .dossier-row-label{color:var(--text2)}
+    .dossier-row-value{color:var(--text);font-weight:600}
+    .dossier-notes{width:100%;min-height:120px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:12px;resize:vertical}
+    .dossier-notes:focus{outline:none;border-color:rgba(201,168,76,0.3)}
+    .dossier-actions{display:flex;gap:10px;margin-bottom:16px}
+    .dossier-print-btn,.dossier-copy-btn{flex:1;padding:12px;border-radius:6px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;text-align:center}
+    .dossier-print-btn{border:none;background:var(--accent);color:#06060a}
+    .dossier-print-btn:hover{opacity:0.9}
+    .dossier-copy-btn{border:1px solid var(--border);background:transparent;color:var(--accent)}
+    .dossier-copy-btn:hover{border-color:var(--accent);background:rgba(201,168,76,0.08)}
+    .dossier-disclaimer{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:var(--text2);opacity:0.5;margin-top:20px;line-height:1.5}
+    .dossier-loading{text-align:center;padding:40px;color:var(--text2);font-size:12px}
+    @media print{
+      body>*:not(#panel-dossier){display:none!important}
+      #panel-dossier{display:block!important;position:static!important}
+      .dossier-wrap{padding:0}
+      .dossier-output{background:#fff;color:#000;border:1px solid #ccc}
+      .dossier-section-title{color:#333}
+      .dossier-row-label{color:#666}
+      .dossier-row-value{color:#000}
+      .dossier-actions,.dossier-form,.dossier-hdr,.dossier-disclaimer,.paywall-lock{display:none!important}
+      .dossier-notes{border:1px solid #ccc;color:#000;background:#fafafa}
     }
 
     /* === WELCOME OVERLAY (post-payment) === */
@@ -2909,6 +2979,12 @@
     .journey-line.complete{background:var(--accent)}
     .journey-label{position:absolute;top:24px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:7px;letter-spacing:0.06em;color:var(--text2);white-space:nowrap;pointer-events:none}
     .journey-dot.complete .journey-label{color:var(--accent)}
+    .journey-next-card{display:none;margin-top:6px;background:rgba(15,15,15,0.95);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:8px 12px;max-width:600px;width:100%;font-size:11px;color:var(--text2);line-height:1.4;position:relative;animation:fadeIn 200ms ease-out}
+    .journey-next-card.visible{display:flex;align-items:center;gap:8px}
+    .journey-next-card-text{flex:1;cursor:pointer}
+    .journey-next-card-text:hover{color:var(--accent)}
+    .journey-next-card-close{background:none;border:none;color:var(--text2);font-size:14px;cursor:pointer;padding:0 4px;opacity:0.5}
+    .journey-next-card-close:hover{opacity:1}
     @media(max-width:600px){
       #journey-bar{padding:6px 8px}
       .journey-dot{width:16px;height:16px;font-size:8px}
@@ -2967,6 +3043,8 @@
       <button class="tools-dropdown-item" onclick="switchToolsTab('scout')"><span class="tools-dropdown-icon">&#128270;</span>Scout Checklist</button>
       <button class="tools-dropdown-item" onclick="switchToolsTab('warbook')"><span class="tools-dropdown-icon">&#128214;</span>Warbook</button>
       <button class="tools-dropdown-item" onclick="switchToolsTab('deadlines')"><span class="tools-dropdown-icon">&#128197;</span>Deadlines</button>
+      <button class="tools-dropdown-item" onclick="switchToolsTab('recon')"><span class="tools-dropdown-icon">&#128506;</span>Recon</button>
+      <button class="tools-dropdown-item" onclick="switchToolsTab('dossier')"><span class="tools-dropdown-icon">&#128196;</span>Dossier</button>
     </div>
     <!-- Nav tabs consolidated: Intelligence, Calendar, Account + TOOLS dropdown -->
     <span id="nav-active-label" data-i18n="nav_map">Map</span>
@@ -3562,7 +3640,7 @@
         </div>
         <div class="warbook-disclaimer">Competition ratings are estimates based on publicly available auction data and property counts. They do not constitute investment advice. Verify all data with official county sources before making investment decisions.</div>
       </div>
-      <div class="paywall-lock" id="lock-warbook-tab" style="display:none"><span class="walkthrough-label">UNLOCK WARBOOK</span><div class="walkthrough-preview-img"><table style="width:100%;font-size:10px;color:var(--text2);border-collapse:collapse"><tr><td style="padding:4px;font-weight:700;color:var(--accent)">TX</td><td style="padding:4px">&#9733;&#9733;&#9733;&#9734;&#9734;</td><td style="padding:4px">$8,200</td><td style="padding:4px;color:var(--green)">+42%</td></tr><tr><td style="padding:4px;font-weight:700;color:var(--accent)">FL</td><td style="padding:4px">&#9733;&#9733;&#9733;&#9733;&#9734;</td><td style="padding:4px">$3,100</td><td style="padding:4px;color:var(--green)">+28%</td></tr></table></div><span class="walkthrough-desc">See which states have low, moderate, or institutional-level competition. Find OTC opportunities and lower-competition counties.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+      <div class="paywall-lock" id="lock-warbook-tab" style="display:none"><span class="walkthrough-label">UNLOCK WARBOOK</span><div class="walkthrough-preview-img"><table style="width:100%;font-size:10px;color:var(--text2);border-collapse:collapse"><tr><td style="padding:4px;font-weight:700;color:var(--accent)">TX</td><td style="padding:4px">&#9733;&#9733;&#9733;&#9734;&#9734;</td><td style="padding:4px">$8,200</td><td style="padding:4px;color:var(--green)">+42%</td></tr><tr><td style="padding:4px;font-weight:700;color:var(--accent)">FL</td><td style="padding:4px">&#9733;&#9733;&#9733;&#9733;&#9734;</td><td style="padding:4px">$3,100</td><td style="padding:4px;color:var(--green)">+28%</td></tr></table><div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.1em;color:var(--text2);opacity:0.5;text-align:center;margin-top:6px">SAMPLE DATA FOR ILLUSTRATION ONLY</div></div><span class="walkthrough-desc">See which states have low, moderate, or institutional-level competition. Find OTC opportunities and lower-competition counties.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
     </div>
 
     <!-- DEADLINES -->
@@ -3587,7 +3665,45 @@
         </div>
         <div class="deadlines-disclaimer">Auction dates are based on published county schedules and may change without notice. Always confirm registration deadlines, deposit requirements, and auction times directly with the official county authority. This tool does not constitute financial or legal advice.</div>
       </div>
-      <div class="paywall-lock" id="lock-deadlines-tab" style="display:none"><span class="walkthrough-label">UNLOCK DEADLINES</span><div class="walkthrough-preview-img"><div style="display:flex;gap:8px"><div style="background:var(--bg3);border:1px solid rgba(232,93,138,0.3);border-radius:6px;padding:8px;flex:1;text-align:center"><div style="font-family:'Space Mono',monospace;font-size:16px;font-weight:700;color:var(--pink)">5</div><div style="font-size:8px;color:var(--text2)">DAYS LEFT</div><div style="font-size:9px;color:var(--text2);margin-top:4px">Harris County, TX</div></div><div style="background:var(--bg3);border:1px solid rgba(201,168,76,0.3);border-radius:6px;padding:8px;flex:1;text-align:center"><div style="font-family:'Space Mono',monospace;font-size:16px;font-weight:700;color:var(--accent)">18</div><div style="font-size:8px;color:var(--text2)">DAYS LEFT</div><div style="font-size:9px;color:var(--text2);margin-top:4px">Miami-Dade, FL</div></div></div></div><span class="walkthrough-desc">Countdown dashboard for upcoming auctions. Track registration deadlines, deposit windows, and set reminders so you never miss an opportunity.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+      <div class="paywall-lock" id="lock-deadlines-tab" style="display:none"><span class="walkthrough-label">UNLOCK DEADLINES</span><div class="walkthrough-preview-img"><div style="display:flex;gap:8px"><div style="background:var(--bg3);border:1px solid rgba(232,93,138,0.3);border-radius:6px;padding:8px;flex:1;text-align:center"><div style="font-family:'Space Mono',monospace;font-size:16px;font-weight:700;color:var(--pink)">5</div><div style="font-size:8px;color:var(--text2)">DAYS LEFT</div><div style="font-size:9px;color:var(--text2);margin-top:4px">Harris County, TX</div></div><div style="background:var(--bg3);border:1px solid rgba(201,168,76,0.3);border-radius:6px;padding:8px;flex:1;text-align:center"><div style="font-family:'Space Mono',monospace;font-size:16px;font-weight:700;color:var(--accent)">18</div><div style="font-size:8px;color:var(--text2)">DAYS LEFT</div><div style="font-size:9px;color:var(--text2);margin-top:4px">Miami-Dade, FL</div></div></div><div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.1em;color:var(--text2);opacity:0.5;text-align:center;margin-top:6px">SAMPLE DATA FOR ILLUSTRATION ONLY</div></div><span class="walkthrough-desc">Countdown dashboard for upcoming auctions. Track registration deadlines, deposit windows, and set reminders so you never miss an opportunity.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+    </div>
+
+    <!-- RECON -->
+    <div class="tab-panel" id="panel-recon">
+      <div class="recon-wrap">
+        <div class="recon-hdr">
+          <div class="recon-title">RECON</div>
+          <div class="recon-sub">Step-by-step auction walkthrough. Select your state, county, platform, and auction type to get a customized checklist.</div>
+        </div>
+        <div class="recon-form" id="recon-form">
+          <div><label>State</label><select id="recon-state"></select></div>
+          <div><label>County</label><input id="recon-county" type="text" placeholder="e.g. Miami-Dade"></div>
+          <div><label>Platform</label><select id="recon-platform"><option value="realauction">RealAuction</option><option value="govease">GovEase</option><option value="sri">SRI</option><option value="bid4assets">Bid4Assets</option><option value="other">Other</option></select></div>
+          <div><label>Auction Type</label><select id="recon-type"><option value="lien">Tax Lien</option><option value="deed">Tax Deed</option></select></div>
+          <button class="recon-start-btn" data-action="recon-start">START WALKTHROUGH</button>
+        </div>
+        <div class="recon-steps" id="recon-steps"></div>
+        <div class="recon-disclaimer">For informational purposes only. Not legal or investment advice. Always verify deadlines, deposit requirements, and procedures directly with the official county authority before participating in any auction.</div>
+      </div>
+      <div class="paywall-lock" id="lock-recon-tab" style="display:none"><span class="walkthrough-label">UNLOCK RECON</span><div class="walkthrough-preview-img"><div style="font-size:10px;color:var(--text2);line-height:1.8"><div><span style="color:var(--accent);font-weight:700">1.</span> Verify registration deadline</div><div><span style="color:var(--accent);font-weight:700">2.</span> Confirm deposit requirements</div><div><span style="color:var(--accent);font-weight:700">3.</span> Research the property</div><div style="opacity:0.3"><span style="color:var(--accent);font-weight:700">4.</span> Set your maximum bid</div><div style="opacity:0.15"><span style="color:var(--accent);font-weight:700">5.</span> Attend the auction</div></div><div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.1em;color:var(--text2);opacity:0.5;text-align:center;margin-top:6px">SAMPLE DATA FOR ILLUSTRATION ONLY</div></div><span class="walkthrough-desc">Step-by-step auction walkthrough customized for your target county and platform. Know exactly what to do from registration to recording.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+    </div>
+
+    <!-- DOSSIER -->
+    <div class="tab-panel" id="panel-dossier">
+      <div class="dossier-wrap">
+        <div class="dossier-hdr">
+          <div class="dossier-title">DOSSIER</div>
+          <div class="dossier-sub">Printable county briefing. Select a state and county to generate a one-page investment summary.</div>
+        </div>
+        <div class="dossier-form" id="dossier-form">
+          <div><label>State</label><select id="dossier-state"></select></div>
+          <div><label>County</label><select id="dossier-county"></select></div>
+          <button class="dossier-gen-btn" data-action="dossier-generate">GENERATE DOSSIER</button>
+        </div>
+        <div id="dossier-output" style="display:none"></div>
+        <div class="dossier-disclaimer">For informational purposes only. Not legal or investment advice. All data should be independently verified with official county sources before making investment decisions.</div>
+      </div>
+      <div class="paywall-lock" id="lock-dossier-tab" style="display:none"><span class="walkthrough-label">UNLOCK DOSSIER</span><div class="walkthrough-preview-img"><div style="font-size:10px;color:var(--text2);line-height:1.8"><div style="font-family:'Space Mono',monospace;font-size:8px;color:var(--accent);margin-bottom:4px">COUNTY OVERVIEW</div><div>State: FL &bull; Type: Tax Lien</div><div>Redemption: 24 months</div><div style="font-family:'Space Mono',monospace;font-size:8px;color:var(--accent);margin-top:6px;margin-bottom:4px">OPPORTUNITY SCORE</div><div>Score: 82 &bull; Tier: Strong</div></div><div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.1em;color:var(--text2);opacity:0.5;text-align:center;margin-top:6px">SAMPLE DATA FOR ILLUSTRATION ONLY</div></div><span class="walkthrough-desc">One-page printable county briefing with overview, opportunity score, live inventory snapshot, upcoming auctions, and your strategy notes.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
     </div>
 
     <div class="tab-panel" id="panel-account">
@@ -3609,7 +3725,7 @@
         </div>
         <div class="account-row" id="acct-locked-row">
           <span class="account-row-label" data-i18n="acct_locked">Locked Features</span>
-          <span class="account-row-value" id="acct-locked" data-i18n="acct_locked_val">Counties, DNA, Versus, Analyzer, Sage, Scout, Warbook, Deadlines, Auctions, Pulse</span>
+          <span class="account-row-value" id="acct-locked" data-i18n="acct_locked_val">Counties, DNA, Versus, Analyzer, Sage, Scout, Warbook, Deadlines, Recon, Dossier, Auctions, Pulse</span>
         </div>
         <div id="acct-value-section" class="acct-value-section">
           <div class="value-section-label" data-i18n="acct_what_unlock">WHAT YOU UNLOCK</div>
@@ -3682,6 +3798,10 @@
       <div class="journey-line" id="jb-line-4"></div>
       <div class="journey-dot" id="jb-dot-access"><span class="journey-label">ACCESS</span></div>
     </div>
+    <div class="journey-next-card" id="journey-next-card">
+      <span class="journey-next-card-text" id="journey-next-text"></span>
+      <button class="journey-next-card-close" id="journey-next-close" aria-label="Dismiss">&times;</button>
+    </div>
   </div>
   <footer id="disclaimer-footer">
     <div id="disclaimer-full">
@@ -3713,22 +3833,57 @@
       window.location.href = '/';
       return;
     }
-    // Server-verify access on load if email is stored
-    var email = localStorage.getItem('aurigen_email');
-    if (email) {
-      fetch('/.netlify/functions/check-access', {
+    // JWT validation (primary) — if JWT exists, validate server-side
+    var jwt = localStorage.getItem('aurigen_jwt');
+    if (jwt) {
+      var jwtTimeout = setTimeout(function() {
+        // Timeout fallback: trust localStorage tier
+      }, 2000);
+      fetch('/.netlify/functions/validate-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email })
+        body: JSON.stringify({ jwt: jwt })
       })
       .then(function(r) { return r.json(); })
       .then(function(data) {
-        var serverTier = data.access || 'free';
-        try { localStorage.setItem('aurigen_access', serverTier); } catch(e) {}
-        // If tier changed, reload to apply new locks
-        if (serverTier !== access) { location.reload(); }
+        clearTimeout(jwtTimeout);
+        if (data.valid && data.tier === 'paid') {
+          // JWT valid — ensure localStorage matches
+          try {
+            localStorage.setItem('aurigen_access', 'paid');
+            localStorage.setItem('aurigen_email', data.email || '');
+          } catch(e) {}
+          if (access !== 'paid') { location.reload(); }
+        } else {
+          // JWT invalid/expired — clear and fall back
+          try {
+            localStorage.removeItem('aurigen_jwt');
+            localStorage.setItem('aurigen_access', 'free');
+          } catch(e) {}
+          if (access === 'paid') { location.reload(); }
+        }
       })
-      .catch(function() { /* Offline: trust cached tier */ });
+      .catch(function() {
+        clearTimeout(jwtTimeout);
+        // Network error: trust cached tier
+      });
+    } else {
+      // No JWT — server-verify access via email (legacy path)
+      var email = localStorage.getItem('aurigen_email');
+      if (email) {
+        fetch('/.netlify/functions/check-access', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          var serverTier = data.access || 'free';
+          try { localStorage.setItem('aurigen_access', serverTier); } catch(e) {}
+          if (serverTier !== access) { location.reload(); }
+        })
+        .catch(function() { /* Offline: trust cached tier */ });
+      }
     }
   } catch(e) {}
 })();
@@ -3873,7 +4028,7 @@ var I18N = {
     acct_email:'Email', acct_level:'Access Level', acct_level_free:'Free', acct_level_paid:'Full Access',
     acct_map:'Map Access', acct_map_val:'All 51 States',
     acct_locked:'Locked Features',
-    acct_locked_val:'Counties, DNA, Versus, Analyzer, Sage, Scout, Warbook, Deadlines, Auctions, Pulse',
+    acct_locked_val:'Counties, DNA, Versus, Analyzer, Sage, Scout, Warbook, Deadlines, Recon, Dossier, Auctions, Pulse',
     acct_what_unlock:'WHAT YOU UNLOCK',
     vc_county:'County Directory', vc_dna:'DNA Investor Profiler',
     vc_versus:'Versus Comparison', vc_analyzer:'Deal Analyzer',
@@ -3986,7 +4141,7 @@ var I18N = {
     acct_email:'Email', acct_level:'Nivel de Acceso', acct_level_free:'Gratuito', acct_level_paid:'Acceso Completo',
     acct_map:'Acceso al Mapa', acct_map_val:'Los 51 Estados',
     acct_locked:'Funciones Bloqueadas',
-    acct_locked_val:'Condados, DNA, Versus, Analizador, Sage, Scout, Warbook, Deadlines, Subastas, Pulse',
+    acct_locked_val:'Condados, DNA, Versus, Analizador, Sage, Scout, Warbook, Deadlines, Recon, Dossier, Subastas, Pulse',
     acct_what_unlock:'LO QUE DESBLOQUEAS',
     vc_county:'Directorio de Condados', vc_dna:'Perfil de Inversor DNA',
     vc_versus:'Comparaci\u00f3n Versus', vc_analyzer:'Analizador de Negocios',
@@ -4089,7 +4244,7 @@ var STRIPE_URL = 'https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02';
 
 function applyAccessLocks() {
   // Tab-level locks (paid only) — includes Auctions now
-  var tabLocks = ['lock-dna-tab', 'lock-advisor-tab', 'lock-tools-tab', 'lock-scout-tab', 'lock-warbook-tab', 'lock-deadlines-tab', 'lock-auctions-tab'];
+  var tabLocks = ['lock-dna-tab', 'lock-advisor-tab', 'lock-tools-tab', 'lock-scout-tab', 'lock-warbook-tab', 'lock-deadlines-tab', 'lock-recon-tab', 'lock-dossier-tab', 'lock-auctions-tab'];
   tabLocks.forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.style.display = IS_PAID ? 'none' : 'flex';
@@ -4109,6 +4264,8 @@ function applyAccessLocks() {
     'lock-scout-tab': 'panel-scout',
     'lock-warbook-tab': 'panel-warbook',
     'lock-deadlines-tab': 'panel-deadlines',
+    'lock-recon-tab': 'panel-recon',
+    'lock-dossier-tab': 'panel-dossier',
     'lock-auctions-tab': 'panel-auctions'
   };
   // Versus uses tab-locked for FOUC prevention (hides terminal until JS runs)
@@ -4221,7 +4378,7 @@ function updateTierBadge() {
 }
 
 // === TAB SWITCHING ===
-var TOOLS_TABS = ['dna', 'advisor', 'tools', 'versus', 'scout', 'warbook', 'deadlines'];
+var TOOLS_TABS = ['dna', 'advisor', 'tools', 'versus', 'scout', 'warbook', 'deadlines', 'recon', 'dossier'];
 
 function switchTab(name) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -4241,6 +4398,8 @@ function switchTab(name) {
   // Lazy init for Warbook and Deadlines
   if (name === 'warbook' && typeof initWarbook === 'function') initWarbook();
   if (name === 'deadlines' && typeof initDeadlines === 'function') initDeadlines();
+  if (name === 'recon' && typeof initRecon === 'function') initRecon();
+  if (name === 'dossier' && typeof initDossier === 'function') initDossier();
 }
 
 function toggleToolsMenu(e) {
@@ -7159,6 +7318,7 @@ function initAccount() {
           '<a class="acct-quick-link" onclick="switchTab(\'scout\')"><span class="acct-quick-link-icon">\uD83D\uDD0D</span>Open Scout Checklist</a>' +
           '<a class="acct-quick-link" onclick="switchTab(\'tools\')"><span class="acct-quick-link-icon">\uD83D\uDCC8</span>Open Deal Analyzer</a>' +
           '<a class="acct-quick-link" onclick="togglePulseDrawer()"><span class="acct-quick-link-icon">\uD83D\uDD14</span>Set Pulse Alerts</a>' +
+          '<a class="acct-quick-link" data-action="precall-summary"><span class="acct-quick-link-icon">\uD83D\uDCCB</span>Pre-Call Summary</a>' +
         '</div>';
     }
 
@@ -7177,7 +7337,7 @@ function initAccount() {
     level.textContent = 'Free';
     states.textContent = 'All 51 States';
     var locked = document.getElementById('acct-locked');
-    if (locked) locked.textContent = 'Counties, DNA, Versus, Analyzer, Sage, Scout, Warbook, Deadlines, Auctions, Pulse';
+    if (locked) locked.textContent = 'Counties, DNA, Versus, Analyzer, Sage, Scout, Warbook, Deadlines, Recon, Dossier, Auctions, Pulse';
     if (lockedRow) lockedRow.style.display = '';
     if (upgrade) upgrade.style.display = 'block';
     if (valueSection) valueSection.style.display = 'block';
@@ -7293,7 +7453,7 @@ function initVersusTab() {
     var vsBadge = document.createElement('div');
     vsBadge.id = 'vs-arch-badge';
     vsBadge.style.cssText = 'font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.08em;color:#c9a84c;margin-bottom:4px';
-    vsBadge.textContent = 'Comparing as: ' + archCfg.label;
+    vsBadge.innerHTML = escapeHtml('Comparing as: ' + archCfg.label) + '<div style="font-size:9px;color:var(--text2);letter-spacing:0;margin-top:2px">Comparison reflects your strategy orientation. Not investment advice.</div>';
     vsHeader.insertBefore(vsBadge, vsHeader.firstChild);
   }
   selA.addEventListener('change', runVersusCompare);
@@ -8285,7 +8445,7 @@ var _mobileNavOpen = false;
 var MOBILE_NAV_LABELS = {
   map: 'Map', tools: 'Tools', dna: 'DNA', advisor: 'Advisor',
   auctions: 'Auctions', versus: 'Versus', account: 'Account',
-  warbook: 'Warbook', deadlines: 'Deadlines'
+  warbook: 'Warbook', deadlines: 'Deadlines', recon: 'Recon', dossier: 'Dossier'
 };
 
 function toggleMobileNav() {
@@ -8379,6 +8539,50 @@ function updateJourneyBar() {
     var el = document.getElementById(lines[i]);
     if (el) el.classList.toggle('complete', dots[i].done && dots[i + 1].done);
   }
+
+  // Next Step Card
+  var nextCard = document.getElementById('journey-next-card');
+  var nextText = document.getElementById('journey-next-text');
+  var nextClose = document.getElementById('journey-next-close');
+  if (!nextCard || !nextText) return;
+
+  var dismissed = {};
+  try { dismissed = JSON.parse(localStorage.getItem('aurigen_journey_dismissed') || '{}'); } catch(e) {}
+
+  var nextStep = null;
+  var nextAction = null;
+  if (!mapDone && !dismissed.map) {
+    nextStep = 'Explore the map \u2014 click any state to begin \u2192';
+    nextAction = function() { switchTab('map'); };
+  } else if (mapDone && !countyDone && !dismissed.county) {
+    nextStep = 'Now find a county. Click any state to explore counties \u2192';
+    nextAction = function() { switchTab('map'); };
+  } else if (countyDone && !pulseDone && !dismissed.pulse) {
+    nextStep = 'Set up Pulse Alerts for this state to track upcoming auctions \u2192';
+    nextAction = function() { if (typeof togglePulseDrawer === 'function') togglePulseDrawer(); };
+  } else if (pulseDone && !quizDone && !dismissed.quiz) {
+    nextStep = 'Take the DNA Quiz to personalize your strategy \u2192';
+    nextAction = function() { switchTab('dna'); };
+  } else if (quizDone && !accessDone && !dismissed.access) {
+    nextStep = 'You\u2019re ready. Unlock full access to see live inventory \u2192';
+    nextAction = function() { window.open(STRIPE_URL, '_blank', 'noopener,noreferrer'); };
+  } else if (accessDone && !dismissed.warbook) {
+    nextStep = 'Start with the Warbook to find your best target state \u2192';
+    nextAction = function() { switchTab('warbook'); };
+  }
+
+  if (nextStep) {
+    nextText.textContent = nextStep;
+    nextCard.classList.add('visible');
+    nextText.onclick = nextAction;
+    nextClose.onclick = function() {
+      nextCard.classList.remove('visible');
+      var key = !mapDone ? 'map' : (!countyDone ? 'county' : (!pulseDone ? 'pulse' : (!quizDone ? 'quiz' : (!accessDone ? 'access' : 'warbook'))));
+      try { dismissed[key] = true; localStorage.setItem('aurigen_journey_dismissed', JSON.stringify(dismissed)); } catch(e) {}
+    };
+  } else {
+    nextCard.classList.remove('visible');
+  }
 }
 
 // Hook into map exploration to update journey
@@ -8433,7 +8637,7 @@ function daInit() {
       var badgeEl = document.createElement('div');
       badgeEl.id = 'da-arch-badge';
       badgeEl.style.cssText = 'font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.1em;color:#c9a84c;margin-bottom:6px';
-      badgeEl.innerHTML = 'Strategy Mode: ' + escapeHtml(archCfg.label) + ' <a onclick="switchTab(\'dna\')" style="color:rgba(201,168,76,0.6);cursor:pointer;font-size:10px;margin-left:6px">Change \u2192</a>';
+      badgeEl.innerHTML = 'Strategy Mode: ' + escapeHtml(archCfg.label) + ' <a onclick="switchTab(\'dna\')" style="color:rgba(201,168,76,0.6);cursor:pointer;font-size:10px;margin-left:6px">Change \u2192</a><div style="font-size:9px;color:var(--text2);letter-spacing:0;margin-top:2px">Projections are illustrative only based on your selected strategy. Not investment advice.</div>';
       daHeader.insertBefore(badgeEl, daHeader.firstChild);
     }
   }
@@ -8793,6 +8997,8 @@ function dnaSaveToProfile() {
     topStates: topStates,
     dnaComplete: true
   });
+  saveJourneyState({ quiz: true });
+  updateJourneyBar();
 }
 
 // === ITEM 4: ANALYZER PRE-LOADS DNA ===
@@ -9344,7 +9550,7 @@ function scoutGetStateItems(stateCode) {
     items.push({ icon: '\uD83D\uDCDC', text: 'This is a TAX LIEN state \u2014 you are purchasing a lien certificate, not the property.', type: 'info' });
   }
   if (rules.quiet_title_required) {
-    items.push({ icon: '\u2696\uFE0F', text: 'Quiet title action required after foreclosure. Budget $1,500\u2013$3,000+ for attorney fees.', type: 'action' });
+    items.push({ icon: '\u2696\uFE0F', text: 'Quiet title action required after foreclosure. Budget $1,500\u2013$3,000+ for attorney fees (costs vary \u2014 verify locally).', type: 'action' });
   }
   if (rules.irs_lien_survives) {
     items.push({ icon: '\uD83C\uDFDB\uFE0F', text: 'IRS federal tax liens survive the sale. Check for federal liens before bidding.', type: 'warning' });
@@ -9359,7 +9565,7 @@ function scoutGetStateItems(stateCode) {
     items.push({ icon: '\u270D\uFE0F', text: 'Pre-registration required. Set calendar reminder for registration deadline.', type: 'action' });
   }
   if (rules.deposit_pct > 0) {
-    items.push({ icon: '\uD83D\uDCB0', text: 'Deposit required: typically ' + rules.deposit_pct + '% of bid amount. Confirm exact format with the county.', type: 'action' });
+    items.push({ icon: '\uD83D\uDCB0', text: 'Deposit required: typically ' + rules.deposit_pct + '% of bid amount (costs vary \u2014 verify locally). Confirm exact format with the county.', type: 'action' });
   }
   if (rules.redemption_months > 0) {
     items.push({ icon: '\u23F0', text: 'Redemption period: ' + rules.redemption_months + ' months. Capital locked until owner redeems or period expires.', type: 'info' });
@@ -9729,7 +9935,7 @@ function warbookRender(states) {
   var archStates = archCfg ? archCfg.daStates : [];
 
   var html = '<table class="warbook-table"><thead><tr>';
-  html += '<th>State</th><th>Competition</th><th>Auctions</th><th>Avg Bid</th><th>Avg Equity</th><th>Top County</th><th></th>';
+  html += '<th>State</th><th><span class="warbook-tip-wrap">Competition <span class="warbook-tip-icon" tabindex="0">?</span><span class="warbook-tip-card">Rating based on auction volume per state. Higher volume = more bidders. 1 star = low, 5 stars = high. Does not directly measure institutional buyer participation. Not a guarantee of returns.</span></span></th><th>Auctions</th><th>Avg Bid</th><th>Avg Equity</th><th>Top County</th><th></th>';
   html += '</tr></thead><tbody>';
 
   states.forEach(function(s) {
@@ -9750,7 +9956,7 @@ function warbookRender(states) {
     html += '<td class="warbook-bid">' + bid + '</td>';
     html += '<td class="warbook-equity ' + eqCls + '">' + eq + '</td>';
     html += '<td class="warbook-county">' + county + '</td>';
-    html += '<td><button class="warbook-explore" onclick="warbookExplore(\'' + escapeHtml(s.state_code) + '\')">EXPLORE</button></td>';
+    html += '<td><button class="warbook-explore" data-action="warbook-explore" data-state="' + escapeHtml(s.state_code) + '">EXPLORE</button></td>';
     html += '</tr>';
   });
 
@@ -9815,14 +10021,14 @@ function deadlinesBuildFilters(savedStates) {
   var codeList = Object.keys(codes).sort();
 
   var html = '<span class="deadlines-filter-label">FILTER:</span>';
-  html += '<button class="deadlines-filter-btn' + (_deadlinesFilter === 'all' ? ' active' : '') + '" onclick="deadlinesSetFilter(\'all\')">All</button>';
+  html += '<button class="deadlines-filter-btn' + (_deadlinesFilter === 'all' ? ' active' : '') + '" data-action="deadlines-filter" data-filter="all">All</button>';
 
   if (savedStates.length > 0) {
-    html += '<button class="deadlines-filter-btn' + (_deadlinesFilter === 'saved' ? ' active' : '') + '" onclick="deadlinesSetFilter(\'saved\')">Saved States</button>';
+    html += '<button class="deadlines-filter-btn' + (_deadlinesFilter === 'saved' ? ' active' : '') + '" data-action="deadlines-filter" data-filter="saved">Saved States</button>';
   }
 
   codeList.forEach(function(c) {
-    html += '<button class="deadlines-filter-btn' + (_deadlinesFilter === c ? ' active' : '') + '" onclick="deadlinesSetFilter(\'' + escapeHtml(c) + '\')">' + escapeHtml(c) + '</button>';
+    html += '<button class="deadlines-filter-btn' + (_deadlinesFilter === c ? ' active' : '') + '" data-action="deadlines-filter" data-filter="' + escapeHtml(c) + '">' + escapeHtml(c) + '</button>';
   });
 
   container.innerHTML = html;
@@ -9881,7 +10087,7 @@ function deadlinesRender() {
     html += '<div class="deadline-card-date">' + dateStr + '</div>';
     if (aType) html += '<div class="deadline-card-type">' + escapeHtml(aType) + '</div>';
     html += '<div class="deadline-card-actions">';
-    html += '<button class="deadline-remind-btn" onclick="deadlinesRemind(\'' + escapeHtml(a.auction_date) + '\',\'' + stCode + '\',\'' + county.replace(/'/g, "\\'") + '\')">SET REMINDER</button>';
+    html += '<button class="deadline-remind-btn" data-action="deadlines-remind" data-date="' + escapeHtml(a.auction_date) + '" data-state="' + stCode + '" data-county="' + escapeHtml(a.county || '') + '">SET REMINDER</button>';
     html += '</div>';
     html += '</div>';
   });
@@ -9900,6 +10106,395 @@ function deadlinesRemind(dateStr, state, county) {
   var gcalUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(title) + '&dates=' + startStr + '/' + endStr + '&details=' + encodeURIComponent('Tax auction reminder from Aurigen Directory. Verify details with the official county authority.');
   window.open(gcalUrl, '_blank', 'noopener,noreferrer');
 }
+
+// === RECON ===
+var _reconInited = false;
+
+function initRecon() {
+  if (_reconInited || !IS_PAID) return;
+  _reconInited = true;
+  var sel = document.getElementById('recon-state');
+  if (!sel) return;
+  var states = typeof STATES_EN !== 'undefined' ? STATES_EN : [];
+  states.forEach(function(s) {
+    var opt = document.createElement('option');
+    opt.value = s.id;
+    opt.textContent = s.id + ' \u2014 ' + s.name;
+    sel.appendChild(opt);
+  });
+  // Pre-select from DNA if available
+  var archKey = getArchetypeKey();
+  var archCfg = archKey ? ARCHETYPE_TOOL_CONFIG[archKey] : null;
+  if (archCfg && archCfg.daStates && archCfg.daStates[0]) sel.value = archCfg.daStates[0];
+  // Auto-set auction type from state
+  sel.addEventListener('change', function() {
+    var rules = SCOUT_STATE_RULES[sel.value];
+    if (rules) {
+      var typeSel = document.getElementById('recon-type');
+      if (typeSel) typeSel.value = rules.type;
+    }
+  });
+  sel.dispatchEvent(new Event('change'));
+}
+
+function reconBuildSteps(stateCode, county, platform, auctionType) {
+  var steps = [];
+  var plat = platform || 'other';
+  var isLien = auctionType === 'lien';
+
+  // Platform-specific registration
+  if (plat === 'realauction') {
+    steps.push({ title: 'Create account on RealAuction', desc: 'Register at realtaxdeed.com or realauction.com. Approval is usually instant.' });
+  } else if (plat === 'govease') {
+    steps.push({ title: 'Register on GovEase', desc: 'Register at govease.com \u2014 approval may take up to 48 hours. Start early.' });
+  } else if (plat === 'sri') {
+    steps.push({ title: 'Contact county for SRI auction details', desc: 'SRI auctions vary by jurisdiction. Contact the county tax collector for registration instructions.' });
+  } else if (plat === 'bid4assets') {
+    steps.push({ title: 'Register on Bid4Assets', desc: 'Create your account at bid4assets.com. Verify the deposit requirement on the auction page.' });
+  } else {
+    steps.push({ title: 'Register for the auction', desc: 'Contact the county tax collector or visit the auction platform to register.' });
+  }
+
+  steps.push({ title: 'Verify registration deadline', desc: 'Confirm the exact registration deadline with the county. Missing it means waiting for the next cycle.' });
+  steps.push({ title: 'Confirm deposit requirements', desc: 'Check the required deposit amount, accepted payment methods, and submission deadline.' });
+  steps.push({ title: 'Research the property', desc: 'Look up the parcel on the county assessor site. Review tax history, liens, and property condition. Drive by if local.' });
+
+  if (isLien) {
+    steps.push({ title: 'Check for IRS federal tax liens', desc: 'IRS liens survive tax lien sales in most states. Search the federal lien index before bidding.' });
+  } else {
+    steps.push({ title: 'Assess quiet title requirement', desc: 'Determine if this state requires a quiet title action after deed acquisition. Budget for attorney fees if so (costs vary \u2014 verify locally).' });
+  }
+
+  steps.push({ title: 'Set your maximum bid', desc: 'Calculate your maximum bid before auction day. Include all costs: deposit, recording fees, title search, potential quiet title. Never bid emotionally.' });
+  steps.push({ title: 'Attend or log in to auction', desc: 'Be ready 15 minutes early. Have your bidder number, deposit confirmation, and ID accessible.' });
+  steps.push({ title: 'If won: confirm payment deadline', desc: 'Verify the exact payment deadline and accepted methods. Late payment forfeits your deposit.' });
+  steps.push({ title: 'Record the certificate or deed', desc: 'File with the county recorder\u2019s office. Keep certified copies. This is your proof of ownership or lien position.' });
+
+  if (isLien) {
+    steps.push({ title: 'Monitor for redemption notices', desc: 'Track whether the owner redeems the lien. Set calendar reminders for the redemption period expiration date.' });
+  } else {
+    steps.push({ title: 'Secure the property', desc: 'Change locks, check insurance, inspect for occupants. Consult a real estate attorney before taking physical possession.' });
+  }
+
+  steps.push({ title: 'Set calendar reminder for next deadline', desc: 'Whether redemption expiration or next payment due, set a reminder now so you never miss a critical date.' });
+
+  return steps;
+}
+
+function reconRender(stateCode, county, platform, auctionType) {
+  var container = document.getElementById('recon-steps');
+  if (!container) return;
+  var steps = reconBuildSteps(stateCode, county, platform, auctionType);
+  var storageKey = 'aurigen_recon_' + stateCode + '_' + (county || '').replace(/\s+/g, '_');
+  var checked = {};
+  try {
+    var saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    if (saved && typeof saved === 'object') checked = saved;
+  } catch(e) {}
+
+  var html = '';
+  steps.forEach(function(step, i) {
+    var num = i + 1;
+    var isDone = !!checked[num];
+    html += '<div class="recon-step' + (isDone ? ' checked' : '') + '" data-step="' + num + '" data-storage-key="' + escapeHtml(storageKey) + '">';
+    html += '<div class="recon-step-check" data-action="recon-check" data-step="' + num + '" data-storage-key="' + escapeHtml(storageKey) + '">' + (isDone ? '\u2713' : '') + '</div>';
+    html += '<div class="recon-step-body">';
+    html += '<div class="recon-step-num">STEP ' + num + '</div>';
+    html += '<div class="recon-step-title">' + escapeHtml(step.title) + '</div>';
+    html += '<div class="recon-step-desc">' + escapeHtml(step.desc) + '</div>';
+    html += '</div></div>';
+  });
+  container.innerHTML = html;
+}
+
+function reconToggleStep(stepNum, storageKey) {
+  var checked = {};
+  try {
+    var saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    if (saved && typeof saved === 'object') checked = saved;
+  } catch(e) {}
+  if (checked[stepNum]) { delete checked[stepNum]; }
+  else { checked[stepNum] = true; }
+  try { localStorage.setItem(storageKey, JSON.stringify(checked)); } catch(e) {}
+  // Re-render UI
+  var stepEl = document.querySelector('.recon-step[data-step="' + stepNum + '"]');
+  if (stepEl) {
+    var checkEl = stepEl.querySelector('.recon-step-check');
+    if (checked[stepNum]) {
+      stepEl.classList.add('checked');
+      if (checkEl) checkEl.textContent = '\u2713';
+    } else {
+      stepEl.classList.remove('checked');
+      if (checkEl) checkEl.textContent = '';
+    }
+  }
+}
+
+// === DOSSIER ===
+var _dossierInited = false;
+
+function initDossier() {
+  if (_dossierInited || !IS_PAID) return;
+  _dossierInited = true;
+  var stateSel = document.getElementById('dossier-state');
+  var countySel = document.getElementById('dossier-county');
+  if (!stateSel || !countySel) return;
+  var states = typeof STATES_EN !== 'undefined' ? STATES_EN : [];
+  states.forEach(function(s) {
+    var opt = document.createElement('option');
+    opt.value = s.id;
+    opt.textContent = s.id + ' \u2014 ' + s.name;
+    stateSel.appendChild(opt);
+  });
+  stateSel.addEventListener('change', function() {
+    countySel.innerHTML = '<option value="">Select county...</option>';
+    var st = states.find(function(s) { return s.id === stateSel.value; });
+    if (st && st.counties) {
+      st.counties.forEach(function(c) {
+        var cName = typeof c === 'string' ? c : (c.name || c.county || '');
+        if (cName) {
+          var opt = document.createElement('option');
+          opt.value = cName;
+          opt.textContent = cName;
+          countySel.appendChild(opt);
+        }
+      });
+    }
+  });
+  // Pre-select from DNA
+  var archKey = getArchetypeKey();
+  var archCfg = archKey ? ARCHETYPE_TOOL_CONFIG[archKey] : null;
+  if (archCfg && archCfg.daStates && archCfg.daStates[0]) stateSel.value = archCfg.daStates[0];
+  stateSel.dispatchEvent(new Event('change'));
+}
+
+function dossierGenerate() {
+  var stateSel = document.getElementById('dossier-state');
+  var countySel = document.getElementById('dossier-county');
+  var output = document.getElementById('dossier-output');
+  if (!stateSel || !countySel || !output) return;
+  var stateCode = stateSel.value;
+  var county = countySel.value;
+  if (!stateCode || !county) { output.innerHTML = '<div class="dossier-loading">Please select both a state and county.</div>'; output.style.display = 'block'; return; }
+
+  output.style.display = 'block';
+  output.innerHTML = '<div class="dossier-loading"><div class="warbook-loading-spinner"></div>Generating dossier\u2026</div>';
+
+  var states = typeof STATES_EN !== 'undefined' ? STATES_EN : [];
+  var st = states.find(function(s) { return s.id === stateCode; });
+
+  // Fetch data in parallel
+  var email = '';
+  try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
+
+  Promise.all([
+    fetch('/.netlify/functions/auctions?state_code=' + stateCode).then(function(r) { return r.json(); }).catch(function() { return {}; }),
+    fetch('/.netlify/functions/auctions?type=properties&state_code=' + stateCode + '&county=' + encodeURIComponent(county) + '&email=' + encodeURIComponent(email)).then(function(r) { return r.json(); }).catch(function() { return {}; })
+  ]).then(function(results) {
+    var auctionData = results[0];
+    var propData = results[1];
+    dossierRender(stateCode, county, st, auctionData, propData);
+  });
+}
+
+function dossierRender(stateCode, county, stObj, auctionData, propData) {
+  var output = document.getElementById('dossier-output');
+  if (!output) return;
+
+  var type = stObj ? stObj.type : '\u2014';
+  var rate = stObj ? (stObj.rate || '\u2014') : '\u2014';
+  var redemption = stObj ? (stObj.redemption || '\u2014') : '\u2014';
+  var score = stObj ? (stObj.score || '\u2014') : '\u2014';
+  var scoreTier = '\u2014';
+  if (typeof score === 'number') {
+    if (score >= 80) scoreTier = 'Strong';
+    else if (score >= 60) scoreTier = 'Moderate';
+    else if (score >= 40) scoreTier = 'Fair';
+    else scoreTier = 'Weak';
+  }
+
+  // Auctions for this county
+  var auctions = (auctionData.auctions || []).filter(function(a) {
+    return a.state_code === stateCode && (!a.county || a.county === county);
+  });
+  var now = new Date(); now.setHours(0,0,0,0);
+  var upcoming = auctions.filter(function(a) { return a.auction_date && new Date(a.auction_date) >= now; })
+    .sort(function(a,b) { return new Date(a.auction_date) - new Date(b.auction_date); })
+    .slice(0, 3);
+
+  // Properties for this county
+  var props = propData.properties || [];
+  var propCount = props.length;
+  var avgBid = 0; var avgEquity = 0;
+  if (propCount > 0) {
+    var bidSum = 0; var eqSum = 0; var eqCount = 0;
+    props.forEach(function(p) {
+      if (p.opening_bid) bidSum += p.opening_bid;
+      if (p.equity_cushion_pct != null) { eqSum += p.equity_cushion_pct; eqCount++; }
+    });
+    avgBid = Math.round(bidSum / propCount);
+    avgEquity = eqCount > 0 ? Math.round(eqSum / eqCount) : 0;
+  }
+
+  var dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+  var html = '<div class="dossier-output">';
+  html += '<div style="text-align:center;margin-bottom:20px"><div style="font-family:\'Bebas Neue\',sans-serif;font-size:24px;color:var(--accent);letter-spacing:0.04em">COUNTY DOSSIER</div>';
+  html += '<div style="font-size:12px;color:var(--text2)">' + escapeHtml(county) + ', ' + escapeHtml(stateCode) + ' &mdash; ' + dateStr + '</div></div>';
+
+  // Section 1: County Overview
+  html += '<div class="dossier-section"><div class="dossier-section-title">COUNTY OVERVIEW</div>';
+  html += '<div class="dossier-row"><span class="dossier-row-label">State</span><span class="dossier-row-value">' + escapeHtml(stateCode) + '</span></div>';
+  html += '<div class="dossier-row"><span class="dossier-row-label">Type</span><span class="dossier-row-value">' + escapeHtml(type) + '</span></div>';
+  html += '<div class="dossier-row"><span class="dossier-row-label">Interest Rate</span><span class="dossier-row-value">' + escapeHtml(rate) + '</span></div>';
+  html += '<div class="dossier-row"><span class="dossier-row-label">Redemption Period</span><span class="dossier-row-value">' + escapeHtml(redemption) + '</span></div>';
+  html += '</div>';
+
+  // Section 2: Opportunity Score
+  html += '<div class="dossier-section"><div class="dossier-section-title">OPPORTUNITY SCORE</div>';
+  html += '<div class="dossier-row"><span class="dossier-row-label">Score</span><span class="dossier-row-value">' + score + '</span></div>';
+  html += '<div class="dossier-row"><span class="dossier-row-label">Tier</span><span class="dossier-row-value">' + scoreTier + '</span></div>';
+  html += '</div>';
+
+  // Section 3: Live Inventory
+  html += '<div class="dossier-section"><div class="dossier-section-title">LIVE INVENTORY SNAPSHOT</div>';
+  html += '<div class="dossier-row"><span class="dossier-row-label">Active Properties</span><span class="dossier-row-value">' + propCount + '</span></div>';
+  html += '<div class="dossier-row"><span class="dossier-row-label">Avg Opening Bid</span><span class="dossier-row-value">' + (avgBid > 0 ? '$' + avgBid.toLocaleString() : '\u2014') + '</span></div>';
+  html += '<div class="dossier-row"><span class="dossier-row-label">Avg Equity Cushion</span><span class="dossier-row-value">' + (avgEquity !== 0 ? avgEquity + '%' : '\u2014') + '</span></div>';
+  html += '</div>';
+
+  // Section 4: Upcoming Auctions
+  html += '<div class="dossier-section"><div class="dossier-section-title">UPCOMING AUCTIONS</div>';
+  if (upcoming.length === 0) {
+    html += '<div style="font-size:12px;color:var(--text2)">No upcoming auctions found for this county.</div>';
+  } else {
+    upcoming.forEach(function(a) {
+      var aDate = new Date(a.auction_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      html += '<div class="dossier-row"><span class="dossier-row-label">' + aDate + '</span><span class="dossier-row-value">' + escapeHtml(a.auction_type || a.type || 'Auction') + '</span></div>';
+    });
+  }
+  html += '</div>';
+
+  // Section 5: Strategy Notes
+  html += '<div class="dossier-section"><div class="dossier-section-title">YOUR STRATEGY NOTES</div>';
+  html += '<textarea class="dossier-notes" id="dossier-notes" placeholder="Add your notes for this county\u2026"></textarea>';
+  html += '</div>';
+
+  html += '</div>';
+
+  // Actions
+  html += '<div class="dossier-actions">';
+  html += '<button class="dossier-print-btn" data-action="dossier-print">PRINT DOSSIER</button>';
+  html += '<button class="dossier-copy-btn" data-action="dossier-copy" data-state="' + escapeHtml(stateCode) + '" data-county="' + escapeHtml(county) + '">COPY SUMMARY</button>';
+  html += '</div>';
+
+  output.innerHTML = html;
+  output.style.display = 'block';
+}
+
+function dossierCopyText(stateCode, county) {
+  var states = typeof STATES_EN !== 'undefined' ? STATES_EN : [];
+  var st = states.find(function(s) { return s.id === stateCode; });
+  var notes = '';
+  var notesEl = document.getElementById('dossier-notes');
+  if (notesEl) notes = notesEl.value;
+
+  var text = 'AURIGEN COUNTY DOSSIER\n';
+  text += county + ', ' + stateCode + '\n';
+  text += 'Generated: ' + new Date().toLocaleDateString() + '\n\n';
+  text += 'Type: ' + (st ? st.type : 'N/A') + '\n';
+  text += 'Rate: ' + (st ? (st.rate || 'N/A') : 'N/A') + '\n';
+  text += 'Redemption: ' + (st ? (st.redemption || 'N/A') : 'N/A') + '\n';
+  text += 'Score: ' + (st ? (st.score || 'N/A') : 'N/A') + '\n';
+  if (notes) text += '\nNotes:\n' + notes + '\n';
+  text += '\nFor informational purposes only. Not investment advice.';
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.querySelector('[data-action="dossier-copy"]');
+      if (btn) { btn.textContent = 'COPIED'; setTimeout(function() { btn.textContent = 'COPY SUMMARY'; }, 2000); }
+    });
+  }
+}
+
+// === PRE-CALL SUMMARY ===
+function generatePreCallSummary() {
+  var profile = typeof getProfile === 'function' ? getProfile() : null;
+  var saved = getSavedStates();
+  var archLabel = (profile && profile.archetypeLabel) ? profile.archetypeLabel : 'Not taken';
+  var lastCounty = '';
+  try { lastCounty = localStorage.getItem('aurigen_last_county') || ''; } catch(e) {}
+  var score = '';
+  try { score = localStorage.getItem('aurigen_last_score') || 'N/A'; } catch(e) {}
+
+  // Scout checklist progress
+  var scoutPct = 'Not started';
+  if (lastCounty) {
+    try {
+      var deals = JSON.parse(localStorage.getItem('aurigen_scout_deals') || '[]');
+      if (deals.length > 0) {
+        var d = deals[0];
+        var checked = d.checked || {};
+        var total = 10;
+        var done = Object.keys(checked).filter(function(k) { return checked[k]; }).length;
+        scoutPct = Math.round((done / total) * 100) + '% (' + done + '/' + total + ')';
+      }
+    } catch(e) {}
+  }
+
+  var dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+  var text = 'AURIGEN PRE-CALL SUMMARY \u2014 ' + dateStr + '\n';
+  text += '---\n';
+  text += 'Archetype: ' + archLabel + '\n';
+  text += 'Saved States: ' + (saved.length > 0 ? saved.join(', ') : 'None') + '\n';
+  text += 'Target County: ' + (lastCounty || 'None') + '\n';
+  text += 'Opportunity Score: ' + score + '\n';
+  text += 'Scout Checklist: ' + scoutPct + '\n';
+  text += '---\n';
+  text += 'Generated from Aurigen Directory. For informational purposes only.\n';
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.querySelector('[data-action="precall-summary"]');
+      if (btn) {
+        var origText = btn.innerHTML;
+        btn.innerHTML = '<span class="acct-quick-link-icon">\u2713</span>Copied to clipboard';
+        setTimeout(function() { btn.innerHTML = origText; }, 2000);
+      }
+    });
+  }
+}
+
+// Delegated event listeners for dynamically generated Warbook + Deadlines + Recon + Dossier buttons
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('[data-action]');
+  if (!btn) return;
+  var action = btn.getAttribute('data-action');
+  if (action === 'warbook-explore') {
+    warbookExplore(btn.getAttribute('data-state') || '');
+  } else if (action === 'deadlines-filter') {
+    deadlinesSetFilter(btn.getAttribute('data-filter') || 'all');
+  } else if (action === 'deadlines-remind') {
+    deadlinesRemind(btn.getAttribute('data-date') || '', btn.getAttribute('data-state') || '', btn.getAttribute('data-county') || '');
+  } else if (action === 'recon-start') {
+    var rs = document.getElementById('recon-state');
+    var rc = document.getElementById('recon-county');
+    var rp = document.getElementById('recon-platform');
+    var rt = document.getElementById('recon-type');
+    if (rs && rc) reconRender(rs.value, rc.value, rp ? rp.value : 'other', rt ? rt.value : 'lien');
+  } else if (action === 'recon-check') {
+    reconToggleStep(parseInt(btn.getAttribute('data-step'), 10), btn.getAttribute('data-storage-key') || '');
+  } else if (action === 'dossier-generate') {
+    dossierGenerate();
+  } else if (action === 'dossier-print') {
+    window.print();
+  } else if (action === 'dossier-copy') {
+    dossierCopyText(btn.getAttribute('data-state') || '', btn.getAttribute('data-county') || '');
+  } else if (action === 'precall-summary') {
+    generatePreCallSummary();
+  }
+});
 </script>
 <!-- PULSE DRAWER -->
 <div id="pulse-overlay" onclick="closePulseDrawer()"></div>
