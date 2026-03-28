@@ -147,7 +147,7 @@ var I18N = {
     vs_col_metric:'METRIC',
     vs_type:'TYPE', vs_yield:'YIELD RATE', vs_redemption:'REDEMPTION',
     vs_bid:'BID METHOD', vs_platform:'PLATFORM', vs_beginner:'BEGINNER',
-    vs_higher:'HIGHER', vs_shorter:'SHORTER', vs_online:'ONLINE', vs_advantage:'ADVANTAGE',
+    vs_edge:'EDGE',
     vs_analysis:'> ANALYSIS OUTPUT',
     vs_disclaimer:'DATA SHOWN REFLECTS STATUTORY PROVISIONS \u00B7 MAY VARY BY COUNTY \u00B7 CONSULT A QUALIFIED PROFESSIONAL BEFORE INVESTING',
     // Versus locked
@@ -260,7 +260,7 @@ var I18N = {
     vs_col_metric:'M\u00c9TRICA',
     vs_type:'TIPO', vs_yield:'TASA DE RENDIMIENTO', vs_redemption:'REDENCI\u00d3N',
     vs_bid:'M\u00c9TODO DE PUJA', vs_platform:'PLATAFORMA', vs_beginner:'PRINCIPIANTE',
-    vs_higher:'MAYOR', vs_shorter:'M\u00c1S CORTO', vs_online:'EN L\u00cdNEA', vs_advantage:'VENTAJA',
+    vs_edge:'VENTAJA',
     vs_analysis:'> AN\u00c1LISIS',
     vs_disclaimer:'LOS DATOS REFLEJAN DISPOSICIONES LEGALES \u00B7 PUEDEN VARIAR POR CONDADO \u00B7 CONSULTA A UN PROFESIONAL CALIFICADO ANTES DE INVERTIR',
     // Versus locked
