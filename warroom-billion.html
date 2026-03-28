@@ -5744,7 +5744,10 @@ function auctionsInvStateChange() {
   if (typeof STATES_EN !== 'undefined') {
     var stObj = STATES_EN.find(function(s) { return s.id === stateCode; });
     if (stObj && stObj.counties) {
-      stObj.counties.forEach(function(c) { counties[c] = true; });
+      stObj.counties.forEach(function(c) {
+        var cName = typeof c === 'string' ? c : (c.name || c.county || '');
+        if (cName) counties[cName] = true;
+      });
     }
   }
   var sorted = Object.keys(counties).sort();
