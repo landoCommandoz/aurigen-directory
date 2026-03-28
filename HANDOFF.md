@@ -2,136 +2,121 @@
 ## Updated after every session. Read before every session.
 
 ### LAST SESSION DATE:
-2026-03-24
+2026-03-28
 
 ### LAST SESSION SUMMARY:
-3 UX fixes to warroom-billion.html — improved free tier messaging, county list UX, and paywall enforcement. Knox QA 48/48 PASS.
+Session 11 — Privacy disclosure, JWT timeout bypass fix, Beehiiv draft integration, Phase 4 tool audit, security advisory fix. All reviews passed. Merged to main (916a13c).
 
-**FIX 1 — Free Tier State Access:**
-- Account tab now shows "All 51 States" (map access) + "Locked Features" row listing gated tools
-- Sage AI response updated to explain "Features are what's locked, not states"
-- Paid users: "Locked Features" row hidden entirely
+**Step 1 — Privacy Policy Referral Disclosure (LEX-S10-01):**
+- Added "Referral Program" section to privacy.html after "How We Use It"
+- Added GoHighLevel to "Who We Share It With" third-party list
+- Discloses: referral code recorded, aggregate counts visible to referrer, no PII shared
 
-**FIX 2 — County List Collapsed:**
-- Counties list starts collapsed with right-pointing chevron
-- County search hidden until list expanded
-- Upgrade CTA rendered ABOVE counties header for free users (always visible)
+**Step 2 — JWT Timeout Bypass Fix (Phase 5 C2):**
+- First fetch with 2s timeout → overlay "VERIFYING YOUR SESSION" → retry after 3s
+- If retry succeeds: proceed normally, remove overlay
+- If retry fails: clear JWT, clear isAdmin, set access='free', show error + REFRESH button
+- _jwtResolved flag prevents race conditions between primary fetch and retry
 
-**FIX 3A — Hard Lock on Paid Features:**
-- `.tab-locked` class: `overflow:hidden`, children get `pointer-events:none; user-select:none; opacity:0.15; filter:blur(2px)`
-- Applied to all 6 locked panels: DNA, Advisor, Tools, Versus, Scout, Auctions
-- Removed for paid users via `applyAccessLocks()`
+**Step 3 — Phase 4 Tool Audit:**
+- All 5 tools verified: Scout, Warbook, Deadlines, Recon, Dossier
+- HTML panels, JS init guards, CSS locks, walkthrough overlays all present
 
-**FIX 3B — Walkthrough Previews:**
-- All 7 locked features now have walkthrough overlays: label + preview image + description + CTA
-- Consistent "UNLOCK FULL ACCESS — $197 ONE TIME" button on all locks
-- Pulse lock works but missing preview-img (advisory, non-blocking)
+**Step 4 — Skool/GHL Activation Readiness:**
+- Both sync functions verified: JWT + x-internal-key dual auth
+- Fire-and-forget calls from verify-session.js and capture-email.js confirmed
 
-**KNOX:** 48/48 checks passed across all fixes + additional verification
+**Step 5 — Beehiiv Weekly Report Send Prep:**
+- generate-report.js: Beehiiv draft creation gated by BEEHIIV_SEND_ENABLED env var
+- Creates draft (not auto-publish), appears in Beehiiv dashboard for review
+- Authorization uses 'ApiKey ' prefix per Beehiiv v2 API spec
 
-### WHAT WAS BUILT THIS SESSION (2026-03-24):
+**Advisory Fix — SEC-S11-06:**
+- Added IS_PAID guard to scoutNewDeal() for consistency with other Phase 4 tools
 
-**3 UX FIXES to warroom-billion.html:**
-1. Free tier state access — Account tab shows "All 51 States" + locked features list
-2. County list collapsed by default — toggle chevron, CTA above fold
-3. Hard lock + walkthrough previews — blur/disable locked panels, 7 walkthrough overlays with preview images
+**Reviews:**
+- @lex: 5/5 PASS, 0 ADVISORY
+- @knox+@nova: 21/21 PASS, 0 ADVISORY
+- @cipher-security: 7/7 PASS, 1 ADVISORY (fixed: SEC-S11-06)
 
-Knox QA: 48/48 PASS
+### WHAT WAS BUILT THIS SESSION (2026-03-28):
+1. Privacy policy referral + GHL disclosure
+2. JWT timeout → overlay → retry → revoke pattern
+3. Beehiiv draft creation in generate-report.js
+4. IS_PAID guard on scoutNewDeal()
 
 ### WHAT WAS BUILT PRIOR SESSIONS:
 
+**Session 10 (2026-03-24):**
+Security fixes (CORS, rate limiting), admin JWT flag, GHL sync, referral engine, weekly report generator, GitHub Actions integration. Reviews: @lex 5/5, @knox 38/38, @cipher 16/16 + 2 ADV fixed.
+
+**Session 9 (2026-03-24):**
+3 UX fixes: free tier messaging, county collapse, hard lock + walkthrough previews. Knox 48/48 PASS.
+
 **Phase 1 Foundation (2026-03-18):**
-Old 12,000-line monolith replaced with modular architecture.
-Phase 1 complete: Map, List, State Detail Modal, County Data Layer.
+Old 12,000-line monolith replaced with modular architecture. Map, List, State Detail Modal, County Data Layer.
 
 **warroom-billion.html — Consolidated Build:**
-7346-line single-file build with all Phase 2 features + access control + Scout tool.
-Includes: email gate, Stripe paywall, map, state detail, DNA, Sage, Versus, Analyzer, Scout, Auctions, Pulse drawer, Journey bar, Account tab.
-
-### WHAT WAS MERGED THIS SESSION:
-- PR #79: county data layer (TYPE_RATIONALE, county search/filter, legal/index.html) — merged to main
+Refactored: CSS extracted to css/, JS extracted to js/. Includes all Phase 2 features + access control + Phase 4 tools.
 
 ### WHAT IS CURRENTLY PENDING:
 - Phase 2: Pulse + Account tabs (2 of 8 remaining)
-- Phase 3: Funnel intelligence — Journey bar partially wired, DNA persistence, tool interconnection
-- C2 fix: JWT session validation for serverless data gating (get-states.js partially built)
-- `/access?paid=true` URL bypass still works — needs server-side validation (Phase 5)
-- Pulse lock missing walkthrough-preview-img (advisory, non-blocking)
+- Phase 3: Funnel intelligence — Journey bar, DNA persistence, tool interconnection
+- Phase 5: C2 serverless data gating (get-states.js needs JWT session validation)
 - Hero section redesign from Prism audit
-- og:image asset needed — Prism to create 1200x630 social share image
 - GHL 5-email nurture sequence (Piper)
 - Subdomain: directory.theaurigen.com
 - ES translations parity work (states-es.js significantly shorter than EN)
+- localhost CORS gate before public launch
 
 ### WHAT BROKE OR REGRESSED:
-- ~~Stats display 0,0,0 on iPad~~ — **FIXED** (hardcoded values)
-- ~~Production CORS error on code submission~~ — **FIXED** (domain added to ALLOWED_ORIGINS)
 - No known regressions
 
 ### OPEN SECURITY ITEMS:
 - **C2 (Critical)**: states data gated via get-states.js but needs JWT session validation
-- ~~**C3 (Critical)**: localStorage paid bypass~~ — **CLOSED** (2026-03-18, Phase E)
-- ~~**H1 (High)**: No rate limiting~~ — **CLOSED** (rateLimitMap in aurigen.js)
-- ~~**H2 (High)**: Timing attack~~ — **CLOSED** (crypto.timingSafeEqual in safeCodeMatch)
-- ~~**H3 (High)**: CORS wildcard~~ — **CLOSED** (explicit ALLOWED_ORIGINS list)
+- ~~**C3 (Critical)**: localStorage paid bypass~~ — **CLOSED** (Phase E + Session 11 JWT timeout fix)
+- ~~**H1 (High)**: No rate limiting~~ — **CLOSED** (per-IP limits on all routes)
+- ~~**H2 (High)**: Timing attack~~ — **CLOSED** (crypto.timingSafeEqual)
+- ~~**H3 (High)**: CORS wildcard~~ — **CLOSED** (shared utils/cors.js)
 - **H4 (High)**: innerHTML XSS via AI advisor response — needs DOMPurify
 - **C5 (Low)**: No CSP header configured
 
 ### OPEN LEGAL/FTC ITEMS:
-- ~~**CRITICAL**: Social proof ticker~~ — **RESOLVED** (removed, replaced with real data)
 - **CRITICAL**: "Founding member" 500-cap claim unverified — needs Lando confirmation
-- ~~**CRITICAL**: Deal Tape missing disclaimer~~ — **RESOLVED** (Sprint 2)
-- ~~**WARNING**: $297 strikethrough pricing~~ — **RESOLVED** (Sprint 2)
-- ~~**WARNING**: Escalating pressure copy~~ — **RESOLVED** (Sprint 2)
-- ~~**WARNING**: "Returns" language~~ — **RESOLVED** (Sprint 4)
-- ~~**WARNING**: "Monthly Income" label~~ — **RESOLVED** (Sprint 4)
-- ~~**WARNING**: "Investor's Edge" language~~ — **RESOLVED** (Sprint 4)
 
 ### KNOWN WAIVERS:
 - **#080**: rgba() opacity variants permanently exempt from CSS variable requirement (granted 2026-03-18 by Lando)
 
 ### NEXT SESSION STARTS WITH:
-**PRIORITY ORDER (Revenue Impact → Risk Reduction → Foundation Building):**
-
-1. **PHASE 2: Remaining Tools** (2 of 8 remaining)
-   - Pulse — personalized alert feed
-   - Account — tier management, upgrade flow
-
-2. **PHASE 3: FUNNEL INTELLIGENCE** (connect all tools into one journey)
-   - Journey bar, Next Step Cards, DNA persistence across tools
-   - Pre-Call Summary page
-
-3. **C2 SECURITY FIX** (Risk Reduction — revenue protection)
-   - JWT session validation for get-states.js
-   - `/access?paid=true` bypass needs server-side fix
-   - Owner: Mason implementation → Wraith verification
-
-4. **HERO SECTION REDESIGN** (Revenue Impact — conversion)
-   - Fix competing CTAs (single clear action)
-   - Owner: Prism mockup → Lando approval → Mason build
-
-5. **EMAIL SEQUENCE ACTIVATION** (Revenue Impact — nurture)
-   - Deploy Piper's post-seminar 3-email sequence
-   - Owner: Piper content → Lando GHL setup
+**Session 12 Queue:**
+1. @prism design flags — review all 5 Phase 4 tools for design consistency
+2. Referral reward layer decision — what do referrers earn?
+3. Custom subdomain DNS activation (directory.theaurigen.com)
+4. localhost CORS gate before public launch
+5. Phase 2 remaining: Pulse + Account tabs
+6. Phase 3: Funnel intelligence
+7. C2 serverless data gating (JWT for get-states.js)
+8. Hero section redesign
 
 ### OPEN QUESTIONS FOR LANDO:
 - Is the 500 founding member cap real? If so, where is the counter? If not, remove the claim.
-- Do we have ANY real customer testimonials yet?
-- What is the GHL pipeline status — can we deploy email sequences this week?
-- Need og:image asset (1200x630) — Prism to create, deploy to /og-image.png
+- What should referrers earn? (discount, credit, free month, etc.)
+- Ready to set BEEHIIV_SEND_ENABLED=true? (drafts will appear in Beehiiv dashboard)
+- Ready to add SKOOL_API_KEY and GHL_API_KEY to Netlify env vars?
+- DNS ready for directory.theaurigen.com subdomain?
+
+### ENV VARS NEEDED (Netlify):
+- `BEEHIIV_API_KEY` — Beehiiv API key
+- `BEEHIIV_PUBLICATION_ID` — Beehiiv publication ID
+- `BEEHIIV_SEND_ENABLED` — set to "true" to activate draft creation
+- `SKOOL_API_KEY` — Skool API key (when ready)
+- `SKOOL_GROUP_ID` — Skool group ID (when ready)
+- `GHL_API_KEY` — GoHighLevel API key (when ready)
+- `GHL_LOCATION_ID` — GoHighLevel location ID (when ready)
 
 ### AGENT STATUS:
-**Ace:** Seminar pitch delivered (148 words). Ready for objection playbooks and follow-up scripts.
-**Blaze:** TikTok script delivered for Tyler v. Hennepin. Ready for next content batch.
-**Atlas:** Topical authority map complete (6 clusters, 110+ pieces). Next: Tyler v. Hennepin deep-dive article.
-**Lex:** FTC audit complete with 12 findings. Standing by to review fixes before deploy.
-**Piper:** Email 1 written, 5 subject lines ready. Next: deploy post-seminar sequence in GHL.
-**Rally:** 8-touchpoint onboarding playbook complete. Next: Skool implementation.
-**Scout:** 3 partnership profiles + sequences ready. Next: begin outreach to target 1 (live event company).
-**Recon:** Blue ocean analysis complete. FastLien identified as closest competitor. Next: monthly competitive scan.
-**Mason:** C2 architecture documented. Ready for implementation. Top 3 tech debt prioritized.
-**Knox:** 33 regression tests complete. Found 4 issues (2 medium, 2 low). Ready for next PR cycle.
-**Wraith:** Security scan complete. 7 items open (2 critical, 4 high, 1 low). Standing by for post-fix verification.
-**Prism:** Hero audit complete (6/10). Competing CTAs is the critical fix. Standing by for mockup approval.
-**Cipher:** Analytics framework ready. No data source connected. Next: define integration plan for Netlify/Stripe/GHL.
-**Compass:** Full team coordination complete. HANDOFF.md and agent memories updated.
+**Mason:** Session 11 complete. JWT timeout fix, Beehiiv integration, privacy disclosure shipped. All reviews passed.
+**Lex:** Session 11 review 5/5 PASS. Privacy referral disclosure verified. Scout export disclaimer adequate.
+**Knox:** Session 11 QA 21/21 PASS. All JS files syntax-clean (48/48). JWT timeout paths verified.
+**Cipher-Security:** Session 11 review 7/7 PASS + 1 ADV (fixed). No PII leakage in reports. Beehiiv key server-only.
+**Compass:** Full coordination for Sessions 10-11. Standing by for Session 12.

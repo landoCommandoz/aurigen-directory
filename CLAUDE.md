@@ -46,14 +46,32 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 3. Hero: Two competing CTAs on hero section — HIGH CONVERSION
 4. First Deal page navigation incomplete
 
-## RESOLVED THIS SESSION (2026-03-24)
-- ~~Free tier showed "FL, IL, AZ" instead of "All 51 States"~~ — FIXED (Account tab + Sage response updated)
-- ~~County list expanded by default, pushing CTA below fold~~ — FIXED (collapsed by default, toggle chevron, search hidden until expand)
-- ~~Paid features accessible via scroll/click on free tier~~ — FIXED (hard lock: pointer-events:none, blur, opacity:0.15 on locked panels)
-- ~~Locked tabs had no preview of what's behind paywall~~ — FIXED (walkthrough overlays: label + preview img + description + CTA on all 7 locked features)
-- ~~Knox QA on 3 UX fixes~~ — 48/48 PASS (1 advisory: Pulse lock missing preview-img, non-blocking)
+## RESOLVED THIS SESSION (2026-03-28)
+- ~~Privacy policy missing referral disclosure~~ — FIXED (LEX-S10-01: Referral Program section + GHL third-party listing)
+- ~~JWT timeout → localStorage bypass~~ — FIXED (Phase 5 C2: retry overlay → revoke on double failure)
+- ~~Beehiiv weekly report auto-send~~ — READY (draft creation gated by BEEHIIV_SEND_ENABLED env var)
+- ~~Skool/GHL sync not auth-gated~~ — VERIFIED (JWT + x-internal-key dual auth on both)
+- ~~Phase 4 tools audit~~ — ALL 5 VERIFIED (Scout, Warbook, Deadlines, Recon, Dossier)
+- ~~Scout scoutNewDeal() missing IS_PAID guard~~ — FIXED (SEC-S11-06)
+- ~~@lex Session 11~~ — 5/5 PASS
+- ~~@knox+@nova Session 11~~ — 21/21 PASS
+- ~~@cipher-security Session 11~~ — 7/7 PASS, 1 ADV fixed
 
 ## RESOLVED PRIOR SESSIONS
+- ~~Free tier showed "FL, IL, AZ" instead of "All 51 States"~~ — FIXED (Account tab + Sage response updated)
+- ~~County list expanded by default~~ — FIXED (collapsed by default, toggle chevron)
+- ~~Paid features accessible via scroll/click on free tier~~ — FIXED (hard lock: pointer-events:none, blur, opacity:0.15)
+- ~~Locked tabs had no preview~~ — FIXED (walkthrough overlays on all 7 locked features)
+- ~~CORS wildcards in sms.js/aurigen.js~~ — FIXED (shared utils/cors.js)
+- ~~Rate limiting missing on admin-stats, auctions~~ — FIXED (per-IP in-memory limits)
+- ~~Admin email whitelist in client JS~~ — FIXED (moved to server-side JWT isAdmin flag)
+- ~~OG description "Compare returns"~~ — FIXED ("Compare rates")
+- ~~Skool-sync had no auth gate~~ — FIXED (JWT + x-internal-key dual auth)
+- ~~GHL CRM sync missing~~ — BUILT (ghl-sync.js with dual auth)
+- ~~Referral tracking engine missing~~ — BUILT (referral.js: generate/track/convert/stats)
+- ~~Weekly intelligence report missing~~ — BUILT (generate-report.js background function + GitHub Actions)
+- ~~validate-session trusted JWT isAdmin claim~~ — FIXED (ADV-S10-01: server-side re-check)
+- ~~referral generate used verifyBearer not requirePaid~~ — FIXED (ADV-S10-02)
 - ~~Production CORS bug~~ — FIXED (aurigen-directory.netlify.app missing from ALLOWED_ORIGINS)
 - ~~states-es.js missing module.exports~~ — FIXED (get-states.js Spanish data serving)
 - ~~#058: Focus trap on modals~~ — FIXED (trapFocus/releaseFocusTrap on all modals)
@@ -67,15 +85,16 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - ~~80-issue master directive~~ — ALL 7 SPRINTS COMPLETE
 - ~~Knox 80-item regression~~ — 80/80 PASS (3 original failures fixed + #080 waived)
 
-## CURRENT SESSION STATUS (2026-03-24)
+## CURRENT SESSION STATUS (2026-03-28)
 - Phase 1 COMPLETE — Foundation rebuild + county data layer
 - Phase 2 in progress — 6/8 core tools complete + Scout tool added
 - Phase 3 partially wired — Journey bar, DNA persistence, Versus pre-load
-- warroom-billion.html (7346 lines) — consolidated build with all features
-- 3 UX fixes shipped: free tier messaging, county collapse, hard lock + walkthrough previews
-- Knox: 48/48 PASS on UX fixes
-- Prelaunch FTC audit passed (noreferrer, disclaimers, Stripe URL sync)
-- Access control system: free tier sees all 51 states, paid features locked with walkthrough overlays
+- Phase 4 VERIFIED — All 5 tools (Scout, Warbook, Deadlines, Recon, Dossier) audited and functional
+- Phase 5 progress — JWT timeout bypass fix shipped, server-side session validation active
+- warroom-billion.html refactored — CSS extracted to css/, JS extracted to js/
+- Security: shared CORS, per-IP rate limiting, JWT isAdmin, dual-auth internal calls
+- Integrations: GHL sync, Skool sync, referral engine, weekly report + Beehiiv draft
+- @lex S11: 5/5 PASS | @knox S11: 21/21 PASS | @cipher S11: 7/7 PASS + 1 ADV fixed
 
 ## MASTER PHASE PLAN
 
