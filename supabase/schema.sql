@@ -71,3 +71,21 @@ ALTER TABLE paid_users ENABLE ROW LEVEL SECURITY;
 
 -- No public policies = no access via anon key or authenticated key.
 -- Only the service_role key (used by Netlify functions) bypasses RLS.
+
+-- ── Free Users table (email capture → Beehiiv subscription) ───
+CREATE TABLE IF NOT EXISTS free_users (
+  id              UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  email           TEXT NOT NULL UNIQUE,
+  language        TEXT DEFAULT 'en',
+  source          TEXT DEFAULT 'gate',
+  subscribed_at   TIMESTAMPTZ DEFAULT NOW(),
+  beehiiv_synced  BOOLEAN DEFAULT FALSE
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_free_users_email ON free_users (email);
+
+-- Enable RLS — only service role key can read/write
+ALTER TABLE free_users ENABLE ROW LEVEL SECURITY;
+
+-- No public policies = no access via anon key or authenticated key.
+-- Only the service_role key (used by Netlify functions) bypasses RLS.

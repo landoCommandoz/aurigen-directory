@@ -605,8 +605,7 @@
           <span class="cta-or-text">Or</span>
           <div class="cta-or-line"></div>
         </div>
-        <form name="aurigen-leads" method="POST" data-netlify="true" onsubmit="handleSubmit(event)" class="cta-free-row">
-          <input type="hidden" name="form-name" value="aurigen-leads">
+        <form onsubmit="handleSubmit(event,'en')" class="cta-free-row">
           <input class="cta-free-input" type="email" name="email" required placeholder="email@address.com" autocomplete="email">
           <button class="cta-free-btn" type="submit">Free Access &rarr;</button>
         </form>
@@ -654,8 +653,7 @@
           <span class="cta-or-text">O</span>
           <div class="cta-or-line"></div>
         </div>
-        <form name="aurigen-leads-es" method="POST" data-netlify="true" onsubmit="handleSubmit(event)" class="cta-free-row">
-          <input type="hidden" name="form-name" value="aurigen-leads-es">
+        <form onsubmit="handleSubmit(event,'es')" class="cta-free-row">
           <input class="cta-free-input" type="email" name="email" required placeholder="correo@ejemplo.com" autocomplete="email">
           <button class="cta-free-btn" type="submit">Acceso Gratis &rarr;</button>
         </form>
@@ -721,19 +719,19 @@
   } catch(e) {}
 })();
 
-// === FORM SUBMIT — server-verified access ===
-function handleSubmit(e) {
+// === FORM SUBMIT — capture email + verify paid status ===
+function handleSubmit(e, lang) {
   e.preventDefault();
   var email = e.target.email.value;
   var btn = e.target.querySelector('button[type="submit"]');
   if (btn) { btn.disabled = true; btn.textContent = '...'; }
   // Store email for future server checks
   try { localStorage.setItem('aurigen_email', email); } catch(err) {}
-  // Post to Netlify Forms (lead capture)
-  fetch('/', {
+  // Capture email → Beehiiv + Supabase (fire and forget — never blocks user)
+  fetch('/.netlify/functions/capture-email', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams(new FormData(e.target)).toString()
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, language: lang || 'en' })
   }).catch(function() {});
   // Check server for paid status
   fetch('/.netlify/functions/check-access', {
