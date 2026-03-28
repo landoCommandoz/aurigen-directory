@@ -132,8 +132,8 @@ exports.handler = async function(event) {
       return { statusCode: 500, body: JSON.stringify({ error: 'Database write failed' }) };
     }
 
-    console.log('Payment recorded for:', customerEmail, 'session:', session.id);
-    return { statusCode: 200, body: JSON.stringify({ received: true, email: customerEmail }) };
+    console.log('Payment recorded for session:', session.id);
+    return { statusCode: 200, body: JSON.stringify({ received: true }) };
 
   } catch (err) {
     console.error('Webhook handler error:', err.message || err);
