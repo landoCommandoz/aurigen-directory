@@ -1073,6 +1073,9 @@
     .view{flex:1;display:flex;flex-direction:column;min-height:0;position:relative;z-index:1}
     .view.hidden{display:none}
     #map-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;position:relative;padding:16px;pointer-events:auto}
+    .score-overlay-toggle{position:absolute;top:8px;right:8px;z-index:10;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.08em;padding:6px 12px;border-radius:4px;border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.05);color:rgba(232,228,220,0.5);cursor:pointer;transition:all 0.2s;min-height:32px}
+    .score-overlay-toggle:hover{border-color:rgba(201,168,76,0.4);color:#e8e4dc}
+    .score-overlay-toggle.active{background:rgba(201,168,76,0.15);border-color:#c9a84c;color:#c9a84c}
     #map-svg{width:100%;max-width:720px;height:auto;pointer-events:auto}
     #ambient-glow{position:absolute;inset:0;pointer-events:none;transition:background 0.5s}
     #map-legend{position:absolute;bottom:8px;left:16px;display:flex;flex-direction:column;gap:5px;padding:8px 12px;background:rgba(1,4,12,0.85);backdrop-filter:blur(12px);border:1px solid rgba(0,212,255,0.08);border-radius:4px;pointer-events:none}
@@ -1558,6 +1561,7 @@
     .da-breakdown-label{color:var(--text2)}
     .da-breakdown-value{color:var(--text);font-weight:600}
     .da-breakdown-note{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:var(--text3);font-style:italic;padding:4px 0}
+    .da-inline-disclaimer{font-family:'DM Sans',sans-serif;font-size:11px;color:#9898b0;line-height:1.5;margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.04)}
     .da-bottom-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 0;border-top:1px solid rgba(255,255,255,0.04)}
     .da-insight{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:var(--text2);line-height:1.6;flex:1}
     .da-bottom-btns{display:flex;gap:8px;flex-shrink:0}
@@ -2767,6 +2771,20 @@
     .propfeed-shimmer-bar.w50{width:50%}
     .propfeed-shimmer-bar.w85{width:85%}
     .propfeed-shimmer-bar.w40{width:40%}
+    /* 4C: Opportunity Score */
+    .opp-score-card{display:flex;align-items:center;gap:16px;padding:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(201,168,76,0.12);border-radius:8px;margin-bottom:16px}
+    .opp-score-num{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1;color:#c9a84c;min-width:60px;text-align:center}
+    .opp-score-body{flex:1;min-width:0}
+    .opp-score-label{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(232,228,220,0.35);margin-bottom:4px}
+    .opp-score-tier{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;font-weight:700;text-transform:uppercase}
+    .opp-tier-elite{color:#c9a84c}
+    .opp-tier-strong{color:#2DD4C0}
+    .opp-tier-moderate{color:rgba(232,228,220,0.5)}
+    .opp-tier-weak{color:#c97a2d}
+    .opp-tier-avoid{color:#FF2D55}
+    .opp-score-bar{width:100%;height:4px;background:rgba(255,255,255,0.06);border-radius:2px;margin-top:6px;overflow:hidden}
+    .opp-score-bar-fill{height:100%;border-radius:2px;transition:width 0.6s ease-out}
+    .opp-score-pending{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(232,228,220,0.3);padding:10px 0}
     .propfeed-lock-dna{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(232,228,220,0.4);margin-top:12px;text-decoration:none;transition:color 0.2s}
     .propfeed-lock-dna:hover{color:rgba(232,228,220,0.6)}
 
@@ -2789,6 +2807,9 @@
       .prop-card-stats,.prop-card-stats-6{gap:3px}
       .prop-stat{padding:5px 3px}
       .prop-action-btn{font-size:8px;padding:5px 8px}
+      .opp-score-num{font-size:36px}
+      .opp-score-card{gap:10px;padding:10px}
+      .score-overlay-toggle{font-size:8px;padding:4px 8px}
     }
   </style>
 </head>
@@ -2899,6 +2920,7 @@
           </div>
           <!-- RIGHT: MAP -->
           <div id="map-wrap">
+            <button class="score-overlay-toggle" id="score-overlay-toggle" onclick="toggleScoreOverlay()">SHOW OPPORTUNITY SCORES</button>
             <div id="ambient-glow"></div>
             <svg id="map-svg" viewBox="0 0 960 600"></svg>
             <div id="map-legend"></div>
@@ -5224,6 +5246,9 @@ function loadPropertyFeed(stateCode, countyName) {
   // Show skeleton loading
   container.innerHTML = buildPropFeedShell(countyName) + buildPropSkeletons();
 
+  // Fetch Opportunity Score (parallel, non-blocking)
+  fetchOpportunityScore(stateCode, countyName);
+
   // Scroll into view
   container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
@@ -5257,10 +5282,41 @@ function loadPropertyFeed(stateCode, countyName) {
     });
 }
 
+function fetchOpportunityScore(stateCode, countyName) {
+  var slot = document.getElementById('opp-score-slot');
+  if (!slot) return;
+  fetch('/.netlify/functions/county-score?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName))
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data || data.score === null || data.score === undefined) {
+        slot.innerHTML = '<div class="opp-score-pending">Score pending \u2014 check back after next weekly update</div>';
+        return;
+      }
+      var s = data.score;
+      var tier, tierClass, barColor;
+      if (s >= 80) { tier = 'ELITE'; tierClass = 'opp-tier-elite'; barColor = '#c9a84c'; }
+      else if (s >= 60) { tier = 'STRONG'; tierClass = 'opp-tier-strong'; barColor = '#2DD4C0'; }
+      else if (s >= 40) { tier = 'MODERATE'; tierClass = 'opp-tier-moderate'; barColor = 'rgba(232,228,220,0.5)'; }
+      else if (s >= 20) { tier = 'WEAK'; tierClass = 'opp-tier-weak'; barColor = '#c97a2d'; }
+      else { tier = 'AVOID'; tierClass = 'opp-tier-avoid'; barColor = '#FF2D55'; }
+      slot.innerHTML = '<div class="opp-score-card">' +
+        '<div class="opp-score-num">' + s + '</div>' +
+        '<div class="opp-score-body">' +
+        '<div class="opp-score-label">OPPORTUNITY SCORE</div>' +
+        '<div class="opp-score-tier ' + tierClass + '">' + tier + '</div>' +
+        '<div class="opp-score-bar"><div class="opp-score-bar-fill" style="width:' + s + '%;background:' + barColor + '"></div></div>' +
+        '</div></div>';
+    })
+    .catch(function() {
+      slot.innerHTML = '<div class="opp-score-pending">Score pending \u2014 check back after next weekly update</div>';
+    });
+}
+
 function buildPropFeedShell(countyName) {
   var activeCount = countActiveFilters(_propFeedFilters);
   var countBadge = activeCount > 0 ? '<span class="propfeed-active-count">' + activeCount + ' active</span>' : '';
-  return '<div class="propfeed-header">' +
+  return '<div id="opp-score-slot"></div>' +
+    '<div class="propfeed-header">' +
     '<div class="propfeed-title"><span class="propfeed-dot"></span><span class="propfeed-title-text">LIVE INVENTORY</span>' + countBadge + '</div>' +
     '<span class="propfeed-count" id="propfeed-count">Loading...</span>' +
     '</div>' +
@@ -5365,7 +5421,7 @@ function renderPropFeed(container, countyName) {
     var addr = escapeHtml(p.address || 'Address unavailable');
     var typeLower = (p.property_type || '').toLowerCase();
     var typeClass = typeLower.indexOf('resident') >= 0 ? 'residential' : typeLower.indexOf('commerc') >= 0 ? 'commercial' : 'vacant';
-    var typeLabel = typeLower.indexOf('resident') >= 0 ? 'Residential' : typeLower.indexOf('commerc') >= 0 ? 'Commercial' : typeLower.indexOf('vacant') >= 0 || typeLower.indexOf('land') >= 0 ? 'Vacant Land' : (p.property_type || 'Unknown');
+    var typeLabel = typeLower.indexOf('resident') >= 0 ? 'Residential' : typeLower.indexOf('commerc') >= 0 ? 'Commercial' : typeLower.indexOf('vacant') >= 0 || typeLower.indexOf('land') >= 0 ? 'Vacant Land' : escapeHtml(p.property_type || 'Unknown');
 
     var pills = '<span class="prop-pill prop-pill-' + typeClass + '">' + escapeHtml(typeLabel) + '</span>';
     if (p.absentee_owner) pills += '<span class="prop-pill prop-pill-absentee">ABSENTEE</span>';
@@ -5386,8 +5442,8 @@ function renderPropFeed(container, countyName) {
     }));
 
     var lienAmt = p.lien_amount !== null && p.lien_amount !== undefined ? '$' + Number(p.lien_amount).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
-    var lienYr = p.lien_year || '--';
-    var delYrs = p.delinquency_years !== null && p.delinquency_years !== undefined ? p.delinquency_years + 'yr' : '--';
+    var lienYr = escapeHtml(String(p.lien_year || '\u2014'));
+    var delYrs = p.delinquency_years !== null && p.delinquency_years !== undefined ? escapeHtml(String(p.delinquency_years)) + 'yr' : '--';
 
     html += '<div class="prop-card">';
     html += '<div class="prop-card-top"><div class="prop-card-address">' + addr + '</div><div class="prop-card-pills">' + pills + '</div></div>';
@@ -5691,7 +5747,7 @@ function renderAuctionsInvCards(container, countyName) {
     var addr = escapeHtml(p.address || 'Address unavailable');
     var typeLower = (p.property_type || '').toLowerCase();
     var typeClass = typeLower.indexOf('resident') >= 0 ? 'residential' : typeLower.indexOf('commerc') >= 0 ? 'commercial' : 'vacant';
-    var typeLabel = typeLower.indexOf('resident') >= 0 ? 'Residential' : typeLower.indexOf('commerc') >= 0 ? 'Commercial' : typeLower.indexOf('vacant') >= 0 || typeLower.indexOf('land') >= 0 ? 'Vacant Land' : (p.property_type || 'Unknown');
+    var typeLabel = typeLower.indexOf('resident') >= 0 ? 'Residential' : typeLower.indexOf('commerc') >= 0 ? 'Commercial' : typeLower.indexOf('vacant') >= 0 || typeLower.indexOf('land') >= 0 ? 'Vacant Land' : escapeHtml(p.property_type || 'Unknown');
     var pills = '<span class="prop-pill prop-pill-' + typeClass + '">' + escapeHtml(typeLabel) + '</span>';
     if (p.absentee_owner) pills += '<span class="prop-pill prop-pill-absentee">ABSENTEE</span>';
     var bid = p.opening_bid !== null ? '$' + Number(p.opening_bid).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
@@ -5703,8 +5759,8 @@ function renderAuctionsInvCards(container, countyName) {
     var statusLabel = statusLower === 'active' ? 'ACTIVE' : statusLower === 'redeemed' ? 'REDEEMED' : 'STRUCK OFF';
     var propData = encodeURIComponent(JSON.stringify({ address: p.address, opening_bid: p.opening_bid, assessed_value: p.assessed_value, lien_amount: p.lien_amount, state_code: p.state_code, county: p.county, parcel_id: p.parcel_id }));
     var lienAmt = p.lien_amount !== null && p.lien_amount !== undefined ? '$' + Number(p.lien_amount).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
-    var lienYr = p.lien_year || '--';
-    var delYrs = p.delinquency_years !== null && p.delinquency_years !== undefined ? p.delinquency_years + 'yr' : '--';
+    var lienYr = escapeHtml(String(p.lien_year || '\u2014'));
+    var delYrs = p.delinquency_years !== null && p.delinquency_years !== undefined ? escapeHtml(String(p.delinquency_years)) + 'yr' : '--';
     html += '<div class="prop-card">';
     html += '<div class="prop-card-top"><div class="prop-card-address">' + addr + '</div><div class="prop-card-pills">' + pills + '</div></div>';
     html += '<div class="prop-card-stats-6">';
@@ -8065,6 +8121,7 @@ function daRenderColumn(side, r) {
   if (r.note) {
     bHtml += '<div class="da-breakdown-note">' + escapeHtml(r.note) + '</div>';
   }
+  bHtml += '<div class="da-inline-disclaimer">Projections are estimates only and do not guarantee returns. Conduct independent due diligence before investing.</div>';
   breakdownEl.innerHTML = bHtml;
 }
 
@@ -8402,7 +8459,8 @@ function renderSummaryPage() {
       '</div>' +
       '<div class="summary-card-label">Best Return Scenario</div>' +
       '<div class="summary-card-value">$' + (br.interest || 0).toLocaleString() + ' on $' + (profile.analyzerAmount || 0).toLocaleString() + '</div>' +
-      '<div class="summary-card-sub">' + escapeHtml(br.state || '') + ' \u00b7 ' + escapeHtml(profile.analyzerScenario || '') + ' \u00b7 ' + escapeHtml(br.yield || '') + '/yr</div></div>';
+      '<div class="summary-card-sub">' + escapeHtml(br.state || '') + ' \u00b7 ' + escapeHtml(profile.analyzerScenario || '') + ' \u00b7 ' + escapeHtml(br.yield || '') + '/yr</div>' +
+      '<div class="da-inline-disclaimer" style="margin-top:6px;padding-top:4px;font-size:10px">Estimate only \u2014 not a guarantee of returns.</div></div>';
   } else {
     html += '<div class="summary-card" style="opacity:0.5"><div class="summary-card-head">' +
       '<span class="summary-card-icon">\uD83D\uDCC8</span>' +
@@ -9188,6 +9246,110 @@ function scoutRender() {
   window.addEventListener('resize', showFab);
   setTimeout(showFab, 500);
 })();
+
+// === 4C: MAP OPPORTUNITY SCORE OVERLAY ===
+var _scoreOverlayActive = false;
+var _stateScoreCache = null;
+
+function toggleScoreOverlay() {
+  var btn = document.getElementById('score-overlay-toggle');
+  _scoreOverlayActive = !_scoreOverlayActive;
+  if (btn) {
+    btn.classList.toggle('active', _scoreOverlayActive);
+    btn.textContent = _scoreOverlayActive ? 'HIDE OPPORTUNITY SCORES' : 'SHOW OPPORTUNITY SCORES';
+  }
+  if (_scoreOverlayActive) {
+    loadAndApplyScoreOverlay();
+  } else {
+    resetScoreOverlay();
+  }
+}
+
+function loadAndApplyScoreOverlay() {
+  if (_stateScoreCache) {
+    applyScoreColors(_stateScoreCache);
+    return;
+  }
+  // Fetch all scores and compute state-level averages
+  fetch('/.netlify/functions/county-score?state_code=ALL&county=ALL')
+    .then(function(r) { return r.json(); })
+    .catch(function() { return { score: null }; })
+    .then(function() {
+      // county-score endpoint is per-county only — fall back to computing from known states
+      // Fetch scores for all states we know about
+      var states = typeof STATES_EN !== 'undefined' ? STATES_EN : [];
+      var avgScores = {};
+      var pending = states.length;
+      if (pending === 0) return;
+
+      states.forEach(function(s) {
+        var counties = s.counties || [];
+        if (counties.length === 0) {
+          pending--;
+          if (pending === 0) { _stateScoreCache = avgScores; applyScoreColors(avgScores); }
+          return;
+        }
+        // Sample up to 3 counties per state for performance
+        var sample = counties.slice(0, 3);
+        var scores = [];
+        var subPending = sample.length;
+
+        sample.forEach(function(county) {
+          var cName = typeof county === 'string' ? county : (county.county || county.name || '');
+          if (!cName) { subPending--; check(); return; }
+          fetch('/.netlify/functions/county-score?state_code=' + encodeURIComponent(s.id) + '&county=' + encodeURIComponent(cName))
+            .then(function(r) { return r.json(); })
+            .then(function(d) { if (d && d.score !== null) scores.push(d.score); })
+            .catch(function() {})
+            .finally(function() { subPending--; check(); });
+        });
+
+        function check() {
+          if (subPending > 0) return;
+          if (scores.length > 0) {
+            avgScores[s.id] = Math.round(scores.reduce(function(a, b) { return a + b; }, 0) / scores.length);
+          }
+          pending--;
+          if (pending === 0) { _stateScoreCache = avgScores; applyScoreColors(avgScores); }
+        }
+      });
+    });
+}
+
+function applyScoreColors(avgScores) {
+  var svg = d3.select('#map-svg');
+  svg.selectAll('.state-path').each(function() {
+    var el = d3.select(this);
+    var stCode = el.attr('data-id');
+    var avg = avgScores[stCode];
+    if (avg !== undefined) {
+      var color;
+      if (avg >= 80) color = '#e8c96a';
+      else if (avg >= 60) color = '#2dd4c0';
+      else if (avg >= 40) color = '#9898b0';
+      else if (avg >= 20) color = '#c97a2d';
+      else color = '#c94c4c';
+      el.attr('fill', color).attr('fill-opacity', 0.6);
+    }
+  });
+  // Update labels with score
+  svg.selectAll('.state-label').each(function() {
+    var el = d3.select(this);
+    var stCode = el.text();
+    var avg = avgScores[stCode];
+    if (avg !== undefined) {
+      el.append('tspan').attr('x', el.attr('x')).attr('dy', '1.2em')
+        .style('font-size', '7px').style('fill', 'rgba(232,228,220,0.5)').text(avg);
+    }
+  });
+}
+
+function resetScoreOverlay() {
+  // Restore default map colors
+  if (typeof resetMapColors === 'function') resetMapColors();
+  // Remove score tspans from labels
+  d3.selectAll('.state-label tspan').remove();
+}
 
 // === 4C: SUCCESS PAGE ENHANCED TOAST + TAB GLOW ===
 // The existing playUnlockAnimation already handles toast + glow.
