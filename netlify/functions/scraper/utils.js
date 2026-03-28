@@ -130,6 +130,30 @@ function cleanText(str) {
   return str.replace(/[\r\n\t]+/g, ' ').replace(/\s+/g, ' ').replace(/[^\x20-\x7E]/g, '').trim();
 }
 
+// ── Clean county name ───────────────────────────────────────
+// Strips scraper artifacts: leading "com ", "s ", URLs, noise phrases,
+// and deduplicates the word "County"
+function cleanCounty(raw) {
+  if (!raw) return 'Statewide';
+  let s = String(raw).trim();
+  s = s.replace(/^https?:\/\/\S+\s*/i, '');
+  s = s.replace(/^com\s+/i, '');
+  s = s.replace(/^s\s+/i, '');
+  s = s.replace(/^(Municipality|Opens?\s+URL|View\s+Details?|Click\s+Here)\s+/gi, '');
+  s = s.replace(/^\S*\.\S+\s+/g, '');
+  // Remove all but one "County"
+  const countyCount = (s.match(/\bCounty\b/gi) || []).length;
+  if (countyCount > 1) {
+    let removed = 0;
+    s = s.replace(/\bCounty\b/gi, (m) => {
+      removed++;
+      return removed < countyCount ? '' : m;
+    });
+  }
+  s = s.replace(/\s{2,}/g, ' ').trim();
+  return s || 'Statewide';
+}
+
 // ── Date parsing ─────────────────────────────────────────────
 // Accepts many formats, returns 'YYYY-MM-DD' or null
 function parseDate(raw) {
@@ -236,6 +260,7 @@ module.exports = {
   logScrapeRun,
   cleanupOldAuctions,
   cleanText,
+  cleanCounty,
   parseDate,
   getStateCode,
   getStateName,
