@@ -3695,8 +3695,13 @@ const APP = {
 };
 
 // === ACCESS TIER ===
+var ADMIN_WHITELIST = ['landon@theaurigen.com','lando@theaurigen.com'];
 function isAdminMode() {
-  try { return localStorage.getItem('aurigen_admin') === 'on'; } catch(e) { return false; }
+  try {
+    if (localStorage.getItem('aurigen_admin') !== 'on') return false;
+    var email = (localStorage.getItem('aurigen_email') || '').toLowerCase().trim();
+    return ADMIN_WHITELIST.indexOf(email) >= 0;
+  } catch(e) { return false; }
 }
 function getAccessTier() {
   if (isAdminMode()) return 'paid';
@@ -8723,13 +8728,22 @@ function scoutRender() {
   </div>
 </div>
 <script>
-// === ADMIN MODE ===
+// === ADMIN MODE (email-whitelisted) ===
 (function() {
   var SEQ = 'aurigen';
   var buf = '';
   var badge = null;
 
+  function getEmail() {
+    try { return (localStorage.getItem('aurigen_email') || '').toLowerCase().trim(); } catch(e) { return ''; }
+  }
+
+  function isWhitelisted() {
+    return ADMIN_WHITELIST.indexOf(getEmail()) >= 0;
+  }
+
   function adminOn() {
+    if (!isWhitelisted()) { console.warn('[admin] Not authorized'); return; }
     try { localStorage.setItem('aurigen_admin', 'on'); } catch(e) {}
     IS_PAID = true;
     IS_FREE = true;
@@ -8787,7 +8801,7 @@ function scoutRender() {
     });
   }
 
-  // Restore on load
+  // Restore on load (only if still whitelisted)
   if (isAdminMode()) showBadge();
 })();
 </script>
