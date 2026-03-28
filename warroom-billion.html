@@ -4100,7 +4100,7 @@ function applyMapFilter() {
     var t = s._v2type||s.type||s.t||'';
     var c = s.abbr||s.c||'';
     var n = s.name||s.n||'';
-    var color = getTypeColor(s);
+    var color = getTypeColor(s); // TODO: dead code — remove in next cleanup PR
     var fOk = mapFilter==='all'||t===mapFilter;
     var qOk = !q||c.toLowerCase().indexOf(q)>=0||n.toLowerCase().indexOf(q)>=0;
     var visible = fOk && qOk;
@@ -4270,7 +4270,7 @@ function updateMapColors() {
   svgEl.selectAll('.state-path').each(function(d){
     var s=getStateData(d); var abbr=s?(s.abbr||s.c):null;
     var isSel=selectedState===abbr;
-    var color=getTypeColor(s);
+    var color=getTypeColor(s); // TODO: dead code — remove in next cleanup PR
     // Respect filter + search
     var t=s?(s._v2type||s.type||s.t||''):'';
     var n=s?(s.name||s.n||''):'';
