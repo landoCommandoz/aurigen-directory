@@ -30,12 +30,14 @@ function loadPropertyFeed(stateCode, countyName) {
     return;
   }
 
-  // Fetch properties — requires paid email
-  var email = '';
-  try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
-  if (!email) { renderPropFeedEmpty(container, countyName, 'Sign in to view live inventory.'); return; }
+  // Fetch properties — requires paid JWT
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
+  if (!jwt) { renderPropFeedEmpty(container, countyName, 'Sign in to view live inventory.'); return; }
 
-  fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName) + '&email=' + encodeURIComponent(email))
+  fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName), {
+    headers: { 'Authorization': 'Bearer ' + jwt }
+  })
     .then(function(r) {
       if (r.status === 401 || r.status === 403) throw new Error('access');
       if (!r.ok) throw new Error('HTTP ' + r.status);

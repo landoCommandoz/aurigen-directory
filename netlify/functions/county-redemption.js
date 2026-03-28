@@ -8,6 +8,7 @@
 // ============================================================
 
 var { createClient } = require('@supabase/supabase-js');
+var { getCorsHeaders, handlePreflight } = require('./utils/cors');
 
 function getSupabase() {
   var url = process.env.SUPABASE_URL;
@@ -16,29 +17,11 @@ function getSupabase() {
   return createClient(url, key);
 }
 
-var ALLOWED_ORIGINS = [
-  'https://statuesque-bublanina-330b9d.netlify.app',
-  'https://hilarious-llama-2933ac.netlify.app',
-  'https://aurigen-directory.netlify.app',
-  'https://aurigendirectory.com',
-  'https://www.aurigendirectory.com',
-  'http://localhost:8888',
-  'http://localhost:3000'
-];
-
 exports.handler = async function(event) {
-  var origin = (event.headers || {}).origin || '';
-  var corsOrigin = ALLOWED_ORIGINS.indexOf(origin) >= 0 ? origin : ALLOWED_ORIGINS[0];
-
-  var headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': corsOrigin,
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'GET, OPTIONS'
-  };
+  var headers = getCorsHeaders(event);
 
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 204, headers: headers, body: '' };
+    return handlePreflight(event);
   }
 
   if (event.httpMethod !== 'GET') {

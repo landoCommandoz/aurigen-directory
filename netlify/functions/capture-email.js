@@ -11,26 +11,7 @@
 //   SUPABASE_URL             — Supabase project URL
 //   SUPABASE_SERVICE_ROLE_KEY — Supabase service role key (bypasses RLS)
 
-const ALLOWED_ORIGINS = [
-  'https://aurigen-directory.netlify.app',
-  'https://statuesque-bublanina-330b9d.netlify.app',
-  'https://hilarious-llama-2933ac.netlify.app',
-  'https://aurigendirectory.com',
-  'https://www.aurigendirectory.com',
-  'http://localhost:8888',
-  'http://localhost:3000'
-];
-
-function corsHeaders(origin) {
-  var allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
-  return {
-    'Access-Control-Allow-Origin': allowed,
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Content-Type': 'application/json',
-    'Vary': 'Origin'
-  };
-}
+var { getCorsHeaders, handlePreflight } = require('./utils/cors');
 
 // ── Rate Limiting ───────────────────────────────────────────
 var rateLimitMap = new Map();
@@ -49,12 +30,11 @@ function isRateLimited(ip) {
 }
 
 exports.handler = async function(event) {
-  var origin = event.headers.origin || event.headers.Origin || '';
-  var headers = corsHeaders(origin);
+  var headers = getCorsHeaders(event);
 
   // Handle CORS preflight
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 204, headers: headers, body: '' };
+    return handlePreflight(event);
   }
 
   // Only accept POST
@@ -173,6 +153,22 @@ exports.handler = async function(event) {
       }
     } catch (dbErr) {
       console.error('[SUPABASE] Error:', dbErr.message);
+    }
+
+    // Skool sync for free users — fire and forget
+    try {
+      var https = require('https');
+      var syncBody = JSON.stringify({ email: email, tier: 'free' });
+      var syncReq = https.request({
+        hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
+        path: '/.netlify/functions/skool-sync',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(syncBody) }
+      });
+      syncReq.write(syncBody);
+      syncReq.end();
+    } catch(syncErr) {
+      console.error('[CAPTURE-EMAIL] Skool sync fire failed:', syncErr.message);
     }
 
     return {

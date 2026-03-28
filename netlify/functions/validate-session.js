@@ -8,27 +8,7 @@
 //   SUPABASE_SERVICE_ROLE_KEY — used as HMAC-SHA256 signing key
 
 var crypto = require('crypto');
-
-var ALLOWED_ORIGINS = [
-  'https://aurigen-directory.netlify.app',
-  'https://statuesque-bublanina-330b9d.netlify.app',
-  'https://hilarious-llama-2933ac.netlify.app',
-  'https://aurigendirectory.com',
-  'https://www.aurigendirectory.com',
-  'http://localhost:8888',
-  'http://localhost:3000'
-];
-
-function corsHeaders(origin) {
-  var allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
-  return {
-    'Access-Control-Allow-Origin': allowed,
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Content-Type': 'application/json',
-    'Vary': 'Origin'
-  };
-}
+var { getCorsHeaders, handlePreflight } = require('./utils/cors');
 
 function base64url(buf) {
   return Buffer.from(buf).toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
@@ -79,11 +59,10 @@ function isRateLimited(ip) {
 }
 
 exports.handler = async function(event) {
-  var origin = (event.headers || {}).origin || (event.headers || {}).Origin || '';
-  var headers = corsHeaders(origin);
+  var headers = getCorsHeaders(event);
 
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 204, headers: headers, body: '' };
+    return handlePreflight(event);
   }
 
   if (event.httpMethod !== 'POST') {

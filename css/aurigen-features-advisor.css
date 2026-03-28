@@ -197,6 +197,49 @@
       background: var(--accent-dim);
       box-shadow: 0 0 20px var(--accent-glow);
     }
+    #sage-new-convo {
+      padding: 10px 14px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text2);
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: var(--radius);
+      transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    #sage-new-convo:hover {
+      border-color: var(--accent-mid);
+      color: var(--accent);
+    }
+    /* Sage markdown rendering */
+    .sage-list-item {
+      padding: 2px 0 2px 4px;
+      line-height: 1.6;
+    }
+    .sage-list-num {
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .sage-list-bullet {
+      color: var(--accent);
+      font-size: 10px;
+    }
+    .sage-code {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--teal);
+    }
+    .msg.sage strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
 
     /* === ACCOUNT TAB === */
     #panel-account {

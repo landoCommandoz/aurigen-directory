@@ -52,12 +52,14 @@ function dossierGenerate() {
   var st = states.find(function(s) { return s.id === stateCode; });
 
   // Fetch data in parallel
-  var email = '';
-  try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
 
   Promise.all([
     fetch('/.netlify/functions/auctions?state_code=' + stateCode).then(function(r) { return r.json(); }).catch(function() { return {}; }),
-    fetch('/.netlify/functions/auctions/properties?state_code=' + stateCode + '&county=' + encodeURIComponent(county) + '&email=' + encodeURIComponent(email)).then(function(r) { return r.json(); }).catch(function() { return {}; })
+    fetch('/.netlify/functions/auctions/properties?state_code=' + stateCode + '&county=' + encodeURIComponent(county), {
+      headers: { 'Authorization': 'Bearer ' + jwt }
+    }).then(function(r) { return r.json(); }).catch(function() { return {}; })
   ]).then(function(results) {
     var auctionData = results[0];
     var propData = results[1];

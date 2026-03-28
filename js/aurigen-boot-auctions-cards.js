@@ -424,11 +424,5 @@ function getAdvisorResponse(input) {
   return 'I want to make sure I point you in the right direction on that. Try asking about a specific state, bidding methods, redemption periods, or how to get started \u2014 those are my strong suits.\n\nOr open the Map tab and click any state to see the full breakdown.';
 }
 
-// Allow Enter key to send advisor messages
-document.addEventListener('DOMContentLoaded', function() {
-  var inp = document.getElementById('advisor-input');
-  if (inp) inp.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') sendAdvisorMessage();
-  });
-});
+// Enter key for advisor — handled in aurigen-boot.js DOMContentLoaded
 

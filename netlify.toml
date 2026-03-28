@@ -55,6 +55,15 @@
 [functions."scraper"]
   type = "background"
 
+# ── SUBDOMAIN: Custom domain redirect ────────────────────────
+# When directory.theaurigen.com is configured as primary domain,
+# redirect www and app variants to canonical
+[[redirects]]
+  from = "https://www.aurigendirectory.com/*"
+  to = "https://aurigendirectory.com/:splat"
+  status = 301
+  force = true
+
 # ── SECURITY: Prevent indexing of markdown files ──────────────
 [[headers]]
   for = "/*.md"

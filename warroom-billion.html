@@ -14,6 +14,7 @@
   <meta name="twitter:title" content="AURIGEN — County Intelligence Platform">
   <meta name="twitter:description" content="Tax lien and tax deed intelligence for all 50 states + DC.">
   <meta name="twitter:image" content="https://aurigendirectory.com/og-image.png">
+  <link rel="canonical" href="https://aurigendirectory.com/platform">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@300;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
@@ -464,6 +465,7 @@
       </div>
       <div id="advisor-disclaimer">Tax lien and tax deed investing involves risk including potential loss of principal. This tool is for informational purposes only and does not constitute financial, legal, or investment advice. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a></div>
       <div id="advisor-input-bar">
+        <button id="sage-new-convo" onclick="sageNewConversation()" title="New Conversation">&#8635;</button>
         <input id="advisor-input" type="text" placeholder="Ask Sage anything about tax liens..." autocomplete="off">
         <button id="advisor-send" onclick="sendAdvisorMessage()">Send</button>
       </div>

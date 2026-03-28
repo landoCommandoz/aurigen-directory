@@ -30,15 +30,17 @@ function initWarbook() {
   var content = document.getElementById('warbook-content');
   if (loading) loading.style.display = 'block';
 
-  var email = '';
-  try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
-  if (!email) {
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
+  if (!jwt) {
     if (loading) loading.style.display = 'none';
     if (content) content.innerHTML = '<div class="warbook-empty">Sign in to view competition data.</div>';
     return;
   }
 
-  fetch('/.netlify/functions/auctions?type=warbook&email=' + encodeURIComponent(email))
+  fetch('/.netlify/functions/auctions?type=warbook', {
+    headers: { 'Authorization': 'Bearer ' + jwt }
+  })
     .then(function(r) { return r.json(); })
     .then(function(data) {
       if (loading) loading.style.display = 'none';

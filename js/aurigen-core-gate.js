@@ -45,9 +45,11 @@
       // No JWT — server-verify access via email (legacy path)
       var email = localStorage.getItem('aurigen_email');
       if (email) {
+        var _legacyJwt = '';
+        try { _legacyJwt = localStorage.getItem('aurigen_jwt') || ''; } catch(le) {}
         fetch('/.netlify/functions/check-access', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + _legacyJwt },
           body: JSON.stringify({ email: email })
         })
         .then(function(r) { return r.json(); })
@@ -179,7 +181,7 @@ var I18N = {
     da_conservative:'Conservative', da_realistic:'Realistic', da_optimistic:'Optimistic',
     da_projected:'Projected Return', da_interest:'Interest Earned',
     da_total:'Total Recovered', da_yield:'Effective Annual Yield',
-    da_hold:'Hold Period', da_better:'BETTER RETURN',
+    da_hold:'Hold Period', da_better:'HIGHER PROJECTED',
     da_open_versus:'Open in Versus \u2192',
     da_disclaimer:'Rates shown are statutory maximums. Actual returns depend on competitive bidding and redemption outcomes. Bid-down states typically yield below the statutory ceiling in competitive counties. This is not financial advice. Always verify with the official county or state authority before transacting.',
     // Scout
@@ -292,7 +294,7 @@ var I18N = {
     da_conservative:'Conservador', da_realistic:'Realista', da_optimistic:'Optimista',
     da_projected:'Rendimiento Proyectado', da_interest:'Inter\u00e9s Ganado',
     da_total:'Total Recuperado', da_yield:'Rendimiento Anual Efectivo',
-    da_hold:'Per\u00edodo de Tenencia', da_better:'MEJOR RENDIMIENTO',
+    da_hold:'Per\u00edodo de Tenencia', da_better:'MAYOR PROYECCI\u00d3N',
     da_open_versus:'Abrir en Versus \u2192',
     da_disclaimer:'Las tasas mostradas son m\u00e1ximos legales. Los rendimientos reales dependen de la puja competitiva y los resultados de redenci\u00f3n. Los estados con puja descendente t\u00edpicamente rinden por debajo del techo legal en condados competitivos. Esto no es asesoramiento financiero. Siempre verifica con la autoridad oficial del condado o estado.',
     // Scout

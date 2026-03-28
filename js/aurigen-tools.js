@@ -251,7 +251,7 @@ function daRenderColumn(side, r) {
 
   metaEl.innerHTML =
     '<span class="da-meta-badge" style="color:' + c + ';border-color:' + c + '44;background:' + c + '15">' + escapeHtml(tl) + '</span>' +
-    '<span class="da-winner-badge">BETTER RETURN</span>' +
+    '<span class="da-winner-badge">HIGHER PROJECTED</span>' +
     '<span class="da-meta-pill">' + escapeHtml(rateShort) + '</span>' +
     '<span class="da-meta-pill">' + escapeHtml(holdShort) + '</span>' +
     '<span class="da-meta-pill">' + escapeHtml(bidShort) + '</span>';
@@ -359,17 +359,17 @@ function daLookupProperty() {
   var query = input.value.trim();
   if (!query) { resultsEl.innerHTML = ''; return; }
 
-  var email = '';
-  try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
-  if (!email) { resultsEl.innerHTML = '<div style="color:var(--text2)">Sign in to search properties.</div>'; return; }
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
+  if (!jwt) { resultsEl.innerHTML = '<div style="color:var(--text2)">Sign in to search properties.</div>'; return; }
 
   var stateCode = stateSel ? stateSel.value : '';
   var url;
   // If it looks like a parcel ID (alphanumeric, dashes), use parcel lookup
   if (/^[\w\-]+$/.test(query) && query.length < 30) {
-    url = '/.netlify/functions/property-lookup?parcel_id=' + encodeURIComponent(query) + '&email=' + encodeURIComponent(email);
+    url = '/.netlify/functions/property-lookup?parcel_id=' + encodeURIComponent(query);
   } else if (stateCode) {
-    url = '/.netlify/functions/property-lookup?address=' + encodeURIComponent(query) + '&state_code=' + encodeURIComponent(stateCode) + '&email=' + encodeURIComponent(email);
+    url = '/.netlify/functions/property-lookup?address=' + encodeURIComponent(query) + '&state_code=' + encodeURIComponent(stateCode);
   } else {
     resultsEl.innerHTML = '<div style="color:var(--text2)">Select a state for address search.</div>';
     return;
@@ -377,7 +377,9 @@ function daLookupProperty() {
 
   resultsEl.innerHTML = '<div style="color:var(--text2)">Searching\u2026</div>';
 
-  fetch(url)
+  fetch(url, {
+    headers: { 'Authorization': 'Bearer ' + jwt }
+  })
     .then(function(r) { return r.json(); })
     .then(function(data) {
       var props = data.properties || (data.property ? [data.property] : []);

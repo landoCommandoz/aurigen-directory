@@ -81,14 +81,16 @@ function auctionsInvCountyChange() {
     return;
   }
 
-  var email = '';
-  try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
-  if (!email) {
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
+  if (!jwt) {
     body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128274;</span><span class="propfeed-empty-title">SIGN IN REQUIRED</span><span class="propfeed-empty-hint">Enter your email on the gate page to access live inventory.</span><div class="propfeed-empty-actions"><a class="propfeed-empty-btn propfeed-empty-btn-primary" href="/gate.html">Sign In</a></div></div>';
     return;
   }
 
-  fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(county) + '&email=' + encodeURIComponent(email))
+  fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(county), {
+    headers: { 'Authorization': 'Bearer ' + jwt }
+  })
     .then(function(r) {
       if (r.status === 401 || r.status === 403) throw new Error('access');
       if (!r.ok) throw new Error('HTTP ' + r.status);
