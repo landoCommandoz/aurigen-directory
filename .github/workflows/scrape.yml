@@ -35,7 +35,6 @@ jobs:
           PROP_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
           # Replace /scraper with /scrape-properties-background
           PROP_URL=$(echo "$PROP_URL" | sed 's|/scraper$|/scrape-properties-background|')
-          echo "Calling: $PROP_URL"
           response=$(curl -s -w "\n%{http_code}" \
             --max-time 30 \
             -X POST \
@@ -59,7 +58,6 @@ jobs:
           echo "=== Step 3: Calculate Opportunity Scores ==="
           SCORE_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
           SCORE_URL=$(echo "$SCORE_URL" | sed 's|/scraper$|/calculate-scores|')
-          echo "Calling: $SCORE_URL"
           response=$(curl -s -w "\n%{http_code}" \
             --max-time 60 \
             -X POST \
@@ -73,4 +71,27 @@ jobs:
             echo "::warning::Score calculation returned HTTP $http_code — non-blocking"
           else
             echo "Opportunity Scores calculated successfully"
+          fi
+
+      - name: Wait for scores to finalize
+        run: sleep 15
+
+      - name: Track Redemptions
+        run: |
+          echo "=== Step 4: Track Redemptions ==="
+          REDEEM_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
+          REDEEM_URL=$(echo "$REDEEM_URL" | sed 's|/scraper$|/track-redemptions|')
+          response=$(curl -s -w "\n%{http_code}" \
+            --max-time 60 \
+            -X POST \
+            -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
+            "$REDEEM_URL")
+          http_code=$(echo "$response" | tail -1)
+          body=$(echo "$response" | head -n -1)
+          echo "HTTP $http_code"
+          echo "$body"
+          if [ "$http_code" != "200" ]; then
+            echo "::warning::Redemption tracking returned HTTP $http_code — non-blocking"
+          else
+            echo "Redemption tracking completed successfully"
           fi

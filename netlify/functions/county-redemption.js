@@ -1,9 +1,10 @@
 // ============================================================
-// AURIGEN — county-score.js
-// Public read endpoint for county Opportunity Scores.
+// AURIGEN — county-redemption.js
+// Public read endpoint for county redemption rates.
 // GET ?state_code=XX&county=NAME
-// Returns { score, score_components, calculated_at } or { score: null }
-// No auth required — scores are not sensitive data.
+// Returns { redemption_rate, total_tracked, total_redeemed, calculated_at }
+// or { redemption_rate: null }
+// No auth required — redemption rates are not sensitive data.
 // ============================================================
 
 var { createClient } = require('@supabase/supabase-js');
@@ -59,8 +60,8 @@ exports.handler = async function(event) {
   try {
     var supabase = getSupabase();
     var { data, error } = await supabase
-      .from('county_scores')
-      .select('score, score_components, calculated_at')
+      .from('county_redemption_rates')
+      .select('redemption_rate, total_tracked, total_redeemed, calculated_at')
       .eq('state_code', stateCode)
       .eq('county', county)
       .maybeSingle();
@@ -71,7 +72,7 @@ exports.handler = async function(event) {
       return {
         statusCode: 200,
         headers: headers,
-        body: JSON.stringify({ score: null, message: 'No score available for this county' })
+        body: JSON.stringify({ redemption_rate: null, message: 'No redemption data available for this county' })
       };
     }
 
@@ -79,13 +80,14 @@ exports.handler = async function(event) {
       statusCode: 200,
       headers: headers,
       body: JSON.stringify({
-        score: data.score,
-        score_components: data.score_components,
+        redemption_rate: data.redemption_rate,
+        total_tracked: data.total_tracked,
+        total_redeemed: data.total_redeemed,
         calculated_at: data.calculated_at
       })
     };
   } catch (e) {
-    console.error('[county-score] Error:', e.message);
+    console.error('[county-redemption] Error:', e.message);
     return {
       statusCode: 500,
       headers: headers,

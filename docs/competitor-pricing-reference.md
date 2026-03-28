@@ -42,6 +42,25 @@ The footnote "*Based on typical recurring pricing in the tax lien software categ
 - Pricing data should be re-verified quarterly
 - **TODO:** Archive Wayback Machine snapshots or dated screenshots of each pricing page for evidentiary backup
 
+## Snapshot Policy
+
+Pricing pages must be archived quarterly via the Wayback Machine to maintain evidentiary backup. Use the Save Page Now feature at https://web.archive.org/save/ for each URL.
+
+**Archive URLs (save these quarterly):**
+- https://web.archive.org/save/https://taxsaleresources.com/pricing
+- https://web.archive.org/save/https://rogueinvestor.com/pricing
+- https://web.archive.org/save/https://taxliencode.com/pricing
+
+**Archive Schedule:**
+- Q1: January 15
+- Q2: April 15
+- Q3: July 15
+- Q4: October 15
+
+**Last archived:** Not yet — first archive due before public launch.
+
+If any competitor restructures pricing or goes offline, update this document immediately and reassess the $2,203 savings claim.
+
 ## Review History
 
 | Date | Reviewer | Status |

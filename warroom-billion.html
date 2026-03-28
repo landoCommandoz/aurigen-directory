@@ -2785,6 +2785,15 @@
     .opp-score-bar{width:100%;height:4px;background:rgba(255,255,255,0.06);border-radius:2px;margin-top:6px;overflow:hidden}
     .opp-score-bar-fill{height:100%;border-radius:2px;transition:width 0.6s ease-out}
     .opp-score-pending{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(232,228,220,0.3);padding:10px 0}
+    /* 4D: Redemption Rate */
+    .redemption-card{display:flex;align-items:center;gap:14px;padding:12px 14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:8px;margin-bottom:16px}
+    .redemption-pct{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;min-width:55px;text-align:center}
+    .redemption-body{flex:1;min-width:0}
+    .redemption-label{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(232,228,220,0.35);margin-bottom:2px}
+    .redemption-sub{font-family:'Space Mono',monospace;font-size:10px;color:rgba(232,228,220,0.25)}
+    .redemption-high{color:#c9a84c}
+    .redemption-mid{color:#2DD4C0}
+    .redemption-low{color:#c97a2d}
     .propfeed-lock-dna{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(232,228,220,0.4);margin-top:12px;text-decoration:none;transition:color 0.2s}
     .propfeed-lock-dna:hover{color:rgba(232,228,220,0.6)}
 
@@ -2809,6 +2818,8 @@
       .prop-action-btn{font-size:8px;padding:5px 8px}
       .opp-score-num{font-size:36px}
       .opp-score-card{gap:10px;padding:10px}
+      .redemption-card{gap:8px;padding:8px}
+      .redemption-pct{font-size:28px}
       .score-overlay-toggle{font-size:8px;padding:4px 8px}
     }
   </style>
@@ -5246,8 +5257,9 @@ function loadPropertyFeed(stateCode, countyName) {
   // Show skeleton loading
   container.innerHTML = buildPropFeedShell(countyName) + buildPropSkeletons();
 
-  // Fetch Opportunity Score (parallel, non-blocking)
+  // Fetch Opportunity Score + Redemption Rate (parallel, non-blocking)
   fetchOpportunityScore(stateCode, countyName);
+  fetchRedemptionRate(stateCode, countyName);
 
   // Scroll into view
   container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -5313,10 +5325,38 @@ function fetchOpportunityScore(stateCode, countyName) {
     });
 }
 
+function fetchRedemptionRate(stateCode, countyName) {
+  var slot = document.getElementById('redemption-rate-slot');
+  if (!slot) return;
+  fetch('/.netlify/functions/county-redemption?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName))
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data || data.redemption_rate === null || data.redemption_rate === undefined) {
+        slot.innerHTML = '<div class="opp-score-pending">Redemption data pending \u2014 updates weekly</div>';
+        return;
+      }
+      var rate = Math.round(data.redemption_rate * 1000) / 10; // 1 decimal place
+      var colorClass;
+      if (rate > 70) colorClass = 'redemption-high';
+      else if (rate >= 40) colorClass = 'redemption-mid';
+      else colorClass = 'redemption-low';
+      slot.innerHTML = '<div class="redemption-card">' +
+        '<div class="redemption-pct ' + colorClass + '">' + rate.toFixed(1) + '%</div>' +
+        '<div class="redemption-body">' +
+        '<div class="redemption-label">REDEMPTION RATE</div>' +
+        '<div class="redemption-sub">Based on ' + (data.total_tracked || 0) + ' tracked auction' + ((data.total_tracked || 0) !== 1 ? 's' : '') + '</div>' +
+        '</div></div>';
+    })
+    .catch(function() {
+      slot.innerHTML = '<div class="opp-score-pending">Redemption data pending \u2014 updates weekly</div>';
+    });
+}
+
 function buildPropFeedShell(countyName) {
   var activeCount = countActiveFilters(_propFeedFilters);
   var countBadge = activeCount > 0 ? '<span class="propfeed-active-count">' + activeCount + ' active</span>' : '';
   return '<div id="opp-score-slot"></div>' +
+    '<div id="redemption-rate-slot"></div>' +
     '<div class="propfeed-header">' +
     '<div class="propfeed-title"><span class="propfeed-dot"></span><span class="propfeed-title-text">LIVE INVENTORY</span>' + countBadge + '</div>' +
     '<span class="propfeed-count" id="propfeed-count">Loading...</span>' +
@@ -5457,7 +5497,9 @@ function renderPropFeed(container, countyName) {
     html += '<div class="prop-stat"><div class="prop-stat-label">DELINQUENT</div><div class="prop-stat-value">' + delYrs + '</div></div>';
     html += '</div>';
     html += '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">';
-    html += '<span class="prop-card-status ' + statusClass + '">' + statusLabel + '</span>';
+    if (statusLower !== 'active') {
+      html += '<span class="prop-card-status ' + statusClass + '">' + statusLabel + '</span>';
+    }
     html += '<div class="prop-card-actions">';
     html += '<button class="prop-action-btn prop-action-primary" onclick="event.stopPropagation();openDealFromProp(\'' + propData + '\')">Analyze</button>';
     html += '<button class="prop-action-btn prop-action-ghost" onclick="event.stopPropagation();openScoutFromProp(\'' + propData + '\')">Scout</button>';
@@ -5773,7 +5815,9 @@ function renderAuctionsInvCards(container, countyName) {
     html += '<div class="prop-stat"><div class="prop-stat-label">DELINQUENT</div><div class="prop-stat-value">' + delYrs + '</div></div>';
     html += '</div>';
     html += '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">';
-    html += '<span class="prop-card-status ' + statusClass + '">' + statusLabel + '</span>';
+    if (statusLower !== 'active') {
+      html += '<span class="prop-card-status ' + statusClass + '">' + statusLabel + '</span>';
+    }
     html += '<div class="prop-card-actions">';
     html += '<button class="prop-action-btn prop-action-primary" onclick="event.stopPropagation();openDealFromProp(\'' + propData + '\')">Analyze</button>';
     html += '<button class="prop-action-btn prop-action-ghost" onclick="event.stopPropagation();openScoutFromProp(\'' + propData + '\')">Scout</button>';
