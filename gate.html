@@ -383,8 +383,68 @@
       text-transform: uppercase;
     }
     .tier-free { color: var(--muted); }
-    .tier-paid { color: var(--gold); }
+    .tier-paid { color: var(--dim); font-size: 12px; letter-spacing: 0; text-transform: none; }
     .features-table tr:last-child td { border-bottom: none; }
+
+    /* === CTA COPY BLOCK === */
+    .cta-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .cta-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--platinum);
+      letter-spacing: -0.01em;
+    }
+    .cta-subhead {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .cta-price-big {
+      font-family: 'Space Mono', monospace;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--platinum);
+      letter-spacing: -0.02em;
+    }
+    .cta-price-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--dim);
+      line-height: 1.5;
+    }
+    .cta-or-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 4px 0;
+    }
+    .cta-or-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .cta-or-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+    .cta-free-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: var(--dim);
+      line-height: 1.5;
+    }
 
     /* === FOOTER === */
     .gate-footer {
@@ -528,13 +588,23 @@
       <div class="col-lang-label">English</div>
 
       <div class="cta-block">
-        <a class="cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02">Unlock Full Access &mdash; $197</a>
-        <div class="cta-price">One-time payment. Comparable tools charge $200+/month.</div>
+        <div class="cta-eyebrow">Built for serious investors</div>
+        <div class="cta-headline">Stop losing deals to investors who already have this data.</div>
+        <div class="cta-subhead">3,200+ counties. Live auction alerts. One price. No subscription.</div>
+        <div class="cta-price-big">$197 &mdash; ONE TIME</div>
+        <div class="cta-price-note">Comparable tools charge $200+/month. You pay once. Forever.</div>
+        <a class="cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02">Unlock Full Access &rarr;</a>
+        <div class="cta-or-divider">
+          <div class="cta-or-line"></div>
+          <span class="cta-or-text">Or</span>
+          <div class="cta-or-line"></div>
+        </div>
         <form name="aurigen-leads" method="POST" data-netlify="true" onsubmit="handleSubmit(event)" class="cta-free-row">
           <input type="hidden" name="form-name" value="aurigen-leads">
           <input class="cta-free-input" type="email" name="email" required placeholder="email@address.com" autocomplete="email">
           <button class="cta-free-btn" type="submit">Free Access &rarr;</button>
         </form>
+        <div class="cta-free-note">Free access unlocks the 51-state map and state-level data.</div>
       </div>
 
       <table class="features-table">
@@ -548,14 +618,14 @@
           <tr><td>51-State Intelligence Map</td><td class="tier-free">Free</td></tr>
           <tr><td>State-Level Data</td><td class="tier-free">Free</td></tr>
           <tr><td>Statute Citations</td><td class="tier-free">Free</td></tr>
-          <tr><td>3,200+ County Directory</td><td class="tier-paid">$197</td></tr>
-          <tr><td>Deal Analyzer</td><td class="tier-paid">$197</td></tr>
-          <tr><td>DNA Profiler + Sage AI</td><td class="tier-paid">$197</td></tr>
-          <tr><td>Versus Comparison</td><td class="tier-paid">$197</td></tr>
-          <tr><td>Auctions Calendar</td><td class="tier-paid">$197</td></tr>
-          <tr><td>Scout Checklist</td><td class="tier-paid">$197</td></tr>
-          <tr><td>Live Auction Alerts</td><td class="tier-paid">$197</td></tr>
-          <tr><td>Pulse Alerts</td><td class="tier-paid">$197</td></tr>
+          <tr><td>3,200+ County Directory</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>Deal Analyzer</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>DNA Profiler + Sage AI</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>Versus Comparison</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>Auctions Calendar</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>Scout Checklist</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>Live Auction Alerts</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>Pulse Alerts</td><td class="tier-paid">&#x1F512;</td></tr>
         </tbody>
       </table>
     </div>
@@ -567,13 +637,23 @@
       <div class="col-lang-label">Espa&ntilde;ol</div>
 
       <div class="cta-block">
-        <a class="cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02">Desbloquear Acceso Completo &mdash; $197</a>
-        <div class="cta-price">Pago &uacute;nico. Herramientas similares cobran $200+/mes.</div>
+        <div class="cta-eyebrow">Hecho para inversionistas serios</div>
+        <div class="cta-headline">Deja de perder oportunidades contra inversionistas que ya tienen estos datos.</div>
+        <div class="cta-subhead">M&aacute;s de 3,200 condados. Alertas de subastas en vivo. Un solo pago. Sin suscripci&oacute;n.</div>
+        <div class="cta-price-big">$197 &mdash; PAGO &Uacute;NICO</div>
+        <div class="cta-price-note">Herramientas similares cobran $200+/mes. T&uacute; pagas una vez. Para siempre.</div>
+        <a class="cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02">Desbloquear Acceso Completo &rarr;</a>
+        <div class="cta-or-divider">
+          <div class="cta-or-line"></div>
+          <span class="cta-or-text">O</span>
+          <div class="cta-or-line"></div>
+        </div>
         <form name="aurigen-leads-es" method="POST" data-netlify="true" onsubmit="handleSubmit(event)" class="cta-free-row">
           <input type="hidden" name="form-name" value="aurigen-leads-es">
           <input class="cta-free-input" type="email" name="email" required placeholder="correo@ejemplo.com" autocomplete="email">
           <button class="cta-free-btn" type="submit">Acceso Gratis &rarr;</button>
         </form>
+        <div class="cta-free-note">El acceso gratis incluye el mapa de 51 estados y datos estatales.</div>
       </div>
 
       <table class="features-table">
@@ -587,14 +667,14 @@
           <tr><td>Mapa de Inteligencia de 51 Estados</td><td class="tier-free">Gratis</td></tr>
           <tr><td>Datos a Nivel Estatal</td><td class="tier-free">Gratis</td></tr>
           <tr><td>Citas de Estatutos</td><td class="tier-free">Gratis</td></tr>
-          <tr><td>Directorio de 3,200+ Condados</td><td class="tier-paid">$197</td></tr>
-          <tr><td>Analizador de Negocios</td><td class="tier-paid">$197</td></tr>
-          <tr><td>Perfilador DNA + Sage IA</td><td class="tier-paid">$197</td></tr>
-          <tr><td>Comparaci&oacute;n Versus</td><td class="tier-paid">$197</td></tr>
-          <tr><td>Calendario de Subastas</td><td class="tier-paid">$197</td></tr>
-          <tr><td>Lista Scout</td><td class="tier-paid">$197</td></tr>
-          <tr><td>Alertas de Subastas</td><td class="tier-paid">$197</td></tr>
-          <tr><td>Alertas Pulse</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Directorio de 3,200+ Condados</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>Analizador de Negocios</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>Perfilador DNA + Sage IA</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>Comparaci&oacute;n Versus</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>Calendario de Subastas</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>Lista Scout</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>Alertas de Subastas</td><td class="tier-paid">&#x1F512;</td></tr>
+          <tr><td>Alertas Pulse</td><td class="tier-paid">&#x1F512;</td></tr>
         </tbody>
       </table>
     </div>
