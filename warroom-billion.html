@@ -5220,12 +5220,14 @@ function openDealFromProp(encodedData) {
   try {
     var p = JSON.parse(decodeURIComponent(encodedData));
     // Store property data for Deal Analyzer pre-population
-    localStorage.setItem('deal_prop_address', p.address || '');
-    localStorage.setItem('deal_prop_bid', p.opening_bid || '');
-    localStorage.setItem('deal_prop_assessed', p.assessed_value || '');
-    localStorage.setItem('deal_prop_lien', p.lien_amount || '');
-    localStorage.setItem('deal_prop_state', p.state_code || '');
-    localStorage.setItem('deal_prop_county', p.county || '');
+    try {
+      localStorage.setItem('deal_prop_address', p.address || '');
+      localStorage.setItem('deal_prop_bid', p.opening_bid || '');
+      localStorage.setItem('deal_prop_assessed', p.assessed_value || '');
+      localStorage.setItem('deal_prop_lien', p.lien_amount || '');
+      localStorage.setItem('deal_prop_state', p.state_code || '');
+      localStorage.setItem('deal_prop_county', p.county || '');
+    } catch(le) { /* localStorage unavailable */ }
     // Switch to Tools tab and open Deal Analyzer
     var toolsTab = document.querySelector('[data-tab="tools"]');
     if (toolsTab) toolsTab.click();

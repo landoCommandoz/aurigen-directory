@@ -108,6 +108,8 @@ exports.handler = async (event) => {
         if (safeCounty2) countQuery = countQuery.ilike('county', safeCounty2);
       }
       if (params.status) countQuery = countQuery.eq('status', params.status);
+      if (params.property_type) countQuery = countQuery.eq('property_type', params.property_type);
+      if (params.absentee_owner === 'true') countQuery = countQuery.eq('absentee_owner', true);
 
       var [dataResult, countResult] = await Promise.all([query, countQuery]);
       if (dataResult.error) throw dataResult.error;
