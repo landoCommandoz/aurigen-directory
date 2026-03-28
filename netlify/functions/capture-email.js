@@ -103,7 +103,7 @@ exports.handler = async function(event) {
             },
             body: JSON.stringify({
               email: email,
-              reactivate_existing: true,
+              reactivate_existing: false,
               send_welcome_email: true,
               utm_source: 'aurigen-gate',
               utm_medium: language
