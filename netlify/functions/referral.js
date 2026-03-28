@@ -45,8 +45,9 @@ exports.handler = async function(event) {
 
     // === GENERATE: create referral code for authenticated paid user ===
     if (action === 'generate') {
-      var auth = verifyBearer(event);
-      if (!auth || (auth.tier !== 'paid' && !auth.isAdmin)) {
+      var { requirePaid } = require('./utils/jwt');
+      var auth = requirePaid(event);
+      if (!auth) {
         return { statusCode: 401, headers, body: JSON.stringify({ error: 'Paid access required' }) };
       }
 

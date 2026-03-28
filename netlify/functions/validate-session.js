@@ -101,10 +101,15 @@ exports.handler = async function(event) {
       return { statusCode: 200, headers: headers, body: JSON.stringify({ valid: false, reason: 'Invalid or expired token' }) };
     }
 
+    // Re-check admin server-side (defense-in-depth — don't trust JWT claim alone)
+    var ADMIN_EMAILS = ['landon@theaurigen.com', 'lando@theaurigen.com'];
+    var email = (payload.email || '').toLowerCase().trim();
+    var isAdmin = ADMIN_EMAILS.indexOf(email) >= 0;
+
     return {
       statusCode: 200,
       headers: headers,
-      body: JSON.stringify({ valid: true, email: payload.email || '', tier: payload.tier || 'free', isAdmin: !!payload.isAdmin })
+      body: JSON.stringify({ valid: true, email: email, tier: payload.tier || 'free', isAdmin: isAdmin })
     };
 
   } catch (err) {
