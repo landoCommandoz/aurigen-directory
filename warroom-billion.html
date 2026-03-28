@@ -2100,6 +2100,10 @@
     .auctions-quarter {
       border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
     }
+    /* Auction recommendations */
+    .auctions-recs-header{display:flex;align-items:center;gap:10px;padding:10px 14px;margin-bottom:8px}
+    .auctions-recs-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--accent)}
+    .auctions-recs-badge{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.08em;padding:2px 8px;border-radius:4px;background:rgba(201,168,76,0.1);color:var(--accent);border:1px solid rgba(201,168,76,0.15)}
     .auctions-quarter-header {
       display: flex; align-items: center; justify-content: space-between;
       padding: 12px 16px; cursor: pointer; background: rgba(255,255,255,0.02);
@@ -2560,6 +2564,11 @@
     .scout-hdr-progress-text{font-size:12px;color:var(--text2);margin-bottom:6px}
     .scout-hdr-progress-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
     .scout-hdr-progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.3s}
+    .scout-state-rules{background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:14px 16px;margin-bottom:16px}
+    .scout-state-rules-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--accent);margin-bottom:8px}
+    .scout-state-info,.scout-state-warning,.scout-state-action{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;line-height:1.5;color:var(--text2);padding:4px 0}
+    .scout-state-warning{color:#FF6B35}
+    .scout-state-action{color:var(--teal)}
     .scout-complete-banner{background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:10px;padding:16px 20px;display:flex;align-items:center;gap:12px;margin-bottom:20px}
     .scout-complete-icon{width:24px;height:24px;border-radius:50%;background:rgba(74,222,128,0.2);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
     .scout-complete-text{flex:1}
@@ -2634,6 +2643,70 @@
       .scout-main{padding:16px}
     }
     @media(min-width:769px){.scout-mobile-select{display:none}}
+
+    /* === WARBOOK === */
+    #panel-warbook{flex-direction:column;min-height:0}
+    .warbook-wrap{padding:20px;overflow-y:auto;flex:1;min-height:0}
+    .warbook-hdr{margin-bottom:20px}
+    .warbook-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);letter-spacing:0.04em;line-height:1}
+    .warbook-sub{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:var(--text2);margin-top:6px;line-height:1.5}
+    .warbook-table{width:100%;border-collapse:collapse}
+    .warbook-table th{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--text2);text-transform:uppercase;text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);white-space:nowrap}
+    .warbook-table td{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--text);padding:12px;border-bottom:1px solid rgba(201,168,76,0.06);vertical-align:middle}
+    .warbook-table tr:hover td{background:rgba(201,168,76,0.03)}
+    .warbook-state-code{font-family:'Space Mono',monospace;font-weight:700;color:var(--accent);font-size:14px}
+    .warbook-stars{color:var(--accent);font-size:14px;letter-spacing:2px;white-space:nowrap}
+    .warbook-stars-dim{opacity:0.2}
+    .warbook-bid{font-family:'Space Mono',monospace;font-size:12px}
+    .warbook-equity{font-family:'Space Mono',monospace;font-size:12px}
+    .warbook-equity.positive{color:var(--green)}
+    .warbook-equity.negative{color:var(--pink)}
+    .warbook-county{font-size:12px;color:var(--text2)}
+    .warbook-explore{border:1px solid var(--border);background:transparent;color:var(--accent);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;padding:6px 12px;border-radius:5px;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+    .warbook-explore:hover{border-color:var(--accent);background:rgba(201,168,76,0.08)}
+    .warbook-empty{text-align:center;padding:60px 20px;color:var(--text2);font-size:13px}
+    .warbook-loading{text-align:center;padding:40px 20px}
+    .warbook-loading-spinner{width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
+    .warbook-disclaimer{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:var(--text2);opacity:0.5;margin-top:20px;line-height:1.5;padding:0 12px}
+    @media(max-width:768px){
+      .warbook-table th,.warbook-table td{padding:8px 6px;font-size:11px}
+      .warbook-explore{display:none}
+    }
+
+    /* === DEADLINES === */
+    #panel-deadlines{flex-direction:column;min-height:0}
+    .deadlines-wrap{padding:20px;overflow-y:auto;flex:1;min-height:0}
+    .deadlines-hdr{margin-bottom:20px}
+    .deadlines-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);letter-spacing:0.04em;line-height:1}
+    .deadlines-sub{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:var(--text2);margin-top:6px;line-height:1.5}
+    .deadlines-filter{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+    .deadlines-filter-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--text2);text-transform:uppercase}
+    .deadlines-filter-btn{border:1px solid var(--border);background:transparent;color:var(--text2);font-family:'Space Mono',monospace;font-size:10px;padding:5px 10px;border-radius:5px;cursor:pointer;transition:all 0.2s}
+    .deadlines-filter-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(201,168,76,0.08)}
+    .deadlines-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+    .deadline-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;transition:border-color 0.2s}
+    .deadline-card.urgent{border-color:rgba(232,93,138,0.4)}
+    .deadline-card.soon{border-color:rgba(201,168,76,0.3)}
+    .deadline-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .deadline-card-state{font-family:'Space Mono',monospace;font-weight:700;color:var(--accent);font-size:14px}
+    .deadline-card-county{font-size:12px;color:var(--text2);margin-left:8px}
+    .deadline-card-days{font-family:'Space Mono',monospace;font-size:22px;font-weight:700;line-height:1}
+    .deadline-card-days.urgent{color:var(--pink)}
+    .deadline-card-days.soon{color:var(--accent)}
+    .deadline-card-days.muted{color:var(--text2);opacity:0.6}
+    .deadline-card-days-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.12em;color:var(--text2);text-transform:uppercase}
+    .deadline-card-date{font-size:12px;color:var(--text2);margin-bottom:8px}
+    .deadline-card-type{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--text2);text-transform:uppercase;background:rgba(201,168,76,0.06);border-radius:4px;padding:2px 6px;display:inline-block;margin-bottom:8px}
+    .deadline-card-actions{display:flex;gap:8px;margin-top:10px}
+    .deadline-remind-btn{flex:1;border:1px solid var(--accent);background:transparent;color:var(--accent);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.08em;padding:8px 10px;border-radius:5px;cursor:pointer;transition:all 0.2s;text-align:center}
+    .deadline-remind-btn:hover{background:rgba(201,168,76,0.08)}
+    .deadlines-empty{text-align:center;padding:60px 20px;color:var(--text2);font-size:13px}
+    .deadlines-loading{text-align:center;padding:40px 20px}
+    .deadlines-loading-spinner{width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
+    .deadlines-disclaimer{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:var(--text2);opacity:0.5;margin-top:20px;line-height:1.5}
+    @media(max-width:768px){
+      .deadlines-grid{grid-template-columns:1fr}
+    }
 
     /* === WELCOME OVERLAY (post-payment) === */
     #welcome-overlay{position:fixed;inset:0;background:rgba(6,6,10,0.97);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;animation:welcomeFadeIn 400ms ease-out forwards}
@@ -2892,6 +2965,8 @@
       <button class="tools-dropdown-item" onclick="switchToolsTab('tools')"><span class="tools-dropdown-icon">&#128200;</span>Deal Analyzer</button>
       <button class="tools-dropdown-item" onclick="switchToolsTab('versus')"><span class="tools-dropdown-icon">&#9878;</span>Versus</button>
       <button class="tools-dropdown-item" onclick="switchToolsTab('scout')"><span class="tools-dropdown-icon">&#128270;</span>Scout Checklist</button>
+      <button class="tools-dropdown-item" onclick="switchToolsTab('warbook')"><span class="tools-dropdown-icon">&#128214;</span>Warbook</button>
+      <button class="tools-dropdown-item" onclick="switchToolsTab('deadlines')"><span class="tools-dropdown-icon">&#128197;</span>Deadlines</button>
     </div>
     <!-- Nav tabs consolidated: Intelligence, Calendar, Account + TOOLS dropdown -->
     <span id="nav-active-label" data-i18n="nav_map">Map</span>
@@ -3260,6 +3335,7 @@
         <div class="sage-welcome" id="sage-welcome">
           <div class="sage-welcome-title">SAGE</div>
           <div class="sage-welcome-sub">Your tax lien and tax deed advisor. Ask me anything about states, rates, redemption periods, auctions, or how to get started.</div>
+          <div id="sage-arch-prompt" style="display:none;margin:8px 0;padding:8px 12px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:6px;font-size:11px;color:var(--text2)"><a onclick="switchTab('dna')" style="color:var(--accent);cursor:pointer;text-decoration:none">Take DNA Quiz to personalize Sage \u2192</a></div>
           <div class="sage-chips" id="sage-chips">
             <button class="sage-chip" onclick="askSageChip(this)">Which states are best for beginners?</button>
             <button class="sage-chip" onclick="askSageChip(this)">How does bid-down interest work?</button>
@@ -3330,6 +3406,7 @@
           <div class="auctions-cal-dow-row" id="auctions-cal-dow-row"></div>
           <div class="auctions-cal-grid" id="auctions-cal-grid"></div>
           <!-- Quarterly groupings -->
+          <div id="auctions-recs" style="display:none"></div>
           <div class="auctions-quarters" id="auctions-quarters"></div>
           <div class="auctions-disclaimer">
             Tax lien and tax deed investing involves risk, including potential loss of principal. Past performance does not guarantee future results. Auction dates and details are provided for informational purposes only &mdash; verify directly with the county or platform before registering. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a>
@@ -3467,6 +3544,50 @@
         </div>
       </div>
       <div class="paywall-lock" id="lock-scout-tab" style="display:none"><span class="walkthrough-label" data-i18n="scout_lock_title">UNLOCK SCOUT</span><div class="walkthrough-preview-img"><div class="wk-step-hdr"><div class="wk-step-num">1</div><div><div class="wk-text" style="font-weight:600">Lien/Deed Verification</div><div class="wk-text-sub">Confirm certificate or deed is valid and correctly assigned</div></div></div><div style="padding-left:30px"><div class="wk-label">HOW TO DO IT</div><div class="wk-text-sub" style="margin:2px 0">1. Pull original certificate number from county tax collector</div><div class="wk-text-sub" style="margin:2px 0">2. Match parcel ID on certificate to county assessor map</div><div class="wk-label" style="margin-top:6px">YOUR NOTES</div><div class="wk-input" style="min-height:24px"></div></div></div><span class="walkthrough-desc">10-step due diligence checklist for any property. Walk through title, liens, condition, comparables, and exit strategy before you spend a dollar.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+    </div>
+
+    <!-- WARBOOK -->
+    <div class="tab-panel" id="panel-warbook">
+      <div class="warbook-wrap">
+        <div class="warbook-hdr">
+          <div class="warbook-title">WARBOOK</div>
+          <div class="warbook-sub">Competition landscape by state. See where institutional buyers cluster &mdash; and where they don&rsquo;t.</div>
+        </div>
+        <div id="warbook-body">
+          <div class="warbook-loading" id="warbook-loading" style="display:none">
+            <div class="warbook-loading-spinner"></div>
+            <div style="font-size:12px;color:var(--text2)">Loading competition data&hellip;</div>
+          </div>
+          <div id="warbook-content"></div>
+        </div>
+        <div class="warbook-disclaimer">Competition ratings are estimates based on publicly available auction data and property counts. They do not constitute investment advice. Verify all data with official county sources before making investment decisions.</div>
+      </div>
+      <div class="paywall-lock" id="lock-warbook-tab" style="display:none"><span class="walkthrough-label">UNLOCK WARBOOK</span><div class="walkthrough-preview-img"><table style="width:100%;font-size:10px;color:var(--text2);border-collapse:collapse"><tr><td style="padding:4px;font-weight:700;color:var(--accent)">TX</td><td style="padding:4px">&#9733;&#9733;&#9733;&#9734;&#9734;</td><td style="padding:4px">$8,200</td><td style="padding:4px;color:var(--green)">+42%</td></tr><tr><td style="padding:4px;font-weight:700;color:var(--accent)">FL</td><td style="padding:4px">&#9733;&#9733;&#9733;&#9733;&#9734;</td><td style="padding:4px">$3,100</td><td style="padding:4px;color:var(--green)">+28%</td></tr></table></div><span class="walkthrough-desc">See which states have low, moderate, or institutional-level competition. Find OTC opportunities and lower-competition counties.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+    </div>
+
+    <!-- DEADLINES -->
+    <div class="tab-panel" id="panel-deadlines">
+      <div class="deadlines-wrap">
+        <div class="deadlines-hdr">
+          <div class="deadlines-title">DEADLINES</div>
+          <div class="deadlines-sub">Upcoming auctions for your saved states. Never miss a registration or deposit window.</div>
+        </div>
+        <div class="deadlines-filter" id="deadlines-filter"></div>
+        <div id="deadlines-body">
+          <div class="deadlines-loading" id="deadlines-loading" style="display:none">
+            <div class="deadlines-loading-spinner"></div>
+            <div style="font-size:12px;color:var(--text2)">Loading deadlines&hellip;</div>
+          </div>
+          <div class="deadlines-grid" id="deadlines-grid"></div>
+          <div class="deadlines-empty" id="deadlines-empty" style="display:none">
+            <div style="font-size:28px;margin-bottom:8px;opacity:0.3">&#128197;</div>
+            <div>No upcoming auctions found.</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:4px">Save states from the map to track their deadlines here.</div>
+          </div>
+        </div>
+        <div class="deadlines-disclaimer">Auction dates are based on published county schedules and may change without notice. Always confirm registration deadlines, deposit requirements, and auction times directly with the official county authority. This tool does not constitute financial or legal advice.</div>
+      </div>
+      <div class="paywall-lock" id="lock-deadlines-tab" style="display:none"><span class="walkthrough-label">UNLOCK DEADLINES</span><div class="walkthrough-preview-img"><div style="display:flex;gap:8px"><div style="background:var(--bg3);border:1px solid rgba(232,93,138,0.3);border-radius:6px;padding:8px;flex:1;text-align:center"><div style="font-family:'Space Mono',monospace;font-size:16px;font-weight:700;color:var(--pink)">5</div><div style="font-size:8px;color:var(--text2)">DAYS LEFT</div><div style="font-size:9px;color:var(--text2);margin-top:4px">Harris County, TX</div></div><div style="background:var(--bg3);border:1px solid rgba(201,168,76,0.3);border-radius:6px;padding:8px;flex:1;text-align:center"><div style="font-family:'Space Mono',monospace;font-size:16px;font-weight:700;color:var(--accent)">18</div><div style="font-size:8px;color:var(--text2)">DAYS LEFT</div><div style="font-size:9px;color:var(--text2);margin-top:4px">Miami-Dade, FL</div></div></div></div><span class="walkthrough-desc">Countdown dashboard for upcoming auctions. Track registration deadlines, deposit windows, and set reminders so you never miss an opportunity.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
     </div>
 
     <div class="tab-panel" id="panel-account">
@@ -3968,7 +4089,7 @@ var STRIPE_URL = 'https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02';
 
 function applyAccessLocks() {
   // Tab-level locks (paid only) — includes Auctions now
-  var tabLocks = ['lock-dna-tab', 'lock-advisor-tab', 'lock-tools-tab', 'lock-scout-tab', 'lock-auctions-tab'];
+  var tabLocks = ['lock-dna-tab', 'lock-advisor-tab', 'lock-tools-tab', 'lock-scout-tab', 'lock-warbook-tab', 'lock-deadlines-tab', 'lock-auctions-tab'];
   tabLocks.forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.style.display = IS_PAID ? 'none' : 'flex';
@@ -3986,6 +4107,8 @@ function applyAccessLocks() {
     'lock-advisor-tab': 'panel-advisor',
     'lock-tools-tab': 'panel-tools',
     'lock-scout-tab': 'panel-scout',
+    'lock-warbook-tab': 'panel-warbook',
+    'lock-deadlines-tab': 'panel-deadlines',
     'lock-auctions-tab': 'panel-auctions'
   };
   // Versus uses tab-locked for FOUC prevention (hides terminal until JS runs)
@@ -4098,7 +4221,7 @@ function updateTierBadge() {
 }
 
 // === TAB SWITCHING ===
-var TOOLS_TABS = ['dna', 'advisor', 'tools', 'versus', 'scout'];
+var TOOLS_TABS = ['dna', 'advisor', 'tools', 'versus', 'scout', 'warbook', 'deadlines'];
 
 function switchTab(name) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -4115,6 +4238,9 @@ function switchTab(name) {
   APP.activeTab = name;
   closeToolsMenu();
   if(typeof updateNavFilterBtn==='function') updateNavFilterBtn();
+  // Lazy init for Warbook and Deadlines
+  if (name === 'warbook' && typeof initWarbook === 'function') initWarbook();
+  if (name === 'deadlines' && typeof initDeadlines === 'function') initDeadlines();
 }
 
 function toggleToolsMenu(e) {
@@ -5989,7 +6115,13 @@ function fetchLiveAuctionData() {
   var pulseLoadingEl = document.getElementById('pulse-feed-loading');
   if (pulseLoadingEl) pulseLoadingEl.style.display = '';
 
-  return fetch('/.netlify/functions/auctions')
+  // Pass saved states for server-side Pulse filtering
+  var _pulseUrl = '/.netlify/functions/auctions';
+  var _savedForPulse = getSavedStates();
+  if (_savedForPulse.length > 0) {
+    _pulseUrl += '?state_codes=' + encodeURIComponent(_savedForPulse.join(','));
+  }
+  return fetch(_pulseUrl)
     .then(function(res) {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.json();
@@ -6638,6 +6770,31 @@ function renderAuctions() {
 
   grid.innerHTML = html;
 
+  // --- Archetype recommendations above quarters ---
+  var recsEl = document.getElementById('auctions-recs');
+  if (recsEl) {
+    var archKeyRec = getArchetypeKey();
+    var archCfgRec = archKeyRec ? ARCHETYPE_TOOL_CONFIG[archKeyRec] : null;
+    if (archCfgRec) {
+      var recsFiltered = filtered.filter(function(e) {
+        var matchStates = archCfgRec.daStates || [];
+        return matchStates.indexOf(e.stateCode) >= 0;
+      }).slice(0, 5);
+      if (recsFiltered.length > 0) {
+        var recHtml = '<div class="auctions-recs-header"><span class="auctions-recs-title">RECOMMENDED FOR YOU</span><span class="auctions-recs-badge">' + escapeHtml(archCfgRec.label) + '</span></div>';
+        recsFiltered.forEach(function(e) { recHtml += buildCardHtml(e, false); });
+        recsEl.innerHTML = recHtml;
+        recsEl.style.display = '';
+      } else {
+        recsEl.innerHTML = '';
+        recsEl.style.display = 'none';
+      }
+    } else {
+      recsEl.innerHTML = '';
+      recsEl.style.display = 'none';
+    }
+  }
+
   // --- Quarterly groupings below calendar ---
   var quartersEl = document.getElementById('auctions-quarters');
   if (!quartersEl) return;
@@ -6813,6 +6970,9 @@ function findSageState(q) {
 function getAdvisorResponse(input) {
   var q = input.toLowerCase();
   var stateKey = findSageState(q);
+  // Archetype context — tailors advice
+  var archKey = getArchetypeKey();
+  var archCtx = archKey && ARCHETYPE_TOOL_CONFIG[archKey] ? ARCHETYPE_TOOL_CONFIG[archKey].sageContext : null;
   // FREQUENCY RULE: Never deploy CTA on back-to-back responses.
   // If CTA was just shown and investor did not engage — wait at least 2 more exchanges.
   // Cold factual questions do not trigger a CTA.
@@ -6852,7 +7012,9 @@ function getAdvisorResponse(input) {
 
   // Beginner / getting started
   if (q.includes('beginner') || q.includes('start') || q.includes('new to') || q.includes('first') || q.includes('getting started') || q.includes('where do i')) {
-    return 'For getting started, I\u2019d point you toward Florida, Arizona, or Iowa.\n\nFlorida and Arizona are fully online, well-documented, and have strong OTC programs so you can buy unsold liens without competitive bidding. Iowa uses random selection, which means you\u2019re not competing on rate at all.\n\nAll three have solid infrastructure for newer investors. Open any of them on the Map tab to see the full breakdown.';
+    var beginnerResp = 'For getting started, I\u2019d point you toward Florida, Arizona, or Iowa.\n\nFlorida and Arizona are fully online, well-documented, and have strong OTC programs so you can buy unsold liens without competitive bidding. Iowa uses random selection, which means you\u2019re not competing on rate at all.\n\nAll three have solid infrastructure for newer investors. Open any of them on the Map tab to see the full breakdown.';
+    if (archCtx) beginnerResp = 'Based on your ' + ARCHETYPE_TOOL_CONFIG[archKey].label + ' profile:\n\n' + beginnerResp;
+    return beginnerResp;
   }
 
   // Budget questions
@@ -7015,7 +7177,7 @@ function initAccount() {
     level.textContent = 'Free';
     states.textContent = 'All 51 States';
     var locked = document.getElementById('acct-locked');
-    if (locked) locked.textContent = 'Counties, DNA, Versus, Analyzer, Sage, Scout, Auctions, Pulse';
+    if (locked) locked.textContent = 'Counties, DNA, Versus, Analyzer, Sage, Scout, Warbook, Deadlines, Auctions, Pulse';
     if (lockedRow) lockedRow.style.display = '';
     if (upgrade) upgrade.style.display = 'block';
     if (valueSection) valueSection.style.display = 'block';
@@ -7111,8 +7273,29 @@ function initVersusTab() {
     if (storedA) { preA = storedA; localStorage.removeItem('versus_state_a'); }
     if (storedB) { preB = storedB; localStorage.removeItem('versus_state_b'); }
   } catch(e) { /* localStorage not available */ }
+  // DNA archetype pre-load (if no stored selections)
+  var archKey = getArchetypeKey();
+  var archCfg = archKey ? ARCHETYPE_TOOL_CONFIG[archKey] : null;
+  if (!localStorage.getItem('versus_state_a') && archCfg && archCfg.daStates) {
+    var profile = getProfile();
+    if (profile && profile.topStates && profile.topStates.length >= 2) {
+      preA = profile.topStates[0].code;
+      preB = profile.topStates[1].code;
+    }
+  }
   selA.value = preA;
   selB.value = preB;
+  // Show archetype badge
+  var vsHeader = document.querySelector('.vs-terminal-header');
+  if (vsHeader && archCfg) {
+    var oldBadge = document.getElementById('vs-arch-badge');
+    if (oldBadge) oldBadge.remove();
+    var vsBadge = document.createElement('div');
+    vsBadge.id = 'vs-arch-badge';
+    vsBadge.style.cssText = 'font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.08em;color:#c9a84c;margin-bottom:4px';
+    vsBadge.textContent = 'Comparing as: ' + archCfg.label;
+    vsHeader.insertBefore(vsBadge, vsHeader.firstChild);
+  }
   selA.addEventListener('change', runVersusCompare);
   selB.addEventListener('change', runVersusCompare);
   runVersusCompare();
@@ -7685,6 +7868,11 @@ switchTab = function(name) {
     daInitialized = true;
     daInit();
   }
+  // Show/hide Sage archetype prompt
+  if (name === 'advisor') {
+    var sagePrompt = document.getElementById('sage-arch-prompt');
+    if (sagePrompt) sagePrompt.style.display = getArchetypeKey() ? 'none' : 'block';
+  }
 };
 
 // === PULSE BELL DRAWER ===
@@ -8096,7 +8284,8 @@ function toggleDisclaimer() {
 var _mobileNavOpen = false;
 var MOBILE_NAV_LABELS = {
   map: 'Map', tools: 'Tools', dna: 'DNA', advisor: 'Advisor',
-  auctions: 'Auctions', versus: 'Versus', account: 'Account'
+  auctions: 'Auctions', versus: 'Versus', account: 'Account',
+  warbook: 'Warbook', deadlines: 'Deadlines'
 };
 
 function toggleMobileNav() {
@@ -8225,8 +8414,29 @@ function daInit() {
   }).join('');
   selA.innerHTML = html;
   selB.innerHTML = html;
-  selA.value = 'FL';
-  selB.value = 'IA';
+  // DNA archetype defaults
+  var archKey = getArchetypeKey();
+  var archCfg = archKey ? ARCHETYPE_TOOL_CONFIG[archKey] : null;
+  if (archCfg && archCfg.daStates) {
+    selA.value = archCfg.daStates[0] || 'FL';
+    selB.value = archCfg.daStates[1] || 'IA';
+  } else {
+    selA.value = 'FL';
+    selB.value = 'IA';
+  }
+  // Show strategy badge
+  var daHeader = document.querySelector('.da-header');
+  if (daHeader) {
+    var oldBadge = document.getElementById('da-arch-badge');
+    if (oldBadge) oldBadge.remove();
+    if (archCfg) {
+      var badgeEl = document.createElement('div');
+      badgeEl.id = 'da-arch-badge';
+      badgeEl.style.cssText = 'font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.1em;color:#c9a84c;margin-bottom:6px';
+      badgeEl.innerHTML = 'Strategy Mode: ' + escapeHtml(archCfg.label) + ' <a onclick="switchTab(\'dna\')" style="color:rgba(201,168,76,0.6);cursor:pointer;font-size:10px;margin-left:6px">Change \u2192</a>';
+      daHeader.insertBefore(badgeEl, daHeader.firstChild);
+    }
+  }
   daCalculate();
 }
 
@@ -8538,6 +8748,33 @@ function profileTopStateCodes() {
   if (!p || !p.topStates || !p.topStates.length) return null;
   return p.topStates.map(function(s) { return s.code; });
 }
+
+function getArchetype() {
+  var p = getProfile();
+  if (!p || !p.archetype) return null;
+  return p.archetype; // e.g. 'yield-maximizer', 'deal-hunter', 'patient-capitalist', 'local-operator', 'portfolio-builder'
+}
+
+function getArchetypeKey() {
+  var arch = getArchetype();
+  if (!arch) return null;
+  // Map archetype slug to strategy key
+  if (arch.indexOf('yield') >= 0) return 'yield';
+  if (arch.indexOf('hunter') >= 0 || arch.indexOf('deal') >= 0) return 'hunter';
+  if (arch.indexOf('patient') >= 0) return 'patient';
+  if (arch.indexOf('local') >= 0) return 'local';
+  if (arch.indexOf('portfolio') >= 0) return 'portfolio';
+  return null;
+}
+
+// Archetype → tool defaults mapping
+var ARCHETYPE_TOOL_CONFIG = {
+  yield: { label: 'YIELD MAXIMIZER', daStates: ['FL', 'IA'], vsWeight: 'rate', sageContext: 'Yield Maximizer — prioritizes consistent returns through tax lien certificates, statutory interest rates, online auctions' },
+  hunter: { label: 'DEAL HUNTER', daStates: ['TX', 'GA'], vsWeight: 'deed', sageContext: 'Deal Hunter — targets property acquisition through tax deed sales, higher capital, aggressive positioning' },
+  patient: { label: 'PATIENT CAPITALIST', daStates: ['IA', 'IN'], vsWeight: 'redemption', sageContext: 'Patient Capitalist — long-view deployment into higher-rate liens with multi-year redemption, conservative risk' },
+  local: { label: 'LOCAL OPERATOR', daStates: ['FL', 'AZ'], vsWeight: 'platform', sageContext: 'Local Operator — boots-on-ground investing, county auctions in person, local relationships' },
+  portfolio: { label: 'PORTFOLIO BUILDER', daStates: ['FL', 'TX'], vsWeight: 'all', sageContext: 'Portfolio Builder — structured portfolio allocation, diversified across types and geographies' }
+};
 
 // === ITEM 3: DNA PROFILE PERSISTENCE ===
 // Wrap dnaFinish to save profile
@@ -9078,6 +9315,58 @@ var SCOUT_STEPS = [
   }
 ];
 
+// State-specific due diligence rules
+var SCOUT_STATE_RULES = {
+  AZ: { type:'lien', redemption_months:36, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:true, registration_required:true, deposit_pct:0 },
+  FL: { type:'lien', redemption_months:24, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:true, online_auction:true, registration_required:true, deposit_pct:0 },
+  TX: { type:'deed', redemption_months:6, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:true, online_auction:false, registration_required:true, deposit_pct:5 },
+  GA: { type:'deed', redemption_months:12, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:0 },
+  NJ: { type:'lien', redemption_months:24, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:true, online_auction:true, registration_required:true, deposit_pct:0 },
+  MD: { type:'lien', redemption_months:6, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:true, online_auction:true, registration_required:true, deposit_pct:0 },
+  CO: { type:'lien', redemption_months:36, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:true, registration_required:true, deposit_pct:0 },
+  IL: { type:'lien', redemption_months:30, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:0 },
+  OH: { type:'deed', redemption_months:0, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:10 },
+  SC: { type:'deed', redemption_months:12, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:5 },
+  IN: { type:'lien', redemption_months:12, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:true, registration_required:true, deposit_pct:0 },
+  IA: { type:'lien', redemption_months:24, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:true, registration_required:true, deposit_pct:0 }
+};
+
+function scoutGetStateItems(stateCode) {
+  var rules = stateCode ? SCOUT_STATE_RULES[stateCode.toUpperCase()] : null;
+  var items = [];
+  if (!rules) {
+    items.push({ icon: '\u26A0\uFE0F', text: 'State-specific rules not yet available for this state \u2014 verify with local tax collector.', type: 'warning' });
+    return items;
+  }
+  if (rules.type === 'deed') {
+    items.push({ icon: '\uD83D\uDCDC', text: 'This is a TAX DEED state \u2014 you are bidding on the property itself, not a lien certificate.', type: 'info' });
+  } else {
+    items.push({ icon: '\uD83D\uDCDC', text: 'This is a TAX LIEN state \u2014 you are purchasing a lien certificate, not the property.', type: 'info' });
+  }
+  if (rules.quiet_title_required) {
+    items.push({ icon: '\u2696\uFE0F', text: 'Quiet title action required after foreclosure. Budget $1,500\u2013$3,000+ for attorney fees.', type: 'action' });
+  }
+  if (rules.irs_lien_survives) {
+    items.push({ icon: '\uD83C\uDFDB\uFE0F', text: 'IRS federal tax liens survive the sale. Check for federal liens before bidding.', type: 'warning' });
+  }
+  if (rules.hoa_super_lien) {
+    items.push({ icon: '\uD83C\uDFE0', text: 'HOA super-liens may apply. Check for outstanding HOA assessments.', type: 'warning' });
+  }
+  if (rules.online_auction) {
+    items.push({ icon: '\uD83D\uDCBB', text: 'Online auction \u2014 register on the platform in advance. Confirm browser/device requirements.', type: 'action' });
+  }
+  if (rules.registration_required) {
+    items.push({ icon: '\u270D\uFE0F', text: 'Pre-registration required. Set calendar reminder for registration deadline.', type: 'action' });
+  }
+  if (rules.deposit_pct > 0) {
+    items.push({ icon: '\uD83D\uDCB0', text: 'Deposit required: typically ' + rules.deposit_pct + '% of bid amount. Confirm exact format with the county.', type: 'action' });
+  }
+  if (rules.redemption_months > 0) {
+    items.push({ icon: '\u23F0', text: 'Redemption period: ' + rules.redemption_months + ' months. Capital locked until owner redeems or period expires.', type: 'info' });
+  }
+  return items;
+}
+
 var _scoutActiveDeal = null;
 
 function scoutGetDeals() {
@@ -9292,6 +9581,18 @@ function scoutRender() {
     '</div>';
   }
 
+  // State-specific items
+  var stateItems = scoutGetStateItems(d.state);
+  if (stateItems.length > 0) {
+    out += '<div class="scout-state-rules">';
+    out += '<div class="scout-state-rules-title">STATE-SPECIFIC: ' + escapeHtml(d.state || 'GENERAL') + '</div>';
+    stateItems.forEach(function(item) {
+      var cls = item.type === 'warning' ? 'scout-state-warning' : (item.type === 'action' ? 'scout-state-action' : 'scout-state-info');
+      out += '<div class="' + cls + '">' + item.icon + ' ' + escapeHtml(item.text) + '</div>';
+    });
+    out += '</div>';
+  }
+
   // Steps
   // Preserve which steps are open
   var openSteps = {};
@@ -9361,6 +9662,244 @@ function scoutRender() {
   if (deals.length > 0) { _scoutActiveDeal = deals[0]; }
   scoutRender();
 })();
+
+// === WARBOOK ===
+var _warbookLoaded = false;
+var _warbookData = null;
+
+function warbookGetStars(count) {
+  if (count <= 5) return 1;
+  if (count <= 15) return 2;
+  if (count <= 30) return 3;
+  if (count <= 60) return 4;
+  return 5;
+}
+
+function warbookGetCompLabel(stars) {
+  var labels = ['', 'Low', 'Low-Moderate', 'Moderate', 'High', 'Institutional'];
+  return labels[stars] || '';
+}
+
+function warbookRenderStars(n) {
+  var out = '';
+  for (var i = 0; i < 5; i++) {
+    out += i < n ? '<span class="warbook-stars">&#9733;</span>' : '<span class="warbook-stars warbook-stars-dim">&#9734;</span>';
+  }
+  return out;
+}
+
+function initWarbook() {
+  if (_warbookLoaded || !IS_PAID) return;
+  _warbookLoaded = true;
+  var loading = document.getElementById('warbook-loading');
+  var content = document.getElementById('warbook-content');
+  if (loading) loading.style.display = 'block';
+
+  var email = '';
+  try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
+  if (!email) {
+    if (loading) loading.style.display = 'none';
+    if (content) content.innerHTML = '<div class="warbook-empty">Sign in to view competition data.</div>';
+    return;
+  }
+
+  fetch('/.netlify/functions/auctions?type=warbook&email=' + encodeURIComponent(email))
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (loading) loading.style.display = 'none';
+      if (!data.states || data.states.length === 0) {
+        if (content) content.innerHTML = '<div class="warbook-empty">No competition data available yet.</div>';
+        return;
+      }
+      _warbookData = data.states;
+      warbookRender(data.states);
+    })
+    .catch(function() {
+      if (loading) loading.style.display = 'none';
+      if (content) content.innerHTML = '<div class="warbook-empty">Could not load competition data.</div>';
+    });
+}
+
+function warbookRender(states) {
+  var content = document.getElementById('warbook-content');
+  if (!content) return;
+
+  var archKey = getArchetypeKey();
+  var archCfg = archKey ? ARCHETYPE_TOOL_CONFIG[archKey] : null;
+  var archStates = archCfg ? archCfg.daStates : [];
+
+  var html = '<table class="warbook-table"><thead><tr>';
+  html += '<th>State</th><th>Competition</th><th>Auctions</th><th>Avg Bid</th><th>Avg Equity</th><th>Top County</th><th></th>';
+  html += '</tr></thead><tbody>';
+
+  states.forEach(function(s) {
+    var stars = warbookGetStars(s.auction_count);
+    var compLabel = warbookGetCompLabel(stars);
+    var isArch = archStates.indexOf(s.state_code) >= 0;
+    var bid = s.avg_opening_bid != null ? '$' + s.avg_opening_bid.toLocaleString() : '&mdash;';
+    var eqCls = s.avg_equity_cushion != null ? (s.avg_equity_cushion >= 0 ? 'positive' : 'negative') : '';
+    var eq = s.avg_equity_cushion != null ? (s.avg_equity_cushion >= 0 ? '+' : '') + s.avg_equity_cushion + '%' : '&mdash;';
+    var county = s.top_county ? escapeHtml(s.top_county) : '&mdash;';
+
+    html += '<tr>';
+    html += '<td><span class="warbook-state-code">' + escapeHtml(s.state_code) + '</span>';
+    if (isArch) html += ' <span style="font-size:9px;color:var(--teal)">DNA</span>';
+    html += '</td>';
+    html += '<td>' + warbookRenderStars(stars) + ' <span style="font-size:10px;color:var(--text2)">' + compLabel + '</span></td>';
+    html += '<td>' + s.auction_count + '</td>';
+    html += '<td class="warbook-bid">' + bid + '</td>';
+    html += '<td class="warbook-equity ' + eqCls + '">' + eq + '</td>';
+    html += '<td class="warbook-county">' + county + '</td>';
+    html += '<td><button class="warbook-explore" onclick="warbookExplore(\'' + escapeHtml(s.state_code) + '\')">EXPLORE</button></td>';
+    html += '</tr>';
+  });
+
+  html += '</tbody></table>';
+  content.innerHTML = html;
+}
+
+function warbookExplore(stateCode) {
+  switchTab('map');
+  var st = (typeof STATES_EN !== 'undefined' ? STATES_EN : []).find(function(s) { return s.id === stateCode; });
+  if (st && typeof openStateDetail === 'function') {
+    setTimeout(function() { openStateDetail(st); }, 200);
+  }
+}
+
+// === DEADLINES ===
+var _deadlinesLoaded = false;
+var _deadlinesData = null;
+var _deadlinesFilter = 'all';
+
+function initDeadlines() {
+  if (_deadlinesLoaded || !IS_PAID) return;
+  _deadlinesLoaded = true;
+  var loading = document.getElementById('deadlines-loading');
+  var grid = document.getElementById('deadlines-grid');
+  var empty = document.getElementById('deadlines-empty');
+  if (loading) loading.style.display = 'block';
+  if (grid) grid.innerHTML = '';
+  if (empty) empty.style.display = 'none';
+
+  var savedStates = getSavedStates();
+
+  fetch('/.netlify/functions/auctions')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (loading) loading.style.display = 'none';
+      var auctions = data.auctions || [];
+      // Filter to future auctions only
+      var now = new Date();
+      now.setHours(0,0,0,0);
+      _deadlinesData = auctions.filter(function(a) {
+        return a.auction_date && new Date(a.auction_date) >= now;
+      }).sort(function(a, b) {
+        return new Date(a.auction_date) - new Date(b.auction_date);
+      });
+      deadlinesBuildFilters(savedStates);
+      deadlinesRender();
+    })
+    .catch(function() {
+      if (loading) loading.style.display = 'none';
+      if (empty) { empty.style.display = 'block'; empty.textContent = 'Could not load deadline data.'; }
+    });
+}
+
+function deadlinesBuildFilters(savedStates) {
+  var container = document.getElementById('deadlines-filter');
+  if (!container || !_deadlinesData) return;
+
+  // Collect unique state codes from data
+  var codes = {};
+  _deadlinesData.forEach(function(a) { if (a.state_code) codes[a.state_code] = true; });
+  var codeList = Object.keys(codes).sort();
+
+  var html = '<span class="deadlines-filter-label">FILTER:</span>';
+  html += '<button class="deadlines-filter-btn' + (_deadlinesFilter === 'all' ? ' active' : '') + '" onclick="deadlinesSetFilter(\'all\')">All</button>';
+
+  if (savedStates.length > 0) {
+    html += '<button class="deadlines-filter-btn' + (_deadlinesFilter === 'saved' ? ' active' : '') + '" onclick="deadlinesSetFilter(\'saved\')">Saved States</button>';
+  }
+
+  codeList.forEach(function(c) {
+    html += '<button class="deadlines-filter-btn' + (_deadlinesFilter === c ? ' active' : '') + '" onclick="deadlinesSetFilter(\'' + escapeHtml(c) + '\')">' + escapeHtml(c) + '</button>';
+  });
+
+  container.innerHTML = html;
+}
+
+function deadlinesSetFilter(val) {
+  _deadlinesFilter = val;
+  deadlinesBuildFilters(getSavedStates());
+  deadlinesRender();
+}
+
+function deadlinesRender() {
+  var grid = document.getElementById('deadlines-grid');
+  var empty = document.getElementById('deadlines-empty');
+  if (!grid || !_deadlinesData) return;
+
+  var saved = getSavedStates();
+  var filtered = _deadlinesData;
+
+  if (_deadlinesFilter === 'saved') {
+    filtered = filtered.filter(function(a) { return saved.indexOf(a.state_code) >= 0; });
+  } else if (_deadlinesFilter !== 'all') {
+    filtered = filtered.filter(function(a) { return a.state_code === _deadlinesFilter; });
+  }
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    if (empty) empty.style.display = 'block';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+
+  var now = new Date();
+  now.setHours(0,0,0,0);
+
+  var html = '';
+  filtered.forEach(function(a) {
+    var aDate = new Date(a.auction_date);
+    var diff = Math.ceil((aDate - now) / (1000 * 60 * 60 * 24));
+    var urgency = diff <= 7 ? 'urgent' : (diff <= 30 ? 'soon' : '');
+    var daysCls = diff <= 7 ? 'urgent' : (diff <= 30 ? 'soon' : 'muted');
+    var dateStr = aDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    var county = a.county ? escapeHtml(a.county) : '';
+    var stCode = a.state_code ? escapeHtml(a.state_code) : '';
+    var aType = a.auction_type || a.type || '';
+    var isSaved = saved.indexOf(a.state_code) >= 0;
+
+    html += '<div class="deadline-card ' + urgency + '">';
+    html += '<div class="deadline-card-top">';
+    html += '<div><span class="deadline-card-state">' + stCode + '</span>';
+    if (county) html += '<span class="deadline-card-county">' + county + '</span>';
+    if (isSaved) html += ' <span style="font-size:9px;color:var(--teal)">&#9733; SAVED</span>';
+    html += '</div>';
+    html += '<div style="text-align:right"><div class="deadline-card-days ' + daysCls + '">' + diff + '</div><div class="deadline-card-days-label">DAYS LEFT</div></div>';
+    html += '</div>';
+    html += '<div class="deadline-card-date">' + dateStr + '</div>';
+    if (aType) html += '<div class="deadline-card-type">' + escapeHtml(aType) + '</div>';
+    html += '<div class="deadline-card-actions">';
+    html += '<button class="deadline-remind-btn" onclick="deadlinesRemind(\'' + escapeHtml(a.auction_date) + '\',\'' + stCode + '\',\'' + county.replace(/'/g, "\\'") + '\')">SET REMINDER</button>';
+    html += '</div>';
+    html += '</div>';
+  });
+
+  grid.innerHTML = html;
+}
+
+function deadlinesRemind(dateStr, state, county) {
+  var d = new Date(dateStr);
+  var title = 'Auction: ' + state + (county ? ' - ' + county : '');
+  var startStr = d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  var end = new Date(d.getTime() + 3600000);
+  var endStr = end.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+
+  // Try Google Calendar link (most compatible cross-platform)
+  var gcalUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(title) + '&dates=' + startStr + '/' + endStr + '&details=' + encodeURIComponent('Tax auction reminder from Aurigen Directory. Verify details with the official county authority.');
+  window.open(gcalUrl, '_blank', 'noopener,noreferrer');
+}
 </script>
 <!-- PULSE DRAWER -->
 <div id="pulse-overlay" onclick="closePulseDrawer()"></div>

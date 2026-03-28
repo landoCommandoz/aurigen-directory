@@ -140,6 +140,79 @@ exports.handler = async (event) => {
 
     // Default route: auctions + pulse_alerts
     const today = new Date().toISOString().split('T')[0];
+    const params = event.queryStringParameters || {};
+
+    // Build pulse query with optional state filter
+    let alertsQuery = supabase
+      .from('pulse_alerts')
+      .select('*')
+      .eq('active', true)
+      .order('created_at', { ascending: false })
+      .limit(50);
+
+    if (params.state_codes) {
+      const codes = params.state_codes.split(',').map(c => c.trim().toUpperCase().slice(0, 2)).filter(c => c.length === 2);
+      if (codes.length > 0) {
+        alertsQuery = alertsQuery.in('state_code', codes);
+      }
+    }
+
+    // Warbook aggregation endpoint
+    if (params.type === 'warbook') {
+      // Paid-only gate
+      const wbEmail = (params.email || '').toLowerCase().trim();
+      if (!wbEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(wbEmail)) {
+        return { statusCode: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'Authentication required' }) };
+      }
+      const WB_ADMINS = ['landon@theaurigen.com', 'lando@theaurigen.com'];
+      if (!WB_ADMINS.includes(wbEmail)) {
+        const { data: wbPaid } = await supabase.from('paid_users').select('id').eq('email', wbEmail).eq('active', true).maybeSingle();
+        if (!wbPaid) {
+          return { statusCode: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'Paid access required' }) };
+        }
+      }
+
+      // Aggregate per-state stats
+      const [auctionStats, propStats, scoreStats] = await Promise.all([
+        supabase.from('auctions').select('state_code').eq('active', true),
+        supabase.from('properties').select('state_code, opening_bid, equity_cushion_pct'),
+        supabase.from('county_scores').select('state_code, county, score')
+      ]);
+
+      const stateMap = {};
+      (auctionStats.data || []).forEach(a => {
+        if (!a.state_code) return;
+        if (!stateMap[a.state_code]) stateMap[a.state_code] = { auction_count: 0, bids: [], equities: [], top_county: null, top_score: 0 };
+        stateMap[a.state_code].auction_count++;
+      });
+      (propStats.data || []).forEach(p => {
+        if (!p.state_code || !stateMap[p.state_code]) return;
+        if (p.opening_bid != null) stateMap[p.state_code].bids.push(p.opening_bid);
+        if (p.equity_cushion_pct != null) stateMap[p.state_code].equities.push(p.equity_cushion_pct);
+      });
+      (scoreStats.data || []).forEach(s => {
+        if (!s.state_code || !stateMap[s.state_code]) return;
+        if (s.score > stateMap[s.state_code].top_score) {
+          stateMap[s.state_code].top_score = s.score;
+          stateMap[s.state_code].top_county = s.county;
+        }
+      });
+
+      const states = Object.entries(stateMap).map(([code, d]) => ({
+        state_code: code,
+        auction_count: d.auction_count,
+        avg_opening_bid: d.bids.length > 0 ? Math.round(d.bids.reduce((a, b) => a + b, 0) / d.bids.length) : null,
+        avg_equity_cushion: d.equities.length > 0 ? Math.round(d.equities.reduce((a, b) => a + b, 0) / d.equities.length * 10) / 10 : null,
+        top_county: d.top_county,
+        top_score: d.top_score
+      })).sort((a, b) => b.auction_count - a.auction_count);
+
+      return {
+        statusCode: 200,
+        headers: { ...corsHeaders, 'Cache-Control': 'private, max-age=300', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ states })
+      };
+    }
 
     // Fetch auctions and pulse_alerts in parallel
     const [auctionsResult, alertsResult] = await Promise.all([
@@ -150,12 +223,7 @@ exports.handler = async (event) => {
         .gte('auction_date', today)
         .order('auction_date', { ascending: true })
         .limit(200),
-      supabase
-        .from('pulse_alerts')
-        .select('*')
-        .eq('active', true)
-        .order('created_at', { ascending: false })
-        .limit(50)
+      alertsQuery
     ]);
 
     if (auctionsResult.error) throw auctionsResult.error;
