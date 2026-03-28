@@ -89,3 +89,17 @@ ALTER TABLE free_users ENABLE ROW LEVEL SECURITY;
 
 -- No public policies = no access via anon key or authenticated key.
 -- Only the service_role key (used by Netlify functions) bypasses RLS.
+
+-- ── Consumed Sessions table (one-time-use Stripe session verification) ─
+CREATE TABLE IF NOT EXISTS consumed_sessions (
+  id                UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  stripe_session_id TEXT NOT NULL UNIQUE,
+  email             TEXT NOT NULL,
+  consumed_at       TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_consumed_sessions_sid ON consumed_sessions (stripe_session_id);
+
+-- Enable RLS — only service role key can read/write
+ALTER TABLE consumed_sessions ENABLE ROW LEVEL SECURITY;
+-- No public policies = service role only.

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>AURIGEN — Payment Confirmed</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0e1a;
+      --bg2: #0d1220;
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --text: #d0d0d8;
+      --muted: #6a6e82;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Logo */
+    .logo {
+      position: fixed;
+      top: 24px;
+      left: 28px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      opacity: 0.6;
+      text-decoration: none;
+    }
+
+    /* Container */
+    .confirm-card {
+      text-align: center;
+      max-width: 480px;
+      padding: 40px 32px;
+    }
+
+    /* Checkmark circle */
+    .check-ring {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 32px;
+      position: relative;
+    }
+    .check-ring svg {
+      width: 96px;
+      height: 96px;
+    }
+    .check-ring .ring {
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 2;
+      stroke-dasharray: 283;
+      stroke-dashoffset: 283;
+      animation: drawRing 0.8s ease-out 0.2s forwards;
+    }
+    .check-ring .tick {
+      fill: none;
+      stroke: var(--gold-light);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 40;
+      stroke-dashoffset: 40;
+      animation: drawTick 0.4s ease-out 0.9s forwards;
+    }
+    @keyframes drawRing {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes drawTick {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Headline */
+    .headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 8vw, 52px);
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    /* Subtitle */
+    .subtitle {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 8px;
+      font-weight: 300;
+    }
+
+    /* Countdown */
+    .countdown {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-top: 24px;
+    }
+    .countdown .seconds {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      width: 200px;
+      height: 2px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 1px;
+      margin: 16px auto 0;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 1px;
+      width: 0%;
+      animation: fillBar 5s linear forwards;
+    }
+    @keyframes fillBar {
+      to { width: 100%; }
+    }
+
+    /* Error state */
+    .error-icon {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 32px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,69,58,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      color: #FF453A;
+    }
+    .error-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 6vw, 40px);
+      letter-spacing: 0.06em;
+      color: #FF453A;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .error-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-gold {
+      background: var(--gold);
+      color: #06060a;
+      border: none;
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* Loading state */
+    .loading-spinner {
+      width: 48px;
+      height: 48px;
+      border: 2px solid rgba(201,168,76,0.15);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 24px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loading-text {
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* States — only one visible at a time */
+    .state { display: none; }
+    .state.active { display: block; }
+
+    /* Ambient glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .confirm-card { position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+  <a class="logo" href="/">AURIGEN</a>
+
+  <div class="confirm-card">
+    <!-- LOADING STATE -->
+    <div class="state active" id="state-loading">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Verifying your payment...</div>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="state" id="state-success">
+      <div class="check-ring">
+        <svg viewBox="0 0 96 96">
+          <circle class="ring" cx="48" cy="48" r="45"/>
+          <polyline class="tick" points="30,50 43,63 66,36"/>
+        </svg>
+      </div>
+      <div class="headline">PAYMENT CONFIRMED</div>
+      <div class="subtitle">Every county. Every tool. Every auction. Yours forever.</div>
+      <div class="countdown">Redirecting in <span class="seconds" id="countdown-num">5</span> seconds...</div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
+    <!-- ERROR STATE -->
+    <div class="state" id="state-error">
+      <div class="error-icon">!</div>
+      <div class="error-headline">VERIFICATION FAILED</div>
+      <div class="error-text" id="error-message">We couldn't verify your payment. If you just completed checkout, please wait a moment and try again.</div>
+      <div class="btn-row">
+        <a class="btn btn-gold" href="/">Return to Home</a>
+        <a class="btn btn-outline" href="mailto:support@theaurigen.com">Contact Support</a>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function() {
+  function showState(id) {
+    var states = document.querySelectorAll('.state');
+    for (var i = 0; i < states.length; i++) states[i].classList.remove('active');
+    var el = document.getElementById(id);
+    if (el) el.classList.add('active');
+  }
+
+  function startCountdown() {
+    var count = 5;
+    var el = document.getElementById('countdown-num');
+    var timer = setInterval(function() {
+      count--;
+      if (el) el.textContent = count;
+      if (count <= 0) {
+        clearInterval(timer);
+        window.location.href = '/warroom-billion.html';
+      }
+    }, 1000);
+  }
+
+  // Read session_id from URL
+  var params;
+  try { params = new URLSearchParams(window.location.search); } catch(e) { params = null; }
+  var sessionId = params ? params.get('session_id') : null;
+
+  if (!sessionId) {
+    showState('state-error');
+    document.getElementById('error-message').textContent = 'No payment session found. Please complete checkout first.';
+    return;
+  }
+
+  // Verify with server
+  fetch('/.netlify/functions/verify-session', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ session_id: sessionId })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.verified && data.email) {
+      // Store access
+      try {
+        localStorage.setItem('aurigen_access', 'paid');
+        localStorage.setItem('aurigen_email', data.email);
+      } catch(e) {}
+      // Clean URL — remove session_id from address bar
+      try { history.replaceState(null, '', '/success.html'); } catch(e) {}
+      // Show success + start countdown
+      showState('state-success');
+      startCountdown();
+    } else {
+      showState('state-error');
+      if (data.error) {
+        document.getElementById('error-message').textContent = data.error;
+      }
+    }
+  })
+  .catch(function() {
+    showState('state-error');
+    document.getElementById('error-message').textContent = 'Network error. Please check your connection and try again.';
+  });
+})();
+</script>
+</body>
+</html>
