@@ -695,36 +695,63 @@
 </div>
 
 <script>
-// === AUTH REDIRECT ===
+// === AUTH REDIRECT — server-verified ===
 (function() {
   try {
     var access = localStorage.getItem('aurigen_access');
-    if (access) { window.location.href = '/warroom-billion.html'; return; }
-  } catch(e) {}
-  try {
-    var params = new URLSearchParams(window.location.search);
-    if (params.get('paid') === 'true') {
-      localStorage.setItem('aurigen_access', 'paid');
-      window.location.href = '/warroom-billion.html';
+    var email = localStorage.getItem('aurigen_email');
+    if (access && email) {
+      // Verify server-side before redirect
+      fetch('/.netlify/functions/check-access', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        try { localStorage.setItem('aurigen_access', data.access || 'free'); } catch(e) {}
+        window.location.href = '/warroom-billion.html';
+      })
+      .catch(function() {
+        // Offline fallback: trust cached access
+        window.location.href = '/warroom-billion.html';
+      });
       return;
     }
   } catch(e) {}
 })();
 
-// === FORM SUBMIT ===
+// === FORM SUBMIT — server-verified access ===
 function handleSubmit(e) {
   e.preventDefault();
   var email = e.target.email.value;
-  try {
-    localStorage.setItem('aurigen_access', 'free');
-    localStorage.setItem('aurigen_email', email);
-  } catch(err) {}
+  var btn = e.target.querySelector('button[type="submit"]');
+  if (btn) { btn.disabled = true; btn.textContent = '...'; }
+  // Store email for future server checks
+  try { localStorage.setItem('aurigen_email', email); } catch(err) {}
+  // Post to Netlify Forms (lead capture)
   fetch('/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams(new FormData(e.target)).toString()
   }).catch(function() {});
-  window.location.href = '/warroom-billion.html';
+  // Check server for paid status
+  fetch('/.netlify/functions/check-access', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    var tier = data.access || 'free';
+    try { localStorage.setItem('aurigen_access', tier); } catch(e) {}
+    window.location.href = '/warroom-billion.html';
+  })
+  .catch(function() {
+    // Offline fallback: grant free access
+    try { localStorage.setItem('aurigen_access', 'free'); } catch(e) {}
+    window.location.href = '/warroom-billion.html';
+  });
 }
 
 // === TAB SYNC ===

@@ -54,3 +54,20 @@ CREATE TABLE IF NOT EXISTS scrape_log (
 
 CREATE INDEX IF NOT EXISTS idx_scrape_log_platform ON scrape_log (platform);
 CREATE INDEX IF NOT EXISTS idx_scrape_log_ran_at ON scrape_log (ran_at);
+
+-- ── Paid Users table (Stripe webhook → access verification) ───
+CREATE TABLE IF NOT EXISTS paid_users (
+  id                UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  email             TEXT NOT NULL UNIQUE,
+  stripe_session_id TEXT,
+  paid_at           TIMESTAMPTZ DEFAULT NOW(),
+  active            BOOLEAN DEFAULT TRUE
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_paid_users_email ON paid_users (email);
+
+-- Enable RLS — only service role key can read/write
+ALTER TABLE paid_users ENABLE ROW LEVEL SECURITY;
+
+-- No public policies = no access via anon key or authenticated key.
+-- Only the service_role key (used by Netlify functions) bypasses RLS.

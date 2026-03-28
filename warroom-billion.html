@@ -3294,35 +3294,27 @@
 // === GATE CHECK — redirect to landing if no access ===
 (function() {
   try {
-    var params = new URLSearchParams(window.location.search);
-    var justPaid = params.get('paid') === 'true';
-    if (justPaid) {
-      localStorage.setItem('aurigen_access', 'paid');
-    }
     var access = localStorage.getItem('aurigen_access');
     if (!access) {
       window.location.href = '/';
       return;
     }
-    // Show welcome overlay for fresh payment
-    if (justPaid) {
-      document.addEventListener('DOMContentLoaded', function() {
-        var overlay = document.createElement('div');
-        overlay.id = 'welcome-overlay';
-        overlay.innerHTML =
-          '<div id="welcome-card">' +
-            '<div class="welcome-sparkle">\u2728</div>' +
-            '<div class="welcome-title">FULL ACCESS UNLOCKED</div>' +
-            '<div class="welcome-subtitle">Welcome to the complete Aurigen platform. Every county. Every tool. Every auction. Yours forever.</div>' +
-            '<button class="welcome-btn" id="welcome-dismiss">Explore the Full Platform \u2192</button>' +
-          '</div>';
-        document.body.appendChild(overlay);
-        document.getElementById('welcome-dismiss').addEventListener('click', function() {
-          overlay.remove();
-          history.replaceState(null, '', window.location.pathname);
-          location.reload();
-        });
-      });
+    // Server-verify access on load if email is stored
+    var email = localStorage.getItem('aurigen_email');
+    if (email) {
+      fetch('/.netlify/functions/check-access', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var serverTier = data.access || 'free';
+        try { localStorage.setItem('aurigen_access', serverTier); } catch(e) {}
+        // If tier changed, reload to apply new locks
+        if (serverTier !== access) { location.reload(); }
+      })
+      .catch(function() { /* Offline: trust cached tier */ });
     }
   } catch(e) {}
 })();
