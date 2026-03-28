@@ -49,20 +49,26 @@ exports.handler = async (event) => {
         };
       }
 
-      // Verify paid access
-      var { data: paidUser } = await supabase
-        .from('paid_users')
-        .select('id')
-        .eq('email', email)
-        .eq('active', true)
-        .maybeSingle();
+      // Admin whitelist bypasses paid_users check
+      var ADMIN_EMAILS = ['landon@theaurigen.com', 'lando@theaurigen.com'];
+      var isAdmin = ADMIN_EMAILS.indexOf(email) >= 0;
 
-      if (!paidUser) {
-        return {
-          statusCode: 403,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ error: 'Paid access required' })
-        };
+      if (!isAdmin) {
+        // Verify paid access
+        var { data: paidUser } = await supabase
+          .from('paid_users')
+          .select('id')
+          .eq('email', email)
+          .eq('active', true)
+          .maybeSingle();
+
+        if (!paidUser) {
+          return {
+            statusCode: 403,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ error: 'Paid access required' })
+          };
+        }
       }
 
       // Select all fields EXCEPT owner_mailing_address (privacy)

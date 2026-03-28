@@ -5049,10 +5049,9 @@ function loadPropertyFeed(stateCode, countyName) {
     return;
   }
 
-  // Fetch properties — requires paid email (admin mode bypasses)
+  // Fetch properties — requires paid email
   var email = '';
   try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
-  if (!email && isAdminMode()) { email = 'admin@aurigen.com'; }
   if (!email) { renderPropFeedEmpty(container, countyName, 'Sign in to view live inventory.'); return; }
 
   fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName) + '&email=' + encodeURIComponent(email))
@@ -5343,7 +5342,6 @@ function auctionsInvCountyChange() {
 
   var email = '';
   try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
-  if (!email && isAdminMode()) { email = 'admin@aurigen.com'; }
   if (!email) {
     body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span>Sign in to view live inventory.</div>';
     return;
