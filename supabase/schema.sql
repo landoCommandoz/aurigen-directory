@@ -103,3 +103,48 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_consumed_sessions_sid ON consumed_sessions
 -- Enable RLS — only service role key can read/write
 ALTER TABLE consumed_sessions ENABLE ROW LEVEL SECURITY;
 -- No public policies = service role only.
+
+-- ── Properties table (property-level scraping data) ───────────
+CREATE TABLE IF NOT EXISTS properties (
+  id                    BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  parcel_id             TEXT NOT NULL,
+  auction_id            BIGINT REFERENCES auctions(id) ON DELETE SET NULL,
+  state_code            CHAR(2) NOT NULL,
+  county                TEXT NOT NULL,
+  address               TEXT,
+  assessed_value        NUMERIC(12,2),
+  opening_bid           NUMERIC(12,2),
+  lien_amount           NUMERIC(12,2),
+  lien_year             INT,
+  property_type         TEXT,                        -- residential | commercial | vacant | agricultural
+  owner_name            TEXT,
+  owner_mailing_address TEXT,                        -- private — never exposed via public API
+  status                TEXT DEFAULT 'active',       -- active | sold | withdrawn | redeemed
+  delinquency_years     INT,
+  scraped_at            TIMESTAMPTZ DEFAULT NOW(),
+  updated_at            TIMESTAMPTZ DEFAULT NOW(),
+
+  -- Computed columns
+  absentee_owner        BOOLEAN GENERATED ALWAYS AS (
+    owner_mailing_address IS NOT NULL AND address IS NOT NULL AND
+    LOWER(TRIM(owner_mailing_address)) <> LOWER(TRIM(address))
+  ) STORED,
+  equity_cushion_pct    NUMERIC(5,2) GENERATED ALWAYS AS (
+    CASE WHEN assessed_value > 0 AND lien_amount IS NOT NULL
+      THEN ((assessed_value - lien_amount) / assessed_value * 100)
+      ELSE NULL
+    END
+  ) STORED,
+
+  UNIQUE (state_code, county, parcel_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_properties_state ON properties (state_code);
+CREATE INDEX IF NOT EXISTS idx_properties_county ON properties (state_code, county);
+CREATE INDEX IF NOT EXISTS idx_properties_auction ON properties (auction_id);
+CREATE INDEX IF NOT EXISTS idx_properties_status ON properties (status);
+CREATE INDEX IF NOT EXISTS idx_properties_absentee ON properties (absentee_owner) WHERE absentee_owner = TRUE;
+
+-- Enable RLS — only service role key can read/write
+ALTER TABLE properties ENABLE ROW LEVEL SECURITY;
+-- No public policies = service role only.

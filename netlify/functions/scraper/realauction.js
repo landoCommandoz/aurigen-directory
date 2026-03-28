@@ -130,4 +130,102 @@ function extractFromRow(row) {
   return extractRecord('<div>' + text + '</div>');
 }
 
-module.exports = { scrapeRealAuction };
+// ── Property Scraping ─────────────────────────────────────────
+// Scrapes property-level data from RealAuction sale pages
+const { buildPropertyRecord, upsertProperties, logPropertyScrape, fetchPropertyPage, parseTableRow } = require('./properties');
+
+async function scrapeRealAuctionProperties(auctions) {
+  var totalFound = 0;
+  var totalAdded = 0;
+  var errorCount = 0;
+
+  for (var i = 0; i < auctions.length; i++) {
+    var auction = auctions[i];
+    if (!auction.platform_url) continue;
+
+    try {
+      var html = await fetchPropertyPage(auction.platform_url);
+      if (!html) { errorCount++; continue; }
+
+      var properties = parseRealAuctionProperties(html, auction);
+      totalFound += properties.length;
+
+      if (properties.length > 0) {
+        var result = await upsertProperties(properties);
+        totalAdded += result.added;
+        errorCount += result.errors;
+      }
+
+      console.log('[realauction-props] ' + auction.county + ': found=' + properties.length);
+    } catch (e) {
+      console.error('[realauction-props] Error for ' + auction.county + ':', e.message);
+      errorCount++;
+    }
+  }
+
+  await logPropertyScrape('realauction', null, totalFound, totalAdded,
+    errorCount > 0 ? errorCount + ' errors' : null);
+
+  return { found: totalFound, added: totalAdded, errors: errorCount };
+}
+
+function parseRealAuctionProperties(html, auction) {
+  var properties = [];
+  // RealAuction typically renders property tables with rows containing:
+  // parcel/cert number, address, assessed value, min bid, property type, owner
+  var trPattern = /<tr[^>]*class="[^"]*(?:property|item|lot|cert)[^"]*"[^>]*>([\s\S]*?)<\/tr>/gi;
+  var match;
+
+  while ((match = trPattern.exec(html)) !== null) {
+    var cells = parseTableRow(match[0]);
+    if (cells.length < 3) continue;
+
+    // Try to extract fields from cell positions
+    // RealAuction varies by county, but common patterns:
+    // [parcel_id, address, owner, assessed_value, min_bid, ...]
+    var rec = buildPropertyRecord({
+      parcel_id:      cells[0] || null,
+      state_code:     auction.state_code,
+      county:         auction.county,
+      address:        cells.length > 1 ? cells[1] : null,
+      owner_name:     cells.length > 2 ? cells[2] : null,
+      assessed_value: cells.length > 3 ? cells[3] : null,
+      opening_bid:    cells.length > 4 ? cells[4] : null,
+      lien_amount:    cells.length > 5 ? cells[5] : null,
+      property_type:  cells.length > 6 ? cells[6] : null,
+      auction_id:     auction.id || null,
+      status:         'active',
+    });
+
+    if (rec.parcel_id) properties.push(rec);
+  }
+
+  // Fallback: try generic table rows if no class-matched rows found
+  if (properties.length === 0) {
+    var genericTr = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
+    while ((match = genericTr.exec(html)) !== null) {
+      var cells2 = parseTableRow(match[0]);
+      // Need at least a parcel-like ID (digits/dashes/dots pattern)
+      if (cells2.length < 3) continue;
+      if (!/\d{2,}/.test(cells2[0])) continue;
+
+      var rec2 = buildPropertyRecord({
+        parcel_id:      cells2[0],
+        state_code:     auction.state_code,
+        county:         auction.county,
+        address:        cells2.length > 1 ? cells2[1] : null,
+        owner_name:     cells2.length > 2 ? cells2[2] : null,
+        assessed_value: cells2.length > 3 ? cells2[3] : null,
+        opening_bid:    cells2.length > 4 ? cells2[4] : null,
+        auction_id:     auction.id || null,
+        status:         'active',
+      });
+
+      if (rec2.parcel_id) properties.push(rec2);
+    }
+  }
+
+  return properties;
+}
+
+module.exports = { scrapeRealAuction, scrapeRealAuctionProperties };

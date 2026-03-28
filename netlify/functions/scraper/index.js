@@ -1,8 +1,8 @@
 const { cleanupOldAuctions, getSupabase, getStateName, logScrapeRun, cleanCounty } = require('./utils');
-const { scrapeRealAuction } = require('./realauction');
-const { scrapeGovEase } = require('./govease');
-const { scrapeSRI } = require('./sri');
-const { scrapeBid4Assets } = require('./bid4assets');
+const { scrapeRealAuction, scrapeRealAuctionProperties } = require('./realauction');
+const { scrapeGovEase, scrapeGovEaseProperties } = require('./govease');
+const { scrapeSRI, scrapeSRIProperties } = require('./sri');
+const { scrapeBid4Assets, scrapeBid4AssetsProperties } = require('./bid4assets');
 
 // Auto-generate pulse_alerts from the auctions table
 async function generatePulseAlerts() {
@@ -232,6 +232,54 @@ exports.handler = async (event) => {
     }
   }
 
+  // ── Phase 2: Property scraping (after auctions) ──────────────
+  // Fetch recently scraped auctions with platform URLs to feed property scrapers
+  const propertyResults = {};
+  let totalPropsFound = 0;
+  let totalPropsAdded = 0;
+
+  try {
+    const supabase = getSupabase();
+    const today = new Date().toISOString().split('T')[0];
+
+    const { data: recentAuctions } = await supabase
+      .from('auctions')
+      .select('id, state_code, county, auction_date, platform, platform_url')
+      .eq('active', true)
+      .gte('auction_date', today)
+      .order('auction_date', { ascending: true })
+      .limit(50);
+
+    if (recentAuctions && recentAuctions.length > 0) {
+      console.log(`[scraper] Starting property scrape for ${recentAuctions.length} auctions...`);
+
+      const propScrapers = [
+        { name: 'realauction', fn: scrapeRealAuctionProperties, filter: 'realauction' },
+        { name: 'govease', fn: scrapeGovEaseProperties, filter: 'govease' },
+        { name: 'sri', fn: scrapeSRIProperties, filter: 'sri' },
+        { name: 'bid4assets', fn: scrapeBid4AssetsProperties, filter: 'bid4assets' },
+      ];
+
+      for (const ps of propScrapers) {
+        try {
+          const platformAuctions = recentAuctions.filter(a => a.platform === ps.filter);
+          if (platformAuctions.length === 0) continue;
+
+          console.log(`[scraper] Running ${ps.name} property scraper for ${platformAuctions.length} auctions...`);
+          const propResult = await ps.fn(platformAuctions);
+          propertyResults[ps.name] = propResult;
+          totalPropsFound += propResult.found || 0;
+          totalPropsAdded += propResult.added || 0;
+        } catch (e) {
+          console.error(`[scraper] ${ps.name} property scraper crashed:`, e.message);
+          propertyResults[ps.name] = { found: 0, added: 0, errors: 1 };
+        }
+      }
+    }
+  } catch (e) {
+    console.error('[scraper] Property scrape phase failed:', e.message);
+  }
+
   // Generate pulse alerts for upcoming auctions
   let pulseGenerated = 0;
   try {
@@ -253,7 +301,7 @@ exports.handler = async (event) => {
   const totalAdded = Object.values(results).reduce((sum, r) => sum + (r.added || 0), 0);
   const allSuccess = Object.values(results).every(r => r.success);
 
-  console.log(`[scraper] Complete in ${elapsed}s. Found: ${totalFound}, Added: ${totalAdded}, Pulse: ${pulseGenerated}, Cleaned: ${cleaned}`);
+  console.log(`[scraper] Complete in ${elapsed}s. Auctions found: ${totalFound}, added: ${totalAdded}. Properties found: ${totalPropsFound}, added: ${totalPropsAdded}. Pulse: ${pulseGenerated}, Cleaned: ${cleaned}`);
 
   return {
     statusCode: 200,
@@ -261,8 +309,9 @@ exports.handler = async (event) => {
     body: JSON.stringify({
       success: allSuccess,
       elapsed: `${elapsed}s`,
-      summary: { totalFound, totalAdded, pulseGenerated, cleaned },
-      platforms: results
+      summary: { totalFound, totalAdded, totalPropsFound, totalPropsAdded, pulseGenerated, cleaned },
+      platforms: results,
+      properties: propertyResults,
     })
   };
 };

@@ -27,12 +27,65 @@ exports.handler = async (event) => {
     return { statusCode: 204, headers: corsHeaders, body: '' };
   }
 
+  // Route: GET /properties?state_code=TX&county=...&status=...&property_type=...&absentee_owner=true&offset=0
+  const path = event.path || '';
+  const isPropertiesRoute = path.endsWith('/properties') || path.includes('/properties?');
+
   try {
     const supabase = createClient(
       process.env.SUPABASE_URL,
       process.env.SUPABASE_SERVICE_ROLE_KEY
     );
 
+    if (isPropertiesRoute) {
+      const params = event.queryStringParameters || {};
+
+      // Select all fields EXCEPT owner_mailing_address (privacy)
+      var query = supabase
+        .from('properties')
+        .select('id, parcel_id, auction_id, state_code, county, address, assessed_value, opening_bid, lien_amount, lien_year, property_type, owner_name, status, delinquency_years, absentee_owner, equity_cushion_pct, scraped_at, updated_at');
+
+      // Apply filters
+      if (params.state_code) {
+        query = query.eq('state_code', params.state_code.toUpperCase().slice(0, 2));
+      }
+      if (params.county) {
+        query = query.ilike('county', params.county);
+      }
+      if (params.status) {
+        query = query.eq('status', params.status);
+      }
+      if (params.property_type) {
+        query = query.eq('property_type', params.property_type);
+      }
+      if (params.absentee_owner === 'true') {
+        query = query.eq('absentee_owner', true);
+      }
+
+      // Pagination — max 50 per page
+      var offset = parseInt(params.offset, 10);
+      if (isNaN(offset) || offset < 0) offset = 0;
+      query = query.range(offset, offset + 49).order('updated_at', { ascending: false });
+
+      var { data, error } = await query;
+      if (error) throw error;
+
+      return {
+        statusCode: 200,
+        headers: {
+          ...corsHeaders,
+          'Cache-Control': 'public, max-age=300',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          properties: data || [],
+          offset: offset,
+          limit: 50
+        })
+      };
+    }
+
+    // Default route: auctions + pulse_alerts
     const today = new Date().toISOString().split('T')[0];
 
     // Fetch auctions and pulse_alerts in parallel

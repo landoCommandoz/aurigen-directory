@@ -141,4 +141,106 @@ function extractRecord(block, href) {
   };
 }
 
-module.exports = { scrapeBid4Assets };
+// ── Property Scraping ─────────────────────────────────────────
+const { buildPropertyRecord, upsertProperties, logPropertyScrape, fetchPropertyPage, parseTableRow } = require('./properties');
+
+async function scrapeBid4AssetsProperties(auctions) {
+  var totalFound = 0;
+  var totalAdded = 0;
+  var errorCount = 0;
+
+  for (var i = 0; i < auctions.length; i++) {
+    var auction = auctions[i];
+    if (!auction.platform_url) continue;
+
+    try {
+      // Bid4Assets uses React-rendered pages — try their API endpoint first
+      var apiUrl = auction.platform_url.replace(/\/+$/, '') + '/api/lots';
+      var html = await fetchPropertyPage(apiUrl);
+
+      // If API fails, try the HTML page
+      if (!html) {
+        html = await fetchPropertyPage(auction.platform_url);
+      }
+      if (!html) { errorCount++; continue; }
+
+      var properties = parseBid4AssetsProperties(html, auction);
+      totalFound += properties.length;
+
+      if (properties.length > 0) {
+        var result = await upsertProperties(properties);
+        totalAdded += result.added;
+        errorCount += result.errors;
+      }
+
+      console.log('[bid4assets-props] ' + auction.county + ': found=' + properties.length);
+    } catch (e) {
+      console.error('[bid4assets-props] Error for ' + auction.county + ':', e.message);
+      errorCount++;
+    }
+  }
+
+  await logPropertyScrape('bid4assets', null, totalFound, totalAdded,
+    errorCount > 0 ? errorCount + ' errors' : null);
+
+  return { found: totalFound, added: totalAdded, errors: errorCount };
+}
+
+function parseBid4AssetsProperties(html, auction) {
+  var properties = [];
+
+  // Try JSON response first (from API endpoint)
+  try {
+    var json = JSON.parse(html);
+    var lots = json.lots || json.items || json.data || [];
+    if (Array.isArray(lots)) {
+      for (var j = 0; j < lots.length; j++) {
+        var lot = lots[j];
+        var rec = buildPropertyRecord({
+          parcel_id:      lot.parcel_number || lot.parcel_id || lot.lot_number || String(j + 1),
+          state_code:     auction.state_code,
+          county:         auction.county,
+          address:        lot.address || lot.property_address || null,
+          assessed_value: lot.assessed_value || null,
+          opening_bid:    lot.opening_bid || lot.starting_bid || lot.min_bid || null,
+          property_type:  lot.property_type || lot.type || null,
+          owner_name:     lot.owner || lot.owner_name || null,
+          auction_id:     auction.id || null,
+          status:         'active',
+        });
+        if (rec.parcel_id) properties.push(rec);
+      }
+      return properties;
+    }
+  } catch (e) {
+    // Not JSON — fall through to HTML parsing
+  }
+
+  // HTML fallback — parse table rows
+  var trPattern = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
+  var match;
+  while ((match = trPattern.exec(html)) !== null) {
+    var cells = parseTableRow(match[0]);
+    if (cells.length < 3) continue;
+    if (!/\d{2,}/.test(cells[0])) continue;
+
+    var rec2 = buildPropertyRecord({
+      parcel_id:      cells[0],
+      state_code:     auction.state_code,
+      county:         auction.county,
+      address:        cells.length > 1 ? cells[1] : null,
+      assessed_value: cells.length > 2 ? cells[2] : null,
+      opening_bid:    cells.length > 3 ? cells[3] : null,
+      owner_name:     cells.length > 4 ? cells[4] : null,
+      property_type:  cells.length > 5 ? cells[5] : null,
+      auction_id:     auction.id || null,
+      status:         'active',
+    });
+
+    if (rec2.parcel_id) properties.push(rec2);
+  }
+
+  return properties;
+}
+
+module.exports = { scrapeBid4Assets, scrapeBid4AssetsProperties };

@@ -129,4 +129,72 @@ function extractFromRow(row) {
   return extractRecord('<div>' + text + '</div>');
 }
 
-module.exports = { scrapeSRI };
+// ── Property Scraping ─────────────────────────────────────────
+const { buildPropertyRecord, upsertProperties, logPropertyScrape, fetchPropertyPage, parseTableRow } = require('./properties');
+
+async function scrapeSRIProperties(auctions) {
+  var totalFound = 0;
+  var totalAdded = 0;
+  var errorCount = 0;
+
+  for (var i = 0; i < auctions.length; i++) {
+    var auction = auctions[i];
+    if (!auction.platform_url) continue;
+
+    try {
+      var html = await fetchPropertyPage(auction.platform_url);
+      if (!html) { errorCount++; continue; }
+
+      var properties = parseSRIProperties(html, auction);
+      totalFound += properties.length;
+
+      if (properties.length > 0) {
+        var result = await upsertProperties(properties);
+        totalAdded += result.added;
+        errorCount += result.errors;
+      }
+
+      console.log('[sri-props] ' + auction.county + ': found=' + properties.length);
+    } catch (e) {
+      console.error('[sri-props] Error for ' + auction.county + ':', e.message);
+      errorCount++;
+    }
+  }
+
+  await logPropertyScrape('sri', null, totalFound, totalAdded,
+    errorCount > 0 ? errorCount + ' errors' : null);
+
+  return { found: totalFound, added: totalAdded, errors: errorCount };
+}
+
+function parseSRIProperties(html, auction) {
+  var properties = [];
+  // SRI property tables: parcel, address, assessed value, minimum bid, owner
+  var trPattern = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
+  var match;
+
+  while ((match = trPattern.exec(html)) !== null) {
+    var cells = parseTableRow(match[0]);
+    if (cells.length < 3) continue;
+    if (/parcel|address|owner/i.test(cells[0]) && /parcel|address|owner/i.test(cells[1])) continue;
+    if (!/\d{2,}/.test(cells[0])) continue;
+
+    var rec = buildPropertyRecord({
+      parcel_id:      cells[0],
+      state_code:     auction.state_code,
+      county:         auction.county,
+      address:        cells.length > 1 ? cells[1] : null,
+      assessed_value: cells.length > 2 ? cells[2] : null,
+      opening_bid:    cells.length > 3 ? cells[3] : null,
+      owner_name:     cells.length > 4 ? cells[4] : null,
+      auction_id:     auction.id || null,
+      status:         'active',
+    });
+
+    if (rec.parcel_id) properties.push(rec);
+  }
+
+  return properties;
+}
+
+module.exports = { scrapeSRI, scrapeSRIProperties };
