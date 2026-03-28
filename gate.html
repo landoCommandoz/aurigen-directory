@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
   <style>
     :root {
       --bg: #0a0e1a;
@@ -22,7 +24,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { height: 100%; }
+    html { height: 100%; scroll-behavior: smooth; }
     body {
       min-height: 100%;
       background: var(--bg);
@@ -34,47 +36,83 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* === ATMOSPHERE === */
-    .atmo {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+    /* === HERO SECTION — FULL VIEWPORT === */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
-    .atmo-grid {
+
+    /* Map background */
+    .hero-map {
       position: absolute;
       inset: 0;
+      z-index: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #gate-map-svg {
+      width: 100%;
+      max-width: 1200px;
+      height: auto;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+    #gate-map-svg.loaded { opacity: 1; }
+    .state-path {
+      fill: rgba(201,168,76,0.06);
+      stroke: rgba(201,168,76,0.28);
+      stroke-width: 0.7;
+    }
+    .state-mesh {
+      fill: none;
+      stroke: rgba(201,168,76,0.12);
+      stroke-width: 0.4;
+    }
+
+    /* Vignette overlay on map */
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(ellipse 80% 70% at 50% 45%, transparent 0%, rgba(10,14,26,0.65) 60%, rgba(10,14,26,0.92) 100%),
+        linear-gradient(to bottom, rgba(10,14,26,0.7) 0%, transparent 20%, transparent 70%, rgba(10,14,26,0.95) 100%);
+      pointer-events: none;
+    }
+
+    /* Atmosphere layers */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
       background-image:
         linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
       background-size: 80px 80px;
       mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
       -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
+      pointer-events: none;
     }
-    .atmo-noise {
+    .hero-noise {
       position: absolute;
       inset: 0;
+      z-index: 0;
       opacity: 0.025;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 128px 128px;
-    }
-    .atmo-vignette {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 50% at 50% 50%, transparent 0%, rgba(10,14,26,0.5) 100%);
+      pointer-events: none;
     }
 
-    /* === PAGE === */
-    .page {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* === TOP BAR === */
+    /* Top bar */
     .topbar {
+      position: relative;
+      z-index: 10;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -107,16 +145,18 @@
       background: var(--gold);
       opacity: 0.6;
     }
-    .mobile-lang-toggle {
-      display: none;
-    }
+    .mobile-lang-toggle { display: none; }
 
-    /* === HERO === */
-    .hero {
-      flex: 0 0 auto;
-      padding: 40px 48px 48px;
+    /* Hero content overlay */
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 48px;
       max-width: 900px;
-      animation: fade-in 1s ease 0.15s both;
     }
     .hero-headline {
       font-family: 'Cormorant Garamond', serif;
@@ -126,19 +166,19 @@
       line-height: 1.15;
       color: var(--platinum);
       letter-spacing: -0.01em;
+      animation: fade-in 1s ease 0.15s both;
     }
 
-    /* === STATS === */
-    .stats {
+    /* Stats bar — bottom of hero */
+    .stats-bar {
+      position: relative;
+      z-index: 10;
       display: flex;
       gap: 48px;
-      padding: 0 48px 48px;
+      padding: 0 48px 40px;
       animation: fade-in 1s ease 0.35s both;
     }
-    .stat {
-      display: flex;
-      flex-direction: column;
-    }
+    .stat { display: flex; flex-direction: column; }
     .stat-num {
       font-family: 'Space Mono', monospace;
       font-size: 28px;
@@ -156,7 +196,50 @@
       margin-top: 4px;
     }
 
-    /* === DIVIDER === */
+    /* Scroll arrow */
+    .scroll-arrow {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 28px;
+      animation: fade-in 1s ease 0.5s both;
+    }
+    .scroll-arrow a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--dim);
+      transition: color 0.3s;
+    }
+    .scroll-arrow a:hover { color: var(--muted); }
+    .scroll-arrow-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .scroll-arrow-icon {
+      width: 16px;
+      height: 16px;
+      border-right: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+      transform: rotate(45deg);
+      animation: arrow-bob 2s ease-in-out infinite;
+    }
+    @keyframes arrow-bob {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50% { transform: rotate(45deg) translateY(4px); }
+    }
+
+    /* === BELOW-FOLD CONTENT === */
+    .below-fold {
+      position: relative;
+      z-index: 1;
+    }
+
     .rule {
       height: 1px;
       background: var(--border);
@@ -168,21 +251,17 @@
     .bilingual {
       display: grid;
       grid-template-columns: 1fr 1px 1fr;
-      flex: 1;
       min-height: 0;
-      animation: fade-in 1s ease 0.55s both;
     }
     .bilingual-divider {
       background: var(--border);
     }
-
     .lang-col {
       padding: 48px;
       display: flex;
       flex-direction: column;
       gap: 40px;
     }
-
     .col-lang-label {
       font-family: 'Space Mono', monospace;
       font-size: 9px;
@@ -200,7 +279,6 @@
     .cta-primary {
       display: block;
       width: 100%;
-      padding: 16px 24px;
       background: transparent;
       border: 1px solid rgba(232,232,232,0.25);
       color: var(--platinum);
@@ -211,7 +289,7 @@
       text-align: center;
       text-decoration: none;
       cursor: pointer;
-      transition: border-color 0.3s, background 0.3s, color 0.3s;
+      transition: border-color 0.3s, background 0.3s;
       min-height: 52px;
       line-height: 52px;
       padding: 0 24px;
@@ -227,12 +305,10 @@
       color: var(--muted);
       text-align: center;
     }
-
     .cta-free-row {
       display: flex;
       gap: 0;
       border: 1px solid var(--border);
-      border-radius: 0;
       overflow: hidden;
       margin-top: 4px;
     }
@@ -314,7 +390,6 @@
     .gate-footer {
       padding: 32px 48px;
       border-top: 1px solid var(--border);
-      animation: fade-in 0.8s ease 0.7s both;
     }
     .gate-footer-text {
       font-family: 'DM Sans', sans-serif;
@@ -338,15 +413,13 @@
     /* === MOBILE === */
     @media (max-width: 860px) {
       .topbar { padding: 20px 24px; }
-      .hero { padding: 28px 24px 36px; }
+      .hero-content { padding: 0 24px; }
       .hero-headline { font-size: clamp(30px, 8vw, 44px); }
-      .stats { padding: 0 24px 36px; gap: 28px; }
+      .stats-bar { padding: 0 24px 32px; gap: 28px; }
       .stat-num { font-size: 22px; }
       .rule { margin: 0 24px; }
 
-      .bilingual {
-        grid-template-columns: 1fr;
-      }
+      .bilingual { grid-template-columns: 1fr; }
       .bilingual-divider { display: none; }
       .lang-col { padding: 32px 24px; }
       .lang-col.es-col { display: none; }
@@ -379,21 +452,26 @@
     }
     @media (max-width: 480px) {
       .hero-headline { font-size: 28px; }
-      .stats { flex-wrap: wrap; gap: 20px; }
+      .stats-bar { flex-wrap: wrap; gap: 20px; }
     }
   </style>
 </head>
 <body>
 
-<div class="atmo">
-  <div class="atmo-grid"></div>
-  <div class="atmo-noise"></div>
-  <div class="atmo-vignette"></div>
-</div>
+<!-- === HERO SECTION — FULL VIEWPORT WITH MAP === -->
+<div class="hero-section">
 
-<div class="page">
+  <!-- Map background -->
+  <div class="hero-map">
+    <svg id="gate-map-svg" viewBox="0 0 960 600" preserveAspectRatio="xMidYMid meet"></svg>
+  </div>
 
-  <!-- TOPBAR -->
+  <!-- Atmosphere layers -->
+  <div class="hero-grid"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-vignette"></div>
+
+  <!-- Top bar -->
   <div class="topbar">
     <div class="topbar-logo">AURIGEN</div>
     <div class="topbar-right">
@@ -406,13 +484,13 @@
     </div>
   </div>
 
-  <!-- HERO -->
-  <div class="hero">
+  <!-- Hero headline -->
+  <div class="hero-content">
     <h1 class="hero-headline">The county-by-county intelligence platform built for serious investors.</h1>
   </div>
 
-  <!-- STATS -->
-  <div class="stats">
+  <!-- Stats bar -->
+  <div class="stats-bar">
     <div class="stat">
       <div class="stat-num">51</div>
       <div class="stat-label">States</div>
@@ -426,6 +504,19 @@
       <div class="stat-label">Researched</div>
     </div>
   </div>
+
+  <!-- Scroll arrow -->
+  <div class="scroll-arrow">
+    <a href="#access">
+      <span class="scroll-arrow-label">Access</span>
+      <span class="scroll-arrow-icon"></span>
+    </a>
+  </div>
+
+</div>
+
+<!-- === BELOW FOLD — ACCESS SECTION === -->
+<div class="below-fold" id="access">
 
   <div class="rule"></div>
 
@@ -454,50 +545,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>51-State Intelligence Map</td>
-            <td class="tier-free">Free</td>
-          </tr>
-          <tr>
-            <td>State-Level Data</td>
-            <td class="tier-free">Free</td>
-          </tr>
-          <tr>
-            <td>Statute Citations</td>
-            <td class="tier-free">Free</td>
-          </tr>
-          <tr>
-            <td>3,200+ County Directory</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>Deal Analyzer</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>DNA Profiler + Sage AI</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>Versus Comparison</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>Auctions Calendar</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>Scout Checklist</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>Live Auction Alerts</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>Pulse Alerts</td>
-            <td class="tier-paid">$197</td>
-          </tr>
+          <tr><td>51-State Intelligence Map</td><td class="tier-free">Free</td></tr>
+          <tr><td>State-Level Data</td><td class="tier-free">Free</td></tr>
+          <tr><td>Statute Citations</td><td class="tier-free">Free</td></tr>
+          <tr><td>3,200+ County Directory</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Deal Analyzer</td><td class="tier-paid">$197</td></tr>
+          <tr><td>DNA Profiler + Sage AI</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Versus Comparison</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Auctions Calendar</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Scout Checklist</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Live Auction Alerts</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Pulse Alerts</td><td class="tier-paid">$197</td></tr>
         </tbody>
       </table>
     </div>
@@ -526,50 +584,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Mapa de Inteligencia de 51 Estados</td>
-            <td class="tier-free">Gratis</td>
-          </tr>
-          <tr>
-            <td>Datos a Nivel Estatal</td>
-            <td class="tier-free">Gratis</td>
-          </tr>
-          <tr>
-            <td>Citas de Estatutos</td>
-            <td class="tier-free">Gratis</td>
-          </tr>
-          <tr>
-            <td>Directorio de 3,200+ Condados</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>Analizador de Negocios</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>Perfilador DNA + Sage IA</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>Comparaci&oacute;n Versus</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>Calendario de Subastas</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>Lista Scout</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>Alertas de Subastas</td>
-            <td class="tier-paid">$197</td>
-          </tr>
-          <tr>
-            <td>Alertas Pulse</td>
-            <td class="tier-paid">$197</td>
-          </tr>
+          <tr><td>Mapa de Inteligencia de 51 Estados</td><td class="tier-free">Gratis</td></tr>
+          <tr><td>Datos a Nivel Estatal</td><td class="tier-free">Gratis</td></tr>
+          <tr><td>Citas de Estatutos</td><td class="tier-free">Gratis</td></tr>
+          <tr><td>Directorio de 3,200+ Condados</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Analizador de Negocios</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Perfilador DNA + Sage IA</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Comparaci&oacute;n Versus</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Calendario de Subastas</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Lista Scout</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Alertas de Subastas</td><td class="tier-paid">$197</td></tr>
+          <tr><td>Alertas Pulse</td><td class="tier-paid">$197</td></tr>
         </tbody>
       </table>
     </div>
@@ -584,17 +609,12 @@
 </div>
 
 <script>
-// Skip gate if already authenticated
+// === AUTH REDIRECT ===
 (function() {
   try {
     var access = localStorage.getItem('aurigen_access');
-    if (access) {
-      window.location.href = '/warroom-billion.html';
-      return;
-    }
+    if (access) { window.location.href = '/warroom-billion.html'; return; }
   } catch(e) {}
-
-  // Check for ?paid=true from Stripe redirect
   try {
     var params = new URLSearchParams(window.location.search);
     if (params.get('paid') === 'true') {
@@ -605,6 +625,7 @@
   } catch(e) {}
 })();
 
+// === FORM SUBMIT ===
 function handleSubmit(e) {
   e.preventDefault();
   var email = e.target.email.value;
@@ -612,18 +633,15 @@ function handleSubmit(e) {
     localStorage.setItem('aurigen_access', 'free');
     localStorage.setItem('aurigen_email', email);
   } catch(err) {}
-
-  // Submit to Netlify Forms
   fetch('/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams(new FormData(e.target)).toString()
   }).catch(function() {});
-
   window.location.href = '/warroom-billion.html';
 }
 
-// Tab sync
+// === TAB SYNC ===
 try {
   window.addEventListener('storage', function(e) {
     if (e.key === 'aurigen_access' && e.newValue === 'paid') {
@@ -632,7 +650,7 @@ try {
   });
 } catch(e) {}
 
-// Mobile language toggle
+// === MOBILE LANGUAGE TOGGLE ===
 function setMobileLang(lang) {
   var enBtn = document.getElementById('m-lang-en');
   var esBtn = document.getElementById('m-lang-es');
@@ -649,13 +667,44 @@ function setMobileLang(lang) {
   }
   try { localStorage.setItem('aurigen_language', lang); } catch(e) {}
 }
-
-// Restore saved language on load
 (function() {
   try {
     var saved = localStorage.getItem('aurigen_language');
     if (saved === 'es') setMobileLang('es');
   } catch(e) {}
+})();
+
+// === D3 MAP — SAME SOURCE AS WARROOM ===
+(function() {
+  var svg = d3.select('#gate-map-svg');
+  var projection = d3.geoAlbersUsa().scale(1000).translate([480, 300]);
+  var pathGen = d3.geoPath().projection(projection);
+
+  fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
+    .then(function(r) { return r.json(); })
+    .then(function(us) {
+      var states = topojson.feature(us, us.objects.states);
+
+      // State fills
+      svg.selectAll('.state-path')
+        .data(states.features)
+        .enter().append('path')
+        .attr('class', 'state-path')
+        .attr('d', pathGen);
+
+      // State boundary mesh
+      svg.append('path')
+        .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+        .attr('class', 'state-mesh')
+        .attr('d', pathGen);
+
+      // Fade in
+      document.getElementById('gate-map-svg').classList.add('loaded');
+    })
+    .catch(function() {
+      // Map is decorative — silent fail
+      document.getElementById('gate-map-svg').classList.add('loaded');
+    });
 })();
 </script>
 </body>
