@@ -2728,12 +2728,67 @@
     .propfeed-lock-btn{display:inline-block;background:#c9a84c;color:#06060a;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.12em;padding:10px 24px;border-radius:4px;text-decoration:none;transition:opacity 0.2s}
     .propfeed-lock-btn:hover{opacity:0.9}
 
+    /* 2C: Property card action buttons */
+    .prop-card-actions{display:flex;gap:6px;margin-top:8px}
+    .prop-action-btn{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.06em;padding:6px 10px;border-radius:4px;cursor:pointer;transition:all 0.2s;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:4px;min-height:32px;border:none}
+    .prop-action-primary{background:rgba(201,168,76,0.15);color:#c9a84c;border:1px solid rgba(201,168,76,0.3)}
+    .prop-action-primary:hover{background:rgba(201,168,76,0.25)}
+    .prop-action-ghost{background:transparent;color:rgba(232,228,220,0.5);border:1px solid rgba(255,255,255,0.08)}
+    .prop-action-ghost:hover{border-color:rgba(255,255,255,0.18);color:rgba(232,228,220,0.7)}
+    /* 2C: 6 data point grid (2 rows of 3) */
+    .prop-card-stats-6{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px}
+
+    /* 2D: Filter section labels */
+    .propfeed-filter-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(232,228,220,0.3);width:100%;margin-top:6px;margin-bottom:2px}
+    .propfeed-filter-label:first-child{margin-top:0}
+    .propfeed-active-count{font-family:'Space Mono',monospace;font-size:9px;color:#c9a84c;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:1px 6px;margin-left:6px}
+
+    /* 3B: Mobile filter drawer */
+    .mobile-filter-fab{display:none;position:fixed;bottom:20px;right:20px;z-index:9000;background:#c9a84c;color:#06060a;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;font-weight:700;padding:12px 18px;border-radius:28px;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,0.35);transition:all 0.2s;min-height:44px}
+    .mobile-filter-fab:hover{transform:scale(1.04)}
+    .mobile-filter-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9100;opacity:0;transition:opacity 0.25s}
+    .mobile-filter-overlay.open{display:block;opacity:1}
+    .mobile-filter-sheet{position:fixed;bottom:0;left:0;right:0;z-index:9200;background:#0d1220;border-top:1px solid rgba(201,168,76,0.2);border-radius:16px 16px 0 0;padding:20px 16px 28px;transform:translateY(100%);transition:transform 0.3s ease-out;max-height:70vh;overflow-y:auto}
+    .mobile-filter-sheet.open{transform:translateY(0)}
+    .mobile-filter-sheet-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .mobile-filter-sheet-title{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#c9a84c;text-transform:uppercase}
+    .mobile-filter-sheet-close{background:none;border:none;color:rgba(232,228,220,0.5);font-size:20px;cursor:pointer;padding:4px;min-height:44px;min-width:44px;display:flex;align-items:center;justify-content:center}
+    .mobile-filter-section{margin-bottom:14px}
+    .mobile-filter-section-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(232,228,220,0.35);margin-bottom:6px}
+    .mobile-filter-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .mobile-filter-actions{display:flex;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.06)}
+    .mobile-filter-apply{flex:2;background:#c9a84c;color:#06060a;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.08em;padding:12px;border-radius:6px;border:none;cursor:pointer;min-height:44px}
+    .mobile-filter-reset{flex:1;background:transparent;color:rgba(232,228,220,0.5);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;padding:12px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);cursor:pointer;min-height:44px}
+
+    /* 4B: Enhanced paywall shimmer */
+    .propfeed-shimmer-bar{height:14px;border-radius:4px;background:linear-gradient(90deg,rgba(201,168,76,0.06) 25%,rgba(201,168,76,0.12) 50%,rgba(201,168,76,0.06) 75%);background-size:200% 100%;animation:shimmerSlide 2s ease-in-out infinite;margin-bottom:6px}
+    @keyframes shimmerSlide{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    .propfeed-shimmer-bar.w70{width:70%}
+    .propfeed-shimmer-bar.w50{width:50%}
+    .propfeed-shimmer-bar.w85{width:85%}
+    .propfeed-shimmer-bar.w40{width:40%}
+    .propfeed-lock-dna{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(232,228,220,0.4);margin-top:12px;text-decoration:none;transition:color 0.2s}
+    .propfeed-lock-dna:hover{color:rgba(232,228,220,0.6)}
+
     @media(max-width:600px){
-      .prop-card-stats{grid-template-columns:1fr 1fr 1fr;gap:4px}
+      .prop-card-stats,.prop-card-stats-6{grid-template-columns:1fr 1fr 1fr;gap:4px}
       .prop-stat{padding:6px 4px}
       .prop-stat-value{font-size:11px}
       .prop-card-address{font-size:13px}
       .propfeed-title-text{font-size:11px}
+      .prop-card-actions{flex-wrap:wrap}
+      .mobile-filter-fab{display:flex;align-items:center;gap:6px}
+      .propfeed-filters{display:none}
+    }
+    /* 3A: 375px mobile property cards */
+    @media(max-width:375px){
+      .prop-card{padding:10px}
+      .prop-card-address{font-size:12px}
+      .prop-stat-label{font-size:7px}
+      .prop-stat-value{font-size:10px}
+      .prop-card-stats,.prop-card-stats-6{gap:3px}
+      .prop-stat{padding:5px 3px}
+      .prop-action-btn{font-size:8px;padding:5px 8px}
     }
   </style>
 </head>
@@ -2756,7 +2811,7 @@
       <button class="tools-dropdown-item" onclick="switchToolsTab('versus')"><span class="tools-dropdown-icon">&#9878;</span>Versus</button>
       <button class="tools-dropdown-item" onclick="switchToolsTab('scout')"><span class="tools-dropdown-icon">&#128270;</span>Scout Checklist</button>
     </div>
-    <!-- TODO: Removed standalone nav tabs for dna, advisor, tools, versus, scout. References in i18n keys (nav_dna, nav_advisor, etc.) may need cleanup in Session 2 -->
+    <!-- Nav tabs consolidated: Intelligence, Calendar, Account + TOOLS dropdown -->
     <span id="nav-active-label" data-i18n="nav_map">Map</span>
     <div id="nav-spacer"></div>
     <div id="pulse-bell" onclick="togglePulseDrawer()" aria-label="Open alerts"><span aria-hidden="true">🔔</span><span id="pulse-badge" class="hidden">0</span></div>
@@ -2764,6 +2819,21 @@
     <button id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
     <div id="nav-tier-badge" data-i18n="nav_tier_free">FREE</div>
   </nav>
+  <!-- 3B: Mobile filter drawer -->
+  <button class="mobile-filter-fab" id="mobile-filter-fab" onclick="openMobileFilterSheet()" style="display:none">&#9776; FILTERS</button>
+  <div class="mobile-filter-overlay" id="mobile-filter-overlay" onclick="closeMobileFilterSheet()"></div>
+  <div class="mobile-filter-sheet" id="mobile-filter-sheet">
+    <div class="mobile-filter-sheet-header">
+      <span class="mobile-filter-sheet-title">FILTERS</span>
+      <button class="mobile-filter-sheet-close" onclick="closeMobileFilterSheet()">&times;</button>
+    </div>
+    <div id="mobile-filter-sheet-body"></div>
+    <div class="mobile-filter-actions">
+      <button class="mobile-filter-apply" onclick="closeMobileFilterSheet()">APPLY FILTERS</button>
+      <button class="mobile-filter-reset" onclick="resetMobileFilters()">RESET</button>
+    </div>
+  </div>
+
   <div id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
   <div id="mobile-nav-drawer">
     <div class="mobile-nav-header">
@@ -3496,8 +3566,8 @@ try { LANG = localStorage.getItem('aurigen_language') || 'en'; } catch(e) {}
 var I18N = {
   en: {
     // Nav
-    nav_map:'Map', nav_auctions:'Auctions', nav_versus:'Versus', nav_dna:'DNA',
-    nav_advisor:'Advisor', nav_tools:'Tools', nav_scout:'Scout', nav_account:'Account',
+    nav_map:'Map', nav_auctions:'Auctions', nav_account:'Account',
+    nav_tools_menu:'Tools',
     nav_tier_free:'FREE', nav_tier_paid:'FULL ACCESS',
     nav_mobile_upgrade:'Full Access \u2192',
     // Map header
@@ -3609,8 +3679,8 @@ var I18N = {
   },
   es: {
     // Nav
-    nav_map:'Mapa', nav_auctions:'Subastas', nav_versus:'Comparar', nav_dna:'Perfil DNA',
-    nav_advisor:'Asesor', nav_tools:'Herramientas', nav_scout:'Scout', nav_account:'Cuenta',
+    nav_map:'Mapa', nav_auctions:'Subastas', nav_account:'Cuenta',
+    nav_tools_menu:'Herramientas',
     nav_tier_free:'GRATIS', nav_tier_paid:'ACCESO COMPLETO',
     nav_mobile_upgrade:'Acceso Completo \u2192',
     // Map header
@@ -5188,8 +5258,10 @@ function loadPropertyFeed(stateCode, countyName) {
 }
 
 function buildPropFeedShell(countyName) {
+  var activeCount = countActiveFilters(_propFeedFilters);
+  var countBadge = activeCount > 0 ? '<span class="propfeed-active-count">' + activeCount + ' active</span>' : '';
   return '<div class="propfeed-header">' +
-    '<div class="propfeed-title"><span class="propfeed-dot"></span><span class="propfeed-title-text">LIVE INVENTORY</span></div>' +
+    '<div class="propfeed-title"><span class="propfeed-dot"></span><span class="propfeed-title-text">LIVE INVENTORY</span>' + countBadge + '</div>' +
     '<span class="propfeed-count" id="propfeed-count">Loading...</span>' +
     '</div>' +
     '<div class="propfeed-filters" id="propfeed-filters">' +
@@ -5197,22 +5269,33 @@ function buildPropFeedShell(countyName) {
     '</div>';
 }
 
+function countActiveFilters(f) {
+  var count = 0;
+  if (f.type !== 'all') count++;
+  if (f.status !== 'all') count++;
+  if (f.absentee) count++;
+  if (f.equity > 0) count++;
+  return count;
+}
+
 function buildFilterButtons() {
   var f = _propFeedFilters;
   var html = '';
   // Type filters
+  html += '<span class="propfeed-filter-label">TYPE</span>';
   var types = [['all','All Types'],['residential','Residential'],['commercial','Commercial'],['vacant','Vacant Land']];
   types.forEach(function(t) {
     html += '<button class="propfeed-filter-btn' + (f.type === t[0] ? ' active' : '') + '" onclick="propFilterType(\'' + t[0] + '\')">' + t[1] + '</button>';
   });
   // Status filters
+  html += '<span class="propfeed-filter-label">STATUS</span>';
   var statuses = [['all','All Status'],['active','Active'],['redeemed','Redeemed'],['struck','Struck Off']];
   statuses.forEach(function(s) {
     html += '<button class="propfeed-filter-btn' + (f.status === s[0] ? ' active' : '') + '" onclick="propFilterStatus(\'' + s[0] + '\')">' + s[1] + '</button>';
   });
-  // Absentee toggle
+  // Absentee + equity
+  html += '<span class="propfeed-filter-label">FILTERS</span>';
   html += '<button class="propfeed-filter-toggle' + (f.absentee ? ' active' : '') + '" onclick="propFilterAbsentee()">Absentee Owner</button>';
-  // Equity cushion
   var equities = [[0,'Any Equity'],[100,'100%+'],[200,'200%+'],[300,'300%+']];
   equities.forEach(function(e) {
     html += '<button class="propfeed-filter-btn' + (f.equity === e[0] ? ' active' : '') + '" onclick="propFilterEquity(' + e[0] + ')">' + e[1] + '</button>';
@@ -5302,14 +5385,27 @@ function renderPropFeed(container, countyName) {
       lien_amount: p.lien_amount, state_code: p.state_code, county: p.county, parcel_id: p.parcel_id
     }));
 
-    html += '<div class="prop-card" onclick="openDealFromProp(\'' + propData + '\')">';
+    var lienAmt = p.lien_amount !== null && p.lien_amount !== undefined ? '$' + Number(p.lien_amount).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
+    var lienYr = p.lien_year || '--';
+    var delYrs = p.delinquency_years !== null && p.delinquency_years !== undefined ? p.delinquency_years + 'yr' : '--';
+
+    html += '<div class="prop-card">';
     html += '<div class="prop-card-top"><div class="prop-card-address">' + addr + '</div><div class="prop-card-pills">' + pills + '</div></div>';
-    html += '<div class="prop-card-stats">';
+    html += '<div class="prop-card-stats-6">';
     html += '<div class="prop-stat"><div class="prop-stat-label">OPENING BID</div><div class="prop-stat-value">' + bid + '</div></div>';
     html += '<div class="prop-stat"><div class="prop-stat-label">ASSESSED</div><div class="prop-stat-value">' + assessed + '</div></div>';
     html += '<div class="prop-stat"><div class="prop-stat-label">EQUITY</div><div class="prop-stat-value' + eqClass + '">' + eqPct + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">LIEN AMT</div><div class="prop-stat-value">' + lienAmt + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">LIEN YEAR</div><div class="prop-stat-value">' + lienYr + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">DELINQUENT</div><div class="prop-stat-value">' + delYrs + '</div></div>';
     html += '</div>';
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">';
     html += '<span class="prop-card-status ' + statusClass + '">' + statusLabel + '</span>';
+    html += '<div class="prop-card-actions">';
+    html += '<button class="prop-action-btn prop-action-primary" onclick="event.stopPropagation();openDealFromProp(\'' + propData + '\')">Analyze</button>';
+    html += '<button class="prop-action-btn prop-action-ghost" onclick="event.stopPropagation();openScoutFromProp(\'' + propData + '\')">Scout</button>';
+    html += '<button class="prop-action-btn prop-action-ghost" onclick="event.stopPropagation();viewPropDetail(\'' + propData + '\')">Details</button>';
+    html += '</div></div>';
     html += '</div>';
   });
   html += '</div>';
@@ -5328,15 +5424,17 @@ function renderPropFeedLocked(container, countyName) {
   container.innerHTML = buildPropFeedShell(countyName);
   var countEl = document.getElementById('propfeed-count');
   if (countEl) countEl.textContent = 'LOCKED';
-  // Fake sample cards (blurred)
+  // Shimmer bars + blur overlay (4B enhanced preview)
   var sampleHtml = '<div class="propfeed-blur-wrap"><div class="propfeed-list">';
   for (var i = 0; i < 3; i++) {
-    sampleHtml += '<div class="prop-card"><div class="prop-card-top"><div class="prop-card-address">123 Sample St, ' + escapeHtml(countyName) + '</div><div class="prop-card-pills"><span class="prop-pill prop-pill-residential">Residential</span></div></div>';
-    sampleHtml += '<div class="prop-card-stats"><div class="prop-stat"><div class="prop-stat-label">OPENING BID</div><div class="prop-stat-value">$4,500</div></div><div class="prop-stat"><div class="prop-stat-label">ASSESSED</div><div class="prop-stat-value">$85,000</div></div><div class="prop-stat"><div class="prop-stat-label">EQUITY</div><div class="prop-stat-value equity-high">1,789%</div></div></div>';
-    sampleHtml += '<span class="prop-card-status prop-status-active">ACTIVE</span></div>';
+    sampleHtml += '<div class="prop-card">';
+    sampleHtml += '<div class="propfeed-shimmer-bar w85"></div>';
+    sampleHtml += '<div style="display:flex;gap:6px;margin-bottom:8px"><div class="propfeed-shimmer-bar w40" style="flex:1"></div><div class="propfeed-shimmer-bar" style="width:60px"></div></div>';
+    sampleHtml += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px"><div class="propfeed-shimmer-bar" style="height:40px;width:100%"></div><div class="propfeed-shimmer-bar" style="height:40px;width:100%"></div><div class="propfeed-shimmer-bar" style="height:40px;width:100%"></div></div>';
+    sampleHtml += '</div>';
   }
   sampleHtml += '</div>';
-  sampleHtml += '<div class="propfeed-lock"><span class="propfeed-lock-icon">&#128274;</span><span class="propfeed-lock-title">UNLOCK FULL ACCESS</span><span class="propfeed-lock-sub">See live property inventory, equity analysis, and absentee owner data for every county.</span><a class="propfeed-lock-btn" href="' + STRIPE_URL + '" target="_blank" rel="noopener noreferrer">UNLOCK — $197 ONE TIME</a></div></div>';
+  sampleHtml += '<div class="propfeed-lock"><span class="propfeed-lock-icon">&#128274;</span><span class="propfeed-lock-title">UNLOCK FULL ACCESS</span><span class="propfeed-lock-sub">See live property inventory, equity analysis, and absentee owner data for every county.</span><a class="propfeed-lock-btn" href="' + STRIPE_URL + '" target="_blank" rel="noopener noreferrer">UNLOCK — $197 ONE TIME</a><a class="propfeed-lock-dna" onclick="switchTab(\'dna\');return false" href="#">Not ready yet? Take the DNA quiz first &rarr;</a></div></div>';
   container.insertAdjacentHTML('beforeend', sampleHtml);
 }
 
@@ -5371,6 +5469,50 @@ function openDealFromProp(encodedData) {
     closeDetail();
   } catch(e) {
     console.warn('[propfeed] Could not open deal analyzer:', e.message);
+  }
+}
+
+function openScoutFromProp(encodedData) {
+  try {
+    var p = JSON.parse(decodeURIComponent(encodedData));
+    try {
+      localStorage.setItem('scout_prop_address', p.address || '');
+      localStorage.setItem('scout_prop_state', p.state_code || '');
+      localStorage.setItem('scout_prop_county', p.county || '');
+    } catch(le) {}
+    if (typeof switchTab === 'function') switchTab('scout');
+    closeDetail();
+  } catch(e) {
+    console.warn('[propfeed] Could not open scout:', e.message);
+  }
+}
+
+function viewPropDetail(encodedData) {
+  try {
+    var p = JSON.parse(decodeURIComponent(encodedData));
+    var addr = p.address || 'Unknown Address';
+    var bid = p.opening_bid !== null && p.opening_bid !== undefined ? '$' + Number(p.opening_bid).toLocaleString('en-US',{maximumFractionDigits:0}) : '--';
+    var assessed = p.assessed_value !== null && p.assessed_value !== undefined ? '$' + Number(p.assessed_value).toLocaleString('en-US',{maximumFractionDigits:0}) : '--';
+    var lien = p.lien_amount !== null && p.lien_amount !== undefined ? '$' + Number(p.lien_amount).toLocaleString('en-US',{maximumFractionDigits:0}) : '--';
+    var html = '<div style="padding:24px;max-width:400px;background:#0d1220;border:1px solid rgba(201,168,76,0.2);border-radius:12px;color:#e8e4dc;font-family:\'Plus Jakarta Sans\',sans-serif">';
+    html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:20px;color:#c9a84c;letter-spacing:0.08em;margin-bottom:12px">PROPERTY DETAIL</div>';
+    html += '<div style="font-size:14px;font-weight:600;margin-bottom:16px">' + escapeHtml(addr) + '</div>';
+    html += '<div style="font-size:12px;color:rgba(232,228,220,0.5);line-height:2">';
+    html += 'State: ' + escapeHtml(p.state_code || '--') + '<br>';
+    html += 'County: ' + escapeHtml(p.county || '--') + '<br>';
+    html += 'Parcel ID: ' + escapeHtml(p.parcel_id || '--') + '<br>';
+    html += 'Opening Bid: ' + bid + '<br>';
+    html += 'Assessed Value: ' + assessed + '<br>';
+    html += 'Lien Amount: ' + lien + '</div>';
+    html += '<button onclick="this.closest(\'.prop-detail-modal\').remove()" style="margin-top:16px;background:rgba(201,168,76,0.15);color:#c9a84c;border:1px solid rgba(201,168,76,0.3);font-family:\'Space Mono\',monospace;font-size:10px;letter-spacing:0.08em;padding:10px 20px;border-radius:6px;cursor:pointer;min-height:44px">CLOSE</button></div>';
+    var overlay = document.createElement('div');
+    overlay.className = 'prop-detail-modal';
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:90000;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center';
+    overlay.innerHTML = html;
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+    document.body.appendChild(overlay);
+  } catch(e) {
+    console.warn('[propfeed] Could not show detail:', e.message);
   }
 }
 
@@ -5425,7 +5567,7 @@ function auctionsInvStateChange() {
   }
   var sorted = Object.keys(counties).sort();
   if (sorted.length === 0) {
-    if (body) body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#127463;</span><span class="propfeed-empty-title">NO COUNTIES FOUND</span><span class="propfeed-empty-hint">No auction data available for this state yet. Try another state or check back soon.</span></div>';
+    if (body) body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#127463;</span><span class="propfeed-empty-title">NO COUNTIES FOUND</span><span class="propfeed-empty-hint">No auction data available for this state yet. Try another state or check back soon.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="switchTab(\'map\')">Browse Map</button><button class="propfeed-empty-btn propfeed-empty-btn-ghost" onclick="togglePulseDrawer()">Set Up Alerts</button></div></div>';
     return;
   }
   sorted.forEach(function(c) {
@@ -5457,7 +5599,7 @@ function auctionsInvCountyChange() {
   var email = '';
   try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
   if (!email) {
-    body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128274;</span><span class="propfeed-empty-title">SIGN IN REQUIRED</span><span class="propfeed-empty-hint">Enter your email on the gate page to access live inventory.</span></div>';
+    body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128274;</span><span class="propfeed-empty-title">SIGN IN REQUIRED</span><span class="propfeed-empty-hint">Enter your email on the gate page to access live inventory.</span><div class="propfeed-empty-actions"><a class="propfeed-empty-btn propfeed-empty-btn-primary" href="/gate.html">Sign In</a></div></div>';
     return;
   }
 
@@ -5482,7 +5624,7 @@ function auctionsInvCountyChange() {
       if (err.message === 'access') {
         renderAuctionsInvLocked(body, county);
       } else {
-        body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#9888;</span><span class="propfeed-empty-title">CONNECTION ERROR</span><span class="propfeed-empty-hint">Unable to load inventory. Check your connection and try again.</span></div>';
+        body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#9888;</span><span class="propfeed-empty-title">CONNECTION ERROR</span><span class="propfeed-empty-hint">Unable to load inventory. Check your connection and try again.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="auctionsInvCountyChange()">Retry</button></div></div>';
       }
     });
 }
@@ -5490,10 +5632,13 @@ function auctionsInvCountyChange() {
 function buildAuctionsInvFilterBtns() {
   var f = _auctionsInvFilters;
   var html = '';
+  html += '<span class="propfeed-filter-label">TYPE</span>';
   var types = [['all','All Types'],['residential','Residential'],['commercial','Commercial'],['vacant','Vacant Land']];
   types.forEach(function(t) { html += '<button class="propfeed-filter-btn' + (f.type === t[0] ? ' active' : '') + '" onclick="auctionsInvFilter(\'type\',\'' + t[0] + '\')">' + t[1] + '</button>'; });
+  html += '<span class="propfeed-filter-label">STATUS</span>';
   var statuses = [['all','All Status'],['active','Active'],['redeemed','Redeemed']];
   statuses.forEach(function(s) { html += '<button class="propfeed-filter-btn' + (f.status === s[0] ? ' active' : '') + '" onclick="auctionsInvFilter(\'status\',\'' + s[0] + '\')">' + s[1] + '</button>'; });
+  html += '<span class="propfeed-filter-label">FILTERS</span>';
   html += '<button class="propfeed-filter-toggle' + (f.absentee ? ' active' : '') + '" onclick="auctionsInvFilter(\'absentee\')">Absentee Owner</button>';
   var equities = [[0,'Any Equity'],[100,'100%+'],[200,'200%+']];
   equities.forEach(function(e) { html += '<button class="propfeed-filter-btn' + (f.equity === e[0] ? ' active' : '') + '" onclick="auctionsInvFilter(\'equity\',' + e[0] + ')">' + e[1] + '</button>'; });
@@ -5557,10 +5702,25 @@ function renderAuctionsInvCards(container, countyName) {
     var statusClass = statusLower === 'active' ? 'prop-status-active' : statusLower === 'redeemed' ? 'prop-status-redeemed' : 'prop-status-struck';
     var statusLabel = statusLower === 'active' ? 'ACTIVE' : statusLower === 'redeemed' ? 'REDEEMED' : 'STRUCK OFF';
     var propData = encodeURIComponent(JSON.stringify({ address: p.address, opening_bid: p.opening_bid, assessed_value: p.assessed_value, lien_amount: p.lien_amount, state_code: p.state_code, county: p.county, parcel_id: p.parcel_id }));
-    html += '<div class="prop-card" onclick="openDealFromProp(\'' + propData + '\')">';
+    var lienAmt = p.lien_amount !== null && p.lien_amount !== undefined ? '$' + Number(p.lien_amount).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
+    var lienYr = p.lien_year || '--';
+    var delYrs = p.delinquency_years !== null && p.delinquency_years !== undefined ? p.delinquency_years + 'yr' : '--';
+    html += '<div class="prop-card">';
     html += '<div class="prop-card-top"><div class="prop-card-address">' + addr + '</div><div class="prop-card-pills">' + pills + '</div></div>';
-    html += '<div class="prop-card-stats"><div class="prop-stat"><div class="prop-stat-label">OPENING BID</div><div class="prop-stat-value">' + bid + '</div></div><div class="prop-stat"><div class="prop-stat-label">ASSESSED</div><div class="prop-stat-value">' + assessed + '</div></div><div class="prop-stat"><div class="prop-stat-label">EQUITY</div><div class="prop-stat-value' + eqClass + '">' + eqPct + '</div></div></div>';
-    html += '<span class="prop-card-status ' + statusClass + '">' + statusLabel + '</span></div>';
+    html += '<div class="prop-card-stats-6">';
+    html += '<div class="prop-stat"><div class="prop-stat-label">OPENING BID</div><div class="prop-stat-value">' + bid + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">ASSESSED</div><div class="prop-stat-value">' + assessed + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">EQUITY</div><div class="prop-stat-value' + eqClass + '">' + eqPct + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">LIEN AMT</div><div class="prop-stat-value">' + lienAmt + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">LIEN YEAR</div><div class="prop-stat-value">' + lienYr + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">DELINQUENT</div><div class="prop-stat-value">' + delYrs + '</div></div>';
+    html += '</div>';
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">';
+    html += '<span class="prop-card-status ' + statusClass + '">' + statusLabel + '</span>';
+    html += '<div class="prop-card-actions">';
+    html += '<button class="prop-action-btn prop-action-primary" onclick="event.stopPropagation();openDealFromProp(\'' + propData + '\')">Analyze</button>';
+    html += '<button class="prop-action-btn prop-action-ghost" onclick="event.stopPropagation();openScoutFromProp(\'' + propData + '\')">Scout</button>';
+    html += '</div></div></div>';
   });
   html += '</div>';
   container.innerHTML = html;
@@ -5569,11 +5729,13 @@ function renderAuctionsInvCards(container, countyName) {
 function renderAuctionsInvLocked(container, countyName) {
   var html = '<div class="propfeed-blur-wrap"><div class="propfeed-list">';
   for (var i = 0; i < 3; i++) {
-    html += '<div class="prop-card"><div class="prop-card-top"><div class="prop-card-address">123 Sample St, ' + escapeHtml(countyName) + '</div><div class="prop-card-pills"><span class="prop-pill prop-pill-residential">Residential</span></div></div>';
-    html += '<div class="prop-card-stats"><div class="prop-stat"><div class="prop-stat-label">OPENING BID</div><div class="prop-stat-value">$4,500</div></div><div class="prop-stat"><div class="prop-stat-label">ASSESSED</div><div class="prop-stat-value">$85,000</div></div><div class="prop-stat"><div class="prop-stat-label">EQUITY</div><div class="prop-stat-value equity-high">1,789%</div></div></div>';
-    html += '<span class="prop-card-status prop-status-active">ACTIVE</span></div>';
+    html += '<div class="prop-card">';
+    html += '<div class="propfeed-shimmer-bar w85"></div>';
+    html += '<div style="display:flex;gap:6px;margin-bottom:8px"><div class="propfeed-shimmer-bar w40" style="flex:1"></div><div class="propfeed-shimmer-bar" style="width:60px"></div></div>';
+    html += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px"><div class="propfeed-shimmer-bar" style="height:40px;width:100%"></div><div class="propfeed-shimmer-bar" style="height:40px;width:100%"></div><div class="propfeed-shimmer-bar" style="height:40px;width:100%"></div></div>';
+    html += '</div>';
   }
-  html += '</div><div class="propfeed-lock"><span class="propfeed-lock-icon">&#128274;</span><span class="propfeed-lock-title">UNLOCK FULL ACCESS</span><span class="propfeed-lock-sub">See live property inventory, equity analysis, and absentee owner data for every county.</span><a class="propfeed-lock-btn" href="' + STRIPE_URL + '" target="_blank" rel="noopener noreferrer">UNLOCK — $197 ONE TIME</a></div></div>';
+  html += '</div><div class="propfeed-lock"><span class="propfeed-lock-icon">&#128274;</span><span class="propfeed-lock-title">UNLOCK FULL ACCESS</span><span class="propfeed-lock-sub">See live property inventory, equity analysis, and absentee owner data for every county.</span><a class="propfeed-lock-btn" href="' + STRIPE_URL + '" target="_blank" rel="noopener noreferrer">UNLOCK — $197 ONE TIME</a><a class="propfeed-lock-dna" onclick="switchTab(\'dna\');return false" href="#">Not ready yet? Take the DNA quiz first &rarr;</a></div></div>';
   container.innerHTML = html;
   var countEl = document.getElementById('auctions-inv-count');
   if (countEl) countEl.textContent = 'LOCKED';
@@ -8919,6 +9081,128 @@ function scoutRender() {
 
   // Restore on load (only if still whitelisted)
   if (isAdminMode()) showBadge();
+})();
+
+// === 3B: MOBILE FILTER DRAWER ===
+(function() {
+  function showFab() {
+    var fab = document.getElementById('mobile-filter-fab');
+    if (!fab) return;
+    // Show FAB only on mobile when property feed is active
+    var isPropActive = document.getElementById('panel-properties') && document.getElementById('panel-properties').classList.contains('active');
+    var isAuctionsActive = APP.activeTab === 'auctions';
+    var isMobile = window.innerWidth <= 600;
+    fab.style.display = (isMobile && (isPropActive || isAuctionsActive)) ? 'flex' : 'none';
+    // Update count badge on FAB
+    var f = isPropActive ? _propFeedFilters : _auctionsInvFilters;
+    var count = countActiveFilters(f);
+    fab.textContent = count > 0 ? '\u2630 FILTERS (' + count + ')' : '\u2630 FILTERS';
+  }
+
+  window.openMobileFilterSheet = function() {
+    var overlay = document.getElementById('mobile-filter-overlay');
+    var sheet = document.getElementById('mobile-filter-sheet');
+    var body = document.getElementById('mobile-filter-sheet-body');
+    if (!overlay || !sheet || !body) return;
+    // Determine which filter context
+    var isPropActive = document.getElementById('panel-properties') && document.getElementById('panel-properties').classList.contains('active');
+    var f = isPropActive ? _propFeedFilters : _auctionsInvFilters;
+    var prefix = isPropActive ? 'prop' : 'auctInv';
+    var html = '';
+    // Type
+    html += '<div class="mobile-filter-section"><div class="mobile-filter-section-label">PROPERTY TYPE</div><div class="mobile-filter-chips">';
+    [['all','All Types'],['residential','Residential'],['commercial','Commercial'],['vacant','Vacant Land']].forEach(function(t) {
+      html += '<button class="propfeed-filter-btn' + (f.type === t[0] ? ' active' : '') + '" onclick="mobileFilterSet(\'' + prefix + '\',\'type\',\'' + t[0] + '\')">' + t[1] + '</button>';
+    });
+    html += '</div></div>';
+    // Status
+    html += '<div class="mobile-filter-section"><div class="mobile-filter-section-label">STATUS</div><div class="mobile-filter-chips">';
+    var statuses = isPropActive ? [['all','All'],['active','Active'],['redeemed','Redeemed'],['struck','Struck Off']] : [['all','All'],['active','Active'],['redeemed','Redeemed']];
+    statuses.forEach(function(s) {
+      html += '<button class="propfeed-filter-btn' + (f.status === s[0] ? ' active' : '') + '" onclick="mobileFilterSet(\'' + prefix + '\',\'status\',\'' + s[0] + '\')">' + s[1] + '</button>';
+    });
+    html += '</div></div>';
+    // Absentee
+    html += '<div class="mobile-filter-section"><div class="mobile-filter-section-label">OWNER</div><div class="mobile-filter-chips">';
+    html += '<button class="propfeed-filter-toggle' + (f.absentee ? ' active' : '') + '" onclick="mobileFilterSet(\'' + prefix + '\',\'absentee\')">Absentee Owner</button>';
+    html += '</div></div>';
+    // Equity
+    html += '<div class="mobile-filter-section"><div class="mobile-filter-section-label">EQUITY CUSHION</div><div class="mobile-filter-chips">';
+    var eqs = isPropActive ? [[0,'Any'],[100,'100%+'],[200,'200%+'],[300,'300%+']] : [[0,'Any'],[100,'100%+'],[200,'200%+']];
+    eqs.forEach(function(e) {
+      html += '<button class="propfeed-filter-btn' + (f.equity === e[0] ? ' active' : '') + '" onclick="mobileFilterSet(\'' + prefix + '\',\'equity\',' + e[0] + ')">' + e[1] + '</button>';
+    });
+    html += '</div></div>';
+    body.innerHTML = html;
+    overlay.classList.add('open');
+    requestAnimationFrame(function() { sheet.classList.add('open'); });
+  };
+
+  window.closeMobileFilterSheet = function() {
+    var overlay = document.getElementById('mobile-filter-overlay');
+    var sheet = document.getElementById('mobile-filter-sheet');
+    if (sheet) sheet.classList.remove('open');
+    setTimeout(function() { if (overlay) overlay.classList.remove('open'); }, 300);
+    showFab();
+  };
+
+  window.mobileFilterSet = function(prefix, key, val) {
+    var f = prefix === 'prop' ? _propFeedFilters : _auctionsInvFilters;
+    if (key === 'absentee') { f.absentee = !f.absentee; }
+    else if (key === 'equity') { f.equity = val; }
+    else { f[key] = val; }
+    // Re-render the mobile sheet to show updated active states
+    openMobileFilterSheet();
+    // Apply filters to the underlying list
+    if (prefix === 'prop') {
+      applyPropFilters();
+    } else {
+      var filtersEl = document.getElementById('auctions-inv-filters');
+      if (filtersEl) filtersEl.innerHTML = buildAuctionsInvFilterBtns();
+      var body = document.getElementById('auctions-inv-body');
+      var county = document.getElementById('auctions-inv-county').value;
+      if (body) renderAuctionsInvCards(body, county);
+    }
+  };
+
+  window.resetMobileFilters = function() {
+    var isPropActive = document.getElementById('panel-properties') && document.getElementById('panel-properties').classList.contains('active');
+    if (isPropActive) {
+      _propFeedFilters = { type:'all', status:'all', absentee:false, equity:0 };
+      applyPropFilters();
+    } else {
+      _auctionsInvFilters = { type:'all', status:'all', absentee:false, equity:0 };
+      auctionsInvFilter('type','all');
+    }
+    openMobileFilterSheet();
+  };
+
+  // Show/hide FAB on tab switch and resize
+  var origSwitch = window.switchTab;
+  if (origSwitch) {
+    window.switchTab = function(name) {
+      origSwitch(name);
+      setTimeout(showFab, 50);
+    };
+  }
+  window.addEventListener('resize', showFab);
+  setTimeout(showFab, 500);
+})();
+
+// === 4C: SUCCESS PAGE ENHANCED TOAST + TAB GLOW ===
+// The existing playUnlockAnimation already handles toast + glow.
+// Enhance: also switch to account tab after animation.
+(function() {
+  var origUnlock = window.playUnlockAnimation;
+  if (origUnlock) {
+    window.playUnlockAnimation = function() {
+      origUnlock();
+      // After toast dismisses, switch to account tab to show upgraded status
+      setTimeout(function() {
+        if (typeof switchTab === 'function') switchTab('account');
+      }, 3500);
+    };
+  }
 })();
 </script>
 </body>
