@@ -5229,8 +5229,7 @@ function openDealFromProp(encodedData) {
       localStorage.setItem('deal_prop_county', p.county || '');
     } catch(le) { /* localStorage unavailable */ }
     // Switch to Tools tab and open Deal Analyzer
-    var toolsTab = document.querySelector('[data-tab="tools"]');
-    if (toolsTab) toolsTab.click();
+    if (typeof switchTab === 'function') switchTab('tools');
     // Pre-populate price input if it exists
     var priceInput = document.getElementById('da-amount-input') || document.getElementById('inp-price');
     if (priceInput && p.opening_bid) {
