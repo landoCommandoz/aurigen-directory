@@ -104,9 +104,67 @@ exports.handler = async function(event) {
 
     console.log('[generate-report] Report generated for week of ' + weekOf);
 
+    // === BEEHIIV DRAFT CREATION ===
+    // Set BEEHIIV_SEND_ENABLED=true in Netlify env vars to activate draft creation.
+    // Drafts appear in Beehiiv dashboard for Lando to review before publishing.
+    var beehiivEnabled = (process.env.BEEHIIV_SEND_ENABLED || '').toLowerCase() === 'true';
+    var beehiivApiKey = process.env.BEEHIIV_API_KEY || '';
+    var beehiivPubId = process.env.BEEHIIV_PUBLICATION_ID || '';
+    var beehiivDraft = false;
+
+    if (beehiivEnabled && beehiivApiKey && beehiivPubId) {
+      try {
+        // Build HTML content from report data
+        var htmlContent = '<h2>Aurigen Weekly Intelligence Brief — Week of ' + weekOf + '</h2>';
+        htmlContent += '<p><strong>' + report.new_auctions_total + ' new auctions</strong> added this week across ' + topStates.length + ' states.</p>';
+        if (topStates.length > 0) {
+          htmlContent += '<h3>Top States by New Auctions</h3><ul>';
+          topStates.forEach(function(s) { htmlContent += '<li>' + s.state + ': ' + s.count + ' auctions</li>'; });
+          htmlContent += '</ul>';
+        }
+        if ((topCounties || []).length > 0) {
+          htmlContent += '<h3>Top Counties by Opportunity Score</h3><ul>';
+          (topCounties || []).forEach(function(c) { htmlContent += '<li>' + c.state_code + ' — ' + c.county + ' (Score: ' + c.score + ')</li>'; });
+          htmlContent += '</ul>';
+        }
+        if ((upcomingDeadlines || []).length > 0) {
+          htmlContent += '<h3>Upcoming Deadlines (Next 14 Days)</h3><ul>';
+          (upcomingDeadlines || []).forEach(function(d) { htmlContent += '<li>' + d.state_code + ' — ' + d.county + ' on ' + d.auction_date + ' (' + d.platform + ')</li>'; });
+          htmlContent += '</ul>';
+        }
+        htmlContent += '<p>' + (report.alert_count || 0) + ' new Pulse alerts this week.</p>';
+        htmlContent += '<p><a href="https://aurigendirectory.com/">Open Aurigen Intelligence Platform →</a></p>';
+
+        var beehiivRes = await fetch(
+          'https://api.beehiiv.com/v2/publications/' + beehiivPubId + '/posts',
+          {
+            method: 'POST',
+            headers: {
+              'Authorization': 'ApiKey ' + beehiivApiKey,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              title: 'Aurigen Weekly Intelligence Brief — ' + weekOf,
+              subtitle: report.new_auctions_total + ' new auctions, ' + (report.alert_count || 0) + ' alerts',
+              content: htmlContent,
+              status: 'draft'
+            })
+          }
+        );
+        if (beehiivRes.ok) {
+          beehiivDraft = true;
+          console.log('[generate-report] Beehiiv draft created');
+        } else {
+          console.error('[generate-report] Beehiiv error:', beehiivRes.status);
+        }
+      } catch (beehiivErr) {
+        console.error('[generate-report] Beehiiv error:', beehiivErr.message);
+      }
+    }
+
     return {
       statusCode: 200,
-      body: JSON.stringify({ success: true, week_of: weekOf, auctions: (newAuctions || []).length, alerts: alertCount || 0 })
+      body: JSON.stringify({ success: true, week_of: weekOf, auctions: (newAuctions || []).length, alerts: alertCount || 0, beehiiv_draft: beehiivDraft })
     };
 
   } catch (err) {

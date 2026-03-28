@@ -9,9 +9,47 @@
     // JWT validation (primary) — if JWT exists, validate server-side
     var jwt = localStorage.getItem('aurigen_jwt');
     if (jwt) {
+      var _jwtResolved = false;
       var jwtTimeout = setTimeout(function() {
-        // Timeout fallback: JWT validation took too long, trust localStorage tier
-        console.warn('[GATE] JWT validation timed out after 2s — using cached tier');
+        if (_jwtResolved) return;
+        // Timeout: show overlay and retry once
+        console.warn('[GATE] JWT validation timed out after 2s — retrying');
+        var overlay = document.createElement('div');
+        overlay.id = 'gate-verify-overlay';
+        overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(10,14,26,0.95);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;font-family:"Plus Jakarta Sans",sans-serif';
+        overlay.innerHTML = '<div style="font-family:Bebas Neue,sans-serif;font-size:24px;letter-spacing:0.1em;color:#c9a84c">VERIFYING YOUR SESSION</div><div style="font-size:13px;color:rgba(232,228,220,0.6)">Please wait...</div>';
+        document.body.appendChild(overlay);
+        // Retry after 3s
+        setTimeout(function() {
+          if (_jwtResolved) { if (overlay.parentNode) overlay.remove(); return; }
+          fetch('/.netlify/functions/validate-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ jwt: jwt })
+          })
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            _jwtResolved = true;
+            if (overlay.parentNode) overlay.remove();
+            if (data.valid && data.tier === 'paid') {
+              try {
+                localStorage.setItem('aurigen_access', 'paid');
+                localStorage.setItem('aurigen_email', data.email || '');
+                localStorage.setItem('aurigen_is_admin', data.isAdmin ? 'true' : 'false');
+              } catch(e) {}
+              if (access !== 'paid') location.reload();
+            } else {
+              try { localStorage.removeItem('aurigen_jwt'); localStorage.removeItem('aurigen_is_admin'); localStorage.setItem('aurigen_access', 'free'); } catch(e) {}
+              if (access === 'paid') location.reload();
+            }
+          })
+          .catch(function() {
+            _jwtResolved = true;
+            // Second attempt failed — revoke paid, show error
+            try { localStorage.removeItem('aurigen_jwt'); localStorage.removeItem('aurigen_is_admin'); localStorage.setItem('aurigen_access', 'free'); } catch(e) {}
+            overlay.innerHTML = '<div style="font-family:Bebas Neue,sans-serif;font-size:24px;letter-spacing:0.1em;color:#c9a84c">UNABLE TO VERIFY SESSION</div><div style="font-size:13px;color:rgba(232,228,220,0.6);max-width:400px;text-align:center;line-height:1.6">Please refresh the page or contact support at landon@theaurigen.com</div><button onclick="location.reload()" style="margin-top:12px;padding:10px 24px;background:transparent;border:1px solid rgba(201,168,76,0.4);color:#c9a84c;font-family:Space Mono,monospace;font-size:11px;letter-spacing:0.1em;cursor:pointer;border-radius:4px">REFRESH</button>';
+          });
+        }, 3000);
       }, 2000);
       fetch('/.netlify/functions/validate-session', {
         method: 'POST',
@@ -20,6 +58,7 @@
       })
       .then(function(r) { return r.json(); })
       .then(function(data) {
+        _jwtResolved = true;
         clearTimeout(jwtTimeout);
         if (data.valid && data.tier === 'paid') {
           // JWT valid — ensure localStorage matches
@@ -41,8 +80,7 @@
         }
       })
       .catch(function() {
-        clearTimeout(jwtTimeout);
-        // Network error: trust cached tier
+        // Network error on first attempt — let timeout handler retry
       });
     } else {
       // No JWT — server-verify access via email (legacy path)
