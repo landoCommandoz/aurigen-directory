@@ -3147,6 +3147,19 @@
           <div class="auctions-disclaimer">
             Tax lien and tax deed investing involves risk, including potential loss of principal. Past performance does not guarantee future results. Auction dates and details are provided for informational purposes only &mdash; verify directly with the county or platform before registering. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a>
           </div>
+          <!-- LIVE INVENTORY SECTION -->
+          <div id="auctions-inventory" style="margin-top:28px;border-top:1px solid rgba(201,168,76,0.15);padding-top:24px">
+            <div class="propfeed-header" style="margin-bottom:16px">
+              <div class="propfeed-title"><span class="propfeed-dot"></span><span class="propfeed-title-text">LIVE INVENTORY</span></div>
+              <span class="propfeed-count" id="auctions-inv-count"></span>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px" id="auctions-inv-dropdowns">
+              <select id="auctions-inv-state" onchange="auctionsInvStateChange()" style="background:#181818;color:#f5f0e8;border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:8px 12px;font-size:13px;min-width:160px;cursor:pointer"><option value="">Select a State</option></select>
+              <select id="auctions-inv-county" onchange="auctionsInvCountyChange()" style="background:#181818;color:#f5f0e8;border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:8px 12px;font-size:13px;min-width:200px;cursor:pointer;display:none"><option value="">Select a County</option></select>
+            </div>
+            <div id="auctions-inv-filters" style="display:none"></div>
+            <div id="auctions-inv-body"></div>
+          </div>
         </div>
       </div>
       <div class="paywall-lock" id="lock-auctions-tab" style="display:none"><span class="walkthrough-label" data-i18n="auctions_lock_title">UNLOCK AUCTIONS</span><div class="walkthrough-preview-img"><div class="wk-row"><span class="wk-badge lien">FL</span><span class="wk-text">Broward County</span><span class="wk-text-sub">Jun 1, 2026</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">TX</span><span class="wk-text">Harris County</span><span class="wk-text-sub">Jul 8, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge lien">AZ</span><span class="wk-text">Maricopa County</span><span class="wk-text-sub">Feb 4, 2027</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">GA</span><span class="wk-text">Fulton County</span><span class="wk-text-sub">Aug 12, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div></div><span class="walkthrough-desc">Live and upcoming auction calendar across all 51 states. Filter by state, format, and date. Never miss a sale in your target market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
@@ -5031,9 +5044,10 @@ function loadPropertyFeed(stateCode, countyName) {
     return;
   }
 
-  // Fetch properties — requires paid email
+  // Fetch properties — requires paid email (admin mode bypasses)
   var email = '';
   try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
+  if (!email && isAdminMode()) { email = 'admin@aurigen.com'; }
   if (!email) { renderPropFeedEmpty(container, countyName, 'Sign in to view live inventory.'); return; }
 
   fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName) + '&email=' + encodeURIComponent(email))
@@ -5242,6 +5256,208 @@ function openDealFromProp(encodedData) {
   }
 }
 
+// === AUCTIONS TAB — LIVE INVENTORY ===
+var _auctionsInvData = [];
+var _auctionsInvFilters = { type: 'all', status: 'all', absentee: false, equity: 0 };
+
+function initAuctionsInventory() {
+  var sel = document.getElementById('auctions-inv-state');
+  if (!sel) return;
+  // Populate state dropdown from auction data
+  var states = {};
+  (typeof AUCTION_ENTRIES !== 'undefined' ? AUCTION_ENTRIES : []).forEach(function(a) {
+    if (a.state_code && a.state) states[a.state_code] = a.state;
+  });
+  // Also pull from STATES_EN if available
+  if (typeof STATES_EN !== 'undefined') {
+    STATES_EN.forEach(function(s) { if (s.id) states[s.id] = s.name; });
+  }
+  var sorted = Object.keys(states).sort(function(a, b) { return states[a].localeCompare(states[b]); });
+  sel.innerHTML = '<option value="">Select a State</option>';
+  sorted.forEach(function(sc) {
+    sel.innerHTML += '<option value="' + sc + '">' + escapeHtml(states[sc]) + ' (' + sc + ')</option>';
+  });
+}
+
+function auctionsInvStateChange() {
+  var stateCode = document.getElementById('auctions-inv-state').value;
+  var countySel = document.getElementById('auctions-inv-county');
+  var body = document.getElementById('auctions-inv-body');
+  var filtersEl = document.getElementById('auctions-inv-filters');
+  countySel.style.display = 'none';
+  countySel.innerHTML = '<option value="">Select a County</option>';
+  if (filtersEl) filtersEl.style.display = 'none';
+  if (body) body.innerHTML = '';
+  var countEl = document.getElementById('auctions-inv-count');
+  if (countEl) countEl.textContent = '';
+
+  if (!stateCode) return;
+
+  // Populate counties from auction data
+  var counties = {};
+  (typeof AUCTION_ENTRIES !== 'undefined' ? AUCTION_ENTRIES : []).forEach(function(a) {
+    if (a.state_code === stateCode && a.county) counties[a.county] = true;
+  });
+  // Also check STATES_EN for county lists
+  if (typeof STATES_EN !== 'undefined') {
+    var stObj = STATES_EN.find(function(s) { return s.id === stateCode; });
+    if (stObj && stObj.counties) {
+      stObj.counties.forEach(function(c) { counties[c] = true; });
+    }
+  }
+  var sorted = Object.keys(counties).sort();
+  if (sorted.length === 0) {
+    if (body) body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span>No counties found for this state.</div>';
+    return;
+  }
+  sorted.forEach(function(c) {
+    countySel.innerHTML += '<option value="' + escapeHtml(c) + '">' + escapeHtml(c) + '</option>';
+  });
+  countySel.style.display = '';
+}
+
+function auctionsInvCountyChange() {
+  var stateCode = document.getElementById('auctions-inv-state').value;
+  var county = document.getElementById('auctions-inv-county').value;
+  var body = document.getElementById('auctions-inv-body');
+  var filtersEl = document.getElementById('auctions-inv-filters');
+  if (!stateCode || !county || !body) return;
+
+  // Reset filters
+  _auctionsInvFilters = { type: 'all', status: 'all', absentee: false, equity: 0 };
+  _auctionsInvData = [];
+
+  // Show loading
+  body.innerHTML = buildPropSkeletons();
+  if (filtersEl) filtersEl.style.display = 'none';
+
+  if (!IS_PAID) {
+    renderAuctionsInvLocked(body, county);
+    return;
+  }
+
+  var email = '';
+  try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
+  if (!email && isAdminMode()) { email = 'admin@aurigen.com'; }
+  if (!email) {
+    body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span>Sign in to view live inventory.</div>';
+    return;
+  }
+
+  fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(county) + '&email=' + encodeURIComponent(email))
+    .then(function(r) {
+      if (r.status === 401 || r.status === 403) throw new Error('access');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function(data) {
+      _auctionsInvData = data.properties || [];
+      if (filtersEl) {
+        filtersEl.style.display = 'flex';
+        filtersEl.style.flexWrap = 'wrap';
+        filtersEl.style.gap = '6px';
+        filtersEl.style.marginBottom = '16px';
+        filtersEl.innerHTML = buildAuctionsInvFilterBtns();
+      }
+      renderAuctionsInvCards(body, county);
+    })
+    .catch(function(err) {
+      if (err.message === 'access') {
+        renderAuctionsInvLocked(body, county);
+      } else {
+        body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span>Unable to load inventory. Try again later.</div>';
+      }
+    });
+}
+
+function buildAuctionsInvFilterBtns() {
+  var f = _auctionsInvFilters;
+  var html = '';
+  var types = [['all','All Types'],['residential','Residential'],['commercial','Commercial'],['vacant','Vacant Land']];
+  types.forEach(function(t) { html += '<button class="propfeed-filter-btn' + (f.type === t[0] ? ' active' : '') + '" onclick="auctionsInvFilter(\'type\',\'' + t[0] + '\')">' + t[1] + '</button>'; });
+  var statuses = [['all','All Status'],['active','Active'],['redeemed','Redeemed']];
+  statuses.forEach(function(s) { html += '<button class="propfeed-filter-btn' + (f.status === s[0] ? ' active' : '') + '" onclick="auctionsInvFilter(\'status\',\'' + s[0] + '\')">' + s[1] + '</button>'; });
+  html += '<button class="propfeed-filter-toggle' + (f.absentee ? ' active' : '') + '" onclick="auctionsInvFilter(\'absentee\')">Absentee Owner</button>';
+  var equities = [[0,'Any Equity'],[100,'100%+'],[200,'200%+']];
+  equities.forEach(function(e) { html += '<button class="propfeed-filter-btn' + (f.equity === e[0] ? ' active' : '') + '" onclick="auctionsInvFilter(\'equity\',' + e[0] + ')">' + e[1] + '</button>'; });
+  return html;
+}
+
+function auctionsInvFilter(key, val) {
+  if (key === 'absentee') { _auctionsInvFilters.absentee = !_auctionsInvFilters.absentee; }
+  else if (key === 'equity') { _auctionsInvFilters.equity = val; }
+  else { _auctionsInvFilters[key] = val; }
+  var filtersEl = document.getElementById('auctions-inv-filters');
+  if (filtersEl) filtersEl.innerHTML = buildAuctionsInvFilterBtns();
+  var body = document.getElementById('auctions-inv-body');
+  var county = document.getElementById('auctions-inv-county').value;
+  if (body) renderAuctionsInvCards(body, county);
+}
+
+function getAuctionsInvFiltered() {
+  var f = _auctionsInvFilters;
+  return _auctionsInvData.filter(function(p) {
+    if (f.type !== 'all') {
+      var pt = (p.property_type || '').toLowerCase();
+      if (f.type === 'vacant' && pt.indexOf('vacant') === -1 && pt.indexOf('land') === -1) return false;
+      if (f.type === 'residential' && pt.indexOf('resident') === -1) return false;
+      if (f.type === 'commercial' && pt.indexOf('commerc') === -1) return false;
+    }
+    if (f.status !== 'all' && (p.status || '').toLowerCase() !== f.status) return false;
+    if (f.absentee && !p.absentee_owner) return false;
+    if (f.equity > 0 && (p.equity_cushion_pct === null || p.equity_cushion_pct < f.equity)) return false;
+    return true;
+  });
+}
+
+function renderAuctionsInvCards(container, countyName) {
+  var filtered = getAuctionsInvFiltered();
+  var countEl = document.getElementById('auctions-inv-count');
+  if (countEl) countEl.textContent = filtered.length + ' PROPERT' + (filtered.length !== 1 ? 'IES' : 'Y');
+
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="propfeed-empty">' + (_auctionsInvData.length === 0 ? '<span class="propfeed-empty-icon">&#128269;</span>No live inventory yet for ' + escapeHtml(countyName) + '.<br>Check back after the next scraper run.' : 'No properties match current filters.') + '</div>';
+    return;
+  }
+
+  var html = '<div class="propfeed-list">';
+  filtered.forEach(function(p) {
+    var addr = escapeHtml(p.address || 'Address unavailable');
+    var typeLower = (p.property_type || '').toLowerCase();
+    var typeClass = typeLower.indexOf('resident') >= 0 ? 'residential' : typeLower.indexOf('commerc') >= 0 ? 'commercial' : 'vacant';
+    var typeLabel = typeLower.indexOf('resident') >= 0 ? 'Residential' : typeLower.indexOf('commerc') >= 0 ? 'Commercial' : typeLower.indexOf('vacant') >= 0 || typeLower.indexOf('land') >= 0 ? 'Vacant Land' : (p.property_type || 'Unknown');
+    var pills = '<span class="prop-pill prop-pill-' + typeClass + '">' + escapeHtml(typeLabel) + '</span>';
+    if (p.absentee_owner) pills += '<span class="prop-pill prop-pill-absentee">ABSENTEE</span>';
+    var bid = p.opening_bid !== null ? '$' + Number(p.opening_bid).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
+    var assessed = p.assessed_value !== null ? '$' + Number(p.assessed_value).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
+    var eqPct = p.equity_cushion_pct !== null ? Math.round(p.equity_cushion_pct) + '%' : '--';
+    var eqClass = p.equity_cushion_pct === null ? '' : p.equity_cushion_pct > 200 ? ' equity-high' : p.equity_cushion_pct >= 100 ? ' equity-mid' : ' equity-low';
+    var statusLower = (p.status || '').toLowerCase();
+    var statusClass = statusLower === 'active' ? 'prop-status-active' : statusLower === 'redeemed' ? 'prop-status-redeemed' : 'prop-status-struck';
+    var statusLabel = statusLower === 'active' ? 'ACTIVE' : statusLower === 'redeemed' ? 'REDEEMED' : 'STRUCK OFF';
+    var propData = encodeURIComponent(JSON.stringify({ address: p.address, opening_bid: p.opening_bid, assessed_value: p.assessed_value, lien_amount: p.lien_amount, state_code: p.state_code, county: p.county, parcel_id: p.parcel_id }));
+    html += '<div class="prop-card" onclick="openDealFromProp(\'' + propData + '\')">';
+    html += '<div class="prop-card-top"><div class="prop-card-address">' + addr + '</div><div class="prop-card-pills">' + pills + '</div></div>';
+    html += '<div class="prop-card-stats"><div class="prop-stat"><div class="prop-stat-label">OPENING BID</div><div class="prop-stat-value">' + bid + '</div></div><div class="prop-stat"><div class="prop-stat-label">ASSESSED</div><div class="prop-stat-value">' + assessed + '</div></div><div class="prop-stat"><div class="prop-stat-label">EQUITY</div><div class="prop-stat-value' + eqClass + '">' + eqPct + '</div></div></div>';
+    html += '<span class="prop-card-status ' + statusClass + '">' + statusLabel + '</span></div>';
+  });
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function renderAuctionsInvLocked(container, countyName) {
+  var html = '<div class="propfeed-blur-wrap"><div class="propfeed-list">';
+  for (var i = 0; i < 3; i++) {
+    html += '<div class="prop-card"><div class="prop-card-top"><div class="prop-card-address">123 Sample St, ' + escapeHtml(countyName) + '</div><div class="prop-card-pills"><span class="prop-pill prop-pill-residential">Residential</span></div></div>';
+    html += '<div class="prop-card-stats"><div class="prop-stat"><div class="prop-stat-label">OPENING BID</div><div class="prop-stat-value">$4,500</div></div><div class="prop-stat"><div class="prop-stat-label">ASSESSED</div><div class="prop-stat-value">$85,000</div></div><div class="prop-stat"><div class="prop-stat-label">EQUITY</div><div class="prop-stat-value equity-high">1,789%</div></div></div>';
+    html += '<span class="prop-card-status prop-status-active">ACTIVE</span></div>';
+  }
+  html += '</div><div class="propfeed-lock"><span class="propfeed-lock-icon">&#128274;</span><span class="propfeed-lock-title">UNLOCK FULL ACCESS</span><span class="propfeed-lock-sub">See live property inventory, equity analysis, and absentee owner data for every county.</span><a class="propfeed-lock-btn" href="' + STRIPE_URL + '" target="_blank" rel="noopener noreferrer">UNLOCK — $197 ONE TIME</a></div></div>';
+  container.innerHTML = html;
+  var countEl = document.getElementById('auctions-inv-count');
+  if (countEl) countEl.textContent = 'LOCKED';
+}
+
 // === LIVE AUCTION DATA FETCH ===
 // Replaces AUCTION_ENTRIES with live Supabase data via Netlify function.
 // Falls back to the static array from auctions-data.js on any failure.
@@ -5447,10 +5663,12 @@ function bootApp() {
 
   // Init auctions tab immediately with static data
   initAuctionsTab();
+  initAuctionsInventory();
 
   // Fetch live data in background, then re-init auctions tab with fresh data
   fetchLiveAuctionData().then(function() {
     initAuctionsTab();
+    initAuctionsInventory();
   });
 }
 
