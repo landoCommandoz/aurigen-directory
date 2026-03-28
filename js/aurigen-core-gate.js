@@ -26,12 +26,15 @@
           try {
             localStorage.setItem('aurigen_access', 'paid');
             localStorage.setItem('aurigen_email', data.email || '');
+            // Store server-issued admin flag (from JWT payload)
+            localStorage.setItem('aurigen_is_admin', data.isAdmin ? 'true' : 'false');
           } catch(e) {}
           if (access !== 'paid') { location.reload(); }
         } else {
           // JWT invalid/expired — clear and fall back
           try {
             localStorage.removeItem('aurigen_jwt');
+            localStorage.removeItem('aurigen_is_admin');
             localStorage.setItem('aurigen_access', 'free');
           } catch(e) {}
           if (access === 'paid') { location.reload(); }

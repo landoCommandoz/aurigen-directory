@@ -28,7 +28,9 @@ function verifyJwt(token, secret) {
   // Verify signature
   var sigInput = parts[0] + '.' + parts[1];
   var expectedSig = base64url(crypto.createHmac('sha256', secret).update(sigInput).digest());
-  if (expectedSig !== parts[2]) return null;
+  var sigBuf = Buffer.from(expectedSig);
+  var gotBuf = Buffer.from(parts[2]);
+  if (sigBuf.length !== gotBuf.length || !crypto.timingSafeEqual(sigBuf, gotBuf)) return null;
 
   // Decode payload
   try {
@@ -102,7 +104,7 @@ exports.handler = async function(event) {
     return {
       statusCode: 200,
       headers: headers,
-      body: JSON.stringify({ valid: true, email: payload.email || '', tier: payload.tier || 'free' })
+      body: JSON.stringify({ valid: true, email: payload.email || '', tier: payload.tier || 'free', isAdmin: !!payload.isAdmin })
     };
 
   } catch (err) {

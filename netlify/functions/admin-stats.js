@@ -2,12 +2,30 @@ const { createClient } = require('@supabase/supabase-js');
 var { getCorsHeaders, handlePreflight } = require('./utils/cors');
 var { requireAdmin } = require('./utils/jwt');
 
+// Rate limiting — 5 requests per IP per minute
+var _adminRateMap = {};
+function checkAdminRate(ip) {
+  var now = Date.now();
+  if (!_adminRateMap[ip] || now - _adminRateMap[ip].start > 60000) {
+    _adminRateMap[ip] = { start: now, count: 1 };
+    return true;
+  }
+  _adminRateMap[ip].count++;
+  return _adminRateMap[ip].count <= 5;
+}
+
 exports.handler = async function(event) {
   var headers = getCorsHeaders(event);
 
   if (event.httpMethod === 'OPTIONS') return handlePreflight(event);
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
+  }
+
+  // Rate limit
+  var clientIp = (event.headers || {})['x-forwarded-for'] || (event.headers || {})['client-ip'] || 'unknown';
+  if (!checkAdminRate(clientIp.split(',')[0].trim())) {
+    return { statusCode: 429, headers: { ...headers, 'Retry-After': '60' }, body: JSON.stringify({ error: 'Too many requests' }) };
   }
 
   // JWT admin auth

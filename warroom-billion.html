@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AURIGEN — Intelligence Platform</title>
-  <meta name="description" content="Tax lien and tax deed intelligence for all 50 states + DC. Compare returns, analyze deals, track auctions. Built for serious investors.">
+  <meta name="description" content="Tax lien and tax deed intelligence for all 50 states + DC. Compare rates, analyze deals, track auctions. Built for serious investors.">
   <meta property="og:title" content="AURIGEN — County Intelligence Platform">
-  <meta property="og:description" content="Tax lien and tax deed intelligence for all 50 states + DC. Compare returns, analyze deals, track auctions.">
+  <meta property="og:description" content="Tax lien and tax deed intelligence for all 50 states + DC. Compare rates, analyze deals, track auctions.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aurigendirectory.com">
   <meta property="og:image" content="https://aurigendirectory.com/og-image.png">
@@ -753,6 +753,22 @@
         <div class="account-tier-badge" id="acct-tier-badge" data-i18n="acct_tier_free">FREE ACCESS</div>
         <div id="acct-admin-section" style="display:none"></div>
         <div id="acct-paid-section" style="display:none"></div>
+        <div id="acct-referral-section" style="display:none">
+          <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:8px">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.08em;color:var(--accent);margin-bottom:8px">REFER A FRIEND</div>
+            <div style="font-size:12px;color:var(--text2);margin-bottom:12px;line-height:1.5">Share your unique link. Track who signs up.</div>
+            <div id="acct-referral-link-wrap" style="display:none;margin-bottom:12px">
+              <div style="display:flex;gap:8px;align-items:center">
+                <input id="acct-referral-url" type="text" readonly style="flex:1;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text);font-family:'Space Mono',monospace;font-size:11px;padding:10px 12px;border-radius:var(--radius);outline:none">
+                <button onclick="copyReferralLink()" style="padding:10px 16px;background:transparent;border:1px solid var(--accent-mid);color:var(--accent);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;cursor:pointer;border-radius:var(--radius)">COPY</button>
+              </div>
+            </div>
+            <button id="acct-referral-gen-btn" onclick="generateReferralLink()" class="account-upgrade-cta" style="font-size:10px;padding:10px">GET YOUR REFERRAL LINK</button>
+            <div id="acct-referral-stats" style="display:none;margin-top:12px;font-family:'Space Mono',monospace;font-size:11px;color:var(--text2)">
+              <span id="acct-ref-count">0</span> referred &middot; <span id="acct-ref-converted">0</span> converted
+            </div>
+          </div>
+        </div>
         <div class="account-row">
           <span class="account-row-label" data-i18n="acct_email">Email</span>
           <span class="account-row-value" id="acct-email">&mdash;</span>

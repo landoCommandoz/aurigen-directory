@@ -55,6 +55,9 @@
 [functions."scraper"]
   type = "background"
 
+[functions."generate-report"]
+  type = "background"
+
 # ── SUBDOMAIN: Custom domain redirect ────────────────────────
 # When directory.theaurigen.com is configured as primary domain,
 # redirect www and app variants to canonical

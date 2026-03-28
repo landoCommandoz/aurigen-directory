@@ -1,6 +1,5 @@
 // === ACCOUNT FUNCTIONS ===
-var ADMIN_EMAILS = ['landon@theaurigen.com'];
-
+// Admin detection via server-issued isAdmin flag from JWT — no client-side email list
 function initAccount() {
   var badge = document.getElementById('acct-tier-badge');
   var email = document.getElementById('acct-email');
@@ -17,7 +16,7 @@ function initAccount() {
   var lockedRow = document.getElementById('acct-locked-row');
   var supportLink = document.getElementById('acct-support');
   var userEmail = APP.email || '';
-  var isAdmin = userEmail && ADMIN_EMAILS.indexOf(userEmail.toLowerCase()) >= 0;
+  var isAdmin = isAdminMode();
 
   email.textContent = userEmail || '\u2014';
 
@@ -48,6 +47,13 @@ function initAccount() {
         '</div>';
     }
 
+    // Referral section (paid users)
+    var referralSection = document.getElementById('acct-referral-section');
+    if (referralSection) {
+      referralSection.style.display = 'block';
+      loadReferralStats();
+    }
+
     // Admin section
     if (isAdmin && adminSection) {
       adminSection.style.display = 'block';
@@ -55,7 +61,7 @@ function initAccount() {
         '<div class="acct-admin-stats"><div class="acct-admin-stat"><div class="acct-admin-stat-num" id="admin-free-count">\u2014</div><div class="acct-admin-stat-label">FREE USERS</div></div>' +
         '<div class="acct-admin-stat"><div class="acct-admin-stat-num" id="admin-paid-count">\u2014</div><div class="acct-admin-stat-label">PAID USERS</div></div></div>';
       // Fetch admin stats
-      fetchAdminStats(userEmail);
+      fetchAdminStats();
     }
   } else {
     badge.textContent = 'FREE ACCESS';
@@ -77,11 +83,13 @@ function initAccount() {
   }
 }
 
-function fetchAdminStats(email) {
+function fetchAdminStats() {
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
   fetch('/.netlify/functions/admin-stats', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email })
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + jwt },
+    body: '{}'
   })
   .then(function(r) { return r.ok ? r.json() : null; })
   .then(function(data) {
@@ -517,5 +525,65 @@ function dnaComplete() {
 function dnaRetake() {
   document.getElementById('dna-nav').style.display = 'flex';
   dnaInit();
+}
+
+// === REFERRAL ENGINE ===
+function generateReferralLink() {
+  var btn = document.getElementById('acct-referral-gen-btn');
+  if (btn) { btn.disabled = true; btn.textContent = '...'; }
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
+  fetch('/.netlify/functions/referral', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + jwt },
+    body: JSON.stringify({ action: 'generate' })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.referral_url) {
+      var urlEl = document.getElementById('acct-referral-url');
+      var wrap = document.getElementById('acct-referral-link-wrap');
+      if (urlEl) urlEl.value = data.referral_url;
+      if (wrap) wrap.style.display = 'block';
+      if (btn) btn.style.display = 'none';
+    } else {
+      if (btn) { btn.disabled = false; btn.textContent = 'GET YOUR REFERRAL LINK'; }
+    }
+  })
+  .catch(function() {
+    if (btn) { btn.disabled = false; btn.textContent = 'GET YOUR REFERRAL LINK'; }
+  });
+}
+
+function copyReferralLink() {
+  var urlEl = document.getElementById('acct-referral-url');
+  if (urlEl) {
+    urlEl.select();
+    try { navigator.clipboard.writeText(urlEl.value); } catch(e) { document.execCommand('copy'); }
+  }
+}
+
+function loadReferralStats() {
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
+  if (!jwt) return;
+  fetch('/.netlify/functions/referral', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + jwt },
+    body: JSON.stringify({ action: 'stats' })
+  })
+  .then(function(r) { return r.ok ? r.json() : null; })
+  .then(function(data) {
+    if (!data) return;
+    var statsEl = document.getElementById('acct-referral-stats');
+    var countEl = document.getElementById('acct-ref-count');
+    var convEl = document.getElementById('acct-ref-converted');
+    if (statsEl && (data.referred > 0 || data.converted > 0)) {
+      statsEl.style.display = 'block';
+      if (countEl) countEl.textContent = String(data.referred);
+      if (convEl) convEl.textContent = String(data.converted);
+    }
+  })
+  .catch(function() {});
 }
 

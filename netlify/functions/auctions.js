@@ -2,18 +2,17 @@ var { createClient } = require('@supabase/supabase-js');
 var { getCorsHeaders, handlePreflight } = require('./utils/cors');
 var { requirePaid } = require('./utils/jwt');
 
-// Rate limiting for warbook endpoint
+// Rate limiting — per-route, per-IP, per-minute
 var _rateLimitMap = {};
-var RATE_LIMIT_MAX = 10;
-var RATE_LIMIT_WINDOW_MS = 60000;
-function checkRateLimit(ip) {
+function checkRateLimit(ip, max) {
+  max = max || 10;
   var now = Date.now();
-  if (!_rateLimitMap[ip] || now - _rateLimitMap[ip].start > RATE_LIMIT_WINDOW_MS) {
+  if (!_rateLimitMap[ip] || now - _rateLimitMap[ip].start > 60000) {
     _rateLimitMap[ip] = { start: now, count: 1 };
     return true;
   }
   _rateLimitMap[ip].count++;
-  return _rateLimitMap[ip].count <= RATE_LIMIT_MAX;
+  return _rateLimitMap[ip].count <= max;
 }
 
 exports.handler = async (event) => {
@@ -27,8 +26,12 @@ exports.handler = async (event) => {
   try {
     var supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
-    // === PROPERTIES ROUTE (paid-only, JWT auth) ===
+    // === PROPERTIES ROUTE (paid-only, JWT auth, rate-limited) ===
     if (isPropertiesRoute) {
+      var propIp = (event.headers || {})['x-forwarded-for'] || (event.headers || {})['client-ip'] || 'unknown';
+      if (!checkRateLimit('prop:' + propIp.split(',')[0].trim(), 30)) {
+        return { statusCode: 429, headers: { ...corsHeaders, 'Retry-After': '60' }, body: JSON.stringify({ error: 'Rate limit exceeded.' }) };
+      }
       var auth = requirePaid(event);
       if (!auth) {
         return { statusCode: 401, headers: corsHeaders, body: JSON.stringify({ error: 'Valid paid-tier JWT required' }) };
@@ -78,7 +81,7 @@ exports.handler = async (event) => {
     var params = event.queryStringParameters || {};
     if (params.type === 'warbook') {
       var clientIp = (event.headers || {})['x-forwarded-for'] || (event.headers || {})['client-ip'] || 'unknown';
-      if (!checkRateLimit(clientIp)) {
+      if (!checkRateLimit('wb:' + clientIp.split(',')[0].trim(), 10)) {
         return { statusCode: 429, headers: { ...corsHeaders, 'Retry-After': '60' }, body: JSON.stringify({ error: 'Rate limit exceeded.' }) };
       }
 
@@ -131,7 +134,11 @@ exports.handler = async (event) => {
       };
     }
 
-    // === DEFAULT ROUTE: auctions + pulse_alerts (public) ===
+    // === DEFAULT ROUTE: auctions + pulse_alerts (public, rate-limited) ===
+    var publicIp = (event.headers || {})['x-forwarded-for'] || (event.headers || {})['client-ip'] || 'unknown';
+    if (!checkRateLimit('pub:' + publicIp.split(',')[0].trim(), 30)) {
+      return { statusCode: 429, headers: { ...corsHeaders, 'Retry-After': '60' }, body: JSON.stringify({ error: 'Rate limit exceeded.' }) };
+    }
     var today = new Date().toISOString().split('T')[0];
 
     var alertsQuery = supabase

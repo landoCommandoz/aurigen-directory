@@ -155,6 +155,41 @@ exports.handler = async function(event) {
       console.error('[SUPABASE] Error:', dbErr.message);
     }
 
+    // Referral tracking — fire and forget
+    var refCode = (body.ref_code || '').trim().slice(0, 20);
+    if (refCode) {
+      try {
+        var httpsRef = require('https');
+        var refBody = JSON.stringify({ action: 'track', ref_code: refCode, email: email });
+        var refReq = httpsRef.request({
+          hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
+          path: '/.netlify/functions/referral',
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(refBody) }
+        });
+        refReq.write(refBody);
+        refReq.end();
+      } catch(refErr) {
+        console.error('[CAPTURE-EMAIL] Referral track fire failed:', refErr.message);
+      }
+    }
+
+    // GHL sync for free users — fire and forget
+    try {
+      var https2 = require('https');
+      var ghlBody = JSON.stringify({ email: email, tier: 'free', language: language, utm_source: utmSource, utm_medium: utmMedium, utm_campaign: utmCampaign });
+      var ghlReq = https2.request({
+        hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
+        path: '/.netlify/functions/ghl-sync',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(ghlBody), 'x-internal-key': process.env.SUPABASE_SERVICE_ROLE_KEY }
+      });
+      ghlReq.write(ghlBody);
+      ghlReq.end();
+    } catch(ghlErr) {
+      console.error('[CAPTURE-EMAIL] GHL sync fire failed:', ghlErr.message);
+    }
+
     // Skool sync for free users — fire and forget
     try {
       var https = require('https');
@@ -163,7 +198,7 @@ exports.handler = async function(event) {
         hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
         path: '/.netlify/functions/skool-sync',
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(syncBody) }
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(syncBody), 'x-internal-key': process.env.SUPABASE_SERVICE_ROLE_KEY }
       });
       syncReq.write(syncBody);
       syncReq.end();

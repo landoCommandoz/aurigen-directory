@@ -9,7 +9,8 @@
   }
 
   function isWhitelisted() {
-    return ADMIN_WHITELIST.indexOf(getEmail()) >= 0;
+    // Server-side isAdmin flag from JWT, stored in localStorage by validate-session
+    try { return localStorage.getItem('aurigen_is_admin') === 'true'; } catch(e) { return false; }
   }
 
   function adminOn() {

@@ -162,9 +162,44 @@ exports.handler = async function(event) {
     }
 
     // Generate JWT for client-side session validation
-    var jwt = signJwt({ email: customerEmail, tier: 'paid' }, process.env.SUPABASE_SERVICE_ROLE_KEY);
+    // Admin detection: whitelist stays server-side only
+    var ADMIN_EMAILS = ['landon@theaurigen.com', 'lando@theaurigen.com'];
+    var isAdmin = ADMIN_EMAILS.indexOf(customerEmail) >= 0;
+    var jwt = signJwt({ email: customerEmail, tier: 'paid', isAdmin: isAdmin }, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
     console.log('[VERIFY-SESSION] Payment verified for session:', session.id);
+
+    // Referral conversion — fire and forget
+    try {
+      var httpsRef = require('https');
+      var refBody = JSON.stringify({ action: 'convert', email: customerEmail });
+      var refReq = httpsRef.request({
+        hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
+        path: '/.netlify/functions/referral',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(refBody), 'x-internal-key': process.env.SUPABASE_SERVICE_ROLE_KEY }
+      });
+      refReq.write(refBody);
+      refReq.end();
+    } catch(refErr) {
+      console.error('[VERIFY-SESSION] Referral convert fire failed:', refErr.message);
+    }
+
+    // GHL sync — fire and forget (never blocks payment verification)
+    try {
+      var https2 = require('https');
+      var ghlBody = JSON.stringify({ email: customerEmail, tier: 'paid' });
+      var ghlReq = https2.request({
+        hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
+        path: '/.netlify/functions/ghl-sync',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(ghlBody), 'x-internal-key': process.env.SUPABASE_SERVICE_ROLE_KEY }
+      });
+      ghlReq.write(ghlBody);
+      ghlReq.end();
+    } catch(ghlErr) {
+      console.error('[VERIFY-SESSION] GHL sync fire failed:', ghlErr.message);
+    }
 
     // Skool sync — fire and forget (never blocks payment verification)
     try {
@@ -174,7 +209,7 @@ exports.handler = async function(event) {
         hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
         path: '/.netlify/functions/skool-sync',
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(syncBody) }
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(syncBody), 'x-internal-key': process.env.SUPABASE_SERVICE_ROLE_KEY }
       });
       syncReq.write(syncBody);
       syncReq.end();

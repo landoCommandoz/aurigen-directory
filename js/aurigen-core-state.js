@@ -8,12 +8,11 @@ const APP = {
 };
 
 // === ACCESS TIER ===
-var ADMIN_WHITELIST = ['landon@theaurigen.com','lando@theaurigen.com'];
+// Admin detection via server-issued JWT isAdmin flag — no client-side email whitelist
 function isAdminMode() {
   try {
     if (localStorage.getItem('aurigen_admin') !== 'on') return false;
-    var email = (localStorage.getItem('aurigen_email') || '').toLowerCase().trim();
-    return ADMIN_WHITELIST.indexOf(email) >= 0;
+    return localStorage.getItem('aurigen_is_admin') === 'true';
   } catch(e) { return false; }
 }
 function getAccessTier() {

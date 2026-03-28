@@ -6,7 +6,7 @@
   <title>AURIGEN — County Intelligence Platform</title>
   <meta name="description" content="Every statute. Every auction platform. Every county — researched and waiting. Get free access to the Aurigen County Intelligence Platform.">
   <meta property="og:title" content="AURIGEN — County Intelligence Platform">
-  <meta property="og:description" content="Tax lien and tax deed intelligence for all 50 states + DC. Compare returns, analyze deals, track auctions.">
+  <meta property="og:description" content="Tax lien and tax deed intelligence for all 50 states + DC. Compare rates, analyze deals, track auctions.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aurigendirectory.com">
   <meta property="og:image" content="https://aurigendirectory.com/og-image.png">
@@ -959,6 +959,15 @@
   } catch(e) {}
 })();
 
+// === REFERRAL CODE CAPTURE ===
+(function() {
+  try {
+    var sp = new URLSearchParams(window.location.search);
+    var ref = sp.get('ref');
+    if (ref) localStorage.setItem('aurigen_ref_code', ref.slice(0, 20));
+  } catch(e) {}
+})();
+
 // === FORM SUBMIT — capture email + verify paid status ===
 function handleSubmit(e, lang) {
   e.preventDefault();
@@ -977,6 +986,11 @@ function handleSubmit(e, lang) {
     if (sp.get('utm_term')) utmPayload.utm_term = sp.get('utm_term');
     if (sp.get('utm_content')) utmPayload.utm_content = sp.get('utm_content');
   } catch(ue) {}
+  // Attach referral code if present
+  try {
+    var refCode = localStorage.getItem('aurigen_ref_code');
+    if (refCode) utmPayload.ref_code = refCode;
+  } catch(re) {}
   fetch('/.netlify/functions/capture-email', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
