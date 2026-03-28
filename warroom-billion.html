@@ -2634,6 +2634,81 @@
     .welcome-subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--text2,#6a6258);line-height:1.6;max-width:320px;margin:0 auto 28px}
     .welcome-btn{width:100%;background:var(--accent,#C9A84C);color:#06060a;border:none;padding:14px;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:opacity 0.2s}
     .welcome-btn:hover{opacity:0.9}
+
+    /* ── LIVE INVENTORY — Property Feed ────────────────────── */
+    #panel-properties{margin-top:24px;border-top:1px solid rgba(201,168,76,0.15);padding-top:20px}
+    .propfeed-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+    .propfeed-title{display:flex;align-items:center;gap:8px}
+    .propfeed-title-text{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.15em;color:#c9a84c;text-transform:uppercase}
+    .propfeed-dot{width:6px;height:6px;border-radius:50%;background:#2DD4C0;animation:propDotPulse 2s infinite}
+    @keyframes propDotPulse{0%,100%{opacity:1}50%{opacity:0.3}}
+    .propfeed-count{font-family:'Space Mono',monospace;font-size:11px;color:rgba(232,228,220,0.5);background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:4px;padding:2px 8px}
+    .propfeed-updated{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:rgba(232,228,220,0.35);width:100%;text-align:right}
+
+    .propfeed-filters{display:flex;gap:6px;margin-bottom:16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+    .propfeed-filters::-webkit-scrollbar{display:none}
+    .propfeed-filter-btn{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;white-space:nowrap;padding:5px 12px;border-radius:4px;border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.05);color:rgba(232,228,220,0.6);cursor:pointer;transition:all 0.2s;flex-shrink:0}
+    .propfeed-filter-btn:hover{border-color:rgba(201,168,76,0.4);color:#e8e4dc}
+    .propfeed-filter-btn.active{background:rgba(201,168,76,0.15);border-color:#c9a84c;color:#c9a84c}
+    .propfeed-filter-toggle{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;white-space:nowrap;padding:5px 12px;border-radius:4px;border:1px solid rgba(201,168,76,0.2);background:transparent;color:rgba(232,228,220,0.5);cursor:pointer;transition:all 0.2s;flex-shrink:0}
+    .propfeed-filter-toggle.active{background:rgba(201,168,76,0.2);border-color:#c9a84c;color:#c9a84c}
+
+    .propfeed-list{max-height:480px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin;scrollbar-color:rgba(201,168,76,0.3) transparent}
+    .propfeed-list::-webkit-scrollbar{width:4px}
+    .propfeed-list::-webkit-scrollbar-thumb{background:rgba(201,168,76,0.3);border-radius:2px}
+
+    .prop-card{background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.1);border-radius:8px;padding:14px;cursor:pointer;transition:all 0.2s;min-height:120px}
+    .prop-card:hover{border-color:rgba(201,168,76,0.3);background:rgba(255,255,255,0.05)}
+    .prop-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:10px}
+    .prop-card-address{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;color:#e8e4dc;line-height:1.3;flex:1}
+    .prop-card-pills{display:flex;gap:4px;flex-shrink:0;flex-wrap:wrap}
+    .prop-pill{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.08em;padding:2px 8px;border-radius:3px;text-transform:uppercase}
+    .prop-pill-residential{background:rgba(45,212,192,0.15);color:#2DD4C0;border:1px solid rgba(45,212,192,0.25)}
+    .prop-pill-commercial{background:rgba(201,168,76,0.15);color:#c9a84c;border:1px solid rgba(201,168,76,0.25)}
+    .prop-pill-vacant{background:rgba(232,228,220,0.08);color:rgba(232,228,220,0.5);border:1px solid rgba(232,228,220,0.12)}
+    .prop-pill-absentee{background:rgba(201,168,76,0.2);color:#c9a84c;border:1px solid rgba(201,168,76,0.3)}
+    .prop-card-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px}
+    .prop-stat{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:8px;text-align:center}
+    .prop-stat-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.1em;color:rgba(232,228,220,0.35);text-transform:uppercase;margin-bottom:2px}
+    .prop-stat-value{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:#e8e4dc}
+    .prop-stat-value.equity-high{color:#2DD4C0}
+    .prop-stat-value.equity-mid{color:#FFBE0B}
+    .prop-stat-value.equity-low{color:#FF2D55}
+    .prop-card-status{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase}
+    .prop-status-active{color:#c9a84c}
+    .prop-status-redeemed{color:#2DD4C0}
+    .prop-status-struck{color:rgba(232,228,220,0.4)}
+
+    .propfeed-empty{text-align:center;padding:40px 20px;color:rgba(232,228,220,0.4);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;line-height:1.6}
+    .propfeed-empty-icon{font-size:28px;margin-bottom:12px;display:block;opacity:0.5}
+
+    /* Skeleton loading */
+    .prop-skeleton{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);border-radius:8px;padding:14px;min-height:120px;animation:propSkeletonPulse 1.5s ease-in-out infinite}
+    @keyframes propSkeletonPulse{0%,100%{opacity:0.4}50%{opacity:0.8}}
+    .prop-skel-line{height:12px;border-radius:3px;background:rgba(255,255,255,0.06);margin-bottom:8px}
+    .prop-skel-line.w60{width:60%}
+    .prop-skel-line.w40{width:40%}
+    .prop-skel-line.w80{width:80%}
+    .prop-skel-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
+    .prop-skel-stat{height:44px;border-radius:4px;background:rgba(255,255,255,0.04)}
+
+    /* Free user blur overlay */
+    .propfeed-blur-wrap{position:relative}
+    .propfeed-blur-wrap .propfeed-list{filter:blur(6px);pointer-events:none;opacity:0.3}
+    .propfeed-lock{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:2;width:80%;max-width:300px}
+    .propfeed-lock-icon{font-size:32px;display:block;margin-bottom:12px}
+    .propfeed-lock-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#c9a84c;letter-spacing:0.08em;display:block;margin-bottom:6px}
+    .propfeed-lock-sub{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(232,228,220,0.5);display:block;margin-bottom:16px;line-height:1.5}
+    .propfeed-lock-btn{display:inline-block;background:#c9a84c;color:#06060a;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.12em;padding:10px 24px;border-radius:4px;text-decoration:none;transition:opacity 0.2s}
+    .propfeed-lock-btn:hover{opacity:0.9}
+
+    @media(max-width:600px){
+      .prop-card-stats{grid-template-columns:1fr 1fr 1fr;gap:4px}
+      .prop-stat{padding:6px 4px}
+      .prop-stat-value{font-size:11px}
+      .prop-card-address{font-size:13px}
+      .propfeed-title-text{font-size:11px}
+    }
   </style>
 </head>
 <body>
@@ -2786,6 +2861,7 @@
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
             <div id="panel-calc-lock"></div>
+            <div id="panel-properties"></div>
           </div>
         </div>
       </div>
@@ -4908,7 +4984,8 @@ function showDetail(s) {
       // Notes
       var safeNotes=r.notes?escapeHtml(r.notes):'';
       var noteSpan=safeNotes?'<span class="county-notes" title="'+safeNotes.replace(/"/g,'&quot;')+'">'+safeNotes+'</span>':'';
-      var rowClick=safeLink?' onclick="if(!event.target.closest(\'a\')){window.open(\''+safeLink.replace(/'/g,"\\'").replace(/"/g,'&quot;')+'\',\'_blank\',\'noopener,noreferrer\')}"':'';
+      var rowClick=safeLink?' onclick="if(!event.target.closest(\'a\')){window.open(\''+safeLink.replace(/'/g,"\\'").replace(/"/g,'&quot;')+'\',\'_blank\',\'noopener,noreferrer\')};loadPropertyFeed(\''+escapeHtml(c)+'\',\''+escapeHtml(r.name).replace(/'/g,"\\'")+'\');"':'
+ onclick="loadPropertyFeed(\''+escapeHtml(c)+'\',\''+escapeHtml(r.name).replace(/'/g,"\\'")+'\');"';
       cHtml+='<div class="county-row"'+rowClick+' data-county-name="'+escapeHtml(r.name.toLowerCase())+'">'+nameTag+platPill+otcPill+timPill+redPill+noteSpan+'</div>';
     });
     cHtml+='</div>';
@@ -4928,6 +5005,241 @@ function closeDetail() {
   var alertEl=document.getElementById('panel-alert');
   if(alertEl) alertEl.classList.remove('visible');
   resetMapColors();
+}
+
+// === LIVE PROPERTY FEED ===
+var _propFeedState = null;
+var _propFeedCounty = null;
+var _propFeedData = [];
+var _propFeedFilters = { type: 'all', status: 'all', absentee: false, equity: 0 };
+
+function loadPropertyFeed(stateCode, countyName) {
+  _propFeedState = stateCode;
+  _propFeedCounty = countyName;
+  _propFeedFilters = { type: 'all', status: 'all', absentee: false, equity: 0 };
+  var container = document.getElementById('panel-properties');
+  if (!container) return;
+
+  // Show skeleton loading
+  container.innerHTML = buildPropFeedShell(countyName) + buildPropSkeletons();
+
+  // Scroll into view
+  container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  if (!IS_PAID) {
+    // Free users see blurred sample cards
+    renderPropFeedLocked(container, countyName);
+    return;
+  }
+
+  // Fetch properties — requires paid email
+  var email = '';
+  try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
+  if (!email) { renderPropFeedEmpty(container, countyName, 'Sign in to view live inventory.'); return; }
+
+  fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName) + '&email=' + encodeURIComponent(email))
+    .then(function(r) {
+      if (r.status === 401 || r.status === 403) throw new Error('access');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function(data) {
+      _propFeedData = data.properties || [];
+      renderPropFeed(container, countyName);
+    })
+    .catch(function(err) {
+      if (err.message === 'access') {
+        renderPropFeedLocked(container, countyName);
+      } else {
+        renderPropFeedEmpty(container, countyName, 'Unable to load inventory. Try again later.');
+      }
+    });
+}
+
+function buildPropFeedShell(countyName) {
+  return '<div class="propfeed-header">' +
+    '<div class="propfeed-title"><span class="propfeed-dot"></span><span class="propfeed-title-text">LIVE INVENTORY</span></div>' +
+    '<span class="propfeed-count" id="propfeed-count">Loading...</span>' +
+    '</div>' +
+    '<div class="propfeed-filters" id="propfeed-filters">' +
+    buildFilterButtons() +
+    '</div>';
+}
+
+function buildFilterButtons() {
+  var f = _propFeedFilters;
+  var html = '';
+  // Type filters
+  var types = [['all','All Types'],['residential','Residential'],['commercial','Commercial'],['vacant','Vacant Land']];
+  types.forEach(function(t) {
+    html += '<button class="propfeed-filter-btn' + (f.type === t[0] ? ' active' : '') + '" onclick="propFilterType(\'' + t[0] + '\')">' + t[1] + '</button>';
+  });
+  // Status filters
+  var statuses = [['all','All Status'],['active','Active'],['redeemed','Redeemed'],['struck','Struck Off']];
+  statuses.forEach(function(s) {
+    html += '<button class="propfeed-filter-btn' + (f.status === s[0] ? ' active' : '') + '" onclick="propFilterStatus(\'' + s[0] + '\')">' + s[1] + '</button>';
+  });
+  // Absentee toggle
+  html += '<button class="propfeed-filter-toggle' + (f.absentee ? ' active' : '') + '" onclick="propFilterAbsentee()">Absentee Owner</button>';
+  // Equity cushion
+  var equities = [[0,'Any Equity'],[100,'100%+'],[200,'200%+'],[300,'300%+']];
+  equities.forEach(function(e) {
+    html += '<button class="propfeed-filter-btn' + (f.equity === e[0] ? ' active' : '') + '" onclick="propFilterEquity(' + e[0] + ')">' + e[1] + '</button>';
+  });
+  return html;
+}
+
+function propFilterType(val) { _propFeedFilters.type = val; applyPropFilters(); }
+function propFilterStatus(val) { _propFeedFilters.status = val; applyPropFilters(); }
+function propFilterAbsentee() { _propFeedFilters.absentee = !_propFeedFilters.absentee; applyPropFilters(); }
+function propFilterEquity(val) { _propFeedFilters.equity = val; applyPropFilters(); }
+
+function applyPropFilters() {
+  var container = document.getElementById('panel-properties');
+  if (!container) return;
+  // Update filter bar
+  var filtersEl = document.getElementById('propfeed-filters');
+  if (filtersEl) filtersEl.innerHTML = buildFilterButtons();
+  renderPropFeed(container, _propFeedCounty);
+}
+
+function getFilteredProps() {
+  var f = _propFeedFilters;
+  return _propFeedData.filter(function(p) {
+    if (f.type !== 'all') {
+      var pt = (p.property_type || '').toLowerCase();
+      if (f.type === 'vacant' && pt.indexOf('vacant') === -1 && pt.indexOf('land') === -1) return false;
+      if (f.type === 'residential' && pt.indexOf('resident') === -1) return false;
+      if (f.type === 'commercial' && pt.indexOf('commerc') === -1) return false;
+    }
+    if (f.status !== 'all') {
+      var st = (p.status || '').toLowerCase();
+      if (f.status === 'struck' && st.indexOf('struck') === -1 && st.indexOf('withdrawn') === -1) return false;
+      if (f.status !== 'struck' && st !== f.status) return false;
+    }
+    if (f.absentee && !p.absentee_owner) return false;
+    if (f.equity > 0 && (p.equity_cushion_pct === null || p.equity_cushion_pct < f.equity)) return false;
+    return true;
+  });
+}
+
+function renderPropFeed(container, countyName) {
+  var filtered = getFilteredProps();
+  var countEl = document.getElementById('propfeed-count');
+  if (countEl) countEl.textContent = filtered.length + ' ACTIVE LIEN' + (filtered.length !== 1 ? 'S' : '');
+
+  // Remove old list
+  var oldList = container.querySelector('.propfeed-list');
+  if (oldList) oldList.remove();
+  var oldEmpty = container.querySelector('.propfeed-empty');
+  if (oldEmpty) oldEmpty.remove();
+  // Remove skeletons
+  var oldSkel = container.querySelectorAll('.prop-skeleton');
+  oldSkel.forEach(function(s) { s.remove(); });
+
+  if (filtered.length === 0) {
+    if (_propFeedData.length === 0) {
+      container.insertAdjacentHTML('beforeend', '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span>No live inventory yet for ' + escapeHtml(countyName) + '.<br>Check back after the next scraper run.</div>');
+    } else {
+      container.insertAdjacentHTML('beforeend', '<div class="propfeed-empty">No properties match current filters.</div>');
+    }
+    return;
+  }
+
+  var html = '<div class="propfeed-list">';
+  filtered.forEach(function(p) {
+    var addr = escapeHtml(p.address || 'Address unavailable');
+    var typeLower = (p.property_type || '').toLowerCase();
+    var typeClass = typeLower.indexOf('resident') >= 0 ? 'residential' : typeLower.indexOf('commerc') >= 0 ? 'commercial' : 'vacant';
+    var typeLabel = typeLower.indexOf('resident') >= 0 ? 'Residential' : typeLower.indexOf('commerc') >= 0 ? 'Commercial' : typeLower.indexOf('vacant') >= 0 || typeLower.indexOf('land') >= 0 ? 'Vacant Land' : (p.property_type || 'Unknown');
+
+    var pills = '<span class="prop-pill prop-pill-' + typeClass + '">' + escapeHtml(typeLabel) + '</span>';
+    if (p.absentee_owner) pills += '<span class="prop-pill prop-pill-absentee">ABSENTEE</span>';
+
+    var bid = p.opening_bid !== null ? '$' + Number(p.opening_bid).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
+    var assessed = p.assessed_value !== null ? '$' + Number(p.assessed_value).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
+    var eqPct = p.equity_cushion_pct !== null ? Math.round(p.equity_cushion_pct) + '%' : '--';
+    var eqClass = p.equity_cushion_pct === null ? '' : p.equity_cushion_pct > 200 ? ' equity-high' : p.equity_cushion_pct >= 100 ? ' equity-mid' : ' equity-low';
+
+    var statusLower = (p.status || '').toLowerCase();
+    var statusClass = statusLower === 'active' ? 'prop-status-active' : statusLower === 'redeemed' ? 'prop-status-redeemed' : 'prop-status-struck';
+    var statusLabel = statusLower === 'active' ? 'ACTIVE' : statusLower === 'redeemed' ? 'REDEEMED' : 'STRUCK OFF';
+
+    // Encode property data for Deal Analyzer pre-population
+    var propData = encodeURIComponent(JSON.stringify({
+      address: p.address, opening_bid: p.opening_bid, assessed_value: p.assessed_value,
+      lien_amount: p.lien_amount, state_code: p.state_code, county: p.county, parcel_id: p.parcel_id
+    }));
+
+    html += '<div class="prop-card" onclick="openDealFromProp(\'' + propData + '\')">';
+    html += '<div class="prop-card-top"><div class="prop-card-address">' + addr + '</div><div class="prop-card-pills">' + pills + '</div></div>';
+    html += '<div class="prop-card-stats">';
+    html += '<div class="prop-stat"><div class="prop-stat-label">OPENING BID</div><div class="prop-stat-value">' + bid + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">ASSESSED</div><div class="prop-stat-value">' + assessed + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">EQUITY</div><div class="prop-stat-value' + eqClass + '">' + eqPct + '</div></div>';
+    html += '</div>';
+    html += '<span class="prop-card-status ' + statusClass + '">' + statusLabel + '</span>';
+    html += '</div>';
+  });
+  html += '</div>';
+  container.insertAdjacentHTML('beforeend', html);
+}
+
+function buildPropSkeletons() {
+  var html = '';
+  for (var i = 0; i < 3; i++) {
+    html += '<div class="prop-skeleton"><div class="prop-skel-line w80"></div><div class="prop-skel-line w40"></div><div class="prop-skel-stats"><div class="prop-skel-stat"></div><div class="prop-skel-stat"></div><div class="prop-skel-stat"></div></div></div>';
+  }
+  return html;
+}
+
+function renderPropFeedLocked(container, countyName) {
+  container.innerHTML = buildPropFeedShell(countyName);
+  var countEl = document.getElementById('propfeed-count');
+  if (countEl) countEl.textContent = 'LOCKED';
+  // Fake sample cards (blurred)
+  var sampleHtml = '<div class="propfeed-blur-wrap"><div class="propfeed-list">';
+  for (var i = 0; i < 3; i++) {
+    sampleHtml += '<div class="prop-card"><div class="prop-card-top"><div class="prop-card-address">123 Sample St, ' + escapeHtml(countyName) + '</div><div class="prop-card-pills"><span class="prop-pill prop-pill-residential">Residential</span></div></div>';
+    sampleHtml += '<div class="prop-card-stats"><div class="prop-stat"><div class="prop-stat-label">OPENING BID</div><div class="prop-stat-value">$4,500</div></div><div class="prop-stat"><div class="prop-stat-label">ASSESSED</div><div class="prop-stat-value">$85,000</div></div><div class="prop-stat"><div class="prop-stat-label">EQUITY</div><div class="prop-stat-value equity-high">1,789%</div></div></div>';
+    sampleHtml += '<span class="prop-card-status prop-status-active">ACTIVE</span></div>';
+  }
+  sampleHtml += '</div>';
+  sampleHtml += '<div class="propfeed-lock"><span class="propfeed-lock-icon">&#128274;</span><span class="propfeed-lock-title">UNLOCK FULL ACCESS</span><span class="propfeed-lock-sub">See live property inventory, equity analysis, and absentee owner data for every county.</span><a class="propfeed-lock-btn" href="' + STRIPE_URL + '" target="_blank" rel="noopener noreferrer">UNLOCK — $197 ONE TIME</a></div></div>';
+  container.insertAdjacentHTML('beforeend', sampleHtml);
+}
+
+function renderPropFeedEmpty(container, countyName, msg) {
+  container.innerHTML = buildPropFeedShell(countyName);
+  var countEl = document.getElementById('propfeed-count');
+  if (countEl) countEl.textContent = '0 PROPERTIES';
+  container.insertAdjacentHTML('beforeend', '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span>' + escapeHtml(msg) + '</div>');
+}
+
+function openDealFromProp(encodedData) {
+  try {
+    var p = JSON.parse(decodeURIComponent(encodedData));
+    // Store property data for Deal Analyzer pre-population
+    localStorage.setItem('deal_prop_address', p.address || '');
+    localStorage.setItem('deal_prop_bid', p.opening_bid || '');
+    localStorage.setItem('deal_prop_assessed', p.assessed_value || '');
+    localStorage.setItem('deal_prop_lien', p.lien_amount || '');
+    localStorage.setItem('deal_prop_state', p.state_code || '');
+    localStorage.setItem('deal_prop_county', p.county || '');
+    // Switch to Tools tab and open Deal Analyzer
+    var toolsTab = document.querySelector('[data-tab="tools"]');
+    if (toolsTab) toolsTab.click();
+    // Pre-populate price input if it exists
+    var priceInput = document.getElementById('da-amount-input') || document.getElementById('inp-price');
+    if (priceInput && p.opening_bid) {
+      priceInput.value = Math.round(p.opening_bid);
+      priceInput.dispatchEvent(new Event('input'));
+    }
+    // Close detail panel
+    closeDetail();
+  } catch(e) {
+    console.warn('[propfeed] Could not open deal analyzer:', e.message);
+  }
 }
 
 // === LIVE AUCTION DATA FETCH ===

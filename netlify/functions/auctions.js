@@ -91,22 +91,41 @@ exports.handler = async (event) => {
       // Pagination — max 50 per page
       var offset = parseInt(params.offset, 10);
       if (isNaN(offset) || offset < 0) offset = 0;
-      query = query.range(offset, offset + 49).order('updated_at', { ascending: false });
 
-      var { data, error } = await query;
-      if (error) throw error;
+      // Sort by equity_cushion_pct DESC (best opportunities first), nulls last
+      query = query
+        .range(offset, offset + 49)
+        .order('equity_cushion_pct', { ascending: false, nullsFirst: false })
+        .order('updated_at', { ascending: false });
+
+      // Get count for X-Total-Count header
+      var countQuery = supabase
+        .from('properties')
+        .select('id', { count: 'exact', head: true });
+      if (params.state_code) countQuery = countQuery.eq('state_code', params.state_code.toUpperCase().slice(0, 2));
+      if (params.county) {
+        var safeCounty2 = params.county.replace(/[%_]/g, '');
+        if (safeCounty2) countQuery = countQuery.ilike('county', safeCounty2);
+      }
+      if (params.status) countQuery = countQuery.eq('status', params.status);
+
+      var [dataResult, countResult] = await Promise.all([query, countQuery]);
+      if (dataResult.error) throw dataResult.error;
+      var totalCount = countResult.count || 0;
 
       return {
         statusCode: 200,
         headers: {
           ...corsHeaders,
           'Cache-Control': 'private, max-age=300',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'X-Total-Count': String(totalCount)
         },
         body: JSON.stringify({
-          properties: data || [],
+          properties: dataResult.data || [],
           offset: offset,
-          limit: 50
+          limit: 50,
+          total: totalCount
         })
       };
     }
