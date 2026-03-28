@@ -121,6 +121,30 @@ exports.handler = async function(event) {
     var createClient = require('@supabase/supabase-js').createClient;
     var supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
+    // Check if session already consumed (one-time use)
+    var { data: existingSession } = await supabase
+      .from('consumed_sessions')
+      .select('id')
+      .eq('stripe_session_id', session.id)
+      .maybeSingle();
+
+    if (existingSession) {
+      return {
+        statusCode: 200,
+        headers: headers,
+        body: JSON.stringify({ verified: false, error: 'Session already verified' })
+      };
+    }
+
+    // Mark session as consumed
+    var { error: consumeError } = await supabase
+      .from('consumed_sessions')
+      .insert({ stripe_session_id: session.id, email: customerEmail, consumed_at: new Date().toISOString() });
+
+    if (consumeError) {
+      console.error('[VERIFY-SESSION] consumed_sessions insert error:', consumeError.message);
+    }
+
     // Upsert into paid_users
     var { error: upsertError } = await supabase
       .from('paid_users')
