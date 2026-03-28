@@ -138,8 +138,9 @@ function buildSRIUrl(auction) {
       auction.platform_url.replace(/\/+$/, '') !== BASE_URL.replace(/\/+$/, '')) {
     return auction.platform_url;
   }
-  // Pattern: https://www.sri.com/{county}-{state_code}
-  var county = (auction.county || '').toLowerCase().replace(/\s+county$/i, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  // Pattern: https://www.sri.com/{county-name}-{state_code}
+  // URL pattern KEEPS "county" in the slug: cook-county-il, will-county-il
+  var county = (auction.county || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
   var state = (auction.state_code || '').toLowerCase();
   if (!county || !state) return null;
   return 'https://www.sri.com/' + county + '-' + state;

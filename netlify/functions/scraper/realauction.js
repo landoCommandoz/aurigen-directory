@@ -141,8 +141,9 @@ function buildRealAuctionUrl(auction) {
       auction.platform_url.replace(/\/+$/, '') !== BASE_URL.replace(/\/+$/, '')) {
     return auction.platform_url;
   }
-  // Construct from county + state: https://www.realauction.com/{county}-{state_code}
-  var county = (auction.county || '').toLowerCase().replace(/\s+county$/i, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  // Construct from county + state: https://www.realauction.com/{county-name}-{state_code}
+  // URL pattern KEEPS "county" in the slug: broward-county-fl, essex-county-nj
+  var county = (auction.county || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
   var state = (auction.state_code || '').toLowerCase();
   if (!county || !state) return null;
   return 'https://www.realauction.com/' + county + '-' + state;
