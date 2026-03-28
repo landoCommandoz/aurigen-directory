@@ -1072,7 +1072,8 @@
     .mleg-txt{font-family:'Space Mono',monospace;font-size:7px;color:rgba(255,255,255,0.4);letter-spacing:0.1em}
     #map-footer{display:flex;justify-content:space-between;padding:5px 20px;border-top:1px solid rgba(0,212,255,0.04);flex-shrink:0}
     .footer-txt{font-family:'Space Mono',monospace;font-size:6px;color:rgba(0,212,255,0.15);letter-spacing:0.15em}
-    .state-path{stroke-width:0.8;cursor:pointer;transition:all 0.2s;pointer-events:all}
+    .state-path{stroke-width:0.5;cursor:pointer;transition:all 0.2s;pointer-events:all}
+    .state-path:hover{fill:rgba(201,168,76,0.18)}
     .state-label{pointer-events:none;font-family:'Space Mono',monospace;font-size:8px;fill-opacity:0.9;font-weight:700}
 
     /* === MAP FILTER PANEL (B2) === */
@@ -4107,11 +4108,9 @@ function applyMapFilter() {
     var el = d3.select(this);
 
     el.transition().duration(250).ease(d3.easeQuadOut)
-      .attr('fill', visible ? color : 'transparent')
-      .attr('fill-opacity', visible ? (isSel ? 0.75 : 0.55) : 0)
-      .attr('stroke', visible ? color : 'rgba(255,255,255,0.04)')
-      .attr('stroke-opacity', visible ? (isSel ? 1 : 0.4) : 1)
-      .attr('stroke-width', isSel ? 2 : 0.8);
+      .attr('fill', visible ? (isSel ? 'rgba(201,168,76,0.28)' : 'rgba(201,168,76,0.06)') : 'transparent')
+      .attr('stroke', visible ? 'rgba(201,168,76,0.28)' : 'rgba(255,255,255,0.04)')
+      .attr('stroke-width', isSel ? 2 : 0.5);
 
     // Gold pulse on search match
     if(q && visible && !matchedAbbr){
@@ -4225,11 +4224,9 @@ function initMap() {
         .enter().append('path')
         .attr('class','state-path')
         .attr('d',pathGen)
-        .attr('fill',function(d){ return getTypeColor(getStateData(d)); })
-        .attr('fill-opacity',0.55)
-        .attr('stroke',function(d){ return getTypeColor(getStateData(d)); })
-        .attr('stroke-opacity',0.4)
-        .attr('stroke-width',0.8)
+        .attr('fill','rgba(201,168,76,0.06)')
+        .attr('stroke','rgba(201,168,76,0.28)')
+        .attr('stroke-width',0.5)
         .on('click',function(event,d){
           var s = getStateData(d);
           if(!s) return;
@@ -4249,8 +4246,7 @@ function initMap() {
         .attr('text-anchor','middle')
         .attr('dominant-baseline','central')
         .attr('font-size','7px')
-        .attr('fill',function(d){ return getTypeColor(getStateData(d)); })
-        .attr('fill-opacity',0.85)
+        .attr('fill','rgba(201,168,76,0.7)')
         .attr('pointer-events','none')
         .text(function(d){
           var fips=String(d.id).padStart(2,'0');
@@ -4282,12 +4278,11 @@ function updateMapColors() {
     var qOk=!q||(abbr&&abbr.toLowerCase().indexOf(q)>=0)||(n.toLowerCase().indexOf(q)>=0);
     var visible=fOk&&qOk;
     d3.select(this)
-      .attr('fill',visible?color:'transparent').attr('fill-opacity',visible?(isSel?0.35:0.22):0)
-      .attr('stroke',visible?color:'rgba(255,255,255,0.04)').attr('stroke-opacity',visible?(isSel?1:0.4):1)
-      .attr('stroke-width',isSel?2:0.8);
-    if(isSel && s){
-      var glow={lien:'rgba(255,190,11,0.08)',deed:'rgba(0,212,255,0.08)',redeemable:'rgba(255,45,85,0.08)',hybrid:'rgba(191,95,255,0.08)',forfeiture:'rgba(255,107,53,0.08)'};
-      document.getElementById('ambient-glow').style.background='radial-gradient(ellipse 60% 60% at 50% 50%,'+(glow[t]||'transparent')+' 0%,transparent 70%)';
+      .attr('fill',visible?(isSel?'rgba(201,168,76,0.28)':'rgba(201,168,76,0.06)'):'transparent')
+      .attr('stroke',visible?'rgba(201,168,76,0.28)':'rgba(255,255,255,0.04)')
+      .attr('stroke-width',isSel?2:0.5);
+    if(isSel){
+      document.getElementById('ambient-glow').style.background='radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,168,76,0.08) 0%,transparent 70%)';
     }
   });
   svgEl.selectAll('.state-label').each(function(d){
@@ -4310,10 +4305,9 @@ function resetMapColors() {
     document.getElementById('ambient-glow').style.background='';
     return;
   }
-  svgEl.selectAll('.state-path').each(function(d){
-    var color=getTypeColor(getStateData(d));
-    d3.select(this).attr('fill',color).attr('fill-opacity',0.22)
-      .attr('stroke',color).attr('stroke-opacity',0.4).attr('stroke-width',0.8);
+  svgEl.selectAll('.state-path').each(function(){
+    d3.select(this).attr('fill','rgba(201,168,76,0.06)')
+      .attr('stroke','rgba(201,168,76,0.28)').attr('stroke-width',0.5);
   });
   svgEl.selectAll('.state-label').attr('fill-opacity',0.75).attr('font-weight','400');
   document.getElementById('ambient-glow').style.background='';
