@@ -957,11 +957,20 @@ function handleSubmit(e, lang) {
   if (btn) { btn.disabled = true; btn.textContent = '...'; }
   // Store email for future server checks
   try { localStorage.setItem('aurigen_email', email); } catch(err) {}
-  // Capture email → Beehiiv + Supabase (fire and forget — never blocks user)
+  // Capture email + UTM → Beehiiv + Supabase (fire and forget — never blocks user)
+  var utmPayload = { email: email, language: lang || 'en' };
+  try {
+    var sp = new URLSearchParams(window.location.search);
+    if (sp.get('utm_source')) utmPayload.utm_source = sp.get('utm_source');
+    if (sp.get('utm_medium')) utmPayload.utm_medium = sp.get('utm_medium');
+    if (sp.get('utm_campaign')) utmPayload.utm_campaign = sp.get('utm_campaign');
+    if (sp.get('utm_term')) utmPayload.utm_term = sp.get('utm_term');
+    if (sp.get('utm_content')) utmPayload.utm_content = sp.get('utm_content');
+  } catch(ue) {}
   fetch('/.netlify/functions/capture-email', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email, language: lang || 'en' })
+    body: JSON.stringify(utmPayload)
   }).catch(function() {});
   // Check server for paid status
   fetch('/.netlify/functions/check-access', {

@@ -81,6 +81,13 @@ exports.handler = async function(event) {
     var language = (body.language || 'en').toLowerCase().trim();
     if (language !== 'en' && language !== 'es') language = 'en';
 
+    // UTM parameters (passed from client)
+    var utmSource = (body.utm_source || '').slice(0, 100);
+    var utmMedium = (body.utm_medium || '').slice(0, 100);
+    var utmCampaign = (body.utm_campaign || '').slice(0, 100);
+    var utmTerm = (body.utm_term || '').slice(0, 100);
+    var utmContent = (body.utm_content || '').slice(0, 100);
+
     // Validate email format
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return { statusCode: 400, headers: headers, body: JSON.stringify({ error: 'Invalid email' }) };
@@ -105,8 +112,9 @@ exports.handler = async function(event) {
               email: email,
               reactivate_existing: false,
               send_welcome_email: true,
-              utm_source: 'aurigen-gate',
-              utm_medium: language
+              utm_source: utmSource || 'aurigen-gate',
+              utm_medium: utmMedium || language,
+              utm_campaign: utmCampaign || undefined
             })
           }
         );
@@ -136,13 +144,32 @@ exports.handler = async function(event) {
             language: language,
             source: 'gate',
             subscribed_at: new Date().toISOString(),
-            beehiiv_synced: beehiivSynced
+            beehiiv_synced: beehiivSynced,
+            utm_source: utmSource || null,
+            utm_medium: utmMedium || null,
+            utm_campaign: utmCampaign || null
           },
           { onConflict: 'email' }
         );
 
       if (upsertError) {
         console.error('[SUPABASE] Upsert error:', upsertError.message);
+      }
+
+      // Log full UTM data to separate table for attribution analysis
+      if (utmSource || utmMedium || utmCampaign) {
+        var { error: utmError } = await supabase
+          .from('free_users_utm')
+          .insert({
+            email: email,
+            utm_source: utmSource || null,
+            utm_medium: utmMedium || null,
+            utm_campaign: utmCampaign || null,
+            utm_term: utmTerm || null,
+            utm_content: utmContent || null,
+            captured_at: new Date().toISOString()
+          });
+        if (utmError) console.error('[SUPABASE] UTM insert error:', utmError.message);
       }
     } catch (dbErr) {
       console.error('[SUPABASE] Error:', dbErr.message);

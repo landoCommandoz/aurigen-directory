@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AURIGEN — Intelligence Platform</title>
+  <meta name="description" content="Tax lien and tax deed intelligence for all 50 states + DC. Compare returns, analyze deals, track auctions. Built for serious investors.">
+  <meta property="og:title" content="AURIGEN — County Intelligence Platform">
+  <meta property="og:description" content="Tax lien and tax deed intelligence for all 50 states + DC. Compare returns, analyze deals, track auctions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aurigendirectory.com">
+  <meta property="og:image" content="https://aurigendirectory.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AURIGEN — County Intelligence Platform">
+  <meta name="twitter:description" content="Tax lien and tax deed intelligence for all 50 states + DC.">
+  <meta name="twitter:image" content="https://aurigendirectory.com/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@300;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
@@ -64,6 +74,10 @@
     <!-- Nav tabs consolidated: Intelligence, Calendar, Account + TOOLS dropdown -->
     <span id="nav-active-label" data-i18n="nav_map">Map</span>
     <div id="nav-spacer"></div>
+    <div class="lang-toggle" id="lang-toggle">
+      <button class="lang-btn active" id="lang-en" onclick="applyLanguage('en')">EN</button>
+      <button class="lang-btn" id="lang-es" onclick="applyLanguage('es')">ES</button>
+    </div>
     <div id="pulse-bell" onclick="togglePulseDrawer()" aria-label="Open alerts"><span aria-hidden="true">🔔</span><span id="pulse-badge" class="hidden">0</span></div>
     <button id="nav-filter-btn" onclick="toggleMobileDrawer()" aria-label="Filter" style="display:none">&#9776;</button>
     <button id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
