@@ -254,11 +254,11 @@ function runVersusCompare() {
 
   var rows = [
     { label: 'TYPE', valA: (a.type || '—').toUpperCase(), valB: (b.type || '—').toUpperCase(), badgeA: '', badgeB: '' },
-    { label: 'YIELD RATE', valA: (a.rate || '—').toUpperCase(), valB: (b.rate || '—').toUpperCase(), badgeA: rateA > rateB ? 'HIGHER' : '', badgeB: rateB > rateA ? 'HIGHER' : '' },
-    { label: 'REDEMPTION', valA: (a.redemption || '—').toUpperCase(), valB: (b.redemption || '—').toUpperCase(), badgeA: (redA > 0 && redB > 0 && redA < redB) ? 'SHORTER' : '', badgeB: (redA > 0 && redB > 0 && redB < redA) ? 'SHORTER' : '' },
+    { label: 'YIELD RATE', valA: (a.rate || '—').toUpperCase(), valB: (b.rate || '—').toUpperCase(), badgeA: rateA > rateB ? 'EDGE' : '', badgeB: rateB > rateA ? 'EDGE' : '' },
+    { label: 'REDEMPTION', valA: (a.redemption || '—').toUpperCase(), valB: (b.redemption || '—').toUpperCase(), badgeA: (redA > 0 && redB > 0 && redA < redB) ? 'EDGE' : '', badgeB: (redA > 0 && redB > 0 && redB < redA) ? 'EDGE' : '' },
     { label: 'BID METHOD', valA: (a.bidMethod || '—').toUpperCase(), valB: (b.bidMethod || '—').toUpperCase(), badgeA: '', badgeB: '' },
-    { label: 'PLATFORM', valA: (a.auctionPlatform || '—').toUpperCase(), valB: (b.auctionPlatform || '—').toUpperCase(), badgeA: (onA && !onB) ? 'ONLINE' : '', badgeB: (onB && !onA) ? 'ONLINE' : '' },
-    { label: 'BEGINNER', valA: a.beginnerFriendly ? 'YES' : 'NO', valB: b.beginnerFriendly ? 'YES' : 'NO', badgeA: (a.beginnerFriendly && !b.beginnerFriendly) ? 'ADVANTAGE' : '', badgeB: (b.beginnerFriendly && !a.beginnerFriendly) ? 'ADVANTAGE' : '' }
+    { label: 'PLATFORM', valA: (a.auctionPlatform || '—').toUpperCase(), valB: (b.auctionPlatform || '—').toUpperCase(), badgeA: (onA && !onB) ? 'EDGE' : '', badgeB: (onB && !onA) ? 'EDGE' : '' },
+    { label: 'BEGINNER', valA: a.beginnerFriendly ? 'YES' : 'NO', valB: b.beginnerFriendly ? 'YES' : 'NO', badgeA: (a.beginnerFriendly && !b.beginnerFriendly) ? 'EDGE' : '', badgeB: (b.beginnerFriendly && !a.beginnerFriendly) ? 'EDGE' : '' }
   ];
 
   document.getElementById('vs-rows').innerHTML = rows.map(function(r) {
@@ -460,8 +460,15 @@ function dnaNext() {
     dnaRenderQuestion(dnaCurrentQ);
     dnaUpdateProgress();
   } else {
-    // Quiz complete
+    // Quiz complete — persist to localStorage
     dnaComplete();
+    var archResult = dnaGetArchetype();
+    var topMatches = dnaScoreStates();
+    saveProfile({
+      archetype: Object.keys(DNA_ARCHETYPES).find(function(k) { return DNA_ARCHETYPES[k].name === archResult.name; }) || '',
+      topStates: topMatches.map(function(m) { return { code: m.code, name: m.name, pct: m.pct }; }),
+      answers: Object.assign({}, dnaAnswers)
+    });
   }
 }
 

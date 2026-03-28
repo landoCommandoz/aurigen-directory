@@ -57,7 +57,7 @@ function dossierGenerate() {
 
   Promise.all([
     fetch('/.netlify/functions/auctions?state_code=' + stateCode).then(function(r) { return r.json(); }).catch(function() { return {}; }),
-    fetch('/.netlify/functions/auctions?type=properties&state_code=' + stateCode + '&county=' + encodeURIComponent(county) + '&email=' + encodeURIComponent(email)).then(function(r) { return r.json(); }).catch(function() { return {}; })
+    fetch('/.netlify/functions/auctions/properties?state_code=' + stateCode + '&county=' + encodeURIComponent(county) + '&email=' + encodeURIComponent(email)).then(function(r) { return r.json(); }).catch(function() { return {}; })
   ]).then(function(results) {
     var auctionData = results[0];
     var propData = results[1];

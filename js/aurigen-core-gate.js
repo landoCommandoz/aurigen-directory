@@ -10,7 +10,8 @@
     var jwt = localStorage.getItem('aurigen_jwt');
     if (jwt) {
       var jwtTimeout = setTimeout(function() {
-        // Timeout fallback: trust localStorage tier
+        // Timeout fallback: JWT validation took too long, trust localStorage tier
+        console.warn('[GATE] JWT validation timed out after 2s — using cached tier');
       }, 2000);
       fetch('/.netlify/functions/validate-session', {
         method: 'POST',
