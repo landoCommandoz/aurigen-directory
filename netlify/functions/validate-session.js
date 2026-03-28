@@ -93,7 +93,7 @@ exports.handler = async function(event) {
   var clientIp = (event.headers || {})['x-forwarded-for'] || (event.headers || {})['client-ip'] || 'unknown';
   clientIp = clientIp.split(',')[0].trim();
   if (isRateLimited(clientIp)) {
-    return { statusCode: 429, headers: headers, body: JSON.stringify({ valid: false, reason: 'Too many requests' }) };
+    return { statusCode: 429, headers: { ...headers, 'Retry-After': '60' }, body: JSON.stringify({ valid: false, reason: 'Too many requests' }) };
   }
 
   try {

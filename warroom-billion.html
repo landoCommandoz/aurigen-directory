@@ -10584,30 +10584,8 @@ document.addEventListener('click', function(e) {
     if (badge) { badge.remove(); badge = null; }
   }
 
-  // Keyboard: typing "aurigen" anywhere (not in inputs)
-  document.addEventListener('keydown', function(e) {
-    var tag = (e.target.tagName || '').toLowerCase();
-    if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) return;
-    buf += e.key.toLowerCase();
-    if (buf.length > SEQ.length) buf = buf.slice(-SEQ.length);
-    if (buf === SEQ) { buf = ''; toggleAdmin(); }
-  });
-
-  // Mobile: 5 rapid taps on logo
-  var logo = document.getElementById('nav-logo');
-  if (logo) {
-    var taps = 0;
-    var tapTimer = null;
-    logo.addEventListener('click', function() {
-      taps++;
-      clearTimeout(tapTimer);
-      if (taps >= 5) { taps = 0; toggleAdmin(); }
-      else { tapTimer = setTimeout(function() { taps = 0; }, 1200); }
-    });
-  }
-
-  // Restore on load (only if still whitelisted)
-  if (isAdminMode()) showBadge();
+  // Admin triggers removed — admin mode only via server-validated JWT with admin claim
+  // No keyboard sequence, no tap counter, no client-side restore
 })();
 
 // === 3B: MOBILE FILTER DRAWER ===
