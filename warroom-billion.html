@@ -1072,7 +1072,8 @@
     .mleg-txt{font-family:'Space Mono',monospace;font-size:7px;color:rgba(255,255,255,0.4);letter-spacing:0.1em}
     #map-footer{display:flex;justify-content:space-between;padding:5px 20px;border-top:1px solid rgba(0,212,255,0.04);flex-shrink:0}
     .footer-txt{font-family:'Space Mono',monospace;font-size:6px;color:rgba(0,212,255,0.15);letter-spacing:0.15em}
-    .state-path{stroke-width:0.8;cursor:pointer;transition:all 0.2s;pointer-events:all}
+    .state-path{stroke-width:0.5;cursor:pointer;transition:all 0.2s;pointer-events:all}
+    .state-path:hover{fill:rgba(201,168,76,0.18)}
     .state-label{pointer-events:none;font-family:'Space Mono',monospace;font-size:8px;fill-opacity:0.9;font-weight:700}
 
     /* === MAP FILTER PANEL (B2) === */
@@ -1246,6 +1247,8 @@
     .badge{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;padding:3px 7px;border-radius:3px;border:1px solid;letter-spacing:0.06em}
     .row-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:600;color:var(--text);letter-spacing:0.02em}
     .row-stats{display:flex;gap:6px;justify-content:flex-end;align-items:center}
+    .row-type-label{display:none}
+    .list-section-header{display:none}
     .stat-pill{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;height:22px;line-height:22px;padding:0 8px;border-radius:4px;border:1px solid;white-space:nowrap;max-width:80px;overflow:hidden;text-overflow:ellipsis}
     .pill-rate{color:#d4a017;background:rgba(212,160,23,0.15);border-color:rgba(212,160,23,0.4)}
     .pill-hold{color:#00d2c8;background:rgba(0,210,200,0.1);border-color:rgba(0,210,200,0.3)}
@@ -1307,6 +1310,7 @@
     .county-pill.platform a:hover{text-decoration:underline}
     .county-alert{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:#FF6B35;background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);padding:2px 6px;border-radius:3px;white-space:nowrap;flex-shrink:0}
     .county-notes{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.35);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .county-redemption-note{display:none}
     .counties-empty{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);padding:16px 0;line-height:1.6;text-align:center}
     .counties-empty a{color:#d4a017;text-decoration:underline;text-underline-offset:2px}
     .counties-empty a:hover{color:#FFD700}
@@ -1936,8 +1940,175 @@
     }
     .auctions-filter-toggle:hover { border-color: var(--accent-mid); }
 
-    /* Cards list */
+    /* Cards list (kept for day drawer card rendering) */
     .auctions-cards { display: flex; flex-direction: column; gap: 0; }
+
+    /* Calendar grid */
+    .auctions-loading {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 48px 0; gap: 14px;
+    }
+    .auctions-loading-spinner {
+      width: 28px; height: 28px; border: 2px solid var(--border);
+      border-top-color: var(--accent); border-radius: 50%;
+      animation: auctionsSpin 0.8s linear infinite;
+    }
+    @keyframes auctionsSpin { to { transform: rotate(360deg); } }
+    .auctions-loading-text {
+      font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;
+      color: var(--text2); text-transform: uppercase;
+    }
+    .auctions-cal-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 0 12px; margin-bottom: 8px; border-bottom: 1px solid var(--border);
+    }
+    .auctions-cal-month {
+      font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 0.1em;
+      color: var(--text); line-height: 1;
+    }
+    .auctions-cal-arrow {
+      background: none; border: 1px solid var(--border); color: var(--accent);
+      font-size: 18px; width: 36px; height: 36px; border-radius: var(--radius);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s, background 0.15s; min-height: 44px; min-width: 44px;
+    }
+    .auctions-cal-arrow:hover { border-color: var(--accent-mid); background: var(--accent-dim); }
+    .auctions-cal-dna-row {
+      display: flex; align-items: center; gap: 10px; padding: 8px 0 12px;
+    }
+    .auctions-cal-dna-toggle {
+      position: relative; width: 38px; height: 20px; background: rgba(255,255,255,0.08);
+      border-radius: 10px; cursor: pointer; border: 1px solid var(--border);
+      transition: background 0.2s; flex-shrink: 0;
+    }
+    .auctions-cal-dna-toggle.active { background: var(--accent-dim); border-color: var(--accent-mid); }
+    .auctions-cal-dna-toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 14px; height: 14px; border-radius: 50%; background: var(--text2);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .auctions-cal-dna-toggle.active::after { transform: translateX(18px); background: var(--accent); }
+    .auctions-cal-dna-label {
+      font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
+      color: var(--text2); text-transform: uppercase;
+    }
+    .auctions-cal-dna-states {
+      display: flex; gap: 4px; margin-left: auto;
+    }
+    .auctions-cal-dna-chip {
+      font-family: 'Space Mono', monospace; font-size: 9px; padding: 2px 6px;
+      border-radius: 2px; background: rgba(201,168,76,0.1); color: var(--accent);
+      border: 1px solid rgba(201,168,76,0.15); letter-spacing: 0.06em;
+    }
+    .auctions-cal-dow-row {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;
+      width: 100%; box-sizing: border-box; margin-bottom: 2px;
+    }
+    .auctions-cal-dow {
+      font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.12em;
+      color: var(--text2); text-align: center; padding: 6px 0; text-transform: uppercase;
+    }
+    .auctions-cal-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;
+      width: 100%; box-sizing: border-box;
+    }
+    .auctions-cal-cell {
+      aspect-ratio: 1; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; background: rgba(255,255,255,0.015); border: 1px solid transparent;
+      border-radius: var(--radius); cursor: default; position: relative;
+      transition: border-color 0.15s, background 0.15s; min-height: 44px;
+    }
+    .auctions-cal-cell.empty { background: transparent; }
+    .auctions-cal-cell.has-auctions {
+      cursor: pointer; border-color: rgba(201,168,76,0.15);
+    }
+    .auctions-cal-cell.has-auctions:hover {
+      border-color: var(--accent-mid); background: var(--accent-dim);
+    }
+    .auctions-cal-cell.today { border-color: var(--accent-mid); }
+    .auctions-cal-cell.selected { background: var(--accent-dim); border-color: var(--accent); }
+    .auctions-cal-day-num {
+      font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--text); line-height: 1;
+    }
+    .auctions-cal-cell.empty .auctions-cal-day-num { visibility: hidden; }
+    .auctions-cal-cell.past .auctions-cal-day-num { color: var(--text2); opacity: 0.4; }
+    .auctions-cal-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+      margin-top: 3px; box-shadow: 0 0 6px rgba(201,168,76,0.4);
+    }
+    .auctions-cal-count {
+      font-family: 'Space Mono', monospace; font-size: 8px; color: var(--accent);
+      letter-spacing: 0.06em; margin-top: 1px;
+    }
+
+    /* Day detail drawer */
+    .auctions-day-drawer-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+    }
+    .auctions-day-drawer-overlay.open { display: block; }
+    .auctions-day-drawer {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 9001;
+      background: var(--bg2); border-top: 1px solid var(--accent-mid);
+      border-radius: 16px 16px 0 0; max-height: 65vh; display: none;
+      flex-direction: column; transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .auctions-day-drawer.open { display: flex; transform: translateY(0); }
+    .auctions-day-drawer-handle {
+      width: 40px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.15);
+      margin: 10px auto 0; flex-shrink: 0;
+    }
+    .auctions-day-drawer-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 20px 10px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+    }
+    .auctions-day-drawer-date {
+      font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+    .auctions-day-drawer-count {
+      font-family: 'Space Mono', monospace; font-size: 10px; color: var(--text2);
+      letter-spacing: 0.1em;
+    }
+    .auctions-day-drawer-close {
+      background: none; border: 1px solid var(--border); color: var(--text);
+      width: 36px; height: 36px; border-radius: var(--radius); cursor: pointer;
+      font-size: 18px; display: flex; align-items: center; justify-content: center;
+      min-height: 44px; min-width: 44px;
+    }
+    .auctions-day-drawer-close:hover { border-color: var(--accent-mid); }
+    .auctions-day-drawer-body {
+      overflow-y: auto; padding: 8px 20px 24px; flex: 1; min-height: 0;
+    }
+
+    /* Quarterly groupings below calendar */
+    .auctions-quarters { margin-top: 20px; display: flex; flex-direction: column; gap: 4px; }
+    .auctions-quarter {
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    }
+    .auctions-quarter-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; cursor: pointer; background: rgba(255,255,255,0.02);
+      transition: background 0.15s; min-height: 44px;
+    }
+    .auctions-quarter-header:hover { background: rgba(255,255,255,0.04); }
+    .auctions-quarter-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.1em;
+      color: var(--text);
+    }
+    .auctions-quarter-count {
+      font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
+      color: var(--text2); text-transform: uppercase;
+    }
+    .auctions-quarter-chevron {
+      color: var(--accent); font-size: 14px; transition: transform 0.2s; margin-left: 8px;
+    }
+    .auctions-quarter.open .auctions-quarter-chevron { transform: rotate(180deg); }
+    .auctions-quarter-body {
+      display: none; padding: 0 16px 12px; border-top: 1px solid var(--border);
+    }
+    .auctions-quarter.open .auctions-quarter-body { display: block; }
     .auctions-month-divider {
       font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.12em;
       color: var(--text2); padding: 16px 0 8px 0; border-bottom: 1px solid var(--border);
@@ -2113,6 +2284,13 @@
       .auctions-sidebar { display: none; }
       .auctions-filter-toggle { display: flex; align-items: center; gap: 6px; }
       .auctions-main { padding: 12px; overflow-x: hidden; }
+      .auctions-cal-month { font-size: 20px; }
+      .auctions-cal-day-num { font-size: 14px; }
+      .auctions-cal-cell { min-height: 38px; }
+      .auctions-cal-dot { width: 5px; height: 5px; margin-top: 2px; }
+      .auctions-cal-count { font-size: 7px; }
+      .auctions-cal-dna-row { flex-wrap: wrap; }
+      .auctions-quarter-title { font-size: 16px; }
       .auctions-cards { overflow-x: hidden; gap: 10px; display: flex; flex-direction: column; }
       .auction-card {
         display: flex; flex-direction: column; gap: 0;
@@ -2145,50 +2323,59 @@
       .explore-legend { display: none; }
       .detail-stats { grid-template-columns: 1fr; }
       .brand-sub{display:none}
-      #col-headers{grid-template-columns:28px 56px 1fr}
-      .state-row:not([data-type]){grid-template-columns:28px 56px 1fr}
-      .col-h.col-stats,.row-stats:not(.mobile-show){}
+      #col-headers{display:none}
+      #search-bar{padding:8px 14px;gap:6px}
       #list-toolbar { flex-wrap: wrap; }
       .filter-pills { flex-wrap: wrap; }
-      /* Mobile card grid for list view */
-      #rows-container{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
-      .state-row{display:flex;flex-direction:column;gap:0;grid-template-columns:none;background:var(--bg3);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 12px;border-left:none;border-bottom:none;position:relative;overflow:hidden;min-height:auto}
-      .state-row::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:12px 12px 0 0}
+      /* Mobile compact list rows */
+      #rows-container{display:flex;flex-direction:column;padding:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+      .state-row{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,0.04);border-left:none;grid-template-columns:none;background:transparent;cursor:pointer;transition:background 0.15s;width:100%;overflow:hidden;min-height:auto;border-radius:0}
+      .state-row:active{background:rgba(255,255,255,0.03)}
+      .state-row::before{display:none}
       .row-num{display:none}
-      .row-badge{order:-1}
-      .row-badge .badge{font-size:8px;padding:1px 5px}
-      .row-name{font-size:15px;font-weight:700;color:var(--text);margin-top:4px;margin-bottom:2px;order:0;white-space:normal}
-      .row-stats{display:flex;flex-direction:column;gap:2px;margin-top:8px}
-      .stat-pill{font-size:9px}
-      .stat-pill.pill-rate{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);line-height:1}
-      .stat-pill.pill-hold{font-size:8px;color:var(--text3)}
-      /* Section headers in mobile grid */
-      .list-section-header{grid-column:1/-1;display:flex;align-items:center;gap:10px;padding:12px 4px 6px;font-family:'Space Mono',monospace;font-size:9px;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase}
+      .row-badge{display:flex;align-items:center;flex-shrink:0;order:0}
+      .row-badge .badge{width:8px;height:8px;border-radius:50%;padding:0;font-size:0;overflow:hidden;min-width:8px;min-height:8px}
+      .row-name{flex:1;font-size:15px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;order:1;margin:0}
+      .row-stats{display:flex;align-items:center;gap:6px;flex-shrink:0;order:2;margin:0;flex-direction:row;justify-content:flex-end}
+      .stat-pill{font-size:9px;height:auto;line-height:1;padding:0;border:none;background:none;max-width:none}
+      .stat-pill.pill-rate{font-family:'Bebas Neue',sans-serif;font-size:24px;color:#e8c96a;line-height:1;min-width:48px;text-align:right}
+      .stat-pill.pill-hold{display:none}
+      /* Section headers */
+      .list-section-header{display:flex;align-items:center;gap:8px;padding:10px 14px 5px;font-family:'Space Mono',monospace;font-size:9px;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase}
       .list-section-header::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06)}
-      #detail-panel-inner { width:calc(100vw - 32px);max-width:340px;height:auto;max-height:75vh;border-radius:20px;padding-bottom:0;overflow-y:auto;background:#0d0d14;border:1px solid rgba(201,168,76,0.2);box-shadow:0 24px 64px rgba(0,0,0,0.6);animation:panelUp 250ms ease-out forwards }
-      #detail-panel{background:rgba(6,6,10,0.75);backdrop-filter:blur(2px)}
-      #panel-body{padding:16px 18px 16px}
-      #panel-shimmer{border-radius:20px 20px 0 0}
-      #panel-close{position:sticky;top:0;float:right;margin:14px 14px 0 0;width:28px;height:28px;min-width:44px;min-height:44px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);z-index:10;display:flex;align-items:center;justify-content:center}
-      #panel-title .title-name{font-size:36px}
+      /* Type label inline */
+      .row-type-label{display:inline;flex-shrink:0;font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.04em;margin-right:4px;white-space:nowrap;order:2}
+      /* Empty search state */
+      #empty-state{flex-direction:column;gap:6px;padding:40px 20px;text-align:center}
+      #detail-panel{background:rgba(6,6,10,0.7);backdrop-filter:blur(2px);align-items:flex-end;justify-content:center}
+      #detail-panel-inner{position:fixed;bottom:0;left:0;right:0;width:100%;max-width:100%;max-height:75dvh;height:auto;border-radius:16px 16px 0 0;padding-bottom:0;overflow:hidden;overflow-x:hidden;background:#0d1220;border:none;border-top:2px solid rgba(201,168,76,0.3);box-shadow:0 -12px 48px rgba(0,0,0,0.5);animation:drawerUp 300ms ease-out forwards;box-sizing:border-box}
+      @keyframes drawerUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+      #panel-body{padding:48px 20px 24px;overflow-y:auto;overflow-x:hidden;max-height:calc(75dvh - 12px);-webkit-overflow-scrolling:touch;width:100%;box-sizing:border-box;position:relative}
+      #panel-body *{box-sizing:border-box;overflow-wrap:break-word;word-wrap:break-word}
+      #panel-shimmer{border-radius:16px 16px 0 0}
+      #panel-close{position:absolute;top:12px;right:12px;display:flex;align-items:center;justify-content:center;width:36px;height:36px;min-width:44px;min-height:44px;padding:0;margin:0;border-radius:6px;background:rgba(13,18,32,0.9);border:1px solid rgba(201,168,76,0.4);color:rgba(255,255,255,0.7);z-index:10;font-size:18px;line-height:1;transform:none;float:none}
+      #panel-title .title-name{font-size:28px;line-height:1.1;word-wrap:break-word;overflow-wrap:break-word;white-space:normal}
       #panel-title .title-abbr{font-size:9px;letter-spacing:0.2em}
       #panel-type{font-size:8px;padding:3px 8px;display:inline-block;background:rgba(45,212,192,0.08);border:1px solid rgba(45,212,192,0.2);border-radius:999px;color:var(--teal);margin-top:6px}
       #panel-stats{grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
       .stat-box{padding:8px 6px;border-radius:10px;background:rgba(255,255,255,0.03);text-align:center;border-left-width:1px}
-      .stat-label{font-size:7px;margin-bottom:3px;text-align:center}
+      .stat-label{font-size:11px;margin-bottom:3px;text-align:center}
       .stat-value{font-size:16px;text-align:center;white-space:normal;word-break:break-word;overflow:visible}
       #panel-notes{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);gap:4px}
-      .panel-note{font-size:11px;font-weight:300;padding:3px 0 3px 12px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+      .panel-note{font-size:15px;font-weight:300;padding:3px 0 3px 12px;line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;white-space:normal;word-wrap:break-word;overflow-wrap:break-word}
       #panel-meta{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);gap:4px}
       .meta-chip{font-size:10px;padding:4px 8px;border-radius:999px}
-      #panel-counties{margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
-      .county-row{padding:5px 8px;min-height:40px;gap:6px}
-      .county-name{font-size:12px}
-      .county-pill{font-size:9px;padding:1px 5px}
-      .counties-list{max-height:200px}
-      .county-row{flex-wrap:wrap}
+      #panel-counties{margin-top:12px;padding-top:12px;border-top:1px solid rgba(201,168,76,0.2)}
+      .county-row{padding:12px 10px;min-height:44px;gap:8px;flex-wrap:wrap;width:100%;box-sizing:border-box;overflow:hidden}
+      .county-name{font-size:14px;white-space:normal;word-wrap:break-word;overflow-wrap:break-word}
+      .county-pill{font-size:10px;padding:3px 7px;border-color:rgba(201,168,76,0.3);color:rgba(201,168,76,0.85);background:rgba(201,168,76,0.06);white-space:normal}
+      .county-pill.otc{border-color:rgba(0,230,118,0.35);color:#00e676;background:rgba(0,230,118,0.1)}
+      .county-pill.platform{border-color:rgba(0,210,200,0.3);color:#00d2c8;background:rgba(0,210,200,0.1)}
+      .counties-list{max-height:240px;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;width:100%;box-sizing:border-box}
       .county-pill.timing{display:none}
-      .county-notes{white-space:normal;width:100%;padding-left:0}
+      .county-pill.redemption{display:none}
+      .county-notes{white-space:normal;width:100%;padding-left:0;font-size:12px;overflow-wrap:break-word;word-wrap:break-word}
+      .county-redemption-note{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.4);padding:4px 0 8px;white-space:normal;word-wrap:break-word}
     }
 
     /* --- Tablet detail card (768-1024px) --- */
@@ -2447,6 +2634,81 @@
     .welcome-subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--text2,#6a6258);line-height:1.6;max-width:320px;margin:0 auto 28px}
     .welcome-btn{width:100%;background:var(--accent,#C9A84C);color:#06060a;border:none;padding:14px;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:opacity 0.2s}
     .welcome-btn:hover{opacity:0.9}
+
+    /* ── LIVE INVENTORY — Property Feed ────────────────────── */
+    #panel-properties{margin-top:24px;border-top:1px solid rgba(201,168,76,0.15);padding-top:20px}
+    .propfeed-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+    .propfeed-title{display:flex;align-items:center;gap:8px}
+    .propfeed-title-text{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.15em;color:#c9a84c;text-transform:uppercase}
+    .propfeed-dot{width:6px;height:6px;border-radius:50%;background:#2DD4C0;animation:propDotPulse 2s infinite}
+    @keyframes propDotPulse{0%,100%{opacity:1}50%{opacity:0.3}}
+    .propfeed-count{font-family:'Space Mono',monospace;font-size:11px;color:rgba(232,228,220,0.5);background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:4px;padding:2px 8px}
+    .propfeed-updated{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:rgba(232,228,220,0.35);width:100%;text-align:right}
+
+    .propfeed-filters{display:flex;gap:6px;margin-bottom:16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+    .propfeed-filters::-webkit-scrollbar{display:none}
+    .propfeed-filter-btn{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;white-space:nowrap;padding:5px 12px;border-radius:4px;border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.05);color:rgba(232,228,220,0.6);cursor:pointer;transition:all 0.2s;flex-shrink:0}
+    .propfeed-filter-btn:hover{border-color:rgba(201,168,76,0.4);color:#e8e4dc}
+    .propfeed-filter-btn.active{background:rgba(201,168,76,0.15);border-color:#c9a84c;color:#c9a84c}
+    .propfeed-filter-toggle{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;white-space:nowrap;padding:5px 12px;border-radius:4px;border:1px solid rgba(201,168,76,0.2);background:transparent;color:rgba(232,228,220,0.5);cursor:pointer;transition:all 0.2s;flex-shrink:0}
+    .propfeed-filter-toggle.active{background:rgba(201,168,76,0.2);border-color:#c9a84c;color:#c9a84c}
+
+    .propfeed-list{max-height:480px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin;scrollbar-color:rgba(201,168,76,0.3) transparent}
+    .propfeed-list::-webkit-scrollbar{width:4px}
+    .propfeed-list::-webkit-scrollbar-thumb{background:rgba(201,168,76,0.3);border-radius:2px}
+
+    .prop-card{background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.1);border-radius:8px;padding:14px;cursor:pointer;transition:all 0.2s;min-height:120px}
+    .prop-card:hover{border-color:rgba(201,168,76,0.3);background:rgba(255,255,255,0.05)}
+    .prop-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:10px}
+    .prop-card-address{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;color:#e8e4dc;line-height:1.3;flex:1}
+    .prop-card-pills{display:flex;gap:4px;flex-shrink:0;flex-wrap:wrap}
+    .prop-pill{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.08em;padding:2px 8px;border-radius:3px;text-transform:uppercase}
+    .prop-pill-residential{background:rgba(45,212,192,0.15);color:#2DD4C0;border:1px solid rgba(45,212,192,0.25)}
+    .prop-pill-commercial{background:rgba(201,168,76,0.15);color:#c9a84c;border:1px solid rgba(201,168,76,0.25)}
+    .prop-pill-vacant{background:rgba(232,228,220,0.08);color:rgba(232,228,220,0.5);border:1px solid rgba(232,228,220,0.12)}
+    .prop-pill-absentee{background:rgba(201,168,76,0.2);color:#c9a84c;border:1px solid rgba(201,168,76,0.3)}
+    .prop-card-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px}
+    .prop-stat{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:8px;text-align:center}
+    .prop-stat-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.1em;color:rgba(232,228,220,0.35);text-transform:uppercase;margin-bottom:2px}
+    .prop-stat-value{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:#e8e4dc}
+    .prop-stat-value.equity-high{color:#2DD4C0}
+    .prop-stat-value.equity-mid{color:#FFBE0B}
+    .prop-stat-value.equity-low{color:#FF2D55}
+    .prop-card-status{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase}
+    .prop-status-active{color:#c9a84c}
+    .prop-status-redeemed{color:#2DD4C0}
+    .prop-status-struck{color:rgba(232,228,220,0.4)}
+
+    .propfeed-empty{text-align:center;padding:40px 20px;color:rgba(232,228,220,0.4);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;line-height:1.6}
+    .propfeed-empty-icon{font-size:28px;margin-bottom:12px;display:block;opacity:0.5}
+
+    /* Skeleton loading */
+    .prop-skeleton{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);border-radius:8px;padding:14px;min-height:120px;animation:propSkeletonPulse 1.5s ease-in-out infinite}
+    @keyframes propSkeletonPulse{0%,100%{opacity:0.4}50%{opacity:0.8}}
+    .prop-skel-line{height:12px;border-radius:3px;background:rgba(255,255,255,0.06);margin-bottom:8px}
+    .prop-skel-line.w60{width:60%}
+    .prop-skel-line.w40{width:40%}
+    .prop-skel-line.w80{width:80%}
+    .prop-skel-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
+    .prop-skel-stat{height:44px;border-radius:4px;background:rgba(255,255,255,0.04)}
+
+    /* Free user blur overlay */
+    .propfeed-blur-wrap{position:relative}
+    .propfeed-blur-wrap .propfeed-list{filter:blur(6px);pointer-events:none;opacity:0.3}
+    .propfeed-lock{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:2;width:80%;max-width:300px}
+    .propfeed-lock-icon{font-size:32px;display:block;margin-bottom:12px}
+    .propfeed-lock-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#c9a84c;letter-spacing:0.08em;display:block;margin-bottom:6px}
+    .propfeed-lock-sub{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(232,228,220,0.5);display:block;margin-bottom:16px;line-height:1.5}
+    .propfeed-lock-btn{display:inline-block;background:#c9a84c;color:#06060a;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.12em;padding:10px 24px;border-radius:4px;text-decoration:none;transition:opacity 0.2s}
+    .propfeed-lock-btn:hover{opacity:0.9}
+
+    @media(max-width:600px){
+      .prop-card-stats{grid-template-columns:1fr 1fr 1fr;gap:4px}
+      .prop-stat{padding:6px 4px}
+      .prop-stat-value{font-size:11px}
+      .prop-card-address{font-size:13px}
+      .propfeed-title-text{font-size:11px}
+    }
   </style>
 </head>
 <body>
@@ -2595,11 +2857,11 @@
             <div id="panel-type"></div>
             <div id="panel-rationale"></div>
             <div id="panel-stats"></div>
+            <div id="panel-counties"></div>
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
             <div id="panel-calc-lock"></div>
-
-            <div id="panel-counties"></div>
+            <div id="panel-properties"></div>
           </div>
         </div>
       </div>
@@ -2861,7 +3123,27 @@
               </button>
             </div>
           </div>
-          <div class="auctions-cards" id="auctions-cards"></div>
+          <!-- Loading state -->
+          <div class="auctions-loading" id="auctions-loading" style="display:none">
+            <div class="auctions-loading-spinner"></div>
+            <div class="auctions-loading-text">Loading live auction data&hellip;</div>
+          </div>
+          <!-- DNA state filter toggle -->
+          <div class="auctions-cal-dna-row" id="auctions-dna-row" style="display:none">
+            <div class="auctions-cal-dna-toggle" id="auctions-dna-toggle" onclick="toggleAuctionsDna()" role="switch" aria-label="Filter to DNA matches"></div>
+            <span class="auctions-cal-dna-label" id="auctions-dna-label">MY STATES</span>
+            <div class="auctions-cal-dna-states" id="auctions-dna-chips"></div>
+          </div>
+          <!-- Calendar nav + grid -->
+          <div class="auctions-cal-nav">
+            <button class="auctions-cal-arrow" onclick="navigateCalMonth(-1)" aria-label="Previous month">&#9664;</button>
+            <span class="auctions-cal-month" id="auctions-cal-month"></span>
+            <button class="auctions-cal-arrow" onclick="navigateCalMonth(1)" aria-label="Next month">&#9654;</button>
+          </div>
+          <div class="auctions-cal-dow-row" id="auctions-cal-dow-row"></div>
+          <div class="auctions-cal-grid" id="auctions-cal-grid"></div>
+          <!-- Quarterly groupings -->
+          <div class="auctions-quarters" id="auctions-quarters"></div>
           <div class="auctions-disclaimer">
             Tax lien and tax deed investing involves risk, including potential loss of principal. Past performance does not guarantee future results. Auction dates and details are provided for informational purposes only &mdash; verify directly with the county or platform before registering. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a>
           </div>
@@ -3065,7 +3347,7 @@
   </div>
   <footer id="disclaimer-footer">
     <div id="disclaimer-full">
-      <p>This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a></p>
+      <p>This directory is for informational and educational purposes only. It does not constitute investment, legal, or financial advice. Tax lien and tax deed investing involves risk. Always conduct independent due diligence and consult a qualified professional before investing. Rates and rules are subject to change &mdash; verify with the official county or state authority before transacting. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a> &middot; <a href="/privacy.html" target="_blank" rel="noopener noreferrer">Privacy</a></p>
     </div>
     <div class="disclaimer-expand-panel" id="disclaimer-panel">
       <div class="disclaimer-panel-inner">
@@ -3088,35 +3370,27 @@
 // === GATE CHECK — redirect to landing if no access ===
 (function() {
   try {
-    var params = new URLSearchParams(window.location.search);
-    var justPaid = params.get('paid') === 'true';
-    if (justPaid) {
-      localStorage.setItem('aurigen_access', 'paid');
-    }
     var access = localStorage.getItem('aurigen_access');
     if (!access) {
       window.location.href = '/';
       return;
     }
-    // Show welcome overlay for fresh payment
-    if (justPaid) {
-      document.addEventListener('DOMContentLoaded', function() {
-        var overlay = document.createElement('div');
-        overlay.id = 'welcome-overlay';
-        overlay.innerHTML =
-          '<div id="welcome-card">' +
-            '<div class="welcome-sparkle">\u2728</div>' +
-            '<div class="welcome-title">FULL ACCESS UNLOCKED</div>' +
-            '<div class="welcome-subtitle">Welcome to the complete Aurigen platform. Every county. Every tool. Every auction. Yours forever.</div>' +
-            '<button class="welcome-btn" id="welcome-dismiss">Explore the Full Platform \u2192</button>' +
-          '</div>';
-        document.body.appendChild(overlay);
-        document.getElementById('welcome-dismiss').addEventListener('click', function() {
-          overlay.remove();
-          history.replaceState(null, '', window.location.pathname);
-          location.reload();
-        });
-      });
+    // Server-verify access on load if email is stored
+    var email = localStorage.getItem('aurigen_email');
+    if (email) {
+      fetch('/.netlify/functions/check-access', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var serverTier = data.access || 'free';
+        try { localStorage.setItem('aurigen_access', serverTier); } catch(e) {}
+        // If tier changed, reload to apply new locks
+        if (serverTier !== access) { location.reload(); }
+      })
+      .catch(function() { /* Offline: trust cached tier */ });
     }
   } catch(e) {}
 })();
@@ -3408,7 +3682,11 @@ const APP = {
 };
 
 // === ACCESS TIER ===
+function isAdminMode() {
+  try { return localStorage.getItem('aurigen_admin') === 'on'; } catch(e) { return false; }
+}
 function getAccessTier() {
+  if (isAdminMode()) return 'paid';
   try { return localStorage.getItem('aurigen_access') || 'none'; } catch(e) { return 'none'; }
 }
 var IS_PAID = getAccessTier() === 'paid';
@@ -3895,7 +4173,7 @@ function applyMapFilter() {
     var t = s._v2type||s.type||s.t||'';
     var c = s.abbr||s.c||'';
     var n = s.name||s.n||'';
-    var color = getTypeColor(s);
+    var color = getTypeColor(s); // TODO: dead code — remove in next cleanup PR
     var fOk = mapFilter==='all'||t===mapFilter;
     var qOk = !q||c.toLowerCase().indexOf(q)>=0||n.toLowerCase().indexOf(q)>=0;
     var visible = fOk && qOk;
@@ -3903,11 +4181,9 @@ function applyMapFilter() {
     var el = d3.select(this);
 
     el.transition().duration(250).ease(d3.easeQuadOut)
-      .attr('fill', visible ? color : 'transparent')
-      .attr('fill-opacity', visible ? (isSel ? 0.75 : 0.55) : 0)
-      .attr('stroke', visible ? color : 'rgba(255,255,255,0.04)')
-      .attr('stroke-opacity', visible ? (isSel ? 1 : 0.4) : 1)
-      .attr('stroke-width', isSel ? 2 : 0.8);
+      .attr('fill', visible ? (isSel ? 'rgba(201,168,76,0.28)' : 'rgba(201,168,76,0.06)') : 'transparent')
+      .attr('stroke', visible ? 'rgba(201,168,76,0.28)' : 'rgba(255,255,255,0.04)')
+      .attr('stroke-width', isSel ? 2 : 0.5);
 
     // Gold pulse on search match
     if(q && visible && !matchedAbbr){
@@ -4021,11 +4297,9 @@ function initMap() {
         .enter().append('path')
         .attr('class','state-path')
         .attr('d',pathGen)
-        .attr('fill',function(d){ return getTypeColor(getStateData(d)); })
-        .attr('fill-opacity',0.55)
-        .attr('stroke',function(d){ return getTypeColor(getStateData(d)); })
-        .attr('stroke-opacity',0.4)
-        .attr('stroke-width',0.8)
+        .attr('fill','rgba(201,168,76,0.06)')
+        .attr('stroke','rgba(201,168,76,0.28)')
+        .attr('stroke-width',0.5)
         .on('click',function(event,d){
           var s = getStateData(d);
           if(!s) return;
@@ -4045,8 +4319,7 @@ function initMap() {
         .attr('text-anchor','middle')
         .attr('dominant-baseline','central')
         .attr('font-size','7px')
-        .attr('fill',function(d){ return getTypeColor(getStateData(d)); })
-        .attr('fill-opacity',0.85)
+        .attr('fill','rgba(201,168,76,0.7)')
         .attr('pointer-events','none')
         .text(function(d){
           var fips=String(d.id).padStart(2,'0');
@@ -4070,7 +4343,7 @@ function updateMapColors() {
   svgEl.selectAll('.state-path').each(function(d){
     var s=getStateData(d); var abbr=s?(s.abbr||s.c):null;
     var isSel=selectedState===abbr;
-    var color=getTypeColor(s);
+    var color=getTypeColor(s); // TODO: dead code — remove in next cleanup PR
     // Respect filter + search
     var t=s?(s._v2type||s.type||s.t||''):'';
     var n=s?(s.name||s.n||''):'';
@@ -4078,12 +4351,11 @@ function updateMapColors() {
     var qOk=!q||(abbr&&abbr.toLowerCase().indexOf(q)>=0)||(n.toLowerCase().indexOf(q)>=0);
     var visible=fOk&&qOk;
     d3.select(this)
-      .attr('fill',visible?color:'transparent').attr('fill-opacity',visible?(isSel?0.35:0.22):0)
-      .attr('stroke',visible?color:'rgba(255,255,255,0.04)').attr('stroke-opacity',visible?(isSel?1:0.4):1)
-      .attr('stroke-width',isSel?2:0.8);
-    if(isSel && s){
-      var glow={lien:'rgba(255,190,11,0.08)',deed:'rgba(0,212,255,0.08)',redeemable:'rgba(255,45,85,0.08)',hybrid:'rgba(191,95,255,0.08)',forfeiture:'rgba(255,107,53,0.08)'};
-      document.getElementById('ambient-glow').style.background='radial-gradient(ellipse 60% 60% at 50% 50%,'+(glow[t]||'transparent')+' 0%,transparent 70%)';
+      .attr('fill',visible?(isSel?'rgba(201,168,76,0.28)':'rgba(201,168,76,0.06)'):'transparent')
+      .attr('stroke',visible?'rgba(201,168,76,0.28)':'rgba(255,255,255,0.04)')
+      .attr('stroke-width',isSel?2:0.5);
+    if(isSel){
+      document.getElementById('ambient-glow').style.background='radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,168,76,0.08) 0%,transparent 70%)';
     }
   });
   svgEl.selectAll('.state-label').each(function(d){
@@ -4106,10 +4378,9 @@ function resetMapColors() {
     document.getElementById('ambient-glow').style.background='';
     return;
   }
-  svgEl.selectAll('.state-path').each(function(d){
-    var color=getTypeColor(getStateData(d));
-    d3.select(this).attr('fill',color).attr('fill-opacity',0.22)
-      .attr('stroke',color).attr('stroke-opacity',0.4).attr('stroke-width',0.8);
+  svgEl.selectAll('.state-path').each(function(){
+    d3.select(this).attr('fill','rgba(201,168,76,0.06)')
+      .attr('stroke','rgba(201,168,76,0.28)').attr('stroke-width',0.5);
   });
   svgEl.selectAll('.state-label').attr('fill-opacity',0.75).attr('font-weight','400');
   document.getElementById('ambient-glow').style.background='';
@@ -4166,6 +4437,7 @@ function shortenHold(redemption, type) {
   return r.length>10?r.slice(0,8)+'…':r;
 }
 
+var TYPE_ABBR={lien:'Lien',deed:'Deed',redeemable:'Rdbl',hybrid:'Hybrid',forfeiture:'Forf'};
 function buildStateRow(s,i,colors){
   var t=s.type||s.t; var c=s.abbr||s.c; var n=s.name||s.n||c;
   var rate=s.rate||s.y||'N/A'; var redemption=s.redemption||s.r||'N/A';
@@ -4175,12 +4447,14 @@ function buildStateRow(s,i,colors){
   var badge=TYPE_LABELS[vt]||vt.toUpperCase().slice(0,6);
   var ratePill=shortenRate(rate,vt);
   var holdPill=shortenHold(redemption,vt);
+  var typeAbbr=TYPE_ABBR[vt]||vt;
   return '<div class="state-row" id="row-'+c+'" onclick="selectFromList(\''+c+'\')"'+
     ' style="background:'+(isSel?'linear-gradient(90deg,'+color+'15,transparent)':'transparent')+';border-left-color:'+(isSel?color:'transparent')+'"'+
     ' data-type="'+vt+'">'+
     '<span class="row-num">'+String(i+1).padStart(2,'0')+'</span>'+
-    '<div class="row-badge"><span class="badge" style="color:#fff;background:'+color+';border-color:'+color+'">'+badge+'</span></div>'+
+    '<div class="row-badge"><span class="badge" style="color:#fff;background:'+color+';border-color:'+color+';box-shadow:0 0 5px '+color+'">'+badge+'</span></div>'+
     '<span class="row-name">'+escapeHtml(n.toUpperCase())+'</span>'+
+    '<span class="row-type-label" style="color:'+color+'">'+escapeHtml(typeAbbr)+'</span>'+
     '<div class="row-stats" title="'+rate.replace(/"/g,'&quot;')+' | '+redemption.replace(/"/g,'&quot;')+'">'+
       '<span class="stat-pill pill-rate">'+ratePill+'</span>'+
       '<span class="stat-pill pill-hold">'+holdPill+'</span>'+
@@ -4204,17 +4478,16 @@ function renderList() {
   if(!empty){empty=document.createElement('div');empty.id='empty-state';container.appendChild(empty);}
   if(filtered.length===0){
     empty.style.display='flex';
-    empty.textContent='NO RESULTS FOR "'+searchQuery.toUpperCase()+'"';
+    empty.innerHTML='\uD83D\uDD0D<div style="font-size:14px;color:#686880;margin-top:4px">No states found</div><div style="font-size:12px;color:#686880">Try searching by state name</div>';
     container.innerHTML=''; container.appendChild(empty); return;
   }
   empty.style.display='none';
   var colors={lien:'#FFBE0B',deed:'#00D4FF',redeemable:'#FF2D55',hybrid:'#BF5FFF',forfeiture:'#FF6B35'};
-  // Group by type for section headers
   var typeOrder=['lien','hybrid','redeemable','deed','forfeiture'];
   var typeLabels={lien:'Tax Lien States',hybrid:'Hybrid States',redeemable:'Redeemable Deed States',deed:'Tax Deed States',forfeiture:'Forfeiture States'};
   var isMobile=window.innerWidth<=768;
   var html='';
-  if(isMobile && activeFilter==='all' && !q){
+  if(isMobile){
     typeOrder.forEach(function(type){
       var group=filtered.filter(function(s){return(s._v2type||s.type||s.t)===type;});
       if(group.length===0) return;
@@ -4682,6 +4955,11 @@ function showDetail(s) {
         '<button class="county-search-clear" id="county-search-clear" onclick="clearCountySearch()" aria-label="Clear search">\u00D7</button>'+
       '</div>';
     }
+    // Show redemption/note once above list (used on mobile instead of per-row pills)
+    var redemptionNote=rows.length>0?rows[0].redemption:'';
+    if(redemptionNote){
+      cHtml+='<div class="county-redemption-note">'+escapeHtml(redemptionNote)+'</div>';
+    }
     cHtml+='<div class="counties-list collapsed" id="counties-list">';
     window._countyTotal=rows.length;
     rows.forEach(function(r){
@@ -4706,7 +4984,8 @@ function showDetail(s) {
       // Notes
       var safeNotes=r.notes?escapeHtml(r.notes):'';
       var noteSpan=safeNotes?'<span class="county-notes" title="'+safeNotes.replace(/"/g,'&quot;')+'">'+safeNotes+'</span>':'';
-      var rowClick=safeLink?' onclick="if(!event.target.closest(\'a\')){window.open(\''+safeLink.replace(/'/g,"\\'").replace(/"/g,'&quot;')+'\',\'_blank\',\'noopener,noreferrer\')}"':'';
+      var rowClick=safeLink?' onclick="if(!event.target.closest(\'a\')){window.open(\''+safeLink.replace(/'/g,"\\'").replace(/"/g,'&quot;')+'\',\'_blank\',\'noopener,noreferrer\')};loadPropertyFeed(\''+escapeHtml(c)+'\',\''+escapeHtml(r.name).replace(/'/g,"\\'")+'\');"':'
+ onclick="loadPropertyFeed(\''+escapeHtml(c)+'\',\''+escapeHtml(r.name).replace(/'/g,"\\'")+'\');"';
       cHtml+='<div class="county-row"'+rowClick+' data-county-name="'+escapeHtml(r.name.toLowerCase())+'">'+nameTag+platPill+otcPill+timPill+redPill+noteSpan+'</div>';
     });
     cHtml+='</div>';
@@ -4728,13 +5007,452 @@ function closeDetail() {
   resetMapColors();
 }
 
+// === LIVE PROPERTY FEED ===
+var _propFeedState = null;
+var _propFeedCounty = null;
+var _propFeedData = [];
+var _propFeedFilters = { type: 'all', status: 'all', absentee: false, equity: 0 };
+
+function loadPropertyFeed(stateCode, countyName) {
+  _propFeedState = stateCode;
+  _propFeedCounty = countyName;
+  _propFeedFilters = { type: 'all', status: 'all', absentee: false, equity: 0 };
+  var container = document.getElementById('panel-properties');
+  if (!container) return;
+
+  // Show skeleton loading
+  container.innerHTML = buildPropFeedShell(countyName) + buildPropSkeletons();
+
+  // Scroll into view
+  container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  if (!IS_PAID) {
+    // Free users see blurred sample cards
+    renderPropFeedLocked(container, countyName);
+    return;
+  }
+
+  // Fetch properties — requires paid email
+  var email = '';
+  try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
+  if (!email) { renderPropFeedEmpty(container, countyName, 'Sign in to view live inventory.'); return; }
+
+  fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName) + '&email=' + encodeURIComponent(email))
+    .then(function(r) {
+      if (r.status === 401 || r.status === 403) throw new Error('access');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function(data) {
+      _propFeedData = data.properties || [];
+      renderPropFeed(container, countyName);
+    })
+    .catch(function(err) {
+      if (err.message === 'access') {
+        renderPropFeedLocked(container, countyName);
+      } else {
+        renderPropFeedEmpty(container, countyName, 'Unable to load inventory. Try again later.');
+      }
+    });
+}
+
+function buildPropFeedShell(countyName) {
+  return '<div class="propfeed-header">' +
+    '<div class="propfeed-title"><span class="propfeed-dot"></span><span class="propfeed-title-text">LIVE INVENTORY</span></div>' +
+    '<span class="propfeed-count" id="propfeed-count">Loading...</span>' +
+    '</div>' +
+    '<div class="propfeed-filters" id="propfeed-filters">' +
+    buildFilterButtons() +
+    '</div>';
+}
+
+function buildFilterButtons() {
+  var f = _propFeedFilters;
+  var html = '';
+  // Type filters
+  var types = [['all','All Types'],['residential','Residential'],['commercial','Commercial'],['vacant','Vacant Land']];
+  types.forEach(function(t) {
+    html += '<button class="propfeed-filter-btn' + (f.type === t[0] ? ' active' : '') + '" onclick="propFilterType(\'' + t[0] + '\')">' + t[1] + '</button>';
+  });
+  // Status filters
+  var statuses = [['all','All Status'],['active','Active'],['redeemed','Redeemed'],['struck','Struck Off']];
+  statuses.forEach(function(s) {
+    html += '<button class="propfeed-filter-btn' + (f.status === s[0] ? ' active' : '') + '" onclick="propFilterStatus(\'' + s[0] + '\')">' + s[1] + '</button>';
+  });
+  // Absentee toggle
+  html += '<button class="propfeed-filter-toggle' + (f.absentee ? ' active' : '') + '" onclick="propFilterAbsentee()">Absentee Owner</button>';
+  // Equity cushion
+  var equities = [[0,'Any Equity'],[100,'100%+'],[200,'200%+'],[300,'300%+']];
+  equities.forEach(function(e) {
+    html += '<button class="propfeed-filter-btn' + (f.equity === e[0] ? ' active' : '') + '" onclick="propFilterEquity(' + e[0] + ')">' + e[1] + '</button>';
+  });
+  return html;
+}
+
+function propFilterType(val) { _propFeedFilters.type = val; applyPropFilters(); }
+function propFilterStatus(val) { _propFeedFilters.status = val; applyPropFilters(); }
+function propFilterAbsentee() { _propFeedFilters.absentee = !_propFeedFilters.absentee; applyPropFilters(); }
+function propFilterEquity(val) { _propFeedFilters.equity = val; applyPropFilters(); }
+
+function applyPropFilters() {
+  var container = document.getElementById('panel-properties');
+  if (!container) return;
+  // Update filter bar
+  var filtersEl = document.getElementById('propfeed-filters');
+  if (filtersEl) filtersEl.innerHTML = buildFilterButtons();
+  renderPropFeed(container, _propFeedCounty);
+}
+
+function getFilteredProps() {
+  var f = _propFeedFilters;
+  return _propFeedData.filter(function(p) {
+    if (f.type !== 'all') {
+      var pt = (p.property_type || '').toLowerCase();
+      if (f.type === 'vacant' && pt.indexOf('vacant') === -1 && pt.indexOf('land') === -1) return false;
+      if (f.type === 'residential' && pt.indexOf('resident') === -1) return false;
+      if (f.type === 'commercial' && pt.indexOf('commerc') === -1) return false;
+    }
+    if (f.status !== 'all') {
+      var st = (p.status || '').toLowerCase();
+      if (f.status === 'struck' && st.indexOf('struck') === -1 && st.indexOf('withdrawn') === -1) return false;
+      if (f.status !== 'struck' && st !== f.status) return false;
+    }
+    if (f.absentee && !p.absentee_owner) return false;
+    if (f.equity > 0 && (p.equity_cushion_pct === null || p.equity_cushion_pct < f.equity)) return false;
+    return true;
+  });
+}
+
+function renderPropFeed(container, countyName) {
+  var filtered = getFilteredProps();
+  var countEl = document.getElementById('propfeed-count');
+  if (countEl) countEl.textContent = filtered.length + ' ACTIVE LIEN' + (filtered.length !== 1 ? 'S' : '');
+
+  // Remove old list
+  var oldList = container.querySelector('.propfeed-list');
+  if (oldList) oldList.remove();
+  var oldEmpty = container.querySelector('.propfeed-empty');
+  if (oldEmpty) oldEmpty.remove();
+  // Remove skeletons
+  var oldSkel = container.querySelectorAll('.prop-skeleton');
+  oldSkel.forEach(function(s) { s.remove(); });
+
+  if (filtered.length === 0) {
+    if (_propFeedData.length === 0) {
+      container.insertAdjacentHTML('beforeend', '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span>No live inventory yet for ' + escapeHtml(countyName) + '.<br>Check back after the next scraper run.</div>');
+    } else {
+      container.insertAdjacentHTML('beforeend', '<div class="propfeed-empty">No properties match current filters.</div>');
+    }
+    return;
+  }
+
+  var html = '<div class="propfeed-list">';
+  filtered.forEach(function(p) {
+    var addr = escapeHtml(p.address || 'Address unavailable');
+    var typeLower = (p.property_type || '').toLowerCase();
+    var typeClass = typeLower.indexOf('resident') >= 0 ? 'residential' : typeLower.indexOf('commerc') >= 0 ? 'commercial' : 'vacant';
+    var typeLabel = typeLower.indexOf('resident') >= 0 ? 'Residential' : typeLower.indexOf('commerc') >= 0 ? 'Commercial' : typeLower.indexOf('vacant') >= 0 || typeLower.indexOf('land') >= 0 ? 'Vacant Land' : (p.property_type || 'Unknown');
+
+    var pills = '<span class="prop-pill prop-pill-' + typeClass + '">' + escapeHtml(typeLabel) + '</span>';
+    if (p.absentee_owner) pills += '<span class="prop-pill prop-pill-absentee">ABSENTEE</span>';
+
+    var bid = p.opening_bid !== null ? '$' + Number(p.opening_bid).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
+    var assessed = p.assessed_value !== null ? '$' + Number(p.assessed_value).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
+    var eqPct = p.equity_cushion_pct !== null ? Math.round(p.equity_cushion_pct) + '%' : '--';
+    var eqClass = p.equity_cushion_pct === null ? '' : p.equity_cushion_pct > 200 ? ' equity-high' : p.equity_cushion_pct >= 100 ? ' equity-mid' : ' equity-low';
+
+    var statusLower = (p.status || '').toLowerCase();
+    var statusClass = statusLower === 'active' ? 'prop-status-active' : statusLower === 'redeemed' ? 'prop-status-redeemed' : 'prop-status-struck';
+    var statusLabel = statusLower === 'active' ? 'ACTIVE' : statusLower === 'redeemed' ? 'REDEEMED' : 'STRUCK OFF';
+
+    // Encode property data for Deal Analyzer pre-population
+    var propData = encodeURIComponent(JSON.stringify({
+      address: p.address, opening_bid: p.opening_bid, assessed_value: p.assessed_value,
+      lien_amount: p.lien_amount, state_code: p.state_code, county: p.county, parcel_id: p.parcel_id
+    }));
+
+    html += '<div class="prop-card" onclick="openDealFromProp(\'' + propData + '\')">';
+    html += '<div class="prop-card-top"><div class="prop-card-address">' + addr + '</div><div class="prop-card-pills">' + pills + '</div></div>';
+    html += '<div class="prop-card-stats">';
+    html += '<div class="prop-stat"><div class="prop-stat-label">OPENING BID</div><div class="prop-stat-value">' + bid + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">ASSESSED</div><div class="prop-stat-value">' + assessed + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">EQUITY</div><div class="prop-stat-value' + eqClass + '">' + eqPct + '</div></div>';
+    html += '</div>';
+    html += '<span class="prop-card-status ' + statusClass + '">' + statusLabel + '</span>';
+    html += '</div>';
+  });
+  html += '</div>';
+  container.insertAdjacentHTML('beforeend', html);
+}
+
+function buildPropSkeletons() {
+  var html = '';
+  for (var i = 0; i < 3; i++) {
+    html += '<div class="prop-skeleton"><div class="prop-skel-line w80"></div><div class="prop-skel-line w40"></div><div class="prop-skel-stats"><div class="prop-skel-stat"></div><div class="prop-skel-stat"></div><div class="prop-skel-stat"></div></div></div>';
+  }
+  return html;
+}
+
+function renderPropFeedLocked(container, countyName) {
+  container.innerHTML = buildPropFeedShell(countyName);
+  var countEl = document.getElementById('propfeed-count');
+  if (countEl) countEl.textContent = 'LOCKED';
+  // Fake sample cards (blurred)
+  var sampleHtml = '<div class="propfeed-blur-wrap"><div class="propfeed-list">';
+  for (var i = 0; i < 3; i++) {
+    sampleHtml += '<div class="prop-card"><div class="prop-card-top"><div class="prop-card-address">123 Sample St, ' + escapeHtml(countyName) + '</div><div class="prop-card-pills"><span class="prop-pill prop-pill-residential">Residential</span></div></div>';
+    sampleHtml += '<div class="prop-card-stats"><div class="prop-stat"><div class="prop-stat-label">OPENING BID</div><div class="prop-stat-value">$4,500</div></div><div class="prop-stat"><div class="prop-stat-label">ASSESSED</div><div class="prop-stat-value">$85,000</div></div><div class="prop-stat"><div class="prop-stat-label">EQUITY</div><div class="prop-stat-value equity-high">1,789%</div></div></div>';
+    sampleHtml += '<span class="prop-card-status prop-status-active">ACTIVE</span></div>';
+  }
+  sampleHtml += '</div>';
+  sampleHtml += '<div class="propfeed-lock"><span class="propfeed-lock-icon">&#128274;</span><span class="propfeed-lock-title">UNLOCK FULL ACCESS</span><span class="propfeed-lock-sub">See live property inventory, equity analysis, and absentee owner data for every county.</span><a class="propfeed-lock-btn" href="' + STRIPE_URL + '" target="_blank" rel="noopener noreferrer">UNLOCK — $197 ONE TIME</a></div></div>';
+  container.insertAdjacentHTML('beforeend', sampleHtml);
+}
+
+function renderPropFeedEmpty(container, countyName, msg) {
+  container.innerHTML = buildPropFeedShell(countyName);
+  var countEl = document.getElementById('propfeed-count');
+  if (countEl) countEl.textContent = '0 PROPERTIES';
+  container.insertAdjacentHTML('beforeend', '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span>' + escapeHtml(msg) + '</div>');
+}
+
+function openDealFromProp(encodedData) {
+  try {
+    var p = JSON.parse(decodeURIComponent(encodedData));
+    // Store property data for Deal Analyzer pre-population
+    try {
+      localStorage.setItem('deal_prop_address', p.address || '');
+      localStorage.setItem('deal_prop_bid', p.opening_bid || '');
+      localStorage.setItem('deal_prop_assessed', p.assessed_value || '');
+      localStorage.setItem('deal_prop_lien', p.lien_amount || '');
+      localStorage.setItem('deal_prop_state', p.state_code || '');
+      localStorage.setItem('deal_prop_county', p.county || '');
+    } catch(le) { /* localStorage unavailable */ }
+    // Switch to Tools tab and open Deal Analyzer
+    if (typeof switchTab === 'function') switchTab('tools');
+    // Pre-populate price input if it exists
+    var priceInput = document.getElementById('da-amount-input') || document.getElementById('inp-price');
+    if (priceInput && p.opening_bid) {
+      priceInput.value = Math.round(p.opening_bid);
+      priceInput.dispatchEvent(new Event('input'));
+    }
+    // Close detail panel
+    closeDetail();
+  } catch(e) {
+    console.warn('[propfeed] Could not open deal analyzer:', e.message);
+  }
+}
+
+// === LIVE AUCTION DATA FETCH ===
+// Replaces AUCTION_ENTRIES with live Supabase data via Netlify function.
+// Falls back to the static array from auctions-data.js on any failure.
+
+// County name cleanup — shared by fetch and any future ingest
+function cleanCountyName(raw) {
+  if (!raw) return 'Statewide';
+  var s = String(raw).trim();
+  s = s.replace(/^https?:\/\/\S+\s*/i, '');
+  s = s.replace(/^com\s+/i, '');
+  s = s.replace(/^s\s+/i, '');
+  s = s.replace(/^(Municipality|Opens?\s+URL|View\s+Details?|Click\s+Here)\s+/gi, '');
+  s = s.replace(/^\S*\.\S+\s+/g, '');
+  s = s.replace(/\bCounty\b/gi, '').trim();
+  s = s.replace(/\s{2,}/g, ' ').trim();
+  return s || 'Statewide';
+}
+
+function fetchLiveAuctionData() {
+  var MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  function normPlatform(raw) {
+    if (!raw) return 'Unknown';
+    var s = String(raw);
+    if (/realauction/i.test(s)) return 'RealAuction';
+    if (/govease/i.test(s)) return 'GovEase';
+    if (/bid4assets/i.test(s)) return 'Bid4Assets';
+    if (/sri/i.test(s)) return 'SRI';
+    if (/civicsource/i.test(s)) return 'CivicSource';
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  function normType(raw) {
+    if (!raw) return 'lien';
+    var s = String(raw).toLowerCase();
+    if (s === 'redeemable deed' || s === 'redeemable') return 'redeemable';
+    if (s === 'hybrid' || s === 'deed' || s === 'lien' || s === 'forfeiture') return s;
+    return 'lien';
+  }
+
+  function parseDate(isoStr, status) {
+    if (!isoStr) return null;
+    var parts = isoStr.split('-');
+    if (parts.length !== 3) return null;
+    var year = parseInt(parts[0], 10);
+    var mi = parseInt(parts[1], 10) - 1;
+    var day = parseInt(parts[2], 10);
+    var month = MONTH_NAMES[mi] || 'January';
+    var confirmed = (status || '').toLowerCase() !== 'estimated';
+    if (confirmed && day > 0) {
+      return { month: month, day: day, year: year, sortKey: year * 10000 + mi * 100 + day, confirmed: true, display: month.substring(0,3) + ' ' + day };
+    }
+    return { month: month, day: day || 0, year: year, sortKey: year * 10000 + mi * 100 + (day || 0), confirmed: false, display: 'Est. ' + month.substring(0,3) + ' ' + year };
+  }
+
+  // Show loading states
+  var loadingEl = document.getElementById('auctions-loading');
+  if (loadingEl) loadingEl.style.display = '';
+  var pulseLoadingEl = document.getElementById('pulse-feed-loading');
+  if (pulseLoadingEl) pulseLoadingEl.style.display = '';
+
+  return fetch('/.netlify/functions/auctions')
+    .then(function(res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function(data) {
+      var liveAuctions = data.auctions || [];
+      var liveAlerts = data.alerts || [];
+
+      // --- Replace AUCTION_ENTRIES with live data ---
+      if (liveAuctions.length > 0) {
+        var entries = [];
+        var dedup = {};
+
+        liveAuctions.forEach(function(a) {
+          var county = cleanCountyName(a.county);
+          var platform = normPlatform(a.platform);
+          var dedupKey = (a.state_code || '') + '|' + county + '|' + platform;
+          if (dedup[dedupKey]) return;
+          dedup[dedupKey] = true;
+
+          entries.push({
+            stateCode: a.state_code || '',
+            stateName: a.state || a.state_code || '',
+            county: county,
+            type: normType(a.bid_method),
+            rate: null,
+            platform: platform,
+            platformUrl: a.platform_url || '',
+            date: parseDate(a.auction_date, a.status),
+            dateRaw: a.auction_date || null,
+            note: '',
+            alert: null,
+            verified: false,
+            source: 'live'
+          });
+        });
+
+        // Sort: confirmed dates first, then estimated, then no-date
+        entries.sort(function(a, b) {
+          var aKey = a.date ? a.date.sortKey : 99999999;
+          var bKey = b.date ? b.date.sortKey : 99999999;
+          if (aKey !== bKey) return aKey - bKey;
+          if (a.stateName < b.stateName) return -1;
+          if (a.stateName > b.stateName) return 1;
+          return 0;
+        });
+
+        // Rebuild AUCTION_META from live data
+        var monthCounts = {};
+        var platformSet = {};
+        var typeSet = {};
+        entries.forEach(function(e) {
+          if (e.date && e.date.month) {
+            var mk = e.date.month.substring(0, 3);
+            monthCounts[mk] = (monthCounts[mk] || 0) + 1;
+          }
+          if (e.platform && e.platform !== 'Unknown') {
+            platformSet[e.platform] = (platformSet[e.platform] || 0) + 1;
+          }
+          typeSet[e.type] = (typeSet[e.type] || 0) + 1;
+        });
+
+        window.AUCTION_ENTRIES = entries;
+        window.AUCTION_META = {
+          total: entries.length,
+          monthCounts: monthCounts,
+          platforms: platformSet,
+          types: typeSet,
+          alerts: 0
+        };
+
+        console.log('[live] Replaced AUCTION_ENTRIES with ' + entries.length + ' live records');
+      }
+
+      // --- Replace PULSE_ALERTS: live first, then static (dedup by alert_text) ---
+      if (liveAlerts.length > 0) {
+        var TYPE_ICONS = { critical: '\u26A0\uFE0F', upcoming: '\uD83D\uDCC5', intel: '\uD83D\uDCA1', match: '\uD83C\uDFAF', info: '\uD83D\uDCC5', warning: '\u26A0\uFE0F' };
+        var seenTexts = {};
+        var merged = [];
+
+        // Live alerts go first
+        liveAlerts.forEach(function(a, i) {
+          var text = a.alert_text || '';
+          if (!text) return;
+          var key = text.toLowerCase();
+          if (seenTexts[key]) return;
+          seenTexts[key] = true;
+
+          var alertType = a.type || 'upcoming';
+          var loc = a.state_code || '';
+
+          merged.push({
+            id: 'live-' + (a.id || i),
+            type: alertType,
+            icon: TYPE_ICONS[alertType] || TYPE_ICONS.info,
+            title: text,
+            body: '',
+            state: a.state_code || '',
+            location: loc ? loc + ' \u00B7 Live Alert' : 'Live Alert',
+            action: alertType === 'upcoming' ? 'View in Auctions' : 'View',
+            actionTab: alertType === 'upcoming' ? 'auctions' : null,
+            dnaStates: a.state_code ? [a.state_code] : [],
+            date: a.auction_date || a.date || null
+          });
+        });
+
+        // Append static alerts that don't duplicate live ones
+        if (typeof PULSE_ALERTS !== 'undefined') {
+          PULSE_ALERTS.forEach(function(a) {
+            var key = (a.title || '').toLowerCase();
+            if (!key || seenTexts[key]) return;
+            seenTexts[key] = true;
+            merged.push(a);
+          });
+        }
+
+        PULSE_ALERTS = merged;
+        console.log('[live] Pulse: ' + liveAlerts.length + ' live + static deduped = ' + PULSE_ALERTS.length + ' total');
+      }
+
+      // Re-render Pulse badge with updated count
+      if (typeof pulseUpdateBadge === 'function') pulseUpdateBadge();
+    })
+    .catch(function(err) {
+      console.warn('[live] Fetch failed, using static data:', err.message);
+    })
+    .then(function() {
+      // Hide loading states regardless of success/failure
+      if (loadingEl) loadingEl.style.display = 'none';
+      var pulseLoading = document.getElementById('pulse-feed-loading');
+      if (pulseLoading) pulseLoading.style.display = 'none';
+    });
+}
+
 // === BOOT ===
 function bootApp() {
   initMap();
   initAccount();
-  initAuctionsTab();
   initVersusTab();
   runBootAnimation();
+
+  // Init auctions tab immediately with static data
+  initAuctionsTab();
+
+  // Fetch live data in background, then re-init auctions tab with fresh data
+  fetchLiveAuctionData().then(function() {
+    initAuctionsTab();
+  });
 }
 
 // === TOOL FUNCTIONS ===
@@ -4904,6 +5622,9 @@ function initAuctionsTab() {
   var monthEl = document.getElementById('auctions-month-filters');
   if (monthEl) monthEl.innerHTML = monthHtml;
 
+  // Auto-enable DNA filter if user has a DNA profile
+  if (calGetDnaStates()) _calDnaOnly = true;
+
   renderAuctions();
 }
 
@@ -4943,13 +5664,15 @@ function filterAuctions() {
   }, 150);
 }
 
-// Windowed rendering state
+// Calendar state
 var _auctionsFiltered = [];
-var _auctionsRendered = 0;
-var _auctionsBatchSize = 30;
-var _auctionsObserver = null;
-var _auctionsIsInitialRender = true;
-var _auctionsCurrentMonth = '';
+var _calYear = new Date().getFullYear();
+var _calMonth = new Date().getMonth(); // 0-indexed
+var _calDnaOnly = false;
+var _calSelectedDate = null;
+var _calMonthNames = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+var _calMonthNamesFull = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var _calDow = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
 
 var TYPE_LABELS_SHORT = { lien: 'LIEN', deed: 'DEED', redeemable: 'RDBL', hybrid: 'HYBRID', forfeiture: 'FORFEIT' };
 // Build HTML for a single auction card
@@ -4998,52 +5721,25 @@ function buildCardHtml(e, animate) {
   '</div>';
 }
 
-// Append next batch of cards
-function appendAuctionsBatch() {
-  var container = document.getElementById('auctions-cards');
-  if (!container || _auctionsRendered >= _auctionsFiltered.length) return;
-
-  var end = Math.min(_auctionsRendered + _auctionsBatchSize, _auctionsFiltered.length);
-  var html = '';
-  var animate = _auctionsIsInitialRender;
-
-  for (var i = _auctionsRendered; i < end; i++) {
-    var e = _auctionsFiltered[i];
-    var monthLabel = e.date ? e.date.month.substring(0,3).toUpperCase() + (e.date.year ? ' ' + e.date.year : '') : 'TBD';
-    if (monthLabel !== _auctionsCurrentMonth) {
-      _auctionsCurrentMonth = monthLabel;
-      html += '<div class="auctions-month-divider">' + escapeHtml(monthLabel) + '</div>';
-    }
-    html += buildCardHtml(e, animate);
+// Get DNA top state codes (returns array or null)
+function calGetDnaStates() {
+  if (typeof profileTopStateCodes === 'function') {
+    var codes = profileTopStateCodes();
+    if (codes && codes.length > 0) return codes.slice(0, 3);
   }
-  _auctionsRendered = end;
-  _auctionsIsInitialRender = false;
-
-  // Remove existing sentinel before appending
-  var oldSentinel = container.querySelector('.auctions-sentinel');
-  if (oldSentinel) oldSentinel.remove();
-
-  // Append batch
-  var frag = document.createElement('div');
-  frag.innerHTML = html;
-  while (frag.firstChild) container.appendChild(frag.firstChild);
-
-  // Add sentinel if more to load
-  if (_auctionsRendered < _auctionsFiltered.length) {
-    var sentinel = document.createElement('div');
-    sentinel.className = 'auctions-sentinel';
-    sentinel.textContent = 'Loading more...';
-    container.appendChild(sentinel);
-    if (_auctionsObserver) _auctionsObserver.observe(sentinel);
-  }
+  return null;
 }
 
-function renderAuctions() {
+// Apply all filters (sidebar + DNA) and return filtered entries
+function calFilterEntries() {
   var entries = window.AUCTION_ENTRIES || [];
   var f = _auctionsFilters;
+  var dnaCodes = _calDnaOnly ? calGetDnaStates() : null;
 
-  // Apply filters
-  _auctionsFiltered = entries.filter(function(e) {
+  return entries.filter(function(e) {
+    // DNA state filter
+    if (dnaCodes && dnaCodes.indexOf(e.stateCode) === -1) return false;
+    // Sidebar filters
     if (f.search) {
       var q = f.search;
       var hay = (e.stateName + ' ' + e.stateCode + ' ' + e.county + ' ' + e.platform).toLowerCase();
@@ -5051,48 +5747,253 @@ function renderAuctions() {
     }
     if (f.types.length > 0 && f.types.indexOf(e.type) === -1) return false;
     if (f.platforms.length > 0 && f.platforms.indexOf(e.platform) === -1) return false;
-    if (f.month && e.date && e.date.month) {
-      if (e.date.month.substring(0,3) !== f.month) return false;
-    } else if (f.month && !e.date) {
-      return false;
-    }
     return true;
   });
+}
 
-  // Reset windowing state
-  _auctionsRendered = 0;
-  _auctionsCurrentMonth = '';
-  _auctionsIsInitialRender = true;
+// Group entries by ISO date key (YYYY-MM-DD) for a given month
+function calGroupByDay(entries, year, month) {
+  var map = {};
+  entries.forEach(function(e) {
+    if (!e.date || !e.date.year || e.date.day <= 0) return;
+    var mi = _calMonthNamesFull.indexOf(e.date.month);
+    if (mi === -1) {
+      // Try 3-letter match
+      for (var k = 0; k < _calMonthNamesFull.length; k++) {
+        if (_calMonthNamesFull[k].substring(0,3).toLowerCase() === e.date.month.substring(0,3).toLowerCase()) { mi = k; break; }
+      }
+    }
+    if (mi === month && e.date.year === year) {
+      var key = year + '-' + String(mi + 1).padStart(2, '0') + '-' + String(e.date.day).padStart(2, '0');
+      if (!map[key]) map[key] = [];
+      map[key].push(e);
+    }
+  });
+  return map;
+}
+
+// Get quarter label for a date entry
+function calGetQuarter(e) {
+  if (!e.date || !e.date.year) return null;
+  var mi = _calMonthNamesFull.indexOf(e.date.month);
+  if (mi === -1) {
+    for (var k = 0; k < _calMonthNamesFull.length; k++) {
+      if (_calMonthNamesFull[k].substring(0,3).toLowerCase() === e.date.month.substring(0,3).toLowerCase()) { mi = k; break; }
+    }
+  }
+  if (mi === -1) return null;
+  var q = Math.floor(mi / 3) + 1;
+  return 'Q' + q + ' ' + e.date.year;
+}
+
+// Toggle DNA-only filter
+function toggleAuctionsDna() {
+  _calDnaOnly = !_calDnaOnly;
+  var tog = document.getElementById('auctions-dna-toggle');
+  if (tog) tog.classList.toggle('active', _calDnaOnly);
+  var label = document.getElementById('auctions-dna-label');
+  if (label) label.textContent = _calDnaOnly ? 'MY STATES' : 'ALL STATES';
+  renderAuctions();
+}
+
+// Navigate calendar month
+function navigateCalMonth(delta) {
+  _calMonth += delta;
+  if (_calMonth > 11) { _calMonth = 0; _calYear++; }
+  if (_calMonth < 0) { _calMonth = 11; _calYear--; }
+  renderAuctions();
+}
+
+// Open day detail drawer
+function openDayDrawer(dateKey) {
+  _calSelectedDate = dateKey;
+  var filtered = calFilterEntries();
+  var dayMap = calGroupByDay(filtered, _calYear, _calMonth);
+  var dayEntries = dayMap[dateKey] || [];
+
+  // Update header
+  var parts = dateKey.split('-');
+  var d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+  var dateEl = document.getElementById('day-drawer-date');
+  if (dateEl) dateEl.textContent = _calMonthNamesFull[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  var countEl = document.getElementById('day-drawer-count');
+  if (countEl) countEl.textContent = dayEntries.length + ' auction' + (dayEntries.length !== 1 ? 's' : '');
+
+  // Render cards
+  var container = document.getElementById('day-drawer-cards');
+  if (container) {
+    var html = '';
+    dayEntries.forEach(function(e) { html += buildCardHtml(e, true); });
+    container.innerHTML = html || '<div class="auctions-empty">No auctions on this date.</div>';
+  }
+
+  // Highlight selected cell
+  document.querySelectorAll('.auctions-cal-cell.selected').forEach(function(c) { c.classList.remove('selected'); });
+  var cell = document.querySelector('.auctions-cal-cell[data-date="' + dateKey + '"]');
+  if (cell) cell.classList.add('selected');
+
+  // Open drawer
+  var overlay = document.getElementById('auctions-day-overlay');
+  var drawer = document.getElementById('auctions-day-drawer');
+  if (overlay) overlay.classList.add('open');
+  if (drawer) drawer.classList.add('open');
+}
+
+// Close day detail drawer
+function closeDayDrawer() {
+  _calSelectedDate = null;
+  document.querySelectorAll('.auctions-cal-cell.selected').forEach(function(c) { c.classList.remove('selected'); });
+  var overlay = document.getElementById('auctions-day-overlay');
+  var drawer = document.getElementById('auctions-day-drawer');
+  if (overlay) overlay.classList.remove('open');
+  if (drawer) drawer.classList.remove('open');
+}
+
+// Toggle quarterly accordion
+function toggleQuarter(el) {
+  el.closest('.auctions-quarter').classList.toggle('open');
+}
+
+function renderAuctions() {
+  var filtered = calFilterEntries();
+  _auctionsFiltered = filtered;
 
   // Update count
   var countEl = document.getElementById('auctions-count');
-  if (countEl) countEl.textContent = _auctionsFiltered.length + ' result' + (_auctionsFiltered.length !== 1 ? 's' : '');
+  if (countEl) countEl.textContent = filtered.length + ' result' + (filtered.length !== 1 ? 's' : '');
 
-  var container = document.getElementById('auctions-cards');
-  if (!container) return;
+  // --- DNA toggle row ---
+  var dnaRow = document.getElementById('auctions-dna-row');
+  var dnaCodes = calGetDnaStates();
+  if (dnaRow) {
+    if (dnaCodes) {
+      dnaRow.style.display = '';
+      var tog = document.getElementById('auctions-dna-toggle');
+      if (tog) tog.classList.toggle('active', _calDnaOnly);
+      var label = document.getElementById('auctions-dna-label');
+      if (label) label.textContent = _calDnaOnly ? 'MY STATES' : 'ALL STATES';
+      var chips = document.getElementById('auctions-dna-chips');
+      if (chips) {
+        chips.innerHTML = dnaCodes.map(function(c) {
+          return '<span class="auctions-cal-dna-chip">' + escapeHtml(c) + '</span>';
+        }).join('');
+      }
+    } else {
+      dnaRow.style.display = 'none';
+    }
+  }
 
-  // Clean up previous observer
-  if (_auctionsObserver) _auctionsObserver.disconnect();
+  // --- Calendar grid ---
+  var dayMap = calGroupByDay(filtered, _calYear, _calMonth);
+  var monthLabel = document.getElementById('auctions-cal-month');
+  if (monthLabel) monthLabel.textContent = _calMonthNames[_calMonth] + ' ' + _calYear;
 
-  if (_auctionsFiltered.length === 0) {
-    container.innerHTML = '<div class="auctions-empty">No auctions match your filters.</div>';
+  // Day-of-week header row (separate from grid)
+  var dowRow = document.getElementById('auctions-cal-dow-row');
+  if (dowRow) {
+    var dowHtml = '';
+    _calDow.forEach(function(d) {
+      dowHtml += '<div class="auctions-cal-dow">' + d + '</div>';
+    });
+    dowRow.innerHTML = dowHtml;
+  }
+
+  var grid = document.getElementById('auctions-cal-grid');
+  if (!grid) return;
+
+  var html = '';
+
+  // First day of month and total days
+  var firstDay = new Date(_calYear, _calMonth, 1).getDay();
+  var daysInMonth = new Date(_calYear, _calMonth + 1, 0).getDate();
+  var today = new Date();
+  var todayKey = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+
+  // Empty cells before first day
+  for (var b = 0; b < firstDay; b++) {
+    html += '<div class="auctions-cal-cell empty"><span class="auctions-cal-day-num"></span></div>';
+  }
+
+  // Day cells
+  for (var d = 1; d <= daysInMonth; d++) {
+    var key = _calYear + '-' + String(_calMonth + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+    var dayEntries = dayMap[key];
+    var count = dayEntries ? dayEntries.length : 0;
+    var isPast = new Date(_calYear, _calMonth, d) < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    var isToday = key === todayKey;
+    var classes = 'auctions-cal-cell';
+    if (count > 0) classes += ' has-auctions';
+    if (isPast) classes += ' past';
+    if (isToday) classes += ' today';
+    if (key === _calSelectedDate) classes += ' selected';
+
+    html += '<div class="' + classes + '"' + (count > 0 ? ' data-date="' + key + '" onclick="openDayDrawer(\'' + key + '\')"' : '') + '>';
+    html += '<span class="auctions-cal-day-num">' + d + '</span>';
+    if (count > 0) {
+      html += '<span class="auctions-cal-dot"></span>';
+      if (count > 1) html += '<span class="auctions-cal-count">' + count + '</span>';
+    }
+    html += '</div>';
+  }
+
+  // Trailing empty cells to complete the last row
+  var totalCells = firstDay + daysInMonth;
+  var trailing = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+  for (var t = 0; t < trailing; t++) {
+    html += '<div class="auctions-cal-cell empty"><span class="auctions-cal-day-num"></span></div>';
+  }
+
+  grid.innerHTML = html;
+
+  // --- Quarterly groupings below calendar ---
+  var quartersEl = document.getElementById('auctions-quarters');
+  if (!quartersEl) return;
+
+  // Collect ALL filtered entries grouped by quarter (Q1=Jan-Mar, Q2=Apr-Jun, Q3=Jul-Sep, Q4=Oct-Dec)
+  var quarterMap = {};
+  var quarterOrder = [];
+
+  filtered.forEach(function(e) {
+    if (!e.date || !e.date.year || e.date.day <= 0) return;
+    var qLabel = calGetQuarter(e);
+    if (!qLabel) return;
+    if (!quarterMap[qLabel]) {
+      quarterMap[qLabel] = [];
+      quarterOrder.push(qLabel);
+    }
+    quarterMap[qLabel].push(e);
+  });
+
+  // Sort quarters chronologically
+  quarterOrder.sort(function(a, b) {
+    var pa = a.match(/Q(\d)\s+(\d+)/);
+    var pb = b.match(/Q(\d)\s+(\d+)/);
+    if (!pa || !pb) return 0;
+    var ka = parseInt(pa[2]) * 10 + parseInt(pa[1]);
+    var kb = parseInt(pb[2]) * 10 + parseInt(pb[1]);
+    return ka - kb;
+  });
+
+  if (quarterOrder.length === 0) {
+    quartersEl.innerHTML = '';
     return;
   }
 
-  container.innerHTML = '';
+  var qHtml = '';
+  quarterOrder.forEach(function(qLabel) {
+    var entries = quarterMap[qLabel];
+    qHtml += '<div class="auctions-quarter">';
+    qHtml += '<div class="auctions-quarter-header" onclick="toggleQuarter(this)">';
+    qHtml += '<span class="auctions-quarter-title">' + escapeHtml(qLabel) + '</span>';
+    qHtml += '<span><span class="auctions-quarter-count">' + entries.length + ' auction' + (entries.length !== 1 ? 's' : '') + '</span>';
+    qHtml += '<span class="auctions-quarter-chevron">&#9660;</span></span>';
+    qHtml += '</div>';
+    qHtml += '<div class="auctions-quarter-body">';
+    entries.forEach(function(e) { qHtml += buildCardHtml(e, false); });
+    qHtml += '</div></div>';
+  });
 
-  // Set up IntersectionObserver for infinite scroll
-  _auctionsObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        _auctionsObserver.unobserve(entry.target);
-        appendAuctionsBatch();
-      }
-    });
-  }, { root: container.closest('.auctions-main'), rootMargin: '200px' });
-
-  // Render first batch
-  appendAuctionsBatch();
+  quartersEl.innerHTML = qHtml;
 }
 
 // Interstitial
@@ -7579,10 +8480,99 @@ function scoutRender() {
   </div>
   <div class="pulse-filters" id="pulse-filters"></div>
   <div class="pulse-profile" id="pulse-profile"></div>
-  <div class="pulse-feed" id="pulse-feed"></div>
+  <div class="pulse-feed" id="pulse-feed">
+    <div class="auctions-loading" id="pulse-feed-loading" style="display:none">
+      <div class="auctions-loading-spinner"></div>
+      <div class="auctions-loading-text">Loading live alerts&hellip;</div>
+    </div>
+  </div>
   <div class="pulse-cta" id="pulse-cta"></div>
   <div class="pulse-disclaimer" data-i18n="pulse_disclaimer">Dates based on published schedules &mdash; verify with official authority.</div>
   <div class="paywall-lock" id="lock-pulse" style="display:none"><span class="walkthrough-label" data-i18n="pulse_lock_title">UNLOCK PULSE</span><span class="walkthrough-desc" data-i18n="pulse_lock_desc">Real-time alerts when new auctions drop in your watched states. Set it once &mdash; Pulse notifies you.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer"><span data-i18n="paywall_cta">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</span><span class="paywall-lock-btn-sub" data-i18n="paywall_sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
 </div>
+<!-- Day detail drawer — outside all scroll/flex containers for proper fixed positioning -->
+<div class="auctions-day-drawer-overlay" id="auctions-day-overlay" onclick="closeDayDrawer()"></div>
+<div class="auctions-day-drawer" id="auctions-day-drawer">
+  <div class="auctions-day-drawer-handle"></div>
+  <div class="auctions-day-drawer-header">
+    <div>
+      <div class="auctions-day-drawer-date" id="day-drawer-date"></div>
+      <div class="auctions-day-drawer-count" id="day-drawer-count"></div>
+    </div>
+    <button class="auctions-day-drawer-close" onclick="closeDayDrawer()" aria-label="Close">&times;</button>
+  </div>
+  <div class="auctions-day-drawer-body">
+    <div class="auctions-cards" id="day-drawer-cards"></div>
+  </div>
+</div>
+<script>
+// === ADMIN MODE ===
+(function() {
+  var SEQ = 'aurigen';
+  var buf = '';
+  var badge = null;
+
+  function adminOn() {
+    try { localStorage.setItem('aurigen_admin', 'on'); } catch(e) {}
+    IS_PAID = true;
+    IS_FREE = true;
+    APP.tier = 2;
+    applyAccessLocks();
+    showBadge();
+  }
+
+  function adminOff() {
+    try { localStorage.removeItem('aurigen_admin'); } catch(e) {}
+    var real = (function() { try { return localStorage.getItem('aurigen_access') || 'none'; } catch(e) { return 'none'; } })();
+    IS_PAID = real === 'paid';
+    IS_FREE = real === 'free' || IS_PAID;
+    APP.tier = IS_PAID ? 2 : 1;
+    applyAccessLocks();
+    removeBadge();
+  }
+
+  function toggleAdmin() {
+    if (isAdminMode()) adminOff(); else adminOn();
+  }
+
+  function showBadge() {
+    if (badge) return;
+    badge = document.createElement('div');
+    badge.id = 'admin-badge';
+    badge.style.cssText = 'position:fixed;top:8px;left:8px;z-index:99999;font-family:"Space Mono",monospace;font-size:9px;letter-spacing:0.1em;color:#C9A84C;background:rgba(6,6,10,0.85);border:1px solid rgba(201,168,76,0.3);padding:4px 10px;border-radius:4px;pointer-events:none;user-select:none';
+    badge.textContent = 'ADMIN \u2014 PAID VIEW';
+    document.body.appendChild(badge);
+  }
+
+  function removeBadge() {
+    if (badge) { badge.remove(); badge = null; }
+  }
+
+  // Keyboard: typing "aurigen" anywhere (not in inputs)
+  document.addEventListener('keydown', function(e) {
+    var tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) return;
+    buf += e.key.toLowerCase();
+    if (buf.length > SEQ.length) buf = buf.slice(-SEQ.length);
+    if (buf === SEQ) { buf = ''; toggleAdmin(); }
+  });
+
+  // Mobile: 5 rapid taps on logo
+  var logo = document.getElementById('nav-logo');
+  if (logo) {
+    var taps = 0;
+    var tapTimer = null;
+    logo.addEventListener('click', function() {
+      taps++;
+      clearTimeout(tapTimer);
+      if (taps >= 5) { taps = 0; toggleAdmin(); }
+      else { tapTimer = setTimeout(function() { taps = 0; }, 1200); }
+    });
+  }
+
+  // Restore on load
+  if (isAdminMode()) showBadge();
+})();
+</script>
 </body>
 </html>
