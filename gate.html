@@ -488,24 +488,30 @@
 
       .mobile-lang-toggle {
         display: flex;
-        gap: 4px;
+        gap: 6px;
       }
       .mobile-lang-btn {
         font-family: 'Space Mono', monospace;
-        font-size: 9px;
+        font-size: 11px;
         letter-spacing: 0.1em;
-        padding: 4px 10px;
+        padding: 8px 14px;
         background: transparent;
-        border: 1px solid var(--border);
-        color: var(--dim);
+        border: 1px solid rgba(255,255,255,0.12);
+        color: var(--muted);
         cursor: pointer;
-        transition: color 0.2s, border-color 0.2s;
-        min-height: 28px;
+        transition: color 0.2s, border-color 0.2s, background 0.2s;
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-      .mobile-lang-btn:hover { color: var(--muted); }
+      .mobile-lang-btn:hover { color: var(--platinum); }
       .mobile-lang-btn.active {
-        border-color: rgba(201,168,76,0.3);
+        border-color: rgba(201,168,76,0.6);
         color: var(--gold);
+        background: rgba(201,168,76,0.08);
+        border-bottom: 2px solid var(--gold);
       }
 
       .gate-footer { padding: 24px; }

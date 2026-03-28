@@ -1257,6 +1257,7 @@
     #detail-panel.open{display:flex}
     #detail-panel-inner{position:relative;width:90%;max-width:800px;max-height:90vh;overflow-y:auto;background:#0d1220;backdrop-filter:blur(30px);border-radius:6px;border-top:2px solid var(--accent);animation:panelUp 300ms ease-out forwards}
     @keyframes panelUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+    .drawer-handle{display:none}
     #panel-shimmer{height:1px;border-radius:6px 6px 0 0}
     #panel-body{padding:20px 24px 24px;position:relative}
     #panel-close{position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:4px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:10}
@@ -2346,11 +2347,13 @@
       .row-type-label{display:inline;flex-shrink:0;font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.04em;margin-right:4px;white-space:nowrap;order:2}
       /* Empty search state */
       #empty-state{flex-direction:column;gap:6px;padding:40px 20px;text-align:center}
-      #detail-panel-inner { width:calc(100vw - 32px);max-width:340px;height:auto;max-height:75vh;border-radius:20px;padding-bottom:0;overflow-y:auto;background:#0d0d14;border:1px solid rgba(201,168,76,0.2);box-shadow:0 24px 64px rgba(0,0,0,0.6);animation:panelUp 250ms ease-out forwards }
-      #detail-panel{background:rgba(6,6,10,0.75);backdrop-filter:blur(2px)}
-      #panel-body{padding:16px 18px 16px}
-      #panel-shimmer{border-radius:20px 20px 0 0}
-      #panel-close{position:sticky;top:0;float:right;margin:14px 14px 0 0;width:28px;height:28px;min-width:44px;min-height:44px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);z-index:10;display:flex;align-items:center;justify-content:center}
+      #detail-panel{background:rgba(6,6,10,0.7);backdrop-filter:blur(2px);align-items:flex-end;justify-content:center}
+      #detail-panel-inner{position:fixed;bottom:0;left:0;right:0;width:100%;max-width:100%;max-height:75dvh;height:auto;border-radius:16px 16px 0 0;padding-bottom:0;overflow:hidden;background:#0d1220;border:none;border-top:2px solid rgba(201,168,76,0.3);box-shadow:0 -12px 48px rgba(0,0,0,0.5);animation:drawerUp 300ms ease-out forwards}
+      @keyframes drawerUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+      #panel-body{padding:0 18px 24px;overflow-y:auto;max-height:calc(75dvh - 48px);-webkit-overflow-scrolling:touch}
+      #panel-shimmer{border-radius:16px 16px 0 0}
+      #panel-close{position:relative;display:flex;align-items:center;justify-content:center;width:44px;height:44px;min-width:44px;min-height:44px;margin:0 auto;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);z-index:10;font-size:22px;float:none}
+      .drawer-handle{display:block;width:36px;height:4px;background:rgba(255,255,255,0.15);border-radius:2px;margin:10px auto 6px}
       #panel-title .title-name{font-size:36px}
       #panel-title .title-abbr{font-size:9px;letter-spacing:0.2em}
       #panel-type{font-size:8px;padding:3px 8px;display:inline-block;background:rgba(45,212,192,0.08);border:1px solid rgba(45,212,192,0.2);border-radius:999px;color:var(--teal);margin-top:6px}
@@ -2362,14 +2365,15 @@
       .panel-note{font-size:11px;font-weight:300;padding:3px 0 3px 12px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
       #panel-meta{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);gap:4px}
       .meta-chip{font-size:10px;padding:4px 8px;border-radius:999px}
-      #panel-counties{margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
-      .county-row{padding:5px 8px;min-height:40px;gap:6px}
-      .county-name{font-size:12px}
-      .county-pill{font-size:9px;padding:1px 5px}
-      .counties-list{max-height:200px}
-      .county-row{flex-wrap:wrap}
+      #panel-counties{margin-top:12px;padding-top:12px;border-top:1px solid rgba(201,168,76,0.2)}
+      .county-row{padding:12px 10px;min-height:44px;gap:8px;flex-wrap:wrap}
+      .county-name{font-size:14px}
+      .county-pill{font-size:10px;padding:3px 7px;border-color:rgba(201,168,76,0.3);color:rgba(201,168,76,0.85);background:rgba(201,168,76,0.06)}
+      .county-pill.otc{border-color:rgba(0,230,118,0.35);color:#00e676;background:rgba(0,230,118,0.1)}
+      .county-pill.platform{border-color:rgba(0,210,200,0.3);color:#00d2c8;background:rgba(0,210,200,0.1)}
+      .counties-list{max-height:240px;overflow-y:auto;-webkit-overflow-scrolling:touch}
       .county-pill.timing{display:none}
-      .county-notes{white-space:normal;width:100%;padding-left:0}
+      .county-notes{white-space:normal;width:100%;padding-left:0;font-size:12px}
     }
 
     /* --- Tablet detail card (768-1024px) --- */
@@ -2768,6 +2772,7 @@
       <!-- DETAIL PANEL -->
       <div id="detail-panel" onclick="if(event.target===this)closeDetail()">
         <div id="detail-panel-inner">
+          <div class="drawer-handle"></div>
           <div id="panel-shimmer"></div>
           <div id="panel-alert"></div>
           <div id="panel-body">
@@ -2776,11 +2781,10 @@
             <div id="panel-type"></div>
             <div id="panel-rationale"></div>
             <div id="panel-stats"></div>
+            <div id="panel-counties"></div>
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
             <div id="panel-calc-lock"></div>
-
-            <div id="panel-counties"></div>
           </div>
         </div>
       </div>
