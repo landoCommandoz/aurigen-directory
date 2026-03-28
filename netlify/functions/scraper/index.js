@@ -1,4 +1,4 @@
-const { cleanupOldAuctions, getSupabase, getStateName, logScrapeRun } = require('./utils');
+const { cleanupOldAuctions, getSupabase, getStateName, logScrapeRun, cleanCounty } = require('./utils');
 const { scrapeRealAuction } = require('./realauction');
 const { scrapeGovEase } = require('./govease');
 const { scrapeSRI } = require('./sri');
@@ -46,7 +46,8 @@ async function generatePulseAlerts() {
     for (const a of upcoming) {
       const daysOut = Math.ceil((new Date(a.auction_date) - today) / 86400000);
       const stateName = a.state || getStateName(a.state_code) || a.state_code;
-      const alertText = stateName + ' — ' + a.county + ' auction in ' + daysOut + ' day' + (daysOut !== 1 ? 's' : '');
+      const county = cleanCounty(a.county);
+      const alertText = stateName + ' — ' + county + ' auction in ' + daysOut + ' day' + (daysOut !== 1 ? 's' : '');
 
       const payload = {
         alert_text: alertText,
@@ -113,7 +114,7 @@ async function generatePulseAlerts() {
       if (!groups[key]) {
         groups[key] = { state: a.state, state_code: a.state_code, platform: a.platform, counties: new Set(), earliest: a.auction_date, count: 0 };
       }
-      groups[key].counties.add(a.county);
+      groups[key].counties.add(cleanCounty(a.county));
       groups[key].count++;
       if (a.auction_date < groups[key].earliest) {
         groups[key].earliest = a.auction_date;

@@ -5058,25 +5058,25 @@ function fetchLiveAuctionData() {
         console.log('[live] Replaced AUCTION_ENTRIES with ' + entries.length + ' live records');
       }
 
-      // --- Merge live alerts into PULSE_ALERTS (dedup by alert_text) ---
+      // --- Replace PULSE_ALERTS: live first, then static (dedup by alert_text) ---
       if (liveAlerts.length > 0) {
         var TYPE_ICONS = { critical: '\u26A0\uFE0F', upcoming: '\uD83D\uDCC5', intel: '\uD83D\uDCA1', match: '\uD83C\uDFAF', info: '\uD83D\uDCC5', warning: '\u26A0\uFE0F' };
-        var existingTitles = {};
-        if (typeof PULSE_ALERTS !== 'undefined') {
-          PULSE_ALERTS.forEach(function(a) { existingTitles[(a.title || '').toLowerCase()] = true; });
-        }
+        var seenTexts = {};
+        var merged = [];
 
-        var addedCount = 0;
-        liveAlerts.forEach(function(a) {
+        // Live alerts go first
+        liveAlerts.forEach(function(a, i) {
           var text = a.alert_text || '';
-          if (!text || existingTitles[text.toLowerCase()]) return;
-          existingTitles[text.toLowerCase()] = true;
+          if (!text) return;
+          var key = text.toLowerCase();
+          if (seenTexts[key]) return;
+          seenTexts[key] = true;
 
           var alertType = a.type || 'upcoming';
           var loc = a.state_code || '';
 
-          PULSE_ALERTS.push({
-            id: 'live-' + (a.id || addedCount),
+          merged.push({
+            id: 'live-' + (a.id || i),
             type: alertType,
             icon: TYPE_ICONS[alertType] || TYPE_ICONS.info,
             title: text,
@@ -5088,10 +5088,20 @@ function fetchLiveAuctionData() {
             dnaStates: a.state_code ? [a.state_code] : [],
             date: a.auction_date || a.date || null
           });
-          addedCount++;
         });
 
-        console.log('[live] Merged ' + addedCount + ' live alerts (deduped by alert_text). Total: ' + PULSE_ALERTS.length);
+        // Append static alerts that don't duplicate live ones
+        if (typeof PULSE_ALERTS !== 'undefined') {
+          PULSE_ALERTS.forEach(function(a) {
+            var key = (a.title || '').toLowerCase();
+            if (!key || seenTexts[key]) return;
+            seenTexts[key] = true;
+            merged.push(a);
+          });
+        }
+
+        PULSE_ALERTS = merged;
+        console.log('[live] Pulse: ' + liveAlerts.length + ' live + static deduped = ' + PULSE_ALERTS.length + ' total');
       }
 
       // Re-render Pulse badge with updated count
