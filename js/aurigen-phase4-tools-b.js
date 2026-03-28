@@ -261,5 +261,7 @@ document.addEventListener('click', function(e) {
     dossierCopyText(btn.getAttribute('data-state') || '', btn.getAttribute('data-county') || '');
   } else if (action === 'precall-summary') {
     generatePreCallSummary();
+  } else if (action === 'da-lookup') {
+    daLookupProperty();
   }
 });

@@ -429,3 +429,84 @@
       .da-quick-btn{min-height:44px;flex:1;min-width:60px}
     }
 
+    /* === PROPERTY LOOKUP === */
+    .da-lookup-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .da-lookup-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .da-lookup-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .da-lookup-input {
+      flex: 1;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 13px;
+      padding: 10px 12px;
+      outline: none;
+      min-height: 44px;
+    }
+    .da-lookup-input:focus { border-color: var(--accent-mid); }
+    .da-lookup-state {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 12px;
+      padding: 10px 8px;
+      min-height: 44px;
+      width: 70px;
+    }
+    .da-lookup-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 16px;
+      background: transparent;
+      border: 1px solid var(--accent-mid);
+      color: var(--accent);
+      border-radius: var(--radius);
+      cursor: pointer;
+      min-height: 44px;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .da-lookup-btn:hover { background: var(--accent-dim); }
+    .da-lookup-results {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text2);
+    }
+    .da-lookup-result-item {
+      padding: 8px 10px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 6px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .da-lookup-result-item:hover { border-color: var(--accent-mid); }
+    .da-lookup-result-addr { color: var(--text); font-weight: 500; }
+    .da-lookup-result-meta { color: var(--text2); font-size: 11px; margin-top: 2px; }
+    @media (max-width: 600px) {
+      .da-lookup-row { flex-wrap: wrap; }
+      .da-lookup-input { min-width: 100%; }
+    }
+

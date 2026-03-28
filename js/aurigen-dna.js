@@ -239,6 +239,7 @@ switchTab = function(name) {
   if (name === 'tools' && !daInitialized) {
     daInitialized = true;
     daInit();
+    daInitLookup();
   }
   // Show/hide Sage archetype prompt
   if (name === 'advisor') {

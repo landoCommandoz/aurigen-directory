@@ -330,6 +330,93 @@ function daOpenInVersus() {
 }
 
 // ═══════════════════════════════════════════════════════════
+// PROPERTY LOOKUP (Live Wire)
+// ═══════════════════════════════════════════════════════════
+
+function daInitLookup() {
+  var card = document.getElementById('da-lookup-card');
+  if (!card || !IS_PAID) return;
+  card.style.display = '';
+  // Populate state select
+  var sel = document.getElementById('da-lookup-state');
+  if (!sel || sel.children.length > 1) return;
+  sel.innerHTML = '<option value="">ST</option>';
+  var states = window.STATES_V2 || [];
+  states.slice().sort(function(a, b) { return a.code.localeCompare(b.code); }).forEach(function(s) {
+    var opt = document.createElement('option');
+    opt.value = s.code;
+    opt.textContent = s.code;
+    sel.appendChild(opt);
+  });
+}
+
+function daLookupProperty() {
+  var input = document.getElementById('da-lookup-input');
+  var stateSel = document.getElementById('da-lookup-state');
+  var resultsEl = document.getElementById('da-lookup-results');
+  if (!input || !resultsEl) return;
+
+  var query = input.value.trim();
+  if (!query) { resultsEl.innerHTML = ''; return; }
+
+  var email = '';
+  try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
+  if (!email) { resultsEl.innerHTML = '<div style="color:var(--text2)">Sign in to search properties.</div>'; return; }
+
+  var stateCode = stateSel ? stateSel.value : '';
+  var url;
+  // If it looks like a parcel ID (alphanumeric, dashes), use parcel lookup
+  if (/^[\w\-]+$/.test(query) && query.length < 30) {
+    url = '/.netlify/functions/property-lookup?parcel_id=' + encodeURIComponent(query) + '&email=' + encodeURIComponent(email);
+  } else if (stateCode) {
+    url = '/.netlify/functions/property-lookup?address=' + encodeURIComponent(query) + '&state_code=' + encodeURIComponent(stateCode) + '&email=' + encodeURIComponent(email);
+  } else {
+    resultsEl.innerHTML = '<div style="color:var(--text2)">Select a state for address search.</div>';
+    return;
+  }
+
+  resultsEl.innerHTML = '<div style="color:var(--text2)">Searching\u2026</div>';
+
+  fetch(url)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var props = data.properties || (data.property ? [data.property] : []);
+      if (props.length === 0) {
+        resultsEl.innerHTML = '<div style="color:var(--text2)">No properties found.</div>';
+        return;
+      }
+      resultsEl.innerHTML = props.map(function(p) {
+        var bid = p.opening_bid ? '$' + Math.round(p.opening_bid).toLocaleString() : '\u2014';
+        var eq = p.equity_cushion_pct != null ? p.equity_cushion_pct + '%' : '\u2014';
+        return '<div class="da-lookup-result-item" onclick="daApplyLookup(\'' + escapeHtml(p.state_code || '') + '\',' + (p.opening_bid || 0) + ')">' +
+          '<div class="da-lookup-result-addr">' + escapeHtml(p.address || p.parcel_id || 'Unknown') + '</div>' +
+          '<div class="da-lookup-result-meta">' + escapeHtml(p.county || '') + ', ' + escapeHtml(p.state_code || '') + ' \u00b7 Bid: ' + bid + ' \u00b7 Equity: ' + eq + '</div>' +
+        '</div>';
+      }).join('');
+    })
+    .catch(function() {
+      resultsEl.innerHTML = '<div style="color:var(--text2)">Search failed. Please try again.</div>';
+    });
+}
+
+function daApplyLookup(stateCode, openingBid) {
+  if (stateCode) {
+    var selA = document.getElementById('da-select-a');
+    if (selA) { selA.value = stateCode; }
+  }
+  if (openingBid > 0) {
+    daAmount = Math.round(openingBid);
+    var input = document.getElementById('da-amount-input');
+    if (input) input.value = daAmount;
+    daHighlightQuickPick();
+  }
+  daCalculate();
+  // Clear results
+  var resultsEl = document.getElementById('da-lookup-results');
+  if (resultsEl) resultsEl.innerHTML = '<div style="color:var(--accent);font-size:11px">Applied: ' + escapeHtml(stateCode) + ' \u00b7 $' + Math.round(openingBid).toLocaleString() + '</div>';
+}
+
+// ═══════════════════════════════════════════════════════════
 // PHASE 3 — FUNNEL INTELLIGENCE
 // ═══════════════════════════════════════════════════════════
 
