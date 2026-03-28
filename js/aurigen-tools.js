@@ -385,7 +385,7 @@ function daLookupProperty() {
         resultsEl.innerHTML = '<div style="color:var(--text2)">No properties found.</div>';
         return;
       }
-      resultsEl.innerHTML = props.map(function(p) {
+      var html = props.map(function(p) {
         var bid = p.opening_bid ? '$' + Math.round(p.opening_bid).toLocaleString() : '\u2014';
         var eq = p.equity_cushion_pct != null ? p.equity_cushion_pct + '%' : '\u2014';
         return '<div class="da-lookup-result-item" onclick="daApplyLookup(\'' + escapeHtml(p.state_code || '') + '\',' + (p.opening_bid || 0) + ')">' +
@@ -393,6 +393,8 @@ function daLookupProperty() {
           '<div class="da-lookup-result-meta">' + escapeHtml(p.county || '') + ', ' + escapeHtml(p.state_code || '') + ' \u00b7 Bid: ' + bid + ' \u00b7 Equity: ' + eq + '</div>' +
         '</div>';
       }).join('');
+      html += '<div style="font-size:10px;color:var(--text2);margin-top:6px;line-height:1.4">Equity figures are based on assessed value and do not account for superior liens, encumbrances, or market conditions. Verify with county records before bidding.</div>';
+      resultsEl.innerHTML = html;
     })
     .catch(function() {
       resultsEl.innerHTML = '<div style="color:var(--text2)">Search failed. Please try again.</div>';
