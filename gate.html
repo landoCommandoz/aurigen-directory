@@ -7,17 +7,18 @@
   <meta name="description" content="Every statute. Every auction platform. Every county — researched and waiting. Get free access to the Aurigen County Intelligence Platform.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0a0e1a;
       --bg2: #0d1220;
-      --accent: #c9a84c;
-      --accent-bright: #e8c96a;
-      --teal: #2dd4c0;
-      --text: #f5f0e8;
-      --muted: #9898b0;
-      --border: rgba(255,255,255,0.07);
+      --gold: #c9a84c;
+      --platinum: #e8e8e8;
+      --text: #d0d0d8;
+      --muted: #6a6e82;
+      --dim: #3a3e52;
+      --border: rgba(255,255,255,0.06);
+      --border-light: rgba(255,255,255,0.1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,10 +27,11 @@
       min-height: 100%;
       background: var(--bg);
       color: var(--text);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 15px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* === ATMOSPHERE === */
@@ -39,588 +41,544 @@
       pointer-events: none;
       z-index: 0;
     }
-    .atmo-gold {
-      position: absolute;
-      width: 900px;
-      height: 900px;
-      top: -20%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, rgba(201,168,76,0.04) 35%, transparent 70%);
-    }
-    .atmo-teal {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      bottom: -10%;
-      left: -5%;
-      background: radial-gradient(circle, rgba(45,212,192,0.06) 0%, transparent 70%);
-    }
     .atmo-grid {
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 0%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 0%, transparent 100%);
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
     }
     .atmo-noise {
       position: absolute;
       inset: 0;
-      opacity: 0.03;
+      opacity: 0.025;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 128px 128px;
     }
+    .atmo-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 50%, transparent 0%, rgba(10,14,26,0.5) 100%);
+    }
 
-    /* === LAYOUT === */
-    .gate-page {
+    /* === PAGE === */
+    .page {
       position: relative;
       z-index: 1;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
+    }
+
+    /* === TOP BAR === */
+    .topbar {
+      display: flex;
       align-items: center;
-      padding: 48px 24px 60px;
-      min-height: 100vh;
+      justify-content: space-between;
+      padding: 28px 48px;
+      animation: fade-in 0.8s ease both;
+    }
+    .topbar-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .topbar-status {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+    .topbar-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+    .mobile-lang-toggle {
+      display: none;
     }
 
     /* === HERO === */
     .hero {
-      text-align: center;
-      max-width: 720px;
-      margin-bottom: 48px;
+      flex: 0 0 auto;
+      padding: 40px 48px 48px;
+      max-width: 900px;
+      animation: fade-in 1s ease 0.15s both;
     }
-    .hero-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 18px;
-      letter-spacing: 0.35em;
-      color: var(--accent);
-      margin-bottom: 6px;
-      animation: fade-up 0.5s ease-out both;
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.15;
+      color: var(--platinum);
+      letter-spacing: -0.01em;
     }
-    .hero-logo-sub {
+
+    /* === STATS === */
+    .stats {
+      display: flex;
+      gap: 48px;
+      padding: 0 48px 48px;
+      animation: fade-in 1s ease 0.35s both;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-top: 4px;
+    }
+
+    /* === DIVIDER === */
+    .rule {
+      height: 1px;
+      background: var(--border);
+      margin: 0 48px;
+      animation: fade-in 0.8s ease 0.5s both;
+    }
+
+    /* === BILINGUAL COLUMNS === */
+    .bilingual {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      flex: 1;
+      min-height: 0;
+      animation: fade-in 1s ease 0.55s both;
+    }
+    .bilingual-divider {
+      background: var(--border);
+    }
+
+    .lang-col {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .col-lang-label {
       font-family: 'Space Mono', monospace;
       font-size: 9px;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 36px;
-      animation: fade-up 0.5s ease-out 0.08s both;
-    }
-    .hero-headline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(48px, 8vw, 80px);
-      line-height: 0.95;
-      letter-spacing: 0.03em;
-      color: var(--text);
-      margin-bottom: 20px;
-      animation: fade-up 0.6s ease-out 0.15s both;
-    }
-    .hero-headline em {
-      font-style: normal;
-      color: var(--accent);
-      display: inline;
-    }
-    .hero-sub {
-      font-size: 17px;
-      font-weight: 400;
-      color: var(--muted);
-      line-height: 1.6;
-      max-width: 520px;
-      margin: 0 auto 32px;
-      animation: fade-up 0.6s ease-out 0.25s both;
+      color: var(--dim);
     }
 
-    /* === STATS === */
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      animation: fade-up 0.6s ease-out 0.35s both;
-    }
-    .hero-stat-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 36px;
-      color: var(--text);
-      line-height: 1;
-    }
-    .hero-stat-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* === TWO COLUMN — FORM + FEATURES === */
-    .gate-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      max-width: 1000px;
-      width: 100%;
-      align-items: start;
-      animation: fade-up 0.6s ease-out 0.45s both;
-    }
-
-    /* === LEFT — CTA + FORM === */
-    .gate-cta-col {
+    /* === CTA BLOCK === */
+    .cta-block {
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 16px;
     }
-
-    /* Big gold CTA */
-    .cta-gold {
-      position: relative;
+    .cta-primary {
       display: block;
       width: 100%;
-      padding: 22px 28px;
-      background: linear-gradient(135deg, var(--accent) 0%, #b8943e 100%);
-      color: #0a0e1a;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 24px;
-      letter-spacing: 0.06em;
+      padding: 16px 24px;
+      background: transparent;
+      border: 1px solid rgba(232,232,232,0.25);
+      color: var(--platinum);
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       text-align: center;
       text-decoration: none;
-      border: none;
-      border-radius: 10px;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 40px rgba(201,168,76,0.25), 0 0 80px rgba(201,168,76,0.1);
-      animation: glow-pulse 3s ease-in-out infinite;
-      line-height: 1.2;
+      transition: border-color 0.3s, background 0.3s, color 0.3s;
+      min-height: 52px;
+      line-height: 52px;
+      padding: 0 24px;
     }
-    .cta-gold:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 50px rgba(201,168,76,0.35), 0 0 100px rgba(201,168,76,0.15);
+    .cta-primary:hover {
+      border-color: rgba(232,232,232,0.5);
+      background: rgba(232,232,232,0.04);
     }
-    .cta-gold-sub {
-      display: block;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      color: rgba(10,14,26,0.6);
-      margin-top: 4px;
-    }
-    @keyframes glow-pulse {
-      0%, 100% { box-shadow: 0 0 40px rgba(201,168,76,0.25), 0 0 80px rgba(201,168,76,0.1); }
-      50% { box-shadow: 0 0 60px rgba(201,168,76,0.4), 0 0 120px rgba(201,168,76,0.18); }
-    }
-
-    .cta-social-proof {
+    .cta-price {
       font-family: 'Space Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.06em;
-      color: rgba(201,168,76,0.7);
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .cta-urgency {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.04em;
-      color: var(--teal);
-      text-align: center;
-      margin-top: 6px;
-      opacity: 0.8;
-    }
-
-    /* Divider */
-    .gate-divider {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin: 24px 0;
-    }
-    .gate-divider-line {
-      flex: 1;
-      height: 1px;
-      background: rgba(255,255,255,0.06);
-    }
-    .gate-divider-text {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    /* Email form */
-    .gate-form-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 10px;
-    }
-    .gate-input {
-      width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 15px;
-      padding: 14px 18px;
-      border-radius: 8px;
-      outline: none;
-      transition: border-color 0.2s;
-      text-align: center;
-    }
-    .gate-input::placeholder { color: rgba(255,255,255,0.2); }
-    .gate-input:focus { border-color: rgba(45,212,192,0.4); }
-    .gate-submit {
-      width: 100%;
-      background: var(--teal);
-      color: var(--bg);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: filter 0.2s, transform 0.2s;
-      min-height: 48px;
-    }
-    .gate-submit:hover { filter: brightness(1.1); transform: translateY(-1px); }
-
-    /* Disclaimer */
-    .gate-disclaimer {
-      font-size: 11px;
       color: var(--muted);
       text-align: center;
-      margin-top: 20px;
-      line-height: 1.7;
-      opacity: 0.7;
     }
-    .gate-disclaimer a { color: rgba(201,168,76,0.6); text-decoration: underline; }
 
-    /* Lang toggle */
-    .gate-lang-toggle {
+    .cta-free-row {
       display: flex;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 18px;
-    }
-    .gate-lang-btn {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      padding: 5px 14px;
-      min-height: 32px;
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 4px;
-      color: rgba(255,255,255,0.3);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .gate-lang-btn:hover { border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.5); }
-    .gate-lang-btn.active { border-color: rgba(201,168,76,0.4); color: var(--accent); }
-
-    /* === RIGHT — FEATURE COMPARISON === */
-    .gate-features-col {
-      display: flex;
-      flex-direction: column;
       gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      overflow: hidden;
+      margin-top: 4px;
     }
-
-    .features-section-label {
+    .cta-free-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      padding: 0 16px;
+      height: 44px;
+      outline: none;
+    }
+    .cta-free-input::placeholder { color: var(--dim); }
+    .cta-free-input:focus { background: rgba(255,255,255,0.02); }
+    .cta-free-btn {
+      flex-shrink: 0;
+      background: transparent;
+      border: none;
+      color: var(--muted);
       font-family: 'Space Mono', monospace;
       font-size: 9px;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 12px;
-      padding-left: 2px;
+      padding: 0 20px;
+      height: 44px;
+      cursor: pointer;
+      transition: color 0.2s;
+      white-space: nowrap;
     }
-    .features-section-label.free-label { color: var(--teal); }
-    .features-section-label.paid-label { color: var(--accent); }
+    .cta-free-btn:hover { color: var(--platinum); }
 
-    .features-section { margin-bottom: 24px; }
-
-    .feature-card {
-      background: rgba(255,255,255,0.025);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 13px 16px;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition: border-color 0.2s, background 0.2s;
+    /* === FEATURE TABLE === */
+    .features-table {
+      width: 100%;
+      border-collapse: collapse;
     }
-    .feature-card:hover {
-      border-color: rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-    }
-    .feature-card.is-paid { opacity: 0.55; }
-    .feature-card.is-paid:hover { opacity: 0.75; }
-
-    .feature-check {
-      flex-shrink: 0;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      line-height: 1;
-    }
-    .feature-check.free-check {
-      background: rgba(45,212,192,0.12);
-      color: var(--teal);
-    }
-    .feature-check.paid-check {
-      background: rgba(201,168,76,0.12);
-      color: var(--accent);
-    }
-    .feature-info { flex: 1; min-width: 0; }
-    .feature-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.3;
-    }
-    .feature-desc {
-      font-size: 11px;
-      color: var(--muted);
-      line-height: 1.4;
-      margin-top: 2px;
-    }
-    .feature-badge {
-      flex-shrink: 0;
+    .features-table th {
       font-family: 'Space Mono', monospace;
       font-size: 8px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      padding: 3px 8px;
-      border-radius: 4px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-align: left;
+      padding: 0 0 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-weight: 400;
+    }
+    .features-table th:last-child {
+      text-align: right;
+      padding-right: 0;
+    }
+    .features-table td {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .features-table td:first-child {
+      color: var(--text);
+      padding-right: 16px;
+      line-height: 1.4;
+    }
+    .features-table td:last-child {
+      text-align: right;
+      white-space: nowrap;
+      font-size: 9px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
-    .feature-badge.free-badge {
-      background: rgba(45,212,192,0.12);
-      color: var(--teal);
+    .tier-free { color: var(--muted); }
+    .tier-paid { color: var(--gold); }
+    .features-table tr:last-child td { border-bottom: none; }
+
+    /* === FOOTER === */
+    .gate-footer {
+      padding: 32px 48px;
+      border-top: 1px solid var(--border);
+      animation: fade-in 0.8s ease 0.7s both;
     }
-    .feature-badge.paid-badge {
-      background: rgba(201,168,76,0.12);
-      color: var(--accent);
+    .gate-footer-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: var(--dim);
+      line-height: 1.7;
+      max-width: 680px;
+    }
+    .gate-footer-text a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
     /* === ANIMATIONS === */
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(24px); }
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* === MOBILE === */
-    @media (max-width: 820px) {
-      .gate-columns {
+    @media (max-width: 860px) {
+      .topbar { padding: 20px 24px; }
+      .hero { padding: 28px 24px 36px; }
+      .hero-headline { font-size: clamp(30px, 8vw, 44px); }
+      .stats { padding: 0 24px 36px; gap: 28px; }
+      .stat-num { font-size: 22px; }
+      .rule { margin: 0 24px; }
+
+      .bilingual {
         grid-template-columns: 1fr;
-        gap: 40px;
-        max-width: 480px;
       }
-      .hero-headline { font-size: clamp(40px, 10vw, 64px); }
-      .hero-stats { gap: 24px; }
-      .hero-stat-num { font-size: 30px; }
-      .hero-sub { font-size: 15px; }
-      .gate-page { padding: 36px 20px 48px; }
+      .bilingual-divider { display: none; }
+      .lang-col { padding: 32px 24px; }
+      .lang-col.es-col { display: none; }
+      body.lang-es .lang-col.en-col { display: none; }
+      body.lang-es .lang-col.es-col { display: flex; }
+
+      .mobile-lang-toggle {
+        display: flex;
+        gap: 4px;
+      }
+      .mobile-lang-btn {
+        font-family: 'Space Mono', monospace;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+        padding: 4px 10px;
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--dim);
+        cursor: pointer;
+        transition: color 0.2s, border-color 0.2s;
+        min-height: 28px;
+      }
+      .mobile-lang-btn:hover { color: var(--muted); }
+      .mobile-lang-btn.active {
+        border-color: rgba(201,168,76,0.3);
+        color: var(--gold);
+      }
+
+      .gate-footer { padding: 24px; }
     }
     @media (max-width: 480px) {
-      .hero-headline { font-size: 42px; }
-      .hero-stats { gap: 18px; }
-      .cta-gold { font-size: 20px; padding: 18px 20px; }
+      .hero-headline { font-size: 28px; }
+      .stats { flex-wrap: wrap; gap: 20px; }
     }
   </style>
 </head>
 <body>
 
 <div class="atmo">
-  <div class="atmo-gold"></div>
-  <div class="atmo-teal"></div>
   <div class="atmo-grid"></div>
   <div class="atmo-noise"></div>
+  <div class="atmo-vignette"></div>
 </div>
 
-<div class="gate-page">
+<div class="page">
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-logo">AURIGEN</div>
-    <div class="hero-logo-sub" data-i18n="gate_logo_sub">County Intelligence Platform</div>
-
-    <h1 class="hero-headline" data-i18n-html="gate_headline">STOP RESEARCHING<br>TAX LIENS <em>THE HARD WAY</em></h1>
-    <p class="hero-sub" data-i18n="gate_sub">The county-by-county intelligence platform built for serious investors. Free access. No credit card.</p>
-
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">51</div>
-        <div class="hero-stat-label" data-i18n="gate_stat_states">States</div>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-logo">AURIGEN</div>
+    <div class="topbar-right">
+      <div class="mobile-lang-toggle">
+        <button class="mobile-lang-btn active" id="m-lang-en" onclick="setMobileLang('en')">EN</button>
+        <button class="mobile-lang-btn" id="m-lang-es" onclick="setMobileLang('es')">ES</button>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">3,200+</div>
-        <div class="hero-stat-label" data-i18n="gate_stat_counties">Counties</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">100%</div>
-        <div class="hero-stat-label" data-i18n="gate_stat_researched">Researched</div>
-      </div>
+      <span class="topbar-status">County Intelligence Platform</span>
+      <span class="topbar-dot"></span>
     </div>
   </div>
 
-  <!-- TWO COLUMNS -->
-  <div class="gate-columns">
+  <!-- HERO -->
+  <div class="hero">
+    <h1 class="hero-headline">The county-by-county intelligence platform built for serious investors.</h1>
+  </div>
 
-    <!-- LEFT — CTA + FORM -->
-    <div class="gate-cta-col">
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">51</div>
+      <div class="stat-label">States</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3,200+</div>
+      <div class="stat-label">Counties</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Researched</div>
+    </div>
+  </div>
 
-      <!-- Gold CTA — dominant element -->
-      <a class="cta-gold" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" data-i18n-html="gate_cta_gold">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="cta-gold-sub">Instant access to all 8 professional investor tools</span></a>
-      <div class="cta-social-proof" data-i18n="gate_social_proof">Comparable tools charge $200+/month. You pay once.</div>
-      <div class="cta-urgency" data-i18n="gate_urgency">Launch pricing &mdash; $197 locks in lifetime access before rates increase</div>
+  <div class="rule"></div>
 
-      <div class="gate-divider">
-        <div class="gate-divider-line"></div>
-        <span class="gate-divider-text" data-i18n="gate_or">or start free</span>
-        <div class="gate-divider-line"></div>
+  <!-- BILINGUAL COLUMNS -->
+  <div class="bilingual">
+
+    <!-- ENGLISH -->
+    <div class="lang-col en-col">
+      <div class="col-lang-label">English</div>
+
+      <div class="cta-block">
+        <a class="cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02">Unlock Full Access &mdash; $197</a>
+        <div class="cta-price">One-time payment. Comparable tools charge $200+/month.</div>
+        <form name="aurigen-leads" method="POST" data-netlify="true" onsubmit="handleSubmit(event)" class="cta-free-row">
+          <input type="hidden" name="form-name" value="aurigen-leads">
+          <input class="cta-free-input" type="email" name="email" required placeholder="email@address.com" autocomplete="email">
+          <button class="cta-free-btn" type="submit">Free Access &rarr;</button>
+        </form>
       </div>
 
-      <div class="gate-form-label" data-i18n="gate_form_label">Enter your email to access the free tier</div>
-      <form name="aurigen-leads" method="POST" data-netlify="true" onsubmit="handleSubmit(event)">
-        <input type="hidden" name="form-name" value="aurigen-leads">
-        <input class="gate-input" type="email" name="email" required placeholder="Enter your email address" autocomplete="email">
-        <button class="gate-submit" type="submit" data-i18n="gate_submit">GET FREE ACCESS &rarr;</button>
-      </form>
-
-      <div class="gate-disclaimer" data-i18n-html="gate_disclaimer">Free tier includes the map and state-level data. Full platform access is a one-time purchase of $197. This platform is for educational and informational purposes only. It does not constitute investment, legal, or financial advice. <a href="/legal/">Legal</a></div>
-
-      <div class="gate-lang-toggle">
-        <button class="gate-lang-btn active" id="gate-lang-en" onclick="gateApplyLang('en')">EN</button>
-        <button class="gate-lang-btn" id="gate-lang-es" onclick="gateApplyLang('es')">ES</button>
-      </div>
+      <table class="features-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Access</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>51-State Intelligence Map</td>
+            <td class="tier-free">Free</td>
+          </tr>
+          <tr>
+            <td>State-Level Data</td>
+            <td class="tier-free">Free</td>
+          </tr>
+          <tr>
+            <td>Statute Citations</td>
+            <td class="tier-free">Free</td>
+          </tr>
+          <tr>
+            <td>3,200+ County Directory</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>Deal Analyzer</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>DNA Profiler + Sage AI</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>Versus Comparison</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>Auctions Calendar</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>Scout Checklist</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>Live Auction Alerts</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>Pulse Alerts</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- RIGHT — FEATURE COMPARISON -->
-    <div class="gate-features-col">
+    <div class="bilingual-divider"></div>
 
-      <!-- FREE -->
-      <div class="features-section">
-        <div class="features-section-label free-label" data-i18n="gate_free_label">INCLUDED FREE</div>
+    <!-- SPANISH -->
+    <div class="lang-col es-col">
+      <div class="col-lang-label">Espa&ntilde;ol</div>
 
-        <div class="feature-card">
-          <div class="feature-check free-check">&#10003;</div>
-          <div class="feature-info">
-            <div class="feature-name" data-i18n="gate_f1_name">51-State Intelligence Map</div>
-            <div class="feature-desc" data-i18n="gate_f1_desc">Interest rates, redemption periods, bid methods, and statute links for every state.</div>
-          </div>
-          <span class="feature-badge free-badge" data-i18n="gate_badge_free">Free</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-check free-check">&#10003;</div>
-          <div class="feature-info">
-            <div class="feature-name" data-i18n="gate_f2_name">State-Level Data</div>
-            <div class="feature-desc" data-i18n="gate_f2_desc">Lien/deed classification, interest rates, redemption periods, and scoring for all 51 jurisdictions.</div>
-          </div>
-          <span class="feature-badge free-badge" data-i18n="gate_badge_free2">Free</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-check free-check">&#10003;</div>
-          <div class="feature-info">
-            <div class="feature-name" data-i18n="gate_f3_name">Statute Citations</div>
-            <div class="feature-desc" data-i18n="gate_f3_desc">Direct links to official government statutes for every state.</div>
-          </div>
-          <span class="feature-badge free-badge" data-i18n="gate_badge_free3">Free</span>
-        </div>
+      <div class="cta-block">
+        <a class="cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02">Desbloquear Acceso Completo &mdash; $197</a>
+        <div class="cta-price">Pago &uacute;nico. Herramientas similares cobran $200+/mes.</div>
+        <form name="aurigen-leads-es" method="POST" data-netlify="true" onsubmit="handleSubmit(event)" class="cta-free-row">
+          <input type="hidden" name="form-name" value="aurigen-leads-es">
+          <input class="cta-free-input" type="email" name="email" required placeholder="correo@ejemplo.com" autocomplete="email">
+          <button class="cta-free-btn" type="submit">Acceso Gratis &rarr;</button>
+        </form>
       </div>
 
-      <!-- PAID -->
-      <div class="features-section">
-        <div class="features-section-label paid-label" data-i18n="gate_paid_label">UNLOCK WITH FULL ACCESS</div>
-
-        <div class="feature-card is-paid">
-          <div class="feature-check paid-check">&#10003;</div>
-          <div class="feature-info">
-            <div class="feature-name" data-i18n="gate_p1_name">3,200+ County Directory</div>
-            <div class="feature-desc" data-i18n="gate_p1_desc">Every county. Platform links, OTC availability, auction dates.</div>
-          </div>
-          <span class="feature-badge paid-badge">$197</span>
-        </div>
-
-        <div class="feature-card is-paid">
-          <div class="feature-check paid-check">&#10003;</div>
-          <div class="feature-info">
-            <div class="feature-name" data-i18n="gate_p2_name">Deal Analyzer</div>
-            <div class="feature-desc" data-i18n="gate_p2_desc">Run real numbers on any deal. Projected ROI, margin of safety, go/no-go signal.</div>
-          </div>
-          <span class="feature-badge paid-badge">$197</span>
-        </div>
-
-        <div class="feature-card is-paid">
-          <div class="feature-check paid-check">&#10003;</div>
-          <div class="feature-info">
-            <div class="feature-name" data-i18n="gate_p3_name">DNA Profiler + Sage AI</div>
-            <div class="feature-desc" data-i18n="gate_p3_desc">Your investor archetype and an AI advisor trained on tax lien statute.</div>
-          </div>
-          <span class="feature-badge paid-badge">$197</span>
-        </div>
-
-        <div class="feature-card is-paid">
-          <div class="feature-check paid-check">&#10003;</div>
-          <div class="feature-info">
-            <div class="feature-name" data-i18n="gate_p4_name">Versus Comparison</div>
-            <div class="feature-desc" data-i18n="gate_p4_desc">Compare any two states side by side &mdash; yields, redemptions, bid methods, platforms.</div>
-          </div>
-          <span class="feature-badge paid-badge">$197</span>
-        </div>
-
-        <div class="feature-card is-paid">
-          <div class="feature-check paid-check">&#10003;</div>
-          <div class="feature-info">
-            <div class="feature-name" data-i18n="gate_p5_name">Auctions Calendar</div>
-            <div class="feature-desc" data-i18n="gate_p5_desc">Live and upcoming auctions across all 51 states. Filter by state and date.</div>
-          </div>
-          <span class="feature-badge paid-badge">$197</span>
-        </div>
-
-        <div class="feature-card is-paid">
-          <div class="feature-check paid-check">&#10003;</div>
-          <div class="feature-info">
-            <div class="feature-name" data-i18n="gate_p6_name">Scout Checklist</div>
-            <div class="feature-desc" data-i18n="gate_p6_desc">10-step due diligence checklist for any property before you bid.</div>
-          </div>
-          <span class="feature-badge paid-badge">$197</span>
-        </div>
-
-        <div class="feature-card is-paid">
-          <div class="feature-check paid-check">&#10003;</div>
-          <div class="feature-info">
-            <div class="feature-name" data-i18n="gate_p7_name">Live Auction Alerts</div>
-            <div class="feature-desc" data-i18n="gate_p7_desc">Law changes and upcoming auctions delivered to your dashboard.</div>
-          </div>
-          <span class="feature-badge paid-badge">$197</span>
-        </div>
-
-        <div class="feature-card is-paid">
-          <div class="feature-check paid-check">&#10003;</div>
-          <div class="feature-info">
-            <div class="feature-name" data-i18n="gate_p8_name">Pulse Alerts</div>
-            <div class="feature-desc" data-i18n="gate_p8_desc">Real-time notifications when new auctions drop in your watched states.</div>
-          </div>
-          <span class="feature-badge paid-badge">$197</span>
-        </div>
-      </div>
-
+      <table class="features-table">
+        <thead>
+          <tr>
+            <th>Herramienta</th>
+            <th>Acceso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mapa de Inteligencia de 51 Estados</td>
+            <td class="tier-free">Gratis</td>
+          </tr>
+          <tr>
+            <td>Datos a Nivel Estatal</td>
+            <td class="tier-free">Gratis</td>
+          </tr>
+          <tr>
+            <td>Citas de Estatutos</td>
+            <td class="tier-free">Gratis</td>
+          </tr>
+          <tr>
+            <td>Directorio de 3,200+ Condados</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>Analizador de Negocios</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>Perfilador DNA + Sage IA</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>Comparaci&oacute;n Versus</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>Calendario de Subastas</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>Lista Scout</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>Alertas de Subastas</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+          <tr>
+            <td>Alertas Pulse</td>
+            <td class="tier-paid">$197</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="gate-footer">
+    <div class="gate-footer-text">Free tier includes the map and state-level data. Full platform access is a one-time purchase of $197. This platform is for educational and informational purposes only. It does not constitute investment, legal, or financial advice. <a href="/legal/">Legal</a> &mdash; El acceso gratuito incluye el mapa y datos estatales. El acceso completo es un pago &uacute;nico de $197. Esta plataforma es solo para fines educativos e informativos. No constituye asesoramiento de inversi&oacute;n, legal o financiero. <a href="/legal/">Legal</a></div>
   </div>
 
 </div>
@@ -662,11 +620,10 @@ function handleSubmit(e) {
     body: new URLSearchParams(new FormData(e.target)).toString()
   }).catch(function() {});
 
-  // Redirect regardless of fetch result
   window.location.href = '/warroom-billion.html';
 }
 
-// Tab sync — if paid in another tab, redirect to platform
+// Tab sync
 try {
   window.addEventListener('storage', function(e) {
     if (e.key === 'aurigen_access' && e.newValue === 'paid') {
@@ -675,117 +632,29 @@ try {
   });
 } catch(e) {}
 
-// === I18N ===
-var GATE_I18N = {
-  en: {
-    gate_logo_sub:'County Intelligence Platform',
-    gate_headline:'STOP RESEARCHING<br>TAX LIENS <em>THE HARD WAY</em>',
-    gate_sub:'The county-by-county intelligence platform built for serious investors. Free access. No credit card.',
-    gate_stat_states:'States',
-    gate_stat_counties:'Counties',
-    gate_stat_researched:'Researched',
-    gate_cta_gold:'UNLOCK FULL ACCESS \u2014 $197 ONE TIME<span class="cta-gold-sub">Instant access to all 8 professional investor tools</span>',
-    gate_social_proof:'Comparable tools charge $200+/month. You pay once.',
-    gate_urgency:'Launch pricing \u2014 $197 locks in lifetime access before rates increase',
-    gate_or:'or start free',
-    gate_form_label:'Enter your email to access the free tier',
-    gate_submit:'GET FREE ACCESS \u2192',
-    gate_disclaimer:'Free tier includes the map and state-level data. Full platform access is a one-time purchase of $197. This platform is for educational and informational purposes only. It does not constitute investment, legal, or financial advice. <a href="/legal/">Legal</a>',
-    gate_free_label:'INCLUDED FREE',
-    gate_paid_label:'UNLOCK WITH FULL ACCESS',
-    gate_badge_free:'Free', gate_badge_free2:'Free', gate_badge_free3:'Free',
-    gate_f1_name:'51-State Intelligence Map',
-    gate_f1_desc:'Interest rates, redemption periods, bid methods, and statute links for every state.',
-    gate_f2_name:'State-Level Data',
-    gate_f2_desc:'Lien/deed classification, interest rates, redemption periods, and scoring for all 51 jurisdictions.',
-    gate_f3_name:'Statute Citations',
-    gate_f3_desc:'Direct links to official government statutes for every state.',
-    gate_p1_name:'3,200+ County Directory',
-    gate_p1_desc:'Every county. Platform links, OTC availability, auction dates.',
-    gate_p2_name:'Deal Analyzer',
-    gate_p2_desc:'Run real numbers on any deal. Projected ROI, margin of safety, go/no-go signal.',
-    gate_p3_name:'DNA Profiler + Sage AI',
-    gate_p3_desc:'Your investor archetype and an AI advisor trained on tax lien statute.',
-    gate_p4_name:'Versus Comparison',
-    gate_p4_desc:'Compare any two states side by side \u2014 yields, redemptions, bid methods, platforms.',
-    gate_p5_name:'Auctions Calendar',
-    gate_p5_desc:'Live and upcoming auctions across all 51 states. Filter by state and date.',
-    gate_p6_name:'Scout Checklist',
-    gate_p6_desc:'10-step due diligence checklist for any property before you bid.',
-    gate_p7_name:'Live Auction Alerts',
-    gate_p7_desc:'Law changes and upcoming auctions delivered to your dashboard.',
-    gate_p8_name:'Pulse Alerts',
-    gate_p8_desc:'Real-time notifications when new auctions drop in your watched states.'
-  },
-  es: {
-    gate_logo_sub:'Plataforma de Inteligencia por Condado',
-    gate_headline:'DEJA DE INVESTIGAR<br>GRAV\u00c1MENES FISCALES <em>A LA MANERA DIF\u00cdCIL</em>',
-    gate_sub:'La plataforma de inteligencia condado por condado para inversores serios. Acceso gratuito. Sin tarjeta.',
-    gate_stat_states:'Estados',
-    gate_stat_counties:'Condados',
-    gate_stat_researched:'Investigado',
-    gate_cta_gold:'DESBLOQUEAR ACCESO COMPLETO \u2014 $197 \u00daNICO PAGO<span class="cta-gold-sub">Acceso instant\u00e1neo a las 8 herramientas profesionales</span>',
-    gate_social_proof:'Herramientas similares cobran $200+/mes. T\u00fa pagas una vez.',
-    gate_urgency:'Precio de lanzamiento \u2014 $197 asegura acceso de por vida antes del aumento',
-    gate_or:'o empieza gratis',
-    gate_form_label:'Ingresa tu email para acceder al nivel gratuito',
-    gate_submit:'OBTENER ACCESO GRATUITO \u2192',
-    gate_disclaimer:'El acceso gratuito incluye el mapa y datos estatales. El acceso completo es un pago \u00fanico de $197. Esta plataforma es solo para fines educativos e informativos. No constituye asesoramiento de inversi\u00f3n, legal o financiero. <a href="/legal/">Legal</a>',
-    gate_free_label:'INCLUIDO GRATIS',
-    gate_paid_label:'DESBLOQUEAR CON ACCESO COMPLETO',
-    gate_badge_free:'Gratis', gate_badge_free2:'Gratis', gate_badge_free3:'Gratis',
-    gate_f1_name:'Mapa de Inteligencia de 51 Estados',
-    gate_f1_desc:'Tasas de inter\u00e9s, periodos de redenci\u00f3n, m\u00e9todos de subasta y enlaces a estatutos.',
-    gate_f2_name:'Datos a Nivel Estatal',
-    gate_f2_desc:'Clasificaci\u00f3n grav\u00e1menes/escrituras, tasas de inter\u00e9s, periodos de redenci\u00f3n y puntuaci\u00f3n.',
-    gate_f3_name:'Citas de Estatutos',
-    gate_f3_desc:'Enlaces directos a estatutos gubernamentales oficiales para cada estado.',
-    gate_p1_name:'Directorio de 3,200+ Condados',
-    gate_p1_desc:'Cada condado. Enlaces, disponibilidad OTC, fechas de subasta.',
-    gate_p2_name:'Analizador de Negocios',
-    gate_p2_desc:'Calcula n\u00fameros reales. ROI proyectado, margen de seguridad, se\u00f1al de acci\u00f3n.',
-    gate_p3_name:'Perfilador DNA + Sage IA',
-    gate_p3_desc:'Tu arquetipo de inversor y un asesor IA basado en estatutos fiscales.',
-    gate_p4_name:'Comparaci\u00f3n Versus',
-    gate_p4_desc:'Compara dos estados lado a lado \u2014 rendimientos, redenciones, m\u00e9todos, plataformas.',
-    gate_p5_name:'Calendario de Subastas',
-    gate_p5_desc:'Subastas en vivo y pr\u00f3ximas en los 51 estados. Filtra por estado y fecha.',
-    gate_p6_name:'Lista Scout',
-    gate_p6_desc:'Lista de due diligence de 10 pasos para cualquier propiedad antes de ofertar.',
-    gate_p7_name:'Alertas de Subastas',
-    gate_p7_desc:'Cambios legales y subastas pr\u00f3ximas en tu panel.',
-    gate_p8_name:'Alertas Pulse',
-    gate_p8_desc:'Notificaciones en tiempo real cuando aparecen subastas en tus estados.'
+// Mobile language toggle
+function setMobileLang(lang) {
+  var enBtn = document.getElementById('m-lang-en');
+  var esBtn = document.getElementById('m-lang-es');
+  if (lang === 'es') {
+    document.body.classList.add('lang-es');
+    if (enBtn) enBtn.classList.remove('active');
+    if (esBtn) esBtn.classList.add('active');
+    document.documentElement.lang = 'es';
+  } else {
+    document.body.classList.remove('lang-es');
+    if (enBtn) enBtn.classList.add('active');
+    if (esBtn) esBtn.classList.remove('active');
+    document.documentElement.lang = 'en';
   }
-};
-
-function gateApplyLang(lang) {
-  lang = lang || 'en';
   try { localStorage.setItem('aurigen_language', lang); } catch(e) {}
-  var strings = GATE_I18N[lang] || GATE_I18N.en;
-  document.querySelectorAll('[data-i18n]').forEach(function(el) {
-    var key = el.getAttribute('data-i18n');
-    if (strings[key]) {
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = strings[key];
-      else el.textContent = strings[key];
-    }
-  });
-  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
-    var key = el.getAttribute('data-i18n-html');
-    if (strings[key]) el.innerHTML = strings[key];
-  });
-  var enBtn = document.getElementById('gate-lang-en');
-  var esBtn = document.getElementById('gate-lang-es');
-  if (enBtn) enBtn.classList.toggle('active', lang === 'en');
-  if (esBtn) esBtn.classList.toggle('active', lang === 'es');
-  document.documentElement.lang = lang;
 }
 
-// Apply saved language on load
+// Restore saved language on load
 (function() {
   try {
     var saved = localStorage.getItem('aurigen_language');
-    if (saved === 'es') gateApplyLang('es');
+    if (saved === 'es') setMobileLang('es');
   } catch(e) {}
 })();
 </script>
