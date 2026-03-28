@@ -2794,6 +2794,56 @@
     .redemption-high{color:#c9a84c}
     .redemption-mid{color:#2DD4C0}
     .redemption-low{color:#c97a2d}
+    /* 5A: Save State bookmark button */
+    .save-state-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:transparent;border:1px solid var(--border);border-radius:6px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;color:var(--text2);cursor:pointer;transition:all 0.2s;margin-top:10px}
+    .save-state-btn:hover{border-color:var(--accent);color:var(--accent)}
+    .save-state-btn.saved{border-color:rgba(201,168,76,0.5);color:var(--accent);background:rgba(201,168,76,0.08)}
+    .save-state-btn .bookmark-icon{font-size:14px;line-height:1}
+    /* 5A: Pulse saved-states onboarding */
+    .pulse-onboard{padding:20px 16px;text-align:center;color:var(--text2);font-size:12px;line-height:1.6}
+    .pulse-onboard-icon{font-size:28px;margin-bottom:8px;display:block}
+    .pulse-onboard a{color:var(--accent);cursor:pointer;text-decoration:none}
+    .pulse-onboard a:hover{text-decoration:underline}
+    /* 5A: Pulse alert type mapping */
+    .pulse-alert-badge.auction{background:rgba(45,212,192,0.15);color:var(--teal)}
+    .pulse-alert-badge.deadline{background:rgba(201,168,76,0.15);color:var(--accent)}
+    .pulse-alert-badge.rate_change,.pulse-alert-badge.rate-change{background:rgba(255,107,53,0.15);color:#FF6B35}
+    .pulse-alert-badge.general{background:rgba(152,152,176,0.15);color:#9898b0}
+    /* 5A: Pulse empty week message */
+    .pulse-empty-week{padding:20px 16px;text-align:center;color:var(--text2);font-size:12px;line-height:1.6}
+    /* 5B: Account admin section */
+    .acct-admin-badge{display:inline-block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;padding:3px 10px;border-radius:4px;background:rgba(191,95,255,0.12);color:#BF5FFF;border:1px solid rgba(191,95,255,0.2);margin-bottom:8px}
+    .acct-admin-stats{display:flex;gap:16px;margin-top:12px}
+    .acct-admin-stat{flex:1;padding:16px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;text-align:center}
+    .acct-admin-stat-num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--accent);line-height:1}
+    .acct-admin-stat-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--text2);margin-top:4px}
+    .acct-paid-badge{display:inline-block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;padding:3px 10px;border-radius:4px;background:rgba(201,168,76,0.12);color:var(--accent);border:1px solid rgba(201,168,76,0.2);margin-bottom:8px}
+    .acct-quick-links{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+    .acct-quick-link{display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:6px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:var(--text);text-decoration:none;cursor:pointer;transition:border-color 0.2s}
+    .acct-quick-link:hover{border-color:var(--accent)}
+    .acct-quick-link-icon{font-size:16px;flex-shrink:0}
+    .acct-support-link{font-family:'Space Mono',monospace;font-size:10px;color:var(--text2);margin-top:12px}
+    .acct-support-link a{color:var(--accent);text-decoration:none}
+    .acct-access-date{font-family:'Space Mono',monospace;font-size:10px;color:var(--text2);margin-top:4px}
+    /* 5C: Journey Bar */
+    #journey-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;background:var(--bg);border-top:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;justify-content:center;gap:0;transition:transform 0.3s}
+    #journey-bar.hidden{transform:translateY(100%)}
+    .journey-track{display:flex;align-items:center;gap:0;max-width:600px;width:100%}
+    .journey-dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);background:transparent;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--text2);flex-shrink:0;transition:all 0.3s;position:relative}
+    .journey-dot.complete{border-color:var(--accent);background:rgba(201,168,76,0.15);color:var(--accent)}
+    .journey-dot.complete::after{content:'\2713';font-size:10px;font-weight:700}
+    .journey-line{flex:1;height:2px;background:var(--border);min-width:12px;transition:background 0.3s}
+    .journey-line.complete{background:var(--accent)}
+    .journey-label{position:absolute;top:24px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:7px;letter-spacing:0.06em;color:var(--text2);white-space:nowrap;pointer-events:none}
+    .journey-dot.complete .journey-label{color:var(--accent)}
+    @media(max-width:600px){
+      #journey-bar{padding:6px 8px}
+      .journey-dot{width:16px;height:16px;font-size:8px}
+      .journey-label{font-size:6px;top:20px}
+    }
+    @media(max-width:375px){
+      .journey-label{display:none}
+    }
     .propfeed-lock-dna{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(232,228,220,0.4);margin-top:12px;text-decoration:none;transition:color 0.2s}
     .propfeed-lock-dna:hover{color:rgba(232,228,220,0.6)}
 
@@ -2997,6 +3047,7 @@
             <div id="panel-notes"></div>
             <div id="panel-meta"></div>
             <div id="panel-calc-lock"></div>
+            <div id="panel-save-state"></div>
             <div id="panel-properties"></div>
           </div>
         </div>
@@ -3419,8 +3470,10 @@
     </div>
 
     <div class="tab-panel" id="panel-account">
-      <div class="account-card">
+      <div class="account-card" id="acct-card-inner">
         <div class="account-tier-badge" id="acct-tier-badge" data-i18n="acct_tier_free">FREE ACCESS</div>
+        <div id="acct-admin-section" style="display:none"></div>
+        <div id="acct-paid-section" style="display:none"></div>
         <div class="account-row">
           <span class="account-row-label" data-i18n="acct_email">Email</span>
           <span class="account-row-value" id="acct-email">&mdash;</span>
@@ -3433,7 +3486,7 @@
           <span class="account-row-label" data-i18n="acct_map">Map Access</span>
           <span class="account-row-value" id="acct-states" data-i18n="acct_map_val">All 51 States</span>
         </div>
-        <div class="account-row">
+        <div class="account-row" id="acct-locked-row">
           <span class="account-row-label" data-i18n="acct_locked">Locked Features</span>
           <span class="account-row-value" id="acct-locked" data-i18n="acct_locked_val">Counties, DNA, Versus, Analyzer, Sage, Scout, Auctions, Pulse</span>
         </div>
@@ -3486,12 +3539,27 @@
         <div class="language-toggle">
           <div class="lang-label" data-i18n="lang_label">LANGUAGE / IDIOMA</div>
           <div class="lang-buttons">
-            <button class="lang-btn active" id="lang-en" onclick="applyLanguage('en')">🇺🇸 English</button>
-            <button class="lang-btn" id="lang-es" onclick="applyLanguage('es')">🇲🇽 Español</button>
+            <button class="lang-btn active" id="lang-en" onclick="applyLanguage('en')">&#x1F1FA;&#x1F1F8; English</button>
+            <button class="lang-btn" id="lang-es" onclick="applyLanguage('es')">&#x1F1F2;&#x1F1FD; Espa&#241;ol</button>
           </div>
         </div>
         <a class="account-upgrade-cta" id="acct-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer"><span data-i18n="acct_upgrade">UNLOCK FULL ACCESS &mdash; $197 ONE TIME</span><span class="acct-upgrade-sub" data-i18n="acct_upgrade_sub">Comparable tools charge $200+/month. You pay once.</span></a>
+        <div class="acct-support-link" id="acct-support" style="display:none">Questions? <a href="mailto:landon@theaurigen.com">landon@theaurigen.com</a></div>
       </div>
+    </div>
+  </div>
+  <!-- 5C: Journey Bar -->
+  <div id="journey-bar">
+    <div class="journey-track">
+      <div class="journey-dot" id="jb-dot-map"><span class="journey-label">MAP</span></div>
+      <div class="journey-line" id="jb-line-1"></div>
+      <div class="journey-dot" id="jb-dot-county"><span class="journey-label">COUNTY</span></div>
+      <div class="journey-line" id="jb-line-2"></div>
+      <div class="journey-dot" id="jb-dot-pulse"><span class="journey-label">PULSE</span></div>
+      <div class="journey-line" id="jb-line-3"></div>
+      <div class="journey-dot" id="jb-dot-quiz"><span class="journey-label">QUIZ</span></div>
+      <div class="journey-line" id="jb-line-4"></div>
+      <div class="journey-dot" id="jb-dot-access"><span class="journey-label">ACCESS</span></div>
     </div>
   </div>
   <footer id="disclaimer-footer">
@@ -5229,7 +5297,19 @@ function showDetail(s) {
 
   var panelCtaEl = document.getElementById('panel-cta');
   if (panelCtaEl) panelCtaEl.style.cssText="width:100%;margin-top:12px;padding:12px;border-radius:3px;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.2em;background:"+color+"28;border:1px solid "+color+"88;color:"+color+";box-shadow:0 4px 20px "+glw;
+
+  // Save State button
+  var saveSlot = document.getElementById('panel-save-state');
+  if (saveSlot) {
+    var isSaved = getSavedStates().indexOf(c) >= 0;
+    saveSlot.innerHTML = '<button class="save-state-btn' + (isSaved ? ' saved' : '') + '" onclick="toggleSaveState(\'' + escapeHtml(c) + '\')">' +
+      '<span class="bookmark-icon">' + (isSaved ? '\u2605' : '\u2606') + '</span>' +
+      '<span>' + (isSaved ? 'STATE SAVED' : 'SAVE THIS STATE') + '</span>' +
+    '</button>';
+  }
+
   panel.classList.add('open');
+  trackMapExploration(c);
 }
 
 function closeDetail() {
@@ -5251,6 +5331,9 @@ function loadPropertyFeed(stateCode, countyName) {
   _propFeedState = stateCode;
   _propFeedCounty = countyName;
   _propFeedFilters = { type: 'all', status: 'all', absentee: false, equity: 0 };
+  // Track journey milestone
+  saveJourneyState({ countyOpened: true });
+  updateJourneyBar();
   var container = document.getElementById('panel-properties');
   if (!container) return;
 
@@ -6054,6 +6137,12 @@ function bootApp() {
     initAuctionsTab();
     initAuctionsInventory();
   });
+
+  // Init journey bar + map bookmarks after map loads
+  setTimeout(function() {
+    updateJourneyBar();
+    updateMapBookmarks();
+  }, 800);
 }
 
 // === TOOL FUNCTIONS ===
@@ -6860,6 +6949,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // === ACCOUNT FUNCTIONS ===
+var ADMIN_EMAILS = ['landon@theaurigen.com'];
+
 function initAccount() {
   var badge = document.getElementById('acct-tier-badge');
   var email = document.getElementById('acct-email');
@@ -6870,21 +6961,51 @@ function initAccount() {
   var lockCompare = document.getElementById('lock-compare');
   var vsTerminal = document.getElementById('vs-terminal-paid');
   var vsLocked = document.getElementById('vs-locked-free');
-
   var valueSection = document.getElementById('acct-value-section');
+  var adminSection = document.getElementById('acct-admin-section');
+  var paidSection = document.getElementById('acct-paid-section');
+  var lockedRow = document.getElementById('acct-locked-row');
+  var supportLink = document.getElementById('acct-support');
+  var userEmail = APP.email || '';
+  var isAdmin = userEmail && ADMIN_EMAILS.indexOf(userEmail.toLowerCase()) >= 0;
+
+  email.textContent = userEmail || '\u2014';
+
   if (APP.tier >= 2) {
     badge.textContent = 'FULL ACCESS';
     badge.classList.add('paid');
     level.textContent = 'Full Access';
     states.textContent = 'All 51 Jurisdictions';
-    var lockedRow = document.getElementById('acct-locked');
-    if (lockedRow) lockedRow.parentElement.style.display = 'none';
+    if (lockedRow) lockedRow.style.display = 'none';
     if (upgrade) upgrade.style.display = 'none';
     if (valueSection) valueSection.style.display = 'none';
     if (lockDna) lockDna.style.display = 'none';
     if (lockCompare) lockCompare.style.display = 'none';
     if (vsTerminal) vsTerminal.style.display = 'flex';
     if (vsLocked) vsLocked.style.display = 'none';
+    if (supportLink) supportLink.style.display = 'block';
+
+    // Paid section: quick links
+    if (paidSection) {
+      paidSection.style.display = 'block';
+      paidSection.innerHTML = '<div class="acct-paid-badge">FULL ACCESS</div>' +
+        '<div class="acct-access-date">Access: Active</div>' +
+        '<div class="acct-quick-links">' +
+          '<a class="acct-quick-link" onclick="switchTab(\'scout\')"><span class="acct-quick-link-icon">\uD83D\uDD0D</span>Open Scout Checklist</a>' +
+          '<a class="acct-quick-link" onclick="switchTab(\'tools\')"><span class="acct-quick-link-icon">\uD83D\uDCC8</span>Open Deal Analyzer</a>' +
+          '<a class="acct-quick-link" onclick="togglePulseDrawer()"><span class="acct-quick-link-icon">\uD83D\uDD14</span>Set Pulse Alerts</a>' +
+        '</div>';
+    }
+
+    // Admin section
+    if (isAdmin && adminSection) {
+      adminSection.style.display = 'block';
+      adminSection.innerHTML = '<div class="acct-admin-badge">ADMIN</div>' +
+        '<div class="acct-admin-stats"><div class="acct-admin-stat"><div class="acct-admin-stat-num" id="admin-free-count">\u2014</div><div class="acct-admin-stat-label">FREE USERS</div></div>' +
+        '<div class="acct-admin-stat"><div class="acct-admin-stat-num" id="admin-paid-count">\u2014</div><div class="acct-admin-stat-label">PAID USERS</div></div></div>';
+      // Fetch admin stats
+      fetchAdminStats(userEmail);
+    }
   } else {
     badge.textContent = 'FREE ACCESS';
     badge.classList.remove('paid');
@@ -6892,14 +7013,34 @@ function initAccount() {
     states.textContent = 'All 51 States';
     var locked = document.getElementById('acct-locked');
     if (locked) locked.textContent = 'Counties, DNA, Versus, Analyzer, Sage, Scout, Auctions, Pulse';
+    if (lockedRow) lockedRow.style.display = '';
     if (upgrade) upgrade.style.display = 'block';
     if (valueSection) valueSection.style.display = 'block';
     if (lockDna) lockDna.style.display = 'flex';
     if (lockCompare) lockCompare.style.display = 'flex';
     if (vsTerminal) vsTerminal.style.display = 'none';
     if (vsLocked) vsLocked.style.display = 'flex';
+    if (paidSection) paidSection.style.display = 'none';
+    if (adminSection) adminSection.style.display = 'none';
+    if (supportLink) supportLink.style.display = 'none';
   }
-  email.textContent = APP.email || '\u2014';
+}
+
+function fetchAdminStats(email) {
+  fetch('/.netlify/functions/admin-stats', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+  .then(function(r) { return r.ok ? r.json() : null; })
+  .then(function(data) {
+    if (!data) return;
+    var freeEl = document.getElementById('admin-free-count');
+    var paidEl = document.getElementById('admin-paid-count');
+    if (freeEl) freeEl.textContent = String(data.free_count || 0);
+    if (paidEl) paidEl.textContent = String(data.paid_count || 0);
+  })
+  .catch(function() {});
 }
 
 // === BOOT ANIMATION ===
@@ -7544,6 +7685,58 @@ switchTab = function(name) {
 };
 
 // === PULSE BELL DRAWER ===
+// === SAVED STATES (5A) ===
+function getSavedStates() {
+  try {
+    var raw = localStorage.getItem('aurigen_saved_states');
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) { return []; }
+}
+function setSavedStates(arr) {
+  try { localStorage.setItem('aurigen_saved_states', JSON.stringify(arr)); } catch(e) {}
+}
+function toggleSaveState(code) {
+  var saved = getSavedStates();
+  var idx = saved.indexOf(code);
+  if (idx >= 0) { saved.splice(idx, 1); } else { saved.push(code); }
+  setSavedStates(saved);
+  // Re-render save button
+  var btn = document.querySelector('.save-state-btn');
+  if (btn) {
+    var isSaved = saved.indexOf(code) >= 0;
+    btn.className = 'save-state-btn' + (isSaved ? ' saved' : '');
+    btn.querySelector('.bookmark-icon').textContent = isSaved ? '\u2605' : '\u2606';
+    btn.querySelector('span:last-child').textContent = isSaved ? 'STATE SAVED' : 'SAVE THIS STATE';
+  }
+  // Update map bookmark icons
+  updateMapBookmarks();
+  // Update journey bar
+  updateJourneyBar();
+}
+function updateMapBookmarks() {
+  if (!svgEl) return;
+  var saved = getSavedStates();
+  // Remove old bookmark icons
+  svgEl.selectAll('.state-bookmark').remove();
+  if (saved.length === 0) return;
+  svgEl.selectAll('.state-path').each(function(d) {
+    var s = getStateData(d);
+    if (!s) return;
+    var abbr = s.abbr || s.c;
+    if (saved.indexOf(abbr) < 0) return;
+    var c = pathGen.centroid(d);
+    if (!c || isNaN(c[0])) return;
+    svgEl.append('text')
+      .attr('class', 'state-bookmark')
+      .attr('x', c[0] + 8)
+      .attr('y', c[1] - 6)
+      .attr('font-size', '10px')
+      .attr('fill', '#c9a84c')
+      .attr('pointer-events', 'none')
+      .text('\u2605');
+  });
+}
+
 var PULSE_ALERTS = [
   {
     id: 'iowa-apr-2026',
@@ -7653,7 +7846,16 @@ function pulseGetUnreadCount() {
   var lastSeen = null;
   try { lastSeen = localStorage.getItem('pulse_last_seen'); } catch(e) {}
   if (!lastSeen) return PULSE_ALERTS.length;
-  return 0;
+  // Count alerts created after last seen
+  var ts = parseInt(lastSeen, 10);
+  var count = 0;
+  PULSE_ALERTS.forEach(function(a) {
+    if (a.date) {
+      var alertTs = new Date(a.date).getTime();
+      if (alertTs > ts) count++;
+    }
+  });
+  return count;
 }
 
 function pulseUpdateBadge() {
@@ -7732,13 +7934,17 @@ function pulseSetFilter(key) {
 function pulseRenderProfile() {
   var el = document.getElementById('pulse-profile');
   if (!el) return;
+  var saved = getSavedStates();
   var dnaStates = pulseGetDnaStates();
-  if (dnaStates && dnaStates.length > 0) {
+  // Prefer saved states, fall back to DNA
+  var displayStates = saved.length > 0 ? saved : (dnaStates && dnaStates.length > 0 ? dnaStates : null);
+  var source = saved.length > 0 ? 'saved' : 'dna';
+  if (displayStates && displayStates.length > 0) {
     el.innerHTML = '<span class="pulse-profile-dot"></span>Showing alerts for ' +
-      dnaStates.map(function(s) { return '<span class="pulse-state-name">' + escapeHtml(s) + '</span>'; }).join(' \u00B7 ') +
-      ' \u2014 your DNA matched states';
+      displayStates.map(function(s) { return '<span class="pulse-state-name">' + escapeHtml(s) + '</span>'; }).join(' \u00B7 ') +
+      ' \u2014 your ' + (source === 'saved' ? 'saved' : 'DNA matched') + ' states';
   } else {
-    el.innerHTML = '<span class="pulse-profile-dot"></span>Showing all alerts \u2014 <a onclick="pulseGoToDna()">take the DNA quiz</a> to personalize this feed';
+    el.innerHTML = '<span class="pulse-profile-dot"></span>Showing all alerts \u2014 <a onclick="pulseGoToDna()">take the DNA quiz</a> or save states from the map to personalize';
   }
 }
 
@@ -7748,14 +7954,26 @@ function pulseGoToDna() {
 }
 
 function pulseFilteredAlerts() {
+  var saved = getSavedStates();
   var dnaStates = pulseGetDnaStates();
+  var matchStates = saved.length > 0 ? saved : (dnaStates && dnaStates.length > 0 ? dnaStates : null);
   var alerts = PULSE_ALERTS.slice();
 
-  // Sort DNA-matching alerts to top
-  if (dnaStates && dnaStates.length > 0) {
+  // If user has saved states, filter to only those states (+ stateless alerts)
+  if (saved.length > 0) {
+    alerts = alerts.filter(function(a) {
+      if (!a.state && (!a.dnaStates || a.dnaStates.length === 0)) return true;
+      if (a.state && saved.indexOf(a.state) >= 0) return true;
+      if (a.dnaStates && a.dnaStates.some(function(s) { return saved.indexOf(s) >= 0; })) return true;
+      return false;
+    });
+  }
+
+  // Sort matching alerts to top
+  if (matchStates && matchStates.length > 0) {
     alerts.sort(function(a, b) {
-      var aMatch = a.dnaStates.some(function(s) { return dnaStates.indexOf(s) >= 0; }) ? 0 : 1;
-      var bMatch = b.dnaStates.some(function(s) { return dnaStates.indexOf(s) >= 0; }) ? 0 : 1;
+      var aMatch = a.dnaStates && a.dnaStates.some(function(s) { return matchStates.indexOf(s) >= 0; }) ? 0 : 1;
+      var bMatch = b.dnaStates && b.dnaStates.some(function(s) { return matchStates.indexOf(s) >= 0; }) ? 0 : 1;
       return aMatch - bMatch;
     });
   }
@@ -7771,22 +7989,40 @@ function pulseFilteredAlerts() {
 function pulseRenderFeed() {
   var cont = document.getElementById('pulse-feed');
   if (!cont) return;
+  var saved = getSavedStates();
+  // Onboarding prompt if no saved states and no DNA
+  if (saved.length === 0 && !pulseGetDnaStates()) {
+    cont.innerHTML = '<div class="pulse-onboard">' +
+      '<span class="pulse-onboard-icon">\uD83D\uDD14</span>' +
+      'Save states from the map to personalize your Pulse feed.<br>' +
+      '<a onclick="pulseAction(\'map\')">Open Map \u2192</a>' +
+    '</div>';
+    applyPulseLock();
+    return;
+  }
   var alerts = pulseFilteredAlerts();
   if (alerts.length === 0) {
-    cont.innerHTML = '<div class="pulse-empty">No alerts match this filter.</div>';
+    if (saved.length > 0 && _pulseFilter === 'all') {
+      cont.innerHTML = '<div class="pulse-empty-week">No alerts for your saved states this week. Check back after Sunday\'s update.</div>';
+    } else {
+      cont.innerHTML = '<div class="pulse-empty">No alerts match this filter.</div>';
+    }
+    applyPulseLock();
     return;
   }
   var html = '';
   alerts.forEach(function(a, i) {
+    var typeLabel = (a.type || 'general').toUpperCase().replace('_', ' ');
     html += '<div class="pulse-alert type-' + escapeHtml(a.type) + '" style="animation:fadeUp 200ms ease-out ' + (i * 50) + 'ms both">' +
       '<div class="pulse-alert-head">' +
         '<span class="pulse-alert-icon">' + a.icon + '</span>' +
-        '<span class="pulse-alert-title">' + escapeHtml(a.title) + '</span>' +
-        '<span class="pulse-alert-badge ' + escapeHtml(a.type) + '">' + escapeHtml(a.type) + '</span>' +
+        '<span class="pulse-alert-title">' + (a.state ? escapeHtml(a.state) + ' \u2014 ' : '') + escapeHtml(a.title) + '</span>' +
+        '<span class="pulse-alert-badge ' + escapeHtml(a.type) + '">' + escapeHtml(typeLabel) + '</span>' +
       '</div>' +
       '<div class="pulse-alert-body">' + escapeHtml(a.body) + '</div>' +
       '<div class="pulse-alert-footer">' +
         '<span class="pulse-alert-location">' + escapeHtml(a.location) + '</span>' +
+        (a.date ? '<span class="pulse-alert-location" style="margin-left:8px">' + escapeHtml(a.date) + '</span>' : '') +
         (a.actionTab ? '<button class="pulse-alert-action" onclick="pulseAction(\'' + escapeHtml(a.actionTab) + '\')">' + escapeHtml(a.action) + '</button>' : '<span class="pulse-alert-action" style="opacity:0.5">' + escapeHtml(a.action) + '</span>') +
       '</div>' +
     '</div>';
@@ -7908,6 +8144,56 @@ document.addEventListener('keydown', function(e) {
 
 // Init badge on load
 pulseUpdateBadge();
+
+// === JOURNEY BAR (5C) ===
+function getJourneyState() {
+  try {
+    var raw = localStorage.getItem('aurigen_journey');
+    return raw ? JSON.parse(raw) : {};
+  } catch(e) { return {}; }
+}
+function saveJourneyState(updates) {
+  try {
+    var current = getJourneyState();
+    var keys = Object.keys(updates);
+    for (var i = 0; i < keys.length; i++) { current[keys[i]] = updates[keys[i]]; }
+    localStorage.setItem('aurigen_journey', JSON.stringify(current));
+  } catch(e) {}
+}
+function updateJourneyBar() {
+  var j = getJourneyState();
+  var profile = typeof getProfile === 'function' ? getProfile() : null;
+  // Compute milestones
+  var mapDone = !!(j.mapExplored || (profile && profile.statesViewed && profile.statesViewed.length > 0));
+  var countyDone = !!j.countyOpened;
+  var pulseDone = getSavedStates().length > 0;
+  var quizDone = !!(profile && profile.dnaComplete);
+  var accessDone = (typeof IS_PAID !== 'undefined' && IS_PAID) || (typeof APP !== 'undefined' && APP.tier >= 2);
+
+  var dots = [
+    { id: 'jb-dot-map', done: mapDone },
+    { id: 'jb-dot-county', done: countyDone },
+    { id: 'jb-dot-pulse', done: pulseDone },
+    { id: 'jb-dot-quiz', done: quizDone },
+    { id: 'jb-dot-access', done: accessDone }
+  ];
+  var lines = ['jb-line-1', 'jb-line-2', 'jb-line-3', 'jb-line-4'];
+  dots.forEach(function(d) {
+    var el = document.getElementById(d.id);
+    if (el) el.classList.toggle('complete', d.done);
+  });
+  // Line is complete if both adjacent dots are complete
+  for (var i = 0; i < lines.length; i++) {
+    var el = document.getElementById(lines[i]);
+    if (el) el.classList.toggle('complete', dots[i].done && dots[i + 1].done);
+  }
+}
+
+// Hook into map exploration to update journey
+var _origTrackMapExploration = typeof trackMapExploration === 'function' ? trackMapExploration : null;
+
+// Hook into county open to update journey
+var _origLoadPropertyFeed = typeof loadPropertyFeed === 'function' ? loadPropertyFeed : null;
 
 // ═══════════════════════════════════════════════════════════
 // DEAL ANALYZER (Concept C)
@@ -8447,8 +8733,8 @@ function trackMapExploration(stateCode) {
     viewed.push(stateCode);
   }
   saveProfile({ statesViewed: viewed });
-  if (viewed.length >= 1) {
-  }
+  saveJourneyState({ mapExplored: true });
+  updateJourneyBar();
 }
 
 // === ITEM 9: PRE-CALL SUMMARY PAGE ===
