@@ -2774,7 +2774,8 @@
       .dossier-section-title{color:#333}
       .dossier-row-label{color:#666}
       .dossier-row-value{color:#000}
-      .dossier-actions,.dossier-form,.dossier-hdr,.dossier-disclaimer,.paywall-lock{display:none!important}
+      .dossier-actions,.dossier-form,.dossier-hdr,.paywall-lock{display:none!important}
+      .dossier-disclaimer{color:#666;opacity:1}
       .dossier-notes{border:1px solid #ccc;color:#000;background:#fafafa}
     }
 
@@ -8564,7 +8565,7 @@ function updateJourneyBar() {
     nextStep = 'Take the DNA Quiz to personalize your strategy \u2192';
     nextAction = function() { switchTab('dna'); };
   } else if (quizDone && !accessDone && !dismissed.access) {
-    nextStep = 'You\u2019re ready. Unlock full access to see live inventory \u2192';
+    nextStep = 'Explore full access \u2014 see live inventory for all 51 states \u2192';
     nextAction = function() { window.open(STRIPE_URL, '_blank', 'noopener,noreferrer'); };
   } else if (accessDone && !dismissed.warbook) {
     nextStep = 'Start with the Warbook to find your best target state \u2192';
