@@ -25,8 +25,15 @@ function parseNumeric(val) {
   if (val === null || val === undefined || val === '') return null;
   var cleaned = String(val).replace(/[$,\s]/g, '').trim();
   if (!cleaned || cleaned === '-' || cleaned === 'N/A') return null;
+  // Handle accounting-format negatives: (1234.56) → -1234.56
+  var negate = false;
+  if (cleaned.charAt(0) === '(' && cleaned.charAt(cleaned.length - 1) === ')') {
+    cleaned = cleaned.slice(1, -1);
+    negate = true;
+  }
   var num = parseFloat(cleaned);
-  return isNaN(num) ? null : num;
+  if (isNaN(num)) return null;
+  return negate ? -num : num;
 }
 
 // ── Parse an integer value ──────────────────────────────────

@@ -29,7 +29,7 @@ exports.handler = async (event) => {
 
   // Route: GET /properties?state_code=TX&county=...&status=...&property_type=...&absentee_owner=true&offset=0
   const path = event.path || '';
-  const isPropertiesRoute = path.endsWith('/properties') || path.includes('/properties?');
+  const isPropertiesRoute = path.endsWith('/properties');
 
   try {
     const supabase = createClient(
@@ -38,19 +38,45 @@ exports.handler = async (event) => {
     );
 
     if (isPropertiesRoute) {
+      // Properties are paid-tier data — require verified email
       const params = event.queryStringParameters || {};
+      var email = (params.email || '').toLowerCase().trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return {
+          statusCode: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ error: 'Authentication required' })
+        };
+      }
+
+      // Verify paid access
+      var { data: paidUser } = await supabase
+        .from('paid_users')
+        .select('id')
+        .eq('email', email)
+        .eq('active', true)
+        .maybeSingle();
+
+      if (!paidUser) {
+        return {
+          statusCode: 403,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ error: 'Paid access required' })
+        };
+      }
 
       // Select all fields EXCEPT owner_mailing_address (privacy)
       var query = supabase
         .from('properties')
         .select('id, parcel_id, auction_id, state_code, county, address, assessed_value, opening_bid, lien_amount, lien_year, property_type, owner_name, status, delinquency_years, absentee_owner, equity_cushion_pct, scraped_at, updated_at');
 
-      // Apply filters
+      // Apply filters — strip wildcard chars from county to prevent ilike abuse
       if (params.state_code) {
         query = query.eq('state_code', params.state_code.toUpperCase().slice(0, 2));
       }
       if (params.county) {
-        query = query.ilike('county', params.county);
+        var safeCounty = params.county.replace(/[%_]/g, '');
+        if (safeCounty) query = query.ilike('county', safeCounty);
       }
       if (params.status) {
         query = query.eq('status', params.status);
@@ -74,7 +100,7 @@ exports.handler = async (event) => {
         statusCode: 200,
         headers: {
           ...corsHeaders,
-          'Cache-Control': 'public, max-age=300',
+          'Cache-Control': 'private, max-age=300',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -126,7 +152,7 @@ exports.handler = async (event) => {
     return {
       statusCode: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: e.message })
+      body: JSON.stringify({ error: 'Internal server error' })
     };
   }
 };
