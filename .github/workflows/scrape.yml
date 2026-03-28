@@ -1,4 +1,4 @@
-name: Weekly Auction Scraper
+name: Weekly Auction & Property Scraper
 
 on:
   schedule:
@@ -9,8 +9,9 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger scraper
+      - name: Trigger auction scraper
         run: |
+          echo "=== Step 1: Auction scraper ==="
           response=$(curl -s -w "\n%{http_code}" \
             -X POST \
             -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
@@ -20,7 +21,32 @@ jobs:
           echo "HTTP $http_code"
           echo "$body"
           if [ "$http_code" != "200" ] && [ "$http_code" != "202" ]; then
-            echo "::error::Scraper returned HTTP $http_code"
+            echo "::error::Auction scraper returned HTTP $http_code"
             exit 1
           fi
-          echo "Scraper triggered successfully"
+          echo "Auction scraper triggered successfully"
+
+      - name: Wait for auctions to populate
+        run: sleep 15
+
+      - name: Trigger property scraper (background)
+        run: |
+          echo "=== Step 2: Property scraper (background) ==="
+          PROP_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
+          # Replace /scraper with /scrape-properties-background
+          PROP_URL=$(echo "$PROP_URL" | sed 's|/scraper$|/scrape-properties-background|')
+          echo "Calling: $PROP_URL"
+          response=$(curl -s -w "\n%{http_code}" \
+            --max-time 30 \
+            -X POST \
+            -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
+            "$PROP_URL")
+          http_code=$(echo "$response" | tail -1)
+          body=$(echo "$response" | head -n -1)
+          echo "HTTP $http_code"
+          echo "$body"
+          if [ "$http_code" != "200" ] && [ "$http_code" != "202" ]; then
+            echo "::error::Property scraper returned HTTP $http_code"
+            exit 1
+          fi
+          echo "Property scraper triggered successfully (runs in background up to 15 min)"
