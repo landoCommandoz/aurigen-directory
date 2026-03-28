@@ -1257,7 +1257,6 @@
     #detail-panel.open{display:flex}
     #detail-panel-inner{position:relative;width:90%;max-width:800px;max-height:90vh;overflow-y:auto;background:#0d1220;backdrop-filter:blur(30px);border-radius:6px;border-top:2px solid var(--accent);animation:panelUp 300ms ease-out forwards}
     @keyframes panelUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
-    .drawer-handle{display:none}
     #panel-shimmer{height:1px;border-radius:6px 6px 0 0}
     #panel-body{padding:20px 24px 24px;position:relative}
     #panel-close{position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:4px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:10}
@@ -1311,6 +1310,7 @@
     .county-pill.platform a:hover{text-decoration:underline}
     .county-alert{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:#FF6B35;background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);padding:2px 6px;border-radius:3px;white-space:nowrap;flex-shrink:0}
     .county-notes{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.35);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .county-redemption-note{display:none}
     .counties-empty{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);padding:16px 0;line-height:1.6;text-align:center}
     .counties-empty a{color:#d4a017;text-decoration:underline;text-underline-offset:2px}
     .counties-empty a:hover{color:#FFD700}
@@ -2348,32 +2348,34 @@
       /* Empty search state */
       #empty-state{flex-direction:column;gap:6px;padding:40px 20px;text-align:center}
       #detail-panel{background:rgba(6,6,10,0.7);backdrop-filter:blur(2px);align-items:flex-end;justify-content:center}
-      #detail-panel-inner{position:fixed;bottom:0;left:0;right:0;width:100%;max-width:100%;max-height:75dvh;height:auto;border-radius:16px 16px 0 0;padding-bottom:0;overflow:hidden;background:#0d1220;border:none;border-top:2px solid rgba(201,168,76,0.3);box-shadow:0 -12px 48px rgba(0,0,0,0.5);animation:drawerUp 300ms ease-out forwards}
+      #detail-panel-inner{position:fixed;bottom:0;left:0;right:0;width:100%;max-width:100%;max-height:75dvh;height:auto;border-radius:16px 16px 0 0;padding-bottom:0;overflow:hidden;overflow-x:hidden;background:#0d1220;border:none;border-top:2px solid rgba(201,168,76,0.3);box-shadow:0 -12px 48px rgba(0,0,0,0.5);animation:drawerUp 300ms ease-out forwards;box-sizing:border-box}
       @keyframes drawerUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-      #panel-body{padding:0 18px 24px;overflow-y:auto;max-height:calc(75dvh - 48px);-webkit-overflow-scrolling:touch}
+      #panel-body{padding:48px 20px 24px;overflow-y:auto;overflow-x:hidden;max-height:calc(75dvh - 12px);-webkit-overflow-scrolling:touch;width:100%;box-sizing:border-box;position:relative}
+      #panel-body *{box-sizing:border-box;overflow-wrap:break-word;word-wrap:break-word}
       #panel-shimmer{border-radius:16px 16px 0 0}
-      #panel-close{position:relative;display:flex;align-items:center;justify-content:center;width:44px;height:44px;min-width:44px;min-height:44px;margin:0 auto;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);z-index:10;font-size:22px;float:none}
-      .drawer-handle{display:block;width:36px;height:4px;background:rgba(255,255,255,0.15);border-radius:2px;margin:10px auto 6px}
-      #panel-title .title-name{font-size:36px}
+      #panel-close{position:absolute;top:12px;right:12px;display:flex;align-items:center;justify-content:center;width:36px;height:36px;min-width:44px;min-height:44px;padding:0;margin:0;border-radius:6px;background:rgba(13,18,32,0.9);border:1px solid rgba(201,168,76,0.4);color:rgba(255,255,255,0.7);z-index:10;font-size:18px;line-height:1;transform:none;float:none}
+      #panel-title .title-name{font-size:28px;line-height:1.1;word-wrap:break-word;overflow-wrap:break-word;white-space:normal}
       #panel-title .title-abbr{font-size:9px;letter-spacing:0.2em}
       #panel-type{font-size:8px;padding:3px 8px;display:inline-block;background:rgba(45,212,192,0.08);border:1px solid rgba(45,212,192,0.2);border-radius:999px;color:var(--teal);margin-top:6px}
       #panel-stats{grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
       .stat-box{padding:8px 6px;border-radius:10px;background:rgba(255,255,255,0.03);text-align:center;border-left-width:1px}
-      .stat-label{font-size:7px;margin-bottom:3px;text-align:center}
+      .stat-label{font-size:11px;margin-bottom:3px;text-align:center}
       .stat-value{font-size:16px;text-align:center;white-space:normal;word-break:break-word;overflow:visible}
       #panel-notes{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);gap:4px}
-      .panel-note{font-size:11px;font-weight:300;padding:3px 0 3px 12px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+      .panel-note{font-size:15px;font-weight:300;padding:3px 0 3px 12px;line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;white-space:normal;word-wrap:break-word;overflow-wrap:break-word}
       #panel-meta{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);gap:4px}
       .meta-chip{font-size:10px;padding:4px 8px;border-radius:999px}
       #panel-counties{margin-top:12px;padding-top:12px;border-top:1px solid rgba(201,168,76,0.2)}
-      .county-row{padding:12px 10px;min-height:44px;gap:8px;flex-wrap:wrap}
-      .county-name{font-size:14px}
-      .county-pill{font-size:10px;padding:3px 7px;border-color:rgba(201,168,76,0.3);color:rgba(201,168,76,0.85);background:rgba(201,168,76,0.06)}
+      .county-row{padding:12px 10px;min-height:44px;gap:8px;flex-wrap:wrap;width:100%;box-sizing:border-box;overflow:hidden}
+      .county-name{font-size:14px;white-space:normal;word-wrap:break-word;overflow-wrap:break-word}
+      .county-pill{font-size:10px;padding:3px 7px;border-color:rgba(201,168,76,0.3);color:rgba(201,168,76,0.85);background:rgba(201,168,76,0.06);white-space:normal}
       .county-pill.otc{border-color:rgba(0,230,118,0.35);color:#00e676;background:rgba(0,230,118,0.1)}
       .county-pill.platform{border-color:rgba(0,210,200,0.3);color:#00d2c8;background:rgba(0,210,200,0.1)}
-      .counties-list{max-height:240px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+      .counties-list{max-height:240px;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;width:100%;box-sizing:border-box}
       .county-pill.timing{display:none}
-      .county-notes{white-space:normal;width:100%;padding-left:0;font-size:12px}
+      .county-pill.redemption{display:none}
+      .county-notes{white-space:normal;width:100%;padding-left:0;font-size:12px;overflow-wrap:break-word;word-wrap:break-word}
+      .county-redemption-note{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.4);padding:4px 0 8px;white-space:normal;word-wrap:break-word}
     }
 
     /* --- Tablet detail card (768-1024px) --- */
@@ -2772,7 +2774,6 @@
       <!-- DETAIL PANEL -->
       <div id="detail-panel" onclick="if(event.target===this)closeDetail()">
         <div id="detail-panel-inner">
-          <div class="drawer-handle"></div>
           <div id="panel-shimmer"></div>
           <div id="panel-alert"></div>
           <div id="panel-body">
@@ -4885,6 +4886,11 @@ function showDetail(s) {
         '<input type="text" class="county-search-input" id="county-search-input" placeholder="Search counties..." oninput="filterCounties(this.value)" autocomplete="off" spellcheck="false">'+
         '<button class="county-search-clear" id="county-search-clear" onclick="clearCountySearch()" aria-label="Clear search">\u00D7</button>'+
       '</div>';
+    }
+    // Show redemption/note once above list (used on mobile instead of per-row pills)
+    var redemptionNote=rows.length>0?rows[0].redemption:'';
+    if(redemptionNote){
+      cHtml+='<div class="county-redemption-note">'+escapeHtml(redemptionNote)+'</div>';
     }
     cHtml+='<div class="counties-list collapsed" id="counties-list">';
     window._countyTotal=rows.length;
