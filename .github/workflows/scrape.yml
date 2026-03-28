@@ -50,3 +50,27 @@ jobs:
             exit 1
           fi
           echo "Property scraper triggered successfully (runs in background up to 15 min)"
+
+      - name: Wait for property scraper to populate data
+        run: sleep 30
+
+      - name: Calculate Opportunity Scores
+        run: |
+          echo "=== Step 3: Calculate Opportunity Scores ==="
+          SCORE_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
+          SCORE_URL=$(echo "$SCORE_URL" | sed 's|/scraper$|/calculate-scores|')
+          echo "Calling: $SCORE_URL"
+          response=$(curl -s -w "\n%{http_code}" \
+            --max-time 60 \
+            -X POST \
+            -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
+            "$SCORE_URL")
+          http_code=$(echo "$response" | tail -1)
+          body=$(echo "$response" | head -n -1)
+          echo "HTTP $http_code"
+          echo "$body"
+          if [ "$http_code" != "200" ]; then
+            echo "::warning::Score calculation returned HTTP $http_code — non-blocking"
+          else
+            echo "Opportunity Scores calculated successfully"
+          fi
