@@ -62,7 +62,7 @@ async function generatePulseAlerts() {
       try {
         const { data: upsertData, error: upsertErr, status, statusText } = await supabase
           .from('pulse_alerts')
-          .upsert(payload, { onConflict: 'state_code,auction_date', ignoreDuplicates: true })
+          .upsert(payload, { onConflict: 'state_code,auction_date,alert_text', ignoreDuplicates: true })
           .select();
 
         console.log('[pulse] Part1 upsert response — status:', status, statusText, 'data:', JSON.stringify(upsertData), 'error:', JSON.stringify(upsertErr));
@@ -146,7 +146,7 @@ async function generatePulseAlerts() {
       try {
         const { data: upsertData, error: upsertErr, status, statusText } = await supabase
           .from('pulse_alerts')
-          .upsert(payload, { onConflict: 'state_code,auction_date', ignoreDuplicates: false })
+          .upsert(payload, { onConflict: 'state_code,auction_date,alert_text', ignoreDuplicates: true })
           .select();
 
         console.log('[pulse] Part2 upsert response — status:', status, statusText, 'data:', JSON.stringify(upsertData), 'error:', JSON.stringify(upsertErr));

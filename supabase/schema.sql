@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS pulse_alerts (
   auction_date DATE,                             -- links to the auction this alert is about
   active       BOOLEAN DEFAULT TRUE,
   created_at   TIMESTAMPTZ DEFAULT NOW(),
-  UNIQUE (state_code, auction_date)
+  UNIQUE (state_code, auction_date, alert_text)
 );
 
 CREATE INDEX IF NOT EXISTS idx_pulse_state ON pulse_alerts (state_code);
