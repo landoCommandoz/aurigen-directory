@@ -4984,8 +4984,7 @@ function showDetail(s) {
       // Notes
       var safeNotes=r.notes?escapeHtml(r.notes):'';
       var noteSpan=safeNotes?'<span class="county-notes" title="'+safeNotes.replace(/"/g,'&quot;')+'">'+safeNotes+'</span>':'';
-      var rowClick=safeLink?' onclick="if(!event.target.closest(\'a\')){window.open(\''+safeLink.replace(/'/g,"\\'").replace(/"/g,'&quot;')+'\',\'_blank\',\'noopener,noreferrer\')};loadPropertyFeed(\''+escapeHtml(c)+'\',\''+escapeHtml(r.name).replace(/'/g,"\\'")+'\');"':'
- onclick="loadPropertyFeed(\''+escapeHtml(c)+'\',\''+escapeHtml(r.name).replace(/'/g,"\\'")+'\');"';
+      var rowClick=safeLink?' onclick="if(!event.target.closest(\'a\')){window.open(\''+safeLink.replace(/'/g,"\\'").replace(/"/g,'&quot;')+'\',\'_blank\',\'noopener,noreferrer\')};loadPropertyFeed(\''+escapeHtml(c)+'\',\''+escapeHtml(r.name).replace(/'/g,"\\'")+'\');"':' onclick="loadPropertyFeed(\''+escapeHtml(c)+'\',\''+escapeHtml(r.name).replace(/'/g,"\\'")+'\');"';
       cHtml+='<div class="county-row"'+rowClick+' data-county-name="'+escapeHtml(r.name.toLowerCase())+'">'+nameTag+platPill+otcPill+timPill+redPill+noteSpan+'</div>';
     });
     cHtml+='</div>';
