@@ -2781,7 +2781,7 @@
     .opp-tier-strong{color:#2DD4C0}
     .opp-tier-moderate{color:rgba(232,228,220,0.5)}
     .opp-tier-weak{color:#c97a2d}
-    .opp-tier-avoid{color:#FF2D55}
+    .opp-tier-caution{color:#FF2D55}
     .opp-score-bar{width:100%;height:4px;background:rgba(255,255,255,0.06);border-radius:2px;margin-top:6px;overflow:hidden}
     .opp-score-bar-fill{height:100%;border-radius:2px;transition:width 0.6s ease-out}
     .opp-score-pending{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(232,228,220,0.3);padding:10px 0}
@@ -3470,7 +3470,7 @@
               <div class="value-card-badge">$49/mo elsewhere</div>
             </div>
           </div>
-          <div class="value-total" data-i18n="acct_value_total">Total value if purchased separately: $1,500+/year &mdash; yours for $197 once.</div>
+          <div class="value-total" data-i18n="acct_value_total">Total estimated value if purchased as separate tools: $1,500+/year &mdash; yours for $197 once.</div>
         </div>
         <div class="language-toggle">
           <div class="lang-label" data-i18n="lang_label">LANGUAGE / IDIOMA</div>
@@ -3679,7 +3679,7 @@ var I18N = {
     vc_versus:'Versus Comparison', vc_analyzer:'Deal Analyzer',
     vc_sage:'Sage AI Advisor', vc_scout:'Scout Due Diligence',
     vc_auctions:'Auctions Calendar', vc_pulse:'Pulse Alerts',
-    acct_value_total:'Total value if purchased separately: $1,500+/year \u2014 yours for $197 once.',
+    acct_value_total:'Total estimated value if purchased as separate tools: $1,500+/year \u2014 yours for $197 once.',
     acct_upgrade:'UNLOCK FULL ACCESS \u2014 $197 ONE TIME',
     acct_upgrade_sub:'Comparable tools charge $200+/month. You pay once.',
     lang_label:'LANGUAGE / IDIOMA',
@@ -3792,7 +3792,7 @@ var I18N = {
     vc_versus:'Comparaci\u00f3n Versus', vc_analyzer:'Analizador de Negocios',
     vc_sage:'Asesor IA Sage', vc_scout:'Debida Diligencia Scout',
     vc_auctions:'Calendario de Subastas', vc_pulse:'Alertas Pulse',
-    acct_value_total:'Valor total si se compra por separado: $1,500+/a\u00f1o \u2014 tuyo por $197 una vez.',
+    acct_value_total:'Valor total estimado si se compra como herramientas separadas: $1,500+/a\u00f1o \u2014 tuyo por $197 una vez.',
     acct_upgrade:'DESBLOQUEAR ACCESO COMPLETO \u2014 $197 \u00daNICO PAGO',
     acct_upgrade_sub:'Herramientas similares cobran $200+/mes. T\u00fa pagas una vez.',
     lang_label:'LANGUAGE / IDIOMA',
@@ -5298,13 +5298,14 @@ function fetchOpportunityScore(stateCode, countyName) {
       else if (s >= 60) { tier = 'STRONG'; tierClass = 'opp-tier-strong'; barColor = '#2DD4C0'; }
       else if (s >= 40) { tier = 'MODERATE'; tierClass = 'opp-tier-moderate'; barColor = 'rgba(232,228,220,0.5)'; }
       else if (s >= 20) { tier = 'WEAK'; tierClass = 'opp-tier-weak'; barColor = '#c97a2d'; }
-      else { tier = 'AVOID'; tierClass = 'opp-tier-avoid'; barColor = '#FF2D55'; }
+      else { tier = 'CAUTION'; tierClass = 'opp-tier-caution'; barColor = '#FF2D55'; }
       slot.innerHTML = '<div class="opp-score-card">' +
         '<div class="opp-score-num">' + s + '</div>' +
         '<div class="opp-score-body">' +
         '<div class="opp-score-label">OPPORTUNITY SCORE</div>' +
         '<div class="opp-score-tier ' + tierClass + '">' + tier + '</div>' +
         '<div class="opp-score-bar"><div class="opp-score-bar-fill" style="width:' + s + '%;background:' + barColor + '"></div></div>' +
+        '<div style="font-size:10px;color:#9898b0;margin-top:4px">Scores reflect publicly available data and are not investment recommendations.</div>' +
         '</div></div>';
     })
     .catch(function() {
