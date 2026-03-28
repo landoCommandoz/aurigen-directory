@@ -3602,7 +3602,11 @@ const APP = {
 };
 
 // === ACCESS TIER ===
+function isAdminMode() {
+  try { return localStorage.getItem('aurigen_admin') === 'on'; } catch(e) { return false; }
+}
 function getAccessTier() {
+  if (isAdminMode()) return 'paid';
   try { return localStorage.getItem('aurigen_access') || 'none'; } catch(e) { return 'none'; }
 }
 var IS_PAID = getAccessTier() === 'paid';
@@ -8184,5 +8188,74 @@ function scoutRender() {
     <div class="auctions-cards" id="day-drawer-cards"></div>
   </div>
 </div>
+<script>
+// === ADMIN MODE ===
+(function() {
+  var SEQ = 'aurigen';
+  var buf = '';
+  var badge = null;
+
+  function adminOn() {
+    try { localStorage.setItem('aurigen_admin', 'on'); } catch(e) {}
+    IS_PAID = true;
+    IS_FREE = true;
+    APP.tier = 2;
+    applyAccessLocks();
+    showBadge();
+  }
+
+  function adminOff() {
+    try { localStorage.removeItem('aurigen_admin'); } catch(e) {}
+    var real = (function() { try { return localStorage.getItem('aurigen_access') || 'none'; } catch(e) { return 'none'; } })();
+    IS_PAID = real === 'paid';
+    IS_FREE = real === 'free' || IS_PAID;
+    APP.tier = IS_PAID ? 2 : 1;
+    applyAccessLocks();
+    removeBadge();
+  }
+
+  function toggleAdmin() {
+    if (isAdminMode()) adminOff(); else adminOn();
+  }
+
+  function showBadge() {
+    if (badge) return;
+    badge = document.createElement('div');
+    badge.id = 'admin-badge';
+    badge.style.cssText = 'position:fixed;top:8px;left:8px;z-index:99999;font-family:"Space Mono",monospace;font-size:9px;letter-spacing:0.1em;color:#C9A84C;background:rgba(6,6,10,0.85);border:1px solid rgba(201,168,76,0.3);padding:4px 10px;border-radius:4px;pointer-events:none;user-select:none';
+    badge.textContent = 'ADMIN \u2014 PAID VIEW';
+    document.body.appendChild(badge);
+  }
+
+  function removeBadge() {
+    if (badge) { badge.remove(); badge = null; }
+  }
+
+  // Keyboard: typing "aurigen" anywhere (not in inputs)
+  document.addEventListener('keydown', function(e) {
+    var tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) return;
+    buf += e.key.toLowerCase();
+    if (buf.length > SEQ.length) buf = buf.slice(-SEQ.length);
+    if (buf === SEQ) { buf = ''; toggleAdmin(); }
+  });
+
+  // Mobile: 5 rapid taps on logo
+  var logo = document.getElementById('nav-logo');
+  if (logo) {
+    var taps = 0;
+    var tapTimer = null;
+    logo.addEventListener('click', function() {
+      taps++;
+      clearTimeout(tapTimer);
+      if (taps >= 5) { taps = 0; toggleAdmin(); }
+      else { tapTimer = setTimeout(function() { taps = 0; }, 1200); }
+    });
+  }
+
+  // Restore on load
+  if (isAdminMode()) showBadge();
+})();
+</script>
 </body>
 </html>
