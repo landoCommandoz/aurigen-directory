@@ -144,6 +144,19 @@ function extractRecord(block, href) {
 // ── Property Scraping ─────────────────────────────────────────
 const { buildPropertyRecord, upsertProperties, logPropertyScrape, fetchPropertyPage, parseTableRow } = require('./properties');
 
+// Build county-specific URL for Bid4Assets
+function buildBid4AssetsUrl(auction) {
+  if (auction.platform_url && auction.platform_url !== BASE_URL &&
+      auction.platform_url.replace(/\/+$/, '') !== BASE_URL.replace(/\/+$/, '')) {
+    return auction.platform_url;
+  }
+  // Pattern: https://www.bid4assets.com/auction/{county}-{state_code}
+  var county = (auction.county || '').toLowerCase().replace(/\s+county$/i, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  var state = (auction.state_code || '').toLowerCase();
+  if (!county || !state) return null;
+  return 'https://www.bid4assets.com/auction/' + county + '-' + state;
+}
+
 async function scrapeBid4AssetsProperties(auctions) {
   var totalFound = 0;
   var totalAdded = 0;
@@ -151,16 +164,17 @@ async function scrapeBid4AssetsProperties(auctions) {
 
   for (var i = 0; i < auctions.length; i++) {
     var auction = auctions[i];
-    if (!auction.platform_url) continue;
+    var url = buildBid4AssetsUrl(auction);
+    if (!url) continue;
 
     try {
       // Bid4Assets uses React-rendered pages — try their API endpoint first
-      var apiUrl = auction.platform_url.replace(/\/+$/, '') + '/api/lots';
+      var apiUrl = url.replace(/\/+$/, '') + '/api/lots';
       var html = await fetchPropertyPage(apiUrl);
 
       // If API fails, try the HTML page
       if (!html) {
-        html = await fetchPropertyPage(auction.platform_url);
+        html = await fetchPropertyPage(url);
       }
       if (!html) { errorCount++; continue; }
 

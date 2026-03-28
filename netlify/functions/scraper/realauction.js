@@ -134,6 +134,20 @@ function extractFromRow(row) {
 // Scrapes property-level data from RealAuction sale pages
 const { buildPropertyRecord, upsertProperties, logPropertyScrape, fetchPropertyPage, parseTableRow } = require('./properties');
 
+// Build county-specific URL. Seeds have full URLs; scraped records only have BASE_URL.
+function buildRealAuctionUrl(auction) {
+  // If platform_url is already county-specific (not just the base domain), use it
+  if (auction.platform_url && auction.platform_url !== BASE_URL &&
+      auction.platform_url.replace(/\/+$/, '') !== BASE_URL.replace(/\/+$/, '')) {
+    return auction.platform_url;
+  }
+  // Construct from county + state: https://www.realauction.com/{county}-{state_code}
+  var county = (auction.county || '').toLowerCase().replace(/\s+county$/i, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  var state = (auction.state_code || '').toLowerCase();
+  if (!county || !state) return null;
+  return 'https://www.realauction.com/' + county + '-' + state;
+}
+
 async function scrapeRealAuctionProperties(auctions) {
   var totalFound = 0;
   var totalAdded = 0;
@@ -141,10 +155,11 @@ async function scrapeRealAuctionProperties(auctions) {
 
   for (var i = 0; i < auctions.length; i++) {
     var auction = auctions[i];
-    if (!auction.platform_url) continue;
+    var url = buildRealAuctionUrl(auction);
+    if (!url) continue;
 
     try {
-      var html = await fetchPropertyPage(auction.platform_url);
+      var html = await fetchPropertyPage(url);
       if (!html) { errorCount++; continue; }
 
       var properties = parseRealAuctionProperties(html, auction);
@@ -156,7 +171,7 @@ async function scrapeRealAuctionProperties(auctions) {
         errorCount += result.errors;
       }
 
-      console.log('[realauction-props] ' + auction.county + ': found=' + properties.length);
+      console.log('[realauction-props] ' + auction.county + ' (' + url + '): found=' + properties.length);
     } catch (e) {
       console.error('[realauction-props] Error for ' + auction.county + ':', e.message);
       errorCount++;

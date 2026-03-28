@@ -132,6 +132,19 @@ function extractFromRow(row) {
 // ── Property Scraping ─────────────────────────────────────────
 const { buildPropertyRecord, upsertProperties, logPropertyScrape, fetchPropertyPage, parseTableRow } = require('./properties');
 
+// Build county-specific URL for SRI
+function buildSRIUrl(auction) {
+  if (auction.platform_url && auction.platform_url !== BASE_URL &&
+      auction.platform_url.replace(/\/+$/, '') !== BASE_URL.replace(/\/+$/, '')) {
+    return auction.platform_url;
+  }
+  // Pattern: https://www.sri.com/{county}-{state_code}
+  var county = (auction.county || '').toLowerCase().replace(/\s+county$/i, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  var state = (auction.state_code || '').toLowerCase();
+  if (!county || !state) return null;
+  return 'https://www.sri.com/' + county + '-' + state;
+}
+
 async function scrapeSRIProperties(auctions) {
   var totalFound = 0;
   var totalAdded = 0;
@@ -139,10 +152,11 @@ async function scrapeSRIProperties(auctions) {
 
   for (var i = 0; i < auctions.length; i++) {
     var auction = auctions[i];
-    if (!auction.platform_url) continue;
+    var url = buildSRIUrl(auction);
+    if (!url) continue;
 
     try {
-      var html = await fetchPropertyPage(auction.platform_url);
+      var html = await fetchPropertyPage(url);
       if (!html) { errorCount++; continue; }
 
       var properties = parseSRIProperties(html, auction);

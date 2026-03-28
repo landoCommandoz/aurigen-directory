@@ -115,6 +115,19 @@ function extractRecord(block) {
 // ── Property Scraping ─────────────────────────────────────────
 const { buildPropertyRecord, upsertProperties, logPropertyScrape, fetchPropertyPage, parseTableRow } = require('./properties');
 
+// Build county-specific URL for GovEase
+function buildGovEaseUrl(auction) {
+  if (auction.platform_url && auction.platform_url !== BASE_URL &&
+      auction.platform_url.replace(/\/+$/, '') !== BASE_URL.replace(/\/+$/, '')) {
+    return auction.platform_url;
+  }
+  // Pattern: https://www.govease.com/foreclosures/{state}/{county}
+  var stateName = (getStateName(auction.state_code) || '').toLowerCase().replace(/\s+/g, '-');
+  var county = (auction.county || '').toLowerCase().replace(/\s+(county|parish)$/i, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  if (!stateName || !county) return null;
+  return 'https://www.govease.com/foreclosures/' + stateName + '/' + county;
+}
+
 async function scrapeGovEaseProperties(auctions) {
   var totalFound = 0;
   var totalAdded = 0;
@@ -122,10 +135,11 @@ async function scrapeGovEaseProperties(auctions) {
 
   for (var i = 0; i < auctions.length; i++) {
     var auction = auctions[i];
-    if (!auction.platform_url) continue;
+    var url = buildGovEaseUrl(auction);
+    if (!url) continue;
 
     try {
-      var html = await fetchPropertyPage(auction.platform_url);
+      var html = await fetchPropertyPage(url);
       if (!html) { errorCount++; continue; }
 
       var properties = parseGovEaseProperties(html, auction);
