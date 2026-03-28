@@ -6,14 +6,9 @@
 
 const crypto = require('crypto');
 const path = require('path');
+var { getCorsHeaders, handlePreflight } = require('./utils/cors');
 
 const FREE_IDS = new Set(['FL', 'IL', 'AZ']);
-
-const ALLOWED_ORIGINS = [
-  'https://aurigen-directory.netlify.app',
-  'https://statuesque-bublanina-330b9d.netlify.app',
-  'https://hilarious-llama-2933ac.netlify.app'
-];
 
 function verifyToken(token, secret) {
   if (!token || !secret) return false;
@@ -42,19 +37,13 @@ function verifyToken(token, secret) {
 }
 
 exports.handler = async (event) => {
-  const origin = (event.headers && (event.headers['origin'] || event.headers['Origin'])) || '';
-  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
-
-  const headers = {
-    'Access-Control-Allow-Origin': allowedOrigin,
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Content-Type': 'application/javascript',
-    'Vary': 'Origin',
-    'Cache-Control': 'no-store'
-  };
+  const headers = getCorsHeaders(event);
+  // Override Content-Type for JS response
+  headers['Content-Type'] = 'application/javascript';
+  headers['Cache-Control'] = 'no-store';
 
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
+    return handlePreflight(event);
   }
 
   if (event.httpMethod !== 'GET') {

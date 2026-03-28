@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>AURIGEN — County Intelligence Platform</title>
   <meta name="description" content="Every statute. Every auction platform. Every county — researched and waiting. Get free access to the Aurigen County Intelligence Platform.">
+  <meta property="og:title" content="AURIGEN — County Intelligence Platform">
+  <meta property="og:description" content="Tax lien and tax deed intelligence for all 50 states + DC. Compare rates, analyze deals, track auctions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aurigendirectory.com">
+  <meta property="og:image" content="https://aurigendirectory.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AURIGEN — County Intelligence Platform">
+  <meta name="twitter:description" content="Tax lien and tax deed intelligence for all 50 states + DC.">
+  <meta name="twitter:image" content="https://aurigendirectory.com/og-image.png">
+  <link rel="canonical" href="https://aurigendirectory.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -949,6 +959,15 @@
   } catch(e) {}
 })();
 
+// === REFERRAL CODE CAPTURE ===
+(function() {
+  try {
+    var sp = new URLSearchParams(window.location.search);
+    var ref = sp.get('ref');
+    if (ref) localStorage.setItem('aurigen_ref_code', ref.slice(0, 20));
+  } catch(e) {}
+})();
+
 // === FORM SUBMIT — capture email + verify paid status ===
 function handleSubmit(e, lang) {
   e.preventDefault();
@@ -957,11 +976,25 @@ function handleSubmit(e, lang) {
   if (btn) { btn.disabled = true; btn.textContent = '...'; }
   // Store email for future server checks
   try { localStorage.setItem('aurigen_email', email); } catch(err) {}
-  // Capture email → Beehiiv + Supabase (fire and forget — never blocks user)
+  // Capture email + UTM → Beehiiv + Supabase (fire and forget — never blocks user)
+  var utmPayload = { email: email, language: lang || 'en' };
+  try {
+    var sp = new URLSearchParams(window.location.search);
+    if (sp.get('utm_source')) utmPayload.utm_source = sp.get('utm_source');
+    if (sp.get('utm_medium')) utmPayload.utm_medium = sp.get('utm_medium');
+    if (sp.get('utm_campaign')) utmPayload.utm_campaign = sp.get('utm_campaign');
+    if (sp.get('utm_term')) utmPayload.utm_term = sp.get('utm_term');
+    if (sp.get('utm_content')) utmPayload.utm_content = sp.get('utm_content');
+  } catch(ue) {}
+  // Attach referral code if present
+  try {
+    var refCode = localStorage.getItem('aurigen_ref_code');
+    if (refCode) utmPayload.ref_code = refCode;
+  } catch(re) {}
   fetch('/.netlify/functions/capture-email', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email, language: lang || 'en' })
+    body: JSON.stringify(utmPayload)
   }).catch(function() {});
   // Check server for paid status
   fetch('/.netlify/functions/check-access', {

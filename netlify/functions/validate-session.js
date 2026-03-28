@@ -8,27 +8,7 @@
 //   SUPABASE_SERVICE_ROLE_KEY — used as HMAC-SHA256 signing key
 
 var crypto = require('crypto');
-
-var ALLOWED_ORIGINS = [
-  'https://aurigen-directory.netlify.app',
-  'https://statuesque-bublanina-330b9d.netlify.app',
-  'https://hilarious-llama-2933ac.netlify.app',
-  'https://aurigendirectory.com',
-  'https://www.aurigendirectory.com',
-  'http://localhost:8888',
-  'http://localhost:3000'
-];
-
-function corsHeaders(origin) {
-  var allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
-  return {
-    'Access-Control-Allow-Origin': allowed,
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Content-Type': 'application/json',
-    'Vary': 'Origin'
-  };
-}
+var { getCorsHeaders, handlePreflight } = require('./utils/cors');
 
 function base64url(buf) {
   return Buffer.from(buf).toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
@@ -48,7 +28,9 @@ function verifyJwt(token, secret) {
   // Verify signature
   var sigInput = parts[0] + '.' + parts[1];
   var expectedSig = base64url(crypto.createHmac('sha256', secret).update(sigInput).digest());
-  if (expectedSig !== parts[2]) return null;
+  var sigBuf = Buffer.from(expectedSig);
+  var gotBuf = Buffer.from(parts[2]);
+  if (sigBuf.length !== gotBuf.length || !crypto.timingSafeEqual(sigBuf, gotBuf)) return null;
 
   // Decode payload
   try {
@@ -79,11 +61,10 @@ function isRateLimited(ip) {
 }
 
 exports.handler = async function(event) {
-  var origin = (event.headers || {}).origin || (event.headers || {}).Origin || '';
-  var headers = corsHeaders(origin);
+  var headers = getCorsHeaders(event);
 
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 204, headers: headers, body: '' };
+    return handlePreflight(event);
   }
 
   if (event.httpMethod !== 'POST') {
@@ -120,10 +101,15 @@ exports.handler = async function(event) {
       return { statusCode: 200, headers: headers, body: JSON.stringify({ valid: false, reason: 'Invalid or expired token' }) };
     }
 
+    // Re-check admin server-side (defense-in-depth — don't trust JWT claim alone)
+    var ADMIN_EMAILS = ['landon@theaurigen.com', 'lando@theaurigen.com'];
+    var email = (payload.email || '').toLowerCase().trim();
+    var isAdmin = ADMIN_EMAILS.indexOf(email) >= 0;
+
     return {
       statusCode: 200,
       headers: headers,
-      body: JSON.stringify({ valid: true, email: payload.email || '', tier: payload.tier || 'free' })
+      body: JSON.stringify({ valid: true, email: email, tier: payload.tier || 'free', isAdmin: isAdmin })
     };
 
   } catch (err) {

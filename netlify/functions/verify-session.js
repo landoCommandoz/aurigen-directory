@@ -28,26 +28,7 @@ function signJwt(payload, secret) {
   return segments.join('.');
 }
 
-const ALLOWED_ORIGINS = [
-  'https://aurigen-directory.netlify.app',
-  'https://statuesque-bublanina-330b9d.netlify.app',
-  'https://hilarious-llama-2933ac.netlify.app',
-  'https://aurigendirectory.com',
-  'https://www.aurigendirectory.com',
-  'http://localhost:8888',
-  'http://localhost:3000'
-];
-
-function corsHeaders(origin) {
-  var allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
-  return {
-    'Access-Control-Allow-Origin': allowed,
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Content-Type': 'application/json',
-    'Vary': 'Origin'
-  };
-}
+var { getCorsHeaders, handlePreflight } = require('./utils/cors');
 
 // ── Rate Limiting ───────────────────────────────────────────
 var rateLimitMap = new Map();
@@ -66,12 +47,11 @@ function isRateLimited(ip) {
 }
 
 exports.handler = async function(event) {
-  var origin = event.headers.origin || event.headers.Origin || '';
-  var headers = corsHeaders(origin);
+  var headers = getCorsHeaders(event);
 
   // Handle CORS preflight
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 204, headers: headers, body: '' };
+    return handlePreflight(event);
   }
 
   // Only accept POST
@@ -182,9 +162,61 @@ exports.handler = async function(event) {
     }
 
     // Generate JWT for client-side session validation
-    var jwt = signJwt({ email: customerEmail, tier: 'paid' }, process.env.SUPABASE_SERVICE_ROLE_KEY);
+    // Admin detection: whitelist stays server-side only
+    var ADMIN_EMAILS = ['landon@theaurigen.com', 'lando@theaurigen.com'];
+    var isAdmin = ADMIN_EMAILS.indexOf(customerEmail) >= 0;
+    var jwt = signJwt({ email: customerEmail, tier: 'paid', isAdmin: isAdmin }, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
     console.log('[VERIFY-SESSION] Payment verified for session:', session.id);
+
+    // Referral conversion — fire and forget
+    try {
+      var httpsRef = require('https');
+      var refBody = JSON.stringify({ action: 'convert', email: customerEmail });
+      var refReq = httpsRef.request({
+        hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
+        path: '/.netlify/functions/referral',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(refBody), 'x-internal-key': process.env.SUPABASE_SERVICE_ROLE_KEY }
+      });
+      refReq.write(refBody);
+      refReq.end();
+    } catch(refErr) {
+      console.error('[VERIFY-SESSION] Referral convert fire failed:', refErr.message);
+    }
+
+    // GHL sync — fire and forget (never blocks payment verification)
+    try {
+      var https2 = require('https');
+      var ghlBody = JSON.stringify({ email: customerEmail, tier: 'paid' });
+      var ghlReq = https2.request({
+        hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
+        path: '/.netlify/functions/ghl-sync',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(ghlBody), 'x-internal-key': process.env.SUPABASE_SERVICE_ROLE_KEY }
+      });
+      ghlReq.write(ghlBody);
+      ghlReq.end();
+    } catch(ghlErr) {
+      console.error('[VERIFY-SESSION] GHL sync fire failed:', ghlErr.message);
+    }
+
+    // Skool sync — fire and forget (never blocks payment verification)
+    try {
+      var https = require('https');
+      var syncBody = JSON.stringify({ email: customerEmail, tier: 'paid' });
+      var syncReq = https.request({
+        hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
+        path: '/.netlify/functions/skool-sync',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(syncBody), 'x-internal-key': process.env.SUPABASE_SERVICE_ROLE_KEY }
+      });
+      syncReq.write(syncBody);
+      syncReq.end();
+    } catch(syncErr) {
+      console.error('[VERIFY-SESSION] Skool sync fire failed:', syncErr.message);
+    }
+
     return {
       statusCode: 200,
       headers: headers,

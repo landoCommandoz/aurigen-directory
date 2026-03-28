@@ -95,3 +95,23 @@ jobs:
           else
             echo "Redemption tracking completed successfully"
           fi
+
+      - name: Generate Weekly Intelligence Report
+        run: |
+          echo "=== Step 5: Generate Weekly Report ==="
+          REPORT_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
+          REPORT_URL=$(echo "$REPORT_URL" | sed 's|/scraper$|/generate-report|')
+          response=$(curl -s -w "\n%{http_code}" \
+            --max-time 60 \
+            -X POST \
+            -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
+            "$REPORT_URL")
+          http_code=$(echo "$response" | tail -1)
+          body=$(echo "$response" | head -n -1)
+          echo "HTTP $http_code"
+          echo "$body"
+          if [ "$http_code" != "200" ] && [ "$http_code" != "202" ]; then
+            echo "::warning::Weekly report returned HTTP $http_code — non-blocking"
+          else
+            echo "Weekly report generated successfully"
+          fi

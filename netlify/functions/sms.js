@@ -5,15 +5,13 @@
 //
 // Sends WhatsApp messages to Lando via Twilio REST API (no npm package)
 
+var { getCorsHeaders, handlePreflight } = require('./utils/cors');
+
 exports.handler = async (event) => {
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Content-Type': 'application/json'
-  };
+  const headers = getCorsHeaders(event);
 
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
+    return handlePreflight(event);
   }
 
   if (event.httpMethod !== 'POST') {

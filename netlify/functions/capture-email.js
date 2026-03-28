@@ -11,26 +11,7 @@
 //   SUPABASE_URL             — Supabase project URL
 //   SUPABASE_SERVICE_ROLE_KEY — Supabase service role key (bypasses RLS)
 
-const ALLOWED_ORIGINS = [
-  'https://aurigen-directory.netlify.app',
-  'https://statuesque-bublanina-330b9d.netlify.app',
-  'https://hilarious-llama-2933ac.netlify.app',
-  'https://aurigendirectory.com',
-  'https://www.aurigendirectory.com',
-  'http://localhost:8888',
-  'http://localhost:3000'
-];
-
-function corsHeaders(origin) {
-  var allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
-  return {
-    'Access-Control-Allow-Origin': allowed,
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Content-Type': 'application/json',
-    'Vary': 'Origin'
-  };
-}
+var { getCorsHeaders, handlePreflight } = require('./utils/cors');
 
 // ── Rate Limiting ───────────────────────────────────────────
 var rateLimitMap = new Map();
@@ -49,12 +30,11 @@ function isRateLimited(ip) {
 }
 
 exports.handler = async function(event) {
-  var origin = event.headers.origin || event.headers.Origin || '';
-  var headers = corsHeaders(origin);
+  var headers = getCorsHeaders(event);
 
   // Handle CORS preflight
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 204, headers: headers, body: '' };
+    return handlePreflight(event);
   }
 
   // Only accept POST
@@ -81,6 +61,13 @@ exports.handler = async function(event) {
     var language = (body.language || 'en').toLowerCase().trim();
     if (language !== 'en' && language !== 'es') language = 'en';
 
+    // UTM parameters (passed from client)
+    var utmSource = (body.utm_source || '').slice(0, 100);
+    var utmMedium = (body.utm_medium || '').slice(0, 100);
+    var utmCampaign = (body.utm_campaign || '').slice(0, 100);
+    var utmTerm = (body.utm_term || '').slice(0, 100);
+    var utmContent = (body.utm_content || '').slice(0, 100);
+
     // Validate email format
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return { statusCode: 400, headers: headers, body: JSON.stringify({ error: 'Invalid email' }) };
@@ -105,8 +92,9 @@ exports.handler = async function(event) {
               email: email,
               reactivate_existing: false,
               send_welcome_email: true,
-              utm_source: 'aurigen-gate',
-              utm_medium: language
+              utm_source: utmSource || 'aurigen-gate',
+              utm_medium: utmMedium || language,
+              utm_campaign: utmCampaign || undefined
             })
           }
         );
@@ -136,7 +124,10 @@ exports.handler = async function(event) {
             language: language,
             source: 'gate',
             subscribed_at: new Date().toISOString(),
-            beehiiv_synced: beehiivSynced
+            beehiiv_synced: beehiivSynced,
+            utm_source: utmSource || null,
+            utm_medium: utmMedium || null,
+            utm_campaign: utmCampaign || null
           },
           { onConflict: 'email' }
         );
@@ -144,8 +135,75 @@ exports.handler = async function(event) {
       if (upsertError) {
         console.error('[SUPABASE] Upsert error:', upsertError.message);
       }
+
+      // Log full UTM data to separate table for attribution analysis
+      if (utmSource || utmMedium || utmCampaign) {
+        var { error: utmError } = await supabase
+          .from('free_users_utm')
+          .insert({
+            email: email,
+            utm_source: utmSource || null,
+            utm_medium: utmMedium || null,
+            utm_campaign: utmCampaign || null,
+            utm_term: utmTerm || null,
+            utm_content: utmContent || null,
+            captured_at: new Date().toISOString()
+          });
+        if (utmError) console.error('[SUPABASE] UTM insert error:', utmError.message);
+      }
     } catch (dbErr) {
       console.error('[SUPABASE] Error:', dbErr.message);
+    }
+
+    // Referral tracking — fire and forget
+    var refCode = (body.ref_code || '').trim().slice(0, 20);
+    if (refCode) {
+      try {
+        var httpsRef = require('https');
+        var refBody = JSON.stringify({ action: 'track', ref_code: refCode, email: email });
+        var refReq = httpsRef.request({
+          hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
+          path: '/.netlify/functions/referral',
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(refBody) }
+        });
+        refReq.write(refBody);
+        refReq.end();
+      } catch(refErr) {
+        console.error('[CAPTURE-EMAIL] Referral track fire failed:', refErr.message);
+      }
+    }
+
+    // GHL sync for free users — fire and forget
+    try {
+      var https2 = require('https');
+      var ghlBody = JSON.stringify({ email: email, tier: 'free', language: language, utm_source: utmSource, utm_medium: utmMedium, utm_campaign: utmCampaign });
+      var ghlReq = https2.request({
+        hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
+        path: '/.netlify/functions/ghl-sync',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(ghlBody), 'x-internal-key': process.env.SUPABASE_SERVICE_ROLE_KEY }
+      });
+      ghlReq.write(ghlBody);
+      ghlReq.end();
+    } catch(ghlErr) {
+      console.error('[CAPTURE-EMAIL] GHL sync fire failed:', ghlErr.message);
+    }
+
+    // Skool sync for free users — fire and forget
+    try {
+      var https = require('https');
+      var syncBody = JSON.stringify({ email: email, tier: 'free' });
+      var syncReq = https.request({
+        hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
+        path: '/.netlify/functions/skool-sync',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(syncBody), 'x-internal-key': process.env.SUPABASE_SERVICE_ROLE_KEY }
+      });
+      syncReq.write(syncBody);
+      syncReq.end();
+    } catch(syncErr) {
+      console.error('[CAPTURE-EMAIL] Skool sync fire failed:', syncErr.message);
     }
 
     return {

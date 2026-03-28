@@ -13,24 +13,10 @@
 
 const crypto = require('crypto');
 
-// ── CORS ────────────────────────────────────────────────────
-const ALLOWED_ORIGINS = [
-  'https://aurigen-directory.netlify.app',
-  'https://statuesque-bublanina-330b9d.netlify.app',
-  'https://hilarious-llama-2933ac.netlify.app',
-  'http://localhost:8888',
-  'http://localhost:3000'
-];
-
-function corsHeaders(origin) {
-  const allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
-  return {
-    'Access-Control-Allow-Origin': allowed,
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Content-Type': 'application/json',
-    'Vary': 'Origin'
-  };
+// ── CORS (shared helper — single source of truth) ───────────
+var { getCorsHeaders: _sharedCors, handlePreflight: _sharedPreflight } = require('./utils/cors');
+function corsHeaders(origin, event) {
+  return _sharedCors(event || { headers: { origin: origin } });
 }
 
 // ── Rate Limiting ───────────────────────────────────────────
@@ -223,14 +209,13 @@ async function handleValuation(body, headers) {
 // ── Main Handler ────────────────────────────────────────────
 
 exports.handler = async (event) => {
-  const origin = (event.headers && (event.headers['origin'] || event.headers['Origin'])) || '';
-  const headers = corsHeaders(origin);
+  const headers = _sharedCors(event);
 
-  console.log('[AURIGEN] method=' + event.httpMethod + ' origin=' + origin);
+  console.log('[AURIGEN] method=' + event.httpMethod);
 
   // CORS preflight
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
+    return _sharedPreflight(event);
   }
 
   // POST only

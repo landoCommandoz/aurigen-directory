@@ -1,81 +1,61 @@
 const { createClient } = require('@supabase/supabase-js');
+var { getCorsHeaders, handlePreflight } = require('./utils/cors');
+var { requireAdmin } = require('./utils/jwt');
 
-const ADMIN_EMAILS = ['landon@theaurigen.com'];
-
-const ALLOWED_ORIGINS = [
-  'https://statuesque-bublanina-330b9d.netlify.app',
-  'https://hilarious-llama-2933ac.netlify.app',
-  'https://aurigen-directory.netlify.app',
-  'https://aurigendirectory.com',
-  'https://www.aurigendirectory.com',
-  'http://localhost:8888',
-  'http://localhost:3000'
-];
-
-function getCorsOrigin(event) {
-  const origin = (event.headers || {}).origin || '';
-  return ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+// Rate limiting — 5 requests per IP per minute
+var _adminRateMap = {};
+function checkAdminRate(ip) {
+  var now = Date.now();
+  if (!_adminRateMap[ip] || now - _adminRateMap[ip].start > 60000) {
+    _adminRateMap[ip] = { start: now, count: 1 };
+    return true;
+  }
+  _adminRateMap[ip].count++;
+  return _adminRateMap[ip].count <= 5;
 }
 
 exports.handler = async function(event) {
-  const origin = getCorsOrigin(event);
-  const headers = {
-    'Access-Control-Allow-Origin': origin,
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Content-Type': 'application/json'
-  };
+  var headers = getCorsHeaders(event);
 
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 204, headers, body: '' };
-  }
-
+  if (event.httpMethod === 'OPTIONS') return handlePreflight(event);
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
   }
 
-  let body;
-  try {
-    body = JSON.parse(event.body || '{}');
-  } catch (e) {
-    return { statusCode: 400, headers, body: JSON.stringify({ error: 'Invalid JSON' }) };
+  // Rate limit
+  var clientIp = (event.headers || {})['x-forwarded-for'] || (event.headers || {})['client-ip'] || 'unknown';
+  if (!checkAdminRate(clientIp.split(',')[0].trim())) {
+    return { statusCode: 429, headers: { ...headers, 'Retry-After': '60' }, body: JSON.stringify({ error: 'Too many requests' }) };
   }
 
-  const email = (body.email || '').trim().toLowerCase();
-  if (!email || !ADMIN_EMAILS.includes(email)) {
+  // JWT admin auth
+  var auth = requireAdmin(event);
+  if (!auth) {
     return { statusCode: 403, headers, body: JSON.stringify({ error: 'Forbidden' }) };
   }
 
-  const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE_KEY
-  );
+  var supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
   try {
-    // Count paid users
-    const { count: paidCount, error: paidErr } = await supabase
+    var { count: paidCount, error: paidErr } = await supabase
       .from('paid_users')
       .select('*', { count: 'exact', head: true });
     if (paidErr) throw paidErr;
 
-    // Count free users (email_captures minus paid_users)
-    const { count: totalEmails, error: emailErr } = await supabase
+    var { count: totalEmails, error: emailErr } = await supabase
       .from('email_captures')
       .select('*', { count: 'exact', head: true });
     if (emailErr) throw emailErr;
 
-    const freeCount = Math.max(0, (totalEmails || 0) - (paidCount || 0));
+    var freeCount = Math.max(0, (totalEmails || 0) - (paidCount || 0));
 
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({
-        free_count: freeCount,
-        paid_count: paidCount || 0
-      })
+      body: JSON.stringify({ free_count: freeCount, paid_count: paidCount || 0 })
     };
   } catch (err) {
-    console.error('admin-stats error:', err.message);
+    console.error('[admin-stats] Error:', err.message);
     return { statusCode: 500, headers, body: JSON.stringify({ error: 'Internal error' }) };
   }
 };
