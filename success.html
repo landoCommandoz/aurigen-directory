@@ -316,6 +316,7 @@
       try {
         localStorage.setItem('aurigen_access', 'paid');
         localStorage.setItem('aurigen_email', data.email);
+        sessionStorage.setItem('aurigen_just_paid', '1');
       } catch(e) {}
       // Clean URL — remove session_id from address bar
       try { history.replaceState(null, '', '/success.html'); } catch(e) {}

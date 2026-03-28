@@ -185,6 +185,15 @@
       color: var(--accent);
       border-bottom-color: var(--accent);
     }
+    .nav-tab-tools-trigger{position:relative}
+    .tools-chevron{font-size:7px;margin-left:4px;transition:transform 0.2s}
+    .nav-tab-tools-trigger.open .tools-chevron{transform:rotate(180deg)}
+    .tools-dropdown{display:none;position:absolute;top:48px;right:0;background:#111318;border:1px solid rgba(201,168,76,0.15);border-radius:8px;min-width:200px;padding:6px 0;z-index:999;box-shadow:0 8px 32px rgba(0,0,0,0.5)}
+    .tools-dropdown.open{display:block}
+    .tools-dropdown-item{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;color:var(--text2);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:10px 16px;cursor:pointer;transition:background 0.15s,color 0.15s;text-align:left}
+    .tools-dropdown-item:hover{background:rgba(201,168,76,0.08);color:var(--accent)}
+    .tools-dropdown-icon{font-size:14px;width:20px;text-align:center}
+    .mobile-nav-section-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(201,168,76,0.5);padding:12px 20px 4px;pointer-events:none}
     #nav-spacer { flex: 1; }
     #nav-tier-badge {
       font-family: 'Space Mono', monospace;
@@ -2679,8 +2688,25 @@
     .prop-status-redeemed{color:#2DD4C0}
     .prop-status-struck{color:rgba(232,228,220,0.4)}
 
-    .propfeed-empty{text-align:center;padding:40px 20px;color:rgba(232,228,220,0.4);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;line-height:1.6}
+    .propfeed-empty{text-align:center;padding:40px 20px;color:rgba(232,228,220,0.4);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;line-height:1.6;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:12px}
     .propfeed-empty-icon{font-size:28px;margin-bottom:12px;display:block;opacity:0.5}
+    .propfeed-empty-title{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(232,228,220,0.6);margin-bottom:8px;display:block}
+    .propfeed-empty-hint{font-size:12px;color:rgba(232,228,220,0.35);margin-bottom:16px;display:block}
+    .propfeed-empty-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .propfeed-empty-btn{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:10px 16px;border-radius:6px;cursor:pointer;transition:all 0.2s;border:none;min-height:44px}
+    .propfeed-empty-btn-primary{background:rgba(201,168,76,0.15);color:#C9A84C;border:1px solid rgba(201,168,76,0.3)}
+    .propfeed-empty-btn-primary:hover{background:rgba(201,168,76,0.25)}
+    .propfeed-empty-btn-ghost{background:transparent;color:rgba(232,228,220,0.5);border:1px solid rgba(255,255,255,0.08)}
+    .propfeed-empty-btn-ghost:hover{border-color:rgba(255,255,255,0.15);color:rgba(232,228,220,0.7)}
+    /* === UNLOCK ANIMATION === */
+    @keyframes unlockSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+    @keyframes unlockFadeIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes unlockFadeOut{from{opacity:1}to{opacity:0}}
+    .unlock-toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100000;background:#C9A84C;color:#06060a;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.08em;padding:12px 24px;border-radius:8px;box-shadow:0 4px 24px rgba(201,168,76,0.3);animation:unlockFadeIn 0.4s ease-out;white-space:nowrap;pointer-events:none}
+    .unlock-toast.dismiss{animation:unlockFadeOut 0.4s ease-out forwards}
+    .unlock-lock-spin{display:inline-block;animation:unlockSpin 0.4s ease-out}
+    .tab-panel.unlock-reveal>*:not(.paywall-lock){transition:opacity 0.4s ease-out,filter 0.4s ease-out}
+    .nav-tab.unlock-glow{box-shadow:0 2px 8px rgba(201,168,76,0.4);transition:box-shadow 1s ease-out}
 
     /* Skeleton loading */
     .prop-skeleton{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);border-radius:8px;padding:14px;min-height:120px;animation:propSkeletonPulse 1.5s ease-in-out infinite}
@@ -2718,14 +2744,19 @@
   <div class="deep-ocean-grain"></div>
   <nav id="top-nav">
     <div id="nav-logo">AURIGEN</div>
-    <div class="nav-tab active" id="tab-map" onclick="switchTab('map')" data-i18n="nav_map">Map</div>
-    <div class="nav-tab" id="tab-auctions" onclick="switchTab('auctions')" data-i18n="nav_auctions">Auctions</div>
-    <div class="nav-tab" id="tab-versus" onclick="switchTab('versus')" data-i18n="nav_versus">Versus</div>
-    <div class="nav-tab" id="tab-dna" onclick="switchTab('dna')" data-i18n="nav_dna">DNA</div>
-    <div class="nav-tab" id="tab-advisor" onclick="switchTab('advisor')" data-i18n="nav_advisor">Advisor</div>
-    <div class="nav-tab" id="tab-tools" onclick="switchTab('tools')" data-i18n="nav_tools">Tools</div>
-    <div class="nav-tab" id="tab-scout" onclick="switchTab('scout')" data-i18n="nav_scout">Scout</div>
-    <div class="nav-tab" id="tab-account" onclick="switchTab('account')" data-i18n="nav_account">Account</div>
+    <div class="nav-tab active" id="tab-map" onclick="switchTab('map')">Intelligence</div>
+    <div class="nav-tab" id="tab-auctions" onclick="switchTab('auctions')">Calendar</div>
+    <div class="nav-tab" id="tab-account" onclick="switchTab('account')">Account</div>
+    <div class="nav-tab nav-tab-tools-trigger" id="tab-tools-menu" onclick="toggleToolsMenu(event)">Tools <span class="tools-chevron">&#9660;</span></div>
+    <!-- TOOLS DROPDOWN SUBMENU -->
+    <div class="tools-dropdown" id="tools-dropdown">
+      <button class="tools-dropdown-item" onclick="switchToolsTab('dna')"><span class="tools-dropdown-icon">&#129516;</span>DNA Profiler</button>
+      <button class="tools-dropdown-item" onclick="switchToolsTab('advisor')"><span class="tools-dropdown-icon">&#129302;</span>Sage Advisor</button>
+      <button class="tools-dropdown-item" onclick="switchToolsTab('tools')"><span class="tools-dropdown-icon">&#128200;</span>Deal Analyzer</button>
+      <button class="tools-dropdown-item" onclick="switchToolsTab('versus')"><span class="tools-dropdown-icon">&#9878;</span>Versus</button>
+      <button class="tools-dropdown-item" onclick="switchToolsTab('scout')"><span class="tools-dropdown-icon">&#128270;</span>Scout Checklist</button>
+    </div>
+    <!-- TODO: Removed standalone nav tabs for dna, advisor, tools, versus, scout. References in i18n keys (nav_dna, nav_advisor, etc.) may need cleanup in Session 2 -->
     <span id="nav-active-label" data-i18n="nav_map">Map</span>
     <div id="nav-spacer"></div>
     <div id="pulse-bell" onclick="togglePulseDrawer()" aria-label="Open alerts"><span aria-hidden="true">🔔</span><span id="pulse-badge" class="hidden">0</span></div>
@@ -2740,15 +2771,17 @@
       <button class="mobile-nav-close" onclick="closeMobileNav()" aria-label="Close">&times;</button>
     </div>
     <div class="mobile-nav-items">
-      <button class="mobile-nav-item active" data-tab="map" onclick="mobileNavTo('map')"><span class="mobile-nav-item-icon">🗺</span><span data-i18n="nav_map">Map</span></button>
-      <button class="mobile-nav-item" data-tab="auctions" onclick="mobileNavTo('auctions')"><span class="mobile-nav-item-icon">📅</span><span data-i18n="nav_auctions">Auctions</span></button>
-      <button class="mobile-nav-item" data-tab="versus" onclick="mobileNavTo('versus')"><span class="mobile-nav-item-icon">⚖️</span><span data-i18n="nav_versus">Versus</span></button>
-      <button class="mobile-nav-item" data-tab="dna" onclick="mobileNavTo('dna')"><span class="mobile-nav-item-icon">🧬</span><span data-i18n="nav_dna">DNA</span></button>
-      <button class="mobile-nav-item" data-tab="advisor" onclick="mobileNavTo('advisor')"><span class="mobile-nav-item-icon">🤖</span><span data-i18n="nav_advisor">Advisor</span></button>
-      <button class="mobile-nav-item" data-tab="tools" onclick="mobileNavTo('tools')"><span class="mobile-nav-item-icon">🔨</span><span data-i18n="nav_tools">Tools</span></button>
-      <button class="mobile-nav-item" data-tab="scout" onclick="mobileNavTo('scout')"><span class="mobile-nav-item-icon">🔍</span><span data-i18n="nav_scout">Scout</span></button>
+      <button class="mobile-nav-item active" data-tab="map" onclick="mobileNavTo('map')"><span class="mobile-nav-item-icon">&#127758;</span><span>Intelligence</span></button>
+      <button class="mobile-nav-item" data-tab="auctions" onclick="mobileNavTo('auctions')"><span class="mobile-nav-item-icon">&#128197;</span><span>Calendar</span></button>
       <div class="mobile-nav-divider"></div>
-      <button class="mobile-nav-item" data-tab="account" onclick="mobileNavTo('account')"><span class="mobile-nav-item-icon">👤</span><span data-i18n="nav_account">Account</span></button>
+      <div class="mobile-nav-section-label">TOOLS</div>
+      <button class="mobile-nav-item" data-tab="dna" onclick="mobileNavTo('dna')"><span class="mobile-nav-item-icon">&#129516;</span><span>DNA Profiler</span></button>
+      <button class="mobile-nav-item" data-tab="advisor" onclick="mobileNavTo('advisor')"><span class="mobile-nav-item-icon">&#129302;</span><span>Sage Advisor</span></button>
+      <button class="mobile-nav-item" data-tab="tools" onclick="mobileNavTo('tools')"><span class="mobile-nav-item-icon">&#128200;</span><span>Deal Analyzer</span></button>
+      <button class="mobile-nav-item" data-tab="versus" onclick="mobileNavTo('versus')"><span class="mobile-nav-item-icon">&#9878;</span><span>Versus</span></button>
+      <button class="mobile-nav-item" data-tab="scout" onclick="mobileNavTo('scout')"><span class="mobile-nav-item-icon">&#128270;</span><span>Scout Checklist</span></button>
+      <div class="mobile-nav-divider"></div>
+      <button class="mobile-nav-item" data-tab="account" onclick="mobileNavTo('account')"><span class="mobile-nav-item-icon">&#128100;</span><span>Account</span></button>
     </div>
     <div class="mobile-nav-footer">
       <a class="mobile-nav-upgrade" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer" data-i18n="nav_mobile_upgrade">Full Access &rarr;</a>
@@ -3408,14 +3441,53 @@
   } catch(e) {}
 })();
 
-// === TAB SYNC — auto-reload when another tab unlocks paid ===
+// === TAB SYNC — unlock animation when paid access granted ===
 try {
   window.addEventListener('storage', function(e) {
     if (e.key === 'aurigen_access' && e.newValue === 'paid') {
-      location.reload();
+      playUnlockAnimation();
     }
   });
 } catch(e) {}
+
+function playUnlockAnimation() {
+  // Update tier
+  IS_PAID = true;
+  IS_FREE = true;
+  APP.tier = 2;
+
+  // Show toast
+  var toast = document.createElement('div');
+  toast.className = 'unlock-toast';
+  toast.innerHTML = '<span class="unlock-lock-spin">&#128275;</span> FULL ACCESS UNLOCKED';
+  document.body.appendChild(toast);
+
+  // Remove locks with animation
+  applyAccessLocks();
+
+  // Glow on nav tabs
+  document.querySelectorAll('.nav-tab').forEach(function(t) {
+    t.classList.add('unlock-glow');
+    setTimeout(function() { t.classList.remove('unlock-glow'); }, 1500);
+  });
+
+  // Auto-dismiss toast
+  setTimeout(function() {
+    toast.classList.add('dismiss');
+    setTimeout(function() { toast.remove(); }, 400);
+  }, 3000);
+}
+
+// Check if just unlocked (from success.html redirect)
+(function checkJustUnlocked() {
+  try {
+    var justPaid = sessionStorage.getItem('aurigen_just_paid');
+    if (justPaid === '1') {
+      sessionStorage.removeItem('aurigen_just_paid');
+      setTimeout(playUnlockAnimation, 800);
+    }
+  } catch(e) {}
+})();
 
 // === I18N — BILINGUAL SYSTEM ===
 var LANG = 'en';
@@ -3855,14 +3927,56 @@ function updateTierBadge() {
 }
 
 // === TAB SWITCHING ===
+var TOOLS_TABS = ['dna', 'advisor', 'tools', 'versus', 'scout'];
+
 function switchTab(name) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
+  // For tools subtabs, highlight the tools menu trigger
+  var navEl = document.getElementById('tab-' + name);
+  if (navEl) {
+    navEl.classList.add('active');
+  } else if (TOOLS_TABS.indexOf(name) >= 0) {
+    var trigger = document.getElementById('tab-tools-menu');
+    if (trigger) trigger.classList.add('active');
+  }
   document.getElementById('panel-' + name).classList.add('active');
   APP.activeTab = name;
+  closeToolsMenu();
   if(typeof updateNavFilterBtn==='function') updateNavFilterBtn();
 }
+
+function toggleToolsMenu(e) {
+  if (e) e.stopPropagation();
+  var dd = document.getElementById('tools-dropdown');
+  var trigger = document.getElementById('tab-tools-menu');
+  if (dd.classList.contains('open')) {
+    closeToolsMenu();
+  } else {
+    dd.classList.add('open');
+    trigger.classList.add('open');
+  }
+}
+
+function closeToolsMenu() {
+  var dd = document.getElementById('tools-dropdown');
+  var trigger = document.getElementById('tab-tools-menu');
+  if (dd) dd.classList.remove('open');
+  if (trigger) trigger.classList.remove('open');
+}
+
+function switchToolsTab(name) {
+  switchTab(name);
+}
+
+// Close tools dropdown when clicking elsewhere
+document.addEventListener('click', function(e) {
+  var dd = document.getElementById('tools-dropdown');
+  var trigger = document.getElementById('tab-tools-menu');
+  if (dd && dd.classList.contains('open') && !dd.contains(e.target) && !trigger.contains(e.target)) {
+    closeToolsMenu();
+  }
+});
 
 // === TICKER ===
 function buildTicker() {
@@ -5156,9 +5270,9 @@ function renderPropFeed(container, countyName) {
 
   if (filtered.length === 0) {
     if (_propFeedData.length === 0) {
-      container.insertAdjacentHTML('beforeend', '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span>No live inventory yet for ' + escapeHtml(countyName) + '.<br>Check back after the next scraper run.</div>');
+      container.insertAdjacentHTML('beforeend', '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128197;</span><span class="propfeed-empty-title">NO ACTIVE AUCTIONS</span><span class="propfeed-empty-hint">No properties are currently listed for ' + escapeHtml(countyName) + '. Auction inventory updates regularly.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="switchTab(\'map\')">Browse Map</button><button class="propfeed-empty-btn propfeed-empty-btn-ghost" onclick="togglePulseDrawer()">Set Up Alerts</button></div></div>');
     } else {
-      container.insertAdjacentHTML('beforeend', '<div class="propfeed-empty">No properties match current filters.</div>');
+      container.insertAdjacentHTML('beforeend', '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128270;</span><span class="propfeed-empty-title">NO MATCHES</span><span class="propfeed-empty-hint">No properties match your current filters.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="_propFeedFilters={type:\'all\',status:\'all\',absentee:false,equity:0};applyPropFilters()">Reset Filters</button></div></div>');
     }
     return;
   }
@@ -5230,7 +5344,7 @@ function renderPropFeedEmpty(container, countyName, msg) {
   container.innerHTML = buildPropFeedShell(countyName);
   var countEl = document.getElementById('propfeed-count');
   if (countEl) countEl.textContent = '0 PROPERTIES';
-  container.insertAdjacentHTML('beforeend', '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span>' + escapeHtml(msg) + '</div>');
+  container.insertAdjacentHTML('beforeend', '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span><span class="propfeed-empty-title">INVENTORY UNAVAILABLE</span><span class="propfeed-empty-hint">' + escapeHtml(msg) + '</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="switchTab(\'map\')">Browse Map</button></div></div>');
 }
 
 function openDealFromProp(encodedData) {
@@ -5311,7 +5425,7 @@ function auctionsInvStateChange() {
   }
   var sorted = Object.keys(counties).sort();
   if (sorted.length === 0) {
-    if (body) body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span>No counties found for this state.</div>';
+    if (body) body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#127463;</span><span class="propfeed-empty-title">NO COUNTIES FOUND</span><span class="propfeed-empty-hint">No auction data available for this state yet. Try another state or check back soon.</span></div>';
     return;
   }
   sorted.forEach(function(c) {
@@ -5343,7 +5457,7 @@ function auctionsInvCountyChange() {
   var email = '';
   try { email = localStorage.getItem('aurigen_email') || ''; } catch(e) {}
   if (!email) {
-    body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span>Sign in to view live inventory.</div>';
+    body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128274;</span><span class="propfeed-empty-title">SIGN IN REQUIRED</span><span class="propfeed-empty-hint">Enter your email on the gate page to access live inventory.</span></div>';
     return;
   }
 
@@ -5368,7 +5482,7 @@ function auctionsInvCountyChange() {
       if (err.message === 'access') {
         renderAuctionsInvLocked(body, county);
       } else {
-        body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128269;</span>Unable to load inventory. Try again later.</div>';
+        body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#9888;</span><span class="propfeed-empty-title">CONNECTION ERROR</span><span class="propfeed-empty-hint">Unable to load inventory. Check your connection and try again.</span></div>';
       }
     });
 }
@@ -5419,7 +5533,11 @@ function renderAuctionsInvCards(container, countyName) {
   if (countEl) countEl.textContent = filtered.length + ' PROPERT' + (filtered.length !== 1 ? 'IES' : 'Y');
 
   if (filtered.length === 0) {
-    container.innerHTML = '<div class="propfeed-empty">' + (_auctionsInvData.length === 0 ? '<span class="propfeed-empty-icon">&#128269;</span>No live inventory yet for ' + escapeHtml(countyName) + '.<br>Check back after the next scraper run.' : 'No properties match current filters.') + '</div>';
+    if (_auctionsInvData.length === 0) {
+      container.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128197;</span><span class="propfeed-empty-title">NO ACTIVE AUCTIONS</span><span class="propfeed-empty-hint">No properties listed for ' + escapeHtml(countyName) + ' right now. Inventory updates regularly.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-ghost" onclick="togglePulseDrawer()">Set Up Alerts</button></div></div>';
+    } else {
+      container.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128270;</span><span class="propfeed-empty-title">NO MATCHES</span><span class="propfeed-empty-hint">No properties match your current filters.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="_auctionsInvFilters={type:\'all\',status:\'all\',absentee:false,equity:0};auctionsInvFilter(\'type\',\'all\')">Reset Filters</button></div></div>';
+    }
     return;
   }
 

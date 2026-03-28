@@ -446,6 +446,102 @@
       line-height: 1.5;
     }
 
+    /* === PRICING COMPARISON CARD === */
+    .pricing-card {
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.015);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .pricing-card-header {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+    .pricing-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .pricing-col {
+      padding: 20px 16px;
+    }
+    .pricing-col-them {
+      background: rgba(255,255,255,0.02);
+      border-right: 1px solid rgba(255,255,255,0.04);
+    }
+    .pricing-col-us {
+      background: rgba(201,168,76,0.03);
+    }
+    .pricing-col-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 8px;
+    }
+    .pricing-col-us .pricing-col-label { color: var(--gold); }
+    .pricing-col-price {
+      font-family: 'Space Mono', monospace;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: -0.02em;
+      margin-bottom: 2px;
+    }
+    .pricing-col-us .pricing-col-price { color: var(--platinum); }
+    .pricing-col-period {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .pricing-col-us .pricing-col-period { color: var(--gold); }
+    .pricing-feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .pricing-feature-list li {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--dim);
+      line-height: 1.4;
+      padding-left: 16px;
+      position: relative;
+    }
+    .pricing-col-us .pricing-feature-list li { color: var(--text); }
+    .pricing-feature-list li::before {
+      content: '\2013';
+      position: absolute;
+      left: 0;
+      color: var(--dim);
+    }
+    .pricing-col-us .pricing-feature-list li::before {
+      content: '\2713';
+      color: var(--gold);
+    }
+    .pricing-savings {
+      text-align: center;
+      padding: 12px 16px;
+      border-top: 1px solid rgba(201,168,76,0.12);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+    }
+
     /* === FOOTER === */
     .gate-footer {
       padding: 32px 48px;
@@ -597,42 +693,49 @@
         <div class="cta-eyebrow">Built for serious investors</div>
         <div class="cta-headline">Stop losing deals to investors who already have this data.</div>
         <div class="cta-subhead">3,200+ counties. Live auction alerts. One price. No subscription.</div>
-        <div class="cta-price-big">$197 &mdash; ONE TIME</div>
-        <div class="cta-price-note">Comparable tools charge $200+/month. You pay once. Forever.</div>
-        <a class="cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02">Unlock Full Access &rarr;</a>
+        <a class="cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" style="background:var(--gold);color:#06060a;border-color:var(--gold);font-weight:700">$197 &mdash; UNLOCK FULL ACCESS &rarr;</a>
         <div class="cta-or-divider">
           <div class="cta-or-line"></div>
-          <span class="cta-or-text">Or</span>
+          <span class="cta-or-text">Or start free</span>
           <div class="cta-or-line"></div>
         </div>
         <form onsubmit="handleSubmit(event,'en')" class="cta-free-row">
           <input class="cta-free-input" type="email" name="email" required placeholder="email@address.com" autocomplete="email">
           <button class="cta-free-btn" type="submit">Free Access &rarr;</button>
         </form>
-        <div class="cta-free-note">Free access unlocks the 51-state map and state-level data. By entering your email you agree to receive The Aurigen Intelligence Brief. Unsubscribe anytime.</div>
+        <div class="cta-free-note">Free tier: 51-state map + state-level data + statute citations. By entering your email you agree to receive The Aurigen Intelligence Brief. Unsubscribe anytime.</div>
       </div>
 
-      <table class="features-table">
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th>Access</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>51-State Intelligence Map</td><td class="tier-free">Free</td></tr>
-          <tr><td>State-Level Data</td><td class="tier-free">Free</td></tr>
-          <tr><td>Statute Citations</td><td class="tier-free">Free</td></tr>
-          <tr><td>3,200+ County Directory</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>Deal Analyzer</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>DNA Profiler + Sage AI</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>Versus Comparison</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>Auctions Calendar</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>Scout Checklist</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>Live Auction Alerts</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>Pulse Alerts</td><td class="tier-paid">&#x1F512;</td></tr>
-        </tbody>
-      </table>
+      <div class="pricing-card">
+        <div class="pricing-card-header">WHY INVESTORS SWITCH TO AURIGEN</div>
+        <div class="pricing-cols">
+          <div class="pricing-col pricing-col-them">
+            <div class="pricing-col-label">COMPARABLE TOOLS</div>
+            <div class="pricing-col-price">$200+</div>
+            <div class="pricing-col-period">PER MONTH &mdash; RECURRING</div>
+            <ul class="pricing-feature-list">
+              <li>Limited state coverage</li>
+              <li>Delayed auction updates</li>
+              <li>Manual deal research</li>
+              <li>Extra fees per tool</li>
+              <li>Annual cost: $2,400+</li>
+            </ul>
+          </div>
+          <div class="pricing-col pricing-col-us">
+            <div class="pricing-col-label">AURIGEN</div>
+            <div class="pricing-col-price">$197</div>
+            <div class="pricing-col-period">ONE TIME &mdash; FOREVER</div>
+            <ul class="pricing-feature-list">
+              <li>All 51 states + 3,200 counties</li>
+              <li>Live auction calendar + alerts</li>
+              <li>Deal Analyzer + DNA Profiler</li>
+              <li>Sage AI + Versus + Scout</li>
+              <li>Lifetime access, no renewals</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-savings">YOUR FIRST-YEAR SAVINGS: $2,203</div>
+      </div>
     </div>
 
     <div class="bilingual-divider"></div>
@@ -643,44 +746,51 @@
 
       <div class="cta-block">
         <div class="cta-eyebrow">Hecho para inversionistas serios</div>
-        <div class="cta-headline">Deja de perder oportunidades contra inversionistas que ya tienen estos datos.</div>
+        <div class="cta-headline">Deja de perder negocios contra inversionistas que ya tienen estos datos.</div>
         <div class="cta-subhead">M&aacute;s de 3,200 condados. Alertas de subastas en vivo. Un solo pago. Sin suscripci&oacute;n.</div>
-        <div class="cta-price-big">$197 &mdash; PAGO &Uacute;NICO</div>
-        <div class="cta-price-note">Herramientas similares cobran $200+/mes. T&uacute; pagas una vez. Para siempre.</div>
-        <a class="cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02">Desbloquear Acceso Completo &rarr;</a>
+        <a class="cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" style="background:var(--gold);color:#06060a;border-color:var(--gold);font-weight:700">$197 &mdash; DESBLOQUEAR ACCESO COMPLETO &rarr;</a>
         <div class="cta-or-divider">
           <div class="cta-or-line"></div>
-          <span class="cta-or-text">O</span>
+          <span class="cta-or-text">O empieza gratis</span>
           <div class="cta-or-line"></div>
         </div>
         <form onsubmit="handleSubmit(event,'es')" class="cta-free-row">
           <input class="cta-free-input" type="email" name="email" required placeholder="correo@ejemplo.com" autocomplete="email">
           <button class="cta-free-btn" type="submit">Acceso Gratis &rarr;</button>
         </form>
-        <div class="cta-free-note">El acceso gratis incluye el mapa de 51 estados y datos estatales. Al ingresar tu correo aceptas recibir The Aurigen Intelligence Brief. Cancela cuando quieras.</div>
+        <div class="cta-free-note">Nivel gratis: mapa de 51 estados + datos estatales + citas de estatutos. Al ingresar tu correo aceptas recibir The Aurigen Intelligence Brief. Cancela cuando quieras.</div>
       </div>
 
-      <table class="features-table">
-        <thead>
-          <tr>
-            <th>Herramienta</th>
-            <th>Acceso</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Mapa de Inteligencia de 51 Estados</td><td class="tier-free">Gratis</td></tr>
-          <tr><td>Datos a Nivel Estatal</td><td class="tier-free">Gratis</td></tr>
-          <tr><td>Citas de Estatutos</td><td class="tier-free">Gratis</td></tr>
-          <tr><td>Directorio de 3,200+ Condados</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>Analizador de Negocios</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>Perfilador DNA + Sage IA</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>Comparaci&oacute;n Versus</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>Calendario de Subastas</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>Lista Scout</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>Alertas de Subastas</td><td class="tier-paid">&#x1F512;</td></tr>
-          <tr><td>Alertas Pulse</td><td class="tier-paid">&#x1F512;</td></tr>
-        </tbody>
-      </table>
+      <div class="pricing-card">
+        <div class="pricing-card-header">POR QU&Eacute; LOS INVERSIONISTAS ELIGEN AURIGEN</div>
+        <div class="pricing-cols">
+          <div class="pricing-col pricing-col-them">
+            <div class="pricing-col-label">HERRAMIENTAS SIMILARES</div>
+            <div class="pricing-col-price">$200+</div>
+            <div class="pricing-col-period">POR MES &mdash; RECURRENTE</div>
+            <ul class="pricing-feature-list">
+              <li>Cobertura estatal limitada</li>
+              <li>Actualizaciones retrasadas</li>
+              <li>Investigaci&oacute;n manual</li>
+              <li>Cargos extra por herramienta</li>
+              <li>Costo anual: $2,400+</li>
+            </ul>
+          </div>
+          <div class="pricing-col pricing-col-us">
+            <div class="pricing-col-label">AURIGEN</div>
+            <div class="pricing-col-price">$197</div>
+            <div class="pricing-col-period">PAGO &Uacute;NICO &mdash; PARA SIEMPRE</div>
+            <ul class="pricing-feature-list">
+              <li>51 estados + 3,200 condados</li>
+              <li>Calendario de subastas + alertas</li>
+              <li>Analizador + Perfilador DNA</li>
+              <li>Sage IA + Versus + Scout</li>
+              <li>Acceso de por vida, sin renovaciones</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-savings">TU AHORRO EL PRIMER A&Ntilde;O: $2,203</div>
+      </div>
     </div>
 
   </div>
