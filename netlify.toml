@@ -58,12 +58,19 @@
 [functions."generate-report"]
   type = "background"
 
-# ── SUBDOMAIN: Custom domain redirect ────────────────────────
-# When directory.theaurigen.com is configured as primary domain,
-# redirect www and app variants to canonical
+# ── SUBDOMAIN: Custom domain support ─────────────────────────
+# directory.theaurigen.com serves the same content as aurigendirectory.com
+# Redirect www to canonical
 [[redirects]]
   from = "https://www.aurigendirectory.com/*"
   to = "https://aurigendirectory.com/:splat"
+  status = 301
+  force = true
+
+# Redirect www subdomain variant
+[[redirects]]
+  from = "https://www.directory.theaurigen.com/*"
+  to = "https://directory.theaurigen.com/:splat"
   status = 301
   force = true
 

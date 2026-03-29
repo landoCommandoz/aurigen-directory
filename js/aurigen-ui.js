@@ -212,6 +212,7 @@ function openPulseDrawer() {
   pulseRenderProfile();
   pulseRenderFeed();
   pulseRenderCta();
+  initPulseCreateBtn();
   // Trap focus
   if (typeof trapFocus === 'function') trapFocus(document.getElementById('pulse-drawer'));
 }
@@ -381,6 +382,66 @@ function pulseRenderCta() {
       '<div class="pulse-cta-headline">Keep researching</div>' +
       '<div class="pulse-cta-sub">Use the tools above to compare states, run your numbers, and build your due diligence checklist.</div>';
   }
+}
+
+// === CREATE ALERT (paid users) ===
+function initPulseCreateBtn() {
+  var btn = document.getElementById('pulse-create-btn');
+  if (btn && IS_PAID) btn.style.display = 'inline-flex';
+  // Populate state dropdown
+  var sel = document.getElementById('pulse-alert-state');
+  if (sel && window.STATES_V2) {
+    var states = window.STATES_V2.slice().sort(function(a, b) { return a.name.localeCompare(b.name); });
+    states.forEach(function(s) {
+      sel.innerHTML += '<option value="' + escapeHtml(s.code) + '">' + escapeHtml(s.name) + '</option>';
+    });
+  }
+}
+function toggleCreateAlert() {
+  var panel = document.getElementById('pulse-create-panel');
+  if (!panel) return;
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+function submitCreateAlert() {
+  var stateCode = (document.getElementById('pulse-alert-state') || {}).value || '';
+  var alertType = (document.getElementById('pulse-alert-type') || {}).value || 'general';
+  var alertText = (document.getElementById('pulse-alert-text') || {}).value || '';
+  var alertDate = (document.getElementById('pulse-alert-date') || {}).value || '';
+  if (!stateCode || !alertText.trim()) return;
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
+  fetch('/.netlify/functions/create-alert', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + jwt },
+    body: JSON.stringify({ state_code: stateCode, alert_type: alertType, alert_text: alertText.trim(), alert_date: alertDate || undefined })
+  })
+  .then(function(r) { return r.ok ? r.json() : null; })
+  .then(function(data) {
+    if (data && data.created) {
+      var panel = document.getElementById('pulse-create-panel');
+      if (panel) panel.style.display = 'none';
+      // Clear form
+      var textInput = document.getElementById('pulse-alert-text');
+      if (textInput) textInput.value = '';
+      // Reload alerts
+      if (typeof pulseLoadAlerts === 'function') pulseLoadAlerts();
+    }
+  })
+  .catch(function() {});
+}
+function deleteOwnAlert(alertId) {
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
+  fetch('/.netlify/functions/create-alert', {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + jwt },
+    body: JSON.stringify({ alert_id: alertId })
+  })
+  .then(function(r) { return r.ok ? r.json() : null; })
+  .then(function(data) {
+    if (data && data.deleted && typeof pulseLoadAlerts === 'function') pulseLoadAlerts();
+  })
+  .catch(function() {});
 }
 
 // Keyboard: Escape closes drawer
