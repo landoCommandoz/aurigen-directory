@@ -88,24 +88,9 @@
         // Network error on first attempt — let timeout handler retry
       });
     } else {
-      // No JWT — server-verify access via email (legacy path)
-      var email = localStorage.getItem('aurigen_email');
-      if (email) {
-        var _legacyJwt = '';
-        try { _legacyJwt = localStorage.getItem('aurigen_jwt') || ''; } catch(le) {}
-        fetch('/.netlify/functions/check-access', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + _legacyJwt },
-          body: JSON.stringify({ email: email })
-        })
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          var serverTier = data.access || 'free';
-          try { localStorage.setItem('aurigen_access', serverTier); } catch(e) {}
-          if (serverTier !== access) { location.reload(); }
-        })
-        .catch(function() { /* Offline: trust cached tier */ });
-      }
+      // Legacy email check disabled for free users
+      // Free access is granted by aurigen_access = 'free' in localStorage
+      // Only paid validation runs via JWT path above
     }
   } catch(e) {}
 })();
