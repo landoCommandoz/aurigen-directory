@@ -108,6 +108,22 @@
   } catch(e) {}
 })();
 
+// === PAID ACCESS AUTO-UPGRADE — check server on every load ===
+(function(){
+  var email=localStorage.getItem('aurigen_email');
+  var access=localStorage.getItem('aurigen_access');
+  if(email&&access!=='paid'){
+    fetch('/.netlify/functions/check-access?email='+encodeURIComponent(email))
+      .then(function(r){return r.json()})
+      .then(function(d){
+        if(d.paid){
+          try{localStorage.setItem('aurigen_access','paid');}catch(x){}
+          window.location.reload();
+        }
+      }).catch(function(){});
+  }
+})();
+
 // === TAB SYNC — unlock animation when paid access granted ===
 try {
   window.addEventListener('storage', function(e) {
