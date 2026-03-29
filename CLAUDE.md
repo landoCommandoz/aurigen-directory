@@ -43,10 +43,23 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 ## OPEN CRITICAL ITEMS
 1. FTC: Founding member 500-cap claim — needs Lando confirmation
 2. C2: states-en.js serverless gating (get-states.js built, needs C2 JWT session validation)
-3. Hero: Two competing CTAs on hero section — HIGH CONVERSION
-4. First Deal page navigation incomplete
+3. First Deal page navigation incomplete
+4. Email 3 lists 9 tools — verify all live before GHL deployment
+5. "$200+/month comparable tools" claim needs documented comparables
 
-## RESOLVED THIS SESSION (2026-03-29)
+## RESOLVED THIS SESSION (2026-03-29 — Session 13)
+- ~~Hero competing CTAs~~ — FIXED (single $197 primary + "Start free" secondary in hero)
+- ~~innerHTML XSS via AI advisor (H4)~~ — FIXED (DOMPurify 3.0.9 + sanitizeHTML wrapper)
+- ~~Sage error handling~~ — BUILT (duplicate detection, error card with retry, "Still thinking...")
+- ~~Pre-Call Summary incomplete~~ — ENHANCED (timestamp, saved states, Scout progress bar)
+- ~~ES translations gap~~ — FIXED (28 new keys: Phase 4 tools, journey bar, pulse, account)
+- ~~GHL nurture sequence missing~~ — DELIVERED (5 emails, pipeline/PIPER-GHL-NURTURE-SEQUENCE.md)
+- ~~get-states.js rate limiting~~ — ADDED (60/min per IP, 429 + Retry-After)
+- ~~@lex S13~~ — 3 PASS + 4 ADVISORY (all fixed)
+- ~~@knox S13~~ — 8/8 PASS
+- ~~@cipher-security S13~~ — 13 PASS + 1 FAIL fixed (onclick XSS) + 1 ADVISORY
+
+## RESOLVED PRIOR SESSION (2026-03-29 — Session 12)
 - ~~Referral reward layer missing~~ — BUILT (51% cash commission, PayPal payouts, admin management)
 - ~~Affiliate terms missing~~ — FIXED (LEX-S12-01: Referral Program Terms in legal/, FTC disclosure on gate.html)
 - ~~CORS localhost in production~~ — FIXED (environment-gated, dev-only localhost)
@@ -101,14 +114,14 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 ## CURRENT SESSION STATUS (2026-03-29)
 - Phase 1 COMPLETE — Foundation rebuild + county data layer
 - Phase 2 COMPLETE — All 8 core tools + Pulse CREATE ALERT + Account upgrades
-- Phase 3 partially wired — Journey bar, DNA persistence, Versus pre-load
+- Phase 3 progress — Journey bar + Next Step Cards + Pre-Call Summary polished. DNA persistence across tools pending.
 - Phase 4 VERIFIED — All 5 tools design-compliant + functional
-- Phase 5 progress — JWT timeout fix, CORS localhost gate, C2 audit all endpoints verified
-- Phase 6 progress — Referral commission engine, subdomain DNS prep, Beehiiv draft ready
-- Security: shared CORS (env-gated), per-IP rate limiting, requirePaid/requireAdmin on all sensitive routes
+- Phase 5 progress — JWT timeout fix, CORS localhost gate, C2 audit, DOMPurify XSS fix, get-states.js rate limiting
+- Phase 6 progress — Referral commissions, subdomain DNS prep, Beehiiv draft, 5-email nurture sequence
+- Security: DOMPurify on all Sage innerHTML, shared CORS (env-gated), per-IP rate limiting, requirePaid/requireAdmin
 - Integrations: GHL sync, Skool sync, referral commission engine, weekly report + Beehiiv draft
-- Legal: Referral Program Terms, FTC disclosure, UGC policy, privacy updates
-- @lex S12: 1 FAIL fixed + 3 ADV fixed | @knox S12: 32/32 PASS | @cipher S12: 9/9 PASS
+- Legal: Referral Program Terms, FTC disclosure, UGC policy, privacy updates, hero social proof reviewed
+- @lex S13: 3 PASS + 4 ADV fixed | @knox S13: 8/8 PASS | @cipher S13: 13 PASS + 1 FAIL fixed + 1 ADV
 
 ## MASTER PHASE PLAN
 

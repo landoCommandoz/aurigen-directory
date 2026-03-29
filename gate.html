@@ -179,6 +179,52 @@
       animation: fade-in 1s ease 0.15s both;
     }
 
+    /* Hero CTA row */
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 28px;
+      animation: fade-in 1s ease 0.3s both;
+    }
+    .hero-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold);
+      color: #06060a;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 32px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.3s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .hero-cta-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .hero-cta-secondary {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .hero-cta-secondary:hover { color: var(--platinum); }
+    .hero-social-proof {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--dim);
+      margin-top: 14px;
+      animation: fade-in 1s ease 0.4s both;
+    }
+
     /* Stats bar — bottom of hero */
     .stats-bar {
       position: relative;
@@ -581,6 +627,8 @@
       .topbar { padding: 20px 24px; }
       .hero-content { padding: 0 24px; }
       .hero-headline { font-size: clamp(30px, 8vw, 44px); }
+      .hero-cta-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .hero-cta-primary { width: 100%; text-align: center; justify-content: center; }
       .stats-bar { padding: 0 24px 32px; gap: 28px; }
       .stat-num { font-size: 22px; }
       .rule { margin: 0 24px; }
@@ -730,9 +778,14 @@
     </div>
   </div>
 
-  <!-- Hero headline -->
+  <!-- Hero headline + CTA -->
   <div class="hero-content">
     <h1 class="hero-headline">The county-by-county intelligence platform built for serious investors.</h1>
+    <div class="hero-cta-row">
+      <a class="hero-cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02">$197 &mdash; UNLOCK FULL ACCESS &rarr;</a>
+      <a class="hero-cta-secondary" href="#access">Start free with 3 states &rarr;</a>
+    </div>
+    <div class="hero-social-proof">Used by investors researching tax liens across all 51 jurisdictions.</div>
   </div>
 
   <!-- Stats bar -->

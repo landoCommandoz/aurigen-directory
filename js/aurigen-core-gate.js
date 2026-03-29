@@ -269,7 +269,31 @@ var I18N = {
     pulse_title:'PULSE', pulse_new:'New',
     pulse_disclaimer:'Dates based on published schedules \u2014 verify with official authority.',
     pulse_lock_title:'UNLOCK PULSE',
-    pulse_lock_desc:'Real-time alerts when new auctions drop in your watched states. Set it once \u2014 Pulse notifies you.'
+    pulse_lock_desc:'Real-time alerts when new auctions drop in your watched states. Set it once \u2014 Pulse notifies you.',
+    // Phase 4 tools
+    warbook_title:'WARBOOK', warbook_sub:'COMPETITIVE INTELLIGENCE',
+    warbook_lock_title:'UNLOCK WARBOOK',
+    warbook_lock_desc:'Competition rating per state. Surfaces OTC opportunities, lower-competition counties, and tactical edges.',
+    deadlines_title:'DEADLINES', deadlines_sub:'COUNTDOWN DASHBOARD',
+    deadlines_lock_title:'UNLOCK DEADLINES',
+    deadlines_lock_desc:'Countdown dashboard for your target states. Registration, deposit, auction, and filing deadlines.',
+    recon_title:'RECON', recon_sub:'AUCTION WALKTHROUGH',
+    recon_lock_title:'UNLOCK RECON',
+    recon_lock_desc:'State-specific auction walkthrough. Step by step from registration to winning bid.',
+    dossier_title:'DOSSIER', dossier_sub:'INVESTOR BRIEFING',
+    dossier_lock_title:'UNLOCK DOSSIER',
+    dossier_lock_desc:'Single-page printable investor briefing. Compiles your DNA, top states, and action plan.',
+    // Journey bar
+    journey_map:'MAP', journey_county:'COUNTY', journey_pulse:'PULSE',
+    journey_quiz:'QUIZ', journey_access:'ACCESS',
+    // Pulse create
+    pulse_create:'Create Alert', pulse_create_state:'State',
+    pulse_create_type:'Type', pulse_create_text:'Alert text',
+    pulse_create_submit:'Create', pulse_create_cancel:'Cancel',
+    // Account extras
+    acct_usage:'USAGE STATS', acct_freshness:'DATA FRESHNESS',
+    acct_referral_title:'REFERRAL PROGRAM',
+    acct_feature_compare:'FEATURE COMPARISON'
   },
   es: {
     // Nav
@@ -382,7 +406,31 @@ var I18N = {
     pulse_title:'PULSE', pulse_new:'Nuevas',
     pulse_disclaimer:'Fechas basadas en calendarios publicados \u2014 verifica con la autoridad oficial.',
     pulse_lock_title:'DESBLOQUEAR PULSE',
-    pulse_lock_desc:'Alertas en tiempo real cuando nuevas subastas aparecen en tus estados. Conf\u00edguralo una vez \u2014 Pulse te notifica.'
+    pulse_lock_desc:'Alertas en tiempo real cuando nuevas subastas aparecen en tus estados. Conf\u00edguralo una vez \u2014 Pulse te notifica.',
+    // Phase 4 tools
+    warbook_title:'WARBOOK', warbook_sub:'INTELIGENCIA COMPETITIVA',
+    warbook_lock_title:'DESBLOQUEAR WARBOOK',
+    warbook_lock_desc:'Calificaci\u00f3n de competencia por estado. Oportunidades OTC, condados de menor competencia y ventajas t\u00e1cticas.',
+    deadlines_title:'FECHAS L\u00cdMITE', deadlines_sub:'PANEL DE CUENTA REGRESIVA',
+    deadlines_lock_title:'DESBLOQUEAR FECHAS L\u00cdMITE',
+    deadlines_lock_desc:'Panel de cuenta regresiva para tus estados objetivo. Registro, dep\u00f3sito, subasta y fechas de documentaci\u00f3n.',
+    recon_title:'RECON', recon_sub:'GU\u00cdA DE SUBASTA',
+    recon_lock_title:'DESBLOQUEAR RECON',
+    recon_lock_desc:'Gu\u00eda de subasta espec\u00edfica por estado. Paso a paso desde el registro hasta la puja ganadora.',
+    dossier_title:'DOSSIER', dossier_sub:'INFORME DE INVERSOR',
+    dossier_lock_title:'DESBLOQUEAR DOSSIER',
+    dossier_lock_desc:'Informe de inversor de una p\u00e1gina imprimible. Compila tu DNA, mejores estados y plan de acci\u00f3n.',
+    // Journey bar
+    journey_map:'MAPA', journey_county:'CONDADO', journey_pulse:'PULSE',
+    journey_quiz:'QUIZ', journey_access:'ACCESO',
+    // Pulse create
+    pulse_create:'Crear Alerta', pulse_create_state:'Estado',
+    pulse_create_type:'Tipo', pulse_create_text:'Texto de alerta',
+    pulse_create_submit:'Crear', pulse_create_cancel:'Cancelar',
+    // Account extras
+    acct_usage:'ESTAD\u00cdSTICAS DE USO', acct_freshness:'ACTUALIZACI\u00d3N DE DATOS',
+    acct_referral_title:'PROGRAMA DE REFERIDOS',
+    acct_feature_compare:'COMPARACI\u00d3N DE FUNCIONES'
   }
 };
 

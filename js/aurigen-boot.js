@@ -75,10 +75,10 @@ function runStateCompare() {
   } else if (!dB) {
     el.textContent = b + ' NOT IN DATABASE \u2014 ENTER A 2-LETTER STATE CODE';
   } else {
-    el.innerHTML =
+    el.innerHTML = sanitizeHTML(
       '<div>RATE: ' + escapeHtml(a) + ' ' + escapeHtml(dA.rate) + ' | ' + escapeHtml(b) + ' ' + escapeHtml(dB.rate) + '</div>' +
       '<div>REDEMPTION: ' + escapeHtml(a) + ' ' + escapeHtml(dA.redemption) + ' | ' + escapeHtml(b) + ' ' + escapeHtml(dB.redemption) + '</div>' +
-      '<div>PLATFORM: ' + escapeHtml(a) + ' ' + escapeHtml(dA.platform) + ' | ' + escapeHtml(b) + ' ' + escapeHtml(dB.platform) + '</div>';
+      '<div>PLATFORM: ' + escapeHtml(a) + ' ' + escapeHtml(dA.platform) + ' | ' + escapeHtml(b) + ' ' + escapeHtml(dB.platform) + '</div>');
   }
   el.classList.add('show');
 }
@@ -233,7 +233,7 @@ function sageReplayHistory() {
       div.innerHTML = '<div class="msg-label">You</div>' + escapeHtml(m.text);
     } else {
       div.className = 'msg sage';
-      div.innerHTML = '<div class="msg-label">Sage</div>' + sageRenderMarkdown(m.text);
+      div.innerHTML = sanitizeHTML('<div class="msg-label">Sage</div>' + sageRenderMarkdown(m.text));
     }
     msgs.appendChild(div);
   }
@@ -253,11 +253,26 @@ function renderSageCTA() {
   return '';
 }
 
+// Duplicate prompt detection
+var _sageLastPrompt = '';
+
 function sendAdvisorMessage() {
   var input = document.getElementById('advisor-input');
   var text = (input.value || '').trim();
   if (!text) return;
   var msgs = document.getElementById('advisor-messages');
+
+  // Duplicate detection — exact same prompt back-to-back
+  if (text.toLowerCase() === _sageLastPrompt.toLowerCase()) {
+    var dupeDiv = document.createElement('div');
+    dupeDiv.className = 'msg sage';
+    dupeDiv.innerHTML = sanitizeHTML('<div class="msg-label">Sage</div><div style="font-size:12px;color:var(--text2)">You just asked that. Try rephrasing or ask something new.</div>');
+    msgs.appendChild(dupeDiv);
+    msgs.scrollTop = msgs.scrollHeight;
+    input.value = '';
+    return;
+  }
+  _sageLastPrompt = text;
 
   var welcome = document.getElementById('sage-welcome');
   if (welcome) welcome.style.display = 'none';
@@ -278,21 +293,58 @@ function sendAdvisorMessage() {
   _sageQuestionCount++;
   _sageHistory.push({ role: 'user', text: text });
 
+  // "Still thinking..." after 10s (future-proofing for API calls)
+  var thinkingTimer = setTimeout(function() {
+    var typingSpan = typing.querySelector('.sage-typing');
+    if (typingSpan) typingSpan.insertAdjacentHTML('afterend', '<div style="font-size:11px;color:var(--text3);margin-top:4px">Still thinking...</div>');
+  }, 10000);
+
   var delay = 600 + Math.floor(Math.random() * 600);
+  var capturedText = text;
   setTimeout(function() {
-    var response = getAdvisorResponse(text);
-    var hasCTA = response.indexOf('[CTA]') !== -1;
-    var rendered = sageRenderMarkdown(response.replace(/\[CTA\]/g, renderSageCTA()));
-    if (hasCTA) _sageLastCTATurn = _sageQuestionCount;
-    if (_sageFirstResponse) {
-      rendered += '<div style="margin-top:10px;font-size:11px;color:var(--text3);line-height:1.5;">Rates and rules vary by state and county \u2014 always verify with the official authority before transacting.</div>';
-      _sageFirstResponse = false;
+    clearTimeout(thinkingTimer);
+    try {
+      var response = getAdvisorResponse(capturedText);
+      var hasCTA = response.indexOf('[CTA]') !== -1;
+      var rendered = sageRenderMarkdown(response.replace(/\[CTA\]/g, renderSageCTA()));
+      if (hasCTA) _sageLastCTATurn = _sageQuestionCount;
+      if (_sageFirstResponse) {
+        rendered += '<div style="margin-top:10px;font-size:11px;color:var(--text3);line-height:1.5;">Rates and rules vary by state and county \u2014 always verify with the official authority before transacting.</div>';
+        _sageFirstResponse = false;
+      }
+      typing.innerHTML = sanitizeHTML('<div class="msg-label">Sage</div>' + rendered);
+      msgs.scrollTop = msgs.scrollHeight;
+      _sageHistory.push({ role: 'sage', text: response });
+      sageSaveSession();
+    } catch(err) {
+      // Error card with retry (wired via addEventListener, not inline onclick)
+      typing.innerHTML = sanitizeHTML('<div class="msg-label">Sage</div>' +
+        '<div class="sage-error-card">' +
+        '<div style="font-size:12px;color:var(--pink);margin-bottom:8px">Something went wrong. Please try again.</div>' +
+        '</div>');
+      var retryBtn = document.createElement('button');
+      retryBtn.className = 'sage-retry-btn';
+      retryBtn.textContent = 'Retry';
+      retryBtn.addEventListener('click', sageRetryLast);
+      typing.querySelector('.sage-error-card').appendChild(retryBtn);
+      msgs.scrollTop = msgs.scrollHeight;
     }
-    typing.innerHTML = '<div class="msg-label">Sage</div>' + rendered;
-    msgs.scrollTop = msgs.scrollHeight;
-    _sageHistory.push({ role: 'sage', text: response });
-    sageSaveSession();
   }, delay);
+}
+
+// Retry last failed message
+function sageRetryLast() {
+  // Remove the error card
+  var msgs = document.getElementById('advisor-messages');
+  if (msgs && msgs.lastChild) msgs.removeChild(msgs.lastChild);
+  // Pop the failed user message from history and replay
+  if (_sageHistory.length > 0 && _sageHistory[_sageHistory.length - 1].role === 'user') {
+    var lastText = _sageHistory.pop().text;
+    _sageQuestionCount--;
+    _sageLastPrompt = ''; // Allow retry
+    var input = document.getElementById('advisor-input');
+    if (input) { input.value = lastText; sendAdvisorMessage(); }
+  }
 }
 
 // Initialize Sage on DOMContentLoaded
@@ -311,5 +363,14 @@ function escapeHtml(str) {
   var div = document.createElement('div');
   div.textContent = str;
   return div.innerHTML;
+}
+
+// DOMPurify wrapper — sanitizes HTML before innerHTML assignment
+// Falls back to escapeHtml stripping if DOMPurify not loaded
+function sanitizeHTML(html) {
+  if (typeof DOMPurify !== 'undefined' && DOMPurify.sanitize) {
+    return DOMPurify.sanitize(html, { ALLOWED_TAGS: ['strong', 'em', 'code', 'br', 'div', 'span', 'a', 'button'], ALLOWED_ATTR: ['class', 'style', 'href', 'id', 'target', 'rel'] });
+  }
+  return escapeHtml(html);
 }
 

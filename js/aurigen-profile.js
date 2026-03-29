@@ -275,8 +275,39 @@ function renderSummaryPage() {
     return;
   }
 
+  // Last updated timestamp
+  var lastUpdated = profile.lastUpdated ? new Date(profile.lastUpdated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'Just now';
+
+  // Saved states
+  var savedStates = typeof getSavedStates === 'function' ? getSavedStates() : [];
+
+  // Scout progress
+  var scoutPct = 0;
+  var scoutTotal = 10;
+  var scoutDone = 0;
+  try {
+    var deals = JSON.parse(localStorage.getItem('aurigen_scout_deals') || '[]');
+    if (deals.length > 0) {
+      var checked = deals[0].checked || {};
+      scoutDone = Object.keys(checked).filter(function(k) { return checked[k]; }).length;
+      scoutPct = Math.round((scoutDone / scoutTotal) * 100);
+    }
+  } catch(e) {}
+
   var html = '<div class="summary-container">';
-  html += '<div class="summary-header"><div class="summary-eyebrow">Pre-Call Summary</div><div class="summary-title">YOUR INVESTOR BRIEF</div></div>';
+  html += '<div class="summary-header"><div class="summary-eyebrow">Pre-Call Summary</div><div class="summary-title">YOUR INVESTOR BRIEF</div>';
+  html += '<div class="summary-timestamp">Last updated: ' + escapeHtml(lastUpdated) + '</div></div>';
+
+  // Saved states bar
+  if (savedStates.length > 0) {
+    html += '<div class="summary-saved-states"><span class="summary-saved-label">Saved States:</span> ' + savedStates.map(function(s) { return '<span class="summary-state-tag">' + escapeHtml(s) + '</span>'; }).join(' ') + '</div>';
+  }
+
+  // Scout progress bar
+  if (scoutDone > 0) {
+    html += '<div class="summary-scout-bar"><span class="summary-scout-label">Scout Checklist: ' + scoutPct + '%</span><div class="summary-scout-track"><div class="summary-scout-fill" style="width:' + scoutPct + '%"></div></div></div>';
+  }
+
   html += '<div class="summary-cards">';
 
   // Card 1 — Archetype
