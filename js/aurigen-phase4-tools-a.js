@@ -30,16 +30,18 @@ function initWarbook() {
   var content = document.getElementById('warbook-content');
   if (loading) loading.style.display = 'block';
 
+  var localAccess = '';
+  try { localAccess = localStorage.getItem('aurigen_access') || ''; } catch(e) {}
   var jwt = '';
   try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
-  if (!jwt) {
+  if (!jwt && localAccess !== 'paid') {
     if (loading) loading.style.display = 'none';
     if (content) content.innerHTML = '<div class="warbook-empty">Sign in to view competition data.</div>';
     return;
   }
 
   fetch('/.netlify/functions/auctions?type=warbook', {
-    headers: { 'Authorization': 'Bearer ' + jwt }
+    headers: jwt ? { 'Authorization': 'Bearer ' + jwt } : {}
   })
     .then(function(r) { return r.json(); })
     .then(function(data) {

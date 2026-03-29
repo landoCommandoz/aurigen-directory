@@ -81,17 +81,17 @@ function auctionsInvCountyChange() {
     return;
   }
 
-  var jwt = '';
-  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
   var localAccess = '';
   try { localAccess = localStorage.getItem('aurigen_access') || ''; } catch(e) {}
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
   if (!jwt && localAccess !== 'paid') {
     body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128274;</span><span class="propfeed-empty-title">VERIFYING ACCESS</span><span class="propfeed-empty-hint">Checking your account status...</span><div class="propfeed-empty-actions"><button type="button" class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="(function(){var e=localStorage.getItem(\'aurigen_email\');if(e){fetch(\'/.netlify/functions/check-access?email=\'+encodeURIComponent(e)).then(function(r){return r.json()}).then(function(d){if(d.paid){try{localStorage.setItem(\'aurigen_access\',\'paid\');}catch(x){}window.location.reload();}else{window.location.href=\'/\';}});}else{window.location.href=\'/\';}})()">Refresh Access</button></div></div>';
     return;
   }
 
   fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(county), {
-    headers: { 'Authorization': 'Bearer ' + jwt }
+    headers: jwt ? { 'Authorization': 'Bearer ' + jwt } : {}
   })
     .then(function(r) {
       if (r.status === 401 || r.status === 403) throw new Error('access');

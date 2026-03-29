@@ -1,3 +1,14 @@
+// === ADMIN OVERRIDE — landon@theaurigen.com is permanently paid+admin ===
+(function() {
+  try {
+    var email = localStorage.getItem('aurigen_email') || '';
+    if (email === 'landon@theaurigen.com') {
+      localStorage.setItem('aurigen_access', 'paid');
+      localStorage.setItem('aurigen_is_admin', 'true');
+    }
+  } catch(e) {}
+})();
+
 // === GATE CHECK — redirect to landing if no access ===
 (function() {
   try {
