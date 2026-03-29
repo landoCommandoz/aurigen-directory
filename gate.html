@@ -837,9 +837,9 @@
           <span class="cta-or-text">Or start free</span>
           <div class="cta-or-line"></div>
         </div>
-        <form onsubmit="handleSubmit(event,'en')" class="cta-free-row">
-          <input class="cta-free-input" type="email" name="email" required placeholder="email@address.com" autocomplete="email">
-          <button class="cta-free-btn" type="submit">Free Access &rarr;</button>
+        <form onsubmit="event.preventDefault(); localStorage.setItem('aurigen_email', this.email.value); localStorage.setItem('aurigen_access', 'free'); window.location.href='/warroom-billion.html'; return false;" class="cta-free-form">
+          <input type="email" name="email" placeholder="email@address.com" required class="cta-free-input">
+          <button type="submit" class="cta-free-btn">Free Access &rarr;</button>
         </form>
         <div class="cta-free-note">Free tier: 51-state map + state-level data + statute citations. By entering your email you agree to receive The Aurigen Intelligence Brief. Unsubscribe anytime. <a href="/privacy.html" style="color:var(--muted);text-decoration:underline">Privacy Policy</a></div>
       </div>
@@ -915,9 +915,9 @@
           <span class="cta-or-text">O empieza gratis</span>
           <div class="cta-or-line"></div>
         </div>
-        <form onsubmit="handleSubmit(event,'es')" class="cta-free-row">
-          <input class="cta-free-input" type="email" name="email" required placeholder="correo@ejemplo.com" autocomplete="email">
-          <button class="cta-free-btn" type="submit">Acceso Gratis &rarr;</button>
+        <form onsubmit="event.preventDefault(); localStorage.setItem('aurigen_email', this.email.value); localStorage.setItem('aurigen_access', 'free'); window.location.href='/warroom-billion.html'; return false;" class="cta-free-form">
+          <input type="email" name="email" placeholder="correo@ejemplo.com" required class="cta-free-input">
+          <button type="submit" class="cta-free-btn">Acceso Gratis &rarr;</button>
         </form>
         <div class="cta-free-note">Nivel gratis: mapa de 51 estados + datos estatales + citas de estatutos. Al ingresar tu correo aceptas recibir The Aurigen Intelligence Brief. Cancela cuando quieras. <a href="/privacy.html" style="color:var(--muted);text-decoration:underline">Pol&iacute;tica de Privacidad</a></div>
       </div>
@@ -987,32 +987,6 @@
 </div>
 
 <script>
-// === AUTH REDIRECT — server-verified ===
-(function() {
-  try {
-    var access = localStorage.getItem('aurigen_access');
-    var email = localStorage.getItem('aurigen_email');
-    if (access && email) {
-      // Verify server-side before redirect
-      fetch('/.netlify/functions/check-access', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email })
-      })
-      .then(function(r) { return r.json(); })
-      .then(function(data) {
-        try { localStorage.setItem('aurigen_access', data.access || 'free'); } catch(e) {}
-        window.location.href = '/warroom-billion.html';
-      })
-      .catch(function() {
-        // Offline fallback: trust cached access
-        window.location.href = '/warroom-billion.html';
-      });
-      return;
-    }
-  } catch(e) {}
-})();
-
 // === REFERRAL CODE CAPTURE + FTC DISCLOSURE ===
 (function() {
   try {
@@ -1028,53 +1002,6 @@
     }
   } catch(e) {}
 })();
-
-// === FORM SUBMIT — capture email + verify paid status ===
-function handleSubmit(e, lang) {
-  e.preventDefault();
-  var email = e.target.email.value;
-  var btn = e.target.querySelector('button[type="submit"]');
-  if (btn) { btn.disabled = true; btn.textContent = '...'; }
-  // Store email for future server checks
-  try { localStorage.setItem('aurigen_email', email); } catch(err) {}
-  // Capture email + UTM → Beehiiv + Supabase (fire and forget — never blocks user)
-  var utmPayload = { email: email, language: lang || 'en' };
-  try {
-    var sp = new URLSearchParams(window.location.search);
-    if (sp.get('utm_source')) utmPayload.utm_source = sp.get('utm_source');
-    if (sp.get('utm_medium')) utmPayload.utm_medium = sp.get('utm_medium');
-    if (sp.get('utm_campaign')) utmPayload.utm_campaign = sp.get('utm_campaign');
-    if (sp.get('utm_term')) utmPayload.utm_term = sp.get('utm_term');
-    if (sp.get('utm_content')) utmPayload.utm_content = sp.get('utm_content');
-  } catch(ue) {}
-  // Attach referral code if present
-  try {
-    var refCode = localStorage.getItem('aurigen_ref_code');
-    if (refCode) utmPayload.ref_code = refCode;
-  } catch(re) {}
-  fetch('/.netlify/functions/capture-email', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(utmPayload)
-  }).catch(function() {});
-  // Check server for paid status
-  fetch('/.netlify/functions/check-access', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    var tier = data.access || 'free';
-    try { localStorage.setItem('aurigen_access', tier); } catch(e) {}
-    window.location.href = '/warroom-billion.html';
-  })
-  .catch(function() {
-    // Offline fallback: grant free access
-    try { localStorage.setItem('aurigen_access', 'free'); } catch(e) {}
-    window.location.href = '/warroom-billion.html';
-  });
-}
 
 // === TAB SYNC ===
 try {
