@@ -46,18 +46,31 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 3. Hero: Two competing CTAs on hero section — HIGH CONVERSION
 4. First Deal page navigation incomplete
 
-## RESOLVED THIS SESSION (2026-03-28)
+## RESOLVED THIS SESSION (2026-03-29)
+- ~~Referral reward layer missing~~ — BUILT (51% cash commission, PayPal payouts, admin management)
+- ~~Affiliate terms missing~~ — FIXED (LEX-S12-01: Referral Program Terms in legal/, FTC disclosure on gate.html)
+- ~~CORS localhost in production~~ — FIXED (environment-gated, dev-only localhost)
+- ~~Custom subdomain not configured~~ — DONE (canonical/og:url updated, netlify.toml redirects, DNS docs)
+- ~~Pulse missing alert creation~~ — BUILT (create-alert.js, sanitized UGC, paid-only)
+- ~~Account tab missing usage stats~~ — BUILT (auctions viewed, counties explored, checklists, dossiers)
+- ~~Account tab missing data freshness~~ — BUILT (data-freshness.js public endpoint)
+- ~~Account tab missing feature comparison (free)~~ — BUILT (14-feature grid with free vs paid)
+- ~~Phase 4 design audit~~ — ALL 5 TOOLS COMPLIANT (Bebas Neue, var(--border), var(--accent), mobile responsive)
+- ~~C2 audit~~ — ALL SENSITIVE ENDPOINTS VERIFIED (requirePaid/requireAdmin on all routes)
+- ~~Email masking in referral stats~~ — FIXED (domain-only: ***@domain.com)
+- ~~UGC policy missing~~ — ADDED to privacy.html
+- ~~Payout language too binding~~ — SOFTENED ("typically reviewed within 30 days")
+- ~~@lex Session 12~~ — 1 FAIL fixed + 3 ADVISORY fixed, all resolved
+- ~~@knox+@nova Session 12~~ — 32/32 PASS
+- ~~@cipher-security Session 12~~ — 9/9 PASS
+
+## RESOLVED PRIOR SESSIONS
 - ~~Privacy policy missing referral disclosure~~ — FIXED (LEX-S10-01: Referral Program section + GHL third-party listing)
 - ~~JWT timeout → localStorage bypass~~ — FIXED (Phase 5 C2: retry overlay → revoke on double failure)
 - ~~Beehiiv weekly report auto-send~~ — READY (draft creation gated by BEEHIIV_SEND_ENABLED env var)
 - ~~Skool/GHL sync not auth-gated~~ — VERIFIED (JWT + x-internal-key dual auth on both)
 - ~~Phase 4 tools audit~~ — ALL 5 VERIFIED (Scout, Warbook, Deadlines, Recon, Dossier)
 - ~~Scout scoutNewDeal() missing IS_PAID guard~~ — FIXED (SEC-S11-06)
-- ~~@lex Session 11~~ — 5/5 PASS
-- ~~@knox+@nova Session 11~~ — 21/21 PASS
-- ~~@cipher-security Session 11~~ — 7/7 PASS, 1 ADV fixed
-
-## RESOLVED PRIOR SESSIONS
 - ~~Free tier showed "FL, IL, AZ" instead of "All 51 States"~~ — FIXED (Account tab + Sage response updated)
 - ~~County list expanded by default~~ — FIXED (collapsed by default, toggle chevron)
 - ~~Paid features accessible via scroll/click on free tier~~ — FIXED (hard lock: pointer-events:none, blur, opacity:0.15)
@@ -85,16 +98,17 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - ~~80-issue master directive~~ — ALL 7 SPRINTS COMPLETE
 - ~~Knox 80-item regression~~ — 80/80 PASS (3 original failures fixed + #080 waived)
 
-## CURRENT SESSION STATUS (2026-03-28)
+## CURRENT SESSION STATUS (2026-03-29)
 - Phase 1 COMPLETE — Foundation rebuild + county data layer
-- Phase 2 in progress — 6/8 core tools complete + Scout tool added
+- Phase 2 COMPLETE — All 8 core tools + Pulse CREATE ALERT + Account upgrades
 - Phase 3 partially wired — Journey bar, DNA persistence, Versus pre-load
-- Phase 4 VERIFIED — All 5 tools (Scout, Warbook, Deadlines, Recon, Dossier) audited and functional
-- Phase 5 progress — JWT timeout bypass fix shipped, server-side session validation active
-- warroom-billion.html refactored — CSS extracted to css/, JS extracted to js/
-- Security: shared CORS, per-IP rate limiting, JWT isAdmin, dual-auth internal calls
-- Integrations: GHL sync, Skool sync, referral engine, weekly report + Beehiiv draft
-- @lex S11: 5/5 PASS | @knox S11: 21/21 PASS | @cipher S11: 7/7 PASS + 1 ADV fixed
+- Phase 4 VERIFIED — All 5 tools design-compliant + functional
+- Phase 5 progress — JWT timeout fix, CORS localhost gate, C2 audit all endpoints verified
+- Phase 6 progress — Referral commission engine, subdomain DNS prep, Beehiiv draft ready
+- Security: shared CORS (env-gated), per-IP rate limiting, requirePaid/requireAdmin on all sensitive routes
+- Integrations: GHL sync, Skool sync, referral commission engine, weekly report + Beehiiv draft
+- Legal: Referral Program Terms, FTC disclosure, UGC policy, privacy updates
+- @lex S12: 1 FAIL fixed + 3 ADV fixed | @knox S12: 32/32 PASS | @cipher S12: 9/9 PASS
 
 ## MASTER PHASE PLAN
 
