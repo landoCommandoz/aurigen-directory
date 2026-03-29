@@ -15,35 +15,189 @@
   <meta name="twitter:description" content="Tax lien and tax deed intelligence for all 50 states + DC.">
   <meta name="twitter:image" content="https://directory.theaurigen.com/og-image.png">
   <link rel="canonical" href="https://directory.theaurigen.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:#0a0e1a;color:#f5f0e8;font-family:'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased;}
+    a{color:inherit;text-decoration:none;}
+
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;position:fixed;top:0;width:100%;z-index:100;background:rgba(10,14,26,0.85);backdrop-filter:blur(8px);}
+    .nav-brand{font-family:'Bebas Neue',sans-serif;color:#c9a84c;font-size:24px;letter-spacing:0.1em;}
+    .nav-label{font-family:'Space Mono',monospace;color:#9898b0;font-size:11px;letter-spacing:0.1em;}
+
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 40px 80px;text-align:center;position:relative;overflow:hidden;}
+    .hero-map{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(90vw,900px);opacity:0.12;pointer-events:none;z-index:0;}
+    .hero-map path{fill:none;stroke:#c9a84c;stroke-width:1.2;}
+    .hero-content{position:relative;z-index:1;max-width:720px;}
+    .hero-label{font-family:'Space Mono',monospace;color:#c9a84c;font-size:13px;letter-spacing:0.3em;margin-bottom:20px;}
+    .hero-h1{font-family:'Bebas Neue',sans-serif;color:#f5f0e8;font-size:clamp(48px,7vw,88px);line-height:1.05;margin-bottom:24px;letter-spacing:0.02em;}
+    .hero-sub{color:#9898b0;font-size:18px;margin-bottom:48px;line-height:1.6;}
+    .btn-paid{display:inline-block;background:#c9a84c;color:#0a0e1a;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.1em;padding:18px 48px;text-align:center;width:100%;max-width:420px;transition:background 0.2s;}
+    .btn-paid:hover{background:#d4b65e;}
+
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1100px;margin:0 auto;padding:80px 40px;}
+    .col{padding:60px 48px;}
+    .col:first-child{border-right:1px solid rgba(255,255,255,0.06);}
+    .col-label{font-family:'Space Mono',monospace;color:#c9a84c;font-size:11px;letter-spacing:0.2em;margin-bottom:24px;text-transform:uppercase;}
+    .col-h2{font-family:'Bebas Neue',sans-serif;color:#f5f0e8;font-size:clamp(26px,3.5vw,38px);line-height:1.1;margin-bottom:16px;}
+    .col-body{color:#9898b0;font-size:15px;line-height:1.6;margin-bottom:32px;}
+    .col .btn-paid{display:block;font-size:18px;padding:16px 32px;}
+    .divider{display:flex;align-items:center;gap:16px;margin:28px 0;color:#9898b0;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.15em;}
+    .divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.08);}
+    .email-row{display:flex;gap:0;}
+    .email-input{flex:1;padding:14px 16px;background:#141418;border:1px solid rgba(255,255,255,0.1);border-right:none;color:#f5f0e8;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;outline:none;}
+    .email-input:focus{border-color:#c9a84c;}
+    .btn-free{background:#c9a84c;color:#0a0e1a;border:none;padding:14px 20px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:0.1em;cursor:pointer;white-space:nowrap;transition:background 0.2s;}
+    .btn-free:hover{background:#d4b65e;}
+    .privacy{color:#555;font-size:11px;margin-top:14px;line-height:1.5;}
+
+    .compare{max-width:800px;margin:0 auto;padding:80px 40px;}
+    .compare-title{font-family:'Bebas Neue',sans-serif;color:#f5f0e8;font-size:36px;text-align:center;margin-bottom:48px;letter-spacing:0.03em;}
+    .compare-table{width:100%;border-collapse:collapse;}
+    .compare-table th{font-family:'Space Mono',monospace;color:#c9a84c;font-size:12px;letter-spacing:0.1em;padding:12px 16px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.1);}
+    .compare-table th:first-child{text-align:left;}
+    .compare-table td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.04);color:#9898b0;font-size:14px;text-align:center;}
+    .compare-table td:first-child{text-align:left;color:#f5f0e8;}
+    .ck{color:#c9a84c;}
+    .cx{color:#444;}
+
+    .footer{text-align:center;padding:48px 40px;border-top:1px solid rgba(255,255,255,0.04);}
+    .footer a{color:#9898b0;font-size:12px;margin:0 16px;}
+    .footer a:hover{color:#c9a84c;}
+
+    @media(max-width:768px){
+      .nav{padding:16px 20px;}
+      .hero{padding:100px 24px 60px;}
+      .cols{grid-template-columns:1fr;padding:40px 24px;}
+      .col{padding:40px 0;}
+      .col:first-child{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:48px;}
+      .compare{padding:60px 24px;}
+    }
+  </style>
 </head>
 <body>
 
-<nav style="display:flex;justify-content:space-between;align-items:center;padding:20px 40px;position:fixed;top:0;width:100%;box-sizing:border-box;z-index:100;">
-<span style="font-family:'Bebas Neue',sans-serif;color:#c9a84c;font-size:24px;letter-spacing:0.1em;">AURIGEN</span>
-<span style="font-family:'Space Mono',monospace;color:#9898b0;font-size:11px;letter-spacing:0.1em;">COUNTY INTELLIGENCE PLATFORM</span>
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav-brand">AURIGEN</span>
+  <span class="nav-label">COUNTY INTELLIGENCE PLATFORM</span>
 </nav>
 
-<main style="min-height:100vh;background:#0a0e1a;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 40px 60px;text-align:center;">
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-map" viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg">
+    <path d="M174 65l5-1 3 2 4-1 2 3-1 4-5 1-4-2-3 1-2-3z"/>
+    <path d="M122 91l4-1 7 3-1 5-6 1-5-3z"/>
+    <path d="M297 103l25-2 3 10-2 8-6 6-8 4-8-1-6-5-2-8 2-8z"/>
+    <path d="M458 125l-28 4-12-4-4-9 3-11 10-8 14-3 13 2 9 7 3 10-3 9z"/>
+    <path d="M552 81l6-2 8 1 6 4 3 6-1 6-5 5-7 2-6-2-5-5-2-6 1-6z"/>
+    <path d="M670 100l10-3 8 2 5 6 1 8-3 7-7 4-8 1-7-3-4-6 0-8 3-6z"/>
+    <path d="M816 142l-4 5-8 8-4 7 0 5 3 4 1 6-3 4-7 3-4-1-4 3-6 0-3-3-1-5 2-6 5-8 7-7 6-5 8-4 5-1 4 1z"/>
+    <path d="M238 170l15-2 10 4 5 9-1 10-7 8-12 4-11-2-8-7-2-9 3-9z"/>
+    <path d="M380 140l20-3 14 5 6 11-2 12-10 9-16 4-14-3-9-8-2-11 4-11z"/>
+    <path d="M740 130l8-2 6 3 3 6 0 7-4 5-7 2-6-2-4-5-1-6 3-6z"/>
+    <path d="M160 220l12-3 10 2 7 7 2 9-2 9-7 7-10 3-10-1-7-6-3-8 1-10z"/>
+    <path d="M600 150l15-3 11 4 6 10-1 11-8 9-13 4-12-2-8-7-2-10 4-10z"/>
+    <path d="M480 200l18-4 13 5 7 11-1 12-9 10-15 4-13-3-9-8-2-11 4-11z"/>
+    <path d="M320 220l16-3 12 4 6 10-1 11-8 9-14 4-12-2-8-7-2-10 4-10z"/>
+    <path d="M200 280l14-3 11 3 6 9-1 10-7 8-12 4-11-2-7-6-2-9 3-9z"/>
+    <path d="M420 260l20-4 15 5 7 12-1 13-10 10-17 5-15-3-9-9-2-12 4-12z"/>
+    <path d="M560 240l16-3 12 4 6 10-1 11-8 9-14 4-12-2-8-7-2-10 4-10z"/>
+    <path d="M680 200l12-2 9 3 5 8-1 9-6 7-10 3-9-2-6-5-2-8 3-8z"/>
+    <path d="M280 310l18-4 13 5 7 11-1 12-9 10-15 4-13-3-9-8-2-11 4-11z"/>
+    <path d="M520 320l22-5 16 6 8 13-2 14-11 11-18 5-16-3-10-9-3-13 5-13z"/>
+    <path d="M360 340l16-3 12 4 6 10-1 11-8 9-14 4-12-2-8-7-2-10 4-10z"/>
+    <path d="M640 280l14-3 11 3 6 9-1 10-7 8-12 4-11-2-7-6-2-9 3-9z"/>
+    <path d="M180 360l12-2 9 3 5 8-1 9-6 7-10 3-9-2-6-5-2-8 3-8z"/>
+    <path d="M440 380l18-4 14 5 7 11-1 12-9 10-15 5-14-3-9-8-2-12 4-11z"/>
+    <path d="M720 330l10-2 8 2 4 7 0 8-5 6-8 2-7-2-4-5-1-7 3-6z"/>
+    <path d="M300 400l14-3 11 4 6 9-1 10-7 8-12 4-11-2-7-6-2-9 3-9z"/>
+    <path d="M580 380l16-3 12 4 6 10-1 11-8 9-14 4-12-2-8-7-2-10 4-10z"/>
+    <path d="M460 440l14-3 11 3 6 9-1 10-7 8-12 4-11-2-7-6-2-9 3-9z"/>
+    <path d="M240 440l10-2 8 2 4 7 0 8-5 6-8 2-7-2-4-5-1-7 3-6z"/>
+    <path d="M660 400l12-2 9 3 5 8-1 9-6 7-10 3-9-2-6-5-2-8 3-8z"/>
+    <path d="M380 460l12-2 9 3 5 8-1 9-6 7-10 3-9-2-6-5-2-8 3-8z"/>
+    <path d="M540 440l14-3 11 4 6 9-1 10-7 8-12 4-11-2-7-6-2-9 3-9z"/>
+    <path d="M770 380l8-1 6 2 3 5 0 6-4 4-6 2-6-1-3-4-1-5 2-5z"/>
+    <path d="M833 532l-2-2 1-3 3-1 2 2-1 3z"/>
+    <path d="M843 528l-1-2 2-2 2 1 0 2z"/>
+  </svg>
 
-<p style="font-family:'Space Mono',monospace;color:#c9a84c;font-size:12px;letter-spacing:0.2em;margin-bottom:16px;">COUNTY BY COUNTY</p>
+  <div class="hero-content">
+    <p class="hero-label">COUNTY BY COUNTY</p>
+    <h1 class="hero-h1">Tax Lien &amp; Tax Deed Intelligence<br>Across All 51 States</h1>
+    <p class="hero-sub">3,200+ counties. Live auction calendar. One-time access.</p>
+    <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="btn-paid">$197 — UNLOCK FULL ACCESS &rarr;</a>
+  </div>
+</section>
 
-<h1 style="font-family:'Bebas Neue',sans-serif;color:#f5f0e8;font-size:clamp(48px,8vw,96px);line-height:1;margin:0 0 24px;letter-spacing:0.03em;">Tax lien and tax deed intelligence<br>across all 51 states</h1>
+<!-- TWO COLUMNS: EN / ES -->
+<section class="cols">
 
-<p style="font-family:'Plus Jakarta Sans',sans-serif;color:#9898b0;font-size:18px;margin-bottom:48px;">3,200+ counties. Live auction calendar. One-time access.</p>
+  <!-- ENGLISH -->
+  <div class="col">
+    <p class="col-label">ENGLISH</p>
+    <h2 class="col-h2">Stop losing deals to investors who already have this data.</h2>
+    <p class="col-body">3,200+ counties. Auction calendar + alerts. One price. No subscription.</p>
+    <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="btn-paid">$197 — UNLOCK FULL ACCESS &rarr;</a>
+    <div class="divider">OR START FREE</div>
+    <div class="email-row">
+      <input type="email" id="g" placeholder="your@email.com" class="email-input">
+      <button type="button" onclick="var e=document.getElementById('g').value;if(e&&e.includes('@')){try{localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');}catch(x){}window.location.href='/warroom-billion.html';}else{document.getElementById('g').style.border='1px solid #e05c5c';}" class="btn-free">FREE ACCESS &rarr;</button>
+    </div>
+    <p class="privacy">No spam. Unsubscribe anytime.</p>
+  </div>
 
-<a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" style="display:inline-block;background:#c9a84c;color:#0a0e1a;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.1em;padding:18px 48px;text-decoration:none;margin-bottom:32px;">$197 — UNLOCK FULL ACCESS →</a>
+  <!-- ESPAÑOL -->
+  <div class="col">
+    <p class="col-label">ESPA&Ntilde;OL</p>
+    <h2 class="col-h2">Deja de perder negocios contra inversionistas que ya tienen estos datos.</h2>
+    <p class="col-body">M&aacute;s de 3,200 condados. Alertas de subastas. Un solo pago. Sin suscripci&oacute;n.</p>
+    <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="btn-paid">$197 — ACCESO COMPLETO &rarr;</a>
+    <div class="divider">O EMPIEZA GRATIS</div>
+    <div class="email-row">
+      <input type="email" id="g2" placeholder="tu@correo.com" class="email-input">
+      <button type="button" onclick="var e=document.getElementById('g2').value;if(e&&e.includes('@')){try{localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');}catch(x){}window.location.href='/warroom-billion.html';}else{document.getElementById('g2').style.border='1px solid #e05c5c';}" class="btn-free">ACCESO GRATIS &rarr;</button>
+    </div>
+    <p class="privacy">Sin spam. Cancela cuando quieras.</p>
+  </div>
 
-<div style="display:flex;gap:0;max-width:440px;width:100%;">
-<input type="email" id="g" placeholder="your@email.com" style="flex:1;padding:16px;background:#141418;border:1px solid rgba(255,255,255,0.1);border-right:none;color:#f5f0e8;font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;outline:none;">
-<button type="button" onclick="var e=document.getElementById('g').value;if(e&&e.includes('@')){try{localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');}catch(x){}window.location.href='/warroom-billion.html';}else{document.getElementById('g').style.border='1px solid #e05c5c';}" style="background:#c9a84c;color:#0a0e1a;border:none;padding:16px 24px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.1em;cursor:pointer;">FREE ACCESS →</button>
-</div>
+</section>
 
-<p style="font-family:'Plus Jakarta Sans',sans-serif;color:#9898b0;font-size:12px;margin-top:16px;">51 states · 3,200+ counties · No subscription</p>
+<!-- FEATURE COMPARISON -->
+<section class="compare">
+  <h2 class="compare-title">FREE VS FULL ACCESS</h2>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>FEATURE</th>
+        <th>FREE</th>
+        <th>$197</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>51-State Interactive Map</td><td class="ck">&#10003;</td><td class="ck">&#10003;</td></tr>
+      <tr><td>State-Level Rates + Redemption</td><td class="ck">&#10003;</td><td class="ck">&#10003;</td></tr>
+      <tr><td>Weekly Intelligence Brief</td><td class="ck">&#10003;</td><td class="ck">&#10003;</td></tr>
+      <tr><td>3,200+ County Directory</td><td class="cx">&mdash;</td><td class="ck">&#10003;</td></tr>
+      <tr><td>Live Auction Calendar</td><td class="cx">&mdash;</td><td class="ck">&#10003;</td></tr>
+      <tr><td>Pulse Alerts</td><td class="cx">&mdash;</td><td class="ck">&#10003;</td></tr>
+      <tr><td>Deal Analyzer</td><td class="cx">&mdash;</td><td class="ck">&#10003;</td></tr>
+      <tr><td>Sage AI Advisor</td><td class="cx">&mdash;</td><td class="ck">&#10003;</td></tr>
+      <tr><td>Opportunity Scores</td><td class="cx">&mdash;</td><td class="ck">&#10003;</td></tr>
+      <tr><td>Scout Checklist</td><td class="cx">&mdash;</td><td class="ck">&#10003;</td></tr>
+      <tr><td>Versus State Comparison</td><td class="cx">&mdash;</td><td class="ck">&#10003;</td></tr>
+      <tr><td>DNA Profiler</td><td class="cx">&mdash;</td><td class="ck">&#10003;</td></tr>
+      <tr><td>Referral Engine</td><td class="cx">&mdash;</td><td class="ck">&#10003;</td></tr>
+    </tbody>
+  </table>
+</section>
 
-</main>
-
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet">
-<style>body{margin:0;background:#0a0e1a;}*{box-sizing:border-box;}</style>
+<!-- FOOTER -->
+<footer class="footer">
+  <a href="/legal.html">Privacy Policy</a>
+  <a href="/legal.html">Terms of Service</a>
+</footer>
 
 </body>
 </html>
