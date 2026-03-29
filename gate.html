@@ -1035,8 +1035,16 @@ function handleSubmit(e, lang) {
   var email = e.target.email.value;
   var btn = e.target.querySelector('button[type="submit"]');
   if (btn) { btn.disabled = true; btn.textContent = '...'; }
-  // Store email for future server checks
-  try { localStorage.setItem('aurigen_email', email); } catch(err) {}
+  // Store email + free access immediately — never block the user
+  try {
+    localStorage.setItem('aurigen_email', email);
+    if (!localStorage.getItem('aurigen_access')) localStorage.setItem('aurigen_access', 'free');
+  } catch(err) {}
+  // Guaranteed redirect — fires in 3s if fetch hasn't redirected yet
+  var _redirected = false;
+  var _safetyRedirect = setTimeout(function() {
+    if (!_redirected) { _redirected = true; window.location.href = '/warroom-billion.html'; }
+  }, 3000);
   // Capture email + UTM → Beehiiv + Supabase (fire and forget — never blocks user)
   var utmPayload = { email: email, language: lang || 'en' };
   try {
@@ -1057,7 +1065,7 @@ function handleSubmit(e, lang) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(utmPayload)
   }).catch(function() {});
-  // Check server for paid status
+  // Check server for paid status — redirect immediately on response
   fetch('/.netlify/functions/check-access', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -1067,12 +1075,12 @@ function handleSubmit(e, lang) {
   .then(function(data) {
     var tier = data.access || 'free';
     try { localStorage.setItem('aurigen_access', tier); } catch(e) {}
-    window.location.href = '/warroom-billion.html';
+    if (!_redirected) { _redirected = true; clearTimeout(_safetyRedirect); window.location.href = '/warroom-billion.html'; }
   })
   .catch(function() {
     // Offline fallback: grant free access
     try { localStorage.setItem('aurigen_access', 'free'); } catch(e) {}
-    window.location.href = '/warroom-billion.html';
+    if (!_redirected) { _redirected = true; clearTimeout(_safetyRedirect); window.location.href = '/warroom-billion.html'; }
   });
 }
 

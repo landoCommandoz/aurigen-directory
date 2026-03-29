@@ -1,3 +1,4 @@
+// RULE: warroom-billion.html NEVER redirects to gate.html. Access control is UI-only (free vs paid view). No URL redirects. Ever.
 // === GATE CHECK — set access tier, NO redirect ===
 (function() {
   try {
@@ -166,7 +167,7 @@ var I18N = {
     nav_tier_free:'FREE', nav_tier_paid:'FULL ACCESS',
     nav_mobile_upgrade:'Full Access \u2192',
     // Map header
-    map_brand_sub:'COUNTY RESOURCE DIRECTORY',
+    map_brand_sub:'COUNTY INTELLIGENCE PLATFORM',
     map_tab_map:'\u25C7  MAP', map_tab_list:'\u2261  LIST',
     mfp_title:'State Intelligence', mfp_subtitle:'51 jurisdictions \u00B7 Click any state',
     mfp_search_placeholder:'Search states\u2026',
@@ -320,7 +321,7 @@ var I18N = {
     nav_tier_free:'GRATIS', nav_tier_paid:'ACCESO COMPLETO',
     nav_mobile_upgrade:'Acceso Completo \u2192',
     // Map header
-    map_brand_sub:'DIRECTORIO DE RECURSOS POR CONDADO',
+    map_brand_sub:'PLATAFORMA DE INTELIGENCIA POR CONDADO',
     map_tab_map:'\u25C7  MAPA', map_tab_list:'\u2261  LISTA',
     mfp_title:'Inteligencia Estatal', mfp_subtitle:'51 jurisdicciones \u00B7 Haz clic en cualquier estado',
     mfp_search_placeholder:'Buscar estados\u2026',
