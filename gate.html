@@ -837,7 +837,7 @@
           <span class="cta-or-text">Or start free</span>
           <div class="cta-or-line"></div>
         </div>
-        <form onsubmit="handleSubmit(event,'en')" class="cta-free-row">
+        <form onsubmit="handleSubmit(event,'en');return false" class="cta-free-row" id="form-en">
           <input class="cta-free-input" type="email" name="email" required placeholder="email@address.com" autocomplete="email">
           <button class="cta-free-btn" type="submit">Free Access &rarr;</button>
         </form>
@@ -915,7 +915,7 @@
           <span class="cta-or-text">O empieza gratis</span>
           <div class="cta-or-line"></div>
         </div>
-        <form onsubmit="handleSubmit(event,'es')" class="cta-free-row">
+        <form onsubmit="handleSubmit(event,'es');return false" class="cta-free-row" id="form-es">
           <input class="cta-free-input" type="email" name="email" required placeholder="correo@ejemplo.com" autocomplete="email">
           <button class="cta-free-btn" type="submit">Acceso Gratis &rarr;</button>
         </form>
@@ -1029,60 +1029,46 @@
   } catch(e) {}
 })();
 
-// === FORM SUBMIT — capture email + verify paid status ===
+// === FORM SUBMIT — capture email + redirect immediately ===
 function handleSubmit(e, lang) {
   e.preventDefault();
   var email = e.target.email.value;
+  if (!email) return;
   var btn = e.target.querySelector('button[type="submit"]');
   if (btn) { btn.disabled = true; btn.textContent = '...'; }
-  // Store email + free access immediately — never block the user
+  // Store email + free access immediately
   try {
     localStorage.setItem('aurigen_email', email);
-    if (!localStorage.getItem('aurigen_access')) localStorage.setItem('aurigen_access', 'free');
+    localStorage.setItem('aurigen_access', 'free');
   } catch(err) {}
-  // Guaranteed redirect — fires in 3s if fetch hasn't redirected yet
-  var _redirected = false;
-  var _safetyRedirect = setTimeout(function() {
-    if (!_redirected) { _redirected = true; window.location.href = '/warroom-billion.html'; }
-  }, 3000);
-  // Capture email + UTM → Beehiiv + Supabase (fire and forget — never blocks user)
+  // Fire API calls in background — do NOT wait for response
   var utmPayload = { email: email, language: lang || 'en' };
   try {
     var sp = new URLSearchParams(window.location.search);
-    if (sp.get('utm_source')) utmPayload.utm_source = sp.get('utm_source');
-    if (sp.get('utm_medium')) utmPayload.utm_medium = sp.get('utm_medium');
-    if (sp.get('utm_campaign')) utmPayload.utm_campaign = sp.get('utm_campaign');
-    if (sp.get('utm_term')) utmPayload.utm_term = sp.get('utm_term');
-    if (sp.get('utm_content')) utmPayload.utm_content = sp.get('utm_content');
-  } catch(ue) {}
-  // Attach referral code if present
-  try {
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function(k) {
+      var v = sp.get(k); if (v) utmPayload[k] = v;
+    });
     var refCode = localStorage.getItem('aurigen_ref_code');
     if (refCode) utmPayload.ref_code = refCode;
-  } catch(re) {}
-  fetch('/.netlify/functions/capture-email', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(utmPayload)
-  }).catch(function() {});
-  // Check server for paid status — redirect immediately on response
-  fetch('/.netlify/functions/check-access', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    var tier = data.access || 'free';
-    try { localStorage.setItem('aurigen_access', tier); } catch(e) {}
-    if (!_redirected) { _redirected = true; clearTimeout(_safetyRedirect); window.location.href = '/warroom-billion.html'; }
-  })
-  .catch(function() {
-    // Offline fallback: grant free access
-    try { localStorage.setItem('aurigen_access', 'free'); } catch(e) {}
-    if (!_redirected) { _redirected = true; clearTimeout(_safetyRedirect); window.location.href = '/warroom-billion.html'; }
-  });
+  } catch(ue) {}
+  try {
+    fetch('/.netlify/functions/capture-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(utmPayload)
+    }).catch(function() {});
+  } catch(fe) {}
+  // REDIRECT IMMEDIATELY — do not wait for any API response
+  window.location.href = '/warroom-billion.html';
 }
+
+// === FAILSAFE — attach submit handlers via addEventListener in case inline onsubmit doesn't fire ===
+try {
+  var formEn = document.getElementById('form-en');
+  var formEs = document.getElementById('form-es');
+  if (formEn) formEn.addEventListener('submit', function(e) { handleSubmit(e, 'en'); });
+  if (formEs) formEs.addEventListener('submit', function(e) { handleSubmit(e, 'es'); });
+} catch(e) {}
 
 // === TAB SYNC ===
 try {
