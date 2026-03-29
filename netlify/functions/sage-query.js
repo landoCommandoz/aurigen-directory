@@ -1,6 +1,6 @@
 // Aurigen — Sage v2 API Backend
 // POST { message, history[], archetype }
-// JWT validated. Paid users: full access. Free users: 3 queries per IP per 24h (enforced server-side).
+// JWT validated. Paid users unlimited. Free users: 3 queries per session (enforced client-side).
 // Rate limit: 20 req/min per IP.
 
 var { getCorsHeaders, handlePreflight } = require('./utils/cors');
@@ -86,7 +86,7 @@ exports.handler = async function(event) {
       return {
         statusCode: 429,
         headers: Object.assign({}, headers, { 'Retry-After': '86400' }),
-        body: JSON.stringify({ error: 'Free query limit reached. Upgrade for full access.', upgrade: true })
+        body: JSON.stringify({ error: 'Free query limit reached. Upgrade for unlimited access.', upgrade: true })
       };
     }
   }

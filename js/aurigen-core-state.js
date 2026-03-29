@@ -227,16 +227,6 @@ function closeToolsMenu() {
   if (trigger) trigger.classList.remove('open');
 }
 
-function toggleMoreTools(e) {
-  if (e) e.stopPropagation();
-  var list = document.getElementById('tools-more-list');
-  var btn = e ? e.currentTarget : null;
-  if (!list) return;
-  var open = list.style.display !== 'none';
-  list.style.display = open ? 'none' : 'block';
-  if (btn) btn.classList.toggle('open', !open);
-}
-
 function switchToolsTab(name) {
   switchTab(name);
 }
