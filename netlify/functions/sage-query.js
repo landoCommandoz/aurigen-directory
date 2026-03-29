@@ -24,25 +24,6 @@ function checkSageRate(ip) {
   return _sageRateMap[ip].count <= 20;
 }
 
-// Free-tier query limit: 3 queries per IP per 24 hours
-var _sageFreeMap = {};
-function checkFreeLimit(ip) {
-  var now = Date.now();
-  var key = 'free_' + ip;
-  // Lazy cleanup
-  if (Math.random() < 0.05) {
-    for (var k in _sageFreeMap) {
-      if (now - _sageFreeMap[k].start > 86400000) delete _sageFreeMap[k];
-    }
-  }
-  if (!_sageFreeMap[key] || now - _sageFreeMap[key].start > 86400000) {
-    _sageFreeMap[key] = { start: now, count: 1 };
-    return true;
-  }
-  _sageFreeMap[key].count++;
-  return _sageFreeMap[key].count <= 3;
-}
-
 // Archetype context map — mirrors client-side ARCHETYPE_TOOL_CONFIG.sageContext
 var ARCHETYPE_SAGE = {
   'yield-maximizer': 'Yield Maximizer \u2014 prioritizes highest statutory interest rates with shorter redemption periods, moderate risk tolerance.',
@@ -74,21 +55,10 @@ exports.handler = async function(event) {
     };
   }
 
-  // Auth — allow both free and paid users
+  // Auth — allow both free and paid users (free limit enforced client-side via sessionStorage)
   var auth = verifyBearer(event);
   if (!auth) {
     return { statusCode: 401, headers: headers, body: JSON.stringify({ error: 'Authentication required.' }) };
-  }
-
-  // Server-side free query limit: 3 queries per IP per 24h for free-tier users
-  if (auth.tier !== 'paid') {
-    if (!checkFreeLimit(ip)) {
-      return {
-        statusCode: 429,
-        headers: Object.assign({}, headers, { 'Retry-After': '86400' }),
-        body: JSON.stringify({ error: 'Free query limit reached. Upgrade for unlimited access.', upgrade: true })
-      };
-    }
   }
 
   // Parse body
@@ -108,10 +78,10 @@ exports.handler = async function(event) {
   }
 
   // Build system prompt with archetype context
-  var systemPrompt = 'You are Sage, an AI advisor for Aurigen \u2014 a tax lien and tax deed investment intelligence platform. You help investors find, analyze, and act on auction opportunities across all 51 US states. Be direct, specific, and data-oriented. Do not give legal or investment advice \u2014 always recommend consulting a qualified professional for legal or financial decisions. Keep responses under 200 words unless the user asks for more detail.\n\nIMPORTANT RULES:\n- Never mention any seminar brand or instructor name\n- Never fabricate statistics, auction dates, or county-specific data\n- Always recommend verifying with official county sources\n- End every substantive response with the disclaimer';
+  var systemPrompt = 'You are Sage, an AI research assistant for the Aurigen County Resource Directory \u2014 a tax lien and tax deed investing research tool. You help investors understand state laws, auction processes, due diligence strategies, and investment research across all 50 states + DC.\n\nBe direct, specific, and practical. Lead with statute references and plain-English explanations. Keep responses concise (under 300 words). Use markdown formatting for readability.\n\nIMPORTANT RULES:\n- Never mention any seminar brand or instructor name\n- Never fabricate statistics, auction dates, or county-specific data\n- Always recommend verifying with official county sources\n- End every substantive response with the disclaimer';
 
   if (archetype && ARCHETYPE_SAGE[archetype]) {
-    systemPrompt += '\n\nThis user\'s investor archetype is ' + ARCHETYPE_SAGE[archetype] + ' Tailor tone and examples accordingly: yield-maximizer = fast-moving, rate-focused; hunter = equity-focused, deed-focused; patient = long-term, conservative; local = hands-on, county relationships; portfolio = diversified, systematic.';
+    systemPrompt += '\n\nThe investor\'s profile: ' + ARCHETYPE_SAGE[archetype] + ' Tailor your advice to their investing style when relevant.';
   }
 
   systemPrompt += '\n\nDisclaimer to append: "This is for educational purposes only and does not constitute investment, legal, or financial advice. Always verify data with official county sources before acting."';

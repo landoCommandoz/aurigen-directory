@@ -941,33 +941,9 @@
 <script src="js/aurigen-ui.js"></script>
 <script src="js/aurigen-tools.js"></script>
 <script src="js/aurigen-profile.js"></script>
-<!-- Phase 4 tools: lazy-loaded on first tab open -->
-<script>
-(function(){
-  var _p4Loaded=false;
-  var _p4Loading=false;
-  var _p4Queue=[];
-  function loadPhase4(cb){
-    if(_p4Loaded){if(cb)cb();return}
-    if(cb)_p4Queue.push(cb);
-    if(_p4Loading)return;
-    _p4Loading=true;
-    var scripts=['js/aurigen-phase4.js','js/aurigen-phase4-tools-a.js','js/aurigen-phase4-tools-b.js'];
-    var idx=0;
-    function next(){
-      if(idx>=scripts.length){_p4Loaded=true;_p4Loading=false;_p4Queue.forEach(function(fn){fn()});_p4Queue=[];return}
-      var s=document.createElement('script');
-      s.src=scripts[idx++];
-      s.onload=next;
-      s.onerror=next;
-      document.body.appendChild(s);
-    }
-    next();
-  }
-  window._loadPhase4=loadPhase4;
-  window._p4IsLoaded=function(){return _p4Loaded};
-})();
-</script>
+<script src="js/aurigen-phase4.js"></script>
+<script src="js/aurigen-phase4-tools-a.js"></script>
+<script src="js/aurigen-phase4-tools-b.js"></script>
 <!-- PULSE DRAWER -->
 <div id="pulse-overlay" onclick="closePulseDrawer()"></div>
 <div id="pulse-drawer" role="dialog" aria-label="Pulse alerts">

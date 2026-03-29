@@ -174,8 +174,6 @@ function updateTierBadge() {
 // === TAB SWITCHING ===
 var TOOLS_TABS = ['dna', 'advisor', 'tools', 'versus', 'scout', 'warbook', 'deadlines', 'recon', 'dossier', 'firstdeal'];
 
-var PHASE4_TABS = ['scout', 'warbook', 'deadlines', 'recon', 'dossier', 'firstdeal'];
-
 function switchTab(name) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -191,16 +189,7 @@ function switchTab(name) {
   APP.activeTab = name;
   closeToolsMenu();
   if(typeof updateNavFilterBtn==='function') updateNavFilterBtn();
-
-  // Lazy-load Phase 4 tools JS on first access
-  if (PHASE4_TABS.indexOf(name) >= 0 && typeof _loadPhase4 === 'function' && !_p4IsLoaded()) {
-    _loadPhase4(function() { _switchTabInit(name); });
-    return;
-  }
-  _switchTabInit(name);
-}
-
-function _switchTabInit(name) {
+  // Lazy init for Warbook and Deadlines
   if (name === 'warbook' && typeof initWarbook === 'function') initWarbook();
   if (name === 'deadlines' && typeof initDeadlines === 'function') initDeadlines();
   if (name === 'recon' && typeof initRecon === 'function') initRecon();
