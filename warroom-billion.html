@@ -71,6 +71,7 @@
       <button class="tools-dropdown-item" onclick="switchToolsTab('deadlines')"><span class="tools-dropdown-icon">&#128197;</span>Deadlines</button>
       <button class="tools-dropdown-item" onclick="switchToolsTab('recon')"><span class="tools-dropdown-icon">&#128506;</span>Recon</button>
       <button class="tools-dropdown-item" onclick="switchToolsTab('dossier')"><span class="tools-dropdown-icon">&#128196;</span>Dossier</button>
+      <button class="tools-dropdown-item" onclick="switchToolsTab('firstdeal')"><span class="tools-dropdown-icon">&#127942;</span>My First Deal</button>
     </div>
     <!-- Nav tabs consolidated: Intelligence, Calendar, Account + TOOLS dropdown -->
     <span id="nav-active-label" data-i18n="nav_map">Map</span>
@@ -115,6 +116,7 @@
       <button class="mobile-nav-item" data-tab="tools" onclick="mobileNavTo('tools')"><span class="mobile-nav-item-icon">&#128200;</span><span>Deal Analyzer</span></button>
       <button class="mobile-nav-item" data-tab="versus" onclick="mobileNavTo('versus')"><span class="mobile-nav-item-icon">&#9878;</span><span>Versus</span></button>
       <button class="mobile-nav-item" data-tab="scout" onclick="mobileNavTo('scout')"><span class="mobile-nav-item-icon">&#128270;</span><span>Scout Checklist</span></button>
+      <button class="mobile-nav-item" data-tab="firstdeal" onclick="mobileNavTo('firstdeal')"><span class="mobile-nav-item-icon">&#127942;</span><span>My First Deal</span></button>
       <div class="mobile-nav-divider"></div>
       <button class="mobile-nav-item" data-tab="account" onclick="mobileNavTo('account')"><span class="mobile-nav-item-icon">&#128100;</span><span>Account</span></button>
     </div>
@@ -746,6 +748,19 @@
         <div class="dossier-disclaimer">For informational purposes only. Not legal or investment advice. All data should be independently verified with official county sources before making investment decisions.</div>
       </div>
       <div class="paywall-lock" id="lock-dossier-tab" style="display:none"><span class="walkthrough-label">UNLOCK DOSSIER</span><div class="walkthrough-preview-img"><div style="font-size:10px;color:var(--text2);line-height:1.8"><div style="font-family:'Space Mono',monospace;font-size:8px;color:var(--accent);margin-bottom:4px">COUNTY OVERVIEW</div><div>State: FL &bull; Type: Tax Lien</div><div>Redemption: 24 months</div><div style="font-family:'Space Mono',monospace;font-size:8px;color:var(--accent);margin-top:6px;margin-bottom:4px">OPPORTUNITY SCORE</div><div>Score: 82 &bull; Tier: Strong</div></div><div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.1em;color:var(--text2);opacity:0.5;text-align:center;margin-top:6px">SAMPLE DATA FOR ILLUSTRATION ONLY</div></div><span class="walkthrough-desc">One-page printable county briefing with overview, opportunity score, live inventory snapshot, upcoming auctions, and your strategy notes.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
+    </div>
+
+    <!-- FIRST DEAL — 5-Step Guided Flow -->
+    <div class="tab-panel" id="panel-firstdeal">
+      <div class="firstdeal-wrap">
+        <div class="firstdeal-hdr">
+          <div class="firstdeal-title" data-i18n="fd_title">MY FIRST DEAL</div>
+          <div class="firstdeal-subtitle">Your step-by-step pipeline to your first tax lien or deed investment.</div>
+        </div>
+        <div id="firstdeal-steps"></div>
+        <div id="firstdeal-complete" style="display:none"></div>
+      </div>
+      <div class="paywall-lock" id="lock-firstdeal-tab" style="display:none"><span class="walkthrough-label">UNLOCK MY FIRST DEAL</span><div class="walkthrough-preview-img"><div style="font-size:10px;color:var(--text2);line-height:1.8"><div style="font-family:'Space Mono',monospace;font-size:8px;color:var(--accent);margin-bottom:4px">5-STEP PIPELINE</div><div>1. Choose Your State</div><div>2. Pick a County</div><div>3. Run the Dossier</div><div>4. Scout Checklist</div><div>5. Set a Pulse Alert</div></div><div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.1em;color:var(--text2);opacity:0.5;text-align:center;margin-top:6px">SAMPLE DATA FOR ILLUSTRATION ONLY</div></div><span class="walkthrough-desc">Guided 5-step flow that walks you from choosing your first state to setting up automated alerts. Your progress saves automatically.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
     </div>
 
     <div class="tab-panel" id="panel-account">

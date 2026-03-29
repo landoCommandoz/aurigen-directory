@@ -37,7 +37,7 @@ var STRIPE_URL = 'https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02';
 
 function applyAccessLocks() {
   // Tab-level locks (paid only) — includes Auctions now
-  var tabLocks = ['lock-dna-tab', 'lock-advisor-tab', 'lock-tools-tab', 'lock-scout-tab', 'lock-warbook-tab', 'lock-deadlines-tab', 'lock-recon-tab', 'lock-dossier-tab', 'lock-auctions-tab'];
+  var tabLocks = ['lock-dna-tab', 'lock-advisor-tab', 'lock-tools-tab', 'lock-scout-tab', 'lock-warbook-tab', 'lock-deadlines-tab', 'lock-recon-tab', 'lock-dossier-tab', 'lock-auctions-tab', 'lock-firstdeal-tab'];
   tabLocks.forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.style.display = IS_PAID ? 'none' : 'flex';
@@ -59,7 +59,8 @@ function applyAccessLocks() {
     'lock-deadlines-tab': 'panel-deadlines',
     'lock-recon-tab': 'panel-recon',
     'lock-dossier-tab': 'panel-dossier',
-    'lock-auctions-tab': 'panel-auctions'
+    'lock-auctions-tab': 'panel-auctions',
+    'lock-firstdeal-tab': 'panel-firstdeal'
   };
   // Versus uses tab-locked for FOUC prevention (hides terminal until JS runs)
   var versusPanel = document.getElementById('panel-versus');
@@ -171,7 +172,7 @@ function updateTierBadge() {
 }
 
 // === TAB SWITCHING ===
-var TOOLS_TABS = ['dna', 'advisor', 'tools', 'versus', 'scout', 'warbook', 'deadlines', 'recon', 'dossier'];
+var TOOLS_TABS = ['dna', 'advisor', 'tools', 'versus', 'scout', 'warbook', 'deadlines', 'recon', 'dossier', 'firstdeal'];
 
 function switchTab(name) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -193,6 +194,7 @@ function switchTab(name) {
   if (name === 'deadlines' && typeof initDeadlines === 'function') initDeadlines();
   if (name === 'recon' && typeof initRecon === 'function') initRecon();
   if (name === 'dossier' && typeof initDossier === 'function') initDossier();
+  if (name === 'firstdeal' && typeof initFirstDeal === 'function') initFirstDeal();
 }
 
 function toggleToolsMenu(e) {

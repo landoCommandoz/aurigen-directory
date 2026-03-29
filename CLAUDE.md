@@ -43,11 +43,22 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 ## OPEN CRITICAL ITEMS
 1. FTC: Founding member 500-cap claim — needs Lando confirmation
 2. C2: states-en.js serverless gating (get-states.js built, needs C2 JWT session validation)
-3. First Deal page navigation incomplete
-4. Email 3 lists 9 tools — verify all live before GHL deployment
-5. "$200+/month comparable tools" claim needs documented comparables
+3. Email 3 lists 9 tools — verify all live before GHL deployment
+4. "$200+/month comparable tools" claim needs documented comparables
+5. ANTHROPIC_API_KEY env var needed for Sage v2 API mode
 
-## RESOLVED THIS SESSION (2026-03-29 — Session 13)
+## RESOLVED THIS SESSION (2026-03-29 — Session 14)
+- ~~DNA persistence gaps (Scout, Deadlines, Dossier)~~ — FIXED (pre-selection, DNA filter, investor profile section)
+- ~~Sage local-only responses~~ — BUILT (sage-query.js API backend + client integration with local fallback)
+- ~~First Deal page navigation~~ — BUILT (5-step guided flow with progress persistence, paywall lock)
+- ~~ES county labels hardcoded~~ — FIXED (11 county + 5 score i18n keys, t() calls in map-detail)
+- ~~No CSP header (C5)~~ — FIXED (comprehensive CSP in netlify.toml)
+- ~~@prism headline alternatives~~ — DELIVERED (3 options for Lando decision)
+- ~~@lex S14~~ — 12/12 PASS
+- ~~@knox S14~~ — 40 PASS / 0 FAIL / 2 ADVISORY (addressed)
+- ~~@cipher-security S14~~ — 17 PASS / 0 FAIL / 3 ADVISORY (informational)
+
+## RESOLVED PRIOR SESSION (2026-03-29 — Session 13)
 - ~~Hero competing CTAs~~ — FIXED (single $197 primary + "Start free" secondary in hero)
 - ~~innerHTML XSS via AI advisor (H4)~~ — FIXED (DOMPurify 3.0.9 + sanitizeHTML wrapper)
 - ~~Sage error handling~~ — BUILT (duplicate detection, error card with retry, "Still thinking...")
@@ -114,14 +125,14 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 ## CURRENT SESSION STATUS (2026-03-29)
 - Phase 1 COMPLETE — Foundation rebuild + county data layer
 - Phase 2 COMPLETE — All 8 core tools + Pulse CREATE ALERT + Account upgrades
-- Phase 3 progress — Journey bar + Next Step Cards + Pre-Call Summary polished. DNA persistence across tools pending.
-- Phase 4 VERIFIED — All 5 tools design-compliant + functional
-- Phase 5 progress — JWT timeout fix, CORS localhost gate, C2 audit, DOMPurify XSS fix, get-states.js rate limiting
+- Phase 3 progress — Journey bar + Next Step Cards + Pre-Call Summary polished. DNA persistence: Scout, Deadlines, Dossier done. Analyzer, Versus, Pulse, Auctions pending.
+- Phase 4 VERIFIED + EXPANDED — All 5 tools design-compliant + First Deal 5-step flow added
+- Phase 5 progress — JWT timeout fix, CORS localhost gate, C2 audit, DOMPurify XSS fix, get-states.js rate limiting, CSP header
 - Phase 6 progress — Referral commissions, subdomain DNS prep, Beehiiv draft, 5-email nurture sequence
-- Security: DOMPurify on all Sage innerHTML, shared CORS (env-gated), per-IP rate limiting, requirePaid/requireAdmin
-- Integrations: GHL sync, Skool sync, referral commission engine, weekly report + Beehiiv draft
+- Security: DOMPurify on all Sage innerHTML, shared CORS (env-gated), per-IP rate limiting, requirePaid/requireAdmin, CSP header
+- Integrations: GHL sync, Skool sync, referral commission engine, weekly report + Beehiiv draft, Sage v2 API (Anthropic)
 - Legal: Referral Program Terms, FTC disclosure, UGC policy, privacy updates, hero social proof reviewed
-- @lex S13: 3 PASS + 4 ADV fixed | @knox S13: 8/8 PASS | @cipher S13: 13 PASS + 1 FAIL fixed + 1 ADV
+- @lex S14: 12/12 PASS | @knox S14: 40 PASS / 2 ADV | @cipher S14: 17 PASS / 3 ADV
 
 ## MASTER PHASE PLAN
 

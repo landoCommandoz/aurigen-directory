@@ -290,8 +290,21 @@ function sendAdvisorMessage() {
   msgs.appendChild(typing);
   msgs.scrollTop = msgs.scrollHeight;
 
+  // Free user query limit (3 per session, enforced client-side) — checked before history push to avoid asymmetric state
+  var _sageFreeCount = 0;
+  try { _sageFreeCount = parseInt(sessionStorage.getItem('aurigen_sage_free_count') || '0', 10); } catch(e) {}
+  if (!IS_PAID && _sageFreeCount >= 3) {
+    typing.innerHTML = sanitizeHTML('<div class="msg-label">Sage</div><div style="font-size:13px;color:var(--text2);line-height:1.6">You\u2019ve used your 3 free Sage queries for this session. <strong>Upgrade to Full Access</strong> for unlimited AI-powered research.</div>');
+    msgs.scrollTop = msgs.scrollHeight;
+    return;
+  }
+
   _sageQuestionCount++;
   _sageHistory.push({ role: 'user', text: text });
+  if (!IS_PAID) {
+    _sageFreeCount++;
+    try { sessionStorage.setItem('aurigen_sage_free_count', String(_sageFreeCount)); } catch(e) {}
+  }
 
   // "Still thinking..." after 10s (future-proofing for API calls)
   var thinkingTimer = setTimeout(function() {
@@ -299,9 +312,37 @@ function sendAdvisorMessage() {
     if (typingSpan) typingSpan.insertAdjacentHTML('afterend', '<div style="font-size:11px;color:var(--text3);margin-top:4px">Still thinking...</div>');
   }, 10000);
 
-  var delay = 600 + Math.floor(Math.random() * 600);
   var capturedText = text;
-  setTimeout(function() {
+
+  // Try API backend first, fall back to local pattern matcher
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
+  var archKey = typeof getArchetypeKey === 'function' ? getArchetypeKey() : '';
+  var apiHistory = _sageHistory.slice(-10).map(function(h) {
+    return { role: h.role === 'sage' ? 'assistant' : h.role, content: h.text };
+  });
+
+  fetch('/.netlify/functions/sage-query', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + jwt },
+    body: JSON.stringify({ message: capturedText, history: apiHistory, archetype: archKey })
+  }).then(function(res) {
+    if (!res.ok) throw new Error('API ' + res.status);
+    return res.json();
+  }).then(function(data) {
+    clearTimeout(thinkingTimer);
+    var response = data.response || '';
+    var rendered = sageRenderMarkdown(response);
+    if (_sageFirstResponse) {
+      rendered += '<div style="margin-top:10px;font-size:11px;color:var(--text3);line-height:1.5;">Rates and rules vary by state and county \u2014 always verify with the official authority before transacting.</div>';
+      _sageFirstResponse = false;
+    }
+    typing.innerHTML = sanitizeHTML('<div class="msg-label">Sage</div>' + rendered);
+    msgs.scrollTop = msgs.scrollHeight;
+    _sageHistory.push({ role: 'sage', text: response });
+    sageSaveSession();
+  }).catch(function() {
+    // Fallback to local pattern matcher
     clearTimeout(thinkingTimer);
     try {
       var response = getAdvisorResponse(capturedText);
@@ -317,7 +358,6 @@ function sendAdvisorMessage() {
       _sageHistory.push({ role: 'sage', text: response });
       sageSaveSession();
     } catch(err) {
-      // Error card with retry (wired via addEventListener, not inline onclick)
       typing.innerHTML = sanitizeHTML('<div class="msg-label">Sage</div>' +
         '<div class="sage-error-card">' +
         '<div style="font-size:12px;color:var(--pink);margin-bottom:8px">Something went wrong. Please try again.</div>' +
@@ -329,7 +369,7 @@ function sendAdvisorMessage() {
       typing.querySelector('.sage-error-card').appendChild(retryBtn);
       msgs.scrollTop = msgs.scrollHeight;
     }
-  }, delay);
+  });
 }
 
 // Retry last failed message

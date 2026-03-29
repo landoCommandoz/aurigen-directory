@@ -293,7 +293,24 @@ var I18N = {
     // Account extras
     acct_usage:'USAGE STATS', acct_freshness:'DATA FRESHNESS',
     acct_referral_title:'REFERRAL PROGRAM',
-    acct_feature_compare:'FEATURE COMPARISON'
+    acct_feature_compare:'FEATURE COMPARISON',
+    // County panel labels
+    county_yield:'YIELD RATE', county_redemption:'REDEMPTION', county_bid:'BID METHOD',
+    county_view:'View', county_counties:'COUNTIES', county_county:'COUNTY',
+    county_search:'Search counties\u2026', county_empty:'County data coming soon for',
+    county_otc:'OTC',
+    // Score tiers
+    score_elite:'ELITE', score_strong:'STRONG', score_moderate:'MODERATE', score_weak:'WEAK',
+    score_pending:'Score pending',
+    // First Deal flow
+    fd_title:'MY FIRST DEAL', fd_step:'Step',
+    fd_step1:'CHOOSE YOUR STATE', fd_step1_desc:'Click any state on the map to begin.',
+    fd_step2:'PICK A COUNTY', fd_step2_desc:'Open a county panel to explore local data.',
+    fd_step3:'RUN THE DOSSIER', fd_step3_desc:'Generate your investor briefing for this county.',
+    fd_step4:'SCOUT CHECKLIST', fd_step4_desc:'Run due diligence on your target property.',
+    fd_step5:'SET A PULSE ALERT', fd_step5_desc:'Save this state to track upcoming auctions.',
+    fd_complete:'YOUR FIRST DEAL PIPELINE IS SET',
+    fd_upgrade:'Unlock full access to continue your first deal \u2192'
   },
   es: {
     // Nav
@@ -430,7 +447,24 @@ var I18N = {
     // Account extras
     acct_usage:'ESTAD\u00cdSTICAS DE USO', acct_freshness:'ACTUALIZACI\u00d3N DE DATOS',
     acct_referral_title:'PROGRAMA DE REFERIDOS',
-    acct_feature_compare:'COMPARACI\u00d3N DE FUNCIONES'
+    acct_feature_compare:'COMPARACI\u00d3N DE FUNCIONES',
+    // County panel labels
+    county_yield:'TASA DE RENDIMIENTO', county_redemption:'REDENCI\u00d3N', county_bid:'M\u00c9TODO DE PUJA',
+    county_view:'Ver', county_counties:'CONDADOS', county_county:'CONDADO',
+    county_search:'Buscar condados\u2026', county_empty:'Datos de condados disponibles pr\u00f3ximamente para',
+    county_otc:'OTC',
+    // Score tiers
+    score_elite:'\u00c9LITE', score_strong:'FUERTE', score_moderate:'MODERADO', score_weak:'D\u00c9BIL',
+    score_pending:'Puntuaci\u00f3n pendiente',
+    // First Deal flow
+    fd_title:'MI PRIMER NEGOCIO', fd_step:'Paso',
+    fd_step1:'ELIGE TU ESTADO', fd_step1_desc:'Haz clic en cualquier estado del mapa para comenzar.',
+    fd_step2:'ELIGE UN CONDADO', fd_step2_desc:'Abre un panel de condado para explorar datos locales.',
+    fd_step3:'GENERA EL DOSSIER', fd_step3_desc:'Genera tu informe de inversor para este condado.',
+    fd_step4:'LISTA DE SCOUT', fd_step4_desc:'Ejecuta la debida diligencia en tu propiedad objetivo.',
+    fd_step5:'CONFIGURA UNA ALERTA PULSE', fd_step5_desc:'Guarda este estado para rastrear pr\u00f3ximas subastas.',
+    fd_complete:'TU PRIMER NEGOCIO EST\u00c1 CONFIGURADO',
+    fd_upgrade:'Desbloquea acceso completo para continuar tu primer negocio \u2192'
   }
 };
 

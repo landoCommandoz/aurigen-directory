@@ -206,6 +206,12 @@ function scoutNewDeal() {
   var opts = '<option value="">Select state...</option>';
   states.forEach(function(s) { opts += '<option value="' + escapeHtml(s.code) + '">' + escapeHtml(s.name) + '</option>'; });
 
+  // Pre-select from DNA archetype
+  var dnaState = '';
+  var archKey = typeof getArchetypeKey === 'function' ? getArchetypeKey() : null;
+  var archCfg = archKey && typeof ARCHETYPE_TOOL_CONFIG !== 'undefined' ? ARCHETYPE_TOOL_CONFIG[archKey] : null;
+  if (archCfg && archCfg.daStates && archCfg.daStates[0]) dnaState = archCfg.daStates[0];
+
   var overlay = document.createElement('div');
   overlay.className = 'scout-modal-overlay';
   overlay.innerHTML =
@@ -228,6 +234,12 @@ function scoutNewDeal() {
     '</div>';
   document.body.appendChild(overlay);
   overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+
+  // Auto-select DNA state if available
+  if (dnaState) {
+    var stateSel = overlay.querySelector('select[name="state"]');
+    if (stateSel) stateSel.value = dnaState;
+  }
 
   document.getElementById('scout-new-form').addEventListener('submit', function(e) {
     e.preventDefault();
