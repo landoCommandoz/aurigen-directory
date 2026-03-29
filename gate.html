@@ -987,31 +987,7 @@
 </div>
 
 <script>
-// === AUTH REDIRECT — server-verified ===
-(function() {
-  try {
-    var access = localStorage.getItem('aurigen_access');
-    var email = localStorage.getItem('aurigen_email');
-    if (access && email) {
-      // Verify server-side before redirect
-      fetch('/.netlify/functions/check-access', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email })
-      })
-      .then(function(r) { return r.json(); })
-      .then(function(data) {
-        try { localStorage.setItem('aurigen_access', data.access || 'free'); } catch(e) {}
-        window.location.href = '/warroom-billion.html';
-      })
-      .catch(function() {
-        // Offline fallback: trust cached access
-        window.location.href = '/warroom-billion.html';
-      });
-      return;
-    }
-  } catch(e) {}
-})();
+// gate.html NEVER auto-redirects. Users leave by clicking a button only.
 
 // === REFERRAL CODE CAPTURE + FTC DISCLOSURE ===
 (function() {
