@@ -47,7 +47,21 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 4. "$200+/month comparable tools" claim needs documented comparables
 5. ANTHROPIC_API_KEY env var needed for Sage v2 API mode
 
-## RESOLVED THIS SESSION (2026-03-29 — Session 14)
+## RESOLVED THIS SESSION (2026-03-29 — Session 15)
+- ~~Hero headline missing~~ — BUILT ("The investor war room Wall Street doesn't want you to have" + subheadline)
+- ~~DNA Pulse suggestions missing~~ — BUILT (archetype-specific state mapping, YES/SKIP flow)
+- ~~First Deal Step 5 not wired to Pulse~~ — FIXED (fd_pulse_pending flag, auto-trigger create alert)
+- ~~Sage CTA too frequent~~ — FIXED (every 3rd free response only)
+- ~~ES Decomiso wrong~~ — FIXED (Confiscación)
+- ~~ES ÚNICO PAGO word order~~ — FIXED (PAGO ÚNICO)
+- ~~Phase 4 eager load~~ — FIXED (lazy-load on first tab access, 3 scripts sequential)
+- ~~Sage free queries unlimited server-side~~ — FIXED (3/IP/24h rate limit)
+- ~~Duplicate letter-spacing in hero~~ — FIXED (KNOX-S15-02)
+- ~~@lex S15~~ — 5 PASS / 0 FAIL / 3 ADVISORY (informational)
+- ~~@knox S15~~ — 30 PASS / 1 FAIL (fixed) / 0 ADVISORY
+- ~~@cipher-security S15~~ — 12 PASS / 0 FAIL / 1 ADVISORY (informational)
+
+## RESOLVED PRIOR SESSION (2026-03-29 — Session 14)
 - ~~DNA persistence gaps (Scout, Deadlines, Dossier)~~ — FIXED (pre-selection, DNA filter, investor profile section)
 - ~~Sage local-only responses~~ — BUILT (sage-query.js API backend + client integration with local fallback)
 - ~~First Deal page navigation~~ — BUILT (5-step guided flow with progress persistence, paywall lock)
@@ -125,14 +139,14 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 ## CURRENT SESSION STATUS (2026-03-29)
 - Phase 1 COMPLETE — Foundation rebuild + county data layer
 - Phase 2 COMPLETE — All 8 core tools + Pulse CREATE ALERT + Account upgrades
-- Phase 3 progress — Journey bar + Next Step Cards + Pre-Call Summary polished. DNA persistence: Scout, Deadlines, Dossier done. Analyzer, Versus, Pulse, Auctions pending.
-- Phase 4 VERIFIED + EXPANDED — All 5 tools design-compliant + First Deal 5-step flow added
-- Phase 5 progress — JWT timeout fix, CORS localhost gate, C2 audit, DOMPurify XSS fix, get-states.js rate limiting, CSP header
+- Phase 3 COMPLETE — DNA persistence done for all tools (Scout, Deadlines, Dossier, Analyzer, Versus, Pulse, Auctions). Journey bar + Next Step Cards + Pre-Call Summary polished.
+- Phase 4 VERIFIED + EXPANDED — All 5 tools design-compliant + First Deal 5-step flow + lazy-loaded
+- Phase 5 progress — JWT timeout fix, CORS localhost gate, C2 audit, DOMPurify XSS fix, get-states.js rate limiting, CSP header, Sage free-tier server limit
 - Phase 6 progress — Referral commissions, subdomain DNS prep, Beehiiv draft, 5-email nurture sequence
 - Security: DOMPurify on all Sage innerHTML, shared CORS (env-gated), per-IP rate limiting, requirePaid/requireAdmin, CSP header
 - Integrations: GHL sync, Skool sync, referral commission engine, weekly report + Beehiiv draft, Sage v2 API (Anthropic)
 - Legal: Referral Program Terms, FTC disclosure, UGC policy, privacy updates, hero social proof reviewed
-- @lex S14: 12/12 PASS | @knox S14: 40 PASS / 2 ADV | @cipher S14: 17 PASS / 3 ADV
+- @lex S15: 5 PASS / 3 ADV | @knox S15: 31 PASS (1 fixed) | @cipher S15: 12 PASS / 1 ADV
 
 ## MASTER PHASE PLAN
 

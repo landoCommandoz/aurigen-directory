@@ -305,6 +305,53 @@ function pulseRenderFeed() {
   var cont = document.getElementById('pulse-feed');
   if (!cont) return;
   var saved = getSavedStates();
+
+  // First Deal auto-trigger: if fd_pulse_pending, auto-open create alert
+  try {
+    if (localStorage.getItem('aurigen_fd_pulse_pending') === '1' && IS_PAID) {
+      localStorage.removeItem('aurigen_fd_pulse_pending');
+      var lastState = localStorage.getItem('aurigen_last_state') || '';
+      if (lastState) {
+        var sel = document.getElementById('pulse-alert-state');
+        if (sel) sel.value = lastState;
+      }
+      setTimeout(function() { if (typeof toggleCreateAlert === 'function') toggleCreateAlert(); }, 300);
+    }
+  } catch(e) {}
+
+  // DNA state suggestion card when no saved states but archetype exists
+  var archKey = typeof getArchetypeKey === 'function' ? getArchetypeKey() : null;
+  var archCfg = archKey && typeof ARCHETYPE_TOOL_CONFIG !== 'undefined' ? ARCHETYPE_TOOL_CONFIG[archKey] : null;
+  if (saved.length === 0 && archCfg) {
+    // Archetype-specific state suggestions
+    var DNA_PULSE_STATES = {
+      yield: ['AZ', 'FL', 'IA'], hunter: ['TX', 'GA', 'OH'],
+      patient: ['IA', 'NE', 'IN'], local: ['FL', 'AZ', 'IL'], portfolio: ['FL', 'TX', 'IA']
+    };
+    var suggestCodes = DNA_PULSE_STATES[archKey] || [];
+    if (suggestCodes.length > 0) {
+      var suggestNames = suggestCodes.map(function(c) {
+        var st = window.STATES_V2 ? window.STATES_V2.find(function(s) { return s.code === c; }) : null;
+        return st ? st.name : c;
+      });
+      var suggestDismissed = false;
+      try { suggestDismissed = localStorage.getItem('aurigen_pulse_dna_dismissed') === '1'; } catch(e) {}
+      if (!suggestDismissed) {
+        var oldSuggest = document.getElementById('pulse-dna-suggest');
+        if (oldSuggest) oldSuggest.remove();
+        var suggestDiv = document.createElement('div');
+        suggestDiv.id = 'pulse-dna-suggest';
+        suggestDiv.className = 'pulse-dna-suggest';
+        suggestDiv.innerHTML = '<div class="pulse-dna-suggest-text">Based on your <strong>' + escapeHtml(archCfg.label) + '</strong> profile, investors like you track <strong>' + suggestNames.join(', ') + '</strong>. Save them?</div>' +
+          '<div class="pulse-dna-suggest-actions">' +
+            '<button class="pulse-dna-suggest-yes" data-action="pulse-dna-yes" data-codes="' + escapeHtml(suggestCodes.join(',')) + '">YES \u2014 Save These</button>' +
+            '<button class="pulse-dna-suggest-skip" data-action="pulse-dna-skip">SKIP</button>' +
+          '</div>';
+        cont.parentNode.insertBefore(suggestDiv, cont);
+      }
+    }
+  }
+
   // Onboarding prompt if no saved states and no DNA
   if (saved.length === 0 && !pulseGetDnaStates()) {
     cont.innerHTML = '<div class="pulse-onboard">' +
@@ -443,6 +490,27 @@ function deleteOwnAlert(alertId) {
   })
   .catch(function() {});
 }
+
+// Pulse DNA suggestion actions
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('[data-action]');
+  if (!btn) return;
+  var action = btn.getAttribute('data-action');
+  if (action === 'pulse-dna-yes') {
+    var codes = (btn.getAttribute('data-codes') || '').split(',').filter(Boolean);
+    codes.forEach(function(c) { toggleSaveState(c); });
+    var suggest = document.getElementById('pulse-dna-suggest');
+    if (suggest) suggest.remove();
+    try { localStorage.setItem('aurigen_pulse_dna_dismissed', '1'); } catch(e2) {}
+    // Mark First Deal step 5 complete
+    try { localStorage.setItem('aurigen_fd_pulse', '1'); } catch(e2) {}
+    pulseRenderFeed();
+  } else if (action === 'pulse-dna-skip') {
+    var suggest2 = document.getElementById('pulse-dna-suggest');
+    if (suggest2) suggest2.remove();
+    try { localStorage.setItem('aurigen_pulse_dna_dismissed', '1'); } catch(e2) {}
+  }
+});
 
 // Keyboard: Escape closes drawer
 document.addEventListener('keydown', function(e) {

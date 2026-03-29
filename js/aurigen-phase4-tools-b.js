@@ -256,7 +256,7 @@ var FD_STEPS = [
   { key: 'county', icon: '\uD83C\uDFD8\uFE0F', i18nTitle: 'fd_step2', i18nDesc: 'fd_step2_desc', action: 'map' },
   { key: 'dossier', icon: '\uD83D\uDCC4', i18nTitle: 'fd_step3', i18nDesc: 'fd_step3_desc', action: 'dossier' },
   { key: 'scout', icon: '\uD83D\uDD0D', i18nTitle: 'fd_step4', i18nDesc: 'fd_step4_desc', action: 'scout' },
-  { key: 'pulse', icon: '\uD83D\uDD14', i18nTitle: 'fd_step5', i18nDesc: 'fd_step5_desc', action: 'account' }
+  { key: 'pulse', icon: '\uD83D\uDD14', i18nTitle: 'fd_step5', i18nDesc: 'fd_step5_desc', action: 'fd-pulse' }
 ];
 
 function getFirstDealStep() {
@@ -306,7 +306,8 @@ function renderFirstDeal() {
     conditions[2] = !!localStorage.getItem('aurigen_fd_dossier');
     var scoutDeals = JSON.parse(localStorage.getItem('aurigen_scout_deals') || '[]');
     conditions[3] = scoutDeals.length > 0;
-    conditions[4] = !!localStorage.getItem('aurigen_fd_pulse');
+    var savedStFd = JSON.parse(localStorage.getItem('aurigen_saved_states') || '[]');
+    conditions[4] = savedStFd.length > 0 || !!localStorage.getItem('aurigen_fd_pulse');
   } catch(e) {}
 
   // Auto-advance based on conditions
@@ -399,6 +400,14 @@ document.addEventListener('click', function(e) {
     daLookupProperty();
   } else if (action === 'fd-go') {
     var target = btn.getAttribute('data-target') || 'map';
-    if (typeof switchTab === 'function') switchTab(target);
+    if (target === 'fd-pulse') {
+      // Set pending flag so Pulse auto-opens create alert
+      try { localStorage.setItem('aurigen_fd_pulse_pending', '1'); } catch(e2) {}
+      if (typeof switchTab === 'function') switchTab('map');
+      // Open Pulse drawer after brief delay
+      setTimeout(function() { if (typeof openPulseDrawer === 'function') openPulseDrawer(); }, 300);
+    } else {
+      if (typeof switchTab === 'function') switchTab(target);
+    }
   }
 });

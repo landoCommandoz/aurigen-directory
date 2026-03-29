@@ -337,6 +337,10 @@ function sendAdvisorMessage() {
       rendered += '<div style="margin-top:10px;font-size:11px;color:var(--text3);line-height:1.5;">Rates and rules vary by state and county \u2014 always verify with the official authority before transacting.</div>';
       _sageFirstResponse = false;
     }
+    // CTA every 3rd response for free users
+    if (!IS_PAID && _sageQuestionCount % 3 === 0) {
+      rendered += '<div style="margin-top:10px;font-size:11px"><a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none">Unlock unlimited Sage \u2192</a></div>';
+    }
     typing.innerHTML = sanitizeHTML('<div class="msg-label">Sage</div>' + rendered);
     msgs.scrollTop = msgs.scrollHeight;
     _sageHistory.push({ role: 'sage', text: response });
