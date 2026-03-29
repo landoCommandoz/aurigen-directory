@@ -1,10 +1,11 @@
-// === GATE CHECK — redirect to landing if no access ===
+// === GATE CHECK — set access tier, NO redirect ===
 (function() {
   try {
     var access = localStorage.getItem('aurigen_access');
     if (!access) {
-      window.location.href = '/';
-      return;
+      // First visit — default to free tier, no redirect
+      try { localStorage.setItem('aurigen_access', 'free'); } catch(e2) {}
+      access = 'free';
     }
     // JWT validation (primary) — if JWT exists, validate server-side
     var jwt = localStorage.getItem('aurigen_jwt');
