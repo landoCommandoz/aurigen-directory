@@ -959,12 +959,19 @@
   } catch(e) {}
 })();
 
-// === REFERRAL CODE CAPTURE ===
+// === REFERRAL CODE CAPTURE + FTC DISCLOSURE ===
 (function() {
   try {
     var sp = new URLSearchParams(window.location.search);
     var ref = sp.get('ref');
-    if (ref) localStorage.setItem('aurigen_ref_code', ref.slice(0, 20));
+    if (ref) {
+      localStorage.setItem('aurigen_ref_code', ref.slice(0, 20));
+      // FTC referral disclosure
+      var disc = document.createElement('div');
+      disc.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:rgba(13,18,32,0.95);border-top:1px solid rgba(201,168,76,0.2);padding:10px 16px;font-size:11px;color:rgba(232,228,220,0.6);text-align:center;z-index:9000;font-family:"Plus Jakarta Sans",sans-serif;line-height:1.5';
+      disc.innerHTML = 'You arrived via a referral link. The person who shared this link may earn a commission if you purchase. <a href="/legal/#referral-terms" style="color:#c9a84c;text-decoration:underline">Learn more</a> <button onclick="this.parentNode.remove()" style="margin-left:12px;background:none;border:1px solid rgba(201,168,76,0.3);color:#c9a84c;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:10px">OK</button>';
+      document.body.appendChild(disc);
+    }
   } catch(e) {}
 })();
 

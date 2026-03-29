@@ -184,7 +184,7 @@ exports.handler = async function(event) {
       var pendingAmount = convertedRefs.filter(function(r) { return r.commission_status === 'pending'; }).length * COMMISSION_AMOUNT;
       var payouts = convertedRefs.map(function(r) {
         return {
-          referred_email: (r.referred_email || '').replace(/^(.{2}).*(@.*)$/, '$1***$2'),
+          referred_email: (r.referred_email || '').replace(/^[^@]*(@.*)$/, '***$1'),
           converted_at: r.converted_at,
           amount: r.commission_amount || COMMISSION_AMOUNT,
           status: r.commission_status || 'pending'
