@@ -55,6 +55,8 @@
       transition: color 0.2s, background 0.2s;
     }
     .pulse-header-close:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .pulse-create-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:transparent;border:1px solid var(--accent-mid);color:var(--accent);font-size:18px;font-weight:700;cursor:pointer;border-radius:6px;transition:all 0.2s;margin-left:auto}
+    .pulse-create-btn:hover{background:rgba(201,168,76,0.08);border-color:var(--accent)}
 
     /* Filter tabs */
     .pulse-filters {

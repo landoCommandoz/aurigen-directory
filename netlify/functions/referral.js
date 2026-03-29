@@ -1,14 +1,18 @@
 // Aurigen — Referral Tracking Engine
 // Actions:
-//   generate — create referral code for paid user
-//   track    — record that a referred user visited with a code
-//   convert  — mark a referred user as converted after payment
-//   stats    — get referral stats for a user
+//   generate       — create referral code for paid user
+//   track          — record that a referred user visited with a code
+//   convert        — mark a referred user as converted after payment
+//   stats          — get referral stats + earnings for a user
+//   set-payout-email — save PayPal email for commission payouts
+//   mark-paid      — admin: mark a commission as paid
 
 var crypto = require('crypto');
 var { createClient } = require('@supabase/supabase-js');
 var { getCorsHeaders, handlePreflight } = require('./utils/cors');
-var { verifyBearer } = require('./utils/jwt');
+var { verifyBearer, requirePaid, requireAdmin } = require('./utils/jwt');
+
+var COMMISSION_AMOUNT = 100.47;
 
 // Rate limiting
 var _refRateMap = {};
@@ -45,7 +49,6 @@ exports.handler = async function(event) {
 
     // === GENERATE: create referral code for authenticated paid user ===
     if (action === 'generate') {
-      var { requirePaid } = require('./utils/jwt');
       var auth = requirePaid(event);
       if (!auth) {
         return { statusCode: 401, headers, body: JSON.stringify({ error: 'Paid access required' }) };
@@ -63,7 +66,6 @@ exports.handler = async function(event) {
       if (existing && existing.referral_code) {
         code = existing.referral_code;
       } else {
-        // Generate crypto-random code
         code = crypto.randomBytes(6).toString('hex');
         var { error: insertErr } = await supabase
           .from('referrals')
@@ -74,7 +76,7 @@ exports.handler = async function(event) {
         }
       }
 
-      var baseUrl = process.env.URL || 'https://aurigendirectory.com';
+      var baseUrl = process.env.URL || 'https://directory.theaurigen.com';
       return {
         statusCode: 200,
         headers,
@@ -90,7 +92,6 @@ exports.handler = async function(event) {
         return { statusCode: 400, headers, body: JSON.stringify({ error: 'ref_code required' }) };
       }
 
-      // Find the referrer by code
       var { data: referrer } = await supabase
         .from('referrals')
         .select('referrer_email')
@@ -101,13 +102,11 @@ exports.handler = async function(event) {
         return { statusCode: 200, headers, body: JSON.stringify({ tracked: false, error: 'Invalid referral code' }) };
       }
 
-      // Don't let someone refer themselves
       if (refEmail && refEmail === referrer.referrer_email) {
         return { statusCode: 200, headers, body: JSON.stringify({ tracked: false, error: 'Self-referral' }) };
       }
 
       if (refEmail) {
-        // Upsert the referral record
         var { error: trackErr } = await supabase
           .from('referrals')
           .upsert({
@@ -128,7 +127,6 @@ exports.handler = async function(event) {
 
     // === CONVERT: mark referral as converted after payment ===
     if (action === 'convert') {
-      // Internal only — requires internal key or JWT
       var convAuth = verifyBearer(event);
       var convInternal = (event.headers || {})['x-internal-key'] || '';
       var isConvInternal = convInternal && process.env.SUPABASE_SERVICE_ROLE_KEY && convInternal === process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -143,7 +141,12 @@ exports.handler = async function(event) {
 
       var { error: convErr } = await supabase
         .from('referrals')
-        .update({ converted: true, converted_at: new Date().toISOString() })
+        .update({
+          converted: true,
+          converted_at: new Date().toISOString(),
+          commission_amount: COMMISSION_AMOUNT,
+          commission_status: 'pending'
+        })
         .eq('referred_email', convEmail)
         .eq('converted', false);
 
@@ -156,16 +159,16 @@ exports.handler = async function(event) {
       };
     }
 
-    // === STATS: get referral counts for authenticated user ===
+    // === STATS: get referral stats + earnings for authenticated user ===
     if (action === 'stats') {
-      var statsAuth = verifyBearer(event);
+      var statsAuth = requirePaid(event);
       if (!statsAuth) {
-        return { statusCode: 401, headers, body: JSON.stringify({ error: 'Auth required' }) };
+        return { statusCode: 401, headers, body: JSON.stringify({ error: 'Paid access required' }) };
       }
 
       var { data: refs, error: statsErr } = await supabase
         .from('referrals')
-        .select('referred_email, converted')
+        .select('referred_email, converted, converted_at, commission_amount, commission_status, commission_paid_at')
         .eq('referrer_email', statsAuth.email)
         .not('referred_email', 'is', null);
 
@@ -175,12 +178,123 @@ exports.handler = async function(event) {
       }
 
       var referred = (refs || []).length;
-      var converted = (refs || []).filter(function(r) { return r.converted; }).length;
+      var convertedRefs = (refs || []).filter(function(r) { return r.converted; });
+      var converted = convertedRefs.length;
+      var totalEarned = converted * COMMISSION_AMOUNT;
+      var pendingAmount = convertedRefs.filter(function(r) { return r.commission_status === 'pending'; }).length * COMMISSION_AMOUNT;
+      var payouts = convertedRefs.map(function(r) {
+        return {
+          referred_email: (r.referred_email || '').replace(/^[^@]*(@.*)$/, '***$1'),
+          converted_at: r.converted_at,
+          amount: r.commission_amount || COMMISSION_AMOUNT,
+          status: r.commission_status || 'pending'
+        };
+      });
 
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ referred: referred, converted: converted })
+        body: JSON.stringify({
+          referred: referred,
+          converted: converted,
+          total_earned: totalEarned,
+          pending_amount: pendingAmount,
+          commission_rate: COMMISSION_AMOUNT,
+          payouts: payouts
+        })
+      };
+    }
+
+    // === SET-PAYOUT-EMAIL: save PayPal email for payouts ===
+    if (action === 'set-payout-email') {
+      var payoutAuth = requirePaid(event);
+      if (!payoutAuth) {
+        return { statusCode: 401, headers, body: JSON.stringify({ error: 'Paid access required' }) };
+      }
+
+      var paypalEmail = (body.paypal_email || '').trim().toLowerCase();
+      if (!paypalEmail || paypalEmail.indexOf('@') < 1) {
+        return { statusCode: 400, headers, body: JSON.stringify({ error: 'Valid email required' }) };
+      }
+
+      var { error: payoutErr } = await supabase
+        .from('referrals')
+        .update({ paypal_email: paypalEmail })
+        .eq('referrer_email', payoutAuth.email);
+
+      if (payoutErr) {
+        console.error('[referral] Set payout error:', payoutErr.message);
+        return { statusCode: 500, headers, body: JSON.stringify({ error: 'Failed to save payout email' }) };
+      }
+
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ saved: true })
+      };
+    }
+
+    // === MARK-PAID: admin marks a commission as paid ===
+    if (action === 'mark-paid') {
+      var adminAuth = requireAdmin(event);
+      if (!adminAuth) {
+        return { statusCode: 403, headers, body: JSON.stringify({ error: 'Admin access required' }) };
+      }
+
+      var referralId = body.referral_id;
+      if (!referralId) {
+        return { statusCode: 400, headers, body: JSON.stringify({ error: 'referral_id required' }) };
+      }
+
+      var { error: markErr } = await supabase
+        .from('referrals')
+        .update({
+          commission_status: 'paid',
+          commission_paid_at: new Date().toISOString()
+        })
+        .eq('id', referralId)
+        .eq('converted', true);
+
+      if (markErr) {
+        console.error('[referral] Mark paid error:', markErr.message);
+        return { statusCode: 500, headers, body: JSON.stringify({ error: 'Failed to update' }) };
+      }
+
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ marked: true })
+      };
+    }
+
+    // === ADMIN-STATS: admin gets all pending commissions ===
+    if (action === 'admin-stats') {
+      var adminStatsAuth = requireAdmin(event);
+      if (!adminStatsAuth) {
+        return { statusCode: 403, headers, body: JSON.stringify({ error: 'Admin access required' }) };
+      }
+
+      var { data: pending, error: pendErr } = await supabase
+        .from('referrals')
+        .select('id, referrer_email, referred_email, converted_at, commission_amount, commission_status, paypal_email')
+        .eq('converted', true)
+        .order('converted_at', { ascending: false });
+
+      if (pendErr) {
+        console.error('[referral] Admin stats error:', pendErr.message);
+        return { statusCode: 500, headers, body: JSON.stringify({ error: 'Failed to fetch' }) };
+      }
+
+      var totalPending = (pending || []).filter(function(r) { return r.commission_status === 'pending'; })
+        .reduce(function(sum, r) { return sum + (r.commission_amount || COMMISSION_AMOUNT); }, 0);
+
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({
+          commissions: pending || [],
+          total_pending: totalPending
+        })
       };
     }
 

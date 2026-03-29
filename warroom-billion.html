@@ -8,13 +8,13 @@
   <meta property="og:title" content="AURIGEN — County Intelligence Platform">
   <meta property="og:description" content="Tax lien and tax deed intelligence for all 50 states + DC. Compare rates, analyze deals, track auctions.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://aurigendirectory.com">
-  <meta property="og:image" content="https://aurigendirectory.com/og-image.png">
+  <meta property="og:url" content="https://directory.theaurigen.com">
+  <meta property="og:image" content="https://directory.theaurigen.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AURIGEN — County Intelligence Platform">
   <meta name="twitter:description" content="Tax lien and tax deed intelligence for all 50 states + DC.">
-  <meta name="twitter:image" content="https://aurigendirectory.com/og-image.png">
-  <link rel="canonical" href="https://aurigendirectory.com/platform">
+  <meta name="twitter:image" content="https://directory.theaurigen.com/og-image.png">
+  <link rel="canonical" href="https://directory.theaurigen.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@300;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
@@ -755,20 +755,47 @@
         <div id="acct-paid-section" style="display:none"></div>
         <div id="acct-referral-section" style="display:none">
           <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:8px">
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.08em;color:var(--accent);margin-bottom:8px">REFER A FRIEND</div>
-            <div style="font-size:12px;color:var(--text2);margin-bottom:12px;line-height:1.5">Share your unique link. Track who signs up.</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.08em;color:var(--accent);margin-bottom:4px">EARN $100.47 PER REFERRAL</div>
+            <div style="font-size:12px;color:var(--text2);margin-bottom:12px;line-height:1.5">51% cash commission on every conversion. Share your link, get paid.</div>
             <div id="acct-referral-link-wrap" style="display:none;margin-bottom:12px">
+              <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--text2);margin-bottom:6px">YOUR REFERRAL LINK</div>
               <div style="display:flex;gap:8px;align-items:center">
                 <input id="acct-referral-url" type="text" readonly style="flex:1;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text);font-family:'Space Mono',monospace;font-size:11px;padding:10px 12px;border-radius:var(--radius);outline:none">
                 <button onclick="copyReferralLink()" style="padding:10px 16px;background:transparent;border:1px solid var(--accent-mid);color:var(--accent);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;cursor:pointer;border-radius:var(--radius)">COPY</button>
               </div>
             </div>
             <button id="acct-referral-gen-btn" onclick="generateReferralLink()" class="account-upgrade-cta" style="font-size:10px;padding:10px">GET YOUR REFERRAL LINK</button>
-            <div id="acct-referral-stats" style="display:none;margin-top:12px;font-family:'Space Mono',monospace;font-size:11px;color:var(--text2)">
-              <span id="acct-ref-count">0</span> referred &middot; <span id="acct-ref-converted">0</span> converted
+            <div id="acct-referral-stats-wrap" style="display:none;margin-top:16px">
+              <div style="display:flex;gap:16px;margin-bottom:12px">
+                <div style="flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center">
+                  <div style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:var(--text)" id="acct-ref-count">0</div>
+                  <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.12em;color:var(--text2);margin-top:2px">REFERRALS</div>
+                </div>
+                <div style="flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center">
+                  <div style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:var(--accent)" id="acct-ref-converted">0</div>
+                  <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.12em;color:var(--text2);margin-top:2px">CONVERTED</div>
+                </div>
+                <div style="flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center">
+                  <div style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:var(--green)" id="acct-ref-earned">$0</div>
+                  <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.12em;color:var(--text2);margin-top:2px">EARNED</div>
+                </div>
+              </div>
+              <div id="acct-referral-payouts" style="display:none;margin-bottom:12px"></div>
+              <div id="acct-payout-settings" style="border-top:1px solid var(--border);padding-top:12px;margin-top:8px">
+                <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--text2);margin-bottom:6px">PAYOUT SETTINGS</div>
+                <div style="display:flex;gap:8px;align-items:center">
+                  <input id="acct-paypal-email" type="email" placeholder="PayPal email" style="flex:1;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:10px 12px;border-radius:var(--radius);outline:none">
+                  <button onclick="savePayoutEmail()" style="padding:10px 16px;background:transparent;border:1px solid var(--accent-mid);color:var(--accent);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;cursor:pointer;border-radius:var(--radius)">SAVE</button>
+                </div>
+                <div style="font-size:10px;color:var(--text2);opacity:0.6;margin-top:8px;line-height:1.5">Commissions are typically reviewed within 30 days of conversion. Payout timing may vary based on verification and refund eligibility. Questions? Email landon@theaurigen.com</div>
+              </div>
             </div>
           </div>
         </div>
+        <div id="acct-admin-commissions" style="display:none"></div>
+        <div id="acct-usage-stats" style="display:none"></div>
+        <div id="acct-data-freshness" style="display:none"></div>
+        <div id="acct-feature-compare" style="display:none"></div>
         <div class="account-row">
           <span class="account-row-label" data-i18n="acct_email">Email</span>
           <span class="account-row-value" id="acct-email">&mdash;</span>
@@ -907,7 +934,27 @@
   <div class="pulse-header">
     <span class="pulse-header-title" data-i18n="pulse_title">PULSE</span>
     <span class="pulse-header-count" id="pulse-new-count">0 New</span>
+    <button id="pulse-create-btn" class="pulse-create-btn" onclick="toggleCreateAlert()" style="display:none" aria-label="Create alert">+</button>
     <button class="pulse-header-close" onclick="closePulseDrawer()" aria-label="Close">&times;</button>
+  </div>
+  <div id="pulse-create-panel" style="display:none">
+    <div style="padding:16px;background:var(--bg3);border-bottom:1px solid var(--border)">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--accent);letter-spacing:0.06em;margin-bottom:10px">CREATE ALERT</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+        <select id="pulse-alert-state" style="padding:8px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:12px">
+          <option value="">State...</option>
+        </select>
+        <select id="pulse-alert-type" style="padding:8px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:12px">
+          <option value="auction">AUCTION</option>
+          <option value="deadline">DEADLINE</option>
+          <option value="rate_change">RATE CHANGE</option>
+          <option value="general">GENERAL</option>
+        </select>
+      </div>
+      <input id="pulse-alert-text" type="text" placeholder="Alert text (max 200 chars)" maxlength="200" style="width:100%;padding:8px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:12px;margin-bottom:8px;box-sizing:border-box">
+      <input id="pulse-alert-date" type="date" style="width:100%;padding:8px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:12px;margin-bottom:10px;box-sizing:border-box">
+      <button onclick="submitCreateAlert()" style="width:100%;padding:10px;border:none;border-radius:6px;background:var(--accent);color:#06060a;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer">SAVE ALERT</button>
+    </div>
   </div>
   <div class="pulse-filters" id="pulse-filters"></div>
   <div class="pulse-profile" id="pulse-profile"></div>

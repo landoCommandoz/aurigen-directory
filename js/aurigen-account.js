@@ -54,14 +54,18 @@ function initAccount() {
       loadReferralStats();
     }
 
+    // Usage stats + data freshness (paid users)
+    loadUsageStats();
+    loadDataFreshness();
+
     // Admin section
     if (isAdmin && adminSection) {
       adminSection.style.display = 'block';
       adminSection.innerHTML = '<div class="acct-admin-badge">ADMIN</div>' +
         '<div class="acct-admin-stats"><div class="acct-admin-stat"><div class="acct-admin-stat-num" id="admin-free-count">\u2014</div><div class="acct-admin-stat-label">FREE USERS</div></div>' +
         '<div class="acct-admin-stat"><div class="acct-admin-stat-num" id="admin-paid-count">\u2014</div><div class="acct-admin-stat-label">PAID USERS</div></div></div>';
-      // Fetch admin stats
       fetchAdminStats();
+      loadAdminCommissions();
     }
   } else {
     badge.textContent = 'FREE ACCESS';
@@ -80,6 +84,7 @@ function initAccount() {
     if (paidSection) paidSection.style.display = 'none';
     if (adminSection) adminSection.style.display = 'none';
     if (supportLink) supportLink.style.display = 'none';
+    loadFeatureCompare();
   }
 }
 
@@ -575,15 +580,210 @@ function loadReferralStats() {
   .then(function(r) { return r.ok ? r.json() : null; })
   .then(function(data) {
     if (!data) return;
-    var statsEl = document.getElementById('acct-referral-stats');
+    var wrap = document.getElementById('acct-referral-stats-wrap');
     var countEl = document.getElementById('acct-ref-count');
     var convEl = document.getElementById('acct-ref-converted');
-    if (statsEl && (data.referred > 0 || data.converted > 0)) {
-      statsEl.style.display = 'block';
-      if (countEl) countEl.textContent = String(data.referred);
-      if (convEl) convEl.textContent = String(data.converted);
+    var earnedEl = document.getElementById('acct-ref-earned');
+    if (wrap) wrap.style.display = 'block';
+    if (countEl) countEl.textContent = String(data.referred || 0);
+    if (convEl) convEl.textContent = String(data.converted || 0);
+    if (earnedEl) earnedEl.textContent = '$' + (data.total_earned || 0).toFixed(2);
+
+    // Payouts breakdown
+    var payoutsEl = document.getElementById('acct-referral-payouts');
+    if (payoutsEl && data.payouts && data.payouts.length > 0) {
+      payoutsEl.style.display = 'block';
+      var html = '<div style="font-family:\'Space Mono\',monospace;font-size:9px;letter-spacing:0.12em;color:var(--text2);margin-bottom:8px">EARNINGS BREAKDOWN</div>';
+      html += '<div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">';
+      data.payouts.forEach(function(p) {
+        var statusColor = p.status === 'paid' ? 'var(--green)' : 'var(--accent)';
+        var dateStr = p.converted_at ? new Date(p.converted_at).toLocaleDateString() : '\u2014';
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px">' +
+          '<span style="color:var(--text2)">' + escapeHtml(p.referred_email) + '</span>' +
+          '<span style="color:var(--text2);font-family:\'Space Mono\',monospace;font-size:10px">' + dateStr + '</span>' +
+          '<span style="font-family:\'Space Mono\',monospace;font-weight:700">$' + (p.amount || 100.47).toFixed(2) + '</span>' +
+          '<span style="font-family:\'Space Mono\',monospace;font-size:9px;letter-spacing:0.08em;color:' + statusColor + ';text-transform:uppercase">' + escapeHtml(p.status) + '</span>' +
+        '</div>';
+      });
+      html += '</div>';
+      payoutsEl.innerHTML = html;
     }
   })
   .catch(function() {});
+}
+
+function savePayoutEmail() {
+  var input = document.getElementById('acct-paypal-email');
+  if (!input || !input.value.trim()) return;
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
+  fetch('/.netlify/functions/referral', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + jwt },
+    body: JSON.stringify({ action: 'set-payout-email', paypal_email: input.value.trim() })
+  })
+  .then(function(r) { return r.ok ? r.json() : null; })
+  .then(function(data) {
+    if (data && data.saved) {
+      input.style.borderColor = 'rgba(74,222,128,0.5)';
+      setTimeout(function() { input.style.borderColor = ''; }, 2000);
+    }
+  })
+  .catch(function() {});
+}
+
+// === ADMIN COMMISSION MANAGEMENT ===
+function loadAdminCommissions() {
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
+  var container = document.getElementById('acct-admin-commissions');
+  if (!container) return;
+  container.style.display = 'block';
+  container.innerHTML = '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:20px;letter-spacing:0.08em;color:var(--accent);margin-bottom:12px;margin-top:16px;border-top:1px solid var(--border);padding-top:16px">COMMISSION MANAGEMENT</div><div style="color:var(--text2);font-size:12px">Loading...</div>';
+  fetch('/.netlify/functions/referral', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + jwt },
+    body: JSON.stringify({ action: 'admin-stats' })
+  })
+  .then(function(r) { return r.ok ? r.json() : null; })
+  .then(function(data) {
+    if (!data) { container.innerHTML += '<div style="color:var(--pink);font-size:12px">Failed to load</div>'; return; }
+    var html = '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:20px;letter-spacing:0.08em;color:var(--accent);margin-bottom:4px;margin-top:16px;border-top:1px solid var(--border);padding-top:16px">COMMISSION MANAGEMENT</div>';
+    html += '<div style="font-family:\'Space Mono\',monospace;font-size:14px;color:var(--accent);margin-bottom:16px">Total Pending: $' + (data.total_pending || 0).toFixed(2) + '</div>';
+    if (!data.commissions || data.commissions.length === 0) {
+      html += '<div style="font-size:12px;color:var(--text2)">No commissions yet.</div>';
+    } else {
+      html += '<div style="border:1px solid var(--border);border-radius:8px;overflow:hidden;max-height:300px;overflow-y:auto">';
+      data.commissions.forEach(function(c) {
+        var isPaid = c.commission_status === 'paid';
+        var statusColor = isPaid ? 'var(--green)' : 'var(--accent)';
+        var dateStr = c.converted_at ? new Date(c.converted_at).toLocaleDateString() : '\u2014';
+        html += '<div style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:11px;flex-wrap:wrap">' +
+          '<span style="color:var(--text);flex:1;min-width:100px">' + escapeHtml(c.referrer_email || '') + '</span>' +
+          '<span style="color:var(--text2);font-family:\'Space Mono\',monospace;font-size:9px">' + dateStr + '</span>' +
+          '<span style="font-family:\'Space Mono\',monospace;font-weight:700;color:var(--text)">$' + (c.commission_amount || 100.47).toFixed(2) + '</span>' +
+          '<span style="color:var(--text2);font-size:10px">' + escapeHtml(c.paypal_email || 'No PayPal') + '</span>' +
+          '<span style="font-family:\'Space Mono\',monospace;font-size:9px;color:' + statusColor + ';text-transform:uppercase">' + escapeHtml(c.commission_status || 'pending') + '</span>';
+        if (!isPaid) {
+          html += '<button onclick="markCommissionPaid(' + c.id + ')" style="padding:4px 10px;border:1px solid rgba(74,222,128,0.4);background:transparent;color:var(--green);font-family:\'Space Mono\',monospace;font-size:8px;letter-spacing:0.1em;cursor:pointer;border-radius:4px;white-space:nowrap">MARK PAID</button>';
+        }
+        html += '</div>';
+      });
+      html += '</div>';
+    }
+    container.innerHTML = html;
+  })
+  .catch(function() {});
+}
+
+function markCommissionPaid(id) {
+  var jwt = '';
+  try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
+  fetch('/.netlify/functions/referral', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + jwt },
+    body: JSON.stringify({ action: 'mark-paid', referral_id: id })
+  })
+  .then(function(r) { return r.ok ? r.json() : null; })
+  .then(function(data) {
+    if (data && data.marked) loadAdminCommissions();
+  })
+  .catch(function() {});
+}
+
+// === ACCOUNT: USAGE STATS (paid users) ===
+function loadUsageStats() {
+  var container = document.getElementById('acct-usage-stats');
+  if (!container) return;
+  container.style.display = 'block';
+
+  var auctionsViewed = 0;
+  try { auctionsViewed = parseInt(sessionStorage.getItem('aurigen_auctions_viewed') || '0', 10); } catch(e) {}
+  var countiesExplored = 0;
+  try {
+    var journey = JSON.parse(localStorage.getItem('aurigen_journey') || '{}');
+    countiesExplored = Object.keys(journey).filter(function(k) { return k.indexOf('county_') === 0; }).length;
+  } catch(e) {}
+  var checklists = 0;
+  try {
+    var deals = JSON.parse(localStorage.getItem('aurigen_scout_deals') || '[]');
+    checklists = deals.length;
+  } catch(e) {}
+  var dossiers = 0;
+  try { dossiers = parseInt(localStorage.getItem('aurigen_dossier_count') || '0', 10); } catch(e) {}
+
+  container.innerHTML = '<div style="border-top:1px solid var(--border);padding-top:16px;margin-top:8px">' +
+    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--accent);margin-bottom:10px">USAGE STATS</div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">' +
+      '<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center"><div style="font-family:\'Space Mono\',monospace;font-size:18px;font-weight:700;color:var(--text)">' + auctionsViewed + '</div><div style="font-size:9px;color:var(--text2);letter-spacing:0.08em;margin-top:2px">AUCTIONS VIEWED</div></div>' +
+      '<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center"><div style="font-family:\'Space Mono\',monospace;font-size:18px;font-weight:700;color:var(--text)">' + countiesExplored + '</div><div style="font-size:9px;color:var(--text2);letter-spacing:0.08em;margin-top:2px">COUNTIES EXPLORED</div></div>' +
+      '<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center"><div style="font-family:\'Space Mono\',monospace;font-size:18px;font-weight:700;color:var(--text)">' + checklists + '</div><div style="font-size:9px;color:var(--text2);letter-spacing:0.08em;margin-top:2px">CHECKLISTS</div></div>' +
+      '<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center"><div style="font-family:\'Space Mono\',monospace;font-size:18px;font-weight:700;color:var(--text)">' + dossiers + '</div><div style="font-size:9px;color:var(--text2);letter-spacing:0.08em;margin-top:2px">DOSSIERS</div></div>' +
+    '</div></div>';
+}
+
+// === ACCOUNT: DATA FRESHNESS (paid users) ===
+function loadDataFreshness() {
+  var container = document.getElementById('acct-data-freshness');
+  if (!container) return;
+  container.style.display = 'block';
+  container.innerHTML = '<div style="border-top:1px solid var(--border);padding-top:16px;margin-top:8px"><div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--accent);margin-bottom:10px">DATA FRESHNESS</div><div style="font-size:12px;color:var(--text2)">Loading...</div></div>';
+  fetch('/.netlify/functions/data-freshness')
+  .then(function(r) { return r.ok ? r.json() : null; })
+  .then(function(data) {
+    if (!data) return;
+    function fmtDate(d) { return d ? new Date(d).toLocaleDateString() + ' ' + new Date(d).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : 'Not yet'; }
+    container.innerHTML = '<div style="border-top:1px solid var(--border);padding-top:16px;margin-top:8px">' +
+      '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--accent);margin-bottom:10px">DATA FRESHNESS</div>' +
+      '<div style="font-size:12px;color:var(--text2);line-height:2">' +
+        '<div>Last auction scrape: <span style="color:var(--text);font-family:\'Space Mono\',monospace;font-size:11px">' + fmtDate(data.last_auction_scrape) + '</span></div>' +
+        '<div>Last property update: <span style="color:var(--text);font-family:\'Space Mono\',monospace;font-size:11px">' + fmtDate(data.last_property_update) + '</span></div>' +
+        '<div>Last report: <span style="color:var(--text);font-family:\'Space Mono\',monospace;font-size:11px">' + fmtDate(data.last_report) + '</span></div>' +
+        '<div>Next scheduled: <span style="color:var(--accent);font-family:\'Space Mono\',monospace;font-size:11px">' + escapeHtml(data.next_scheduled || 'N/A') + '</span></div>' +
+      '</div></div>';
+  })
+  .catch(function() {});
+}
+
+// === ACCOUNT: FEATURE COMPARISON (free users) ===
+function loadFeatureCompare() {
+  var container = document.getElementById('acct-feature-compare');
+  if (!container) return;
+  container.style.display = 'block';
+  var features = [
+    { name: 'State Map', free: true },
+    { name: 'State Details', free: true },
+    { name: 'County Directory', free: false },
+    { name: 'DNA Investor Profiler', free: false },
+    { name: 'Versus Comparison', free: false },
+    { name: 'Deal Analyzer', free: false },
+    { name: 'Sage AI Advisor', free: false },
+    { name: 'Scout Due Diligence', free: false },
+    { name: 'Warbook Competition', free: false },
+    { name: 'Deadlines Tracker', free: false },
+    { name: 'Recon Walkthrough', free: false },
+    { name: 'Dossier Generator', free: false },
+    { name: 'Auctions Calendar', free: false },
+    { name: 'Pulse Alerts', free: false }
+  ];
+  var explored = 0;
+  try {
+    var j = JSON.parse(localStorage.getItem('aurigen_journey') || '{}');
+    explored = Object.keys(j).length;
+  } catch(e) {}
+  var html = '<div style="border-top:1px solid var(--border);padding-top:16px;margin-top:8px">' +
+    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--accent);margin-bottom:4px">YOUR PLAN</div>' +
+    '<div style="font-size:11px;color:var(--text2);margin-bottom:12px">You\u2019ve explored ' + explored + ' of ' + features.length + ' features</div>' +
+    '<div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">';
+  html += '<div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);font-family:\'Space Mono\',monospace;font-size:9px;letter-spacing:0.1em;color:var(--text2)"><span style="flex:1">FEATURE</span><span style="width:50px;text-align:center">FREE</span><span style="width:50px;text-align:center">PAID</span></div>';
+  features.forEach(function(f) {
+    html += '<div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.03);font-size:12px">' +
+      '<span style="flex:1;color:var(--text)">' + escapeHtml(f.name) + '</span>' +
+      '<span style="width:50px;text-align:center;color:' + (f.free ? 'var(--green)' : 'var(--text2);opacity:0.3') + '">' + (f.free ? '\u2713' : '\uD83D\uDD12') + '</span>' +
+      '<span style="width:50px;text-align:center;color:var(--green)">\u2713</span>' +
+    '</div>';
+  });
+  html += '</div></div>';
+  container.innerHTML = html;
 }
 

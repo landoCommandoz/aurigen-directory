@@ -8,13 +8,13 @@
   <meta property="og:title" content="AURIGEN — County Intelligence Platform">
   <meta property="og:description" content="Tax lien and tax deed intelligence for all 50 states + DC. Compare rates, analyze deals, track auctions.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://aurigendirectory.com">
-  <meta property="og:image" content="https://aurigendirectory.com/og-image.png">
+  <meta property="og:url" content="https://directory.theaurigen.com">
+  <meta property="og:image" content="https://directory.theaurigen.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AURIGEN — County Intelligence Platform">
   <meta name="twitter:description" content="Tax lien and tax deed intelligence for all 50 states + DC.">
-  <meta name="twitter:image" content="https://aurigendirectory.com/og-image.png">
-  <link rel="canonical" href="https://aurigendirectory.com/">
+  <meta name="twitter:image" content="https://directory.theaurigen.com/og-image.png">
+  <link rel="canonical" href="https://directory.theaurigen.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -959,12 +959,19 @@
   } catch(e) {}
 })();
 
-// === REFERRAL CODE CAPTURE ===
+// === REFERRAL CODE CAPTURE + FTC DISCLOSURE ===
 (function() {
   try {
     var sp = new URLSearchParams(window.location.search);
     var ref = sp.get('ref');
-    if (ref) localStorage.setItem('aurigen_ref_code', ref.slice(0, 20));
+    if (ref) {
+      localStorage.setItem('aurigen_ref_code', ref.slice(0, 20));
+      // FTC referral disclosure
+      var disc = document.createElement('div');
+      disc.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:rgba(13,18,32,0.95);border-top:1px solid rgba(201,168,76,0.2);padding:10px 16px;font-size:11px;color:rgba(232,228,220,0.6);text-align:center;z-index:9000;font-family:"Plus Jakarta Sans",sans-serif;line-height:1.5';
+      disc.innerHTML = 'You arrived via a referral link. The person who shared this link may earn a commission if you purchase. <a href="/legal/#referral-terms" style="color:#c9a84c;text-decoration:underline">Learn more</a> <button onclick="this.parentNode.remove()" style="margin-left:12px;background:none;border:1px solid rgba(201,168,76,0.3);color:#c9a84c;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:10px">OK</button>';
+      document.body.appendChild(disc);
+    }
   } catch(e) {}
 })();
 
