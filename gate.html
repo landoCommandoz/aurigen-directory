@@ -836,9 +836,9 @@
           <span class="cta-or-text">Or start free</span>
           <div class="cta-or-line"></div>
         </div>
-        <form onsubmit="handleSubmit(event,'en')" class="cta-free-row">
+        <form onsubmit="return false;" action="javascript:void(0)" class="cta-free-row">
           <input class="cta-free-input" type="email" name="email" required placeholder="email@address.com" autocomplete="email">
-          <button class="cta-free-btn" type="submit">Free Access &rarr;</button>
+          <button class="cta-free-btn" type="button" onclick="handleSubmit(this.closest('form'),'en')">Free Access &rarr;</button>
         </form>
         <div class="cta-free-note">Free tier: 51-state map + state-level data + statute citations. By entering your email you agree to receive The Aurigen Intelligence Brief. Unsubscribe anytime. <a href="/privacy.html" style="color:var(--muted);text-decoration:underline">Privacy Policy</a></div>
       </div>
@@ -914,9 +914,9 @@
           <span class="cta-or-text">O empieza gratis</span>
           <div class="cta-or-line"></div>
         </div>
-        <form onsubmit="handleSubmit(event,'es')" class="cta-free-row">
+        <form onsubmit="return false;" action="javascript:void(0)" class="cta-free-row">
           <input class="cta-free-input" type="email" name="email" required placeholder="correo@ejemplo.com" autocomplete="email">
-          <button class="cta-free-btn" type="submit">Acceso Gratis &rarr;</button>
+          <button class="cta-free-btn" type="button" onclick="handleSubmit(this.closest('form'),'es')">Acceso Gratis &rarr;</button>
         </form>
         <div class="cta-free-note">Nivel gratis: mapa de 51 estados + datos estatales + citas de estatutos. Al ingresar tu correo aceptas recibir The Aurigen Intelligence Brief. Cancela cuando quieras. <a href="/privacy.html" style="color:var(--muted);text-decoration:underline">Pol&iacute;tica de Privacidad</a></div>
       </div>
@@ -1029,10 +1029,9 @@
 })();
 
 // === FORM SUBMIT — capture email + verify paid status ===
-function handleSubmit(e, lang) {
-  e.preventDefault();
-  var email = e.target.email.value;
-  var btn = e.target.querySelector('button[type="submit"]');
+function handleSubmit(form, lang) {
+  var email = form.email.value;
+  var btn = form.querySelector('button[type="button"]');
   if (btn) { btn.disabled = true; btn.textContent = '...'; }
   // Store email for future server checks
   try { localStorage.setItem('aurigen_email', email); } catch(err) {}
