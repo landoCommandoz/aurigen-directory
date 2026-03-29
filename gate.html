@@ -15,35 +15,258 @@
   <meta name="twitter:description" content="Tax lien and tax deed intelligence for all 50 states + DC.">
   <meta name="twitter:image" content="https://directory.theaurigen.com/og-image.png">
   <link rel="canonical" href="https://directory.theaurigen.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:#0a0e1a;color:#f5f0e8;font-family:'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased;}
+
+    /* NAV */
+    .gate-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;position:fixed;top:0;width:100%;z-index:100;background:rgba(10,14,26,0.85);backdrop-filter:blur(8px);}
+    .gate-nav-brand{font-family:'Bebas Neue',sans-serif;color:#c9a84c;font-size:24px;letter-spacing:0.1em;}
+    .gate-nav-label{font-family:'Space Mono',monospace;color:#9898b0;font-size:11px;letter-spacing:0.1em;}
+
+    /* HERO */
+    .gate-hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 40px 80px;text-align:center;position:relative;overflow:hidden;}
+    .gate-hero-map{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(90vw,900px);opacity:0.12;pointer-events:none;z-index:0;}
+    .gate-hero-map path{fill:none;stroke:#c9a84c;stroke-width:1.2;}
+    .gate-hero-content{position:relative;z-index:1;max-width:700px;}
+    .gate-hero-label{font-family:'Space Mono',monospace;color:#c9a84c;font-size:14px;letter-spacing:0.3em;margin-bottom:20px;}
+    .gate-hero-h1{font-family:'Bebas Neue',sans-serif;color:#f5f0e8;font-size:clamp(48px,7vw,88px);line-height:1.05;margin-bottom:24px;letter-spacing:0.02em;}
+    .gate-hero-sub{color:#9898b0;font-size:18px;margin-bottom:48px;line-height:1.6;}
+    .cta-paid-btn{display:inline-block;background:#c9a84c;color:#0a0e1a;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.1em;padding:18px 48px;text-decoration:none;width:100%;max-width:400px;text-align:center;transition:background 0.2s;}
+    .cta-paid-btn:hover{background:#d4b65e;}
+
+    /* TWO COLUMN */
+    .gate-columns{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1100px;margin:0 auto;padding:80px 40px;}
+    .gate-col{padding:60px 48px;position:relative;}
+    .gate-col:first-child{border-right:1px solid rgba(255,255,255,0.06);}
+    .gate-col-label{font-family:'Space Mono',monospace;color:#c9a84c;font-size:11px;letter-spacing:0.2em;margin-bottom:24px;text-transform:uppercase;}
+    .gate-col-h2{font-family:'Bebas Neue',sans-serif;color:#f5f0e8;font-size:clamp(28px,3.5vw,40px);line-height:1.1;margin-bottom:16px;}
+    .gate-col-sub{color:#9898b0;font-size:15px;line-height:1.6;margin-bottom:32px;}
+    .gate-col .cta-paid-btn{display:block;margin-bottom:0;font-size:18px;padding:16px 32px;}
+    .gate-divider{display:flex;align-items:center;gap:16px;margin:28px 0;color:#9898b0;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.15em;}
+    .gate-divider::before,.gate-divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.08);}
+    .gate-email-row{display:flex;gap:0;}
+    .gate-email-input{flex:1;padding:14px 16px;background:#141418;border:1px solid rgba(255,255,255,0.1);border-right:none;color:#f5f0e8;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;outline:none;}
+    .gate-email-input:focus{border-color:#c9a84c;}
+    .cta-free-btn{background:#c9a84c;color:#0a0e1a;border:none;padding:14px 20px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:0.1em;cursor:pointer;white-space:nowrap;transition:background 0.2s;}
+    .cta-free-btn:hover{background:#d4b65e;}
+    .gate-privacy{color:#666;font-size:11px;margin-top:14px;line-height:1.5;}
+    .gate-privacy a{color:#9898b0;text-decoration:underline;}
+
+    /* FEATURES */
+    .gate-features{max-width:900px;margin:0 auto;padding:80px 40px;}
+    .gate-features-title{font-family:'Bebas Neue',sans-serif;color:#f5f0e8;font-size:36px;text-align:center;margin-bottom:48px;letter-spacing:0.03em;}
+    .gate-features-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;}
+    .gate-feature{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:28px 24px;text-align:center;}
+    .gate-feature-icon{font-size:28px;margin-bottom:12px;}
+    .gate-feature-name{font-family:'Bebas Neue',sans-serif;color:#f5f0e8;font-size:18px;letter-spacing:0.05em;margin-bottom:8px;}
+    .gate-feature-desc{color:#9898b0;font-size:13px;line-height:1.5;}
+
+    /* COMPARISON TABLE */
+    .gate-compare{max-width:700px;margin:0 auto;padding:80px 40px;}
+    .gate-compare-title{font-family:'Bebas Neue',sans-serif;color:#f5f0e8;font-size:36px;text-align:center;margin-bottom:48px;letter-spacing:0.03em;}
+    .gate-compare-table{width:100%;border-collapse:collapse;}
+    .gate-compare-table th{font-family:'Space Mono',monospace;color:#c9a84c;font-size:12px;letter-spacing:0.1em;padding:12px 16px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .gate-compare-table th:first-child{text-align:left;}
+    .gate-compare-table td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.04);color:#9898b0;font-size:14px;text-align:center;}
+    .gate-compare-table td:first-child{text-align:left;color:#f5f0e8;}
+    .gate-compare-check{color:#c9a84c;}
+    .gate-compare-x{color:#444;}
+
+    /* TRUST */
+    .gate-trust{text-align:center;padding:60px 40px 80px;}
+    .gate-trust-badges{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-bottom:32px;}
+    .gate-trust-badge{color:#9898b0;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;}
+    .gate-trust-sub{color:#666;font-size:13px;max-width:500px;margin:0 auto;}
+
+    /* FOOTER */
+    .gate-footer{text-align:center;padding:40px;border-top:1px solid rgba(255,255,255,0.04);}
+    .gate-footer a{color:#9898b0;font-size:12px;text-decoration:none;margin:0 16px;}
+    .gate-footer a:hover{color:#c9a84c;}
+
+    /* MOBILE */
+    @media(max-width:768px){
+      .gate-nav{padding:16px 20px;}
+      .gate-hero{padding:100px 24px 60px;}
+      .gate-columns{grid-template-columns:1fr;padding:40px 24px;}
+      .gate-col{padding:40px 0;}
+      .gate-col:first-child{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:48px;}
+      .gate-features-grid{grid-template-columns:1fr;}
+      .gate-features{padding:60px 24px;}
+      .gate-compare{padding:60px 24px;}
+      .gate-trust-badges{gap:24px;}
+    }
+  </style>
 </head>
 <body>
 
-<nav style="display:flex;justify-content:space-between;align-items:center;padding:20px 40px;position:fixed;top:0;width:100%;box-sizing:border-box;z-index:100;">
-<span style="font-family:'Bebas Neue',sans-serif;color:#c9a84c;font-size:24px;letter-spacing:0.1em;">AURIGEN</span>
-<span style="font-family:'Space Mono',monospace;color:#9898b0;font-size:11px;letter-spacing:0.1em;">COUNTY INTELLIGENCE PLATFORM</span>
+<!-- NAV -->
+<nav class="gate-nav">
+  <span class="gate-nav-brand">AURIGEN</span>
+  <span class="gate-nav-label">COUNTY INTELLIGENCE PLATFORM</span>
 </nav>
 
-<main style="min-height:100vh;background:#0a0e1a;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 40px 60px;text-align:center;">
+<!-- HERO -->
+<section class="gate-hero">
+  <svg class="gate-hero-map" viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg">
+    <path d="M833 532l-2-2 1-3 3-1 2 2-1 3zM843 528l-1-2 2-2 2 1 0 2z"/>
+    <path d="M174 65l5-1 3 2 4-1 2 3-1 4-5 1-4-2-3 1-2-3z"/>
+    <path d="M122 91l4-1 7 3-1 5-6 1-5-3z"/>
+    <path d="M816 142l-4 5-8 8-4 7 0 5 3 4 1 6-3 4-7 3-4-1-4 3-6 0-3-3-1-5 2-6 5-8 7-7 6-5 8-4 5-1 4 1z"/>
+    <path d="M297 103l25-2 3 10-2 8-6 6-8 4-8-1-6-5-2-8 2-8z"/>
+    <path d="M552 81l6-2 8 1 6 4 3 6-1 6-5 5-7 2-6-2-5-5-2-6 1-6z"/>
+    <path d="M458 125l-28 4-12-4-4-9 3-11 10-8 14-3 13 2 9 7 3 10-3 9z"/>
+    <path d="M670 100l10-3 8 2 5 6 1 8-3 7-7 4-8 1-7-3-4-6 0-8 3-6z"/>
+    <path d="M238 170l15-2 10 4 5 9-1 10-7 8-12 4-11-2-8-7-2-9 3-9z"/>
+    <path d="M380 140l20-3 14 5 6 11-2 12-10 9-16 4-14-3-9-8-2-11 4-11z"/>
+    <path d="M740 130l8-2 6 3 3 6 0 7-4 5-7 2-6-2-4-5-1-6 3-6z"/>
+    <path d="M160 220l12-3 10 2 7 7 2 9-2 9-7 7-10 3-10-1-7-6-3-8 1-10z"/>
+    <path d="M600 150l15-3 11 4 6 10-1 11-8 9-13 4-12-2-8-7-2-10 4-10z"/>
+    <path d="M480 200l18-4 13 5 7 11-1 12-9 10-15 4-13-3-9-8-2-11 4-11z"/>
+    <path d="M320 220l16-3 12 4 6 10-1 11-8 9-14 4-12-2-8-7-2-10 4-10z"/>
+    <path d="M200 280l14-3 11 3 6 9-1 10-7 8-12 4-11-2-7-6-2-9 3-9z"/>
+    <path d="M420 260l20-4 15 5 7 12-1 13-10 10-17 5-15-3-9-9-2-12 4-12z"/>
+    <path d="M560 240l16-3 12 4 6 10-1 11-8 9-14 4-12-2-8-7-2-10 4-10z"/>
+    <path d="M680 200l12-2 9 3 5 8-1 9-6 7-10 3-9-2-6-5-2-8 3-8z"/>
+    <path d="M280 310l18-4 13 5 7 11-1 12-9 10-15 4-13-3-9-8-2-11 4-11z"/>
+    <path d="M520 320l22-5 16 6 8 13-2 14-11 11-18 5-16-3-10-9-3-13 5-13z"/>
+    <path d="M360 340l16-3 12 4 6 10-1 11-8 9-14 4-12-2-8-7-2-10 4-10z"/>
+    <path d="M640 280l14-3 11 3 6 9-1 10-7 8-12 4-11-2-7-6-2-9 3-9z"/>
+    <path d="M180 360l12-2 9 3 5 8-1 9-6 7-10 3-9-2-6-5-2-8 3-8z"/>
+    <path d="M440 380l18-4 14 5 7 11-1 12-9 10-15 5-14-3-9-8-2-12 4-11z"/>
+    <path d="M720 330l10-2 8 2 4 7 0 8-5 6-8 2-7-2-4-5-1-7 3-6z"/>
+    <path d="M300 400l14-3 11 4 6 9-1 10-7 8-12 4-11-2-7-6-2-9 3-9z"/>
+    <path d="M580 380l16-3 12 4 6 10-1 11-8 9-14 4-12-2-8-7-2-10 4-10z"/>
+    <path d="M460 440l14-3 11 3 6 9-1 10-7 8-12 4-11-2-7-6-2-9 3-9z"/>
+    <path d="M240 440l10-2 8 2 4 7 0 8-5 6-8 2-7-2-4-5-1-7 3-6z"/>
+    <path d="M660 400l12-2 9 3 5 8-1 9-6 7-10 3-9-2-6-5-2-8 3-8z"/>
+    <path d="M380 460l12-2 9 3 5 8-1 9-6 7-10 3-9-2-6-5-2-8 3-8z"/>
+    <path d="M540 440l14-3 11 4 6 9-1 10-7 8-12 4-11-2-7-6-2-9 3-9z"/>
+    <path d="M770 380l8-1 6 2 3 5 0 6-4 4-6 2-6-1-3-4-1-5 2-5z"/>
+  </svg>
 
-<p style="font-family:'Space Mono',monospace;color:#c9a84c;font-size:12px;letter-spacing:0.2em;margin-bottom:16px;">COUNTY BY COUNTY</p>
+  <div class="gate-hero-content">
+    <p class="gate-hero-label">COUNTY BY COUNTY</p>
+    <h1 class="gate-hero-h1">Tax Lien &amp; Tax Deed Intelligence<br>Across All 51 States</h1>
+    <p class="gate-hero-sub">3,200+ counties. Live auction calendar. One-time access.</p>
+    <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="cta-paid-btn" target="_blank" rel="noopener noreferrer">$197 — UNLOCK FULL ACCESS →</a>
+  </div>
+</section>
 
-<h1 style="font-family:'Bebas Neue',sans-serif;color:#f5f0e8;font-size:clamp(48px,8vw,96px);line-height:1;margin:0 0 24px;letter-spacing:0.03em;">Tax lien and tax deed intelligence<br>across all 51 states</h1>
+<!-- TWO COLUMN: EN / ES -->
+<section class="gate-columns">
 
-<p style="font-family:'Plus Jakarta Sans',sans-serif;color:#9898b0;font-size:18px;margin-bottom:48px;">3,200+ counties. Live auction calendar. One-time access.</p>
+  <!-- ENGLISH -->
+  <div class="gate-col">
+    <p class="gate-col-label">ENGLISH</p>
+    <h2 class="gate-col-h2">Stop losing deals to investors who already have this data.</h2>
+    <p class="gate-col-sub">3,200+ counties. Auction calendar + alerts. One price. No subscription.</p>
+    <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="cta-paid-btn" target="_blank" rel="noopener noreferrer">$197 — UNLOCK FULL ACCESS →</a>
+    <div class="gate-divider">OR START FREE</div>
+    <div class="gate-email-row">
+      <input type="email" placeholder="your@email.com" class="gate-email-input">
+      <button type="button" onclick="var e=this.previousElementSibling.value;if(e&&e.includes('@')){localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');window.location.href='/warroom-billion.html';}" class="cta-free-btn">Free Access →</button>
+    </div>
+    <p class="gate-privacy">We never share your email. <a href="/legal.html">Privacy policy</a>.</p>
+  </div>
 
-<a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" style="display:inline-block;background:#c9a84c;color:#0a0e1a;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.1em;padding:18px 48px;text-decoration:none;margin-bottom:32px;">$197 — UNLOCK FULL ACCESS →</a>
+  <!-- ESPAÑOL -->
+  <div class="gate-col">
+    <p class="gate-col-label">ESPAÑOL</p>
+    <h2 class="gate-col-h2">Deja de perder negocios contra inversionistas que ya tienen estos datos.</h2>
+    <p class="gate-col-sub">Más de 3,200 condados. Alertas de subastas. Un solo pago. Sin suscripción.</p>
+    <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="cta-paid-btn" target="_blank" rel="noopener noreferrer">$197 — ACCESO COMPLETO →</a>
+    <div class="gate-divider">O EMPIEZA GRATIS</div>
+    <div class="gate-email-row">
+      <input type="email" placeholder="tu@correo.com" class="gate-email-input">
+      <button type="button" onclick="var e=this.previousElementSibling.value;if(e&&e.includes('@')){localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');window.location.href='/warroom-billion.html';}" class="cta-free-btn">Acceso Gratis →</button>
+    </div>
+    <p class="gate-privacy">Nunca compartimos tu correo. <a href="/legal.html">Política de privacidad</a>.</p>
+  </div>
 
-<div style="display:flex;gap:0;max-width:440px;width:100%;">
-<input type="email" id="g" placeholder="your@email.com" style="flex:1;padding:16px;background:#141418;border:1px solid rgba(255,255,255,0.1);border-right:none;color:#f5f0e8;font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;outline:none;">
-<button type="button" onclick="var e=document.getElementById('g').value;if(e&&e.includes('@')){localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');window.location.href='/warroom-billion.html';}else{document.getElementById('g').style.border='1px solid #e05c5c';}" style="background:#c9a84c;color:#0a0e1a;border:none;padding:16px 24px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.1em;cursor:pointer;">FREE ACCESS →</button>
-</div>
+</section>
 
-<p style="font-family:'Plus Jakarta Sans',sans-serif;color:#9898b0;font-size:12px;margin-top:16px;">51 states · 3,200+ counties · No subscription</p>
+<!-- FEATURES -->
+<section class="gate-features">
+  <h2 class="gate-features-title">WHAT YOU GET</h2>
+  <div class="gate-features-grid">
+    <div class="gate-feature">
+      <div class="gate-feature-icon">🗺️</div>
+      <div class="gate-feature-name">INTERACTIVE MAP</div>
+      <div class="gate-feature-desc">Click any state. See type, rate, redemption period, and beginner rating instantly.</div>
+    </div>
+    <div class="gate-feature">
+      <div class="gate-feature-icon">📊</div>
+      <div class="gate-feature-name">STATE VS STATE</div>
+      <div class="gate-feature-desc">Compare two states side by side — rates, risks, platforms, and competition level.</div>
+    </div>
+    <div class="gate-feature">
+      <div class="gate-feature-icon">🧬</div>
+      <div class="gate-feature-name">INVESTOR DNA</div>
+      <div class="gate-feature-desc">Take a 60-second quiz. Get matched to states that fit your capital, risk tolerance, and goals.</div>
+    </div>
+    <div class="gate-feature">
+      <div class="gate-feature-icon">📅</div>
+      <div class="gate-feature-name">AUCTION CALENDAR</div>
+      <div class="gate-feature-desc">Live auction dates, registration deadlines, and platform links across all 51 jurisdictions.</div>
+    </div>
+    <div class="gate-feature">
+      <div class="gate-feature-icon">🤖</div>
+      <div class="gate-feature-name">AI ADVISOR</div>
+      <div class="gate-feature-desc">Ask Sage anything about tax liens and deeds. State-specific answers grounded in real data.</div>
+    </div>
+    <div class="gate-feature">
+      <div class="gate-feature-icon">📋</div>
+      <div class="gate-feature-name">DUE DILIGENCE</div>
+      <div class="gate-feature-desc">State-specific checklists, competition intel, countdown timers, and a printable investor dossier.</div>
+    </div>
+  </div>
+</section>
 
-</main>
+<!-- COMPARISON TABLE -->
+<section class="gate-compare">
+  <h2 class="gate-compare-title">FREE VS PAID</h2>
+  <table class="gate-compare-table">
+    <thead>
+      <tr>
+        <th>FEATURE</th>
+        <th>FREE</th>
+        <th>$197</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Interactive US map</td><td class="gate-compare-check">✓</td><td class="gate-compare-check">✓</td></tr>
+      <tr><td>All 51 state profiles</td><td class="gate-compare-check">✓</td><td class="gate-compare-check">✓</td></tr>
+      <tr><td>Investor DNA quiz</td><td class="gate-compare-check">✓</td><td class="gate-compare-check">✓</td></tr>
+      <tr><td>AI Advisor (Sage)</td><td class="gate-compare-check">✓</td><td class="gate-compare-check">✓</td></tr>
+      <tr><td>State vs State comparison</td><td class="gate-compare-x">—</td><td class="gate-compare-check">✓</td></tr>
+      <tr><td>Deal Analyzer</td><td class="gate-compare-x">—</td><td class="gate-compare-check">✓</td></tr>
+      <tr><td>Full auction calendar</td><td class="gate-compare-x">—</td><td class="gate-compare-check">✓</td></tr>
+      <tr><td>County-level data</td><td class="gate-compare-x">—</td><td class="gate-compare-check">✓</td></tr>
+      <tr><td>Due diligence checklists</td><td class="gate-compare-x">—</td><td class="gate-compare-check">✓</td></tr>
+      <tr><td>Competition intel</td><td class="gate-compare-x">—</td><td class="gate-compare-check">✓</td></tr>
+      <tr><td>Deadline countdowns</td><td class="gate-compare-x">—</td><td class="gate-compare-check">✓</td></tr>
+      <tr><td>Investor dossier</td><td class="gate-compare-x">—</td><td class="gate-compare-check">✓</td></tr>
+    </tbody>
+  </table>
+</section>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet">
-<style>body{margin:0;background:#0a0e1a;}*{box-sizing:border-box;}</style>
+<!-- TRUST -->
+<section class="gate-trust">
+  <div class="gate-trust-badges">
+    <span class="gate-trust-badge">🔒 ONE-TIME PAYMENT</span>
+    <span class="gate-trust-badge">📊 3,200+ COUNTIES</span>
+    <span class="gate-trust-badge">⚡ INSTANT ACCESS</span>
+  </div>
+  <p class="gate-trust-sub">No subscription. No recurring fees. Pay once, access everything — forever.</p>
+</section>
+
+<!-- FOOTER -->
+<footer class="gate-footer">
+  <a href="/legal.html">Privacy Policy</a>
+  <a href="/legal.html">Terms of Service</a>
+</footer>
 
 </body>
 </html>
