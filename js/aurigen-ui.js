@@ -205,7 +205,7 @@ function openPulseDrawer() {
   document.getElementById('pulse-bell').classList.add('active');
   // Show Pulse lock for free users
   var pulseLock = document.getElementById('lock-pulse');
-  if (pulseLock) pulseLock.style.display = IS_PAID ? 'none' : 'flex';
+  if (pulseLock) pulseLock.style.display = getIsPaid() ? 'none' : 'flex';
   pulseMarkSeen();
   pulseUpdateHeaderCount();
   pulseRenderFilters();
@@ -308,7 +308,7 @@ function pulseRenderFeed() {
 
   // First Deal auto-trigger: if fd_pulse_pending, auto-open create alert
   try {
-    if (localStorage.getItem('aurigen_fd_pulse_pending') === '1' && IS_PAID) {
+    if (localStorage.getItem('aurigen_fd_pulse_pending') === '1' && getIsPaid()) {
       localStorage.removeItem('aurigen_fd_pulse_pending');
       var lastState = localStorage.getItem('aurigen_last_state') || '';
       if (lastState) {
@@ -434,7 +434,7 @@ function pulseRenderCta() {
 // === CREATE ALERT (paid users) ===
 function initPulseCreateBtn() {
   var btn = document.getElementById('pulse-create-btn');
-  if (btn && IS_PAID) btn.style.display = 'inline-flex';
+  if (btn && getIsPaid()) btn.style.display = 'inline-flex';
   // Populate state dropdown
   var sel = document.getElementById('pulse-alert-state');
   if (sel && window.STATES_V2) {
@@ -612,7 +612,7 @@ function updateJourneyBar() {
   var countyDone = !!j.countyOpened;
   var pulseDone = getSavedStates().length > 0;
   var quizDone = !!(profile && profile.dnaComplete);
-  var accessDone = (typeof IS_PAID !== 'undefined' && IS_PAID) || (typeof APP !== 'undefined' && APP.tier >= 2);
+  var accessDone = (typeof getIsPaid !== 'undefined' && getIsPaid()) || (typeof APP !== 'undefined' && APP.tier >= 2);
 
   var dots = [
     { id: 'jb-dot-map', done: mapDone },

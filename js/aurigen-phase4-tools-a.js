@@ -24,7 +24,7 @@ function warbookRenderStars(n) {
 }
 
 function initWarbook() {
-  if (_warbookLoaded || !IS_PAID) return;
+  if (_warbookLoaded || !getIsPaid()) return;
   _warbookLoaded = true;
   var loading = document.getElementById('warbook-loading');
   var content = document.getElementById('warbook-content');
@@ -111,7 +111,7 @@ var _deadlinesData = null;
 var _deadlinesFilter = 'all';
 
 function initDeadlines() {
-  if (_deadlinesLoaded || !IS_PAID) return;
+  if (_deadlinesLoaded || !getIsPaid()) return;
   _deadlinesLoaded = true;
   var loading = document.getElementById('deadlines-loading');
   var grid = document.getElementById('deadlines-grid');
@@ -260,7 +260,7 @@ function deadlinesRemind(dateStr, state, county) {
 var _reconInited = false;
 
 function initRecon() {
-  if (_reconInited || !IS_PAID) return;
+  if (_reconInited || !getIsPaid()) return;
   _reconInited = true;
   var sel = document.getElementById('recon-state');
   if (!sel) return;

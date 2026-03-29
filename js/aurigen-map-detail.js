@@ -250,13 +250,13 @@ document.addEventListener('click', function(e) {
 });
 
 function showDetail(s) {
-  var t=s._v2type||s.type||s.t; var mapType=s.type; var c=s.abbr||s.c; var n=s.name||s.n||c;
+  var sType=s._v2type||s.type||s.t; var mapType=s.type; var c=s.abbr||s.c; var n=s.name||s.n||c;
   var rate=s.rate||s.y||'N/A'; var redemption=s.redemption||s.r||'N/A';
   var colors={lien:'#FFBE0B',deed:'#00D4FF',redeemable:'#FF2D55',hybrid:'#BF5FFF',forfeiture:'#FF6B35'};
   var glows={lien:'rgba(255,190,11,0.4)',deed:'rgba(0,212,255,0.4)',redeemable:'rgba(255,45,85,0.4)',hybrid:'rgba(191,95,255,0.4)',forfeiture:'rgba(255,107,53,0.4)'};
   var labels={lien:'TAX LIEN',deed:'TAX DEED',redeemable:'REDEEMABLE DEED',hybrid:'HYBRID',forfeiture:'TAX FORFEITURE'};
-  var color=colors[t]||colors[mapType]||'#00D4FF';
-  var glw=glows[t]||glows[mapType]||'rgba(0,212,255,0.4)';
+  var color=colors[sType]||colors[mapType]||'#00D4FF';
+  var glw=glows[sType]||glows[mapType]||'rgba(0,212,255,0.4)';
   var panel=document.getElementById('detail-panel');
   var inner=document.getElementById('detail-panel-inner');
   inner.style.borderTop='1px solid '+color+'66';
@@ -275,10 +275,10 @@ function showDetail(s) {
   var titleEl=document.getElementById('panel-title');
   titleEl.style.cssText="color:"+color+";text-shadow:0 0 30px "+glw;
   titleEl.innerHTML='<span class="title-abbr">'+escapeHtml(c)+'</span><span class="title-name">'+escapeHtml(n)+'</span>';
-  document.getElementById('panel-type').textContent=labels[t]||t.toUpperCase();
+  document.getElementById('panel-type').textContent=labels[sType]||sType.toUpperCase();
 
   // Type rationale block
-  var rawType=(t||'').toLowerCase();
+  var rawType=(sType||'').toLowerCase();
   var typeKey=rawType.indexOf('redeemable')!==-1?'redeemable'
     :rawType.indexOf('forfeiture')!==-1?'forfeiture'
     :rawType.indexOf('hybrid')!==-1?'hybrid'
@@ -302,7 +302,7 @@ function showDetail(s) {
 
   // Stats: yield, redemption, bid method — short display values + detail popovers
   var bidMethod=s.bidMethod||'N/A';
-  var rateShort=shortenRate(rate, t);
+  var rateShort=shortenRate(rate, sType);
   var redemptionShort=shortenRedemption(redemption);
   var bidMethodShort=shortenBidMethod(bidMethod);
 
@@ -351,7 +351,7 @@ function showDetail(s) {
   // Calculator lock prompt for free users
   var calcLockEl=document.getElementById('panel-calc-lock');
   if(calcLockEl){
-    if(!IS_PAID){
+    if(!getIsPaid()){
       calcLockEl.innerHTML='<div style="display:flex;align-items:center;gap:10px;margin-top:14px;padding:12px 14px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:8px">'
         +'<span style="font-size:18px">\uD83D\uDCC8</span>'
         +'<div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--text)">Return Calculator</div><div style="font-size:11px;color:var(--text2);margin-top:2px">Calculate your projected return on this state.</div></div>'
@@ -417,7 +417,7 @@ function showDetail(s) {
     var showSearch=rows.length>5;
     var cHtml='';
     // Upgrade CTA above counties for free users
-    if(!IS_PAID){
+    if(!getIsPaid()){
       cHtml+='<a class="detail-upgrade-cta" href="'+STRIPE_URL+'" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS \u2014 $197 ONE TIME<span class="detail-upgrade-sub">Comparable tools charge $200+/month. You pay once.</span></a>';
     }
     cHtml+='<div class="counties-header" onclick="toggleCounties()">'+

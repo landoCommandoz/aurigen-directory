@@ -2,7 +2,7 @@
 var _dossierInited = false;
 
 function initDossier() {
-  if (_dossierInited || !IS_PAID) return;
+  if (_dossierInited || !getIsPaid()) return;
   _dossierInited = true;
   var stateSel = document.getElementById('dossier-state');
   var countySel = document.getElementById('dossier-county');

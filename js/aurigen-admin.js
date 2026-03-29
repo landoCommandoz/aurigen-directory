@@ -16,8 +16,7 @@
   function adminOn() {
     if (!isWhitelisted()) { console.warn('[admin] Not authorized'); return; }
     try { localStorage.setItem('aurigen_admin', 'on'); } catch(e) {}
-    IS_PAID = true;
-    IS_FREE = true;
+    // getIsPaid() reads fresh from localStorage — no variable to set
     APP.tier = 2;
     applyAccessLocks();
     showBadge();
@@ -26,9 +25,8 @@
   function adminOff() {
     try { localStorage.removeItem('aurigen_admin'); } catch(e) {}
     var real = (function() { try { return localStorage.getItem('aurigen_access') || 'none'; } catch(e) { return 'none'; } })();
-    IS_PAID = real === 'paid';
-    IS_FREE = real === 'free' || IS_PAID;
-    APP.tier = IS_PAID ? 2 : 1;
+    // getIsPaid() reads fresh from localStorage — no variable to set
+    APP.tier = getIsPaid() ? 2 : 1;
     applyAccessLocks();
     removeBadge();
   }

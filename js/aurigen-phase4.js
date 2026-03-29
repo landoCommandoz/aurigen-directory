@@ -201,7 +201,7 @@ function scoutCountComplete(deal) {
 }
 
 function scoutNewDeal() {
-  if (!IS_PAID) return;
+  if (!getIsPaid()) return;
   var states = window.STATES_V2 ? window.STATES_V2.slice().sort(function(a,b) { return a.name.localeCompare(b.name); }) : [];
   var opts = '<option value="">Select state...</option>';
   states.forEach(function(s) { opts += '<option value="' + escapeHtml(s.code) + '">' + escapeHtml(s.name) + '</option>'; });

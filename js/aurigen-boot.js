@@ -301,7 +301,7 @@ function sendAdvisorMessage() {
   // Free user query limit (3 per session, enforced client-side) — checked before history push to avoid asymmetric state
   var _sageFreeCount = 0;
   try { _sageFreeCount = parseInt(sessionStorage.getItem('aurigen_sage_free_count') || '0', 10); } catch(e) {}
-  if (!IS_PAID && _sageFreeCount >= 3) {
+  if (!getIsPaid() && _sageFreeCount >= 3) {
     typing.innerHTML = sanitizeHTML('<div class="msg-label">Sage</div><div style="font-size:13px;color:var(--text2);line-height:1.6">You\u2019ve used your 3 free Sage queries for this session. <strong>Upgrade to Full Access</strong> for unlimited AI-powered research.</div>');
     msgs.scrollTop = msgs.scrollHeight;
     return;
@@ -309,7 +309,7 @@ function sendAdvisorMessage() {
 
   _sageQuestionCount++;
   _sageHistory.push({ role: 'user', text: text });
-  if (!IS_PAID) {
+  if (!getIsPaid()) {
     _sageFreeCount++;
     try { sessionStorage.setItem('aurigen_sage_free_count', String(_sageFreeCount)); } catch(e) {}
   }
@@ -346,7 +346,7 @@ function sendAdvisorMessage() {
       _sageFirstResponse = false;
     }
     // CTA every 3rd response for free users
-    if (!IS_PAID && _sageQuestionCount % 3 === 0) {
+    if (!getIsPaid() && _sageQuestionCount % 3 === 0) {
       rendered += '<div style="margin-top:10px;font-size:11px"><a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none">Unlock unlimited Sage \u2192</a></div>';
     }
     typing.innerHTML = sanitizeHTML('<div class="msg-label">Sage</div>' + rendered);

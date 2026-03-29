@@ -76,7 +76,7 @@ function auctionsInvCountyChange() {
   body.innerHTML = buildPropSkeletons();
   if (filtersEl) filtersEl.style.display = 'none';
 
-  if (!IS_PAID) {
+  if (!getIsPaid()) {
     renderAuctionsInvLocked(body, county);
     return;
   }

@@ -335,7 +335,7 @@ function daOpenInVersus() {
 
 function daInitLookup() {
   var card = document.getElementById('da-lookup-card');
-  if (!card || !IS_PAID) return;
+  if (!card || !getIsPaid()) return;
   card.style.display = '';
   // Populate state select
   var sel = document.getElementById('da-lookup-state');

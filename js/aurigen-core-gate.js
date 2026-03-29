@@ -145,9 +145,7 @@ try {
 } catch(e) {}
 
 function playUnlockAnimation() {
-  // Update tier
-  IS_PAID = true;
-  IS_FREE = true;
+  // Update tier (getIsPaid() reads fresh from localStorage — no variable to set)
   APP.tier = 2;
 
   // Show toast

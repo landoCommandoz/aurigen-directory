@@ -6,7 +6,7 @@ VERSION: v9+
 LIVE SITE: aurigen-directory.netlify.app
 REPO: landoCommandoz/aurigen-directory
 GHL: pit-538dfecf-570a-4f22-aca7-c72cddae8990
-STRIPE: https://buy.stripe.com/28E6oHfcUbHufL58hQ2VG00
+STRIPE: https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02
 BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4
 
 ## AGENT ROSTER

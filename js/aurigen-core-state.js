@@ -19,8 +19,8 @@ function getAccessTier() {
   if (isAdminMode()) return 'paid';
   try { return localStorage.getItem('aurigen_access') || 'none'; } catch(e) { return 'none'; }
 }
-var IS_PAID = getAccessTier() === 'paid';
-var IS_FREE = getAccessTier() === 'free' || IS_PAID;
+function getIsPaid() { return getAccessTier() === 'paid'; }
+function getIsFree() { return getAccessTier() === 'free' || getIsPaid(); }
 
 // Read tier from localStorage (set by gate.html)
 (function initFromGate() {
@@ -40,14 +40,14 @@ function applyAccessLocks() {
   var tabLocks = ['lock-dna-tab', 'lock-advisor-tab', 'lock-tools-tab', 'lock-scout-tab', 'lock-warbook-tab', 'lock-deadlines-tab', 'lock-recon-tab', 'lock-dossier-tab', 'lock-auctions-tab', 'lock-firstdeal-tab'];
   tabLocks.forEach(function(id) {
     var el = document.getElementById(id);
-    if (el) el.style.display = IS_PAID ? 'none' : 'flex';
+    if (el) el.style.display = getIsPaid() ? 'none' : 'flex';
   });
 
   // Versus uses its own paid/free toggle (terminal vs locked preview)
   var vsTerminal = document.getElementById('vs-terminal-paid');
   var vsLocked = document.getElementById('vs-locked-free');
-  if (vsTerminal) vsTerminal.style.display = IS_PAID ? 'flex' : 'none';
-  if (vsLocked) vsLocked.style.display = IS_PAID ? 'none' : 'flex';
+  if (vsTerminal) vsTerminal.style.display = getIsPaid() ? 'flex' : 'none';
+  if (vsLocked) vsLocked.style.display = getIsPaid() ? 'none' : 'flex';
 
   // Hard lock: add tab-locked class to prevent interaction behind overlay
   var lockPanelMap = {
@@ -65,13 +65,13 @@ function applyAccessLocks() {
   // Versus uses tab-locked for FOUC prevention (hides terminal until JS runs)
   var versusPanel = document.getElementById('panel-versus');
   if (versusPanel) {
-    if (IS_PAID) { versusPanel.classList.remove('tab-locked'); }
+    if (getIsPaid()) { versusPanel.classList.remove('tab-locked'); }
     else { versusPanel.classList.add('tab-locked'); }
   }
   Object.keys(lockPanelMap).forEach(function(lockId) {
     var panel = document.getElementById(lockPanelMap[lockId]);
     if (panel) {
-      if (IS_PAID) { panel.classList.remove('tab-locked'); }
+      if (getIsPaid()) { panel.classList.remove('tab-locked'); }
       else { panel.classList.add('tab-locked'); }
     }
   });
@@ -80,21 +80,21 @@ function applyAccessLocks() {
   var cardLocks = ['lock-dna', 'lock-compare'];
   cardLocks.forEach(function(id) {
     var el = document.getElementById(id);
-    if (el) el.style.display = IS_PAID ? 'none' : 'flex';
+    if (el) el.style.display = getIsPaid() ? 'none' : 'flex';
   });
 
   // Pulse drawer lock
   var pulseLock = document.getElementById('lock-pulse');
-  if (pulseLock) pulseLock.style.display = IS_PAID ? 'none' : 'flex';
+  if (pulseLock) pulseLock.style.display = getIsPaid() ? 'none' : 'flex';
 
   // Upgrade CTA in account
   var upgrade = document.getElementById('acct-upgrade');
-  if (upgrade) upgrade.style.display = IS_PAID ? 'none' : 'block';
+  if (upgrade) upgrade.style.display = getIsPaid() ? 'none' : 'block';
 }
 
 // Lock county data in state detail modal (called after counties render)
 function applyCountyLock() {
-  if (IS_PAID) return;
+  if (getIsPaid()) return;
   var countiesEl = document.getElementById('panel-counties');
   if (!countiesEl) return;
   // Check if lock already applied
@@ -113,7 +113,7 @@ function applyCountyLock() {
 
 // Limit auctions to 3 cards for free users
 function applyAuctionLock() {
-  if (IS_PAID) return;
+  if (getIsPaid()) return;
   var container = document.getElementById('auctions-cards');
   if (!container || container.querySelector('.paywall-lock')) return;
   var cards = container.querySelectorAll('.auction-card');
@@ -132,7 +132,7 @@ function applyAuctionLock() {
 
 // Limit Pulse to 1 alert for free users
 function applyPulseLock() {
-  if (IS_PAID) return;
+  if (getIsPaid()) return;
   var feed = document.getElementById('pulse-feed');
   if (!feed || feed.querySelector('.paywall-lock')) return;
   var alerts = feed.querySelectorAll('.pulse-alert');

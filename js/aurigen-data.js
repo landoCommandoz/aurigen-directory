@@ -24,7 +24,7 @@ function loadPropertyFeed(stateCode, countyName) {
   // Scroll into view
   container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-  if (!IS_PAID) {
+  if (!getIsPaid()) {
     // Free users see blurred sample cards
     renderPropFeedLocked(container, countyName);
     return;
