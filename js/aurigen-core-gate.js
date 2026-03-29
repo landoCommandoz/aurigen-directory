@@ -325,7 +325,7 @@ var I18N = {
     mfp_search_placeholder:'Buscar estados\u2026',
     mfp_filter_title:'FILTRAR POR TIPO',
     type_lien:'Gravamen Fiscal', type_deed:'Escritura Fiscal', type_redeemable:'Redimible',
-    type_hybrid:'H\u00edbrido', type_forfeiture:'Decomiso', type_all:'TODOS',
+    type_hybrid:'H\u00edbrido', type_forfeiture:'Confiscaci\u00f3n', type_all:'TODOS',
     mfp_show_all:'Mostrar Todo',
     map_footer_left:'AURIGEN \u00B7 INTELIGENCIA DE INVERSI\u00d3N FISCAL \u00B7 2026',
     map_footer_right:'51 JURISDICCIONES',
@@ -406,11 +406,11 @@ var I18N = {
     vc_sage:'Asesor IA Sage', vc_scout:'Debida Diligencia Scout',
     vc_auctions:'Calendario de Subastas', vc_pulse:'Alertas Pulse',
     acct_value_total:'Valor total estimado si se compra como herramientas separadas: $1,500+/a\u00f1o \u2014 tuyo por $197 una vez.',
-    acct_upgrade:'DESBLOQUEAR ACCESO COMPLETO \u2014 $197 \u00daNICO PAGO',
+    acct_upgrade:'DESBLOQUEAR ACCESO COMPLETO \u2014 $197 PAGO \u00daNICO',
     acct_upgrade_sub:'Herramientas similares cobran $200+/mes. T\u00fa pagas una vez.',
     lang_label:'LANGUAGE / IDIOMA',
     // Paywall generic
-    paywall_cta:'DESBLOQUEAR ACCESO COMPLETO \u2014 $197 \u00daNICO PAGO',
+    paywall_cta:'DESBLOQUEAR ACCESO COMPLETO \u2014 $197 PAGO \u00daNICO',
     paywall_sub:'Herramientas similares cobran $200+/mes. T\u00fa pagas una vez.',
     // Disclaimer
     disclaimer_full:'Este directorio es solo para fines informativos y educativos. No constituye asesoramiento de inversi\u00f3n, legal o financiero. Invertir en grav\u00e1menes y escrituras fiscales implica riesgo. Siempre realiza una debida diligencia independiente y consulta con un profesional calificado antes de invertir. Las tasas y reglas est\u00e1n sujetas a cambios \u2014 verifica con la autoridad oficial del condado o estado antes de realizar transacciones.',
