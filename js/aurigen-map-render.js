@@ -256,12 +256,6 @@ function getTypeColor(s) {
 var svgEl, pathGen;
 
 function initMap() {
-  // Safety: if D3 hasn't loaded yet, retry after 500ms
-  if (typeof d3 === 'undefined' || typeof topojson === 'undefined') {
-    console.warn('[MAP] D3/topojson not ready — retrying in 500ms');
-    setTimeout(initMap, 500);
-    return;
-  }
   svgEl = d3.select('#map-svg');
   var projection = d3.geoAlbersUsa().scale(1000).translate([480,300]);
   pathGen = d3.geoPath().projection(projection);

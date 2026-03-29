@@ -47,21 +47,7 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 4. "$200+/month comparable tools" claim needs documented comparables
 5. ANTHROPIC_API_KEY env var needed for Sage v2 API mode
 
-## RESOLVED THIS SESSION (2026-03-29 — Session 16)
-- ~~"Live auction data" claim~~ — FIXED ("Auction calendar data" across gate.html, og-image, i18n)
-- ~~"Unlimited Sage" claim~~ — FIXED ("full Sage access" / "full access" in boot.js + sage-query.js)
-- ~~ES Category B top-priority~~ — FIXED (Tax Lien/Deed, PERÍODO DE RESCATE, Operación/Inversiones, Oportunidades)
-- ~~Sage starters incomplete~~ — FIXED (5 per archetype set, was 3-4)
-- ~~og-image outdated headline~~ — FIXED (new headline text + PNG regenerated)
-- ~~No PWA/ATHS support~~ — BUILT (manifest.json, meta tags, ATHS banner + iOS modal)
-- ~~get-states.js no lazy cleanup~~ — FIXED (5% probabilistic, 120s TTL)
-- ~~No Lighthouse audit~~ — DONE (scores reported, fixes queued for S17)
-- ~~No outreach content~~ — DELIVERED (@atlas 3 pieces for Lando review)
-- ~~@lex S16~~ — 6 PASS / 1 FAIL (false positive) / 1 ADVISORY (outreach wording)
-- ~~@knox S16~~ — 41 PASS / 0 FAIL / 0 ADVISORY
-- ~~@cipher-security S16~~ — 10 PASS / 0 FAIL / 0 ADVISORY
-
-## RESOLVED PRIOR SESSION (2026-03-29 — Session 15)
+## RESOLVED THIS SESSION (2026-03-29 — Session 15)
 - ~~Hero headline missing~~ — BUILT ("The investor war room Wall Street doesn't want you to have" + subheadline)
 - ~~DNA Pulse suggestions missing~~ — BUILT (archetype-specific state mapping, YES/SKIP flow)
 - ~~First Deal Step 5 not wired to Pulse~~ — FIXED (fd_pulse_pending flag, auto-trigger create alert)
@@ -70,9 +56,10 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - ~~ES ÚNICO PAGO word order~~ — FIXED (PAGO ÚNICO)
 - ~~Phase 4 eager load~~ — FIXED (lazy-load on first tab access, 3 scripts sequential)
 - ~~Sage free queries unlimited server-side~~ — FIXED (3/IP/24h rate limit)
-- ~~@lex S15~~ — 5 PASS / 0 FAIL / 3 ADVISORY
-- ~~@knox S15~~ — 31 PASS (1 fixed) / 0 ADVISORY
-- ~~@cipher-security S15~~ — 12 PASS / 0 FAIL / 1 ADVISORY
+- ~~Duplicate letter-spacing in hero~~ — FIXED (KNOX-S15-02)
+- ~~@lex S15~~ — 5 PASS / 0 FAIL / 3 ADVISORY (informational)
+- ~~@knox S15~~ — 30 PASS / 1 FAIL (fixed) / 0 ADVISORY
+- ~~@cipher-security S15~~ — 12 PASS / 0 FAIL / 1 ADVISORY (informational)
 
 ## RESOLVED PRIOR SESSION (2026-03-29 — Session 14)
 - ~~DNA persistence gaps (Scout, Deadlines, Dossier)~~ — FIXED (pre-selection, DNA filter, investor profile section)
@@ -154,12 +141,12 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - Phase 2 COMPLETE — All 8 core tools + Pulse CREATE ALERT + Account upgrades
 - Phase 3 COMPLETE — DNA persistence done for all tools (Scout, Deadlines, Dossier, Analyzer, Versus, Pulse, Auctions). Journey bar + Next Step Cards + Pre-Call Summary polished.
 - Phase 4 VERIFIED + EXPANDED — All 5 tools design-compliant + First Deal 5-step flow + lazy-loaded
-- Phase 5 progress — JWT timeout fix, CORS localhost gate, C2 audit, DOMPurify XSS fix, get-states.js rate limiting + lazy cleanup, CSP header, Sage free-tier server limit
+- Phase 5 progress — JWT timeout fix, CORS localhost gate, C2 audit, DOMPurify XSS fix, get-states.js rate limiting, CSP header, Sage free-tier server limit
 - Phase 6 progress — Referral commissions, subdomain DNS prep, Beehiiv draft, 5-email nurture sequence
 - Security: DOMPurify on all Sage innerHTML, shared CORS (env-gated), per-IP rate limiting, requirePaid/requireAdmin, CSP header
 - Integrations: GHL sync, Skool sync, referral commission engine, weekly report + Beehiiv draft, Sage v2 API (Anthropic)
 - Legal: Referral Program Terms, FTC disclosure, UGC policy, privacy updates, hero social proof reviewed
-- @lex S16: 6 PASS / 1 ADV | @knox S16: 41 PASS | @cipher S16: 10 PASS
+- @lex S15: 5 PASS / 3 ADV | @knox S15: 31 PASS (1 fixed) | @cipher S15: 12 PASS / 1 ADV
 
 ## MASTER PHASE PLAN
 

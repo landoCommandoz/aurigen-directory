@@ -781,7 +781,7 @@
   <!-- Hero headline + CTA -->
   <div class="hero-content">
     <h1 class="hero-headline">The investor war room Wall Street doesn't want you to have</h1>
-    <div class="hero-sub" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(16px,2vw,20px);color:#9898b0;margin-top:12px;line-height:1.5">3,200+ counties. Auction calendar data. One-time access.</div>
+    <div class="hero-sub" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(16px,2vw,20px);color:#9898b0;margin-top:12px;line-height:1.5">3,200+ counties. Live auction data. One-time access.</div>
     <div class="hero-cta-row">
       <a class="hero-cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02">$197 &mdash; UNLOCK FULL ACCESS &rarr;</a>
       <a class="hero-cta-secondary" href="#access">Start free with 3 states &rarr;</a>
@@ -830,14 +830,14 @@
       <div class="cta-block">
         <div class="cta-eyebrow">Built for serious investors</div>
         <div class="cta-headline">Stop losing deals to investors who already have this data.</div>
-        <div class="cta-subhead">3,200+ counties. Auction calendar + alerts. One price. No subscription.</div>
+        <div class="cta-subhead">3,200+ counties. Live auction alerts. One price. No subscription.</div>
         <a class="cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" style="background:var(--gold);color:#06060a;border-color:var(--gold);font-weight:700">$197 &mdash; UNLOCK FULL ACCESS &rarr;</a>
         <div class="cta-or-divider">
           <div class="cta-or-line"></div>
           <span class="cta-or-text">Or start free</span>
           <div class="cta-or-line"></div>
         </div>
-        <form onsubmit="handleSubmit(event,'en');return false" class="cta-free-row" id="form-en">
+        <form onsubmit="handleSubmit(event,'en')" class="cta-free-row">
           <input class="cta-free-input" type="email" name="email" required placeholder="email@address.com" autocomplete="email">
           <button class="cta-free-btn" type="submit">Free Access &rarr;</button>
         </form>
@@ -865,7 +865,7 @@
             <div class="pricing-col-period">ONE TIME &mdash; FOREVER</div>
             <ul class="pricing-feature-list">
               <li>All 51 states + 3,200 counties</li>
-              <li>Auction calendar + alerts</li>
+              <li>Live auction calendar + alerts</li>
               <li>Deal Analyzer + DNA Profiler</li>
               <li>Sage AI + Versus + Scout</li>
               <li>Lifetime access, no renewals</li>
@@ -915,7 +915,7 @@
           <span class="cta-or-text">O empieza gratis</span>
           <div class="cta-or-line"></div>
         </div>
-        <form onsubmit="handleSubmit(event,'es');return false" class="cta-free-row" id="form-es">
+        <form onsubmit="handleSubmit(event,'es')" class="cta-free-row">
           <input class="cta-free-input" type="email" name="email" required placeholder="correo@ejemplo.com" autocomplete="email">
           <button class="cta-free-btn" type="submit">Acceso Gratis &rarr;</button>
         </form>
@@ -1029,46 +1029,52 @@
   } catch(e) {}
 })();
 
-// === FORM SUBMIT — capture email + redirect immediately ===
+// === FORM SUBMIT — capture email + verify paid status ===
 function handleSubmit(e, lang) {
   e.preventDefault();
   var email = e.target.email.value;
-  if (!email) return;
   var btn = e.target.querySelector('button[type="submit"]');
   if (btn) { btn.disabled = true; btn.textContent = '...'; }
-  // Store email + free access immediately
-  try {
-    localStorage.setItem('aurigen_email', email);
-    localStorage.setItem('aurigen_access', 'free');
-  } catch(err) {}
-  // Fire API calls in background — do NOT wait for response
+  // Store email for future server checks
+  try { localStorage.setItem('aurigen_email', email); } catch(err) {}
+  // Capture email + UTM → Beehiiv + Supabase (fire and forget — never blocks user)
   var utmPayload = { email: email, language: lang || 'en' };
   try {
     var sp = new URLSearchParams(window.location.search);
-    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function(k) {
-      var v = sp.get(k); if (v) utmPayload[k] = v;
-    });
+    if (sp.get('utm_source')) utmPayload.utm_source = sp.get('utm_source');
+    if (sp.get('utm_medium')) utmPayload.utm_medium = sp.get('utm_medium');
+    if (sp.get('utm_campaign')) utmPayload.utm_campaign = sp.get('utm_campaign');
+    if (sp.get('utm_term')) utmPayload.utm_term = sp.get('utm_term');
+    if (sp.get('utm_content')) utmPayload.utm_content = sp.get('utm_content');
+  } catch(ue) {}
+  // Attach referral code if present
+  try {
     var refCode = localStorage.getItem('aurigen_ref_code');
     if (refCode) utmPayload.ref_code = refCode;
-  } catch(ue) {}
-  try {
-    fetch('/.netlify/functions/capture-email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(utmPayload)
-    }).catch(function() {});
-  } catch(fe) {}
-  // REDIRECT IMMEDIATELY — do not wait for any API response
-  window.location.href = '/warroom-billion.html';
+  } catch(re) {}
+  fetch('/.netlify/functions/capture-email', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(utmPayload)
+  }).catch(function() {});
+  // Check server for paid status
+  fetch('/.netlify/functions/check-access', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    var tier = data.access || 'free';
+    try { localStorage.setItem('aurigen_access', tier); } catch(e) {}
+    window.location.href = '/warroom-billion.html';
+  })
+  .catch(function() {
+    // Offline fallback: grant free access
+    try { localStorage.setItem('aurigen_access', 'free'); } catch(e) {}
+    window.location.href = '/warroom-billion.html';
+  });
 }
-
-// === FAILSAFE — attach submit handlers via addEventListener in case inline onsubmit doesn't fire ===
-try {
-  var formEn = document.getElementById('form-en');
-  var formEs = document.getElementById('form-es');
-  if (formEn) formEn.addEventListener('submit', function(e) { handleSubmit(e, 'en'); });
-  if (formEs) formEs.addEventListener('submit', function(e) { handleSubmit(e, 'es'); });
-} catch(e) {}
 
 // === TAB SYNC ===
 try {
