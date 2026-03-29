@@ -1038,14 +1038,6 @@ function handleSubmit(e, lang) {
   window.location.href = '/warroom-billion.html';
 }
 
-// === FAILSAFE — attach submit handlers via addEventListener in case inline onsubmit doesn't fire ===
-try {
-  var formEn = document.getElementById('form-en');
-  var formEs = document.getElementById('form-es');
-  if (formEn) formEn.addEventListener('submit', function(e) { handleSubmit(e, 'en'); });
-  if (formEs) formEs.addEventListener('submit', function(e) { handleSubmit(e, 'es'); });
-} catch(e) {}
-
 // === TAB SYNC ===
 try {
   window.addEventListener('storage', function(e) {
