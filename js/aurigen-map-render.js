@@ -257,8 +257,14 @@ var svgEl, pathGen;
 
 function initMap() {
   svgEl = d3.select('#map-svg');
-  var projection = d3.geoAlbersUsa().scale(1000).translate([480,300]);
+  var wrap = document.getElementById('map-wrap');
+  var rect = wrap ? wrap.getBoundingClientRect() : {width:960,height:600};
+  var w = rect.width || 960;
+  var h = rect.height || 600;
+  var scale = Math.min(w / 960, h / 600) * 1000;
+  var projection = d3.geoAlbersUsa().scale(scale).translate([w/2, h/2]);
   pathGen = d3.geoPath().projection(projection);
+  if (svgEl) { svgEl.attr('width', w).attr('height', h); }
 
   fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
     .then(function(r){ return r.json(); })
@@ -270,9 +276,9 @@ function initMap() {
         .enter().append('path')
         .attr('class','state-path')
         .attr('d',pathGen)
-        .attr('fill','rgba(201,168,76,0.06)')
-        .attr('stroke','rgba(201,168,76,0.28)')
-        .attr('stroke-width',0.5)
+        .attr('fill','#0d1628')
+        .attr('stroke','#c9a84c')
+        .attr('stroke-width',0.6)
         .on('click',function(event,d){
           var s = getStateData(d);
           if(!s) return;
