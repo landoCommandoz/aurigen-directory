@@ -142,33 +142,44 @@ var SAGE_PROMPTS = {
   yield: [
     'Which states have the highest lien rates?',
     'How does bid-down interest work?',
-    'Best OTC opportunities for yield?'
+    'Best OTC opportunities for yield?',
+    'What returns can I expect on a $10,000 lien?',
+    'Which states pay interest monthly vs at redemption?'
   ],
   hunter: [
     'Which deed states have the lowest competition?',
     'How do I acquire property through tax sales?',
-    'Compare Texas vs Georgia for deed investing'
+    'Compare Texas vs Georgia for deed investing',
+    'What is the typical equity cushion in deed sales?',
+    'How do I research a property before bidding?'
   ],
   patient: [
     'Which states have the longest redemption periods?',
     'How do multi-year liens compound?',
-    'Best states for passive lien investing?'
+    'Best states for passive lien investing?',
+    'What happens if a lien doesn\u2019t redeem?',
+    'How do I build a long-term lien portfolio?'
   ],
   local: [
     'How do in-person county auctions work?',
     'Which states have the best OTC programs?',
-    'How to build county relationships?'
+    'How to build county relationships?',
+    'What documents do I need for a county auction?',
+    'How do I find upcoming auctions in my area?'
   ],
   portfolio: [
     'How to diversify across lien and deed states?',
     'Compare Florida vs Texas for portfolio balance',
-    'What allocation strategy works for tax liens?'
+    'What allocation strategy works for tax liens?',
+    'How many states should I invest in?',
+    'What is the ideal lien-to-deed ratio?'
   ],
   default: [
     'Which states are best for beginners?',
     'How does bid-down interest work?',
     'Compare Florida vs Texas',
-    'What can I do with $5,000?'
+    'What can I do with $5,000?',
+    'What is the difference between a lien and a deed?'
   ]
 };
 
@@ -294,7 +305,7 @@ function sendAdvisorMessage() {
   var _sageFreeCount = 0;
   try { _sageFreeCount = parseInt(sessionStorage.getItem('aurigen_sage_free_count') || '0', 10); } catch(e) {}
   if (!IS_PAID && _sageFreeCount >= 3) {
-    typing.innerHTML = sanitizeHTML('<div class="msg-label">Sage</div><div style="font-size:13px;color:var(--text2);line-height:1.6">You\u2019ve used your 3 free Sage queries for this session. <strong>Upgrade to Full Access</strong> for unlimited AI-powered research.</div>');
+    typing.innerHTML = sanitizeHTML('<div class="msg-label">Sage</div><div style="font-size:13px;color:var(--text2);line-height:1.6">You\u2019ve used your 3 free Sage queries for this session. <strong>Upgrade to Full Access</strong> for full AI-powered research access.</div>');
     msgs.scrollTop = msgs.scrollHeight;
     return;
   }
@@ -339,7 +350,7 @@ function sendAdvisorMessage() {
     }
     // CTA every 3rd response for free users
     if (!IS_PAID && _sageQuestionCount % 3 === 0) {
-      rendered += '<div style="margin-top:10px;font-size:11px"><a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none">Unlock unlimited Sage \u2192</a></div>';
+      rendered += '<div style="margin-top:10px;font-size:11px"><a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none">Unlock full Sage access \u2192</a></div>';
     }
     typing.innerHTML = sanitizeHTML('<div class="msg-label">Sage</div>' + rendered);
     msgs.scrollTop = msgs.scrollHeight;

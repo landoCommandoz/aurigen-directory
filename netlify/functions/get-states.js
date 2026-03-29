@@ -14,6 +14,12 @@ const FREE_IDS = new Set(['FL', 'IL', 'AZ']);
 var _statesRateMap = {};
 function checkStatesRate(ip) {
   var now = Date.now();
+  // Lazy cleanup
+  if (Math.random() < 0.05) {
+    for (var k in _statesRateMap) {
+      if (now - _statesRateMap[k].start > 120000) delete _statesRateMap[k];
+    }
+  }
   if (!_statesRateMap[ip] || now - _statesRateMap[ip].start > 60000) {
     _statesRateMap[ip] = { start: now, count: 1 };
     return true;
