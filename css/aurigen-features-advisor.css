@@ -144,6 +144,26 @@
       0%, 60%, 100% { opacity: 0.2; transform: translateY(0); }
       30% { opacity: 1; transform: translateY(-4px); }
     }
+    .sage-error-card {
+      padding: 12px 14px;
+      background: rgba(232,93,138,0.06);
+      border: 1px solid rgba(232,93,138,0.2);
+      border-radius: 8px;
+    }
+    .sage-retry-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      padding: 6px 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .sage-retry-btn:hover { background: rgba(201,168,76,0.15); }
     #advisor-disclaimer {
       flex-shrink: 0;
       padding: 8px 16px;

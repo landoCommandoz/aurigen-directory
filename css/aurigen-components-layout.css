@@ -198,6 +198,63 @@
       cursor: pointer;
       text-decoration: none;
     }
+    .summary-timestamp {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--text3);
+      margin-top: 6px;
+    }
+    .summary-saved-states {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+      font-size: 11px;
+      color: var(--text2);
+    }
+    .summary-saved-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+    }
+    .summary-state-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+    .summary-scout-bar {
+      margin-bottom: 14px;
+    }
+    .summary-scout-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--text2);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .summary-scout-track {
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .summary-scout-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
     @media(max-width:768px) {
       .summary-cards { grid-template-columns: 1fr; }
       .summary-container { padding: 16px; }

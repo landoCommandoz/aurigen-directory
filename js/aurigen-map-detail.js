@@ -312,9 +312,9 @@ function showDetail(s) {
   var bidMethodDetail=buildStatDetail(bidMethodShort, bidMethod, null, s.keyNotes, /bid|auction|premium|overbid|sheriff|municipal|highest/i);
 
   document.getElementById('panel-stats').innerHTML=[
-    ['YIELD RATE',escapeHtml(rateShort),rateDetail],
-    ['REDEMPTION',escapeHtml(redemptionShort),redemptionDetail],
-    ['BID METHOD',escapeHtml(bidMethodShort),bidMethodDetail]
+    [t('county_yield'),escapeHtml(rateShort),rateDetail],
+    [t('county_redemption'),escapeHtml(redemptionShort),redemptionDetail],
+    [t('county_bid'),escapeHtml(bidMethodShort),bidMethodDetail]
   ].map(function(a){
     var hasDetail=a[2]&&a[2].length>0;
     var popoverHtml=hasDetail?'<div class="stat-popover">'+escapeHtml(a[2])+'</div>':'';
@@ -411,9 +411,9 @@ function showDetail(s) {
   }
 
   if(rows.length===0){
-    countiesEl.innerHTML='<div class="counties-empty">County data coming soon for '+escapeHtml(n)+'.</div>';
+    countiesEl.innerHTML='<div class="counties-empty">'+t('county_empty')+' '+escapeHtml(n)+'.</div>';
   } else {
-    var cLabel=rows.length===1?'COUNTY':'COUNTIES';
+    var cLabel=rows.length===1?t('county_county'):t('county_counties');
     var showSearch=rows.length>5;
     var cHtml='';
     // Upgrade CTA above counties for free users
@@ -427,7 +427,7 @@ function showDetail(s) {
     '</div>';
     if(showSearch){
       cHtml+='<div class="county-search-wrap" id="county-search-wrap" style="display:none">'+
-        '<input type="text" class="county-search-input" id="county-search-input" placeholder="Search counties..." oninput="filterCounties(this.value)" autocomplete="off" spellcheck="false">'+
+        '<input type="text" class="county-search-input" id="county-search-input" placeholder="'+t('county_search')+'" oninput="filterCounties(this.value)" autocomplete="off" spellcheck="false">'+
         '<button class="county-search-clear" id="county-search-clear" onclick="clearCountySearch()" aria-label="Clear search">\u00D7</button>'+
       '</div>';
     }
@@ -452,7 +452,7 @@ function showDetail(s) {
         else{platPill='<span class="county-pill platform">'+platSafe+'</span>';}
       }
       // OTC badge
-      var otcPill=r.otc?'<span class="county-pill otc">OTC</span>':'';
+      var otcPill=r.otc?'<span class="county-pill otc">'+t('county_otc')+'</span>':'';
       // Timing pill
       var timPill=r.timing?'<span class="county-pill timing">'+escapeHtml(r.timing)+'</span>':'';
       // Redemption pill

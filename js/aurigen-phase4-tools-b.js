@@ -64,6 +64,8 @@ function dossierGenerate() {
     var auctionData = results[0];
     var propData = results[1];
     dossierRender(stateCode, county, st, auctionData, propData);
+    // Mark First Deal step 3 complete
+    try { localStorage.setItem('aurigen_fd_dossier', '1'); } catch(e) {}
   });
 }
 
@@ -145,7 +147,18 @@ function dossierRender(stateCode, county, stObj, auctionData, propData) {
   }
   html += '</div>';
 
-  // Section 5: Strategy Notes
+  // Section 5: Investor Profile (from DNA)
+  var _dossierProfile = typeof getProfile === 'function' ? getProfile() : null;
+  if (_dossierProfile && _dossierProfile.dnaComplete) {
+    html += '<div class="dossier-section"><div class="dossier-section-title">YOUR INVESTOR PROFILE</div>';
+    html += '<div class="dossier-row"><span class="dossier-row-label">Archetype</span><span class="dossier-row-value">' + escapeHtml(_dossierProfile.archetypeLabel || '\u2014') + '</span></div>';
+    html += '<div class="dossier-row"><span class="dossier-row-label">Strategy</span><span class="dossier-row-value">' + escapeHtml(_dossierProfile.strategyLabel || '\u2014') + '</span></div>';
+    var topNames = (_dossierProfile.topStates || []).map(function(s) { return escapeHtml(s.name); }).join(', ');
+    if (topNames) html += '<div class="dossier-row"><span class="dossier-row-label">Top States</span><span class="dossier-row-value">' + topNames + '</span></div>';
+    html += '</div>';
+  }
+
+  // Section 6: Strategy Notes
   html += '<div class="dossier-section"><div class="dossier-section-title">YOUR STRATEGY NOTES</div>';
   html += '<textarea class="dossier-notes" id="dossier-notes" placeholder="Add your notes for this county\u2026"></textarea>';
   html += '</div>';
@@ -236,7 +249,127 @@ function generatePreCallSummary() {
   }
 }
 
-// Delegated event listeners for dynamically generated Warbook + Deadlines + Recon + Dossier buttons
+// === FIRST DEAL — 5-Step Guided Flow ===
+var _firstDealInited = false;
+var FD_STEPS = [
+  { key: 'state', icon: '\uD83D\uDDFA\uFE0F', i18nTitle: 'fd_step1', i18nDesc: 'fd_step1_desc', action: 'map' },
+  { key: 'county', icon: '\uD83C\uDFD8\uFE0F', i18nTitle: 'fd_step2', i18nDesc: 'fd_step2_desc', action: 'map' },
+  { key: 'dossier', icon: '\uD83D\uDCC4', i18nTitle: 'fd_step3', i18nDesc: 'fd_step3_desc', action: 'dossier' },
+  { key: 'scout', icon: '\uD83D\uDD0D', i18nTitle: 'fd_step4', i18nDesc: 'fd_step4_desc', action: 'scout' },
+  { key: 'pulse', icon: '\uD83D\uDD14', i18nTitle: 'fd_step5', i18nDesc: 'fd_step5_desc', action: 'fd-pulse' }
+];
+
+function getFirstDealStep() {
+  var step = 1;
+  try { step = parseInt(localStorage.getItem('aurigen_first_deal_step') || '1', 10); } catch(e) {}
+  if (isNaN(step) || step < 1) step = 1;
+  if (step > 5) step = 5;
+  return step;
+}
+
+function setFirstDealStep(step) {
+  try { localStorage.setItem('aurigen_first_deal_step', String(step)); } catch(e) {}
+}
+
+function advanceFirstDeal(stepNum) {
+  var current = getFirstDealStep();
+  if (stepNum > current) {
+    setFirstDealStep(stepNum);
+  }
+  renderFirstDeal();
+}
+
+function initFirstDeal() {
+  if (_firstDealInited) return;
+  _firstDealInited = true;
+  renderFirstDeal();
+}
+
+function renderFirstDeal() {
+  var container = document.getElementById('firstdeal-steps');
+  var completeEl = document.getElementById('firstdeal-complete');
+  if (!container) return;
+
+  var currentStep = getFirstDealStep();
+  var allDone = currentStep > 5;
+
+  // Check completion conditions from localStorage
+  // Step 1: state clicked (aurigen_last_state)
+  // Step 2: county viewed (aurigen_last_county)
+  // Step 3: dossier generated (aurigen_fd_dossier)
+  // Step 4: scout started (aurigen_scout_deals has entries)
+  // Step 5: pulse alert set (aurigen_fd_pulse)
+  var conditions = [false, false, false, false, false];
+  try {
+    conditions[0] = !!localStorage.getItem('aurigen_last_state');
+    conditions[1] = !!localStorage.getItem('aurigen_last_county');
+    conditions[2] = !!localStorage.getItem('aurigen_fd_dossier');
+    var scoutDeals = JSON.parse(localStorage.getItem('aurigen_scout_deals') || '[]');
+    conditions[3] = scoutDeals.length > 0;
+    var savedStFd = JSON.parse(localStorage.getItem('aurigen_saved_states') || '[]');
+    conditions[4] = savedStFd.length > 0 || !!localStorage.getItem('aurigen_fd_pulse');
+  } catch(e) {}
+
+  // Auto-advance based on conditions
+  for (var i = 0; i < 5; i++) {
+    if (conditions[i] && currentStep <= i + 1) {
+      currentStep = i + 2;
+      setFirstDealStep(currentStep);
+    }
+  }
+
+  allDone = currentStep > 5;
+
+  var html = '';
+  var tFn = typeof t === 'function' ? t : function(k) { return k; };
+
+  for (var s = 0; s < FD_STEPS.length; s++) {
+    var step = FD_STEPS[s];
+    var num = s + 1;
+    var isDone = num < currentStep;
+    var isCurrent = num === currentStep && !allDone;
+    var isLocked = num > currentStep;
+
+    var statusClass = isDone ? 'fd-done' : (isCurrent ? 'fd-current' : 'fd-locked');
+    var statusIcon = isDone ? '\u2713' : String(num);
+
+    html += '<div class="fd-step ' + statusClass + '">';
+    html += '<div class="fd-step-node"><span class="fd-step-num">' + statusIcon + '</span></div>';
+    html += '<div class="fd-step-body">';
+    html += '<div class="fd-step-title">' + tFn('fd_step') + ' ' + num + ': ' + tFn(step.i18nTitle) + '</div>';
+    html += '<div class="fd-step-desc">' + tFn(step.i18nDesc) + '</div>';
+    if (isCurrent) {
+      html += '<button class="fd-step-go" data-action="fd-go" data-target="' + step.action + '">' + step.icon + ' GO</button>';
+    }
+    html += '</div></div>';
+    if (s < FD_STEPS.length - 1) {
+      html += '<div class="fd-connector ' + (isDone ? 'fd-connector-done' : '') + '"></div>';
+    }
+  }
+
+  container.innerHTML = html;
+
+  // Show completion card
+  if (completeEl) {
+    if (allDone) {
+      completeEl.style.display = 'block';
+      completeEl.innerHTML = '<div class="fd-complete-card">' +
+        '<div class="fd-complete-icon">\uD83C\uDF89</div>' +
+        '<div class="fd-complete-title">' + tFn('fd_complete') + '</div>' +
+        '<div class="fd-complete-desc">You\'ve completed all 5 steps. Your research pipeline is set. Time to take action.</div>' +
+        '<a class="fd-complete-cta" href="https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4" target="_blank" rel="noopener noreferrer">BOOK YOUR STRATEGY SESSION \u2192</a>' +
+        '</div>';
+    } else {
+      completeEl.style.display = 'none';
+    }
+  }
+}
+
+// Hook into dossier generation to mark First Deal step 3
+var _origDossierGenerate = typeof dossierGenerate === 'function' ? dossierGenerate : null;
+// Instead, we'll hook via the dossier-generate action below
+
+// Delegated event listeners for dynamically generated Warbook + Deadlines + Recon + Dossier + First Deal buttons
 document.addEventListener('click', function(e) {
   var btn = e.target.closest('[data-action]');
   if (!btn) return;
@@ -265,5 +398,16 @@ document.addEventListener('click', function(e) {
     generatePreCallSummary();
   } else if (action === 'da-lookup') {
     daLookupProperty();
+  } else if (action === 'fd-go') {
+    var target = btn.getAttribute('data-target') || 'map';
+    if (target === 'fd-pulse') {
+      // Set pending flag so Pulse auto-opens create alert
+      try { localStorage.setItem('aurigen_fd_pulse_pending', '1'); } catch(e2) {}
+      if (typeof switchTab === 'function') switchTab('map');
+      // Open Pulse drawer after brief delay
+      setTimeout(function() { if (typeof openPulseDrawer === 'function') openPulseDrawer(); }, 300);
+    } else {
+      if (typeof switchTab === 'function') switchTab(target);
+    }
   }
 });

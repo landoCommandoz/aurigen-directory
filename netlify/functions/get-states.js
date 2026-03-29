@@ -10,6 +10,18 @@ var { getCorsHeaders, handlePreflight } = require('./utils/cors');
 
 const FREE_IDS = new Set(['FL', 'IL', 'AZ']);
 
+// Rate limiting: 60 requests per IP per minute
+var _statesRateMap = {};
+function checkStatesRate(ip) {
+  var now = Date.now();
+  if (!_statesRateMap[ip] || now - _statesRateMap[ip].start > 60000) {
+    _statesRateMap[ip] = { start: now, count: 1 };
+    return true;
+  }
+  _statesRateMap[ip].count++;
+  return _statesRateMap[ip].count <= 60;
+}
+
 function verifyToken(token, secret) {
   if (!token || !secret) return false;
   const parts = token.split('.');
@@ -49,6 +61,12 @@ exports.handler = async (event) => {
   if (event.httpMethod !== 'GET') {
     headers['Content-Type'] = 'application/json';
     return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
+  }
+
+  var clientIp = (event.headers || {})['x-forwarded-for'] || (event.headers || {})['client-ip'] || 'unknown';
+  if (!checkStatesRate(clientIp.split(',')[0].trim())) {
+    headers['Content-Type'] = 'application/json';
+    return { statusCode: 429, headers: { ...headers, 'Retry-After': '60' }, body: JSON.stringify({ error: 'Too many requests' }) };
   }
 
   const lang = (event.queryStringParameters && event.queryStringParameters.lang) || 'en';

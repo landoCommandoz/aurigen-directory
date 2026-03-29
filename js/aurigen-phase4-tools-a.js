@@ -120,6 +120,12 @@ function initDeadlines() {
 
   var savedStates = getSavedStates();
 
+  // Default filter to DNA states if archetype exists
+  var dnaCodes = typeof profileTopStateCodes === 'function' ? profileTopStateCodes() : null;
+  if (dnaCodes && dnaCodes.length > 0 && _deadlinesFilter === 'all') {
+    _deadlinesFilter = 'dna';
+  }
+
   fetch('/.netlify/functions/auctions')
     .then(function(r) { return r.json(); })
     .then(function(data) {
@@ -146,6 +152,9 @@ function deadlinesBuildFilters(savedStates) {
   var container = document.getElementById('deadlines-filter');
   if (!container || !_deadlinesData) return;
 
+  // DNA top states
+  var dnaCodes = typeof profileTopStateCodes === 'function' ? profileTopStateCodes() : null;
+
   // Collect unique state codes from data
   var codes = {};
   _deadlinesData.forEach(function(a) { if (a.state_code) codes[a.state_code] = true; });
@@ -153,6 +162,10 @@ function deadlinesBuildFilters(savedStates) {
 
   var html = '<span class="deadlines-filter-label">FILTER:</span>';
   html += '<button class="deadlines-filter-btn' + (_deadlinesFilter === 'all' ? ' active' : '') + '" data-action="deadlines-filter" data-filter="all">All</button>';
+
+  if (dnaCodes && dnaCodes.length > 0) {
+    html += '<button class="deadlines-filter-btn' + (_deadlinesFilter === 'dna' ? ' active' : '') + '" data-action="deadlines-filter" data-filter="dna">DNA States</button>';
+  }
 
   if (savedStates.length > 0) {
     html += '<button class="deadlines-filter-btn' + (_deadlinesFilter === 'saved' ? ' active' : '') + '" data-action="deadlines-filter" data-filter="saved">Saved States</button>';
@@ -179,7 +192,10 @@ function deadlinesRender() {
   var saved = getSavedStates();
   var filtered = _deadlinesData;
 
-  if (_deadlinesFilter === 'saved') {
+  if (_deadlinesFilter === 'dna') {
+    var dnaCodes = typeof profileTopStateCodes === 'function' ? profileTopStateCodes() : [];
+    filtered = filtered.filter(function(a) { return dnaCodes && dnaCodes.indexOf(a.state_code) >= 0; });
+  } else if (_deadlinesFilter === 'saved') {
     filtered = filtered.filter(function(a) { return saved.indexOf(a.state_code) >= 0; });
   } else if (_deadlinesFilter !== 'all') {
     filtered = filtered.filter(function(a) { return a.state_code === _deadlinesFilter; });
