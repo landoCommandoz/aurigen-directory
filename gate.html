@@ -165,8 +165,8 @@
     <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="cta-paid-btn" target="_blank" rel="noopener noreferrer">$197 — UNLOCK FULL ACCESS →</a>
     <div class="gate-divider">OR START FREE</div>
     <div class="gate-email-row">
-      <input type="email" placeholder="your@email.com" class="gate-email-input">
-      <button type="button" onclick="var e=this.previousElementSibling.value;if(e&&e.includes('@')){localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');window.location.href='/warroom-billion.html';}" class="cta-free-btn">Free Access →</button>
+      <input type="email" id="g" placeholder="your@email.com" class="gate-email-input">
+      <button type="button" onclick="var e=document.getElementById('g').value;if(e&&e.includes('@')){localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');window.location.href='/warroom-billion.html';}" class="cta-free-btn">Free Access →</button>
     </div>
     <p class="gate-privacy">We never share your email. <a href="/legal.html">Privacy policy</a>.</p>
   </div>
@@ -179,8 +179,8 @@
     <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="cta-paid-btn" target="_blank" rel="noopener noreferrer">$197 — ACCESO COMPLETO →</a>
     <div class="gate-divider">O EMPIEZA GRATIS</div>
     <div class="gate-email-row">
-      <input type="email" placeholder="tu@correo.com" class="gate-email-input">
-      <button type="button" onclick="var e=this.previousElementSibling.value;if(e&&e.includes('@')){localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');window.location.href='/warroom-billion.html';}" class="cta-free-btn">Acceso Gratis →</button>
+      <input type="email" id="g2" placeholder="tu@correo.com" class="gate-email-input">
+      <button type="button" onclick="var e=document.getElementById('g2').value;if(e&&e.includes('@')){localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');window.location.href='/warroom-billion.html';}" class="cta-free-btn">Acceso Gratis →</button>
     </div>
     <p class="gate-privacy">Nunca compartimos tu correo. <a href="/legal.html">Política de privacidad</a>.</p>
   </div>
