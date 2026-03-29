@@ -237,7 +237,7 @@ var I18N = {
     scout_disclaimer:'This checklist is for educational and research purposes only. It does not constitute legal, financial, or investment advice. Always conduct independent due diligence and consult a qualified professional before investing.',
     // Auctions
     auctions_lock_title:'UNLOCK AUCTIONS',
-    auctions_lock_desc:'Live and upcoming auction calendar across all 51 states. Filter by state, format, and date. Never miss a sale in your target market.',
+    auctions_lock_desc:'Upcoming auction calendar across all 51 states. Filter by state, format, and date. Never miss a sale in your target market.',
     auctions_register:'Register \u2192',
     auctions_online:'ONLINE', auctions_in_person:'IN-PERSON',
     // Account
@@ -324,13 +324,13 @@ var I18N = {
     mfp_title:'Inteligencia Estatal', mfp_subtitle:'51 jurisdicciones \u00B7 Haz clic en cualquier estado',
     mfp_search_placeholder:'Buscar estados\u2026',
     mfp_filter_title:'FILTRAR POR TIPO',
-    type_lien:'Gravamen Fiscal', type_deed:'Escritura Fiscal', type_redeemable:'Redimible',
+    type_lien:'Tax Lien', type_deed:'Tax Deed', type_redeemable:'Redimible',
     type_hybrid:'H\u00edbrido', type_forfeiture:'Confiscaci\u00f3n', type_all:'TODOS',
     mfp_show_all:'Mostrar Todo',
     map_footer_left:'AURIGEN \u00B7 INTELIGENCIA DE INVERSI\u00d3N FISCAL \u00B7 2026',
     map_footer_right:'51 JURISDICCIONES',
     // State modal
-    stat_yield:'TASA DE RENDIMIENTO', stat_redemption:'REDENCI\u00d3N', stat_bid:'M\u00c9TODO DE PUJA',
+    stat_yield:'TASA DE RENDIMIENTO', stat_redemption:'PER\u00cdODO DE RESCATE', stat_bid:'M\u00c9TODO DE PUJA',
     detail_open:'Ver Detalle Completo \u2192',
     next_step:'Siguiente Paso',
     next_step_compare:'Ver c\u00f3mo se compara {state}',
@@ -342,7 +342,7 @@ var I18N = {
     vs_cmd_prefix:'$ aurigen comparar',
     vs_state_a:'ESTADO A:', vs_state_b:'ESTADO B:',
     vs_col_metric:'M\u00c9TRICA',
-    vs_type:'TIPO', vs_yield:'TASA DE RENDIMIENTO', vs_redemption:'REDENCI\u00d3N',
+    vs_type:'TIPO', vs_yield:'TASA DE RENDIMIENTO', vs_redemption:'PER\u00cdODO DE RESCATE',
     vs_bid:'M\u00c9TODO DE PUJA', vs_platform:'PLATAFORMA', vs_beginner:'PRINCIPIANTE',
     vs_edge:'VENTAJA',
     vs_analysis:'> AN\u00c1LISIS',
@@ -352,7 +352,7 @@ var I18N = {
     vs_lock_desc:'Compara dos estados lado a lado \u2014 tasas de rendimiento, per\u00edodos de redenci\u00f3n, m\u00e9todos de puja y plataformas. Dise\u00f1ado para inversores eligiendo su pr\u00f3ximo mercado.',
     // DNA
     dna_lock_title:'DESBLOQUEAR PERFIL DNA',
-    dna_lock_desc:'Responde 6 preguntas. Obt\u00e9n tu arquetipo de inversor \u2014 Maximizador de Rendimiento, Cazador de Negocios, Capitalista Paciente, Operador Local, o Constructor de Portafolio. Cada herramienta se adapta a tu perfil.',
+    dna_lock_desc:'Responde 6 preguntas. Obt\u00e9n tu arquetipo de inversor \u2014 Maximizador de Rendimiento, Cazador de Oportunidades, Capitalista Paciente, Operador Local, o Constructor de Portafolio. Cada herramienta se adapta a tu perfil.',
     dna_title:'ADN DE INVERSOR',
     dna_continue:'Continuar', dna_back:'Atr\u00e1s',
     dna_top_matches:'MEJORES COINCIDENCIAS', dna_signals:'SE\u00d1ALES DE PERFIL',
@@ -368,7 +368,7 @@ var I18N = {
     sage_send:'Enviar',
     sage_disclaimer:'Sage es un asistente de investigaci\u00f3n educativa, no un asesor financiero. No constituye asesoramiento financiero, legal o de inversi\u00f3n. Siempre verifica la informaci\u00f3n con fuentes oficiales.',
     // Tools / Analyzer
-    tools_lock_title:'DESBLOQUEAR ANALIZADOR DE NEGOCIOS',
+    tools_lock_title:'DESBLOQUEAR ANALIZADOR DE INVERSIONES',
     tools_lock_desc:'Calcula n\u00fameros reales para cualquier negocio. Ingresa precio de compra, impuestos atrasados, ARV. Obt\u00e9n ROI proyectado, margen de seguridad y una se\u00f1al clara.',
     da_tab_analyzer:'Analizador', da_tab_quick:'Herramientas R\u00e1pidas', da_tab_summary:'Mi Resumen',
     da_amount_label:'Monto de Inversi\u00f3n',
@@ -383,7 +383,7 @@ var I18N = {
     scout_lock_title:'DESBLOQUEAR SCOUT',
     scout_lock_desc:'Lista de verificaci\u00f3n de debida diligencia de 10 pasos para cualquier propiedad. Revisa t\u00edtulo, grav\u00e1menes, condici\u00f3n, comparables y estrategia de salida antes de gastar un d\u00f3lar.',
     scout_title:'SCOUT', scout_sub:'RASTREADOR DE DEBIDA DILIGENCIA',
-    scout_new:'+ Nuevo Negocio',
+    scout_new:'+ Nueva Operaci\u00f3n',
     scout_why:'POR QU\u00c9 IMPORTA', scout_how:'C\u00d3MO HACERLO',
     scout_where:'D\u00d3NDE', scout_red:'SE\u00d1ALES DE ALERTA', scout_pro:'CONSEJO PRO',
     scout_notes:'TUS NOTAS', scout_notes_placeholder:'Agrega tus notas para este paso\u2026',
@@ -391,7 +391,7 @@ var I18N = {
     scout_disclaimer:'Esta lista es solo para fines educativos y de investigaci\u00f3n. No constituye asesoramiento legal, financiero o de inversi\u00f3n. Siempre realiza una debida diligencia independiente y consulta con un profesional calificado antes de invertir.',
     // Auctions
     auctions_lock_title:'DESBLOQUEAR SUBASTAS',
-    auctions_lock_desc:'Calendario de subastas en vivo y pr\u00f3ximas en los 51 estados. Filtra por estado, formato y fecha. No te pierdas ninguna venta en tu mercado objetivo.',
+    auctions_lock_desc:'Calendario de pr\u00f3ximas subastas en los 51 estados. Filtra por estado, formato y fecha. No te pierdas ninguna venta en tu mercado objetivo.',
     auctions_register:'Registrarse \u2192',
     auctions_online:'EN L\u00cdNEA', auctions_in_person:'EN PERSONA',
     // Account
@@ -402,7 +402,7 @@ var I18N = {
     acct_locked_val:'Condados, DNA, Versus, Analizador, Sage, Scout, Warbook, Deadlines, Recon, Dossier, Subastas, Pulse',
     acct_what_unlock:'LO QUE DESBLOQUEAS',
     vc_county:'Directorio de Condados', vc_dna:'Perfil de Inversor DNA',
-    vc_versus:'Comparaci\u00f3n Versus', vc_analyzer:'Analizador de Negocios',
+    vc_versus:'Comparaci\u00f3n Versus', vc_analyzer:'Analizador de Inversiones',
     vc_sage:'Asesor IA Sage', vc_scout:'Debida Diligencia Scout',
     vc_auctions:'Calendario de Subastas', vc_pulse:'Alertas Pulse',
     acct_value_total:'Valor total estimado si se compra como herramientas separadas: $1,500+/a\u00f1o \u2014 tuyo por $197 una vez.',
@@ -449,7 +449,7 @@ var I18N = {
     acct_referral_title:'PROGRAMA DE REFERIDOS',
     acct_feature_compare:'COMPARACI\u00d3N DE FUNCIONES',
     // County panel labels
-    county_yield:'TASA DE RENDIMIENTO', county_redemption:'REDENCI\u00d3N', county_bid:'M\u00c9TODO DE PUJA',
+    county_yield:'TASA DE RENDIMIENTO', county_redemption:'PER\u00cdODO DE RESCATE', county_bid:'M\u00c9TODO DE PUJA',
     county_view:'Ver', county_counties:'CONDADOS', county_county:'CONDADO',
     county_search:'Buscar condados\u2026', county_empty:'Datos de condados disponibles pr\u00f3ximamente para',
     county_otc:'OTC',
@@ -457,13 +457,13 @@ var I18N = {
     score_elite:'\u00c9LITE', score_strong:'FUERTE', score_moderate:'MODERADO', score_weak:'D\u00c9BIL',
     score_pending:'Puntuaci\u00f3n pendiente',
     // First Deal flow
-    fd_title:'MI PRIMER NEGOCIO', fd_step:'Paso',
+    fd_title:'MI PRIMERA OPERACI\u00d3N', fd_step:'Paso',
     fd_step1:'ELIGE TU ESTADO', fd_step1_desc:'Haz clic en cualquier estado del mapa para comenzar.',
     fd_step2:'ELIGE UN CONDADO', fd_step2_desc:'Abre un panel de condado para explorar datos locales.',
     fd_step3:'GENERA EL DOSSIER', fd_step3_desc:'Genera tu informe de inversor para este condado.',
     fd_step4:'LISTA DE SCOUT', fd_step4_desc:'Ejecuta la debida diligencia en tu propiedad objetivo.',
     fd_step5:'CONFIGURA UNA ALERTA PULSE', fd_step5_desc:'Guarda este estado para rastrear pr\u00f3ximas subastas.',
-    fd_complete:'TU PRIMER NEGOCIO EST\u00c1 CONFIGURADO',
+    fd_complete:'TU PRIMERA OPERACI\u00d3N EST\u00c1 LISTA',
     fd_upgrade:'Desbloquea acceso completo para continuar tu primer negocio \u2192'
   }
 };
