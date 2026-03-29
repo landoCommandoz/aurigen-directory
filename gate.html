@@ -73,7 +73,7 @@
       opacity: 0;
       transition: opacity 1.5s ease;
     }
-    #gate-map-svg.loaded { opacity: 1; }
+    #gate-map-svg.loaded { opacity: 0.15; }
     .state-path {
       fill: rgba(201,168,76,0.06);
       stroke: rgba(201,168,76,0.28);
@@ -164,28 +164,42 @@
       flex: 1;
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: center;
       padding: 0 48px;
-      max-width: 900px;
+      text-align: center;
+      width: 100%;
+      max-width: 100%;
     }
     .hero-headline {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(48px, 6vw, 72px);
+      font-size: 96px;
       font-weight: 400;
       font-style: normal;
-      line-height: 1.1;
-      color: #f5f0e8;
-      letter-spacing: 0.03em;
+      line-height: 1.0;
+      color: #c9a84c;
+      letter-spacing: 0.04em;
       animation: fade-in 1s ease 0.15s both;
+    }
+    .hero-subheadline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      color: #f5f0e8;
+      margin-top: 16px;
+      line-height: 1.5;
+      animation: fade-in 1s ease 0.25s both;
     }
 
     /* Hero CTA row */
     .hero-cta-row {
       display: flex;
+      flex-direction: column;
       align-items: center;
       gap: 16px;
-      margin-top: 28px;
+      margin-top: 32px;
       animation: fade-in 1s ease 0.3s both;
+      width: 100%;
+      max-width: 480px;
     }
     .hero-cta-primary {
       display: inline-flex;
@@ -217,6 +231,32 @@
       white-space: nowrap;
     }
     .hero-cta-secondary:hover { color: var(--platinum); }
+    .hero-cta-primary { width: 100%; text-align: center; justify-content: center; }
+    .hero-free-row {
+      display: flex;
+      gap: 0;
+      border: 1px solid rgba(201,168,76,0.2);
+      overflow: hidden;
+      width: 100%;
+    }
+    .hero-free-row .cta-free-input {
+      flex: 1;
+      background: rgba(10,14,26,0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .hero-free-row .cta-free-btn {
+      background: rgba(10,14,26,0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .hero-or {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
     .hero-social-proof {
       font-family: 'DM Sans', sans-serif;
       font-size: 12px;
@@ -303,27 +343,11 @@
       animation: fade-in 0.8s ease 0.5s both;
     }
 
-    /* === BILINGUAL COLUMNS === */
-    .bilingual {
-      display: grid;
-      grid-template-columns: 1fr 1px 1fr;
-      min-height: 0;
-    }
-    .bilingual-divider {
-      background: var(--border);
-    }
     .lang-col {
       padding: 48px;
       display: flex;
       flex-direction: column;
       gap: 40px;
-    }
-    .col-lang-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--dim);
     }
 
     /* === CTA BLOCK === */
@@ -626,19 +650,14 @@
     @media (max-width: 860px) {
       .topbar { padding: 20px 24px; }
       .hero-content { padding: 0 24px; }
-      .hero-headline { font-size: clamp(36px, 8vw, 48px); }
-      .hero-cta-row { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .hero-cta-primary { width: 100%; text-align: center; justify-content: center; }
+      .hero-headline { font-size: 64px; }
+      .hero-subheadline { font-size: 16px; }
+      .hero-cta-row { max-width: 100%; }
       .stats-bar { padding: 0 24px 32px; gap: 28px; }
       .stat-num { font-size: 22px; }
       .rule { margin: 0 24px; }
 
-      .bilingual { grid-template-columns: 1fr; }
-      .bilingual-divider { display: none; }
       .lang-col { padding: 32px 24px; }
-      .lang-col.es-col { display: none; }
-      body.lang-es .lang-col.en-col { display: none; }
-      body.lang-es .lang-col.es-col { display: flex; }
 
       .mobile-lang-toggle {
         display: flex;
@@ -671,7 +690,7 @@
       .gate-footer { padding: 24px; }
     }
     @media (max-width: 480px) {
-      .hero-headline { font-size: 32px; }
+      .hero-headline { font-size: 48px; }
       .stats-bar { flex-wrap: wrap; gap: 20px; }
       .trust-bar { flex-direction: column; gap: 8px; }
       .feature-grid { grid-template-columns: 1fr; }
@@ -780,35 +799,23 @@
 
   <!-- Hero headline + CTA -->
   <div class="hero-content">
-    <h1 class="hero-headline">The investor war room Wall Street doesn't want you to have</h1>
-    <div class="hero-sub" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(16px,2vw,20px);color:#9898b0;margin-top:12px;line-height:1.5">3,200+ counties. Live auction data. One-time access.</div>
+    <h1 class="hero-headline">COUNTY BY COUNTY</h1>
+    <div class="hero-subheadline">Tax lien and tax deed intelligence across all 51 states</div>
     <div class="hero-cta-row">
       <a class="hero-cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02">$197 &mdash; UNLOCK FULL ACCESS &rarr;</a>
-      <a class="hero-cta-secondary" href="#access">Start free with 3 states &rarr;</a>
+      <span class="hero-or">Or start free</span>
+      <form action="javascript:void(0)" class="hero-free-row">
+        <input type="email" name="email" id="hero-email" placeholder="email@address.com" required class="cta-free-input">
+        <button type="button" onclick="localStorage.setItem('aurigen_email', document.getElementById('hero-email').value); localStorage.setItem('aurigen_access', 'free'); window.location.href='/warroom-billion.html';" class="cta-free-btn">Free Access &rarr;</button>
+      </form>
     </div>
-    <div class="hero-social-proof">Used by investors researching tax liens across all 51 jurisdictions.</div>
-  </div>
-
-  <!-- Stats bar -->
-  <div class="stats-bar">
-    <div class="stat">
-      <div class="stat-num">51</div>
-      <div class="stat-label">States</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">3,200+</div>
-      <div class="stat-label">Counties</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Researched</div>
-    </div>
+    <div class="hero-social-proof">51 states &middot; 3,200+ counties &middot; 100% researched</div>
   </div>
 
   <!-- Scroll arrow -->
   <div class="scroll-arrow">
     <a href="#access">
-      <span class="scroll-arrow-label">Access</span>
+      <span class="scroll-arrow-label">Explore</span>
       <span class="scroll-arrow-icon"></span>
     </a>
   </div>
@@ -820,161 +827,61 @@
 
   <div class="rule"></div>
 
-  <!-- BILINGUAL COLUMNS -->
-  <div class="bilingual">
+  <!-- SINGLE COLUMN — FEATURE COMPARISON -->
+  <div class="lang-col" style="max-width:720px;margin:0 auto">
 
-    <!-- ENGLISH -->
-    <div class="lang-col en-col">
-      <div class="col-lang-label">English</div>
-
-      <div class="cta-block">
-        <div class="cta-eyebrow">Built for serious investors</div>
-        <div class="cta-headline">Stop losing deals to investors who already have this data.</div>
-        <div class="cta-subhead">3,200+ counties. Live auction alerts. One price. No subscription.</div>
-        <a class="cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" style="background:var(--gold);color:#06060a;border-color:var(--gold);font-weight:700">$197 &mdash; UNLOCK FULL ACCESS &rarr;</a>
-        <div class="cta-or-divider">
-          <div class="cta-or-line"></div>
-          <span class="cta-or-text">Or start free</span>
-          <div class="cta-or-line"></div>
+    <div class="pricing-card">
+      <div class="pricing-card-header" data-gate-en="WHY INVESTORS SWITCH TO AURIGEN" data-gate-es="POR QU&Eacute; LOS INVERSIONISTAS ELIGEN AURIGEN">WHY INVESTORS SWITCH TO AURIGEN</div>
+      <div class="pricing-cols">
+        <div class="pricing-col pricing-col-them">
+          <div class="pricing-col-label" data-gate-en="COMPARABLE TOOLS" data-gate-es="HERRAMIENTAS SIMILARES">COMPARABLE TOOLS</div>
+          <div class="pricing-col-price">$200+</div>
+          <div class="pricing-col-period" data-gate-en="PER MONTH &mdash; RECURRING" data-gate-es="POR MES &mdash; RECURRENTE">PER MONTH &mdash; RECURRING</div>
+          <ul class="pricing-feature-list">
+            <li data-gate-en="Limited state coverage" data-gate-es="Cobertura estatal limitada">Limited state coverage</li>
+            <li data-gate-en="Monthly subscription required" data-gate-es="Suscripci&oacute;n mensual requerida">Monthly subscription required</li>
+            <li data-gate-en="Manual deal research" data-gate-es="Investigaci&oacute;n manual">Manual deal research</li>
+            <li data-gate-en="Extra fees per tool" data-gate-es="Cargos extra por herramienta">Extra fees per tool</li>
+            <li data-gate-en="Annual cost: $2,400+" data-gate-es="Costo anual: $2,400+">Annual cost: $2,400+</li>
+          </ul>
         </div>
-        <form onsubmit="event.preventDefault(); localStorage.setItem('aurigen_email', this.email.value); localStorage.setItem('aurigen_access', 'free'); window.location.href='/warroom-billion.html'; return false;" class="cta-free-form">
-          <input type="email" name="email" placeholder="email@address.com" required class="cta-free-input">
-          <button type="submit" class="cta-free-btn">Free Access &rarr;</button>
-        </form>
-        <div class="cta-free-note">Free tier: 51-state map + state-level data + statute citations. By entering your email you agree to receive The Aurigen Intelligence Brief. Unsubscribe anytime. <a href="/privacy.html" style="color:var(--muted);text-decoration:underline">Privacy Policy</a></div>
-      </div>
-
-      <div class="pricing-card">
-        <div class="pricing-card-header">WHY INVESTORS SWITCH TO AURIGEN</div>
-        <div class="pricing-cols">
-          <div class="pricing-col pricing-col-them">
-            <div class="pricing-col-label">COMPARABLE TOOLS</div>
-            <div class="pricing-col-price">$200+</div>
-            <div class="pricing-col-period">PER MONTH &mdash; RECURRING</div>
-            <ul class="pricing-feature-list">
-              <li>Limited state coverage</li>
-              <li>Monthly subscription required</li>
-              <li>Manual deal research</li>
-              <li>Extra fees per tool</li>
-              <li>Annual cost: $2,400+</li>
-            </ul>
-          </div>
-          <div class="pricing-col pricing-col-us">
-            <div class="pricing-col-label">AURIGEN</div>
-            <div class="pricing-col-price">$197</div>
-            <div class="pricing-col-period">ONE TIME &mdash; FOREVER</div>
-            <ul class="pricing-feature-list">
-              <li>All 51 states + 3,200 counties</li>
-              <li>Live auction calendar + alerts</li>
-              <li>Deal Analyzer + DNA Profiler</li>
-              <li>Sage AI + Versus + Scout</li>
-              <li>Lifetime access, no renewals</li>
-            </ul>
-          </div>
+        <div class="pricing-col pricing-col-us">
+          <div class="pricing-col-label">AURIGEN</div>
+          <div class="pricing-col-price">$197</div>
+          <div class="pricing-col-period" data-gate-en="ONE TIME &mdash; FOREVER" data-gate-es="PAGO &Uacute;NICO &mdash; PARA SIEMPRE">ONE TIME &mdash; FOREVER</div>
+          <ul class="pricing-feature-list">
+            <li data-gate-en="All 51 states + 3,200 counties" data-gate-es="51 estados + 3,200 condados">All 51 states + 3,200 counties</li>
+            <li data-gate-en="Live auction calendar + alerts" data-gate-es="Calendario de subastas + alertas">Live auction calendar + alerts</li>
+            <li data-gate-en="Deal Analyzer + DNA Profiler" data-gate-es="Analizador + Perfilador DNA">Deal Analyzer + DNA Profiler</li>
+            <li data-gate-en="Sage AI + Versus + Scout" data-gate-es="Sage IA + Versus + Scout">Sage AI + Versus + Scout</li>
+            <li data-gate-en="Lifetime access, no renewals" data-gate-es="Acceso de por vida, sin renovaciones">Lifetime access, no renewals</li>
+          </ul>
         </div>
-        <div class="pricing-savings">YOUR FIRST-YEAR SAVINGS: $2,203*</div>
-        <div style="text-align:center;padding:0 16px 10px;font-family:'DM Sans',sans-serif;font-size:10px;color:var(--dim);line-height:1.4">*Based on typical recurring pricing in the tax lien software category.</div>
       </div>
-
-      <!-- 6A TRUST BAR -->
-      <div class="trust-bar">
-        <span class="trust-pill"><span class="trust-pill-icon">&#128274;</span> Stripe PCI DSS Level 1 Secured</span>
-        <span class="trust-pill"><span class="trust-pill-icon">&#128203;</span> Data sourced from public county records</span>
-        <span class="trust-pill"><span class="trust-pill-icon">&#10003;</span> No subscription. No renewal. One payment.</span>
-      </div>
-
-      <!-- 1C FEATURE CARDS -->
-      <div class="feature-grid" id="feature-grid-en">
-        <div class="feature-card"><span class="feature-card-icon">&#127758;</span><div class="feature-card-body"><div class="feature-card-name">51-State Intelligence Map</div><div class="feature-card-desc">Interactive map with classification data for every jurisdiction.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#127963;</span><div class="feature-card-body"><div class="feature-card-name">3,200+ County Directory</div><div class="feature-card-desc">Drill into counties with auction platforms, OTC data, and type details.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#128197;</span><div class="feature-card-body"><div class="feature-card-name">Live Auction Calendar</div><div class="feature-card-desc">Upcoming sales across all states with registration links.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#128200;</span><div class="feature-card-body"><div class="feature-card-name">Equity Cushion Scanner</div><div class="feature-card-desc">See opening bid vs assessed value on every property.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#127968;</span><div class="feature-card-body"><div class="feature-card-name">Absentee Owner Filter</div><div class="feature-card-desc">Flag properties where owner mailing address differs from parcel.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#128276;</span><div class="feature-card-body"><div class="feature-card-name">Pulse Alerts</div><div class="feature-card-desc">Real-time notifications when new auctions drop in your states.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#129516;</span><div class="feature-card-body"><div class="feature-card-name">DNA Profiler</div><div class="feature-card-desc">Answer 6 questions to discover your investor archetype.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#129302;</span><div class="feature-card-body"><div class="feature-card-name">Sage AI Advisor</div><div class="feature-card-desc">Ask anything about tax lien and deed investing.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#128202;</span><div class="feature-card-body"><div class="feature-card-name">Deal Analyzer</div><div class="feature-card-desc">Two-state comparison with projected returns by scenario.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#128270;</span><div class="feature-card-body"><div class="feature-card-name">Scout Checklist</div><div class="feature-card-desc">State-specific due diligence checklist for every deal.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#9878;</span><div class="feature-card-body"><div class="feature-card-name">Versus Comparison</div><div class="feature-card-desc">Side-by-side analysis of any two states.</div></div></div>
-      </div>
+      <div class="pricing-savings" data-gate-en="YOUR FIRST-YEAR SAVINGS: $2,203*" data-gate-es="TU AHORRO EL PRIMER A&Ntilde;O: $2,203*">YOUR FIRST-YEAR SAVINGS: $2,203*</div>
+      <div style="text-align:center;padding:0 16px 10px;font-family:'DM Sans',sans-serif;font-size:10px;color:var(--dim);line-height:1.4" data-gate-en="*Based on typical recurring pricing in the tax lien software category." data-gate-es="*Basado en precios recurrentes t&iacute;picos en la categor&iacute;a de software de tax liens.">*Based on typical recurring pricing in the tax lien software category.</div>
     </div>
 
-    <div class="bilingual-divider"></div>
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+      <span class="trust-pill"><span class="trust-pill-icon">&#128274;</span> <span data-gate-en="Stripe PCI DSS Level 1 Secured" data-gate-es="Stripe PCI DSS Nivel 1">Stripe PCI DSS Level 1 Secured</span></span>
+      <span class="trust-pill"><span class="trust-pill-icon">&#128203;</span> <span data-gate-en="Data sourced from public county records" data-gate-es="Datos de registros p&uacute;blicos del condado">Data sourced from public county records</span></span>
+      <span class="trust-pill"><span class="trust-pill-icon">&#10003;</span> <span data-gate-en="No subscription. No renewal. One payment." data-gate-es="Sin suscripci&oacute;n. Sin renovaci&oacute;n. Un pago.">No subscription. No renewal. One payment.</span></span>
+    </div>
 
-    <!-- SPANISH -->
-    <div class="lang-col es-col">
-      <div class="col-lang-label">Espa&ntilde;ol</div>
-
-      <div class="cta-block">
-        <div class="cta-eyebrow">Hecho para inversionistas serios</div>
-        <div class="cta-headline">Deja de perder negocios contra inversionistas que ya tienen estos datos.</div>
-        <div class="cta-subhead">M&aacute;s de 3,200 condados. Alertas de subastas en vivo. Un solo pago. Sin suscripci&oacute;n.</div>
-        <a class="cta-primary" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" style="background:var(--gold);color:#06060a;border-color:var(--gold);font-weight:700">$197 &mdash; DESBLOQUEAR ACCESO COMPLETO &rarr;</a>
-        <div class="cta-or-divider">
-          <div class="cta-or-line"></div>
-          <span class="cta-or-text">O empieza gratis</span>
-          <div class="cta-or-line"></div>
-        </div>
-        <form onsubmit="event.preventDefault(); localStorage.setItem('aurigen_email', this.email.value); localStorage.setItem('aurigen_access', 'free'); window.location.href='/warroom-billion.html'; return false;" class="cta-free-form">
-          <input type="email" name="email" placeholder="correo@ejemplo.com" required class="cta-free-input">
-          <button type="submit" class="cta-free-btn">Acceso Gratis &rarr;</button>
-        </form>
-        <div class="cta-free-note">Nivel gratis: mapa de 51 estados + datos estatales + citas de estatutos. Al ingresar tu correo aceptas recibir The Aurigen Intelligence Brief. Cancela cuando quieras. <a href="/privacy.html" style="color:var(--muted);text-decoration:underline">Pol&iacute;tica de Privacidad</a></div>
-      </div>
-
-      <div class="pricing-card">
-        <div class="pricing-card-header">POR QU&Eacute; LOS INVERSIONISTAS ELIGEN AURIGEN</div>
-        <div class="pricing-cols">
-          <div class="pricing-col pricing-col-them">
-            <div class="pricing-col-label">HERRAMIENTAS SIMILARES</div>
-            <div class="pricing-col-price">$200+</div>
-            <div class="pricing-col-period">POR MES &mdash; RECURRENTE</div>
-            <ul class="pricing-feature-list">
-              <li>Cobertura estatal limitada</li>
-              <li>Suscripci&oacute;n mensual requerida</li>
-              <li>Investigaci&oacute;n manual</li>
-              <li>Cargos extra por herramienta</li>
-              <li>Costo anual: $2,400+</li>
-            </ul>
-          </div>
-          <div class="pricing-col pricing-col-us">
-            <div class="pricing-col-label">AURIGEN</div>
-            <div class="pricing-col-price">$197</div>
-            <div class="pricing-col-period">PAGO &Uacute;NICO &mdash; PARA SIEMPRE</div>
-            <ul class="pricing-feature-list">
-              <li>51 estados + 3,200 condados</li>
-              <li>Calendario de subastas + alertas</li>
-              <li>Analizador + Perfilador DNA</li>
-              <li>Sage IA + Versus + Scout</li>
-              <li>Acceso de por vida, sin renovaciones</li>
-            </ul>
-          </div>
-        </div>
-        <div class="pricing-savings">TU AHORRO EL PRIMER A&Ntilde;O: $2,203*</div>
-        <div style="text-align:center;padding:0 16px 10px;font-family:'DM Sans',sans-serif;font-size:10px;color:var(--dim);line-height:1.4">*Basado en precios recurrentes t&iacute;picos en la categor&iacute;a de software de tax liens.</div>
-      </div>
-
-      <!-- 6A TRUST BAR (ES) -->
-      <div class="trust-bar">
-        <span class="trust-pill"><span class="trust-pill-icon">&#128274;</span> Stripe PCI DSS Nivel 1</span>
-        <span class="trust-pill"><span class="trust-pill-icon">&#128203;</span> Datos de registros p&uacute;blicos del condado</span>
-        <span class="trust-pill"><span class="trust-pill-icon">&#10003;</span> Sin suscripci&oacute;n. Sin renovaci&oacute;n. Un pago.</span>
-      </div>
-
-      <!-- 1C FEATURE CARDS (ES) -->
-      <div class="feature-grid" id="feature-grid-es">
-        <div class="feature-card"><span class="feature-card-icon">&#127758;</span><div class="feature-card-body"><div class="feature-card-name">Mapa de 51 Estados</div><div class="feature-card-desc">Mapa interactivo con datos de clasificaci&oacute;n para cada jurisdicci&oacute;n.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#127963;</span><div class="feature-card-body"><div class="feature-card-name">3,200+ Condados</div><div class="feature-card-desc">Datos de subastas, OTC y detalles por tipo de cada condado.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#128197;</span><div class="feature-card-body"><div class="feature-card-name">Calendario de Subastas</div><div class="feature-card-desc">Pr&oacute;ximas ventas en todos los estados con enlaces de registro.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#128200;</span><div class="feature-card-body"><div class="feature-card-name">Esc&aacute;ner de Equidad</div><div class="feature-card-desc">Compara oferta inicial vs valor tasado en cada propiedad.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#127968;</span><div class="feature-card-body"><div class="feature-card-name">Filtro de Propietario Ausente</div><div class="feature-card-desc">Identifica propiedades donde el due&ntilde;o no vive en el lugar.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#128276;</span><div class="feature-card-body"><div class="feature-card-name">Alertas Pulse</div><div class="feature-card-desc">Notificaciones cuando nuevas subastas aparecen en tus estados.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#129516;</span><div class="feature-card-body"><div class="feature-card-name">Perfilador DNA</div><div class="feature-card-desc">Responde 6 preguntas y descubre tu arquetipo de inversionista.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#129302;</span><div class="feature-card-body"><div class="feature-card-name">Sage IA</div><div class="feature-card-desc">Pregunta lo que sea sobre inversi&oacute;n en tax liens y deeds.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#128202;</span><div class="feature-card-body"><div class="feature-card-name">Analizador de Deals</div><div class="feature-card-desc">Comparaci&oacute;n de dos estados con retornos proyectados.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#128270;</span><div class="feature-card-body"><div class="feature-card-name">Checklist Scout</div><div class="feature-card-desc">Lista de diligencia debida espec&iacute;fica por estado.</div></div></div>
-        <div class="feature-card"><span class="feature-card-icon">&#9878;</span><div class="feature-card-body"><div class="feature-card-name">Versus</div><div class="feature-card-desc">An&aacute;lisis lado a lado de dos estados.</div></div></div>
-      </div>
+    <!-- FEATURE CARDS -->
+    <div class="feature-grid" id="feature-grid-en">
+      <div class="feature-card"><span class="feature-card-icon">&#127758;</span><div class="feature-card-body"><div class="feature-card-name">51-State Intelligence Map</div><div class="feature-card-desc">Interactive map with classification data for every jurisdiction.</div></div></div>
+      <div class="feature-card"><span class="feature-card-icon">&#127963;</span><div class="feature-card-body"><div class="feature-card-name">3,200+ County Directory</div><div class="feature-card-desc">Drill into counties with auction platforms, OTC data, and type details.</div></div></div>
+      <div class="feature-card"><span class="feature-card-icon">&#128197;</span><div class="feature-card-body"><div class="feature-card-name">Live Auction Calendar</div><div class="feature-card-desc">Upcoming sales across all states with registration links.</div></div></div>
+      <div class="feature-card"><span class="feature-card-icon">&#128200;</span><div class="feature-card-body"><div class="feature-card-name">Equity Cushion Scanner</div><div class="feature-card-desc">See opening bid vs assessed value on every property.</div></div></div>
+      <div class="feature-card"><span class="feature-card-icon">&#127968;</span><div class="feature-card-body"><div class="feature-card-name">Absentee Owner Filter</div><div class="feature-card-desc">Flag properties where owner mailing address differs from parcel.</div></div></div>
+      <div class="feature-card"><span class="feature-card-icon">&#128276;</span><div class="feature-card-body"><div class="feature-card-name">Pulse Alerts</div><div class="feature-card-desc">Real-time notifications when new auctions drop in your states.</div></div></div>
+      <div class="feature-card"><span class="feature-card-icon">&#129516;</span><div class="feature-card-body"><div class="feature-card-name">DNA Profiler</div><div class="feature-card-desc">Answer 6 questions to discover your investor archetype.</div></div></div>
+      <div class="feature-card"><span class="feature-card-icon">&#129302;</span><div class="feature-card-body"><div class="feature-card-name">Sage AI Advisor</div><div class="feature-card-desc">Ask anything about tax lien and deed investing.</div></div></div>
+      <div class="feature-card"><span class="feature-card-icon">&#128202;</span><div class="feature-card-body"><div class="feature-card-name">Deal Analyzer</div><div class="feature-card-desc">Two-state comparison with projected returns by scenario.</div></div></div>
+      <div class="feature-card"><span class="feature-card-icon">&#128270;</span><div class="feature-card-body"><div class="feature-card-name">Scout Checklist</div><div class="feature-card-desc">State-specific due diligence checklist for every deal.</div></div></div>
+      <div class="feature-card"><span class="feature-card-icon">&#9878;</span><div class="feature-card-body"><div class="feature-card-name">Versus Comparison</div><div class="feature-card-desc">Side-by-side analysis of any two states.</div></div></div>
     </div>
 
   </div>
@@ -1028,6 +935,10 @@ function setMobileLang(lang) {
     document.documentElement.lang = 'en';
   }
   try { localStorage.setItem('aurigen_language', lang); } catch(e) {}
+  // Swap data-gate-en/es text for single-column i18n
+  document.querySelectorAll('[data-gate-' + lang + ']').forEach(function(el) {
+    el.innerHTML = el.getAttribute('data-gate-' + lang);
+  });
 }
 (function() {
   try {
