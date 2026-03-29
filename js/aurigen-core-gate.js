@@ -1,58 +1,15 @@
-// RULE: warroom-billion.html NEVER redirects to gate.html. Access control is UI-only (free vs paid view). No URL redirects. Ever.
-// === GATE CHECK — set access tier, NO redirect ===
+// RULE: warroom-billion.html NEVER redirects to gate.html. NEVER reloads. Access control is UI-only (free vs paid view). No URL redirects. No location.reload(). Ever.
+// === GATE CHECK — set access tier, update UI in-place, ZERO redirects ===
 (function() {
   try {
     var access = localStorage.getItem('aurigen_access');
     if (!access) {
-      // First visit — default to free tier, no redirect
       try { localStorage.setItem('aurigen_access', 'free'); } catch(e2) {}
       access = 'free';
     }
-    // JWT validation (primary) — if JWT exists, validate server-side
+    // JWT validation — update localStorage + UI in-place, NEVER reload
     var jwt = localStorage.getItem('aurigen_jwt');
     if (jwt) {
-      var _jwtResolved = false;
-      var jwtTimeout = setTimeout(function() {
-        if (_jwtResolved) return;
-        // Timeout: show overlay and retry once
-        console.warn('[GATE] JWT validation timed out after 2s — retrying');
-        var overlay = document.createElement('div');
-        overlay.id = 'gate-verify-overlay';
-        overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(10,14,26,0.95);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;font-family:"Plus Jakarta Sans",sans-serif';
-        overlay.innerHTML = '<div style="font-family:Bebas Neue,sans-serif;font-size:24px;letter-spacing:0.1em;color:#c9a84c">VERIFYING YOUR SESSION</div><div style="font-size:13px;color:rgba(232,228,220,0.6)">Please wait...</div>';
-        document.body.appendChild(overlay);
-        // Retry after 3s
-        setTimeout(function() {
-          if (_jwtResolved) { if (overlay.parentNode) overlay.remove(); return; }
-          fetch('/.netlify/functions/validate-session', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ jwt: jwt })
-          })
-          .then(function(r) { return r.json(); })
-          .then(function(data) {
-            _jwtResolved = true;
-            if (overlay.parentNode) overlay.remove();
-            if (data.valid && data.tier === 'paid') {
-              try {
-                localStorage.setItem('aurigen_access', 'paid');
-                localStorage.setItem('aurigen_email', data.email || '');
-                localStorage.setItem('aurigen_is_admin', data.isAdmin ? 'true' : 'false');
-              } catch(e) {}
-              if (access !== 'paid') location.reload();
-            } else {
-              try { localStorage.removeItem('aurigen_jwt'); localStorage.removeItem('aurigen_is_admin'); localStorage.setItem('aurigen_access', 'free'); } catch(e) {}
-              if (access === 'paid') location.reload();
-            }
-          })
-          .catch(function() {
-            _jwtResolved = true;
-            // Second attempt failed — revoke paid, show error
-            try { localStorage.removeItem('aurigen_jwt'); localStorage.removeItem('aurigen_is_admin'); localStorage.setItem('aurigen_access', 'free'); } catch(e) {}
-            overlay.innerHTML = '<div style="font-family:Bebas Neue,sans-serif;font-size:24px;letter-spacing:0.1em;color:#c9a84c">UNABLE TO VERIFY SESSION</div><div style="font-size:13px;color:rgba(232,228,220,0.6);max-width:400px;text-align:center;line-height:1.6">Please refresh the page or contact support at landon@theaurigen.com</div><button onclick="location.reload()" style="margin-top:12px;padding:10px 24px;background:transparent;border:1px solid rgba(201,168,76,0.4);color:#c9a84c;font-family:Space Mono,monospace;font-size:11px;letter-spacing:0.1em;cursor:pointer;border-radius:4px">REFRESH</button>';
-          });
-        }, 3000);
-      }, 2000);
       fetch('/.netlify/functions/validate-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -60,49 +17,32 @@
       })
       .then(function(r) { return r.json(); })
       .then(function(data) {
-        _jwtResolved = true;
-        clearTimeout(jwtTimeout);
         if (data.valid && data.tier === 'paid') {
-          // JWT valid — ensure localStorage matches
           try {
             localStorage.setItem('aurigen_access', 'paid');
             localStorage.setItem('aurigen_email', data.email || '');
-            // Store server-issued admin flag (from JWT payload)
             localStorage.setItem('aurigen_is_admin', data.isAdmin ? 'true' : 'false');
           } catch(e) {}
-          if (access !== 'paid') { location.reload(); }
+          if (access !== 'paid' && typeof playUnlockAnimation === 'function') playUnlockAnimation();
         } else {
-          // JWT invalid/expired — clear and fall back
-          try {
-            localStorage.removeItem('aurigen_jwt');
-            localStorage.removeItem('aurigen_is_admin');
-            localStorage.setItem('aurigen_access', 'free');
-          } catch(e) {}
-          if (access === 'paid') { location.reload(); }
+          try { localStorage.removeItem('aurigen_jwt'); localStorage.removeItem('aurigen_is_admin'); localStorage.setItem('aurigen_access', 'free'); } catch(e) {}
         }
       })
-      .catch(function() {
-        // Network error on first attempt — let timeout handler retry
-      });
-    } else {
-      // No JWT — server-verify access via email (legacy path)
-      var email = localStorage.getItem('aurigen_email');
-      if (email) {
-        var _legacyJwt = '';
-        try { _legacyJwt = localStorage.getItem('aurigen_jwt') || ''; } catch(le) {}
-        fetch('/.netlify/functions/check-access', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + _legacyJwt },
-          body: JSON.stringify({ email: email })
-        })
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          var serverTier = data.access || 'free';
-          try { localStorage.setItem('aurigen_access', serverTier); } catch(e) {}
-          if (serverTier !== access) { location.reload(); }
-        })
-        .catch(function() { /* Offline: trust cached tier */ });
-      }
+      .catch(function() { /* Network error — trust cached tier, no redirect */ });
+    } else if (localStorage.getItem('aurigen_email')) {
+      // Legacy email check — update tier silently, no reload
+      fetch('/.netlify/functions/check-access', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: localStorage.getItem('aurigen_email') })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var serverTier = data.access || 'free';
+        try { localStorage.setItem('aurigen_access', serverTier); } catch(e) {}
+        if (serverTier === 'paid' && access !== 'paid' && typeof playUnlockAnimation === 'function') playUnlockAnimation();
+      })
+      .catch(function() { /* Offline — trust cached tier */ });
     }
   } catch(e) {}
 })();

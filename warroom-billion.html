@@ -66,16 +66,21 @@
     <div class="nav-tab nav-tab-tools-trigger" id="tab-tools-menu" onclick="toggleToolsMenu(event)">Tools <span class="tools-chevron">&#9660;</span></div>
     <!-- TOOLS DROPDOWN SUBMENU -->
     <div class="tools-dropdown" id="tools-dropdown">
-      <button class="tools-dropdown-item" onclick="switchToolsTab('dna')"><span class="tools-dropdown-icon">&#129516;</span>DNA Profiler</button>
-      <button class="tools-dropdown-item" onclick="switchToolsTab('advisor')"><span class="tools-dropdown-icon">&#129302;</span>Sage Advisor</button>
-      <button class="tools-dropdown-item" onclick="switchToolsTab('tools')"><span class="tools-dropdown-icon">&#128200;</span>Deal Analyzer</button>
-      <button class="tools-dropdown-item" onclick="switchToolsTab('versus')"><span class="tools-dropdown-icon">&#9878;</span>Versus</button>
       <button class="tools-dropdown-item" onclick="switchToolsTab('scout')"><span class="tools-dropdown-icon">&#128270;</span>Scout Checklist</button>
+      <button class="tools-dropdown-item" onclick="switchToolsTab('tools')"><span class="tools-dropdown-icon">&#128200;</span>Deal Analyzer</button>
       <button class="tools-dropdown-item" onclick="switchToolsTab('warbook')"><span class="tools-dropdown-icon">&#128214;</span>Warbook</button>
-      <button class="tools-dropdown-item" onclick="switchToolsTab('deadlines')"><span class="tools-dropdown-icon">&#128197;</span>Deadlines</button>
-      <button class="tools-dropdown-item" onclick="switchToolsTab('recon')"><span class="tools-dropdown-icon">&#128506;</span>Recon</button>
-      <button class="tools-dropdown-item" onclick="switchToolsTab('dossier')"><span class="tools-dropdown-icon">&#128196;</span>Dossier</button>
-      <button class="tools-dropdown-item" onclick="switchToolsTab('firstdeal')"><span class="tools-dropdown-icon">&#127942;</span>My First Deal</button>
+      <div class="tools-dropdown-more" id="tools-dropdown-more">
+        <button class="tools-dropdown-item tools-more-toggle" onclick="toggleMoreTools(event)"><span class="tools-dropdown-icon">&#9654;</span>More Tools</button>
+        <div class="tools-more-list" id="tools-more-list" style="display:none">
+          <button class="tools-dropdown-item" onclick="switchToolsTab('versus')"><span class="tools-dropdown-icon">&#9878;</span>Versus</button>
+          <button class="tools-dropdown-item" onclick="switchToolsTab('recon')"><span class="tools-dropdown-icon">&#128506;</span>Recon</button>
+          <button class="tools-dropdown-item" onclick="switchToolsTab('dossier')"><span class="tools-dropdown-icon">&#128196;</span>Dossier</button>
+          <button class="tools-dropdown-item" onclick="switchToolsTab('deadlines')"><span class="tools-dropdown-icon">&#128197;</span>Deadlines</button>
+          <button class="tools-dropdown-item" onclick="switchToolsTab('dna')"><span class="tools-dropdown-icon">&#129516;</span>DNA Profiler</button>
+          <button class="tools-dropdown-item" onclick="switchToolsTab('advisor')"><span class="tools-dropdown-icon">&#129302;</span>Sage Advisor</button>
+          <button class="tools-dropdown-item" onclick="switchToolsTab('firstdeal')"><span class="tools-dropdown-icon">&#127942;</span>My First Deal</button>
+        </div>
+      </div>
     </div>
     <!-- Nav tabs consolidated: Intelligence, Calendar, Account + TOOLS dropdown -->
     <span id="nav-active-label" data-i18n="nav_map">Map</span>
@@ -85,7 +90,6 @@
       <button class="lang-btn" id="lang-es" onclick="applyLanguage('es')">ES</button>
     </div>
     <div id="pulse-bell" onclick="togglePulseDrawer()" aria-label="Open alerts"><span aria-hidden="true">🔔</span><span id="pulse-badge" class="hidden">0</span></div>
-    <button id="nav-filter-btn" onclick="toggleMobileDrawer()" aria-label="Filter" style="display:none">&#9776;</button>
     <button id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
     <div id="nav-tier-badge" data-i18n="nav_tier_free">FREE</div>
   </nav>
