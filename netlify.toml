@@ -7,7 +7,7 @@
   from = "/"
   to = "/gate.html"
   status = 200
-  force = true
+  force = false
 
 # ── PLATFORM: Authenticated access routes ─────────
 [[redirects]]
