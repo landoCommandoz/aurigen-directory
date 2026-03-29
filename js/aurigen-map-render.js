@@ -308,7 +308,27 @@ function initMap() {
         .attr('d',pathGen);
 
       buildLegend();
+
+      // Resize handler with debounce — re-fit map on window resize
+      var _resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(_resizeTimer);
+        _resizeTimer = setTimeout(function() {
+          var wrap = document.getElementById('map-wrap');
+          if (wrap && svgEl) {
+            svgEl.attr('width', wrap.clientWidth).attr('height', wrap.clientHeight);
+          }
+        }, 200);
+      });
     });
+}
+
+// Re-render map when tab becomes visible (tab switch)
+function refreshMapSize() {
+  var wrap = document.getElementById('map-wrap');
+  if (wrap && svgEl) {
+    svgEl.attr('width', wrap.clientWidth).attr('height', wrap.clientHeight);
+  }
 }
 
 function updateMapColors() {
