@@ -35,7 +35,7 @@
 
 <div style="display:flex;gap:0;max-width:440px;width:100%;">
 <input type="email" id="g" placeholder="your@email.com" style="flex:1;padding:16px;background:#141418;border:1px solid rgba(255,255,255,0.1);border-right:none;color:#f5f0e8;font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;outline:none;">
-<button onclick="var e=document.getElementById('g').value;if(e){localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');window.location.href='/warroom-billion.html';}" style="background:#c9a84c;color:#0a0e1a;border:none;padding:16px 24px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.1em;cursor:pointer;">FREE ACCESS →</button>
+<button type="button" onclick="var e=document.getElementById('g').value;if(e&&e.includes('@')){localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');window.location.href='/warroom-billion.html';}else{document.getElementById('g').style.border='1px solid #e05c5c';}" style="background:#c9a84c;color:#0a0e1a;border:none;padding:16px 24px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.1em;cursor:pointer;">FREE ACCESS →</button>
 </div>
 
 <p style="font-family:'Plus Jakarta Sans',sans-serif;color:#9898b0;font-size:12px;margin-top:16px;">51 states · 3,200+ counties · No subscription</p>
