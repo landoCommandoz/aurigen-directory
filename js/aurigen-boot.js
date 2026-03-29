@@ -1,6 +1,14 @@
 // === BOOT ===
 function bootApp() {
-  initMap();
+  setTimeout(function(){
+    var container = document.getElementById('map-wrap') || document.querySelector('.map-container') || document.querySelector('#map-svg').parentElement;
+    if(container){
+      var w = container.clientWidth || container.offsetWidth || 900;
+      var h = container.clientHeight || container.offsetHeight || 500;
+      if(w > 0 && h > 0){ initMap(); }
+      else { setTimeout(initMap, 500); }
+    }
+  }, 100);
   initAccount();
   initVersusTab();
   runBootAnimation();

@@ -53,16 +53,20 @@
     .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:140px 40px 100px;text-align:center;position:relative;overflow:hidden;}
 
     /* ANIMATED MAP */
-    .hero-map{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(95vw,1100px);pointer-events:none;z-index:0;}
+    .hero-map{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(95vw,1100px);pointer-events:none;z-index:0;opacity:0.12;}
     .hero-map path{
-      fill:transparent;
+      fill:none;
       stroke:#c9a84c;
       stroke-width:0.8;
+    }
+    .hero-map.animate path{
+      fill:transparent;
       stroke-dasharray:var(--len);
       stroke-dashoffset:var(--len);
       animation:drawState 2s ease-out forwards, fillState 0.5s ease 2.5s forwards;
       filter:drop-shadow(0 0 2px rgba(201,168,76,0.2));
     }
+    .hero-map.animate{opacity:1;}
 
     /* SCANLINE OVERLAY */
     .hero::after{content:\'\';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(201,168,76,0.015) 2px,rgba(201,168,76,0.015) 4px);pointer-events:none;z-index:1;animation:scanline 4s ease-in-out infinite;}
@@ -337,11 +341,17 @@
 <!-- INLINE JS — stroke-dashoffset + language toggle -->
 <script>
 (function(){
-  var paths=document.querySelectorAll('.hero-map path');
+  var map=document.querySelector('.hero-map');
+  var paths=map?map.querySelectorAll('path'):[];
+  var ok=true;
   paths.forEach(function(p){
-    var len=p.getTotalLength();
-    p.style.setProperty('--len',len);
+    try{
+      var len=p.getTotalLength();
+      if(len>0){p.style.setProperty('--len',len);}
+      else{ok=false;}
+    }catch(e){ok=false;}
   });
+  if(ok&&paths.length>0){map.classList.add('animate');}
 })();
 function switchLang(lang){
   document.getElementById('btn-en').classList.toggle('active',lang==='en');
