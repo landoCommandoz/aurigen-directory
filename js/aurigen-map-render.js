@@ -258,6 +258,7 @@ var svgEl, pathGen;
 function initMap() {
   svgEl = d3.select('#map-svg');
   var wrap = document.getElementById('map-wrap');
+  console.log('[initMap] map-wrap dimensions:', wrap ? wrap.offsetWidth + 'x' + wrap.offsetHeight : 'NOT FOUND', 'getBoundingClientRect:', wrap ? JSON.stringify(wrap.getBoundingClientRect()) : 'N/A');
   var rect = wrap ? wrap.getBoundingClientRect() : {width:960,height:600};
   var w = rect.width || 960;
   var h = rect.height || 600;
