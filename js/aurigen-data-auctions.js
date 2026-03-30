@@ -90,28 +90,6 @@ function auctionsInvCountyChange() {
     return;
   }
 
-  // DIAG helper — renders error details on-screen for mobile debugging
-  var _diagInfo = { adminTokenStatus: null, adminTokenBody: null, propStatus: null, propBody: null, tokenLen: 0 };
-  function _showDiag(el, label, err) {
-    var jwtNow = ''; try { jwtNow = localStorage.getItem('aurigen_jwt'); } catch(x) {}
-    var accessNow = ''; try { accessNow = localStorage.getItem('aurigen_access'); } catch(x) {}
-    var adminNow = ''; try { adminNow = localStorage.getItem('aurigen_admin_override'); } catch(x) {}
-    var emailNow = ''; try { emailNow = localStorage.getItem('aurigen_email'); } catch(x) {}
-    var errMsg = err ? (err.message || String(err)) : 'none';
-    el.innerHTML = '<div style="padding:20px;background:rgba(255,0,0,0.1);border:1px solid rgba(255,0,0,0.3);color:#f5f0e8;font-family:monospace;font-size:12px;word-break:break-all;line-height:1.6">'
-      + '<div style="color:#e8c96a;margin-bottom:8px;font-size:14px">DIAG — ' + label + ' — ' + new Date().toISOString() + '</div>'
-      + '<div>ERROR: ' + errMsg.replace(/</g,'&lt;').slice(0,300) + '</div>'
-      + '<div>ADMIN-TOKEN FETCH: status=' + (_diagInfo.adminTokenStatus || 'n/a') + ' body=' + String(_diagInfo.adminTokenBody || 'n/a').replace(/</g,'&lt;').slice(0,200) + '</div>'
-      + '<div>PROPERTIES FETCH: status=' + (_diagInfo.propStatus || 'n/a') + ' body=' + String(_diagInfo.propBody || 'n/a').replace(/</g,'&lt;').slice(0,200) + '</div>'
-      + '<div>TOKEN SENT: ' + (_diagInfo.tokenLen ? 'YES (' + _diagInfo.tokenLen + ' chars)' : 'NO (empty)') + '</div>'
-      + '<div>JWT NOW: ' + (jwtNow ? 'EXISTS (' + jwtNow.length + ' chars)' : 'EMPTY') + '</div>'
-      + '<div>ACCESS: ' + (accessNow || 'null') + '</div>'
-      + '<div>ADMIN_OVERRIDE: ' + (adminNow || 'null') + '</div>'
-      + '<div>EMAIL: ' + (emailNow || 'null') + '</div>'
-      + '<div style="margin-top:8px"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="auctionsInvCountyChange()">Retry</button></div>'
-      + '</div>';
-  }
-
   // If admin with no JWT, fetch it first then proceed
   var jwtReady = jwt
     ? Promise.resolve(jwt)
@@ -124,32 +102,22 @@ function auctionsInvCountyChange() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: localStorage.getItem('aurigen_email') || '' })
         })
-          .then(function(r) {
-            _diagInfo.adminTokenStatus = r.status;
-            return r.text();
-          })
-          .then(function(txt) {
-            _diagInfo.adminTokenBody = txt;
-            try { var d = JSON.parse(txt); if (d.jwt) { try { localStorage.setItem('aurigen_jwt', d.jwt); } catch(x) {} return d.jwt; } } catch(e) {}
+          .then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.jwt) { try { localStorage.setItem('aurigen_jwt', d.jwt); } catch(x) {} return d.jwt; }
             return '';
           })
-          .catch(function(e) { _diagInfo.adminTokenBody = 'FETCH FAILED: ' + e.message; return ''; });
+          .catch(function() { return ''; });
       })();
 
   Promise.resolve(jwtReady).then(function(token) {
-    _diagInfo.tokenLen = token ? token.length : 0;
     return fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(county), {
       headers: token ? { 'Authorization': 'Bearer ' + token } : {}
     });
   })
     .then(function(r) {
-      _diagInfo.propStatus = r.status;
-      if (r.status === 401 || r.status === 403) {
-        return r.text().then(function(t) { _diagInfo.propBody = t; throw new Error('access:' + r.status); });
-      }
-      if (!r.ok) {
-        return r.text().then(function(t) { _diagInfo.propBody = t; throw new Error('HTTP ' + r.status + ': ' + t.slice(0, 200)); });
-      }
+      if (r.status === 401 || r.status === 403) throw new Error('access');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
     })
     .then(function(data) {
@@ -164,10 +132,12 @@ function auctionsInvCountyChange() {
       renderAuctionsInvCards(body, county);
     })
     .catch(function(err) {
-      if (err.message.indexOf('access') === 0 && !getIsPaid()) {
+      if (err.message === 'access' && !getIsPaid()) {
         renderAuctionsInvLocked(body, county);
+      } else if (err.message === 'access') {
+        body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128274;</span><span class="propfeed-empty-title">SESSION EXPIRED</span><span class="propfeed-empty-hint">Your session credentials need to be refreshed.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="try{localStorage.removeItem(\'aurigen_jwt\');}catch(x){}auctionsInvCountyChange()">Refresh &amp; Retry</button></div></div>';
       } else {
-        _showDiag(body, 'CALENDAR', err);
+        body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#9888;</span><span class="propfeed-empty-title">CONNECTION ERROR</span><span class="propfeed-empty-hint">Unable to load inventory. Check your connection and try again.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="auctionsInvCountyChange()">Retry</button></div></div>';
       }
     });
 }
