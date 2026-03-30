@@ -76,7 +76,6 @@ function auctionsInvCountyChange() {
   body.innerHTML = buildPropSkeletons();
   if (filtersEl) filtersEl.style.display = 'none';
 
-  console.log('[DEBUG-INV] getIsPaid()=' + getIsPaid() + ' | aurigen_access=' + localStorage.getItem('aurigen_access') + ' | admin_override=' + localStorage.getItem('aurigen_admin_override') + ' | isAdminMode()=' + (typeof isAdminMode==='function'?isAdminMode():'undef'));
   if (!getIsPaid()) {
     renderAuctionsInvLocked(body, county);
     return;

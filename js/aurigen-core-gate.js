@@ -6,6 +6,21 @@
       localStorage.setItem('aurigen_access', 'paid');
       localStorage.setItem('aurigen_is_admin', 'true');
       localStorage.setItem('aurigen_admin_override', 'true');
+      // Auto-fetch admin JWT if missing (needed for server-side API calls)
+      if (!localStorage.getItem('aurigen_jwt')) {
+        fetch('/.netlify/functions/admin-token', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          if (d.jwt) {
+            try { localStorage.setItem('aurigen_jwt', d.jwt); } catch(x) {}
+          }
+        })
+        .catch(function() {});
+      }
     }
   } catch(e) {}
 })();
