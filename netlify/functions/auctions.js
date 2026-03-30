@@ -168,7 +168,11 @@ exports.handler = async (event) => {
     };
 
   } catch (e) {
-    console.error('[auctions] Error:', e.message);
-    return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: 'Internal server error' }) };
+    console.error('[auctions] Error:', e.message, e.code, e.details);
+    // DIAG: surface actual error for debugging (temporary)
+    var diagMsg = e.message || String(e);
+    var diagCode = e.code || 'none';
+    var diagDetails = e.details || e.hint || '';
+    return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: 'Internal server error', diag_message: diagMsg, diag_code: diagCode, diag_details: diagDetails, diag_supabase_url: process.env.SUPABASE_URL ? 'SET (' + process.env.SUPABASE_URL.slice(0,30) + '...)' : 'MISSING', diag_supabase_key: process.env.SUPABASE_SERVICE_ROLE_KEY ? 'SET (' + process.env.SUPABASE_SERVICE_ROLE_KEY.length + ' chars)' : 'MISSING' }) };
   }
 };
