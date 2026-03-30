@@ -129,10 +129,10 @@
   var email=localStorage.getItem('aurigen_email');
   var access=localStorage.getItem('aurigen_access');
   if(email&&access!=='paid'){
-    fetch('/.netlify/functions/check-access?email='+encodeURIComponent(email))
+    fetch('/.netlify/functions/check-access',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})})
       .then(function(r){return r.json()})
       .then(function(d){
-        if(d.paid){
+        if(d.access==='paid'||d.paid){
           try{localStorage.setItem('aurigen_access','paid');}catch(x){}
           window.location.reload();
         }
