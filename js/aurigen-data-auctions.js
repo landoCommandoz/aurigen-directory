@@ -90,8 +90,30 @@ function auctionsInvCountyChange() {
     return;
   }
 
-  fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(county), {
-    headers: jwt ? { 'Authorization': 'Bearer ' + jwt } : {}
+  // If admin with no JWT, fetch it first then proceed
+  var jwtReady = jwt
+    ? Promise.resolve(jwt)
+    : (function() {
+        var isAdmin = false;
+        try { isAdmin = localStorage.getItem('aurigen_admin_override') === 'true'; } catch(e) {}
+        if (!isAdmin) return Promise.resolve('');
+        return fetch('/.netlify/functions/admin-token', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: localStorage.getItem('aurigen_email') || '' })
+        })
+          .then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.jwt) { try { localStorage.setItem('aurigen_jwt', d.jwt); } catch(x) {} return d.jwt; }
+            return '';
+          })
+          .catch(function() { return ''; });
+      })();
+
+  Promise.resolve(jwtReady).then(function(token) {
+    return fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(county), {
+      headers: token ? { 'Authorization': 'Bearer ' + token } : {}
+    });
   })
     .then(function(r) {
       if (r.status === 401 || r.status === 403) throw new Error('access');
@@ -112,6 +134,8 @@ function auctionsInvCountyChange() {
     .catch(function(err) {
       if (err.message === 'access' && !getIsPaid()) {
         renderAuctionsInvLocked(body, county);
+      } else if (err.message === 'access') {
+        body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128274;</span><span class="propfeed-empty-title">SESSION EXPIRED</span><span class="propfeed-empty-hint">Your session credentials need to be refreshed.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="try{localStorage.removeItem(\'aurigen_jwt\');}catch(x){}auctionsInvCountyChange()">Refresh &amp; Retry</button></div></div>';
       } else {
         body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#9888;</span><span class="propfeed-empty-title">CONNECTION ERROR</span><span class="propfeed-empty-hint">Unable to load inventory. Check your connection and try again.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="auctionsInvCountyChange()">Retry</button></div></div>';
       }

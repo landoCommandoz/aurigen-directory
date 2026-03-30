@@ -35,8 +35,30 @@ function loadPropertyFeed(stateCode, countyName) {
   try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
   if (!jwt && localStorage.getItem('aurigen_access') !== 'paid' && localStorage.getItem('aurigen_admin_override') !== 'true') { renderPropFeedEmpty(container, countyName, 'Sign in to view live inventory.'); return; }
 
-  fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName), {
-    headers: { 'Authorization': 'Bearer ' + jwt }
+  // If admin with no JWT, fetch it first then proceed
+  var jwtReady = jwt
+    ? Promise.resolve(jwt)
+    : (function() {
+        var isAdmin = false;
+        try { isAdmin = localStorage.getItem('aurigen_admin_override') === 'true'; } catch(e) {}
+        if (!isAdmin) return Promise.resolve('');
+        return fetch('/.netlify/functions/admin-token', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: localStorage.getItem('aurigen_email') || '' })
+        })
+          .then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.jwt) { try { localStorage.setItem('aurigen_jwt', d.jwt); } catch(x) {} return d.jwt; }
+            return '';
+          })
+          .catch(function() { return ''; });
+      })();
+
+  Promise.resolve(jwtReady).then(function(token) {
+    return fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName), {
+      headers: token ? { 'Authorization': 'Bearer ' + token } : {}
+    });
   })
     .then(function(r) {
       if (r.status === 401 || r.status === 403) throw new Error('access');
@@ -50,6 +72,8 @@ function loadPropertyFeed(stateCode, countyName) {
     .catch(function(err) {
       if (err.message === 'access' && !getIsPaid()) {
         renderPropFeedLocked(container, countyName);
+      } else if (err.message === 'access') {
+        renderPropFeedEmpty(container, countyName, 'Session expired. Please refresh the page to continue.');
       } else {
         renderPropFeedEmpty(container, countyName, 'Unable to load inventory. Try again later.');
       }
