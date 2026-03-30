@@ -24,8 +24,10 @@ function initAccount() {
 
   if (APP.tier >= 2) {
     badge.textContent = 'FULL ACCESS';
+    badge.setAttribute('data-i18n', 'acct_tier_paid');
     badge.classList.add('paid');
     level.textContent = 'Full Access';
+    level.setAttribute('data-i18n', 'acct_level_paid');
     states.textContent = 'All 51 Jurisdictions';
     if (lockedRow) lockedRow.style.display = 'none';
     if (upgrade) upgrade.style.display = 'none';

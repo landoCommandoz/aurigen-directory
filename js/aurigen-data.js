@@ -24,6 +24,7 @@ function loadPropertyFeed(stateCode, countyName) {
   // Scroll into view
   container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
+  console.log('[DEBUG-PROPFEED] getIsPaid()=' + getIsPaid() + ' | aurigen_access=' + localStorage.getItem('aurigen_access') + ' | admin_override=' + localStorage.getItem('aurigen_admin_override') + ' | isAdminMode()=' + (typeof isAdminMode==='function'?isAdminMode():'undef'));
   if (!getIsPaid()) {
     // Free users see blurred sample cards
     renderPropFeedLocked(container, countyName);
