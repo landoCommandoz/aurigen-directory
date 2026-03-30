@@ -2,7 +2,7 @@
 (function() {
   try {
     var email = (localStorage.getItem('aurigen_email') || '').toLowerCase();
-    if (email === 'landon@theaurigen.com') {
+    if (email === 'landon@theaurigen.com' || email === 'lando@theaurigen.com') {
       localStorage.setItem('aurigen_access', 'paid');
       localStorage.setItem('aurigen_is_admin', 'true');
       localStorage.setItem('aurigen_admin_override', 'true');

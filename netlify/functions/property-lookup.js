@@ -52,7 +52,7 @@ exports.handler = async (event) => {
       }
       var { data, error } = await supabase
         .from('properties')
-        .select('id, parcel_id, state_code, county, address, assessed_value, opening_bid, lien_amount, lien_year, property_type, status, delinquency_years, equity_cushion_pct')
+        .select('*')
         .eq('parcel_id', safeParcel)
         .limit(1)
         .maybeSingle();
@@ -69,7 +69,7 @@ exports.handler = async (event) => {
       }
       var { data, error } = await supabase
         .from('properties')
-        .select('id, parcel_id, state_code, county, address, assessed_value, opening_bid, lien_amount, lien_year, property_type, status, delinquency_years, equity_cushion_pct')
+        .select('*')
         .eq('state_code', stateCode)
         .ilike('address', '%' + safeAddress + '%')
         .limit(5);

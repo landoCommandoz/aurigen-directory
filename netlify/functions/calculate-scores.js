@@ -68,7 +68,7 @@ exports.handler = async function(event) {
     // 2. Get property stats grouped by state_code + county
     var { data: properties, error: pErr } = await supabase
       .from('properties')
-      .select('state_code, county, equity_cushion_pct, absentee_owner');
+      .select('*');
 
     if (pErr) throw new Error('Failed to fetch properties: ' + pErr.message);
 

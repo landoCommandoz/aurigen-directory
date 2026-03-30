@@ -40,7 +40,7 @@ exports.handler = async (event) => {
       var params = event.queryStringParameters || {};
       var query = supabase
         .from('properties')
-        .select('id, parcel_id, auction_id, state_code, county, address, assessed_value, opening_bid, lien_amount, lien_year, property_type, owner_name, status, delinquency_years, absentee_owner, equity_cushion_pct, scraped_at, updated_at');
+        .select('*');
 
       if (params.state_code) query = query.eq('state_code', params.state_code.toUpperCase().slice(0, 2));
       if (params.county) {
@@ -49,14 +49,12 @@ exports.handler = async (event) => {
       }
       if (params.status) query = query.eq('status', params.status);
       if (params.property_type) query = query.eq('property_type', params.property_type);
-      if (params.absentee_owner === 'true') query = query.eq('absentee_owner', true);
 
       var offset = parseInt(params.offset, 10);
       if (isNaN(offset) || offset < 0) offset = 0;
 
       query = query
         .range(offset, offset + 49)
-        .order('equity_cushion_pct', { ascending: false, nullsFirst: false })
         .order('updated_at', { ascending: false });
 
       var countQuery = supabase.from('properties').select('id', { count: 'exact', head: true });
@@ -64,7 +62,6 @@ exports.handler = async (event) => {
       if (params.county) { var sc2 = params.county.replace(/[%_]/g, ''); if (sc2) countQuery = countQuery.ilike('county', sc2); }
       if (params.status) countQuery = countQuery.eq('status', params.status);
       if (params.property_type) countQuery = countQuery.eq('property_type', params.property_type);
-      if (params.absentee_owner === 'true') countQuery = countQuery.eq('absentee_owner', true);
 
       var [dataResult, countResult] = await Promise.all([query, countQuery]);
       if (dataResult.error) throw dataResult.error;
@@ -92,7 +89,7 @@ exports.handler = async (event) => {
 
       var [auctionStats, propStats, scoreStats] = await Promise.all([
         supabase.from('auctions').select('state_code').eq('active', true),
-        supabase.from('properties').select('state_code, opening_bid, equity_cushion_pct'),
+        supabase.from('properties').select('*'),
         supabase.from('county_scores').select('state_code, county, score')
       ]);
 
