@@ -51,6 +51,17 @@
   <link rel="stylesheet" href="css/aurigen-overlays.css">
 </head>
 <body>
+<script>
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    var bar = document.createElement('div');
+    bar.id = 'debug-bar';
+    bar.style.cssText = 'position:fixed;top:0;left:0;width:100%;background:#1a0000;color:#ff9999;font-size:11px;font-family:monospace;padding:4px 8px;z-index:99999;';
+    bar.textContent = 'access=' + localStorage.getItem('aurigen_access') + ' | admin_override=' + localStorage.getItem('aurigen_admin_override') + ' | jwt=' + (localStorage.getItem('aurigen_jwt') ? 'EXISTS' : 'NULL') + ' | tier=' + (window.APP ? APP.tier : 'APP_NOT_SET');
+    document.body.appendChild(bar);
+  });
+})();
+</script>
 
 <!-- APP SHELL -->
 <div id="app">
