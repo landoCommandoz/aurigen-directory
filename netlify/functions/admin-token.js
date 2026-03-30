@@ -6,8 +6,8 @@ var { getCorsHeaders, handlePreflight } = require('./utils/cors');
 var { ADMIN_EMAILS } = require('./utils/jwt');
 
 function base64url(data) {
-  return Buffer.from(typeof data === 'string' ? data : JSON.stringify(data))
-    .toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+  var buf = Buffer.isBuffer(data) ? data : Buffer.from(typeof data === 'string' ? data : JSON.stringify(data));
+  return buf.toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
 }
 
 function signJwt(payload, secret) {
