@@ -35,6 +35,28 @@ function loadPropertyFeed(stateCode, countyName) {
   try { jwt = localStorage.getItem('aurigen_jwt') || ''; } catch(e) {}
   if (!jwt && localStorage.getItem('aurigen_access') !== 'paid' && localStorage.getItem('aurigen_admin_override') !== 'true') { renderPropFeedEmpty(container, countyName, 'Sign in to view live inventory.'); return; }
 
+  // DIAG helper — renders error details on-screen for mobile debugging
+  var _pDiag = { adminTokenStatus: null, adminTokenBody: null, propStatus: null, propBody: null, tokenLen: 0 };
+  function _showPropDiag(el, label, err) {
+    var jwtNow = ''; try { jwtNow = localStorage.getItem('aurigen_jwt'); } catch(x) {}
+    var accessNow = ''; try { accessNow = localStorage.getItem('aurigen_access'); } catch(x) {}
+    var adminNow = ''; try { adminNow = localStorage.getItem('aurigen_admin_override'); } catch(x) {}
+    var emailNow = ''; try { emailNow = localStorage.getItem('aurigen_email'); } catch(x) {}
+    var errMsg = err ? (err.message || String(err)) : 'none';
+    el.innerHTML = '<div style="padding:20px;background:rgba(255,0,0,0.1);border:1px solid rgba(255,0,0,0.3);color:#f5f0e8;font-family:monospace;font-size:12px;word-break:break-all;line-height:1.6">'
+      + '<div style="color:#e8c96a;margin-bottom:8px;font-size:14px">DIAG — ' + label + ' — ' + new Date().toISOString() + '</div>'
+      + '<div>ERROR: ' + errMsg.replace(/</g,'&lt;').slice(0,300) + '</div>'
+      + '<div>ADMIN-TOKEN FETCH: status=' + (_pDiag.adminTokenStatus || 'n/a') + ' body=' + String(_pDiag.adminTokenBody || 'n/a').replace(/</g,'&lt;').slice(0,200) + '</div>'
+      + '<div>PROPERTIES FETCH: status=' + (_pDiag.propStatus || 'n/a') + ' body=' + String(_pDiag.propBody || 'n/a').replace(/</g,'&lt;').slice(0,200) + '</div>'
+      + '<div>TOKEN SENT: ' + (_pDiag.tokenLen ? 'YES (' + _pDiag.tokenLen + ' chars)' : 'NO (empty)') + '</div>'
+      + '<div>JWT NOW: ' + (jwtNow ? 'EXISTS (' + jwtNow.length + ' chars)' : 'EMPTY') + '</div>'
+      + '<div>ACCESS: ' + (accessNow || 'null') + '</div>'
+      + '<div>ADMIN_OVERRIDE: ' + (adminNow || 'null') + '</div>'
+      + '<div>EMAIL: ' + (emailNow || 'null') + '</div>'
+      + '<div style="margin-top:8px"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="loadPropertyFeed(\'' + stateCode + '\',\'' + countyName.replace(/'/g,'\\\'') + '\')">Retry</button></div>'
+      + '</div>';
+  }
+
   // If admin with no JWT, fetch it first then proceed
   var jwtReady = jwt
     ? Promise.resolve(jwt)
@@ -47,25 +69,31 @@ function loadPropertyFeed(stateCode, countyName) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: localStorage.getItem('aurigen_email') || '' })
         })
-          .then(function(r) { return r.json(); })
-          .then(function(d) {
-            if (d.jwt) { try { localStorage.setItem('aurigen_jwt', d.jwt); } catch(x) {} return d.jwt; }
+          .then(function(r) {
+            _pDiag.adminTokenStatus = r.status;
+            return r.text();
+          })
+          .then(function(txt) {
+            _pDiag.adminTokenBody = txt;
+            try { var d = JSON.parse(txt); if (d.jwt) { try { localStorage.setItem('aurigen_jwt', d.jwt); } catch(x) {} return d.jwt; } } catch(e) {}
             return '';
           })
-          .catch(function() { return ''; });
+          .catch(function(e) { _pDiag.adminTokenBody = 'FETCH FAILED: ' + e.message; return ''; });
       })();
 
   Promise.resolve(jwtReady).then(function(token) {
-    console.log('[PROP-DIAG] token:', token ? 'EXISTS(' + token.length + ')' : 'EMPTY');
+    _pDiag.tokenLen = token ? token.length : 0;
     return fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName), {
       headers: token ? { 'Authorization': 'Bearer ' + token } : {}
     });
   })
     .then(function(r) {
-      console.log('[PROP-DIAG] status:', r.status);
-      if (r.status === 401 || r.status === 403) throw new Error('access:' + r.status);
+      _pDiag.propStatus = r.status;
+      if (r.status === 401 || r.status === 403) {
+        return r.text().then(function(t) { _pDiag.propBody = t; throw new Error('access:' + r.status); });
+      }
       if (!r.ok) {
-        return r.text().then(function(t) { console.error('[PROP-DIAG] error body:', t); throw new Error('HTTP ' + r.status + ': ' + t.slice(0, 200)); });
+        return r.text().then(function(t) { _pDiag.propBody = t; throw new Error('HTTP ' + r.status + ': ' + t.slice(0, 200)); });
       }
       return r.json();
     })
@@ -74,13 +102,10 @@ function loadPropertyFeed(stateCode, countyName) {
       renderPropFeed(container, countyName);
     })
     .catch(function(err) {
-      console.error('[PROP-DIAG] catch:', err.message);
       if (err.message.indexOf('access') === 0 && !getIsPaid()) {
         renderPropFeedLocked(container, countyName);
-      } else if (err.message.indexOf('access') === 0) {
-        renderPropFeedEmpty(container, countyName, 'DIAG: ' + err.message);
       } else {
-        renderPropFeedEmpty(container, countyName, 'DIAG: ' + err.message.slice(0, 120));
+        _showPropDiag(container, 'INTELLIGENCE', err);
       }
     });
 }
