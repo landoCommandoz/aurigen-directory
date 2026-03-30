@@ -133,6 +133,36 @@ exports.handler = async function(event) {
     }
 
     console.log('Payment recorded for session:', session.id);
+
+    // Referral conversion — check if this email was referred
+    try {
+      var { data: freeUser } = await supabase
+        .from('free_users')
+        .select('ref_code')
+        .eq('email', customerEmail)
+        .maybeSingle();
+
+      if (freeUser && freeUser.ref_code) {
+        var https = require('https');
+        var convBody = JSON.stringify({ action: 'convert', email: customerEmail });
+        var convReq = https.request({
+          hostname: (process.env.URL || 'aurigen-directory.netlify.app').replace(/^https?:\/\//, ''),
+          path: '/.netlify/functions/referral',
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(convBody),
+            'x-internal-key': process.env.SUPABASE_SERVICE_ROLE_KEY
+          }
+        });
+        convReq.write(convBody);
+        convReq.end();
+        console.log('[PAYMENT] Referral convert fired for:', customerEmail);
+      }
+    } catch (refErr) {
+      console.error('[PAYMENT] Referral convert error:', refErr.message);
+    }
+
     return { statusCode: 200, body: JSON.stringify({ received: true }) };
 
   } catch (err) {

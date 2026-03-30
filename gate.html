@@ -216,7 +216,7 @@
 
     <div class="gate-email-row">
       <input type="email" id="g" placeholder="your@email.com" class="gate-email-input">
-      <button type="button" onclick="var e=document.getElementById('g').value;if(e&&e.includes('@')){try{localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');}catch(x){}window.location.href='/warroom-billion.html';}else{document.getElementById('g').style.border='1px solid #e05c5c';}" class="gate-email-btn" data-en="FREE ACCESS &rarr;" data-es="ACCESO GRATIS &rarr;">FREE ACCESS &rarr;</button>
+      <button type="button" onclick="var e=document.getElementById('g').value;if(e&&e.includes('@')){try{localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');}catch(x){}var rc='';try{var rx=localStorage.getItem('aurigen_ref_expiry');if(rx&&Date.now()<Number(rx)){rc=localStorage.getItem('aurigen_ref')||'';}else if(rx){localStorage.removeItem('aurigen_ref');localStorage.removeItem('aurigen_ref_expiry');}}catch(x){}var lang='en';try{lang=localStorage.getItem('aurigen_lang')||'en';}catch(x){}fetch('/.netlify/functions/capture-email',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,language:lang,ref_code:rc||undefined})}).catch(function(){});window.location.href='/warroom-billion.html';}else{document.getElementById('g').style.border='1px solid #e05c5c';}" class="gate-email-btn" data-en="FREE ACCESS &rarr;" data-es="ACCESO GRATIS &rarr;">FREE ACCESS &rarr;</button>
     </div>
 
     <p class="gate-fine" data-en="No spam. Unsubscribe anytime. <a href='/legal.html'>Privacy</a>" data-es="Sin spam. Cancela cuando quieras. <a href='/legal.html'>Privacidad</a>">No spam. Unsubscribe anytime. <a href="/legal.html">Privacy</a></p>

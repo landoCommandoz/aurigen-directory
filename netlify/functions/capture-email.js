@@ -61,6 +61,9 @@ exports.handler = async function(event) {
     var language = (body.language || 'en').toLowerCase().trim();
     if (language !== 'en' && language !== 'es') language = 'en';
 
+    // Referral code (passed from client localStorage)
+    var refCode = (body.ref_code || '').trim().slice(0, 20);
+
     // UTM parameters (passed from client)
     var utmSource = (body.utm_source || '').slice(0, 100);
     var utmMedium = (body.utm_medium || '').slice(0, 100);
@@ -116,10 +119,7 @@ exports.handler = async function(event) {
       var createClient = require('@supabase/supabase-js').createClient;
       var supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
-      var { error: upsertError } = await supabase
-        .from('free_users')
-        .upsert(
-          {
+      var upsertData = {
             email: email,
             language: language,
             source: 'gate',
@@ -128,9 +128,12 @@ exports.handler = async function(event) {
             utm_source: utmSource || null,
             utm_medium: utmMedium || null,
             utm_campaign: utmCampaign || null
-          },
-          { onConflict: 'email' }
-        );
+          };
+      if (refCode) upsertData.ref_code = refCode;
+
+      var { error: upsertError } = await supabase
+        .from('free_users')
+        .upsert(upsertData, { onConflict: 'email' });
 
       if (upsertError) {
         console.error('[SUPABASE] Upsert error:', upsertError.message);
@@ -156,7 +159,6 @@ exports.handler = async function(event) {
     }
 
     // Referral tracking — fire and forget
-    var refCode = (body.ref_code || '').trim().slice(0, 20);
     if (refCode) {
       try {
         var httpsRef = require('https');
