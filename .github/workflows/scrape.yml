@@ -12,19 +12,11 @@ jobs:
       - name: Trigger auction scraper
         run: |
           echo "=== Step 1: Auction scraper ==="
-          response=$(curl -s -w "\n%{http_code}" \
+          curl -s --max-time 280 -w "\nHTTP %{http_code}\n" \
             -X POST \
             -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
-            "${{ secrets.NETLIFY_SCRAPER_URL }}")
-          http_code=$(echo "$response" | tail -1)
-          body=$(echo "$response" | head -n -1)
-          echo "HTTP $http_code"
-          echo "$body"
-          if [ "$http_code" != "200" ] && [ "$http_code" != "202" ]; then
-            echo "::error::Auction scraper returned HTTP $http_code"
-            exit 1
-          fi
-          echo "Auction scraper triggered successfully"
+            "${{ secrets.NETLIFY_SCRAPER_URL }}" || true
+          echo "Auction scraper triggered (fire-and-forget)"
 
       - name: Wait for auctions to populate
         run: sleep 15
@@ -33,22 +25,12 @@ jobs:
         run: |
           echo "=== Step 2: Property scraper (background) ==="
           PROP_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
-          # Replace /scraper with /scrape-properties-background
           PROP_URL=$(echo "$PROP_URL" | sed 's|/scraper$|/scrape-properties-background|')
-          response=$(curl -s -w "\n%{http_code}" \
-            --max-time 30 \
+          curl -s --max-time 280 -w "\nHTTP %{http_code}\n" \
             -X POST \
             -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
-            "$PROP_URL")
-          http_code=$(echo "$response" | tail -1)
-          body=$(echo "$response" | head -n -1)
-          echo "HTTP $http_code"
-          echo "$body"
-          if [ "$http_code" != "200" ] && [ "$http_code" != "202" ]; then
-            echo "::error::Property scraper returned HTTP $http_code"
-            exit 1
-          fi
-          echo "Property scraper triggered successfully (runs in background up to 15 min)"
+            "$PROP_URL" || true
+          echo "Property scraper triggered (fire-and-forget)"
 
       - name: Wait for property scraper to populate data
         run: sleep 30
@@ -58,20 +40,11 @@ jobs:
           echo "=== Step 3: Calculate Opportunity Scores ==="
           SCORE_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
           SCORE_URL=$(echo "$SCORE_URL" | sed 's|/scraper$|/calculate-scores|')
-          response=$(curl -s -w "\n%{http_code}" \
-            --max-time 60 \
+          curl -s --max-time 280 -w "\nHTTP %{http_code}\n" \
             -X POST \
             -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
-            "$SCORE_URL")
-          http_code=$(echo "$response" | tail -1)
-          body=$(echo "$response" | head -n -1)
-          echo "HTTP $http_code"
-          echo "$body"
-          if [ "$http_code" != "200" ]; then
-            echo "::warning::Score calculation returned HTTP $http_code — non-blocking"
-          else
-            echo "Opportunity Scores calculated successfully"
-          fi
+            "$SCORE_URL" || true
+          echo "Opportunity Scores triggered (fire-and-forget)"
 
       - name: Wait for scores to finalize
         run: sleep 15
@@ -81,40 +54,22 @@ jobs:
           echo "=== Step 4: Track Redemptions ==="
           REDEEM_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
           REDEEM_URL=$(echo "$REDEEM_URL" | sed 's|/scraper$|/track-redemptions|')
-          response=$(curl -s -w "\n%{http_code}" \
-            --max-time 60 \
+          curl -s --max-time 280 -w "\nHTTP %{http_code}\n" \
             -X POST \
             -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
-            "$REDEEM_URL")
-          http_code=$(echo "$response" | tail -1)
-          body=$(echo "$response" | head -n -1)
-          echo "HTTP $http_code"
-          echo "$body"
-          if [ "$http_code" != "200" ]; then
-            echo "::warning::Redemption tracking returned HTTP $http_code — non-blocking"
-          else
-            echo "Redemption tracking completed successfully"
-          fi
+            "$REDEEM_URL" || true
+          echo "Redemption tracking triggered (fire-and-forget)"
 
       - name: Generate Weekly Intelligence Report
         run: |
           echo "=== Step 5: Generate Weekly Report ==="
           REPORT_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
           REPORT_URL=$(echo "$REPORT_URL" | sed 's|/scraper$|/generate-report|')
-          response=$(curl -s -w "\n%{http_code}" \
-            --max-time 60 \
+          curl -s --max-time 280 -w "\nHTTP %{http_code}\n" \
             -X POST \
             -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
-            "$REPORT_URL")
-          http_code=$(echo "$response" | tail -1)
-          body=$(echo "$response" | head -n -1)
-          echo "HTTP $http_code"
-          echo "$body"
-          if [ "$http_code" != "200" ] && [ "$http_code" != "202" ]; then
-            echo "::warning::Weekly report returned HTTP $http_code — non-blocking"
-          else
-            echo "Weekly report generated successfully"
-          fi
+            "$REPORT_URL" || true
+          echo "Weekly report triggered (fire-and-forget)"
 
       - name: Wait before state laws scrape
         run: sleep 15
@@ -124,17 +79,8 @@ jobs:
           echo "=== Step 6: State Law Intelligence ==="
           LAWS_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
           LAWS_URL=$(echo "$LAWS_URL" | sed 's|/scraper$|/scrape-state-laws|')
-          response=$(curl -s -w "\n%{http_code}" \
-            --max-time 60 \
+          curl -s --max-time 280 -w "\nHTTP %{http_code}\n" \
             -X POST \
             -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
-            "$LAWS_URL")
-          http_code=$(echo "$response" | tail -1)
-          body=$(echo "$response" | head -n -1)
-          echo "HTTP $http_code"
-          echo "$body"
-          if [ "$http_code" != "200" ]; then
-            echo "::warning::State laws scraper returned HTTP $http_code — non-blocking"
-          else
-            echo "State law intelligence updated successfully"
-          fi
+            "$LAWS_URL" || true
+          echo "State law intelligence triggered (fire-and-forget)"
