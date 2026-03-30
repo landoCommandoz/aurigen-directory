@@ -49,7 +49,7 @@ function loadPropertyFeed(stateCode, countyName) {
       renderPropFeed(container, countyName);
     })
     .catch(function(err) {
-      if (err.message === 'access') {
+      if (err.message === 'access' && !getIsPaid()) {
         renderPropFeedLocked(container, countyName);
       } else {
         renderPropFeedEmpty(container, countyName, 'Unable to load inventory. Try again later.');

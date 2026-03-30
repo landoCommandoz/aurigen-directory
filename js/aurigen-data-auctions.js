@@ -111,7 +111,7 @@ function auctionsInvCountyChange() {
       renderAuctionsInvCards(body, county);
     })
     .catch(function(err) {
-      if (err.message === 'access') {
+      if (err.message === 'access' && !getIsPaid()) {
         renderAuctionsInvLocked(body, county);
       } else {
         body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#9888;</span><span class="propfeed-empty-title">CONNECTION ERROR</span><span class="propfeed-empty-hint">Unable to load inventory. Check your connection and try again.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="auctionsInvCountyChange()">Retry</button></div></div>';
