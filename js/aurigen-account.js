@@ -1,6 +1,7 @@
 // === ACCOUNT FUNCTIONS ===
 // Admin detection via server-issued isAdmin flag from JWT — no client-side email list
 function initAccount() {
+  APP.tier = getIsPaid() ? 2 : 1;
   var badge = document.getElementById('acct-tier-badge');
   var email = document.getElementById('acct-email');
   var level = document.getElementById('acct-level');
