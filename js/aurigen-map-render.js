@@ -316,26 +316,36 @@ function initMap() {
 
       buildLegend();
 
-      // Resize handler with debounce — re-fit map on window resize
+      // Resize handler with debounce — full redraw on window resize
       var _resizeTimer;
       window.addEventListener('resize', function() {
         clearTimeout(_resizeTimer);
-        _resizeTimer = setTimeout(function() {
-          var wrap = document.getElementById('map-wrap');
-          if (wrap && svgEl) {
-            svgEl.attr('width', wrap.clientWidth).attr('height', wrap.clientHeight);
-          }
-        }, 200);
+        _resizeTimer = setTimeout(function() { redrawMap(); }, 100);
       });
     });
 }
 
+// Full map redraw — recompute projection, update all paths and labels
+function redrawMap() {
+  var wrap = document.getElementById('map-wrap');
+  if (!wrap || !svgEl) return;
+  var w = wrap.clientWidth || 960;
+  var h = wrap.clientHeight || 600;
+  var scale = Math.min(w / 960, h / 600) * 1000;
+  var projection = d3.geoAlbersUsa().scale(scale).translate([w/2, h/2]);
+  pathGen = d3.geoPath().projection(projection);
+  svgEl.attr('width', w).attr('height', h).attr('viewBox', '0 0 ' + w + ' ' + h);
+  svgEl.selectAll('.state-path').attr('d', pathGen);
+  svgEl.selectAll('.state-label').attr('transform', function(d) {
+    var c = pathGen.centroid(d);
+    return (c && !isNaN(c[0])) ? 'translate(' + c[0] + ',' + c[1] + ')' : 'translate(-999,-999)';
+  });
+  svgEl.selectAll('path[pointer-events="none"]').attr('d', pathGen);
+}
+
 // Re-render map when tab becomes visible (tab switch)
 function refreshMapSize() {
-  var wrap = document.getElementById('map-wrap');
-  if (wrap && svgEl) {
-    svgEl.attr('width', wrap.clientWidth).attr('height', wrap.clientHeight);
-  }
+  redrawMap();
 }
 
 function updateMapColors() {
