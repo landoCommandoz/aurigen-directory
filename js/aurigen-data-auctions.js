@@ -102,22 +102,30 @@ function auctionsInvCountyChange() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: localStorage.getItem('aurigen_email') || '' })
         })
-          .then(function(r) { return r.json(); })
+          .then(function(r) {
+            console.log('[INV-DIAG] admin-token status:', r.status);
+            return r.json();
+          })
           .then(function(d) {
+            console.log('[INV-DIAG] admin-token response:', JSON.stringify(d));
             if (d.jwt) { try { localStorage.setItem('aurigen_jwt', d.jwt); } catch(x) {} return d.jwt; }
             return '';
           })
-          .catch(function() { return ''; });
+          .catch(function(e) { console.error('[INV-DIAG] admin-token fetch failed:', e.message); return ''; });
       })();
 
   Promise.resolve(jwtReady).then(function(token) {
+    console.log('[INV-DIAG] properties fetch token:', token ? 'EXISTS(' + token.length + ')' : 'EMPTY');
     return fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(county), {
       headers: token ? { 'Authorization': 'Bearer ' + token } : {}
     });
   })
     .then(function(r) {
-      if (r.status === 401 || r.status === 403) throw new Error('access');
-      if (!r.ok) throw new Error('HTTP ' + r.status);
+      console.log('[INV-DIAG] properties response status:', r.status);
+      if (r.status === 401 || r.status === 403) throw new Error('access:' + r.status);
+      if (!r.ok) {
+        return r.text().then(function(t) { console.error('[INV-DIAG] properties error body:', t); throw new Error('HTTP ' + r.status + ': ' + t.slice(0, 200)); });
+      }
       return r.json();
     })
     .then(function(data) {
@@ -132,12 +140,13 @@ function auctionsInvCountyChange() {
       renderAuctionsInvCards(body, county);
     })
     .catch(function(err) {
-      if (err.message === 'access' && !getIsPaid()) {
+      console.error('[INV-DIAG] catch:', err.message);
+      if (err.message.indexOf('access') === 0 && !getIsPaid()) {
         renderAuctionsInvLocked(body, county);
-      } else if (err.message === 'access') {
+      } else if (err.message.indexOf('access') === 0) {
         body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128274;</span><span class="propfeed-empty-title">SESSION EXPIRED</span><span class="propfeed-empty-hint">Your session credentials need to be refreshed.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="try{localStorage.removeItem(\'aurigen_jwt\');}catch(x){}auctionsInvCountyChange()">Refresh &amp; Retry</button></div></div>';
       } else {
-        body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#9888;</span><span class="propfeed-empty-title">CONNECTION ERROR</span><span class="propfeed-empty-hint">Unable to load inventory. Check your connection and try again.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="auctionsInvCountyChange()">Retry</button></div></div>';
+        body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#9888;</span><span class="propfeed-empty-title">DIAG: ' + err.message.replace(/</g,'&lt;').slice(0,120) + '</span><span class="propfeed-empty-hint">Open browser console for full [INV-DIAG] logs.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="auctionsInvCountyChange()">Retry</button></div></div>';
       }
     });
 }

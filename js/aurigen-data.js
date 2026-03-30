@@ -56,13 +56,17 @@ function loadPropertyFeed(stateCode, countyName) {
       })();
 
   Promise.resolve(jwtReady).then(function(token) {
+    console.log('[PROP-DIAG] token:', token ? 'EXISTS(' + token.length + ')' : 'EMPTY');
     return fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName), {
       headers: token ? { 'Authorization': 'Bearer ' + token } : {}
     });
   })
     .then(function(r) {
-      if (r.status === 401 || r.status === 403) throw new Error('access');
-      if (!r.ok) throw new Error('HTTP ' + r.status);
+      console.log('[PROP-DIAG] status:', r.status);
+      if (r.status === 401 || r.status === 403) throw new Error('access:' + r.status);
+      if (!r.ok) {
+        return r.text().then(function(t) { console.error('[PROP-DIAG] error body:', t); throw new Error('HTTP ' + r.status + ': ' + t.slice(0, 200)); });
+      }
       return r.json();
     })
     .then(function(data) {
@@ -70,12 +74,13 @@ function loadPropertyFeed(stateCode, countyName) {
       renderPropFeed(container, countyName);
     })
     .catch(function(err) {
-      if (err.message === 'access' && !getIsPaid()) {
+      console.error('[PROP-DIAG] catch:', err.message);
+      if (err.message.indexOf('access') === 0 && !getIsPaid()) {
         renderPropFeedLocked(container, countyName);
-      } else if (err.message === 'access') {
-        renderPropFeedEmpty(container, countyName, 'Session expired. Please refresh the page to continue.');
+      } else if (err.message.indexOf('access') === 0) {
+        renderPropFeedEmpty(container, countyName, 'DIAG: ' + err.message);
       } else {
-        renderPropFeedEmpty(container, countyName, 'Unable to load inventory. Try again later.');
+        renderPropFeedEmpty(container, countyName, 'DIAG: ' + err.message.slice(0, 120));
       }
     });
 }
