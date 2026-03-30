@@ -90,6 +90,9 @@ function applyAccessLocks() {
   // Upgrade CTA in account
   var upgrade = document.getElementById('acct-upgrade');
   if (upgrade) upgrade.style.display = getIsPaid() ? 'none' : 'block';
+
+  // Refresh badge on every access state evaluation
+  updateTierBadge();
 }
 
 // Lock county data in state detail modal (called after counties render)
@@ -162,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function updateTierBadge() {
   const badge = document.getElementById('nav-tier-badge');
-  if (APP.tier >= 2) {
+  if (getIsPaid()) {
     badge.textContent = t('nav_tier_paid');
     badge.classList.add('paid');
   } else {

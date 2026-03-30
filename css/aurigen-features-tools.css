@@ -116,7 +116,7 @@
     @keyframes panelUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
     #panel-shimmer{height:1px;border-radius:6px 6px 0 0}
     #panel-body{padding:20px 24px 24px;position:relative}
-    #panel-close{position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:4px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:10}
+    #panel-close{position:sticky;top:0;z-index:10;float:right;width:28px;height:28px;border-radius:4px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;margin:8px 8px 0 0}
     #panel-title{font-family:'Bebas Neue',sans-serif;letter-spacing:0.06em;line-height:1;display:flex;flex-direction:column;gap:2px;word-break:normal;overflow-wrap:normal}
     #panel-title .title-abbr{font-size:14px;letter-spacing:0.2em;opacity:0.5}
     #panel-title .title-name{font-size:clamp(44px, 12vw, 56px)}

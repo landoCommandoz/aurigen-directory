@@ -265,7 +265,7 @@ function initMap() {
   var scale = Math.min(w / 960, h / 600) * 1000;
   var projection = d3.geoAlbersUsa().scale(scale).translate([w/2, h/2]);
   pathGen = d3.geoPath().projection(projection);
-  if (svgEl) { svgEl.attr('width', w).attr('height', h); }
+  if (svgEl) { svgEl.attr('width', w).attr('height', h).attr('viewBox', '0 0 ' + w + ' ' + h); }
 
   fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
     .then(function(r){ return r.json(); })

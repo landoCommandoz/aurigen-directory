@@ -164,10 +164,10 @@
             <div class="mfp-state-list" id="mfp-state-list"></div>
           </div>
           <!-- RIGHT: MAP -->
-          <div id="map-wrap" style="width:100%;height:calc(100dvh - 56px);min-height:400px;"
+          <div id="map-wrap" style="width:100%;height:calc(100dvh - 56px);min-height:400px;">
             <button class="score-overlay-toggle" id="score-overlay-toggle" onclick="toggleScoreOverlay()">SHOW OPPORTUNITY SCORES</button>
             <div id="ambient-glow"></div>
-            <svg id="map-svg" viewBox="0 0 960 600"></svg>
+            <svg id="map-svg"></svg>
             <div id="map-legend"></div>
           </div>
         </div>
@@ -219,10 +219,10 @@
       <!-- DETAIL PANEL -->
       <div id="detail-panel" onclick="if(event.target===this)closeDetail()">
         <div id="detail-panel-inner">
+          <button id="panel-close" onclick="closeDetail()">&times;</button>
           <div id="panel-shimmer"></div>
           <div id="panel-alert"></div>
           <div id="panel-body">
-            <button id="panel-close" onclick="closeDetail()">&times;</button>
             <div id="panel-title"></div>
             <div id="panel-type"></div>
             <div id="panel-rationale"></div>

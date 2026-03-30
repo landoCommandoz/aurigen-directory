@@ -210,7 +210,7 @@ function loadAndApplyScoreOverlay() {
           if (!cName) { subPending--; check(); return; }
           fetch('/.netlify/functions/county-score?state_code=' + encodeURIComponent(s.id) + '&county=' + encodeURIComponent(cName))
             .then(function(r) { return r.json(); })
-            .then(function(d) { if (d && d.score !== null) scores.push(d.score); })
+            .then(function(d) { if (d && d.score !== null && d.score !== undefined && !isNaN(d.score)) scores.push(d.score); })
             .catch(function() {})
             .finally(function() { subPending--; check(); });
         });
@@ -248,7 +248,7 @@ function applyScoreColors(avgScores) {
     var el = d3.select(this);
     var stCode = el.text();
     var avg = avgScores[stCode];
-    if (avg !== undefined) {
+    if (avg !== undefined && avg !== null && !isNaN(avg)) {
       el.append('tspan').attr('x', el.attr('x')).attr('dy', '1.2em')
         .style('font-size', '7px').style('fill', 'rgba(232,228,220,0.5)').text(avg);
     }
