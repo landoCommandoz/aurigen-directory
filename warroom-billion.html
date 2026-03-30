@@ -57,7 +57,9 @@
     var bar = document.createElement('div');
     bar.id = 'debug-bar';
     bar.style.cssText = 'position:fixed;top:0;left:0;width:100%;background:#1a0000;color:#ff9999;font-size:11px;font-family:monospace;padding:4px 8px;z-index:99999;';
-    bar.textContent = 'email=' + localStorage.getItem('aurigen_email') + ' | access=' + localStorage.getItem('aurigen_access') + ' | is_admin=' + localStorage.getItem('aurigen_is_admin') + ' | admin_override=' + localStorage.getItem('aurigen_admin_override');
+    var badge = document.getElementById('nav-tier-badge');
+    var isPaid = (typeof getIsPaid === 'function') ? getIsPaid() : 'undefined';
+    bar.textContent = 'access=' + localStorage.getItem('aurigen_access') + ' | getIsPaid()=' + isPaid + ' | badge=' + (badge?badge.textContent:'null') + ' | data-i18n=' + (badge?badge.getAttribute('data-i18n'):'null');
     document.body.appendChild(bar);
   });
 })();
