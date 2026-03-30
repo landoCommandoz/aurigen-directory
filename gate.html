@@ -107,9 +107,28 @@
     .stat-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.12em;margin-top:2px;}
 
     /* LANG TOGGLE */
-    .gate-lang{position:fixed;top:20px;right:24px;z-index:50;display:flex;background:rgba(255,255,255,0.06);border-radius:20px;padding:3px;border:1px solid rgba(255,255,255,0.08);}
-    .gate-lang-btn{padding:6px 16px;border-radius:17px;border:none;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all 0.3s;background:transparent;color:var(--muted);}
+    .gate-lang{position:fixed;top:20px;right:24px;z-index:50;display:flex;background:rgba(255,255,255,0.06);border-radius:20px;padding:3px;border:1px solid rgba(255,255,255,0.08);cursor:pointer;}
+    .gate-lang-btn{padding:6px 16px;border-radius:17px;border:none;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;cursor:pointer;transition:all 0.3s;background:transparent;color:var(--muted);-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:34px;}
+    .gate-lang-btn:active{transform:scale(0.96);}
     .gate-lang-btn.active{background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--bg);box-shadow:0 2px 12px rgba(201,168,76,0.4);}
+
+    /* FEATURE COMPARE */
+    .feature-compare{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:24px;position:relative;z-index:1;border:1px solid rgba(255,255,255,0.06);border-radius:10px;overflow:hidden;}
+    .fc-col{padding:16px 14px;}
+    .fc-col-free{background:transparent;}
+    .fc-col-full{background:rgba(201,168,76,0.03);border-left:1px solid rgba(201,168,76,0.15);}
+    .fc-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px;}
+    .fc-label-free{color:var(--muted);}
+    .fc-label-full{color:var(--gold);}
+    .fc-item{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;line-height:1.8;display:flex;align-items:baseline;gap:6px;}
+    .fc-item-free{color:var(--muted);}
+    .fc-item-full{color:var(--text);}
+    .fc-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0;position:relative;top:-1px;}
+    .fc-dot-muted{background:var(--muted);}
+    .fc-dot-gold{background:var(--gold);}
+
+    /* DISCLAIMER */
+    .gate-disclaimer{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);text-align:center;opacity:0.6;max-width:600px;margin:20px auto 0;line-height:1.6;position:relative;z-index:10;}
 
     @media(max-width:768px){
       .gate-card{padding:24px 20px;}
@@ -117,6 +136,10 @@
       .btn-unlock{padding:18px 20px;}
       .btn-unlock-price{font-size:32px;}
       .gate-lang{top:14px;right:14px;}
+    }
+    @media(max-width:480px){
+      .feature-compare{grid-template-columns:1fr;}
+      .fc-col-full{border-left:none;border-top:1px solid rgba(201,168,76,0.15);}
     }
   </style>
 </head>
@@ -156,6 +179,27 @@
   <div class="gate-card anim">
     <p class="card-label" data-en="Choose your entry point" data-es="Elige tu punto de entrada">Choose your entry point</p>
 
+    <div class="feature-compare">
+      <div class="fc-col fc-col-free">
+        <div class="fc-label fc-label-free" data-en="FREE" data-es="GRATIS">FREE</div>
+        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="State directory (51 states)" data-es="Directorio estatal (51 estados)">State directory (51 states)</span></div>
+        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="Auction calendar preview" data-es="Vista previa del calendario">Auction calendar preview</span></div>
+        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="Basic county data" data-es="Datos b&aacute;sicos por condado">Basic county data</span></div>
+        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="Limited searches" data-es="B&uacute;squedas limitadas">Limited searches</span></div>
+      </div>
+      <div class="fc-col fc-col-full">
+        <div class="fc-label fc-label-full" data-en="FULL ACCESS" data-es="ACCESO COMPLETO">FULL ACCESS</div>
+        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Everything in Free" data-es="Todo lo de Gratis">Everything in Free</span></div>
+        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Live auction inventory" data-es="Inventario de subastas en vivo">Live auction inventory</span></div>
+        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Opportunity scores" data-es="Puntuaciones de oportunidad">Opportunity scores</span></div>
+        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Warbook deal analyzer" data-es="Analizador de negocios">Warbook deal analyzer</span></div>
+        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Pulse alerts" data-es="Alertas Pulse">Pulse alerts</span></div>
+        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="AI tools (Sage)" data-es="Herramientas IA (Sage)">AI tools (Sage)</span></div>
+        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="County deep-dive intel" data-es="Intel profundo por condado">County deep-dive intel</span></div>
+        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Unlimited searches" data-es="B&uacute;squedas ilimitadas">Unlimited searches</span></div>
+      </div>
+    </div>
+
     <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="btn-unlock">
       <div class="btn-unlock-left">
         <div class="btn-unlock-title" data-en="UNLOCK FULL ACCESS" data-es="ACCESO COMPLETO">UNLOCK FULL ACCESS</div>
@@ -180,6 +224,8 @@
     <div class="stat"><div class="stat-num">$0/mo</div><div class="stat-label" data-en="Monthly fee" data-es="Cuota mensual">Monthly fee</div></div>
     <div class="stat"><div class="stat-num">Live</div><div class="stat-label" data-en="Auction data" data-es="Datos de subastas">Auction data</div></div>
   </div>
+
+  <p class="gate-disclaimer" data-en="Property data sourced from public auction records. Aurigen does not verify accuracy or recommend investments. Perform independent due diligence before purchasing." data-es="Datos de propiedades obtenidos de registros p&uacute;blicos de subastas. Aurigen no verifica la precisi&oacute;n ni recomienda inversiones. Realice su propia diligencia debida antes de comprar.">Property data sourced from public auction records. Aurigen does not verify accuracy or recommend investments. Perform independent due diligence before purchasing.</p>
 
 </div>
 
