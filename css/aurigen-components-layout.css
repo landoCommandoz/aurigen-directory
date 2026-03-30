@@ -389,7 +389,7 @@
     @media(max-width:768px){
       #map-filter-panel{display:none !important}
       #map-split{display:flex}
-      #map-wrap{height:calc(100dvh - 56px - 48px - 60px);min-height:300px;flex:none;padding:8px}
+      #map-wrap{flex:1;min-height:0;height:100%;width:100%;padding:0}
       #map-callout{left:8px;right:8px;bottom:8px;max-width:none;min-width:0;transform:none;white-space:normal}
       #map-callout.prompt{left:50%;right:auto;transform:translateX(-50%);white-space:nowrap;min-width:auto}
       #map-callout .callout-open{min-height:44px}
