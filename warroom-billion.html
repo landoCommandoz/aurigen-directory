@@ -53,11 +53,13 @@
 <body>
 <script>
 (function() {
-  var bar = document.createElement('div');
-  bar.id = 'debug-bar';
-  bar.style.cssText = 'position:fixed;top:0;left:0;width:100%;background:#1a0000;color:#ff9999;font-size:11px;font-family:monospace;padding:4px 8px;z-index:99999;';
-  bar.textContent = 'email=' + localStorage.getItem('aurigen_email') + ' | access=' + localStorage.getItem('aurigen_access') + ' | is_admin=' + localStorage.getItem('aurigen_is_admin');
-  document.body.appendChild(bar);
+  document.addEventListener('DOMContentLoaded', function() {
+    var bar = document.createElement('div');
+    bar.id = 'debug-bar';
+    bar.style.cssText = 'position:fixed;top:0;left:0;width:100%;background:#1a0000;color:#ff9999;font-size:11px;font-family:monospace;padding:4px 8px;z-index:99999;';
+    bar.textContent = 'email=' + localStorage.getItem('aurigen_email') + ' | access=' + localStorage.getItem('aurigen_access') + ' | is_admin=' + localStorage.getItem('aurigen_is_admin') + ' | admin_override=' + localStorage.getItem('aurigen_admin_override');
+    document.body.appendChild(bar);
+  });
 })();
 </script>
 
