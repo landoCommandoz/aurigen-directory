@@ -5,6 +5,7 @@
     if (email === 'landon@theaurigen.com') {
       localStorage.setItem('aurigen_access', 'paid');
       localStorage.setItem('aurigen_is_admin', 'true');
+      localStorage.setItem('aurigen_admin_override', 'true');
     }
   } catch(e) {}
 })();
@@ -86,13 +87,15 @@
           } catch(e) {}
           if (access !== 'paid') { location.reload(); }
         } else {
-          // JWT invalid/expired — clear and fall back
-          try {
-            localStorage.removeItem('aurigen_jwt');
-            localStorage.removeItem('aurigen_is_admin');
-            localStorage.setItem('aurigen_access', 'free');
-          } catch(e) {}
-          if (access === 'paid') { location.reload(); }
+          if (!localStorage.getItem('aurigen_admin_override')) {
+            // JWT invalid/expired — clear and fall back
+            try {
+              localStorage.removeItem('aurigen_jwt');
+              localStorage.removeItem('aurigen_is_admin');
+              localStorage.setItem('aurigen_access', 'free');
+            } catch(e) {}
+            if (access === 'paid') { location.reload(); }
+          }
         }
       })
       .catch(function() {
@@ -109,9 +112,11 @@
         })
         .then(function(r) { return r.json(); })
         .then(function(data) {
-          var serverTier = data.access || 'free';
-          try { localStorage.setItem('aurigen_access', serverTier); } catch(e) {}
-          if (serverTier !== access) { location.reload(); }
+          if (!localStorage.getItem('aurigen_admin_override')) {
+            var serverTier = data.access || 'free';
+            try { localStorage.setItem('aurigen_access', serverTier); } catch(e) {}
+            if (serverTier !== access) { location.reload(); }
+          }
         })
         .catch(function() { /* Offline: trust cached tier */ });
       }
