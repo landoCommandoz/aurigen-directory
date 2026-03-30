@@ -156,13 +156,9 @@ function applyPulseLock() {
 document.addEventListener('DOMContentLoaded', function() {
   updateTierBadge();
   applyAccessLocks();
-  var _dbg1 = document.getElementById('nav-tier-badge');
-  console.log('[DEBUG] after updateTierBadge: textContent=' + (_dbg1?_dbg1.textContent:'null') + ' data-i18n=' + (_dbg1?_dbg1.getAttribute('data-i18n'):'null') + ' getIsPaid()=' + getIsPaid());
   bootApp();
   // Apply saved language
   applyLanguage(LANG);
-  var _dbg2 = document.getElementById('nav-tier-badge');
-  console.log('[DEBUG] after applyLanguage: textContent=' + (_dbg2?_dbg2.textContent:'null') + ' data-i18n=' + (_dbg2?_dbg2.getAttribute('data-i18n'):'null'));
   updateNavFilterBtn();
   window.addEventListener('resize', updateNavFilterBtn);
 });
@@ -171,9 +167,11 @@ function updateTierBadge() {
   const badge = document.getElementById('nav-tier-badge');
   if (getIsPaid()) {
     badge.textContent = t('nav_tier_paid');
+    badge.setAttribute('data-i18n', 'nav_tier_paid');
     badge.classList.add('paid');
   } else {
     badge.textContent = t('nav_tier_free');
+    badge.setAttribute('data-i18n', 'nav_tier_free');
     badge.classList.remove('paid');
   }
 }

@@ -534,5 +534,7 @@ function applyLanguage(lang) {
   if (esBtn) esBtn.classList.toggle('active', LANG === 'es');
   // Update HTML lang attribute
   document.documentElement.lang = LANG;
+  // Re-apply tier badge after i18n sweep (badge key depends on access state)
+  if (typeof updateTierBadge === 'function') updateTierBadge();
 }
 
