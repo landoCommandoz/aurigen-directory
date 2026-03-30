@@ -115,3 +115,26 @@ jobs:
           else
             echo "Weekly report generated successfully"
           fi
+
+      - name: Wait before state laws scrape
+        run: sleep 15
+
+      - name: Scrape State Laws
+        run: |
+          echo "=== Step 6: State Law Intelligence ==="
+          LAWS_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
+          LAWS_URL=$(echo "$LAWS_URL" | sed 's|/scraper$|/scrape-state-laws|')
+          response=$(curl -s -w "\n%{http_code}" \
+            --max-time 60 \
+            -X POST \
+            -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
+            "$LAWS_URL")
+          http_code=$(echo "$response" | tail -1)
+          body=$(echo "$response" | head -n -1)
+          echo "HTTP $http_code"
+          echo "$body"
+          if [ "$http_code" != "200" ]; then
+            echo "::warning::State laws scraper returned HTTP $http_code — non-blocking"
+          else
+            echo "State law intelligence updated successfully"
+          fi
