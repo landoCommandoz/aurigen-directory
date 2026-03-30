@@ -2,7 +2,7 @@
 // Now validates JWT from Authorization: Bearer header.
 // Legacy fallback: still accepts POST { email } for pre-JWT clients.
 var { getCorsHeaders, handlePreflight } = require('./utils/cors');
-var { verifyBearer } = require('./utils/jwt');
+var { verifyBearer, ADMIN_EMAILS } = require('./utils/jwt');
 
 // Rate limiting
 var rateLimitMap = new Map();
@@ -38,10 +38,11 @@ exports.handler = async function(event) {
     // Primary: JWT Bearer token
     var auth = verifyBearer(event);
     if (auth) {
+      var isPaid = auth.tier === 'paid' || ADMIN_EMAILS.indexOf(auth.email) >= 0;
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ access: auth.tier === 'paid' ? 'paid' : 'free', email: auth.email })
+        body: JSON.stringify({ access: isPaid ? 'paid' : 'free', email: auth.email })
       };
     }
 
@@ -54,6 +55,11 @@ exports.handler = async function(event) {
     var email = (body.email || '').toLowerCase().trim();
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: 'Invalid email' }) };
+    }
+
+    // Admin whitelist — short-circuit before Supabase query
+    if (ADMIN_EMAILS.indexOf(email) >= 0) {
+      return { statusCode: 200, headers, body: JSON.stringify({ access: 'paid', email: email }) };
     }
 
     var createClient = require('@supabase/supabase-js').createClient;
