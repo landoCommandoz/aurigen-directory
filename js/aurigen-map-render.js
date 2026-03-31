@@ -261,7 +261,7 @@ function initMap() {
   console.log('[initMap] map-wrap dimensions:', wrap ? wrap.offsetWidth + 'x' + wrap.offsetHeight : 'NOT FOUND', 'getBoundingClientRect:', wrap ? JSON.stringify(wrap.getBoundingClientRect()) : 'N/A');
   var rect = wrap ? wrap.getBoundingClientRect() : {width:960,height:600};
   var w = rect.width || 960;
-  var h = rect.height || 600;
+  var h = (rect.height > 50 ? rect.height : null) || wrap.offsetHeight || (window.innerHeight - 180) || 600;
   var scale = Math.min(w / 960, h / 600) * 1000;
   var projection = d3.geoAlbersUsa().scale(scale).translate([w/2, h/2]);
   pathGen = d3.geoPath().projection(projection);
@@ -331,7 +331,7 @@ function redrawMap() {
   if (!wrap || !svgEl) return;
   var rect = wrap.getBoundingClientRect();
   var w = rect.width || wrap.clientWidth || 960;
-  var h = rect.height || wrap.clientHeight || 600;
+  var h = (rect.height > 50 ? rect.height : null) || wrap.clientHeight || wrap.offsetHeight || (window.innerHeight - 180) || 600;
   if (w < 10 || h < 10) return;
   var scale = Math.min(w / 960, h / 600) * 1000;
   var projection = d3.geoAlbersUsa().scale(scale).translate([w/2, h/2]);
