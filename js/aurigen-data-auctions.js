@@ -113,16 +113,22 @@ function auctionsInvCountyChange() {
   Promise.resolve(jwtReady).then(function(token) {
     var fetchUrl = '/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode);
     if (county) fetchUrl += '&county=' + encodeURIComponent(county);
+    console.log('[auctions] fetching:', fetchUrl, 'jwt:', token ? 'YES' : 'NO');
+    var controller = new AbortController();
+    var timeoutId = setTimeout(function() { controller.abort(); }, 15000);
     return fetch(fetchUrl, {
-      headers: token ? { 'Authorization': 'Bearer ' + token } : {}
-    });
+      headers: token ? { 'Authorization': 'Bearer ' + token } : {},
+      signal: controller.signal
+    }).then(function(r) { clearTimeout(timeoutId); return r; });
   })
     .then(function(r) {
+      console.log('[auctions] response:', r.status);
       if (r.status === 401 || r.status === 403) throw new Error('access');
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
     })
     .then(function(data) {
+      console.log('[auctions] loaded', (data.properties || []).length, 'properties');
       _auctionsInvData = data.properties || [];
       if (filtersEl) {
         filtersEl.style.display = 'flex';
@@ -134,10 +140,13 @@ function auctionsInvCountyChange() {
       renderAuctionsInvCards(body, county);
     })
     .catch(function(err) {
+      console.error('[auctions] error:', err.message || err);
       if (err.message === 'access' && !getIsPaid()) {
         renderAuctionsInvLocked(body, county);
       } else if (err.message === 'access') {
         body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#128274;</span><span class="propfeed-empty-title">SESSION EXPIRED</span><span class="propfeed-empty-hint">Your session credentials need to be refreshed.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="try{localStorage.removeItem(\'aurigen_jwt\');}catch(x){}auctionsInvCountyChange()">Refresh &amp; Retry</button></div></div>';
+      } else if (err.name === 'AbortError') {
+        body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#9203;</span><span class="propfeed-empty-title">REQUEST TIMED OUT</span><span class="propfeed-empty-hint">The server took too long to respond. Try again.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="auctionsInvCountyChange()">Retry</button></div></div>';
       } else {
         body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#9888;</span><span class="propfeed-empty-title">CONNECTION ERROR</span><span class="propfeed-empty-hint">Unable to load inventory. Check your connection and try again.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="auctionsInvCountyChange()">Retry</button></div></div>';
       }
