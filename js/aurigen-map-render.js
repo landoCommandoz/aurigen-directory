@@ -73,7 +73,7 @@ function renderMapStateList() {
 function selectMapState(abbr) {
   var s = ALL_STATES.find(function(x){ return (x.abbr||x.c)===abbr; });
   if(!s) return;
-  if(selectedState===abbr){ selectedState=null; closeDetail(); resetMapColors(); updateMapCallout(null); }
+  if(selectedState===abbr){ selectedState=null; StatePanel.close(); resetMapColors(); updateMapCallout(null); }
   else { selectedState=abbr; App.openState(s.abbr||s.c||s.id); updateMapColors(); updateMapCallout(s); }
   renderMapStateList();
 }
@@ -284,7 +284,7 @@ function initMap() {
           var s = getStateData(d);
           if(!s) return;
           var abbr = s.abbr || s.c;
-          if(selectedState===abbr){ selectedState=null; closeDetail(); resetMapColors(); updateMapCallout(null); renderMapStateList(); }
+          if(selectedState===abbr){ selectedState=null; StatePanel.close(); resetMapColors(); updateMapCallout(null); renderMapStateList(); }
           else { selectedState=abbr; App.openState(s.abbr||s.c||s.id); updateMapColors(); updateMapCallout(s); renderMapStateList(); }
         });
 
@@ -399,7 +399,7 @@ function resetMapColors() {
 }
 
 function switchExploreView(tab) {
-  currentTab=tab; selectedState=null; closeDetail();
+  currentTab=tab; selectedState=null; StatePanel.close();
   document.querySelectorAll('.tab').forEach(function(t,i){ t.classList.toggle('active',(i===0&&tab==='map')||(i===1&&tab==='list')); });
   document.getElementById('view-map').classList.toggle('hidden',tab!=='map');
   document.getElementById('view-list').classList.toggle('hidden',tab!=='list');
@@ -515,7 +515,7 @@ function renderList() {
 function selectFromList(abbr) {
   var s=ALL_STATES.find(function(x){ return (x.abbr||x.c)===abbr; });
   if(!s) return;
-  if(selectedState===abbr){selectedState=null;closeDetail();}
+  if(selectedState===abbr){selectedState=null;StatePanel.close();}
   else{selectedState=abbr;App.openState(s.abbr||s.c||s.id);}
   renderList();
 }
@@ -531,6 +531,6 @@ function clearSearch() {
   document.getElementById('search-clear').style.display='none'; renderList();
 }
 
-function setFilter(f){activeFilter=f;selectedState=null;closeDetail();updatePills();renderList();}
+function setFilter(f){activeFilter=f;selectedState=null;StatePanel.close();updatePills();renderList();}
 
 // Platform name → URL lookup
