@@ -51,7 +51,6 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-  timeout = 300
 
 [functions."scraper"]
   type = "background"
