@@ -424,6 +424,44 @@ function updatePills() {
 }
 
 // shortenRate defined below (consolidated at line ~2058)
+function shortenRate(rate, type) {
+  if (!rate) return 'N/A';
+  var r = rate;
+  if (type === 'deed' || type === 'redeemable') return 'N/A';
+  if (/bid.?down/i.test(r)) return 'Bid-Dn';
+  if (/premium/i.test(r)) return 'Prem';
+  var pct = r.match(/([\d.]+)s*%/);
+  if (pct) return pct[1] + '%';
+  if (/varies/i.test(r)) return 'Varies';
+  return r.length > 8 ? r.substring(0, 7) + '...' : r;
+}
+function shortenRedemption(redemption) {
+  if (!redemption) return 'N/A';
+  var r = redemption;
+  if (/none after|no redempt/i.test(r)) return 'None';
+  var mo = r.match(/([\d]+)s*months?/i); if (mo) return mo[1] + 'mo';
+  var yr = r.match(/([\d.]+)s*years?/i); if (yr) return yr[1] + 'yr';
+  return r.length > 8 ? r.substring(0, 7) + '...' : r;
+}
+function shortenBidMethod(method) {
+  if (!method) return '—';
+  if (/bid.?down/i.test(method)) return 'Bid-Dn';
+  if (/premium/i.test(method)) return 'Premium';
+  if (/random|rotati/i.test(method)) return 'Random';
+  if (/highest/i.test(method)) return 'Highest';
+  if (/over.?bid/i.test(method)) return 'Overbid';
+  return method.length > 8 ? method.substring(0, 7) + '...' : method;
+}
+function shortenPlatform(platform) {
+  if (!platform) return '';
+  if (/realtaxdeed|realauc/i.test(platform)) return 'RealAuction';
+  if (/govease/i.test(platform)) return 'GovEase';
+  if (/lienhub/i.test(platform)) return 'LienHub';
+  if (/bid4assets/i.test(platform)) return 'Bid4Assets';
+  if (/taxcertsale/i.test(platform)) return 'TaxCertSale';
+  return platform;
+}
+
 
 function shortenHold(redemption, type) {
   if(!redemption) return 'N/A';
