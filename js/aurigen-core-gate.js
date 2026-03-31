@@ -1,4 +1,4 @@
-// === ADMIN OVERRIDE — landon@theaurigen.com is permanently paid+admin ===
+// === ADMIN OVERRIDE ===
 (function() {
   try {
     var email = (localStorage.getItem('aurigen_email') || '').toLowerCase();
