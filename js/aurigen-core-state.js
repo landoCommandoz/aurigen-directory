@@ -198,6 +198,7 @@ function switchTab(name) {
   // Refresh map size when switching back to map tab
   if(name==='map') { setTimeout(function(){ if(typeof refreshMapSize==='function')refreshMapSize(); else if(typeof initMap==='function')initMap(); }, 150); setTimeout(function(){ if(typeof refreshMapSize==='function')refreshMapSize(); }, 600); }
   if(name==='auctions' && typeof initAuctionsTab==='function') initAuctionsTab();
+  if(name==='inventory' && typeof initAuctionsInventory==='function') initAuctionsInventory();
   if(name==='account' && typeof initAccount==='function') initAccount();
 
   // Lazy-load Phase 4 tools JS on first access

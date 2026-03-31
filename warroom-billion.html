@@ -69,6 +69,7 @@
   <nav id="top-nav">
     <div id="nav-logo">AURIGEN</div>
     <div class="nav-tab active" id="tab-map" onclick="switchTab('map')">Intelligence</div>
+    <div class="nav-tab" id="tab-inventory" onclick="switchTab('inventory')">Inventory</div>
     <div class="nav-tab" id="tab-auctions" onclick="switchTab('auctions')">Calendar</div>
     <div class="nav-tab" id="tab-account" onclick="switchTab('account')">Account</div>
     <div class="nav-tab nav-tab-tools-trigger" id="tab-tools-menu" onclick="toggleToolsMenu(event)">Tools <span class="tools-chevron">&#9660;</span></div>
@@ -119,6 +120,7 @@
     </div>
     <div class="mobile-nav-items">
       <button class="mobile-nav-item active" data-tab="map" onclick="mobileNavTo('map')"><span class="mobile-nav-item-icon">&#127758;</span><span>Intelligence</span></button>
+      <button class="mobile-nav-item" data-tab="inventory" onclick="mobileNavTo('inventory')"><span class="mobile-nav-item-icon">&#128220;</span><span>Inventory</span></button>
       <button class="mobile-nav-item" data-tab="auctions" onclick="mobileNavTo('auctions')"><span class="mobile-nav-item-icon">&#128197;</span><span>Calendar</span></button>
       <div class="mobile-nav-divider"></div>
       <div class="mobile-nav-section-label">TOOLS</div>
@@ -410,6 +412,21 @@
       </div>
       <div class="paywall-lock" id="lock-advisor-tab" style="display:none"><span class="walkthrough-label" data-i18n="sage_lock_title">UNLOCK SAGE AI ADVISOR</span><div class="walkthrough-preview-img"><div style="display:flex;flex-direction:column;gap:8px"><div class="wk-bubble user">Which states are best for beginners with under $5,000?</div><div class="wk-bubble sage">Florida and Arizona are strong starting points. Florida offers up to 18% statutory interest on tax liens with a well-organized online auction system through county platforms. Arizona runs at 16% with shorter redemption windows...</div></div></div><span class="walkthrough-desc">Ask Sage anything about tax lien or tax deed investing. Personalizes responses based on your DNA profile and the states you&rsquo;re watching.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
     </div>
+    <!-- INVENTORY TAB — Property Dossier (Concept 2) -->
+    <div class="tab-panel" id="panel-inventory">
+      <div style="padding:24px 20px;max-width:960px;margin:0 auto">
+        <div class="propfeed-header" style="margin-bottom:16px">
+          <div class="propfeed-title"><span class="propfeed-dot"></span><span class="propfeed-title-text">LIVE INVENTORY</span></div>
+          <span class="propfeed-count" id="auctions-inv-count"></span>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px" id="auctions-inv-dropdowns">
+          <select id="auctions-inv-state" onchange="auctionsInvStateChange()" style="background:#181818;color:#f5f0e8;border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:8px 12px;font-size:13px;min-width:160px;cursor:pointer"><option value="">Select a State</option></select>
+          <select id="auctions-inv-county" onchange="auctionsInvCountyChange()" style="background:#181818;color:#f5f0e8;border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:8px 12px;font-size:13px;min-width:200px;cursor:pointer;display:none"><option value="">Select a County</option></select>
+        </div>
+        <div id="auctions-inv-filters" style="display:none"></div>
+        <div id="auctions-inv-body"></div>
+      </div>
+    </div>
     <!-- AUCTIONS TAB — Concept C -->
     <div class="tab-panel" id="panel-auctions">
       <div class="auctions-layout">
@@ -470,19 +487,7 @@
           <div class="auctions-disclaimer">
             Tax lien and tax deed investing involves risk, including potential loss of principal. Past performance does not guarantee future results. Auction dates and details are provided for informational purposes only &mdash; verify directly with the county or platform before registering. <a href="/legal/" target="_blank" rel="noopener noreferrer">Legal</a>
           </div>
-          <!-- LIVE INVENTORY SECTION -->
-          <div id="auctions-inventory" style="margin-top:28px;border-top:1px solid rgba(201,168,76,0.15);padding-top:24px">
-            <div class="propfeed-header" style="margin-bottom:16px">
-              <div class="propfeed-title"><span class="propfeed-dot"></span><span class="propfeed-title-text">LIVE INVENTORY</span></div>
-              <span class="propfeed-count" id="auctions-inv-count"></span>
-            </div>
-            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px" id="auctions-inv-dropdowns">
-              <select id="auctions-inv-state" onchange="auctionsInvStateChange()" style="background:#181818;color:#f5f0e8;border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:8px 12px;font-size:13px;min-width:160px;cursor:pointer"><option value="">Select a State</option></select>
-              <select id="auctions-inv-county" onchange="auctionsInvCountyChange()" style="background:#181818;color:#f5f0e8;border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:8px 12px;font-size:13px;min-width:200px;cursor:pointer;display:none"><option value="">Select a County</option></select>
-            </div>
-            <div id="auctions-inv-filters" style="display:none"></div>
-            <div id="auctions-inv-body"></div>
-          </div>
+          <!-- LIVE INVENTORY moved to panel-inventory -->
         </div>
       </div>
       <div class="paywall-lock" id="lock-auctions-tab" style="display:none"><span class="walkthrough-label" data-i18n="auctions_lock_title">UNLOCK AUCTIONS</span><div class="walkthrough-preview-img"><div class="wk-row"><span class="wk-badge lien">FL</span><span class="wk-text">Broward County</span><span class="wk-text-sub">Jun 1, 2026</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">TX</span><span class="wk-text">Harris County</span><span class="wk-text-sub">Jul 8, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge lien">AZ</span><span class="wk-text">Maricopa County</span><span class="wk-text-sub">Feb 4, 2027</span><span class="wk-badge online">Online</span><span class="wk-btn">Register</span></div><div class="wk-row"><span class="wk-badge deed">GA</span><span class="wk-text">Fulton County</span><span class="wk-text-sub">Aug 12, 2026</span><span class="wk-badge person">In-Person</span><span class="wk-btn">Register</span></div></div><span class="walkthrough-desc">Live and upcoming auction calendar across all 51 states. Filter by state, format, and date. Never miss a sale in your target market.</span><a class="paywall-lock-btn" href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" target="_blank" rel="noopener noreferrer">UNLOCK FULL ACCESS &mdash; $197 ONE TIME<span class="paywall-lock-btn-sub">Comparable tools charge $200+/month. You pay once.</span></a></div>
