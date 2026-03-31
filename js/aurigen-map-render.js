@@ -258,12 +258,14 @@ var svgEl, pathGen;
 function initMap() {
   svgEl = d3.select('#map-svg');
   var wrap = document.getElementById('map-wrap');
-  var w = wrap.offsetWidth || 960;
-  var h = wrap.offsetHeight || 600;
-  var scale = Math.min(w, h * 1.6) * 1.1;
-  var projection = d3.geoAlbersUsa().scale(scale).translate([w/2, h/2]);
-  pathGen = d3.geoPath().projection(projection);
-  if (svgEl) { svgEl.attr('width', w).attr('height', h).attr('viewBox', null); }
+  function tryRender() {
+    var w = wrap.getBoundingClientRect().width;
+    var h = wrap.getBoundingClientRect().height;
+    if (w < 10 || h < 10) { requestAnimationFrame(tryRender); return; }
+    var scale = Math.min(w, h * 1.6) * 1.1;
+    var projection = d3.geoAlbersUsa().scale(scale).translate([w/2, h/2]);
+    pathGen = d3.geoPath().projection(projection);
+    if (svgEl) { svgEl.attr('width', w).attr('height', h).attr('viewBox', null); }
 
   fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
     .then(function(r){ return r.json(); })
@@ -321,6 +323,8 @@ function initMap() {
         _resizeTimer = setTimeout(function() { redrawMap(); }, 100);
       });
     });
+  }
+  tryRender();
 }
 
 // Full map redraw — recompute projection, update all paths and labels
