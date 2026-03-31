@@ -2,9 +2,16 @@
   "name": "aurigen-functions",
   "version": "1.0.0",
   "description": "Netlify functions for Aurigen County Resource Directory",
+  "scripts": {
+    "qa": "node qa/browser-test.js"
+  },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
     "@supabase/supabase-js": "^2.45.0",
     "stripe": "^17.0.0"
+  },
+  "devDependencies": {
+    "puppeteer": "^24.40.0",
+    "puppeteer-core": "^24.40.0"
   }
 }

@@ -53,22 +53,62 @@ function drawMap(w, h) {
         .enter().append('path')
         .attr('class', 'state-path')
         .attr('d', _pathGen)
-        .attr('fill', 'rgba(201,168,76,0.06)')
+        .attr('fill', function(d) {
+          var fips = String(d.id).padStart(2, '0');
+          var abbr = FIPS_TO_ABBR[fips];
+          var states = window.STATES || window.STATES_EN || [];
+          var state = null;
+          for (var i = 0; i < states.length; i++) {
+            if ((states[i].id || states[i].abbr || states[i].c) === abbr) { state = states[i]; break; }
+          }
+          var type = state ? (state.type || state.t || state._v2type || '').toLowerCase() : '';
+          var fills = { lien: 'rgba(201,168,76,0.15)', deed: 'rgba(45,212,192,0.15)', hybrid: 'rgba(191,95,255,0.15)', redeemable: 'rgba(255,107,53,0.15)', forfeiture: 'rgba(255,107,53,0.15)' };
+          return fills[type] || 'rgba(201,168,76,0.06)';
+        })
         .attr('stroke', 'rgba(201,168,76,0.35)')
         .attr('stroke-width', 0.6)
         .style('cursor', 'pointer')
         .on('mouseover', function(event, d) {
           if (_selectedState !== d.id) {
-            d3.select(this).attr('fill', 'rgba(201,168,76,0.15)');
+            var fips = String(d.id).padStart(2, '0');
+            var abbr = FIPS_TO_ABBR[fips];
+            var states = window.STATES || window.STATES_EN || [];
+            var state = null;
+            for (var i = 0; i < states.length; i++) {
+              if ((states[i].id || states[i].abbr || states[i].c) === abbr) { state = states[i]; break; }
+            }
+            var type = state ? (state.type || state.t || state._v2type || '').toLowerCase() : '';
+            var fills = { lien: 'rgba(201,168,76,0.25)', deed: 'rgba(45,212,192,0.25)', hybrid: 'rgba(191,95,255,0.25)', redeemable: 'rgba(255,107,53,0.25)', forfeiture: 'rgba(255,107,53,0.25)' };
+            d3.select(this).attr('fill', fills[type] || 'rgba(201,168,76,0.15)');
           }
         })
         .on('mouseout', function(event, d) {
           if (_selectedState !== d.id) {
-            d3.select(this).attr('fill', 'rgba(201,168,76,0.06)');
+            var fips = String(d.id).padStart(2, '0');
+            var abbr = FIPS_TO_ABBR[fips];
+            var states = window.STATES || window.STATES_EN || [];
+            var state = null;
+            for (var i = 0; i < states.length; i++) {
+              if ((states[i].id || states[i].abbr || states[i].c) === abbr) { state = states[i]; break; }
+            }
+            var type = state ? (state.type || state.t || state._v2type || '').toLowerCase() : '';
+            var fills = { lien: 'rgba(201,168,76,0.15)', deed: 'rgba(45,212,192,0.15)', hybrid: 'rgba(191,95,255,0.15)', redeemable: 'rgba(255,107,53,0.15)', forfeiture: 'rgba(255,107,53,0.15)' };
+            d3.select(this).attr('fill', fills[type] || 'rgba(201,168,76,0.06)');
           }
         })
         .on('click', function(event, d) {
-          _mapSvg.selectAll('.state-path').attr('fill', 'rgba(201,168,76,0.06)');
+          _mapSvg.selectAll('.state-path').each(function(dd) {
+            var fips = String(dd.id).padStart(2, '0');
+            var abbr = FIPS_TO_ABBR[fips];
+            var states = window.STATES || window.STATES_EN || [];
+            var state = null;
+            for (var i = 0; i < states.length; i++) {
+              if ((states[i].id || states[i].abbr || states[i].c) === abbr) { state = states[i]; break; }
+            }
+            var type = state ? (state.type || state.t || state._v2type || '').toLowerCase() : '';
+            var fills = { lien: 'rgba(201,168,76,0.15)', deed: 'rgba(45,212,192,0.15)', hybrid: 'rgba(191,95,255,0.15)', redeemable: 'rgba(255,107,53,0.15)', forfeiture: 'rgba(255,107,53,0.15)' };
+            d3.select(this).attr('fill', fills[type] || 'rgba(201,168,76,0.06)');
+          });
           _selectedState = d.id;
           d3.select(this).attr('fill', 'rgba(201,168,76,0.28)');
           var fips = String(d.id).padStart(2, '0');
@@ -132,7 +172,7 @@ function renderStateList() {
 
   container.innerHTML = filtered.map(function(s, i) {
     var type = (s.type || s.t || s._v2type || 'unknown').toLowerCase();
-    var typeColors = { lien: '#c9a84c', deed: '#2dd4c0', hybrid: '#bf5fff', redeemable: '#ff6b35' };
+    var typeColors = { lien: '#c9a84c', deed: '#2dd4c0', hybrid: '#bf5fff', redeemable: '#ff6b35', forfeiture: '#ff6b35' };
     var color = typeColors[type] || '#9898b0';
     var label = type.toUpperCase();
     var rate = s.rate || s.r || '\u2014';

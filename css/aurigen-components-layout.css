@@ -312,7 +312,7 @@
     .leg-label{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;color:var(--text)}
     .leg-count{font-family:'Bebas Neue',sans-serif;font-size:16px;line-height:1}
     #tabs{display:flex;padding:0 20px}
-    .tab{background:none;border:none;cursor:pointer;padding:8px 16px 10px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;color:rgba(0,212,255,0.3);border-bottom:2px solid transparent;transition:all 0.2s}
+    .tab{background:none;border:none;cursor:pointer;padding:8px 16px 10px;min-height:44px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;color:rgba(0,212,255,0.3);border-bottom:2px solid transparent;transition:all 0.2s}
     .tab.active{color:#FFBE0B;border-bottom-color:#FFBE0B}
     .view{flex:1;display:flex;flex-direction:column;min-height:0;position:relative;z-index:1}
     .view.hidden{display:none}

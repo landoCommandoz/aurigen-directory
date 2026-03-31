@@ -50,7 +50,7 @@ var StatePanel = {
     } catch (e) {}
 
     // Type colors
-    var typeColors = { lien: '#c9a84c', deed: '#e05555', hybrid: '#2dd4c0', redeemable: '#9b7fe8', forfeiture: '#9b7fe8' };
+    var typeColors = { lien: '#c9a84c', deed: '#2dd4c0', hybrid: '#bf5fff', redeemable: '#ff6b35', forfeiture: '#ff6b35' };
     var typeColor = typeColors[sType] || '#2dd4c0';
 
     // Build HTML
@@ -224,7 +224,7 @@ var StatePanel = {
 
     // Law data grid
     if (lawData) {
-      var lawTypeColors = { lien: '#c9a84c', deed: '#2dd4c0', hybrid: '#e05555' };
+      var lawTypeColors = { lien: '#c9a84c', deed: '#2dd4c0', hybrid: '#bf5fff', redeemable: '#ff6b35', forfeiture: '#ff6b35' };
       var lawTypeColor = lawTypeColors[lawData.auction_type] || '#f5f0e8';
 
       h += '<div class="sp-law-grid">';

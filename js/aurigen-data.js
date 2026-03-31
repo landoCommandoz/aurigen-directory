@@ -215,7 +215,7 @@ function getFilteredProps() {
       if (f.status !== 'struck' && st !== f.status) return false;
     }
     if (f.absentee && !p.absentee_owner) return false;
-    if (f.equity > 0 && (p.equity_cushion_pct === null || p.equity_cushion_pct < f.equity)) return false;
+    if (f.equity > 0 && (p.equity_cushion_pct == null || p.equity_cushion_pct < f.equity)) return false;
     return true;
   });
 }
@@ -255,8 +255,9 @@ function renderPropFeed(container, countyName) {
 
     var bid = p.opening_bid !== null ? '$' + Number(p.opening_bid).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
     var assessed = p.assessed_value !== null ? '$' + Number(p.assessed_value).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
-    var eqPct = p.equity_cushion_pct !== null ? Math.round(p.equity_cushion_pct) + '%' : '--';
-    var eqClass = p.equity_cushion_pct === null ? '' : p.equity_cushion_pct > 200 ? ' equity-high' : p.equity_cushion_pct >= 100 ? ' equity-mid' : ' equity-low';
+    var eqRaw = (p.equity_cushion_pct != null && isFinite(p.equity_cushion_pct)) ? Math.round(p.equity_cushion_pct) : null;
+    var eqPct = eqRaw !== null ? eqRaw + '%' : '\u2014';
+    var eqClass = eqRaw === null ? '' : eqRaw > 200 ? ' equity-high' : eqRaw >= 100 ? ' equity-mid' : ' equity-low';
 
     var statusLower = (p.status || '').toLowerCase();
     var statusClass = statusLower === 'active' ? 'prop-status-active' : statusLower === 'redeemed' ? 'prop-status-redeemed' : 'prop-status-struck';
