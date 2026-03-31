@@ -199,7 +199,7 @@ function getAuctionsInvFiltered() {
 function renderAuctionsInvCards(container, countyName) {
   var filtered = getAuctionsInvFiltered();
   var countEl = document.getElementById('auctions-inv-count');
-  if (countEl) countEl.textContent = filtered.length + ' PROPERT' + (filtered.length !== 1 ? 'IES' : 'Y');
+  if (countEl) { countEl.textContent = filtered.length + ' PROPERT' + (filtered.length !== 1 ? 'IES' : 'Y'); countEl.style.display = ''; }
 
   if (filtered.length === 0) {
     if (_auctionsInvData.length === 0) {
@@ -234,7 +234,7 @@ function renderAuctionsInvCards(container, countyName) {
     var ringOffset = eqRaw !== null ? Math.round(138.2 - (Math.min(eqRaw, 100) / 100) * 138.2) : 138.2;
     var county = escapeHtml(p.county || '');
     var state = escapeHtml(p.state || p.state_code || '');
-    var location = county && state ? county + ' County, ' + state : (state || county || '');
+    var location = county && state ? county + ', ' + state : (state || county || '');
     var propData = escapeHtml(JSON.stringify({address:p.address,bid:p.opening_bid,assessed:p.assessed_value,equity:eqRaw,lien:p.lien_amount,year:lienYear,county:p.county,state:p.state||p.state_code}));
     html += '<div class="prop-card">';
     html += '<div class="prop-card-head">';

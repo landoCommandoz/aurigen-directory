@@ -29,7 +29,7 @@
     .propfeed-filter-toggle{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;white-space:nowrap;padding:5px 12px;border-radius:4px;border:1px solid rgba(201,168,76,0.2);background:transparent;color:rgba(232,228,220,0.5);cursor:pointer;transition:all 0.2s;flex-shrink:0}
     .propfeed-filter-toggle.active{background:rgba(201,168,76,0.2);border-color:#c9a84c;color:#c9a84c}
 
-    .propfeed-list{min-height:200px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin;scrollbar-color:rgba(201,168,76,0.3) transparent}
+    .propfeed-list{min-height:200px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin;scrollbar-color:rgba(201,168,76,0.3) transparent;overflow-y:visible;max-height:none}
     .propfeed-list::-webkit-scrollbar{width:4px}
     .propfeed-list::-webkit-scrollbar-thumb{background:rgba(201,168,76,0.3);border-radius:2px}
 

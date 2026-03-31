@@ -284,6 +284,10 @@
     .tab-panel.active {
       display: flex;
     }
+    #panel-inventory.active {
+      flex-direction: column;
+      overflow-y: auto;
+    }
 
     /* === STATUS BAR === */
     /* Status bar / ticker removed */
