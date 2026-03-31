@@ -352,7 +352,7 @@ function openDealFromProp(encodedData) {
       priceInput.dispatchEvent(new Event('input'));
     }
     // Close detail panel
-    closeDetail();
+    if (typeof closeDetail === 'function') closeDetail();
   } catch(e) {
     console.warn('[propfeed] Could not open deal analyzer:', e.message);
   }
@@ -367,7 +367,7 @@ function openScoutFromProp(encodedData) {
       localStorage.setItem('scout_prop_county', p.county || '');
     } catch(le) {}
     if (typeof switchTab === 'function') switchTab('scout');
-    closeDetail();
+    if (typeof closeDetail === 'function') closeDetail();
   } catch(e) {
     console.warn('[propfeed] Could not open scout:', e.message);
   }

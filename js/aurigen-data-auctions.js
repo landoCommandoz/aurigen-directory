@@ -251,6 +251,10 @@ function renderAuctionsInvCards(container, countyName) {
     html += '<span class="prop-pill prop-pill-' + statusClass + '">' + statusLabel + '</span>';
     html += '<span class="prop-pill prop-pill-platform">' + platform + '</span>';
     if (location) html += '<span class="prop-pill prop-pill-platform">' + location + '</span>';
+    var parcelId = p.parcel_id || p.property_id || '';
+    if (parcelId) html += '<span class="prop-pill prop-pill-platform" title="' + escapeHtml(parcelId) + '">' + escapeHtml(String(parcelId).slice(0, 12)) + (String(parcelId).length > 12 ? '\u2026' : '') + '</span>';
+    var sourceUrl = p.source_url || p.auction_url || p.listing_url || '';
+    if (sourceUrl) html += '<a class="prop-pill prop-pill-active" href="' + escapeHtml(sourceUrl) + '" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="text-decoration:none;cursor:pointer;">SOURCE \u2197</a>';
     html += '</div>';
     html += '</div>';
     html += '<div class="prop-card-score">';
