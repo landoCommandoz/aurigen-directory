@@ -38,7 +38,7 @@ function drawMap(w, h) {
   _mapSvg.attr('width', w).attr('height', h);
 
   var projection = d3.geoAlbersUsa()
-    .scale(Math.min(w, h * 1.8) * 1.05)
+    .scale(Math.min(w, h * 1.7) * 0.95)
     .translate([w / 2, h / 2]);
   _pathGen = d3.geoPath().projection(projection);
 
