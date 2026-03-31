@@ -219,14 +219,14 @@
       <button type="button" onclick="var e=document.getElementById('g').value;if(e&&e.includes('@')){try{localStorage.setItem('aurigen_email',e);localStorage.setItem('aurigen_access','free');}catch(x){}var rc='';try{var rx=localStorage.getItem('aurigen_ref_expiry');if(rx&&Date.now()<Number(rx)){rc=localStorage.getItem('aurigen_ref')||'';}else if(rx){localStorage.removeItem('aurigen_ref');localStorage.removeItem('aurigen_ref_expiry');}}catch(x){}var lang='en';try{lang=localStorage.getItem('aurigen_lang')||'en';}catch(x){}fetch('/.netlify/functions/capture-email',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,language:lang,ref_code:rc||undefined})}).catch(function(){});window.location.href='/warroom-billion.html';}else{document.getElementById('g').style.border='1px solid #e05c5c';}" class="gate-email-btn" data-en="FREE ACCESS &rarr;" data-es="ACCESO GRATIS &rarr;">FREE ACCESS &rarr;</button>
     </div>
 
-    <p class="gate-fine" data-en="No spam. Unsubscribe anytime. <a href='/legal.html'>Privacy</a>" data-es="Sin spam. Cancela cuando quieras. <a href='/legal.html'>Privacidad</a>">No spam. Unsubscribe anytime. <a href="/legal.html">Privacy</a></p>
+    <p class="gate-fine" data-en="No spam. Unsubscribe anytime. <a href='/privacy.html'>Privacy</a>" data-es="Sin spam. Cancela cuando quieras. <a href='/privacy.html'>Privacidad</a>">No spam. Unsubscribe anytime. <a href="/privacy.html">Privacy</a></p>
   </div>
 
   <div class="stats-row anim">
     <div class="stat"><div class="stat-num">3,200+</div><div class="stat-label" data-en="Counties" data-es="Condados">Counties</div></div>
     <div class="stat"><div class="stat-num">51</div><div class="stat-label" data-en="States" data-es="Estados">States</div></div>
     <div class="stat"><div class="stat-num">$0/mo</div><div class="stat-label" data-en="Monthly fee" data-es="Cuota mensual">Monthly fee</div></div>
-    <div class="stat"><div class="stat-num">Live</div><div class="stat-label" data-en="Auction data" data-es="Datos de subastas">Auction data</div></div>
+    <div class="stat"><div class="stat-num">Updated</div><div class="stat-label" data-en="Auction data" data-es="Datos de subastas">Auction data</div></div>
   </div>
 
   <p class="gate-disclaimer" data-en="Property data sourced from public auction records. Aurigen does not verify accuracy or recommend investments. Perform independent due diligence before purchasing." data-es="Datos de propiedades obtenidos de registros p&uacute;blicos de subastas. Aurigen no verifica la precisi&oacute;n ni recomienda inversiones. Realice su propia diligencia debida antes de comprar.">Property data sourced from public auction records. Aurigen does not verify accuracy or recommend investments. Perform independent due diligence before purchasing.</p>
@@ -235,7 +235,7 @@
 
 <!-- FOOTER -->
 <footer style="position:relative;z-index:10;text-align:center;padding:24px;border-top:1px solid rgba(255,255,255,0.04);">
-  <a href="/legal.html" style="color:var(--muted);font-size:12px;margin:0 16px;" data-en="Privacy Policy" data-es="Pol&iacute;tica de Privacidad">Privacy Policy</a>
+  <a href="/privacy.html" style="color:var(--muted);font-size:12px;margin:0 16px;" data-en="Privacy Policy" data-es="Pol&iacute;tica de Privacidad">Privacy Policy</a>
   <a href="/legal.html" style="color:var(--muted);font-size:12px;margin:0 16px;" data-en="Terms of Service" data-es="T&eacute;rminos de Servicio">Terms of Service</a>
 </footer>
 

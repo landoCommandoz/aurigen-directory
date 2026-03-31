@@ -126,20 +126,19 @@ var SCOUT_STATE_RULES = {
         note:'Connecticut imposes an 18% penalty (not a per-annum rate) on redemption. Statute: CGS §12-157.' },
   IA: { type:'lien', redemption_months:21, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:true, registration_required:true, deposit_pct:0,
         note:'Iowa redemption is 21 months (1 year 9 months) plus a 90-day notice period after that. Rate: 2%/month (24%/yr). Statute: Iowa Code §447.1.' },
-  IL: { type:'lien', redemption_months:30, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:0 },
+  IL: { type:'lien', redemption_months:30, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:0,
+        note:'Redemption period varies by property type (24–30 months). Confirm with county clerk before bidding.' },
   IN: { type:'lien', redemption_months:12, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:true, registration_required:true, deposit_pct:0 },
   MD: { type:'lien', redemption_months:6, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:true, online_auction:true, registration_required:true, deposit_pct:0,
-        note:'Maryland rates vary EXTREME by county — 6% to 24%. Verify the exact rate for your target county before bidding. Statute: MD Code Tax-Prop §14-817.' },
+        note:'Maryland has no fixed redemption period — 6 months is the minimum before foreclosure filing can begin. Rates vary EXTREME by county (6% to 24%). Verify directly with the county. Statute: MD Code Tax-Prop §14-817.' },
   NJ: { type:'lien', redemption_months:24, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:true, online_auction:true, registration_required:true, deposit_pct:0,
         note:'NJ redemption: 2 years (private certificate holder); 6 months if municipality holds the lien. HOA super-liens apply. Statute: NJSA 54:5-86.' },
   SC: { type:'lien', redemption_months:12, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:5,
-        note:'South Carolina is classified lien — the investor receives a tax receipt (not a deed) and must foreclose after the 1-year redemption expires. SC Code §12-51-90.' },
-
-  // --- DEED STATES ---
-  GA: { type:'deed', redemption_months:12, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:0,
-        note:'Georgia is a redeemable deed state. Investor receives the deed at auction but the owner retains 1-year right of redemption. OCGA §48-4-1.' },
+        note:'South Carolina is classified lien — the investor receives a tax receipt (not a deed) and must foreclose after the 1-year redemption expires. Deposit requirements vary by county — verify before auction day. SC Code §12-51-90.' },
 
   // --- REDEEMABLE DEED STATES ---
+  GA: { type:'redeemable_deed', redemption_months:12, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:0,
+        note:'Georgia is a redeemable deed state. Investor receives the deed at auction but the owner retains 1-year right of redemption. Penalty: 20% year 1, 10%/yr thereafter. OCGA §48-4-1.' },
   TX: {
     type:'redeemable_deed',
     // Redemption: 180 days (6 months) for non-homestead/non-ag; 2 years (24 months) for homestead/ag
