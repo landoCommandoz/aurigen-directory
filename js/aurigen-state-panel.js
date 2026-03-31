@@ -1,6 +1,16 @@
 // Aurigen — State Panel (tabbed bottom sheet)
 // Owns the entire state detail panel. Replaces inline-style approach.
 
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 var StatePanel = {
 
   open: async function (id) {
