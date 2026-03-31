@@ -245,8 +245,8 @@ function daRenderColumn(side, r) {
   var typeLabels = {lien:'TAX LIEN',deed:'TAX DEED',redeemable:'RDBL DEED',hybrid:'HYBRID',forfeiture:'FORFEITURE'};
   var c = colors[r.type] || '#00D4FF';
   var tl = typeLabels[r.type] || r.type.toUpperCase();
-  var rateShort = shortenRate(r.rate, r.type);
-  var holdShort = shortenHold(r.redemption, r.type);
+  var rateShort = r.rate ? String(r.rate) : 'N/A';
+  var holdShort = r.redemption ? String(r.redemption) : 'N/A';
   var bidShort = r.bidMethod ? (r.bidMethod.length > 20 ? r.bidMethod.slice(0, 18) + '\u2026' : r.bidMethod) : 'N/A';
 
   metaEl.innerHTML =

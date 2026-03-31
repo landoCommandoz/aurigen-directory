@@ -145,8 +145,8 @@
           </div>
         </div>
         <div id="tabs">
-          <button class="tab active" onclick="switchExploreView('map')">&#9707;  MAP</button>
-          <button class="tab" onclick="switchExploreView('list')">&#8801;  LIST</button>
+          <button class="tab active" id="tab-map" onclick="document.getElementById('view-map').classList.remove('hidden');document.getElementById('view-list').classList.add('hidden');document.getElementById('tab-map').classList.add('active');document.getElementById('tab-list').classList.remove('active');">&#9707; MAP</button>
+          <button class="tab" id="tab-list" onclick="document.getElementById('view-list').classList.remove('hidden');document.getElementById('view-map').classList.add('hidden');document.getElementById('tab-list').classList.add('active');document.getElementById('tab-map').classList.remove('active');">&#8801; LIST</button>
         </div>
       </div>
 
