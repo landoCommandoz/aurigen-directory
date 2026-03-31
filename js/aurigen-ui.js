@@ -28,27 +28,7 @@ function toggleSaveState(code) {
   updateJourneyBar();
 }
 function updateMapBookmarks() {
-  if (!svgEl) return;
-  var saved = getSavedStates();
-  // Remove old bookmark icons
-  svgEl.selectAll('.state-bookmark').remove();
-  if (saved.length === 0) return;
-  svgEl.selectAll('.state-path').each(function(d) {
-    var s = getStateData(d);
-    if (!s) return;
-    var abbr = s.abbr || s.c;
-    if (saved.indexOf(abbr) < 0) return;
-    var c = pathGen.centroid(d);
-    if (!c || isNaN(c[0])) return;
-    svgEl.append('text')
-      .attr('class', 'state-bookmark')
-      .attr('x', c[0] + 8)
-      .attr('y', c[1] - 6)
-      .attr('font-size', '10px')
-      .attr('fill', '#c9a84c')
-      .attr('pointer-events', 'none')
-      .text('\u2605');
-  });
+  // map rebuild pending — no-op
 }
 
 var PULSE_ALERTS = [
