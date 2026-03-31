@@ -257,15 +257,10 @@ var svgEl, pathGen;
 
 function initMap() {
   svgEl = d3.select('#map-svg');
-  var wrap = document.getElementById('map-wrap');
-  console.log('[initMap] map-wrap dimensions:', wrap ? wrap.offsetWidth + 'x' + wrap.offsetHeight : 'NOT FOUND', 'getBoundingClientRect:', wrap ? JSON.stringify(wrap.getBoundingClientRect()) : 'N/A');
-  var rect = wrap ? wrap.getBoundingClientRect() : {width:960,height:600};
-  var w = rect.width || 960;
-  var h = (rect.height > 50 ? rect.height : null) || wrap.offsetHeight || (window.innerHeight - 180) || 600;
-  var scale = Math.min(w / 960, h / 600) * 1000;
-  var projection = d3.geoAlbersUsa().scale(scale).translate([w/2, h/2]);
+  var VB_W = 960, VB_H = 600;
+  var projection = d3.geoAlbersUsa().scale(1000).translate([VB_W/2, VB_H/2]);
   pathGen = d3.geoPath().projection(projection);
-  if (svgEl) { svgEl.attr('width', w).attr('height', h).attr('viewBox', '0 0 ' + w + ' ' + h); }
+  if (svgEl) { svgEl.attr('viewBox', '0 0 ' + VB_W + ' ' + VB_H).attr('preserveAspectRatio', 'xMidYMid meet'); }
 
   fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
     .then(function(r){ return r.json(); })
@@ -327,16 +322,11 @@ function initMap() {
 
 // Full map redraw — recompute projection, update all paths and labels
 function redrawMap() {
-  var wrap = document.getElementById('map-wrap');
-  if (!wrap || !svgEl) return;
-  var rect = wrap.getBoundingClientRect();
-  var w = rect.width || wrap.clientWidth || 960;
-  var h = (rect.height > 50 ? rect.height : null) || wrap.clientHeight || wrap.offsetHeight || (window.innerHeight - 180) || 600;
-  if (w < 10 || h < 10) return;
-  var scale = Math.min(w / 960, h / 600) * 1000;
-  var projection = d3.geoAlbersUsa().scale(scale).translate([w/2, h/2]);
+  if (!svgEl) return;
+  var VB_W = 960, VB_H = 600;
+  var projection = d3.geoAlbersUsa().scale(1000).translate([VB_W/2, VB_H/2]);
   pathGen = d3.geoPath().projection(projection);
-  svgEl.attr('width', w).attr('height', h).attr('viewBox', '0 0 ' + w + ' ' + h);
+  svgEl.attr('viewBox', '0 0 ' + VB_W + ' ' + VB_H).attr('preserveAspectRatio', 'xMidYMid meet');
   svgEl.selectAll('.state-path').attr('d', pathGen);
   svgEl.selectAll('.state-label').attr('transform', function(d) {
     var c = pathGen.centroid(d);
