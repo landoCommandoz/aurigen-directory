@@ -230,8 +230,8 @@ function renderAuctionsInvCards(container, countyName) {
     var eqRaw = null;
     if (p.equity_cushion_pct != null && isFinite(p.equity_cushion_pct)) {
       eqRaw = Math.round(p.equity_cushion_pct);
-    } else if (p.assessed_value != null && p.opening_bid != null && p.assessed_value > 0) {
-      eqRaw = Math.round(((p.assessed_value - p.opening_bid) / p.assessed_value) * 100);
+    } else if (p.assessed_value != null && p.opening_bid != null && Number(p.assessed_value) > 0) {
+      eqRaw = Math.round(((Number(p.assessed_value) - Number(p.opening_bid)) / Number(p.assessed_value)) * 100);
     }
     var eqPct = eqRaw !== null ? eqRaw + '%' : '\u2014';
     var eqClass = eqRaw === null ? 'dim' : eqRaw >= 80 ? 'green' : eqRaw >= 50 ? 'yellow' : 'red';
