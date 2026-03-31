@@ -161,10 +161,10 @@ function buildLegend() {
   var counts = {};
   Object.keys(TYPES).forEach(function(t){ counts[t] = ALL_STATES.filter(function(s){ return (s._v2type||s.type)===t; }).length; });
   var PILL_LABELS={lien:'Tax Lien',deed:'Tax Deed',redeemable:'Redeemable',hybrid:'Hybrid',forfeiture:'Forfeiture'};
-  document.getElementById('type-legend').innerHTML = Object.entries(TYPES).map(function(e){
+  var _tl = document.getElementById('type-legend'); if (_tl) { _tl.innerHTML = Object.entries(TYPES).map(function(e){
     var k=e[0], v=e[1];
     return '<div class="leg-item" style="border:1px solid '+v.color+'40;background:'+v.color+'14"><div class="leg-dot" style="background:'+v.color+';box-shadow:0 0 6px '+v.color+'"></div><span class="leg-label">'+(PILL_LABELS[k]||k)+'</span><span class="leg-count" style="color:'+v.color+'">'+counts[k]+'</span></div>';
-  }).join('');
+  }).join(''); }
   document.getElementById('map-legend').innerHTML = Object.entries(TYPES).map(function(e){
     var k=e[0], v=e[1];
     return '<div class="mleg-item"><div class="mleg-swatch" style="background:'+v.color+'"></div><span class="mleg-txt">'+v.label+'</span></div>';
