@@ -17,10 +17,17 @@ var StatePanel = {
     if (typeof AccessManager !== 'undefined' && !AccessManager.canAccessState(id)) {
       return;
     }
-    var states = window.STATES || window.STATES_EN || [];
+    var states = window.STATES || window.STATES_EN || window.ALL_STATES || [];
     var s = null;
     for (var i = 0; i < states.length; i++) {
-      if ((states[i].id || states[i].abbr || states[i].c) === id) { s = states[i]; break; }
+      var st = states[i];
+      if ((st.id || st.abbr || st.c || st.code) === id) { s = st; break; }
+    }
+    if (!s) {
+      var allSt = window.ALL_STATES || [];
+      for (var j = 0; j < allSt.length; j++) {
+        if ((allSt[j].abbr || allSt[j].c || allSt[j].code) === id) { s = allSt[j]; break; }
+      }
     }
     if (!s) return;
 
