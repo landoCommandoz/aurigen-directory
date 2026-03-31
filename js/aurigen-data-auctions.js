@@ -209,8 +209,8 @@ function renderAuctionsInvCards(container, countyName) {
     var typeLabel = typeLower.indexOf('resident') >= 0 ? 'Residential' : typeLower.indexOf('commerc') >= 0 ? 'Commercial' : typeLower.indexOf('vacant') >= 0 || typeLower.indexOf('land') >= 0 ? 'Vacant Land' : (p.property_type || 'Unknown');
     var pills = '<span class="prop-pill prop-pill-' + typeClass + '">' + escapeHtml(typeLabel) + '</span>';
     if (p.absentee_owner) pills += '<span class="prop-pill prop-pill-absentee">ABSENTEE</span>';
-    var bid = p.opening_bid !== null ? '$' + Number(p.opening_bid).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
-    var assessed = p.assessed_value !== null ? '$' + Number(p.assessed_value).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
+    var bid = p.opening_bid != null ? '$' + Number(p.opening_bid).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
+    var assessed = p.assessed_value != null ? '$' + Number(p.assessed_value).toLocaleString('en-US', {maximumFractionDigits:0}) : '--';
     var eqRaw = (p.equity_cushion_pct != null && isFinite(p.equity_cushion_pct)) ? Math.round(p.equity_cushion_pct) : null;
     var eqPct = eqRaw !== null ? eqRaw + '%' : '\u2014';
     var eqClass = eqRaw === null ? '' : eqRaw > 200 ? ' equity-high' : eqRaw >= 100 ? ' equity-mid' : ' equity-low';
