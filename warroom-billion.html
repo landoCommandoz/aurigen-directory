@@ -153,54 +153,6 @@
       <!-- MAP VIEW -->
       <div class="view" id="view-map">
         <div id="map-split">
-          <!-- LEFT: FILTER PANEL -->
-          <div id="map-filter-panel">
-            <div class="mfp-header">
-              <div class="mfp-title" data-i18n="mfp_title">State Intelligence</div>
-              <div class="mfp-subtitle" id="mfp-subtitle" data-i18n="mfp_subtitle">51 jurisdictions &middot; Click any state</div>
-            </div>
-            <div class="mfp-search">
-              <div class="mfp-search-wrap">
-                <span class="mfp-search-icon">&#8981;</span>
-                <input class="mfp-search-input" id="mfp-search" type="text" placeholder="Search states&hellip;" data-i18n="mfp_search_placeholder" oninput="handleMapSearch(this.value)">
-                <button class="mfp-search-clear" id="mfp-search-clear" onclick="clearMapSearch()">&times;</button>
-              </div>
-            </div>
-            <div class="mfp-filters">
-              <div class="mfp-filters-label">FILTER BY TYPE</div>
-              <div class="mfp-grid" id="mfp-grid"></div>
-              <button class="mfp-show-all active" id="mfp-show-all" onclick="setMapFilter('all')">Show All &middot; 51</button>
-            </div>
-            <div class="mfp-state-list" id="mfp-state-list"></div>
-          </div>
-          <!-- RIGHT: MAP -->
-          <div id="map-wrap">
-            <button class="score-overlay-toggle" id="score-overlay-toggle" onclick="toggleScoreOverlay()" style="min-height:44px;min-width:44px;position:relative;z-index:50;pointer-events:auto;cursor:pointer;">SHOW OPPORTUNITY SCORES</button>
-            <div id="ambient-glow"></div>
-            <svg id="map-svg"></svg>
-            <div id="map-legend"></div>
-          </div>
-        </div>
-        <div id="map-footer">
-          <span class="footer-txt" data-i18n="map_footer_left">AURIGEN &middot; TAX INVESTMENT INTELLIGENCE &middot; 2026</span>
-          <span class="footer-txt" data-i18n="map_footer_right">51 JURISDICTIONS</span>
-        </div>
-        <!-- MOBILE: filter drawer (triggered from nav) -->
-        <div id="mfp-drawer-overlay" onclick="toggleMobileDrawer()"></div>
-        <div id="mfp-mobile-drawer">
-          <div class="mfp-drawer-handle"></div>
-          <div class="mfp-search" style="padding:0 0 10px">
-            <div class="mfp-search-wrap">
-              <span class="mfp-search-icon">&#8981;</span>
-              <input class="mfp-search-input" id="mfp-search-mobile" type="text" placeholder="Search states&hellip;" oninput="handleMapSearch(this.value)">
-              <button class="mfp-search-clear" id="mfp-search-clear-mobile" onclick="clearMapSearch()">&times;</button>
-            </div>
-          </div>
-          <div class="mfp-filters" style="padding:0 0 8px">
-            <div class="mfp-filters-label">FILTER BY TYPE</div>
-            <div class="mfp-grid" id="mfp-grid-mobile"></div>
-            <button class="mfp-show-all active" id="mfp-show-all-mobile" onclick="setMapFilter('all')">Show All &middot; 51</button>
-          </div>
         </div>
       </div>
 
