@@ -137,7 +137,7 @@ function renderStateList() {
     var label = type.toUpperCase();
     var rate = s.rate || s.r || '\u2014';
     var redemption = s.redemption || s.hold || '\u2014';
-    var abbr = s.abbr || s.c || '';
+    var abbr = s.id || s.abbr || s.c || '';
     return '<div data-abbr="' + abbr + '" class="state-row" style="display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer;transition:background 0.15s;">'
       + '<span style="color:#9898b0;font-size:11px;font-family:Space Mono,monospace;min-width:24px;">' + (i + 1) + '</span>'
       + '<span style="background:' + color + '22;color:' + color + ';border:1px solid ' + color + '55;font-size:10px;font-family:Space Mono,monospace;padding:2px 8px;border-radius:2px;min-width:56px;text-align:center;">' + label + '</span>'

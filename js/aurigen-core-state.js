@@ -190,7 +190,9 @@ function switchTab(name) {
     var trigger = document.getElementById('tab-tools-menu');
     if (trigger) trigger.classList.add('active');
   }
-  document.getElementById('panel-' + name).classList.add('active');
+  var targetPanel = document.getElementById('panel-' + name);
+  if (!targetPanel) { console.warn('[switchTab] panel-' + name + ' not found'); return; }
+  targetPanel.classList.add('active');
   APP.activeTab = name;
   closeToolsMenu();
   // Refresh map size when switching back to map tab

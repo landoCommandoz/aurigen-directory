@@ -94,12 +94,18 @@ var TYPE_RATIONALE = {
       s.countyData = CD[abbr];           // full schema array
       s.countyRules = CD[abbr + '_STATE_RULES'] || null;
     }
-    // Fallback: states-en.js thin arrays
+    // Enrich from states-en.js — overview fields + county fallback
     var en = enMap[abbr];
     if (en) {
       if (!s.countyData) s.counties = en.counties || [];
       s.otc = en.otc || null;
       s.auctionSignup = en.auctionSignup || null;
+      s.note = en.note || s.note || '';
+      s.risks = en.risks || s.risks || [];
+      s.beginnerTip = en.beginnerTip || s.beginnerTip || '';
+      s.beginnerFriendly = en.beginnerFriendly !== undefined ? en.beginnerFriendly : s.beginnerFriendly;
+      s.score = en.score !== undefined ? en.score : s.score;
+      s.scoreWhy = en.scoreWhy || s.scoreWhy || '';
     }
   });
 })();

@@ -17,16 +17,17 @@ var StatePanel = {
     if (typeof AccessManager !== 'undefined' && !AccessManager.canAccessState(id)) {
       return;
     }
-    var states = window.STATES || window.STATES_EN || window.ALL_STATES || [];
+    // Prefer ALL_STATES (has countyData merged) over STATES_EN (thin data)
+    var allSt = window.ALL_STATES || [];
     var s = null;
-    for (var i = 0; i < states.length; i++) {
-      var st = states[i];
-      if ((st.id || st.abbr || st.c || st.code) === id) { s = st; break; }
+    for (var j = 0; j < allSt.length; j++) {
+      if ((allSt[j].id || allSt[j].abbr || allSt[j].c || allSt[j].code) === id) { s = allSt[j]; break; }
     }
     if (!s) {
-      var allSt = window.ALL_STATES || [];
-      for (var j = 0; j < allSt.length; j++) {
-        if ((allSt[j].abbr || allSt[j].c || allSt[j].code) === id) { s = allSt[j]; break; }
+      var states = window.STATES || window.STATES_EN || [];
+      for (var i = 0; i < states.length; i++) {
+        var st = states[i];
+        if ((st.id || st.abbr || st.c || st.code) === id) { s = st; break; }
       }
     }
     if (!s) return;
