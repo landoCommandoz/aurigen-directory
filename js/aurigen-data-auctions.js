@@ -227,15 +227,20 @@ function renderAuctionsInvCards(container, countyName) {
     var lienAmt = p.lien_amount != null ? '$' + Number(p.lien_amount).toLocaleString() : '\u2014';
     var lienYear = p.lien_year || p.tax_year || '\u2014';
     var delinquent = p.years_delinquent != null ? p.years_delinquent + 'yr' : (p.delinquency_years != null ? p.delinquency_years + 'yr' : '\u2014');
-    var eqRaw = (p.equity_cushion_pct != null && isFinite(p.equity_cushion_pct)) ? Math.round(p.equity_cushion_pct) : null;
+    var eqRaw = null;
+    if (p.equity_cushion_pct != null && isFinite(p.equity_cushion_pct)) {
+      eqRaw = Math.round(p.equity_cushion_pct);
+    } else if (p.assessed_value != null && p.opening_bid != null && p.assessed_value > 0) {
+      eqRaw = Math.round(((p.assessed_value - p.opening_bid) / p.assessed_value) * 100);
+    }
     var eqPct = eqRaw !== null ? eqRaw + '%' : '\u2014';
     var eqClass = eqRaw === null ? 'dim' : eqRaw >= 80 ? 'green' : eqRaw >= 50 ? 'yellow' : 'red';
     var eqColor = eqRaw === null ? '#6b7280' : eqRaw >= 80 ? '#3ecf8e' : eqRaw >= 50 ? '#fbbf24' : '#f87171';
     var ringOffset = eqRaw !== null ? Math.round(138.2 - (Math.min(eqRaw, 100) / 100) * 138.2) : 138.2;
     var county = escapeHtml(p.county || '');
     var state = escapeHtml(p.state || p.state_code || '');
-    var location = county && state ? county + ', ' + state : (state || county || '');
-    var propData = escapeHtml(JSON.stringify({address:p.address,bid:p.opening_bid,assessed:p.assessed_value,equity:eqRaw,lien:p.lien_amount,year:lienYear,county:p.county,state:p.state||p.state_code}));
+    var location = state ? state : '';
+    var propData = encodeURIComponent(JSON.stringify({address:p.address,opening_bid:p.opening_bid,assessed_value:p.assessed_value,equity:eqRaw,lien_amount:p.lien_amount,year:lienYear,county:p.county,state_code:p.state_code||p.state,state:p.state||p.state_code}));
     html += '<div class="prop-card">';
     html += '<div class="prop-card-head">';
     html += '<div class="prop-card-num">' + filteredIndex + '</div>';

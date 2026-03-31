@@ -34,9 +34,12 @@
     .scout-hdr-progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.3s}
     .scout-state-rules{background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:14px 16px;margin-bottom:16px}
     .scout-state-rules-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--accent);margin-bottom:8px}
-    .scout-state-info,.scout-state-warning,.scout-state-action{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;line-height:1.5;color:var(--text2);padding:4px 0}
+    .scout-state-info,.scout-state-warning,.scout-state-action,.scout-state-source{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;line-height:1.5;color:var(--text2);padding:4px 0}
     .scout-state-warning{color:#FF6B35}
     .scout-state-action{color:var(--teal)}
+    .scout-state-track-header{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--accent);padding:8px 0 4px;margin-top:6px;border-top:1px solid rgba(201,168,76,0.12)}
+    .scout-state-track-header:first-child{border-top:none;margin-top:0}
+    .scout-state-source{font-size:10px;color:rgba(255,255,255,0.3);padding-top:6px;border-top:1px solid rgba(255,255,255,0.06);margin-top:4px}
     .scout-complete-banner{background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:10px;padding:16px 20px;display:flex;align-items:center;gap:12px;margin-bottom:20px}
     .scout-complete-icon{width:24px;height:24px;border-radius:50%;background:rgba(74,222,128,0.2);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
     .scout-complete-text{flex:1}

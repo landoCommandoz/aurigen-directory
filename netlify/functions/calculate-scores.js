@@ -149,7 +149,7 @@ exports.handler = async function(event) {
       var batch = scores.slice(b, b + 100);
       var { error: uErr } = await supabase
         .from('county_scores')
-        .upsert(batch, { onConflict: 'state_code,county' });
+        .upsert(batch, { onConflict: 'county,state_code' });
       if (uErr) {
         console.error('[calculate-scores] Upsert error:', uErr.message);
         batchErrors++;

@@ -113,19 +113,145 @@ var SCOUT_STEPS = [
 ];
 
 // State-specific due diligence rules
+// type values: 'lien' | 'deed' | 'redeemable_deed' | 'hybrid'
+// For hybrid states, lienTrack and deedTrack hold separate item arrays.
 var SCOUT_STATE_RULES = {
+  // --- LIEN STATES ---
+  AL: { type:'lien', redemption_months:36, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:0,
+        note:'Alabama lien certificate rate is 12% per annum. Statute: Ala. Code §40-10-1 et seq.' },
   AZ: { type:'lien', redemption_months:36, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:true, registration_required:true, deposit_pct:0 },
-  FL: { type:'lien', redemption_months:24, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:true, online_auction:true, registration_required:true, deposit_pct:0 },
-  TX: { type:'deed', redemption_months:6, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:true, online_auction:false, registration_required:true, deposit_pct:5 },
-  GA: { type:'deed', redemption_months:12, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:0 },
-  NJ: { type:'lien', redemption_months:24, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:true, online_auction:true, registration_required:true, deposit_pct:0 },
-  MD: { type:'lien', redemption_months:6, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:true, online_auction:true, registration_required:true, deposit_pct:0 },
-  CO: { type:'lien', redemption_months:36, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:true, registration_required:true, deposit_pct:0 },
+  CO: { type:'lien', redemption_months:36, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:true, online_auction:true, registration_required:true, deposit_pct:0,
+        note:'Colorado grants HOA super-lien priority under CRS §38-33.3-316. Verify HOA status before bidding.' },
+  CT: { type:'lien', redemption_months:12, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:0,
+        note:'Connecticut imposes an 18% penalty (not a per-annum rate) on redemption. Statute: CGS §12-157.' },
+  IA: { type:'lien', redemption_months:21, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:true, registration_required:true, deposit_pct:0,
+        note:'Iowa redemption is 21 months (1 year 9 months) plus a 90-day notice period after that. Rate: 2%/month (24%/yr). Statute: Iowa Code §447.1.' },
   IL: { type:'lien', redemption_months:30, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:0 },
-  OH: { type:'deed', redemption_months:0, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:10 },
-  SC: { type:'deed', redemption_months:12, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:5 },
   IN: { type:'lien', redemption_months:12, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:true, registration_required:true, deposit_pct:0 },
-  IA: { type:'lien', redemption_months:24, quiet_title_required:false, irs_lien_survives:true, hoa_super_lien:false, online_auction:true, registration_required:true, deposit_pct:0 }
+  MD: { type:'lien', redemption_months:6, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:true, online_auction:true, registration_required:true, deposit_pct:0,
+        note:'Maryland rates vary EXTREME by county — 6% to 24%. Verify the exact rate for your target county before bidding. Statute: MD Code Tax-Prop §14-817.' },
+  NJ: { type:'lien', redemption_months:24, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:true, online_auction:true, registration_required:true, deposit_pct:0,
+        note:'NJ redemption: 2 years (private certificate holder); 6 months if municipality holds the lien. HOA super-liens apply. Statute: NJSA 54:5-86.' },
+  SC: { type:'lien', redemption_months:12, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:5,
+        note:'South Carolina is classified lien — the investor receives a tax receipt (not a deed) and must foreclose after the 1-year redemption expires. SC Code §12-51-90.' },
+
+  // --- DEED STATES ---
+  GA: { type:'deed', redemption_months:12, quiet_title_required:true, irs_lien_survives:true, hoa_super_lien:false, online_auction:false, registration_required:true, deposit_pct:0,
+        note:'Georgia is a redeemable deed state. Investor receives the deed at auction but the owner retains 1-year right of redemption. OCGA §48-4-1.' },
+
+  // --- REDEEMABLE DEED STATES ---
+  TX: {
+    type:'redeemable_deed',
+    // Redemption: 180 days (6 months) for non-homestead/non-ag; 2 years (24 months) for homestead/ag
+    redemption_months:6,
+    redemption_months_homestead:24,
+    quiet_title_required:true,
+    irs_lien_survives:true,
+    hoa_super_lien:false,
+    online_auction:false,   // Most Texas counties are in-person at courthouse; some use RealAuction/GovEase
+    proxy_allowed:true,     // Investor does not need to be present — proxy bidder is allowed
+    registration_required:true,
+    deposit_pct:0,
+    penalty_yr1_pct:25,     // 25% of full auction price in year 1 (not just back taxes)
+    penalty_yr2_pct:50,     // 50% of full auction price in year 2
+    note:'Texas redeemable deed: auction held first Tuesday of each month at county courthouse. In-person bidding at courthouse; proxy bidder allowed — investor does not need to attend. Redemption: 25% penalty yr1, 50% penalty yr2 calculated on the FULL auction price. Non-homestead/non-ag: 180-day redemption. Homestead/ag: 2-year redemption. Winning bidder receives Sheriff\'s/Constable\'s deed. Quiet title recommended before selling or financing. Statute: TX Tax Code §34.01, §34.21.'
+  },
+
+  // --- HYBRID STATES ---
+  // Hybrid states have BOTH a lien track AND a deed track.
+  // lienTrack[] and deedTrack[] hold the state-specific items for each track.
+  FL: {
+    type:'hybrid',
+    // LIEN TRACK
+    lienTrack: [
+      { icon:'\uD83D\uDCDC', text:'LIEN TRACK: Annual tax certificate sale online before June 1 each year. Certificates are auctioned in reverse — you bid the interest rate DOWN from the 18% statutory ceiling, in 0.25% increments. Lowest bid wins.', type:'info' },
+      { icon:'\uD83D\uDCB0', text:'Minimum 5% face value guarantee: all certificates carry a statutory minimum 5% interest regardless of the winning bid rate — protecting returns even on 0% bids. FL Stat §197.432.', type:'info' },
+      { icon:'\u23F0', text:'Redemption period: 2 years from April 1 of the issuance year. Capital is locked until the owner redeems or the period expires. FL Stat §197.472.', type:'info' },
+      { icon:'\uD83C\uDFDB\uFE0F', text:'IRS federal tax liens: the IRS retains a 120-day right of redemption after a tax deed sale. Search PACER for federal liens before bidding on any certificate you intend to convert to a deed. IRC §6323.', type:'warning' },
+      { icon:'\uD83C\uDFE0', text:'HOA super-liens apply in Florida. HOA can foreclose and wipe your lien. Check for outstanding HOA assessments and confirm current balance before bidding. FL Stat §718.116.', type:'warning' },
+      { icon:'\uD83D\uDCBB', text:'Online auction via LienHub.com (lien certificates). Register and pre-fund your account before the county\'s sale date. OTC certificates available year-round on LienHub at full 18% statutory rate. FL Stat §197.4725.', type:'action' },
+      { icon:'\u270D\uFE0F', text:'Pre-registration required per county. Registration typically opens 30 days before the June 1 deadline. Confirm with the specific county.', type:'action' }
+    ],
+    // DEED TRACK
+    deedTrack: [
+      { icon:'\uD83D\uDCDC', text:'DEED TRACK: After the 2-year redemption period expires, the certificate holder applies for a tax deed via the county clerk (FL Stat §197.502). You must pay off all other outstanding certificates on the parcel to apply.', type:'info' },
+      { icon:'\uD83D\uDD0D', text:'County clerk conducts a title search and publishes legal notice. A public deed auction is held 3–6 months after the application is filed. Any bidder can participate — not just the certificate holder.', type:'info' },
+      { icon:'\u26A0\uFE0F', text:'No post-deed redemption period. Once the deed is issued, the former owner has no right of redemption.', type:'info' },
+      { icon:'\uD83C\uDFDB\uFE0F', text:'Winning bidder receives a clerk\'s deed — NOT a warranty deed. Title is not insurable without a quiet title action. FL Stat §95.192 provides a 4-year safe harbor period. Budget for quiet title attorney fees before selling or financing.', type:'warning' },
+      { icon:'\u2696\uFE0F', text:'Quiet title strongly recommended before selling or refinancing the property. Costs vary — verify locally. FL Stat §95.192.', type:'action' },
+      { icon:'\u26D4', text:'Municipal liens, community development district (CDD) liens, and code enforcement liens survive the tax deed sale and become the new owner\'s obligation. FL Stat §197.552. Verify all surviving liens before bidding at the deed auction.', type:'warning' },
+      { icon:'\uD83C\uDFDB\uFE0F', text:'IRS 120-day redemption right survives even after the clerk\'s deed is issued. Do not make improvements until this window closes. IRC §6323; FL Stat §197.552.', type:'warning' }
+    ],
+    // Shared rules that apply regardless of track
+    irs_lien_survives:true,
+    hoa_super_lien:true,
+    online_auction:true,
+    registration_required:true,
+    note:'Florida hybrid: two parallel tracks. Lien track = annual certificate sale online (LienHub). Deed track = 2-year redemption expires → certificate holder applies for deed → clerk\'s public auction. Statutes: FL Stat §197.432, §197.502, §197.552.'
+  },
+
+  NY: {
+    type:'hybrid',
+    lienTrack: [
+      { icon:'\uD83D\uDCDC', text:'LIEN TRACK (NYC + Long Island only): New York City operates one of the largest tax lien sales in the world. Lien certificates carry an 18% statutory rate. NY RPTL §1110.', type:'info' },
+      { icon:'\u26A0\uFE0F', text:'NYC lien sales require BULK qualification — individual investors cannot participate. Minimum purchase amounts apply. Not accessible to most investors. Contact nyc.gov/taxlien for current qualification thresholds.', type:'warning' },
+      { icon:'\uD83C\uDFEB', text:'Upstate NY counties vary by county — some sell liens, some sell deeds. Confirm whether your target county uses lien or deed format before registering. Contact the county Real Property Tax Office.', type:'action' }
+    ],
+    deedTrack: [
+      { icon:'\uD83D\uDCDC', text:'DEED TRACK (Upstate NY counties): Many upstate counties — including Onondaga (Syracuse), Monroe (Rochester), and Erie (Buffalo) — conduct tax deed sales directly. Processes vary significantly by county.', type:'info' },
+      { icon:'\uD83D\uDD0D', text:'Contact the county Real Property Tax Office to confirm format, registration requirements, and auction dates. No statewide centralized platform.', type:'action' },
+      { icon:'\uD83D\uDC65', text:'Strong tenant protection laws statewide. If the property is occupied, eviction can take 12+ months in New York courts. Factor this into your acquisition cost.', type:'warning' },
+      { icon:'\u2696\uFE0F', text:'Quiet title may be required depending on county and property history. Confirm with a licensed New York real estate attorney before transacting.', type:'action' }
+    ],
+    irs_lien_survives:true,
+    hoa_super_lien:false,
+    online_auction:false,
+    registration_required:true,
+    note:'New York hybrid: NYC lien market (bulk only, 18%) and upstate county-level lien or deed markets. Statute: NY RPTL §1110.'
+  },
+
+  OH: {
+    type:'hybrid',
+    lienTrack: [
+      { icon:'\uD83D\uDCDC', text:'LIEN TRACK (34+ lien counties): Over 34 Ohio counties conduct tax lien certificate sales using an 18% upset bid format. Buyers receive a certificate, not the property. ORC §5721.19.', type:'info' },
+      { icon:'\uD83D\uDCBB', text:'Many lien counties use SRI Tax Sale Services (sriservices.com) for online bidding. Verify whether your target county uses SRI or in-person registration.', type:'action' },
+      { icon:'\u23F0', text:'Redemption period: 1 year. Capital is locked during this period. ORC §5721.19.', type:'info' },
+      { icon:'\uD83C\uDFDB\uFE0F', text:'IRS federal tax liens may survive Ohio lien sales. Search PACER for federal liens before bidding. IRC §6323.', type:'warning' }
+    ],
+    deedTrack: [
+      { icon:'\uD83D\uDCDC', text:'DEED TRACK (remaining counties use deed/sheriff sales): These counties sell the property directly at fair market value. No certificate — the winning bidder receives a sheriff\'s deed. ORC §5721.19.', type:'info' },
+      { icon:'\u26A0\uFE0F', text:'CRITICAL first step: Call your target county treasurer to confirm whether it is a lien county or a deed/sheriff sale county BEFORE any due diligence or registration. The process is completely different.', type:'warning' },
+      { icon:'\uD83D\uDCB0', text:'Sheriff sales in deed counties are at market value — limited discount opportunity compared to lien counties.', type:'info' },
+      { icon:'\u2696\uFE0F', text:'Quiet title may be required after sheriff sale deed depending on the county and title history. Confirm with a licensed Ohio real estate attorney.', type:'action' }
+    ],
+    irs_lien_survives:true,
+    hoa_super_lien:false,
+    online_auction:false,   // Varies by county; many lien counties use SRI online
+    registration_required:true,
+    deposit_pct:10,
+    note:'Ohio hybrid: 34+ lien counties (18% upset bid, SRI platform) + remaining deed/sheriff sale counties at market value. VERIFY your target county type first. ORC §5721.19.'
+  },
+
+  WV: {
+    type:'hybrid',
+    lienTrack: [
+      { icon:'\uD83D\uDCDC', text:'LIEN TRACK: Annual tax lien sales conducted October 14 – November 23 by county sheriffs. Investors receive a lien certificate at 12% per annum. WV Code 11A Art.3.', type:'info' },
+      { icon:'\uD83D\uDCC4', text:'Certificate is assignable — it can be transferred to another investor. WV Code 11A Art.3.', type:'info' },
+      { icon:'\u23F0', text:'Redemption period: 18 months (NOT 12 months — this is commonly misquoted). Capital is locked for 18 months. WV Code 11A Art.3.', type:'warning' },
+      { icon:'\u26A0\uFE0F', text:'Mineral rights are commonly separated from surface rights on West Virginia rural parcels. A lien on the surface only does not encumber the minerals. Verify mineral rights status on every rural parcel before bidding.', type:'warning' }
+    ],
+    deedTrack: [
+      { icon:'\uD83D\uDCDC', text:'DEED TRACK: Unredeemed liens after 18 months transfer to deed sales managed by the West Virginia State Auditor. The State Auditor\'s Delinquent Land Sales are held as needed throughout the year.', type:'info' },
+      { icon:'\uD83D\uDD0D', text:'Check the WV State Auditor\'s delinquent land list for upcoming deed sale opportunities: wvsao.gov/CountyCollections', type:'action' },
+      { icon:'\u2696\uFE0F', text:'Quiet title is often required for deed sale properties due to complex historical title issues common in West Virginia. Budget for attorney fees before transacting.', type:'action' },
+      { icon:'\u26A0\uFE0F', text:'Mineral rights remain a critical risk at the deed stage. Separated mineral rights are extremely common in rural WV — confirm status with the WV State Auditor and a licensed title professional.', type:'warning' }
+    ],
+    irs_lien_survives:true,
+    hoa_super_lien:false,
+    online_auction:false,
+    registration_required:true,
+    note:'West Virginia hybrid: county sheriff lien sales (Oct–Nov, 12%/yr, 18-month redemption) → unredeemed → WV State Auditor deed sales. WV Code 11A Art.3.'
+  }
 };
 
 function scoutGetStateItems(stateCode) {
@@ -135,11 +261,81 @@ function scoutGetStateItems(stateCode) {
     items.push({ icon: '\u26A0\uFE0F', text: 'State-specific rules not yet available for this state \u2014 verify with local tax collector.', type: 'warning' });
     return items;
   }
+
+  // HYBRID states: render both lien track and deed track with divider
+  if (rules.type === 'hybrid') {
+    if (rules.lienTrack && rules.lienTrack.length > 0) {
+      items.push({ icon: '\uD83D\uDFE1', text: 'LIEN TRACK \u2014 buying lien certificates', type: 'track-header' });
+      rules.lienTrack.forEach(function(item) { items.push(item); });
+    }
+    if (rules.deedTrack && rules.deedTrack.length > 0) {
+      items.push({ icon: '\uD83D\uDFE0', text: 'DEED TRACK \u2014 certificate-to-deed conversion path', type: 'track-header' });
+      rules.deedTrack.forEach(function(item) { items.push(item); });
+    }
+    // Shared notes
+    if (rules.note) {
+      items.push({ icon: '\uD83D\uDCD6', text: rules.note, type: 'source' });
+    }
+    return items;
+  }
+
+  // REDEEMABLE DEED states
+  if (rules.type === 'redeemable_deed') {
+    items.push({ icon: '\uD83D\uDCDC', text: 'This is a REDEEMABLE DEED state \u2014 you receive the property deed at auction, but the original owner retains a statutory right of redemption.', type: 'info' });
+    if (stateCode.toUpperCase() === 'TX') {
+      items.push({ icon: '\uD83C\uDFDB\uFE0F', text: 'In-person bidding at county courthouse on the first Tuesday of each month. Proxy bidder allowed \u2014 you do not need to attend in person.', type: 'info' });
+      items.push({ icon: '\uD83D\uDCB0', text: 'Redemption penalty: 25% of the full auction price in year 1; 50% in year 2. Calculated on the FULL auction price, not just back taxes. Overbidding dramatically increases your penalty exposure. TX Tax Code \u00a734.21.', type: 'warning' });
+      items.push({ icon: '\u23F0', text: 'Redemption period: 180 days (6 months) for non-homestead/non-agricultural properties. 2 years for homestead and agricultural properties. Verify property classification before bidding. TX Tax Code \u00a734.21.', type: 'warning' });
+      items.push({ icon: '\uD83C\uDFDB\uFE0F', text: 'IRS federal tax liens survive Texas tax deed sales. Search PACER for active federal liens before bidding. IRC \u00a76323.', type: 'warning' });
+      items.push({ icon: '\uD83D\uDCDC', text: 'Winning bidder receives a Sheriff\'s or Constable\'s deed \u2014 NOT a warranty deed. Quiet title is recommended before selling or financing the property. TX Tax Code \u00a734.01.', type: 'action' });
+      items.push({ icon: '\uD83D\uDCA1', text: 'Struck-off properties (properties that did not sell at auction) are available directly from the county tax assessor-collector with no redemption period in many cases. Ask for the struck-off list. TX Tax Code \u00a734.01(p).', type: 'action' });
+    } else {
+      // Generic redeemable deed fallback
+      if (rules.redemption_months > 0) {
+        items.push({ icon: '\u23F0', text: 'Redemption period: ' + rules.redemption_months + ' months. Owner can reclaim the property during this window.', type: 'warning' });
+      }
+      if (rules.quiet_title_required) {
+        items.push({ icon: '\u2696\uFE0F', text: 'Quiet title action recommended after deed acquisition. Costs vary \u2014 verify locally.', type: 'action' });
+      }
+    }
+    if (rules.note) {
+      items.push({ icon: '\uD83D\uDCD6', text: rules.note, type: 'source' });
+    }
+    return items;
+  }
+
+  // DEED states
   if (rules.type === 'deed') {
     items.push({ icon: '\uD83D\uDCDC', text: 'This is a TAX DEED state \u2014 you are bidding on the property itself, not a lien certificate.', type: 'info' });
-  } else {
-    items.push({ icon: '\uD83D\uDCDC', text: 'This is a TAX LIEN state \u2014 you are purchasing a lien certificate, not the property.', type: 'info' });
+    if (rules.quiet_title_required) {
+      items.push({ icon: '\u2696\uFE0F', text: 'Quiet title action required after foreclosure. Budget $1,500\u2013$3,000+ for attorney fees (costs vary \u2014 verify locally).', type: 'action' });
+    }
+    if (rules.irs_lien_survives) {
+      items.push({ icon: '\uD83C\uDFDB\uFE0F', text: 'IRS federal tax liens survive the sale. Check for federal liens before bidding.', type: 'warning' });
+    }
+    if (rules.hoa_super_lien) {
+      items.push({ icon: '\uD83C\uDFE0', text: 'HOA super-liens may apply. Check for outstanding HOA assessments.', type: 'warning' });
+    }
+    if (rules.online_auction) {
+      items.push({ icon: '\uD83D\uDCBB', text: 'Online auction \u2014 register on the platform in advance. Confirm browser/device requirements.', type: 'action' });
+    }
+    if (rules.registration_required) {
+      items.push({ icon: '\u270D\uFE0F', text: 'Pre-registration required. Set calendar reminder for registration deadline.', type: 'action' });
+    }
+    if (rules.deposit_pct > 0) {
+      items.push({ icon: '\uD83D\uDCB0', text: 'Deposit required: typically ' + rules.deposit_pct + '% of bid amount (costs vary \u2014 verify locally). Confirm exact format with the county.', type: 'action' });
+    }
+    if (rules.redemption_months > 0) {
+      items.push({ icon: '\u23F0', text: 'Redemption period: ' + rules.redemption_months + ' months. Capital locked until owner redeems or period expires.', type: 'info' });
+    }
+    if (rules.note) {
+      items.push({ icon: '\uD83D\uDCD6', text: rules.note, type: 'source' });
+    }
+    return items;
   }
+
+  // LIEN states (default)
+  items.push({ icon: '\uD83D\uDCDC', text: 'This is a TAX LIEN state \u2014 you are purchasing a lien certificate, not the property.', type: 'info' });
   if (rules.quiet_title_required) {
     items.push({ icon: '\u2696\uFE0F', text: 'Quiet title action required after foreclosure. Budget $1,500\u2013$3,000+ for attorney fees (costs vary \u2014 verify locally).', type: 'action' });
   }
@@ -160,6 +356,9 @@ function scoutGetStateItems(stateCode) {
   }
   if (rules.redemption_months > 0) {
     items.push({ icon: '\u23F0', text: 'Redemption period: ' + rules.redemption_months + ' months. Capital locked until owner redeems or period expires.', type: 'info' });
+  }
+  if (rules.note) {
+    items.push({ icon: '\uD83D\uDCD6', text: rules.note, type: 'source' });
   }
   return items;
 }
@@ -397,7 +596,18 @@ function scoutRender() {
     out += '<div class="scout-state-rules">';
     out += '<div class="scout-state-rules-title">STATE-SPECIFIC: ' + escapeHtml(d.state || 'GENERAL') + '</div>';
     stateItems.forEach(function(item) {
-      var cls = item.type === 'warning' ? 'scout-state-warning' : (item.type === 'action' ? 'scout-state-action' : 'scout-state-info');
+      var cls;
+      if (item.type === 'warning') {
+        cls = 'scout-state-warning';
+      } else if (item.type === 'action') {
+        cls = 'scout-state-action';
+      } else if (item.type === 'track-header') {
+        cls = 'scout-state-track-header';
+      } else if (item.type === 'source') {
+        cls = 'scout-state-source';
+      } else {
+        cls = 'scout-state-info';
+      }
       out += '<div class="' + cls + '">' + item.icon + ' ' + escapeHtml(item.text) + '</div>';
     });
     out += '</div>';
