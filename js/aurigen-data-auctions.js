@@ -222,26 +222,24 @@ function renderAuctionsInvCards(container, countyName) {
     var lienYr = escapeHtml(String(p.lien_year || '\u2014'));
     var delYrs = p.delinquency_years !== null && p.delinquency_years !== undefined ? escapeHtml(String(p.delinquency_years)) + 'yr' : '--';
     html += '<div class="prop-card">';
-    html += '<div class="prop-card-header">';
-    html += '<div class="prop-card-address">' + addr + '</div>';
-    html += '<div class="prop-card-pills">' + pills + '</div>';
+    html += '<div class="prop-card-top"><div class="prop-card-address">' + addr + '</div><div class="prop-card-pills">' + pills + '</div></div>';
+    html += '<div class="prop-card-stats-6">';
+    html += '<div class="prop-stat"><div class="prop-stat-label">OPENING BID</div><div class="prop-stat-value">' + bid + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">ASSESSED</div><div class="prop-stat-value">' + assessed + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">EQUITY</div><div class="prop-stat-value' + eqClass + '">' + eqPct + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">LIEN AMT</div><div class="prop-stat-value">' + lienAmt + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">LIEN YEAR</div><div class="prop-stat-value">' + lienYr + '</div></div>';
+    html += '<div class="prop-stat"><div class="prop-stat-label">DELINQUENT</div><div class="prop-stat-value">' + delYrs + '</div></div>';
     html += '</div>';
-    html += '<div class="prop-card-row">';
-    html += '<span class="prop-kv"><span class="prop-k">BID</span> ' + bid + '</span>';
-    html += '<span class="prop-kv"><span class="prop-k">ASSESSED</span> ' + assessed + '</span>';
-    html += '<span class="prop-kv"><span class="prop-k">EQUITY</span> <span class="prop-eq' + eqClass + '">' + eqPct + '</span></span>';
-    html += '<span class="prop-kv"><span class="prop-k">LIEN</span> ' + lienAmt + '</span>';
-    html += '<span class="prop-kv"><span class="prop-k">YR</span> ' + lienYr + '</span>';
-    html += '<span class="prop-kv"><span class="prop-k">DEL</span> ' + delYrs + '</span>';
     if (statusLower !== 'active') {
+      html += '<div style="padding:4px 0 8px;">';
       html += '<span class="prop-card-status ' + statusClass + '">' + statusLabel + '</span>';
+      html += '</div>';
     }
-    html += '</div>';
     html += '<div class="prop-card-actions">';
     html += '<button class="prop-action-btn prop-action-primary" onclick="event.stopPropagation();openDealFromProp(\'' + propData + '\')">Analyze</button>';
     html += '<button class="prop-action-btn prop-action-ghost" onclick="event.stopPropagation();openScoutFromProp(\'' + propData + '\')">Scout</button>';
-    html += '</div>';
-    html += '</div>';
+    html += '</div></div>';
   });
   html += '</div>';
   container.innerHTML = html;
