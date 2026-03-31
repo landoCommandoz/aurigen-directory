@@ -221,11 +221,43 @@ function findNextPageButton() {
   return null;
 }
 
+// ── Extract live auction URLs from public discovery page ────
+// GovEase verified URL architecture:
+//   Public:    govease.com/tax-sale-property-auctions (lists upcoming auctions)
+//   Public:    govease.com/foreclosures/{state}/{county} (county landing page)
+//   Live:      liveauctions.govease.com/{state}/{state}{county}/{auction-id}/browsebiddown
+// The auction-id is dynamic per event. We discover it from public pages.
+var LIVE_AUCTION_BASE = 'https://liveauctions.govease.com';
+
+function extractLiveAuctionUrls() {
+  var urls = [];
+  var links = document.querySelectorAll('a[href*="liveauctions.govease.com"], a[href*="browsebid"]');
+  links.forEach(function(a) {
+    var href = a.getAttribute('href') || '';
+    if (href && urls.indexOf(href) === -1) urls.push(href);
+  });
+  // Also check for "Register" / "Bid Now" / "View Auction" buttons
+  var buttons = document.querySelectorAll('a.btn, a[class*="register"], a[class*="bid"], button[onclick]');
+  buttons.forEach(function(btn) {
+    var href = btn.getAttribute('href') || '';
+    var onclick = btn.getAttribute('onclick') || '';
+    if (href.indexOf('liveauctions') !== -1 && urls.indexOf(href) === -1) urls.push(href);
+    var m = onclick.match(/['"]([^'"]*liveauctions[^'"]*)['"]/);
+    if (m && urls.indexOf(m[1]) === -1) urls.push(m[1]);
+  });
+  return urls;
+}
+
 // ── Scrape a single county ──────────────────────────────────
+// Step 1: Hit public foreclosure page to find liveauctions.govease.com link
+// Step 2: If found, navigate to live auction page and scrape parcel table
+// Step 3: If no live link, scrape whatever property data is on the public page
+// NOTE: liveauctions.govease.com may require authentication — parcels are
+//       only visible 1-2 days pre-sale to approved bidders
 async function scrapeCounty(browser, seed) {
   var stateCode = seed[0];
   var county = seed[1];
-  var url = seed[2];
+  var publicUrl = seed[2];
   var properties = [];
   var page = null;
 
@@ -245,55 +277,112 @@ async function scrapeCounty(browser, seed) {
       }
     });
 
-    console.log('[puppeteer-ge] Loading ' + county + ': ' + url);
-    await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+    // ── Step 1: Hit public page, discover live auction URL ──
+    console.log('[puppeteer-ge] Public page: ' + county + ' → ' + publicUrl);
+    await page.goto(publicUrl, { waitUntil: 'networkidle2', timeout: 30000 });
+    await delay(2000);
 
-    // Wait for content
-    try {
-      await page.waitForSelector('table, .property-row, .card, .listing, .auction-card, [class*="auction"], [class*="property"]', { timeout: 10000 });
-    } catch (e) {
-      console.log('[puppeteer-ge] No property table found for ' + county + ', skipping');
-      return { county: county, found: 0, added: 0 };
-    }
+    var liveUrls = await page.evaluate(extractLiveAuctionUrls);
+    console.log('[puppeteer-ge] ' + county + ': found ' + liveUrls.length + ' live auction links');
 
-    // Paginate and extract
-    var pageNum = 1;
-    var maxPages = 50;
+    // ── Step 2: Try live auction pages (may require auth) ──
+    for (var li = 0; li < liveUrls.length; li++) {
+      var liveUrl = liveUrls[li];
+      // Ensure absolute URL
+      if (liveUrl.startsWith('/')) liveUrl = LIVE_AUCTION_BASE + liveUrl;
 
-    while (pageNum <= maxPages) {
-      var pageResults = await page.evaluate(extractPropertiesFromDOM);
-      console.log('[puppeteer-ge] ' + county + ' page ' + pageNum + ': ' + pageResults.length + ' rows');
-
-      for (var i = 0; i < pageResults.length; i++) {
-        var raw = pageResults[i];
-        var rec = buildPropertyRecord({
-          parcel_id:      raw.parcel_id,
-          state_code:     stateCode,
-          county:         county,
-          address:        raw.address,
-          owner_name:     raw.owner_name,
-          assessed_value: raw.assessed_value,
-          opening_bid:    raw.opening_bid,
-          lien_amount:    raw.lien_amount,
-          property_type:  raw.property_type,
-          status:         'active',
-        });
-        if (rec.parcel_id) properties.push(rec);
-      }
-
-      var nextSelector = await page.evaluate(findNextPageButton);
-      if (!nextSelector) break;
+      console.log('[puppeteer-ge] Live auction: ' + county + ' → ' + liveUrl);
 
       try {
-        await page.click(nextSelector);
+        await page.goto(liveUrl, { waitUntil: 'networkidle2', timeout: 30000 });
         await delay(2000);
-        await page.waitForSelector('table, .property-row, .card, .listing, .auction-card', { timeout: 10000 });
-      } catch (e) {
-        console.log('[puppeteer-ge] Pagination ended for ' + county + ' at page ' + pageNum);
-        break;
-      }
 
-      pageNum++;
+        // Check if redirected to login (auth wall)
+        var currentUrl = page.url();
+        if (currentUrl.indexOf('/Account/Login') !== -1 || currentUrl.indexOf('/login') !== -1) {
+          console.log('[puppeteer-ge] ' + county + ': auth wall hit at ' + currentUrl + ' — skipping live page');
+          continue;
+        }
+
+        // Extract property data from live auction page
+        try {
+          await page.waitForSelector('table, [class*="property"], [class*="parcel"], [class*="bid"]', { timeout: 10000 });
+        } catch (e) {
+          console.log('[puppeteer-ge] No parcel table on live page for ' + county);
+          continue;
+        }
+
+        // Paginate through live auction pages
+        var pageNum = 1;
+        var maxPages = 50;
+
+        while (pageNum <= maxPages) {
+          var pageResults = await page.evaluate(extractPropertiesFromDOM);
+          console.log('[puppeteer-ge] ' + county + ' live page ' + pageNum + ': ' + pageResults.length + ' rows');
+
+          for (var i = 0; i < pageResults.length; i++) {
+            var raw = pageResults[i];
+            var rec = buildPropertyRecord({
+              parcel_id:      raw.parcel_id,
+              state_code:     stateCode,
+              county:         county,
+              address:        raw.address,
+              owner_name:     raw.owner_name,
+              assessed_value: raw.assessed_value,
+              opening_bid:    raw.opening_bid,
+              lien_amount:    raw.lien_amount,
+              property_type:  raw.property_type,
+              status:         'active',
+            });
+            if (rec.parcel_id) properties.push(rec);
+          }
+
+          if (pageResults.length === 0) break;
+
+          var nextSelector = await page.evaluate(findNextPageButton);
+          if (!nextSelector) break;
+
+          try {
+            await page.click(nextSelector);
+            await delay(2000);
+            await page.waitForSelector('table, [class*="property"], [class*="parcel"]', { timeout: 10000 });
+          } catch (e) {
+            break;
+          }
+
+          pageNum++;
+        }
+      } catch (e) {
+        console.error('[puppeteer-ge] Error on live page for ' + county + ':', e.message);
+      }
+    }
+
+    // ── Step 3: Fallback — scrape public page if no live data ──
+    if (properties.length === 0) {
+      console.log('[puppeteer-ge] No live data for ' + county + ', scraping public page');
+      await page.goto(publicUrl, { waitUntil: 'networkidle2', timeout: 30000 });
+
+      try {
+        await page.waitForSelector('table, .card, .listing, [class*="auction"], [class*="property"]', { timeout: 10000 });
+        var pubResults = await page.evaluate(extractPropertiesFromDOM);
+        for (var pi = 0; pi < pubResults.length; pi++) {
+          var prec = buildPropertyRecord({
+            parcel_id:      pubResults[pi].parcel_id,
+            state_code:     stateCode,
+            county:         county,
+            address:        pubResults[pi].address,
+            owner_name:     pubResults[pi].owner_name,
+            assessed_value: pubResults[pi].assessed_value,
+            opening_bid:    pubResults[pi].opening_bid,
+            lien_amount:    pubResults[pi].lien_amount,
+            property_type:  pubResults[pi].property_type,
+            status:         'active',
+          });
+          if (prec.parcel_id) properties.push(prec);
+        }
+      } catch (e) {
+        console.log('[puppeteer-ge] No content on public page for ' + county);
+      }
     }
 
     // Upsert

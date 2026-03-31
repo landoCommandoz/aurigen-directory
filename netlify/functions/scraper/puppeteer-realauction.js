@@ -163,46 +163,46 @@ function extractPropertiesFromDOM() {
   return results;
 }
 
-// ── Check for next-page button ──────────────────────────────
-function findNextPageButton() {
-  // Look for "Next" button, ">>" link, pagination controls
-  var selectors = [
-    'a[aria-label="Next"]',
-    'a[rel="next"]',
-    'a:has(> .next)',
-    '.pagination a:last-child',
-    'a[title="Next"]',
-    'button[aria-label="Next"]',
-    '.pager .next a',
-    'a.next',
-    'li.next a',
-  ];
-  for (var i = 0; i < selectors.length; i++) {
-    try {
-      var el = document.querySelector(selectors[i]);
-      if (el && !el.classList.contains('disabled') && !el.hasAttribute('disabled')) {
-        return selectors[i];
-      }
-    } catch (e) { /* selector may be invalid in some browsers */ }
-  }
-  // Fallback: look for link text containing "Next" or ">>"
-  var links = document.querySelectorAll('a, button');
-  for (var j = 0; j < links.length; j++) {
-    var txt = (links[j].textContent || '').trim();
-    if (/^(Next|>>|›|»)$/i.test(txt) && !links[j].classList.contains('disabled')) {
-      // Return a unique selector
-      links[j].setAttribute('data-puppeteer-next', 'true');
-      return '[data-puppeteer-next="true"]';
+// ── Extract auction dates from calendar page ────────────────
+// RealAuction uses ColdFusion: index.cfm?zaction=USER&zmethod=CALENDAR
+// Runs inside page.evaluate
+function extractAuctionDates() {
+  var dates = [];
+  // Calendar links contain AUCTIONDATE param or date-formatted hrefs
+  var links = document.querySelectorAll('a[href*="AUCTIONDATE"], a[href*="auctiondate"], .calendar-day a, td a');
+  links.forEach(function(a) {
+    var href = a.getAttribute('href') || '';
+    // Extract date from AUCTIONDATE param: MM%2FDD%2FYYYY or MM/DD/YYYY
+    var dateMatch = href.match(/AUCTIONDATE=(\d{1,2}(?:%2F|\/)\d{1,2}(?:%2F|\/)\d{4})/i);
+    if (dateMatch) {
+      var decoded = decodeURIComponent(dateMatch[1]);
+      if (dates.indexOf(decoded) === -1) dates.push(decoded);
     }
+  });
+  // Also check for highlighted/active calendar cells
+  if (dates.length === 0) {
+    var cells = document.querySelectorAll('.hasEvent, .active-date, td.event, td a[href*="cfm"]');
+    cells.forEach(function(el) {
+      var text = (el.textContent || '').trim();
+      var href = (el.getAttribute('href') || el.closest('a')?.getAttribute('href') || '');
+      if (/\d{1,2}\/\d{1,2}\/\d{4}/.test(text)) {
+        if (dates.indexOf(text) === -1) dates.push(text);
+      } else if (/\d{1,2}\/\d{1,2}\/\d{4}/.test(href)) {
+        var m = href.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
+        if (m && dates.indexOf(m[1]) === -1) dates.push(m[1]);
+      }
+    });
   }
-  return null;
+  return dates;
 }
 
 // ── Scrape a single county ──────────────────────────────────
+// Step 1: Hit calendar to discover auction dates
+// Step 2: For each date, hit PREVIEW page with pageno= pagination
 async function scrapeCounty(browser, seed) {
   var stateCode = seed[0];
   var county = seed[1];
-  var url = seed[2];
+  var baseUrl = seed[2];
   var properties = [];
   var page = null;
 
@@ -211,7 +211,7 @@ async function scrapeCounty(browser, seed) {
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
     await page.setViewport({ width: 1280, height: 800 });
 
-    // Block images/fonts/stylesheets to speed up loading
+    // Block heavy resources
     await page.setRequestInterception(true);
     page.on('request', function(req) {
       var type = req.resourceType();
@@ -222,60 +222,90 @@ async function scrapeCounty(browser, seed) {
       }
     });
 
-    console.log('[puppeteer-ra] Loading ' + county + ': ' + url);
-    await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+    // ── Step 1: Discover auction dates from calendar ──
+    var calendarUrl = baseUrl + '/index.cfm?zaction=USER&zmethod=CALENDAR';
+    console.log('[puppeteer-ra] Calendar: ' + county + ' → ' + calendarUrl);
+    await page.goto(calendarUrl, { waitUntil: 'networkidle2', timeout: 30000 });
+    await delay(2000);
 
-    // Wait for content to render — try common selectors
-    try {
-      await page.waitForSelector('table, .property-row, .lot-row, .card, .listing, [class*="auction"]', { timeout: 10000 });
-    } catch (e) {
-      console.log('[puppeteer-ra] No property table found for ' + county + ', skipping');
-      return { county: county, found: 0, added: 0 };
-    }
+    var auctionDates = await page.evaluate(extractAuctionDates);
+    console.log('[puppeteer-ra] ' + county + ': found ' + auctionDates.length + ' auction dates');
 
-    // Paginate and extract
-    var pageNum = 1;
-    var maxPages = 50; // safety cap
-
-    while (pageNum <= maxPages) {
-      var pageResults = await page.evaluate(extractPropertiesFromDOM);
-      console.log('[puppeteer-ra] ' + county + ' page ' + pageNum + ': ' + pageResults.length + ' rows');
-
-      // Build records
-      for (var i = 0; i < pageResults.length; i++) {
-        var raw = pageResults[i];
-        var rec = buildPropertyRecord({
-          parcel_id:      raw.parcel_id,
-          state_code:     stateCode,
-          county:         county,
-          address:        raw.address,
-          owner_name:     raw.owner_name,
-          assessed_value: raw.assessed_value,
-          opening_bid:    raw.opening_bid,
-          lien_amount:    raw.lien_amount,
-          property_type:  raw.property_type,
-          status:         'active',
-        });
-        if (rec.parcel_id) properties.push(rec);
-      }
-
-      // Check for next page
-      var nextSelector = await page.evaluate(findNextPageButton);
-      if (!nextSelector) break;
-
+    // If no dates found, try the base URL directly as fallback
+    if (auctionDates.length === 0) {
+      console.log('[puppeteer-ra] No calendar dates for ' + county + ', trying base URL');
+      await page.goto(baseUrl, { waitUntil: 'networkidle2', timeout: 30000 });
       try {
-        await page.click(nextSelector);
-        await delay(2000); // rate limit between pages
-        await page.waitForSelector('table, .property-row, .lot-row, .card, .listing', { timeout: 10000 });
+        await page.waitForSelector('table, [class*="auction"], [class*="property"]', { timeout: 10000 });
+        var fallbackResults = await page.evaluate(extractPropertiesFromDOM);
+        for (var fi = 0; fi < fallbackResults.length; fi++) {
+          var frec = buildPropertyRecord({
+            parcel_id:      fallbackResults[fi].parcel_id,
+            state_code:     stateCode,
+            county:         county,
+            address:        fallbackResults[fi].address,
+            owner_name:     fallbackResults[fi].owner_name,
+            assessed_value: fallbackResults[fi].assessed_value,
+            opening_bid:    fallbackResults[fi].opening_bid,
+            lien_amount:    fallbackResults[fi].lien_amount,
+            property_type:  fallbackResults[fi].property_type,
+            status:         'active',
+          });
+          if (frec.parcel_id) properties.push(frec);
+        }
       } catch (e) {
-        console.log('[puppeteer-ra] Pagination ended for ' + county + ' at page ' + pageNum);
-        break;
+        console.log('[puppeteer-ra] No content at base URL for ' + county);
       }
-
-      pageNum++;
     }
 
-    // Upsert to Supabase
+    // ── Step 2: For each auction date, paginate through PREVIEW ──
+    for (var d = 0; d < auctionDates.length; d++) {
+      var dateStr = auctionDates[d];
+      var encodedDate = encodeURIComponent(dateStr);
+      var pageNum = 1;
+      var maxPages = 50;
+      var prevCount = -1;
+
+      while (pageNum <= maxPages) {
+        var previewUrl = baseUrl + '/index.cfm?zaction=AUCTION&Zmethod=PREVIEW&AUCTIONDATE=' + encodedDate + '&pageno=' + pageNum;
+
+        if (pageNum === 1) {
+          console.log('[puppeteer-ra] ' + county + ' date=' + dateStr + ' → ' + previewUrl);
+        }
+
+        await page.goto(previewUrl, { waitUntil: 'networkidle2', timeout: 30000 });
+        await delay(2000);
+
+        var pageResults = await page.evaluate(extractPropertiesFromDOM);
+        console.log('[puppeteer-ra] ' + county + ' date=' + dateStr + ' page=' + pageNum + ': ' + pageResults.length + ' rows');
+
+        // Stop if empty page or same count as previous (pagination exhausted)
+        if (pageResults.length === 0) break;
+        if (pageResults.length === prevCount && pageNum > 1) break;
+        prevCount = pageResults.length;
+
+        for (var i = 0; i < pageResults.length; i++) {
+          var raw = pageResults[i];
+          var rec = buildPropertyRecord({
+            parcel_id:      raw.parcel_id,
+            state_code:     stateCode,
+            county:         county,
+            address:        raw.address,
+            owner_name:     raw.owner_name,
+            assessed_value: raw.assessed_value,
+            opening_bid:    raw.opening_bid,
+            lien_amount:    raw.lien_amount,
+            property_type:  raw.property_type,
+            status:         'active',
+          });
+          if (rec.parcel_id) properties.push(rec);
+        }
+
+        pageNum++;
+      }
+    }
+
+    // ── Upsert to Supabase ──
     var result = { added: 0, errors: 0 };
     if (properties.length > 0) {
       result = await upsertProperties(properties);
