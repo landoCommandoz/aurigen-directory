@@ -257,10 +257,12 @@ var svgEl, pathGen;
 
 function initMap() {
   svgEl = d3.select('#map-svg');
-  var VB_W = 960, VB_H = 600;
-  var projection = d3.geoAlbersUsa().scale(1000).translate([VB_W/2, VB_H/2]);
+  var w = Math.max(400, window.innerWidth - 280);
+  var h = Math.max(300, window.innerHeight - 180);
+  var scale = Math.min(w, h * 1.6) * 1.1;
+  var projection = d3.geoAlbersUsa().scale(scale).translate([w/2, h/2]);
   pathGen = d3.geoPath().projection(projection);
-  if (svgEl) { svgEl.attr('viewBox', '0 0 ' + VB_W + ' ' + VB_H).attr('preserveAspectRatio', 'xMidYMid meet'); }
+  if (svgEl) { svgEl.attr('width', w).attr('height', h).attr('viewBox', null); }
 
   fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
     .then(function(r){ return r.json(); })
@@ -323,10 +325,12 @@ function initMap() {
 // Full map redraw — recompute projection, update all paths and labels
 function redrawMap() {
   if (!svgEl) return;
-  var VB_W = 960, VB_H = 600;
-  var projection = d3.geoAlbersUsa().scale(1000).translate([VB_W/2, VB_H/2]);
+  var w = Math.max(400, window.innerWidth - 280);
+  var h = Math.max(300, window.innerHeight - 180);
+  var scale = Math.min(w, h * 1.6) * 1.1;
+  var projection = d3.geoAlbersUsa().scale(scale).translate([w/2, h/2]);
   pathGen = d3.geoPath().projection(projection);
-  svgEl.attr('viewBox', '0 0 ' + VB_W + ' ' + VB_H).attr('preserveAspectRatio', 'xMidYMid meet');
+  svgEl.attr('width', w).attr('height', h).attr('viewBox', null);
   svgEl.selectAll('.state-path').attr('d', pathGen);
   svgEl.selectAll('.state-label').attr('transform', function(d) {
     var c = pathGen.centroid(d);
