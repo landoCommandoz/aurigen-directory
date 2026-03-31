@@ -198,6 +198,8 @@ function switchTab(name) {
   if(typeof updateNavFilterBtn==='function') updateNavFilterBtn();
   // Refresh map size when switching back to map tab
   if(name==='map') setTimeout(function(){ if(typeof refreshMapSize==='function')refreshMapSize(); else if(typeof initMap==='function')initMap(); }, 150);
+  if(name==='auctions' && typeof initAuctionsTab==='function') initAuctionsTab();
+  if(name==='account' && typeof initAccount==='function') initAccount();
 
   // Lazy-load Phase 4 tools JS on first access
   if (PHASE4_TABS.indexOf(name) >= 0 && typeof _loadPhase4 === 'function' && !_p4IsLoaded()) {
