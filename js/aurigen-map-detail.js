@@ -14,7 +14,7 @@ function linkifyPlatform(text){
   var result=text;
   Object.keys(PLATFORM_URLS).forEach(function(name){
     var re=new RegExp('('+name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
-    result=result.replace(re,'<a href="'+PLATFORM_URLS[name]+'" target="_blank" rel="noopener noreferrer">$1 \u2197</a>');
+    result=result.replace(re,'<a href="'+PLATFORM_URLS[name]+'" target="_blank" rel="noopener noreferrer" class="platform-badge-link" onclick="event.stopPropagation()">$1 \u2197</a>');
   });
   return result;
 }

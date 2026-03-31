@@ -353,3 +353,22 @@
       overflow: hidden;
     }
 
+    /* === STATE LAW SUMMARY (state panel) === */
+    .state-law-block{margin:16px 0;padding:16px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:8px}
+    .state-law-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#c9a84c;text-transform:uppercase;margin-bottom:12px}
+    .state-law-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+    .law-item{display:flex;flex-direction:column;gap:3px}
+    .law-item-full{grid-column:1 / -1}
+    .law-label{font-family:'Space Mono',monospace;font-size:9px;color:#60607a;letter-spacing:0.12em;text-transform:uppercase}
+    .law-value{font-size:13px;color:#f5f0e8;font-weight:500}
+    .law-badge-lien{color:#c9a84c}
+    .law-badge-deed{color:#2dd4c0}
+    .law-badge-hybrid{color:#9898b0}
+    .law-statute-link{color:#c9a84c;font-size:12px;text-decoration:none;font-family:'Space Mono',monospace}
+    .law-statute-link:hover{text-decoration:underline}
+    .law-disclaimer{font-size:10px;color:#60607a;font-style:italic;line-height:1.5}
+
+    /* === PLATFORM BADGE LINK === */
+    .platform-badge-link{display:inline-block;padding:2px 8px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);color:#c9a84c;font-size:11px;font-family:'Space Mono',monospace;text-decoration:none;letter-spacing:0.08em;cursor:pointer;border-radius:3px}
+    .platform-badge-link:hover{background:rgba(201,168,76,0.2)}
+

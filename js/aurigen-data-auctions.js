@@ -27,7 +27,7 @@ function auctionsInvStateChange() {
   var body = document.getElementById('auctions-inv-body');
   var filtersEl = document.getElementById('auctions-inv-filters');
   countySel.style.display = 'none';
-  countySel.innerHTML = '<option value="">Select a County</option>';
+  countySel.innerHTML = '<option value="">All Counties</option>';
   if (filtersEl) filtersEl.style.display = 'none';
   if (body) body.innerHTML = '';
   var countEl = document.getElementById('auctions-inv-count');
@@ -51,14 +51,14 @@ function auctionsInvStateChange() {
     }
   }
   var sorted = Object.keys(counties).sort();
-  if (sorted.length === 0) {
-    if (body) body.innerHTML = '<div class="propfeed-empty"><span class="propfeed-empty-icon">&#127463;</span><span class="propfeed-empty-title">NO COUNTIES FOUND</span><span class="propfeed-empty-hint">No auction data available for this state yet. Try another state or check back soon.</span><div class="propfeed-empty-actions"><button class="propfeed-empty-btn propfeed-empty-btn-primary" onclick="switchTab(\'map\')">Browse Map</button><button class="propfeed-empty-btn propfeed-empty-btn-ghost" onclick="togglePulseDrawer()">Set Up Alerts</button></div></div>';
-    return;
+  if (sorted.length > 0) {
+    sorted.forEach(function(c) {
+      countySel.innerHTML += '<option value="' + escapeHtml(c) + '">' + escapeHtml(c) + '</option>';
+    });
   }
-  sorted.forEach(function(c) {
-    countySel.innerHTML += '<option value="' + escapeHtml(c) + '">' + escapeHtml(c) + '</option>';
-  });
   countySel.style.display = '';
+  // Auto-trigger inventory load for all counties immediately
+  auctionsInvCountyChange();
 }
 
 function auctionsInvCountyChange() {
@@ -66,7 +66,7 @@ function auctionsInvCountyChange() {
   var county = document.getElementById('auctions-inv-county').value;
   var body = document.getElementById('auctions-inv-body');
   var filtersEl = document.getElementById('auctions-inv-filters');
-  if (!stateCode || !county || !body) return;
+  if (!stateCode || !body) return;
 
   // Reset filters
   _auctionsInvFilters = { type: 'all', status: 'all', absentee: false, equity: 0 };
@@ -111,7 +111,9 @@ function auctionsInvCountyChange() {
       })();
 
   Promise.resolve(jwtReady).then(function(token) {
-    return fetch('/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(county), {
+    var fetchUrl = '/.netlify/functions/auctions/properties?state_code=' + encodeURIComponent(stateCode);
+    if (county) fetchUrl += '&county=' + encodeURIComponent(county);
+    return fetch(fetchUrl, {
       headers: token ? { 'Authorization': 'Bearer ' + token } : {}
     });
   })

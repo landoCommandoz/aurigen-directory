@@ -214,7 +214,7 @@ var App = {
 
   // ── State Panel ─────────────────────────────────
 
-  openState: function (id) {
+  openState: async function (id) {
     if (!AccessManager.canAccessState(id)) {
       console.log('[APP] State locked: ' + id);
       return;
@@ -225,6 +225,15 @@ var App = {
       if (states[i].id === id) { s = states[i]; break; }
     }
     if (!s) return;
+
+    var lawData = null;
+    try {
+      var lawResp = await fetch('/.netlify/functions/get-state-law?state_code=' + encodeURIComponent(id));
+      if (lawResp.ok) {
+        var lawJson = await lawResp.json();
+        if (lawJson.law) lawData = lawJson.law;
+      }
+    } catch(e) {}
 
     var typeColor = s.type === 'lien' ? 'var(--color-lien)' :
                     s.type === 'deed' ? 'var(--color-deed)' :
@@ -307,6 +316,22 @@ var App = {
     html += '<div style="margin-top:20px;padding:12px;background:var(--bg-card);border-radius:8px;font-size:11px;color:var(--text-dim);line-height:1.6;border:1px solid var(--border);">';
     html += 'This information is for educational purposes only and does not constitute legal, financial, or investment advice. Always verify current laws and consult professionals before investing.';
     html += '</div>';
+
+    if (lawData) {
+      html += '<div class="state-law-block">';
+      html += '<div class="state-law-title">STATE LAW SUMMARY</div>';
+      html += '<div class="state-law-grid">';
+      html += '<div class="law-item"><span class="law-label">AUCTION TYPE</span><span class="law-value law-badge-' + (lawData.auction_type || '') + '">' + (lawData.auction_type || '\u2014').toUpperCase() + '</span></div>';
+      html += '<div class="law-item"><span class="law-label">INTEREST RATE</span><span class="law-value">' + (lawData.interest_rate_pct ? lawData.interest_rate_pct + '%' : 'Varies') + '</span></div>';
+      html += '<div class="law-item"><span class="law-label">REDEMPTION</span><span class="law-value">' + (lawData.redemption_period_months ? lawData.redemption_period_months + ' months' : 'None') + '</span></div>';
+      html += '<div class="law-item"><span class="law-label">BID METHOD</span><span class="law-value">' + (lawData.bid_method || '\u2014') + '</span></div>';
+      if (lawData.statute_citation && lawData.official_url) {
+        html += '<div class="law-item law-item-full"><span class="law-label">STATUTE</span><a href="' + lawData.official_url + '" target="_blank" class="law-statute-link">' + lawData.statute_citation + ' \u2197</a></div>';
+      }
+      html += '</div>';
+      html += '<div class="law-disclaimer">Verified from official government sources. Confirm current rules with county tax collector before transacting.</div>';
+      html += '</div>';
+    }
 
     html += '</div></div>';
 
