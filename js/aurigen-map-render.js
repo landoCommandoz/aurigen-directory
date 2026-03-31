@@ -257,8 +257,9 @@ var svgEl, pathGen;
 
 function initMap() {
   svgEl = d3.select('#map-svg');
-  var w = Math.max(400, window.innerWidth - 280);
-  var h = Math.max(300, window.innerHeight - 180);
+  var wrap = document.getElementById('map-wrap');
+  var w = wrap.offsetWidth || 960;
+  var h = wrap.offsetHeight || 600;
   var scale = Math.min(w, h * 1.6) * 1.1;
   var projection = d3.geoAlbersUsa().scale(scale).translate([w/2, h/2]);
   pathGen = d3.geoPath().projection(projection);
@@ -325,8 +326,9 @@ function initMap() {
 // Full map redraw — recompute projection, update all paths and labels
 function redrawMap() {
   if (!svgEl) return;
-  var w = Math.max(400, window.innerWidth - 280);
-  var h = Math.max(300, window.innerHeight - 180);
+  var wrap = document.getElementById('map-wrap');
+  var w = wrap.offsetWidth || 960;
+  var h = wrap.offsetHeight || 600;
   var scale = Math.min(w, h * 1.6) * 1.1;
   var projection = d3.geoAlbersUsa().scale(scale).translate([w/2, h/2]);
   pathGen = d3.geoPath().projection(projection);
