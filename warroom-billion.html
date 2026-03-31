@@ -949,5 +949,47 @@
   </div>
 </div>
 <script src="js/aurigen-admin.js"></script>
+
+<div id="aurigen-error-console" style="display:none;position:fixed;bottom:60px;left:0;right:0;max-height:200px;overflow-y:auto;background:rgba(0,0,0,0.95);border-top:2px solid #e05555;z-index:99999;padding:8px 12px;font-family:monospace;font-size:11px;color:#e05555;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+    <span style="color:#e05555;font-weight:bold;letter-spacing:0.08em;">&#9888; ERROR CONSOLE &#8212; REMOVE BEFORE LAUNCH</span>
+    <button onclick="document.getElementById('aurigen-error-console').style.display='none'" style="background:none;border:1px solid #e05555;color:#e05555;padding:2px 8px;cursor:pointer;font-size:10px;">CLOSE</button>
+  </div>
+  <div id="aurigen-error-log"></div>
+</div>
+
+<script>
+(function() {
+  var log = document.getElementById('aurigen-error-log');
+  var panel = document.getElementById('aurigen-error-console');
+  function addEntry(type, msg) {
+    if (!log || !panel) return;
+    panel.style.display = 'block';
+    var entry = document.createElement('div');
+    entry.style.borderBottom = '1px solid rgba(255,255,255,0.08)';
+    entry.style.padding = '4px 0';
+    entry.style.color = type === 'error' ? '#e05555' : type === 'warn' ? '#c9a84c' : '#9898b0';
+    entry.textContent = '[' + type.toUpperCase() + '] ' + msg;
+    log.appendChild(entry);
+  }
+  window.onerror = function(msg, src, line, col, err) {
+    addEntry('error', msg + ' — ' + (src || '') + ':' + line);
+  };
+  window.addEventListener('unhandledrejection', function(e) {
+    addEntry('error', 'Unhandled promise: ' + (e.reason && e.reason.message ? e.reason.message : String(e.reason)));
+  });
+  var origError = console.error.bind(console);
+  console.error = function() {
+    addEntry('error', Array.from(arguments).join(' '));
+    origError.apply(console, arguments);
+  };
+  var origWarn = console.warn.bind(console);
+  console.warn = function() {
+    addEntry('warn', Array.from(arguments).join(' '));
+    origWarn.apply(console, arguments);
+  };
+})();
+</script>
+
 </body>
 </html>
