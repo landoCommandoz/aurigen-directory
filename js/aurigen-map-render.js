@@ -74,7 +74,7 @@ function selectMapState(abbr) {
   var s = ALL_STATES.find(function(x){ return (x.abbr||x.c)===abbr; });
   if(!s) return;
   if(selectedState===abbr){ selectedState=null; closeDetail(); resetMapColors(); updateMapCallout(null); }
-  else { selectedState=abbr; showDetail(s); updateMapColors(); updateMapCallout(s); }
+  else { selectedState=abbr; App.openState(s.abbr||s.c||s.id); updateMapColors(); updateMapCallout(s); }
   renderMapStateList();
 }
 
@@ -210,7 +210,7 @@ function updateMapCallout(s) {
       '<div class="callout-stat"><span class="callout-stat-label">REDEMPTION</span><span class="callout-stat-value">'+escapeHtml(holdShort)+'</span></div>'+
       '<div class="callout-stat"><span class="callout-stat-label">PLATFORM</span><span class="callout-stat-value">'+escapeHtml(platform.length>10?platform.slice(0,9)+'\u2026':platform)+'</span></div>'+
     '</div>'+
-    '<button class="callout-open" onclick="var s=ALL_STATES.find(function(x){return(x.abbr||x.c)===\''+escapeHtml(c)+'\';});if(s)showDetail(s);">Open Full Detail \u2192</button>';
+    '<button class="callout-open" onclick="var s=ALL_STATES.find(function(x){return(x.abbr||x.c)===\''+escapeHtml(c)+'\';});if(s)App.openState(s.abbr||s.c||s.id);">Open Full Detail \u2192</button>';
 }
 
 // Mobile filter drawer (from nav bar)
@@ -285,7 +285,7 @@ function initMap() {
           if(!s) return;
           var abbr = s.abbr || s.c;
           if(selectedState===abbr){ selectedState=null; closeDetail(); resetMapColors(); updateMapCallout(null); renderMapStateList(); }
-          else { selectedState=abbr; showDetail(s); updateMapColors(); updateMapCallout(s); renderMapStateList(); }
+          else { selectedState=abbr; App.openState(s.abbr||s.c||s.id); updateMapColors(); updateMapCallout(s); renderMapStateList(); }
         });
 
       svgEl.selectAll('.state-label')
@@ -516,7 +516,7 @@ function selectFromList(abbr) {
   var s=ALL_STATES.find(function(x){ return (x.abbr||x.c)===abbr; });
   if(!s) return;
   if(selectedState===abbr){selectedState=null;closeDetail();}
-  else{selectedState=abbr;showDetail(s);}
+  else{selectedState=abbr;App.openState(s.abbr||s.c||s.id);}
   renderList();
 }
 
