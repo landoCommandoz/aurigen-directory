@@ -197,7 +197,7 @@ function switchTab(name) {
   closeToolsMenu();
   if(typeof updateNavFilterBtn==='function') updateNavFilterBtn();
   // Refresh map size when switching back to map tab
-  if(name==='map') setTimeout(function(){ if(typeof refreshMapSize==='function')refreshMapSize(); else if(typeof initMap==='function')initMap(); }, 150);
+  if(name==='map') { setTimeout(function(){ if(typeof refreshMapSize==='function')refreshMapSize(); else if(typeof initMap==='function')initMap(); }, 150); setTimeout(function(){ if(typeof refreshMapSize==='function')refreshMapSize(); }, 600); }
   if(name==='auctions' && typeof initAuctionsTab==='function') initAuctionsTab();
   if(name==='account' && typeof initAccount==='function') initAccount();
 
