@@ -231,14 +231,15 @@ function renderAuctionsInvCards(container, countyName) {
     html += '<div class="prop-stat"><div class="prop-stat-label">LIEN YEAR</div><div class="prop-stat-value">' + lienYr + '</div></div>';
     html += '<div class="prop-stat"><div class="prop-stat-label">DELINQUENT</div><div class="prop-stat-value">' + delYrs + '</div></div>';
     html += '</div>';
-    html += '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">';
     if (statusLower !== 'active') {
+      html += '<div style="padding:4px 0 8px;">';
       html += '<span class="prop-card-status ' + statusClass + '">' + statusLabel + '</span>';
+      html += '</div>';
     }
     html += '<div class="prop-card-actions">';
     html += '<button class="prop-action-btn prop-action-primary" onclick="event.stopPropagation();openDealFromProp(\'' + propData + '\')">Analyze</button>';
     html += '<button class="prop-action-btn prop-action-ghost" onclick="event.stopPropagation();openScoutFromProp(\'' + propData + '\')">Scout</button>';
-    html += '</div></div></div>';
+    html += '</div></div>';
   });
   html += '</div>';
   container.innerHTML = html;
