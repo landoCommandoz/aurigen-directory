@@ -145,37 +145,31 @@
           </div>
         </div>
         <div id="tabs">
-          <button class="tab active" id="tab-map" onclick="document.getElementById('view-map').classList.remove('hidden');document.getElementById('view-list').classList.add('hidden');document.getElementById('tab-map').classList.add('active');document.getElementById('tab-list').classList.remove('active');">&#9707; MAP</button>
-          <button class="tab" id="tab-list" onclick="document.getElementById('view-list').classList.remove('hidden');document.getElementById('view-map').classList.add('hidden');document.getElementById('tab-list').classList.add('active');document.getElementById('tab-map').classList.remove('active');">&#8801; LIST</button>
+          <button class="tab active" id="tab-map" onclick="switchToMap()">&#9707; MAP</button>
+          <button class="tab" id="tab-list" onclick="switchToList()">&#8801; LIST</button>
         </div>
       </div>
 
       <!-- MAP VIEW -->
-      <div class="view" id="view-map">
-        <div id="map-split">
+      <div class="view" id="view-map" style="position:relative;flex:1;overflow:hidden;">
+        <div id="map-container" style="position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;">
+          <svg id="map-svg" style="width:100%;height:100%;display:block;"></svg>
         </div>
+        <div id="map-legend" style="position:absolute;bottom:20px;left:20px;display:flex;gap:12px;flex-wrap:wrap;z-index:10;"></div>
       </div>
 
       <!-- LIST VIEW -->
-      <div class="view hidden" id="view-list">
-        <div id="search-bar">
-          <div id="search-wrap">
-            <span id="search-icon">&#8981;</span>
-            <input id="search-input" type="text" placeholder="Search state, code, or type&hellip;" oninput="handleSearch(this.value)">
-            <span id="search-clear" onclick="clearSearch()">&times;</span>
+      <div class="view hidden" id="view-list" style="flex:1;overflow-y:auto;padding:0 24px;">
+        <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.07);">
+          <input id="list-search" type="text" placeholder="Search states..." style="flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#f5f0e8;padding:8px 14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;outline:none;border-radius:2px;" oninput="filterStateList(this.value)">
+          <div style="display:flex;gap:6px;" id="type-filters">
+            <button onclick="setTypeFilter('all')" class="type-btn active" data-type="all" style="padding:6px 12px;border:1px solid rgba(201,168,76,0.4);background:rgba(201,168,76,0.1);color:#c9a84c;font-size:11px;font-family:'Space Mono',monospace;cursor:pointer;border-radius:2px;">ALL</button>
+            <button onclick="setTypeFilter('lien')" class="type-btn" data-type="lien" style="padding:6px 12px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#9898b0;font-size:11px;font-family:'Space Mono',monospace;cursor:pointer;border-radius:2px;">LIEN</button>
+            <button onclick="setTypeFilter('deed')" class="type-btn" data-type="deed" style="padding:6px 12px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#9898b0;font-size:11px;font-family:'Space Mono',monospace;cursor:pointer;border-radius:2px;">DEED</button>
+            <button onclick="setTypeFilter('hybrid')" class="type-btn" data-type="hybrid" style="padding:6px 12px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#9898b0;font-size:11px;font-family:'Space Mono',monospace;cursor:pointer;border-radius:2px;">HYBRID</button>
           </div>
-          <span id="result-count">51 / 51</span>
-          <div id="filter-pills"></div>
         </div>
-        <div id="col-headers">
-          <span class="col-h">#</span>
-          <span class="col-h">TYPE</span>
-          <span class="col-h">JURISDICTION</span>
-          <span class="col-h r col-stats">STATS</span>
-        </div>
-        <div id="rows-container">
-          <div id="empty-state">NO RESULTS</div>
-        </div>
+        <div id="state-list-rows" style="padding-bottom:40px;"></div>
       </div>
 
       

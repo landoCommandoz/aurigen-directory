@@ -20,6 +20,9 @@ function bootApp() {
     updateJourneyBar();
     updateMapBookmarks();
   }, 800);
+
+  // Init state list for LIST view
+  setTimeout(function(){ if(typeof renderStateList==='function') renderStateList(); }, 200);
 }
 
 // === TOOL FUNCTIONS ===
