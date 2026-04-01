@@ -13,6 +13,9 @@ function escapeHtml(str) {
 
 var StatePanel = {
 
+  _currentStateCode: null,
+  _currentStateName: null,
+
   open: async function (id) {
     if (typeof AccessManager !== 'undefined' && !AccessManager.canAccessState(id)) {
       return;
@@ -34,6 +37,8 @@ var StatePanel = {
 
     var stateCode = s.id || s.abbr || s.c || id;
     var stateName = s.name || s.n || stateCode;
+    StatePanel._currentStateCode = stateCode;
+    StatePanel._currentStateName = stateName;
     var sType = s._v2type || s.type || s.t || '';
     var rate = s.rate || s.y || '\u2014';
     var redemption = s.redemption || s.r || '\u2014';
@@ -211,8 +216,9 @@ var StatePanel = {
       if (rows[r].platform) {
         platHtml = '<span class="sp-county-plat">' + escapeHtml(typeof shortenPlatform === 'function' ? shortenPlatform(rows[r].platform) : rows[r].platform) + '</span>';
       }
-      h += '<div class="sp-county-row" data-name="' + escapeHtml(rows[r].name.toLowerCase()) + '">';
+      h += '<div class="sp-county-row" data-name="' + escapeHtml(rows[r].name.toLowerCase()) + '" data-county="' + safeName + '" onclick="StatePanel._openCounty(this.getAttribute(\'data-county\'))">';
       h += '<span class="sp-county-name">' + safeName + '</span>';
+      h += '<span class="sp-county-arrow">\u203A</span>';
       h += platHtml;
       h += '</div>';
     }
@@ -280,6 +286,161 @@ var StatePanel = {
     h += '</div>';
 
     return h;
+  },
+
+  _openCounty: function (countyName) {
+    var stateCode = StatePanel._currentStateCode;
+    var stateName = StatePanel._currentStateName;
+    if (!stateCode || !countyName) return;
+
+    // Build county detail drawer (replaces state panel content)
+    var modals = document.getElementById('modals');
+    if (!modals) return;
+
+    var h = '';
+    h += '<div class="sp-overlay" onclick="StatePanel._closeCounty()">';
+    h += '<div class="sp-panel sp-county-detail" onclick="event.stopPropagation()">';
+    h += '<div class="sp-drag"></div>';
+
+    // Header with back button
+    h += '<div class="sp-header">';
+    h += '<div class="sp-header-text">';
+    h += '<button class="sp-back" onclick="StatePanel.open(\'' + escapeHtml(stateCode) + '\');StatePanel._switchTab(\'counties\')">\u2190 ' + escapeHtml(stateName) + '</button>';
+    h += '<div class="sp-name" style="font-size:28px">' + escapeHtml(countyName) + '</div>';
+    h += '<div class="sp-code">' + escapeHtml(stateCode) + '</div>';
+    h += '</div>';
+    h += '<button class="sp-close" onclick="StatePanel._closeCounty()">\u2715</button>';
+    h += '</div>';
+
+    // Score slot
+    h += '<div class="sp-content" style="padding:16px 20px">';
+    h += '<div id="sp-opp-score-slot" class="sp-county-section"><div class="sp-county-loading"><div class="sp-spinner"></div>Loading Opportunity Score...</div></div>';
+    h += '<div id="sp-redemption-slot" class="sp-county-section"><div class="sp-county-loading"><div class="sp-spinner"></div>Loading Redemption Rate...</div></div>';
+
+    // Action buttons
+    h += '<div class="sp-county-actions">';
+    h += '<button class="sp-county-btn sp-county-btn-primary" onclick="StatePanel._viewProperties(\'' + escapeHtml(stateCode) + '\',\'' + escapeHtml(countyName) + '\')">View Properties</button>';
+    h += '<button class="sp-county-btn sp-county-btn-ghost" onclick="StatePanel._runScout(\'' + escapeHtml(stateCode) + '\',\'' + escapeHtml(countyName) + '\')">Run Scout</button>';
+    h += '</div>';
+
+    h += '<div class="sp-disclaimer">Scores reflect publicly available data and are not investment recommendations.</div>';
+    h += '</div>';
+    h += '</div>';
+    h += '</div>';
+
+    modals.innerHTML = h;
+
+    // Fetch opportunity score
+    StatePanel._fetchCountyScore(stateCode, countyName);
+    // Fetch redemption rate
+    StatePanel._fetchCountyRedemption(stateCode, countyName);
+  },
+
+  _closeCounty: function () {
+    var m = document.getElementById('modals');
+    if (m) m.innerHTML = '';
+  },
+
+  _fetchCountyScore: function (stateCode, countyName) {
+    var slot = document.getElementById('sp-opp-score-slot');
+    if (!slot) return;
+    fetch('/.netlify/functions/county-score?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName))
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || data.score === null || data.score === undefined) {
+          slot.innerHTML = '<div class="sp-score-pending">Score pending \u2014 check back after next weekly update</div>';
+          return;
+        }
+        var s = data.score;
+        var tier, tierClass, barColor;
+        if (s >= 80) { tier = 'ELITE'; tierClass = 'sp-tier-elite'; barColor = '#c9a84c'; }
+        else if (s >= 60) { tier = 'STRONG'; tierClass = 'sp-tier-strong'; barColor = '#2DD4C0'; }
+        else if (s >= 40) { tier = 'MODERATE'; tierClass = 'sp-tier-moderate'; barColor = 'rgba(232,228,220,0.5)'; }
+        else if (s >= 20) { tier = 'WEAK'; tierClass = 'sp-tier-weak'; barColor = '#c97a2d'; }
+        else { tier = 'CAUTION'; tierClass = 'sp-tier-caution'; barColor = '#FF2D55'; }
+
+        var breakdownHtml = '';
+        var sc = data.score_components;
+        if (sc) {
+          var rows = [];
+          if (sc.auction_volume) rows.push({ label: 'Auction Volume', val: sc.auction_volume.count != null ? sc.auction_volume.count + ' auctions' : null, delta: sc.auction_volume.delta });
+          if (sc.avg_equity) rows.push({ label: 'Avg Equity', val: sc.avg_equity.avg != null ? sc.avg_equity.avg + '%' : null, delta: sc.avg_equity.delta });
+          if (sc.absentee_rate) rows.push({ label: 'Absentee Rate', val: sc.absentee_rate.rate != null ? sc.absentee_rate.rate + '%' : null, delta: sc.absentee_rate.delta });
+          if (sc.redemption) rows.push({ label: 'Redemption', val: sc.redemption.months != null ? sc.redemption.months + 'mo' : null, delta: sc.redemption.delta });
+          if (sc.overbid) rows.push({ label: 'Overbid', val: sc.overbid.avg != null ? sc.overbid.avg + '%' : null, delta: sc.overbid.delta });
+          if (rows.length > 0) {
+            breakdownHtml = '<div class="sp-score-breakdown">';
+            rows.forEach(function (r) {
+              if (r.delta === 0 && r.val === null) return;
+              var dColor = r.delta > 0 ? '#3ecf8e' : r.delta < 0 ? '#f87171' : '#9898b0';
+              var dSign = r.delta > 0 ? '+' : '';
+              breakdownHtml += '<div class="sp-score-row">';
+              breakdownHtml += '<span class="sp-score-row-label">' + r.label + (r.val ? ' <span style="color:#6b7280">(' + r.val + ')</span>' : '') + '</span>';
+              breakdownHtml += '<span class="sp-score-row-delta" style="color:' + dColor + '">' + dSign + r.delta + '</span>';
+              breakdownHtml += '</div>';
+            });
+            breakdownHtml += '</div>';
+          }
+        }
+
+        slot.innerHTML = '<div class="sp-score-card">' +
+          '<div class="sp-score-header">' +
+          '<div class="sp-score-num">' + s + '</div>' +
+          '<div class="sp-score-meta">' +
+          '<div class="sp-score-label">OPPORTUNITY SCORE</div>' +
+          '<div class="sp-score-tier ' + tierClass + '">' + tier + '</div>' +
+          '</div></div>' +
+          '<div class="sp-score-bar-wrap"><div class="sp-score-bar-fill" style="width:' + s + '%;background:' + barColor + '"></div></div>' +
+          breakdownHtml +
+          '</div>';
+      })
+      .catch(function () {
+        slot.innerHTML = '<div class="sp-score-pending">Score pending \u2014 check back after next weekly update</div>';
+      });
+  },
+
+  _fetchCountyRedemption: function (stateCode, countyName) {
+    var slot = document.getElementById('sp-redemption-slot');
+    if (!slot) return;
+    fetch('/.netlify/functions/county-redemption?state_code=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName))
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || !data.rate) {
+          slot.innerHTML = '<div class="sp-score-pending">Redemption data pending</div>';
+          return;
+        }
+        var rate = data.rate;
+        var pct = typeof rate.redemption_rate === 'number' ? Math.round(rate.redemption_rate * 10) / 10 : null;
+        var total = rate.total_events || 0;
+        var barColor = pct !== null ? (pct >= 70 ? '#3ecf8e' : pct >= 40 ? '#fbbf24' : '#f87171') : '#9898b0';
+
+        var html = '<div class="sp-redemption-card">';
+        html += '<div class="sp-score-header">';
+        html += '<div class="sp-score-num" style="color:' + barColor + '">' + (pct !== null ? pct + '%' : '\u2014') + '</div>';
+        html += '<div class="sp-score-meta"><div class="sp-score-label">REDEMPTION RATE</div>';
+        html += '<div style="font-size:11px;color:#9898b0">' + total + ' events tracked</div></div>';
+        html += '</div></div>';
+        slot.innerHTML = html;
+      })
+      .catch(function () {
+        slot.innerHTML = '<div class="sp-score-pending">Redemption data unavailable</div>';
+      });
+  },
+
+  _viewProperties: function (stateCode, countyName) {
+    StatePanel._closeCounty();
+    // Switch to auctions tab and trigger county filter
+    if (typeof switchTab === 'function') switchTab('auctions');
+    if (typeof loadPropertyFeed === 'function') loadPropertyFeed(stateCode, countyName);
+  },
+
+  _runScout: function (stateCode, countyName) {
+    StatePanel._closeCounty();
+    if (typeof switchTab === 'function') switchTab('tools');
+    // Trigger scout with state pre-selected
+    setTimeout(function () {
+      if (typeof scoutNewDeal === 'function') scoutNewDeal(stateCode);
+    }, 300);
   }
 };
 
@@ -326,8 +487,12 @@ var StatePanel = {
     /* Counties tab */
     '.sp-county-search{width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:8px 12px;color:#f5f0e8;font-size:12px;margin-bottom:12px;outline:none;font-family:inherit;box-sizing:border-box}',
     '.sp-county-search:focus{border-color:rgba(201,168,76,0.3)}',
-    '.sp-county-row{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);cursor:pointer}',
+    '.sp-county-row{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:background 0.15s}',
+    '.sp-county-row:hover{background:rgba(255,255,255,0.04)}',
+    '.sp-county-row:active{background:rgba(201,168,76,0.08)}',
     '.sp-county-name{font-size:13px;font-weight:500;color:#f5f0e8;flex:1}',
+    '.sp-county-arrow{color:#60607a;font-size:16px;flex-shrink:0;transition:color 0.15s}',
+    '.sp-county-row:hover .sp-county-arrow{color:#c9a84c}',
     '.sp-county-plat{font-family:"Space Mono",monospace;font-size:8px;padding:2px 6px;border-radius:2px;border:1px solid rgba(45,212,192,0.4);color:#2dd4c0}',
     /* Law & Links tab */
     '.sp-law-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}',
@@ -349,7 +514,43 @@ var StatePanel = {
     '.sp-plat-badge{font-family:"Space Mono",monospace;font-size:9px;border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:6px 12px;color:#f5f0e8;display:inline-flex;align-items:center;gap:6px}',
     '.sp-plat-dot{width:4px;height:4px;border-radius:50%;background:#c9a84c}',
     '.sp-timing{font-size:11px;color:#60607a;margin-top:6px}',
-    '.sp-disclaimer{margin-top:16px;padding:12px;background:rgba(255,255,255,0.02);border-radius:6px;font-size:11px;color:#60607a;line-height:1.6}'
+    '.sp-disclaimer{margin-top:16px;padding:12px;background:rgba(255,255,255,0.02);border-radius:6px;font-size:11px;color:#60607a;line-height:1.6}',
+    /* Back button */
+    '.sp-back{background:none;border:none;color:#c9a84c;font-family:"Space Mono",monospace;font-size:11px;cursor:pointer;padding:0;margin-bottom:6px;display:inline-block;letter-spacing:0.05em}',
+    '.sp-back:hover{text-decoration:underline}',
+    /* County detail sections */
+    '.sp-county-section{margin-bottom:16px}',
+    '.sp-county-loading{display:flex;align-items:center;gap:10px;padding:16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:8px;font-size:12px;color:#60607a}',
+    '.sp-spinner{width:16px;height:16px;border:2px solid rgba(201,168,76,0.2);border-top-color:#c9a84c;border-radius:50%;animation:sp-spin 0.8s linear infinite}',
+    '@keyframes sp-spin{to{transform:rotate(360deg)}}',
+    /* Score card */
+    '.sp-score-card{background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:16px}',
+    '.sp-score-header{display:flex;align-items:center;gap:14px}',
+    '.sp-score-num{font-family:"Bebas Neue",sans-serif;font-size:48px;color:#c9a84c;line-height:1}',
+    '.sp-score-meta{flex:1}',
+    '.sp-score-label{font-family:"Space Mono",monospace;font-size:9px;color:#60607a;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px}',
+    '.sp-score-tier{font-family:"Bebas Neue",sans-serif;font-size:16px;letter-spacing:0.08em}',
+    '.sp-tier-elite{color:#c9a84c}',
+    '.sp-tier-strong{color:#2DD4C0}',
+    '.sp-tier-moderate{color:rgba(232,228,220,0.5)}',
+    '.sp-tier-weak{color:#c97a2d}',
+    '.sp-tier-caution{color:#FF2D55}',
+    '.sp-score-bar-wrap{height:4px;background:rgba(255,255,255,0.06);border-radius:2px;margin-top:12px;overflow:hidden}',
+    '.sp-score-bar-fill{height:100%;border-radius:2px;transition:width 0.6s ease}',
+    '.sp-score-breakdown{margin-top:12px;padding:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:6px}',
+    '.sp-score-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-family:"Space Mono",monospace;font-size:10px}',
+    '.sp-score-row-label{color:#9898b0}',
+    '.sp-score-row-delta{font-weight:600}',
+    '.sp-score-pending{padding:16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:8px;font-size:12px;color:#60607a;text-align:center}',
+    /* Redemption card */
+    '.sp-redemption-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:16px}',
+    /* Action buttons */
+    '.sp-county-actions{display:flex;gap:8px;margin-top:16px}',
+    '.sp-county-btn{flex:1;padding:12px;border-radius:8px;font-family:"Bebas Neue",sans-serif;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;text-align:center;border:none;transition:background 0.15s}',
+    '.sp-county-btn-primary{background:#c9a84c;color:#0d0d0d}',
+    '.sp-county-btn-primary:hover{background:#d4b85c}',
+    '.sp-county-btn-ghost{background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.25);color:#c9a84c}',
+    '.sp-county-btn-ghost:hover{background:rgba(201,168,76,0.1)}'
   ].join('\n');
   document.head.appendChild(style);
 })();
