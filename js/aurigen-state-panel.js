@@ -315,6 +315,7 @@ var StatePanel = {
     // Score slot
     h += '<div class="sp-content" style="padding:16px 20px">';
     h += '<div id="sp-opp-score-slot" class="sp-county-section"><div class="sp-county-loading"><div class="sp-spinner"></div>Loading Opportunity Score...</div></div>';
+    h += '<div id="sp-fmr-slot"></div>';
     h += '<div id="sp-redemption-slot" class="sp-county-section"><div class="sp-county-loading"><div class="sp-spinner"></div>Loading Redemption Rate...</div></div>';
 
     // Action buttons — rendered hidden, revealed after 150ms to block ghost clicks
@@ -340,6 +341,8 @@ var StatePanel = {
     StatePanel._fetchCountyScore(stateCode, countyName);
     // Fetch redemption rate
     StatePanel._fetchCountyRedemption(stateCode, countyName);
+    // Fetch HUD Fair Market Rents
+    StatePanel._fetchFMR(stateCode, countyName);
   },
 
   _closeCounty: function () {
@@ -431,6 +434,36 @@ var StatePanel = {
       .catch(function () {
         slot.innerHTML = '<div class="sp-score-pending">Redemption data unavailable</div>';
       });
+  },
+
+  _fetchFMR: function (stateCode, countyName) {
+    fetch('/.netlify/functions/hud-fmr?state=' + encodeURIComponent(stateCode) + '&county=' + encodeURIComponent(countyName))
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || data.error) return;
+        var slot = document.getElementById('sp-fmr-slot');
+        if (!slot) return;
+
+        var fmt = function (v) {
+          if (v === null || v === undefined) return '\u2014';
+          return '$' + Number(v).toLocaleString('en-US', { maximumFractionDigits: 0 });
+        };
+        var yr = data.year ? ' (HUD FY' + data.year + ')' : '';
+
+        var html = '<div class="sp-fmr-card sp-county-section">';
+        html += '<div class="sp-score-label">MARKET RENTS' + escapeHtml(yr) + '</div>';
+        html += '<div class="sp-fmr-row">';
+        html += '<div class="sp-fmr-cell"><div class="sp-fmr-label">STUDIO</div><div class="sp-fmr-val">' + fmt(data.fmr_0br) + '</div></div>';
+        html += '<div class="sp-fmr-cell"><div class="sp-fmr-label">1 BR</div><div class="sp-fmr-val">' + fmt(data.fmr_1br) + '</div></div>';
+        html += '<div class="sp-fmr-cell"><div class="sp-fmr-label">2 BR</div><div class="sp-fmr-val">' + fmt(data.fmr_2br) + '</div></div>';
+        html += '<div class="sp-fmr-cell"><div class="sp-fmr-label">3 BR</div><div class="sp-fmr-val">' + fmt(data.fmr_3br) + '</div></div>';
+        html += '<div class="sp-fmr-cell"><div class="sp-fmr-label">4 BR</div><div class="sp-fmr-val">' + fmt(data.fmr_4br) + '</div></div>';
+        html += '</div>';
+        html += '<div class="sp-fmr-source">Source: HUD Fair Market Rents</div>';
+        html += '</div>';
+        slot.innerHTML = html;
+      })
+      .catch(function () { /* silent — no card on failure */ });
   },
 
   _viewProperties: function (stateCode, countyName) {
@@ -556,7 +589,14 @@ var StatePanel = {
     '.sp-county-btn-primary{background:#c9a84c;color:#0d0d0d}',
     '.sp-county-btn-primary:hover{background:#d4b85c}',
     '.sp-county-btn-ghost{background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.25);color:#c9a84c}',
-    '.sp-county-btn-ghost:hover{background:rgba(201,168,76,0.1)}'
+    '.sp-county-btn-ghost:hover{background:rgba(201,168,76,0.1)}',
+    /* FMR card */
+    '.sp-fmr-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:14px}',
+    '.sp-fmr-row{display:flex;gap:4px;margin-top:10px}',
+    '.sp-fmr-cell{flex:1;text-align:center;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);border-radius:4px;padding:8px 2px}',
+    '.sp-fmr-label{font-family:"Space Mono",monospace;font-size:8px;color:#60607a;letter-spacing:0.08em;margin-bottom:4px}',
+    '.sp-fmr-val{font-family:"Bebas Neue",sans-serif;font-size:16px;color:#f5f0e8}',
+    '.sp-fmr-source{font-size:10px;color:#60607a;margin-top:8px}'
   ].join('\n');
   document.head.appendChild(style);
 })();
