@@ -129,12 +129,11 @@
     .demo-dot.active{background:var(--gold);box-shadow:0 0 6px rgba(201,168,76,0.5);}
 
     /* S1 — MAP */
-    .demo-map-wrap{position:relative;width:80%;max-width:320px;margin-bottom:10px;}
-    .demo-map-wrap svg{width:100%;height:auto;}
-    .demo-map-wrap svg path{fill:rgba(201,168,76,0.06);stroke:rgba(201,168,76,0.25);stroke-width:0.5;}
-    .demo-node{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);opacity:0;transform:scale(0);}
-    .demo-scene.active .demo-node{animation:demoNodePop 0.5s ease forwards;}
-    @keyframes demoNodePop{to{opacity:1;transform:scale(1)}}
+    .demo-map-wrap{position:relative;width:100%;flex:1;min-height:0;margin-bottom:6px;display:flex;align-items:center;justify-content:center;}
+    .demo-map-wrap svg{width:100%;height:100%;}
+    .demo-map-wrap svg path.demo-state{fill:rgba(201,168,76,0.05);stroke:rgba(201,168,76,0.2);stroke-width:0.4;transition:fill 0.6s,stroke 0.6s,filter 0.6s;}
+    .demo-map-wrap svg path.demo-state.highlight{fill:rgba(201,168,76,0.35);stroke:rgba(232,201,106,0.7);stroke-width:0.8;filter:drop-shadow(0 0 6px rgba(201,168,76,0.5));}
+    @keyframes demoGlow{0%,100%{filter:drop-shadow(0 0 6px rgba(201,168,76,0.5))}50%{filter:drop-shadow(0 0 14px rgba(201,168,76,0.8))}}
 
     /* S2 — COUNTY CARD */
     .demo-county-card{background:rgba(12,16,30,0.9);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:14px 18px;width:85%;max-width:300px;text-align:left;opacity:0;transform:scale(0.92);transition:opacity 0.5s 0.2s,transform 0.5s 0.2s;}
@@ -262,7 +261,7 @@
 
         <!-- S1: US MAP VIEW -->
         <div class="demo-scene" id="demo-s1">
-          <div class="demo-map-wrap" id="demo-map-svg"></div>
+          <div class="demo-map-wrap"><svg id="demo-us-map"></svg></div>
           <div class="demo-caption">3,200+ counties across 51 states</div>
           <div class="demo-subcaption">Click any county to see auction data</div>
         </div>
@@ -561,32 +560,51 @@ function switchLang(lang){
   var scoreTimer=null;
   var typeTimer=null;
 
-  // Inject simplified US map SVG into S1
-  var mapWrap=document.getElementById('demo-map-svg');
-  if(mapWrap){
-    // Simplified US outline with state regions
-    mapWrap.innerHTML='<svg viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg">'
-      +'<path d="M230 140 L280 120 L330 130 L370 115 L420 120 L460 110 L500 115 L540 120 L580 125 L620 118 L660 125 L700 130 L740 140 L780 155 L800 170 L810 200 L820 230 L830 260 L835 300 L825 340 L800 370 L780 390 L750 410 L720 425 L680 440 L640 448 L600 450 L560 445 L520 440 L480 445 L440 450 L400 445 L360 435 L320 420 L280 400 L250 380 L220 350 L200 320 L185 280 L180 240 L185 200 L200 170 Z" />'
-      +'<path d="M180 240 L160 250 L140 270 L120 300 L110 340 L115 370 L130 400 L155 420 L180 435 L210 445 L240 448 L280 440 L320 420" />'
-      +'<path d="M420 120 L440 150 L460 180 L470 220 L475 260 L470 300 L460 340 L440 380 L420 410 L400 445" />'
-      +'<path d="M620 118 L630 150 L640 190 L645 230 L643 270 L635 310 L625 350 L610 390 L600 420 L600 450" />'
-      +'</svg>';
+  // Render D3/TopoJSON US map into S1
+  // FIPS codes: FL=12, AZ=04, AL=01, GA=13, IL=17, TX=48, NJ=34, CO=08
+  var highlightFIPS=['12','04','01','13','17','48','34','08'];
+  var demoMapSvg=d3.select('#demo-us-map');
+  var demoMapReady=false;
 
-    // Add animated nodes at state positions
-    var nodePositions=[
-      {x:'82%',y:'68%',d:0.2},{x:'28%',y:'55%',d:0.5},{x:'20%',y:'65%',d:0.8},
-      {x:'72%',y:'52%',d:1.1},{x:'55%',y:'40%',d:1.4},{x:'45%',y:'52%',d:1.7},
-      {x:'65%',y:'42%',d:0.4},{x:'75%',y:'35%',d:0.9},{x:'35%',y:'45%',d:1.3},
-      {x:'50%',y:'30%',d:1.6},{x:'60%',y:'60%',d:0.7},{x:'40%',y:'35%',d:1.0}
-    ];
-    for(var i=0;i<nodePositions.length;i++){
-      var n=document.createElement('div');
-      n.className='demo-node';
-      n.style.left=nodePositions[i].x;
-      n.style.top=nodePositions[i].y;
-      n.style.animationDelay=nodePositions[i].d+'s';
-      mapWrap.appendChild(n);
-    }
+  d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(function(us){
+    var statesGeo=topojson.feature(us,us.objects.states);
+    var container=document.querySelector('.demo-map-wrap');
+    var cw=container.clientWidth||400,ch=container.clientHeight||250;
+    demoMapSvg.attr('viewBox','0 0 '+cw+' '+ch).attr('preserveAspectRatio','xMidYMid meet');
+    var proj=d3.geoAlbersUsa().fitSize([cw,ch],statesGeo);
+    var pathGen=d3.geoPath().projection(proj);
+
+    demoMapSvg.selectAll('path')
+      .data(statesGeo.features)
+      .enter().append('path')
+      .attr('d',pathGen)
+      .attr('class','demo-state')
+      .attr('data-fips',function(d){return d.id;});
+
+    demoMapReady=true;
+  });
+
+  // Highlight states one by one when S1 becomes active
+  var mapHighlightTimer=null;
+  function runMapHighlights(){
+    clearMapHighlights();
+    demoMapSvg.selectAll('.demo-state').classed('highlight',false);
+    var idx=0;
+    mapHighlightTimer=setInterval(function(){
+      if(idx>=highlightFIPS.length){clearInterval(mapHighlightTimer);mapHighlightTimer=null;return;}
+      var fips=highlightFIPS[idx];
+      demoMapSvg.selectAll('.demo-state').each(function(d){
+        if(d.id===fips||d.id==='0'+fips||String(d.id)===fips){
+          var el=d3.select(this);
+          el.classed('highlight',true);
+          el.style('animation','demoGlow 1.8s ease-in-out infinite');
+        }
+      });
+      idx++;
+    },400);
+  }
+  function clearMapHighlights(){
+    if(mapHighlightTimer){clearInterval(mapHighlightTimer);mapHighlightTimer=null;}
   }
 
   function clearSceneTimers(){
@@ -596,10 +614,14 @@ function switchLang(lang){
 
   function activateScene(idx){
     clearSceneTimers();
-    // Hide all scenes
+    clearMapHighlights();
+    // Hide all scenes, reset map highlights
     for(var i=1;i<=scenes;i++){
       var s=document.getElementById('demo-s'+i);
       if(s)s.classList.remove('active');
+    }
+    if(idx!==0){
+      demoMapSvg.selectAll('.demo-state').classed('highlight',false).style('animation',null);
     }
     // Update dots
     for(var d=0;d<dots.length;d++){
@@ -610,6 +632,7 @@ function switchLang(lang){
     if(target)target.classList.add('active');
 
     // Scene-specific animations
+    if(idx===0&&demoMapReady)runMapHighlights();
     if(idx===3)animateScore();
     if(idx===5)animateTerminal();
   }
