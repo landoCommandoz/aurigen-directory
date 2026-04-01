@@ -195,7 +195,7 @@ function parseListings(html) {
 
   if (records.length === 0) {
     const plainText = html.replace(/<[^>]+>/g, ' ');
-    const locDatePattern = /([A-Za-z\s]+(?:County|Parish))\s*,?\s*([A-Z]{2})\b[\s\S]{0,80}?(\d{1,2}\/\d{1,2}\/\d{4}|[A-Z][a-z]+\s+\d{1,2},?\s*\d{4})/g;
+    const locDatePattern = /\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+(?:County|Parish))\s*,?\s*([A-Z]{2})\b[\s\S]{0,80}?(\d{1,2}\/\d{1,2}\/\d{4}|[A-Z][a-z]+\s+\d{1,2},?\s*\d{4})/g;
     while ((match = locDatePattern.exec(plainText)) !== null) {
       const county = cleanText(match[1]);
       const stateCode = match[2].toUpperCase();
@@ -217,7 +217,7 @@ function parseListings(html) {
 function extractRecord(block) {
   const text = cleanText(block.replace(/<[^>]+>/g, ' '));
 
-  const locMatch = text.match(/([A-Za-z\s]+(?:County|Parish)?)\s*,\s*([A-Z]{2})\b/);
+  const locMatch = text.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+(?:County|Parish)?)\s*,\s*([A-Z]{2})\b/);
   if (!locMatch) return null;
 
   const dateMatch = text.match(/\b(\d{1,2}\/\d{1,2}\/\d{4}|[A-Z][a-z]+\s+\d{1,2},?\s*\d{4})\b/);

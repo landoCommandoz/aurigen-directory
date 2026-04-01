@@ -102,7 +102,7 @@ async function cleanupOldAuctions() {
   try {
     const supabase = getSupabase();
     const cutoff = new Date();
-    cutoff.setDate(cutoff.getDate() - 30);
+    cutoff.setDate(cutoff.getDate() - 60);
 
     const { data, error } = await supabase
       .from('auctions')
