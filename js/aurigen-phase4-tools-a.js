@@ -68,7 +68,7 @@ function warbookRender(states) {
   var archStates = archCfg ? archCfg.daStates : [];
 
   var html = '<table class="warbook-table"><thead><tr>';
-  html += '<th>State</th><th><span class="warbook-tip-wrap">Competition <span class="warbook-tip-icon" tabindex="0">?</span><span class="warbook-tip-card">Rating based on auction volume per state. Higher volume = more bidders. 1 star = low, 5 stars = high. Does not directly measure institutional buyer participation. Not a guarantee of returns.</span></span></th><th>Auctions</th><th>Avg Bid</th><th>Avg Equity</th><th>Top County</th><th></th>';
+  html += '<th>State</th><th><span class="warbook-tip-wrap">Competition <span class="warbook-tip-icon" tabindex="0">?</span><span class="warbook-tip-card">Rating based on auction volume per state. Higher volume = more bidders. 1 star = low, 5 stars = high. Does not directly measure institutional buyer participation. Not a guarantee of returns.</span></span></th><th>Auctions</th><th>Avg Bid</th><th>Avg Equity</th><th><span class="warbook-tip-wrap">Avg Overbid <span class="warbook-tip-icon" tabindex="0">?</span><span class="warbook-tip-card">Average percentage that winning bids exceed opening bids. Green (&lt;20%) = low competition. Yellow (20-50%) = moderate. Red (&gt;50%) = high competition. Based on recent auction results.</span></span></th><th>Top County</th><th></th>';
   html += '</tr></thead><tbody>';
 
   states.forEach(function(s) {
@@ -88,6 +88,13 @@ function warbookRender(states) {
     html += '<td>' + s.auction_count + '</td>';
     html += '<td class="warbook-bid">' + bid + '</td>';
     html += '<td class="warbook-equity ' + eqCls + '">' + eq + '</td>';
+    var obHtml = '&mdash;';
+    if (s.avg_overbid_pct != null) {
+      var obC = s.avg_overbid_pct < 20 ? '#3ecf8e' : s.avg_overbid_pct <= 50 ? '#fbbf24' : '#f87171';
+      var obL = s.avg_overbid_pct < 20 ? 'LOW' : s.avg_overbid_pct <= 50 ? 'MED' : 'HIGH';
+      obHtml = '<span style="color:' + obC + '">' + s.avg_overbid_pct + '%</span> <span style="font-size:9px;color:' + obC + ';opacity:0.7">' + obL + '</span>';
+    }
+    html += '<td>' + obHtml + '</td>';
     html += '<td class="warbook-county">' + county + '</td>';
     html += '<td><button class="warbook-explore" data-action="warbook-explore" data-state="' + escapeHtml(s.state_code) + '">EXPLORE</button></td>';
     html += '</tr>';

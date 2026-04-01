@@ -97,12 +97,36 @@ function fetchOpportunityScore(stateCode, countyName) {
       else if (s >= 40) { tier = 'MODERATE'; tierClass = 'opp-tier-moderate'; barColor = 'rgba(232,228,220,0.5)'; }
       else if (s >= 20) { tier = 'WEAK'; tierClass = 'opp-tier-weak'; barColor = '#c97a2d'; }
       else { tier = 'CAUTION'; tierClass = 'opp-tier-caution'; barColor = '#FF2D55'; }
-      slot.innerHTML = '<div class="opp-score-card">' +
+      var breakdownHtml = '';
+      var sc = data.score_components;
+      if (sc) {
+        var rows = [];
+        if (sc.auction_volume) rows.push({ label: 'Auction Volume', val: sc.auction_volume.count != null ? sc.auction_volume.count + ' auctions' : null, delta: sc.auction_volume.delta });
+        if (sc.avg_equity) rows.push({ label: 'Avg Equity', val: sc.avg_equity.avg != null ? sc.avg_equity.avg + '%' : null, delta: sc.avg_equity.delta });
+        if (sc.absentee_rate) rows.push({ label: 'Absentee Rate', val: sc.absentee_rate.rate != null ? sc.absentee_rate.rate + '%' : null, delta: sc.absentee_rate.delta });
+        if (sc.redemption) rows.push({ label: 'Redemption', val: sc.redemption.months != null ? sc.redemption.months + 'mo' : null, delta: sc.redemption.delta });
+        if (sc.overbid) rows.push({ label: 'Overbid', val: sc.overbid.avg != null ? sc.overbid.avg + '%' : null, delta: sc.overbid.delta });
+        if (rows.length > 0) {
+          breakdownHtml = '<div class="opp-breakdown" id="opp-breakdown" style="display:none;margin-top:8px;padding:8px 10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px">';
+          rows.forEach(function(r) {
+            if (r.delta === 0 && r.val === null) return;
+            var dColor = r.delta > 0 ? '#3ecf8e' : r.delta < 0 ? '#f87171' : '#9898b0';
+            var dSign = r.delta > 0 ? '+' : '';
+            breakdownHtml += '<div style="display:flex;justify-content:space-between;align-items:center;padding:2px 0;font-family:\'Space Mono\',monospace;font-size:10px">';
+            breakdownHtml += '<span style="color:#9898b0">' + r.label + (r.val ? ' <span style="color:#6b7280">(' + r.val + ')</span>' : '') + '</span>';
+            breakdownHtml += '<span style="color:' + dColor + ';font-weight:600">' + dSign + r.delta + '</span>';
+            breakdownHtml += '</div>';
+          });
+          breakdownHtml += '</div>';
+        }
+      }
+      slot.innerHTML = '<div class="opp-score-card" style="cursor:pointer" onclick="var bd=document.getElementById(\'opp-breakdown\');if(bd)bd.style.display=bd.style.display===\'none\'?\'\':\'none\'">' +
         '<div class="opp-score-num">' + s + '</div>' +
         '<div class="opp-score-body">' +
-        '<div class="opp-score-label">OPPORTUNITY SCORE</div>' +
+        '<div class="opp-score-label">OPPORTUNITY SCORE <span style="font-size:8px;color:#6b7280;margin-left:4px">TAP FOR BREAKDOWN</span></div>' +
         '<div class="opp-score-tier ' + tierClass + '">' + tier + '</div>' +
         '<div class="opp-score-bar"><div class="opp-score-bar-fill" style="width:' + s + '%;background:' + barColor + '"></div></div>' +
+        breakdownHtml +
         '<div style="font-size:10px;color:#9898b0;margin-top:4px">Scores reflect publicly available data and are not investment recommendations.</div>' +
         '</div></div>';
     })

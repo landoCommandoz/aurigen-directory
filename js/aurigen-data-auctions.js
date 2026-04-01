@@ -271,6 +271,12 @@ function renderAuctionsInvCards(container, countyName) {
     html += '<div class="prop-stat"><div class="prop-stat-lbl">LIEN AMT</div><div class="prop-stat-val neutral">' + lienAmt + '</div></div>';
     html += '<div class="prop-stat"><div class="prop-stat-lbl">LIEN YEAR</div><div class="prop-stat-val neutral">' + lienYear + '</div></div>';
     html += '<div class="prop-stat"><div class="prop-stat-lbl">DELINQUENT</div><div class="prop-stat-val neutral">' + delinquent + '</div></div>';
+    if (p.overbid_pct != null && isFinite(p.overbid_pct)) {
+      var obVal = Math.round(p.overbid_pct * 10) / 10;
+      var obColor = obVal < 20 ? '#3ecf8e' : obVal <= 50 ? '#fbbf24' : '#f87171';
+      var obLabel = obVal < 20 ? 'LOW' : obVal <= 50 ? 'MED' : 'HIGH';
+      html += '<div class="prop-stat"><div class="prop-stat-lbl">OVERBID</div><div class="prop-stat-val" style="color:' + obColor + '">' + obVal + '% <span style="font-size:8px;opacity:0.7">' + obLabel + '</span></div></div>';
+    }
     html += '</div>';
     html += '<div class="prop-card-footer">';
     html += '<div class="prop-footer-data">';

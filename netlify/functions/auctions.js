@@ -96,13 +96,14 @@ exports.handler = async (event) => {
       var stateMap = {};
       (auctionStats.data || []).forEach(function(a) {
         if (!a.state_code) return;
-        if (!stateMap[a.state_code]) stateMap[a.state_code] = { auction_count: 0, bids: [], equities: [], top_county: null, top_score: 0 };
+        if (!stateMap[a.state_code]) stateMap[a.state_code] = { auction_count: 0, bids: [], equities: [], overbids: [], top_county: null, top_score: 0 };
         stateMap[a.state_code].auction_count++;
       });
       (propStats.data || []).forEach(function(p) {
         if (!p.state_code || !stateMap[p.state_code]) return;
         if (p.opening_bid != null) stateMap[p.state_code].bids.push(p.opening_bid);
         if (p.equity_cushion_pct != null) stateMap[p.state_code].equities.push(p.equity_cushion_pct);
+        if (p.overbid_pct != null) stateMap[p.state_code].overbids.push(p.overbid_pct);
       });
       (scoreStats.data || []).forEach(function(s) {
         if (!s.state_code || !stateMap[s.state_code]) return;
@@ -119,6 +120,7 @@ exports.handler = async (event) => {
           auction_count: d.auction_count,
           avg_opening_bid: d.bids.length > 0 ? Math.round(d.bids.reduce(function(a,b){return a+b;},0) / d.bids.length) : null,
           avg_equity_cushion: d.equities.length > 0 ? Math.round(d.equities.reduce(function(a,b){return a+b;},0) / d.equities.length * 10) / 10 : null,
+          avg_overbid_pct: d.overbids.length > 0 ? Math.round(d.overbids.reduce(function(a,b){return a+b;},0) / d.overbids.length * 10) / 10 : null,
           top_county: d.top_county,
           top_score: d.top_score
         };
