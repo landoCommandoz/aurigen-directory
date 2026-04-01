@@ -216,7 +216,7 @@ var StatePanel = {
       if (rows[r].platform) {
         platHtml = '<span class="sp-county-plat">' + escapeHtml(typeof shortenPlatform === 'function' ? shortenPlatform(rows[r].platform) : rows[r].platform) + '</span>';
       }
-      h += '<div class="sp-county-row" data-name="' + escapeHtml(rows[r].name.toLowerCase()) + '" data-county="' + safeName + '" onclick="StatePanel._openCounty(this.getAttribute(\'data-county\'))">';
+      h += '<div class="sp-county-row" data-name="' + escapeHtml(rows[r].name.toLowerCase()) + '" data-county="' + safeName + '" onclick="event.stopPropagation();StatePanel._openCounty(this.getAttribute(\'data-county\'))">';
       h += '<span class="sp-county-name">' + safeName + '</span>';
       h += '<span class="sp-county-arrow">\u203A</span>';
       h += platHtml;
@@ -305,7 +305,7 @@ var StatePanel = {
     // Header with back button
     h += '<div class="sp-header">';
     h += '<div class="sp-header-text">';
-    h += '<button class="sp-back" onclick="StatePanel.open(\'' + escapeHtml(stateCode) + '\');StatePanel._switchTab(\'counties\')">\u2190 ' + escapeHtml(stateName) + '</button>';
+    h += '<button class="sp-back" onclick="StatePanel.open(\'' + escapeHtml(stateCode) + '\').then(function(){StatePanel._switchTab(\'counties\')})">\u2190 ' + escapeHtml(stateName) + '</button>';
     h += '<div class="sp-name" style="font-size:28px">' + escapeHtml(countyName) + '</div>';
     h += '<div class="sp-code">' + escapeHtml(stateCode) + '</div>';
     h += '</div>';
@@ -317,10 +317,10 @@ var StatePanel = {
     h += '<div id="sp-opp-score-slot" class="sp-county-section"><div class="sp-county-loading"><div class="sp-spinner"></div>Loading Opportunity Score...</div></div>';
     h += '<div id="sp-redemption-slot" class="sp-county-section"><div class="sp-county-loading"><div class="sp-spinner"></div>Loading Redemption Rate...</div></div>';
 
-    // Action buttons
-    h += '<div class="sp-county-actions">';
-    h += '<button class="sp-county-btn sp-county-btn-primary" onclick="StatePanel._viewProperties(\'' + escapeHtml(stateCode) + '\',\'' + escapeHtml(countyName) + '\')">View Properties</button>';
-    h += '<button class="sp-county-btn sp-county-btn-ghost" onclick="StatePanel._runScout(\'' + escapeHtml(stateCode) + '\',\'' + escapeHtml(countyName) + '\')">Run Scout</button>';
+    // Action buttons — rendered hidden, revealed after 150ms to block ghost clicks
+    h += '<div id="sp-county-actions" class="sp-county-actions" style="opacity:0;pointer-events:none">';
+    h += '<button class="sp-county-btn sp-county-btn-primary" onclick="event.stopPropagation();StatePanel._viewProperties(\'' + escapeHtml(stateCode) + '\',\'' + escapeHtml(countyName) + '\')">View Properties</button>';
+    h += '<button class="sp-county-btn sp-county-btn-ghost" onclick="event.stopPropagation();StatePanel._runScout(\'' + escapeHtml(stateCode) + '\',\'' + escapeHtml(countyName) + '\')">Run Scout</button>';
     h += '</div>';
 
     h += '<div class="sp-disclaimer">Scores reflect publicly available data and are not investment recommendations.</div>';
@@ -329,6 +329,12 @@ var StatePanel = {
     h += '</div>';
 
     modals.innerHTML = h;
+
+    // Reveal action buttons after delay to prevent ghost click from touch events
+    setTimeout(function () {
+      var actions = document.getElementById('sp-county-actions');
+      if (actions) { actions.style.opacity = '1'; actions.style.pointerEvents = ''; }
+    }, 150);
 
     // Fetch opportunity score
     StatePanel._fetchCountyScore(stateCode, countyName);
