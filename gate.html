@@ -114,61 +114,90 @@
     .gate-lang-btn.active{background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--bg);box-shadow:0 2px 12px rgba(201,168,76,0.4);}
 
     /* PLATFORM DEMO */
-    .demo-wrap{position:relative;z-index:1;margin-bottom:24px;border:1px solid rgba(201,168,76,0.18);border-radius:8px;overflow:hidden;background:#0a0e1a;aspect-ratio:16/10;min-height:240px;max-height:340px;}
-    .demo-scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 18px;opacity:0;transition:opacity 0.4s ease;pointer-events:none;}
+    .demo-container{position:relative;z-index:1;width:100%;margin-bottom:24px;border-radius:8px;overflow:hidden;border:1px solid rgba(201,168,76,0.15);background:#0a0e1a;aspect-ratio:16/10;min-height:220px;max-height:380px;}
+    .demo-viewport{position:relative;width:100%;height:100%;overflow:hidden;}
+    .demo-scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 16px;opacity:0;transition:opacity 0.4s ease;pointer-events:none;}
     .demo-scene.active{opacity:1;pointer-events:auto;}
-    .demo-caption{font-family:'Bebas Neue',sans-serif;font-size:clamp(15px,3vw,20px);color:var(--text);letter-spacing:0.04em;text-align:center;margin-top:auto;opacity:0;transform:translateY(10px);transition:opacity 0.5s 0.3s,transform 0.5s 0.3s;}
+    .demo-caption{font-family:'Bebas Neue',sans-serif;font-size:clamp(14px,2.5vw,20px);color:var(--gold);letter-spacing:0.06em;opacity:0;transform:translateY(12px);transition:opacity 0.5s 0.3s,transform 0.5s 0.3s;}
     .demo-scene.active .demo-caption{opacity:1;transform:translateY(0);}
-    .demo-sub{font-family:'Space Mono',monospace;font-size:clamp(8px,1.4vw,10px);color:var(--muted);letter-spacing:0.1em;text-align:center;margin-top:4px;text-transform:uppercase;}
-    .demo-dots{display:flex;gap:6px;justify-content:center;margin-top:8px;position:relative;z-index:1;}
-    .demo-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.12);transition:background 0.3s,box-shadow 0.3s;}
-    .demo-dot.on{background:var(--gold);box-shadow:0 0 6px rgba(201,168,76,0.5);}
-    .demo-tag{font-family:'Space Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;text-align:center;margin-top:4px;text-transform:uppercase;}
-    /* scene 1 — map */
-    .s1-map{width:90%;max-width:320px;opacity:0.85;}
-    .s1-map .state{fill:rgba(201,168,76,0.06);stroke:rgba(201,168,76,0.25);stroke-width:0.5;transition:fill 0.6s;}
-    .s1-map .state.lit{fill:rgba(201,168,76,0.35);filter:drop-shadow(0 0 4px rgba(201,168,76,0.4));}
-    /* scene 2 — county card */
-    .s2-card{background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:16px 20px;width:85%;max-width:300px;text-align:left;opacity:0;transform:scale(0.92);transition:opacity 0.5s 0.2s,transform 0.5s 0.2s;}
-    .demo-scene.active .s2-card{opacity:1;transform:scale(1);}
-    .s2-county{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);letter-spacing:0.04em;}
-    .s2-state{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;}
-    .s2-row{display:flex;justify-content:space-between;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;color:var(--text);padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
-    .s2-row span:first-child{color:var(--muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;}
-    /* scene 3 — inventory table */
-    .s3-table{width:92%;max-width:340px;border-collapse:collapse;}
-    .s3-table th{font-family:'Space Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;text-align:left;padding:4px 6px;border-bottom:1px solid rgba(201,168,76,0.15);}
-    .s3-table td{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:var(--text);padding:5px 6px;border-bottom:1px solid rgba(255,255,255,0.03);opacity:0;transform:translateX(-8px);transition:opacity 0.4s,transform 0.4s;}
-    .s3-table tr.show td{opacity:1;transform:translateX(0);}
-    .s3-disc{position:absolute;bottom:8px;right:12px;font-family:'Space Mono',monospace;font-size:8px;color:rgba(232,201,106,0.6);background:rgba(0,0,0,0.5);padding:2px 8px;border-radius:3px;}
-    /* scene 4 — score */
-    .s4-bar-wrap{width:80%;max-width:260px;height:10px;background:rgba(255,255,255,0.06);border-radius:5px;overflow:hidden;margin-top:12px;}
-    .s4-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--teal));border-radius:5px;transition:width 2s ease-out;}
-    .s4-num{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--teal);line-height:1;}
-    .s4-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;margin-top:2px;}
-    /* scene 5 — pulse */
-    .s5-alert{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:14px 18px;width:88%;max-width:320px;text-align:left;transform:translateX(60px);opacity:0;transition:transform 0.5s 0.3s ease-out,opacity 0.4s 0.3s;}
-    .demo-scene.active .s5-alert{transform:translateX(0);opacity:1;}
-    .s5-bell{font-size:16px;margin-right:6px;}
-    .s5-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--text);font-weight:600;}
-    .s5-detail{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;letter-spacing:0.04em;}
-    /* scene 6 — warbook */
-    .s6-input{font-family:'Space Mono',monospace;font-size:13px;color:var(--gold);background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.2);border-radius:6px;padding:10px 14px;width:80%;max-width:260px;text-align:left;min-height:38px;}
-    .s6-status{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);margin-top:8px;height:14px;}
-    .s6-result{background:rgba(45,212,192,0.08);border:1px solid rgba(45,212,192,0.3);border-radius:6px;padding:12px 16px;margin-top:10px;opacity:0;transform:translateY(6px);transition:opacity 0.4s,transform 0.4s;}
-    .s6-result.show{opacity:1;transform:translateY(0);}
-    .s6-go{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--teal);letter-spacing:0.06em;}
-    .s6-verdict{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
-    /* scene 7 — CTA */
-    .s7-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,5vw,32px);color:var(--text);letter-spacing:0.04em;text-align:center;}
-    .s7-sub{font-family:'Space Mono',monospace;font-size:clamp(9px,1.4vw,11px);color:var(--muted);letter-spacing:0.08em;text-align:center;margin-top:6px;}
-    @keyframes btnPulse{0%,100%{box-shadow:0 0 20px rgba(201,168,76,0.3)}50%{box-shadow:0 0 36px rgba(201,168,76,0.55)}}
-    .s7-btn{display:inline-block;margin-top:16px;padding:12px 32px;background:linear-gradient(110deg,#b8942a,#e8c96a,#c9a84c);border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:16px;color:#060912;letter-spacing:0.06em;text-decoration:none;animation:btnPulse 2s infinite ease-in-out;}
-    @media(max-width:480px){
-      .demo-wrap{aspect-ratio:4/3;min-height:220px;max-height:300px;}
-      .s2-card{padding:12px 14px;}
-      .s4-num{font-size:42px;}
-    }
+    .demo-subcaption{font-family:'Space Mono',monospace;font-size:clamp(8px,1.3vw,11px);color:var(--muted);letter-spacing:0.08em;margin-top:4px;opacity:0;transform:translateY(8px);transition:opacity 0.5s 0.5s,transform 0.5s 0.5s;}
+    .demo-scene.active .demo-subcaption{opacity:1;transform:translateY(0);}
+
+    /* Scene indicator dots */
+    .demo-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:5;}
+    .demo-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.15);transition:background 0.3s,box-shadow 0.3s;}
+    .demo-dot.active{background:var(--gold);box-shadow:0 0 6px rgba(201,168,76,0.5);}
+
+    /* S1 — MAP */
+    .demo-map-wrap{position:relative;width:100%;flex:1;min-height:0;margin-bottom:6px;display:flex;align-items:center;justify-content:center;}
+    .demo-map-wrap svg{width:100%;height:100%;}
+    .demo-map-wrap svg path.demo-state{fill:rgba(201,168,76,0.05);stroke:rgba(201,168,76,0.2);stroke-width:0.4;transition:fill 0.6s,stroke 0.6s,filter 0.6s;}
+    .demo-map-wrap svg path.demo-state.highlight{fill:rgba(201,168,76,0.35);stroke:rgba(232,201,106,0.7);stroke-width:0.8;filter:drop-shadow(0 0 6px rgba(201,168,76,0.5));}
+    @keyframes demoGlow{0%,100%{filter:drop-shadow(0 0 6px rgba(201,168,76,0.5))}50%{filter:drop-shadow(0 0 14px rgba(201,168,76,0.8))}}
+
+    /* S2 — COUNTY CARD */
+    .demo-county-card{background:rgba(12,16,30,0.9);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:14px 18px;width:85%;max-width:300px;text-align:left;opacity:0;transform:scale(0.92);transition:opacity 0.5s 0.2s,transform 0.5s 0.2s;}
+    .demo-scene.active .demo-county-card{opacity:1;transform:scale(1);}
+    .demo-county-hdr{font-family:'Bebas Neue',sans-serif;font-size:clamp(16px,2.5vw,22px);color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+    .demo-county-badge{font-family:'Space Mono',monospace;font-size:8px;background:rgba(201,168,76,0.12);color:var(--gold);padding:2px 8px;border-radius:3px;letter-spacing:0.1em;}
+    .demo-county-row{font-family:'Space Mono',monospace;font-size:clamp(9px,1.2vw,11px);color:var(--muted);line-height:2;display:flex;justify-content:space-between;}
+    .demo-county-val{color:var(--text);}
+    .demo-zoom-line{position:absolute;width:1px;height:0;background:linear-gradient(to bottom,var(--gold),transparent);top:10%;left:35%;opacity:0;transition:height 0.6s 0.1s,opacity 0.3s 0.1s;}
+    .demo-scene.active .demo-zoom-line{height:25%;opacity:0.6;}
+
+    /* S3 — INVENTORY TABLE */
+    .demo-table{width:90%;max-width:340px;border-collapse:collapse;margin-bottom:6px;}
+    .demo-table th{font-family:'Space Mono',monospace;font-size:clamp(7px,1vw,9px);color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;text-align:left;padding:4px 6px;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .demo-table td{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(9px,1.2vw,11px);color:var(--text);padding:5px 6px;border-bottom:1px solid rgba(255,255,255,0.03);}
+    .demo-table tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
+    .demo-trow{opacity:0;transform:translateX(20px);transition:opacity 0.4s,transform 0.4s;}
+    .demo-scene.active .demo-trow{opacity:1;transform:translateX(0);}
+    .demo-disclaimer-badge{font-family:'Space Mono',monospace;font-size:8px;color:#e8c96a;background:rgba(232,201,106,0.08);padding:3px 8px;border-radius:3px;align-self:flex-end;margin-top:4px;}
+
+    /* S4 — SCORE GAUGE */
+    .demo-gauge{position:relative;width:120px;height:120px;margin-bottom:8px;}
+    .demo-gauge svg{width:100%;height:100%;}
+    .demo-gauge-track{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:8;stroke-linecap:round;}
+    .demo-gauge-fill{fill:none;stroke-width:8;stroke-linecap:round;stroke:var(--teal);stroke-dasharray:251;stroke-dashoffset:251;transition:stroke-dashoffset 2s ease-out,stroke 0.5s;}
+    .demo-scene.active .demo-gauge-fill{stroke-dashoffset:20;}
+    .demo-gauge-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--teal);}
+
+    /* S5 — PULSE ALERT */
+    .demo-pulse-alert{background:rgba(12,16,30,0.95);border:1px solid rgba(45,212,192,0.3);border-radius:8px;padding:12px 16px;width:85%;max-width:320px;display:flex;align-items:flex-start;gap:10px;opacity:0;transform:translateX(40px);transition:opacity 0.5s 0.3s,transform 0.5s 0.3s;}
+    .demo-scene.active .demo-pulse-alert{opacity:1;transform:translateX(0);}
+    .demo-pulse-icon{font-size:18px;flex-shrink:0;}
+    .demo-pulse-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(10px,1.4vw,13px);color:var(--text);font-weight:500;}
+    .demo-pulse-detail{font-family:'Space Mono',monospace;font-size:clamp(8px,1.1vw,10px);color:var(--muted);margin-top:3px;}
+    .demo-pulse-time{font-family:'Space Mono',monospace;font-size:8px;color:var(--teal);margin-top:4px;}
+
+    /* S6 — WARBOOK TERMINAL */
+    .demo-terminal{background:rgba(6,9,18,0.95);border:1px solid rgba(255,255,255,0.08);border-radius:6px;width:90%;max-width:320px;overflow:hidden;}
+    .demo-term-bar{display:flex;align-items:center;gap:5px;padding:6px 10px;background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(255,255,255,0.06);}
+    .demo-term-dot{width:6px;height:6px;border-radius:50%;}
+    .demo-term-body{padding:12px 14px;font-family:'Space Mono',monospace;font-size:clamp(9px,1.2vw,11px);color:var(--muted);line-height:1.8;min-height:80px;}
+    .demo-term-cursor{display:inline-block;width:7px;height:14px;background:var(--gold);animation:demoBlink 0.8s step-end infinite;vertical-align:text-bottom;}
+    @keyframes demoBlink{50%{opacity:0}}
+    .demo-term-go{display:inline-block;background:rgba(45,212,192,0.15);color:var(--teal);padding:2px 10px;border-radius:3px;font-weight:600;opacity:0;transform:scale(0.8);transition:opacity 0.3s,transform 0.3s;}
+    .demo-term-go.show{opacity:1;transform:scale(1);}
+
+    /* S7 — CTA HOLD */
+    .demo-cta-hold{text-align:center;}
+    .demo-cta-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,3.5vw,28px);color:var(--text);opacity:0;transform:translateY(10px);transition:opacity 0.6s 0.3s,transform 0.6s 0.3s;}
+    .demo-scene.active .demo-cta-big{opacity:1;transform:translateY(0);}
+    .demo-cta-sub{font-family:'Space Mono',monospace;font-size:clamp(9px,1.2vw,11px);color:var(--muted);margin-top:6px;letter-spacing:0.08em;opacity:0;transition:opacity 0.5s 0.6s;}
+    .demo-scene.active .demo-cta-sub{opacity:1;}
+    .demo-cta-btn{display:inline-block;margin-top:14px;padding:10px 28px;background:linear-gradient(110deg,#b8942a,#e8c96a,#c9a84c);background-size:200% 100%;border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:16px;color:#060912;letter-spacing:0.06em;cursor:pointer;text-decoration:none;box-shadow:0 0 32px rgba(201,168,76,0.3);opacity:0;transform:translateY(8px);transition:opacity 0.4s 0.8s,transform 0.4s 0.8s,background-position 0.3s;animation:demoPulseBtn 2s 1.2s infinite;}
+    .demo-scene.active .demo-cta-btn{opacity:1;transform:translateY(0);}
+    @keyframes demoPulseBtn{0%,100%{box-shadow:0 0 32px rgba(201,168,76,0.3)}50%{box-shadow:0 0 48px rgba(201,168,76,0.55)}}
+    .demo-cta-btn:hover{background-position:100% 0;}
+
+    /* Fixed bottom CTA bar */
+    .demo-fixed-cta{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(6,9,18,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(201,168,76,0.2);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;transform:translateY(100%);animation:demoSlideUp 0.6s 2s ease forwards;}
+    @keyframes demoSlideUp{to{transform:translateY(0)}}
+    .demo-fixed-cta-text{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.08em;}
+    .demo-fixed-cta-price{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);line-height:1;}
+    .demo-fixed-cta-btn{padding:8px 20px;background:linear-gradient(110deg,#b8942a,#e8c96a);border:none;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:13px;color:#060912;letter-spacing:0.06em;cursor:pointer;text-decoration:none;box-shadow:0 0 20px rgba(201,168,76,0.25);transition:transform 0.2s;}
+    .demo-fixed-cta-btn:hover{transform:translateY(-1px);}
 
     /* DISCLAIMER */
     .gate-disclaimer{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);text-align:center;opacity:0.6;max-width:600px;margin:20px auto 0;line-height:1.6;position:relative;z-index:10;}
@@ -179,6 +208,14 @@
       .btn-unlock{padding:18px 20px;}
       .btn-unlock-price{font-size:32px;}
       .gate-lang{top:14px;right:14px;}
+    }
+    @media(max-width:480px){
+      .demo-container{aspect-ratio:4/3;min-height:260px;max-height:340px;}
+      .demo-table th,.demo-table td{font-size:8px;padding:3px 4px;}
+      .demo-gauge{width:90px;height:90px;}
+      .demo-gauge-num{font-size:28px;}
+      .demo-fixed-cta{padding:8px 14px;gap:10px;}
+      .demo-fixed-cta-text{display:none;}
     }
   </style>
 </head>
@@ -218,139 +255,110 @@
   <div class="gate-card anim">
     <p class="card-label" data-en="Choose your entry point" data-es="Elige tu punto de entrada">Choose your entry point</p>
 
-    <!-- PLATFORM DEMO — auto-playing animated walkthrough -->
-    <div class="demo-wrap" id="platformDemo">
+    <!-- PLATFORM DEMO -->
+    <div class="demo-container">
+      <div class="demo-viewport">
 
-      <!-- SCENE 1: US Map -->
-      <div class="demo-scene active" id="ds1">
-        <svg class="s1-map" viewBox="0 0 960 600" preserveAspectRatio="xMidYMid meet">
-          <!-- Simplified US state outlines -->
-          <path class="state" data-st="WA" d="M175 45L200 35L225 40L230 75L215 80L175 70Z"/>
-          <path class="state" data-st="OR" d="M155 75L175 70L215 80L220 115L195 120L155 110Z"/>
-          <path class="state" data-st="CA" d="M140 110L155 110L195 120L200 180L185 220L155 200L135 160Z"/>
-          <path class="state" data-st="NV" d="M195 120L220 115L230 110L240 165L200 180Z"/>
-          <path class="state" data-st="ID" d="M230 50L260 45L270 100L240 110L220 115L230 75Z"/>
-          <path class="state" data-st="MT" d="M260 45L340 35L350 80L270 90L270 100Z"/>
-          <path class="state" data-st="WY" d="M270 90L350 80L355 130L275 140Z"/>
-          <path class="state" data-st="UT" d="M240 110L275 105L280 165L240 165Z"/>
-          <path class="state" data-st="CO" d="M280 140L360 135L365 180L285 185Z"/>
-          <path class="state" data-st="AZ" d="M200 180L240 165L280 165L285 230L240 240L200 215Z"/>
-          <path class="state" data-st="NM" d="M285 185L365 180L370 240L290 245Z"/>
-          <path class="state" data-st="ND" d="M370 50L450 48L452 85L372 87Z"/>
-          <path class="state" data-st="SD" d="M372 87L452 85L454 125L374 127Z"/>
-          <path class="state" data-st="NE" d="M374 127L454 125L460 165L380 167Z"/>
-          <path class="state" data-st="KS" d="M380 167L460 165L462 205L382 207Z"/>
-          <path class="state" data-st="OK" d="M382 207L462 205L465 240L425 242L385 238Z"/>
-          <path class="state" data-st="TX" d="M370 240L425 242L465 240L475 280L460 340L420 360L370 330L350 280Z"/>
-          <path class="state" data-st="MN" d="M455 48L530 50L528 100L452 98Z"/>
-          <path class="state" data-st="IA" d="M452 100L530 102L528 140L455 138Z"/>
-          <path class="state" data-st="MO" d="M460 165L530 163L535 215L465 217Z"/>
-          <path class="state" data-st="AR" d="M500 217L545 215L548 255L503 257Z"/>
-          <path class="state" data-st="LA" d="M505 260L548 255L555 300L530 310L505 295Z"/>
-          <path class="state" data-st="WI" d="M530 50L590 55L585 100L528 98Z"/>
-          <path class="state" data-st="IL" d="M545 115L580 113L585 180L550 182Z"/>
-          <path class="state" data-st="MI" d="M590 55L630 50L640 100L610 108L585 100Z"/>
-          <path class="state" data-st="IN" d="M585 115L615 113L618 175L588 177Z"/>
-          <path class="state" data-st="OH" d="M618 108L660 105L665 160L622 163Z"/>
-          <path class="state" data-st="KY" d="M600 180L665 175L680 195L605 200Z"/>
-          <path class="state" data-st="TN" d="M590 205L680 200L685 225L595 230Z"/>
-          <path class="state" data-st="MS" d="M545 240L575 238L578 295L548 298Z"/>
-          <path class="state" data-st="AL" d="M578 235L615 232L620 295L582 298Z"/>
-          <path class="state" data-st="GA" d="M618 230L660 225L668 290L625 295Z"/>
-          <path class="state" data-st="FL" d="M625 295L670 290L700 310L710 370L680 390L650 360L630 320Z"/>
-          <path class="state" data-st="SC" d="M665 220L710 210L700 245L670 250Z"/>
-          <path class="state" data-st="NC" d="M650 195L730 185L735 215L660 220Z"/>
-          <path class="state" data-st="VA" d="M660 170L740 160L745 190L665 195Z"/>
-          <path class="state" data-st="WV" d="M660 155L685 150L680 175L660 170Z"/>
-          <path class="state" data-st="PA" d="M680 105L750 100L755 135L685 140Z"/>
-          <path class="state" data-st="NY" d="M700 60L770 50L775 100L710 105Z"/>
-          <path class="state" data-st="NJ" d="M758 110L770 108L772 140L760 142Z"/>
-          <path class="state" data-st="MD" d="M700 145L750 140L752 160L705 162Z"/>
-          <path class="state" data-st="CT" d="M770 85L790 82L788 100L768 102Z"/>
-          <path class="state" data-st="MA" d="M775 72L810 68L808 85L773 88Z"/>
-          <path class="state" data-st="VT" d="M760 42L775 40L773 65L758 67Z"/>
-          <path class="state" data-st="NH" d="M775 35L790 32L788 60L773 62Z"/>
-          <path class="state" data-st="ME" d="M790 15L820 10L815 55L788 50Z"/>
-        </svg>
-        <div class="demo-caption">3,200+ counties across 51 states</div>
-        <div class="demo-sub">Click any county to see auction data</div>
-      </div>
-
-      <!-- SCENE 2: County Deep Dive -->
-      <div class="demo-scene" id="ds2">
-        <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">FLORIDA &rsaquo; BROWARD COUNTY</div>
-        <div class="s2-card">
-          <div class="s2-county">BROWARD COUNTY</div>
-          <div class="s2-state">FLORIDA</div>
-          <div class="s2-row"><span>Type</span><span style="color:var(--gold)">TAX LIEN</span></div>
-          <div class="s2-row"><span>Rate</span><span>18%</span></div>
-          <div class="s2-row"><span>Redemption</span><span>2 years</span></div>
-          <div class="s2-row" style="border:none"><span>Next auction</span><span style="color:var(--teal)">Apr 7, 2026</span></div>
+        <!-- S1: US MAP VIEW -->
+        <div class="demo-scene" id="demo-s1">
+          <div class="demo-map-wrap"><svg id="demo-us-map"></svg></div>
+          <div class="demo-caption">3,200+ counties across 51 states</div>
+          <div class="demo-subcaption">Click any county to see auction data</div>
         </div>
-        <div class="demo-caption">Every county. Every rule. Every auction date.</div>
-      </div>
 
-      <!-- SCENE 3: Live Inventory -->
-      <div class="demo-scene" id="ds3">
-        <table class="s3-table">
-          <tr><th>Parcel</th><th>Address</th><th>Assessed</th><th>Bid</th><th>Score</th></tr>
-          <tr class="s3-row"><td>04-41-18-002</td><td>1421 Elm St</td><td>$184,200</td><td>$2,840</td><td style="color:var(--teal)">87</td></tr>
-          <tr class="s3-row"><td>04-41-22-019</td><td>730 Pine Ave</td><td>$96,500</td><td>$1,150</td><td style="color:var(--gold)">74</td></tr>
-          <tr class="s3-row"><td>04-41-35-008</td><td>2200 Oak Blvd</td><td>$312,000</td><td>$4,670</td><td style="color:var(--teal)">92</td></tr>
-          <tr class="s3-row"><td>04-41-40-011</td><td>88 Harbor Dr</td><td>$145,800</td><td>$1,980</td><td style="color:var(--gold)">68</td></tr>
-        </table>
-        <div class="s3-disc">&#9888;&#65039; Demo only &mdash; not real properties</div>
-        <div class="demo-caption">Live auction inventory &mdash; updated every Sunday</div>
-      </div>
-
-      <!-- SCENE 4: Opportunity Score -->
-      <div class="demo-scene" id="ds4">
-        <div class="s4-label">OPPORTUNITY SCORE</div>
-        <div class="s4-num" id="s4Counter">0</div>
-        <div class="s4-bar-wrap"><div class="s4-bar" id="s4Bar"></div></div>
-        <div class="demo-caption" style="margin-top:16px;">Opportunity scoring on every certificate</div>
-      </div>
-
-      <!-- SCENE 5: Pulse Alert -->
-      <div class="demo-scene" id="ds5">
-        <div class="s5-alert">
-          <div class="s5-title"><span class="s5-bell">&#128276;</span> New auction added</div>
-          <div class="s5-detail">Cook County, IL &middot; Apr 21, 2026 &middot; 3,180 certificates</div>
+        <!-- S2: COUNTY DEEP DIVE -->
+        <div class="demo-scene" id="demo-s2">
+          <div class="demo-zoom-line"></div>
+          <div class="demo-county-card">
+            <div class="demo-county-hdr">Broward County, FL <span class="demo-county-badge">TAX LIEN</span></div>
+            <div class="demo-county-row"><span>Interest Rate</span><span class="demo-county-val" style="color:var(--gold)">18%</span></div>
+            <div class="demo-county-row"><span>Redemption</span><span class="demo-county-val">2 years</span></div>
+            <div class="demo-county-row"><span>Next Auction</span><span class="demo-county-val" style="color:var(--teal)">Apr 7, 2026</span></div>
+            <div class="demo-county-row"><span>Certificates</span><span class="demo-county-val">4,218</span></div>
+          </div>
+          <div class="demo-caption">Every county. Every rule. Every auction date.</div>
         </div>
-        <div class="demo-caption" style="margin-top:20px;">Pulse alerts &mdash; never miss an auction again</div>
-      </div>
 
-      <!-- SCENE 6: Warbook Analyzer -->
-      <div class="demo-scene" id="ds6">
-        <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">WARBOOK ANALYZER</div>
-        <div class="s6-input" id="s6Input"></div>
-        <div class="s6-status" id="s6Status"></div>
-        <div class="s6-result" id="s6Result">
-          <div class="s6-go">GO</div>
-          <div class="s6-verdict">Strong fundamentals &middot; Low competition &middot; 18% ceiling</div>
+        <!-- S3: LIVE INVENTORY -->
+        <div class="demo-scene" id="demo-s3">
+          <table class="demo-table">
+            <thead><tr><th>Parcel</th><th>Address</th><th>Assessed</th><th>Bid</th><th>Score</th></tr></thead>
+            <tbody>
+              <tr class="demo-trow" style="transition-delay:0.3s"><td style="color:var(--gold)">26-43-07</td><td>1420 SW 3rd Ave</td><td>$187,400</td><td>$2,841</td><td style="color:var(--teal)">88</td></tr>
+              <tr class="demo-trow" style="transition-delay:0.6s"><td style="color:var(--gold)">26-43-12</td><td>890 NE 15th St</td><td>$134,200</td><td>$1,956</td><td style="color:var(--teal)">74</td></tr>
+              <tr class="demo-trow" style="transition-delay:0.9s"><td style="color:var(--gold)">26-44-01</td><td>3301 W Sunrise Blvd</td><td>$241,800</td><td>$3,672</td><td style="color:var(--teal)">92</td></tr>
+              <tr class="demo-trow" style="transition-delay:1.2s"><td style="color:var(--gold)">26-44-08</td><td>2105 S Federal Hwy</td><td>$98,600</td><td>$1,203</td><td style="color:var(--teal)">81</td></tr>
+            </tbody>
+          </table>
+          <div class="demo-caption">Live auction inventory &mdash; updated every Sunday</div>
+          <span class="demo-disclaimer-badge">Demo only &mdash; not real properties</span>
         </div>
-        <div class="demo-caption">Warbook &mdash; due diligence in seconds</div>
-      </div>
 
-      <!-- SCENE 7: CTA Hold -->
-      <div class="demo-scene" id="ds7">
-        <div class="s7-big">Everything you just saw is live.</div>
-        <div class="s7-sub">Unlock full access &mdash; one time, no subscription</div>
-        <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="s7-btn">UNLOCK NOW &mdash; $197</a>
-      </div>
+        <!-- S4: OPPORTUNITY SCORE -->
+        <div class="demo-scene" id="demo-s4">
+          <div class="demo-gauge">
+            <svg viewBox="0 0 100 100">
+              <circle class="demo-gauge-track" cx="50" cy="50" r="40" transform="rotate(-90 50 50)"/>
+              <circle class="demo-gauge-fill" cx="50" cy="50" r="40" transform="rotate(-90 50 50)"/>
+            </svg>
+            <div class="demo-gauge-num" id="demo-score-num">0</div>
+          </div>
+          <div class="demo-caption">Opportunity scoring on every certificate</div>
+          <div class="demo-subcaption">26-44-01 &middot; 3301 W Sunrise Blvd</div>
+        </div>
 
+        <!-- S5: PULSE ALERT -->
+        <div class="demo-scene" id="demo-s5">
+          <div class="demo-pulse-alert">
+            <span class="demo-pulse-icon">&#x1F514;</span>
+            <div>
+              <div class="demo-pulse-title">New auction added &mdash; Cook County, IL</div>
+              <div class="demo-pulse-detail">Apr 21 &middot; 3,180 certificates &middot; Tax Lien</div>
+              <div class="demo-pulse-time">2 minutes ago</div>
+            </div>
+          </div>
+          <div class="demo-caption" style="margin-top:12px">Pulse alerts &mdash; never miss an auction again</div>
+        </div>
+
+        <!-- S6: WARBOOK TERMINAL -->
+        <div class="demo-scene" id="demo-s6">
+          <div class="demo-terminal">
+            <div class="demo-term-bar">
+              <span class="demo-term-dot" style="background:#ff5f57"></span>
+              <span class="demo-term-dot" style="background:#ffbd2e"></span>
+              <span class="demo-term-dot" style="background:#28ca41"></span>
+              <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-left:8px;">WARBOOK ANALYZER</span>
+            </div>
+            <div class="demo-term-body" id="demo-term-body">
+              <span style="color:var(--gold)">$</span> <span id="demo-term-input"></span><span class="demo-term-cursor"></span>
+              <div id="demo-term-output" style="margin-top:8px"></div>
+            </div>
+          </div>
+          <div class="demo-caption" style="margin-top:10px">Warbook &mdash; due diligence in seconds</div>
+        </div>
+
+        <!-- S7: CTA HOLD -->
+        <div class="demo-scene" id="demo-s7">
+          <div class="demo-cta-hold">
+            <div class="demo-cta-big">Everything you just saw is live.</div>
+            <div class="demo-cta-sub">Unlock full access &mdash; one time, no subscription</div>
+            <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="demo-cta-btn">UNLOCK NOW &mdash; $197</a>
+          </div>
+        </div>
+
+        <!-- SCENE DOTS -->
+        <div class="demo-dots">
+          <span class="demo-dot active"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+        </div>
+
+      </div>
     </div>
-    <!-- Demo progress dots -->
-    <div class="demo-dots" style="margin-bottom:20px;">
-      <div class="demo-dot on" data-di="0"></div>
-      <div class="demo-dot" data-di="1"></div>
-      <div class="demo-dot" data-di="2"></div>
-      <div class="demo-dot" data-di="3"></div>
-      <div class="demo-dot" data-di="4"></div>
-      <div class="demo-dot" data-di="5"></div>
-      <div class="demo-dot" data-di="6"></div>
-    </div>
-    <div class="demo-tag">LIVE PLATFORM PREVIEW</div>
 
     <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="btn-unlock">
       <div class="btn-unlock-left">
@@ -381,8 +389,15 @@
 
 </div>
 
+<!-- FIXED BOTTOM CTA -->
+<div class="demo-fixed-cta">
+  <span class="demo-fixed-cta-text">ONE-TIME ACCESS</span>
+  <span class="demo-fixed-cta-price">$197</span>
+  <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="demo-fixed-cta-btn">UNLOCK FULL ACCESS</a>
+</div>
+
 <!-- FOOTER -->
-<footer style="position:relative;z-index:10;text-align:center;padding:24px;border-top:1px solid rgba(255,255,255,0.04);">
+<footer style="position:relative;z-index:10;text-align:center;padding:24px 24px 64px;border-top:1px solid rgba(255,255,255,0.04);">
   <a href="/privacy.html" style="color:var(--muted);font-size:12px;margin:0 16px;" data-en="Privacy Policy" data-es="Pol&iacute;tica de Privacidad">Privacy Policy</a>
   <a href="/legal.html" style="color:var(--muted);font-size:12px;margin:0 16px;" data-en="Terms of Service" data-es="T&eacute;rminos de Servicio">Terms of Service</a>
 </footer>
@@ -536,113 +551,150 @@ function switchLang(lang){
   window.addEventListener('resize',function(){resize();init();});
 })();
 
-// === PLATFORM DEMO CONTROLLER ===
+// === PLATFORM DEMO ENGINE ===
 (function(){
-  var scenes=document.querySelectorAll('.demo-scene');
-  var dots=document.querySelectorAll('.demo-dot');
+  var scenes=7;
+  var durations=[4500,4500,5000,4500,4500,5500,3000]; // ms per scene
   var current=0;
-  var durations=[4500,4500,5000,4500,4500,5000,3000]; // ms per scene
-  var timer=null;
+  var dots=document.querySelectorAll('.demo-dot');
+  var scoreTimer=null;
+  var typeTimer=null;
 
-  // Highlight states in scene 1
-  var litStates=['FL','AZ','AL','GA','IL','TX'];
-  var litIdx=0;
-  var litTimer=null;
+  // Render D3/TopoJSON US map into S1
+  // FIPS codes: FL=12, AZ=04, AL=01, GA=13, IL=17, TX=48, NJ=34, CO=08
+  var highlightFIPS=['12','04','01','13','17','48','34','08'];
+  var demoMapSvg=d3.select('#demo-us-map');
+  var demoMapReady=false;
 
-  function lightStates(){
-    var svgStates=document.querySelectorAll('.s1-map .state');
-    litIdx=0;
-    clearInterval(litTimer);
-    // Reset all
-    svgStates.forEach(function(s){s.classList.remove('lit');});
-    litTimer=setInterval(function(){
-      if(litIdx>=litStates.length){clearInterval(litTimer);return;}
-      svgStates.forEach(function(s){
-        if(s.getAttribute('data-st')===litStates[litIdx])s.classList.add('lit');
+  d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(function(us){
+    var statesGeo=topojson.feature(us,us.objects.states);
+    var container=document.querySelector('.demo-map-wrap');
+    var cw=container.clientWidth||400,ch=container.clientHeight||250;
+    demoMapSvg.attr('viewBox','0 0 '+cw+' '+ch).attr('preserveAspectRatio','xMidYMid meet');
+    var proj=d3.geoAlbersUsa().fitSize([cw,ch],statesGeo);
+    var pathGen=d3.geoPath().projection(proj);
+
+    demoMapSvg.selectAll('path')
+      .data(statesGeo.features)
+      .enter().append('path')
+      .attr('d',pathGen)
+      .attr('class','demo-state')
+      .attr('data-fips',function(d){return d.id;});
+
+    demoMapReady=true;
+  });
+
+  // Highlight states one by one when S1 becomes active
+  var mapHighlightTimer=null;
+  function runMapHighlights(){
+    clearMapHighlights();
+    demoMapSvg.selectAll('.demo-state').classed('highlight',false);
+    var idx=0;
+    mapHighlightTimer=setInterval(function(){
+      if(idx>=highlightFIPS.length){clearInterval(mapHighlightTimer);mapHighlightTimer=null;return;}
+      var fips=highlightFIPS[idx];
+      demoMapSvg.selectAll('.demo-state').each(function(d){
+        if(d.id===fips||d.id==='0'+fips||String(d.id)===fips){
+          var el=d3.select(this);
+          el.classed('highlight',true);
+          el.style('animation','demoGlow 1.8s ease-in-out infinite');
+        }
       });
-      litIdx++;
-    },500);
+      idx++;
+    },400);
+  }
+  function clearMapHighlights(){
+    if(mapHighlightTimer){clearInterval(mapHighlightTimer);mapHighlightTimer=null;}
   }
 
-  // Animate inventory rows in scene 3
-  function animateRows(){
-    var rows=document.querySelectorAll('.s3-row');
-    rows.forEach(function(r,i){
-      r.classList.remove('show');
-      setTimeout(function(){r.classList.add('show');},300+i*600);
-    });
+  function clearSceneTimers(){
+    if(scoreTimer){clearInterval(scoreTimer);scoreTimer=null;}
+    if(typeTimer){clearTimeout(typeTimer);typeTimer=null;}
   }
 
-  // Animate score counter in scene 4
-  function animateScore(){
-    var el=document.getElementById('s4Counter');
-    var bar=document.getElementById('s4Bar');
-    var target=92;
-    var n=0;
-    bar.style.width='0%';
-    el.textContent='0';
-    var iv=setInterval(function(){
-      n+=2;
-      if(n>target){n=target;clearInterval(iv);}
-      el.textContent=n;
-      bar.style.width=(n/100*100)+'%';
-    },35);
-  }
-
-  // Typewriter for warbook in scene 6
-  function animateWarbook(){
-    var input=document.getElementById('s6Input');
-    var status=document.getElementById('s6Status');
-    var result=document.getElementById('s6Result');
-    var parcel='04-41-35-008';
-    input.textContent='';
-    status.textContent='';
-    result.classList.remove('show');
-    var ci=0;
-    var typeTimer=setInterval(function(){
-      if(ci>=parcel.length){
-        clearInterval(typeTimer);
-        status.textContent='Analyzing...';
-        setTimeout(function(){
-          status.textContent='';
-          result.classList.add('show');
-        },1200);
-        return;
-      }
-      input.textContent+=parcel[ci];
-      ci++;
-    },100);
-  }
-
-  function goTo(idx){
-    current=idx;
-    scenes.forEach(function(s,i){
-      s.classList.toggle('active',i===idx);
-    });
-    dots.forEach(function(d,i){
-      d.classList.toggle('on',i===idx);
-    });
+  function activateScene(idx){
+    clearSceneTimers();
+    clearMapHighlights();
+    // Hide all scenes, reset map highlights
+    for(var i=1;i<=scenes;i++){
+      var s=document.getElementById('demo-s'+i);
+      if(s)s.classList.remove('active');
+    }
+    if(idx!==0){
+      demoMapSvg.selectAll('.demo-state').classed('highlight',false).style('animation',null);
+    }
+    // Update dots
+    for(var d=0;d<dots.length;d++){
+      dots[d].classList.toggle('active',d===idx);
+    }
+    // Show target scene
+    var target=document.getElementById('demo-s'+(idx+1));
+    if(target)target.classList.add('active');
 
     // Scene-specific animations
-    if(idx===0)lightStates();
-    if(idx===2)animateRows();
+    if(idx===0&&demoMapReady)runMapHighlights();
     if(idx===3)animateScore();
-    if(idx===5)animateWarbook();
+    if(idx===5)animateTerminal();
   }
 
-  function advance(){
-    var next=(current+1)%scenes.length;
-    goTo(next);
-    scheduleNext();
+  function animateScore(){
+    var el=document.getElementById('demo-score-num');
+    if(!el)return;
+    var v=0;
+    el.textContent='0';
+    scoreTimer=setInterval(function(){
+      v+=2;
+      if(v>92)v=92;
+      el.textContent=v;
+      if(v>=92)clearInterval(scoreTimer);
+    },40);
   }
 
+  function animateTerminal(){
+    var input=document.getElementById('demo-term-input');
+    var output=document.getElementById('demo-term-output');
+    if(!input||!output)return;
+    input.textContent='';
+    output.innerHTML='';
+    var cmd='analyze 26-44-01';
+    var ci=0;
+    function typeChar(){
+      if(ci<cmd.length){
+        input.textContent+=cmd[ci];
+        ci++;
+        typeTimer=setTimeout(typeChar,60+Math.random()*40);
+      }else{
+        typeTimer=setTimeout(showOutput,400);
+      }
+    }
+    function showOutput(){
+      output.innerHTML='<div style="color:var(--muted);margin-bottom:6px">Analyzing parcel...</div>'
+        +'<div style="color:var(--text)">Assessed: <span style="color:var(--gold)">$241,800</span> &middot; Bid: <span style="color:var(--gold)">$3,672</span></div>'
+        +'<div style="color:var(--text)">LTV: <span style="color:var(--teal)">1.5%</span> &middot; Redemption: 2yr</div>'
+        +'<div style="margin-top:8px"><span class="demo-term-go show">&#x2714; GO &mdash; Strong opportunity</span></div>';
+    }
+    typeTimer=setTimeout(typeChar,500);
+  }
+
+  function nextScene(){
+    current=(current+1)%scenes;
+    activateScene(current);
+  }
+
+  // Start the demo loop
+  activateScene(0);
+  var loopTimer=setInterval(function(){
+    nextScene();
+  },durations[current]);
+
+  // Use proper durations per scene
+  clearInterval(loopTimer);
   function scheduleNext(){
-    clearTimeout(timer);
-    timer=setTimeout(advance,durations[current]);
+    setTimeout(function(){
+      nextScene();
+      scheduleNext();
+    },durations[current]);
   }
-
-  // Start
-  goTo(0);
   scheduleNext();
 })();
 </script>
