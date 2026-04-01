@@ -1,8 +1,9 @@
 // ============================================================
 // AURIGEN — geocode.js
-// Census Geocoder proxy. No API key required.
-// GET ?address=X&city=X&state=X&zip=X (zip optional)
+// Nominatim (OpenStreetMap) geocoder proxy. No API key required.
+// GET ?q=Broward+County,+FL  (freeform query)
 // Returns { lat, lng, match: true } or { match: false }
+// Handles county-level, city-level, and address-level queries.
 // ============================================================
 
 var { getCorsHeaders, handlePreflight } = require('./utils/cors');
@@ -21,43 +22,38 @@ exports.handler = async function (event) {
   }
 
   var params = event.queryStringParameters || {};
-  var address = (params.address || '').trim();
-  var city = (params.city || '').trim();
-  var state = (params.state || '').trim();
-  var zip = (params.zip || '').trim();
+  var query = (params.q || '').trim();
 
-  if (!address || !state) {
+  if (!query) {
     return { statusCode: 200, headers: headers, body: JSON.stringify({ match: false }) };
   }
 
   try {
-    var cacheKey = [address, city, state, zip].join('|').toLowerCase();
+    var cacheKey = query.toLowerCase();
     if (_cache[cacheKey]) {
       return { statusCode: 200, headers: headers, body: JSON.stringify(_cache[cacheKey]) };
     }
 
-    var url = 'https://geocoding.geo.census.gov/geocoder/locations/address?street=' +
-      encodeURIComponent(address) +
-      '&city=' + encodeURIComponent(city) +
-      '&state=' + encodeURIComponent(state) +
-      (zip ? '&zip=' + encodeURIComponent(zip) : '') +
-      '&benchmark=2020&format=json';
+    var url = 'https://nominatim.openstreetmap.org/search?q=' +
+      encodeURIComponent(query) +
+      '&format=json&limit=1&countrycodes=us';
 
-    var resp = await fetch(url);
+    var resp = await fetch(url, {
+      headers: { 'User-Agent': 'AurigenDirectory/1.0' }
+    });
+
     if (!resp.ok) {
       return { statusCode: 200, headers: headers, body: JSON.stringify({ match: false }) };
     }
 
     var data = await resp.json();
-    var matches = data && data.result && data.result.addressMatches;
-    if (!matches || matches.length === 0) {
+    if (!Array.isArray(data) || data.length === 0) {
       return { statusCode: 200, headers: headers, body: JSON.stringify({ match: false }) };
     }
 
-    var coords = matches[0].coordinates;
     var result = {
-      lat: coords.y,
-      lng: coords.x,
+      lat: parseFloat(data[0].lat),
+      lng: parseFloat(data[0].lon),
       match: true
     };
 

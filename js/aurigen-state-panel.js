@@ -472,9 +472,8 @@ var StatePanel = {
 
   _fetchGeoChain: function (stateCode, countyName) {
     // Geocode at county level, then fire FEMA + USPS in parallel
-    var addr = encodeURIComponent(countyName + ' County');
-    var st = encodeURIComponent(stateCode);
-    fetch('/.netlify/functions/geocode?address=' + addr + '&city=' + addr + '&state=' + st)
+    var q = encodeURIComponent(countyName + ', ' + stateCode);
+    fetch('/.netlify/functions/geocode?q=' + q)
       .then(function (r) { return r.json(); })
       .then(function (geo) {
         if (!geo || !geo.match) return;
