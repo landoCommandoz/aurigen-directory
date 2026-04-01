@@ -113,20 +113,62 @@
     .gate-lang-btn:active{transform:scale(0.96);}
     .gate-lang-btn.active{background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--bg);box-shadow:0 2px 12px rgba(201,168,76,0.4);}
 
-    /* FEATURE COMPARE */
-    .feature-compare{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:24px;position:relative;z-index:1;border:1px solid rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;}
-    .fc-col{padding:16px 14px;}
-    .fc-col-free{background:transparent;}
-    .fc-col-full{background:rgba(201,168,76,0.03);border-left:1px solid rgba(201,168,76,0.15);}
-    .fc-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px;}
-    .fc-label-free{color:var(--muted);}
-    .fc-label-full{color:var(--gold);}
-    .fc-item{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;line-height:1.8;display:flex;align-items:baseline;gap:6px;}
-    .fc-item-free{color:var(--muted);}
-    .fc-item-full{color:var(--text);}
-    .fc-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0;position:relative;top:-1px;}
-    .fc-dot-muted{background:var(--muted);}
-    .fc-dot-gold{background:var(--gold);}
+    /* PLATFORM DEMO */
+    .demo-wrap{position:relative;z-index:1;margin-bottom:24px;border:1px solid rgba(201,168,76,0.18);border-radius:8px;overflow:hidden;background:#0a0e1a;aspect-ratio:16/10;min-height:240px;max-height:340px;}
+    .demo-scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 18px;opacity:0;transition:opacity 0.4s ease;pointer-events:none;}
+    .demo-scene.active{opacity:1;pointer-events:auto;}
+    .demo-caption{font-family:'Bebas Neue',sans-serif;font-size:clamp(15px,3vw,20px);color:var(--text);letter-spacing:0.04em;text-align:center;margin-top:auto;opacity:0;transform:translateY(10px);transition:opacity 0.5s 0.3s,transform 0.5s 0.3s;}
+    .demo-scene.active .demo-caption{opacity:1;transform:translateY(0);}
+    .demo-sub{font-family:'Space Mono',monospace;font-size:clamp(8px,1.4vw,10px);color:var(--muted);letter-spacing:0.1em;text-align:center;margin-top:4px;text-transform:uppercase;}
+    .demo-dots{display:flex;gap:6px;justify-content:center;margin-top:8px;position:relative;z-index:1;}
+    .demo-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.12);transition:background 0.3s,box-shadow 0.3s;}
+    .demo-dot.on{background:var(--gold);box-shadow:0 0 6px rgba(201,168,76,0.5);}
+    .demo-tag{font-family:'Space Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;text-align:center;margin-top:4px;text-transform:uppercase;}
+    /* scene 1 — map */
+    .s1-map{width:90%;max-width:320px;opacity:0.85;}
+    .s1-map .state{fill:rgba(201,168,76,0.06);stroke:rgba(201,168,76,0.25);stroke-width:0.5;transition:fill 0.6s;}
+    .s1-map .state.lit{fill:rgba(201,168,76,0.35);filter:drop-shadow(0 0 4px rgba(201,168,76,0.4));}
+    /* scene 2 — county card */
+    .s2-card{background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:16px 20px;width:85%;max-width:300px;text-align:left;opacity:0;transform:scale(0.92);transition:opacity 0.5s 0.2s,transform 0.5s 0.2s;}
+    .demo-scene.active .s2-card{opacity:1;transform:scale(1);}
+    .s2-county{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);letter-spacing:0.04em;}
+    .s2-state{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;}
+    .s2-row{display:flex;justify-content:space-between;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;color:var(--text);padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+    .s2-row span:first-child{color:var(--muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;}
+    /* scene 3 — inventory table */
+    .s3-table{width:92%;max-width:340px;border-collapse:collapse;}
+    .s3-table th{font-family:'Space Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;text-align:left;padding:4px 6px;border-bottom:1px solid rgba(201,168,76,0.15);}
+    .s3-table td{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:var(--text);padding:5px 6px;border-bottom:1px solid rgba(255,255,255,0.03);opacity:0;transform:translateX(-8px);transition:opacity 0.4s,transform 0.4s;}
+    .s3-table tr.show td{opacity:1;transform:translateX(0);}
+    .s3-disc{position:absolute;bottom:8px;right:12px;font-family:'Space Mono',monospace;font-size:8px;color:rgba(232,201,106,0.6);background:rgba(0,0,0,0.5);padding:2px 8px;border-radius:3px;}
+    /* scene 4 — score */
+    .s4-bar-wrap{width:80%;max-width:260px;height:10px;background:rgba(255,255,255,0.06);border-radius:5px;overflow:hidden;margin-top:12px;}
+    .s4-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--teal));border-radius:5px;transition:width 2s ease-out;}
+    .s4-num{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--teal);line-height:1;}
+    .s4-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;margin-top:2px;}
+    /* scene 5 — pulse */
+    .s5-alert{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:14px 18px;width:88%;max-width:320px;text-align:left;transform:translateX(60px);opacity:0;transition:transform 0.5s 0.3s ease-out,opacity 0.4s 0.3s;}
+    .demo-scene.active .s5-alert{transform:translateX(0);opacity:1;}
+    .s5-bell{font-size:16px;margin-right:6px;}
+    .s5-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--text);font-weight:600;}
+    .s5-detail{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;letter-spacing:0.04em;}
+    /* scene 6 — warbook */
+    .s6-input{font-family:'Space Mono',monospace;font-size:13px;color:var(--gold);background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.2);border-radius:6px;padding:10px 14px;width:80%;max-width:260px;text-align:left;min-height:38px;}
+    .s6-status{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);margin-top:8px;height:14px;}
+    .s6-result{background:rgba(45,212,192,0.08);border:1px solid rgba(45,212,192,0.3);border-radius:6px;padding:12px 16px;margin-top:10px;opacity:0;transform:translateY(6px);transition:opacity 0.4s,transform 0.4s;}
+    .s6-result.show{opacity:1;transform:translateY(0);}
+    .s6-go{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--teal);letter-spacing:0.06em;}
+    .s6-verdict{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
+    /* scene 7 — CTA */
+    .s7-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,5vw,32px);color:var(--text);letter-spacing:0.04em;text-align:center;}
+    .s7-sub{font-family:'Space Mono',monospace;font-size:clamp(9px,1.4vw,11px);color:var(--muted);letter-spacing:0.08em;text-align:center;margin-top:6px;}
+    @keyframes btnPulse{0%,100%{box-shadow:0 0 20px rgba(201,168,76,0.3)}50%{box-shadow:0 0 36px rgba(201,168,76,0.55)}}
+    .s7-btn{display:inline-block;margin-top:16px;padding:12px 32px;background:linear-gradient(110deg,#b8942a,#e8c96a,#c9a84c);border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:16px;color:#060912;letter-spacing:0.06em;text-decoration:none;animation:btnPulse 2s infinite ease-in-out;}
+    @media(max-width:480px){
+      .demo-wrap{aspect-ratio:4/3;min-height:220px;max-height:300px;}
+      .s2-card{padding:12px 14px;}
+      .s4-num{font-size:42px;}
+    }
 
     /* DISCLAIMER */
     .gate-disclaimer{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);text-align:center;opacity:0.6;max-width:600px;margin:20px auto 0;line-height:1.6;position:relative;z-index:10;}
@@ -137,10 +179,6 @@
       .btn-unlock{padding:18px 20px;}
       .btn-unlock-price{font-size:32px;}
       .gate-lang{top:14px;right:14px;}
-    }
-    @media(max-width:480px){
-      .feature-compare{grid-template-columns:1fr;}
-      .fc-col-full{border-left:none;border-top:1px solid rgba(201,168,76,0.15);}
     }
   </style>
 </head>
@@ -180,29 +218,139 @@
   <div class="gate-card anim">
     <p class="card-label" data-en="Choose your entry point" data-es="Elige tu punto de entrada">Choose your entry point</p>
 
-    <div class="feature-compare">
-      <div class="fc-col fc-col-free">
-        <div class="fc-label fc-label-free" data-en="FREE" data-es="GRATIS">FREE</div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="State directory (51 states)" data-es="Directorio estatal (51 estados)">State directory (51 states)</span></div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="Auction calendar preview" data-es="Vista previa del calendario">Auction calendar preview</span></div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="Basic county data" data-es="Datos b&aacute;sicos por condado">Basic county data</span></div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="Public auction links" data-es="Enlaces a subastas p&uacute;blicas">Public auction links</span></div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="Weekly market digest" data-es="Resumen semanal del mercado">Weekly market digest</span></div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="1 state profile/month" data-es="1 perfil estatal/mes">1 state profile/month</span></div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="Limited searches" data-es="B&uacute;squedas limitadas">Limited searches</span></div>
+    <!-- PLATFORM DEMO — auto-playing animated walkthrough -->
+    <div class="demo-wrap" id="platformDemo">
+
+      <!-- SCENE 1: US Map -->
+      <div class="demo-scene active" id="ds1">
+        <svg class="s1-map" viewBox="0 0 960 600" preserveAspectRatio="xMidYMid meet">
+          <!-- Simplified US state outlines -->
+          <path class="state" data-st="WA" d="M175 45L200 35L225 40L230 75L215 80L175 70Z"/>
+          <path class="state" data-st="OR" d="M155 75L175 70L215 80L220 115L195 120L155 110Z"/>
+          <path class="state" data-st="CA" d="M140 110L155 110L195 120L200 180L185 220L155 200L135 160Z"/>
+          <path class="state" data-st="NV" d="M195 120L220 115L230 110L240 165L200 180Z"/>
+          <path class="state" data-st="ID" d="M230 50L260 45L270 100L240 110L220 115L230 75Z"/>
+          <path class="state" data-st="MT" d="M260 45L340 35L350 80L270 90L270 100Z"/>
+          <path class="state" data-st="WY" d="M270 90L350 80L355 130L275 140Z"/>
+          <path class="state" data-st="UT" d="M240 110L275 105L280 165L240 165Z"/>
+          <path class="state" data-st="CO" d="M280 140L360 135L365 180L285 185Z"/>
+          <path class="state" data-st="AZ" d="M200 180L240 165L280 165L285 230L240 240L200 215Z"/>
+          <path class="state" data-st="NM" d="M285 185L365 180L370 240L290 245Z"/>
+          <path class="state" data-st="ND" d="M370 50L450 48L452 85L372 87Z"/>
+          <path class="state" data-st="SD" d="M372 87L452 85L454 125L374 127Z"/>
+          <path class="state" data-st="NE" d="M374 127L454 125L460 165L380 167Z"/>
+          <path class="state" data-st="KS" d="M380 167L460 165L462 205L382 207Z"/>
+          <path class="state" data-st="OK" d="M382 207L462 205L465 240L425 242L385 238Z"/>
+          <path class="state" data-st="TX" d="M370 240L425 242L465 240L475 280L460 340L420 360L370 330L350 280Z"/>
+          <path class="state" data-st="MN" d="M455 48L530 50L528 100L452 98Z"/>
+          <path class="state" data-st="IA" d="M452 100L530 102L528 140L455 138Z"/>
+          <path class="state" data-st="MO" d="M460 165L530 163L535 215L465 217Z"/>
+          <path class="state" data-st="AR" d="M500 217L545 215L548 255L503 257Z"/>
+          <path class="state" data-st="LA" d="M505 260L548 255L555 300L530 310L505 295Z"/>
+          <path class="state" data-st="WI" d="M530 50L590 55L585 100L528 98Z"/>
+          <path class="state" data-st="IL" d="M545 115L580 113L585 180L550 182Z"/>
+          <path class="state" data-st="MI" d="M590 55L630 50L640 100L610 108L585 100Z"/>
+          <path class="state" data-st="IN" d="M585 115L615 113L618 175L588 177Z"/>
+          <path class="state" data-st="OH" d="M618 108L660 105L665 160L622 163Z"/>
+          <path class="state" data-st="KY" d="M600 180L665 175L680 195L605 200Z"/>
+          <path class="state" data-st="TN" d="M590 205L680 200L685 225L595 230Z"/>
+          <path class="state" data-st="MS" d="M545 240L575 238L578 295L548 298Z"/>
+          <path class="state" data-st="AL" d="M578 235L615 232L620 295L582 298Z"/>
+          <path class="state" data-st="GA" d="M618 230L660 225L668 290L625 295Z"/>
+          <path class="state" data-st="FL" d="M625 295L670 290L700 310L710 370L680 390L650 360L630 320Z"/>
+          <path class="state" data-st="SC" d="M665 220L710 210L700 245L670 250Z"/>
+          <path class="state" data-st="NC" d="M650 195L730 185L735 215L660 220Z"/>
+          <path class="state" data-st="VA" d="M660 170L740 160L745 190L665 195Z"/>
+          <path class="state" data-st="WV" d="M660 155L685 150L680 175L660 170Z"/>
+          <path class="state" data-st="PA" d="M680 105L750 100L755 135L685 140Z"/>
+          <path class="state" data-st="NY" d="M700 60L770 50L775 100L710 105Z"/>
+          <path class="state" data-st="NJ" d="M758 110L770 108L772 140L760 142Z"/>
+          <path class="state" data-st="MD" d="M700 145L750 140L752 160L705 162Z"/>
+          <path class="state" data-st="CT" d="M770 85L790 82L788 100L768 102Z"/>
+          <path class="state" data-st="MA" d="M775 72L810 68L808 85L773 88Z"/>
+          <path class="state" data-st="VT" d="M760 42L775 40L773 65L758 67Z"/>
+          <path class="state" data-st="NH" d="M775 35L790 32L788 60L773 62Z"/>
+          <path class="state" data-st="ME" d="M790 15L820 10L815 55L788 50Z"/>
+        </svg>
+        <div class="demo-caption">3,200+ counties across 51 states</div>
+        <div class="demo-sub">Click any county to see auction data</div>
       </div>
-      <div class="fc-col fc-col-full">
-        <div class="fc-label fc-label-full" data-en="FULL ACCESS" data-es="ACCESO COMPLETO">FULL ACCESS</div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Everything in Free" data-es="Todo lo de Gratis">Everything in Free</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Live auction inventory" data-es="Inventario de subastas en vivo">Live auction inventory</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Opportunity scores" data-es="Puntuaciones de oportunidad">Opportunity scores</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Warbook deal analyzer" data-es="Analizador de negocios">Warbook deal analyzer</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Pulse alerts" data-es="Alertas Pulse">Pulse alerts</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="AI tools (Sage)" data-es="Herramientas IA (Sage)">AI tools (Sage)</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="County deep-dive intel" data-es="Intel profundo por condado">County deep-dive intel</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Unlimited searches" data-es="B&uacute;squedas ilimitadas">Unlimited searches</span></div>
+
+      <!-- SCENE 2: County Deep Dive -->
+      <div class="demo-scene" id="ds2">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">FLORIDA &rsaquo; BROWARD COUNTY</div>
+        <div class="s2-card">
+          <div class="s2-county">BROWARD COUNTY</div>
+          <div class="s2-state">FLORIDA</div>
+          <div class="s2-row"><span>Type</span><span style="color:var(--gold)">TAX LIEN</span></div>
+          <div class="s2-row"><span>Rate</span><span>18%</span></div>
+          <div class="s2-row"><span>Redemption</span><span>2 years</span></div>
+          <div class="s2-row" style="border:none"><span>Next auction</span><span style="color:var(--teal)">Apr 7, 2026</span></div>
+        </div>
+        <div class="demo-caption">Every county. Every rule. Every auction date.</div>
       </div>
+
+      <!-- SCENE 3: Live Inventory -->
+      <div class="demo-scene" id="ds3">
+        <table class="s3-table">
+          <tr><th>Parcel</th><th>Address</th><th>Assessed</th><th>Bid</th><th>Score</th></tr>
+          <tr class="s3-row"><td>04-41-18-002</td><td>1421 Elm St</td><td>$184,200</td><td>$2,840</td><td style="color:var(--teal)">87</td></tr>
+          <tr class="s3-row"><td>04-41-22-019</td><td>730 Pine Ave</td><td>$96,500</td><td>$1,150</td><td style="color:var(--gold)">74</td></tr>
+          <tr class="s3-row"><td>04-41-35-008</td><td>2200 Oak Blvd</td><td>$312,000</td><td>$4,670</td><td style="color:var(--teal)">92</td></tr>
+          <tr class="s3-row"><td>04-41-40-011</td><td>88 Harbor Dr</td><td>$145,800</td><td>$1,980</td><td style="color:var(--gold)">68</td></tr>
+        </table>
+        <div class="s3-disc">&#9888;&#65039; Demo only &mdash; not real properties</div>
+        <div class="demo-caption">Live auction inventory &mdash; updated every Sunday</div>
+      </div>
+
+      <!-- SCENE 4: Opportunity Score -->
+      <div class="demo-scene" id="ds4">
+        <div class="s4-label">OPPORTUNITY SCORE</div>
+        <div class="s4-num" id="s4Counter">0</div>
+        <div class="s4-bar-wrap"><div class="s4-bar" id="s4Bar"></div></div>
+        <div class="demo-caption" style="margin-top:16px;">Opportunity scoring on every certificate</div>
+      </div>
+
+      <!-- SCENE 5: Pulse Alert -->
+      <div class="demo-scene" id="ds5">
+        <div class="s5-alert">
+          <div class="s5-title"><span class="s5-bell">&#128276;</span> New auction added</div>
+          <div class="s5-detail">Cook County, IL &middot; Apr 21, 2026 &middot; 3,180 certificates</div>
+        </div>
+        <div class="demo-caption" style="margin-top:20px;">Pulse alerts &mdash; never miss an auction again</div>
+      </div>
+
+      <!-- SCENE 6: Warbook Analyzer -->
+      <div class="demo-scene" id="ds6">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">WARBOOK ANALYZER</div>
+        <div class="s6-input" id="s6Input"></div>
+        <div class="s6-status" id="s6Status"></div>
+        <div class="s6-result" id="s6Result">
+          <div class="s6-go">GO</div>
+          <div class="s6-verdict">Strong fundamentals &middot; Low competition &middot; 18% ceiling</div>
+        </div>
+        <div class="demo-caption">Warbook &mdash; due diligence in seconds</div>
+      </div>
+
+      <!-- SCENE 7: CTA Hold -->
+      <div class="demo-scene" id="ds7">
+        <div class="s7-big">Everything you just saw is live.</div>
+        <div class="s7-sub">Unlock full access &mdash; one time, no subscription</div>
+        <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="s7-btn">UNLOCK NOW &mdash; $197</a>
+      </div>
+
     </div>
+    <!-- Demo progress dots -->
+    <div class="demo-dots" style="margin-bottom:20px;">
+      <div class="demo-dot on" data-di="0"></div>
+      <div class="demo-dot" data-di="1"></div>
+      <div class="demo-dot" data-di="2"></div>
+      <div class="demo-dot" data-di="3"></div>
+      <div class="demo-dot" data-di="4"></div>
+      <div class="demo-dot" data-di="5"></div>
+      <div class="demo-dot" data-di="6"></div>
+    </div>
+    <div class="demo-tag">LIVE PLATFORM PREVIEW</div>
 
     <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="btn-unlock">
       <div class="btn-unlock-left">
@@ -386,6 +534,116 @@ function switchLang(lang){
   init();
   tick();
   window.addEventListener('resize',function(){resize();init();});
+})();
+
+// === PLATFORM DEMO CONTROLLER ===
+(function(){
+  var scenes=document.querySelectorAll('.demo-scene');
+  var dots=document.querySelectorAll('.demo-dot');
+  var current=0;
+  var durations=[4500,4500,5000,4500,4500,5000,3000]; // ms per scene
+  var timer=null;
+
+  // Highlight states in scene 1
+  var litStates=['FL','AZ','AL','GA','IL','TX'];
+  var litIdx=0;
+  var litTimer=null;
+
+  function lightStates(){
+    var svgStates=document.querySelectorAll('.s1-map .state');
+    litIdx=0;
+    clearInterval(litTimer);
+    // Reset all
+    svgStates.forEach(function(s){s.classList.remove('lit');});
+    litTimer=setInterval(function(){
+      if(litIdx>=litStates.length){clearInterval(litTimer);return;}
+      svgStates.forEach(function(s){
+        if(s.getAttribute('data-st')===litStates[litIdx])s.classList.add('lit');
+      });
+      litIdx++;
+    },500);
+  }
+
+  // Animate inventory rows in scene 3
+  function animateRows(){
+    var rows=document.querySelectorAll('.s3-row');
+    rows.forEach(function(r,i){
+      r.classList.remove('show');
+      setTimeout(function(){r.classList.add('show');},300+i*600);
+    });
+  }
+
+  // Animate score counter in scene 4
+  function animateScore(){
+    var el=document.getElementById('s4Counter');
+    var bar=document.getElementById('s4Bar');
+    var target=92;
+    var n=0;
+    bar.style.width='0%';
+    el.textContent='0';
+    var iv=setInterval(function(){
+      n+=2;
+      if(n>target){n=target;clearInterval(iv);}
+      el.textContent=n;
+      bar.style.width=(n/100*100)+'%';
+    },35);
+  }
+
+  // Typewriter for warbook in scene 6
+  function animateWarbook(){
+    var input=document.getElementById('s6Input');
+    var status=document.getElementById('s6Status');
+    var result=document.getElementById('s6Result');
+    var parcel='04-41-35-008';
+    input.textContent='';
+    status.textContent='';
+    result.classList.remove('show');
+    var ci=0;
+    var typeTimer=setInterval(function(){
+      if(ci>=parcel.length){
+        clearInterval(typeTimer);
+        status.textContent='Analyzing...';
+        setTimeout(function(){
+          status.textContent='';
+          result.classList.add('show');
+        },1200);
+        return;
+      }
+      input.textContent+=parcel[ci];
+      ci++;
+    },100);
+  }
+
+  function goTo(idx){
+    current=idx;
+    scenes.forEach(function(s,i){
+      s.classList.toggle('active',i===idx);
+    });
+    dots.forEach(function(d,i){
+      d.classList.toggle('on',i===idx);
+    });
+
+    // Scene-specific animations
+    if(idx===0)lightStates();
+    if(idx===2)animateRows();
+    if(idx===3)animateScore();
+    if(idx===5)animateWarbook();
+  }
+
+  function advance(){
+    var next=(current+1)%scenes.length;
+    goTo(next);
+    scheduleNext();
+  }
+
+  function scheduleNext(){
+    clearTimeout(timer);
+    timer=setTimeout(advance,durations[current]);
+  }
+
+  // Start
+  goTo(0);
+  scheduleNext();
 })();
 </script>
 
