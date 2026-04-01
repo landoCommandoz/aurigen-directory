@@ -2,12 +2,14 @@ name: Weekly Auction & Property Scraper
 
 on:
   schedule:
-    - cron: '0 6 * * 0'
+    - cron: '0 6 * * 0'  # Sunday: full scrape pipeline
+    - cron: '0 6 * * 3'  # Wednesday: auction results + score recalc
   workflow_dispatch:
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    if: github.event.schedule == '0 6 * * 0' || github.event_name == 'workflow_dispatch'
     steps:
       - name: Trigger auction scraper
         run: |
@@ -85,8 +87,38 @@ jobs:
             "$LAWS_URL" || true
           echo "State law intelligence triggered (fire-and-forget)"
 
+  midweek-results:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 6 * * 3' || github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Scrape auction results (overbid tracking)
+        run: |
+          echo "=== Midweek: Auction Results ==="
+          RESULTS_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
+          RESULTS_URL=$(echo "$RESULTS_URL" | sed 's|/scraper$|/scrape-auction-results|')
+          curl -s --max-time 280 -w "\nHTTP %{http_code}\n" \
+            -X POST \
+            -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
+            "$RESULTS_URL" || true
+          echo "Auction results scraper triggered"
+
+      - name: Wait for results to populate
+        run: sleep 15
+
+      - name: Recalculate Opportunity Scores (with overbid data)
+        run: |
+          echo "=== Midweek: Recalculate Scores ==="
+          SCORE_URL="${{ secrets.NETLIFY_SCRAPER_URL }}"
+          SCORE_URL=$(echo "$SCORE_URL" | sed 's|/scraper$|/calculate-scores|')
+          curl -s --max-time 280 -w "\nHTTP %{http_code}\n" \
+            -X POST \
+            -H "x-scraper-secret: ${{ secrets.SCRAPER_SECRET }}" \
+            "$SCORE_URL" || true
+          echo "Scores recalculated with overbid data"
+
   puppeteer-scrape:
     needs: scrape
+    if: github.event.schedule == '0 6 * * 0' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

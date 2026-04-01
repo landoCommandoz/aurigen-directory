@@ -78,7 +78,7 @@ exports.handler = async function(event) {
       if (!p.state_code || !p.county) return;
       var key = p.state_code + '|' + p.county;
       if (!propStats[key]) {
-        propStats[key] = { equitySum: 0, equityCount: 0, absenteeCount: 0, totalCount: 0 };
+        propStats[key] = { equitySum: 0, equityCount: 0, absenteeCount: 0, totalCount: 0, overbidSum: 0, overbidCount: 0 };
       }
       propStats[key].totalCount++;
       if (p.equity_cushion_pct !== null && p.equity_cushion_pct !== undefined) {
@@ -86,6 +86,10 @@ exports.handler = async function(event) {
         propStats[key].equityCount++;
       }
       if (p.absentee_owner) propStats[key].absenteeCount++;
+      if (p.overbid_pct !== null && p.overbid_pct !== undefined) {
+        propStats[key].overbidSum += p.overbid_pct;
+        propStats[key].overbidCount++;
+      }
     });
 
     // 3. Calculate scores
@@ -94,7 +98,7 @@ exports.handler = async function(event) {
 
     for (var i = 0; i < keys.length; i++) {
       var c = countyMap[keys[i]];
-      var ps = propStats[keys[i]] || { equitySum: 0, equityCount: 0, absenteeCount: 0, totalCount: 0 };
+      var ps = propStats[keys[i]] || { equitySum: 0, equityCount: 0, absenteeCount: 0, totalCount: 0, overbidSum: 0, overbidCount: 0 };
 
       var score = 50; // Base
       var components = {};
@@ -129,6 +133,16 @@ exports.handler = async function(event) {
       var redemptionDelta = getRedemptionDelta(c.state_code);
       score += redemptionDelta;
       components.redemption = { state_code: c.state_code, months: REDEMPTION_MONTHS[c.state_code] || null, delta: redemptionDelta };
+
+      // Overbid competition delta
+      if (ps.overbidCount > 0) {
+        var avgOverbid = ps.overbidSum / ps.overbidCount;
+        if (avgOverbid > 50) { score -= 15; components.overbid = { avg: Math.round(avgOverbid * 10) / 10, delta: -15 }; }
+        else if (avgOverbid >= 20) { score -= 5; components.overbid = { avg: Math.round(avgOverbid * 10) / 10, delta: -5 }; }
+        else { score += 10; components.overbid = { avg: Math.round(avgOverbid * 10) / 10, delta: 10 }; }
+      } else {
+        components.overbid = { avg: null, delta: 0 };
+      }
 
       // Cap
       score = Math.max(1, Math.min(100, score));
