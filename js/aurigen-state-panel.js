@@ -316,6 +316,8 @@ var StatePanel = {
     h += '<div class="sp-content" style="padding:16px 20px">';
     h += '<div id="sp-opp-score-slot" class="sp-county-section"><div class="sp-county-loading"><div class="sp-spinner"></div>Loading Opportunity Score...</div></div>';
     h += '<div id="sp-fmr-slot"></div>';
+    h += '<div id="sp-flood-slot"></div>';
+    h += '<div id="sp-vacancy-slot"></div>';
     h += '<div id="sp-redemption-slot" class="sp-county-section"><div class="sp-county-loading"><div class="sp-spinner"></div>Loading Redemption Rate...</div></div>';
 
     // Action buttons — rendered hidden, revealed after 150ms to block ghost clicks
@@ -343,6 +345,8 @@ var StatePanel = {
     StatePanel._fetchCountyRedemption(stateCode, countyName);
     // Fetch HUD Fair Market Rents
     StatePanel._fetchFMR(stateCode, countyName);
+    // Geocode county seat → FEMA flood + USPS vacancy
+    StatePanel._fetchGeoChain(stateCode, countyName);
   },
 
   _closeCounty: function () {
@@ -466,6 +470,74 @@ var StatePanel = {
       .catch(function () { /* silent — no card on failure */ });
   },
 
+  _fetchGeoChain: function (stateCode, countyName) {
+    // Geocode at county level, then fire FEMA + USPS in parallel
+    var addr = encodeURIComponent(countyName + ' County');
+    var st = encodeURIComponent(stateCode);
+    fetch('/.netlify/functions/geocode?address=' + addr + '&city=' + addr + '&state=' + st)
+      .then(function (r) { return r.json(); })
+      .then(function (geo) {
+        if (!geo || !geo.match) return;
+        var lat = geo.lat;
+        var lng = geo.lng;
+        // Fire FEMA and USPS in parallel
+        StatePanel._fetchFlood(lat, lng);
+        StatePanel._fetchVacancy(lat, lng);
+      })
+      .catch(function () { /* silent */ });
+  },
+
+  _fetchFlood: function (lat, lng) {
+    fetch('/.netlify/functions/fema-flood?lat=' + encodeURIComponent(lat) + '&lng=' + encodeURIComponent(lng))
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || data.risk_level === 'unknown') return;
+        var slot = document.getElementById('sp-flood-slot');
+        if (!slot) return;
+
+        var colors = { high: '#f87171', moderate: '#fbbf24', low: '#3ecf8e' };
+        var color = colors[data.risk_level] || '#9898b0';
+
+        var html = '<div class="sp-flood-card sp-county-section">';
+        html += '<div class="sp-score-label">FLOOD RISK (FEMA)</div>';
+        html += '<div class="sp-flood-body">';
+        html += '<div class="sp-flood-zone" style="color:' + color + '">' + escapeHtml(data.zone || '\u2014') + '</div>';
+        html += '<div class="sp-flood-label" style="color:' + color + '">' + escapeHtml(data.label) + '</div>';
+        html += '</div>';
+        html += '<div class="sp-fmr-source">Source: FEMA National Flood Hazard Layer</div>';
+        html += '</div>';
+        slot.innerHTML = html;
+      })
+      .catch(function () { /* silent */ });
+  },
+
+  _fetchVacancy: function (lat, lng) {
+    fetch('/.netlify/functions/usps-vacancy?lat=' + encodeURIComponent(lat) + '&lng=' + encodeURIComponent(lng))
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || data.vacancy_rate === null || data.vacancy_rate === undefined) return;
+        var slot = document.getElementById('sp-vacancy-slot');
+        if (!slot) return;
+
+        var pct = data.vacancy_rate;
+        var color = pct < 5 ? '#3ecf8e' : pct <= 10 ? '#fbbf24' : '#f87171';
+        var qLabel = data.quarter ? ' \u2014 ' + escapeHtml(data.quarter) : '';
+
+        var html = '<div class="sp-vacancy-card sp-county-section">';
+        html += '<div class="sp-score-label">VACANCY RATE (USPS)</div>';
+        html += '<div class="sp-score-header" style="margin-top:8px">';
+        html += '<div class="sp-score-num" style="font-size:36px;color:' + color + '">' + pct + '%</div>';
+        html += '<div class="sp-score-meta">';
+        html += '<div style="font-size:12px;color:#f5f0e8">' + (data.vacant_units != null ? Number(data.vacant_units).toLocaleString('en-US') : '\u2014') + ' vacant / ' + (data.total_units != null ? Number(data.total_units).toLocaleString('en-US') : '\u2014') + ' total</div>';
+        html += '<div style="font-size:11px;color:#9898b0">' + qLabel + '</div>';
+        html += '</div></div>';
+        html += '<div class="sp-fmr-source">Source: HUD USPS Vacancy Data</div>';
+        html += '</div>';
+        slot.innerHTML = html;
+      })
+      .catch(function () { /* silent */ });
+  },
+
   _viewProperties: function (stateCode, countyName) {
     StatePanel._closeCounty();
     // Switch to auctions tab and trigger county filter
@@ -583,6 +655,13 @@ var StatePanel = {
     '.sp-score-pending{padding:16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:8px;font-size:12px;color:#60607a;text-align:center}',
     /* Redemption card */
     '.sp-redemption-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:16px}',
+    /* Flood risk card */
+    '.sp-flood-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:14px}',
+    '.sp-flood-body{display:flex;align-items:baseline;gap:10px;margin-top:8px}',
+    '.sp-flood-zone{font-family:"Bebas Neue",sans-serif;font-size:32px;line-height:1}',
+    '.sp-flood-label{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.05em}',
+    /* Vacancy card */
+    '.sp-vacancy-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:14px}',
     /* Action buttons */
     '.sp-county-actions{display:flex;gap:8px;margin-top:16px}',
     '.sp-county-btn{flex:1;padding:12px;border-radius:8px;font-family:"Bebas Neue",sans-serif;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;text-align:center;border:none;transition:background 0.15s}',
