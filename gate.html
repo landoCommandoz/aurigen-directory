@@ -113,20 +113,92 @@
     .gate-lang-btn:active{transform:scale(0.96);}
     .gate-lang-btn.active{background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--bg);box-shadow:0 2px 12px rgba(201,168,76,0.4);}
 
-    /* FEATURE COMPARE */
-    .feature-compare{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:24px;position:relative;z-index:1;border:1px solid rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;}
-    .fc-col{padding:16px 14px;}
-    .fc-col-free{background:transparent;}
-    .fc-col-full{background:rgba(201,168,76,0.03);border-left:1px solid rgba(201,168,76,0.15);}
-    .fc-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px;}
-    .fc-label-free{color:var(--muted);}
-    .fc-label-full{color:var(--gold);}
-    .fc-item{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;line-height:1.8;display:flex;align-items:baseline;gap:6px;}
-    .fc-item-free{color:var(--muted);}
-    .fc-item-full{color:var(--text);}
-    .fc-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0;position:relative;top:-1px;}
-    .fc-dot-muted{background:var(--muted);}
-    .fc-dot-gold{background:var(--gold);}
+    /* PLATFORM DEMO */
+    .demo-container{position:relative;z-index:1;width:100%;margin-bottom:24px;border-radius:8px;overflow:hidden;border:1px solid rgba(201,168,76,0.15);background:#0a0e1a;aspect-ratio:16/10;min-height:220px;max-height:380px;}
+    .demo-viewport{position:relative;width:100%;height:100%;overflow:hidden;}
+    .demo-scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 16px;opacity:0;transition:opacity 0.4s ease;pointer-events:none;}
+    .demo-scene.active{opacity:1;pointer-events:auto;}
+    .demo-caption{font-family:'Bebas Neue',sans-serif;font-size:clamp(14px,2.5vw,20px);color:var(--gold);letter-spacing:0.06em;opacity:0;transform:translateY(12px);transition:opacity 0.5s 0.3s,transform 0.5s 0.3s;}
+    .demo-scene.active .demo-caption{opacity:1;transform:translateY(0);}
+    .demo-subcaption{font-family:'Space Mono',monospace;font-size:clamp(8px,1.3vw,11px);color:var(--muted);letter-spacing:0.08em;margin-top:4px;opacity:0;transform:translateY(8px);transition:opacity 0.5s 0.5s,transform 0.5s 0.5s;}
+    .demo-scene.active .demo-subcaption{opacity:1;transform:translateY(0);}
+
+    /* Scene indicator dots */
+    .demo-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:5;}
+    .demo-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.15);transition:background 0.3s,box-shadow 0.3s;}
+    .demo-dot.active{background:var(--gold);box-shadow:0 0 6px rgba(201,168,76,0.5);}
+
+    /* S1 — MAP */
+    .demo-map-wrap{position:relative;width:80%;max-width:320px;margin-bottom:10px;}
+    .demo-map-wrap svg{width:100%;height:auto;}
+    .demo-map-wrap svg path{fill:rgba(201,168,76,0.06);stroke:rgba(201,168,76,0.25);stroke-width:0.5;}
+    .demo-node{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);opacity:0;transform:scale(0);}
+    .demo-scene.active .demo-node{animation:demoNodePop 0.5s ease forwards;}
+    @keyframes demoNodePop{to{opacity:1;transform:scale(1)}}
+
+    /* S2 — COUNTY CARD */
+    .demo-county-card{background:rgba(12,16,30,0.9);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:14px 18px;width:85%;max-width:300px;text-align:left;opacity:0;transform:scale(0.92);transition:opacity 0.5s 0.2s,transform 0.5s 0.2s;}
+    .demo-scene.active .demo-county-card{opacity:1;transform:scale(1);}
+    .demo-county-hdr{font-family:'Bebas Neue',sans-serif;font-size:clamp(16px,2.5vw,22px);color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+    .demo-county-badge{font-family:'Space Mono',monospace;font-size:8px;background:rgba(201,168,76,0.12);color:var(--gold);padding:2px 8px;border-radius:3px;letter-spacing:0.1em;}
+    .demo-county-row{font-family:'Space Mono',monospace;font-size:clamp(9px,1.2vw,11px);color:var(--muted);line-height:2;display:flex;justify-content:space-between;}
+    .demo-county-val{color:var(--text);}
+    .demo-zoom-line{position:absolute;width:1px;height:0;background:linear-gradient(to bottom,var(--gold),transparent);top:10%;left:35%;opacity:0;transition:height 0.6s 0.1s,opacity 0.3s 0.1s;}
+    .demo-scene.active .demo-zoom-line{height:25%;opacity:0.6;}
+
+    /* S3 — INVENTORY TABLE */
+    .demo-table{width:90%;max-width:340px;border-collapse:collapse;margin-bottom:6px;}
+    .demo-table th{font-family:'Space Mono',monospace;font-size:clamp(7px,1vw,9px);color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;text-align:left;padding:4px 6px;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .demo-table td{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(9px,1.2vw,11px);color:var(--text);padding:5px 6px;border-bottom:1px solid rgba(255,255,255,0.03);}
+    .demo-table tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
+    .demo-trow{opacity:0;transform:translateX(20px);transition:opacity 0.4s,transform 0.4s;}
+    .demo-scene.active .demo-trow{opacity:1;transform:translateX(0);}
+    .demo-disclaimer-badge{font-family:'Space Mono',monospace;font-size:8px;color:#e8c96a;background:rgba(232,201,106,0.08);padding:3px 8px;border-radius:3px;align-self:flex-end;margin-top:4px;}
+
+    /* S4 — SCORE GAUGE */
+    .demo-gauge{position:relative;width:120px;height:120px;margin-bottom:8px;}
+    .demo-gauge svg{width:100%;height:100%;}
+    .demo-gauge-track{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:8;stroke-linecap:round;}
+    .demo-gauge-fill{fill:none;stroke-width:8;stroke-linecap:round;stroke:var(--teal);stroke-dasharray:251;stroke-dashoffset:251;transition:stroke-dashoffset 2s ease-out,stroke 0.5s;}
+    .demo-scene.active .demo-gauge-fill{stroke-dashoffset:20;}
+    .demo-gauge-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--teal);}
+
+    /* S5 — PULSE ALERT */
+    .demo-pulse-alert{background:rgba(12,16,30,0.95);border:1px solid rgba(45,212,192,0.3);border-radius:8px;padding:12px 16px;width:85%;max-width:320px;display:flex;align-items:flex-start;gap:10px;opacity:0;transform:translateX(40px);transition:opacity 0.5s 0.3s,transform 0.5s 0.3s;}
+    .demo-scene.active .demo-pulse-alert{opacity:1;transform:translateX(0);}
+    .demo-pulse-icon{font-size:18px;flex-shrink:0;}
+    .demo-pulse-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(10px,1.4vw,13px);color:var(--text);font-weight:500;}
+    .demo-pulse-detail{font-family:'Space Mono',monospace;font-size:clamp(8px,1.1vw,10px);color:var(--muted);margin-top:3px;}
+    .demo-pulse-time{font-family:'Space Mono',monospace;font-size:8px;color:var(--teal);margin-top:4px;}
+
+    /* S6 — WARBOOK TERMINAL */
+    .demo-terminal{background:rgba(6,9,18,0.95);border:1px solid rgba(255,255,255,0.08);border-radius:6px;width:90%;max-width:320px;overflow:hidden;}
+    .demo-term-bar{display:flex;align-items:center;gap:5px;padding:6px 10px;background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(255,255,255,0.06);}
+    .demo-term-dot{width:6px;height:6px;border-radius:50%;}
+    .demo-term-body{padding:12px 14px;font-family:'Space Mono',monospace;font-size:clamp(9px,1.2vw,11px);color:var(--muted);line-height:1.8;min-height:80px;}
+    .demo-term-cursor{display:inline-block;width:7px;height:14px;background:var(--gold);animation:demoBlink 0.8s step-end infinite;vertical-align:text-bottom;}
+    @keyframes demoBlink{50%{opacity:0}}
+    .demo-term-go{display:inline-block;background:rgba(45,212,192,0.15);color:var(--teal);padding:2px 10px;border-radius:3px;font-weight:600;opacity:0;transform:scale(0.8);transition:opacity 0.3s,transform 0.3s;}
+    .demo-term-go.show{opacity:1;transform:scale(1);}
+
+    /* S7 — CTA HOLD */
+    .demo-cta-hold{text-align:center;}
+    .demo-cta-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,3.5vw,28px);color:var(--text);opacity:0;transform:translateY(10px);transition:opacity 0.6s 0.3s,transform 0.6s 0.3s;}
+    .demo-scene.active .demo-cta-big{opacity:1;transform:translateY(0);}
+    .demo-cta-sub{font-family:'Space Mono',monospace;font-size:clamp(9px,1.2vw,11px);color:var(--muted);margin-top:6px;letter-spacing:0.08em;opacity:0;transition:opacity 0.5s 0.6s;}
+    .demo-scene.active .demo-cta-sub{opacity:1;}
+    .demo-cta-btn{display:inline-block;margin-top:14px;padding:10px 28px;background:linear-gradient(110deg,#b8942a,#e8c96a,#c9a84c);background-size:200% 100%;border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:16px;color:#060912;letter-spacing:0.06em;cursor:pointer;text-decoration:none;box-shadow:0 0 32px rgba(201,168,76,0.3);opacity:0;transform:translateY(8px);transition:opacity 0.4s 0.8s,transform 0.4s 0.8s,background-position 0.3s;animation:demoPulseBtn 2s 1.2s infinite;}
+    .demo-scene.active .demo-cta-btn{opacity:1;transform:translateY(0);}
+    @keyframes demoPulseBtn{0%,100%{box-shadow:0 0 32px rgba(201,168,76,0.3)}50%{box-shadow:0 0 48px rgba(201,168,76,0.55)}}
+    .demo-cta-btn:hover{background-position:100% 0;}
+
+    /* Fixed bottom CTA bar */
+    .demo-fixed-cta{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(6,9,18,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(201,168,76,0.2);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;transform:translateY(100%);animation:demoSlideUp 0.6s 2s ease forwards;}
+    @keyframes demoSlideUp{to{transform:translateY(0)}}
+    .demo-fixed-cta-text{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.08em;}
+    .demo-fixed-cta-price{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);line-height:1;}
+    .demo-fixed-cta-btn{padding:8px 20px;background:linear-gradient(110deg,#b8942a,#e8c96a);border:none;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:13px;color:#060912;letter-spacing:0.06em;cursor:pointer;text-decoration:none;box-shadow:0 0 20px rgba(201,168,76,0.25);transition:transform 0.2s;}
+    .demo-fixed-cta-btn:hover{transform:translateY(-1px);}
 
     /* DISCLAIMER */
     .gate-disclaimer{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);text-align:center;opacity:0.6;max-width:600px;margin:20px auto 0;line-height:1.6;position:relative;z-index:10;}
@@ -139,8 +211,12 @@
       .gate-lang{top:14px;right:14px;}
     }
     @media(max-width:480px){
-      .feature-compare{grid-template-columns:1fr;}
-      .fc-col-full{border-left:none;border-top:1px solid rgba(201,168,76,0.15);}
+      .demo-container{aspect-ratio:4/3;min-height:260px;max-height:340px;}
+      .demo-table th,.demo-table td{font-size:8px;padding:3px 4px;}
+      .demo-gauge{width:90px;height:90px;}
+      .demo-gauge-num{font-size:28px;}
+      .demo-fixed-cta{padding:8px 14px;gap:10px;}
+      .demo-fixed-cta-text{display:none;}
     }
   </style>
 </head>
@@ -180,27 +256,108 @@
   <div class="gate-card anim">
     <p class="card-label" data-en="Choose your entry point" data-es="Elige tu punto de entrada">Choose your entry point</p>
 
-    <div class="feature-compare">
-      <div class="fc-col fc-col-free">
-        <div class="fc-label fc-label-free" data-en="FREE" data-es="GRATIS">FREE</div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="State directory (51 states)" data-es="Directorio estatal (51 estados)">State directory (51 states)</span></div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="Auction calendar preview" data-es="Vista previa del calendario">Auction calendar preview</span></div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="Basic county data" data-es="Datos b&aacute;sicos por condado">Basic county data</span></div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="Public auction links" data-es="Enlaces a subastas p&uacute;blicas">Public auction links</span></div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="Weekly market digest" data-es="Resumen semanal del mercado">Weekly market digest</span></div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="1 state profile/month" data-es="1 perfil estatal/mes">1 state profile/month</span></div>
-        <div class="fc-item fc-item-free"><span class="fc-dot fc-dot-muted"></span><span data-en="Limited searches" data-es="B&uacute;squedas limitadas">Limited searches</span></div>
-      </div>
-      <div class="fc-col fc-col-full">
-        <div class="fc-label fc-label-full" data-en="FULL ACCESS" data-es="ACCESO COMPLETO">FULL ACCESS</div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Everything in Free" data-es="Todo lo de Gratis">Everything in Free</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Live auction inventory" data-es="Inventario de subastas en vivo">Live auction inventory</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Opportunity scores" data-es="Puntuaciones de oportunidad">Opportunity scores</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Warbook deal analyzer" data-es="Analizador de negocios">Warbook deal analyzer</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Pulse alerts" data-es="Alertas Pulse">Pulse alerts</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="AI tools (Sage)" data-es="Herramientas IA (Sage)">AI tools (Sage)</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="County deep-dive intel" data-es="Intel profundo por condado">County deep-dive intel</span></div>
-        <div class="fc-item fc-item-full"><span class="fc-dot fc-dot-gold"></span><span data-en="Unlimited searches" data-es="B&uacute;squedas ilimitadas">Unlimited searches</span></div>
+    <!-- PLATFORM DEMO -->
+    <div class="demo-container">
+      <div class="demo-viewport">
+
+        <!-- S1: US MAP VIEW -->
+        <div class="demo-scene" id="demo-s1">
+          <div class="demo-map-wrap" id="demo-map-svg"></div>
+          <div class="demo-caption">3,200+ counties across 51 states</div>
+          <div class="demo-subcaption">Click any county to see auction data</div>
+        </div>
+
+        <!-- S2: COUNTY DEEP DIVE -->
+        <div class="demo-scene" id="demo-s2">
+          <div class="demo-zoom-line"></div>
+          <div class="demo-county-card">
+            <div class="demo-county-hdr">Broward County, FL <span class="demo-county-badge">TAX LIEN</span></div>
+            <div class="demo-county-row"><span>Interest Rate</span><span class="demo-county-val" style="color:var(--gold)">18%</span></div>
+            <div class="demo-county-row"><span>Redemption</span><span class="demo-county-val">2 years</span></div>
+            <div class="demo-county-row"><span>Next Auction</span><span class="demo-county-val" style="color:var(--teal)">Apr 7, 2026</span></div>
+            <div class="demo-county-row"><span>Certificates</span><span class="demo-county-val">4,218</span></div>
+          </div>
+          <div class="demo-caption">Every county. Every rule. Every auction date.</div>
+        </div>
+
+        <!-- S3: LIVE INVENTORY -->
+        <div class="demo-scene" id="demo-s3">
+          <table class="demo-table">
+            <thead><tr><th>Parcel</th><th>Address</th><th>Assessed</th><th>Bid</th><th>Score</th></tr></thead>
+            <tbody>
+              <tr class="demo-trow" style="transition-delay:0.3s"><td style="color:var(--gold)">26-43-07</td><td>1420 SW 3rd Ave</td><td>$187,400</td><td>$2,841</td><td style="color:var(--teal)">88</td></tr>
+              <tr class="demo-trow" style="transition-delay:0.6s"><td style="color:var(--gold)">26-43-12</td><td>890 NE 15th St</td><td>$134,200</td><td>$1,956</td><td style="color:var(--teal)">74</td></tr>
+              <tr class="demo-trow" style="transition-delay:0.9s"><td style="color:var(--gold)">26-44-01</td><td>3301 W Sunrise Blvd</td><td>$241,800</td><td>$3,672</td><td style="color:var(--teal)">92</td></tr>
+              <tr class="demo-trow" style="transition-delay:1.2s"><td style="color:var(--gold)">26-44-08</td><td>2105 S Federal Hwy</td><td>$98,600</td><td>$1,203</td><td style="color:var(--teal)">81</td></tr>
+            </tbody>
+          </table>
+          <div class="demo-caption">Live auction inventory &mdash; updated every Sunday</div>
+          <span class="demo-disclaimer-badge">Demo only &mdash; not real properties</span>
+        </div>
+
+        <!-- S4: OPPORTUNITY SCORE -->
+        <div class="demo-scene" id="demo-s4">
+          <div class="demo-gauge">
+            <svg viewBox="0 0 100 100">
+              <circle class="demo-gauge-track" cx="50" cy="50" r="40" transform="rotate(-90 50 50)"/>
+              <circle class="demo-gauge-fill" cx="50" cy="50" r="40" transform="rotate(-90 50 50)"/>
+            </svg>
+            <div class="demo-gauge-num" id="demo-score-num">0</div>
+          </div>
+          <div class="demo-caption">Opportunity scoring on every certificate</div>
+          <div class="demo-subcaption">26-44-01 &middot; 3301 W Sunrise Blvd</div>
+        </div>
+
+        <!-- S5: PULSE ALERT -->
+        <div class="demo-scene" id="demo-s5">
+          <div class="demo-pulse-alert">
+            <span class="demo-pulse-icon">&#x1F514;</span>
+            <div>
+              <div class="demo-pulse-title">New auction added &mdash; Cook County, IL</div>
+              <div class="demo-pulse-detail">Apr 21 &middot; 3,180 certificates &middot; Tax Lien</div>
+              <div class="demo-pulse-time">2 minutes ago</div>
+            </div>
+          </div>
+          <div class="demo-caption" style="margin-top:12px">Pulse alerts &mdash; never miss an auction again</div>
+        </div>
+
+        <!-- S6: WARBOOK TERMINAL -->
+        <div class="demo-scene" id="demo-s6">
+          <div class="demo-terminal">
+            <div class="demo-term-bar">
+              <span class="demo-term-dot" style="background:#ff5f57"></span>
+              <span class="demo-term-dot" style="background:#ffbd2e"></span>
+              <span class="demo-term-dot" style="background:#28ca41"></span>
+              <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-left:8px;">WARBOOK ANALYZER</span>
+            </div>
+            <div class="demo-term-body" id="demo-term-body">
+              <span style="color:var(--gold)">$</span> <span id="demo-term-input"></span><span class="demo-term-cursor"></span>
+              <div id="demo-term-output" style="margin-top:8px"></div>
+            </div>
+          </div>
+          <div class="demo-caption" style="margin-top:10px">Warbook &mdash; due diligence in seconds</div>
+        </div>
+
+        <!-- S7: CTA HOLD -->
+        <div class="demo-scene" id="demo-s7">
+          <div class="demo-cta-hold">
+            <div class="demo-cta-big">Everything you just saw is live.</div>
+            <div class="demo-cta-sub">Unlock full access &mdash; one time, no subscription</div>
+            <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="demo-cta-btn">UNLOCK NOW &mdash; $197</a>
+          </div>
+        </div>
+
+        <!-- SCENE DOTS -->
+        <div class="demo-dots">
+          <span class="demo-dot active"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+        </div>
+
       </div>
     </div>
 
@@ -233,8 +390,15 @@
 
 </div>
 
+<!-- FIXED BOTTOM CTA -->
+<div class="demo-fixed-cta">
+  <span class="demo-fixed-cta-text">ONE-TIME ACCESS</span>
+  <span class="demo-fixed-cta-price">$197</span>
+  <a href="https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02" class="demo-fixed-cta-btn">UNLOCK FULL ACCESS</a>
+</div>
+
 <!-- FOOTER -->
-<footer style="position:relative;z-index:10;text-align:center;padding:24px;border-top:1px solid rgba(255,255,255,0.04);">
+<footer style="position:relative;z-index:10;text-align:center;padding:24px 24px 64px;border-top:1px solid rgba(255,255,255,0.04);">
   <a href="/privacy.html" style="color:var(--muted);font-size:12px;margin:0 16px;" data-en="Privacy Policy" data-es="Pol&iacute;tica de Privacidad">Privacy Policy</a>
   <a href="/legal.html" style="color:var(--muted);font-size:12px;margin:0 16px;" data-en="Terms of Service" data-es="T&eacute;rminos de Servicio">Terms of Service</a>
 </footer>
@@ -386,6 +550,129 @@ function switchLang(lang){
   init();
   tick();
   window.addEventListener('resize',function(){resize();init();});
+})();
+
+// === PLATFORM DEMO ENGINE ===
+(function(){
+  var scenes=7;
+  var durations=[4500,4500,5000,4500,4500,5500,3000]; // ms per scene
+  var current=0;
+  var dots=document.querySelectorAll('.demo-dot');
+  var scoreTimer=null;
+  var typeTimer=null;
+
+  // Inject simplified US map SVG into S1
+  var mapWrap=document.getElementById('demo-map-svg');
+  if(mapWrap){
+    // Simplified US outline with state regions
+    mapWrap.innerHTML='<svg viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg">'
+      +'<path d="M230 140 L280 120 L330 130 L370 115 L420 120 L460 110 L500 115 L540 120 L580 125 L620 118 L660 125 L700 130 L740 140 L780 155 L800 170 L810 200 L820 230 L830 260 L835 300 L825 340 L800 370 L780 390 L750 410 L720 425 L680 440 L640 448 L600 450 L560 445 L520 440 L480 445 L440 450 L400 445 L360 435 L320 420 L280 400 L250 380 L220 350 L200 320 L185 280 L180 240 L185 200 L200 170 Z" />'
+      +'<path d="M180 240 L160 250 L140 270 L120 300 L110 340 L115 370 L130 400 L155 420 L180 435 L210 445 L240 448 L280 440 L320 420" />'
+      +'<path d="M420 120 L440 150 L460 180 L470 220 L475 260 L470 300 L460 340 L440 380 L420 410 L400 445" />'
+      +'<path d="M620 118 L630 150 L640 190 L645 230 L643 270 L635 310 L625 350 L610 390 L600 420 L600 450" />'
+      +'</svg>';
+
+    // Add animated nodes at state positions
+    var nodePositions=[
+      {x:'82%',y:'68%',d:0.2},{x:'28%',y:'55%',d:0.5},{x:'20%',y:'65%',d:0.8},
+      {x:'72%',y:'52%',d:1.1},{x:'55%',y:'40%',d:1.4},{x:'45%',y:'52%',d:1.7},
+      {x:'65%',y:'42%',d:0.4},{x:'75%',y:'35%',d:0.9},{x:'35%',y:'45%',d:1.3},
+      {x:'50%',y:'30%',d:1.6},{x:'60%',y:'60%',d:0.7},{x:'40%',y:'35%',d:1.0}
+    ];
+    for(var i=0;i<nodePositions.length;i++){
+      var n=document.createElement('div');
+      n.className='demo-node';
+      n.style.left=nodePositions[i].x;
+      n.style.top=nodePositions[i].y;
+      n.style.animationDelay=nodePositions[i].d+'s';
+      mapWrap.appendChild(n);
+    }
+  }
+
+  function clearSceneTimers(){
+    if(scoreTimer){clearInterval(scoreTimer);scoreTimer=null;}
+    if(typeTimer){clearTimeout(typeTimer);typeTimer=null;}
+  }
+
+  function activateScene(idx){
+    clearSceneTimers();
+    // Hide all scenes
+    for(var i=1;i<=scenes;i++){
+      var s=document.getElementById('demo-s'+i);
+      if(s)s.classList.remove('active');
+    }
+    // Update dots
+    for(var d=0;d<dots.length;d++){
+      dots[d].classList.toggle('active',d===idx);
+    }
+    // Show target scene
+    var target=document.getElementById('demo-s'+(idx+1));
+    if(target)target.classList.add('active');
+
+    // Scene-specific animations
+    if(idx===3)animateScore();
+    if(idx===5)animateTerminal();
+  }
+
+  function animateScore(){
+    var el=document.getElementById('demo-score-num');
+    if(!el)return;
+    var v=0;
+    el.textContent='0';
+    scoreTimer=setInterval(function(){
+      v+=2;
+      if(v>92)v=92;
+      el.textContent=v;
+      if(v>=92)clearInterval(scoreTimer);
+    },40);
+  }
+
+  function animateTerminal(){
+    var input=document.getElementById('demo-term-input');
+    var output=document.getElementById('demo-term-output');
+    if(!input||!output)return;
+    input.textContent='';
+    output.innerHTML='';
+    var cmd='analyze 26-44-01';
+    var ci=0;
+    function typeChar(){
+      if(ci<cmd.length){
+        input.textContent+=cmd[ci];
+        ci++;
+        typeTimer=setTimeout(typeChar,60+Math.random()*40);
+      }else{
+        typeTimer=setTimeout(showOutput,400);
+      }
+    }
+    function showOutput(){
+      output.innerHTML='<div style="color:var(--muted);margin-bottom:6px">Analyzing parcel...</div>'
+        +'<div style="color:var(--text)">Assessed: <span style="color:var(--gold)">$241,800</span> &middot; Bid: <span style="color:var(--gold)">$3,672</span></div>'
+        +'<div style="color:var(--text)">LTV: <span style="color:var(--teal)">1.5%</span> &middot; Redemption: 2yr</div>'
+        +'<div style="margin-top:8px"><span class="demo-term-go show">&#x2714; GO &mdash; Strong opportunity</span></div>';
+    }
+    typeTimer=setTimeout(typeChar,500);
+  }
+
+  function nextScene(){
+    current=(current+1)%scenes;
+    activateScene(current);
+  }
+
+  // Start the demo loop
+  activateScene(0);
+  var loopTimer=setInterval(function(){
+    nextScene();
+  },durations[current]);
+
+  // Use proper durations per scene
+  clearInterval(loopTimer);
+  function scheduleNext(){
+    setTimeout(function(){
+      nextScene();
+      scheduleNext();
+    },durations[current]);
+  }
+  scheduleNext();
 })();
 </script>
 
