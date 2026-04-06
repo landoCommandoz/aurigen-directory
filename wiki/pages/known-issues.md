@@ -14,7 +14,10 @@
 
 | ID | Issue | Resolution | Date |
 |----|-------|-----------|------|
-| (none yet) | | | |
+| K-006 | Sites silently truncated at 8192 tokens | Bumped max_tokens to 16000 | 2026-04-06 |
+| K-007 | Em dashes leaking through despite prompt rule | Post-processing strip of U+2014 and &amp;mdash; | 2026-04-06 |
+| K-008 | No validation of generated HTML completeness | Structural check (doctype, head, body, closing tag) — broken files deleted | 2026-04-06 |
+| K-009 | Photo URLs not validated before download | HEAD request before GET — non-200 photos skipped | 2026-04-06 |
 
 ## Error Handling Notes
 

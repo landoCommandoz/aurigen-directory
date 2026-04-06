@@ -119,6 +119,10 @@ function detectNiche(category) {
 
 async function downloadPhoto(url, destDir, slug, index) {
   try {
+    // Validate URL returns 200 before downloading full body
+    const head = await fetch(url, { method: 'HEAD', redirect: 'follow' });
+    if (!head.ok) throw new Error(`HEAD check failed: HTTP ${head.status}`);
+
     const res = await fetch(url, { redirect: 'follow' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const buffer = Buffer.from(await res.arrayBuffer());
@@ -384,7 +388,7 @@ async function main() {
 
       const message = await client.messages.create({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 8192,
+        max_tokens: 16000,
         messages: [
           { role: 'user', content: prompt }
         ]
@@ -395,10 +399,32 @@ async function main() {
       // Strip markdown fences if present
       html = html.replace(/^```html?\s*\n?/i, '').replace(/\n?```\s*$/i, '');
 
+      // Strip em dashes — don't rely on Claude following the prompt rule
+      html = html.replace(/\u2014/g, '-').replace(/&mdash;/g, '-');
+
       const filename = `${slug}.html`;
       const filePath = path.join(SITES_DIR, filename);
 
       fs.writeFileSync(filePath, html, 'utf-8');
+
+      // Validate HTML structure — must be a complete document
+      const trimmed = html.trim();
+      const isComplete = trimmed.startsWith('<!') || trimmed.startsWith('<html');
+      const hasClosingTag = trimmed.endsWith('</html>');
+      const hasHead = /<head[\s>]/i.test(trimmed);
+      const hasBody = /<body[\s>]/i.test(trimmed);
+
+      if (!isComplete || !hasClosingTag || !hasHead || !hasBody) {
+        const reasons = [];
+        if (!isComplete) reasons.push('missing doctype/html open');
+        if (!hasClosingTag) reasons.push('missing </html> (likely truncated)');
+        if (!hasHead) reasons.push('missing <head>');
+        if (!hasBody) reasons.push('missing <body>');
+        console.warn(`  INVALID HTML: ${row.business_name} — ${reasons.join(', ')} — skipping`);
+        fs.unlinkSync(filePath);
+        continue;
+      }
+
       row.local_file = `sites/${filename}`;
       generated++;
 
