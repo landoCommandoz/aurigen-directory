@@ -4,6 +4,17 @@ Reverse chronological. Newest entries at top.
 
 ---
 
+## 2026-04-06 — Deployer Hardening (2 fixes)
+
+**What happened:**
+- Name collision handling: when Netlify 422 means "taken by another account" (not ours), retry with city suffix then state suffix. Example: `ravenhaus-mobile` → `ravenhaus-mobile-stgeorge` → `ravenhaus-mobile-ut`. Logs which name succeeded.
+- Deploy delay bumped from 30s to 45s to stop hitting Netlify 429 rate limits.
+
+**Files changed:** `pipeline/local-biz/deployer.js`
+**Wiki pages updated:** `pages/known-issues.md`
+
+---
+
 ## 2026-04-06 — Generator Hardening (4 fixes)
 
 **What happened:**
