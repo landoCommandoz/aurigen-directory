@@ -107,7 +107,7 @@ async function deploySite(siteId, filePath) {
   return deploy;
 }
 
-const DEPLOY_DELAY_MS = 3000;
+const DEPLOY_DELAY_MS = 15000;
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
