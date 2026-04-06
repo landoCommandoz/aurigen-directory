@@ -47,7 +47,10 @@ ${phoneInstruction}
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="description" content="${metaDesc}">
   <title>${row.business_name}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>FAVICON_EMOJI</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+
+Choose the favicon emoji based on the business category: plumber/plumbing = wrench emoji, contractor/construction = construction crane emoji, landscaper/landscaping/lawn = herb emoji, cleaner/cleaning/maid = sparkles emoji, mechanic/auto repair = nut and bolt emoji. For any other category use star emoji. Place the actual emoji character in the SVG text element replacing FAVICON_EMOJI.
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
   <style>/* all styles here */</style>
@@ -109,8 +112,9 @@ body { background: var(--bg); color: var(--text-secondary); font-family: 'DM San
 
 ===== SERVICES SECTION =====
 
+- The services section must have a border-top: 1px solid rgba(201,168,76,0.3) to visually separate it from the hero. This thin gold line sits at the very top of the section.
 - Section heading: "OUR SERVICES" centered, using the section heading specs above.
-- Grid: display grid, grid-template-columns repeat(auto-fit, minmax(280px, 1fr)), gap 24px, max-width 1100px, margin 0 auto, padding 0 24px.
+- Grid: display grid, grid-template-columns repeat(auto-fit, minmax(280px, 1fr)), gap 24px, max-width 1100px, margin 0 auto, padding 0 24px, align-items stretch (so all cards in the same row match height).
 - Cards: background var(--bg-card), backdrop-filter blur(12px), -webkit-backdrop-filter blur(12px), border 1px solid var(--border), border-radius var(--radius), padding 32px.
 - Card hover: background var(--bg-card-hover), border-color var(--border-gold), transform translateY(-4px), box-shadow var(--shadow-gold), transition all 0.25s ease.
 - Inside each card: service name in Bebas Neue, font-size 1.4rem, color var(--gold), letter-spacing 0.03em, margin-bottom 8px. Description in DM Sans 300, color var(--text-secondary), two sentences max. Honest, factual, relevant to ${row.category}.
@@ -152,6 +156,7 @@ Between each major section, add a divider: a div with max-width 200px, height 1p
 ===== FOOTER =====
 
 - Background: #060606 (this is the one exception to the variable rule, it's darker than --bg for contrast).
+- border-top: 1px solid var(--border-gold).
 - Padding: 40px 24px. Text-align center.
 - Business name: Bebas Neue, font-size 1.2rem, var(--text-muted), letter-spacing 0.05em, margin-bottom 8px.
 ${row.phone ? `- Phone: tap-to-call link in var(--text-muted), hover color var(--gold).` : ''}
@@ -159,9 +164,15 @@ ${row.phone ? `- Phone: tap-to-call link in var(--text-muted), hover color var(-
 - Copyright: "\\u00A9 " + current year via <script>document.write(new Date().getFullYear())</script> + " ${row.business_name}". var(--text-muted), font-size 0.8rem, margin-top 16px.
 - No social media icons. No "Powered by" text. No links except the phone.
 
+===== SCROLL PROGRESS BAR =====
+
+Add a div with id="scroll-progress" as the first child of body. Style it: position fixed, top 0, left 0, height 2px, width 0%, background var(--gold), z-index 9999, transition none, pointer-events none.
+
+In the script tag, add a scroll event listener on window that calculates scroll percentage: (scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100 and sets the width of #scroll-progress to that percentage + "%".
+
 ===== SCROLL ANIMATION SCRIPT =====
 
-Single script tag before </body>. IntersectionObserver with threshold 0.15. Observes all .fade-up elements. Adds class "visible" when intersecting. unobserve after triggering.
+Single script tag before </body> that includes BOTH the scroll progress bar logic AND the IntersectionObserver. IntersectionObserver with threshold 0.15. Observes all .fade-up elements. Adds class "visible" when intersecting. unobserve after triggering.
 
 CSS for .fade-up: opacity 0, transform translateY(30px), transition opacity 0.6s ease, transform 0.6s ease.
 CSS for .fade-up.visible: opacity 1, transform translateY(0).
