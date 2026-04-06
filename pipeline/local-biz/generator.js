@@ -174,7 +174,7 @@ body { background: var(--bg); color: var(--text-secondary); font-family: 'DM San
 - Content stacked vertically: business name, tagline, CTA button.
 - Business name: the specs above. It must dominate the screen.
 - Tagline: "${tagline}" in Playfair Display italic 700, color var(--gold), font-size clamp(1rem, 2.5vw, 1.4rem). This is factual, not invented.
-- CTA button (below tagline, margin-top 32px): ${row.phone ? `Text: "${row.phone}" (just the phone number, no prefix). Wrap in <a href="tel:${row.phone}">` : 'Text: "Request a Quote". Wrap in <a href="#contact">'}. Style: display inline-block, background var(--gold), color var(--bg), font-family 'DM Sans', font-weight 700, font-size 1.1rem, padding 16px 44px, border-radius var(--radius-pill), border none, cursor pointer, text-decoration none, transition all 0.2s ease. Hover: background var(--gold-light), transform scale(1.03), box-shadow var(--shadow-gold).
+- CTA button (below tagline, margin-top 32px): ${row.phone ? `Text: "CALL NOW" in all caps, font-weight 700. Wrap in <a href="tel:${row.phone}">. The phone number "${row.phone}" should appear as smaller text directly below the button (DM Sans 400, var(--text-muted), font-size 0.9rem).` : 'Text: "Request a Quote". Wrap in <a href="#contact">.'} Style: display inline-block, background var(--gold), color var(--bg), font-family 'DM Sans', font-weight 700, font-size 1.2rem, padding 18px 52px, border-radius var(--radius-pill), border none, cursor pointer, text-decoration none, transition all 0.2s ease. This button must be massive and impossible to miss. Hover: background var(--gold-light), transform scale(1.03), box-shadow var(--shadow-gold).
 - Hero load animation: the three elements (name, tagline, button) start at opacity 0 + translateY(20px) and animate to opacity 1 + translateY(0) with 0.8s ease-out. Stagger: name 0s delay, tagline 0.15s, button 0.3s. Use CSS @keyframes named heroFadeUp, applied with animation property (not transition, so it runs on load).
 - No images in the hero section. No stock photos. No placeholder images. No img tags in the hero.
 - No empty space below the hero. The services section should begin within one natural scroll.
@@ -224,10 +224,9 @@ ${reviewCount ? `- Below the heading, add a subtitle in DM Sans 400, var(--text-
 - Section heading: "ABOUT US" centered.
 - Content in a glassmorphism card (same card style as services), max-width 720px, centered.
 - STRICT COPY RULES: Do NOT fabricate a backstory. Do NOT invent years in business, employee counts, awards, certifications, founding stories, or owner names. You know ONLY: the business name, category, city, and address.
-- Write exactly two sentences:
-  1. "[Business Name] provides [category] services to homes and businesses throughout [city] and the surrounding area."
-  2. ${row.phone ? `"Call us at ${row.phone} to get started on your next project."` : '"Reach out through the form below to get started on your next project."'}
-- That is the entire about section. Nothing more.
+- Write 2-3 sentences in FIRST PERSON. Sound like the owner talking, not a copywriter. Local, human, warm. Mention the city. Mention what they do. Keep it honest.
+- Example tone: "We're ${row.business_name}, and we handle ${row.category} work all across ${city}. We answer our phone, we show up when we say we will, and we clean up after ourselves. ${row.phone ? `Give us a call at ${row.phone} and let's figure out what you need.` : 'Reach out through the form below and let us know what you need.'}"
+- You can vary the wording but keep the same energy. Never corporate. Never stiff. Never third-person.
 
 ===== CONTACT SECTION =====
 
@@ -292,7 +291,11 @@ Before outputting, verify:
 7. All fonts loaded via link tag, not @import.
 8. The HTML is complete and valid. Opens with <!DOCTYPE html>, closes with </html>.
 9. Every interactive element has a hover state with transition.
-10. The page looks cinematic at 1440px and clean at 375px.`;
+10. The page looks cinematic at 1440px and clean at 375px.
+11. NEVER use white backgrounds anywhere. The entire page is dark. No exceptions.
+12. NEVER use generic blue (#007bff, bootstrap blue, etc). Only use the accent color from --gold.
+13. NEVER use stock photo placeholder URLs or broken image links. If no real photo URL is provided, use a dark gradient instead.
+14. The CALL NOW button must be the most visually dominant interactive element on the page.`;
 }
 
 async function main() {
