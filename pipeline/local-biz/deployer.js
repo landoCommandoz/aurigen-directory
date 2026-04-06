@@ -34,11 +34,46 @@ async function netlifyRequest(endpoint, options = {}) {
   return res.json();
 }
 
-async function createSite(siteName) {
-  return netlifyRequest('/sites', {
+async function findExistingSite(siteName) {
+  const url = `${NETLIFY_API}/sites?name=${encodeURIComponent(siteName)}&filter=all`;
+  const res = await fetch(url, {
+    headers: { 'Authorization': `Bearer ${API_KEY}` }
+  });
+
+  if (!res.ok) return null;
+  const sites = await res.json();
+  return sites.find(s => s.name === siteName) || null;
+}
+
+async function createOrGetSite(siteName) {
+  const createUrl = `${NETLIFY_API}/sites`;
+  const res = await fetch(createUrl, {
     method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${API_KEY}`,
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({ name: siteName })
   });
+
+  if (res.ok) {
+    const site = await res.json();
+    console.log(`  CREATED: ${siteName}.netlify.app`);
+    return site;
+  }
+
+  // 422 means the name is already taken
+  if (res.status === 422) {
+    const existing = await findExistingSite(siteName);
+    if (existing) {
+      console.log(`  EXISTS: ${siteName}.netlify.app, updating...`);
+      return existing;
+    }
+    throw new Error(`Site name "${siteName}" is taken by another account`);
+  }
+
+  const body = await res.text();
+  throw new Error(`Netlify API ${res.status}: ${body}`);
 }
 
 async function deploySite(siteId, filePath) {
@@ -111,7 +146,7 @@ async function main() {
     console.log(`Deploying: ${row.business_name} as ${siteName}.netlify.app...`);
 
     try {
-      const site = await createSite(siteName);
+      const site = await createOrGetSite(siteName);
       await deploySite(site.id, filePath);
 
       row.live_url = site.ssl_url || `https://${site.name}.netlify.app`;
