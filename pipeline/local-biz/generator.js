@@ -74,6 +74,16 @@ function buildPrompt(row) {
 
   const colors = getNicheColors(row.category);
 
+  // Parse photo URLs and reviews from CSV data
+  let photoUrls = [];
+  try { if (row.photos) photoUrls = JSON.parse(row.photos); } catch (_) { /* ignore */ }
+
+  let reviews = [];
+  try { if (row.reviews_json) reviews = JSON.parse(row.reviews_json); } catch (_) { /* ignore */ }
+
+  const rating = row.rating ? parseFloat(row.rating) : 0;
+  const reviewCount = row.review_count ? parseInt(row.review_count, 10) : 0;
+
   const phoneInstruction = row.phone
     ? `Phone: ${row.phone}. This is a real number. Use it in a tap-to-call anchor: <a href="tel:${row.phone}">${row.phone}</a>. Place it in the hero as the primary CTA button, in the contact section, and in the footer.`
     : 'No phone number available. Omit all tap-to-call buttons. Use "Request a Quote" as the hero CTA text instead, linking to the contact form with href="#contact".';
@@ -93,6 +103,9 @@ Name: ${row.business_name}
 Category: ${row.category}
 Address: ${row.address}
 ${phoneInstruction}
+${rating ? `Google Rating: ${rating}/5 (${reviewCount} reviews)` : 'No Google rating available.'}
+${photoUrls.length > 0 ? `Photos (real Google Places photos, use these exact URLs):\n${photoUrls.map((u, i) => `  Photo ${i + 1}: ${u}`).join('\n')}` : 'No photos available.'}
+${reviews.length > 0 ? `Reviews (real Google reviews, use these exactly as written):\n${reviews.map((r, i) => `  Review ${i + 1}: "${r.text}" - ${r.author} (${r.rating}/5)`).join('\n')}` : 'No reviews available.'}
 
 ===== DOCUMENT STRUCTURE =====
 
@@ -163,7 +176,7 @@ body { background: var(--bg); color: var(--text-secondary); font-family: 'DM San
 - Tagline: "${tagline}" in Playfair Display italic 700, color var(--gold), font-size clamp(1rem, 2.5vw, 1.4rem). This is factual, not invented.
 - CTA button (below tagline, margin-top 32px): ${row.phone ? `Text: "${row.phone}" (just the phone number, no prefix). Wrap in <a href="tel:${row.phone}">` : 'Text: "Request a Quote". Wrap in <a href="#contact">'}. Style: display inline-block, background var(--gold), color var(--bg), font-family 'DM Sans', font-weight 700, font-size 1.1rem, padding 16px 44px, border-radius var(--radius-pill), border none, cursor pointer, text-decoration none, transition all 0.2s ease. Hover: background var(--gold-light), transform scale(1.03), box-shadow var(--shadow-gold).
 - Hero load animation: the three elements (name, tagline, button) start at opacity 0 + translateY(20px) and animate to opacity 1 + translateY(0) with 0.8s ease-out. Stagger: name 0s delay, tagline 0.15s, button 0.3s. Use CSS @keyframes named heroFadeUp, applied with animation property (not transition, so it runs on load).
-- No images. No stock photos. No placeholder images. No img tags in the hero.
+- No images in the hero section. No stock photos. No placeholder images. No img tags in the hero.
 - No empty space below the hero. The services section should begin within one natural scroll.
 
 ===== SERVICES SECTION =====
@@ -178,6 +191,33 @@ body { background: var(--bg); color: var(--text-secondary); font-family: 'DM San
 - Generate 3 to 6 services. Infer intelligently from the category "${row.category}". Every service must plausibly belong to this type of business. No filler. No generic "consulting" unless it's a consulting firm.
 - If only one card would land on the last row, give it grid-column: 1 / -1 using a :last-child:nth-child(odd) selector or similar.
 - Each card gets the .fade-up class for scroll animation, staggered with transition-delay: nth-child(1) 0s, nth-child(2) 0.1s, nth-child(3) 0.2s, nth-child(4) 0.3s, nth-child(5) 0.4s, nth-child(6) 0.5s.
+
+===== PHOTO GALLERY SECTION =====
+${photoUrls.length > 0 ? `
+- Section heading: "OUR WORK" centered, using the section heading specs.
+- Display the real business photos from the URLs provided above. These are actual Google Places photos. Use <img> tags with the exact URLs.
+- Layout: CSS grid, repeat(auto-fit, minmax(300px, 1fr)), gap 16px, max-width 1100px, centered.
+- Each image: width 100%, height 280px, object-fit cover, border-radius var(--radius), border 1px solid var(--border).
+- Image hover: transform scale(1.02), box-shadow var(--shadow), transition 0.3s ease.
+- Each image gets .fade-up class.
+- alt attribute: "${row.business_name} photo"
+- Add loading="lazy" to each img tag.` : `
+- SKIP THIS SECTION ENTIRELY. No photos are available. Do not add any photo gallery section. Do not use placeholder images.`}
+
+===== REVIEWS SECTION =====
+${reviews.length > 0 ? `
+- Section heading: ${rating ? `"${rating} STARS ON GOOGLE" centered` : '"WHAT CUSTOMERS SAY" centered'}, using the section heading specs.
+${reviewCount ? `- Below the heading, add a subtitle in DM Sans 400, var(--text-muted): "Based on ${reviewCount} reviews"` : ''}
+- Display the real customer reviews provided above. These are actual Google reviews. Use the exact text, author names, and ratings.
+- Layout: CSS grid, repeat(auto-fit, minmax(300px, 1fr)), gap 24px, max-width 1100px, centered.
+- Each review in a glassmorphism card (same style as service cards), padding 28px.
+- Inside each card:
+  - Star rating row at top: display the rating as filled star characters. Use var(--gold) for filled stars, var(--text-muted) for empty stars. Font-size 1.1rem, margin-bottom 12px.
+  - Review text in DM Sans 300, var(--text-secondary), font-style italic, line-height 1.6. Wrap in quotation marks.
+  - Author name below: DM Sans 500, var(--text-muted), font-size 0.85rem, margin-top 12px. Prefix with a thin horizontal line (40px wide, 1px, var(--border)).
+- Each card gets .fade-up class with staggered transition-delay.
+- Do NOT invent or modify any review text. Use it exactly as provided.` : `
+- SKIP THIS SECTION ENTIRELY. No reviews are available. Do not add any reviews section. Do not fabricate testimonials.`}
 
 ===== ABOUT SECTION =====
 
@@ -246,7 +286,7 @@ Before outputting, verify:
 1. Zero em dashes in the entire document.
 2. Every color references a CSS variable (except footer background #060606).
 3. No fabricated content. No invented history, stats, reviews, or claims.
-4. No img tags anywhere.
+4. ${photoUrls.length > 0 ? 'Only use img tags for the real Google Places photo URLs provided. No placeholder or stock images.' : 'No img tags anywhere. No placeholder or stock images.'}
 5. No console.log statements.
 6. No comments that reference generation or AI.
 7. All fonts loaded via link tag, not @import.

@@ -23,7 +23,7 @@ async function textSearch(query) {
 async function getPlaceDetails(placeId) {
   const url = new URL('https://maps.googleapis.com/maps/api/place/details/json');
   url.searchParams.set('place_id', placeId);
-  url.searchParams.set('fields', 'website,formatted_phone_number,formatted_address,name,types');
+  url.searchParams.set('fields', 'website,formatted_phone_number,formatted_address,name,types,rating,user_ratings_total,photos,reviews');
   url.searchParams.set('key', API_KEY);
 
   const res = await fetch(url.toString());
@@ -83,12 +83,28 @@ async function main() {
         .slice(0, 2)
         .join(', ') || searchTerm;
 
+      // Build photo URLs from photo_reference (up to 3)
+      const photoUrls = (details.photos || []).slice(0, 3).map(p =>
+        `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference=${p.photo_reference}&key=${API_KEY}`
+      );
+
+      // Extract up to 3 reviews (author, rating, text)
+      const reviews = (details.reviews || []).slice(0, 3).map(r => ({
+        author: r.author_name || 'Customer',
+        rating: r.rating || 5,
+        text: (r.text || '').slice(0, 200)
+      }));
+
       leads.push({
         business_name: details.name || place.name,
         address: details.formatted_address || place.formatted_address || '',
         phone: details.formatted_phone_number || '',
         category: category,
-        place_id: place.place_id
+        place_id: place.place_id,
+        rating: String(details.rating || ''),
+        review_count: String(details.user_ratings_total || ''),
+        photos: photoUrls.length > 0 ? JSON.stringify(photoUrls) : '',
+        reviews_json: reviews.length > 0 ? JSON.stringify(reviews) : ''
       });
 
       console.log(`  LEAD: ${details.name || place.name}`);
@@ -102,7 +118,7 @@ async function main() {
     return;
   }
 
-  const columns = ['business_name', 'address', 'phone', 'category', 'place_id'];
+  const columns = ['business_name', 'address', 'phone', 'category', 'place_id', 'rating', 'review_count', 'photos', 'reviews_json'];
 
   // Preserve existing rows from previous runs
   const existing = readCSV('leads.csv');
