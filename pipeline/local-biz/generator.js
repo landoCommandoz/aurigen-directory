@@ -15,6 +15,54 @@ function slugify(name) {
     .slice(0, 60);
 }
 
+const NICHE_COLORS = {
+  // Plumbing: deep reliable blue
+  plumber:            { accent: '#4A90D9', light: '#6AABEF', glow: 'rgba(74,144,217,0.15)', border: 'rgba(74,144,217,0.3)' },
+  plumbing:           { accent: '#4A90D9', light: '#6AABEF', glow: 'rgba(74,144,217,0.15)', border: 'rgba(74,144,217,0.3)' },
+  // HVAC: warm orange (heat + cool)
+  hvac:               { accent: '#E07A3A', light: '#F09A5E', glow: 'rgba(224,122,58,0.15)', border: 'rgba(224,122,58,0.3)' },
+  'heating and air':  { accent: '#E07A3A', light: '#F09A5E', glow: 'rgba(224,122,58,0.15)', border: 'rgba(224,122,58,0.3)' },
+  // Landscaping: natural green
+  landscaper:         { accent: '#5BAF5B', light: '#7DCF7D', glow: 'rgba(91,175,91,0.15)', border: 'rgba(91,175,91,0.3)' },
+  landscaping:        { accent: '#5BAF5B', light: '#7DCF7D', glow: 'rgba(91,175,91,0.15)', border: 'rgba(91,175,91,0.3)' },
+  'lawn care':        { accent: '#5BAF5B', light: '#7DCF7D', glow: 'rgba(91,175,91,0.15)', border: 'rgba(91,175,91,0.3)' },
+  // Cleaning: fresh teal
+  cleaning:           { accent: '#4ABFBF', light: '#6DD9D9', glow: 'rgba(74,191,191,0.15)', border: 'rgba(74,191,191,0.3)' },
+  'cleaning service': { accent: '#4ABFBF', light: '#6DD9D9', glow: 'rgba(74,191,191,0.15)', border: 'rgba(74,191,191,0.3)' },
+  maid:               { accent: '#4ABFBF', light: '#6DD9D9', glow: 'rgba(74,191,191,0.15)', border: 'rgba(74,191,191,0.3)' },
+  // Mechanic / Auto: industrial red
+  mechanic:           { accent: '#D94A4A', light: '#EF6A6A', glow: 'rgba(217,74,74,0.15)', border: 'rgba(217,74,74,0.3)' },
+  'auto repair':      { accent: '#D94A4A', light: '#EF6A6A', glow: 'rgba(217,74,74,0.15)', border: 'rgba(217,74,74,0.3)' },
+  'auto shop':        { accent: '#D94A4A', light: '#EF6A6A', glow: 'rgba(217,74,74,0.15)', border: 'rgba(217,74,74,0.3)' },
+  'mobile mechanic':  { accent: '#D94A4A', light: '#EF6A6A', glow: 'rgba(217,74,74,0.15)', border: 'rgba(217,74,74,0.3)' },
+  // Salon / Hair / Nail: rose pink
+  salon:              { accent: '#D97AB5', light: '#EF9AD0', glow: 'rgba(217,122,181,0.15)', border: 'rgba(217,122,181,0.3)' },
+  hair:               { accent: '#D97AB5', light: '#EF9AD0', glow: 'rgba(217,122,181,0.15)', border: 'rgba(217,122,181,0.3)' },
+  nail:               { accent: '#D97AB5', light: '#EF9AD0', glow: 'rgba(217,122,181,0.15)', border: 'rgba(217,122,181,0.3)' },
+  barber:             { accent: '#D97AB5', light: '#EF9AD0', glow: 'rgba(217,122,181,0.15)', border: 'rgba(217,122,181,0.3)' },
+  // Restaurant / Food: appetizing amber
+  restaurant:         { accent: '#D9A54A', light: '#EFC06A', glow: 'rgba(217,165,74,0.15)', border: 'rgba(217,165,74,0.3)' },
+  food:               { accent: '#D9A54A', light: '#EFC06A', glow: 'rgba(217,165,74,0.15)', border: 'rgba(217,165,74,0.3)' },
+  // Contractor / Handyman: strong slate blue
+  contractor:         { accent: '#5B7BAF', light: '#7D9BCF', glow: 'rgba(91,123,175,0.15)', border: 'rgba(91,123,175,0.3)' },
+  'general contractor': { accent: '#5B7BAF', light: '#7D9BCF', glow: 'rgba(91,123,175,0.15)', border: 'rgba(91,123,175,0.3)' },
+  handyman:           { accent: '#5B7BAF', light: '#7D9BCF', glow: 'rgba(91,123,175,0.15)', border: 'rgba(91,123,175,0.3)' },
+  // Electrician: electric yellow
+  electrician:        { accent: '#D9C34A', light: '#EFD96A', glow: 'rgba(217,195,74,0.15)', border: 'rgba(217,195,74,0.3)' },
+  electrical:         { accent: '#D9C34A', light: '#EFD96A', glow: 'rgba(217,195,74,0.15)', border: 'rgba(217,195,74,0.3)' }
+};
+
+const DEFAULT_COLORS = { accent: '#c9a84c', light: '#e8c96a', glow: 'rgba(201,168,76,0.15)', border: 'rgba(201,168,76,0.3)' };
+
+function getNicheColors(category) {
+  const lower = (category || '').toLowerCase();
+  if (NICHE_COLORS[lower]) return NICHE_COLORS[lower];
+  for (const [key, colors] of Object.entries(NICHE_COLORS)) {
+    if (lower.includes(key) || key.includes(lower)) return colors;
+  }
+  return DEFAULT_COLORS;
+}
+
 function buildPrompt(row) {
   // Address: "165 Gregson Ave S, Salt Lake City, UT 84115, USA" -> "Salt Lake City"
   const addressParts = (row.address || '').split(',').map(s => s.trim());
@@ -23,6 +71,8 @@ function buildPrompt(row) {
     const candidate = addressParts[addressParts.length - 3];
     if (candidate && !/^\d/.test(candidate)) city = candidate;
   }
+
+  const colors = getNicheColors(row.category);
 
   const phoneInstruction = row.phone
     ? `Phone: ${row.phone}. This is a real number. Use it in a tap-to-call anchor: <a href="tel:${row.phone}">${row.phone}</a>. Place it in the hero as the primary CTA button, in the contact section, and in the footer.`
@@ -73,16 +123,16 @@ Choose the favicon emoji based on the business category: plumber/plumbing = wren
   --bg: #0a0a0a;
   --bg-card: rgba(255,255,255,0.03);
   --bg-card-hover: rgba(255,255,255,0.06);
-  --gold: #c9a84c;
-  --gold-light: #e8c96a;
-  --gold-glow: rgba(201,168,76,0.15);
+  --gold: ${colors.accent};
+  --gold-light: ${colors.light};
+  --gold-glow: ${colors.glow};
   --text-primary: #f0f0f0;
   --text-secondary: #888896;
   --text-muted: #555560;
   --border: rgba(255,255,255,0.07);
-  --border-gold: rgba(201,168,76,0.3);
+  --border-gold: ${colors.border};
   --shadow: 0 8px 40px rgba(0,0,0,0.5);
-  --shadow-gold: 0 0 30px rgba(201,168,76,0.15);
+  --shadow-gold: 0 0 30px ${colors.glow};
   --radius: 12px;
   --radius-pill: 50px;
 }
@@ -107,7 +157,7 @@ body { background: var(--bg); color: var(--text-secondary); font-family: 'DM San
 ===== HERO SECTION =====
 
 - Height: 100dvh. Display flex, align-items center, justify-content center. Text-align center.
-- Background: var(--bg) with a radial-gradient overlay: radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.04) 0%, transparent 70%)
+- Background: var(--bg) with a radial-gradient overlay: radial-gradient(ellipse at 50% 40%, var(--gold-glow) 0%, transparent 70%)
 - Content stacked vertically: business name, tagline, CTA button.
 - Business name: the specs above. It must dominate the screen.
 - Tagline: "${tagline}" in Playfair Display italic 700, color var(--gold), font-size clamp(1rem, 2.5vw, 1.4rem). This is factual, not invented.
@@ -118,7 +168,7 @@ body { background: var(--bg); color: var(--text-secondary); font-family: 'DM San
 
 ===== SERVICES SECTION =====
 
-- The services section must have a border-top: 1px solid rgba(201,168,76,0.3) to visually separate it from the hero. This thin gold line sits at the very top of the section.
+- The services section must have a border-top: 1px solid var(--border-gold) to visually separate it from the hero. This thin gold line sits at the very top of the section.
 - Section heading: "OUR SERVICES" centered, using the section heading specs above.
 - Grid: display grid, grid-template-columns repeat(auto-fit, minmax(280px, 1fr)), gap 24px, max-width 1100px, margin 0 auto, padding 0 24px, align-items stretch (so all cards in the same row match height).
 - Cards: background var(--bg-card), backdrop-filter blur(12px), -webkit-backdrop-filter blur(12px), border 1px solid var(--border), border-radius var(--radius), padding 32px.
