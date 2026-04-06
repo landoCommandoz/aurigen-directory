@@ -5,8 +5,21 @@ const { readCSV, writeCSV } = require('./csv-utils');
 function generateEmail(row) {
   const name = row.business_name;
   const url = row.live_url;
-  const category = row.category || 'services';
-  const city = (row.address || '').split(',').slice(-2, -1)[0]?.trim() || 'your area';
+  // Take the last item before any comma: "general contractor, plumber" -> "plumber"
+  const rawCategory = (row.category || 'services').split(',').pop().trim().toLowerCase();
+  const category = rawCategory || 'services';
+
+  // Address format: "165 Gregson Ave S, Salt Lake City, UT 84115, USA"
+  // City is the second-to-last segment before "STATE ZIP" and "USA/Country"
+  const parts = (row.address || '').split(',').map(s => s.trim());
+  let city = 'your area';
+  if (parts.length >= 3) {
+    // Work backwards: last is country (USA), second-to-last is "UT 84115", third-to-last is city
+    const candidate = parts[parts.length - 3];
+    if (candidate && !/^\d/.test(candidate)) {
+      city = candidate;
+    }
+  }
 
   const subject = `I built ${name} a website`;
 
