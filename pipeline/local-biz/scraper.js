@@ -23,7 +23,7 @@ async function textSearch(query) {
 async function getPlaceDetails(placeId) {
   const url = new URL('https://maps.googleapis.com/maps/api/place/details/json');
   url.searchParams.set('place_id', placeId);
-  url.searchParams.set('fields', 'website,formatted_phone_number,formatted_address,name,types,rating,user_ratings_total,photos,reviews');
+  url.searchParams.set('fields', 'website,formatted_phone_number,formatted_address,name,types,rating,user_ratings_total,photos,reviews,opening_hours');
   url.searchParams.set('key', API_KEY);
 
   const res = await fetch(url.toString());
@@ -95,6 +95,11 @@ async function main() {
         text: (r.text || '').slice(0, 200)
       }));
 
+      // Extract opening hours weekday text
+      const hours = (details.opening_hours && details.opening_hours.weekday_text)
+        ? details.opening_hours.weekday_text
+        : [];
+
       leads.push({
         business_name: details.name || place.name,
         address: details.formatted_address || place.formatted_address || '',
@@ -104,7 +109,8 @@ async function main() {
         rating: String(details.rating || ''),
         review_count: String(details.user_ratings_total || ''),
         photos: photoUrls.length > 0 ? JSON.stringify(photoUrls) : '',
-        reviews_json: reviews.length > 0 ? JSON.stringify(reviews) : ''
+        reviews_json: reviews.length > 0 ? JSON.stringify(reviews) : '',
+        hours_json: hours.length > 0 ? JSON.stringify(hours) : ''
       });
 
       console.log(`  LEAD: ${details.name || place.name}`);
@@ -118,7 +124,7 @@ async function main() {
     return;
   }
 
-  const columns = ['business_name', 'address', 'phone', 'category', 'place_id', 'rating', 'review_count', 'photos', 'reviews_json'];
+  const columns = ['business_name', 'address', 'phone', 'category', 'place_id', 'rating', 'review_count', 'photos', 'reviews_json', 'hours_json'];
 
   // Preserve existing rows from previous runs
   const existing = readCSV('leads.csv');
