@@ -4,6 +4,19 @@ Reverse chronological. Newest entries at top.
 
 ---
 
+## 2026-04-06 — Generator Hardening (4 fixes)
+
+**What happened:**
+- HTML validation: after generation, checks for doctype, `<head>`, `<body>`, and `</html>`. Truncated or malformed output is deleted and skipped.
+- Em dash post-processing: strips U+2014 and `&mdash;` from generated HTML, replacing with hyphens. No longer relying on prompt compliance alone.
+- Max tokens bumped from 8192 to 16000 to prevent silent truncation on complex sites.
+- Photo URL validation: HEAD request before full download. If the URL returns non-200, photo is skipped silently.
+
+**Files changed:** `pipeline/local-biz/generator.js`
+**Wiki pages updated:** `pages/prompt-versions.md`, `pages/known-issues.md`
+
+---
+
 ## 2026-04-06 — Wiki Initialization
 
 **What happened:**

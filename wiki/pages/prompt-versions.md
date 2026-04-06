@@ -45,6 +45,7 @@ Tracks changes to the site generation prompt in `pipeline/local-biz/generator.js
 
 | Date | Version | Changes | Reason |
 |------|---------|---------|--------|
+| 2026-04-06 | v1.1 | max_tokens 8192→16000, em dash post-processing, HTML validation, photo HEAD check | Sites getting truncated; em dashes leaking through; broken photo URLs possible |
 | Pre-2026-04-06 | v1 | Initial prompt | Pipeline creation |
 
 _Update this table each time `buildPrompt()` in generator.js is modified._
