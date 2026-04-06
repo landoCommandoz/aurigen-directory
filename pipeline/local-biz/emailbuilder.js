@@ -25,7 +25,7 @@ function generateEmail(row) {
 
   const body = `Hey,
 
-I was looking for ${category} in ${city} and noticed ${name} didn't have a website. So I built one.
+I was looking for a ${category} in ${city} and noticed ${name} didn't have a website. So I built one.
 
 Take a look: ${url}
 
