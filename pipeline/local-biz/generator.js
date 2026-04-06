@@ -16,7 +16,13 @@ function slugify(name) {
 }
 
 function buildPrompt(row) {
-  const city = (row.address || '').split(',').slice(-2, -1)[0]?.trim() || 'the local area';
+  // Address: "165 Gregson Ave S, Salt Lake City, UT 84115, USA" -> "Salt Lake City"
+  const addressParts = (row.address || '').split(',').map(s => s.trim());
+  let city = 'the local area';
+  if (addressParts.length >= 3) {
+    const candidate = addressParts[addressParts.length - 3];
+    if (candidate && !/^\d/.test(candidate)) city = candidate;
+  }
 
   const phoneInstruction = row.phone
     ? `Phone: ${row.phone}. This is a real number. Use it in a tap-to-call anchor: <a href="tel:${row.phone}">${row.phone}</a>. Place it in the hero as the primary CTA button, in the contact section, and in the footer.`
@@ -105,7 +111,7 @@ body { background: var(--bg); color: var(--text-secondary); font-family: 'DM San
 - Content stacked vertically: business name, tagline, CTA button.
 - Business name: the specs above. It must dominate the screen.
 - Tagline: "${tagline}" in Playfair Display italic 700, color var(--gold), font-size clamp(1rem, 2.5vw, 1.4rem). This is factual, not invented.
-- CTA button (below tagline, margin-top 32px): ${row.phone ? `Text: "Call Now: ${row.phone}". Wrap in <a href="tel:${row.phone}">` : 'Text: "Request a Quote". Wrap in <a href="#contact">'}. Style: display inline-block, background var(--gold), color var(--bg), font-family 'DM Sans', font-weight 700, font-size 1.1rem, padding 16px 44px, border-radius var(--radius-pill), border none, cursor pointer, text-decoration none, transition all 0.2s ease. Hover: background var(--gold-light), transform scale(1.03), box-shadow var(--shadow-gold).
+- CTA button (below tagline, margin-top 32px): ${row.phone ? `Text: "${row.phone}" (just the phone number, no prefix). Wrap in <a href="tel:${row.phone}">` : 'Text: "Request a Quote". Wrap in <a href="#contact">'}. Style: display inline-block, background var(--gold), color var(--bg), font-family 'DM Sans', font-weight 700, font-size 1.1rem, padding 16px 44px, border-radius var(--radius-pill), border none, cursor pointer, text-decoration none, transition all 0.2s ease. Hover: background var(--gold-light), transform scale(1.03), box-shadow var(--shadow-gold).
 - Hero load animation: the three elements (name, tagline, button) start at opacity 0 + translateY(20px) and animate to opacity 1 + translateY(0) with 0.8s ease-out. Stagger: name 0s delay, tagline 0.15s, button 0.3s. Use CSS @keyframes named heroFadeUp, applied with animation property (not transition, so it runs on load).
 - No images. No stock photos. No placeholder images. No img tags in the hero.
 - No empty space below the hero. The services section should begin within one natural scroll.
@@ -117,7 +123,8 @@ body { background: var(--bg); color: var(--text-secondary); font-family: 'DM San
 - Grid: display grid, grid-template-columns repeat(auto-fit, minmax(280px, 1fr)), gap 24px, max-width 1100px, margin 0 auto, padding 0 24px, align-items stretch (so all cards in the same row match height).
 - Cards: background var(--bg-card), backdrop-filter blur(12px), -webkit-backdrop-filter blur(12px), border 1px solid var(--border), border-radius var(--radius), padding 32px.
 - Card hover: background var(--bg-card-hover), border-color var(--border-gold), transform translateY(-4px), box-shadow var(--shadow-gold), transition all 0.25s ease.
-- Inside each card: service name in Bebas Neue, font-size 1.4rem, color var(--gold), letter-spacing 0.03em, margin-bottom 8px. Description in DM Sans 300, color var(--text-secondary), two sentences max. Honest, factual, relevant to ${row.category}.
+- Inside each card: service name in Bebas Neue, font-size 1.4rem, color var(--gold), letter-spacing 0.03em, margin-bottom 8px. Description in DM Sans 300, color var(--text-secondary), two sentences max.
+- CRITICAL TONE RULE FOR SERVICE DESCRIPTIONS: Write like the tradesperson themselves, not a copywriter. Short punchy sentences. Real language. Match the energy of the trade. A mobile mechanic says "Your engine dies at 2am, we come to you." A plumber says "Burst pipe flooding your kitchen. We fix it fast." A landscaper says "Overgrown yard dragging your house down. We clean it up." A contractor says "That remodel you keep putting off. Let's get it done." Never say "comprehensive", "complete", "professional services", "diagnostics and repair services", or any other corporate filler. Every description should sound like it came from someone who actually does the work, not someone who writes about it.
 - Generate 3 to 6 services. Infer intelligently from the category "${row.category}". Every service must plausibly belong to this type of business. No filler. No generic "consulting" unless it's a consulting firm.
 - If only one card would land on the last row, give it grid-column: 1 / -1 using a :last-child:nth-child(odd) selector or similar.
 - Each card gets the .fade-up class for scroll animation, staggered with transition-delay: nth-child(1) 0s, nth-child(2) 0.1s, nth-child(3) 0.2s, nth-child(4) 0.3s, nth-child(5) 0.4s, nth-child(6) 0.5s.
