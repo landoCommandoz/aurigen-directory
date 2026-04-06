@@ -107,6 +107,12 @@ async function deploySite(siteId, filePath) {
   return deploy;
 }
 
+const DEPLOY_DELAY_MS = 3000;
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function main() {
   if (!API_KEY) {
     console.error('Error: NETLIFY_API_KEY not set. Add it to pipeline/local-biz/.env');
@@ -153,6 +159,9 @@ async function main() {
       deployed++;
 
       console.log(`  LIVE: ${row.live_url}`);
+
+      // Delay between deploys to avoid Netlify 429 rate limiting
+      await sleep(DEPLOY_DELAY_MS);
     } catch (err) {
       console.warn(`  ERROR: ${row.business_name} — ${err.message} — skipping`);
     }
