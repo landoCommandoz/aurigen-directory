@@ -114,7 +114,7 @@ async function main() {
       const site = await createSite(siteName);
       await deploySite(site.id, filePath);
 
-      row.live_url = `https://${site.subdomain}.netlify.app`;
+      row.live_url = site.ssl_url || `https://${site.name}.netlify.app`;
       deployed++;
 
       console.log(`  LIVE: ${row.live_url}`);
