@@ -18,6 +18,8 @@
 | K-007 | Em dashes leaking through despite prompt rule | Post-processing strip of U+2014 and &amp;mdash; | 2026-04-06 |
 | K-008 | No validation of generated HTML completeness | Structural check (doctype, head, body, closing tag) — broken files deleted | 2026-04-06 |
 | K-009 | Photo URLs not validated before download | HEAD request before GET — non-200 photos skipped | 2026-04-06 |
+| K-010 | Netlify name collisions crash deploy | Retry with city then state suffix (e.g. `-stgeorge`, `-ut`) | 2026-04-06 |
+| K-011 | 30s deploy delay still hitting Netlify 429s | Bumped DEPLOY_DELAY_MS to 45000 | 2026-04-06 |
 
 ## Error Handling Notes
 

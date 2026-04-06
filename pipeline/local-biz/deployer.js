@@ -16,6 +16,23 @@ function slugify(name) {
     .slice(0, 60);
 }
 
+function parseCityState(address) {
+  // "165 Gregson Ave S, Salt Lake City, UT 84115, USA" → { city: 'salt-lake-city', state: 'ut' }
+  const parts = (address || '').split(',').map(s => s.trim());
+  let city = '';
+  let state = '';
+  if (parts.length >= 3) {
+    const candidate = parts[parts.length - 3];
+    if (candidate && !/^\d/.test(candidate)) city = slugify(candidate);
+  }
+  if (parts.length >= 2) {
+    const stateZip = parts[parts.length - 2];
+    const match = stateZip.match(/^([A-Z]{2})\b/i);
+    if (match) state = match[1].toLowerCase();
+  }
+  return { city, state };
+}
+
 async function netlifyRequest(endpoint, options = {}) {
   const url = `${NETLIFY_API}${endpoint}`;
   const res = await fetch(url, {
@@ -45,9 +62,8 @@ async function findExistingSite(siteName) {
   return sites.find(s => s.name === siteName) || null;
 }
 
-async function createOrGetSite(siteName) {
-  const createUrl = `${NETLIFY_API}/sites`;
-  const res = await fetch(createUrl, {
+async function tryCreateSite(siteName) {
+  const res = await fetch(`${NETLIFY_API}/sites`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${API_KEY}`,
@@ -57,23 +73,46 @@ async function createOrGetSite(siteName) {
   });
 
   if (res.ok) {
-    const site = await res.json();
-    console.log(`  CREATED: ${siteName}.netlify.app`);
-    return site;
+    return { site: await res.json(), status: 'created' };
   }
 
-  // 422 means the name is already taken
   if (res.status === 422) {
     const existing = await findExistingSite(siteName);
-    if (existing) {
-      console.log(`  EXISTS: ${siteName}.netlify.app, updating...`);
-      return existing;
-    }
-    throw new Error(`Site name "${siteName}" is taken by another account`);
+    if (existing) return { site: existing, status: 'exists' };
+    return { site: null, status: 'taken' };
   }
 
   const body = await res.text();
   throw new Error(`Netlify API ${res.status}: ${body}`);
+}
+
+async function createOrGetSite(siteName, address) {
+  // Try the base name first
+  const first = await tryCreateSite(siteName);
+  if (first.site) {
+    const label = first.status === 'created' ? 'CREATED' : 'EXISTS';
+    console.log(`  ${label}: ${first.site.name}.netlify.app`);
+    return first.site;
+  }
+
+  // Name taken by another account — retry with city, then state suffix
+  const { city, state } = parseCityState(address);
+  const suffixes = [];
+  if (city) suffixes.push(city);
+  if (state) suffixes.push(state);
+
+  for (const suffix of suffixes) {
+    const retryName = `${siteName}-${suffix}`.slice(0, 60);
+    console.log(`  NAME TAKEN: "${siteName}" — retrying as "${retryName}"...`);
+    const retry = await tryCreateSite(retryName);
+    if (retry.site) {
+      const label = retry.status === 'created' ? 'CREATED' : 'EXISTS';
+      console.log(`  ${label}: ${retry.site.name}.netlify.app`);
+      return retry.site;
+    }
+  }
+
+  throw new Error(`Site name "${siteName}" and all fallbacks taken by another account`);
 }
 
 async function deploySite(siteId, filePath) {
@@ -107,7 +146,7 @@ async function deploySite(siteId, filePath) {
   return deploy;
 }
 
-const DEPLOY_DELAY_MS = 30000;
+const DEPLOY_DELAY_MS = 45000;
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -152,7 +191,7 @@ async function main() {
     console.log(`Deploying: ${row.business_name} as ${siteName}.netlify.app...`);
 
     try {
-      const site = await createOrGetSite(siteName);
+      const site = await createOrGetSite(siteName, row.address);
       await deploySite(site.id, filePath);
 
       row.live_url = site.ssl_url || `https://${site.name}.netlify.app`;
