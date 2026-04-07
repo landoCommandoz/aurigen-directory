@@ -10,7 +10,7 @@ Four-script pipeline that finds local businesses without websites, builds them a
    npm install
    ```
 
-2. Create your `.env` file:
+2. Create your `.env` file in `pipeline/local-biz/`:
    ```bash
    cp pipeline/local-biz/.env.example pipeline/local-biz/.env
    ```

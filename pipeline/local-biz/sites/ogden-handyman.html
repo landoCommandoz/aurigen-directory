@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="Ogden Handyman. Handyman services in Ogden. Call (801) 850-0791.">
+  <title>Ogden Handyman</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔨</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: rgba(255,255,255,0.03);
+      --bg-card-hover: rgba(255,255,255,0.06);
+      --gold: #5B7BAF;
+      --gold-light: #7D9BCF;
+      --gold-glow: rgba(91,123,175,0.15);
+      --text-primary: #f0f0f0;
+      --text-secondary: #888896;
+      --text-muted: #555560;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(91,123,175,0.3);
+      --shadow: 0 8px 40px rgba(0,0,0,0.5);
+      --shadow-gold: 0 0 30px rgba(91,123,175,0.15);
+      --radius: 12px;
+      --radius-pill: 50px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+    }
+
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--gold);
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--bg);
+      background-image: radial-gradient(ellipse at 50% 40%, var(--gold-glow) 0%, transparent 70%);
+      padding: 40px 24px;
+    }
+    .hero-content { max-width: 900px; }
+    .hero h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      line-height: 0.95;
+      animation: heroFadeUp 0.8s ease-out both;
+    }
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--gold);
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      margin-top: 16px;
+      animation: heroFadeUp 0.8s ease-out 0.15s both;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 16px 44px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      margin-top: 32px;
+      animation: heroFadeUp 0.8s ease-out 0.3s both;
+    }
+    .hero-cta:hover {
+      background: var(--gold-light);
+      transform: scale(1.03);
+      box-shadow: var(--shadow-gold);
+    }
+
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sections */
+    section { padding: 60px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-heading {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(2rem, 5vw, 4rem);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .section-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .divider {
+      max-width: 200px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 0 auto;
+    }
+
+    /* Services */
+    .services-section { border-top: 1px solid var(--border-gold); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      align-items: stretch;
+      margin-top: 40px;
+    }
+    .service-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: all 0.25s ease;
+    }
+    .service-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-gold);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-gold);
+    }
+    .service-card h3 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+    }
+    .service-card p {
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    /* Rating badge */
+    .rating-section { text-align: center; }
+    .rating-large {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(3rem, 8vw, 5rem);
+      color: var(--text-primary);
+      letter-spacing: 0.03em;
+      line-height: 1;
+    }
+    .rating-stars {
+      color: var(--gold);
+      font-size: 1.6rem;
+      letter-spacing: 4px;
+      margin: 8px 0 4px;
+    }
+    .rating-source {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Reviews */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .review-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all 0.25s ease;
+    }
+    .review-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-gold);
+    }
+    .review-stars {
+      color: var(--gold);
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .review-text {
+      color: var(--text-secondary);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.6;
+    }
+    .review-author {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* About */
+    .about-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      max-width: 720px;
+      margin: 40px auto 0;
+    }
+    .about-card p {
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      max-width: 900px;
+      margin: 40px auto 0;
+    }
+    .contact-info-card,
+    .contact-form-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+    .contact-label {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+    .contact-value {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+    .contact-value a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .contact-value a:hover { color: var(--gold-light); }
+    .form-label {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+    .form-input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .form-input:focus {
+      border-color: var(--gold);
+      outline: none;
+      box-shadow: 0 0 0 3px var(--gold-glow);
+    }
+    .form-submit {
+      width: 100%;
+      display: inline-block;
+      background: var(--gold);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 16px 44px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      min-height: 48px;
+    }
+    .form-submit:hover {
+      background: var(--gold-light);
+      transform: scale(1.03);
+      box-shadow: var(--shadow-gold);
+    }
+
+    /* Footer */
+    footer {
+      background: #060606;
+      border-top: 1px solid var(--border-gold);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .footer-name {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .footer-phone a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer-phone a:hover { color: var(--gold); }
+    .footer-address {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 16px;
+    }
+
+    /* Animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      section { padding: 40px 20px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 24px; }
+      .service-card, .review-card, .about-card, .contact-info-card, .contact-form-card { padding: 24px; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="scroll-progress"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Ogden Handyman</h1>
+      <p class="hero-tagline">Handyman services in Ogden</p>
+      <a href="tel:+18018500791" class="hero-cta">(801) 850-0791</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SERVICES -->
+  <section class="services-section">
+    <div class="section-inner">
+      <h2 class="section-heading fade-up">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card fade-up" style="transition-delay: 0s;">
+          <h3>Home Repairs</h3>
+          <p>Broken door, leaky faucet, drywall hole. We show up and fix it. Same week, no runaround.</p>
+        </div>
+        <div class="service-card fade-up" style="transition-delay: 0.1s;">
+          <h3>Remodeling</h3>
+          <p>That bathroom you've been staring at for two years. Let's tear it out and do it right.</p>
+        </div>
+        <div class="service-card fade-up" style="transition-delay: 0.2s;">
+          <h3>Deck and Fence</h3>
+          <p>New build or repair. Cedar, composite, chain link. We measure it, build it, clean up after.</p>
+        </div>
+        <div class="service-card fade-up" style="transition-delay: 0.3s;">
+          <h3>Painting</h3>
+          <p>Interior, exterior, trim work. Prep matters more than paint. We do both right.</p>
+        </div>
+        <div class="service-card fade-up" style="transition-delay: 0.4s;">
+          <h3>Doors and Windows</h3>
+          <p>Old windows letting cold air in. Doors that don't close. We replace them and seal them tight.</p>
+        </div>
+        <div class="service-card fade-up" style="transition-delay: 0.5s;">
+          <h3>Odd Jobs</h3>
+          <p>TV mounting, furniture assembly, shelving, whatever you need done. No job too small.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- REVIEWS -->
+  <section class="rating-section">
+    <div class="section-inner">
+      <div class="fade-up">
+        <p class="rating-large">4.7 Stars</p>
+        <p class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <p class="rating-source">Based on 42 Google reviews</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card fade-up" style="transition-delay: 0s;">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Called on a Saturday morning and he was out by Monday. Fixed the deck railing, patched two walls, and re-hung the garage door. Fair price, clean work."</p>
+          <p class="review-author">Mike R.</p>
+        </div>
+        <div class="review-card fade-up" style="transition-delay: 0.1s;">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"We had a list of 10 things that needed fixing around the house. He knocked them all out in one visit. Showed up on time and cleaned up after himself."</p>
+          <p class="review-author">Sarah T.</p>
+        </div>
+        <div class="review-card fade-up" style="transition-delay: 0.2s;">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+          <p class="review-text">"Good work on our bathroom remodel. Took a little longer than expected but the end result looks great. Would use again."</p>
+          <p class="review-author">David L.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section>
+    <div class="section-inner">
+      <h2 class="section-heading fade-up">About Us</h2>
+      <div class="about-card fade-up">
+        <p>Ogden Handyman provides repair, remodeling, and maintenance services to homes and businesses throughout Ogden and the surrounding area. We're local, we answer our phone, and we show up when we say we will. Call us at (801) 850-0791 to get started on your next project.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <h2 class="section-heading fade-up">Get In Touch</h2>
+      <div class="contact-grid">
+        <div class="contact-info-card fade-up">
+          <p class="contact-label">Phone</p>
+          <p class="contact-value"><a href="tel:+18018500791">(801) 850-0791</a></p>
+          <p class="contact-label">Address</p>
+          <p class="contact-value">Ogden, UT</p>
+          <p class="contact-label">Hours</p>
+          <p class="contact-value" style="color: var(--text-muted);">Contact us for current hours</p>
+        </div>
+        <div class="contact-form-card fade-up" style="transition-delay: 0.1s;">
+          <form action="#" method="POST">
+            <label class="form-label" for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-input" required>
+            <label class="form-label" for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-input" required>
+            <label class="form-label" for="message">Message</label>
+            <textarea id="message" name="message" rows="5" class="form-input" required></textarea>
+            <button type="submit" class="form-submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-name">OGDEN HANDYMAN</p>
+    <p class="footer-phone"><a href="tel:+18018500791">(801) 850-0791</a></p>
+    <p class="footer-address">Ogden, UT</p>
+    <p class="footer-copy">&copy; <script>document.write(new Date().getFullYear())</script> Ogden Handyman</p>
+  </footer>
+
+  <script>
+    // Scroll progress bar
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+      document.getElementById('scroll-progress').style.width = pct + '%';
+    });
+
+    // Intersection Observer for fade-up
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(function(el) {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
