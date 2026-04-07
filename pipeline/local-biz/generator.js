@@ -296,12 +296,23 @@ ${reviews.length > 0 ? `5. REVIEWS: heading "${rating > 0 ? rating + ' STARS ON 
 7. CONTACT: id="contact". Heading "GET IN TOUCH" in Bebas Neue.
    - Two-column grid on desktop (1fr 1fr, gap 48px, max-width 900px). Single column below 768px.
    - Left card: ${row.phone ? `phone as tap-to-call <a href="tel:${row.phone}"> in var(--gold)` : 'no phone'}, address in var(--text-secondary), hours as <ul> using the HOURS LIST HTML block.
-   - Right card: form (action="#" method="POST"). Name, Email, Message fields. Inputs: rgba(255,255,255,0.05) bg, var(--border), var(--radius), var(--text-primary). Focus: border var(--gold), box-shadow 0 0 0 3px var(--gold-glow). Submit: full-width gold pill, "Send Message", min-height 48px.
+   - Right card: form with these EXACT attributes: action="/thank-you" method="POST" data-netlify="true" name="contact".
+     FIRST child inside the form MUST be: <input type="hidden" name="form-name" value="contact">
+     Then: Name (required), Email (required, type="email"), Message (textarea, required) fields. Inputs: rgba(255,255,255,0.05) bg, var(--border), var(--radius), var(--text-primary). Focus: border var(--gold), box-shadow 0 0 0 3px var(--gold-glow). Submit: full-width gold pill, "Send Message", min-height 48px.
+
+7b. THANK YOU PAGE: section id="thank-you", hidden by default (display:none).
+   - Same dark background as rest of site. Centered content, padding 80px 24px, min-height 60vh, flex column centered.
+   - Heading: "MESSAGE RECEIVED" in Bebas Neue, var(--gold), clamp(2rem, 5vw, 3.5rem).
+   - Paragraph: "Thank you for reaching out. We'll be in touch shortly." in DM Sans 300, var(--text-secondary), max-width 480px, text-align center.
+   - ${row.phone ? `Secondary line: "Need a faster response? Call us at <a href="tel:${row.phone}">${row.phone}</a>" in var(--text-muted).` : ''}
+   - A link back to top: "Back to Home" styled as the gold pill button.
 
 8. FOOTER: background #060606, border-top 1px solid var(--border-gold), padding 40px 24px, text-align center.
    - Business name in Bebas Neue, var(--text-muted). ${row.phone ? 'Phone as tap-to-call.' : ''} Address. Copyright with dynamic year via document.write(new Date().getFullYear()).
 
-9. SCRIPT: single script tag. Scroll progress bar (scrollY / (scrollHeight - innerHeight) * 100). IntersectionObserver threshold 0.15 for .fade-up elements, adds .visible, unobserves after.
+9. SCRIPT: single script tag.
+   - Thank-you page logic: if (window.location.pathname === '/thank-you') { hide all sections except #thank-you, show #thank-you with display:flex }.
+   - Scroll progress bar (scrollY / (scrollHeight - innerHeight) * 100). IntersectionObserver threshold 0.15 for .fade-up elements, adds .visible, unobserves after.
 
 CSS: .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
      .fade-up.visible { opacity: 1; transform: translateY(0); }

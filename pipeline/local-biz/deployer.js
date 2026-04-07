@@ -136,10 +136,14 @@ function collectDeployFiles(htmlPath, slug) {
 async function deploySite(siteId, filePath, slug) {
   const deployFiles = collectDeployFiles(filePath, slug);
 
+  // Generate _redirects so /thank-you serves index.html (thank-you JS takes over)
+  const redirectsContent = Buffer.from('/thank-you  /index.html  200\n');
+  deployFiles.push({ netlifyPath: '/_redirects', content: redirectsContent });
+
   // Build file digest: { '/index.html': sha1, '/slug-photo-1.jpg': sha1, ... }
   const digest = {};
   for (const f of deployFiles) {
-    const content = fs.readFileSync(f.localPath);
+    const content = f.content || fs.readFileSync(f.localPath);
     digest[f.netlifyPath] = crypto.createHash('sha1').update(content).digest('hex');
   }
 
@@ -151,7 +155,7 @@ async function deploySite(siteId, filePath, slug) {
 
   // Upload each file
   for (const f of deployFiles) {
-    const content = fs.readFileSync(f.localPath);
+    const content = f.content || fs.readFileSync(f.localPath);
     const uploadUrl = `${NETLIFY_API}/deploys/${deploy.id}/files${f.netlifyPath}`;
     const uploadRes = await fetch(uploadUrl, {
       method: 'PUT',
