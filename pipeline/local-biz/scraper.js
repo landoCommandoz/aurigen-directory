@@ -15,7 +15,7 @@ async function textSearch(query) {
   const data = await res.json();
 
   if (data.status !== 'OK' && data.status !== 'ZERO_RESULTS') {
-    throw new Error(`Places API error: ${data.status} — ${data.error_message || ''}`);
+    throw new Error(`Places API error: ${data.status} - ${data.error_message || ''}`);
   }
   return data.results || [];
 }
@@ -23,7 +23,21 @@ async function textSearch(query) {
 async function getPlaceDetails(placeId) {
   const url = new URL('https://maps.googleapis.com/maps/api/place/details/json');
   url.searchParams.set('place_id', placeId);
-  url.searchParams.set('fields', 'website,formatted_phone_number,formatted_address,name,types');
+  url.searchParams.set('fields', [
+    'name',
+    'formatted_address',
+    'formatted_phone_number',
+    'rating',
+    'user_ratings_total',
+    'reviews',
+    'photos',
+    'opening_hours',
+    'price_level',
+    'url',
+    'geometry',
+    'website',
+    'types'
+  ].join(','));
   url.searchParams.set('key', API_KEY);
 
   const res = await fetch(url.toString());
@@ -83,17 +97,49 @@ async function main() {
         .slice(0, 2)
         .join(', ') || searchTerm;
 
+      // Photo references (up to 5 stored, first 3 as individual columns)
+      const photoRefs = (details.photos || []).slice(0, 5).map(p => p.photo_reference);
+
+      // Reviews (up to 5 with full data)
+      const reviews = (details.reviews || []).slice(0, 5).map(r => ({
+        author: r.author_name || 'Customer',
+        rating: r.rating || 5,
+        text: (r.text || '').slice(0, 300),
+        time: r.relative_time_description || ''
+      }));
+
+      // Opening hours
+      const hours = (details.opening_hours && details.opening_hours.weekday_text)
+        ? details.opening_hours.weekday_text
+        : [];
+
+      // Geometry
+      const lat = details.geometry && details.geometry.location ? String(details.geometry.location.lat) : '';
+      const lng = details.geometry && details.geometry.location ? String(details.geometry.location.lng) : '';
+
       leads.push({
         business_name: details.name || place.name,
         address: details.formatted_address || place.formatted_address || '',
         phone: details.formatted_phone_number || '',
         category: category,
-        place_id: place.place_id
+        place_id: place.place_id,
+        rating: String(details.rating || ''),
+        review_count: String(details.user_ratings_total || ''),
+        photo_ref_1: photoRefs[0] || '',
+        photo_ref_2: photoRefs[1] || '',
+        photo_ref_3: photoRefs[2] || '',
+        photos_json: photoRefs.length > 0 ? JSON.stringify(photoRefs) : '',
+        reviews_json: reviews.length > 0 ? JSON.stringify(reviews) : '',
+        hours_json: hours.length > 0 ? JSON.stringify(hours) : '',
+        price_level: String(details.price_level || ''),
+        google_maps_url: details.url || '',
+        lat: lat,
+        lng: lng
       });
 
-      console.log(`  LEAD: ${details.name || place.name}`);
+      console.log(`  LEAD: ${details.name || place.name} (${rating ? details.rating + ' stars' : 'no rating'}, ${photoRefs.length} photos, ${reviews.length} reviews)`);
     } catch (err) {
-      console.warn(`  ERROR on ${place.name}: ${err.message} — skipping`);
+      console.warn(`  ERROR on ${place.name}: ${err.message} - skipping`);
     }
   }
 
@@ -102,7 +148,13 @@ async function main() {
     return;
   }
 
-  const columns = ['business_name', 'address', 'phone', 'category', 'place_id'];
+  const columns = [
+    'business_name', 'address', 'phone', 'category', 'place_id',
+    'rating', 'review_count',
+    'photo_ref_1', 'photo_ref_2', 'photo_ref_3', 'photos_json',
+    'reviews_json', 'hours_json',
+    'price_level', 'google_maps_url', 'lat', 'lng'
+  ];
 
   // Preserve existing rows from previous runs
   const existing = readCSV('leads.csv');
@@ -110,7 +162,6 @@ async function main() {
   const newLeads = leads.filter(l => !existingIds.has(l.place_id));
   const allRows = [...existing, ...newLeads];
 
-  // Use all columns that exist (preserve local_file, live_url from prior runs)
   const allColumns = [...new Set([...columns, ...Object.keys(allRows[0] || {})])];
   writeCSV('leads.csv', allRows, allColumns);
 
