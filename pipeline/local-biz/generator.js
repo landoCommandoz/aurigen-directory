@@ -30,6 +30,42 @@ function parseCity(address) {
 }
 
 // ---------------------------------------------------------------------------
+// RETRY WITH BACKOFF
+// ---------------------------------------------------------------------------
+
+const RETRY_STATUS_CODES = [429, 529];
+const MAX_RETRIES = 4;
+const BASE_DELAY_MS = 2000;
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function isRetryableError(err) {
+  return typeof err.status === 'number' && RETRY_STATUS_CODES.includes(err.status);
+}
+
+async function callWithRetry(client, params, label) {
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      return await client.messages.create(params);
+    } catch (err) {
+      if (!isRetryableError(err)) throw err;
+
+      if (attempt === MAX_RETRIES) {
+        throw new Error(`${label}: all ${MAX_RETRIES} retries exhausted (last: HTTP ${err.status})`);
+      }
+
+      const delayMs = BASE_DELAY_MS * Math.pow(2, attempt - 1);
+      const jitter = Math.floor(Math.random() * 1000);
+      const totalMs = delayMs + jitter;
+      console.warn(`  RETRY ${attempt}/${MAX_RETRIES}: ${label} — HTTP ${err.status} — waiting ${totalMs}ms...`);
+      await sleep(totalMs);
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // NICHE ROUTING
 // ---------------------------------------------------------------------------
 
@@ -474,13 +510,13 @@ async function main() {
     try {
       const prompt = buildPrompt(row, niche, localPhotoPaths, city);
 
-      const message = await client.messages.create({
+      const message = await callWithRetry(client, {
         model: 'claude-sonnet-4-20250514',
         max_tokens: 16000,
         messages: [
           { role: 'user', content: prompt }
         ]
-      });
+      }, row.business_name);
 
       let html = message.content[0].text;
 
