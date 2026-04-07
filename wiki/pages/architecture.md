@@ -38,20 +38,20 @@ scraper.js → leads.csv → generator.js → leads.csv + sites/*.html → deplo
 - **Output:** Appends to `leads.csv`
 
 ### generator.js
-- **Input:** `leads.csv` rows missing `site_file` column
+- **Input:** `leads.csv` rows missing `local_file` column
 - **API:** Anthropic (claude-sonnet-4-20250514)
 - **Logic:** Builds a detailed prompt per business using real data (name, category, address, phone, rating, photos, reviews). Generates a complete single-page HTML site. Saves to `sites/{slug}.html`.
-- **Output:** Updates `leads.csv` with `site_file` path
+- **Output:** Updates `leads.csv` with `local_file` path
 - **Key feature:** Niche-specific color palettes (12 niches mapped to distinct accent colors)
 
 ### deployer.js
-- **Input:** `leads.csv` rows with `site_file` but no `deployed_url`
+- **Input:** `leads.csv` rows with `local_file` but no `live_url`
 - **API:** Netlify REST API (create site, deploy via file digest)
 - **Logic:** Creates a Netlify site per business, deploys the HTML, writes the live URL back.
-- **Output:** Updates `leads.csv` with `deployed_url`
+- **Output:** Updates `leads.csv` with `live_url`
 
 ### emailbuilder.js
-- **Input:** `leads.csv` rows with `deployed_url` but no entry in `emails.csv`
+- **Input:** `leads.csv` rows with `live_url` but no entry in `emails.csv`
 - **API:** Anthropic (for email generation)
 - **Logic:** Niche-specific hooks and bridges (12+ niches with custom cold email openers). Generates personalized 4-paragraph email per lead.
 - **Output:** Writes to `emails.csv`

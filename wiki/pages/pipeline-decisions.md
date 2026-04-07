@@ -20,7 +20,7 @@ Key design choices and their rationale.
 
 **Decision:** Map 12 business niches to distinct accent color palettes, injected into the generator prompt as CSS variables.
 
-**Why:** A plumber's site should feel different from a salon's site. Color is the cheapest way to create niche identity without changing layout. The `NICHE_COLORS` map in `generator.js` handles this with a fuzzy substring matcher.
+**Why:** A plumber's site should feel different from a salon's site. Color is the cheapest way to create niche identity without changing layout. The `NICHES` map in `generator.js` handles this with a fuzzy substring matcher via `detectNiche()`.
 
 ## Niche-Specific Email Hooks
 
