@@ -88,6 +88,83 @@ const NICHES = {
       `${name} hauls away whatever you don't want. Furniture, appliances, yard waste, construction debris. We serve ${city} and everywhere nearby. ${phone ? `Call ${phone} and point at what goes.` : 'Tell us what needs to go.'}`,
     serviceStyle: 'Casual, action-oriented. "Point at it. We load it. It\'s gone." Fast, easy, no hassle.',
     suggestedServices: ['Furniture Removal', 'Appliance Hauling', 'Yard Waste Cleanup', 'Construction Debris', 'Garage Cleanouts', 'Estate Cleanouts']
+  },
+  plumber: {
+    keywords: ['plumber', 'plumbing', 'drain', 'sewer', 'water heater'],
+    color: { accent: '#1B3A5C', light: '#2E5A8A', glow: 'rgba(27,58,92,0.15)', border: 'rgba(27,58,92,0.3)' },
+    emoji: '\uD83D\uDEBF',
+    heroHeadline: (name) => name.toUpperCase(),
+    ctaText: 'CALL NOW - 24/7',
+    aboutVoice: (name, category, city, phone) =>
+      `${name} fixes plumbing problems across ${city}. Leaks, clogs, busted water heaters, backed-up drains. We don't charge by the hour to stand around. We show up, we fix it, we leave. ${phone ? `Pipe burst at midnight? Call ${phone}.` : 'Reach out any time. We respond fast.'}`,
+    serviceStyle: 'Urgent, no-nonsense. "Water on the floor? We are already on the way." Emergency-first, fast-response energy.',
+    suggestedServices: ['Emergency Leak Repair', 'Drain Cleaning', 'Water Heater Install', 'Sewer Line Repair', 'Fixture Replacement', 'Pipe Repiping']
+  },
+  electrician: {
+    keywords: ['electric', 'electrician', 'electrical', 'wiring'],
+    color: { accent: '#E8C820', light: '#F0D84A', glow: 'rgba(232,200,32,0.15)', border: 'rgba(232,200,32,0.3)' },
+    emoji: '\u26A1',
+    heroHeadline: (name) => name.toUpperCase(),
+    ctaText: 'CALL NOW',
+    aboutVoice: (name, category, city, phone) =>
+      `${name} handles electrical work across ${city}. Licensed, insured, and we don't cut corners. Your family's safety isn't something we gamble with. ${phone ? `Call ${phone} to schedule.` : 'Send us a message and we will get back to you quickly.'}`,
+    serviceStyle: 'Safety-forward, credible. "Flickering lights aren\'t just annoying. They are a warning." Calm authority, not fear-mongering.',
+    suggestedServices: ['Panel Upgrades', 'Outlet and Switch Repair', 'Ceiling Fan Installation', 'Whole-Home Rewiring', 'EV Charger Install', 'Lighting Design']
+  },
+  landscaper: {
+    keywords: ['landscape', 'landscaping', 'lawn', 'tree', 'yard', 'mowing', 'garden'],
+    color: { accent: '#2D6A3F', light: '#3F8A55', glow: 'rgba(45,106,63,0.15)', border: 'rgba(45,106,63,0.3)' },
+    emoji: '\uD83C\uDF3F',
+    heroHeadline: (name) => name.toUpperCase(),
+    ctaText: 'GET A FREE ESTIMATE',
+    aboutVoice: (name, category, city, phone) =>
+      `${name} takes care of yards and outdoor spaces across ${city}. Mowing, trimming, planting, hardscaping. We know what grows here and what doesn't. ${phone ? `Call ${phone} for a free walk-through.` : 'Request a free walk-through below.'}`,
+    serviceStyle: 'Seasonal and local. "Spring cleanup. Fall prep. Year-round curb appeal." Grounded, earthy, real.',
+    suggestedServices: ['Weekly Lawn Maintenance', 'Tree and Shrub Trimming', 'Mulch and Garden Beds', 'Sod Installation', 'Patio and Hardscape', 'Seasonal Cleanup']
+  },
+  salon: {
+    keywords: ['salon', 'hair', 'barber', 'beauty', 'spa', 'nail', 'stylist'],
+    color: { accent: '#C47A7A', light: '#D99A9A', glow: 'rgba(196,122,122,0.15)', border: 'rgba(196,122,122,0.3)' },
+    emoji: '\u2702\uFE0F',
+    heroHeadline: (name) => name.toUpperCase(),
+    ctaText: 'BOOK NOW',
+    aboutVoice: (name, category, city, phone) =>
+      `${name} is a ${city} studio where you actually leave feeling like yourself, just better. No assembly-line cuts. No rushed appointments. Just good work, every time. ${phone ? `Call ${phone} to book.` : 'Book your appointment below.'}`,
+    serviceStyle: 'Premium and personal. "Your hair tells people who you are before you say a word." Confident, warm, never generic.',
+    suggestedServices: ['Haircuts and Styling', 'Color and Highlights', 'Blowouts', 'Beard Trims', 'Deep Conditioning', 'Bridal and Event Styling']
+  },
+  roofing: {
+    keywords: ['roof', 'roofing', 'gutter', 'shingle'],
+    color: { accent: '#6B7B8D', light: '#8A9AAC', glow: 'rgba(107,123,141,0.15)', border: 'rgba(107,123,141,0.3)' },
+    emoji: '\uD83C\uDFE0',
+    heroHeadline: (name) => name.toUpperCase(),
+    ctaText: 'GET A FREE INSPECTION',
+    aboutVoice: (name, category, city, phone) =>
+      `${name} protects homes and businesses across ${city}. Roof leaks don't wait, and neither do we. We inspect, we quote, we get it done right the first time. ${phone ? `Call ${phone} for a free roof inspection.` : 'Request your free inspection below.'}`,
+    serviceStyle: 'Protection and durability. "The roof over your family\'s head. That is not where you cut corners." Solid, trustworthy, zero hype.',
+    suggestedServices: ['Roof Replacement', 'Leak Repair', 'Storm Damage Restoration', 'Gutter Install and Repair', 'Roof Inspections', 'Commercial Roofing']
+  },
+  hvac: {
+    keywords: ['hvac', 'heating', 'cooling', 'air conditioning', 'furnace', 'ac '],
+    color: { accent: '#5BA4C9', light: '#7DC0E0', glow: 'rgba(91,164,201,0.15)', border: 'rgba(91,164,201,0.3)' },
+    emoji: '\u2744\uFE0F',
+    heroHeadline: (name) => name.toUpperCase(),
+    ctaText: 'CALL NOW',
+    aboutVoice: (name, category, city, phone) =>
+      `${name} keeps ${city} comfortable year-round. Furnace dies in January, AC quits in July. We've seen it all and we fix it fast. ${phone ? `Call ${phone}. Same-day service when possible.` : 'Reach out and we will get you scheduled quickly.'}`,
+    serviceStyle: 'Comfort and reliability. "95 degrees outside. You need this fixed today, not Thursday." Urgent but calm. Dependable.',
+    suggestedServices: ['AC Repair and Install', 'Furnace Repair and Install', 'Duct Cleaning', 'Thermostat Upgrades', 'Heat Pump Systems', 'Preventive Maintenance']
+  },
+  pest: {
+    keywords: ['pest', 'exterminator', 'termite', 'bug', 'rodent', 'mosquito'],
+    color: { accent: '#D4932A', light: '#E8AD4A', glow: 'rgba(212,147,42,0.15)', border: 'rgba(212,147,42,0.3)' },
+    emoji: '\uD83D\uDEE1\uFE0F',
+    heroHeadline: (name) => name.toUpperCase(),
+    ctaText: 'CALL NOW - FREE INSPECTION',
+    aboutVoice: (name, category, city, phone) =>
+      `${name} eliminates pest problems across ${city}. Ants, roaches, mice, termites. We don't just spray and hope. We find where they're coming in and we shut it down. ${phone ? `Call ${phone} for a free inspection.` : 'Request your free inspection below.'}`,
+    serviceStyle: 'Fast-response, guarantee-driven. "Saw one roach? There are a hundred you didn\'t see." Direct, urgent, solution-focused.',
+    suggestedServices: ['General Pest Control', 'Termite Treatment', 'Rodent Removal', 'Mosquito Control', 'Bed Bug Treatment', 'Wildlife Exclusion']
   }
 };
 
