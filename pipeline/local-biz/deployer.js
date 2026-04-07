@@ -115,32 +115,59 @@ async function createOrGetSite(siteName, address) {
   throw new Error(`Site name "${siteName}" and all fallbacks taken by another account`);
 }
 
-async function deploySite(siteId, filePath) {
-  const htmlContent = fs.readFileSync(filePath);
-  const sha1 = crypto.createHash('sha1').update(htmlContent).digest('hex');
+function collectDeployFiles(htmlPath, slug) {
+  const dir = path.dirname(htmlPath);
+  const files = [];
 
-  // Create deploy with file digest
+  // Always include the HTML as /index.html
+  files.push({ netlifyPath: '/index.html', localPath: htmlPath });
+
+  // Find all photos matching this business slug (slug-photo-*.jpg/png)
+  const entries = fs.readdirSync(dir);
+  for (const entry of entries) {
+    if (entry.startsWith(`${slug}-photo-`) && /\.(jpg|jpeg|png)$/i.test(entry)) {
+      files.push({ netlifyPath: `/${entry}`, localPath: path.join(dir, entry) });
+    }
+  }
+
+  return files;
+}
+
+async function deploySite(siteId, filePath, slug) {
+  const deployFiles = collectDeployFiles(filePath, slug);
+
+  // Build file digest: { '/index.html': sha1, '/slug-photo-1.jpg': sha1, ... }
+  const digest = {};
+  for (const f of deployFiles) {
+    const content = fs.readFileSync(f.localPath);
+    digest[f.netlifyPath] = crypto.createHash('sha1').update(content).digest('hex');
+  }
+
+  // Create deploy with full file digest
   const deploy = await netlifyRequest(`/sites/${siteId}/deploys`, {
     method: 'POST',
-    body: JSON.stringify({
-      files: { '/index.html': sha1 }
-    })
+    body: JSON.stringify({ files: digest })
   });
 
-  // Upload the file
-  const uploadUrl = `${NETLIFY_API}/deploys/${deploy.id}/files/index.html`;
-  const uploadRes = await fetch(uploadUrl, {
-    method: 'PUT',
-    headers: {
-      'Authorization': `Bearer ${API_KEY}`,
-      'Content-Type': 'application/octet-stream'
-    },
-    body: htmlContent
-  });
+  // Upload each file
+  for (const f of deployFiles) {
+    const content = fs.readFileSync(f.localPath);
+    const uploadUrl = `${NETLIFY_API}/deploys/${deploy.id}/files${f.netlifyPath}`;
+    const uploadRes = await fetch(uploadUrl, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${API_KEY}`,
+        'Content-Type': 'application/octet-stream'
+      },
+      body: content
+    });
 
-  if (!uploadRes.ok) {
-    const body = await uploadRes.text();
-    throw new Error(`File upload failed ${uploadRes.status}: ${body}`);
+    if (!uploadRes.ok) {
+      const body = await uploadRes.text();
+      throw new Error(`File upload failed for ${f.netlifyPath}: ${uploadRes.status}: ${body}`);
+    }
+
+    console.log(`  UPLOADED: ${f.netlifyPath}`);
   }
 
   return deploy;
@@ -192,7 +219,7 @@ async function main() {
 
     try {
       const site = await createOrGetSite(siteName, row.address);
-      await deploySite(site.id, filePath);
+      await deploySite(site.id, filePath, siteName);
 
       row.live_url = site.ssl_url || `https://${site.name}.netlify.app`;
       deployed++;
