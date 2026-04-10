@@ -66,27 +66,6 @@ function safeParseJSON(str, fallback = []) {
 }
 
 // ---------------------------------------------------------------------------
-// PHOTO DOWNLOADER
-// ---------------------------------------------------------------------------
-
-async function downloadPhoto(photoRef, destDir, slug, index) {
-  if (!photoRef || !GOOGLE_KEY) return null;
-  const url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference=${photoRef}&key=${GOOGLE_KEY}`;
-  try {
-    const res = await fetch(url, { redirect: 'follow' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const buffer = Buffer.from(await res.arrayBuffer());
-    const ext = (res.headers.get('content-type') || '').includes('png') ? 'png' : 'jpg';
-    const filename = `${slug}-photo-${index}.${ext}`;
-    fs.writeFileSync(path.join(destDir, filename), buffer);
-    return filename;
-  } catch (err) {
-    console.warn(`    PHOTO SKIP: photo ${index}: ${err.message}`);
-    return null;
-  }
-}
-
-// ---------------------------------------------------------------------------
 // DATA PARSER
 // ---------------------------------------------------------------------------
 
@@ -127,8 +106,7 @@ CITY: ${city}`;
   if (reviews.length > 0) {
     reviewsBlock = '\n\nREAL CUSTOMER REVIEWS (use these exact quotes, pull specific phrases for copy):';
     for (const r of reviews) {
-      const stars = r.rating + '/5 stars';
-      reviewsBlock += `\n  - ${r.author} (${stars}): "${r.text}"`;
+      reviewsBlock += `\n  - ${r.author} (${r.rating}/5 stars): "${r.text}"`;
     }
   }
 
@@ -302,12 +280,33 @@ function stripEmDashes(html) {
 }
 
 // ---------------------------------------------------------------------------
+// ANTHROPIC API WITH RETRY
+// ---------------------------------------------------------------------------
+
+async function callWithRetry(client, params, maxRetries = 5) {
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await client.messages.create(params);
+    } catch (err) {
+      const status = err.status || err.statusCode || 0;
+      if ((status === 429 || status === 529) && attempt < maxRetries) {
+        const delay = Math.min(1000 * Math.pow(2, attempt), 60000);
+        console.warn(`    RETRY: ${status} error, waiting ${delay / 1000}s (attempt ${attempt + 1}/${maxRetries})`);
+        await new Promise(r => setTimeout(r, delay));
+        continue;
+      }
+      throw err;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // MAIN
 // ---------------------------------------------------------------------------
 
 async function main() {
   if (!process.env.ANTHROPIC_API_KEY) {
-    console.error('Error: ANTHROPIC_API_KEY not set. Add it to pipeline/local-biz/.env');
+    console.error('Error: ANTHROPIC_API_KEY not set. Add it to .env');
     process.exit(1);
   }
 
@@ -342,23 +341,16 @@ async function main() {
     console.log(`  Reviews: ${data.reviews.length}`);
     console.log(`  Hours: ${data.hours.length > 0 ? 'yes' : 'none'}`);
 
-    const photoRefs = [row.photo_ref_1, row.photo_ref_2, row.photo_ref_3].filter(Boolean);
-    let photoFiles = [];
-
-    if (photoRefs.length > 0) {
-      console.log(`  Downloading ${photoRefs.length} photos...`);
-      const results = await Promise.all(
-        photoRefs.map((ref, i) => downloadPhoto(ref, SITES_DIR, slug, i + 1))
-      );
-      photoFiles = results.filter(Boolean);
-      for (const f of photoFiles) console.log(`    SAVED: ${f}`);
+    // Photos already downloaded by scraper - read paths from CSV
+    const photoFiles = [row.photo_1, row.photo_2, row.photo_3].filter(Boolean);
+    if (photoFiles.length > 0) {
+      console.log(`  Photos: ${photoFiles.join(', ')}`);
     }
 
-    // Build prompt from this business's actual data
     const prompt = buildPrompt(row, data, photoFiles);
 
     try {
-      const message = await client.messages.create({
+      const message = await callWithRetry(client, {
         model: 'claude-sonnet-4-20250514',
         max_tokens: 8192,
         messages: [{ role: 'user', content: prompt }]

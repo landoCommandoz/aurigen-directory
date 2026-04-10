@@ -2,8 +2,9 @@ require('dotenv').config({ path: __dirname + '/.env' });
 
 const fs = require('fs');
 const path = require('path');
-const { readCSV, writeCSV } = require('./csv-utils');
+const { readCSV } = require('./csv-utils');
 
+const EMAILS_DIR = path.join(__dirname, 'emails');
 const ERROR_LOG = path.join(__dirname, 'email-errors.log');
 
 // ---------------------------------------------------------------------------
@@ -122,15 +123,6 @@ const DEFAULT_NICHE = {
 // ERROR LOG
 // ---------------------------------------------------------------------------
 
-function readErrorLog() {
-  try {
-    if (fs.existsSync(ERROR_LOG)) {
-      return fs.readFileSync(ERROR_LOG, 'utf-8');
-    }
-  } catch (_) { /* ignore */ }
-  return '';
-}
-
 function appendErrorLog(category, description) {
   const now = new Date();
   const ts = now.toISOString().replace('T', ' ').slice(0, 16);
@@ -144,13 +136,19 @@ function appendErrorLog(category, description) {
 // PARSING
 // ---------------------------------------------------------------------------
 
+function slugify(name) {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60);
+}
+
 function parseCategory(raw) {
-  // Take last comma-separated token, lowercase, trim
   return (raw || 'services').split(',').pop().trim().toLowerCase() || 'services';
 }
 
 function parseCity(address) {
-  // "165 Gregson Ave S, Salt Lake City, UT 84115, USA" -> "Salt Lake City"
   const parts = (address || '').split(',').map(s => s.trim());
   if (parts.length >= 3) {
     const candidate = parts[parts.length - 3];
@@ -161,9 +159,7 @@ function parseCity(address) {
 
 function matchNiche(category) {
   const lower = category.toLowerCase();
-  // Try exact match first
   if (NICHES[lower]) return NICHES[lower];
-  // Try partial match
   for (const [key, niche] of Object.entries(NICHES)) {
     if (lower.includes(key) || key.includes(lower)) return niche;
   }
@@ -267,12 +263,6 @@ function generateEmail(row) {
 // ---------------------------------------------------------------------------
 
 async function main() {
-  // Read error log from previous runs
-  const priorErrors = readErrorLog();
-  if (priorErrors) {
-    console.log(`Loaded ${priorErrors.split('\n').filter(Boolean).length} prior error entries from email-errors.log`);
-  }
-
   const rows = readCSV('leads.csv');
 
   if (rows.length === 0) {
@@ -280,11 +270,30 @@ async function main() {
     return;
   }
 
-  const emails = [];
+  fs.mkdirSync(EMAILS_DIR, { recursive: true });
+
+  // Read error log from previous runs
+  if (fs.existsSync(ERROR_LOG)) {
+    const priorLines = fs.readFileSync(ERROR_LOG, 'utf-8').split('\n').filter(Boolean).length;
+    if (priorLines > 0) {
+      console.log(`Loaded ${priorLines} prior error entries from email-errors.log`);
+    }
+  }
+
+  let written = 0;
 
   for (const row of rows) {
     if (!row.live_url) {
       console.log(`SKIP: ${row.business_name} (no live_url, run deployer.js)`);
+      continue;
+    }
+
+    const slug = slugify(row.business_name);
+    const emailPath = path.join(EMAILS_DIR, `${slug}.txt`);
+
+    // Skip if already generated
+    if (fs.existsSync(emailPath)) {
+      console.log(`SKIP: ${row.business_name} (${slug}.txt already exists)`);
       continue;
     }
 
@@ -298,28 +307,24 @@ async function main() {
         console.warn(`  FLAG: [${issue.cat}] ${issue.desc}`);
       }
 
-      emails.push({
-        business_name: row.business_name,
-        email_subject: subject,
-        email_body: body,
-        live_url: row.live_url
-      });
+      // Write individual .txt file: Subject line + blank line + body
+      const content = `Subject: ${subject}\n\n${body}`;
+      fs.writeFileSync(emailPath, content, 'utf-8');
+      written++;
 
-      console.log(`EMAIL: ${row.business_name} - "${subject}"`);
+      console.log(`EMAIL: ${row.business_name} -> emails/${slug}.txt`);
     } catch (err) {
       appendErrorLog('OTHER', `${row.business_name}: ${err.message}`);
       console.warn(`ERROR: ${row.business_name} - ${err.message} - skipping`);
     }
   }
 
-  if (emails.length === 0) {
-    console.log('No emails to generate. Ensure deployer.js has run first.');
+  if (written === 0) {
+    console.log('No new emails to generate.');
     return;
   }
 
-  const columns = ['business_name', 'email_subject', 'email_body', 'live_url'];
-  writeCSV('emails.csv', emails, columns);
-  console.log(`\nWrote ${emails.length} emails to emails.csv`);
+  console.log(`\nWrote ${written} emails to emails/ folder.`);
 }
 
 main().catch(err => {

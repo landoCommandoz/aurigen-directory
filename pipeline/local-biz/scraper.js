@@ -1,9 +1,28 @@
 require('dotenv').config({ path: __dirname + '/.env' });
 
+const fs = require('fs');
+const path = require('path');
 const { writeCSV, readCSV } = require('./csv-utils');
 
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 const MAX_LEADS = 20;
+const SITES_DIR = path.join(__dirname, 'sites');
+
+// ---------------------------------------------------------------------------
+// HELPERS
+// ---------------------------------------------------------------------------
+
+function slugify(name) {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60);
+}
+
+// ---------------------------------------------------------------------------
+// GOOGLE PLACES API
+// ---------------------------------------------------------------------------
 
 async function textSearch(query) {
   const url = new URL('https://maps.googleapis.com/maps/api/place/textsearch/json');
@@ -24,19 +43,10 @@ async function getPlaceDetails(placeId) {
   const url = new URL('https://maps.googleapis.com/maps/api/place/details/json');
   url.searchParams.set('place_id', placeId);
   url.searchParams.set('fields', [
-    'name',
-    'formatted_address',
-    'formatted_phone_number',
-    'rating',
-    'user_ratings_total',
-    'reviews',
-    'photos',
-    'opening_hours',
-    'price_level',
-    'url',
-    'geometry',
-    'website',
-    'types'
+    'name', 'formatted_address', 'formatted_phone_number',
+    'rating', 'user_ratings_total', 'reviews', 'photos',
+    'opening_hours', 'price_level', 'url', 'geometry',
+    'website', 'types'
   ].join(','));
   url.searchParams.set('key', API_KEY);
 
@@ -50,6 +60,30 @@ async function getPlaceDetails(placeId) {
   return data.result;
 }
 
+// ---------------------------------------------------------------------------
+// PHOTO DOWNLOADER
+// ---------------------------------------------------------------------------
+
+async function downloadPhoto(photoRef, slug, index) {
+  if (!photoRef) return null;
+  const url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference=${photoRef}&key=${API_KEY}`;
+  try {
+    const res = await fetch(url, { redirect: 'follow' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const buffer = Buffer.from(await res.arrayBuffer());
+    const filename = `${slug}-${index}.jpg`;
+    fs.writeFileSync(path.join(SITES_DIR, filename), buffer);
+    return filename;
+  } catch (err) {
+    console.warn(`    PHOTO SKIP: photo ${index}: ${err.message}`);
+    return null;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// MAIN
+// ---------------------------------------------------------------------------
+
 async function main() {
   const searchTerm = process.argv[2];
   const city = process.argv[3];
@@ -61,9 +95,11 @@ async function main() {
   }
 
   if (!API_KEY) {
-    console.error('Error: GOOGLE_PLACES_API_KEY not set. Add it to pipeline/local-biz/.env');
+    console.error('Error: GOOGLE_PLACES_API_KEY not set. Add it to .env');
     process.exit(1);
   }
+
+  fs.mkdirSync(SITES_DIR, { recursive: true });
 
   const query = `${searchTerm} in ${city}`;
   console.log(`Searching: "${query}"...`);
@@ -97,10 +133,24 @@ async function main() {
         .slice(0, 2)
         .join(', ') || searchTerm;
 
-      // Photo references (up to 5 stored, first 3 as individual columns)
-      const photoRefs = (details.photos || []).slice(0, 5).map(p => p.photo_reference);
+      const slug = slugify(details.name || place.name);
 
-      // Reviews (up to 5 with full data)
+      // Download up to 3 photos
+      const photoRefs = (details.photos || []).slice(0, 3).map(p => p.photo_reference);
+      const localPhotos = [];
+
+      if (photoRefs.length > 0) {
+        console.log(`    Downloading ${photoRefs.length} photos...`);
+        const results = await Promise.all(
+          photoRefs.map((ref, i) => downloadPhoto(ref, slug, i + 1))
+        );
+        for (const f of results.filter(Boolean)) {
+          localPhotos.push(f);
+          console.log(`      SAVED: ${f}`);
+        }
+      }
+
+      // Reviews (up to 5)
       const reviews = (details.reviews || []).slice(0, 5).map(r => ({
         author: r.author_name || 'Customer',
         rating: r.rating || 5,
@@ -108,12 +158,12 @@ async function main() {
         time: r.relative_time_description || ''
       }));
 
-      // Opening hours
+      // Hours
       const hours = (details.opening_hours && details.opening_hours.weekday_text)
         ? details.opening_hours.weekday_text
         : [];
 
-      // Geometry
+      // Coordinates
       const lat = details.geometry && details.geometry.location ? String(details.geometry.location.lat) : '';
       const lng = details.geometry && details.geometry.location ? String(details.geometry.location.lng) : '';
 
@@ -125,10 +175,9 @@ async function main() {
         place_id: place.place_id,
         rating: String(details.rating || ''),
         review_count: String(details.user_ratings_total || ''),
-        photo_ref_1: photoRefs[0] || '',
-        photo_ref_2: photoRefs[1] || '',
-        photo_ref_3: photoRefs[2] || '',
-        photos_json: photoRefs.length > 0 ? JSON.stringify(photoRefs) : '',
+        photo_1: localPhotos[0] || '',
+        photo_2: localPhotos[1] || '',
+        photo_3: localPhotos[2] || '',
         reviews_json: reviews.length > 0 ? JSON.stringify(reviews) : '',
         hours_json: hours.length > 0 ? JSON.stringify(hours) : '',
         price_level: String(details.price_level || ''),
@@ -137,7 +186,7 @@ async function main() {
         lng: lng
       });
 
-      console.log(`  LEAD: ${details.name || place.name} (${rating ? details.rating + ' stars' : 'no rating'}, ${photoRefs.length} photos, ${reviews.length} reviews)`);
+      console.log(`  LEAD: ${details.name || place.name} (${details.rating ? details.rating + ' stars' : 'no rating'}, ${localPhotos.length} photos, ${reviews.length} reviews)`);
     } catch (err) {
       console.warn(`  ERROR on ${place.name}: ${err.message} - skipping`);
     }
@@ -151,12 +200,12 @@ async function main() {
   const columns = [
     'business_name', 'address', 'phone', 'category', 'place_id',
     'rating', 'review_count',
-    'photo_ref_1', 'photo_ref_2', 'photo_ref_3', 'photos_json',
+    'photo_1', 'photo_2', 'photo_3',
     'reviews_json', 'hours_json',
     'price_level', 'google_maps_url', 'lat', 'lng'
   ];
 
-  // Preserve existing rows from previous runs
+  // Preserve existing rows
   const existing = readCSV('leads.csv');
   const existingIds = new Set(existing.map(r => r.place_id));
   const newLeads = leads.filter(l => !existingIds.has(l.place_id));
