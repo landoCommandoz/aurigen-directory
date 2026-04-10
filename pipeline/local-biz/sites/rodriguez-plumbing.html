@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="Rodriguez Plumbing. 4.8 stars from 127 reviews. Plumber in Salt Lake City. Call (801) 555-0147.">
+  <title>Rodriguez Plumbing</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: rgba(255,255,255,0.03);
+      --bg-card-hover: rgba(255,255,255,0.06);
+      --accent: #3A8FD6;
+      --text-primary: #f0f0f0;
+      --text-secondary: #888896;
+      --text-muted: #555560;
+      --border: rgba(255,255,255,0.07);
+      --radius: 12px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 9999;
+      pointer-events: none;
+      transition: width 0.1s linear;
+    }
+
+    .section { padding: 60px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-heading {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 0.05em;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .divider {
+      max-width: 200px;
+      height: 1px;
+      margin: 0 auto;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      border: none;
+    }
+
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+    .glass-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 0 30px rgba(58,143,214,0.15);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      background: radial-gradient(ellipse at 50% 40%, rgba(58,143,214,0.08), transparent 70%);
+      position: relative;
+    }
+    .hero-name {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      letter-spacing: 0.05em;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      line-height: 1;
+      animation: heroFadeUp 0.6s ease both;
+    }
+    .hero-rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 8px 20px;
+      background: rgba(58,143,214,0.1);
+      border: 1px solid rgba(58,143,214,0.2);
+      border-radius: 50px;
+      font-size: clamp(0.85rem, 1.5vw, 1rem);
+      color: var(--accent);
+      font-weight: 500;
+      animation: heroFadeUp 0.6s ease 0.1s both;
+    }
+    .hero-rating .stars { letter-spacing: 2px; }
+    .hero-tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-secondary);
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      max-width: 600px;
+      margin-top: 20px;
+      animation: heroFadeUp 0.6s ease 0.15s both;
+    }
+    .hero-cta {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 18px 52px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-decoration: none;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: heroFadeUp 0.6s ease 0.3s both;
+    }
+    .hero-cta:hover {
+      background: #5AAAE6;
+      transform: scale(1.03);
+      box-shadow: 0 0 30px rgba(58,143,214,0.3);
+    }
+    .hero-phone {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      animation: heroFadeUp 0.6s ease 0.35s both;
+    }
+    .hero-phone a { color: var(--text-muted); text-decoration: none; }
+    .hero-phone a:hover { color: var(--accent); }
+
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ABOUT */
+    .about-card {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .about-card p {
+      color: var(--text-secondary);
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
+      line-height: 1.8;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+    .service-card h3 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.4rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* REVIEWS */
+    .rating-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .rating-number {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 3rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .rating-stars {
+      color: var(--accent);
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+    }
+    .rating-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .review-card .review-stars {
+      color: var(--accent);
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .review-card .review-text {
+      color: var(--text-secondary);
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .review-card .review-author {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* HOURS */
+    .hours-card {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .hours-card ul {
+      list-style: none;
+    }
+    .hours-card li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .hours-card li:last-child { border-bottom: none; }
+    .hours-day { color: var(--text-primary); font-weight: 500; }
+    .hours-time { color: var(--text-muted); }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .contact-info a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .contact-info a:hover { color: #5AAAE6; }
+    .contact-info .address {
+      color: var(--text-secondary);
+      margin-top: 16px;
+      line-height: 1.7;
+    }
+    .contact-info .directions {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .contact-info .directions:hover { color: #5AAAE6; }
+    .contact-info .price-label {
+      margin-top: 12px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(58,143,214,0.15);
+    }
+    .contact-form textarea { min-height: 120px; resize: vertical; }
+    .contact-form button {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      min-height: 48px;
+      transition: all 0.3s ease;
+    }
+    .contact-form button:hover {
+      background: #5AAAE6;
+      box-shadow: 0 0 20px rgba(58,143,214,0.2);
+    }
+
+    .map-embed {
+      width: 100%;
+      max-width: 900px;
+      margin: 32px auto 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .map-embed iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #060606;
+      border-top: 1px solid rgba(58,143,214,0.3);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    footer .footer-name {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    footer .footer-phone a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    footer .footer-phone a:hover { color: var(--accent); }
+    footer .footer-address, footer .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
+
+    /* ANIMATIONS */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .section { padding: 40px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="scroll-progress"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1 class="hero-name">RODRIGUEZ PLUMBING</h1>
+    <div class="hero-rating">
+      <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span>4.8 stars from 127 reviews</span>
+    </div>
+    <p class="hero-tagline">"Here in 20 minutes. Fixed before midnight. Fair price."</p>
+    <a href="tel:+18015550147" class="hero-cta">CALL NOW</a>
+    <p class="hero-phone"><a href="tel:+18015550147">(801) 555-0147</a></p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ABOUT -->
+  <section class="section">
+    <div class="section-inner">
+      <h2 class="section-heading fade-up">ABOUT US</h2>
+      <div class="glass-card about-card fade-up" style="transition-delay: 0.1s;">
+        <p>Rodriguez Plumbing is the Salt Lake City plumber customers call when something goes wrong at 10pm and they need someone there fast. Reviewers consistently highlight response times under 30 minutes, transparent pricing with no surprise charges, and technicians who take the time to explain the problem before picking up a wrench. More than one customer has noted that Rodriguez has saved them thousands by diagnosing the real issue instead of recommending unnecessary work. They have even been known to walk a homeowner through a simple fix over the phone rather than charge for a truck roll.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- SERVICES -->
+  <section class="section">
+    <div class="section-inner">
+      <h2 class="section-heading fade-up">OUR SERVICES</h2>
+      <div class="services-grid">
+        <div class="glass-card service-card fade-up" style="transition-delay: 0.1s;">
+          <h3>EMERGENCY PLUMBING</h3>
+          <p>Burst pipe at midnight. Flooded kitchen at 6am. Rodriguez answers the phone and shows up fast. Customers report arrival times under 30 minutes for after-hours emergencies.</p>
+        </div>
+        <div class="glass-card service-card fade-up" style="transition-delay: 0.2s;">
+          <h3>WATER HEATER REPLACEMENT</h3>
+          <p>Same-day water heater installs. Rodriguez shows up on time, quotes the price upfront, and charges exactly what they say. No surprises on the invoice.</p>
+        </div>
+        <div class="glass-card service-card fade-up" style="transition-delay: 0.3s;">
+          <h3>DRAIN CLEARING</h3>
+          <p>Camera inspection to find the real problem, not a guess. One customer avoided a full repipe because Rodriguez scoped the line and found a single blockage other plumbers missed.</p>
+        </div>
+        <div class="glass-card service-card fade-up" style="transition-delay: 0.4s;">
+          <h3>PIPE REPAIR</h3>
+          <p>From leaky joints to burst copper lines. Rodriguez fixes it right and cleans up after. No cut corners, no call-backs.</p>
+        </div>
+        <div class="glass-card service-card fade-up" style="transition-delay: 0.5s;">
+          <h3>RENTAL PROPERTY SERVICE</h3>
+          <p>Trusted by property managers who need reliable, repeat service. Fast turnaround, fair rates, and work that passes inspection the first time.</p>
+        </div>
+        <div class="glass-card service-card fade-up" style="transition-delay: 0.6s;">
+          <h3>HONEST DIAGNOSTICS</h3>
+          <p>Rodriguez will tell you if it is a $40 fix you can handle yourself. That kind of integrity is why customers keep calling back for the bigger jobs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- REVIEWS -->
+  <section class="section">
+    <div class="section-inner">
+      <h2 class="section-heading fade-up">WHAT CUSTOMERS SAY</h2>
+      <div class="rating-badge fade-up">
+        <span class="rating-number">4.8</span>
+        <div>
+          <div class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="rating-label">127 Google Reviews</div>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="glass-card review-card fade-up" style="transition-delay: 0.1s;">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Called at 10pm with a burst pipe under the kitchen sink and they were here in 20 minutes. Not an exaggeration. The tech Carlos was calm, professional, and had it fixed before midnight. Fair price too, no emergency markup games."</p>
+          <p class="review-author">Maria Gonzalez</p>
+        </div>
+        <div class="glass-card review-card fade-up" style="transition-delay: 0.2s;">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Third time using Rodriguez for our rental properties. They replaced a water heater same day, showed up on time, and the price was exactly what they quoted. No surprises. Hard to find that in this industry."</p>
+          <p class="review-author">James Thornton</p>
+        </div>
+        <div class="glass-card review-card fade-up" style="transition-delay: 0.3s;">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+          <p class="review-text">"Fixed a slow drain that two other plumbers said needed a full repipe. Rodriguez scoped it with a camera, found the actual blockage, and cleared it in an hour. Saved us thousands."</p>
+          <p class="review-author">Linda Park</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- HOURS -->
+  <section class="section">
+    <div class="section-inner">
+      <h2 class="section-heading fade-up">HOURS</h2>
+      <div class="glass-card hours-card fade-up" style="transition-delay: 0.1s;">
+        <ul>
+          <li><span class="hours-day">Monday</span><span class="hours-time">7:00 AM - 6:00 PM</span></li>
+          <li><span class="hours-day">Tuesday</span><span class="hours-time">7:00 AM - 6:00 PM</span></li>
+          <li><span class="hours-day">Wednesday</span><span class="hours-time">7:00 AM - 6:00 PM</span></li>
+          <li><span class="hours-day">Thursday</span><span class="hours-time">7:00 AM - 6:00 PM</span></li>
+          <li><span class="hours-day">Friday</span><span class="hours-time">7:00 AM - 5:00 PM</span></li>
+          <li><span class="hours-day">Saturday</span><span class="hours-time">8:00 AM - 2:00 PM</span></li>
+          <li><span class="hours-day">Sunday</span><span class="hours-time">Emergency Only</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-inner">
+      <h2 class="section-heading fade-up">GET IN TOUCH</h2>
+      <div class="contact-grid">
+        <div class="glass-card contact-info fade-up" style="transition-delay: 0.1s;">
+          <a href="tel:+18015550147">(801) 555-0147</a>
+          <p class="address">2841 State St<br>Salt Lake City, UT 84115</p>
+          <a href="https://maps.google.com/?cid=fakeid001" class="directions" target="_blank" rel="noopener">Get Directions &#8594;</a>
+          <p class="price-label">Moderately priced</p>
+        </div>
+        <div class="glass-card fade-up" style="transition-delay: 0.2s;">
+          <form action="/" method="POST" data-netlify="true" name="contact-rodriguez-plumbing" class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="How can we help?"></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+      <div class="map-embed fade-up" style="transition-delay: 0.3s;">
+        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDBeBhQkLxb3tKDr7QqOhWdZr9nbFBWCIA&q=40.7233,-111.8882&zoom=15" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">RODRIGUEZ PLUMBING</div>
+    <p class="footer-phone"><a href="tel:+18015550147">(801) 555-0147</a></p>
+    <p class="footer-address">2841 State St, Salt Lake City, UT 84115</p>
+    <p class="footer-copy">&copy; <script>document.write(new Date().getFullYear())</script> Rodriguez Plumbing. All rights reserved.</p>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      var progress = document.getElementById('scroll-progress');
+      var scrollTop = window.scrollY;
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight > 0) {
+        progress.style.width = (scrollTop / docHeight * 100) + '%';
+      }
+    });
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(function(el) {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
