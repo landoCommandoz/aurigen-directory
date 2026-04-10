@@ -2,11 +2,11 @@ require('dotenv').config({ path: __dirname + '/.env' });
 
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
 const Anthropic = require('@anthropic-ai/sdk');
 const { readCSV, writeCSV } = require('./csv-utils');
 
 const SITES_DIR = path.join(__dirname, 'sites');
+const GOOGLE_KEY = process.env.GOOGLE_PLACES_API_KEY;
 
 // ---------------------------------------------------------------------------
 // HELPERS
@@ -29,298 +29,276 @@ function parseCity(address) {
   return 'the local area';
 }
 
-// ---------------------------------------------------------------------------
-// NICHE ROUTING
-// ---------------------------------------------------------------------------
-
-const NICHES = {
-  mechanic: {
-    keywords: ['mechanic', 'auto', 'repair'],
-    color: { accent: '#D94A4A', light: '#EF6A6A', glow: 'rgba(217,74,74,0.15)', border: 'rgba(217,74,74,0.3)' },
-    emoji: '\uD83D\uDD29',
-    heroHeadline: (name) => name.toUpperCase(),
-    ctaText: 'CALL NOW',
-    aboutVoice: (name, category, city, phone) =>
-      `We're ${name}. We come to you. Doesn't matter if it's your driveway, a parking lot, or the side of the road. ${city} is our shop. ${phone ? `Call ${phone} and we'll be there.` : 'Reach out and we will be there.'}`,
-    serviceStyle: 'No-nonsense. Direct. "Engine won\'t start at 2am. We come to you." Short, punchy, zero fluff.',
-    suggestedServices: ['Engine Diagnostics', 'Brake Repair', 'Oil Changes', 'Battery and Electrical', 'Transmission Work', 'Pre-Purchase Inspections']
-  },
-  handyman: {
-    keywords: ['handyman', 'contractor', 'general contractor', 'remodel'],
-    color: { accent: '#5B7BAF', light: '#7D9BCF', glow: 'rgba(91,123,175,0.15)', border: 'rgba(91,123,175,0.3)' },
-    emoji: '\uD83D\uDD28',
-    heroHeadline: (name) => name.toUpperCase(),
-    ctaText: 'CALL NOW',
-    aboutVoice: (name, category, city, phone) =>
-      `We're ${name}, and we handle repairs, remodels, and everything in between across ${city}. We answer our phone, we show up when we say we will, and we clean up after ourselves. ${phone ? `Give us a call at ${phone} and let's figure out what you need.` : 'Fill out the form below and we will get back to you.'}`,
-    serviceStyle: 'Confident tradesperson. "That bathroom you keep putting off. Let\'s get it done." Real language, not brochure copy.',
-    suggestedServices: ['Home Repairs', 'Bathroom Remodels', 'Deck and Fence', 'Painting', 'Doors and Windows', 'Odd Jobs']
-  },
-  cleaning: {
-    keywords: ['pressure', 'washing', 'window', 'clean', 'power wash'],
-    color: { accent: '#4ABFBF', light: '#6DD9D9', glow: 'rgba(74,191,191,0.15)', border: 'rgba(74,191,191,0.3)' },
-    emoji: '\u2728',
-    heroHeadline: (name) => name.toUpperCase(),
-    ctaText: 'GET A FREE QUOTE',
-    aboutVoice: (name, category, city, phone) =>
-      `${name} keeps properties looking their best across ${city} and the surrounding area. Driveways, siding, windows, gutters. If it's dirty, we make it look new. ${phone ? `Call ${phone} for a free estimate.` : 'Send us a message for a free estimate.'}`,
-    serviceStyle: 'Before/after energy. "Your driveway hasn\'t looked this good since the day it was poured." Visual, satisfying, results-focused.',
-    suggestedServices: ['Pressure Washing', 'Window Cleaning', 'Gutter Cleaning', 'Roof Washing', 'Deck Restoration', 'Commercial Exterior']
-  },
-  fencing: {
-    keywords: ['fence', 'fencing'],
-    color: { accent: '#8B7355', light: '#A8906E', glow: 'rgba(139,115,85,0.15)', border: 'rgba(139,115,85,0.3)' },
-    emoji: '\uD83C\uDFE1',
-    heroHeadline: (name) => name.toUpperCase(),
-    ctaText: 'GET A FREE QUOTE',
-    aboutVoice: (name, category, city, phone) =>
-      `${name} builds fences across ${city}. Wood, vinyl, chain link, iron. We measure it, we build it, we make sure it's straight. ${phone ? `Call ${phone} to get started.` : 'Send us a message to get started.'}`,
-    serviceStyle: 'Straightforward craftsman. "Cedar privacy fence. 6 foot. Installed in a day." Practical, no poetry.',
-    suggestedServices: ['Wood Privacy Fencing', 'Chain Link', 'Vinyl Fencing', 'Iron and Metal', 'Gate Installation', 'Fence Repair']
-  },
-  junk: {
-    keywords: ['junk', 'haul', 'removal', 'dump', 'trash'],
-    color: { accent: '#D9A54A', light: '#EFC06A', glow: 'rgba(217,165,74,0.15)', border: 'rgba(217,165,74,0.3)' },
-    emoji: '\uD83D\uDE9A',
-    heroHeadline: (name) => name.toUpperCase(),
-    ctaText: 'CALL NOW',
-    aboutVoice: (name, category, city, phone) =>
-      `${name} hauls away whatever you don't want. Furniture, appliances, yard waste, construction debris. We serve ${city} and everywhere nearby. ${phone ? `Call ${phone} and point at what goes.` : 'Tell us what needs to go.'}`,
-    serviceStyle: 'Casual, action-oriented. "Point at it. We load it. It\'s gone." Fast, easy, no hassle.',
-    suggestedServices: ['Furniture Removal', 'Appliance Hauling', 'Yard Waste Cleanup', 'Construction Debris', 'Garage Cleanouts', 'Estate Cleanouts']
-  }
-};
-
-const DEFAULT_NICHE = {
-  keywords: [],
-  color: { accent: '#c9a84c', light: '#e8c96a', glow: 'rgba(201,168,76,0.15)', border: 'rgba(201,168,76,0.3)' },
-  emoji: '\u2B50',
-  heroHeadline: (name) => name.toUpperCase(),
-  ctaText: 'CALL NOW',
-  aboutVoice: (name, category, city, phone) =>
-    `${name} provides ${category} services across ${city} and the surrounding area. We're local, we're reliable, and we pick up the phone. ${phone ? `Call ${phone} to get started.` : 'Reach out through the form below.'}`,
-  serviceStyle: 'Friendly tradesperson. Direct, warm, no corporate language. Short sentences that sound like a real person.',
-  suggestedServices: []
-};
-
-function detectNiche(category) {
+function accentColor(category) {
   const lower = (category || '').toLowerCase();
-  for (const [key, niche] of Object.entries(NICHES)) {
-    for (const kw of niche.keywords) {
-      if (lower.includes(kw)) return { key, ...niche };
-    }
+  const map = [
+    [['mechanic', 'auto', 'repair'], '#D94A4A'],
+    [['handyman', 'contractor', 'remodel'], '#5B7BAF'],
+    [['clean', 'pressure', 'wash', 'window'], '#4ABFBF'],
+    [['fence', 'fencing'], '#8B7355'],
+    [['junk', 'haul', 'removal', 'trash'], '#D9A54A'],
+    [['plumb'], '#3A8FD6'],
+    [['electric'], '#E8A838'],
+    [['hvac', 'heating', 'air condition'], '#5C9EAD'],
+    [['landscap', 'lawn', 'tree'], '#6B9E4F'],
+    [['salon', 'hair', 'nail', 'barber', 'beauty'], '#C77DBA'],
+    [['restaurant', 'food', 'pizza', 'taco', 'cafe'], '#E07B4C'],
+    [['roof'], '#8B6F5E'],
+    [['paint'], '#7B8EC2'],
+    [['pest', 'extermina'], '#A0A040'],
+    [['tow', 'wreck'], '#CC6633']
+  ];
+  for (const [keywords, color] of map) {
+    if (keywords.some(kw => lower.includes(kw))) return color;
   }
-  return { key: 'default', ...DEFAULT_NICHE };
+  return '#c9a84c';
+}
+
+const PRICE_LABELS = { 1: 'Budget-friendly', 2: 'Moderately priced', 3: 'Higher-end', 4: 'Premium pricing' };
+
+function priceLevelLabel(level) {
+  return PRICE_LABELS[parseInt(level, 10)] || '';
+}
+
+function safeParseJSON(str, fallback = []) {
+  if (!str) return fallback;
+  try { return JSON.parse(str); } catch (_) { return fallback; }
 }
 
 // ---------------------------------------------------------------------------
 // PHOTO DOWNLOADER
 // ---------------------------------------------------------------------------
 
-async function downloadPhoto(url, destDir, slug, index) {
+async function downloadPhoto(photoRef, destDir, slug, index) {
+  if (!photoRef || !GOOGLE_KEY) return null;
+  const url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference=${photoRef}&key=${GOOGLE_KEY}`;
   try {
     const res = await fetch(url, { redirect: 'follow' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const buffer = Buffer.from(await res.arrayBuffer());
     const ext = (res.headers.get('content-type') || '').includes('png') ? 'png' : 'jpg';
-    const filename = `${slug}-photo-${index + 1}.${ext}`;
-    const filePath = path.join(destDir, filename);
-    fs.writeFileSync(filePath, buffer);
+    const filename = `${slug}-photo-${index}.${ext}`;
+    fs.writeFileSync(path.join(destDir, filename), buffer);
     return filename;
   } catch (err) {
-    console.warn(`    PHOTO SKIP: failed to download photo ${index + 1}: ${err.message}`);
+    console.warn(`    PHOTO SKIP: photo ${index}: ${err.message}`);
     return null;
   }
 }
 
 // ---------------------------------------------------------------------------
-// PROMPT BUILDER
+// DATA PARSER
 // ---------------------------------------------------------------------------
 
-function buildPrompt(row, niche, localPhotoPaths, city) {
-  const colors = niche.color;
+function parseBusinessData(row) {
+  return {
+    city: parseCity(row.address),
+    reviews: safeParseJSON(row.reviews_json),
+    hours: safeParseJSON(row.hours_json),
+    rating: row.rating ? parseFloat(row.rating) : 0,
+    reviewCount: row.review_count ? parseInt(row.review_count, 10) : 0,
+    priceLabel: priceLevelLabel(row.price_level)
+  };
+}
 
-  // Parse data from CSV
-  let reviews = [];
-  try { if (row.reviews_json) reviews = JSON.parse(row.reviews_json); } catch (_) { /* ignore */ }
+// ---------------------------------------------------------------------------
+// PROMPT BUILDER (data-driven, no templates)
+// ---------------------------------------------------------------------------
 
-  let hours = [];
-  try { if (row.hours_json) hours = JSON.parse(row.hours_json); } catch (_) { /* ignore */ }
+function buildPrompt(row, data, photoFiles) {
+  const { city, reviews, hours, rating, reviewCount, priceLabel } = data;
+  const accent = accentColor(row.category);
 
-  const rating = row.rating ? parseFloat(row.rating) : 0;
-  const reviewCount = row.review_count ? parseInt(row.review_count, 10) : 0;
+  let profile = `NAME: ${row.business_name}
+CATEGORY: ${row.category}
+LOCATION: ${row.address}
+CITY: ${city}`;
 
-  const tagline = `${row.category} in ${city}`;
-  const metaDesc = row.phone
-    ? `${row.business_name}. ${row.category} in ${city}. Call ${row.phone}.`
-    : `${row.business_name}. ${row.category} in ${city}.`;
+  if (row.phone) profile += `\nPHONE: ${row.phone}`;
+  if (rating > 0) profile += `\nRATING: ${rating} stars from ${reviewCount} real customers`;
+  if (priceLabel) profile += `\nPRICING: ${priceLabel}`;
 
-  const aboutText = niche.aboutVoice(row.business_name, row.category, city, row.phone);
+  let hoursBlock = '';
+  if (hours.length > 0) {
+    hoursBlock = '\n\nHOURS OF OPERATION:\n' + hours.map(h => `  ${h}`).join('\n');
+  }
 
-  // Build photo HTML directly
-  const photoImgTags = localPhotoPaths.length > 0
-    ? localPhotoPaths.map((p, i) => `<img src="${p}" alt="${row.business_name} photo ${i + 1}" loading="lazy" class="gallery-img fade-up" style="transition-delay: ${i * 0.1}s;">`).join('\n        ')
-    : '';
+  let reviewsBlock = '';
+  if (reviews.length > 0) {
+    reviewsBlock = '\n\nREAL CUSTOMER REVIEWS (use these exact quotes, pull specific phrases for copy):';
+    for (const r of reviews) {
+      const stars = r.rating + '/5 stars';
+      reviewsBlock += `\n  - ${r.author} (${stars}): "${r.text}"`;
+    }
+  }
 
-  // Build review cards directly
-  const reviewCards = reviews.map((r, i) => {
+  let photosBlock = '';
+  if (photoFiles.length > 0) {
+    photosBlock = `\n\nPHOTOS AVAILABLE: ${photoFiles.length} real business photos`;
+    photosBlock += '\nLocal filenames (use these exact src values):';
+    for (const f of photoFiles) {
+      photosBlock += `\n  - ${f}`;
+    }
+  }
+
+  let mapsBlock = '';
+  if (row.lat && row.lng && GOOGLE_KEY) {
+    mapsBlock = `\n\nGOOGLE MAPS EMBED: Use this iframe src: https://www.google.com/maps/embed/v1/place?key=${GOOGLE_KEY}&q=${row.lat},${row.lng}&zoom=15`;
+  }
+  if (row.google_maps_url) {
+    mapsBlock += `\nGOOGLE MAPS LINK: ${row.google_maps_url}`;
+  }
+
+  return `You are building a website for a real local business. Every word must be written specifically for this business based on the data below. No generic phrasing. No template language. Read the reviews, understand what customers love, and write copy that reflects this specific business.
+
+Return ONLY raw HTML. No markdown fences. No explanation. First character must be <, last must be >.
+
+ABSOLUTE RULE: Zero em dashes in the entire output. The characters U+2014 and &mdash; must never appear. Use commas, periods, or separate sentences instead.
+
+===== THIS BUSINESS =====
+${profile}${hoursBlock}${reviewsBlock}${photosBlock}${mapsBlock}
+
+===== WHAT TO BUILD =====
+
+Build a complete single-page HTML website with these exact sections:
+
+1. HERO SECTION
+   - Business name as the headline (Bebas Neue font, massive, uppercase)
+   ${rating > 0 ? `- Below the name: "${rating} stars from ${reviewCount} reviews" as a subtle gold badge` : '- Tagline derived from the category and city'}
+   ${reviews.length > 0 ? '- A short tagline pulled directly from the best review. Use the customer\'s actual words, not a paraphrase.' : `- Tagline: "${row.category} in ${city}"`}
+   ${row.phone ? `- Primary CTA: "CALL NOW" button wrapping <a href="tel:${row.phone}">. Show the phone number "${row.phone}" as smaller text below the button.` : '- Primary CTA: "GET A FREE QUOTE" button linking to #contact'}
+   ${photoFiles.length > 0 ? `- Background: the first photo (${photoFiles[0]}) as a full-width background image with a dark overlay (linear-gradient(rgba(10,10,10,0.75), rgba(10,10,10,0.9)))` : '- Background: radial gradient with subtle accent color glow, no images'}
+   - Staggered fade-in animation on load (name, tagline, button at 0s, 0.15s, 0.3s)
+
+${photoFiles.length > 1 ? `2. PHOTOS SECTION
+   - Heading: "OUR WORK" (Bebas Neue)
+   - Grid: repeat(auto-fit, minmax(300px, 1fr)), gap 16px
+   - Show photos: ${photoFiles.slice(1).map(f => `<img src="${f}">`).join(', ')}
+   - Each img: width 100%, height 280px, object-fit cover, border-radius 12px, border 1px solid rgba(255,255,255,0.07)
+   - Hover: scale(1.02), box-shadow` : `2. PHOTOS SECTION
+   - SKIP THIS SECTION. No photos available.`}
+
+3. ABOUT SECTION
+   - Heading: "ABOUT US" (Bebas Neue)
+   - Glassmorphism card (rgba(255,255,255,0.03) bg, backdrop-filter blur(12px), border rgba(255,255,255,0.07))
+   - Max-width 720px, centered
+   ${reviews.length > 0 ? '- Write 3-4 sentences about this business based on what customers say in the reviews. Reference specific things customers mentioned. Write in third person. Do not fabricate any claims not supported by the reviews.' : `- Write 3-4 sentences about ${row.business_name} as a ${row.category} business in ${city}. Keep it honest and grounded. Do not make claims about awards, years of experience, or anything not in the data.`}
+
+4. SERVICES SECTION
+   - Heading: "OUR SERVICES" (Bebas Neue)
+   - Grid: repeat(auto-fit, minmax(280px, 1fr)), gap 24px, max-width 1100px
+   - Glassmorphism cards with hover effect (translateY(-4px), accent border glow)
+   - Generate 4-6 services inferred from the category "${row.category}"${reviews.length > 0 ? ' and what customers mention in their reviews' : ''}
+   ${reviews.length > 0 ? '- Write each service description using language and details from the actual reviews. If a customer mentioned fast response time, say that. If they mentioned quality work, reflect that.' : '- Write short, direct descriptions. No corporate language. Sound like a real tradesperson.'}
+
+${reviews.length > 0 ? `5. REVIEWS SECTION
+   - Heading: "WHAT CUSTOMERS SAY" (Bebas Neue)
+   ${rating > 0 ? `- Rating badge: "${rating} stars" with filled/empty star characters, "${reviewCount} Google Reviews" label` : ''}
+   - Grid: repeat(auto-fit, minmax(300px, 1fr)), gap 24px
+   - Show up to 3 reviews as glassmorphism cards:
+${reviews.slice(0, 3).map(r => {
     const filled = Math.round(r.rating || 5);
     const stars = '\u2605'.repeat(filled) + '\u2606'.repeat(5 - filled);
-    const text = (r.text || '').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    const author = (r.author || 'Customer').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    return `<div class="review-card fade-up" style="transition-delay: ${i * 0.1}s;">
-          <div class="review-stars">${stars}</div>
-          <p class="review-text">"${text}"</p>
-          <p class="review-author">${author}</p>
-        </div>`;
-  }).join('\n        ');
+    const text = r.text.replace(/"/g, '&quot;');
+    const author = r.author.replace(/</g, '&lt;');
+    return `     * ${stars} "${text}" - ${author}`;
+  }).join('\n')}
+   - Star rating in accent color above each quote
+   - Author name below, muted color, smaller text, border-top separator` : `5. REVIEWS SECTION
+   - SKIP THIS SECTION. No reviews available.`}
 
-  // Build hours HTML
-  const hoursHtml = hours.length > 0
-    ? hours.map(h => `<li>${h.replace(/</g, '&lt;')}</li>`).join('\n              ')
-    : '<li>Contact us for current hours</li>';
+${hours.length > 0 ? `6. HOURS SECTION
+   - Heading: "HOURS" (Bebas Neue)
+   - Glassmorphism card, max-width 500px, centered
+   - Display as a clean list:
+${hours.map(h => `     ${h}`).join('\n')}` : `6. HOURS SECTION
+   - SKIP THIS SECTION. No hours data available.`}
 
-  // Rating display
-  const ratingDisplay = rating > 0
-    ? `<div class="rating-badge fade-up">
-          <span class="rating-number">${rating}</span>
-          <span class="rating-stars">${'\u2605'.repeat(Math.round(rating))}${'\u2606'.repeat(5 - Math.round(rating))}</span>
-          <span class="rating-label">${reviewCount} Google Reviews</span>
-        </div>`
-    : '';
+7. CONTACT SECTION
+   - id="contact"
+   - Heading: "GET IN TOUCH" (Bebas Neue)
+   - Two-column grid on desktop (1fr 1fr, gap 48px, max-width 900px), single column below 768px
+   - Left card: ${row.phone ? `phone as tap-to-call <a href="tel:${row.phone}"> in accent color` : 'no phone'}, address, ${row.google_maps_url ? `"Get Directions" link to ${row.google_maps_url}` : 'no directions link'}${priceLabel ? `, pricing: "${priceLabel}"` : ''}
+   ${row.lat && row.lng && GOOGLE_KEY ? `- Below the two columns: Google Maps embed iframe (src="https://www.google.com/maps/embed/v1/place?key=${GOOGLE_KEY}&q=${row.lat},${row.lng}&zoom=15"), width 100%, height 300px, border-radius 12px, border 1px solid rgba(255,255,255,0.07)` : ''}
+   - Right card: contact form (action="/" method="POST" data-netlify="true" name="contact-${slugify(row.business_name)}"). Fields: Name, Email, Message. Submit button: full-width, accent color pill.
+   - Inputs: rgba(255,255,255,0.05) bg, border rgba(255,255,255,0.07), border-radius 12px. Focus: accent border + glow.
 
-  return `You are a world-class front-end developer. Generate a COMPLETE single-page HTML website. Return ONLY raw HTML. No markdown fences. No explanation. First character must be <, last must be >.
+8. FOOTER
+   - Background #060606, border-top 1px solid accent color at 30% opacity, padding 40px 24px, text-align center
+   - Business name (Bebas Neue, muted), ${row.phone ? 'phone as tap-to-call, ' : ''}address, copyright with dynamic year via document.write(new Date().getFullYear())
 
-ABSOLUTE RULE: Zero em dashes in the entire output. The characters U+2014 and &mdash; must never appear anywhere.
+===== DESIGN SYSTEM =====
 
-===== BUSINESS DATA =====
-Name: ${row.business_name}
-Category: ${row.category}
-Address: ${row.address}
-Phone: ${row.phone || 'None'}
-Niche: ${niche.key}
+CSS VARIABLES (set in :root):
+  --bg: #0a0a0a
+  --bg-card: rgba(255,255,255,0.03)
+  --bg-card-hover: rgba(255,255,255,0.06)
+  --accent: ${accent}
+  --text-primary: #f0f0f0
+  --text-secondary: #888896
+  --text-muted: #555560
+  --border: rgba(255,255,255,0.07)
+  --radius: 12px
 
-===== PRE-BUILT HTML BLOCKS (inject these exactly as provided) =====
+Every color in CSS rules must reference a variable. Never hardcode hex values in rules (except footer #060606).
 
-PHOTO GALLERY HTML (inject inside the gallery grid div):
-${photoImgTags || 'NO PHOTOS. Skip the gallery section entirely.'}
+FONTS: Google Fonts only.
+  - Bebas Neue for all headings (uppercase, letter-spacing 0.05em)
+  - DM Sans 300/400/500/700 for body text
+  - Use clamp() for all font sizes
 
-REVIEW CARDS HTML (inject inside the reviews grid div):
-${reviewCards || 'NO REVIEWS. Skip the reviews section entirely.'}
+SCROLL PROGRESS BAR: div#scroll-progress, position fixed top 0 left 0, height 2px, width 0%, background var(--accent), z-index 9999, pointer-events none.
 
-RATING BADGE HTML (inject below the reviews heading):
-${ratingDisplay || 'NO RATING. Skip the rating badge.'}
+ANIMATIONS:
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  IntersectionObserver (threshold 0.15) adds .visible class, unobserves after.
+  Stagger cards with transition-delay: 0.1s increments.
 
-HOURS LIST HTML (inject inside the hours ul):
-${hoursHtml}
+SECTION DIVIDERS: Between each section, a decorative hr: max-width 200px, height 1px, linear-gradient(to right, transparent, var(--border), transparent), margin 0 auto.
 
-ABOUT TEXT (inject inside the about card p tag):
-${aboutText}
+ALL SECTIONS: padding 60px 24px desktop, 40px 20px mobile. Max content width 1100px, centered.
 
-===== COMPLETE HTML TEMPLATE =====
+MOBILE: All grids collapse below 600px. Hero text scales via clamp(). All buttons min-height 44px. No horizontal scroll.
 
-Generate the full HTML document following this exact structure. Inject the pre-built HTML blocks above into the appropriate locations.
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta name="description" content="${metaDesc}">
-  <title>${row.business_name}</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>${niche.emoji}</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
-</head>
-
-CSS VARIABLES in :root:
-  --bg: #0a0a0a;
-  --bg-card: rgba(255,255,255,0.03);
-  --bg-card-hover: rgba(255,255,255,0.06);
-  --gold: ${colors.accent};
-  --gold-light: ${colors.light};
-  --gold-glow: ${colors.glow};
-  --text-primary: #f0f0f0;
-  --text-secondary: #888896;
-  --text-muted: #555560;
-  --border: rgba(255,255,255,0.07);
-  --border-gold: ${colors.border};
-  --shadow: 0 8px 40px rgba(0,0,0,0.5);
-  --shadow-gold: 0 0 30px ${colors.glow};
-  --radius: 12px;
-  --radius-pill: 50px;
-
-Every color must reference a variable. Never hardcode hex values in rules.
-
-===== SECTIONS =====
-
-1. SCROLL PROGRESS BAR: div#scroll-progress, position fixed, top 0, left 0, height 2px, width 0%, background var(--gold), z-index 9999, pointer-events none.
-
-2. HERO: 100dvh, flex centered, radial-gradient(ellipse at 50% 40%, var(--gold-glow), transparent 70%).
-   - Business name: Bebas Neue, clamp(3.5rem, 10vw, 8rem), uppercase, letter-spacing 0.05em, white.
-   - Tagline: "${tagline}" in Playfair Display italic 700, var(--gold), clamp(1rem, 2.5vw, 1.4rem).
-   - CTA: ${row.phone ? `"${niche.ctaText}" button wrapping <a href="tel:${row.phone}">. Phone number "${row.phone}" as small text below button.` : '"Request a Quote" button linking to #contact.'}
-   - Button: background var(--gold), color var(--bg), DM Sans 700, 1.2rem, padding 18px 52px, border-radius var(--radius-pill). Hover: var(--gold-light), scale(1.03), box-shadow var(--shadow-gold).
-   - @keyframes heroFadeUp for staggered load animation (name 0s, tagline 0.15s, button 0.3s).
-   - No images in hero. No stock photos.
-
-3. SERVICES: border-top 1px solid var(--border-gold).
-   - Heading: "OUR SERVICES" in Bebas Neue.
-   - Grid: repeat(auto-fit, minmax(280px, 1fr)), gap 24px, align-items stretch, max-width 1100px.
-   - Glassmorphism cards: var(--bg-card), backdrop-filter blur(12px), border var(--border), border-radius var(--radius), padding 32px.
-   - Hover: var(--bg-card-hover), border var(--border-gold), translateY(-4px), box-shadow var(--shadow-gold).
-   - Service name: Bebas Neue, 1.4rem, var(--gold). Description: DM Sans 300, var(--text-secondary).
-   - TONE: ${niche.serviceStyle}
-   - Generate 4-6 services from this list (pick what fits): ${niche.suggestedServices.length > 0 ? niche.suggestedServices.join(', ') : 'Infer from category "' + row.category + '"'}.
-   - .fade-up class on each card, staggered 0.1s.
-
-${localPhotoPaths.length > 0 ? `4. PHOTO GALLERY: heading "OUR WORK" in Bebas Neue.
-   - Grid: repeat(auto-fit, minmax(300px, 1fr)), gap 16px, max-width 1100px.
-   - Inject the PHOTO GALLERY HTML block above. Each img: width 100%, height 280px, object-fit cover, border-radius var(--radius), border 1px solid var(--border). Hover: scale(1.02), box-shadow var(--shadow).` : '4. NO PHOTO GALLERY. Skip this section entirely.'}
-
-${reviews.length > 0 ? `5. REVIEWS: heading "${rating > 0 ? rating + ' STARS ON GOOGLE' : 'WHAT CUSTOMERS SAY'}" in Bebas Neue.
-   - Inject the RATING BADGE HTML block.
-   - Grid: repeat(auto-fit, minmax(300px, 1fr)), gap 24px, max-width 1100px.
-   - Inject the REVIEW CARDS HTML block. Style: same glassmorphism cards.
-   - .review-stars: var(--gold), 1.1rem. .review-text: DM Sans 300, italic, var(--text-secondary). .review-author: DM Sans 500, var(--text-muted), 0.85rem, border-top 1px solid var(--border).` : '5. NO REVIEWS SECTION. Skip entirely. Do not fabricate any testimonials.'}
-
-6. ABOUT: heading "ABOUT US" in Bebas Neue.
-   - Glassmorphism card, max-width 720px, centered.
-   - Inject the ABOUT TEXT block above inside a <p> tag. Do not change the text.
-
-7. CONTACT: id="contact". Heading "GET IN TOUCH" in Bebas Neue.
-   - Two-column grid on desktop (1fr 1fr, gap 48px, max-width 900px). Single column below 768px.
-   - Left card: ${row.phone ? `phone as tap-to-call <a href="tel:${row.phone}"> in var(--gold)` : 'no phone'}, address in var(--text-secondary), hours as <ul> using the HOURS LIST HTML block.
-   - Right card: form (action="#" method="POST"). Name, Email, Message fields. Inputs: rgba(255,255,255,0.05) bg, var(--border), var(--radius), var(--text-primary). Focus: border var(--gold), box-shadow 0 0 0 3px var(--gold-glow). Submit: full-width gold pill, "Send Message", min-height 48px.
-
-8. FOOTER: background #060606, border-top 1px solid var(--border-gold), padding 40px 24px, text-align center.
-   - Business name in Bebas Neue, var(--text-muted). ${row.phone ? 'Phone as tap-to-call.' : ''} Address. Copyright with dynamic year via document.write(new Date().getFullYear()).
-
-9. SCRIPT: single script tag. Scroll progress bar (scrollY / (scrollHeight - innerHeight) * 100). IntersectionObserver threshold 0.15 for .fade-up elements, adds .visible, unobserves after.
-
-CSS: .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
-     .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-Section dividers between each section: max-width 200px, height 1px, linear-gradient(to right, transparent, var(--border), transparent), margin 0 auto.
-
-All sections: padding 60px 24px desktop, 40px 20px mobile. Max content 1100px centered.
-
-Typography: Bebas Neue for headings (uppercase, 0.05em spacing). Playfair Display italic for tagline. DM Sans 300/500/700 for body. clamp() for all sizes. Never system fonts.
-
-MOBILE: grid collapses below 600px (services, photos) and 768px (contact). Hero scales via clamp. All buttons min 44px height. No horizontal scroll.
+DARK DESIGN ONLY. No white backgrounds. No light sections. No generic blue.
 
 FINAL CHECKS:
-1. Zero em dashes.
-2. All colors via CSS variables (except footer #060606).
-3. No fabricated content.
-4. ${localPhotoPaths.length > 0 ? 'Only use the local photo filenames provided. No external URLs.' : 'No img tags. No placeholders.'}
-5. No console.log. No AI comments.
-6. All fonts via link tag, display=swap.
-7. Complete valid HTML.
-8. Every interactive element has hover + transition.
-9. Dark design only. No white backgrounds. No generic blue.
-10. CALL NOW button is the most dominant interactive element.`;
+1. Zero em dashes (U+2014 and &mdash;).
+2. All colors via CSS variables.
+3. No fabricated reviews, hours, or phone numbers.
+4. ${photoFiles.length > 0 ? 'Use only the exact local photo filenames listed above.' : 'No img tags. No placeholder images.'}
+5. Complete valid HTML document (<!DOCTYPE html> through </html>).
+6. No console.log. No AI-generated comments.
+7. Every interactive element has hover state + transition.
+8. CALL NOW button is the most prominent interactive element.`;
+}
+
+// ---------------------------------------------------------------------------
+// VALIDATION
+// ---------------------------------------------------------------------------
+
+const FATAL_CODES = new Set(['NO_DOCTYPE', 'TRUNCATED']);
+
+function validateHTML(html) {
+  const issues = [];
+
+  if (!html.includes('<!DOCTYPE html') && !html.includes('<!doctype html')) {
+    issues.push({ code: 'NO_DOCTYPE', msg: 'Missing <!DOCTYPE html>' });
+  }
+  if (!html.includes('<head')) issues.push({ code: 'NO_HEAD', msg: 'Missing <head>' });
+  if (!html.includes('<body')) issues.push({ code: 'NO_BODY', msg: 'Missing <body>' });
+  if (!html.includes('</html>')) issues.push({ code: 'NO_CLOSE', msg: 'Missing </html>' });
+
+  if (!html.trim().endsWith('>')) {
+    issues.push({ code: 'TRUNCATED', msg: 'File appears truncated' });
+  }
+
+  return issues;
+}
+
+function stripEmDashes(html) {
+  return html.replace(/\u2014/g, '-').replace(/&mdash;/g, '-');
 }
 
 // ---------------------------------------------------------------------------
@@ -341,9 +319,7 @@ async function main() {
     return;
   }
 
-  if (!fs.existsSync(SITES_DIR)) {
-    fs.mkdirSync(SITES_DIR, { recursive: true });
-  }
+  fs.mkdirSync(SITES_DIR, { recursive: true });
 
   const columns = Object.keys(rows[0]);
   if (!columns.includes('local_file')) columns.push('local_file');
@@ -357,37 +333,35 @@ async function main() {
     }
 
     const slug = slugify(row.business_name);
-    const city = parseCity(row.address);
-    const niche = detectNiche(row.category);
+    const data = parseBusinessData(row);
 
-    console.log(`Generating: ${row.business_name} [niche: ${niche.key}]...`);
+    console.log(`\nGenerating: ${row.business_name}`);
+    console.log(`  Category: ${row.category}`);
+    console.log(`  City: ${data.city}`);
+    console.log(`  Rating: ${data.rating > 0 ? data.rating + ' stars (' + data.reviewCount + ' reviews)' : 'none'}`);
+    console.log(`  Reviews: ${data.reviews.length}`);
+    console.log(`  Hours: ${data.hours.length > 0 ? 'yes' : 'none'}`);
 
-    // Download photos locally
-    let photoUrls = [];
-    try { if (row.photos) photoUrls = JSON.parse(row.photos); } catch (_) { /* ignore */ }
+    const photoRefs = [row.photo_ref_1, row.photo_ref_2, row.photo_ref_3].filter(Boolean);
+    let photoFiles = [];
 
-    const localPhotoPaths = [];
-    if (photoUrls.length > 0) {
-      console.log(`  Downloading ${photoUrls.length} photos...`);
-      for (let i = 0; i < photoUrls.length; i++) {
-        const localFile = await downloadPhoto(photoUrls[i], SITES_DIR, slug, i);
-        if (localFile) {
-          localPhotoPaths.push(localFile);
-          console.log(`    SAVED: ${localFile}`);
-        }
-      }
+    if (photoRefs.length > 0) {
+      console.log(`  Downloading ${photoRefs.length} photos...`);
+      const results = await Promise.all(
+        photoRefs.map((ref, i) => downloadPhoto(ref, SITES_DIR, slug, i + 1))
+      );
+      photoFiles = results.filter(Boolean);
+      for (const f of photoFiles) console.log(`    SAVED: ${f}`);
     }
 
-    // Build prompt and generate
-    try {
-      const prompt = buildPrompt(row, niche, localPhotoPaths, city);
+    // Build prompt from this business's actual data
+    const prompt = buildPrompt(row, data, photoFiles);
 
+    try {
       const message = await client.messages.create({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 8192,
-        messages: [
-          { role: 'user', content: prompt }
-        ]
+        messages: [{ role: 'user', content: prompt }]
       });
 
       let html = message.content[0].text;
@@ -395,20 +369,32 @@ async function main() {
       // Strip markdown fences if present
       html = html.replace(/^```html?\s*\n?/i, '').replace(/\n?```\s*$/i, '');
 
-      const filename = `${slug}.html`;
-      const filePath = path.join(SITES_DIR, filename);
+      // Strip em dashes
+      html = stripEmDashes(html);
 
-      fs.writeFileSync(filePath, html, 'utf-8');
+      // Validate
+      const issues = validateHTML(html);
+      if (issues.length > 0) {
+        console.warn(`  VALIDATION ISSUES: ${issues.map(i => i.msg).join(', ')}`);
+        if (issues.some(i => FATAL_CODES.has(i.code))) {
+          console.warn(`  SKIPPED: ${row.business_name} (failed validation)`);
+          continue;
+        }
+      }
+
+      const filename = `${slug}.html`;
+      fs.writeFileSync(path.join(SITES_DIR, filename), html, 'utf-8');
       row.local_file = `sites/${filename}`;
       generated++;
 
-      console.log(`  SAVED: ${filePath}`);
+      // Write CSV after each success for crash resilience
+      writeCSV('leads.csv', rows, columns);
+      console.log(`  SAVED: sites/${filename} (${Math.round(html.length / 1024)}KB)`);
     } catch (err) {
-      console.warn(`  ERROR: ${row.business_name} - ${err.message} - skipping`);
+      console.warn(`  ERROR: ${row.business_name} - ${err.message}`);
     }
   }
 
-  writeCSV('leads.csv', rows, columns);
   console.log(`\nGenerated ${generated} sites. leads.csv updated.`);
 }
 
