@@ -327,7 +327,12 @@ async function main() {
   console.log(`\nWrote ${written} emails to emails/ folder.`);
 }
 
-main().catch(err => {
-  console.error(`Fatal: ${err.message}`);
-  process.exit(1);
-});
+// Exports for use by approver.js
+module.exports = { generateEmail, validateEmail, slugify, appendErrorLog, parseCity };
+
+if (require.main === module) {
+  main().catch(err => {
+    console.error(`Fatal: ${err.message}`);
+    process.exit(1);
+  });
+}

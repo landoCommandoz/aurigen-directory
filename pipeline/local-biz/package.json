@@ -7,16 +7,19 @@
     "generate": "node generator.js",
     "deploy": "node deployer.js",
     "email": "node emailbuilder.js",
+    "approve": "node approver.js",
     "all": "node run-all.js",
-    "check": "node --check scraper.js && node --check generator.js && node --check deployer.js && node --check emailbuilder.js && node --check csv-utils.js && node --check run-all.js"
+    "check": "node --check scraper.js && node --check generator.js && node --check deployer.js && node --check emailbuilder.js && node --check approver.js && node --check csv-utils.js && node --check run-all.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
     "csv-parser": "^3.0.0",
     "csv-writer": "^1.6.0",
     "dotenv": "^16.4.5",
+    "express": "^4.22.1",
     "node-fetch": "^2.7.0",
-    "sharp": "^0.33.0"
+    "sharp": "^0.33.0",
+    "twilio": "^5.13.1"
   },
   "engines": {
     "node": ">=18.0.0"

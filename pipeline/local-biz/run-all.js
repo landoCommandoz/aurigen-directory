@@ -14,7 +14,7 @@ const steps = [
   { name: 'Scraper', cmd: 'node', args: ['scraper.js', niche, city] },
   { name: 'Generator', cmd: 'node', args: ['generator.js'] },
   { name: 'Deployer', cmd: 'node', args: ['deployer.js'] },
-  { name: 'Email Builder', cmd: 'node', args: ['emailbuilder.js'] }
+  { name: 'Approver', cmd: 'node', args: ['approver.js'] }
 ];
 
 console.log(`\n=== LOCAL BIZ PIPELINE ===`);
