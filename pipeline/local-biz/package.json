@@ -7,7 +7,8 @@
     "generate": "node generator.js",
     "deploy": "node deployer.js",
     "email": "node emailbuilder.js",
-    "check": "node --check scraper.js && node --check generator.js && node --check deployer.js && node --check emailbuilder.js && node --check csv-utils.js"
+    "all": "node run-all.js",
+    "check": "node --check scraper.js && node --check generator.js && node --check deployer.js && node --check emailbuilder.js && node --check csv-utils.js && node --check run-all.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
