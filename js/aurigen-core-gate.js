@@ -28,16 +28,9 @@
 // === GATE CHECK — redirect to landing if no access ===
 (function() {
   try {
+    // Open tool — no gate. Everyone stays on the page.
     var access = localStorage.getItem('aurigen_access');
     var jwt = localStorage.getItem('aurigen_jwt');
-    if(!access && !jwt){
-      // no access at all — send to gate
-      window.location.href = '/';
-      return;
-    } else {
-      // has free or paid access — stay on page
-      // paid features will be unlocked by jwt check separately
-    }
     // JWT validation (primary) — if JWT exists, validate server-side
     var jwt = localStorage.getItem('aurigen_jwt');
     if (jwt) {

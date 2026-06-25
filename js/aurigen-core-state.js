@@ -16,8 +16,8 @@ function isAdminMode() {
   } catch(e) { return false; }
 }
 function getAccessTier() {
-  if (isAdminMode()) return 'paid';
-  try { return localStorage.getItem('aurigen_access') || 'none'; } catch(e) { return 'none'; }
+  // Open tool — full access for everyone. No paywall, no gate.
+  return 'paid';
 }
 function getIsPaid() { return getAccessTier() === 'paid'; }
 function getIsFree() { return getAccessTier() === 'free' || getIsPaid(); }

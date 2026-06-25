@@ -2,10 +2,10 @@
   publish = "."
   functions = "netlify/functions"
 
-# ── ROOT: Serve gate as landing page ─────────
+# ── ROOT: Serve the tool directly (open tool, no gate) ─────────
 [[redirects]]
   from = "/"
-  to = "/gate.html"
+  to = "/warroom-billion.html"
   status = 200
   force = false
 
