@@ -33,7 +33,7 @@ const LEADS = [
       { author: 'Jared', rating: 5, text: "By far the best mechanic I've ever dealt with...The service was fast, the price was unbelievable", time: '' }
     ],
     hours: ['Monday: 8:00 AM – 5:00 PM', 'Tuesday: 8:00 AM – 5:00 PM', 'Wednesday: 8:00 AM – 5:00 PM', 'Thursday: 8:00 AM – 5:00 PM', 'Friday: 8:00 AM – 5:00 PM', 'Saturday: Closed', 'Sunday: Closed'],
-    notes: 'VERIFY STILL OPEN: one directory flags permanently closed, Yelp (June 2026) shows open Mon-Fri 8-5.'
+    notes: 'VERIFY FIRST: Birdeye says permanently closed, BBB and Yelp (June 2026) say open. Confirm they are open before pitching. Re-verified no website 2026-08-08.'
   },
   {
     business_name: 'Five Star Auto',
@@ -47,7 +47,7 @@ const LEADS = [
       { author: 'Tori', rating: 5, text: "100% worth the couple minutes extra drive from Sandy to Grantsville....the money you save because it's done right the first time is worth its weight in gold!", time: '' }
     ],
     hours: ['Monday: 9:00 AM – 5:00 PM', 'Tuesday: 9:00 AM – 5:00 PM', 'Wednesday: 9:00 AM – 5:00 PM', 'Thursday: 9:00 AM – 5:00 PM', 'Friday: 9:00 AM – 5:00 PM', 'Saturday: Closed', 'Sunday: Closed'],
-    notes: 'In business since 1999. Top-tier social proof, zero web presence.'
+    notes: 'In business since 1999. Re-verified 2026-08-08: no site on BBB or MechanicAdvisor. Possible second location at 54 E Main St.'
   },
   {
     business_name: 'Dakota Towing',
@@ -114,22 +114,9 @@ const LEADS = [
     rating: '', review_count: '104',
     reviews: [],
     hours: ['Tuesday: 10:00 AM – 6:00 PM', 'Wednesday: 10:00 AM – 8:00 PM', 'Thursday: 10:00 AM – 8:00 PM', 'Friday: 10:00 AM – 6:00 PM', 'Saturday: 9:00 AM – 3:00 PM', 'Sunday: Closed', 'Monday: Closed'],
-    notes: 'Books through Square page; no real site.'
+    notes: 'ANGLE: their old site stayclassicbarbershop.com is DEAD (does not load) and they only book through Square. Say: your old website does not even come up anymore.'
   },
-  {
-    business_name: 'Black Cat Barber Company',
-    phone: '(801) 347-3213',
-    address: '1196 N Main St, Tooele, UT 84074, USA',
-    category: 'barber shop',
-    rating: '4.9', review_count: '795',
-    reviews: [
-      { author: 'Yanneli', rating: 5, text: 'The barbers really take their time and pay attention to every detail', time: '' },
-      { author: 'Sadilynn', rating: 5, text: 'He does absolutely amazing and even asked this last time to go back', time: '' },
-      { author: 'Nicole', rating: 5, text: 'My son loved his haircut and the barber did a great job', time: '' }
-    ],
-    hours: ['Monday: 10:00 AM – 7:00 PM', 'Tuesday: 10:00 AM – 7:00 PM', 'Wednesday: 10:00 AM – 7:00 PM', 'Thursday: 10:00 AM – 7:00 PM', 'Friday: 10:00 AM – 7:00 PM', 'Saturday: 10:00 AM – 6:00 PM', 'Sunday: 10:00 AM – 6:00 PM'],
-    notes: 'HOTTEST LEAD: 795 reviews at 4.9, open 7 days, only FB + Linktree + Square booking page.'
-  },
+  // CUT 2026-08-08: Black Cat Barber Company HAS a website (blackcatbarber.co, verified).
   {
     business_name: "Niemi's Barbershop",
     phone: '(435) 249-7256',
@@ -160,7 +147,7 @@ const LEADS = [
     rating: '4.5', review_count: '562',
     reviews: [],
     hours: ['Monday: 10:00 AM – 9:00 PM', 'Tuesday: 10:00 AM – 9:00 PM', 'Wednesday: 10:00 AM – 9:00 PM', 'Thursday: 10:00 AM – 9:00 PM', 'Friday: 10:00 AM – 9:00 PM', 'Saturday: 10:00 AM – 9:00 PM', 'Sunday: 10:00 AM – 8:00 PM'],
-    notes: 'Mexican restaurant, 562 reviews at 4.5. On Uber Eats but no menu site of their own.'
+    notes: 'Re-verified 2026-08-08: Facebook only. A Google reviewer publicly wished they had an actual website. Use that on the call.'
   },
   {
     business_name: 'Hometown Bakery & Grocery',
@@ -207,7 +194,7 @@ const LEADS = [
       { author: 'Customer', rating: 5, text: 'High quality work at a reasonable price. Would highly recommend.', time: '' }
     ],
     hours: ['Monday: 8:00 AM – 5:00 PM', 'Tuesday: 8:00 AM – 5:00 PM', 'Wednesday: 8:00 AM – 5:00 PM', 'Thursday: 8:00 AM – 5:00 PM', 'Friday: 8:00 AM – 5:00 PM', 'Saturday: Closed', 'Sunday: Closed'],
-    notes: 'Founded 1982. Metal fabrication + welding.'
+    notes: 'Founded 1982. ANGLE: their old site russellweldingcorp.com is DEAD (does not load). Say: your old website is gone, I can have a new one up this week.'
   },
   {
     business_name: "Pete's Service Shop",
@@ -269,28 +256,8 @@ const LEADS = [
     hours: [],
     notes: 'Low rating (3.0/2 reviews) - lower priority call.'
   },
-  {
-    business_name: "Scotty's Heating, Air & Quality Repair",
-    phone: '(435) 338-7268',
-    address: '561 E 1420 N, Tooele, UT 84074, USA',
-    category: 'hvac',
-    rating: '5.0', review_count: '1',
-    reviews: [
-      { author: 'Lori', rating: 5, text: 'Great service very knowledgeable wonderful to work with and best price.', time: '' }
-    ],
-    hours: [],
-    notes: 'FB + HomeAdvisor only.'
-  },
-  {
-    business_name: 'K2 HVAC',
-    phone: '(435) 830-4591',
-    address: '37 Lakeview, Tooele, UT 84074, USA',
-    category: 'hvac',
-    rating: '', review_count: '',
-    reviews: [],
-    hours: ['Monday: 7:00 AM – 5:00 PM', 'Tuesday: 7:00 AM – 5:00 PM', 'Wednesday: 7:00 AM – 5:00 PM', 'Thursday: 7:00 AM – 5:00 PM', 'Friday: 7:00 AM – 5:00 PM'],
-    notes: '27 years in business per YP. Only FB + a directory-built subdomain.'
-  },
+  // CUT 2026-08-08: Scotty's Heating HAS a website (scottysheating.com, bare template but live).
+  // CUT 2026-08-08: K2 HVAC HAS a Thryv-hosted mini-site (k2hvac.localsearch.com via their YP listing).
   {
     business_name: 'Beyond Connected LLC',
     phone: '(435) 840-4980',

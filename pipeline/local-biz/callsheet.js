@@ -18,73 +18,73 @@ const SETUP = process.env.SETUP_FEE || '149';
 
 const NICHE_OPENERS = {
   plumber: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. Real quick, I was on Google looking for a plumber out here and you guys came up, but there's no website. I build websites, so I went ahead and made you one. It's live right now. Can I text you the link?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. Real quick, I was on Google looking for a plumber out here and you guys came up, but I couldn't find a website. I build websites, so I went ahead and made you one. It's live right now. Can I text you the link?`,
     pain: () => `Somebody's pipe breaks, they google a plumber, they call whoever comes up. No website means that call goes somewhere else.`
   },
   plumbing: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. Real quick, I was on Google looking for a plumber out here and you guys came up, but there's no website. I build websites, so I went ahead and made you one. It's live right now. Can I text you the link?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. Real quick, I was on Google looking for a plumber out here and you guys came up, but I couldn't find a website. I build websites, so I went ahead and made you one. It's live right now. Can I text you the link?`,
     pain: () => `Somebody's pipe breaks, they google a plumber, they call whoever comes up. No website means that call goes somewhere else.`
   },
   hvac: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up heating and air companies out here and saw you guys don't have a website. That's what I do for work, so I already built you one. It's live right now. Want me to text you the link?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up heating and air companies out here and couldn't find a website for you guys. That's what I do for work, so I already built you one. It's live right now. Want me to text you the link?`,
     pain: () => `Furnace dies in January, people google it and call whoever looks real. No site means they get skipped.`
   },
   'heating and air': {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up heating and air companies out here and saw you guys don't have a website. That's what I do for work, so I already built you one. It's live right now. Want me to text you the link?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up heating and air companies out here and couldn't find a website for you guys. That's what I do for work, so I already built you one. It's live right now. Want me to text you the link?`,
     pain: () => `Furnace dies in January, people google it and call whoever looks real. No site means they get skipped.`
   },
   landscaper: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up lawn guys out here and you came up on Google, but no website. I build sites, so I already made you one. It's live. Can I text it to you?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up lawn guys out here and you came up on Google, but I couldn't find a website. I build sites, so I already made you one. It's live. Can I text it to you?`,
     pain: () => `People hire lawn guys off Google now. No site, no call.`
   },
   landscaping: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up lawn guys out here and you came up on Google, but no website. I build sites, so I already made you one. It's live. Can I text it to you?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up lawn guys out here and you came up on Google, but I couldn't find a website. I build sites, so I already made you one. It's live. Can I text it to you?`,
     pain: () => `People hire lawn guys off Google now. No site, no call.`
   },
   cleaning: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was searching for cleaning services out here and your listing came up, but there's no website. I build sites, so I already made you one. Want me to text you the link?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was searching for cleaning services out here and your listing came up, but I couldn't find a website. I build sites, so I already made you one. Want me to text you the link?`,
     pain: () => `People looking for a cleaner check online first. If nothing comes up they move on to the next one.`
   },
   mechanic: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was on Google looking at shops out here and saw you guys don't have a website. I build sites, so I already made you one. It's live right now. Want me to text you the link?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was on Google looking at shops out here and couldn't find a website for you guys. I build sites, so I already made you one. It's live right now. Want me to text you the link?`,
     pain: () => `People pick a shop off Google before they ever call. No site means they never even see these guys.`
   },
   'auto repair': {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was on Google looking at shops out here and saw you guys don't have a website. I build sites, so I already made you one. It's live right now. Want me to text you the link?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was on Google looking at shops out here and couldn't find a website for you guys. I build sites, so I already made you one. It's live right now. Want me to text you the link?`,
     pain: () => `People pick a shop off Google before they ever call. No site means they never even see these guys.`
   },
   electrician: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up electricians out here and saw you don't have a website. I build sites for a living, so I already made you one. It's live. Want me to text you the link?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up electricians out here and couldn't find a website for you. I build sites for a living, so I already made you one. It's live. Want me to text you the link?`,
     pain: () => `When something sparks, people want a company that looks legit online before they call.`
   },
   contractor: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up contractors out here and you came up, but there's no website. I build sites, so I went ahead and made you one. It's live right now. Can I text it to you?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up contractors out here and you came up, but I couldn't find a website. I build sites, so I went ahead and made you one. It's live right now. Can I text it to you?`,
     pain: () => `Homeowners research contractors for weeks online before they call anybody. No site means not even in the running.`
   },
   salon: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up salons out here and saw you guys don't have an actual website. I build sites, so I already made you one. Can I text you the link?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up salons out here and couldn't find an actual website for you guys. I build sites, so I already made you one. Can I text you the link?`,
     pain: () => `People searching Google for a salon never see an Instagram page. They book with whoever has a real site.`
   },
   restaurant: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up places to eat out here and saw you guys don't have a website. I build sites, so I already made you one, menu and all. Want me to text you the link?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up places to eat out here and couldn't find a website for you guys. I build sites, so I already made you one, menu and all. Want me to text you the link?`,
     pain: () => `People pick where to eat off a menu they find online. No menu online, they pick somewhere else.`
   },
   barber: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up barbershops out here and you guys came up with a ton of good reviews, but no website, just the Facebook page. I build sites, so I already made you one. Can I text you the link?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up barbershops out here and you guys came up with a ton of good reviews, but I couldn't find a website, just the Facebook page. I build sites, so I already made you one. Can I text you the link?`,
     pain: () => `New people in town google a barbershop and book with whoever has a real site. A Facebook page doesn't cut it on Google.`
   },
   roofing: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up roofers out here and saw you guys don't have a website. I build sites, so I went ahead and made you one. It's live. Can I text you the link?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up roofers out here and couldn't find a website for you guys. I build sites, so I went ahead and made you one. It's live. Can I text you the link?`,
     pain: () => `A roof is a big check. People compare two or three companies online before they call anybody. No site means losing before the phone even rings.`
   },
   towing: {
-    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up tow companies out here and saw you guys don't have a website. I build sites, so I already made you one. Want me to text you the link?`,
+    opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was looking up tow companies out here and couldn't find a website for you guys. I build sites, so I already made you one. Want me to text you the link?`,
     pain: () => `Somebody's stranded on the side of the road, they call the first tow company that looks real on their phone.`
   }
 };
 
 const DEFAULT_OPENER = {
-  opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was on Google and noticed you guys don't have a website. I build sites for local businesses, so I went ahead and made you one. It's live right now. Can I text you the link?`,
+  opener: (name) => `Hey, is this ${name}? This is ${CALLER}. I was on Google and couldn't find a website for you guys anywhere. I build sites for local businesses, so I went ahead and made you one. It's live right now. Can I text you the link?`,
   pain: () => `People check a business online before they call. If nothing comes up, they call somebody else.`
 };
 
@@ -93,7 +93,7 @@ const DEFAULT_OPENER = {
 // ---------------------------------------------------------------------------
 
 const BUILD_AFTER = {
-  opener: (name) => `Hey, is this ${name}? This is ${CALLER}. Real quick, I was on Google and noticed you guys don't have a website. That's what I do, I build sites for local businesses out here. I'd like to build you one for free so you can actually see it. If you like it, it's 99 bucks a month. If not, I take it down and we're square. Can I text it to you when it's done?`,
+  opener: (name) => `Hey, is this ${name}? This is ${CALLER}. Real quick, I was on Google and couldn't find a website for you guys anywhere. That's what I do, I build sites for local businesses out here. I'd like to build you one for free so you can actually see it. If you like it, it's 99 bucks a month. If not, I take it down and we're square. Can I text it to you when it's done?`,
   yes: `"Cool. Is this the best number to text? Give me a day or two.\nI'll send the link. If you love it, it's ${SETUP} one-time to set\nyou up proper and 99 a month after. No charge to look."`,
   catch: `"Nothing to look. I build it first so you can see exactly what\nyou'd get. If you keep it, there's a one-time ${SETUP} setup and\n99 a month. If not, you're out nothing."`,
   think: `"Tell you what, let me build it anyway and text it over.\nCosts you nothing to look at it. Then take your time."`,
