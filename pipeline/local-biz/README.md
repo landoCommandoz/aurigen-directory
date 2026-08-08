@@ -1,107 +1,101 @@
 # Local Business Pipeline
 
-Four-script pipeline that finds local businesses without websites, generates premium sites using AI, deploys them live, and drafts personalized cold outreach emails.
+Finds local businesses with no website, builds each one a live demo site, and prints a call sheet so Brian can close them over the phone.
+
+**Runs on $0.** Surge hosting is free, Google Places includes $200/month of free usage, and the demo sites can be generated through Claude Code instead of the paid API (see Zero-Budget Mode).
+
+## The Play
+
+1. Scrape a niche in a city — keep only businesses with **no website**
+2. Generate a custom one-page site for each one from their real reviews, photos, and hours
+3. Deploy every site free to `<business-name>.surge.sh`
+4. Print a call sheet per business into `calls/`
+5. **Brian calls**, opens with the niche script, texts the live link, closes at $99/month
+6. On a YES, build their production site on **Higgsfield** — free Cloudflare hosting, so the monthly fee is pure margin
 
 ## Setup
 
-1. Clone and install:
-   ```bash
-   git clone https://github.com/landoCommandoz/local-biz-pipeline.git
-   cd local-biz-pipeline
-   npm install
-   ```
+```bash
+npm install
+cp .env.example .env
+```
 
-2. Create your `.env`:
-   ```bash
-   cp .env.example .env
-   ```
+Fill in `.env`:
 
-3. Add your API keys to `.env`:
-   - **GOOGLE_PLACES_API_KEY** - [Google Cloud Console](https://console.cloud.google.com/) > enable Places API
-   - **ANTHROPIC_API_KEY** - [Anthropic Console](https://console.anthropic.com/)
-   - **NETLIFY_API_KEY** - [Netlify User Settings](https://app.netlify.com/user/applications) > Personal Access Token
-   - **TWILIO_ACCOUNT_SID** / **TWILIO_AUTH_TOKEN** - [Twilio Console](https://console.twilio.com/)
-   - **TWILIO_WHATSAPP_FROM** / **TWILIO_WHATSAPP_TO** - Pre-filled in `.env.example`
+| Key | Where to get it | Cost |
+|-----|-----------------|------|
+| `GOOGLE_PLACES_API_KEY` | [console.cloud.google.com](https://console.cloud.google.com/) → enable Places API | Free ($200/mo credit) |
+| `SURGE_LOGIN` / `SURGE_TOKEN` | `npx surge login` then `npx surge token` | Free |
+| `ANTHROPIC_API_KEY` | [console.anthropic.com](https://console.anthropic.com/) | Optional — see Zero-Budget Mode |
 
-4. Set up the Twilio WhatsApp webhook:
-   - Expose port 3001 publicly (e.g. `ngrok http 3001`)
-   - In Twilio Console > Messaging > WhatsApp sandbox settings
-   - Set **When a message comes in** to `https://YOUR_NGROK_URL/webhook`
-   - Method: **POST**
-
-## Run the Pipeline
+## Run
 
 ```bash
-# Run the full pipeline (scrape + generate + deploy + WhatsApp approval)
+# Full pipeline in one shot
 node run-all.js "plumber" "Salt Lake City UT"
 ```
 
-Or run each step individually:
+Or step by step:
+
 ```bash
-node scraper.js "plumber" "Salt Lake City UT"   # Step 1: Find leads + download photos
-node generator.js                                # Step 2: Generate sites with Claude
-node deployer.js                                 # Step 3: Deploy to Netlify
-node approver.js                                 # Step 4: WhatsApp approval + email
-node emailbuilder.js                             # Alt Step 4: Skip approval, email all
+node scraper.js "plumber" "Salt Lake City UT"   # 1. Find leads + download photos
+node generator.js                                # 2. Write each site with Claude
+node deployer.js                                 # 3. Deploy free to Surge
+node callsheet.js                                # 4. Print call sheets for Brian
+node emailbuilder.js                             # Optional: follow-up emails
 ```
 
-npm scripts:
-```bash
-npm run all -- "plumber" "Salt Lake City UT"
-npm run scrape -- "plumber" "Salt Lake City UT"
-npm run generate
-npm run deploy
-npm run approve
-npm run email
-```
+npm scripts: `npm run all -- "plumber" "Salt Lake City UT"`, `npm run scrape -- ...`, `npm run generate`, `npm run deploy`, `npm run calls`, `npm run email`.
 
 ## Output
 
-| Path | Created By | Description |
-|------|-----------|-------------|
-| `leads.csv` | scraper | Business data, updated by generator and deployer |
-| `sites/*.html` | generator | Dark-themed one-page websites |
-| `sites/*.jpg` | scraper | Google Places photos for each business |
-| `emails/*.txt` | emailbuilder | Individual cold outreach emails |
+| Path | Created by | What it is |
+|------|-----------|------------|
+| `leads.csv` | scraper | All business data; generator and deployer add columns |
+| `sites/*.html` | generator | Dark-themed one-page demo sites |
+| `sites/*.jpg` | scraper | Google Places photos |
+| `calls/*.txt` | callsheet | One call sheet per business for Brian |
+| `emails/*.txt` | emailbuilder | Optional follow-up emails (copy/paste into Gmail) |
 
-## How It Works
+## What's on a Call Sheet
 
-1. **scraper.js** - Queries Google Places API, filters for businesses without websites, downloads up to 3 photos per business, writes everything to `leads.csv`.
+Everything Brian needs before dialing:
 
-2. **generator.js** - Reads `leads.csv` and builds a unique Claude prompt for each business using their real reviews, hours, photos, and rating. No templates. Every site is written specifically for that business. Includes exponential backoff retry on rate limits.
+- Phone, address, rating, review count, today's hours, and the live demo URL
+- A niche-specific opening line (plumber, HVAC, landscaper, cleaning, mechanic, electrician, contractor, salon, restaurant — generic fallback for everything else)
+- Why this business needs a site, backed by their own review count and rating
+- Word-for-word responses for YES / "what's the catch" / "I'll think about it" / NO
+- Their best review quotes to reference mid-call
+- Full business hours so he calls when they actually pick up
 
-3. **deployer.js** - Creates Netlify sites and deploys all files (HTML + photos) so images load from the CDN. Writes live URLs back to `leads.csv`.
+Leads with no phone number get flagged in the run output so Brian can hunt the number down first.
 
-4. **approver.js** - Sends each deployed lead to Lando via WhatsApp for approval. Starts a local Express webhook on port 3001. YES generates the outreach email, NO skips. 10-minute timeout per lead.
+## Zero-Budget Mode
 
-5. **emailbuilder.js** - Generates personalized cold emails with niche-specific hooks. Validates tone, formatting, and banned words. Saves each email as a separate `.txt` file. Can run standalone (emails all leads) or is called by `approver.js` for individual leads.
+`generator.js` calls the Anthropic API, which costs money per site. No credits? Skip it:
+
+1. Run `scraper.js` as normal
+2. Open this folder in **Claude Code** and say: *"Read leads.csv and write a site for each lead into sites/, following the design rules and prompt in generator.js. Then fill in the local_file column in leads.csv."*
+3. Continue with `deployer.js` and `callsheet.js`
+
+Same output, no API bill — it runs on the Claude subscription instead.
+
+## After the YES — Higgsfield
+
+The Surge demo is disposable bait. The real deliverable gets built on **Higgsfield**, which hosts full production sites on Cloudflare for free:
+
+1. In Claude Code with the Higgsfield connector, say: *"Build a production website for [business] on Higgsfield"* — it scaffolds, builds, and deploys to its own subdomain
+2. No hosting bill, ever — the client's $99/month is pure margin
+3. Rough Google photos on a hot lead? Higgsfield image generation can produce professional hero shots (uses Higgsfield credits) — worth doing before the demo deploy on leads you really want
 
 ## Re-running
 
-Each script is idempotent. It skips rows that already have the data it would add. Safe to re-run without duplicating work.
-
-## WhatsApp Approval Flow
-
-When `approver.js` runs (or `run-all.js` reaches step 4), it:
-1. Starts a webhook server on port 3001
-2. Sends a WhatsApp message for each deployed lead
-3. Waits up to 10 minutes for your reply
-4. **YES** - generates the outreach email and confirms via WhatsApp
-5. **NO** - skips the lead
-6. **No reply** - marks as pending and moves on
-
-Approval status is saved to `leads.csv` in the `approval_status` column (`approved`, `skipped`, `pending`, `send_failed`).
-
-You need a public URL pointing to port 3001 for Twilio to reach the webhook. Use ngrok or a similar tunnel:
-```bash
-ngrok http 3001
-```
-Then paste the HTTPS URL (e.g. `https://abc123.ngrok.io/webhook`) into your Twilio WhatsApp sandbox settings.
+Every script is idempotent — it skips rows that already have its output (existing sites, live URLs, written call sheets). Safe to re-run after a crash or a new scrape; only new leads get processed.
 
 ## Requirements
 
-- Node.js 18+ (uses native `fetch`)
-- Google Places API key (scraper)
-- Anthropic API key (generator)
-- Netlify Personal Access Token (deployer)
-- Twilio account with WhatsApp sandbox (approver)
+- Node 18+ (native `fetch`)
+- Google Places API key — free tier
+- Surge account — free, no card needed
+- Anthropic API key — optional (Zero-Budget Mode above)
+- Higgsfield account — optional, for client production sites + AI photos

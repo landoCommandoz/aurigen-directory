@@ -14,7 +14,7 @@ const steps = [
   { name: 'Scraper', cmd: 'node', args: ['scraper.js', niche, city] },
   { name: 'Generator', cmd: 'node', args: ['generator.js'] },
   { name: 'Deployer', cmd: 'node', args: ['deployer.js'] },
-  { name: 'Approver', cmd: 'node', args: ['approver.js'] }
+  { name: 'Call Sheets', cmd: 'node', args: ['callsheet.js'] }
 ];
 
 console.log(`\n=== LOCAL BIZ PIPELINE ===`);
@@ -44,4 +44,5 @@ for (let i = 0; i < steps.length; i++) {
   console.log(`${label}: done (${elapsed}s)\n`);
 }
 
-console.log('=== PIPELINE COMPLETE ===\n');
+console.log('=== PIPELINE COMPLETE ===');
+console.log('Call sheets are in the calls/ folder. Hand them to Brian.\n');
