@@ -62,6 +62,18 @@ const NICHE_OPENERS = {
   restaurant: {
     opener: (name, city) => `Hey, is this ${name}? My name's Brian. People searching for food in ${city} want to see a menu before they decide where to go. I noticed you don't have a website, so I put one together. Want me to text you the link?`,
     pain: (city) => `Hungry people in ${city} are searching online and picking restaurants with menus on their website.`
+  },
+  barber: {
+    opener: (name, city) => `Hey, is this ${name}? My name's Brian. I was looking up barbershops in ${city} and your shop came up with great reviews, but there's no website — just the Facebook page. So I went ahead and built one for you. Can I text you the link?`,
+    pain: (city) => `People new to ${city} search Google for a barbershop and book with whoever has a real site. A Facebook page doesn't show up the same way.`
+  },
+  roofing: {
+    opener: (name, city) => `Hey, is this ${name}? My name's Brian. When people in ${city} need a roof they compare two or three companies online before calling anyone. I noticed you don't have a website, so I built one for you. Can I send you the link?`,
+    pain: () => `Roofing is big-ticket — homeowners always research online first. No website means losing the comparison before it starts.`
+  },
+  towing: {
+    opener: (name) => `Hey, is this ${name}? My name's Brian. When someone's stranded they grab their phone and call the first tow company that looks legit. I noticed you don't have a website, so I built one for you. Want me to text you the link?`,
+    pain: () => `Stranded drivers call whoever shows up first online and looks real. No website loses those calls every single day.`
   }
 };
 
