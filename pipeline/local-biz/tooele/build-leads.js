@@ -116,7 +116,21 @@ const LEADS = [
     hours: ['Tuesday: 10:00 AM – 6:00 PM', 'Wednesday: 10:00 AM – 8:00 PM', 'Thursday: 10:00 AM – 8:00 PM', 'Friday: 10:00 AM – 6:00 PM', 'Saturday: 9:00 AM – 3:00 PM', 'Sunday: Closed', 'Monday: Closed'],
     notes: 'ANGLE: their old site stayclassicbarbershop.com is DEAD (does not load) and they only book through Square. Say: your old website does not even come up anymore.'
   },
-  // CUT 2026-08-08: Black Cat Barber Company HAS a website (blackcatbarber.co, verified).
+  {
+    business_name: 'Black Cat Barber Company',
+    phone: '(801) 347-3213',
+    address: '1196 N Main St, Tooele, UT 84074, USA',
+    category: 'barber shop',
+    rating: '4.9', review_count: '795',
+    existing_site: 'blackcatbarber.co',
+    reviews: [
+      { author: 'Yanneli', rating: 5, text: 'The barbers really take their time and pay attention to every detail', time: '' },
+      { author: 'Sadilynn', rating: 5, text: 'He does absolutely amazing and even asked this last time to go back', time: '' },
+      { author: 'Nicole', rating: 5, text: 'My son loved his haircut and the barber did a great job', time: '' }
+    ],
+    hours: ['Monday: 10:00 AM – 7:00 PM', 'Tuesday: 10:00 AM – 7:00 PM', 'Wednesday: 10:00 AM – 7:00 PM', 'Thursday: 10:00 AM – 7:00 PM', 'Friday: 10:00 AM – 7:00 PM', 'Saturday: 10:00 AM – 6:00 PM', 'Sunday: 10:00 AM – 6:00 PM'],
+    notes: 'UPGRADE LEAD: they have a real site (blackcatbarber.co). LOOK AT IT before calling. Only pitch if it looks weak or dated. 795 reviews at 4.9, open 7 days. Biggest fish on the list if their site is soft.'
+  },
   {
     business_name: "Niemi's Barbershop",
     phone: '(435) 249-7256',
@@ -256,8 +270,30 @@ const LEADS = [
     hours: [],
     notes: 'Low rating (3.0/2 reviews) - lower priority call.'
   },
-  // CUT 2026-08-08: Scotty's Heating HAS a website (scottysheating.com, bare template but live).
-  // CUT 2026-08-08: K2 HVAC HAS a Thryv-hosted mini-site (k2hvac.localsearch.com via their YP listing).
+  {
+    business_name: "Scotty's Heating, Air & Quality Repair",
+    phone: '(435) 338-7268',
+    address: '561 E 1420 N, Tooele, UT 84074, USA',
+    category: 'hvac',
+    rating: '5.0', review_count: '1',
+    existing_site: 'scottysheating.com',
+    reviews: [
+      { author: 'Lori', rating: 5, text: 'Great service very knowledgeable wonderful to work with and best price.', time: '' }
+    ],
+    hours: [],
+    notes: 'UPGRADE LEAD: scottysheating.com is a bare 2020 template with NO phone or address anywhere on it. They paid for a site and got burned. Say: I was on your site and it does not even have your phone number on it.'
+  },
+  {
+    business_name: 'K2 HVAC',
+    phone: '(435) 830-4591',
+    address: '37 Lakeview, Tooele, UT 84074, USA',
+    category: 'hvac',
+    rating: '', review_count: '',
+    existing_site: 'k2hvac.localsearch.com',
+    reviews: [],
+    hours: ['Monday: 7:00 AM – 5:00 PM', 'Tuesday: 7:00 AM – 5:00 PM', 'Wednesday: 7:00 AM – 5:00 PM', 'Thursday: 7:00 AM – 5:00 PM', 'Friday: 7:00 AM – 5:00 PM'],
+    notes: 'UPGRADE LEAD: paying YellowPages/Thryv for a template stuck on a directory address (k2hvac.localsearch.com). Already pays a monthly fee for a website. Say: same money gets you a real site with your own dot-com. 27 years in business.'
+  },
   {
     business_name: 'Beyond Connected LLC',
     phone: '(435) 840-4980',
@@ -332,6 +368,7 @@ const rows = LEADS.map(l => ({
   price_level: '',
   google_maps_url: '',
   lat: '', lng: '',
+  existing_site: l.existing_site || '',
   notes: l.notes || ''
 }));
 
@@ -339,7 +376,7 @@ const columns = [
   'business_name', 'address', 'phone', 'category', 'place_id',
   'rating', 'review_count', 'photo_1', 'photo_2', 'photo_3',
   'reviews_json', 'hours_json', 'price_level', 'google_maps_url',
-  'lat', 'lng', 'notes'
+  'lat', 'lng', 'existing_site', 'notes'
 ];
 
 process.chdir(path.join(__dirname, '..'));

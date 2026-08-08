@@ -5,7 +5,10 @@ stricter standard: any owned domain OR any builder-built site (Square Online, Wi
 GoDaddy, Thryv) counts as HAS a website. Same-named businesses in other states were
 ruled out by matching city and phone. Spot-check any line below.
 
-## CUT: they have websites (3)
+## HAVE WEBSITES: kept as UPGRADE leads (3)
+
+Not cut. They already pay for a web presence, which makes them proven buyers. Their
+call sheets use the side-by-side upgrade pitch instead of the no-website opener.
 
 | Business | What was found | How verified |
 |----------|----------------|--------------|

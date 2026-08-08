@@ -101,6 +101,20 @@ const BUILD_AFTER = {
 };
 
 // ---------------------------------------------------------------------------
+// UPGRADE SCRIPT (they already HAVE a site, and it's weak or they overpay)
+// ---------------------------------------------------------------------------
+
+const UPGRADE = {
+  openerLive: (name) => `Hey, is this ${name}? This is ${CALLER}. I build websites for local businesses out here. I was on your site earlier and honestly, I don't think it's doing you justice. So I built you a better one. It's live right now. Can I text you both links so you can put them side by side?`,
+  openerBuild: (name) => `Hey, is this ${name}? This is ${CALLER}. I build websites for local businesses out here. I was on your site earlier and honestly, I don't think it's doing you justice. Let me build you a better one for free so you can put them side by side. If mine's not clearly better, keep what you've got. Fair?`,
+  yes: `"Cool. Is this the best number to text? I'll send it over and\nyou put it next to what you're paying for now. If you switch,\nit's ${SETUP} one-time and 99 a month, and I handle everything."`,
+  catch: `"Nothing. If my site isn't clearly better than what you're\npaying for now, you keep yours and we're done. I only win if\nyou can see the difference yourself."`,
+  contract: `"When's that up? No rush. I'll build yours anyway and it'll\nbe sitting there ready. Compare them whenever you want."`,
+  think: `"Take your time. Both links will be in your texts. Show your\nwife, show your guys, whoever. It sells itself or it doesn't."`,
+  no: `"All good. Keep the link, it'll be up for a week. If you ever\nget tired of paying for the other one, call me."`
+};
+
+// ---------------------------------------------------------------------------
 // HELPERS
 // ---------------------------------------------------------------------------
 
@@ -181,6 +195,7 @@ function buildCallSheet(row) {
   const rating = row.rating ? parseFloat(row.rating) : 0;
   const reviewCount = row.review_count ? parseInt(row.review_count, 10) : 0;
   const isLive = Boolean(row.live_url);
+  const existingSite = row.existing_site || '';
   const hours = safeParseJSON(row.hours_json);
   const niche = matchNiche(category);
 
@@ -193,7 +208,10 @@ function buildCallSheet(row) {
   sheet += `  CALL SHEET: ${name}\n`;
   sheet += '================================================================\n\n';
 
-  if (!isLive) {
+  if (existingSite) {
+    sheet += `  UPGRADE CALL. They already have a site: ${existingSite}\n`;
+    sheet += '  Look at it before dialing. The pitch is side by side, not "you have nothing."\n\n';
+  } else if (!isLive) {
     sheet += '  NO SITE BUILT YET. This sheet uses the build-it-after script:\n';
     sheet += '  offer a free demo, build it for the ones who want to see it.\n\n';
   }
@@ -207,6 +225,9 @@ function buildCallSheet(row) {
   }
   sheet += `Hours:     ${formatHoursForCall(hours)}\n`;
   sheet += `Site URL:  ${isLive ? row.live_url : '(none yet, build after they say yes)'}\n`;
+  if (existingSite) {
+    sheet += `Their site: ${existingSite}\n`;
+  }
   if (row.google_maps_url) {
     sheet += `Google:    ${row.google_maps_url}\n`;
   }
@@ -216,10 +237,17 @@ function buildCallSheet(row) {
 
   // Opening line
   sheet += '\n--- OPENING LINE ---\n\n';
-  sheet += `"${isLive ? niche.opener(name) : BUILD_AFTER.opener(name)}"\n`;
+  if (existingSite) {
+    sheet += `"${isLive ? UPGRADE.openerLive(name) : UPGRADE.openerBuild(name)}"\n`;
+  } else {
+    sheet += `"${isLive ? niche.opener(name) : BUILD_AFTER.opener(name)}"\n`;
+  }
 
   // Why they need it
   sheet += '\n--- WHY THEY NEED THIS ---\n\n';
+  if (existingSite) {
+    sheet += `- Already paying for a web presence that is not pulling its weight: ${existingSite}\n`;
+  }
   sheet += `- ${niche.pain()}\n`;
   if (rating > 0) {
     sheet += `- ${reviewCount} reviews at ${rating} stars and nowhere to show them off\n`;
@@ -229,7 +257,22 @@ function buildCallSheet(row) {
   }
   sheet += '- The businesses around here that do have sites are picking up those calls instead\n';
 
-  if (isLive) {
+  if (existingSite) {
+    sheet += '\n--- IF THEY SAY YES ---\n\n';
+    sheet += `${UPGRADE.yes}\n`;
+
+    sheet += '\n--- IF THEY SAY "WHAT\'S THE CATCH" ---\n\n';
+    sheet += `${UPGRADE.catch}\n`;
+
+    sheet += '\n--- IF THEY\'RE IN A CONTRACT WITH THEIR PROVIDER ---\n\n';
+    sheet += `${UPGRADE.contract}\n`;
+
+    sheet += '\n--- IF THEY SAY "I\'LL THINK ABOUT IT" ---\n\n';
+    sheet += `${UPGRADE.think}\n`;
+
+    sheet += '\n--- IF THEY SAY NO ---\n\n';
+    sheet += `${UPGRADE.no}\n`;
+  } else if (isLive) {
     sheet += '\n--- IF THEY SAY YES ---\n\n';
     sheet += `"Sweet. I'll text it to this number right now. Look it over.\n`;
     sheet += `If you want to keep it, it's ${SETUP} one-time to set you up\n`;

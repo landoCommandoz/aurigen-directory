@@ -1,11 +1,10 @@
-# TOOELE COUNTY CALL LIST: 26 verified no-website businesses
+# TOOELE COUNTY CALL LIST: 29 leads, every one's website status verified
 
-Re-verified 2026-08-08 after the first pass missed a live website. Every lead below
-was re-checked with a strict standard (any owned domain or builder-built site counts
-as having a website). Three businesses were cut: Black Cat Barber (blackcatbarber.co),
-Scotty's Heating (scottysheating.com), and K2 HVAC (Thryv mini-site via YellowPages).
-Full evidence per lead is in VERIFICATION.md. All 26 phone numbers matched a current
-listing.
+Re-verified 2026-08-08 after the first pass missed a live website. Every lead was
+re-checked and sorted by what they actually have: 26 with no website (free-demo
+pitch) and 3 with a weak or overpriced site (upgrade pitch, arguably the easiest
+sales since they already pay for one). Full evidence per lead is in VERIFICATION.md.
+All 29 phone numbers matched a current listing.
 
 > Openers now say "I couldn't find a website for you," which is verified true, instead
 > of claiming they have none. If an owner ever says "we have one," the caller says
@@ -22,6 +21,19 @@ listing.
 | 3 | **Ivy Nails** | (435) 882-9915 | nail salon | 3.8 / 201 | FB/IG only. Booksy profile exists but doesn't even take bookings. |
 | 4 | **Stay Classic Barbershop** | (435) 850-1496 | barber | ~104 reviews | Their old site stayclassicbarbershop.com is DEAD. "Your old website doesn't even load anymore." |
 | 5 | **Pete's Auto Repair & Diesel** | (435) 882-4014 | auto repair | 4.1 / 84 | YP listing literally shows an empty "Add Website" slot. |
+
+## UPGRADE CALLS - they already pay for a site (proven buyers)
+
+These get the side-by-side pitch: "I was on your site, I don't think it's doing you
+justice. Let me build a better one free, put them next to each other. If mine's not
+clearly better, keep yours." Their sheets carry the upgrade script including the
+"I'm in a contract" answer.
+
+| # | Business | Phone | Their site | The angle |
+|---|----------|-------|------------|-----------|
+| U1 | **K2 HVAC** | (435) 830-4591 | k2hvac.localsearch.com | Paying YellowPages monthly for a template stuck on a directory address. Same money, real site, own dot-com. 27 years in business. |
+| U2 | **Scotty's Heating, Air & Quality Repair** | (435) 338-7268 | scottysheating.com | Bare 2020 template with NO phone or address on it. "Your site doesn't even have your number on it." |
+| U3 | **Black Cat Barber Company** | (801) 347-3213 | blackcatbarber.co | 4.9 / 795 reviews, the biggest fish in town. LOOK at their site first; only pitch if it looks weak. |
 
 ## TIER 2 - SOLID
 

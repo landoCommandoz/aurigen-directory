@@ -84,6 +84,14 @@ you've got nothing, and I can have you live this week."
 
 ## THE TECHNICAL QUESTIONS (plain answers, don't get technical)
 
+**"I already have a website."**
+"Yeah, I saw it. Honest question, when's the last time it got you a call?
+Let me build you a new one free and you put them side by side. If yours
+wins, keep it, no hard feelings. If mine wins, you switch and probably
+pay less than you're paying now."
+(If they're in a contract with their provider: "When's that up? I'll
+build yours anyway, it'll be sitting there ready when you are.")
+
 **"I already have a Facebook page."**
 "Facebook's good, keep it. But when somebody googles 'plumber Tooele' your
 Facebook page isn't what comes up. The site shows up on Google and links
