@@ -249,13 +249,15 @@ function buildCallSheet(row) {
     sheet += `- Already paying for a web presence that is not pulling its weight: ${existingSite}\n`;
   }
   sheet += `- ${niche.pain()}\n`;
-  if (rating > 0) {
+  if (rating > 0 && reviewCount >= 5) {
     sheet += `- ${reviewCount} reviews at ${rating} stars and nowhere to show them off\n`;
   }
   if (reviewData && reviewData.themes.length > 0) {
     sheet += `- Their reviews keep bringing up: ${reviewData.themes.join(', ')}\n`;
   }
-  sheet += '- The businesses around here that do have sites are picking up those calls instead\n';
+  if (!existingSite) {
+    sheet += '- The businesses around here that do have sites are picking up those calls instead\n';
+  }
 
   if (existingSite) {
     sheet += '\n--- IF THEY SAY YES ---\n\n';
@@ -312,10 +314,12 @@ function buildCallSheet(row) {
     for (const line of reviewData.lines) {
       sheet += `${line}\n`;
     }
-    sheet += '\n';
-    sheet += `Worth dropping in the call: "You've got ${reviewCount} reviews on\n`;
-    sheet += `Google and people love you guys. The site puts those right up\n`;
-    sheet += `front where new customers actually see them."\n`;
+    if (reviewCount >= 10) {
+      sheet += '\n';
+      sheet += `Worth dropping in the call: "You've got ${reviewCount} reviews on\n`;
+      sheet += `Google and people love you guys. The site puts those right up\n`;
+      sheet += `front where new customers actually see them."\n`;
+    }
   }
 
   // Hours info for when to call
