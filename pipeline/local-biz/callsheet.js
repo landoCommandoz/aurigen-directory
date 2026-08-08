@@ -9,6 +9,9 @@ const CALLS_DIR = path.join(__dirname, 'calls');
 // Whoever is dialing. Run CALLER_NAME=Marty node callsheet.js for Marty's set.
 const CALLER = process.env.CALLER_NAME || 'Brian';
 
+// One-time setup fee (mentioned at the close, not in the opener).
+const SETUP = process.env.SETUP_FEE || '149';
+
 // ---------------------------------------------------------------------------
 // NICHE OPENERS (what Brian says when the site is ALREADY LIVE)
 // ---------------------------------------------------------------------------
@@ -91,8 +94,8 @@ const DEFAULT_OPENER = {
 
 const BUILD_AFTER = {
   opener: (name) => `Hey, is this ${name}? This is ${CALLER}. Real quick, I was on Google and noticed you guys don't have a website. That's what I do, I build sites for local businesses out here. I'd like to build you one for free so you can actually see it. If you like it, it's 99 bucks a month. If not, I take it down and we're square. Can I text it to you when it's done?`,
-  yes: `"Cool. Is this the best number to text? Give me a day or two.\nI'll send you the link when it's up. No charge to look."`,
-  catch: `"Nothing up front. I build it first so you can see exactly\nwhat you'd get. You only pay if you want to keep it."`,
+  yes: `"Cool. Is this the best number to text? Give me a day or two.\nI'll send the link. If you love it, it's ${SETUP} one-time to set\nyou up proper and 99 a month after. No charge to look."`,
+  catch: `"Nothing to look. I build it first so you can see exactly what\nyou'd get. If you keep it, there's a one-time ${SETUP} setup and\n99 a month. If not, you're out nothing."`,
   think: `"Tell you what, let me build it anyway and text it over.\nCosts you nothing to look at it. Then take your time."`,
   no: `"All good. If you ever change your mind, my number's the\none that just called you. Take it easy."`
 };
@@ -229,13 +232,14 @@ function buildCallSheet(row) {
   if (isLive) {
     sheet += '\n--- IF THEY SAY YES ---\n\n';
     sheet += `"Sweet. I'll text it to this number right now. Look it over.\n`;
-    sheet += `If you want to keep it live it's 99 a month and I handle\n`;
-    sheet += `everything. Cancel whenever."\n`;
+    sheet += `If you want to keep it, it's ${SETUP} one-time to set you up\n`;
+    sheet += `proper, then 99 a month, and I handle everything. Cancel\n`;
+    sheet += `whenever."\n`;
 
     sheet += '\n--- IF THEY SAY "WHAT\'S THE CATCH" ---\n\n';
-    sheet += `"No catch. It's already built and already live. I'll leave it\n`;
-    sheet += `up for a week either way. If you don't want it, it comes down\n`;
-    sheet += `and you owe nothing."\n`;
+    sheet += `"No catch. It's already built and already live. If you keep it,\n`;
+    sheet += `there's a one-time ${SETUP} setup and 99 a month after. If not,\n`;
+    sheet += `it comes down in a week and you owe nothing."\n`;
 
     sheet += '\n--- IF THEY SAY "I\'LL THINK ABOUT IT" ---\n\n';
     sheet += `"No rush. It stays up for a week. I'll text you the link so\n`;

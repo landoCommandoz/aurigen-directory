@@ -41,6 +41,15 @@ just to babysit a site the owner already paid thousands for.
 
 One average job pays for 3 to 6 months of the site. Say it exactly like that.
 
+## The setup fee
+A one-time setup fee is normal in this market and $149 is on the friendly end:
+Jottful charges $99 to $499 up front for the build, agencies charge $1,000 and
+up before a site exists at all. Keep the fee justified by real deliverables
+(domain, Google listing work, Spanish version, intro video) so it never feels
+like a junk fee. It also puts cash in the closers' pockets the same week,
+which keeps the calls happening. Mention it at the close, never in the opener.
+The hook number is always "99 a month."
+
 ## When to use a different number
 - **$79? No.** Utah maintenance-only plans already cost that and include no build.
   Going lower just makes it look cheap.

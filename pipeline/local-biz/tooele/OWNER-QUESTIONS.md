@@ -18,8 +18,16 @@ Don't recite it word for word on the phone. Know the answers, then just talk.
 ## THE MONEY QUESTIONS
 
 **"How much is it?"**
-"Nothing to build it. If you like it and want to keep it, it's 99 a month.
-That covers hosting, any changes you want, and me keeping it running."
+"Nothing to build it and nothing to look at it. If you want to keep it,
+it's 149 one-time to get you set up proper and 99 a month after. The
+monthly covers hosting, any changes you want, and me keeping it running."
+
+**"What's the 149 for?"**
+"That's the real work up front. Your own dot-com address, getting your
+Google listing squared away, a Spanish version of the site, and the intro
+video. Web companies charge 500 to 2,500 bucks for that part alone. I keep
+it at 149 because I'd rather have you as a monthly client than hit you
+with a big bill."
 
 **"What do I get for 99 a month?"**
 "The site stays live, I handle all the tech stuff, and when you want something
@@ -27,9 +35,9 @@ changed, new photos, new prices, new hours, you text me and I do it. You never
 touch anything."
 
 **"That's expensive."**
-"A web design company charges two to five grand up front for the same thing, plus
-monthly on top. I skip the up-front. And honestly, one job from a customer who
-found you online covers a couple months of it."
+"A web design company charges two to five grand up front for less than this,
+plus monthly on top. My whole setup is 149. And honestly, one job from a
+customer who found you online covers a couple months of it."
 (For trades this is literally true. One plumbing call runs $150 to $400.)
 
 **"Is there a contract?"**
