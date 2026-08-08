@@ -165,6 +165,11 @@ function buildCallSheet(row) {
   sheet += `  CALL SHEET: ${name}\n`;
   sheet += '================================================================\n\n';
 
+  if (!row.live_url) {
+    sheet += '  *** SITE NOT DEPLOYED YET - DO NOT CALL UNTIL IT IS LIVE ***\n';
+    sheet += '  (the pitch depends on "I already built it" being true)\n\n';
+  }
+
   // Quick info
   sheet += `Phone:     ${phone}\n`;
   sheet += `Address:   ${address}\n`;
@@ -260,16 +265,19 @@ async function main() {
 
   for (const row of rows) {
     if (!row.live_url) {
-      console.log(`SKIP: ${row.business_name} (no live_url, run deployer.js)`);
-      continue;
+      console.warn(`WARNING: ${row.business_name} has no live site yet - sheet stamped DO NOT CALL`);
     }
 
     const slug = slugify(row.business_name);
     const sheetPath = path.join(CALLS_DIR, `${slug}.txt`);
 
     if (fs.existsSync(sheetPath)) {
-      console.log(`SKIP: ${row.business_name} (call sheet already exists)`);
-      continue;
+      const existing = fs.readFileSync(sheetPath, 'utf-8');
+      const needsRefresh = row.live_url && existing.includes('NOT DEPLOYED YET');
+      if (!needsRefresh) {
+        console.log(`SKIP: ${row.business_name} (call sheet already exists)`);
+        continue;
+      }
     }
 
     if (!row.phone) {
