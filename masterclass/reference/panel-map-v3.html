@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>MAD Panel Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-primary:#0b0d11;--bg-secondary:#12151c;
+  --bg-card:rgba(255,255,255,0.038);--bg-card-hi:rgba(255,255,255,0.075);
+  --accent:#ffc400;--accent-muted:#8a6f14;
+  --done:#2fd6a3;--done-muted:#15423a;--warn:#ff7a4d;
+  --text-primary:#f0efe9;--text-secondary:#8b8f9c;
+  --border:rgba(255,255,255,0.09);--border-hi:rgba(255,196,0,0.55);
+  --shadow:0 10px 36px rgba(0,0,0,0.55);--ease:cubic-bezier(.2,.7,.25,1);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{height:100%;margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:clamp(14px,3.6vw,16px);line-height:1.5;overscroll-behavior:none}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(60% 40% at 50% -5%, rgba(255,196,0,0.10), transparent 70%),radial-gradient(50% 35% at 100% 100%, rgba(47,214,163,0.06), transparent 70%)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+#app{height:100%;display:flex;flex-direction:column;position:relative;z-index:1;max-width:760px;margin:0 auto;width:100%}
+header{flex:0 0 auto;padding:14px 16px 10px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(18,21,28,.96),rgba(11,13,17,.86));backdrop-filter:blur(14px)}
+.brandrow{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,5.4vw,26px);letter-spacing:.07em;line-height:1}
+.brand span{color:var(--accent)}
+.icbtn{width:36px;height:36px;min-width:36px;border-radius:10px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-secondary);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s var(--ease)}
+.icbtn:active{transform:scale(.92);border-color:var(--border-hi);color:var(--accent)}
+.modes{display:flex;gap:6px;margin-top:11px}
+.mode{flex:1;padding:9px 4px;border-radius:11px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-secondary);cursor:pointer;font-family:'Bebas Neue',sans-serif;letter-spacing:.055em;font-size:clamp(12px,3.2vw,14px);line-height:1.15;text-align:center;transition:all .25s var(--ease);min-height:44px}
+.mode.on{background:linear-gradient(180deg,rgba(255,196,0,.17),rgba(255,196,0,.05));border-color:var(--border-hi);color:var(--accent)}
+.mode small{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;letter-spacing:0;opacity:.65;font-weight:500}
+.rail{flex:0 0 auto;display:flex;gap:7px;overflow-x:auto;overflow-y:hidden;padding:11px 16px;border-bottom:1px solid var(--border);-webkit-overflow-scrolling:touch;scrollbar-width:none;background:rgba(11,13,17,.6)}
+.rail::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;padding:8px 13px;border-radius:999px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-secondary);white-space:nowrap;cursor:pointer;font-size:12.5px;font-weight:600;transition:all .2s var(--ease);min-height:38px;display:flex;align-items:center;gap:7px}
+.chip b{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.05em;opacity:.55}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#120d00}
+.chip.on b{opacity:.65;color:#120d00}
+.chip.complete{border-color:var(--done-muted);color:var(--done)}
+.chip.complete b{color:var(--done)}
+main{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 16px 44px}
+
+.stagehead{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:16px 16px 14px;margin-bottom:14px;box-shadow:var(--shadow);animation:rise .4s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.stagehead h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,7.4vw,36px);letter-spacing:.045em;margin:0 0 2px;line-height:1}
+.stagemeta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:11px}
+.pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:rgba(255,196,0,.13);color:var(--accent);letter-spacing:.02em}
+.pill.t{background:rgba(255,255,255,.06);color:var(--text-secondary)}
+.why{margin:0;color:var(--text-secondary);font-size:clamp(13px,3.4vw,14.5px)}
+.prog{margin-top:13px}
+.progbar{height:7px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.progfill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--done));transition:width .45s var(--ease)}
+.progtxt{display:flex;justify-content:space-between;font-size:11.5px;color:var(--text-secondary);margin-top:7px;font-weight:600}
+
+/* next up */
+.nextup{display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px 12px 12px 14px;border-radius:13px;border:1px solid var(--border-hi);background:linear-gradient(180deg,rgba(255,196,0,.14),rgba(255,196,0,.04));cursor:pointer;min-height:60px;transition:transform .2s var(--ease)}
+.nextup:active{transform:scale(.985)}
+.nextup.alldone{border-color:rgba(47,214,163,.5);background:linear-gradient(180deg,rgba(47,214,163,.16),rgba(47,214,163,.04))}
+.nu-k{font-size:10.5px;font-weight:800;letter-spacing:.06em;color:var(--accent)}
+.nextup.alldone .nu-k{color:var(--done)}
+.nu-t{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,5.6vw,25px);letter-spacing:.04em;line-height:1.05;margin-top:2px}
+.nu-t b{color:var(--accent);margin-right:6px}
+.nextup.alldone .nu-t b{color:var(--done)}
+.nu-s{font-size:11.5px;color:var(--text-secondary);margin-top:2px}
+.nu-l{flex:1;min-width:0}
+.nu-btn{flex:0 0 auto;padding:12px 16px;border-radius:11px;border:none;background:var(--accent);color:#1a1200;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.06em;min-height:44px;pointer-events:none}
+.nextup.alldone .nu-btn{background:var(--done);color:#04241c}
+
+/* car */
+.maplabel{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.11em;color:var(--text-secondary);margin:0 0 9px 2px;text-align:center}
+.mapwrap{position:relative;max-width:400px;margin:0 auto 10px;padding:10px 6px;background:radial-gradient(70% 55% at 50% 45%, rgba(255,196,0,.06), transparent 75%)}
+.carsvg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 18px 40px rgba(0,0,0,.6))}
+.carbase{fill:#141820;stroke:rgba(255,196,0,.34);stroke-width:2.2}
+.deco{fill:none;stroke:rgba(255,196,0,.22);stroke-width:2}
+.pz{cursor:pointer;transition:opacity .25s var(--ease)}
+.pz path,.pz rect{fill:rgba(255,255,255,.07);stroke:rgba(255,255,255,.17);stroke-width:1.5;transition:fill .2s var(--ease),stroke .2s var(--ease)}
+.pz.glass path{fill:rgba(118,168,224,.12);stroke:rgba(118,168,224,.3)}
+.pz.whl rect,.pz.trim rect{fill:#1a1d25;stroke:rgba(255,255,255,.2)}
+.pz.next path,.pz.next rect{stroke:var(--accent)!important;stroke-width:3.2;fill:rgba(255,196,0,.16)!important;animation:pulse 1.6s var(--ease) infinite}
+@keyframes pulse{0%,100%{stroke-opacity:1}50%{stroke-opacity:.3}}
+.pz:active path,.pz:active rect{fill:rgba(255,196,0,.3)!important;stroke:var(--accent)!important}
+.pz.done path,.pz.done rect{fill:rgba(47,214,163,.22)!important;stroke:rgba(47,214,163,.7)!important;animation:none}
+.pz.off{opacity:.14;pointer-events:none}
+.pz:focus-visible path,.pz:focus-visible rect{stroke:var(--accent);stroke-width:3}
+.pz text{fill:var(--text-primary);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:15px;text-anchor:middle;pointer-events:none}
+.pz text.num{font-family:'Bebas Neue',sans-serif;font-size:15px;fill:var(--accent);text-anchor:start;letter-spacing:.05em}
+.pz.done text.num{fill:var(--done)}
+.pz.next text.num{fill:#fff}
+.pz text.tick{font-size:18px;fill:var(--done);text-anchor:end;font-weight:800}
+.pz text.tick.l{text-anchor:start}
+.pz.off text.num{display:none}
+
+.extras{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px;margin-top:7px}
+.tile{position:relative;min-height:60px;padding:9px 8px 8px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,var(--bg-card-hi),var(--bg-card));color:var(--text-primary);cursor:pointer;text-align:left;font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(11px,2.9vw,12.5px);font-weight:600;line-height:1.22;transition:all .22s var(--ease);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.tile:active{transform:scale(.97)}
+.tile .num{position:absolute;top:7px;left:8px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.05em;color:var(--accent)}
+.tile .tick{position:absolute;top:6px;right:7px;font-size:14px;opacity:0;transition:opacity .25s var(--ease);color:var(--done)}
+.tile.next{border-color:var(--accent);background:linear-gradient(180deg,rgba(255,196,0,.16),rgba(255,196,0,.05));animation:pulseb 1.6s var(--ease) infinite}
+@keyframes pulseb{0%,100%{box-shadow:0 0 0 0 rgba(255,196,0,.0)}50%{box-shadow:0 0 0 4px rgba(255,196,0,.18)}}
+.tile.done{border-color:rgba(47,214,163,.45);background:linear-gradient(180deg,rgba(47,214,163,.14),rgba(47,214,163,.04));animation:none}
+.tile.done .tick{opacity:1}
+.tile.done .num{color:var(--done)}
+
+.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.check li{display:flex;gap:11px;align-items:flex-start;padding:13px 14px;border-radius:13px;border:1px solid var(--border);background:var(--bg-card);cursor:pointer;transition:all .2s var(--ease);min-height:44px}
+.check li:active{transform:scale(.99)}
+.check li.done{border-color:rgba(47,214,163,.38);background:rgba(47,214,163,.06)}
+.check li.done span{text-decoration:line-through;opacity:.55}
+.box{flex:0 0 auto;width:21px;height:21px;border-radius:6px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;margin-top:1px}
+.check li.done .box{background:var(--done);border-color:var(--done);color:#05231c}
+.nextbtn{width:100%;margin-top:18px;padding:17px;border-radius:14px;border:none;cursor:pointer;background:linear-gradient(180deg,var(--accent),#e0a800);color:#1a1200;font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.07em;box-shadow:0 8px 26px rgba(255,196,0,.2);transition:transform .2s var(--ease);min-height:54px}
+.nextbtn:active{transform:scale(.98)}
+.nextbtn.ghost{background:transparent;border:1px solid var(--border);color:var(--text-secondary);box-shadow:none}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:40}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;left:0;right:0;bottom:0;z-index:50;max-height:88dvh;display:flex;flex-direction:column;min-height:0;background:var(--bg-secondary);border-top:1px solid var(--border-hi);border-radius:22px 22px 0 0;box-shadow:0 -14px 48px rgba(0,0,0,.65);transform:translateY(102%);transition:transform .34s var(--ease);padding-bottom:env(safe-area-inset-bottom,0px);max-width:760px;margin:0 auto}
+.drawer.open{transform:translateY(0)}
+.grab{flex:0 0 auto;padding:9px 0 3px;display:flex;justify-content:center}
+.grab i{width:40px;height:4px;border-radius:99px;background:rgba(255,255,255,.2);display:block}
+.dhead{flex:0 0 auto;padding:6px 18px 13px;border-bottom:1px solid var(--border)}
+.dhead .eyebrow{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.05em}
+.dhead h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,6.6vw,32px);letter-spacing:.04em;margin:3px 0 0;line-height:1.02}
+.dhead h2 b{color:var(--accent);margin-right:8px}
+.dhead .sub{font-size:12.5px;color:var(--text-secondary);margin-top:3px}
+.dbody{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 18px 10px}
+.sect{margin-bottom:20px}
+.sect h3{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.11em;margin:0 0 10px;color:var(--text-secondary);display:flex;align-items:center;gap:8px}
+.sect h3::after{content:'';flex:1;height:1px;background:var(--border)}
+.sect.warn h3{color:var(--warn)}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding:0 0 13px 32px;font-size:clamp(13.5px,3.5vw,15px);line-height:1.52}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:22px;height:22px;border-radius:7px;background:rgba(255,196,0,.14);color:var(--accent);font-family:'Bebas Neue',sans-serif;font-size:13px;display:flex;align-items:center;justify-content:center;letter-spacing:.03em}
+.steps li b{color:var(--accent);font-weight:700}
+.bullets{list-style:none;margin:0;padding:0}
+.bullets li{position:relative;padding:0 0 11px 20px;font-size:clamp(13px,3.4vw,14.5px);line-height:1.5;color:#d9d7cf}
+.bullets li::before{content:'';position:absolute;left:3px;top:8px;width:6px;height:6px;border-radius:2px;background:var(--warn)}
+.bullets li b{color:#fff;font-weight:700}
+.bullets.plain li::before{background:var(--text-secondary)}
+.bullets li.isdone{color:var(--done)}
+.bullets li.isdone::before{background:var(--done)}
+.bullets li.isnow b{color:var(--accent)}
+.note{background:rgba(255,196,0,.07);border:1px solid rgba(255,196,0,.22);border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:1.5}
+.note strong{color:var(--accent);display:block;font-size:11.5px;letter-spacing:.05em;margin-bottom:4px;font-weight:800}
+.dfoot{flex:0 0 auto;padding:12px 18px 16px;border-top:1px solid var(--border);display:flex;gap:9px;background:var(--bg-secondary)}
+.dbtn{flex:1;padding:16px;border-radius:13px;border:none;cursor:pointer;min-height:52px;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.06em;transition:transform .18s var(--ease)}
+.dbtn:active{transform:scale(.97)}
+.dbtn.primary{background:linear-gradient(180deg,var(--accent),#e0a800);color:#1a1200}
+.dbtn.primary.isdone{background:linear-gradient(180deg,var(--done),#1fae84);color:#04241c}
+.dbtn.sec{flex:0 0 90px;background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary)}
+
+/* settings */
+.panelbox{position:fixed;top:0;right:0;bottom:0;width:min(330px,88vw);z-index:60;background:var(--bg-secondary);border-left:1px solid var(--border);transform:translateX(102%);transition:transform .32s var(--ease);display:flex;flex-direction:column;min-height:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.panelbox.open{transform:translateX(0)}
+.pb-head{flex:0 0 auto;padding:16px 18px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.pb-head h3{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.07em;margin:0}
+.pb-body{flex:1;min-height:0;overflow-y:auto;padding:16px 18px 24px}
+.pb-body h4{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.11em;color:var(--text-secondary);margin:0 0 9px}
+.state{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;line-height:1.75;background:#06070a;border:1px solid var(--border);border-radius:10px;padding:11px 12px;color:var(--done);white-space:pre-wrap;word-break:break-word;margin-bottom:20px}
+.devrow{display:flex;gap:6px;margin-bottom:9px}
+.devrow button{flex:1;padding:11px 4px;border-radius:10px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-secondary);font-size:11.5px;font-weight:600;cursor:pointer;min-height:44px}
+.devrow button.on{border-color:var(--border-hi);color:var(--accent)}
+.hint{font-size:11.5px;color:var(--text-secondary);line-height:1.5;margin:0 0 20px}
+.danger{width:100%;padding:14px;border-radius:11px;border:1px solid rgba(255,122,77,.4);background:rgba(255,122,77,.08);color:var(--warn);font-weight:700;font-size:13px;cursor:pointer;min-height:48px}
+#app.sim{transition:max-width .3s var(--ease)}
+.simtag{position:fixed;top:env(safe-area-inset-top,0px);left:50%;transform:translateX(-50%);z-index:35;background:var(--warn);color:#2a0d00;font-size:10px;font-weight:800;padding:3px 11px;border-radius:0 0 8px 8px;letter-spacing:.04em;display:none}
+.simtag.on{display:block}
+.err{padding:40px 20px;text-align:center;color:var(--warn);font-size:14px}
+</style>
+</head>
+<body>
+
+<div class="simtag" id="simtag">Screen preview on. Remove before deploy</div>
+
+<div id="app">
+  <header>
+    <div class="brandrow">
+      <div class="brand">MAD <span>Panel Map</span></div>
+      <button class="icbtn" id="btnSettings" aria-label="Settings">⚙</button>
+    </div>
+    <div class="modes" id="modes"></div>
+  </header>
+  <div class="rail" id="rail"></div>
+  <main id="main"></main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+
+<div class="drawer" id="drawer" role="dialog" aria-modal="true">
+  <div class="grab"><i></i></div>
+  <div class="dhead">
+    <div class="eyebrow" id="dEyebrow"></div>
+    <h2 id="dTitle"></h2>
+    <div class="sub" id="dSub"></div>
+  </div>
+  <div class="dbody" id="dBody"></div>
+  <div class="dfoot">
+    <button class="dbtn sec" id="dClose">Close</button>
+    <button class="dbtn primary" id="dDone">Done, next</button>
+  </div>
+</div>
+
+<div class="panelbox" id="settings">
+  <div class="pb-head">
+    <h3>Settings</h3>
+    <button class="icbtn" id="btnCloseSettings" aria-label="Close">✕</button>
+  </div>
+  <div class="pb-body">
+    <h4>Live state</h4>
+    <div class="state" id="stateOut">...</div>
+    <h4>Screen preview</h4>
+    <div class="devrow">
+      <button data-w="390px">Phone</button>
+      <button data-w="768px">Tablet</button>
+      <button data-w="100%" class="on">Normal</button>
+    </div>
+    <p class="hint">Preview only. Resizes the view so you can check it on another screen size. Remove this box before you hand the link to anyone else.</p>
+    <h4>Start over</h4>
+    <button class="danger" id="btnReset">Clear all checkmarks</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+(function(){
+
+/* ---------- SAFE STORAGE ---------- */
+var KEY='mad_panel_map_v3';
+function load(){
+  try{ var raw=window.localStorage?localStorage.getItem(KEY):null; if(!raw) return null;
+       var o=JSON.parse(raw); return (o&&typeof o==='object')?o:null; }catch(e){return null;}
+}
+function save(){ try{ if(window.localStorage) localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+/* ---------- PANELS ---------- */
+var EXT=[
+  {id:'wlf',label:'LF Wheel'},{id:'wrf',label:'RF Wheel'},{id:'wlr',label:'LR Wheel'},{id:'wrr',label:'RR Wheel'},
+  {id:'trim',label:'Mirrors & Trim'},
+  {id:'fb',label:'Front Bumper'},{id:'hood',label:'Hood'},{id:'lff',label:'L Front Fender'},{id:'rff',label:'R Front Fender'},
+  {id:'wsh',label:'Windshield'},{id:'lfd',label:'L Front Door'},{id:'rfd',label:'R Front Door'},{id:'roof',label:'Roof'},
+  {id:'lrd',label:'L Rear Door'},{id:'rrd',label:'R Rear Door'},{id:'rgl',label:'Rear Glass'},
+  {id:'lrq',label:'L Rear Quarter'},{id:'rrq',label:'R Rear Quarter'},{id:'tr',label:'Trunk / Tailgate'},{id:'rb',label:'Rear Bumper'}
+];
+var EXTRA=[{id:'rock',label:'Rockers (both sides)'}];
+var INT=[
+  {id:'iwsh',label:'Inside Glass'},{id:'idash',label:'Dash & Vents'},{id:'istw',label:'Steering & Column'},{id:'icon',label:'Center Console'},
+  {id:'ilfd',label:'L Front Door'},{id:'irfd',label:'R Front Door'},{id:'ifst',label:'Front Seats'},
+  {id:'ilrd',label:'L Rear Door'},{id:'irrd',label:'R Rear Door'},{id:'irst',label:'Rear Seats'},
+  {id:'icar',label:'Carpet & Floor'},{id:'icgo',label:'Trunk / Cargo'}
+];
+var INTEXTRA=[{id:'ihed',label:'Headliner'},{id:'imat',label:'Floor Mats'}];
+var ALL=EXT.concat(EXTRA).concat(INT).concat(INTEXTRA);
+
+/* ---------- CAR SHAPES (top down, nose at top) ---------- */
+var BODY='M100 22 L340 22 Q398 22 398 80 L398 740 Q398 798 340 798 L100 798 Q42 798 42 740 L42 80 Q42 22 100 22 Z';
+var EXTSH={
+  wlf:{tiny:true,whl:true,rect:[22,168,28,96,10],nx:28,ny:222},
+  wrf:{tiny:true,whl:true,rect:[390,168,28,96,10],nx:396,ny:222},
+  wlr:{tiny:true,whl:true,rect:[22,560,28,96,10],nx:28,ny:614},
+  wrr:{tiny:true,whl:true,rect:[390,560,28,96,10],nx:396,ny:614},
+  trim:{tiny:true,trim:true,parts:[{rect:[8,296,38,28,7],nx:16,ny:316},{rect:[394,296,38,28,7],nx:402,ny:316}]},
+  fb:  {d:'M48 92 L48 84 Q48 28 104 28 L336 28 Q392 28 392 84 L392 92 Z',lx:220,ly:66,nx:58,ny:86,tx:382,ty:86},
+  hood:{d:'M118 98 L322 98 L326 250 L114 250 Z',lx:220,ly:176,nx:128,ny:118,tx:314,ty:118},
+  lff: {d:'M48 98 L112 98 L108 286 L48 286 Z',lx:79,ly:192,rot:-90,nx:56,ny:116,tx:104,ty:116},
+  rff: {d:'M328 98 L392 98 L392 286 L332 286 Z',lx:361,ly:192,rot:90,nx:338,ny:116,tx:384,ty:116},
+  wsh: {glass:true,d:'M114 256 L326 256 L330 318 L110 318 Z',lx:220,ly:290,nx:124,ny:274,tx:318,ty:274},
+  lfd: {d:'M48 292 L106 292 L106 418 L48 418 Z',lx:77,ly:355,rot:-90,nx:56,ny:310,tx:98,ty:310},
+  rfd: {d:'M334 292 L392 292 L392 418 L334 418 Z',lx:363,ly:355,rot:90,nx:340,ny:310,tx:384,ty:310},
+  roof:{d:'M110 324 L330 324 L330 526 L110 526 Z',lx:220,ly:428,nx:120,ny:344,tx:320,ty:344},
+  lrd: {d:'M48 424 L106 424 L106 540 L48 540 Z',lx:77,ly:482,rot:-90,nx:56,ny:442,tx:98,ty:442},
+  rrd: {d:'M334 424 L392 424 L392 540 L334 540 Z',lx:363,ly:482,rot:90,nx:340,ny:442,tx:384,ty:442},
+  rgl: {glass:true,d:'M110 532 L330 532 L326 594 L114 594 Z',lx:220,ly:566,nx:122,ny:552,tx:318,ty:552},
+  lrq: {d:'M48 546 L106 546 L112 712 L48 712 Z',lx:78,ly:629,rot:-90,nx:56,ny:564,tx:98,ty:564},
+  rrq: {d:'M334 546 L392 546 L392 712 L328 712 Z',lx:362,ly:629,rot:90,nx:340,ny:564,tx:384,ty:564},
+  tr:  {d:'M120 600 L320 600 L324 716 L116 716 Z',lx:220,ly:660,nx:130,ny:620,tx:312,ty:620},
+  rb:  {d:'M48 722 L392 722 L392 736 Q392 792 336 792 L104 792 Q48 792 48 736 Z',lx:220,ly:758,nx:58,ny:742,tx:382,ty:742}
+};
+var INTSH={
+  iwsh: {glass:true,d:'M48 124 L48 84 Q48 28 104 28 L336 28 Q392 28 392 84 L392 124 Z',lx:220,ly:82,nx:58,ny:118,tx:382,ty:118},
+  idash:{d:'M48 130 L392 130 L392 276 L254 276 L254 196 L48 196 Z',lx:220,ly:164,nx:56,ny:148,tx:384,ty:148},
+  istw: {d:'M48 202 L186 202 L186 276 L48 276 Z',lx:117,ly:240,label:'Steering|& Column',nx:56,ny:220,tx:180,ty:220},
+  icon: {d:'M192 202 L248 202 L248 446 L192 446 Z',lx:220,ly:324,rot:-90,nx:200,ny:220,tx:242,ty:220},
+  ilfd: {d:'M48 282 L92 282 L92 446 L48 446 Z',lx:70,ly:364,rot:-90,nx:54,ny:300,tx:88,ty:300},
+  irfd: {d:'M348 282 L392 282 L392 446 L348 446 Z',lx:370,ly:364,rot:90,nx:354,ny:300,tx:388,ty:300},
+  ifst: {parts:[
+    {d:'M98 282 L186 282 L186 446 L98 446 Z',lx:142,ly:364,rot:-90,label:'Front Seat',nx:106,ny:300},
+    {d:'M254 282 L342 282 L342 446 L254 446 Z',lx:298,ly:364,rot:90,label:'Front Seat',nx:262,ny:300}],tx:336,ty:300},
+  ilrd: {d:'M48 452 L92 452 L92 616 L48 616 Z',lx:70,ly:534,rot:-90,nx:54,ny:470,tx:88,ty:470},
+  irrd: {d:'M348 452 L392 452 L392 616 L348 616 Z',lx:370,ly:534,rot:90,nx:354,ny:470,tx:388,ty:470},
+  irst: {d:'M98 452 L342 452 L342 616 L98 616 Z',lx:220,ly:534,nx:106,ny:472,tx:334,ty:472},
+  icar: {d:'M48 622 L392 622 L392 690 L48 690 Z',lx:220,ly:658,nx:56,ny:642,tx:384,ty:642},
+  icgo: {d:'M48 696 L392 696 L392 736 Q392 792 336 792 L104 792 Q48 792 48 736 Z',lx:220,ly:746,nx:58,ny:716,tx:382,ty:716}
+};
+var EXTDECO='<rect class="deco" x="62" y="38" width="54" height="14" rx="6"/><rect class="deco" x="324" y="38" width="54" height="14" rx="6"/>'+
+  '<rect class="deco" x="62" y="768" width="54" height="12" rx="5"/><rect class="deco" x="324" y="768" width="54" height="12" rx="5"/>';
+var INTDECO='<circle class="deco" cx="117" cy="239" r="24"/><circle class="deco" cx="117" cy="239" r="6"/>'+
+  '<line class="deco" x1="70" y1="150" x2="110" y2="150"/><line class="deco" x1="330" y1="150" x2="370" y2="150"/>';
+
+/* ---------- ROUTES: the exact order you work the car, per step ---------- */
+var WHEELS=['wlf','wlr','wrr','wrf'];
+var TOPDOWN_WASH=['roof','wsh','rgl','hood','tr','lff','lfd','lrd','lrq','rrq','rrd','rfd','rff','fb','rb','rock','trim'];
+var TOPDOWN_DRY=['roof','wsh','rgl','hood','tr','lff','lfd','lrd','lrq','rrq','rrd','rfd','rff','fb','rb','trim','rock','wlf','wlr','wrr','wrf'];
+var CLAY_ROUTE=['roof','hood','tr','lff','lfd','lrd','lrq','rrq','rrd','rfd','rff','fb','rb','rock'];
+var PAINT_ROUTE=['hood','roof','tr','lff','lfd','lrd','lrq','rrq','rrd','rfd','rff','fb','rb'];
+var WAX_ROUTE=['roof','hood','tr','lff','lfd','lrd','lrq','rrq','rrd','rfd','rff','fb','rb','rock'];
+var GLASS_ROUTE=['wsh','lfd','lrd','rgl','rrd','rfd','trim'];
+var INT_VAC=['ihed','idash','istw','icon','ilfd','ifst','irfd','ilrd','irst','irrd','icar','imat','icgo'];
+var INT_WIPE=['ihed','idash','istw','icon','ilfd','ifst','irfd','ilrd','irst','irrd','imat','icgo'];
+
+/* ---------- STAGES ---------- */
+var STAGES=[
+{ id:'setup', name:'Set Up', time:'10 min', map:null, modes:['full','maint','int'],
+  why:'Everything you do wrong here costs you an hour later. Park right, lay out once, walk the car with the customer before you touch it.',
+  list:[
+    'Park in shade. Touch the hood. If it is warm, wait or move it. Hot paint makes everything dry before you can wipe it.',
+    'Set one table or a flipped bin at the back corner of the car. Every bottle, towel and pad lives there. You should never walk more than three steps for anything.',
+    'Fill two buckets. One soap, one plain water. The plain one is where you rinse your mitt so you stop putting dirt back on the car.',
+    'Split your towels into three piles and keep them apart all day: wash, polish, glass. A polish towel on glass leaves streaks you will chase for ten minutes.',
+    'Walk the whole car with the customer. Point at every dent, chip, scratch and stain out loud before you start.',
+    'Take your before photos. Both sides, front, back, interior, and a close-up of anything already damaged. This protects you if they come back later.',
+    'Ask one question: is there anything on this car you do not want me to touch? Wraps, loose trim, a cracked windshield.',
+    'Leave these in the garage: the Craftsman sander, the angle grinder, the Black and Decker rotary polisher, the three Turtle Wax compounds, the Minwax, the Spic and Span. None of them go near a customer\'s paint.'
+  ]},
+{ id:'wheels', name:'Wheels & Tires', time:'25 min', map:'ext', route:WHEELS, modes:['full','maint'],
+  why:'Wheels go first because wheel cleaner splashes. Do the paint first and you are just washing it twice. Start at the driver front and walk around the car.',
+  how:[
+    'Wheel has to be cool and dry. Spraying cleaner on a hot wheel cooks it on and stains it.',
+    'Spray the cleaner on the face and into the barrel, which is the inside part you can see through the spokes. Use up the open <b>Armor All Extreme Wheel and Tire</b> first, then the Meguiar\'s from the HF order.',
+    'Wait about one minute. You will see it turn purple or red. That is the brake dust breaking loose.',
+    'Soft brush on the face. Long skinny brush into the barrel. Stiff brush on the tire itself.',
+    'Rinse it hard before it dries anywhere. If it dries on, it leaves a mark.',
+    'Finish this wheel completely before you touch the next one.'
+  ],
+  watch:[
+    'Wheel brushes <b>never</b> touch paint. Not once, not ever. They hold grit forever.',
+    'Get behind the wheel into the wheel well. That is the part people notice because it is normally black with brake dust.',
+    'Dry the wheel face before you move on so you do not get water spots on a clean wheel.'
+  ]},
+{ id:'wash', name:'Wash', time:'35 min', map:'ext', route:TOPDOWN_WASH, modes:['maint'],
+  why:'Roof first, then the glass, hood and trunk. Then walk the sides. Bumpers, rockers and trim last because they are the dirtiest. This is where most swirl marks get made, so slow down.',
+  how:[
+    'Soap for this job: the <b>Meguiar\'s Ultimate Wash and Wax</b> jug, about an ounce per gallon in the bucket.',
+    'Rinse the whole car first, top to bottom. Knock the loose dirt off before anything touches the paint.',
+    'If the pressure washer and foam cannon are hooked up: foam the whole car, let it sit 3 to 5 minutes without drying, rinse. The foam lifts grit before the mitt ever touches paint.',
+    'Soap mitt on this panel. Straight lines only, front to back. <b>Never circles.</b> Circles make the spiderweb you see in sunlight.',
+    'Dunk the mitt in the plain water bucket, squeeze it out, then back in the soap before the next panel.',
+    'Keep the whole car wet the entire time. If a panel starts to dry, rinse it again.',
+    'When the last panel is done, rinse the whole car from the top down and let the water sheet off.'
+  ],
+  watch:[
+    'Drop the mitt on the ground and it is <b>done</b>. Grab a new one. One grain of sand drags a scratch down the whole side.',
+    'Open the doors and wash the jambs when you do the doors. Customers always check the jambs.',
+    'Do not let the hose nozzle bang into the paint. It happens more than you think.',
+    '<b>No clay mitt on a wash and wax.</b> It is medium grade and leaves tiny marks you will not be polishing out today. Paint feels rough? Use the clay bar from the kit on the rough spots, or sell them the full detail.'
+  ],
+  notes:{
+    roof:['First panel every time. Highest point on the car, so everything you rinse off here runs down over panels you have not done yet.'],
+    rock:['Dirtiest part of the car. Use a second mitt for these, or do them last and then retire that mitt.'],
+    trim:['Get a brush into the gaps around badges, mirrors and grilles. Soap dries white in there and shows up an hour later.'],
+    fb:['Bug guts live here. Hit them with the <b>Meguiar\'s Bug and Tar foam</b> before you wash, let it sit one minute, then wash it off with the mitt. No scrubbing.']
+  }},
+{ id:'washclay', name:'Wash & Clay', time:'55 min', map:'ext', route:TOPDOWN_WASH, modes:['full'],
+  why:'Roof first, then glass, hood, trunk, walk the sides, bumpers, rockers, trim last. The clay mitt rides along in the wash: wash the panel, glide the mitt over it while it is still soapy, rinse. That is your whole clay step, done in the wash.',
+  how:[
+    'Soap for a full detail: the <b>Meguiar\'s Super Soap at double strength</b>, or the <b>Chemical Guys Citrus Wash and Gloss</b>. Not the wash and wax soaps. You are about to polish, so wax in the soap is wasted.',
+    'Rinse the whole car first, top to bottom. Knock the loose dirt off before anything touches the paint.',
+    'If the pressure washer and foam cannon are hooked up: foam the whole car with the Citrus soap, let it sit 3 to 5 minutes without drying, rinse. Then the mitt.',
+    'Wash mitt on this panel first. Straight lines, front to back, <b>never circles.</b> Dunk it in the plain bucket, then back in the soap.',
+    'Now the clay mitt. Dunk it in the soap bucket so it is dripping. The panel has to be wet and slippery the whole time.',
+    'Glide it over the panel in straight lines with no pressure. It feels grabby and sounds scratchy at first. <b>When it goes quiet and slides smooth, that panel is clean.</b>',
+    'Rinse the clay mitt under the hose. Every panel. The grit it just pulled out does not get dragged onto the next one.',
+    'Rinse the panel. Next panel.',
+    'Glass, badges and tight spots get the clay bar from the Meguiar\'s kit with its spray. The mitt is too big to work in there.'
+  ],
+  watch:[
+    'Brand new mitt: rub it on the windshield with soapy water for a minute or two before it touches paint. That breaks it in.',
+    'Never on a dry panel. Not for one second. Medium grade on dry paint leaves scratches.',
+    'Drop it: rinse it under the hose and look at the rubber face. Clean, keep going. Grit stuck in it, that mitt is done for today. Grab the second one.',
+    'Dark or soft paint (black, Honda, Toyota, Subaru) will look lightly hazy after the mitt. Normal. The polish step takes it out. That is exactly why the mitt is only for full details.',
+    'Drop the wash mitt on the ground and it is <b>done</b>. Grab a new one.',
+    'Rinse the clay mitt clean at the end of the day and hang it. Never leave it lying face down on anything.',
+    'Check your work: hand in a plastic sandwich bag, rub the paint. Rough means go again. Smooth as glass means done.'
+  ],
+  notes:{
+    roof:['First panel every time. Roof and hood catch the most fallout, so these two take the longest with the mitt.'],
+    hood:['Roof and hood catch the most fallout. Expect the mitt to grab here longer than anywhere else.'],
+    rock:['Dirtiest part of the car. Second wash mitt or do them last. Tar spots: <b>Meguiar\'s Bug and Tar foam</b>, let it sit a minute, wipe with a towel, then wash. Not more rubbing with the mitt.'],
+    trim:['Brush into the gaps around badges, mirrors and grilles. Clay bar on the glass and mirror faces, not the mitt.'],
+    fb:['Bug guts live here. <b>Bug and Tar foam</b> first, one minute, then wash. The clay mitt lifts whatever specks are left.']
+  }},
+{ id:'dry', name:'Dry', time:'15 min', map:'ext', route:TOPDOWN_DRY, modes:['full'],
+  why:'Same order as the wash. Water left in gaps drips out later and ruins a car you already finished. Utah hard water spots fast, so move.',
+  how:[
+    'Big towel laid flat on the panel. Pull it toward you. Do not scrub, do not push it around.',
+    'Blow the water out of every gap on this panel with the air compressor: badges, handles, trim seams, fuel door.',
+    'Doors: open them and dry the jambs.',
+    'Last pass with a fresh dry towel to catch anything you missed.'
+  ],
+  watch:[
+    'Utah water spots fast and hard. Do not walk away from a wet car in the sun, even for five minutes.',
+    'If you see spots already baked in, those need polish, not a towel. Note it and handle it in the polish step.',
+    'No spray detailer as a drying aid on a full detail. The ICE and Sea Foam sprays hide swirls, and the next thing you do is go looking for swirls.'
+  ],
+  notes:{
+    trim:['Mirrors hold a cup of water each. Blow them out or they drip down your clean door in ten minutes.'],
+    wlf:['Dry the wheel face. Wet wheels spot just like paint.'],wlr:['Dry the wheel face. Wet wheels spot just like paint.'],
+    wrr:['Dry the wheel face. Wet wheels spot just like paint.'],wrf:['Dry the wheel face. Wet wheels spot just like paint.']
+  }},
+{ id:'strip', name:'Strip Interior', time:'10 min', map:'int', route:['imat','icgo','ifst','irst'], modes:['full','int'],
+  why:'Get everything out of the car first. You cannot clean around someone\'s stuff and you cannot vacuum a floor with mats on it.',
+  how:[
+    'All trash out. All four mats out onto the driveway.',
+    'Every personal item goes into one bag or box the customer can see. Never a pile on the ground.',
+    'Slide both front seats all the way forward. You will slide them back later and do the other half.',
+    'Beat the mats out or hose them off and stand them up to dry while you work.'
+  ],
+  watch:[
+    'Check under the seats and in the seat pockets before you start. Phones, wallets, kids toys.',
+    'If you find money or anything valuable, set it on the dash where they can see it. Say something.'
+  ]},
+{ id:'vac', name:'Vacuum', time:'25 min', map:'int', route:INT_VAC, modes:['full','int'],
+  why:'Top to bottom, same as the outside. Headliner, dash, console, then seats and doors, floor last. Everything you knock loose up high lands on the floor. Pet hair adds an hour.',
+  how:[
+    'Vacuum this zone with the brush attachment first to knock loose dust.',
+    'Switch to the skinny crevice tool for every seam on it.',
+    'Blow the seams out with the air compressor if the crevice tool cannot reach, then vacuum what lands.',
+    'Pull the vacuum toward you in straight lines on carpet so the nap lays one direction.'
+  ],
+  watch:[
+    'Pet hair does not vacuum out. Pull it loose first with a rubber edge or the little hair wedge, then vacuum, then do it again. <b>Three passes minimum.</b>',
+    'Pet hair doubles the time on a car. Quote it separately and say so up front.'
+  ],
+  notes:{
+    ihed:['Soft brush attachment only, light touch. You are knocking dust loose, not scrubbing.'],
+    ifst:['Seat seams hide everything. Crevice tool down every stitch line, both seats. Seats forward, do behind. Seats back, do in front.'],
+    irst:['Pull the bottom cushion up if it lifts. That is where the real mess lives.'],
+    icar:['Go one direction so the carpet nap all lays the same way. Looks twice as clean for free.'],
+    imat:['Mats are out on the driveway. Vacuum them there, both sides.'],
+    icon:['Cup holders and seams: the <b>Dremel Versa</b> with the bristle pad knocks the stuck stuff loose, then vacuum it.']
+  }},
+{ id:'intwipe', name:'Interior Wipe', time:'25 min', map:'int', route:INT_WIPE, modes:['full','int'],
+  why:'Same top-down order. Clean, not shiny. A greasy shiny dash glares in the windshield and looks cheap.',
+  how:[
+    'Cleaner: <b>Meguiar\'s Quik Interior Detailer.</b> Spray it on the towel, <b>never</b> on the surface. Overspray on the screen and glass costs you ten minutes to fix.',
+    'Soft detail brush first into the vents, seams, buttons and the shifter. Loosen it, then wipe it.',
+    'Wipe the zone with the damp towel, then follow with a dry one.',
+    'Screens and gauges get a clean dry towel only. No cleaner.',
+    'Leather or vinyl: damp towel, light pressure, dry it after. No scrubbing.'
+  ],
+  watch:[
+    'Leave the dash matte. If it looks wet, you used too much.',
+    'Keep cleaner off the steering wheel grip and the pedals. A slick wheel is a real hazard and it comes back on you.',
+    'Do not soak anything near the electronics in the center console.',
+    '<b>Spic and Span stays in the garage.</b> It dries out vinyl and leather. <b>Armor All Original</b> never on the dash top, steering wheel or pedals: it is slick and it glares in the windshield. Lower door plastics and rubber mats only, wiped nearly dry.'
+  ],
+  notes:{
+    ihed:['Spot only. Barely damp towel, dab do not rub. Headliner glue lets go if you soak it and it sags forever.'],
+    istw:['Highest touch point in the car. Clean it well, dry it fully, leave zero slick.'],
+    icon:['Brush the cup holders out first. They are always full of sticky.'],
+    imat:['Rubber mats: scrub standing up against the car with the drill brush. Carpet mats: <b>Tuff Stuff foam</b>, let it sit 30 seconds, drill brush or the Dremel Versa, wipe with a damp towel, stand them in the sun.'],
+    ifst:['Cloth seats with a stain: <b>Tuff Stuff foam</b>, 30 seconds, scrub with the soft brush, wipe with a damp towel, vacuum when dry. Leather: damp towel only.'],
+    irst:['Cloth seats with a stain: <b>Tuff Stuff foam</b>, 30 seconds, scrub with the soft brush, wipe with a damp towel, vacuum when dry. Leather: damp towel only.'],
+    icar:['Set-in carpet stain: test the <b>laundry stain remover</b> on a hidden spot first. Work it in, blot it out with a damp towel, then Tuff Stuff over the top. Do not leave it in the carpet, it attracts dirt.']
+  }},
+{ id:'measure', name:'Measure & Inspect', time:'20 min', map:'ext', route:PAINT_ROUTE, modes:['full'],
+  why:'Hood first because the test spot is next. Then roof, trunk, sides, bumpers. You are finding out how much paint you have before you take any off. Paint does not grow back.',
+  how:[
+    'Hold the gauge flat against the panel. Take <b>five readings</b>: the middle, and in toward each corner.',
+    'Write every number down on your job sheet.',
+    'Factory paint normally reads about 100 to 180.',
+    'Under 90, flag it and tell the customer. Under 85, no heavy cutting. Under 75, hand wax only, no machine at all.',
+    'Over 220 means this panel has been repainted. Go gentle or skip it. Repaint is softer and thinner than it looks.',
+    'Shine your light across the paint at a low angle. Swirls look like a spiderweb. Fingernail catches in a scratch? Too deep, polish will not fix it.'
+  ],
+  watch:[
+    'Stay an inch off every edge and body line. Edges always read low and they are where you burn through first.',
+    'If the clear coat is peeling, cloudy or flaking, <b>stop.</b> Do not polish it. Polishing failing clear makes it worse and it becomes your fault.',
+    'Tell the customer what you found before you start, not after.'
+  ]},
+{ id:'test', name:'Test Spot', time:'20 min', map:'ext', route:['hood'], modes:['full'],
+  why:'Pick one small square and find the gentlest thing that fixes the paint. Whatever works there is your setting for the whole car. This is the single step that stops you from ruining somebody\'s car.',
+  how:[
+    'Tape off a square about 2 feet by 2 feet on the hood.',
+    'Start soft: <b>yellow pad plus the finishing polish.</b> Always the softest thing first.',
+    'Work the square the same way you will work the whole car. Wipe it clean.',
+    'Hit it with your light at a low angle. Swirls gone? That is your combo for the entire car. Done deciding.',
+    'Still swirled? Step up to the <b>maroon pad with the same polish</b> and redo the square.',
+    'Still swirled after maroon? <b>Maroon pad plus the Meguiar\'s Ultimate Compound.</b> Redo the square, 3 to 4 sets.',
+    'Now go back over that same square with the <b>yellow pad and the finishing polish.</b> Compound cuts fast and leaves a light haze. The polish pass clears it. Every square that gets compound gets both passes.',
+    'Still swirled after compound? That scratch is through the clear. It is not coming out. Tell the customer, note it, move on.'
+  ],
+  watch:[
+    'Always test on the hood. It is flat, it is easy, and nobody inspects a hood from six inches away.',
+    'Never skip this because you are in a hurry. Guessing is how you buy somebody a paint job.',
+    'Write the winning combo on your job sheet so you do not forget it halfway through the car.',
+    'Compound only on panels that read <b>100 or more</b> on the gauge. Under that, maroon and polish is as far as you go.'
+  ]},
+{ id:'polish', name:'Polish', time:'2 hr 30 min', map:'ext', route:PAINT_ROUTE, modes:['full'],
+  why:'Hood first, you already tested there and it is the easiest flat panel to build your rhythm on. Then roof, trunk, walk the sides. Bumpers dead last because plastic heats up fast.',
+  how:[
+    'Tape this panel into squares about 2 feet by 2 feet. <b>One square at a time, always.</b>',
+    'Prime a new pad: three drops of polish, work it into the foam with your finger until the face is damp all over. A dry pad drags.',
+    'Three or four pea sized drops on the pad.',
+    'Put the pad flat <b>on the paint before you turn it on.</b> Every time.',
+    'Speed 1 or 2 and spread the polish over the whole square first. Now you have coverage.',
+    'Speed 4 to 6. Move about <b>one inch per second.</b> Slower than feels right.',
+    'Left to right across the square, each pass covering half of the one before it. Then the same top to bottom. That is one set.',
+    'Four to six sets per square.',
+    'Lean on it about ten pounds, like leaning on a bathroom scale. Last set, let the machine float on its own weight.',
+    'Watch the liquid. Creamy, then see through, then almost gone. <b>When it goes clear, it is spent. Stop.</b>',
+    'Wipe with a clean towel. Check with the light. Next square.'
+  ],
+  watch:[
+    'Clean the pad after <b>every square.</b> Air blast it or brush it out. A loaded pad stops cutting and starts smearing.',
+    'Swap to a fresh pad every two panels.',
+    'Turn the machine <b>off while it is still on the paint</b>, then lift. Lift it spinning and you sling polish across the entire car.',
+    'Keep it flat. Never tilt it onto an edge to chase a curve. Use the middle of the pad on curves instead.',
+    'Never let it sit spinning in one spot. Keep it moving or it heats up and burns.',
+    'Tape off every badge, every edge and every piece of black plastic trim with the Scotch Blue. Polish stains plastic white and it is miserable to get out.',
+    'If the test spot needed compound: compound the square first (maroon plus Ultimate Compound), wipe it, then polish it (yellow plus finishing polish). <b>Two passes on every square.</b> Never ship a compounded panel without the polish pass.'
+  ],
+  notes:{
+    hood:['Your test spot lives here. 4 to 6 squares. Easiest panel to get right, so build your rhythm on it.'],
+    roof:['Biggest flat panel on the car and the one that shows most in sunlight. Do not rush it. 6 to 8 squares.'],
+    fb:['Plastic. Heats up way faster than metal. Lighter pressure, less time, check it often.'],
+    rb:['Plastic. Heats up way faster than metal. Lighter pressure, less time, check it often.'],
+    lrq:['Curved. Use the middle of the pad and let it follow the shape. Do not tilt the machine.'],
+    rrq:['Curved. Use the middle of the pad and let it follow the shape. Do not tilt the machine.'],
+    lff:['Tight around the headlight and the mirror. Tape them off first.'],
+    rff:['Tight around the headlight and the mirror. Tape them off first.'],
+    tr:['Watch the badge and the handle. Tape both.']
+  }},
+{ id:'wipe', name:'Wipe Down', time:'15 min', map:'ext', route:PAINT_ROUTE, modes:['full'],
+  why:'Same order you polished in. Polish leaves oils behind that hide swirls. Strip them off so you see the truth before you seal it in.',
+  how:[
+    'Mix rubbing alcohol half and half with water in the Zep sprayer bottle. Label it.',
+    'Light mist on the panel. Wipe with a clean towel. Flip it and wipe again.',
+    'Check with your light at a low angle.',
+    'Find a bad spot? Go back and redo that one square before you wax anything.'
+  ],
+  watch:[
+    'Use a towel from the polish pile, not the wash pile.',
+    'Do not soak it. A light mist is enough.',
+    'This is your last chance to fix anything. Once the wax goes on, you are done looking.'
+  ]},
+{ id:'wax', name:'Ceramic Wax', time:'25 min', map:'ext', route:WAX_ROUTE, modes:['full','maint'],
+  why:'Roof, hood, trunk, then walk the sides, bumpers and rockers. This is the Meguiar\'s Hybrid Ceramic Wax and it goes on a <b>wet</b> car. Spray, rinse, dry. No haze, no buffing, no waiting.',
+  how:[
+    'The car has to be wet. Straight off a wash, it already is. Coming off a polish, rinse the whole car again with plain water, no soap.',
+    'Shake the bottle. Light even mist over this panel while it is still dripping. You are not soaking it.',
+    'Rinse the panel right away with the hose on an open gentle flow, not the jet. Water starts beading up hard. That is the wax bonding.',
+    'Dry the panel with a clean towel before it air dries. Blow the gaps out with the compressor.',
+    'Next panel. Finish each one completely before you move.'
+  ],
+  watch:[
+    'Shade only and the panel has to be cool. In the sun it dries into streaks before you can rinse it.',
+    'Do not let it dry on the paint before the rinse. If a spot streaks, mist it with water and wipe with a damp towel.',
+    'Light coat. More does not add protection, it adds streaks.',
+    'Wash and wax job and you want extra pop: the <b>Chemical Guys Blazin Banana spray wax</b> on top, after the car is dry. Light mist on the dry panel, wipe, flip the towel, buff. Thirty seconds a panel.'
+  ],
+  notes:{
+    roof:['Biggest panel. Spray it in two halves so the first half does not dry before you rinse it.'],
+    wsh:['Fine on glass. It beads rain off the windshield.'],
+    rock:['Rockers get it too. It keeps road grime from sticking as hard next time.']
+  }},
+{ id:'dress', name:'Tires & Trim', time:'15 min', map:'ext', route:WHEELS.concat(['trim']), modes:['full','maint'],
+  why:'Walk the tires in the same order you cleaned them, then the trim. This is the step customers see from thirty feet away.',
+  how:[
+    'Tire has to be completely dry or the dressing will not stick.',
+    'Spray the <b>Armor All Extreme Tire Shine</b> onto the applicator pad, <b>not onto the tire.</b> That keeps it off your fresh paint. The Meguiar\'s Hot Shine can is the backup, same rule.',
+    'Thin, even coat all the way around.',
+    'Wipe the edge where the rubber meets the wheel so there is no overspray on the wheel face.'
+  ],
+  watch:[
+    'Thick coat slings black spots down the whole side of the car on the first drive and the customer calls you. Thin.',
+    'Let it set a few minutes before they drive off.'
+  ],
+  notes:{
+    trim:['Black plastic that has gone grey needs a trim restorer, not tire dressing. Tire dressing on trim washes off in a week.',
+      'Hazy headlights: <b>Blue Magic Headlight Lens Restorer</b> by hand, two minutes per light, wipe clean. It brightens them but it will not hold. Without a sealant on top they yellow again in a month. Sell it as a refresh, not a fix.']
+  }},
+{ id:'glass', name:'Glass', time:'15 min', map:'ext', route:GLASS_ROUTE, modes:['full','maint'],
+  why:'Windshield, then walk around: driver doors, rear glass, passenger doors, mirrors. Glass is the last thing to get dirty and the first thing a customer looks through.',
+  how:[
+    'Two towels. One you spray, one stays dry.',
+    'Doors: roll the window down two inches and clean the top edge first. That is the line everybody misses.',
+    'Inside: wipe <b>side to side.</b> Outside: wipe <b>up and down.</b> Now a streak tells you which side it is on.',
+    'Follow immediately with the dry towel while it is still wet.',
+    'Windshield inside from the passenger seat, not the driver seat. Better angle on the far corner.'
+  ],
+  watch:[
+    'Never use a towel that has touched wax or polish. It will smear and you will chase it forever.',
+    'Do not spray glass cleaner near fresh wax on the paint.',
+    'The little quarter windows count. Those get skipped constantly.'
+  ],
+  notes:{ trim:['Mirror glass. Small, easy to skip, always noticed.'] }},
+{ id:'iglass', name:'Inside Glass', time:'10 min', map:'int', route:['iwsh'], modes:['int'],
+  why:'Dead last so you can see every smudge from everything else you just did.',
+  how:[
+    'Two towels. One you spray, one stays dry.',
+    'Windshield from the passenger seat, not the driver seat. Better angle on the far corner.',
+    'Wipe <b>side to side</b> inside. Roll each window down two inches and get the top edge.',
+    'Dry towel right behind while it is still wet.'
+  ],
+  watch:[
+    'No towel that has touched any cleaner or dressing. Glass towels only.',
+    'Rear glass through the back doors, not from the trunk.'
+  ]},
+{ id:'final', name:'Final Walk', time:'10 min', map:null, modes:['full','maint','int'],
+  why:'Ten minutes here is what gets you the referral. This is the difference between a guy who washed a car and a detailer.',
+  list:[
+    'Walk both sides with your light held low, looking across the paint. Catch anything you missed now, not after they leave.',
+    'Check every door jamb, the fuel door, around badges, and the mirror gaps for trapped water or dried polish dust.',
+    'One more pass with the air compressor through every gap and seam.',
+    'Mats back in. Seats back where they started. Mirrors back where they were.',
+    'Personal items back in the same spot you found them.',
+    'Smell check the interior. If it still smells, something is still under a seat.',
+    'After photos. Same angles as your before shots, same spot, same light.',
+    'Walk the car <b>with</b> the customer. Point out what you fixed. Do not wait for them to find it.',
+    'Hand them the aftercare card. Tell them out loud: no automatic car wash for a week, and do not park under a sprinkler.',
+    'Ask for the review while you are still standing there. Not later by text.'
+  ]}
+];
+
+var MODES=[
+  {id:'full',  name:'Full Detail',  sub:'7 hr+'},
+  {id:'maint', name:'Wash & Wax',   sub:'2 hr'},
+  {id:'int',   name:'Interior Only',sub:'1 hr'}
+];
+
+/* ---------- STATE ---------- */
+var saved=load();
+var S={
+  mode:(saved&&saved.mode)||'full',
+  stage:(saved&&saved.stage)||'setup',
+  done:(saved&&saved.done&&typeof saved.done==='object')?saved.done:{}
+};
+var open=null;
+
+function stagesFor(m){ return STAGES.filter(function(s){return s.modes.indexOf(m)>-1;}); }
+function stageById(id){ var a=stagesFor(S.mode); for(var i=0;i<a.length;i++){ if(a[i].id===id) return a[i]; } return a[0]||null; }
+function panelById(id){ for(var i=0;i<ALL.length;i++){ if(ALL[i].id===id) return ALL[i]; } return null; }
+function routeOf(st){ return (st&&st.route)?st.route:[]; }
+function itemsFor(st){
+  if(!st) return [];
+  if(st.list) return st.list.map(function(t,i){return {id:'c'+i,label:t};});
+  var out=[]; routeOf(st).forEach(function(id){ var p=panelById(id); if(p) out.push(p); });
+  return out;
+}
+function k(st,id){return st.id+':'+id;}
+function isDone(st,id){return !!S.done[k(st,id)];}
+function stageCounts(st){ var it=itemsFor(st),d=0; for(var i=0;i<it.length;i++){ if(isDone(st,it[i].id)) d++; } return {done:d,total:it.length}; }
+function nextUndone(st,afterIdx){
+  var r=routeOf(st); if(!r.length) return null;
+  var start=(typeof afterIdx==='number')?afterIdx+1:0;
+  for(var i=0;i<r.length;i++){ var idx=(start+i)%r.length; if(!isDone(st,r[idx])) return r[idx]; }
+  return null;
+}
+function routeIndex(st,pid){ return routeOf(st).indexOf(pid); }
+
+/* ---------- RENDER ---------- */
+var elModes=document.getElementById('modes');
+var elRail=document.getElementById('rail');
+var elMain=document.getElementById('main');
+
+function renderModes(){
+  elModes.innerHTML='';
+  MODES.forEach(function(m){
+    var b=document.createElement('button');
+    b.className='mode'+(S.mode===m.id?' on':'');
+    b.innerHTML=esc(m.name)+'<small>'+esc(m.sub)+'</small>';
+    b.addEventListener('click',function(){
+      if(S.mode===m.id) return;
+      S.mode=m.id; var list=stagesFor(S.mode); S.stage=list.length?list[0].id:'setup';
+      save();renderAll();
+    });
+    elModes.appendChild(b);
+  });
+}
+function renderRail(){
+  elRail.innerHTML='';
+  var list=stagesFor(S.mode);
+  list.forEach(function(st,i){
+    var c=stageCounts(st), complete=(c.total>0&&c.done===c.total);
+    var b=document.createElement('button');
+    b.className='chip'+(S.stage===st.id?' on':'')+(complete&&S.stage!==st.id?' complete':'');
+    b.innerHTML='<b>'+(i+1)+'</b>'+esc(st.name)+(complete?' ✓':'');
+    b.addEventListener('click',function(){ S.stage=st.id;save();renderAll();elMain.scrollTop=0; });
+    elRail.appendChild(b);
+  });
+  var on=elRail.querySelector('.chip.on');
+  if(on&&on.scrollIntoView){ try{on.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}catch(e){} }
+}
+
+function shapeSVG(p,st,sh,nextId){
+  var ri=routeIndex(st,p.id), active=ri>-1, d=active&&isDone(st,p.id), isNext=(p.id===nextId);
+  var cls='pz'+(sh.glass?' glass':'')+(sh.whl?' whl':'')+(sh.trim?' trim':'')+(d?' done':'')+(isNext?' next':'')+(active?'':' off');
+  var s='<g class="'+cls+'" data-p="'+p.id+'" role="button" tabindex="'+(active?'0':'-1')+'" aria-label="'+esc(p.label)+'">';
+  var parts=sh.parts||[sh];
+  parts.forEach(function(q){
+    if(q.rect){ s+='<rect x="'+q.rect[0]+'" y="'+q.rect[1]+'" width="'+q.rect[2]+'" height="'+q.rect[3]+'" rx="'+(q.rect[4]||0)+'"/>'; }
+    else { s+='<path d="'+q.d+'"/>'; }
+    if(q.lx!=null){
+      var lines=String(q.label!=null?q.label:p.label).split('|');
+      var tr=q.rot?' transform="rotate('+q.rot+' '+q.lx+' '+q.ly+')"':'';
+      s+='<text class="lbl" x="'+q.lx+'" y="'+q.ly+'"'+tr+'>';
+      for(var i=0;i<lines.length;i++){
+        var dy=(i===0)?((0.35-(lines.length-1)*0.6).toFixed(2)+'em'):'1.2em';
+        s+='<tspan x="'+q.lx+'" dy="'+dy+'">'+esc(lines[i])+'</tspan>';
+      }
+      s+='</text>';
+    }
+    if(q.nx!=null&&active){
+      if(d&&sh.tiny) s+='<text class="tick l" x="'+q.nx+'" y="'+q.ny+'">✓</text>';
+      else s+='<text class="num" x="'+q.nx+'" y="'+q.ny+'">'+(ri+1)+'</text>';
+    }
+  });
+  if(d&&!sh.tiny&&sh.tx!=null) s+='<text class="tick" x="'+sh.tx+'" y="'+sh.ty+'">✓</text>';
+  return s+'</g>';
+}
+function carSVG(st,isInt,nextId){
+  var SH=isInt?INTSH:EXTSH, list=isInt?INT:EXT;
+  var s='<svg class="carsvg" viewBox="0 0 440 820" xmlns="http://www.w3.org/2000/svg" aria-label="Car map">';
+  s+='<path class="carbase" d="'+BODY+'"/>'+(isInt?INTDECO:EXTDECO);
+  list.forEach(function(p){ var sh=SH[p.id]; if(sh) s+=shapeSVG(p,st,sh,nextId); });
+  return s+'</svg>';
+}
+function tileHTML(p,st,nextId){
+  var ri=routeIndex(st,p.id), d=isDone(st,p.id);
+  return '<button class="tile'+(d?' done':'')+(p.id===nextId?' next':'')+'" data-p="'+p.id+'">'+
+    '<span class="num">'+(ri+1)+'</span><span class="tick">✓</span>'+esc(p.label)+'</button>';
+}
+
+function renderMain(){
+  var st=stageById(S.stage);
+  if(!st){ elMain.innerHTML='<div class="err">No step found. Tap the gear and clear your checkmarks.</div>'; return; }
+  S.stage=st.id;
+  var c=stageCounts(st), pct=c.total?Math.round(c.done/c.total*100):0;
+  var list=stagesFor(S.mode), idx=0;
+  for(var i=0;i<list.length;i++){ if(list[i].id===st.id){idx=i;break;} }
+  var nextId=st.list?null:nextUndone(st);
+  var nextStage=(idx<list.length-1)?list[idx+1]:null;
+
+  var h='<div class="stagehead">';
+  h+='<div class="stagemeta"><span class="pill">Step '+(idx+1)+' of '+list.length+'</span><span class="pill t">'+esc(st.time)+'</span></div>';
+  h+='<h1>'+esc(st.name)+'</h1><p class="why">'+st.why+'</p>';
+  if(c.total){
+    h+='<div class="prog"><div class="progbar"><div class="progfill" style="width:'+pct+'%"></div></div>'+
+       '<div class="progtxt"><span>'+c.done+' of '+c.total+' done</span><span>'+pct+'%</span></div></div>';
+  }
+  if(!st.list){
+    if(nextId){
+      var np=panelById(nextId), ni=routeIndex(st,nextId);
+      h+='<div class="nextup" id="nextup" data-p="'+nextId+'"><div class="nu-l"><div class="nu-k">UP NEXT</div>'+
+         '<div class="nu-t"><b>'+(ni+1)+'</b>'+esc(np.label)+'</div><div class="nu-s">Panel '+(ni+1)+' of '+c.total+'</div></div>'+
+         '<span class="nu-btn">Open</span></div>';
+    }else{
+      h+='<div class="nextup alldone" id="nextup" data-stage="1"><div class="nu-l"><div class="nu-k">THIS STEP IS DONE</div>'+
+         '<div class="nu-t">'+(nextStage?('Next: '+esc(nextStage.name)):'Back to the start')+'</div></div><span class="nu-btn">Go</span></div>';
+    }
+  }
+  h+='</div>';
+
+  if(st.list){
+    h+='<ul class="check">';
+    st.list.forEach(function(t,i){
+      var id='c'+i;
+      h+='<li data-c="'+id+'" class="'+(isDone(st,id)?'done':'')+'"><span class="box">✓</span><span>'+t+'</span></li>';
+    });
+    h+='</ul>';
+  }else{
+    var isInt=(st.map==='int');
+    h+='<p class="maplabel">'+(isInt?'Inside. Numbers are your order.':'Outside. Numbers are your order.')+'</p>';
+    h+='<div class="mapwrap">'+carSVG(st,isInt,nextId)+'</div>';
+    var ex=(isInt?INTEXTRA:EXTRA).filter(function(p){return routeIndex(st,p.id)>-1;});
+    if(ex.length){
+      h+='<p class="maplabel">Not on the drawing, still in this step</p><div class="extras">';
+      ex.forEach(function(p){h+=tileHTML(p,st,nextId);});
+      h+='</div>';
+    }
+  }
+  if(nextStage){
+    var unfinished=(c.total&&c.done<c.total);
+    h+='<button class="nextbtn'+(unfinished?' ghost':'')+'" id="nextBtn">'+(unfinished?'Skip to ':'Next: ')+esc(nextStage.name)+'</button>';
+  }else{
+    h+='<button class="nextbtn ghost" id="nextBtn">Back to the start</button>';
+  }
+  elMain.innerHTML=h;
+
+  Array.prototype.forEach.call(elMain.querySelectorAll('[data-p]'),function(b){
+    var pid=b.getAttribute('data-p');
+    b.addEventListener('click',function(){ openDrawer(st,pid); });
+    b.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();openDrawer(st,pid);} });
+  });
+  var nu=document.getElementById('nextup');
+  if(nu&&nu.getAttribute('data-stage')) nu.addEventListener('click',function(){ goStage(nextStage?nextStage.id:list[0].id); });
+  Array.prototype.forEach.call(elMain.querySelectorAll('.check li'),function(li){
+    li.addEventListener('click',function(){
+      var id=li.getAttribute('data-c');
+      if(S.done[k(st,id)]) delete S.done[k(st,id)]; else S.done[k(st,id)]=true;
+      save();renderAll();
+    });
+  });
+  var nb=document.getElementById('nextBtn');
+  if(nb) nb.addEventListener('click',function(){ goStage(nextStage?nextStage.id:list[0].id); });
+  renderState();
+}
+function goStage(id){ S.stage=id; save(); renderAll(); elMain.scrollTop=0; }
+function renderAll(){ renderModes(); renderRail(); renderMain(); }
+
+/* ---------- DRAWER ---------- */
+var drawer=document.getElementById('drawer'), scrim=document.getElementById('scrim');
+var dEyebrow=document.getElementById('dEyebrow'), dTitle=document.getElementById('dTitle');
+var dSub=document.getElementById('dSub'), dBody=document.getElementById('dBody'), dDone=document.getElementById('dDone');
+
+function perPanelTime(st,n){
+  var m=/^(\d+)\s*(hr|min)(?:\s*(\d+)\s*min)?/.exec(st.time||'');
+  if(!m||!n) return '';
+  var mins=(m[2]==='hr')?parseInt(m[1],10)*60+(m[3]?parseInt(m[3],10):0):parseInt(m[1],10);
+  var per=Math.round(mins/n);
+  return per<1?'Under a minute here.':'About '+per+' min here.';
+}
+function openDrawer(st,pid){
+  var p=panelById(pid); if(!p) return;
+  var r=routeOf(st), ri=r.indexOf(pid);
+  open={st:st,pid:pid};
+  dEyebrow.textContent=st.name;
+  dTitle.innerHTML=(ri>-1?'<b>'+(ri+1)+'</b>':'')+esc(p.label);
+  dSub.textContent=(ri>-1?'Panel '+(ri+1)+' of '+r.length+' in this step. ':'')+perPanelTime(st,r.length);
+
+  var h='<div class="sect"><h3>Why</h3><div class="note"><strong>THE POINT</strong>'+st.why+'</div></div>';
+  var notes=(st.notes&&st.notes[pid])||null;
+  if(notes){ h+='<div class="sect"><h3>On this one</h3><div class="note"><strong>'+esc(p.label.toUpperCase())+'</strong>'+notes.join('<br>')+'</div></div>'; }
+  if(st.how&&st.how.length){ h+='<div class="sect"><h3>Do this</h3><ol class="steps">'; st.how.forEach(function(t){h+='<li>'+t+'</li>';}); h+='</ol></div>'; }
+  if(st.watch&&st.watch.length){ h+='<div class="sect warn"><h3>Watch out</h3><ul class="bullets">'; st.watch.forEach(function(t){h+='<li>'+t+'</li>';}); h+='</ul></div>'; }
+
+  if(r.length>1){
+    h+='<div class="sect"><h3>Order for this step</h3><ul class="bullets plain">';
+    r.forEach(function(id,i){
+      var q=panelById(id); if(!q) return;
+      var dn=isDone(st,id), now=(id===pid);
+      h+='<li class="'+(dn?'isdone':'')+(now?' isnow':'')+'"><b>'+(i+1)+'. '+esc(q.label)+'</b>'+(dn?' ✓':'')+(now?' (you are here)':'')+'</li>';
+    });
+    h+='</ul></div>';
+  }
+  var touches=stagesFor(S.mode).filter(function(s){ return routeOf(s).indexOf(pid)>-1; });
+  if(touches.length>1){
+    h+='<div class="sect"><h3>Everything this panel gets today</h3><ul class="bullets plain">';
+    touches.forEach(function(s){ h+='<li class="'+(isDone(s,pid)?'isdone':'')+(s.id===st.id?' isnow':'')+'"><b>'+esc(s.name)+'</b>'+(isDone(s,pid)?' ✓':'')+', '+esc(s.time)+'</li>'; });
+    h+='</ul></div>';
+  }
+  dBody.innerHTML=h; dBody.scrollTop=0;
+  syncDoneBtn();
+  scrim.classList.add('open'); drawer.classList.add('open');
+}
+function syncDoneBtn(){
+  if(!open) return;
+  var d=isDone(open.st,open.pid);
+  dDone.textContent=d?'Undo done':'Done, next';
+  dDone.className='dbtn primary'+(d?' isdone':'');
+}
+function closeDrawer(){ drawer.classList.remove('open'); scrim.classList.remove('open'); open=null; }
+dDone.addEventListener('click',function(){
+  if(!open) return;
+  var st=open.st, pid=open.pid, key=k(st,pid);
+  if(S.done[key]){ delete S.done[key]; save(); syncDoneBtn(); renderRail(); renderMain(); return; }
+  S.done[key]=true; save();
+  var nxt=nextUndone(st,routeIndex(st,pid));
+  renderRail(); renderMain();
+  if(nxt){ openDrawer(st,nxt); } else { closeDrawer(); }
+});
+document.getElementById('dClose').addEventListener('click',closeDrawer);
+scrim.addEventListener('click',function(){closeDrawer();closeSettings();});
+
+/* ---------- SETTINGS ---------- */
+var settings=document.getElementById('settings'), stateOut=document.getElementById('stateOut');
+var appEl=document.getElementById('app'), simtag=document.getElementById('simtag');
+function openSettings(){settings.classList.add('open');scrim.classList.add('open');renderState();}
+function closeSettings(){settings.classList.remove('open');if(!open)scrim.classList.remove('open');}
+document.getElementById('btnSettings').addEventListener('click',openSettings);
+document.getElementById('btnCloseSettings').addEventListener('click',closeSettings);
+function renderState(){
+  var st=stageById(S.stage), c=st?stageCounts(st):{done:0,total:0}, total=0;
+  for(var key in S.done){ if(Object.prototype.hasOwnProperty.call(S.done,key)) total++; }
+  var canSave=false; try{canSave=!!window.localStorage;}catch(e){}
+  stateOut.textContent='{\n  job: "'+S.mode+'",\n  step: "'+(st?st.id:'none')+'",\n  nextPanel: "'+(st&&!st.list?(nextUndone(st)||'none'):'n/a')+'",\n  thisStep: '+c.done+'/'+c.total+',\n  checkedTotal: '+total+',\n  saving: '+canSave+'\n}';
+}
+Array.prototype.forEach.call(document.querySelectorAll('.devrow button'),function(b){
+  b.addEventListener('click',function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.devrow button'),function(x){x.classList.remove('on');});
+    b.classList.add('on');
+    var w=b.getAttribute('data-w');
+    appEl.classList.add('sim'); appEl.style.maxWidth=(w==='100%')?'760px':w;
+    if(w==='100%') simtag.classList.remove('on'); else simtag.classList.add('on');
+  });
+});
+document.getElementById('btnReset').addEventListener('click',function(){ S.done={};save();renderAll();closeSettings(); });
+
+/* ---------- BOOT ---------- */
+try{
+  if(!stageById(S.stage)){ var f=stagesFor(S.mode); S.stage=f.length?f[0].id:'setup'; }
+  renderAll();
+}catch(err){
+  elMain.innerHTML='<div class="err">Something did not load. Tap the gear, clear your checkmarks, then reload.<br><br>'+esc(err&&err.message?err.message:err)+'</div>';
+}
+})();
+</script>
+</body>
+</html>
