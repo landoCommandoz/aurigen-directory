@@ -96,7 +96,7 @@ The designer's own description: Barlow "shares qualities with the state's car pl
 ### Signature moment: the polish goes clear
 
 - Where: the section timer in the Job Runner, during every polish set. A smaller version plays when a Fix It step is checked off.
-- What moves: a 2 x 2 square is drawn behind the timer digits. It starts covered in a creamy film: off-white at 85% opacity with soft grain. As the planned section time runs (about 4 minutes per 2 x 2 section on a one-step, KB 8.7 `[HOUSE from booklet time map]`), the film thins on a straight line to 15% opacity at the end. The change is slow. You see it across a set, not second to second.
+- What moves: a 2 x 2 ft square is drawn behind the timer digits. It starts covered in a creamy film: off-white at 85% opacity with soft grain. As the planned section time runs (about 4 minutes per 2 x 2 ft section on a one-step, KB 8.7 `[HOUSE from booklet time map]`), the film thins on a straight line to 15% opacity at the end. The change is slow. You see it across a set, not second to second.
 - On "Done, next": a towel wipe. A 320 ms ease-out sweep from left to right clears what is left of the film, the square's outline flashes `--accent` once, and a check appears.
 - If the timer runs past plan: the film is gone, the square's edge turns `--text-2`, and the label reads "Spent. Wipe and check."
 - What it means to Lando: KB 8.3 `[HOUSE]`: creamy, then see-through, then almost gone. When it goes clear it is spent. Stop. The timer face teaches the rule every set.
@@ -334,7 +334,7 @@ Direction A:
 
 Notes for A:
 - "Ahead of plan 12m" compares the time map (KB 17 `[HOUSE from booklet]`) with the clock. It flips to "Behind plan" in `--text-2`, never red. Red is for STOP.
-- The square behind the timer is the signature moment. `:` is film still creamy, `.` is film gone clear. "4:00 planned" is the house time per 2 x 2 section (KB 8.7).
+- The square behind the timer is the signature moment. `:` is film still creamy, `.` is film gone clear. "4:00 planned" is the house time per 2 x 2 ft section (KB 8.7).
 - The step text is the whole step, three lines maximum, `clamp(28px, 7.5vw, 40px)`, in `--text`. It is read aloud as the step opens.
 - "Done, next" is 96 px tall, `--accent` fill, near-black text. A second tap inside about 700 ms is ignored (tune the window in Phase 3). After a tap, "Undo last" appears for 5 seconds. No confirm dialogs.
 - The bottom row is 64 px. Fix It is always one tap away. "Pause" stops the timer and the read-aloud and keeps the job.
@@ -427,7 +427,7 @@ Direction A:
 ```
 
 Notes for A:
-- The car is the SVG from the Panel Map, recolored by the house thickness bands (KB 7.3 `[HOUSE]`). Proposed customer grouping: H is 100 µm or more (full ladder permitted); G is 75 to 99 (the "polish only" and "tell the customer" bands); T is under 75 (no machine, hand protection only). A panel reading far above the rest (about 220 or more) is a repaint and gets its own label, "Repainted panel, treated gently," when present.
+- The car is the SVG from the Panel Map, recolored by the house thickness bands (KB 7.3 `[HOUSE]`). Proposed customer grouping: H is 100 µm or more (full ladder permitted); G is 75 to 99 µm (the "polish only" and "tell the customer" bands); T is under 75 µm (no machine, hand protection only). A panel reading far above the rest (about 220 µm or more) is a repaint and gets its own label, "Repainted panel, treated gently," when present.
 - Fills: H is `--accent` at 35% over the base, G is `--accent-muted` with a hatch, T is a `--stop` outline with no fill. The letter and the legend always carry the meaning; color never carries it alone.
 - The bands are a conservative house standard, not a manufacturer spec (KB 7.3). The customer words above are a proposal. The business-customer agent and the fact-checker own the final wording, and nothing tagged `[VERIFY]` renders here.
 - The roof is glass on a Model Y, so it is washed and not measured or polished (KB 11 `[HOUSE]`). Other vehicles differ.
