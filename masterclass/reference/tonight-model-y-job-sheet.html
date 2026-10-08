@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Tonight: Black Model Y, Exterior + Polish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-primary:#0a0c11;--bg-secondary:#11151d;--bg-card:rgba(255,255,255,.035);--bg-card-hi:rgba(255,255,255,.07);
+  --accent:#8fd3ff;--accent-muted:#3d6b85;--warn:#ff7a4d;--ok:#3ddc97;--glass:#4f7fb3;
+  --text-primary:#eef1f6;--text-secondary:#8a93a6;--border:rgba(255,255,255,.09);--border-hi:rgba(143,211,255,.6);
+  --shadow:0 10px 36px rgba(0,0,0,.55);--ease:cubic-bezier(.2,.7,.25,1);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg-primary:#0a0c11}}
+:root[data-theme="dark"]{--bg-primary:#0a0c11}
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100%;background:var(--bg-primary);color:var(--text-primary);font-family:'Sora',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:clamp(14px,3.6vw,16px);line-height:1.5}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(70% 45% at 50% -5%,rgba(143,211,255,.12),transparent 70%),radial-gradient(40% 30% at 100% 100%,rgba(61,220,151,.05),transparent 70%)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.wrap{position:relative;z-index:1;max-width:620px;margin:0 auto;padding:18px 16px 60px}
+.mono{font-family:'Space Mono',ui-monospace,monospace}
+.eyebrow{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:'Space Mono',monospace;font-size:clamp(24px,6.6vw,34px);letter-spacing:.02em;line-height:1.08;margin:6px 0 4px}
+.sub{color:var(--text-secondary);font-size:13.5px;margin:0 0 18px}
+.sub b{color:var(--text-primary)}
+.rise{animation:rise .5s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.card{background:linear-gradient(180deg,var(--bg-card-hi),var(--bg-card));border:1px solid var(--border);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow);backdrop-filter:blur(10px)}
+.card h2{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-secondary);margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.card h2::after{content:'';flex:1;height:1px;background:var(--border)}
+.card.hero{border-color:var(--border-hi);background:linear-gradient(180deg,rgba(143,211,255,.12),rgba(143,211,255,.03))}
+.big{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.big div{background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:12px;padding:10px 8px;text-align:center}
+.big .n{font-family:'Space Mono',monospace;font-size:clamp(20px,5.8vw,28px);font-weight:700;color:var(--accent);line-height:1}
+.big .l{font-size:10.5px;color:var(--text-secondary);margin-top:5px;letter-spacing:.04em;text-transform:uppercase}
+.row{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--border);font-size:13.5px}
+.row:first-of-type{border-top:none}
+.row .k{flex:0 0 92px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-top:3px}
+.row .v b{color:#fff}
+.row.no .k{color:var(--warn)}
+/* timeline */
+.tl{list-style:none;margin:0;padding:0}
+.tl li{position:relative;display:flex;gap:12px;padding:11px 10px;border-radius:12px;border:1px solid transparent;cursor:pointer;transition:all .22s var(--ease);min-height:44px}
+.tl li:active{transform:scale(.99)}
+.tl .t{flex:0 0 66px;font-family:'Space Mono',monospace;font-size:12px;color:var(--text-secondary);padding-top:2px}
+.tl .b{flex:1}
+.tl .b strong{display:block;font-size:14.5px;font-weight:600}
+.tl .b span{display:block;color:var(--text-secondary);font-size:13px;margin-top:2px}
+.tl .ck{flex:0 0 22px;height:22px;border-radius:7px;border:1.5px solid var(--border);margin-top:3px;display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent}
+.tl li.now{border-color:var(--border-hi);background:rgba(143,211,255,.08)}
+.tl li.now .t{color:var(--accent)}
+.tl li.now .t::after{content:' NOW';font-size:9px;letter-spacing:.1em;color:var(--accent)}
+.tl li.done{opacity:.5}
+.tl li.done .ck{background:var(--ok);border-color:var(--ok);color:#03241a}
+.tl li.done .b strong{text-decoration:line-through}
+.tl li.cut{border:1px dashed rgba(255,122,77,.5);background:rgba(255,122,77,.06);cursor:default}
+.tl li.cut .t,.tl li.cut strong{color:var(--warn)}
+.tl li.tmrw{opacity:.75}
+.status{font-size:12.5px;color:var(--text-secondary);margin:-4px 0 10px;font-family:'Space Mono',monospace}
+/* map */
+.toggle{display:flex;gap:6px;margin-bottom:12px}
+.toggle button{flex:1;min-height:44px;border-radius:11px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-secondary);font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .22s var(--ease)}
+.toggle button.on{background:var(--accent);color:#06202e;border-color:var(--accent)}
+.toggle button:active{transform:scale(.97)}
+.mapwrap{max-width:340px;margin:0 auto}
+svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 18px 36px rgba(0,0,0,.6))}
+.body{fill:#151a23;stroke:rgba(143,211,255,.35);stroke-width:2}
+.pnl{fill:rgba(255,255,255,.07);stroke:rgba(255,255,255,.18);stroke-width:1.4;transition:fill .3s var(--ease),stroke .3s var(--ease)}
+.gl{fill:rgba(79,127,179,.22);stroke:rgba(79,127,179,.6)}
+.gl.skip{fill:url(#hatch);stroke:rgba(79,127,179,.35)}
+.whl{fill:#1a1f29;stroke:rgba(255,255,255,.22)}
+.plastic{fill:rgba(255,122,77,.10);stroke:rgba(255,122,77,.45);stroke-dasharray:3 3}
+.lbl{fill:var(--text-primary);font-family:'Sora',sans-serif;font-size:10.5px;font-weight:600;text-anchor:middle}
+.lbl.dim{fill:var(--text-secondary);font-weight:500}
+.num{fill:var(--accent);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;text-anchor:middle}
+.numbg{fill:#0a0c11;stroke:var(--accent);stroke-width:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:center;margin-top:12px;font-size:12px;color:var(--text-secondary)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:5px}
+.routeline{font-size:13px;color:var(--text-secondary);text-align:center;margin:10px 0 0;line-height:1.6}
+.routeline b{color:var(--text-primary)}
+/* lists */
+.bul{list-style:none;margin:0;padding:0}
+.bul li{position:relative;padding:0 0 9px 18px;font-size:13.5px;line-height:1.5;color:#d8dde7}
+.bul li::before{content:'';position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:2px;background:var(--accent)}
+.bul.warn li::before{background:var(--warn)}
+.bul li b{color:#fff}
+.tree{display:grid;gap:8px}
+.tree div{background:rgba(0,0,0,.25);border:1px solid var(--border);border-radius:12px;padding:11px 13px;font-size:13.5px;line-height:1.5}
+.tree div b{color:var(--accent);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+.tree div.stop b{color:var(--warn)}
+details{margin-top:10px;font-size:12px;color:var(--text-secondary)}
+summary{cursor:pointer;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:10.5px;min-height:44px;display:flex;align-items:center}
+pre{margin:4px 0 0;font-size:11px;background:#06080c;border:1px solid var(--border);border-radius:10px;padding:10px;color:var(--ok);white-space:pre-wrap}
+footer{text-align:center;color:var(--text-secondary);font-size:11.5px;margin-top:22px;font-family:'Space Mono',monospace;letter-spacing:.06em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="rise">
+  <div class="eyebrow">Tuesday · Oct 6 · Start 4:30 PM</div>
+  <h1>Black Model Y<br>Exterior + One-Step Polish</h1>
+  <p class="sub">One bucket, towel-per-panel, garden hose. Clay in the wash. Polish in the garage after dark. <b>Ceramic wax tomorrow morning.</b></p>
+</div>
+
+<section class="card hero rise" style="animation-delay:.08s">
+  <h2>The bucket</h2>
+  <div class="big">
+    <div><div class="n">4 gal</div><div class="l">water</div></div>
+    <div><div class="n">4 oz</div><div class="l">Citrus Wash &amp; Gloss</div></div>
+    <div><div class="n">16</div><div class="l">wash towels in it</div></div>
+  </div>
+  <div class="row"><div class="k">Why 4 oz</div><div class="v">Label is 1 oz per 5 gal to wash, 1 oz per gal to strip wax. You are polishing tonight. Strip it.</div></div>
+  <div class="row"><div class="k">Towel rule</div><div class="v">One towel per panel, folded in quarters. Lift it out dripping, squeeze it once over the top edge so soap runs ahead of you, then pull it straight back. Then the dirty pile, <b>never back in the bucket</b>.</div></div>
+  <div class="row"><div class="k">Short on towels</div><div class="v">Upper panels can share one towel on a fresh face each panel. Bumpers, rockers and the bottom of the doors <b>never share</b>.</div></div>
+  <div class="row"><div class="k">Hose</div><div class="v">No pressure washer, so no foam soak. Nozzle on jet, <b>3 to 4 min top down</b> before any towel touches paint, extra on bumpers, rockers and behind the wheels. Last rinse: nozzle off, open hose, flood it top down so it sheets off.</div></div>
+  <div class="row"><div class="k">Clay tub</div><div class="v">Separate tub: 1 gal water + 1 oz Citrus. Mitt lives here. Hose-rinse the mitt after every panel.</div></div>
+  <div class="row"><div class="k">IPA bottle</div><div class="v">Zep sprayer: 1 cup 70% isopropyl + 3 cups water (distilled if you have it).</div></div>
+  <div class="row"><div class="k">Wheels</div><div class="v">No bucket. Armor All Extreme Wheel &amp; Tire, brush, hose.</div></div>
+  <div class="row no"><div class="k">Not in it</div><div class="v">Ultimate Wash &amp; Wax, dish soap, Spic and Span, wheel brushes, the clay mitt.</div></div>
+</section>
+
+<section class="card rise" style="animation-delay:.16s">
+  <h2>Timeline</h2>
+  <div class="status" id="status">…</div>
+  <ul class="tl" id="tl"></ul>
+</section>
+
+<section class="card rise" style="animation-delay:.24s">
+  <h2>Panel route</h2>
+  <div class="toggle" id="toggle">
+    <button data-r="wash" class="on">Wash &amp; Clay</button>
+    <button data-r="polish">Polish</button>
+  </div>
+  <div class="mapwrap" id="map"></div>
+  <div class="legend">
+    <span><i style="background:rgba(79,127,179,.5)"></i>Glass</span>
+    <span><i style="background:rgba(255,122,77,.4);border:1px dashed var(--warn)"></i>Textured plastic: tape or skip</span>
+    <span><i style="background:rgba(255,255,255,.12)"></i>Paint</span>
+  </div>
+  <p class="routeline" id="routeline"></p>
+</section>
+
+<section class="card rise" style="animation-delay:.32s">
+  <h2>Tape before the machine</h2>
+  <ul class="bul warn">
+    <li><b>Satin black window trim</b>, every inch. Polish turns it chalky white.</li>
+    <li><b>Door handle edges</b>. Flush handles trap polish in the seam.</li>
+    <li><b>Cameras</b>: two B-pillars, two fender repeaters, one above the rear plate.</li>
+    <li><b>Badges</b> and the black header where glass meets the hood.</li>
+    <li><b>Wheel arch cladding</b> and lower bumper plastic. Tape it or stay off it.</li>
+    <li>Car Wash Mode on before the hose: Controls &gt; Service. Kills wipers and Sentry.</li>
+  </ul>
+</section>
+
+<section class="card rise" style="animation-delay:.4s">
+  <h2>Machine card</h2>
+  <div class="tree">
+    <div><b>Start here</b>Uro-Tec Yellow + M210. Speed 4. 2x2 ft section. 4 to 6 crosshatch passes. Light pressure, pad flat, one inch per second.</div>
+    <div><b>Swirls gone</b>That is the combo for the whole car. Stop deciding.</div>
+    <div><b>Still swirled, gauge 100+</b>Maroon + Ultimate Compound on the test square, then the yellow + M210 refine pass over it. Only then.</div>
+    <div class="stop"><b>Under 90 on the gauge</b>Flag that panel. Under 80: no machine on it. Tesla paint is thin and soft. No gauge tonight means no machine tonight.</div>
+    <div><b>Every panel</b>IPA mist, wipe, light held low across the paint. Overhead light hides swirls on black.</div>
+  </div>
+</section>
+
+<section class="card rise" style="animation-delay:.48s">
+  <h2>Stop rules</h2>
+  <ul class="bul">
+    <li><b>8:30 PM</b>: not past the doors? Finish the panel, IPA it, stop. Half a car done right beats a whole car done tired.</li>
+    <li>Never leave a panel with residue on it. Wipe before you walk away.</li>
+    <li>Ceramic wax goes on <b>wet</b> paint. Morning: quick rinse, spray, rinse, dry. 20 minutes.</li>
+    <li>Photograph the test spot half done. Swirls one side, clear the other. That is the business page.</li>
+  </ul>
+  <details><summary>Debug state</summary><pre id="dbg">…</pre></details>
+</section>
+
+<footer>Tap a timeline step to check it off · saved on this device</footer>
+</div>
+
+<script>
+"use strict";
+(function(){
+var KEY='tonight_model_y_v1';
+function load(){try{var r=window.localStorage?localStorage.getItem(KEY):null;var o=r?JSON.parse(r):null;return(o&&typeof o==='object')?o:{};}catch(e){return{};}}
+function save(){try{if(window.localStorage)localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+var S=load(); if(!S.done||typeof S.done!=='object')S.done={}; if(S.route!=='polish')S.route='wash';
+
+/* minutes from 4:30 PM */
+var STEPS=[
+ {id:'setup', t:0,   e:10,  n:'Set Up',            d:'Car Wash Mode on. Bucket mixed, 16 towels in. Clay tub. Hose with a nozzle. Foam cannon stays on the shelf. Polisher and pads on the bench. Tape in your pocket.'},
+ {id:'wheels',t:10,  e:30,  n:'Wheels & Tires',    d:'Armor All Extreme, brush, hose on jet. No pressure to blast the barrels, so the brush does the work. LF, LR, RR, RF. Leave the aero covers on.'},
+ {id:'wash',  t:30,  e:100, n:'Wash & Clay',       d:'Jet-rinse 3 to 4 min, top down, extra on the lower third. Break the mitt in on the windshield. Per panel: dripping towel, mitt, rinse panel, rinse mitt. Last rinse nozzle off. Follow the route below.'},
+ {id:'dry',   t:100, e:115, n:'Dry',               d:'Compressor first: mirrors, handles, charge port door, liftgate seams, badges. Then towels. Nothing sprayed on the paint.'},
+ {id:'tape',  t:115, e:130, n:'Into the garage. Tape.', d:'Trim, handles, cameras, badges, plastic cladding, glass header.'},
+ {id:'gauge', t:130, e:145, n:'Measure & Inspect', d:'Three readings per panel, write them on the tape. Roof is glass, skip it. Light low, walk the car once.'},
+ {id:'test',  t:145, e:165, n:'Test Spot',         d:'Hood, 2x2, yellow + M210, speed 4. Wipe, IPA, light. Decide the combo once.'},
+ {id:'polish',t:165, e:345, n:'Polish',            d:'Hood, liftgate, L fender, L doors, L quarter, R quarter, R doors, R fender, bumpers. IPA and light after every panel. 15 to 20 min each.'}
+];
+var CUT=240;
+var TOMORROW=[
+ {n:'Ceramic Wax',   d:'Rinse, spray Hybrid Ceramic Wax on wet paint, rinse, dry.'},
+ {n:'Tires, trim, glass, cameras, final walk', d:'Tire shine thin on the applicator. Glass two towels. Camera lenses glass cleaner only.'}
+];
+function fmt(m){var h=16+Math.floor((30+m)/60),mm=(30+m)%60;var ap=h>=12?'PM':'AM';h=h%12;if(h===0)h=12;return h+':'+(mm<10?'0':'')+mm+' '+ap;}
+function nowMin(){var d=new Date();return (d.getHours()*60+d.getMinutes())-(16*60+30);}
+
+var tl=document.getElementById('tl'),status=document.getElementById('status');
+function renderTL(){
+  var nm=nowMin(),h='',cutShown=false;
+  STEPS.forEach(function(s){
+    if(!cutShown&&s.t>=CUT){h+=cutRow();cutShown=true;}
+    var isNow=(nm>=s.t&&nm<s.e&&!S.done[s.id]);
+    h+='<li data-id="'+s.id+'" class="'+(S.done[s.id]?'done':'')+(isNow?' now':'')+'">'+
+       '<div class="t">'+fmt(s.t)+'</div><div class="b"><strong>'+esc(s.n)+'</strong><span>'+esc(s.d)+'</span></div><div class="ck">✓</div></li>';
+    if(!cutShown&&s.t<CUT&&s.e>CUT){h+=cutRow();cutShown=true;}
+  });
+  TOMORROW.forEach(function(s){h+='<li class="tmrw"><div class="t">AM</div><div class="b"><strong>'+esc(s.n)+'</strong><span>'+esc(s.d)+'</span></div></li>';});
+  tl.innerHTML=h;
+  Array.prototype.forEach.call(tl.querySelectorAll('li[data-id]'),function(li){
+    li.addEventListener('click',function(){var id=li.getAttribute('data-id');if(S.done[id])delete S.done[id];else S.done[id]=true;save();renderTL();dbg();});
+  });
+  var cur=null;for(var i=0;i<STEPS.length;i++){if(nm>=STEPS[i].t&&nm<STEPS[i].e){cur=STEPS[i];break;}}
+  var done=0;for(var k in S.done)if(Object.prototype.hasOwnProperty.call(S.done,k))done++;
+  if(nm<0)status.textContent='Starts in '+(-nm)+' min';
+  else if(cur)status.textContent='Clock says: '+cur.n+(nm>=CUT?' · past the 8:30 cutoff':'');
+  else if(nm>=345)status.textContent='Past 10:15. Stop and wipe down.';
+  else status.textContent=done+' of '+STEPS.length+' checked';
+}
+function cutRow(){return '<li class="cut"><div class="t">8:30</div><div class="b"><strong>Cutoff check</strong><span>Not past the doors? Finish this panel, IPA it, stop. Rest tomorrow.</span></div></li>';}
+
+/* generic top-down crossover schematic, nose at top */
+var P={
+ fb:  {d:'M48 30 Q48 8 70 8 L230 8 Q252 8 252 30 L252 58 L48 58 Z', c:[150,33], plastic:true},
+ hood:{d:'M68 64 L232 64 L236 150 L64 150 Z', c:[150,108]},
+ lff: {d:'M14 64 L62 64 L58 150 L14 150 Z', c:[36,108], rot:-90, top:64},
+ rff: {d:'M238 64 L286 64 L286 150 L242 150 Z', c:[264,108], rot:90, top:64},
+ wsh: {d:'M62 156 L238 156 L244 200 L56 200 Z', c:[150,178], glass:true},
+ lfd: {d:'M14 156 L52 156 L52 282 L14 282 Z', c:[33,219], rot:-90, top:156},
+ rfd: {d:'M248 156 L286 156 L286 282 L248 282 Z', c:[267,219], rot:90, top:156},
+ roof:{d:'M56 206 L244 206 L244 356 L56 356 Z', c:[150,281], glass:true},
+ lrd: {d:'M14 288 L52 288 L52 400 L14 400 Z', c:[33,344], rot:-90, top:288},
+ rrd: {d:'M248 288 L286 288 L286 400 L248 400 Z', c:[267,344], rot:90, top:288},
+ rgl: {d:'M58 362 L242 362 L238 402 L62 402 Z', c:[150,382], glass:true},
+ lrq: {d:'M14 406 L54 406 L60 500 L14 500 Z', c:[36,453], rot:-90, top:406},
+ rrq: {d:'M246 406 L286 406 L286 500 L240 500 Z', c:[264,453], rot:90, top:406},
+ tr:  {d:'M66 408 L234 408 L238 500 L62 500 Z', c:[150,454]},
+ rb:  {d:'M48 506 L252 506 L252 530 Q252 552 230 552 L70 552 Q48 552 48 530 Z', c:[150,529], plastic:true}
+};
+var NAMES={fb:'Front bumper',hood:'Hood',lff:'L fender',rff:'R fender',wsh:'Windshield',lfd:'L front door',rfd:'R front door',roof:'Glass roof',lrd:'L rear door',rrd:'R rear door',rgl:'Rear glass',lrq:'L quarter',rrq:'R quarter',tr:'Liftgate',rb:'Rear bumper'};
+var ROUTES={
+ wash:  ['roof','wsh','rgl','hood','tr','lff','lfd','lrd','lrq','rrq','rrd','rfd','rff','fb','rb'],
+ polish:['hood','tr','lff','lfd','lrd','lrq','rrq','rrd','rfd','rff','fb','rb']
+};
+var LINE={
+ wash:'Top down, then walk the car counter-clockwise from the left fender. <b>Rockers and mirrors last</b>, then retire that towel. Wheels were done first.',
+ polish:'Hood first, build your rhythm on the flattest panel. <b>Roof and glass are skipped</b>: it is glass, not paint. Bumpers last: plastic heats fast, lighter pressure.'
+};
+function renderMap(){
+  var r=ROUTES[S.route],isPolish=(S.route==='polish');
+  var s='<svg viewBox="0 0 300 560" xmlns="http://www.w3.org/2000/svg" aria-label="Panel route map">'+
+  '<defs><pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="rgba(79,127,179,.08)"/><line x1="0" y1="0" x2="0" y2="8" stroke="rgba(79,127,179,.45)" stroke-width="2"/></pattern></defs>'+
+  '<path class="body" d="M70 4 L230 4 Q256 4 256 30 L256 530 Q256 556 230 556 L70 556 Q44 556 44 530 L44 30 Q44 4 70 4 Z"/>'+
+  '<rect class="whl" x="2" y="80" width="18" height="60" rx="7"/><rect class="whl" x="280" y="80" width="18" height="60" rx="7"/>'+
+  '<rect class="whl" x="2" y="420" width="18" height="60" rx="7"/><rect class="whl" x="280" y="420" width="18" height="60" rx="7"/>'+
+  '<rect class="pnl" x="0" y="168" width="18" height="16" rx="5"/><rect class="pnl" x="282" y="168" width="18" height="16" rx="5"/>';
+  for(var id in P){ if(!Object.prototype.hasOwnProperty.call(P,id))continue;
+    var p=P[id],idx=r.indexOf(id),cls='pnl'+(p.glass?' gl':'')+(p.glass&&isPolish?' skip':'')+(p.plastic?' plastic':'');
+    s+='<path class="'+cls+'" d="'+p.d+'"/>';
+    var cx=p.c[0],cy=p.c[1],has=(idx>-1);
+    var tr=p.rot?' transform="rotate('+p.rot+' '+cx+' '+cy+')"':'';
+    var lab=NAMES[id]+(p.glass&&isPolish?' · skip':'');
+    /* rotated side panels: slide the label down the panel and put the number at the top end */
+    var lx=p.rot?(cx+(has?(p.rot<0?-12:12):0)):cx, ly=p.rot?(cy+4):(cy+(has?14:4));
+    s+='<text class="lbl'+(has?'':' dim')+'" x="'+lx+'" y="'+ly+'"'+tr+'>'+esc(lab)+'</text>';
+    if(has){var ny=p.rot?(p.top+16):(cy-8);s+='<circle class="numbg" cx="'+cx+'" cy="'+ny+'" r="11"/><text class="num" x="'+cx+'" y="'+(ny+4.5)+'">'+(idx+1)+'</text>';}
+  }
+  s+='</svg>';
+  document.getElementById('map').innerHTML=s;
+  document.getElementById('routeline').innerHTML=LINE[S.route];
+  Array.prototype.forEach.call(document.querySelectorAll('#toggle button'),function(b){b.classList.toggle('on',b.getAttribute('data-r')===S.route);});
+}
+Array.prototype.forEach.call(document.querySelectorAll('#toggle button'),function(b){
+  b.addEventListener('click',function(){S.route=b.getAttribute('data-r');save();renderMap();dbg();});
+});
+function dbg(){
+  var nm=nowMin(),done=0;for(var k in S.done)if(Object.prototype.hasOwnProperty.call(S.done,k))done++;
+  var canSave=false;try{canSave=!!window.localStorage;}catch(e){}
+  document.getElementById('dbg').textContent='{ route: "'+S.route+'", minutesSince430: '+nm+', stepsChecked: '+done+'/'+STEPS.length+', pastCutoff: '+(nm>=CUT)+', saving: '+canSave+' }';
+}
+try{renderTL();renderMap();dbg();setInterval(function(){renderTL();dbg();},60000);}
+catch(err){document.getElementById('tl').innerHTML='<li><div class="b"><strong>Did not load.</strong><span>'+esc(err&&err.message?err.message:err)+'</span></div></li>';}
+})();
+</script>
+</body>
+</html>
