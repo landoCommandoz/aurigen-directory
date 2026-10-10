@@ -1,5 +1,7 @@
 # Design directions: Lando's Detailing Masterclass 101
 
+**Decision, 2026-10-10.** Lando picked Direction A (Hi-Vis) `[HOUSE]`. Direction B stays below as the rejected alternative, so the reasoning is on record. His answers to the design questions are in section 8. Still documents only: no app code until Lando types `build it`.
+
 Phase 0, step 6. Written 2026-10-07 by the design lead (ui-designer role). Documents only. No app code.
 
 Read with: `CLAUDE.md` (design and mobile rules) and `BUILD_PROMPT.md` sections 3 and 10. Facts come from `knowledge/KNOWLEDGE_BASE.md`; status tags are kept as written there.
@@ -109,6 +111,15 @@ The designer's own description: Barlow "shares qualities with the state's car pl
 - Shop: targets 64 px minimum. "Done, next" is 96 px tall and full width at the bottom of the screen, in the thumb zone. One action area per screen. Step text 28 to 40 px, three lines maximum. Everything that is not the step is set in `--text-2`. No cards. One square, one timer, one button. Hairline dividers only. The Fix It button sits in the bottom row of every screen.
 - Academy: one column, measure 68 characters (under 80), 18 px body, line height 1.6. Each lesson runs in the same order: Why it matters (two to four paragraphs, the deep part), The steps, The numbers (a side rail on desktop, inline on a phone), Common mistakes, Drill, Quiz, Sign-off. Headings in Barlow Condensed 600, sentence case. A 3 px `--accent` rule down the left of every "why" section.
 - Customer: the accent nearly disappears. One accent element per screen: the one thing they can tap. Padding grows from 16 to 24 px. No status badges, no `[VERIFY]` content, no internal numbers. Panel map colors always carry plain words. Targets 44 px. The brand name (from config) tops every customer page.
+
+  Lando's rule, 2026-10-10 `[HOUSE]`, in his words: "In Customer View keep the accent sparse. Off-white, photos, and the panel-map readings carry that screen." This tightens the line above. What it changes in wireframe 6.3 and its notes:
+
+  - Where the accent may still appear: at most once per customer page, and only on a single primary action button when the page has one. The paint report in 6.3 has no such button. The panels and the section rows are all tappable, so none of them is "the one thing." On that screen the accent appears nowhere: not on the heading, the legend, the panel outlines, or the drawer.
+  - Panel fills, H, G, T: H becomes `--text` at 28% over `--base`, a flat warm gray (`#53504c`). G becomes `--text` at 10% over `--base` (`#2b2926`) with a diagonal hatch in `--text-2`. T stays a 2 px `--stop` outline with no fill, as in the first draft. Glass stays unfilled with a hairline outline and the word "glass." The letter on every panel is set in `--text`: 6.9:1 on the H fill, 12.4:1 on the G fill, 15.9:1 on T (computed 2026-10-10). The H and G fills differ by only 1.8:1. That is fine, because the hatch and the letters tell them apart. Color never carries the meaning alone; the letters and the legend always do.
+  - What stays: the three bands and their customer wording in the legend are unchanged. They come from knowledge base 7.3 `[HOUSE]`.
+  - Photos: when the job has before and after photos, the test spot pair sits directly under the legend, above "What is clear coat?". Without photos the row is skipped and nothing fills its place.
+  - Tap feedback on a panel is the press scale (0.97, 120 ms) and the drawer opening. No accent flash.
+  - One flag for Lando: T keeps the red outline because under 75 µm is the house "no machine" rule. On a customer's car a red edge can read as damage. If you would rather it did not, T becomes a dashed `--text-2` outline. The word Thin carries the meaning either way.
 
 ### Shape, depth, texture
 
@@ -321,7 +332,7 @@ Direction A:
 |  +--------------------------------------+    |
 |  Watch the paint, not the clock.             |
 |                                              |
-|  Reading aloud )))          [ Undo last ]    |
+|  [ Undo last ]          Reading aloud )))    |
 |                                              |
 +----------------------------------------------+
 |                                              |
@@ -336,7 +347,7 @@ Notes for A:
 - "Ahead of plan 12m" compares the time map (KB 17 `[HOUSE from booklet]`) with the clock. It flips to "Behind plan" in `--text-2`, never red. Red is for STOP.
 - The square behind the timer is the signature moment. `:` is film still creamy, `.` is film gone clear. "4:00 planned" is the house time per 2 x 2 ft section (KB 8.7).
 - The step text is the whole step, three lines maximum, `clamp(28px, 7.5vw, 40px)`, in `--text`. It is read aloud as the step opens.
-- "Done, next" is 96 px tall, `--accent` fill, near-black text. A second tap inside about 700 ms is ignored (tune the window in Phase 3). After a tap, "Undo last" appears for 5 seconds. No confirm dialogs.
+- "Done, next" is 96 px tall, `--accent` fill, near-black text. A second tap inside about 700 ms is ignored (tune the window in Phase 3). After a tap, "Undo last" appears for 5 seconds, on the left, in the thumb zone (Lando's answer, section 8). No confirm dialogs.
 - The bottom row is 64 px. Fix It is always one tap away. "Pause" stops the timer and the read-aloud and keeps the job.
 - A STOP condition, if the step has one, appears above the step text as a full-width `--stop` band with the octagon and the word STOP. Here the set has none.
 
@@ -428,7 +439,7 @@ Direction A:
 
 Notes for A:
 - The car is the SVG from the Panel Map, recolored by the house thickness bands (KB 7.3 `[HOUSE]`). Proposed customer grouping: H is 100 µm or more (full ladder permitted); G is 75 to 99 µm (the "polish only" and "tell the customer" bands); T is under 75 µm (no machine, hand protection only). A panel reading far above the rest (about 220 µm or more) is a repaint and gets its own label, "Repainted panel, treated gently," when present.
-- Fills: H is `--accent` at 35% over the base, G is `--accent-muted` with a hatch, T is a `--stop` outline with no fill. The letter and the legend always carry the meaning; color never carries it alone.
+- Fills, changed 2026-10-10 under Lando's Customer View rule (section 4, How the three densities differ): H is `--text` at 28% over the base, G is `--text` at 10% over the base with a hatch in `--text-2`, T is a `--stop` outline with no fill. No accent anywhere on this screen. The letter and the legend always carry the meaning; color never carries it alone.
 - The bands are a conservative house standard, not a manufacturer spec (KB 7.3). The customer words above are a proposal. The business-customer agent and the fact-checker own the final wording, and nothing tagged `[VERIFY]` renders here.
 - The roof is glass on a Model Y, so it is washed and not measured or polished (KB 11 `[HOUSE]`). Other vehicles differ.
 - Tapping a panel opens the drawer with that panel's 3 to 5 readings (KB 7.2) and one plain sentence.
@@ -539,13 +550,21 @@ Extra tells found and cut while writing:
 
 ## 8. Open design questions for Lando
 
+Answered 2026-10-10. Every answer is `[HOUSE]`.
+
 1. While you polish, is the phone in your hand, in a pocket, or propped somewhere? This decides where the one action area sits and whether the timer must read from four feet away.
+   Answer, in Lando's words: "While I polish, the phone is propped on the cart at arm's length."
+   What this fixes: one action area, at the bottom of the screen, as drawn in 6.2. The phone is not in a hand, so nothing depends on grip. He steps back and forth along the panel, so the timer and the step text must read from about four feet: the timer holds `clamp(48px, 14vw, 64px)` and the step text holds `clamp(28px, 7.5vw, 40px)`, three lines maximum, and neither gets smaller in Phase 1. "Watch the paint, not the clock" and the "Ahead of plan" readout are `--text-2` and may be read up close. The wireframes assume portrait. If the cart stand holds the phone sideways, say so and 6.2 is redrawn for landscape.
 2. Which hand holds the polisher when you tap the phone? This sets the thumb side, and whether we need a left or right handed layout switch.
+   Answer, in Lando's words: "Polisher in my right hand, left thumb taps. Keep the left/right switch."
+   What this fixes: the thumb zone is the left side. "Done, next" stays full width, so either thumb lands on it. In the bottom row Fix It stays at the left edge, the nearest spot for the left thumb. "Undo last" sits on the left of its row (6.2 is redrawn that way). Pause stays at the right edge on purpose: it is the one control a stray tap should not hit. The left or right switch lives in Settings. Default: left thumb. Flipping it mirrors the bottom row and the Undo position and nothing else.
 3. Is there any color already on your shirts, cards, or a logo sketch? If not, do you want this app to set the brand color? The accent you pick here becomes it.
+   Answered by `BLUEPRINT.md` section 12 item 5: keep "Lando's Detailing" in the config file; the accent of A, `--accent` `#d7ff3d`, becomes the brand color.
 4. Which inspection light do you use? KB 3.1 marks it `[VERIFY]`. It decides whether the light in B's sweep is cool or warm.
+   Answered by `BLUEPRINT.md` section 12 item 10: the app says "a light held low" and names no model. B's sweep is not built, so nothing in A depends on this. KB 3.1 stays `[VERIFY]`.
 
 ## 9. Recommendation
 
 Pick A: the four moments weight the garage over the showroom, hi-vis is the color the eye finds first at arm's length, it stays far from STOP red in both hue and lightness, and it carries no template baggage. B's tape is the better story to tell a customer, so if that story matters more to you than glance speed, take A with B's accent.
 
-Lando picks: A or B (or: A with B's accent)
+Lando picked: A (2026-10-10)
