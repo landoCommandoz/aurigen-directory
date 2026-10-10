@@ -127,7 +127,7 @@ masterclass/
 Outside `masterclass/`, at the repo root, lead only, after "repo OK":
 
 ```
-.vercelignore                        lead              (two lines: a comment and "masterclass"; added in the Phase 0 pull request, checked on the branch preview before the merge)
+.vercelignore                        lead              (two lines: a comment and "masterclass"; added in the Phase 0 pull request, checked on the production URL after the merge on 2026-10-10 (branch previews sit behind a Vercel login))
 .github/workflows/masterclass-pages.yml   lead         (the GitHub Pages deploy, filtered to masterclass/** paths; Phase 1 pull request)
 .github/workflows/masterclass-netlify.yml lead         (workflow_dispatch only; actions draft, production, create-site; reads the NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID secrets; Phase 1 pull request)
 vercel.json                          lead              (only if .vercelignore does not hold on a Git deploy: one route, /masterclass/(.*) to status 404)

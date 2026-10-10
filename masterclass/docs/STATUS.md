@@ -17,7 +17,7 @@ The status board. Every session starts here. Owner: the lead. Updated 2026-10-10
 1. `masterclass/CLAUDE.md` (rules). The Aurigen `CLAUDE.md` at the repo root is a different project; its agent roster, file map, and phase plan do not apply here.
 2. This file.
 3. `docs/BLUEPRINT.md` (the plan; "Read this first" block, then sections 9 and 12).
-4. `docs/DECISIONS.md` (D0 to D9 with every source, plus the decisions Lando took on 2026-10-10).
+4. `docs/DECISIONS.md` (D0 to D11 with every source, including the decisions Lando took on 2026-10-10 as D10 and D11 and a dated record at the end).
 5. `docs/OWNERSHIP.md` (who writes what).
 6. `docs/DESIGN-DIRECTIONS.md` (the two looks; A was picked).
 
@@ -63,4 +63,4 @@ Foundation, on a fresh branch from `main`: scaffold in `masterclass/`, PWA shell
 
 ## Last change
 
-2026-10-10: knowledge base section 15.5 removed; Lando's gate decisions recorded in BLUEPRINT.md, DECISIONS.md, DESIGN-DIRECTIONS.md, and this file.
+2026-10-10: knowledge base section 15.5 removed; Lando's gate decisions recorded in BLUEPRINT.md, DECISIONS.md (D10, D11, dated record), DESIGN-DIRECTIONS.md, and this file; pull request opened for the merge. Waiting on `build it`.
