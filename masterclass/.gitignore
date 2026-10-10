@@ -1,0 +1,12 @@
+# Lead-owned. The root .gitignore ignores package-lock.json at any depth; re-include it here.
+!package-lock.json
+node_modules/
+dist/
+.vitest/
+.env
+*.local
+src/generated/
+playwright-report/
+test-results/
+coverage/
+.cache/
