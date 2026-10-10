@@ -1,0 +1,143 @@
+# Lando's Detailing Masterclass 101: the Netlify publish button.
+# Owner: the lead (approved under "Repo OK", 2026-10-10). See masterclass/docs/DECISIONS.md D5 and D9,
+# and masterclass/docs/BLUEPRINT.md 10.4 and 10.6 for the taps.
+# Runs ONLY when a person taps "Run workflow". Never on push.
+# Costs (Netlify docs, How credits work, read 2026-10-07):
+#   create-site  0 credits (a blank project, no Git link)
+#   draft        0 credits (a draft deploy at a test address)
+#   production   15 credits. Needs the "credit balance checked" box ticked.
+# Needs two repository secrets: NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID (create-site needs only the token).
+# Runs from inside masterclass/ so the CLI reads masterclass/netlify.toml, never the Aurigen netlify.toml
+# at the repo root (that one deploys Aurigen's functions folder).
+name: Masterclass Netlify
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "draft (free), production (15 credits), or create-site (free, once)"
+        type: choice
+        options:
+          - draft
+          - production
+          - create-site
+        default: draft
+      confirm_production:
+        description: "Production only: I checked the Netlify credit balance and want to spend 15 credits"
+        type: boolean
+        default: false
+      site_name:
+        description: "create-site only: the new project name (letters, numbers, dashes)"
+        type: string
+        default: landos-masterclass
+      team_slug:
+        description: "create-site only, optional: your Netlify team slug if you have more than one team"
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: masterclass-netlify
+  cancel-in-progress: false
+
+env:
+  NETLIFY_CLI: netlify-cli@27
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: masterclass
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      ACTION: ${{ inputs.action }}
+      CONFIRM: ${{ inputs.confirm_production }}
+      SITE_NAME: ${{ inputs.site_name }}
+      TEAM_SLUG: ${{ inputs.team_slug }}
+    steps:
+      - name: Stop early if something is missing
+        run: |
+          fail() { echo "::error::$1"; { echo "## Stopped before anything happened"; echo ""; echo "$1"; echo ""; echo "Nothing was deployed. No credits were spent."; } >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          [ -n "$NETLIFY_AUTH_TOKEN" ] || fail "The NETLIFY_AUTH_TOKEN secret is missing. Add it under Settings, Secrets and variables, Actions."
+          if [ "$ACTION" != "create-site" ] && [ -z "$NETLIFY_SITE_ID" ]; then fail "The NETLIFY_SITE_ID secret is missing. Run this once with action create-site, then add the project id it prints as a secret."; fi
+          if [ "$ACTION" = "production" ] && [ "$CONFIRM" != "true" ]; then fail "Production costs 15 credits. Check the balance at app.netlify.com, Usage and billing, then run again with the box ticked."; fi
+          if [ "$ACTION" = "create-site" ] && ! printf '%s' "$SITE_NAME" | grep -Eq '^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$'; then fail "The project name must be lowercase letters, numbers, and dashes."; fi
+        working-directory: .
+
+      - uses: actions/checkout@v7
+        if: inputs.action != 'create-site'
+
+      - uses: actions/setup-node@v7
+        if: inputs.action == 'create-site'
+        with:
+          node-version: "22"
+
+      - name: Make sure the masterclass Netlify settings are present
+        if: inputs.action != 'create-site'
+        run: |
+          [ -f netlify.toml ] || { echo "::error::masterclass/netlify.toml is missing, so the CLI would read the Aurigen settings. Stopping."; exit 1; }
+
+      - uses: actions/setup-node@v7
+        if: inputs.action != 'create-site'
+        with:
+          node-version-file: masterclass/.nvmrc
+          cache: npm
+          cache-dependency-path: masterclass/package-lock.json
+
+      - name: Install and build (root path for Netlify)
+        if: inputs.action != 'create-site'
+        env:
+          VITE_BASE: /
+        run: |
+          npm ci
+          npm run build
+
+      - name: Create the project (0 credits)
+        if: inputs.action == 'create-site'
+        working-directory: .
+        run: |
+          set -o pipefail
+          extra=""
+          [ -n "$TEAM_SLUG" ] && extra="--account-slug $TEAM_SLUG"
+          npx --yes "$NETLIFY_CLI" sites:create --name "$SITE_NAME" --disable-linking --json $extra | tee site.json
+          id=$(jq -r '.id // .site_id // empty' site.json)
+          url=$(jq -r '.ssl_url // .url // empty' site.json)
+          {
+            echo "## Project created"
+            echo ""
+            echo "Project id (save it as the NETLIFY_SITE_ID secret): \`$id\`"
+            echo ""
+            echo "Address once something is published: $url"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Draft deploy (0 credits)
+        if: inputs.action == 'draft'
+        run: |
+          set -o pipefail
+          npx --yes "$NETLIFY_CLI" deploy --dir dist --no-build --alias masterclass-test --site "$NETLIFY_SITE_ID" --message "draft ${GITHUB_SHA::7}" --json | tee deploy.json
+          url=$(jq -r '.deploy_url // empty' deploy.json)
+          {
+            echo "## Draft is up (0 credits)"
+            echo ""
+            echo "Open on your iPhone: $url"
+            echo ""
+            echo "If it asks you to log in to Netlify, your team makes new projects private. See masterclass/docs/BLUEPRINT.md 10.4."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Production publish (15 credits)
+        if: inputs.action == 'production' && inputs.confirm_production
+        run: |
+          set -o pipefail
+          npx --yes "$NETLIFY_CLI" deploy --prod --dir dist --no-build --site "$NETLIFY_SITE_ID" --message "production ${GITHUB_SHA::7}" --json | tee deploy.json
+          url=$(jq -r '.url // .deploy_url // empty' deploy.json)
+          {
+            echo "## Published (15 credits)"
+            echo ""
+            echo "Live address: $url"
+            echo ""
+            echo "Next: read the balance again at app.netlify.com, Usage and billing, and tell the lead both numbers."
+          } >> "$GITHUB_STEP_SUMMARY"

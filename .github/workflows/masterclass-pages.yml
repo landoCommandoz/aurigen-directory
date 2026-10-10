@@ -1,0 +1,93 @@
+# Lando's Detailing Masterclass 101: free phone-test deploy to GitHub Pages.
+# Owner: the lead (approved under "Repo OK", 2026-10-10). See masterclass/docs/DECISIONS.md D9.
+# - Every push that changes masterclass/ builds and checks the app (the "build" job). This is the CI check.
+# - Only main (or a manual "Run workflow" on main) deploys to https://landocommandoz.github.io/aurigen-directory/
+# - Aurigen pushes never trigger this file (paths filter).
+# - Costs: GitHub Pages and Actions are free on a public repo. 0 Netlify credits.
+name: Masterclass Pages
+
+on:
+  push:
+    branches:
+      - main
+      - "masterclass/**"
+    paths:
+      - "masterclass/**"
+      - ".github/workflows/masterclass-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: masterclass-pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: masterclass
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: masterclass/.nvmrc
+          cache: npm
+          cache-dependency-path: masterclass/package-lock.json
+
+      - name: Install
+        run: npm ci
+
+      - name: Check (typecheck, lint, content, unit tests)
+        run: npm run check
+
+      - name: Build for the Pages path
+        env:
+          VITE_BASE: /${{ github.event.repository.name }}/
+        run: npm run build
+
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: masterclass/dist
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check that Pages is turned on
+        uses: actions/configure-pages@v6
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5
+
+      - name: Link for Lando
+        run: |
+          {
+            echo "## Masterclass is live"
+            echo ""
+            echo "Open on your iPhone in Safari: ${{ steps.deployment.outputs.page_url }}"
+            echo ""
+            echo "Then Share, Add to Home Screen, keep Open as Web App on."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: If this failed
+        if: failure()
+        run: |
+          {
+            echo "## Deploy did not run"
+            echo ""
+            echo "Most likely Pages is not turned on yet. On your phone: the repo on github.com, Settings, Pages, Build and deployment, Source, GitHub Actions."
+            echo "Then come back to this run and tap Re-run jobs."
+          } >> "$GITHUB_STEP_SUMMARY"
