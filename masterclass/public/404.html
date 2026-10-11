@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="__MC_404_CSP__" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Masterclass 101</title>
+    <!--
+      GitHub Pages serves this page for any path it has no file for, such as a
+      refresh on <base>cards/some-card. It sends the phone to the app root with
+      the path in ?p= (and the old query in ?q=); src/app/deepLink.ts puts the
+      path back before the router starts. Once the offline copy is installed,
+      the service worker answers deep links itself and this page is not used.
+      Netlify never serves it for app paths: its redirect rule returns index.html.
+      The build (vite.config.ts) writes the base path into the two base
+      placeholders and swaps the policy placeholder for a CSP that allows only
+      this one script, by its sha256. No external files, no styles, no colors.
+    -->
+    <script>
+      (function () {
+        var base = '__MC_BASE__';
+        var here = window.location;
+        // Already sent here once and still not found (a wrong base, a half-published site):
+        // stop, so the address never loops; the link below stays as the way in.
+        if (/[?&]p=/.test(here.search)) return;
+        var path = here.pathname;
+        var rest = path.indexOf(base) === 0 ? path.slice(base.length) : path.replace(/^\/+/, '');
+        var query = here.search.replace(/^\?/, '');
+        var target = base + '?p=' + encodeURIComponent('/' + rest);
+        if (query !== '') target += '&q=' + encodeURIComponent(query);
+        here.replace(target + here.hash);
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Opening Masterclass 101.</p>
+    <p><a href="__MC_BASE__">Open the app</a></p>
+  </body>
+</html>

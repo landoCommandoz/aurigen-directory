@@ -1,0 +1,78 @@
+/* Toasts float above the content on the thumb side, above the bottom row. */
+
+.ui-toast-viewport {
+  position: fixed;
+  inset-inline: 0;
+  bottom: calc(var(--toast-offset) + var(--safe-bottom));
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: var(--thumb-side);
+  gap: var(--space-2);
+  padding-inline: max(var(--gutter), var(--safe-left)) max(var(--gutter), var(--safe-right));
+  pointer-events: none; /* the empty strip never blocks a tap; each toast takes taps */
+}
+
+.ui-toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: min(100%, 440px);
+  min-height: var(--target-min);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--hairline);
+  border-inline-start: var(--rule-width) solid var(--accent-muted);
+  border-radius: var(--radius);
+  background-color: var(--surface-raised);
+  box-shadow: var(--shadow-float);
+  color: var(--text);
+  pointer-events: auto;
+  animation: ui-rise var(--dur-base) var(--ease-out) both;
+}
+
+.ui-toast[data-tone='success'] {
+  border-inline-start-color: var(--indicator);
+}
+
+.ui-toast[data-tone='warning'] {
+  border-inline-start-color: var(--text);
+}
+
+.ui-toast[data-state='leaving'] {
+  animation: ui-fade-out var(--dur-fast) var(--ease-out) both;
+}
+
+.ui-toast__glyph {
+  display: inline-flex;
+  flex: none;
+  color: var(--text-2);
+  font-size: 20px;
+}
+
+.ui-toast[data-tone='warning'] .ui-toast__glyph {
+  color: var(--text);
+}
+
+.ui-toast__message {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-block: var(--space-2);
+  font-size: var(--fs-body);
+  font-weight: var(--weight-medium);
+  line-height: var(--lh-snug);
+  overflow-wrap: break-word;
+}
+
+.ui-toast__action {
+  flex: none;
+  order: var(--thumb-order); /* Undo last sits under the thumb: left by default */
+}
+
+/*
+ * The first 350 ms after a toast appears (TAP_GUARD_MS in useTapGuard.ts):
+ * its action takes no tap, so the second tap of a double tap lands on the
+ * toast and never undoes what the first tap did.
+ */
+.ui-toast[data-tap-guard='on'] .ui-toast__action {
+  pointer-events: none;
+}

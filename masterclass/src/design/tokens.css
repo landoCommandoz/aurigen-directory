@@ -1,0 +1,213 @@
+/*
+ * Design tokens: Direction A, Hi-Vis (docs/DESIGN-DIRECTIONS.md section 4).
+ * Lando picked A on 2026-10-10 [HOUSE].
+ *
+ * This is the only file in the app that holds color values. Everything else
+ * reads them as var(--name). The one exception is the theme-color meta tag in
+ * index.html, which cannot read a CSS variable and mirrors --base by hand.
+ *
+ * Dark only, by design: there is no light theme. Print has its own two inks
+ * at the bottom of the palette, used only by print.css.
+ *
+ * Contrast (WCAG 2.2 relative luminance, computed 2026-10-07 and 2026-10-10):
+ *   --text on --base 15.9:1, on --surface 14.6:1, on --surface-raised 13.6:1
+ *   --text-2 on --base 7.1:1, on --surface 6.5:1, on --surface-raised 6.1:1
+ *   --on-accent (near-black) on --accent 16.1:1; off-white on accent fails
+ *   --on-stop (near-black) on --stop 5.2:1
+ *   --line-strong vs --base 3.7:1, vs --surface 3.4:1 (control boundaries, 3:1 rule)
+ *   --accent-muted vs --base 3.3:1 (fills and borders only, never text)
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Palette ---------------------------------------------------------- */
+  --base: #151311; /* near-black, warm: the concrete floor under a warm bulb */
+  --surface: #1f1c18; /* drawer, inputs, tiles */
+  --surface-raised: #242220; /* pressed tiles and rows, key caps (--text 7% over --base) */
+  --text: #f2ede4; /* a clean microfiber towel */
+  --text-2: #a79f93; /* labels, secondary lines, dim steps */
+  --accent: #d7ff3d; /* the one bold accent: hi-vis yellow-green */
+  --accent-muted: #5d6f23; /* accent mixed into the base: fills, rules, tracks. Never text */
+  --stop: #ff3b3b; /* STOP conditions only. Nothing else is red */
+
+  /* Text that sits on a filled color */
+  --on-accent: var(--base);
+  --on-stop: var(--base);
+  --on-text: var(--base); /* an off-white fill, such as the selected segment in Customer View */
+
+  /* Clear: the base at zero opacity. Use it instead of the keyword transparent,
+   * so a fade from a fill never passes through a dark fringe. */
+  --clear: rgba(21, 19, 17, 0);
+
+  /* Lines */
+  --hairline: rgba(242, 237, 228, 0.1); /* dividers between rows; decoration only */
+  --line-strong: #726f6a; /* input and control outlines that must be seen (3:1) */
+
+  /* Depth */
+  --shadow-drawer: 0 -12px 30px rgba(0, 0, 0, 0.45); /* the one shadow in A, cast upward from a bottom sheet */
+  --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.45); /* toasts, which float over content */
+  --edge-light: inset 0 1px 0 rgba(242, 237, 228, 0.06); /* the work light catching a tile's top edge */
+  --overlay: rgba(12, 10, 9, 0.62); /* behind a drawer */
+
+  /* The base: a warm work light from the top left at 6%, plus 3% grain */
+  --worklight: radial-gradient(120% 80% at 0% 0%, rgba(242, 237, 228, 0.06), rgba(242, 237, 228, 0) 60%);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.93 0 0 0 0 0.89 0.06 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+
+  /* Paint report bands (wireframe 6.3; Lando's Customer View rule 2026-10-10) */
+  --band-h-fill: #53504c; /* H, healthy: --text 28% over --base. Letter 6.9:1 */
+  --band-g-fill: #2b2926; /* G, thinner: --text 10% over --base, plus a hatch. Letter 12.4:1 */
+  --band-g-hatch: var(--text-2);
+  --band-t-fill: var(--clear); /* T, thin: no fill */
+  --band-t-outline-owner: var(--stop); /* owner view: the house "no machine" rule */
+  --band-t-outline-customer: var(--text-2); /* customer view: dashed grey with the word Thin [HOUSE 2026-10-10] */
+  --band-glass-fill: var(--clear);
+  --band-glass-outline: var(--hairline);
+  --band-letter: var(--text);
+
+  /* Print only (print.css): black on white, no backgrounds */
+  --print-ink: #000000;
+  --print-paper: #ffffff;
+
+  /* ---- Roles that change with density -------------------------------- */
+  --focus-ring: var(--accent);
+  --indicator: var(--accent); /* the selected segment, the Academy "why" rule */
+  --indicator-on: var(--on-accent);
+  --band-t-outline: var(--band-t-outline-owner);
+  --band-t-outline-style: solid;
+
+  /* ---- Type ------------------------------------------------------------- */
+  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif-condensed, 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+
+  --fs-timer: clamp(48px, 14vw, 64px); /* timers and readings, Barlow 700 tabular */
+  --fs-step: clamp(28px, 7.5vw, 40px); /* Shop step text, three lines max */
+  --fs-title: clamp(26px, 6vw, 32px); /* page titles */
+  --fs-h2: clamp(21px, 4.8vw, 24px);
+  --fs-h3: clamp(18px, 4.4vw, 20px);
+  --fs-body: clamp(16px, 4.3vw, 17px);
+  --fs-small: clamp(14px, 3.8vw, 15px); /* never below 14 px */
+
+  --lh-tight: 1.15;
+  --lh-snug: 1.3;
+  --lh-body: 1.5;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600; /* Barlow Condensed only */
+  --weight-bold: 700;
+
+  --measure: none; /* line length cap; Academy sets 68ch */
+
+  /* ---- Shape ------------------------------------------------------------ */
+  --radius: 6px; /* a tape cut. Never pills */
+  --rule-width: 3px; /* the Academy "why" rule and banner rules */
+  --ring-width: 3px;
+  --ring-offset: 3px;
+
+  /* ---- Space (4 px steps) ---------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --gutter: var(--space-4); /* page side padding; Customer uses 24 px */
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+
+  /* ---- Targets ---------------------------------------------------------- */
+  --target-min: 44px; /* every tap target */
+  --target-primary: 56px; /* the screen's main action */
+  --target-key: max(var(--target-min), 56px); /* PIN keys */
+  --row-min: max(var(--target-min), 56px);
+  --tile-min: 96px; /* Fix It tiles */
+  --bottom-row-height: calc(var(--target-min) + var(--space-4)); /* the row that holds Fix It: 60 px, 80 px in Shop */
+  --toast-offset: calc(var(--bottom-row-height) + var(--space-2)); /* toasts float above the bottom row */
+
+  /* ---- Layers ----------------------------------------------------------- */
+  --z-content: 0;
+  --z-sticky: 10; /* headers that stick inside a scroll container */
+  --z-bottom-row: 20; /* the row that holds Fix It */
+  --z-banner: 30;
+  --z-drawer: 40;
+  --z-toast: 50; /* above the drawer, so "Undo last" is never covered */
+  --z-dev: 60; /* developer panel and device preview */
+
+  /* ---- Motion ----------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-press: 120ms;
+  --dur-fast: 200ms;
+  --dur-base: 320ms;
+  --dur-slow: 400ms;
+  --stagger: 40ms; /* per item in the load moment */
+  --stagger-max: 6; /* items after the sixth start together, so the moment stays under 600 ms */
+  --rise-distance: 12px;
+  --sheet-distance: 100%;
+  --press-scale: 0.98;
+}
+
+/* ---- Densities -----------------------------------------------------------
+ * Set data-density on <html> (recommended, so drawers and toasts that render
+ * outside #root inherit it) or on any container. Custom properties inherit,
+ * so a nested container can carry its own density.
+ */
+
+/* Shop: arm's length, gloves on. 64 px targets, big type, one action area. */
+[data-density='shop'] {
+  --target-min: 64px;
+  --target-primary: 96px; /* "Done, next": full width, bottom of the screen */
+  --target-key: 64px;
+  --row-min: 64px;
+  --tile-min: 96px;
+  --fs-body: clamp(18px, 4.8vw, 22px);
+  --fs-small: clamp(16px, 4.2vw, 18px);
+  --fs-title: var(--fs-step);
+  --fs-h2: clamp(22px, 5.6vw, 28px);
+  --lh-body: 1.35;
+  --measure: none;
+}
+
+/* Academy: reading first. 68 characters a line (under 80), 18 px, 1.6. */
+[data-density='academy'] {
+  --fs-body: 18px;
+  --fs-small: 15px;
+  --fs-title: clamp(28px, 5vw, 32px);
+  --lh-body: 1.6;
+  --measure: 68ch;
+}
+
+/* Customer: clean and confident. More air; the accent nearly disappears.
+ * The accent may appear at most once per page, and only as the fill of one
+ * primary Button. Every other accent role turns neutral here. The paint
+ * report has no primary button, so it shows no accent at all. */
+[data-density='customer'] {
+  --gutter: var(--space-5);
+  --fs-body: 17px;
+  --fs-title: clamp(28px, 6vw, 36px);
+  --lh-body: 1.55;
+  --measure: 60ch;
+  --focus-ring: var(--text);
+  --indicator: var(--text);
+  --indicator-on: var(--on-text);
+  --band-t-outline: var(--band-t-outline-customer);
+  --band-t-outline-style: dashed;
+}
+
+/* Left or right thumb (Settings; left is the default, Lando 2026-10-10).
+ * Mirrors the bottom row and the Undo position and nothing else.
+ * --thumb-order puts a toast's action (Undo last) on the thumb side. */
+:root {
+  --thumb-side: flex-start;
+  --thumb-order: -1;
+}
+
+[data-hand='right'] {
+  --thumb-side: flex-end;
+  --thumb-order: 1;
+}

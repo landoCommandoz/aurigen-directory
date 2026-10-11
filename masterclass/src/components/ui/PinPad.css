@@ -1,0 +1,155 @@
+/* PIN pad: keys 56 px (64 px in Shop density), masked dots, words for errors. */
+
+.ui-pinpad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  width: min(100%, 360px);
+  min-width: 0;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+}
+
+/* The legend names the group; floated so it lays out like any block. */
+.ui-pinpad__label {
+  float: left;
+  width: 100%;
+  padding: 0;
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  text-align: center;
+}
+
+.ui-pinpad__label + * {
+  clear: both;
+}
+
+.ui-pinpad__dots {
+  display: flex;
+  gap: var(--space-3);
+  min-height: 20px;
+}
+
+.ui-pinpad__dots[data-error='true'] {
+  animation: ui-shake var(--dur-slow) var(--ease-out) both;
+}
+
+.ui-pinpad__dot {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--line-strong);
+  border-radius: 50%; /* a dot, not a pill */
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.ui-pinpad__dot[data-filled='true'] {
+  border-color: var(--text);
+  background-color: var(--text);
+  transform: scale(1.1);
+}
+
+/*
+ * Two lines are always reserved, so no message moves the keys: not the
+ * status, not a one-line wrong PIN, not the two-line "did not match" on the
+ * retry step (QA DEF-15: a step in place keeps every key where it was).
+ */
+.ui-pinpad__message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: calc(var(--fs-body) * var(--lh-snug) * 2);
+  color: var(--text-2);
+  font-size: var(--fs-body);
+  line-height: var(--lh-snug);
+  text-align: center;
+}
+
+.ui-pinpad__message[data-kind='error'] {
+  color: var(--text);
+  font-weight: var(--weight-bold);
+}
+
+.ui-pinpad__message-glyph {
+  flex: none;
+  font-size: 1.1em;
+}
+
+.ui-pinpad__keys {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  width: 100%;
+  animation: ui-fade-in var(--dur-base) var(--ease-out) both; /* the keys arrive inside the guard window */
+}
+
+/*
+ * The first 350 ms after the pad appears (TAP_GUARD_MS in useTapGuard.ts):
+ * no key takes a tap, so the second tap of a double tap on the button that
+ * opened the pad lands on the grid and does nothing (QA DEF-04).
+ */
+.ui-pinpad[data-tap-guard='on'] .ui-pinpad__key {
+  pointer-events: none;
+}
+
+/*
+ * A pad that steps in place to its next entry (the confirmation of a new
+ * PIN, or a fresh try after a mismatch) has no hold (QA DEF-15, pinStep.ts).
+ * Its keys never moved and take taps at once, so they do not fade in again;
+ * the new label fades in instead, so the step still reads.
+ */
+.ui-pinpad[data-step='true'] .ui-pinpad__keys {
+  animation: none;
+}
+
+.ui-pinpad[data-step='true'] .ui-pinpad__label {
+  animation: ui-fade-in var(--dur-fast) var(--ease-out) both;
+}
+
+.ui-pinpad__key {
+  min-height: var(--target-key);
+  min-width: var(--target-min);
+  padding: 0 var(--space-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  box-shadow: var(--edge-light);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: var(--weight-bold);
+  font-size: clamp(26px, 7vw, 30px);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ui-pinpad__key:active:not([aria-disabled='true']) {
+  background-color: var(--surface-raised);
+  border-color: var(--line-strong);
+}
+
+.ui-pinpad__key[aria-disabled='true'] {
+  color: var(--text-2);
+  border-style: dashed;
+  border-color: var(--line-strong);
+  box-shadow: none;
+}
+
+.ui-pinpad__key--word {
+  background-color: var(--clear);
+  box-shadow: none;
+  font-weight: var(--weight-medium);
+  font-size: var(--fs-body);
+}
+
+.ui-pinpad__key--word:not([aria-disabled='true']) {
+  border-color: var(--clear);
+}

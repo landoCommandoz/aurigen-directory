@@ -1,0 +1,49 @@
+id: card-never-on-paint
+type: quickcard
+title: Never on customer paint
+kind: list
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.4"
+tags: [never, garage only, products, tools, safety]
+synonyms:
+  - never on paint
+  - can I use this
+  - banned products
+  - garage only
+  - do not use list
+  - not allowed on paint
+  - turtle wax
+  - what stays in the garage
+  - forbidden products
+rows:
+  - label: Craftsman random-orbit sander
+    value: Garage only.
+  - label: Black & Decker angle grinder
+    value: Garage only.
+  - label: Black & Decker rotary polisher
+    value: Garage only.
+  - label: Turtle Wax compounds, all three
+    value: Garage only. The Polishing Compound has a crusted cap, and the crust is dried abrasive.
+  - label: Minwax polyurethane
+    value: Garage only.
+  - label: Spic and Span
+    value: Garage only. Never in the wash bucket.
+  - label: Armor All Original protectant
+    value: Garage only.
+  - label: Lithium grease
+    value: Garage only.
+  - label: Dish soap
+    value: Garage only. Never in the wash bucket.
+related:
+  - product-turtle-wax-compounds
+  - product-minwax-polyurethane
+  - product-spic-and-span
+  - product-armor-all-original-protectant
+  - product-lithium-grease
+  - product-dish-soap
+  - equipment-craftsman-ro-sander
+  - equipment-bd-angle-grinder
+  - equipment-bd-rotary-polisher
+  - card-stop-rules

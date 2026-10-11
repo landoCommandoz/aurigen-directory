@@ -1,0 +1,47 @@
+id: card-bucket-mix
+type: quickcard
+title: Pre-polish wash bucket mix
+kind: mix
+audience: [owner, crew]
+visibility: internal
+status: house
+version: 2
+kbRef: "4"
+tags: [mix, wash, bucket, pre-polish, strip wash]
+synonyms:
+  - bucket mix
+  - wash bucket
+  - soap mix
+  - how much soap
+  - citrus mix
+  - strip wash mix
+  - pre polish wash
+  - soap ratio
+sources:
+  - label: Chemical Guys guide, how to choose the right car wash soap
+    url: https://www.chemicalguys.com/blogs/exterior-how-tos/how-to-choose-the-right-car-wash-soap
+    date: 2026-10-10
+    note: 1 oz for a regular wash, up to 3 oz to strip old coatings. It does not say per how much water. Retail copies of the label say 1 oz per 5 gal to wash. Fact-checker FC-01 and FC-02.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+rows:
+  - label: Water
+    value: 4 gal
+  - label: CG Citrus Wash & Gloss
+    value: 4 oz
+  - label: Strength
+    value: 1 oz per gal. That is strip strength, because polishing follows.
+  - label: Chemical Guys, to wash
+    value: 1 oz per 5-gal bucket.
+    status: sourced
+  - label: Chemical Guys strip figure
+    value: About 3 oz per 5-gal bucket. Read the strip line on your 64 oz bottle.
+    status: verify
+  - label: Never in this bucket
+    value: Ultimate Wash & Wax before polishing, dish soap, Spic and Span, wheel brushes, or the clay mitt.
+related:
+  - card-maintenance-wash
+  - card-clay-tub
+  - product-cg-citrus-wash-gloss
+  - term-strip-wash
+  - card-setup-kit

@@ -1,0 +1,27 @@
+id: equipment-bd-rotary-polisher
+type: equipment
+title: Black & Decker rotary polisher
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.4"
+tags: [never on paint, garage only, rotary]
+synonyms:
+  - rotary
+  - rotary polisher
+  - black and decker polisher
+  - b and d polisher
+  - old polisher
+  - rotary buffer
+neverOnPaint: true
+specs:
+  - label: Type
+    value: Rotary. It spins only.
+    status: house
+    kbRef: "22"
+checks:
+  - Garage only. It never touches customer paint.
+related:
+  - card-never-on-paint
+  - term-rotary
+  - equipment-bauer-56367

@@ -1,0 +1,59 @@
+id: equipment-rd-tc100
+type: equipment
+title: R&D TC100 paint gauge
+model: TC100
+audience: [owner, crew]
+visibility: internal
+status: sourced
+kbRef: "7.2"
+tags: [gauge, measure, thickness, microns]
+synonyms:
+  - paint gauge
+  - gauge
+  - zero gauge
+  - zero the gauge
+  - thickness gauge
+  - tc100
+  - paint meter
+  - mil gauge
+  - how to use the gauge
+sources:
+  - label: Knowledge base 7.2, TC100 research
+    date: 2026-10-06
+specs:
+  - label: Fe
+    value: Steel substrate. Reads fine.
+    status: sourced
+  - label: NFe
+    value: Aluminum. Reads fine.
+    status: sourced
+  - label: SNG
+    value: Single-reading mode
+    status: sourced
+  - label: µm
+    value: Microns. Leave the units alone.
+    status: sourced
+  - label: Moving dots
+    value: Waiting
+    status: sourced
+  - label: In use
+    value: The gauge in the kit. Use this one.
+    status: house
+    kbRef: "3.1"
+checks:
+  - text: Zero ONLY on the included bare plate. Never press ZERO on the car. It offsets every later reading.
+    status: sourced
+  - text: Hold it flat.
+    status: sourced
+  - text: Door jamb first. That is your baseline.
+    status: sourced
+  - text: Take 3 to 5 readings per panel, the middle, then toward each corner. Write them down.
+    status: sourced
+  - text: 20 µm swings within a foot are normal.
+    status: sourced
+  - text: Tesla Model Y owners commonly measure about 4 to 6 mils (100 to 150 µm), highest on the hood. Lando's hood read above 100 everywhere.
+    status: sourced
+related:
+  - card-thickness-bands
+  - term-micron-mil
+  - card-kills-the-buff

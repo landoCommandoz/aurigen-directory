@@ -1,0 +1,169 @@
+/*
+ * The shared screen frame for settings, Quick Cards, search, and Fix It entry.
+ * Colors come from src/design/tokens.css only. One scroll container per view:
+ * flex 1 1 auto, min-height 0, overflow-y auto. No max-height, no overflow hidden.
+ */
+.mc-screen {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  padding: var(--space-4) calc(var(--gutter) + var(--safe-right)) calc(var(--space-8) + var(--safe-bottom))
+    calc(var(--gutter) + var(--safe-left));
+}
+
+.mc-screen > * + *,
+.mc-screen > [data-internal] > * + * {
+  margin-top: var(--space-6);
+}
+
+.mc-screen__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.mc-screen__back {
+  margin-inline-start: calc(var(--space-3) * -1);
+}
+
+.mc-screen__eyebrow {
+  color: var(--text-2);
+  font-size: var(--fs-small);
+  font-weight: var(--weight-medium);
+}
+
+.mc-screen__title {
+  font-size: var(--fs-title);
+  overflow-wrap: break-word;
+}
+
+.mc-screen__lede {
+  max-inline-size: var(--measure);
+}
+
+.mc-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.mc-section__title {
+  font-size: var(--fs-h2);
+}
+
+.mc-section__intro {
+  max-inline-size: var(--measure);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mc-status {
+  padding: var(--space-3) var(--space-4);
+  border: var(--rule-width) solid var(--line-strong);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  color: var(--text);
+  max-inline-size: var(--measure);
+  overflow-wrap: break-word;
+}
+
+.mc-status[data-tone='warning'] {
+  border-width: calc(var(--rule-width) * 2);
+}
+
+.mc-status[data-tone='success'] {
+  border-color: var(--accent-muted);
+}
+
+.mc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+/* Buttons that appear where the last tap landed take no taps for a moment (useTapGuard, DEF-04),
+ * so the second tap of a double tap lands on the row and does nothing. */
+.mc-tap-guard[data-tap-guard='on'] * {
+  pointer-events: none;
+}
+
+.mc-readouts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 0;
+  border-top: var(--rule-width) solid var(--hairline);
+}
+
+.mc-readouts__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: var(--rule-width) solid var(--hairline);
+}
+
+.mc-readouts__row dt {
+  color: var(--text-2);
+}
+
+.mc-readouts__row dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
+.mc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-inline-start: var(--space-2);
+  padding: 0 var(--space-2);
+  border: var(--rule-width) dashed var(--line-strong);
+  border-radius: var(--radius);
+  color: var(--text-2);
+  font-size: var(--fs-small);
+  font-weight: var(--weight-medium);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.mc-textarea {
+  inline-size: 100%;
+  min-block-size: calc(var(--target-min) * 2);
+  padding: var(--space-3);
+  border: var(--rule-width) solid var(--line-strong);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  color: var(--text);
+  font-size: max(16px, var(--fs-body));
+  resize: vertical;
+}
+
+.mc-list {
+  margin: 0;
+  padding-inline-start: var(--space-5);
+  max-inline-size: var(--measure);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+@media (min-width: 768px) {
+  .mc-readouts__row {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  }
+}
+
+/* Wide screens: content sits in a 1040 px column so lines stay readable at the desk. Pixels, not
+   rem: the density sets the root font size. The scroll container stays full width, so the
+   scrollbar is at the window edge. */
+@media (min-width: 1024px) {
+  .mc-screen {
+    padding-inline: max(calc(var(--gutter) + var(--safe-left)), calc((100% - 1040px) / 2));
+  }
+}

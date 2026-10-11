@@ -1,0 +1,49 @@
+id: card-ipa-wipe
+type: quickcard
+title: IPA panel wipe mix
+kind: mix
+audience: [owner, crew]
+visibility: internal
+status: verify
+kbRef: "4"
+tags: [mix, ipa, alcohol, panel wipe, polish]
+synonyms:
+  - ipa mix
+  - alcohol mix
+  - panel wipe
+  - ipa ratio
+  - alcohol spray
+  - rubbing alcohol mix
+  - wipe down spray
+  - ipa bottle
+rows:
+  - label: 70% IPA
+    value: 1 cup
+    status: verify
+  - label: Water
+    value: 3 cups
+    status: verify
+  - label: Strength
+    value: 17.5% alcohol
+    status: verify
+  - label: Bottle
+    value: The Zep pump sprayer, labeled.
+    status: house
+  - label: When
+    value: After a square's sets. Mist, wipe with a clean towel, then check with the light low and from a few feet back.
+    status: house
+    kbRef: "8.3"
+  - label: Why
+    value: Polish oils hide swirls. Wipe before you judge the result.
+    status: house
+    kbRef: "21"
+  - label: Never
+    value: On a motorcycle windshield. It is plastic, so no alcohol.
+    status: house
+    kbRef: "12.1"
+related:
+  - card-machine-settings
+  - product-ipa-70
+  - equipment-zep-pump-sprayer
+  - term-ipa-wipe
+  - card-bike-rules

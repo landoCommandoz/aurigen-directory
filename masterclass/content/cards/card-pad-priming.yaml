@@ -1,0 +1,44 @@
+id: card-pad-priming
+type: quickcard
+title: Pad priming and how much polish
+kind: settings
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "8.2"
+tags: [polish, pad, priming, product amount]
+synonyms:
+  - how much polish
+  - wet the pad
+  - prime the pad
+  - priming
+  - how many drops
+  - mist the pad
+  - water on the pad
+  - charge the pad
+  - new pad
+rows:
+  - label: New pad
+    value: 3 drops worked into the face with a finger, until it is damp all over.
+  - label: Then
+    value: 3 to 4 pea-size drops.
+  - label: Every section after
+    value: 1 to 2 drops, not a full dose. The pad is already charged.
+  - label: Pad looks or feels dry
+    value: Mist the pad face lightly with water, from a spray bottle or a damp hand. Do not soak it.
+  - label: Re-mist
+    value: Every 2 or 3 sections, as needed.
+  - label: One pad per liquid
+    value: A compound pad never touches polish.
+  - label: After every square
+    value: Blow out or brush the pad. A loaded pad stops cutting and starts smearing.
+    kbRef: "8.4"
+  - label: Swap pads
+    value: When loaded or hot, roughly every two panels. At minimum, a fresh yellow at the halfway point of the car.
+    kbRef: "8.4"
+related:
+  - card-machine-settings
+  - card-pad-ladder
+  - term-priming
+  - product-meguiars-m210
+  - equipment-pad-urotec-yellow

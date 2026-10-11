@@ -1,0 +1,47 @@
+id: equipment-microfiber-towels
+type: equipment
+title: Microfiber towels
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "5.2"
+tags: [towels, wash, laundry, microfiber]
+synonyms:
+  - towels
+  - microfiber
+  - wash towels
+  - towel wash
+  - towel method
+  - how to wash towels
+  - laundry
+  - towel piles
+sources:
+  - label: Knowledge base 13.3
+    date: 2026-10-07
+    note: Hot water for the product piles; Meguiar's washes its own polishing cloths hot
+specs:
+  - label: Wash method
+    value: 16 or more, one per panel, folded in quarters.
+    status: house
+  - label: Per full detail
+    value: 24 to 30, plus 16 wash towels with the towel method.
+    status: house
+    kbRef: "18.4"
+checks:
+  - Lift each towel out dripping. Straight lines, front to back. Never circles.
+  - A used towel never goes back in the bucket.
+  - Lower panels never share a towel. Rockers and mirrors go last, then retire that towel.
+  - text: "Three piles that never mix: water-only, product, and wheels."
+    status: house
+  - text: Product towels soak 1 hour in warm soapy water first. Wax-residue towels get at least two washes.
+    status: house
+  - text: Hot water for the product piles. Warm is fine for the water-only pile.
+    status: sourced
+  - Dye-free, fragrance-free detergent. Full cycle, extra rinse.
+  - Never fabric softener, dryer sheets, or bleach.
+  - Microfiber only. Never with cotton or terry.
+  - Dry on low or air dry. Dryer heat melts microfiber, not the washer.
+related:
+  - card-setup-kit
+  - equipment-wheel-brushes
+  - equipment-air-compressor

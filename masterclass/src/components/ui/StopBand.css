@@ -1,0 +1,53 @@
+/* STOP band: --stop fill, near-black words (5.2:1), the octagon, full width. */
+
+.ui-stopband {
+  --press-scale: 0.99;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: var(--space-3);
+  row-gap: var(--space-1);
+  width: 100%;
+  min-height: var(--target-min);
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 0;
+  border-radius: var(--radius);
+  background-color: var(--stop);
+  color: var(--on-stop);
+  text-align: start;
+}
+
+button.ui-stopband {
+  min-height: max(var(--target-min), 64px);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button.ui-stopband:active {
+  filter: brightness(0.9);
+}
+
+.ui-stopband__mark {
+  display: inline-flex;
+  flex: none;
+  font-size: clamp(28px, 7.5vw, 34px);
+}
+
+.ui-stopband__word {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: clamp(24px, 6.4vw, 30px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.ui-stopband__text {
+  flex: 1 1 12ch;
+  min-width: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--weight-bold);
+  line-height: var(--lh-snug);
+  overflow-wrap: break-word;
+}

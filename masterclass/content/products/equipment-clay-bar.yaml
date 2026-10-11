@@ -1,0 +1,35 @@
+id: equipment-clay-bar
+type: equipment
+title: HF clay bar kit
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "6"
+tags: [clay, decon, bar]
+synonyms:
+  - clay bar
+  - clay
+  - clay kit
+  - claying
+  - how to clay
+  - clay the car
+sources:
+  - label: Knowledge base 6
+    date: 2026-10-06
+    note: Clay can mar soft or black paint; plan a polish after clay
+checks:
+  - Bag test first. Only gritty panels get clay.
+  - Tear the bar in half. Keep one piece in the case, so a drop costs one piece.
+  - Flatten it into a palm-size patty.
+  - Work 2 x 2 ft sections. Soak with clay tub lube. Glide in straight lines with light pressure.
+  - Knead to a clean face after every panel.
+  - Paint only. Skip glass.
+  - Dropped bar goes in the trash.
+  - text: Clay can mar soft or black paint. Plan a polish after clay.
+    status: sourced
+  - Clay goes back in its case after the job.
+related:
+  - card-clay-tub
+  - equipment-clay-mitt
+  - term-bag-test
+  - term-decon

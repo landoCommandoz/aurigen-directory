@@ -1,0 +1,21 @@
+{
+  // Node-side program: build scripts, tests, and the tool config files.
+  // Same strict rules as tsconfig.json, plus Node's types. DOM stays in lib
+  // because unit tests run in jsdom and import browser code from src/.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["node"]
+  },
+  "include": [
+    "scripts",
+    "tests",
+    "src/vite-env.d.ts",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "vite.config.ts",
+    "vitest.config.ts",
+    "playwright.config.ts"
+  ],
+  "exclude": []
+}

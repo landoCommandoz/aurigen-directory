@@ -1,0 +1,133 @@
+/*
+ * Bottom sheet. The layer is a fixed flex column: the sheet sits at the
+ * bottom, shrinks to the space left under the top safe area, and its body
+ * scrolls. No max-height, no overflow: hidden.
+ */
+
+.ui-drawer-layer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-drawer);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 0;
+  padding-top: max(var(--space-7), var(--safe-top));
+  overscroll-behavior: contain;
+}
+
+.ui-drawer-layer[data-state='closing'] {
+  pointer-events: none; /* a quick next tap reaches the page underneath */
+}
+
+/*
+ * The first 350 ms after the sheet opens (TAP_GUARD_MS in useTapGuard.ts):
+ * the backdrop and the sheet take no taps, so the second tap of a double tap
+ * on the opener lands on the layer itself and does nothing (QA DEF-04). The
+ * layer still covers the page, so the tap never reaches the opener either.
+ */
+.ui-drawer-layer[data-tap-guard='on'] > * {
+  pointer-events: none;
+}
+
+.ui-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: var(--overlay);
+  touch-action: none; /* the scroll lock lives here, on the backdrop only */
+  animation: ui-fade-in var(--dur-fast) var(--ease-out) both;
+}
+
+.ui-drawer-layer[data-state='closing'] .ui-drawer-backdrop {
+  animation: ui-fade-out var(--dur-fast) var(--ease-out) both;
+}
+
+.ui-drawer {
+  position: relative;
+  inset: auto;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  width: min(100%, 720px);
+  max-width: none;
+  height: auto;
+  margin: 0 auto;
+  padding: 0 0 var(--safe-bottom);
+  border: 1px solid var(--hairline);
+  border-bottom: 0;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background-color: var(--surface);
+  box-shadow: var(--shadow-drawer);
+  color: var(--text);
+  animation: ui-sheet-in var(--dur-base) var(--ease-out) both;
+}
+
+.ui-drawer:focus {
+  outline: none; /* the sheet is a container; its controls carry the ring */
+}
+
+.ui-drawer-layer[data-state='closing'] .ui-drawer {
+  animation: ui-sheet-out var(--dur-fast) var(--ease-out) both;
+}
+
+.ui-drawer__handle {
+  flex: none;
+  width: 40px;
+  height: 4px;
+  margin: var(--space-2) auto 0;
+  border-radius: 2px;
+  background-color: var(--line-strong);
+}
+
+.ui-drawer__header {
+  display: flex;
+  flex: none;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--gutter) var(--space-3);
+}
+
+.ui-drawer__heading {
+  min-width: 0;
+}
+
+.ui-drawer__eyebrow {
+  color: var(--text-2);
+  font-size: var(--fs-small);
+  line-height: var(--lh-snug);
+}
+
+.ui-drawer__title {
+  font-size: var(--fs-h2);
+  overflow-wrap: break-word;
+}
+
+.ui-drawer__close {
+  flex: none;
+  margin-top: calc(var(--space-2) * -1);
+  margin-inline-end: calc(var(--space-2) * -1);
+}
+
+.ui-drawer__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 var(--gutter) var(--space-4);
+}
+
+.ui-drawer__footer {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--gutter);
+  border-top: 1px solid var(--hairline);
+}
+
+.ui-drawer__footer > * {
+  flex: 1 1 auto;
+}

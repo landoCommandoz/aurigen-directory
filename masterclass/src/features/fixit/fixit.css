@@ -1,0 +1,11 @@
+/*
+ * Fix It entry. Tiles come from the base Tile component (96 px tall in Shop density).
+ * Colors from src/design/tokens.css only.
+ */
+.fx-phase {
+  padding: var(--space-3) var(--space-4);
+  border: var(--rule-width) dashed var(--line-strong);
+  border-radius: var(--radius);
+  color: var(--text-2);
+  max-inline-size: var(--measure);
+}

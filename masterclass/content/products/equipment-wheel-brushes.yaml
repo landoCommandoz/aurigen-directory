@@ -1,0 +1,23 @@
+id: equipment-wheel-brushes
+type: equipment
+title: Wheel brushes
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "5.1"
+tags: [wheels, brushes, wash]
+synonyms:
+  - wheel brush
+  - wheel brushes
+  - tire brush
+  - barrel brush
+  - rim brush
+  - long brush
+checks:
+  - Soft brush on the face, long brush in the barrel, stiff brush on the tire.
+  - Wheel brushes never touch paint.
+  - Never in the wash bucket.
+  - Wheel towels are their own pile, for good.
+related:
+  - product-armor-all-extreme-wheel-tire
+  - equipment-microfiber-towels

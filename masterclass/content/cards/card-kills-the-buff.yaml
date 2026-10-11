@@ -1,0 +1,48 @@
+id: card-kills-the-buff
+type: quickcard
+title: What kills the buff, 8 checks before quoting
+kind: table
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "7.4"
+tags: [walkaround, quote, wrap, ppf, matte, walk away]
+synonyms:
+  - what kills the buff
+  - checks before quoting
+  - walkaround checks
+  - vinyl wrap
+  - ppf
+  - ceramic coating
+  - matte paint
+  - walk away
+  - should I buff this
+rows:
+  - label: Vinyl wrap
+    value: "Sign: seams at the edges, no clear shine inside the jamb. Do: no compound, no polish. Wrap-safe wash and sealant only."
+  - label: Paint protection film
+    value: "Sign: clear edges on the hood, fenders, and mirrors at an angle. Do: film-safe polish, low speed, no compound, never over an edge."
+  - label: Ceramic coating
+    value: "Sign: tight beading, slick squeaky paint. Do: polishing removes it. Say so first."
+  - label: Matte or satin
+    value: "Sign: no reflection, flat finish. Do: no compound, polish, or wax. Matte-safe cleaner only."
+  - label: Repaint or thin panel
+    value: "Sign: gauge way off the rest. Do: go light or skip. Log it and tell the customer."
+  - label: Single-stage paint
+    value: "Sign: color transfers to the pad. Do: normal on old paint. Say it, note it, back off pressure."
+  - label: Glaze or filler job
+    value: "Sign: swirls came back a week after a cheap detail. Do: strip wash first."
+  - label: Clear coat failure
+    value: "Sign: peeling, flaking, cloudy patches. Do: do not polish."
+  - label: Walk away from
+    value: Failing clear coat, fresh paint under 30 days, a wrapped car whose owner wants it buffed, and flood, mold, or biohazard cars.
+  - label: Also walk away from
+    value: Any car worth more than your insurance covers.
+    status: verify
+related:
+  - card-thickness-bands
+  - card-stop-rules
+  - card-bike-rules
+  - term-single-stage
+  - term-strip-wash
+  - term-clear-coat

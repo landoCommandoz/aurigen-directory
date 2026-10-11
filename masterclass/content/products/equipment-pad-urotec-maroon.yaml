@@ -1,0 +1,47 @@
+id: equipment-pad-urotec-maroon
+type: equipment
+title: Buff and Shine Uro-Tec maroon pad, 6 in.
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.2"
+tags: [pad, polishing pad, maroon, uro-tec, cut]
+synonyms:
+  - maroon pad
+  - red pad
+  - uro-tec maroon
+  - urotec maroon
+  - buff and shine maroon
+  - more cut pad
+  - the maroon
+  - compound pad
+sources:
+  - label: Detailed Image Uro-Tec listing
+    date: 2026-10-02
+    note: Beveled design makes the working face about 1 in. larger than the backing
+specs:
+  - label: On hand
+    value: x2
+    status: house
+  - label: Job
+    value: Heavier polishing and more cut. Rung 2 with M210, rung 3 with Ultimate Compound.
+    status: house
+    kbRef: "8.5"
+  - label: Working face
+    value: The beveled design makes it about 1 in. larger than the backing.
+    status: sourced
+  - label: Thickness
+    value: Not confirmed. One note said about 5/8 in.; a Detailed Image listing says 1 in. Measure the pads.
+    status: verify
+checks:
+  - text: One pad per liquid. A maroon that touched compound never touches polish.
+    status: house
+  - text: Blow out or brush it after every square.
+    status: house
+  - text: Same night, wash it in warm water, not hot, with a drop of laundry detergent. Dried compound in a pad is a dead pad.
+    status: house
+related:
+  - card-pad-ladder
+  - equipment-pad-urotec-yellow
+  - product-meguiars-ultimate-compound
+  - product-meguiars-m210

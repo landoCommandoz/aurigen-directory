@@ -1,0 +1,51 @@
+id: equipment-pad-urotec-yellow
+type: equipment
+title: Buff and Shine Uro-Tec yellow pad, 6 in.
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.2"
+tags: [pad, polishing pad, yellow, uro-tec]
+synonyms:
+  - yellow pad
+  - polishing pad
+  - uro-tec yellow
+  - urotec yellow
+  - buff and shine yellow
+  - first pad
+  - the yellow
+sources:
+  - label: Detailed Image Uro-Tec listing
+    date: 2026-10-02
+    note: Yellow listed as a polishing pad; beveled design makes the working face about 1 in. larger than the backing
+specs:
+  - label: On hand
+    value: x3
+    status: house
+  - label: Job
+    value: Polishing. Rung 1 of the ladder, and the pass after every compounded square.
+    status: house
+    kbRef: "8.5"
+  - label: Detailed Image listing
+    value: Listed as a polishing pad
+    status: sourced
+  - label: Working face
+    value: The beveled design makes it about 1 in. larger than the backing.
+    status: sourced
+  - label: Thickness
+    value: Not confirmed. One note said about 5/8 in.; a Detailed Image listing says 1 in. Measure the pads.
+    status: verify
+checks:
+  - text: Blow out or brush it after every square.
+    status: house
+  - text: Swap when loaded or hot, roughly every two panels. At minimum, a fresh yellow at the halfway point of the car.
+    status: house
+  - text: One pad per liquid. A compound pad never touches polish.
+    status: house
+  - text: Same night, wash it in warm water, not hot, with a drop of laundry detergent. Press the water out, never wring. Dry face down on a rack.
+    status: house
+related:
+  - card-pad-ladder
+  - card-pad-priming
+  - equipment-pad-urotec-maroon
+  - product-meguiars-m210

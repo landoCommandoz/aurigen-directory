@@ -1,0 +1,103 @@
+id: card-tesla-wash-mode-tape
+type: quickcard
+title: Tesla Model Y Car Wash Mode and tape list
+kind: list
+audience: [owner, crew]
+visibility: internal
+status: house
+version: 2
+kbRef: "11"
+tags: [tesla, model y, tape, wash, car wash mode, warranty]
+synonyms:
+  - car wash mode
+  - tesla
+  - model y
+  - tesla roof
+  - glass roof
+  - tesla tape
+  - what to tape on the tesla
+  - sentry mode
+  - tesla cameras
+  - wash mode
+  - tesla wheel cleaner
+  - compound on a tesla
+  - tesla warranty
+sources:
+  - label: Tesla Model Y 2020 to 2024 owner's manual, Car Wash Mode
+    url: https://www.tesla.com/ownersmanual/2020_2024_modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
+    date: 2026-10-10
+    note: Menu path, what the mode does, parked and not charging, exits above 9 mph or on Exit, and car wash damage is not covered by the warranty. Manual for software 2026.32. Read through the search index. Fact-checker FC-13 and FC-14.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Tesla Model Y owner's manual, cleaning cautions, current model
+    url: https://www.tesla.com/ownersmanual/modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
+    date: 2026-10-10
+    note: No cutting pastes, color restoration compounds, or harsh-abrasive polishes. Cleaning-product damage is not covered by the warranty. Seen on the 2025 and newer Model Y manual and other Tesla manuals; the 2020 to 2024 page could not be checked line by line. Read through the search index. Fact-checker FC-16.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Tesla Model Y owner's manual, wheel cleaner caution
+    url: https://www.tesla.com/ownersmanual/modely/en_ae/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
+    date: 2026-10-10
+    note: No chemical-based wheel cleaners or pre-wash products. Same wording in the Model 3, S, X, and Cybertruck manuals. Read through the search index. Fact-checker FC-16.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+rows:
+  - label: Car Wash Mode
+    value: On before any water.
+  - label: Menu path, 2020 to 2024 Model Y
+    value: "Controls > Service > Car Wash Mode."
+    status: sourced
+  - label: What it does
+    value: Closes all windows, locks the charge port, and turns off the wipers, Sentry Mode, walk-away door locking, and parking chimes. The car must be parked and not charging. It turns off above 9 mph or when you touch Exit.
+    status: sourced
+  - label: If you skip it
+    value: Tesla's manual says the charge port or wipers can be damaged, and car wash damage is not covered by the warranty.
+    status: sourced
+  - label: Tape the window trim
+    value: Satin black window trim. Polish turns it chalky white.
+  - label: Tape the door handles
+    value: Flush door handle edges.
+  - label: Tape the cameras
+    value: All five. Two B-pillar, two fender repeaters, one above the rear plate.
+  - label: Tape the badges
+    value: Every badge.
+  - label: Tape the glass header
+    value: The black glass header.
+  - label: Tape the cladding
+    value: Textured cladding on the wheel arches and the lower bumper.
+  - label: Roof
+    value: It is glass. Wash it, never polish it. Skip it in the measure and polish routes.
+  - label: Charge port door
+    value: Stays closed.
+  - label: Camera lenses
+    value: Glass cleaner only.
+  - label: Wheels
+    value: Leave the aero covers on during the wheel clean.
+  - label: Wheel cleaner, house
+    value: Armor All Extreme Wheel & Tire, a brush, and the hose, the same as every car.
+    kbRef: "5.1"
+  - label: Wheel cleaner, Tesla's manual
+    value: Tesla's manual says do not use chemical-based wheel cleaners or pre-wash products. They can damage the finish on the wheels.
+    status: sourced
+  - label: Compound, house
+    value: Rung 3 of the pad ladder allows Ultimate Compound when the test spot proves it is needed.
+    kbRef: "8.5"
+  - label: Compound, Tesla's manual
+    value: Tesla's manual says do not use cutting pastes, color restoration compounds, or polishes with harsh abrasives. They can scour the surface and permanently damage the paint.
+    status: sourced
+  - label: Warranty, Tesla's manual
+    value: Tesla's manual says damage or discoloration from cleaning products is not covered by the warranty.
+    status: sourced
+  - label: Lando decides which applies (pending)
+    value: On a Tesla, the house wheel step, pre-soak, and compound rung, or Tesla's manual.
+    status: verify
+  - label: Other years and models
+    value: Cameras, trim, and the Car Wash Mode menu path differ. Check each car.
+    status: verify
+related:
+  - card-setup-kit
+  - card-machine-settings
+  - equipment-painters-tape
+  - card-stop-rules
+  - product-armor-all-extreme-wheel-tire
+  - card-pad-ladder

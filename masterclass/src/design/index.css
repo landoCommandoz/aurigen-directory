@@ -1,0 +1,164 @@
+/*
+ * The design system entry. main.tsx imports this file once:
+ *   import './design/index.css';
+ * Order matters: tokens first, then the faces, then motion, then print.
+ */
+@import './tokens.css';
+@import './fonts.css';
+@import './motion.css';
+@import './print.css';
+
+/* ---- Scroll chain (CLAUDE.md mobile rules) -------------------------------
+ * html, body, and #root are fixed to the screen and never scroll. The app
+ * shell inside #root holds one scroll container per view:
+ *   flex: 1 1 auto; min-height: 0; overflow-y: auto;
+ * No ancestor of a scroll container has overflow: hidden or a max-height.
+ */
+html {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background-color: var(--base);
+}
+
+body {
+  margin: 0;
+  height: 100vh; /* older engines without dvh */
+  height: 100dvh;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--base);
+  background-image: var(--worklight), var(--grain);
+  background-repeat: no-repeat, repeat;
+  background-size:
+    100% 100%,
+    160px 160px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: var(--weight-regular);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* A density container sets its own reading size. */
+[data-density] {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ---- Type ----------------------------------------------------------------
+ * Sentence case everywhere. The only word set in capitals is STOP.
+ */
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  line-height: var(--lh-tight);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-title);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+small {
+  font-size: var(--fs-small);
+}
+
+a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+/* Timers and readings: digits keep one width, so the numbers never jump. */
+.ui-num {
+  font-family: var(--font-body);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.ui-muted {
+  color: var(--text-2);
+}
+
+.ui-measure {
+  max-inline-size: var(--measure);
+}
+
+.ui-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+/* ---- Focus: always visible from the keyboard ----------------------------- */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: var(--ring-width) solid var(--focus-ring);
+  outline-offset: var(--ring-offset);
+}
+
+::selection {
+  background-color: var(--accent-muted);
+  color: var(--text);
+}

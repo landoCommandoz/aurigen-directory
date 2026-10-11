@@ -1,0 +1,20 @@
+id: equipment-craftsman-ro-sander
+type: equipment
+title: Craftsman random-orbit sander
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.4"
+tags: [never on paint, garage only, sander]
+synonyms:
+  - sander
+  - craftsman sander
+  - orbital sander
+  - random orbit sander
+  - craftsman
+neverOnPaint: true
+checks:
+  - Garage only. Never on customer paint.
+related:
+  - card-never-on-paint
+  - equipment-bauer-56367

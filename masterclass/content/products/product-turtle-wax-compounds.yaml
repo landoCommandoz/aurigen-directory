@@ -1,0 +1,24 @@
+id: product-turtle-wax-compounds
+type: product
+title: Turtle Wax compounds, all three
+brand: Turtle Wax
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.4"
+tags: [never on paint, garage only, compound, rejected]
+synonyms:
+  - turtle wax
+  - turtle wax compound
+  - turtle wax polishing compound
+  - crusted cap
+  - old compound
+  - turtle compound
+jobs:
+  - None on a customer car. Garage only.
+neverFor:
+  - Customer paint. The Polishing Compound is rejected; its crusted cap is dried abrasive.
+neverOnPaint: true
+related:
+  - card-never-on-paint
+  - product-meguiars-ultimate-compound

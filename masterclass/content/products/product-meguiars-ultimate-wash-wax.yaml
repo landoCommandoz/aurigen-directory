@@ -1,0 +1,25 @@
+id: product-meguiars-ultimate-wash-wax
+type: product
+title: Meguiar's Ultimate Wash & Wax
+brand: Meguiar's
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.3"
+tags: [wash, soap, maintenance, wax]
+synonyms:
+  - wash and wax
+  - ultimate wash and wax
+  - wash n wax
+  - meguiars wash and wax
+  - maintenance soap with wax
+  - waxy soap
+jobs:
+  - Maintenance washes only
+neverFor:
+  - Any wash before polishing
+  - The pre-polish wash bucket
+related:
+  - card-maintenance-wash
+  - card-bucket-mix
+  - product-meguiars-super-soap

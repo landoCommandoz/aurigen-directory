@@ -1,0 +1,53 @@
+id: card-clay-tub
+type: quickcard
+title: Clay tub lube mix
+kind: mix
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "4"
+tags: [mix, clay, lube, decon]
+synonyms:
+  - clay lube
+  - clay mix
+  - clay tub
+  - clay bucket
+  - lube mix
+  - clay spray
+  - how much lube
+  - clay soap
+sources:
+  - label: Knowledge base 6
+    date: 2026-10-06
+    note: Clay can mar soft or black paint; plan a polish after clay
+rows:
+  - label: Water
+    value: 1 gal
+  - label: CG Citrus Wash & Gloss
+    value: 1 oz
+  - label: Use it
+    value: Soak each section with lube. Never let a section go dry.
+    kbRef: "6"
+  - label: Section
+    value: 2 x 2 ft. Glide in straight lines with light pressure.
+    kbRef: "6"
+  - label: Listen
+    value: Grabbing and noise means contamination. Silent and smooth means clean.
+    kbRef: "6"
+  - label: After every panel
+    value: Knead the clay to a clean face.
+    kbRef: "6"
+  - label: Paint only
+    value: Skip glass with the bar.
+    kbRef: "6"
+  - label: Plan a polish
+    value: Clay can mar soft or black paint. Plan a polish after clay.
+    status: sourced
+    kbRef: "6"
+related:
+  - card-bucket-mix
+  - equipment-clay-bar
+  - equipment-clay-mitt
+  - product-cg-citrus-wash-gloss
+  - term-bag-test
+  - term-decon

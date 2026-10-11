@@ -1,0 +1,26 @@
+id: term-opm
+type: glossaryterm
+title: OPM (orbits per minute)
+term: OPM
+definition: Orbits per minute. Your BAUER's six-speed dial runs about 2,000 to 4,600 OPM.
+alsoCalled: [orbits per minute]
+audience: [owner, ops, crew]
+visibility: internal
+status: sourced
+kbRef: "3.1"
+tags: [polisher, speed]
+synonyms:
+  - opm
+  - orbits per minute
+  - rpm
+  - how fast does it spin
+  - polisher speed numbers
+  - speed range
+sources:
+  - label: HF product page, item 56367
+    date: 2026-10-07
+    note: Six-speed dial, about 2,000 to 4,600 OPM
+related:
+  - term-dual-action
+  - equipment-bauer-56367
+  - card-machine-settings

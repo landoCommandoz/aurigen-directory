@@ -1,0 +1,20 @@
+id: equipment-foam-cannon
+type: equipment
+title: Foam cannon, Tool Daily
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.1"
+tags: [wash, foam cannon, pressure washer]
+synonyms:
+  - foam cannon
+  - foam gun
+  - snow foam
+  - tool daily
+  - foamer
+checks:
+  - Useless until you own a pressure washer.
+  - Before you buy the pressure washer, confirm the foam cannon fitting matches.
+related:
+  - product-cg-citrus-wash-gloss
+  - card-setup-kit

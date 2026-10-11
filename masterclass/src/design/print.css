@@ -1,0 +1,74 @@
+/*
+ * Print (later: printable SOPs, from the phone with AirPrint).
+ * One column, black on white, no backgrounds, no app chrome. Scroll
+ * containers open up so every step prints, not only the part on screen.
+ * Mark anything else that should not print with data-print="hide".
+ */
+
+@media print {
+  :root {
+    color-scheme: light;
+  }
+
+  @page {
+    margin: 16mm 14mm;
+  }
+
+  html,
+  body,
+  #root {
+    height: auto !important;
+    min-height: 0 !important;
+    display: block !important;
+    background: var(--print-paper) !important;
+    color: var(--print-ink) !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    background: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    color: var(--print-ink) !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Scroll containers: print everything they hold. */
+  * {
+    overflow: visible !important;
+  }
+
+  [data-print='hide'],
+  nav,
+  .ui-toast-viewport,
+  .ui-banner,
+  .ui-drawer-layer,
+  .ui-segmented,
+  .ui-pinpad {
+    display: none !important;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  li,
+  .ui-row,
+  .ui-stopband,
+  figure {
+    break-inside: avoid;
+  }
+
+  /* STOP keeps its meaning on paper: a heavy black frame, the octagon, the word. */
+  .ui-stopband {
+    border: 3px solid var(--print-ink) !important;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
