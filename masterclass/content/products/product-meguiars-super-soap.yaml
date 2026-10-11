@@ -1,0 +1,34 @@
+id: product-meguiars-super-soap
+type: product
+title: Meguiar's Super Soap, 16 oz
+brand: Meguiar's
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.3"
+tags: [wash, soap, maintenance]
+synonyms:
+  - super soap
+  - meguiars soap
+  - wash soap
+  - car soap
+  - regular soap
+  - maintenance soap
+  - soap
+sources:
+  - label: Meguiar's specialist
+    date: 2026-10-06
+    note: Meguiar's soaps about 1 oz per gallon; Super Soap 2 oz per gal when you want it stronger
+jobs:
+  - Wash soap
+dilutions:
+  - use: Maintenance wash, Meguiar's soaps
+    ratio: About 1 oz per gal
+    status: sourced
+  - use: Stronger wash
+    ratio: 2 oz per gal
+    status: sourced
+related:
+  - card-maintenance-wash
+  - product-meguiars-ultimate-wash-wax
+  - product-cg-citrus-wash-gloss

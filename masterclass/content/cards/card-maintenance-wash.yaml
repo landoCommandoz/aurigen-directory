@@ -1,0 +1,45 @@
+id: card-maintenance-wash
+type: quickcard
+title: Maintenance wash bucket mix
+kind: mix
+audience: [owner, crew]
+visibility: internal
+status: sourced
+kbRef: "4"
+tags: [mix, wash, bucket, maintenance]
+synonyms:
+  - maintenance wash
+  - regular wash
+  - maintenance bucket
+  - super soap mix
+  - wash and wax
+  - normal wash
+  - upkeep wash
+  - how much super soap
+sources:
+  - label: Meguiar's specialist
+    date: 2026-10-06
+    note: Meguiar's soaps about 1 oz per gallon; Super Soap 2 oz per gal when you want it stronger
+rows:
+  - label: Meguiar's soap
+    value: About 1 oz per gal
+    status: sourced
+  - label: Super Soap, stronger
+    value: 2 oz per gal
+    status: sourced
+  - label: Ultimate Wash & Wax
+    value: Maintenance washes only. Never before polishing.
+    status: house
+    kbRef: "3.3"
+  - label: Before polishing
+    value: Use the pre-polish bucket mix instead, at strip strength.
+    status: house
+    kbRef: "23"
+  - label: Never in the bucket
+    value: Dish soap, Spic and Span, wheel brushes, or the clay mitt.
+    status: house
+related:
+  - card-bucket-mix
+  - product-meguiars-super-soap
+  - product-meguiars-ultimate-wash-wax
+  - product-dish-soap

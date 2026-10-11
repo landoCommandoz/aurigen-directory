@@ -1,0 +1,104 @@
+/*
+ * The shell's own screens: Home, the Academy outline, the room placeholders, Not found, the
+ * customer preview. Same gutters as the feature screens. Colors from tokens.css only.
+ * A page is a block inside .app-scroll (the one scroll container), so it never scrolls itself.
+ */
+
+.app-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-4) calc(var(--gutter) + var(--safe-right)) calc(var(--space-8) + var(--safe-bottom)) calc(var(--gutter) + var(--safe-left));
+}
+
+.app-page__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.app-page__eyebrow {
+  color: var(--text-2);
+  font-size: var(--fs-small);
+  font-weight: var(--weight-medium);
+}
+
+.app-page__title {
+  font-size: var(--fs-title);
+  overflow-wrap: break-word;
+}
+
+.app-page__lede {
+  max-inline-size: var(--measure);
+}
+
+.app-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.app-block__title {
+  font-size: var(--fs-h2);
+}
+
+.app-measure {
+  max-inline-size: var(--measure);
+}
+
+.app-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.app-path {
+  font-size: var(--fs-small);
+  overflow-wrap: anywhere;
+}
+
+/* The customer preview: more air (the Customer density sets the gutter), off-white carries it. */
+.app-page--customer {
+  gap: var(--space-7);
+}
+
+.app-page--customer .app-page__title {
+  font-size: var(--fs-title);
+}
+
+.app-focus {
+  padding: var(--space-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  box-shadow: var(--edge-light);
+  align-items: flex-start;
+}
+
+.app-focus__text {
+  font-size: var(--fs-h3);
+  font-weight: var(--weight-medium);
+  line-height: var(--lh-snug);
+}
+
+/* Home tiles: the room sentence wraps under the name. Two columns on a phone, three from 600 px,
+ * so six rooms always make full rows. */
+.app-page .ui-tile__detail {
+  overflow-wrap: break-word;
+}
+
+.app-rooms .ui-tile-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 600px) {
+  .app-rooms .ui-tile-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* "Opening" while the saved Customer View flag is read: a plain block line. */
+.app-opening {
+  display: block;
+}

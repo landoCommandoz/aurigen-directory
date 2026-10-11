@@ -1,0 +1,92 @@
+/* List rows: hairlines between rows, no cards. */
+
+.ui-row-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ui-row-list__empty {
+  padding: var(--space-4) var(--space-2);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  color: var(--text-2);
+  font-size: var(--fs-body);
+  line-height: var(--lh-snug);
+}
+
+.ui-row {
+  display: block;
+  list-style: none;
+}
+
+.ui-row + .ui-row {
+  border-top: 1px solid var(--hairline);
+}
+
+.ui-row__body {
+  --press-scale: 0.99; /* a full-width row shrinks less than a button */
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: var(--row-min);
+  padding: var(--space-3) var(--space-2);
+  color: var(--text);
+  text-align: start;
+}
+
+.ui-row__hit {
+  margin: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background-color: var(--clear);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ui-row__hit:active:not(:disabled) {
+  background-color: var(--surface-raised);
+}
+
+.ui-row__hit:disabled {
+  color: var(--text-2);
+}
+
+.ui-row__leading {
+  display: inline-flex;
+  flex: none;
+  color: var(--text-2);
+  font-size: 24px;
+}
+
+.ui-row__main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ui-row__title {
+  font-size: var(--fs-body);
+  font-weight: var(--weight-medium);
+  line-height: var(--lh-snug);
+  overflow-wrap: break-word;
+}
+
+.ui-row__detail {
+  color: var(--text-2);
+  font-size: var(--fs-small);
+  line-height: var(--lh-snug);
+  overflow-wrap: break-word;
+}
+
+.ui-row__trailing {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-2);
+  font-size: var(--fs-small);
+}

@@ -1,0 +1,29 @@
+id: equipment-pad-hf-finishing
+type: equipment
+title: HF finishing foam pads, 6 in.
+audience: [owner, crew]
+visibility: internal
+status: verify
+kbRef: "3.2"
+tags: [pad, finishing pad, unconfirmed]
+synonyms:
+  - hf pads
+  - harbor freight pads
+  - grant's pads
+  - finishing pads
+  - cart pads
+  - foam finishing pads
+specs:
+  - label: On hand
+    value: x2, on the original HF cart
+    status: verify
+  - label: Colors
+    value: Not confirmed. Confirm what actually arrived.
+    status: verify
+  - label: Ladder
+    value: Not on the pad ladder.
+    status: house
+    kbRef: "8.5"
+related:
+  - card-pad-ladder
+  - equipment-pad-black

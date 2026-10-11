@@ -1,0 +1,37 @@
+{
+  // Browser program: everything under src/ that ships to the phone.
+  // No ambient @types are loaded ("types": []), so Node globals such as
+  // process or Buffer fail the typecheck here instead of failing on the phone.
+  // Vite's client types come in through src/vite-env.d.ts.
+  // Node-side code (scripts/, tests/, *.config.ts, src/**/*.test.*) is checked
+  // by tsconfig.node.json. "npm run typecheck" runs both.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "jsx": "react-jsx",
+    "types": [],
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true,
+    "noUncheckedSideEffectImports": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "useDefineForClassFields": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+}

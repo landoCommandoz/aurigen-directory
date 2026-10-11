@@ -1,0 +1,25 @@
+id: product-dish-soap
+type: product
+title: Dish soap
+brand: Any
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.4"
+tags: [never on paint, garage only, soap]
+synonyms:
+  - dish soap
+  - dawn
+  - dish detergent
+  - kitchen soap
+  - dishwashing liquid
+jobs:
+  - None on a customer car. Garage only.
+neverFor:
+  - Customer paint
+  - The wash bucket
+neverOnPaint: true
+related:
+  - card-never-on-paint
+  - card-maintenance-wash
+  - card-bucket-mix

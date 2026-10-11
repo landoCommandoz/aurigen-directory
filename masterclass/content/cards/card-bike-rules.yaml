@@ -1,0 +1,56 @@
+id: card-bike-rules
+type: quickcard
+title: Motorcycle rules
+kind: list
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "12.1"
+tags: [bike, motorcycle, rules, chain, chrome]
+synonyms:
+  - bike rules
+  - motorcycle rules
+  - bike tire shine
+  - chain
+  - harley
+  - bike windshield
+  - matte paint
+  - chrome
+  - motorcycle detail
+  - what can't I use on a bike
+rows:
+  - label: Tire shine
+    value: Never on a motorcycle. Not the sidewall, not near it.
+  - label: Nothing slick
+    value: Not on brake rotors, grips, pegs, or the seat.
+  - label: Temperature
+    value: Stone cold before you start. Water on hot pipes stains chrome. Bug remover on a hot exhaust bakes on.
+  - label: Water
+    value: Hose on low. No pressure at the chain, wheel bearings, electrics, under the seat, or the air intake.
+  - label: Drying
+    value: Air compressor, every crevice.
+  - label: Matte paint, including Harley Denim
+    value: No compound, polish, or wax. Matte-safe cleaner only.
+  - label: Windshield
+    value: It is plastic. No alcohol, no glass cleaner, no compound, no clay.
+  - label: Windshield cleaner
+    value: The approved plastic cleaner is not confirmed yet.
+    status: verify
+  - label: Tanks and fenders
+    value: Hand-polish them. The 6 in. pad does not fit a tank. A 3 in. machine comes later, from bike revenue.
+  - label: Chrome
+    value: Chrome polish, then a coat of ceramic wax.
+  - label: Chain
+    value: Chain-specific cleaner and chain lube only. Household degreaser strips the O-rings.
+  - label: Tell every rider
+    value: Brakes are wet. The first stop is soft. Ride easy for a block.
+  - label: Drop-off only
+    value: Motorcycles are drop-off only.
+    kbRef: "12.2"
+related:
+  - card-stop-rules
+  - card-ipa-wipe
+  - product-armor-all-extreme-tire-shine
+  - product-meguiars-hybrid-ceramic-wax
+  - equipment-air-compressor
+  - card-kills-the-buff

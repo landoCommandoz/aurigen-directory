@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!--
+      theme-color cannot read a CSS variable, so this is the one hardcoded color
+      in the project: Direction A's --base from src/design/tokens.css.
+      If --base changes, change it here too: the build fails until they match.
+    -->
+    <meta name="theme-color" content="#151311" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Masterclass" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="Lando's Detailing Masterclass 101: Fix It, Shop Mode, and the Academy, offline in the garage." />
+    <title>Masterclass 101</title>
+    <!--
+      Icons and fonts. Paths start at the site root; Vite rewrites them to the
+      base path at build time (/ on Netlify, /aurigen-directory/ on Pages).
+      The web manifest link is added by vite-plugin-pwa. The two preloads are
+      the faces on the first screen (body and headings); all five fonts are in
+      the offline copy either way.
+    -->
+    <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="preload" href="/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin />
+    <!--
+      Boot guard. If the app module has not run within 8 seconds, show a plain
+      message with a Reload button. No framework, no colors (the page's own
+      colors apply). main.tsx calls window.__mcBoot.done() as soon as it runs.
+      The CSP allows this script by its sha256 hash, kept in netlify.toml.
+      Edit the script and the build fails with the new hash to paste there.
+    -->
+    <script>
+      (function () {
+        var timer = 0;
+        function byId(id) {
+          return document.getElementById(id);
+        }
+        function show() {
+          var box = byId('boot-guard');
+          if (!box) return;
+          box.style.cssText = 'padding:24px;font-size:20px;line-height:1.4';
+          var button = byId('boot-guard-reload');
+          if (button) {
+            button.style.cssText = 'min-height:44px;min-width:44px;padding:0 20px;font-size:18px';
+            button.onclick = function () {
+              window.location.reload();
+            };
+          }
+          box.hidden = false;
+        }
+        function done() {
+          window.clearTimeout(timer);
+          var box = byId('boot-guard');
+          if (box) box.hidden = true;
+        }
+        timer = window.setTimeout(show, 8000);
+        window.__mcBoot = { done: done, show: show };
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <p>Masterclass 101 needs JavaScript. Turn JavaScript on for Safari, then reload this page.</p>
+    </noscript>
+    <div id="root"></div>
+    <div id="boot-guard" role="alert" hidden>
+      <p>The app did not start. Reload, or tell Lando.</p>
+      <button type="button" id="boot-guard-reload">Reload</button>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

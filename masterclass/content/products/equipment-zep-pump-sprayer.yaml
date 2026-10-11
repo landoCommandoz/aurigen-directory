@@ -1,0 +1,22 @@
+id: equipment-zep-pump-sprayer
+type: equipment
+title: Zep pump sprayer, the IPA bottle
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.1"
+tags: [ipa, sprayer, bottle]
+synonyms:
+  - zep sprayer
+  - ipa bottle
+  - pump sprayer
+  - spray bottle
+  - alcohol sprayer
+  - zep
+checks:
+  - It holds the IPA panel wipe. Keep it labeled.
+  - Fill and label it the night before.
+related:
+  - card-ipa-wipe
+  - product-ipa-70
+  - card-setup-kit

@@ -1,0 +1,138 @@
+/*
+ * Motion (Direction A, DESIGN-DIRECTIONS.md section 3).
+ *
+ * 1. One orchestrated load moment per view: put .ui-rise on the view's main
+ *    blocks and set --i on each (0, 1, 2 ...). Each block rises 12 px and
+ *    fades in over 320 ms, 40 ms after the one before. Blocks past the sixth
+ *    start together, so the whole moment ends inside 600 ms.
+ *      <section className="ui-rise" style={{ '--i': 2 } as CSSProperties}>
+ *    React sets that style through the CSSOM, which the CSP allows.
+ * 2. Press feedback: .ui-press on anything tappable scales it to 0.98 for
+ *    120 ms. Base components already carry it.
+ * 3. State changes: 200 to 400 ms, ease-out, using the --dur-* tokens.
+ * 4. Reduced motion: nothing moves. Load is a near-instant fade, press feedback
+ *    is a color change only, and every duration drops to 1 ms.
+ */
+
+@keyframes ui-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--rise-distance));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ui-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ui-sheet-in {
+  from {
+    transform: translateY(var(--sheet-distance));
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes ui-sheet-out {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateY(var(--sheet-distance));
+  }
+}
+
+@keyframes ui-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes ui-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* A wrong PIN: the dots shake sideways three times. */
+@keyframes ui-shake {
+  0%,
+  100% {
+    transform: none;
+  }
+  20%,
+  60% {
+    transform: translateX(calc(var(--rise-distance) * -0.75));
+  }
+  40%,
+  80% {
+    transform: translateX(calc(var(--rise-distance) * 0.75));
+  }
+}
+
+.ui-rise {
+  animation: ui-rise var(--dur-base) var(--ease-out) both;
+  animation-delay: calc(min(var(--i, 0), var(--stagger-max)) * var(--stagger));
+}
+
+.ui-fade {
+  animation: ui-fade-in var(--dur-fast) var(--ease-out) both;
+}
+
+.ui-press {
+  -webkit-tap-highlight-color: var(--clear);
+  touch-action: manipulation; /* no double-tap zoom delay on a tap target */
+  transition:
+    transform var(--dur-press) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
+}
+
+.ui-press:active:not(:disabled):not([aria-disabled='true']),
+.ui-press[data-pressed='true'] {
+  transform: scale(var(--press-scale));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-press: 1ms;
+    --dur-fast: 1ms;
+    --dur-base: 1ms;
+    --dur-slow: 1ms;
+    --stagger: 0ms;
+    --rise-distance: 0px;
+    --sheet-distance: 0px;
+    --press-scale: 1;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ui-press:active:not(:disabled):not([aria-disabled='true']),
+  .ui-press[data-pressed='true'] {
+    transform: none;
+  }
+}

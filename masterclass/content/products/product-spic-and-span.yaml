@@ -1,0 +1,24 @@
+id: product-spic-and-span
+type: product
+title: Spic and Span
+brand: Spic and Span
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.4"
+tags: [never on paint, garage only, household cleaner]
+synonyms:
+  - spic and span
+  - spick and span
+  - household cleaner
+  - floor cleaner
+  - house cleaner
+jobs:
+  - None on a customer car. Garage only.
+neverFor:
+  - Customer paint
+  - The wash bucket
+neverOnPaint: true
+related:
+  - card-never-on-paint
+  - card-bucket-mix

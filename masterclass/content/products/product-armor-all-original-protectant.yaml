@@ -1,0 +1,23 @@
+id: product-armor-all-original-protectant
+type: product
+title: Armor All Original protectant
+brand: Armor All
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.4"
+tags: [never on paint, garage only, protectant]
+synonyms:
+  - armor all original
+  - original protectant
+  - armor all protectant
+  - old armor all
+  - protectant spray
+jobs:
+  - None on a customer car. Garage only.
+neverFor:
+  - Customer paint
+neverOnPaint: true
+related:
+  - card-never-on-paint
+  - product-armor-all-extreme-tire-shine

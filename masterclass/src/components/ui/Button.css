@@ -1,0 +1,122 @@
+/* Button. Colors come from tokens.css only. */
+
+.ui-btn {
+  --btn-fill: var(--surface);
+  --btn-ink: var(--text);
+  --btn-line: var(--line-strong);
+  --btn-fill-pressed: var(--surface-raised);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--target-min);
+  min-width: var(--target-min);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--btn-line);
+  border-radius: var(--radius);
+  background-color: var(--btn-fill);
+  color: var(--btn-ink);
+  box-shadow: var(--edge-light);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: var(--weight-medium);
+  line-height: var(--lh-snug);
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ui-btn:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--btn-fill-pressed);
+}
+
+.ui-btn[data-variant='primary'] {
+  --btn-fill: var(--accent);
+  --btn-ink: var(--on-accent);
+  --btn-line: var(--accent);
+  --btn-fill-pressed: var(--accent);
+  font-weight: var(--weight-bold);
+  box-shadow: none;
+}
+
+.ui-btn[data-variant='primary']:active:not(:disabled):not([aria-disabled='true']) {
+  filter: brightness(0.9);
+}
+
+.ui-btn[data-variant='ghost'] {
+  --btn-fill: var(--clear);
+  --btn-line: var(--clear);
+  box-shadow: none;
+  padding-inline: var(--space-3);
+}
+
+.ui-btn[data-variant='stop'] {
+  --btn-fill: var(--stop);
+  --btn-ink: var(--on-stop);
+  --btn-line: var(--stop);
+  --btn-fill-pressed: var(--stop);
+  font-weight: var(--weight-bold);
+  box-shadow: none;
+}
+
+.ui-btn[data-variant='stop']:active:not(:disabled):not([aria-disabled='true']) {
+  filter: brightness(0.9);
+}
+
+/* Sizes */
+.ui-btn[data-size='shop'] {
+  min-height: 64px;
+  min-width: 64px;
+  font-size: max(18px, var(--fs-body));
+}
+
+.ui-btn[data-size='hero'] {
+  min-height: var(--target-primary);
+  padding-inline: var(--space-6);
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: clamp(22px, 6.4vw, 32px);
+  line-height: var(--lh-tight);
+}
+
+.ui-btn[data-block='true'] {
+  display: flex;
+  width: 100%;
+}
+
+/* Disabled: flat, dimmed words, and a dashed edge so it reads as off without color. */
+.ui-btn:disabled {
+  --btn-fill: var(--surface);
+  --btn-ink: var(--text-2);
+  --btn-line: var(--line-strong);
+  border-style: dashed;
+  box-shadow: none;
+  filter: none;
+}
+
+.ui-btn[data-loading='true'] {
+  cursor: progress;
+}
+
+.ui-btn__icon {
+  display: inline-flex;
+  flex: none;
+  font-size: 1.15em;
+}
+
+.ui-btn__label {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.ui-btn__spinner {
+  animation: ui-spin 0.9s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-btn__spinner {
+    animation: none;
+  }
+}

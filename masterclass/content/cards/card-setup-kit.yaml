@@ -1,0 +1,52 @@
+id: card-setup-kit
+type: quickcard
+title: Setup kit staging
+kind: list
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "18.3"
+tags: [setup, staging, cart, towels, night before]
+synonyms:
+  - setup kit
+  - kit staging
+  - set up the cart
+  - what goes on the cart
+  - prep the night before
+  - staging list
+  - bins
+  - how many towels
+  - towel count
+rows:
+  - label: One cart
+    value: Everything lives on one cart or bin set at the back corner of the car.
+  - label: Three steps
+    value: Never more than three steps for anything.
+  - label: Bins by stage
+    value: Wheels, Wash, Clay, Polish, Protect, Interior, Glass, Cleanup.
+  - label: Night before
+    value: Bucket mixed or measured. Towels counted into piles. Pads clean and dry. IPA bottle filled and labeled. Tape in your pocket. Compressor charged. Cords run.
+  - label: Tesla
+    value: Car Wash Mode on before any water.
+    kbRef: "5.1"
+  - label: Setup target
+    value: 15 minutes, timed in the app.
+    status: verify
+  - label: Towels per full detail
+    value: Drying 2, polish removal 6 to 8, wax 4, interior 6, glass 4, wheels and jambs 4. Call it 24 to 30.
+    kbRef: "18.4"
+  - label: Wash towels
+    value: Plus 16 with the towel method.
+    kbRef: "18.4"
+  - label: Color code
+    value: Color code towels by zone. The wheel pile never rejoins the paint pile.
+    kbRef: "18.4"
+  - label: Pads per car
+    value: One-step, 2 to 3 finishing or polishing pads.
+    kbRef: "18.4"
+related:
+  - card-bucket-mix
+  - card-ipa-wipe
+  - card-tesla-wash-mode-tape
+  - equipment-microfiber-towels
+  - equipment-air-compressor

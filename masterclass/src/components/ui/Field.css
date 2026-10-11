@@ -1,0 +1,76 @@
+/* Text field: visible label, 3:1 outline, words for errors. */
+
+.ui-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.ui-field__label {
+  font-weight: var(--weight-medium);
+  line-height: var(--lh-snug);
+}
+
+.ui-field__hint {
+  color: var(--text-2);
+  font-size: var(--fs-small);
+  line-height: var(--lh-snug);
+}
+
+.ui-field__input {
+  width: 100%;
+  min-height: var(--target-min);
+  margin-top: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: max(16px, var(--fs-body));
+  line-height: var(--lh-snug);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ui-field__input::placeholder {
+  color: var(--text-2);
+  opacity: 1;
+}
+
+.ui-field__input:focus-visible {
+  outline: none;
+  border-color: var(--focus-ring);
+  box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+.ui-field__input:disabled {
+  border-style: dashed;
+  color: var(--text-2);
+}
+
+.ui-field[data-invalid='true'] .ui-field__input {
+  border-width: 2px;
+  border-color: var(--text);
+}
+
+.ui-field__error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+  color: var(--text);
+  font-size: var(--fs-small);
+  font-weight: var(--weight-bold);
+  line-height: var(--lh-snug);
+}
+
+.ui-field__error-glyph {
+  flex: none;
+  margin-top: 0.1em;
+  font-size: 1.15em;
+}

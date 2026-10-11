@@ -1,6 +1,6 @@
 # Design directions: Lando's Detailing Masterclass 101
 
-**Decision, 2026-10-10.** Lando picked Direction A (Hi-Vis) `[HOUSE]`. Direction B stays below as the rejected alternative, so the reasoning is on record. His answers to the design questions are in section 8. Still documents only: no app code until Lando types `build it`.
+**Decision, 2026-10-10.** Lando picked Direction A (Hi-Vis) `[HOUSE]`. Direction B stays below as the rejected alternative, so the reasoning is on record. His answers to the design questions are in section 8. Lando typed `build it` on 2026-10-10; Phase 1 builds Direction A as code in `src/design/` (tokens, fonts, motion, print, icon), `src/components/ui/` (base components), and `public/fonts/`.
 
 Phase 0, step 6. Written 2026-10-07 by the design lead (ui-designer role). Documents only. No app code.
 
@@ -92,7 +92,7 @@ The designer's own description: Barlow "shares qualities with the state's car pl
 - Fallback stacks (fallbacks only; the primary face is never Arial, per `CLAUDE.md`):
   - Display: `'Barlow Condensed', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif`
   - Body: `'Barlow', 'Helvetica Neue', Arial, sans-serif`
-- Files: five woff2 files, latin subset, built from the TTFs. Final sizes `[VERIFY after subsetting in Phase 1]`.
+- Files: five woff2 files, latin subset, built from the TTFs. Built 2026-10-10: 16.6 to 17.5 KB each, 86 KB for all five, `tnum` and `kern` checked present in every file after conversion.
 - Scale: Shop step text `clamp(28px, 7.5vw, 40px)`, line height 1.15. Timer `clamp(48px, 14vw, 64px)`. Shop body `clamp(18px, 4.8vw, 22px)`. Academy body 18 px, line height 1.6, measure 68 characters. Customer body 17 px, headings 28 to 36 px.
 
 ### Signature moment: the polish goes clear
@@ -115,11 +115,11 @@ The designer's own description: Barlow "shares qualities with the state's car pl
   Lando's rule, 2026-10-10 `[HOUSE]`, in his words: "In Customer View keep the accent sparse. Off-white, photos, and the panel-map readings carry that screen." This tightens the line above. What it changes in wireframe 6.3 and its notes:
 
   - Where the accent may still appear: at most once per customer page, and only on a single primary action button when the page has one. The paint report in 6.3 has no such button. The panels and the section rows are all tappable, so none of them is "the one thing." On that screen the accent appears nowhere: not on the heading, the legend, the panel outlines, or the drawer.
-  - Panel fills, H, G, T: H becomes `--text` at 28% over `--base`, a flat warm gray (`#53504c`). G becomes `--text` at 10% over `--base` (`#2b2926`) with a diagonal hatch in `--text-2`. T stays a 2 px `--stop` outline with no fill, as in the first draft. Glass stays unfilled with a hairline outline and the word "glass." The letter on every panel is set in `--text`: 6.9:1 on the H fill, 12.4:1 on the G fill, 15.9:1 on T (computed 2026-10-10). The H and G fills differ by only 1.8:1. That is fine, because the hatch and the letters tell them apart. Color never carries the meaning alone; the letters and the legend always do.
+  - Panel fills, H, G, T: H becomes `--text` at 28% over `--base`, a flat warm gray (`#53504c`). G becomes `--text` at 10% over `--base` (`#2b2926`) with a diagonal hatch in `--text-2`. T has no fill and a 2 px outline: dashed `--text-2` with the word Thin in Customer View, solid `--stop` in the owner view only (Lando's decision of 2026-10-10, recorded below). Glass stays unfilled with a hairline outline and the word "glass." The letter on every panel is set in `--text`: 6.9:1 on the H fill, 12.4:1 on the G fill, 15.9:1 on T (computed 2026-10-10). The H and G fills differ by only 1.8:1. That is fine, because the hatch and the letters tell them apart. Color never carries the meaning alone; the letters and the legend always do.
   - What stays: the three bands and their customer wording in the legend are unchanged. They come from knowledge base 7.3 `[HOUSE]`.
   - Photos: when the job has before and after photos, the test spot pair sits directly under the legend, above "What is clear coat?". Without photos the row is skipped and nothing fills its place.
   - Tap feedback on a panel is the press scale (0.97, 120 ms) and the drawer opening. No accent flash.
-  - One flag for Lando: T keeps the red outline because under 75 µm is the house "no machine" rule. On a customer's car a red edge can read as damage. If you would rather it did not, T becomes a dashed `--text-2` outline. The word Thin carries the meaning either way.
+  - Thin panels, decided 2026-10-10 `[HOUSE]`, in Lando's words: "Thin panels in the customer paint report: use the dashed grey outline with the word 'Thin.' Red stays in my owner view only." What it means: in the customer paint report a T panel has no fill, a 2 px dashed `--text-2` outline (7.1:1 against the base), and the word Thin on the panel; the legend row stays "Thin. Protected by hand, no machine." Red never appears on a customer screen for paint thickness. The owner view of the same map keeps the 2 px solid `--stop` outline, because under 75 µm is the house "no machine" rule and Lando should see it in red. In code (Phase 1): `--band-t-outline` and `--band-t-outline-style` in `src/design/tokens.css` switch from solid `--stop` to dashed `--text-2` when `data-density="customer"`, so the panel map reads the two tokens and never picks a color itself.
 
 ### Shape, depth, texture
 
@@ -439,7 +439,7 @@ Direction A:
 
 Notes for A:
 - The car is the SVG from the Panel Map, recolored by the house thickness bands (KB 7.3 `[HOUSE]`). Proposed customer grouping: H is 100 µm or more (full ladder permitted); G is 75 to 99 µm (the "polish only" and "tell the customer" bands); T is under 75 µm (no machine, hand protection only). A panel reading far above the rest (about 220 µm or more) is a repaint and gets its own label, "Repainted panel, treated gently," when present.
-- Fills, changed 2026-10-10 under Lando's Customer View rule (section 4, How the three densities differ): H is `--text` at 28% over the base, G is `--text` at 10% over the base with a hatch in `--text-2`, T is a `--stop` outline with no fill. No accent anywhere on this screen. The letter and the legend always carry the meaning; color never carries it alone.
+- Fills, changed 2026-10-10 under Lando's Customer View rule (section 4, How the three densities differ): H is `--text` at 28% over the base, G is `--text` at 10% over the base with a hatch in `--text-2`, T has no fill and a 2 px dashed `--text-2` outline with the word Thin on the panel (Lando, 2026-10-10 `[HOUSE]`: "Red stays in my owner view only"; the owner view keeps the solid `--stop` outline). No accent and no red anywhere on this screen. The letter and the legend always carry the meaning; color never carries it alone.
 - The bands are a conservative house standard, not a manufacturer spec (KB 7.3). The customer words above are a proposal. The business-customer agent and the fact-checker own the final wording, and nothing tagged `[VERIFY]` renders here.
 - The roof is glass on a Model Y, so it is washed and not measured or polished (KB 11 `[HOUSE]`). Other vehicles differ.
 - Tapping a panel opens the drawer with that panel's 3 to 5 readings (KB 7.2) and one plain sentence.

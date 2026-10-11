@@ -1,0 +1,200 @@
+/*
+ * The shell frame. Colors, sizes, and timings come from src/design/tokens.css only.
+ * Scroll chain (CLAUDE.md mobile rules): #root is a 100dvh flex column; .app-frame and every
+ * flex ancestor of .app-scroll have min-height 0; .app-scroll is the one scroll container
+ * (flex 1, overflow-y auto). No overflow hidden and no max-height anywhere in the chain.
+ */
+
+/* Every internal screen has a 64 px Fix It in the bottom row, in every density, so the row is
+ * 64 px plus padding everywhere. Toasts read --toast-offset, which follows this value. */
+html[data-density] {
+  --bottom-row-height: calc(64px + var(--space-4));
+}
+
+.app-frame {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Top bar ------------------------------------------------------------ */
+
+.app-top {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: var(--space-3);
+  row-gap: var(--space-1);
+  padding: max(var(--space-2), var(--safe-top)) max(var(--gutter), var(--safe-right)) var(--space-2) max(var(--gutter), var(--safe-left));
+  border-bottom: 1px solid var(--hairline);
+  background-color: var(--base);
+  background-image: var(--worklight);
+  background-repeat: no-repeat;
+}
+
+.app-top__brand {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.app-top__title {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-tight);
+  letter-spacing: 0.01em;
+}
+
+.app-top__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  margin-inline-start: auto;
+}
+
+/* The offline marker under the title. */
+.app-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: 2px;
+  color: var(--text-2);
+  font-size: var(--fs-small);
+  line-height: var(--lh-snug);
+  animation: ui-fade-in var(--dur-base) var(--ease-out) both;
+}
+
+.app-status[data-tone='ready'] .app-status__glyph {
+  color: var(--indicator);
+}
+
+.app-status[data-tone='warning'] {
+  color: var(--text);
+  font-weight: var(--weight-medium);
+}
+
+.app-status__glyph {
+  display: inline-flex;
+  font-size: 1.05em;
+}
+
+/* ---- The one scroll container ------------------------------------------ */
+
+.app-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* No top bar in Customer View: the page clears the status bar itself. */
+.app-scroll[data-headless='true'] {
+  padding-top: var(--safe-top);
+}
+
+.app-banners {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-mode {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.app-mode .ui-banner {
+  border-radius: var(--radius);
+}
+
+/* ---- Bottom row --------------------------------------------------------- */
+
+.app-bottom {
+  flex: none;
+  position: relative;
+  z-index: var(--z-bottom-row);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: var(--thumb-side);
+  gap: var(--space-2);
+  min-height: calc(var(--bottom-row-height) + var(--safe-bottom));
+  padding: var(--space-2) max(var(--space-3), var(--safe-right)) calc(var(--space-2) + var(--safe-bottom)) max(var(--space-3), var(--safe-left));
+  border-top: 1px solid var(--hairline);
+  background-color: var(--base);
+}
+
+/* Right thumb: the row mirrors, so Fix It sits under the right thumb (Settings, Lando 2026-10-10). */
+[data-hand='right'] .app-bottom {
+  flex-direction: row-reverse;
+}
+
+.app-bottom__fixit {
+  flex: 1.4 1 0;
+  min-width: 0;
+  font-weight: var(--weight-bold);
+}
+
+.app-bottom__item {
+  flex: 1 1 0;
+  min-width: 0;
+  padding-inline: var(--space-2);
+}
+
+.app-bottom__exit {
+  flex: 1 1 auto;
+}
+
+.app-bottom__message {
+  flex: 1 0 100%;
+  color: var(--text);
+  font-size: var(--fs-small);
+}
+
+/* The current room in the bottom row: a heavier edge, never color alone. */
+.app-btn-link[aria-current='page'] {
+  --btn-line: var(--text);
+  box-shadow: inset 0 calc(var(--rule-width) * -1) 0 var(--indicator);
+}
+
+.app-btn-link {
+  cursor: pointer;
+}
+
+/* ---- Device preview (developer tool) ----------------------------------- */
+
+.app-preview {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-preview__stage {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  padding: var(--space-4);
+  background-color: var(--surface);
+}
+
+.app-preview__frame {
+  flex: none;
+  max-width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background-color: var(--base);
+  box-shadow: var(--shadow-float);
+}
+
+/* Print: src/design/print.css opens every scroll container and hides [data-print='hide'],
+ * which the top bar, the notices, the mode switch, and the bottom row all carry. */

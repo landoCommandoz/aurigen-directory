@@ -1,0 +1,65 @@
+id: card-pad-ladder
+type: quickcard
+title: Pad ladder for the test spot
+kind: list
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "8.5"
+tags: [polish, pad, test spot, compound, ladder]
+synonyms:
+  - pad ladder
+  - which pad
+  - what pad
+  - pad and polish combo
+  - yellow or maroon
+  - do I need compound
+  - compound or polish
+  - which combo
+  - test spot steps
+sources:
+  - label: Lando
+    date: 2026-10-10
+    note: Ladder order, black pad rule, and pads on hand confirmed (BLUEPRINT section 12 item 9)
+rows:
+  - label: Rule
+    value: Test spot on every car before polishing. The paint picks the combo, not a guess.
+    kbRef: "2"
+  - label: Test spot
+    value: Tape a 2 x 2 ft square on the worst panel. Split it with tape so you can compare halves.
+  - label: Rung 1
+    value: Yellow + M210. Wipe, IPA, light. Swirls gone? That is the combo for the whole car.
+  - label: Rung 2
+    value: Still swirled? Maroon + M210 on the same square.
+  - label: Rung 3
+    value: Still swirled, and the panel reads 100 µm or more? Maroon + Ultimate Compound, 3 to 4 sets. Wipe with its own towel.
+  - label: Rung 3, always next
+    value: Yellow + M210 to clear the compound haze. Every compounded square gets both passes.
+  - label: Still there after compound and polish
+    value: It is too deep. Note it, show the customer, and do not chase it.
+  - label: Compound limit
+    value: One compound pass per section, max.
+  - label: Customer
+    value: Show both halves. Re-quote before you go further than what was sold.
+  - label: Job sheet
+    value: Write the winning combo on the job sheet.
+  - label: Black pad
+    value: Wax and finishing only. It is never a rung on this ladder.
+    kbRef: "3.2"
+  - label: Pads on hand
+    value: Uro-Tec yellow x3, Uro-Tec maroon x2, one black pad.
+    kbRef: "3.2"
+  - label: HF finishing pads
+    value: x2. Colors and what actually arrived are not confirmed.
+    status: verify
+    kbRef: "3.2"
+related:
+  - card-thickness-bands
+  - card-machine-settings
+  - card-pad-priming
+  - equipment-pad-urotec-yellow
+  - equipment-pad-urotec-maroon
+  - equipment-pad-black
+  - product-meguiars-m210
+  - product-meguiars-ultimate-compound
+  - term-test-spot

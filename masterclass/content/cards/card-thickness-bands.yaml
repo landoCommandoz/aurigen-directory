@@ -1,0 +1,58 @@
+id: card-thickness-bands
+type: quickcard
+title: Paint thickness bands
+kind: table
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "7.3"
+tags: [gauge, thickness, microns, measure, bands]
+synonyms:
+  - thickness bands
+  - gauge says 85
+  - paint thickness
+  - how thin is too thin
+  - gauge reading
+  - mil reading
+  - microns chart
+  - can I compound this panel
+  - reading under 75
+  - readings table
+sources:
+  - label: Knowledge base 7.3
+    date: 2026-09-22
+    note: Background film numbers only (factory total film and clear coat); reconfirm
+rows:
+  - label: 100 µm or more
+    value: Full ladder permitted. Over 100 means compound is allowed, not required.
+  - label: 90 to 99 µm
+    value: Polish only, yellow or maroon + M210. No compound.
+  - label: 85 to 89 µm
+    value: Tell the customer. Yellow + M210, light pressure, fewest passes.
+  - label: 75 to 84 µm
+    value: Tell the customer. Finishing polish only, minimal passes, or hand work.
+  - label: Under 75 µm
+    value: No machine. Hand protection only.
+  - label: Way above the rest of the car, about 220+ µm
+    value: Repaint. Go gentle or skip. Log it and tell the customer.
+  - label: Way below the rest
+    value: Thin panel. Go light or skip.
+  - label: Edges and body lines
+    value: They always read low. Stay an inch off.
+  - label: When to tell the customer
+    value: Before the pad touches paint.
+    kbRef: "21"
+  - label: What this table is
+    value: A conservative house standard, not a manufacturer spec.
+  - label: Background
+    value: Factory total film is usually about 100 to 180 µm. The clear coat itself is only about 38 to 50 µm of that.
+    status: verify
+  - label: Units
+    value: Microns (µm). 1 mil = 25.4 µm.
+    kbRef: "0"
+related:
+  - equipment-rd-tc100
+  - card-pad-ladder
+  - term-micron-mil
+  - term-clear-coat
+  - card-kills-the-buff

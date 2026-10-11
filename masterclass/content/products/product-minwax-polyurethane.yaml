@@ -1,0 +1,22 @@
+id: product-minwax-polyurethane
+type: product
+title: Minwax polyurethane
+brand: Minwax
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.4"
+tags: [never on paint, garage only]
+synonyms:
+  - minwax
+  - polyurethane
+  - poly
+  - wood finish
+  - clear wood coat
+jobs:
+  - None on a customer car. Garage only.
+neverFor:
+  - Customer paint
+neverOnPaint: true
+related:
+  - card-never-on-paint

@@ -1,0 +1,56 @@
+id: card-tesla-wash-mode-tape
+type: quickcard
+title: Tesla Model Y Car Wash Mode and tape list
+kind: list
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "11"
+tags: [tesla, model y, tape, wash, car wash mode]
+synonyms:
+  - car wash mode
+  - tesla
+  - model y
+  - tesla roof
+  - glass roof
+  - tesla tape
+  - what to tape on the tesla
+  - sentry mode
+  - tesla cameras
+  - wash mode
+rows:
+  - label: Car Wash Mode
+    value: On before any water.
+  - label: Menu path
+    value: "Controls > Service > Car Wash Mode."
+    status: verify
+  - label: What it does
+    value: Closes the windows, locks the charge port, and disables auto wipers and Sentry.
+  - label: Tape the window trim
+    value: Satin black window trim. Polish turns it chalky white.
+  - label: Tape the door handles
+    value: Flush door handle edges.
+  - label: Tape the cameras
+    value: All five. Two B-pillar, two fender repeaters, one above the rear plate.
+  - label: Tape the badges
+    value: Every badge.
+  - label: Tape the glass header
+    value: The black glass header.
+  - label: Tape the cladding
+    value: Textured cladding on the wheel arches and the lower bumper.
+  - label: Roof
+    value: It is glass. Wash it, never polish it. Skip it in the measure and polish routes.
+  - label: Charge port door
+    value: Stays closed.
+  - label: Camera lenses
+    value: Glass cleaner only.
+  - label: Wheels
+    value: Leave the aero covers on during the wheel clean.
+  - label: Other years and models
+    value: Cameras and trim differ. Check each car.
+    status: verify
+related:
+  - card-setup-kit
+  - card-machine-settings
+  - equipment-painters-tape
+  - card-stop-rules

@@ -1,0 +1,66 @@
+/* Full-width notice. A rule on the start edge and a glyph name the variant. */
+
+.ui-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: var(--space-3);
+  row-gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-3) max(var(--gutter), var(--safe-right)) var(--space-3) max(var(--gutter), var(--safe-left));
+  border-bottom: 1px solid var(--hairline);
+  border-inline-start: var(--rule-width) solid var(--accent-muted);
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+.ui-banner[data-tone='success'] {
+  border-inline-start-color: var(--indicator);
+}
+
+.ui-banner[data-tone='warning'] {
+  border-inline-start-color: var(--text);
+}
+
+.ui-banner__glyph {
+  display: inline-flex;
+  flex: none;
+  padding-top: 2px;
+  color: var(--text-2);
+  font-size: 22px;
+}
+
+.ui-banner[data-tone='warning'] .ui-banner__glyph {
+  color: var(--text);
+}
+
+.ui-banner__body {
+  flex: 1 1 220px;
+  min-width: 0;
+  align-self: center;
+}
+
+.ui-banner__title {
+  font-weight: var(--weight-bold);
+  line-height: var(--lh-snug);
+}
+
+.ui-banner__text {
+  color: var(--text-2);
+  font-size: var(--fs-small);
+  line-height: var(--lh-snug);
+  overflow-wrap: break-word;
+}
+
+.ui-banner__title + .ui-banner__text {
+  margin-top: 2px;
+}
+
+.ui-banner__actions {
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-inline-start: auto;
+}

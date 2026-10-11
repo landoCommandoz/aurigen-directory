@@ -1,0 +1,22 @@
+/*
+ * Quick Cards. Read at arm's length: the row values are set at the body size of the density
+ * (18 to 22 px in Shop). Colors from src/design/tokens.css only.
+ */
+.qc-card .sr-rows__value {
+  font-size: var(--fs-body);
+  line-height: var(--lh-snug);
+}
+
+.qc-card .sr-rows__label {
+  font-size: var(--fs-small);
+}
+
+.qc-voice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.qc-source {
+  font-size: var(--fs-small);
+}

@@ -1,0 +1,28 @@
+id: equipment-inspection-light
+type: equipment
+title: Inspection light, held low
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "7.1"
+tags: [light, inspect, swirls]
+synonyms:
+  - light
+  - flashlight
+  - inspection light
+  - swirl light
+  - check the paint
+  - spiderweb
+specs:
+  - label: Model
+    value: Not confirmed. The app says a light held low and names no model.
+    status: verify
+    kbRef: "3.1"
+checks:
+  - Hold the light low across the paint. Swirls look like a spiderweb.
+  - Fingernail test. If a nail catches, polish will not remove it.
+  - Photograph every flaw before you start.
+  - After each square, check with the light low and from a few feet back.
+related:
+  - card-pad-ladder
+  - card-stop-rules

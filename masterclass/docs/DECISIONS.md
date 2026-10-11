@@ -2,11 +2,11 @@
 
 Phase 0, step 5. Written 2026-10-08 by the architect role. One record per decision. Every record has Context, Decision, Alternatives rejected and why, Consequences, Sources, Status.
 
-Status, updated 2026-10-10: D0 and D9 are accepted (Lando's "Repo OK"), and D10 and D11 record two decisions he took the same day. D1 to D8 stay "proposed" until he types `build it`, which is the only thing left; his "Defaults OK for 1 to 16" covers the blueprint's section 12 items these records carry. Sources are the URLs from the research verified on 2026-10-07, the Claude Code docs read on 2026-10-08, and the Apple Support pages read on 2026-10-10. Anything the research could not confirm is marked `[VERIFY]` and is never stated as fact. The dated record of every decision Lando took on 2026-10-10, in his words, is at the end of this file.
+Status, updated 2026-10-10: D0 and D9 are accepted (Lando's "Repo OK"), and D10 and D11 record two decisions he took the same day. Lando typed `build it` on 2026-10-10, so D1 to D8 are accepted as written, with the amendments noted in D1, D3, and D4; his "Defaults OK for 1 to 16" covers the blueprint's section 12 items these records carry. D12 and D13 record his Phase 1 decisions, taken the same day. Sources are the URLs from the research verified on 2026-10-07, the Claude Code docs read on 2026-10-08, the Apple Support pages read on 2026-10-10, and the MDN page and WebKit source read on 2026-10-10 for D12. Anything the research could not confirm is marked `[VERIFY]` and is never stated as fact. The dated record of every decision Lando took on 2026-10-10, in his words, is at the end of this file.
 
-ADR means one written decision with its reasons. Lando: you only need D0 (where the code lives), D5 (Netlify money), D10 (Customer View and your phone), and D11 (DJ and the Level 4 sign-off). The rest is for the builders.
+ADR means one written decision with its reasons. Lando: you only need D0 (where the code lives), D5 (Netlify money), D10 (Customer View and your phone), D11 (DJ and the Level 4 sign-off), D12 (which phone is the shop phone, and the first backup), and D13 (the thin panel outline). The rest is for the builders.
 
-Read with `docs/BLUEPRINT.md`. The decision numbers D1 to D9 match `BUILD_PROMPT.md` section 4. D0 is new: where the code lives. D10 and D11 are new on 2026-10-10: Customer View and the phone, and the Level 4 gate for crew polishing.
+Read with `docs/BLUEPRINT.md`. The decision numbers D1 to D9 match `BUILD_PROMPT.md` section 4. D0 is new: where the code lives. D10 and D11 are new on 2026-10-10: Customer View and the phone, and the Level 4 gate for crew polishing. D12 and D13 are Lando's Phase 1 decisions, also 2026-10-10: device role and first run, and the thin panel outline.
 
 ## D0: Repo layout
 
@@ -15,7 +15,7 @@ Read with `docs/BLUEPRINT.md`. The decision numbers D1 to D9 match `BUILD_PROMPT
 - Public today: the whole Aurigen repo, including the masterclass knowledge base with your floor-price math. Anyone on GitHub can read it. The market research (section 15.5) was removed from the file on 2026-10-10 at your request; a one-line note marks where it was.
 - The risk: a competitor reads your pricing strategy and SOPs. Nothing secret in the legal sense is in there (no address, no customer data, no keys).
 - Two choices: stay in this repo (the default; three small files added outside the masterclass folder, free phone testing on GitHub Pages) or move to a new private repo (nothing public, but no free Pages, one token setup on your phone, no credits).
-- Decided 2026-10-10: you said "Repo OK." The Phase 0 pull request merged (#163), and the Aurigen website was checked on 2026-10-10: every `/masterclass/` address returns "not found" while Aurigen's own pages still load. One thing to know: the removed market research text remains in the git history of earlier commits, where anyone can still find it; scrubbing that history is your separate call, not part of this build.
+- Decided 2026-10-10: you said "Repo OK." The Phase 0 pull request merged (#163), and the Aurigen website was checked on 2026-10-10: every `/masterclass/` address returns "not found" while Aurigen's own pages still load. One thing to know: the removed market research text remains in the git history of earlier commits, where anyone can still find it. Your call, 2026-10-10: "Leave the git history alone." Nobody rewrites it.
 
 ### Context (details for the builders)
 
@@ -57,7 +57,7 @@ Working rules that follow:
 
 ### Consequences
 
-- The knowledge base remains readable by anyone on GitHub, without section 15.5. Nothing in it is on the never-commit list. The removed market research text remains in the git history of earlier commits; scrubbing that history is Lando's separate call and is not part of this build.
+- The knowledge base remains readable by anyone on GitHub, without section 15.5. Nothing in it is on the never-commit list. The removed market research text remains in the git history of earlier commits. Lando decided on 2026-10-10: "Leave the git history alone." No agent rewrites history in this repo.
 - Three small files land outside `masterclass/` (four if the `vercel.json` fallback is needed), all reversible, all edited by the lead only after "repo OK."
 - Vercel keeps building a preview of every pushed branch of this repo (free on its plan; whether that plan allows commercial use is a separate Aurigen question, `[VERIFY]`, outside this build).
 - Vercel branch previews for this repo are behind a Vercel login (checked 2026-10-10), so the kit was never readable through a preview. Closed.
@@ -149,9 +149,15 @@ Accept the proposed stack with these pins and additions:
 - signature_pad: https://github.com/szimek/signature_pad; qrcode: https://github.com/soldair/node-qrcode; browser-image-compression: https://github.com/Donaldcwl/browser-image-compression; html-to-image issues: https://github.com/bubkoo/html-to-image/issues?q=is%3Aissue+safari; jsPDF: https://github.com/parallax/jsPDF/releases (read 2026-10-07)
 - Netlify build image and Node: https://docs.netlify.com/build/configure-builds/manage-dependencies/ (read 2026-10-07); setup-node: https://raw.githubusercontent.com/actions/setup-node/main/docs/advanced-usage.md (read 2026-10-07); Node schedule: https://raw.githubusercontent.com/nodejs/Release/main/schedule.json (read 2026-10-07)
 
+### Amendment, 2026-10-10 (scaffold wave)
+
+- Playwright is pinned `~1.56.1`, not 1.64.x. The cloud VM ships Chromium build 1194 under `/opt/pw-browsers` and cannot download browsers; Playwright 1.56.0 and 1.56.1 are the releases whose `browsers.json` names build 1194 (1.57 to 1.64 need builds 1200 to 1248). WebKit is not installed in the VM, so the suites run in Chromium at the device widths (375, 393, 430, 768, 1024, 1440 px), and iPhone WebKit behavior is checked on Lando's phone at each gate. Move to the current Playwright when the VM offers its browsers.
+- jsdom is `^29.1.1`: jsdom 30 needs Node 22.22.2 or newer and the VM runs 22.22.0.
+- The rest of the table stands as installed: Vite 8.3.4, React 19.3.0, react-router 8.4.0, TypeScript 6.0.3, vite-plugin-pwa 2.0.0, Dexie 4.4.6, MiniSearch 7.2.0, Zod 4.6.5, Vitest 5.0.3.
+
 ### Status
 
-Proposed.
+Accepted 2026-10-10 (`build it`), with the amendment above.
 
 ## D2: Content as validated files
 
@@ -188,7 +194,7 @@ Thirteen content types (build prompt section 5) must be editable by Lando later 
 
 ### Status
 
-Proposed.
+Accepted 2026-10-10 (`build it`). The schemas landed in `src/schemas/` in Phase 1, with the writer's guide in `src/schemas/README.md`; where they and `docs/BLUEPRINT.md` section 7 differ, the schema files win.
 
 ## D3: Data in v1, local-first on each device
 
@@ -208,7 +214,7 @@ The build prompt asks for local-first data (Dexie), persistent storage, export a
 
 ### Decision
 
-- Dexie (IndexedDB) on each device is the system of record in v1. The shop phone (Lando's) holds the jobs, the counters, the crew profiles, the skill states, and the sign-offs. A study phone (DJ's) holds one person's Academy progress and sends it to the shop phone as a crew progress file (drill log and quiz attempts only; a sign-off record in the file is refused on import). The iPad is whichever role it is set to. The role (shop or study) is chosen at first run and changed only with the PIN.
+- Dexie (IndexedDB) on each device is the system of record in v1. The shop phone (Lando's) holds the jobs, the counters, the crew profiles, the skill states, and the sign-offs. A study phone (DJ's) holds one person's Academy progress and sends it to the shop phone as a crew progress file (drill log and quiz attempts only; a sign-off record in the file is refused on import). The iPad is whichever role it is set to. Every install starts as a study phone; the shop role comes only through the two paths in D12 (amended 2026-10-10), and a change of role needs the PIN.
 - Install first: the manifest sets display standalone, the page carries the `apple-mobile-web-app-capable` tag and a 180 px `apple-touch-icon`, and the app shows an install card whenever it is not running standalone (`navigator.standalone` false and no standalone display-mode match), with the line "leave Open as Web App turned on" and a warning that data in a tab is separate and can be wiped after 7 days. Creating the first job requires standalone, or an explicit "I understand" that is logged.
 - Call `navigator.storage.persist()` on every launch from the top-level page; show `persisted()` and `estimate()` in the developer panel; never gate a feature on the result.
 - Export everything (JSON plus photos) through the share sheet (`navigator.share` with files, inside a tap, after `canShare`), never through a download link. A copy-to-clipboard path carries the JSON without photos as a second option. Import reads the same file through a file input and validates it with the same zod schemas before writing. Counters are recomputed after every import. Each hosting link (the Pages path, the Netlify root) has its own storage, so a move between links is always: Backup, install the new link, Import, confirm the counters, delete the old icon. One move is planned, at v1.0 (`docs/BLUEPRINT.md` 10.1), and a persistence test exports on one origin and imports on the other.
@@ -251,9 +257,13 @@ Backup file format: a single file. The lead picks in Phase 1 between one JSON fi
 - Clearing Safari data is undocumented for web apps: https://support.apple.com/en-us/105082 (read 2026-10-07) `[VERIFY on device]`
 - Dexie has no persistence helper: https://dexie.org/docs/StorageManager (read 2026-10-07)
 
+### Amendment, 2026-10-10
+
+Backup file format, decided in Phase 1: one JSON file with the photos embedded as base64, or with photos omitted (the guaranteed baseline), as defined in `src/schemas/backup.ts`. The zip option is not used in v1. A backup with many photos is large (24 photos a job at an estimated 200 to 400 KB each, plus about a third for base64), so the backup size on the phone is measured at the Phase 3 and Phase 6 gates; if it strains the phone, the fallback is a backup without photos plus a per-job photo export. Which share-sheet targets iOS offers for a JSON file is `[VERIFY]` in the Phase 1 device checklist (D12).
+
 ### Status
 
-Proposed.
+Accepted 2026-10-10 (`build it`), with the amendment above and D12.
 
 ## D4: Access, the owner PIN
 
@@ -263,7 +273,7 @@ Owner-only areas: sign-offs, pricing internals (floor price math, founder's-rate
 
 ### Decision
 
-- One owner PIN per device, 6 digits, set on first run together with the device role (shop phone or study phone). Stored as a salted hash (PBKDF2 through the Web Crypto API, `[VERIFY]` on Lando's phone in Phase 1; a small pure-JS SHA-256 is the fallback if any device lacks it). The plain PIN is never stored and never logged. Settings shows the date the PIN was set.
+- One owner PIN per device, 6 digits, set from the setup banner (D12 amends "on first run": the app opens straight into the rooms, and the PIN is a banner step; creating it saves the first backup right then and turns on the weekly reminder). Stored as a salted hash (PBKDF2 through the Web Crypto API, `[VERIFY]` on Lando's phone in Phase 1; a small pure-JS SHA-256 is the fallback if any device lacks it). The plain PIN is never stored and never logged. Settings shows the date the PIN was set.
 - Honest rule for crew phones: Lando installs the app and sets the PIN himself on any phone he hands to crew. A study phone has no sign-off screen, no Business room, and no job creation, so a sign-off cannot be recorded on it whoever knows its PIN; sign-offs exist only on the shop phone, next to the jobs they gate. Changing a device's role needs the PIN and is logged. Which sign-off gates the polish stage, and the override, is D11 (2026-10-10).
 - Forgot PIN: a reset path exists so the app never dead-ends. It asks for a backup export first, writes an audit entry, sets a new PIN, and marks every sign-off and override on that device "needs re-check" until the owner confirms each one with the new PIN. A crew member who resets the PIN cannot make an old sign-off look clean.
 - A correct PIN issues an owner token that lives only in memory for 5 minutes. Every guarded write (sign-off, revoke, override, cutoff change, starting the polish stage as the owner profile, Customer View off during a session, developer toggle in production) requires the token. Three wrong attempts lock PIN entry for 30 seconds and write an audit entry.
@@ -290,7 +300,7 @@ Owner-only areas: sign-offs, pricing internals (floor price math, founder's-rate
 
 ### Status
 
-Proposed.
+Accepted 2026-10-10 (`build it`), amended by D12 on when the PIN is set.
 
 ## D5: Deploy on Netlify, one site, manual deploys only
 
@@ -348,7 +358,7 @@ Lando has Netlify credits and wants to spend as few as possible. Netlify's credi
 
 ### Status
 
-Proposed. Lando approves the first deploy at the Phase 3 gate with the balance in hand.
+Accepted 2026-10-10 (`build it`). Lando approves the first deploy at the Phase 3 gate with the balance in hand.
 
 ## D6: Photos on the device
 
@@ -385,7 +395,7 @@ Before and after photos, damage photos, test spot halves, and the signature imag
 
 ### Status
 
-Proposed.
+Accepted 2026-10-10 (`build it`).
 
 ## D7: Brand in one config file
 
@@ -417,7 +427,7 @@ Proposed.
 
 ### Status
 
-Proposed.
+Accepted 2026-10-10 (`build it`).
 
 ## D8: No AI in v1, "Copy for Claude" instead
 
@@ -453,7 +463,7 @@ Lando's own call, confirmed in the build prompt: built-in AI needs signal, costs
 
 ### Status
 
-Proposed.
+Accepted 2026-10-10 (`build it`).
 
 ## D9: Phone testing for a phone-only owner
 
@@ -576,7 +586,7 @@ A customer standing at the screen can read a text preview or a job alert the mom
 
 ### Status
 
-Accepted by Lando on 2026-10-10. `[HOUSE]`.
+Accepted by Lando on 2026-10-10. He confirmed the approach the same day: "The Focus reminder approach for Customer View is fine." `[HOUSE]`.
 
 ## D11: Crew polishing needs the Level 4 sign-off on the shop phone
 
@@ -622,6 +632,103 @@ The question was: DJ's study phone says he passed, the shop phone shows no sign-
 
 Accepted by Lando on 2026-10-10. `[HOUSE]`.
 
+## D12: Device role and first run
+
+### In plain words (Lando, read this part)
+
+- Every phone starts as a study phone. You go straight into the app; a banner at the top walks you through setup when you are ready.
+- Tapping "This is the shop phone" by mistake changes nothing. That screen has a clear Cancel, and nothing changes until an owner PIN exists.
+- One shop phone at a time. A second phone becomes the shop phone only by importing the newest backup from the shop phone. "Start fresh" is a separate choice, and it warns you that the counts (cars logged, founder's slots) reset to zero.
+- The moment you create the owner PIN, the app asks you to save the first backup, and the weekly backup reminder turns on.
+- One limit: with no sync, a phone cannot see your other phones. "One at a time" is kept by the only two ways in, not by detection. After you import onto a new phone, switch the old one to a study phone with your PIN.
+
+### Context
+
+D3 and D4 said the role and the PIN are set at first run. Lando's Phase 1 answers (2026-10-10) settle four open points: what a fresh install does before anyone sets it up, what a mistaken "This is the shop phone" tap does, how a second phone becomes the shop phone, and when the first backup happens. Facts that shape the answer:
+
+- Each install has its own storage and v1 has no sync (D3), so no phone can know whether another phone already acts as the shop phone.
+- The shop phone's job log is the only source of the 25-car count and the founder's slots (blueprint 3.3). Two job logs would split those counts.
+- The backup leaves through the share sheet (D3). `navigator.share()` needs transient activation: "It must be triggered off a UI event like a button click," and it fails with NotAllowedError without one (MDN). In the current WebKit source, `share()` consumes the activation, and the activation lasts 5 seconds after the tap. So a share started after a slow step (hashing the PIN, writing the database) may be refused; a share started from its own button tap is not.
+- In the current WebKit source, `canShare()` with files checks only that file sharing is on and that files are present; there is no file-type list. MDN's list of "usually shareable" types has no JSON (it has `text/plain`). Which apps iOS offers for a `.json` file is `[VERIFY]` in Phase 1 device checklist item 4.
+
+### Decision
+
+1. Study is the default role for every install. A new install writes `defaultSettings`: role study, role not yet chosen, no PIN, left-handed, weekly reminder off (`src/schemas/runtime-device.ts`).
+2. First run goes straight into the rooms with a setup banner. The banner shows the next unfinished step (`setupStep`): choose the role, set the owner PIN, save the first backup. It never blocks a room, it can be closed for the session, and it returns on the next launch until every step is done.
+3. "This is the shop phone" opens one screen with three choices: "Import the newest backup from the shop phone," "Start fresh," and "Cancel." The tap writes nothing. Cancel returns to the previous screen with nothing changed. A refresh on this screen reopens the app as it was.
+4. Import: the file is checked with `parseBackupFile` before anything is written. The screen shows the backup's date, its job count, and its cars-logged count, and asks "Is this the newest backup from the shop phone?" On yes, one transaction replaces every table with the backup's contents; the shop role and the PIN hash come with it; Customer View is off; the audit log gets an import and a role change; the counters are recomputed. A backup from a study phone is refused ("This backup is not from the shop phone").
+5. Start fresh: the screen shows the warning (`START_FRESH_WARNING`): this phone starts with no jobs, so cars logged and founder's slots reset to zero; if another phone has the jobs, cancel and import its newest backup. Accepting leads to creating the PIN (or entering the existing one). Then one transaction writes the PIN hash, the shop role, the weekly reminder on, empties the job tables (`START_FRESH_CLEARS`), sets the "cars logged before this app" seed to 0, creates the owner profile if there is none and makes it active, and writes the audit entries. Academy progress on that phone stays.
+6. The data layer enforces the order: a settings row with the shop role and no PIN fails its schema, and `canBecomeShop` refuses a bare tap, a study backup, an unaccepted warning, and a missing PIN.
+7. Creating the owner PIN, on any phone: the same transaction turns on the weekly reminder (`settingsOnPinCreated`). The next screen is "Save your first backup" with one button; that tap opens the share sheet. A successful share sets "last backup." If the sheet is closed or fails, the screen offers "Try again" and "Copy backup text" (without photos). "Not now" exists so nothing dead-ends; the banner then stays on "Save your first backup" and the reminder counts as due at once (`backupReminderDue`).
+8. Shop to study: the owner PIN, logged (`canBecomeStudy`). The jobs stay in the database but a study phone shows no job screens. This is the step for the old phone after an import onto a new one.
+9. "This is a study phone": records the choice; no PIN is needed to confirm it. The banner moves on to "Set the owner PIN," which Lando does himself before handing a phone to crew (D4).
+
+### Alternatives rejected and why
+
+- A blocking first screen that asks for the role and the PIN (the D3 and D4 wording): Lando chose straight in with a banner; a blocking screen is a wall for someone who only wants Fix It.
+- Letting the tap set the role and asking for the PIN later: a mistaken tap on DJ's phone would open job creation and the Business room. Lando: nothing changes until a PIN exists.
+- A second shop phone from the PIN alone: it would start a second job log, and the 25-car count and the founder's slots would split across phones. Allowed only as the explicit Start fresh with its warning.
+- Detecting another shop phone: needs sync or a server, which is Phase 8.
+- Opening the share sheet automatically right after the PIN: the activation from the PIN tap may be spent or expired by the time hashing and the write finish, and the refusal would look like a broken backup. One more tap is reliable.
+- Leaving the first backup to the weekly reminder: Lando said right then.
+
+### Consequences
+
+- Every install is useful at once (Fix It, Search, Quick Cards, Academy) with no setup. The Job Runner, the Business room, sign-offs, and the counters appear only on the shop phone; the Phase 1 placeholders say so and link to the setup banner.
+- "One at a time" is procedural. The import screen and the handoff doc tell Lando to switch the old phone to study.
+- The tests are in `docs/BLUEPRINT.md` 3.8; the state map is 3.9.
+- The backup format is decided (D3 amendment): one JSON file, photos embedded or omitted. If iOS offers no useful target for a JSON file (checklist item 4), the app shares the same JSON as a `text/plain` file, which the import accepts.
+
+### Sources
+
+- Lando's answers, 2026-10-10, quoted in the record at the end of this file.
+- MDN, "Navigator: share() method," last modified 2026-07-16: transient activation, NotAllowedError and AbortError, secure context, `canShare()` before files, the "usually shareable" type list: https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share (read 2026-10-10).
+- WebKit source, `Navigator.cpp` on main: `share()` rejects with NotAllowedError unless `consumeTransientActivation()` succeeds; `canShare()` with files checks only that the feature is on and files are present: https://github.com/WebKit/WebKit/blob/main/Source/WebCore/page/Navigator.cpp (read 2026-10-10).
+- WebKit source, `LocalDOMWindow.cpp` on main: `defaultTransientActivationDuration { 5_s }`: https://github.com/WebKit/WebKit/blob/main/Source/WebCore/page/LocalDOMWindow.cpp (read 2026-10-10). Shipping iOS versions may differ from main; the Phase 1 device checklist covers the share sheet.
+- Separate storage per install and Web Share with files since iOS 15: the D3 sources (read 2026-10-07).
+
+### Status
+
+Accepted by Lando on 2026-10-10. `[HOUSE]`.
+
+## D13: Thin panel outline in the customer paint report
+
+### In plain words (Lando, read this part)
+
+- On the customer's paint report, a thin panel gets a dashed grey outline and the word "Thin." Red stays in your owner view only.
+
+### Context
+
+The first draft of the paint report (`docs/DESIGN-DIRECTIONS.md`, Customer density and wireframe 6.3) drew a thin panel with the red STOP outline, because under 75 µm is the house "no machine" rule (knowledge base 7.3 `[HOUSE]`). The ui-designer flagged that on a customer's car a red edge can read as damage, and offered a dashed outline in the secondary text color. In Direction A red has one job: STOP.
+
+### Decision
+
+- Customer paint report (Customer density): a thin panel draws a dashed outline in the secondary text color (`--text-2`), with no fill, and the word "Thin" on the panel and in the legend. No red anywhere on the customer report.
+- Owner view (gauge entry and the owner's panel map): a thin panel keeps the red `--stop` outline.
+- Color never carries the meaning alone: the letter, the word, and the legend carry it, as before.
+- The customer wording stays with the business-customer agent and the fact-checker.
+
+### Alternatives rejected and why
+
+- Red in both views: reads as damage on a customer's car, and red means STOP in this app.
+- The accent color: Lando's Customer View rule keeps the accent off the paint report.
+- The word with no outline: an unfilled panel with no outline disappears against the base.
+
+### Consequences
+
+- The ui-designer updates `docs/DESIGN-DIRECTIONS.md` (the Customer density bullets and the 6.3 notes) to this decision and checks the dashed outline's contrast on the base. The panel map component takes the density, so one component draws red in the owner view and dashed `--text-2` in Customer View.
+- The business-customer agent builds the paint report with the dashed outline. The privacy test can assert that no `--stop` outline renders in Customer View.
+
+### Sources
+
+- Lando's answer, 2026-10-10, quoted in the record at the end of this file.
+- `docs/DESIGN-DIRECTIONS.md`, section 4 (Customer density, "One flag for Lando") and the notes under wireframe 6.3.
+- Knowledge base 7.3 (bands, `[HOUSE]`).
+
+### Status
+
+Accepted by Lando on 2026-10-10. `[HOUSE]`.
+
 ## Browser facts that shape the Job Runner (recorded here so D1 and the blueprint cite one place)
 
 - Screen Wake Lock: supported in the Safari browser on iOS from 16.4, but it did not work inside Home Screen web apps until iOS 18.4 ("Fixed Wake Lock API for Home Screen Web Apps," Safari 18.4 release notes). The lock is released when the page is hidden and must be re-requested. Low Power Mode behavior is `[VERIFY]` on device. Sources: https://developer.apple.com/documentation/safari-release-notes/safari-18_4-release-notes, https://bugs.webkit.org/show_bug.cgi?id=254545, https://caniuse.com/wake-lock, https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API (read 2026-10-07). The hidden-video fallback is unreliable on current iOS and is not shipped: https://github.com/richtr/NoSleep.js and bug 254545 comments (read 2026-10-07).
@@ -647,5 +754,11 @@ Recorded here in his words so a future session finds them in one place. Each one
 | 8 | "Customer View: nothing from my phone may show. Mute every app notification while Customer View is on, and when I switch it on, remind me to turn on an iPhone Focus. Calls from Suzie can ring. No text previews, no job alerts." | D10; blueprint 2.5, 3.4, section 5, 3.8 privacy tests |
 | 9 | "Block him. DJ's phone is for study only. Sign-offs live on the shop phone and happen with my PIN while I watch him do the skill. Finishing a level on his phone unlocks nothing, and Level 0 doesn't gate polishing anyway; machine polishing needs the Level 4 sign-off. If I'm standing there, I sign off on the shop phone right then. The car keeps moving: I polish, DJ does what he's cleared for. Owner override only with my PIN and a logged reason." | D11; blueprint 2.3, 2.4, 3.1, 3.2, 3.8 tests |
 | 10 | "No PR watching. Phase 1 workflow files are fine under the same OK." | D0 and D9 (the two root workflow files); `docs/STATUS.md` (lead) |
+| 11 | "build it" | Phase 1 authorized; D1 to D8 accepted; blueprint "Read this first" and section 9 |
+| 12 | "Thin panels in the customer paint report: use the dashed grey outline with the word 'Thin.' Red stays in my owner view only." | D13; blueprint 2.5 |
+| 13 | "The Focus reminder approach for Customer View is fine." | D10 status |
+| 14 | "A mistaken 'This is the shop phone' tap changes nothing until an owner PIN exists, and the screen has a clear Cancel. One shop phone at a time: a second phone can only become the shop phone by importing the latest backup. 'Start fresh' is a separate choice with a warning that the counts reset to zero." | D12; blueprint 2.1, 3.1, 3.8, 3.9; `src/schemas/runtime-device.ts` |
+| 15 | "Straight in with the setup banner. When the owner PIN is created, the first backup happens right then, not later, and the weekly backup reminder turns on." | D12, D4 amendment; blueprint 2.1, 3.9 |
+| 16 | "Leave the git history alone." (his decision on the removed knowledge base 15.5 text, which remains in earlier commits) | D0 |
 
-Not yet said: `build it`. Nothing else is open.
+Said on 2026-10-10: `build it`. Phase 1 (Foundation) is underway.

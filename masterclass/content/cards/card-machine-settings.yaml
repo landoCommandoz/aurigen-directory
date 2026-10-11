@@ -1,0 +1,79 @@
+id: card-machine-settings
+type: quickcard
+title: Machine settings for the polisher
+kind: settings
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "8.3"
+tags: [polish, machine, speed, pressure, settings]
+synonyms:
+  - machine settings
+  - polisher speed
+  - what speed
+  - speed setting
+  - how much pressure
+  - polisher settings
+  - dial setting
+  - how many passes
+  - how many sets
+  - how fast do I move
+sources:
+  - label: HF product page, item 56367
+    date: 2026-10-07
+    note: Speeds 4 to 6 for polishing or compounding
+rows:
+  - label: Square
+    value: 2 x 2 ft, taped. One square at a time.
+    kbRef: "8.1"
+  - label: Start
+    value: Pad flat on the paint before you pull the trigger.
+  - label: Spread
+    value: Speed 1 to 2 across the whole square.
+  - label: Work
+    value: Speed 4.
+  - label: HF polishing range
+    value: Speeds 4 to 6.
+    status: sourced
+  - label: Arm speed
+    value: About 1 inch per second. Slower than feels right.
+  - label: Pressure
+    value: About 10 lb. Practice on a bathroom scale.
+  - label: One set
+    value: Left to right, overlapping by half, then top to bottom.
+  - label: Sets per square
+    value: 4 to 6.
+  - label: Last set
+    value: Let the machine float on its own weight.
+  - label: Product
+    value: 1 to 2 drops per section after priming. Not a full dose.
+    kbRef: "8.2"
+  - label: Pad looks dry
+    value: Mist the pad face lightly with water. Do not soak it.
+    kbRef: "8.2"
+  - label: Spent
+    value: Creamy, then see-through, then almost gone. When it goes clear, stop.
+  - label: Finish
+    value: Trigger off while the pad is still on the paint, then lift.
+  - label: Wipe
+    value: Once, at the end of the square's sets. Never wipe and re-apply between passes.
+  - label: Check
+    value: IPA mist, wipe with a clean towel, then look with the light low and from a few feet back.
+  - label: Rotation
+    value: "Draw a marker line on the pad edge. If the line stops turning, ease up and flatten the pad."
+  - label: Curves
+    value: Use the middle of the pad. Never tilt onto an edge.
+  - label: Plastic bumpers
+    value: They heat fast. Lighter pressure, lower speed, shorter time.
+  - label: Heat
+    value: Too hot to keep your hand on? Stop and let it cool.
+  - label: Never
+    value: Never park the machine spinning in one spot.
+related:
+  - card-pad-priming
+  - card-pad-ladder
+  - card-ipa-wipe
+  - equipment-bauer-56367
+  - term-set
+  - term-crosshatch
+  - card-stop-rules

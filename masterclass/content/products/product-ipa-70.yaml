@@ -1,0 +1,28 @@
+id: product-ipa-70
+type: product
+title: 70% isopropyl alcohol (IPA)
+brand: Generic
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.3"
+tags: [ipa, alcohol, panel wipe, polish]
+synonyms:
+  - ipa
+  - isopropyl
+  - rubbing alcohol
+  - alcohol
+  - seventy percent alcohol
+  - panel wipe alcohol
+jobs:
+  - Panel wipe after polishing, mixed in the labeled Zep sprayer
+dilutions:
+  - use: IPA panel wipe
+    ratio: 1 cup 70% IPA + 3 cups water, about 17% alcohol
+    status: verify
+neverFor:
+  - Motorcycle windshields. They are plastic.
+related:
+  - card-ipa-wipe
+  - equipment-zep-pump-sprayer
+  - term-ipa-wipe

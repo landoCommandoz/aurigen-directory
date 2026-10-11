@@ -1,0 +1,93 @@
+/* Mode switch. Equal segments; a thumb slides behind the chosen one. */
+
+.ui-segmented {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ui-segmented__track {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  width: 100%;
+  padding: 3px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+}
+
+.ui-segmented__thumb {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc((100% - 6px) / var(--seg-count, 1));
+  border-radius: calc(var(--radius) - 2px);
+  background-color: var(--indicator);
+  transform: translateX(calc(var(--seg-index, 0) * 100%));
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.ui-segmented__option {
+  position: relative; /* above the thumb; holds the hidden radio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: var(--target-min);
+  padding: var(--space-1) var(--space-2);
+  border-radius: calc(var(--radius) - 2px);
+  color: var(--text-2);
+  font-size: var(--fs-body);
+  font-weight: var(--weight-medium);
+  line-height: var(--lh-snug);
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ui-segmented__text {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.ui-segmented__option[data-checked='true'] {
+  color: var(--indicator-on);
+  font-weight: var(--weight-bold);
+}
+
+.ui-segmented__option:active:not([data-checked='true']) {
+  background-color: var(--surface-raised);
+}
+
+/* The radio is hidden, so its keyboard focus is drawn on the segment. */
+.ui-segmented__option:has(.ui-segmented__input:focus-visible) {
+  outline: var(--ring-width) solid var(--focus-ring);
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.ui-segmented:disabled .ui-segmented__track {
+  border-style: dashed;
+}
+
+.ui-segmented:disabled .ui-segmented__thumb {
+  background-color: var(--surface-raised);
+  outline: 1px dashed var(--line-strong);
+}
+
+.ui-segmented:disabled .ui-segmented__option[data-checked='true'] {
+  color: var(--text);
+}
+
+.ui-segmented:disabled .ui-segmented__option {
+  cursor: not-allowed;
+}
+
+.ui-segmented:disabled .ui-segmented__option:active {
+  transform: none;
+}

@@ -1,0 +1,46 @@
+id: product-cg-citrus-wash-gloss
+type: product
+title: Chemical Guys Citrus Wash & Gloss, 64 oz
+brand: Chemical Guys
+audience: [owner, crew]
+visibility: internal
+status: sourced
+kbRef: "3.3"
+tags: [wash, soap, strip wash, clay lube]
+synonyms:
+  - citrus wash
+  - citrus wash and gloss
+  - chemical guys soap
+  - cg soap
+  - strip soap
+  - orange soap
+  - pre polish soap
+  - clay lube soap
+sources:
+  - label: Chemical Guys Citrus Wash & Gloss label
+    date: 2026-10-06
+    note: 1 oz per 5 gal to wash, 1 oz per gal to strip wax
+jobs:
+  - Pre-polish strip wash
+  - Clay lube base
+dilutions:
+  - use: Wash, per the label
+    ratio: 1 oz per 5 gal
+    status: sourced
+  - use: Strip wax, per the label
+    ratio: 1 oz per gal
+    status: sourced
+  - use: Pre-polish wash bucket
+    ratio: 4 oz in 4 gal water
+    status: house
+  - use: Clay tub
+    ratio: 1 oz in 1 gal water
+    status: house
+  - use: Pump-sprayer pre-soak, a candidate the label has not been checked for
+    ratio: Strip strength
+    status: verify
+related:
+  - card-bucket-mix
+  - card-clay-tub
+  - term-strip-wash
+  - product-meguiars-super-soap

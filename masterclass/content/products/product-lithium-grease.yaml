@@ -1,0 +1,22 @@
+id: product-lithium-grease
+type: product
+title: Lithium grease
+brand: Any
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.4"
+tags: [never on paint, garage only, grease]
+synonyms:
+  - lithium grease
+  - white grease
+  - grease
+  - lube grease
+  - spray grease
+jobs:
+  - None on a customer car. Garage only.
+neverFor:
+  - Customer paint
+neverOnPaint: true
+related:
+  - card-never-on-paint

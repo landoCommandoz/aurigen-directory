@@ -1,0 +1,24 @@
+id: equipment-shop-vac
+type: equipment
+title: Shop vac with attachments
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "10"
+tags: [interior, vacuum]
+synonyms:
+  - shop vac
+  - vacuum
+  - vac
+  - vacuum the car
+  - wet dry vac
+  - shopvac
+checks:
+  - Knock it down from the top first. Headliner, vents, seams, seat rails.
+  - Vacuum top down. Seats, under the seats, carpet, trunk.
+  - Slide the seats forward, then back.
+  - Start the vacuum during the clay dwell to work the dwell.
+related:
+  - equipment-dremel-versa
+  - equipment-analan-rubber-tool
+  - term-dwell

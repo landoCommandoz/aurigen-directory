@@ -1,0 +1,59 @@
+/* Fix It tile. 6 px corners, a hairline edge, the work light on its top edge. */
+
+.ui-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr));
+  gap: var(--space-3);
+}
+
+.ui-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-width: 0;
+  min-height: var(--tile-min);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  box-shadow: var(--edge-light);
+  color: var(--text);
+  text-align: start;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ui-tile:active:not(:disabled) {
+  background-color: var(--surface-raised);
+  border-color: var(--line-strong);
+}
+
+.ui-tile:disabled {
+  color: var(--text-2);
+  border-style: dashed;
+  border-color: var(--line-strong);
+  box-shadow: none;
+}
+
+.ui-tile__icon {
+  display: inline-flex;
+  color: var(--text-2);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.ui-tile__label {
+  font-size: var(--fs-body);
+  font-weight: var(--weight-medium);
+  line-height: var(--lh-snug);
+  overflow-wrap: break-word;
+}
+
+.ui-tile__detail {
+  margin-top: calc(var(--space-2) * -1);
+  color: var(--text-2);
+  font-size: var(--fs-small);
+  line-height: var(--lh-snug);
+}

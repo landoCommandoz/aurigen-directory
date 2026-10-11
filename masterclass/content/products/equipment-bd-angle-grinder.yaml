@@ -1,0 +1,19 @@
+id: equipment-bd-angle-grinder
+type: equipment
+title: Black & Decker angle grinder
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.4"
+tags: [never on paint, garage only, grinder]
+synonyms:
+  - angle grinder
+  - grinder
+  - black and decker grinder
+  - b and d grinder
+  - cutoff tool
+neverOnPaint: true
+checks:
+  - Garage only. Never on customer paint.
+related:
+  - card-never-on-paint

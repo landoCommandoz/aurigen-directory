@@ -1,0 +1,71 @@
+id: equipment-backing-plate
+type: equipment
+title: 6 in. backing plate for the BAUER 56367
+audience: [owner, crew]
+visibility: internal
+status: sourced
+kbRef: "14"
+tags: [backing plate, polisher, parts, m8]
+synonyms:
+  - backing plate
+  - backing pad
+  - plate
+  - velcro plate
+  - hook and loop plate
+  - replacement plate
+  - new backing plate
+  - m8 plate
+sources:
+  - label: BAUER 56367 owner's manual spec listing
+    date: 2026-10-07
+    note: Plate thread M8 x 1.25
+  - label: AutoGeek forum, 56367 owner report
+    date: 2026-10-07
+    note: M8 x 1.25 thread
+specs:
+  - label: Size
+    value: 6 in. (150 mm), hook and loop
+    status: sourced
+  - label: Mount
+    value: Bolts on through a center hole with a low-head cap screw
+    status: sourced
+  - label: Thread
+    value: M8 x 1.25
+    status: sourced
+  - label: Do not buy
+    value: HF item 64913, the $6.99 BAUER 6 in. backing pad on the shelf. It is 5/16 in.-24 thread. It does not fit the 56367.
+    status: sourced
+  - label: Replace with
+    value: A 6 in. (150 mm) plate made for a long-throw, mounted with an M8 bolt.
+    status: sourced
+  - label: Never downsize
+    value: Long-throw machines are counterweighted for 5 or 6 in. plates. A 3 in. plate causes violent vibration and can wear out the bearings.
+    status: sourced
+  - label: First call
+    value: HF tech and parts line, 1-888-866-5797. Ask for the replacement backing pad for item 56367.
+    status: verify
+  - label: Backup plate
+    value: ShineMate Heavy Duty, M8 thread, M8 bolt included, sold as fitting most 5 to 6 in. long-throws. Listed at $23.05 at Parks Car Care for the 5 in.; confirm the 6 in. price.
+    status: verify
+  - label: Owner reports
+    value: One 56367 owner swapped in a Maxshine plate. Another said a Griot's BOSS 21 plate looks nearly identical.
+    status: verify
+  - label: Spare
+    value: A spare 6 in. M8 plate is on the purchase roadmap.
+    status: house
+    kbRef: "3.5"
+checks:
+  - text: Unplugged, check the center bolt is tight.
+    status: sourced
+  - text: Check the pad is centered.
+    status: sourced
+  - text: Check the hooks are not bald or melted.
+    status: sourced
+  - text: Check the plate is not cracked or warped. Spin it by hand and watch the edge.
+    status: sourced
+  - text: Compare the new plate's hub to the old one before you bolt it on.
+    status: sourced
+related:
+  - equipment-bauer-56367
+  - term-long-throw
+  - card-machine-settings

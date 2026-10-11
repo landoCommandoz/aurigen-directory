@@ -1,0 +1,45 @@
+id: equipment-pad-black
+type: equipment
+title: Black finishing and wax pad
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.2"
+tags: [pad, finishing pad, wax pad, black]
+synonyms:
+  - black pad
+  - wax pad
+  - finishing pad
+  - soft pad
+  - sealant pad
+  - the black
+sources:
+  - label: Lando
+    date: 2026-10-10
+    note: One black pad on hand; black is a wax and finishing pad only and never appears in the ladder
+specs:
+  - label: On hand
+    value: One
+    status: house
+  - label: Job
+    value: Finishing and wax or sealant application only.
+    status: house
+  - label: Feel
+    value: Very soft, little leveling ability.
+    status: house
+  - label: Ladder
+    value: Never a rung on the pad ladder.
+    status: house
+  - label: Wax rule
+    value: Once it touches wax, it is a wax pad for life.
+    status: house
+  - label: Future use
+    value: Machine-apply a liquid or paste sealant at speed 2 to 3.
+    status: house
+  - label: Future use
+    value: A final gloss pass with M210 and lighter pressure, if the yellow leaves faint haze on soft black paint.
+    status: house
+related:
+  - card-pad-ladder
+  - equipment-pad-urotec-yellow
+  - equipment-bauer-56367

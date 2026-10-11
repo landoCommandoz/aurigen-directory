@@ -1,0 +1,26 @@
+id: equipment-air-compressor
+type: equipment
+title: Air compressor
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "3.1"
+tags: [drying, compressor, pads, tools]
+synonyms:
+  - compressor
+  - air compressor
+  - blow it out
+  - air gun
+  - blow dry
+  - air dry the gaps
+checks:
+  - Dry with it first. Mirrors, handles, badges, charge port door, liftgate seams, grille, trim seams. Then towels.
+  - Blow out or brush the pad after every polish square.
+  - On a bike, dry every crevice with it.
+  - Charge it the night before.
+  - text: Drain it per its manual.
+    status: verify
+related:
+  - card-setup-kit
+  - card-bike-rules
+  - equipment-microfiber-towels

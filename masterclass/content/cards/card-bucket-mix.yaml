@@ -1,0 +1,43 @@
+id: card-bucket-mix
+type: quickcard
+title: Pre-polish wash bucket mix
+kind: mix
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "4"
+tags: [mix, wash, bucket, pre-polish, strip wash]
+synonyms:
+  - bucket mix
+  - wash bucket
+  - soap mix
+  - how much soap
+  - citrus mix
+  - strip wash mix
+  - pre polish wash
+  - soap ratio
+sources:
+  - label: Chemical Guys Citrus Wash & Gloss label
+    date: 2026-10-06
+    note: 1 oz per 5 gal to wash, 1 oz per gal to strip wax
+rows:
+  - label: Water
+    value: 4 gal
+  - label: CG Citrus Wash & Gloss
+    value: 4 oz
+  - label: Strength
+    value: 1 oz per gal. That is strip strength, because polishing follows.
+  - label: Label ratio to wash
+    value: 1 oz per 5 gal
+    status: sourced
+  - label: Label ratio to strip wax
+    value: 1 oz per gal
+    status: sourced
+  - label: Never in this bucket
+    value: Ultimate Wash & Wax before polishing, dish soap, Spic and Span, wheel brushes, or the clay mitt.
+related:
+  - card-maintenance-wash
+  - card-clay-tub
+  - product-cg-citrus-wash-gloss
+  - term-strip-wash
+  - card-setup-kit

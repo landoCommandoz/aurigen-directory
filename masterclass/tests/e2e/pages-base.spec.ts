@@ -1,0 +1,112 @@
+/**
+ * The GitHub Pages build (D9, BLUEPRINT 10.3): the same app under /aurigen-directory/, the link
+ * Lando installs from for Phases 1 to 6. Runs in the pages375 project only; baseURL ends with the
+ * base path, so every goto below is relative ("cards", not "/cards").
+ */
+import { expect, test } from '@playwright/test';
+import { expectNoProblems, waitForScreen, watchProblems } from '../fixtures/app';
+
+test.use({ serviceWorkers: 'allow' });
+
+const BASE = '/aurigen-directory/';
+
+async function offlineReady(page: import('@playwright/test').Page): Promise<string> {
+  const scope = await page.evaluate(async () => (await navigator.serviceWorker.ready).scope);
+  await expect(page.locator('.app-status')).toContainText('Ready offline', { timeout: 15_000 });
+  return scope;
+}
+
+test('every asset and the service worker live under the base path; the app installs and works offline there', async ({ page, context }) => {
+  const problems = watchProblems(page);
+  await page.goto('./');
+  await waitForScreen(page);
+  const scope = await offlineReady(page);
+  expect(new URL(scope).pathname).toBe(BASE);
+  const manifest = await page.evaluate(() => document.querySelector('link[rel="manifest"]')?.getAttribute('href'));
+  expect(manifest?.startsWith(BASE)).toBe(true);
+
+  await context.setOffline(true);
+  await page.reload();
+  await waitForScreen(page);
+  await expect(page.getByRole('heading', { level: 1, name: 'Masterclass 101' })).toBeVisible();
+  await page.goto('cards');
+  await page.getByRole('button', { name: /^Clay tub lube mix/ }).click();
+  await expect(page.getByRole('heading', { level: 1, name: 'Clay tub lube mix' })).toBeVisible();
+  expect(new URL(page.url()).pathname).toBe(`${BASE}cards/card-clay-tub`);
+  await context.setOffline(false);
+  expectNoProblems(problems);
+});
+
+test('a Pages deep link (?p=) lands on the screen under the base path', async ({ page }) => {
+  await page.goto('./?p=%2Fcards%2Fcard-bucket-mix');
+  await expect(page.getByRole('heading', { level: 1, name: 'Pre-polish wash bucket mix' })).toBeVisible();
+  expect(new URL(page.url()).pathname).toBe(`${BASE}cards/card-bucket-mix`);
+});
+
+// DEF-09 (blocks-gate): the router basename is "/aurigen-directory" (no trailing slash), so the Home
+// link in the top bar and the bottom row's Home targets "/aurigen-directory". That address is outside
+// the service worker's scope "/aurigen-directory/". Any reload there with no signal (the app's own
+// Reload button, iOS reloading a backgrounded web app, a reload in a Safari tab) shows the browser's
+// offline error page instead of the app: a dead end in the garage.
+test('after tapping Home, a reload with no signal still opens the app', async ({ page, context }) => {
+  await page.goto('cards');
+  await waitForScreen(page);
+  await offlineReady(page);
+  await page.reload();
+  await waitForScreen(page);
+  await page.getByRole('banner').getByRole('link', { name: 'Home' }).click();
+  await expect(page.getByRole('heading', { level: 1, name: 'Masterclass 101' })).toBeVisible();
+  test.info().annotations.push({ type: 'address after Home', description: new URL(page.url()).pathname });
+  await context.setOffline(true);
+  await page.reload().catch(() => undefined);
+  await expect(page.getByRole('heading', { level: 1, name: 'Masterclass 101' })).toBeVisible({ timeout: 5000 });
+  await context.setOffline(false);
+});
+
+// DEF-09 again: the Home link is the one outside the scope.
+test('every in-app link stays inside the service worker scope', async ({ page }) => {
+  await page.goto('./');
+  await waitForScreen(page);
+  const outside = await page.evaluate(
+    (base) => Array.from(document.querySelectorAll('a[href]')).map((a) => a.getAttribute('href') ?? '').filter((href) => !href.startsWith(base)),
+    BASE,
+  );
+  expect(outside).toEqual([]);
+});
+
+// Pass 2 recheck of DEF-09: every screen, not only Home, and the back button.
+test('every link on every screen stays inside the service worker scope', async ({ page }) => {
+  const outside: string[] = [];
+  for (const path of ['./', 'fixit', 'cards', 'cards/card-bucket-mix', 'search', 'settings', 'settings/backup', 'settings/device', 'academy', 'job', 'business', 'no-such-route']) {
+    await page.goto(path);
+    await waitForScreen(page);
+    const hrefs = await page.evaluate(() => Array.from(document.querySelectorAll('a[href]')).map((a) => a.getAttribute('href') ?? ''));
+    for (const href of hrefs) {
+      if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) continue;
+      if (!href.startsWith(BASE)) outside.push(`${path}: ${href}`);
+    }
+  }
+  expect(outside).toEqual([]);
+});
+
+test('a back step onto the bare base address gets its slash back, and a reload there with no signal opens the app', async ({ page, context }) => {
+  await page.goto('./');
+  await waitForScreen(page);
+  await offlineReady(page);
+  await page.reload();
+  await waitForScreen(page);
+  // An entry in this page's history without the slash (a link followed from outside, or the pass 1
+  // build's Home link), then an in-app step forward and the Back button: a same-page back step,
+  // which is what watchBaseSlash() handles. (A back step that loads a new page goes to the server,
+  // which on GitHub Pages redirects the bare base to the slash.)
+  await page.evaluate(() => window.history.pushState(null, '', '/aurigen-directory'));
+  await page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'Quick cards' }).click();
+  await expect(page.getByRole('heading', { level: 1, name: 'Quick cards' })).toBeVisible();
+  await page.goBack();
+  await expect.poll(() => new URL(page.url()).pathname).toBe(BASE);
+  await expect(page.getByRole('heading', { level: 1, name: 'Masterclass 101' })).toBeVisible();
+  await context.setOffline(true);
+  await page.reload().catch(() => undefined);
+  await expect(page.getByRole('heading', { level: 1, name: 'Masterclass 101' })).toBeVisible({ timeout: 5000 });
+  await context.setOffline(false);
+});
