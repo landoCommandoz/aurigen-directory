@@ -1,24 +1,24 @@
 # Blueprint: Lando's Detailing Masterclass 101
 
-This is the plan for the app. Read the block below, then answer section 12 and pick a look.
+This is the plan for the app. The decisions in it were taken on 2026-10-10. The only thing left is to type `build it`.
 
-Phase 0, step 5. Written 2026-10-08 by the architect role and revised the same day after three reviews. Documents only. No app code exists yet.
+Phase 0, step 5. Written 2026-10-08 by the architect role and revised the same day after three reviews. Updated 2026-10-10 with Lando's gate decisions (section 12 and `docs/DECISIONS.md`). Documents only. No app code exists yet.
 
 ## Read this first (Lando, on your phone)
 
 1. What gets built: one app that works with no signal, with five rooms (Fix It, Job Runner, Academy, Customer View, Business), in seven phases. You test each phase on your phone before the next one starts.
-2. Where the code lives: your app and notes stay in the Aurigen project folder on GitHub, where anyone can already read the knowledge base, pricing math included. Three small files go outside the masterclass folder so the Aurigen website never shows it and so you can publish from your phone; the Phase 0 pull request stays open until the Aurigen website is checked and shows nothing from the masterclass folder. Say "repo OK" to accept, or "private repo" to move it instead (one token setup on your phone, no credits; section 10 and `docs/DECISIONS.md` D0).
-3. Cheapest phone test: a free GitHub Pages link, 0 Netlify credits. When the lead sends the Phase 1 link, not tonight, you do one tap: repo Settings, Pages, Source, GitHub Actions. `[VERIFY]`: this is the first thing to try; if Safari cannot reach that setting even after "Request Desktop Website," we use the Netlify path in 10.4.
+2. Where the code lives: decided 2026-10-10, "Repo OK." The app and notes stay in the Aurigen project folder on GitHub. The knowledge base stays readable there, minus the market research, which was removed on 2026-10-10 at your request. The Aurigen website was checked on 2026-10-10 and shows nothing from the masterclass folder. The two Phase 1 workflow files at the repo root are approved under the same OK (`docs/DECISIONS.md` D0).
+3. Cheapest phone test: a free GitHub Pages link, 0 Netlify credits. When the lead sends the Phase 1 link, you do one tap: repo Settings, Pages, Source, GitHub Actions. `[VERIFY]`: this is the first thing to try; if Safari cannot reach that setting even after "Request Desktop Website," we use the Netlify path in 10.4.
 4. Only a real publish to Netlify costs credits: 15 each. Deploy Previews and branch deploys cost 0, and so does the draft deploy our test button makes. Nothing touches Netlify until you say go at the Phase 3 gate. Source: Netlify Docs, How credits work, https://docs.netlify.com/manage/accounts-and-billing/billing/billing-for-credit-based-plans/how-credits-work/ (read 2026-10-07); details in 10.2.
 5. Budget for all of v1: 2 planned publishes (30 credits) plus a reserve of 3 (45 credits), 75 credits at most, plus a few credits of phone traffic. Credits may have reset since August, so check the balance first (10.7).
-6. Two looks to pick from: A Hi-Vis (recommended) or B Blue Tape, or A with B's accent. They are in `docs/DESIGN-DIRECTIONS.md`.
-7. Before any code: the decisions in section 12, items 1 to 16. "Defaults OK" covers all of them. Two design questions (where the phone sits while you polish, and which hand taps) stay in `docs/DESIGN-DIRECTIONS.md` section 8: answer each in a sentence, or say nothing and the wireframes there stand as drawn.
-8. To start: say "defaults OK" (or answer by number), pick A or B, say "repo OK", then type `build it`. You only need this block, section 9, and section 12. Sections 6 to 8 are for the builders.
+6. The look: A, Hi-Vis, picked 2026-10-10. In Customer View the accent stays sparse; off-white, photos, and the panel-map readings carry that screen. The rest is in `docs/DESIGN-DIRECTIONS.md`.
+7. Decisions: items 1 to 16 in section 12 accepted on 2026-10-10 with your two edits (9, the pad ladder; 14, only jobs that touch paint count toward 25). Your three answers (first real job, Customer View and the phone, DJ and the Level 4 sign-off) are recorded in sections 3 and 9 and in `docs/DECISIONS.md` D10 and D11.
+8. To start: type `build it`. Nothing else is open. You only need this block, section 9, and section 12. Sections 6 to 8 are for the builders.
 
 ## 1. How to read this file
 
 - Read with: `CLAUDE.md` (rules), `BUILD_PROMPT.md` (plan), `knowledge/KNOWLEDGE_BASE.md` (facts, with their status tags kept as written), `docs/DESIGN-DIRECTIONS.md` (the two looks), `docs/DECISIONS.md` (the reasons behind every choice here), `docs/OWNERSHIP.md` (who writes what; nothing in it needs your answer).
-- Nothing here is approved until you say so at a gate. Status of every decision is "proposed" until then.
+- Lando took the decisions on 2026-10-10 (section 12; `docs/DECISIONS.md` D0, D9, D10, D11 and the dated record at its end). Every one of them is `[HOUSE]`. Phase 1 starts when he types `build it`.
 - Numbers come from the knowledge base and keep its tags: `[HOUSE]`, `[SOURCED date]`, `[VERIFY]`, `[SUPERSEDED]`. Nothing tagged `[VERIFY]` is ever shown to a customer.
 - Browser, hosting, and money facts come from the research checked on 2026-10-07 and 2026-10-08 (WebKit, Apple, MDN, Netlify, GitHub, Vercel, npm). Each one is cited in `docs/DECISIONS.md`. Where the research could not confirm something, it says `[VERIFY]` and names the test we run on your phone.
 - Sessions: one Claude Code working session is roughly 2 to 4 hours of agent work. Lando-minutes are your own time on the phone at each gate.
@@ -30,7 +30,7 @@ Phase 0, step 5. Written 2026-10-08 by the architect role and revised the same d
 
 | Module | One sentence | Feeds |
 |---|---|---|
-| App shell | One screen frame with the three densities (Shop, Academy, Customer), the mode switches, and a bottom row that holds Fix It on every internal screen; in Customer View the bottom row holds only "End customer session" | Every room |
+| App shell | One screen frame with the three densities (Shop, Academy, Customer), the mode switches, and a bottom row that holds Fix It on every internal screen; in Customer View the bottom row holds only "End customer session." Built to Direction A, Hi-Vis (Lando's pick, 2026-10-10); the Customer density keeps the accent sparse, so off-white, photos, and the panel-map readings carry that screen; tokens, type, and wireframes are in `docs/DESIGN-DIRECTIONS.md` | Every room |
 | Content bundle | Every lesson, fix, card, price, and policy, compiled from `content/` at build time, validated, and shipped inside the app so it works offline | Fix It, Search, Academy, Quick Cards, Business, Customer View |
 | Search | One text box that takes typed or dictated words (the phone keyboard's mic), searches the bundle on the device with synonyms and fuzzy matching, and returns the best fix or card in under 100 ms | Fix It, Quick Cards, Academy |
 | Read-aloud | On-device speech that reads any fix or step after one "Start voice" tap, with Pause and Repeat | Fix It, Job Runner, Academy |
@@ -61,11 +61,19 @@ Seeded from knowledge base section 21 (33 entries). The troubleshooter agent exp
 | Setup checklist | The kit staging list with its own 15 minute target timer (knowledge base 18.3 `[HOUSE proposal]`) | Stage timings |
 | The run | Staged steps in the house order with timers (dwell, clay, the 30 minute ceramic wax stage plan from knowledge base 17.2, 2 x 2 ft sections), the panel map with routes, per-panel notes, one huge "Done, next" control, Pause and Resume, and an "ahead or behind plan" readout against the time map (knowledge base 17) | Stage timings, debrief, dashboard |
 | Cutoff | A time set per job; after it, the Runner will not start a new polish square, and it never interrupts a square in progress | The run |
-| Test spot gate | The polish stage will not open until a test spot (panel, combo, result) is logged, or the owner records an override with a reason | The run, the job sheet, the paint report |
+| Test spot gate | The polish stage will not open until a test spot (panel, combo, result) is logged; when a crew member is the one running the stage, that member also needs the Level 4 sign-off on this phone; the only way around either check is an owner override with the PIN and a reason, written to the audit log (3.2) | The run, the job sheet, the paint report |
 | Gauge entry | Readings per panel with the bands table applied automatically and color-coded with words (knowledge base 7.3); the rules below say what is accepted | Panel readings, the paint report, FIX-22 |
 | Quick Cards | Bucket mix, clay tub, IPA mix, machine settings, pad ladder, thickness bands, never-on-paint list, stop rules, Tesla tape list, bike rules, one tap from the run | The run, Search |
-| Hands-busy mode | One action area, 64 px targets, auto read-aloud of each step, screen kept awake while a stage runs | The run |
+| Hands-busy mode | One action area, 64 px targets, auto read-aloud of each step, screen kept awake while a stage runs; laid out for how Lando works (2026-10-10): the phone propped on the cart at arm's length, the polisher in the right hand, the left thumb tapping, with the left or right handed switch kept | The run |
 | Stop | Owner PIN and a reason; the job ends as Stopped and stays in the log (paint on the pad, a walk-away finding, the customer takes the car) | The job log, the debrief |
+
+Pad ladder Quick Card, as Lando set it on 2026-10-10 `[HOUSE]`. It matches knowledge base 8.5, and 3.2 already says the black pad is for finishing and wax only; the earlier default in section 12 item 9 was wrong to list black in the ladder.
+
+1. Yellow + M210.
+2. Still swirled: maroon + M210.
+3. Still swirled and the panel reads 100 µm or more (knowledge base 8.5): maroon + Ultimate Compound, then always yellow + M210 to clear the compound haze.
+
+Black is a wax and finishing pad only and never appears in the ladder. Pads on hand: Uro-Tec yellow x3, maroon x2, HF finishing pads (colors unconfirmed, `[VERIFY]` as knowledge base 3.2 says), one black pad. The card shows the three rungs and the black-pad rule; the test spot record (section 6) names the rung that won.
 
 Gauge entry rules, so every test has an expected result:
 
@@ -85,8 +93,8 @@ State survives refresh, app switch, and phone lock. A job is never lost (section
 | Drills log | Real practice logged with a number where there is one (scale pressure, marker-line turns, timed 2 x 2 ft sections) | Skill states, dashboard |
 | Quizzes | Scenario questions with a pass mark per skill (set in the sign-off criteria file) | Skill states |
 | Flashcards | Spaced repetition for the numbers (bands, mixes, speeds, times, prices) | Nothing else; a drill of its own |
-| Crew profiles | Live on the shop phone with their skill states and sign-offs; a study phone holds one person's lesson progress, drills, quizzes, and flashcards and sends them to the shop phone as a small file ("Share my progress") | Sign-offs, the Job Runner's crew view |
-| Sign-off | Owner PIN only, on the shop phone only; records who, what, when, and a reason on revoke | Skill states, audit log |
+| Crew profiles | Live on the shop phone with their skill states and sign-offs; a study phone (DJ's) is for study only: it holds one person's lesson progress, drills, quizzes, and flashcards and sends them to the shop phone as a small file ("Share my progress"); finishing a level on a study phone unlocks nothing anywhere | Sign-offs, the Job Runner's crew view |
+| Sign-off | Owner PIN only, on the shop phone only, given while Lando watches the crew member do the skill; if he is standing there he signs off on the shop phone right then; records who, what, when, and a reason on revoke; the Level 4 sign-off is the one that lets a crew member run machine polishing in the Job Runner's crew view (3.1) | Skill states, audit log, the polish stage guard |
 | Printable SOPs | Print stylesheet for the wall; printed from the phone (Share, Print, AirPrint) or from the PC | The wall |
 | Reading view | Desktop layout with 68 characters per line for the deep "why" sections | The PC at night |
 
@@ -94,7 +102,7 @@ State survives refresh, app switch, and phone lock. A job is never lost (section
 
 | Module | One sentence | Feeds |
 |---|---|---|
-| The switch | One tap on, hides every internal field instantly; off needs the owner PIN while a customer session is active (section 3.4) | Every screen |
+| The switch | One tap on, hides every internal field instantly and shows a one-tap reminder to turn on an iPhone Focus; while Customer View is on the app sends no notification and renders no toast, banner, or in-app alert of its own; off needs the owner PIN while a customer session is active (section 3.4, `[HOUSE]` 2026-10-10) | Every screen |
 | Walkaround check-in | Existing damage photos, the script read out loud, acknowledgment, signature, photo-posting consent (default off) | The job, the job sheet |
 | Paint report | The panel map colored by the bands with plain words, "what is clear coat," the fingernail test, the test spot halves, what was done | Pickup, the aftercare moment |
 | Menu and plans | Service menu with drop-off prices, mobile +$30, bike menu, Store-It-Clean, Monthly Maintenance | The quote |
@@ -102,7 +110,7 @@ State survives refresh, app switch, and phone lock. A job is never lost (section
 | Aftercare card | "Next wash due" filled in, shared as an image or PDF through the share sheet | Pickup |
 | Review request | QR code to the review link from config; no link is set yet, so the screen stays hidden until you paste one into the config file (a stated default, D7) | Pickup |
 
-Only customer-safe content with status house, or sourced and confirmed by the fact-checker, ever renders here. No customer data is hosted anywhere public.
+Only customer-safe content with status house, or sourced and confirmed by the fact-checker, ever renders here. No customer data is hosted anywhere public. Look: Direction A with the accent kept sparse; off-white, photos, and the panel-map readings carry these screens (Lando, 2026-10-10; details in `docs/DESIGN-DIRECTIONS.md`).
 
 ### 2.6 Room 5: Business
 
@@ -119,9 +127,9 @@ Only customer-safe content with status house, or sourced and confirmed by the fa
 1. The Job Runner records real stage times, products, readings, and every Fix It tag during the job.
 2. The 2 minute debrief at Delivered turns that into one record: time per stage against the time map, issues, photos, rebook offered, review asked, one thing to drill next.
 3. Field Notes captured during the job (dictated) wait in an inbox. The weekly review turns each into an SOP change, a new Fix It entry, or a dismissal. SOP changes carry a version, and crew see a "this changed, re-read" flag.
-4. The dashboard counts cars toward 25, dollars per hour against the $60 to $75 target, time by job type, comebacks, rebook and review rates, personal records.
+4. The dashboard counts cars that touched paint toward 25 (3.3), dollars per hour against the $60 to $75 target, time by job type, comebacks, rebook and review rates, personal records.
 5. The app assigns the next lesson or drill from what keeps going wrong (two water-spot tags in a week assigns the hard-water lesson).
-6. Sign-offs recorded on the shop phone change what the crew view of the Job Runner on that same phone lets a crew member run. Jobs and sign-offs live in one database, so the gate is real.
+6. Sign-offs recorded on the shop phone change what the crew view of the Job Runner on that same phone lets a crew member run: machine polishing opens for a crew member only with that member's Level 4 sign-off. Jobs and sign-offs live in one database, so the gate is real.
 
 Phases 1 to 5 build the rooms. Phase 6 closes the loop.
 
@@ -147,6 +155,15 @@ Rules that apply to every state map:
 | Revoked | The revoke record is written with its reason | A new drill is logged, which returns the skill to Practicing; the quiz must be passed again (a stated default: a revoke means the quiz is retaken) | Nothing in flight | Low |
 
 Guard, crew can never sign themselves off: the sign-off button does not render for a crew profile; the data layer refuses a sign-off without an owner pass (a 5 minute pass the app keeps only while it is open, issued by a correct PIN); opening the sign-off URL directly as crew shows a locked screen; on a study phone the screen does not exist. Tested by the malicious-user run (crew reaches the sign-off URL by hand).
+
+Crew gating, as Lando set it on 2026-10-10 `[HOUSE]`:
+
+- DJ's phone is for study only. Finishing a level on it unlocks nothing, on that phone or on the shop phone.
+- Sign-offs live on the shop phone and happen with Lando's PIN while he watches the crew member do the skill. If he is standing there, he signs off on the shop phone right then; nobody waits on a progress file.
+- Machine polishing in the crew view of the Job Runner needs that crew member's Level 4 sign-off (the machine polishing skill). Level 0 does not gate polishing or anything else in the Runner; Level 0 is the ground rules lesson.
+- The car keeps moving: Lando polishes, DJ does what he is cleared for. A missing sign-off never stops the job; it only decides who runs the polish stage.
+- Owner override only with Lando's PIN and a logged reason (the `polishOverride` record in section 6 plus an audit entry). The reason is required; the data layer refuses an override without one.
+- The answer to "DJ's phone says he passed but the shop phone shows no sign-off": blocked. The study phone's word counts for nothing; only a sign-off record on the shop phone opens the stage. `docs/DECISIONS.md` D11.
 
 Where crew data lives in v1 (there is no sync):
 
@@ -178,7 +195,7 @@ Guards, all enforced in the data layer, not only in the screen:
 - Quote needs a size: "Quote" is refused with "Pick a size first" when the draft has no vehicle size; no quote record is written and `quote` stays null.
 - No Delivered without QC: "Deliver" is refused unless the job is in QC with a pass time. The button does not render before that.
 - QC fail is the rework path: a failed tick names the stage to return to (swirls still there, FIX-10, returns to polish). A job never passes QC on a car that was not finished.
-- No polishing without a logged test spot: the polish stage will not start until a test spot record exists (panel, combo tried, result). The owner can override with a reason; the override needs the owner PIN and is written to the audit log and the job sheet.
+- No polishing without a logged test spot, and no crew polishing without Level 4: the polish stage will not start until a test spot record exists (panel, combo tried from the ladder in 2.3, result). When a crew member is the one running the stage (the active profile on the shop phone is a crew profile), the stage also needs a Signed off state for that member's Level 4 skill in `skillStates`; Level 0 is never checked here. Either refusal is plain: "Log the test spot first" or "Level 4 sign-off needed. Lando runs this stage." The job keeps moving: the owner switches the active profile to himself and polishes, and the crew member runs the stages he is cleared for. Starting the polish stage under the owner profile needs the owner pass (a correct PIN within the last 5 minutes); switching the active profile to a crew profile needs no PIN. The only way past either check is an owner override: owner PIN, a reason of at least 3 characters, written to `polishOverride`, the audit log, and the job sheet (`[HOUSE]` 2026-10-10, `docs/DECISIONS.md` D11).
 - Cutoff: after the job's cutoff time, "Start next square" is replaced by "Past cutoff. Finish this square, IPA it, stop." A square already running is never interrupted. The owner can move the cutoff with the PIN; the change is logged.
 - Double tap on "Done, next": a second tap within about 700 ms is ignored, and the event carries the step index it expects, so a stale event is rejected. After each tap, "Undo last" shows for 5 seconds.
 - Stop: needs the owner PIN and a reason. It writes the audit log, ends every open stage timer, releases a held founder's slot, and leaves the job in the log as Stopped. The knowledge base already names the reasons: paint color on the pad (FIX-09, house rule 10), clear coat failure or another walk-away finding (knowledge base 7.4), the customer taking the car mid-job. No stage is skipped to get there.
@@ -187,7 +204,11 @@ Guards, all enforced in the data layer, not only in the screen:
 
 ### 3.3 Business unlocks (two counters, derived from the job log, never stored by hand)
 
-- Cars logged = jobs with a car (not a bike) in Delivered or Debriefed, plus a one-time "cars logged before this app" seed the owner sets behind the PIN (default 0). Stopped and Canceled jobs never count.
+- Cars logged = jobs in Delivered or Debriefed whose vehicle is a car and whose package touches paint, plus a one-time "cars logged before this app" seed the owner sets behind the PIN (default 0). Lando's rule, 2026-10-10 `[HOUSE]`: only jobs that touch paint count; interior-only jobs never count. The precise rule, so the code and the tests agree:
+  - A package touches paint when it has an exterior paint stage: wash, decon, polish, or protection. From knowledge base 15.1 that is Wash & Ceramic Wax, Full Detail (no polish), and Full Detail + One-Step Polish. Interior Only never counts. Monthly Maintenance is not sold in v1 (section 12 item 4), so no job carries it; when Lando defines it, a visit counts only if it includes a wash or protection stage.
+  - The package decides; add-ons do not change the answer (an Interior Only job with pet hair or headlight refresh added still does not count). This is the architect's reading of Lando's words, `[VERIFY with Lando]` in one line at the Phase 6 gate.
+  - Bikes never count, whatever the package. Stopped and Canceled jobs never count. A job that has not reached Delivered does not count yet.
+  - The count is derived from the job log every time it is read, never stored by hand. Each price item carries `touchesPaint` (section 7) and the rule in section 6 reads it.
 - Machine-polish jobs sold = jobs with a one-step polish line in Booked, Checked in, In progress, QC, Delivered, or Debriefed. A founder's slot is held at Booked and released by Cancel, Edit, or Stop.
 
 | State | Enters when | Leaves when | On refresh mid-transition | Risk |
@@ -211,12 +232,17 @@ Guards:
 | State | Enters when | Leaves when | On refresh mid-transition | Risk |
 |---|---|---|---|---|
 | Off | Default | The switch is tapped on (no PIN) | Nothing in flight | Low |
-| On, no customer session | The switch is tapped on and no customer screen is open | The switch is tapped off (no PIN), or a customer screen opens | The flag is persisted, so a refresh reopens in Customer View. A refresh never reveals internals | High: a leak is the failure. Handled below |
+| On, no customer session | The switch is tapped on and no customer screen is open. On entry the app shows the Focus reminder (below) once and stops every notification, toast, banner, and in-app alert of its own | The switch is tapped off (no PIN), or a customer screen opens | The flag is persisted, so a refresh reopens in Customer View without repeating the Focus reminder (the "shown" mark is persisted with the flag). A refresh never reveals internals | High: a leak is the failure. Handled below |
 | On, customer session active | Customer View is On AND a check-in, paint report, or aftercare screen is open for a job. This is a derived condition, checked on every change of either part, not an event, so the order of taps does not matter: open the walkaround first, then tap Customer View on, and the session is active | The owner enters the PIN to switch Customer View off, or taps "End customer session" with the PIN, or the job leaves those three screens by its own transition (check-in completes, the report is closed by the job moving on) | Both flags are persisted; reopens On with the session active | High |
 
 Customer View during a running job: with a stage running, tapping Customer View on keeps every timer running in the data layer (start stamps are untouched), replaces the Runner screen with a customer-safe job card (vehicle, package, stage name, "in progress," nothing else), and hides "Done, next," Fix It, Quick Cards, Search, and the panel readings until Customer View is off. Turning it off needs no PIN unless a customer session is active. The adversarial test asserts those four points.
 
 The Customer density has no internal controls: the bottom row holds no Fix It, no Search, and no Quick Cards; it holds only "End customer session" (PIN). The developer panel, the device preview, the install card, and the update banner are also absent while Customer View is on.
+
+Nothing from the phone may show while Customer View is on (Lando, 2026-10-10 `[HOUSE]`): no text previews, no job alerts; calls from Suzie can ring. A web app cannot silence other apps or the phone, so the rule has two parts:
+
+1. The app's side, which the code enforces: while Customer View is on, the app sends no notification and renders no toast, banner, or in-app alert of its own. The update banner, the weekly backup reminder, the "Undo last" toast, the "Ready offline" marker, and any timer-ended notice are held and shown after Customer View is off. v1 has no push notifications at all (section 11), so there is nothing of the app's to mute at the system level.
+2. The phone's side, which only Lando can do: the moment Customer View is switched on, the app shows a one-tap, customer-safe reminder, "Turn on your Customer Focus: Control Center, Focus," with a "Done" button. An iPhone Focus lets you pick the people and apps whose notifications come through and silences the rest; under People, "Allow Notifications From" takes chosen contacts, and the same screen has options to allow calls from certain groups of people and repeated calls. So a Focus set up once with Suzie under Allow Notifications From, no apps allowed, and Time Sensitive Notifications off lets her calls ring and keeps text previews and other alerts off the screen. Source: Apple Support, iPhone User Guide (iOS 27), "Allow or silence notifications for a Focus on iPhone," https://support.apple.com/guide/iphone/allow-or-silence-notifications-for-a-focus-iph21d43af5b/ios, and "Turn on or schedule a Focus on iPhone," https://support.apple.com/guide/iphone/turn-a-focus-on-or-off-iph5c3f5b77b/ios (both read 2026-10-10). One limit Apple states: people who message you see that notifications are silenced and "can still notify you if something is urgent"; whether that breaks through on Lando's phone, and the setting that stops it, is `[VERIFY on his phone]` at the Phase 4 gate. Setting up the Focus is a one-time step in the handoff doc (lead); the app cannot turn a Focus on or off. `docs/DECISIONS.md` D10.
 
 How a leak is prevented: internal items are not on the page at all, so even a screen reader cannot find them. Every internal element sits inside one component, `<Internal>`, which returns nothing when Customer View is on. One file holds the mechanism, `src/core/customerView.tsx` (app-engineer): the `<Internal>` component, the `useCustomerView()` hook, and the `customerSafe(items)` filter that hands Customer View only customer-safe items with status house or confirmed sourced. The switch screen and the session rule belong to business-customer in `src/features/customer/`. An automated test (quality bar item 6, listed in 3.8) turns Customer View on, visits every screen, and fails on any element marked internal, any "unverified" badge, the literal text "[VERIFY" or "[SUPERSEDED", any price internal, any crew note, Fix It, Search, Quick Cards, the developer panel, the device preview, the install card, or the update banner. Three wrong PINs lock the switch for 30 seconds and write an audit entry.
 
@@ -255,7 +281,8 @@ Unit tests (state tables, counters, bands, prices):
 - In progress Stop without the owner pass: refused. With the pass and a reason: state Stopped, every open stage timing gets an end stamp, slot released, audit entry written, the job still appears in the log, a debrief can be attached, cars logged unchanged.
 - Pause then Resume: `pausedMs` grows by the gap; elapsed excludes it. Pause twice: the second is refused.
 - QC Fail: state In progress, position set to the stage named in the failed tick, failed ticks kept. QC Deliver without a pass time: refused.
-- Seeded logs of 24 and 25 cars, and of 4 and 5 founder jobs. A Stopped job and a bike never count as a car.
+- Polish stage guard: with no test spot record, "start polish" is refused with "Log the test spot first." With a test spot and the active profile a crew member whose Level 4 skill is not Signed off (Locked, Learning, Practicing, Ready for sign-off, or Revoked): refused with "Level 4 sign-off needed. Lando runs this stage." The same crew member with Level 4 Signed off: allowed. A crew member with Level 0 Signed off and Level 4 not: refused (Level 0 gates nothing). The owner profile with a test spot and the owner pass: allowed. The owner profile without the pass: refused with a plain message. Override without the owner pass: refused. Override with the pass and a reason: allowed, `polishOverride` set, audit entry written. Override with the pass and an empty reason: refused.
+- Seeded logs of 24 and 25 cars, and of 4 and 5 founder jobs. What counts (3.3): a Delivered Wash & Ceramic Wax, Full Detail (no polish), or Full Detail + One-Step Polish on a car counts; a Delivered Interior Only never counts, with or without add-ons; a bike never counts, whatever its package; Stopped and Canceled never count. A seeded log of 24 paint-touching cars plus 1 Delivered Interior Only reads 24 and keeps two-step and mobile polish hidden; adding one Delivered Wash & Ceramic Wax reads 25 and shows them.
 - A `quote` price item (two-step) never renders a number; the mobile option on a polish package is absent under 25 cars and present at 25.
 - Bands: 100, 99, 90, 89, 85, 84, 75, and 74 µm land in the right knowledge base 7.3 row. A panel at 220 µm with the others near 120 µm is flagged repaint. A panel 41 µm below the median is flagged thin; one 39 µm below is not. Readings of 0, 19, 1000, 9999, empty, "abc", and -5 are refused with "Check the gauge" and not saved. One reading saves and shows "take 3."
 - Pricing: every knowledge base 15.4 example, including the mobile SUV example at $328 with travel at $1.50 per mile, plus every menu combination in knowledge base 15.1 and 12.2.
@@ -265,9 +292,9 @@ Persistence tests (quality bar item 7):
 - Refresh, kill, and lock mid-stage: same step, timer right. Refresh mid-pause: still paused, same `pausedMs`.
 - Fake clock moved back 10 minutes mid-stage: the timer holds at its last value, shows "Clock changed, timer held," never shows a negative or shrinking time, and resumes from the held value on the next tap. Fake clock moved forward 10 minutes: elapsed grows by 10 minutes, a countdown that ended reads "Ended while the screen was off. Check the panel," and no step advanced.
 - Export on one origin (the Pages path), import on another (the root path): cars logged, founder's slots used, every job state, and the PIN hash are equal.
-- Import of a crew progress file: drills and quiz attempts merged, readiness recomputed; any sign-off record in the file refused and reported.
+- Import of a crew progress file: drills and quiz attempts merged, readiness recomputed; any sign-off record in the file refused and reported. A file that marks every Level 0 to Level 4 lesson, drill, and quiz complete leaves every skill at most Ready for sign-off, never Signed off, and the polish stage stays closed to that crew member until Lando signs off Level 4 on the shop phone with his PIN.
 
-Privacy tests (quality bar item 6): with Customer View on, on every screen, none of these exist on the page or in the accessibility tree: any element inside `<Internal>`, any "unverified" badge, the literal text "[VERIFY" or "[SUPERSEDED", any price internal (floor price, market research, founder's-rate logic), any crew note, Fix It, Search, Quick Cards, the developer panel, the device preview, the install card, the update banner. Switching off during a customer session needs the PIN; without a session it does not. The session is active whether Customer View was switched on before or after the walkaround was opened.
+Privacy tests (quality bar item 6): with Customer View on, on every screen, none of these exist on the page or in the accessibility tree: any element inside `<Internal>`, any "unverified" badge, the literal text "[VERIFY" or "[SUPERSEDED", any price internal (floor price math, founder's-rate logic), any crew note, Fix It, Search, Quick Cards, the developer panel, the device preview, the install card, the update banner. The Focus reminder renders on entry to Customer View, once, and carries no internal text; after it is dismissed, no toast, banner, or in-app alert of the app's own renders anywhere in Customer View (the backup reminder, the "Undo last" toast, a timer-ended notice, and the update banner are all absent and appear only after Customer View is off). Switching off during a customer session needs the PIN; without a session it does not. The session is active whether Customer View was switched on before or after the walkaround was opened.
 
 Adversarial tests (quality bar item 8):
 
@@ -275,6 +302,7 @@ Adversarial tests (quality bar item 8):
 - Customer View toggled on with a stage running: timers keep running (start stamps unchanged); the Runner screen is replaced by the customer job card; "Done, next," Fix It, Quick Cards, Search, and the panel readings are absent until Customer View is off; off needs no PIN unless a session is active.
 - Camera denied: the check-in screen shows "A before photo is required before anything touches the car" with the Settings path and the library option; Booked cannot reach Checked in without a photo; Cancel still works.
 - Crew reaches the sign-off URL by hand: a locked screen; the data layer refuses the write without the owner pass; on a study phone the screen does not exist.
+- Crew member without Level 4 taps "start polish" in the crew view: refused with the plain message; the job stays In progress; the owner switches the active profile to himself, enters the PIN, and the stage opens for him; the crew member still runs the stages he is cleared for.
 - Storage full: the write fails with a plain message and the backup button; nothing is half-written.
 
 ## 4. Top 3 risk flags
@@ -318,7 +346,7 @@ Handling:
 
 | Moment | Requirement | How |
 |---|---|---|
-| Gloves, product on hands | 64 px targets in Shop Mode | A Shop density setting makes every target 64 px minimum and "Done, next" 96 px tall, full width, in the thumb zone |
+| Gloves, product on hands | 64 px targets in Shop Mode | A Shop density setting makes every target 64 px minimum and "Done, next" 96 px tall, full width, in the thumb zone. Lando's setup (2026-10-10): the phone propped on the cart at arm's length, the polisher in the right hand, the left thumb tapping; the left or right handed switch stays |
 | | No critical swipes | Shop Mode has no swipe gestures at all; everything is a tap; lists scroll, nothing else responds to a drag |
 | | Every action undoable instead of confirm dialogs | A journal of the last action with a 5 second "Undo last" toast; no confirm dialogs in Shop Mode |
 | | Double-tap protection on "Done, next" | Second tap within about 700 ms ignored (window tuned in Phase 3) plus the stale-event rule in section 3 |
@@ -331,12 +359,13 @@ Handling:
 | | Update prompt | A new version waits until you tap "Update now," and never while a job is open (section 3.5) |
 | | iOS install | The install card tells the user to use Safari's Share, Add to Home Screen, and to leave "Open as Web App" on. iOS has no install prompt of its own, so the card is the only way |
 | Customer watching | One-tap switch that cannot leak internal fields | The `<Internal>` wrapper, the data-layer filter, and the automated privacy test (section 3.4) |
-| | Clean, premium visuals, plain English | The Customer density from the chosen look: one accent element per screen, no badges, no jargon; the word "microns" is explained before it is used |
+| | Nothing from the phone shows | `[HOUSE]` 2026-10-10: the app sends no notification and renders no toast, banner, or alert of its own while Customer View is on, and on entry it shows a one-tap reminder to turn on an iPhone Focus set up so calls from Suzie ring and text previews and other alerts stay silent (3.4). The app cannot silence other apps; the Focus does that |
+| | Clean, premium visuals, plain English | The Customer density from Direction A, Hi-Vis (picked 2026-10-10): the accent stays sparse, at most one accent element per screen; off-white, photos, and the panel-map readings carry the screen; no badges, no jargon; the word "microns" is explained before it is used |
 | PC at night | Desktop reading layout | At 1024 px and up: lesson list, a reading column of 68 characters per line, numbers rail (wireframe 6.4 in the design doc). Until you have a PC again, the 1024 and 1440 px layouts are checked by Playwright screenshots in `docs/QA-REPORT.md` |
 | | Keyboard shortcuts for search | `/` focuses search, `Esc` closes, arrow keys move through results |
 | | Printable SOPs | A print stylesheet per SOP: one column, no navigation, step numbers, the numbers box. Printed from the phone with AirPrint until the PC is back |
 
-Browser facts above come from the research cited in `docs/DECISIONS.md` D3 (storage), D4 (PIN), D6 (photos), D8 (clipboard), D9 (hosting) and the iOS items in D1.
+Browser facts above come from the research cited in `docs/DECISIONS.md` D3 (storage), D4 (PIN), D6 (photos), D8 (clipboard), D9 (hosting), the iOS items in D1, and the iPhone Focus facts in D10 (read 2026-10-10).
 
 ## 6. Data model: runtime tables (Dexie, on the device)
 
@@ -347,7 +376,7 @@ Database name `masterclass`, version 1. Every record carries `id` (random UUID),
 | Table | Key fields | Notes |
 |---|---|---|
 | `jobs` | `state` (section 3.2), `vehicle` (type car or bike; size sedan, suv, standard, bagger; make, model, color, finish gloss or matte, isTesla), `packageId`, `addOnIds`, `mobile`, `milesOutsideZone`, `quote` (frozen: lines, mobile fee, travel fee, founder's rate yes or no, deposit, balance due, total), `customer` (first name, phone, both optional in v1), `checkIn` (before photo ids, script acknowledged at, signature photo id, photo consent, damage notes), `testSpot` (panel, combo, result, logged at) or null, `polishOverride` (reason, by, at) or null, `cutoffAt`, `startedAt`, `pausedAt`, `position` (stage id, step index, square, set), `qc` (checklist ticks, failed ticks, passed at), `deliveredAt`, `paidAt`, `stoppedAt`, `stopReason`, `canceledAt` | One row per job. A Draft is stored as a DraftJob (vehicle fields optional); from Quoted on it must satisfy Job. The state machine writes here |
-| `stageTimings` | `jobId`, `stageId`, `plannedMinutes`, `startedAt`, `endedAt`, `pausedMs`, `lastTick` (the heartbeat), `sections` (index, started at, ended at) | Feeds "ahead or behind plan" and the debrief |
+| `stageTimings` | `jobId`, `stageId`, `runByCrewId` (the active profile when the stage started; the polish stage guard reads it), `plannedMinutes`, `startedAt`, `endedAt`, `pausedMs`, `lastTick` (the heartbeat), `sections` (index, started at, ended at) | Feeds "ahead or behind plan," the debrief, and the Level 4 guard |
 | `panelReadings` | `jobId`, `panelId`, `readings` (1 to 5 numbers, each 20 to 999 µm), `jambBaseline`, `band` (computed from the lowest reading against knowledge base 7.3), `flags` (repaint, thin), `takenAt` | Feeds the paint report and FIX-22. Rules in 2.3 |
 | `jobPhotos` | `jobId`, `kind` (before, after, damage, test spot, signature), `panelId` (optional), `blob` (compressed JPEG; PNG for the signature), `width`, `height`, `bytes`, `takenAt` | Capped per job; counted in the storage readout |
 | `issues` | `jobId`, `fixNodeId`, `stageId`, `note`, `at` | One tap from Fix It during a job |
@@ -358,7 +387,7 @@ Database name `masterclass`, version 1. Every record carries `id` (random UUID),
 | `signOffs` | `crewId`, `skillId`, `action` (signoff, revoke), `reason`, `ownerVerifiedAt`, `needsRecheck`, `at` | Written only with an owner pass, only on a shop phone |
 | `quizAttempts` | `crewId`, `quizId`, `answers`, `score`, `passed`, `at`, `importedFrom` (optional) | Every answer saved as it is given |
 | `flashcardStates` | `crewId`, `cardId`, `due`, `intervalDays`, `ease`, `reps`, `lapses`, `lastReviewedAt` | Spaced repetition (SM-2 style) |
-| `settings` | `key`, `value` | Device role (shop or study), owner PIN hash and salt, PIN set date, Customer View flag, read-aloud on or off, wake lock preference, carsLoggedBefore seed, last backup at, app version seen, chosen voice language |
+| `settings` | `key`, `value` | Device role (shop or study), owner PIN hash and salt, PIN set date, Customer View flag and whether its Focus reminder was shown for this switch-on, active profile on the shop phone (owner by default; a crew profile when a crew member runs stages; switching to a crew profile needs no PIN, and starting the polish stage under the owner profile needs the owner pass, see 3.2), read-aloud on or off, wake lock preference, carsLoggedBefore seed, last backup at, app version seen, chosen voice language, left or right handed layout |
 | `auditLog` | `type` (override, signoff, revoke, stop, customerViewOff, pinFail, pinReset, roleChange, export, import, cutoffMoved, level8Unlock), `detail`, `crewId`, `at` | Added by the architect; not in the build prompt's list, needed for the guards |
 
 Phase 8 adds `customers`, `vehicles`, `memberships`, `reminders`, and a sync queue. Nothing in v1 holds a customer's address.
@@ -489,7 +518,27 @@ export const jobTransitions: Record<JobStateName, Partial<Record<JobEventName, J
 };
 ```
 
-Guards (size present, QC passed, test spot logged or override, cutoff, owner pass, reason present) run before the table is consulted and return a plain-English refusal the screen shows.
+Guards (size present, QC passed, test spot logged or override, Level 4 for a crew profile on the polish stage, cutoff, owner pass, reason present) run before the table is consulted and return a plain-English refusal the screen shows.
+
+How the 25-car count is derived (3.3), as a rule the engineer codes and the tests cover; nothing stores the number:
+
+```ts
+// A job counts toward 25 when it is finished, is a car, and its package touches paint.
+// [HOUSE] 2026-10-10: only jobs that touch paint count; interior-only jobs never count.
+// Bikes, Stopped, and Canceled never count. Add-ons never change the answer.
+const finished = (j: Job) => j.state === "delivered" || j.state === "debriefed";
+
+export const countsTowardTwentyFive = (j: Job, pkg: PriceItem): boolean =>
+  finished(j) && j.vehicle.type === "car" && pkg.touchesPaint === true;
+
+export const carsLogged = (jobs: Job[], pkgById: Map<string, PriceItem>, seed: number): number =>
+  seed + jobs.filter((j) => {
+    const pkg = pkgById.get(j.packageId);
+    return pkg !== undefined && countsTowardTwentyFive(j, pkg);
+  }).length;
+```
+
+`touchesPaint` is set per price item in content (section 7): true for Wash & Ceramic Wax, Full Detail (no polish), and Full Detail + One-Step Polish; false for Interior Only. Bike items are kept out by the vehicle check whatever their flag. The founder's-slot count is unchanged: machine-polish jobs sold (3.3).
 
 ## 7. Content model (the files under `content/`)
 
@@ -628,6 +677,7 @@ export const PriceItem = Base.extend({
   unlockAtCars: z.literal(25).optional(),
   mobileOnly: z.boolean().default(false),
   dropOffOnly: z.boolean().default(false),
+  touchesPaint: z.boolean().default(false),   // service packages: true when the package has an exterior paint stage (wash, decon, polish, protection); drives the 25-car count (3.3). [HOUSE] 2026-10-10
 }).refine(
   (p) => (p.unit === "quote" ? p.amount === undefined : p.amount !== undefined),
   { error: "amount is required unless unit is quote, and forbidden when it is" },
@@ -708,10 +758,12 @@ Estimates are ranges. A session is roughly 2 to 4 hours of agent work. "Lando" i
 | 2 Content | Every knowledge base section converted, Fix It at 33 or more entries, Levels 0 to 4, synonyms, 45 or more search cases, fact-check pass | 3 to 4 | 30 to 45 min: read only the facts the fact-checker changed or could not confirm, answer yes or no on each | A list of changed facts, not the app |
 | 3 Shop Mode | Fix It UI, search UI, Job Runner, Quick Cards, gauge entry with bands, read-aloud, hands-busy mode, setup timer, cutoff, test spot gate, Stop, Pause, persistence | 4 to 6 | One real wash plus one polished panel in the garage in airplane mode, on the Pages install (your normal work time, plus 15 min of friction notes). Then the first Netlify publish as a production check, after you confirm the credit balance (10.6) | The app running your job, the jerking-polisher fix in two taps or one word, read aloud, with no signal; the same build on the Netlify URL, installed with a test record only |
 | 4 Customer View and business basics | Check-in with signature and consent, paint report, menu, pricing calculator, policies script, aftercare share, review QR, privacy filter and its automated test | 3 to 4 | 30 min: a mock walkaround with Suzie or DJ as the customer, on the Pages install | The customer-facing screens, the paint report from your Model Y readings, the aftercare card in the share sheet |
-| 5 Academy | Lesson reader, drills log, quizzes, flashcards, crew profiles, owner PIN sign-off, skill gates, Share my progress, printable SOPs, desktop reading view | 3 to 4 | DJ: 45 min to finish Level 0 on his own phone (Pages link, set as a study phone) and tap Share my progress. You: 10 min to import it on the shop phone and sign off one skill with your PIN. Print one SOP from your phone (Share, Print, AirPrint). Netlify publish optional here (10.7) | DJ's Level 0 skill signed off on the shop phone; the SOP printed from your phone with AirPrint (or from the PC later); the 1024 and 1440 px layouts as Playwright screenshots in `docs/QA-REPORT.md` until you have a PC again |
+| 5 Academy | Lesson reader, drills log, quizzes, flashcards, crew profiles, owner PIN sign-off, skill gates, Share my progress, printable SOPs, desktop reading view | 3 to 4 | DJ: 45 min to finish Level 0 on his own phone (Pages link, set as a study phone) and tap Share my progress. You: 10 min to import it on the shop phone and sign off one skill with your PIN while you watch him do it (his phone unlocks nothing by itself; the sign-off is yours, on the shop phone). Print one SOP from your phone (Share, Print, AirPrint). Netlify publish optional here (10.7) | DJ's Level 0 skill signed off on the shop phone; the SOP printed from your phone with AirPrint (or from the PC later); the 1024 and 1440 px layouts as Playwright screenshots in `docs/QA-REPORT.md` until you have a PC again |
 | 6 Mastery Engine | Job log, debrief, dashboard, Field Notes inbox, weekly review, SOP versioning, auto-assigned drills, export and import, backup reminder | 3 to 4 | Two real jobs logged on the shop phone's Pages install (your work time) plus 15 min for one weekly review and one backup through the share sheet | The dashboard with two jobs, cars logged toward 25, and a backup file in Files or Mail |
 | 7 Hardening | The full quality bar, device matrix, Lighthouse, fixes, v1.0 publish, handoff docs | 2 to 3 | 30 min: the handoff walkthrough on your phone, confirm the credit balance before and after the v1.0 publish, then the one data move (Backup on the Pages install, install the Netlify URL, Import, confirm the counters, delete the old icon; DJ's phone does the same) | v1.0 on the Netlify URL with your real data, HANDOFF.md, HOW-TO-ADD.md |
 | Total v1 | | 20 to 28 sessions | About 3 to 4 hours of your time outside your normal jobs | |
+
+First real job in the app (Lando, 2026-10-10): the next family car, no firm date yet. Until Phase 3 lands, the Model Y job sheet in `reference/tonight-model-y-job-sheet.html` is the stopgap; `reference/` is frozen, so nothing in it changes.
 
 Phase 1 device checklist (10 minutes, on your iPhone, from the installed app; each answer closes a `[VERIFY]` from the research):
 
@@ -749,7 +801,7 @@ Your one-time taps (about 30 seconds): Safari, github.com/landoCommandoz/aurigen
 Optional second one-time step, so you can test a phase before its pull request is merged: Settings, Environments, github-pages, Deployment branches and tags, Add deployment branch or tag rule, type `masterclass/*`, save. Without it, GitHub may refuse deploys from any branch but main; we try one run first and add the rule only if it is refused.
 Your taps at every gate: tap the URL, Share, Add to Home Screen (leave "Open as Web App" on), open it from the Home Screen, turn on Airplane Mode, reload.
 The lead's steps from the VM: add `.github/workflows/masterclass-pages.yml` (needs your OK) that builds `masterclass/` on pushes to main and `masterclass/**` branches when files under `masterclass/` change; set the Vite base to `/aurigen-directory/`; set the manifest start and scope to the same path; register the offline helper at the base path; ship a `404.html` that boots the app; push; watch the Actions run; send you the URL.
-Known traps: a blank page means the base path is wrong; a refresh on a deep link needs the `404.html`; Pages may cache for about 10 minutes `[VERIFY]`; the URL is public, so no customer data or secrets ever go in a test build, and you should be comfortable that the app's content (the same knowledge base that is already public on GitHub) is viewable there during development. The data you enter is on your phone, not on the URL. GitHub's rules allow a test or project site and forbid running a business storefront on Pages, so Pages is the test host, never the customer-facing host.
+Known traps: a blank page means the base path is wrong; a refresh on a deep link needs the `404.html`; Pages may cache for about 10 minutes `[VERIFY]`; the URL is public, so no customer data or secrets ever go in a test build, and you should be comfortable that the app's content (the same knowledge base that is already public on GitHub, minus the market research removed on 2026-10-10) is viewable there during development. The data you enter is on your phone, not on the URL. GitHub's rules allow a test or project site and forbid running a business storefront on Pages, so Pages is the test host, never the customer-facing host.
 
 ### 10.4 Netlify from your phone, through GitHub (the runner-up test path and the only publish path)
 
@@ -818,7 +870,7 @@ Netlify Drop: drag and drop of a folder, no phone path, and by Netlify's definit
 - Accounts, logins, roles enforced by a server, sync between your phone, the iPad, and DJ's phone. The shop phone holds the jobs and the crew records; a study phone holds one person's Academy progress; backups and progress files move data by hand (D3, D4). Phase 8.
 - CRM: customers, vehicles, job history across visits, memberships, rebook reminders. Phase 8. In v1 a job holds a first name and phone at most.
 - Cloud photo storage. Photos live on the device, compressed, and travel in backups (D6).
-- Push notifications. Reminders in v1 are on-screen only.
+- Push notifications. Reminders in v1 are on-screen only, and none of them shows while Customer View is on (3.4).
 - Academy Levels 5 to 8 as full lessons. They are outlined; Level 8 unlocks at 25 cars either way (3.3).
 - The two-step correction workflow in the Job Runner beyond the unlock rule. The unlock is coded; the line has no price until you set one (section 12 item 15); the full two-step run plan is written when the first two-step is sold.
 - A public marketing page. If one is ever wanted it is a separate build with zero private content (D5).
@@ -828,38 +880,38 @@ Netlify Drop: drag and drop of a folder, no phone path, and by Netlify's definit
 - Automated review requests or texting. The QR code and the aftercare share are the v1 limit.
 - Real security. A client-side PIN is a fence, not a lock (D4).
 
-## 12. Decisions needed
+## 12. Decisions needed (all taken 2026-10-10)
 
-Answer "defaults OK" to take every default, or answer by number. Nothing is invented: where the knowledge base has no number, the default keeps the item off every customer-facing screen until you set it.
+Taken. On 2026-10-10 Lando accepted items 1 to 16 ("Defaults OK for 1 to 16") with his edits to items 9 and 14, written below as his decisions, and accepted item 13 ("Repo OK"; the two Phase 1 workflow files approved under the same OK). Every item is now `[HOUSE]`. The list stays here so the defaults he took are on record. Nothing is invented: where the knowledge base has no number, the item stays off every customer-facing screen until he sets it.
 
 From knowledge base section 25:
 
 1. Founder's rate $275: same for sedan and SUV? Default: yes, $275 for both sizes.
 2. Smoke odor fee amount? Default: none set; the app shows "quoted on inspection" and never a number.
-3. Does Suzie book jobs or manage customers? Default: yes, add an Ops role that sees bookings, prices, policies, and the job log, but not sign-offs, pricing internals (floor price, market research), or developer tools.
+3. Does Suzie book jobs or manage customers? Default: yes, add an Ops role that sees bookings, prices, policies, and the job log, but not sign-offs, pricing internals (floor price math, founder's-rate logic), or developer tools.
 4. Monthly Maintenance: what is included, how often, how it cancels? Default: hold the $89 and $109 prices; the plan shows in Customer View only as "ask us" until you define it; it stays `[VERIFY]` internally.
 5. Final brand name and colors, or keep "Lando's Detailing" for now? Default: keep "Lando's Detailing" in the config file; the accent of the look you pick becomes the brand color.
 6. Is DJ paid? Default: treat as unpaid family help in v1; the section 19 business checklist shows in the Business room either way.
 7. Insurance status for customer vehicles? Default: unknown; the walk-away rule "any car worth more than your insurance covers" stays internal with an "unverified" badge.
 8. What are Blazin' Banana and Tuff Stuff used for? Default: both stay `[VERIFY]` and appear on no checklist or card until you say.
-9. Which HF pads arrived (colors)? Default: the pad ladder shows yellow, maroon, and black only until confirmed.
+9. Which HF pads arrived (colors)? Lando's decision, 2026-10-10: the pad ladder is yellow + M210, then maroon + M210, then maroon + Ultimate Compound followed by yellow + M210. Black is a wax and finishing pad only and never appears in the ladder. Pads on hand: Uro-Tec yellow x3, maroon x2, HF finishing pads (colors unconfirmed), one black pad. This matches knowledge base 8.5 and 3.2; the earlier default here was wrong to list black in the ladder. The HF finishing pad colors stay `[VERIFY]` and appear on no card until confirmed.
 10. Which inspection light do you use? Default: the app says "a light held low," names no model.
 11. Photo consent default off until the customer says yes? Default: yes, off.
 12. Home shop address only in booking confirmations? Default: yes; in v1 the address is not in the app at all and never in the repo.
 
 Repo layout:
 
-13. Where the code lives. Default: stay in this Aurigen repo under `masterclass/`, with three files added outside it by the lead after your OK: `.vercelignore` (so the kit never enters the Aurigen Vercel site; added in the Phase 0 pull request and checked on the branch preview before the merge), `.github/workflows/masterclass-pages.yml` (the free phone-test deploy), and `.github/workflows/masterclass-netlify.yml` (the Netlify publish button you tap). If `.vercelignore` does not hold on the Aurigen site, a fourth root file, `vercel.json`, with one 404 rule for `/masterclass/`, joins the list under the same OK. You accept that the knowledge base is readable on GitHub, as it is today. The alternative is a new private repo, which costs the free GitHub Pages path and needs new access set up from your phone (D0).
+13. Where the code lives. Accepted 2026-10-10, "Repo OK": stay in this Aurigen repo under `masterclass/`. `.vercelignore` is at the repo root and was verified on the production site on 2026-10-10: every `/masterclass/` path on https://aurigen-directory.vercel.app/ returns 404 while Aurigen's own files still return 200, so the `vercel.json` fallback is not needed. The two Phase 1 workflow files, `.github/workflows/masterclass-pages.yml` (the free phone-test deploy) and `.github/workflows/masterclass-netlify.yml` (the Netlify publish button you tap), are approved under the same OK and land in the Phase 1 pull request, written by the lead. The knowledge base stays readable on GitHub minus section 15.5 (market research), removed on 2026-10-10 at Lando's request (D0). The alternative, a new private repo, was not taken.
 
 The architect's items:
 
-14. What counts toward the 25-car unlock and the five founder's-rate slots. Default: a car counts when its job reaches Delivered (bikes, Stopped jobs, and Canceled jobs do not count); a founder's slot is held when a machine-polish job is Booked and released if that job is Canceled, Edited back to Draft, or Stopped; cars you logged before the app start at 0 and you can set the number behind the PIN. Crew profiles, skill states, and sign-offs live on the shop phone (yours), the same phone as the jobs; DJ's phone is a study phone that sends its progress to yours as a file (3.1).
+14. What counts toward the 25-car unlock and the five founder's-rate slots. Lando's decision, 2026-10-10: only jobs that touch paint count toward 25; interior-only jobs never count. In full: a car counts when its job reaches Delivered and its package has an exterior paint stage (wash, decon, polish, or protection), which from knowledge base 15.1 means Wash & Ceramic Wax, Full Detail (no polish), and Full Detail + One-Step Polish; Interior Only never counts; bikes never count; Stopped and Canceled jobs never count (3.3 has the precise rule and section 6 the code). The rest of the default stands: a founder's slot is held when a machine-polish job is Booked and released if that job is Canceled, Edited back to Draft, or Stopped; cars you logged before the app start at 0 and you can set the number behind the PIN. Crew profiles, skill states, and sign-offs live on the shop phone (yours), the same phone as the jobs; DJ's phone is a study phone that sends its progress to yours as a file (3.1).
 15. Two-step correction price per size? Default: no number yet. At 25 cars the line appears as "Two-step correction: quoted after the test spot" with no amount, tagged verify internally, and never in Customer View until you set it. Mobile polish is not a new price: list price plus the $30 mobile fee plus travel.
 16. Thin-panel flag: how far below the rest of the car counts as thin? Default: more than 40 µm below the median of the other measured panels (a proposal; knowledge base 7.3 says "way below the rest" with no number). Repaint stays at 220 µm or more, as 7.3 says.
 
 Defaults already stated in the body, so they are not questions: install before data (section 4, risk 1), iOS 18.4 minimum (section 4, risk 2), the review QR hidden until a link is set (section 2.5), a revoke means the quiz is retaken (section 3.1).
 
-"Defaults OK" covers items 1 to 16. "Repo OK" is separate because it touches files outside the masterclass folder. Say both. Of the four design questions in `docs/DESIGN-DIRECTIONS.md` section 8, question 3 is item 5 here and question 4 is item 10. Questions 1 and 2 (where the phone sits while you polish, and which hand taps) are the ui-designer's and stay in that file: answer each in a sentence, or say nothing and the wireframes there stand as drawn, with the one action at the bottom of the screen in the thumb zone. One pick has no default: the look (A, B, or A with B's accent).
+Both were said on 2026-10-10: "Defaults OK for 1 to 16" with the two edits above, and "Repo OK." Of the four design questions in `docs/DESIGN-DIRECTIONS.md` section 8, question 3 is item 5 here and question 4 is item 10. Questions 1 and 2 were answered the same day: while polishing, the phone is propped on the cart at arm's length; the polisher is in the right hand and the left thumb taps; the left or right handed switch stays. The look: A, Hi-Vis, with the accent kept sparse in Customer View. The ui-designer records the design side in that file.
 
 ## 13. Sources
 
@@ -876,5 +928,6 @@ Every browser, hosting, pricing, and library fact in this file is cited with its
 - Wake Lock: Apple Safari 16.4 and 18.4 release notes; WebKit bug 254545 (read 2026-10-07).
 - Speech: WebKit bug 223473 and the current WebKit source (read 2026-10-07).
 - Web Share with files: Apple Safari 15 release notes (read 2026-10-07).
+- iPhone Focus (allow chosen people and apps, calls from groups of people, Control Center): Apple Support, iPhone User Guide for iOS 27, "Allow or silence notifications for a Focus on iPhone" and "Turn on or schedule a Focus on iPhone" (read 2026-10-10); cited in 3.4 and in `docs/DECISIONS.md` D10.
 - Stack versions: the npm registry and each project's docs (read 2026-10-07).
 - Claude Code nested CLAUDE.md and agent discovery: Claude Code docs, memory and sub-agents pages (read 2026-10-08).

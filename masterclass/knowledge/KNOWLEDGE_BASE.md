@@ -431,11 +431,7 @@ Floor price = (monthly costs / jobs per month) + products for this car + (hours 
 - Sedan Interior Only + pet hair, mobile, inside the zone: $150 + $50 + $30 = $230.
 - Bagger Store-It-Clean + chain clean and lube: $245 + $25 = $270.
 
-### 15.5 Market research (INTERNAL ONLY, re-verify before using in marketing) `[SOURCED 2026-10-05]`
-- Tooele dealer: interior $159, exterior $169, both $279, buff and polish $449.
-- Mobile detailers: sedan $200 to $370, SUV $260 to $430.
-- Local jobs seen: F-150 $350, Tundra $330.
-- Motorcycles: basic wash $50 to $100, full detail with polish/sealant/chrome/leather $200 to $350, moto-focused shops $150 to $280.
+### 15.5 Market research: removed from this file on 2026-10-10 at Lando's request. Kept offline by Lando. Never cite it and never recreate it here.
 
 ---
 

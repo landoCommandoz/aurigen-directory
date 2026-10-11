@@ -2,65 +2,65 @@
 
 Phase 0, step 5. Written 2026-10-08 by the architect role. One record per decision. Every record has Context, Decision, Alternatives rejected and why, Consequences, Sources, Status.
 
-Status of every record is "proposed." Lando approves at the gate by typing `build it` (or by answering the decision by number). Sources are the URLs from the research verified on 2026-10-07 and the Claude Code docs read on 2026-10-08. Anything the research could not confirm is marked `[VERIFY]` and is never stated as fact.
+Status, updated 2026-10-10: D0 and D9 are accepted (Lando's "Repo OK"), and D10 and D11 record two decisions he took the same day. D1 to D8 stay "proposed" until he types `build it`, which is the only thing left; his "Defaults OK for 1 to 16" covers the blueprint's section 12 items these records carry. Sources are the URLs from the research verified on 2026-10-07, the Claude Code docs read on 2026-10-08, and the Apple Support pages read on 2026-10-10. Anything the research could not confirm is marked `[VERIFY]` and is never stated as fact. The dated record of every decision Lando took on 2026-10-10, in his words, is at the end of this file.
 
-ADR means one written decision with its reasons. Lando: you only need D0 (where the code lives) and D5 (Netlify money). The rest is for the builders.
+ADR means one written decision with its reasons. Lando: you only need D0 (where the code lives), D5 (Netlify money), D10 (Customer View and your phone), and D11 (DJ and the Level 4 sign-off). The rest is for the builders.
 
-Read with `docs/BLUEPRINT.md`. The decision numbers D1 to D9 match `BUILD_PROMPT.md` section 4. D0 is new: where the code lives.
+Read with `docs/BLUEPRINT.md`. The decision numbers D1 to D9 match `BUILD_PROMPT.md` section 4. D0 is new: where the code lives. D10 and D11 are new on 2026-10-10: Customer View and the phone, and the Level 4 gate for crew polishing.
 
 ## D0: Repo layout
 
 ### In plain words (Lando, read this part)
 
-- Public today: the whole Aurigen repo, including the masterclass knowledge base with your floor-price math and market research. Anyone on GitHub can read it.
+- Public today: the whole Aurigen repo, including the masterclass knowledge base with your floor-price math. Anyone on GitHub can read it. The market research (section 15.5) was removed from the file on 2026-10-10 at your request; a one-line note marks where it was.
 - The risk: a competitor reads your pricing strategy and SOPs. Nothing secret in the legal sense is in there (no address, no customer data, no keys).
 - Two choices: stay in this repo (the default; three small files added outside the masterclass folder, free phone testing on GitHub Pages) or move to a new private repo (nothing public, but no free Pages, one token setup on your phone, no credits).
-- The default is to stay. Say "repo OK" to take it, or "private repo" to move. The Phase 0 pull request stays open until the Aurigen website is checked and shows nothing from `masterclass/`.
+- Decided 2026-10-10: you said "Repo OK." The Phase 0 pull request merged (#163), and the Aurigen website was checked on 2026-10-10: every `/masterclass/` address returns "not found" while Aurigen's own pages still load. One thing to know: the removed market research text remains in the git history of earlier commits, where anyone can still find it; scrubbing that history is your separate call, not part of this build.
 
 ### Context (details for the builders)
 
 The kit lives today inside the Aurigen County Resource Directory repo, `landoCommandoz/aurigen-directory`, under `masterclass/`, on the branch `masterclass/phase-0`. The nine masterclass agents sit at the repo root in `.claude/agents/` next to about thirty Aurigen agents. Facts checked:
 
-- The repo is public. The GitHub API returns `private: false`, `visibility: public`, `has_pages: false`, default branch `main`. Anyone can read `masterclass/knowledge/KNOWLEDGE_BASE.md` on GitHub today.
-- The repo is Git-linked to Vercel. The live Aurigen app is https://aurigen-directory.vercel.app/ (the repo's homepage field). Vercel serves raw repo files from the root: `/CLAUDE.md` and `/EXPANSION-PLAN.md` return HTTP 200 as text/markdown (re-checked 2026-10-08). There is no `vercel.json` and no `.vercelignore`. Vercel's `.vercelignore` page says the file "works similarly to a `.gitignore` file" and that "Non-targeted files are prevented from being deployed and served on Vercel," and its example allows a `#` comment line. But that page describes an upload-time exclusion and does not say whether it applies to Git-integration deployments, and Vercel's build-features page says its default ignore list is "only relevant when using Vercel CLI." So whether `.vercelignore` holds on a Git deploy is `[VERIFY]` on the branch preview before any merge. The documented fallback is a `vercel.json` route, `{ "src": "/masterclass/(.*)", "status": 404 }`; Vercel's own example uses that shape for a legacy path, and `routes` can sit alongside the higher-level properties. Vercel built a preview of the kit commit on the `masterclass/phase-0` branch. On the production URL, `/masterclass/knowledge/KNOWLEDGE_BASE.md` returns 404 only because main does not have the folder yet. After a merge to main it would be served, unless blocked first. Whether the Vercel preview URL is behind Vercel's login is `[VERIFY]` (Vercel's Standard Protection exists on all plans; whether it is on for this project is unknown).
+- The repo is public. The GitHub API returns `private: false`, `visibility: public`, `has_pages: false`, default branch `main`. Anyone can read `masterclass/knowledge/KNOWLEDGE_BASE.md` on GitHub today. Since 2026-10-10 the file no longer holds section 15.5 (market research); the earlier commits that held it remain in the public history.
+- The repo is Git-linked to Vercel. The live Aurigen app is https://aurigen-directory.vercel.app/ (the repo's homepage field). Vercel serves raw repo files from the root: `/CLAUDE.md` and `/EXPANSION-PLAN.md` return HTTP 200 as text/markdown (re-checked 2026-10-08). There is no `vercel.json` and no `.vercelignore`. Vercel's `.vercelignore` page says the file "works similarly to a `.gitignore` file" and that "Non-targeted files are prevented from being deployed and served on Vercel," and its example allows a `#` comment line. But that page describes an upload-time exclusion and does not say whether it applies to Git-integration deployments, and Vercel's build-features page says its default ignore list is "only relevant when using Vercel CLI." So whether `.vercelignore` holds on a Git deploy is `[VERIFY]` on the branch preview before any merge. The documented fallback is a `vercel.json` route, `{ "src": "/masterclass/(.*)", "status": 404 }`; Vercel's own example uses that shape for a legacy path, and `routes` can sit alongside the higher-level properties. Vercel built a preview of the kit commit on the `masterclass/phase-0` branch. On the production URL, `/masterclass/knowledge/KNOWLEDGE_BASE.md` returns 404 only because main does not have the folder yet. After a merge to main it would be served, unless blocked first. Whether the Vercel preview URL is behind Vercel's login is `[VERIFY]` (Vercel's Standard Protection exists on all plans; whether it is on for this project is unknown). Closed 2026-10-10: after pull request #163 merged, every `/masterclass/` path on https://aurigen-directory.vercel.app/ returns 404 while Aurigen's own files still return 200, so `.vercelignore` holds on Git deployments and the `vercel.json` fallback is not needed; and Vercel branch previews for this repo are behind a Vercel login.
 - The root `netlify.toml` publishes the whole repo root (`publish = "."`) and blocks only three markdown files by redirect. If an Aurigen Netlify site were live, a merge would also serve the knowledge base at that site under `/masterclass/`. But https://aurigen-directory.netlify.app/ returns Netlify's own "site not found" page (re-checked 2026-10-08), aurigendirectory.com shows a domain-parking page, and directory.theaurigen.com does not resolve. So no Aurigen Netlify site was found under that name. Two files in this repo show Netlify is in use under some other name: `pipeline/local-biz/deployer.js` creates and deploys Netlify sites through the API with a `NETLIFY_API_KEY`, and `.github/workflows/scrape.yml` calls a Netlify-hosted scraper URL from a secret on a Sunday and Wednesday schedule. Each pipeline site deploy is a production deploy from the same team credit pool, which is the likely reason 864 is the last known figure, and the balance can drop between gates with no masterclass publish at all. Which sites the team holds is `[VERIFY with Lando]`: he reads the Projects list on his phone and sends the names before the first masterclass publish, and the pipeline is not run on a publish day.
 - The Netlify monorepo rule: a push to main triggers a build of every site linked to the repo whose base directory changed, and a site whose base is the repo root counts any change, including one inside `masterclass/`. The fix is an `ignore` command under `[build]` in that site's `netlify.toml`, which exits 0 to skip the build when none of the site's own folders changed. Only successful production deploys cost credits (15 each); a skipped build is not a production deploy. This matters only if an Aurigen Netlify site exists and is Git-linked to main. The root `netlify.toml` is not touched unless Lando confirms such a site.
 - The root `.gitignore` ignores `package-lock.json` at any depth. Without a re-include in `masterclass/.gitignore`, the masterclass lockfile is never committed and every build installs different versions.
 - How Claude Code loads the two `CLAUDE.md` files: files in the directories above the working directory load at launch; a `CLAUDE.md` in a subdirectory loads on demand, when Claude reads, writes, or edits a file in that subdirectory. All loaded files are concatenated, root first, closest to the working directory last. The docs say that if two instructions contradict each other, Claude may pick either one. A `claudeMdExcludes` setting can skip a named ancestor `CLAUDE.md`. Project agents are discovered by walking up from the working directory to the repository root, so `.claude/agents/` at the root is found when Claude Code is launched from `masterclass/`.
 - GitHub Pages is free on a public repo with a GitHub Free account. Publishing from a private repo needs GitHub Pro or Team. Vercel deploys private repos too, so making the repo private does not by itself stop Vercel from serving the kit.
 
-What is internal in the knowledge base: section 15.5 market research (marked INTERNAL ONLY), section 15.3 floor-price math, the founder's-rate logic in section 2 and 15.1, crew and training notes. None of it is a secret in the legal sense, and the never-commit list (home address, customer data, keys) is not in the repo. The exposure is a competitor reading Lando's pricing strategy and SOPs.
+What is internal in the knowledge base: section 15.3 floor-price math, the founder's-rate logic in section 2 and 15.1, crew and training notes. Section 15.5 market research was internal too; it was removed from the file on 2026-10-10 at Lando's request (a one-line tombstone remains, and the text stays in earlier commits in the public history). Floor-price math and founder's-rate logic stay in the file and stay internal in the app: never in Customer View. None of it is a secret in the legal sense, and the never-commit list (home address, customer data, keys) is not in the repo. The exposure is a competitor reading Lando's pricing strategy and SOPs.
 
 ### Decision
 
 Stay in this repo for v1, with the kit under `masterclass/` and the nine agents where they are at the root. Four conditions, in this order:
 
-1. Inside the Phase 0 pull request, after "repo OK," the lead adds a two-line `.vercelignore` at the repo root (a comment line and `masterclass`) on the `masterclass/phase-0` branch. Vercel builds a preview of that branch. On that preview, before any merge, the lead checks that `/masterclass/knowledge/KNOWLEDGE_BASE.md` returns 404; if the preview is behind Vercel's login, Lando opens it on his phone while signed in and reads the result. The pull request merges only after that passes. If the file does not hold on a Git deploy, the fallback is a root `vercel.json` with one route, `{ "src": "/masterclass/(.*)", "status": 404 }`, added to the same pull request under the same OK, and the check is repeated. After the merge, the lead repeats the check on the production URL.
+1. Inside the Phase 0 pull request, after "repo OK," the lead adds a two-line `.vercelignore` at the repo root (a comment line and `masterclass`) on the `masterclass/phase-0` branch. Vercel builds a preview of that branch. On that preview, before any merge, the lead checks that `/masterclass/knowledge/KNOWLEDGE_BASE.md` returns 404; if the preview is behind Vercel's login, Lando opens it on his phone while signed in and reads the result. The pull request merges only after that passes. If the file does not hold on a Git deploy, the fallback is a root `vercel.json` with one route, `{ "src": "/masterclass/(.*)", "status": 404 }`, added to the same pull request under the same OK, and the check is repeated. After the merge, the lead repeats the check on the production URL. Done: pull request #163 merged, and the production check on 2026-10-10 passed (every `/masterclass/` path returns 404 while Aurigen's own files return 200). The fallback was not needed.
 2. The lead adds `.github/workflows/masterclass-pages.yml` at the repo root for the free phone-test deploy (D9), in the Phase 1 pull request. Same OK.
-3. The lead adds `.github/workflows/masterclass-netlify.yml` at the repo root, `workflow_dispatch` only, the publish button Lando taps (D5 and D9), in the same Phase 1 pull request. Same OK. So "repo OK" covers three files, or four with the `vercel.json` fallback.
+3. The lead adds `.github/workflows/masterclass-netlify.yml` at the repo root, `workflow_dispatch` only, the publish button Lando taps (D5 and D9), in the same Phase 1 pull request. Same OK. So "repo OK" covers three files, or four with the `vercel.json` fallback. Lando said "Repo OK" on 2026-10-10 and added that the Phase 1 workflow files are fine under the same OK; the fallback is not needed.
 4. `masterclass/.gitignore` contains `!package-lock.json`, `node_modules`, `dist`, `.vitest`, `.env`, `*.local`, `src/generated/`, `playwright-report/`, `test-results/`.
 
 Working rules that follow:
 
 - When Lando is back on the PC, he launches `claude` from the `masterclass` folder. Both `CLAUDE.md` files then load at launch, Aurigen's first and the masterclass rules last, and the nine agents are found by the walk-up. Recommended: yes to `claudeMdExcludes` for the root `CLAUDE.md` in `.claude/settings.local.json` (never committed), so the Aurigen rules (Bebas Neue, the Aurigen file structure, its phase plan) never load at all. The lead writes that file in Phase 1. Nothing for Lando to do now.
 - In the cloud VM the working directory is the repo root, so the masterclass `CLAUDE.md` loads only when a masterclass file is touched. The lead's first action every session is to read `masterclass/CLAUDE.md` and restate in every task brief that the Aurigen rules do not apply.
-- The knowledge base stays public, as it is today. Lando accepts this for v1 or picks the private-repo alternative below.
+- The knowledge base stays public, minus section 15.5 (market research), which Lando had removed on 2026-10-10 ("The rest can stay public"). He accepted this for v1 with "Repo OK."
 - Revisit at Phase 8 (CRM). Customer data never goes in a repo, public or private, so Phase 8 does not change this decision by itself.
 
 ### Alternatives rejected and why
 
 - A new public repo: cleaner (no Aurigen rules, no Vercel link, own `.gitignore`), and GitHub Pages stays free. Rejected for v1 because it does not fix the privacy question (still public), and it costs phone work: create the repo, grant the cloud session access through the GitHub app settings, move the nine agents, re-link everything. Worth doing later if the Aurigen repo becomes a nuisance.
-- A new private repo: fixes the privacy question. Rejected for v1 because GitHub Pages then needs a paid GitHub plan, so the zero-credit phone-test path becomes Netlify draft deploys (free, but they need a token Lando creates on his phone) or Cloudflare (another token). It also needs the same access setup from the phone. It is the right move if Lando is not comfortable with the knowledge base being public; the cost is one token and a little setup, not credits.
+- A new private repo: fixes the privacy question. Rejected for v1 because GitHub Pages then needs a paid GitHub plan, so the zero-credit phone-test path becomes Netlify draft deploys (free, but they need a token Lando creates on his phone) or Cloudflare (another token). It also needs the same access setup from the phone. It is the right move if Lando ever stops being comfortable with the knowledge base being public; the cost is one token and a little setup, not credits. On 2026-10-10 he chose to stay and to remove only the market research.
 - Making this repo private: stops GitHub readers but not Vercel, and turns off free Pages for the Aurigen project too. Rejected.
 - Moving the nine agents into `masterclass/.claude/agents/`: tidy, but it means touching the root `.claude/agents/` (removing files), which is off limits this session, and the walk-up already finds them. Rejected for now.
 - Editing the root `netlify.toml` now: no Aurigen Netlify site was found under the repo's name, which site the scraper runs on is unknown, and the file is outside `masterclass/`. Rejected until Lando sends the team's project list and names a Git-linked site.
 
 ### Consequences
 
-- The knowledge base remains readable by anyone on GitHub. Nothing in it is on the never-commit list.
+- The knowledge base remains readable by anyone on GitHub, without section 15.5. Nothing in it is on the never-commit list. The removed market research text remains in the git history of earlier commits; scrubbing that history is Lando's separate call and is not part of this build.
 - Three small files land outside `masterclass/` (four if the `vercel.json` fallback is needed), all reversible, all edited by the lead only after "repo OK."
 - Vercel keeps building a preview of every pushed branch of this repo (free on its plan; whether that plan allows commercial use is a separate Aurigen question, `[VERIFY]`, outside this build).
-- If the preview URL is not behind a login, the kit is already readable there until `.vercelignore` lands and a new preview builds `[VERIFY]`.
+- Vercel branch previews for this repo are behind a Vercel login (checked 2026-10-10), so the kit was never readable through a preview. Closed.
 - Every merge to main may trigger Aurigen deploys on Vercel (free). It triggers a Netlify build only if an Aurigen Netlify site is Git-linked to main; Lando's project list settles that before the first publish.
 
 ### Sources
@@ -78,10 +78,11 @@ Working rules that follow:
 - Claude Code CLAUDE.md loading and `claudeMdExcludes`: https://code.claude.com/docs/en/memory (read 2026-10-08)
 - Claude Code agent discovery by walk-up: https://code.claude.com/docs/en/sub-agents (read 2026-10-08)
 - Live checks of the Netlify and Vercel URLs: by the lead on 2026-10-07 and 2026-10-08, re-run by the architect on 2026-10-08
+- Production check after the merge: every `/masterclass/` path on https://aurigen-directory.vercel.app/ returns 404 and Aurigen's own files return 200, by the lead on 2026-10-10
 
 ### Status
 
-Proposed. Lando answers decision 13 in `docs/BLUEPRINT.md` section 12. "Repo OK" takes the default and covers the three root files (four with the fallback). "Defaults OK" does not cover it, because it touches files outside `masterclass/`; he says both.
+Accepted by Lando on 2026-10-10: "Repo OK. One change: delete section 15.5 (market research) from the knowledge base. The rest can stay public." The two Phase 1 workflow files are approved under the same OK ("Phase 1 workflow files are fine under the same OK"). The `.vercelignore` check passed on production on 2026-10-10, which closes the `[VERIFY]` on Git deployments; the `vercel.json` fallback is not needed. `[HOUSE]`.
 
 ## D1: Stack
 
@@ -258,14 +259,14 @@ Proposed.
 
 ### Context
 
-Owner-only areas: sign-offs, pricing internals (floor price, market research, founder's-rate logic), business data, developer tools, and switching Customer View off during a customer session. The build prompt asks for a hashed PIN and for honesty about what it is.
+Owner-only areas: sign-offs, pricing internals (floor price math, founder's-rate logic), business data, developer tools, and switching Customer View off during a customer session. The build prompt asks for a hashed PIN and for honesty about what it is.
 
 ### Decision
 
 - One owner PIN per device, 6 digits, set on first run together with the device role (shop phone or study phone). Stored as a salted hash (PBKDF2 through the Web Crypto API, `[VERIFY]` on Lando's phone in Phase 1; a small pure-JS SHA-256 is the fallback if any device lacks it). The plain PIN is never stored and never logged. Settings shows the date the PIN was set.
-- Honest rule for crew phones: Lando installs the app and sets the PIN himself on any phone he hands to crew. A study phone has no sign-off screen, no Business room, and no job creation, so a sign-off cannot be recorded on it whoever knows its PIN; sign-offs exist only on the shop phone, next to the jobs they gate. Changing a device's role needs the PIN and is logged.
+- Honest rule for crew phones: Lando installs the app and sets the PIN himself on any phone he hands to crew. A study phone has no sign-off screen, no Business room, and no job creation, so a sign-off cannot be recorded on it whoever knows its PIN; sign-offs exist only on the shop phone, next to the jobs they gate. Changing a device's role needs the PIN and is logged. Which sign-off gates the polish stage, and the override, is D11 (2026-10-10).
 - Forgot PIN: a reset path exists so the app never dead-ends. It asks for a backup export first, writes an audit entry, sets a new PIN, and marks every sign-off and override on that device "needs re-check" until the owner confirms each one with the new PIN. A crew member who resets the PIN cannot make an old sign-off look clean.
-- A correct PIN issues an owner token that lives only in memory for 5 minutes. Every guarded write (sign-off, revoke, override, cutoff change, Customer View off during a session, developer toggle in production) requires the token. Three wrong attempts lock PIN entry for 30 seconds and write an audit entry.
+- A correct PIN issues an owner token that lives only in memory for 5 minutes. Every guarded write (sign-off, revoke, override, cutoff change, starting the polish stage as the owner profile, Customer View off during a session, developer toggle in production) requires the token. Three wrong attempts lock PIN entry for 30 seconds and write an audit entry.
 - Roles per device: owner, ops (if Lando approves one for Suzie), crew. A role hides screens and the data layer refuses writes outside the role; the URL alone never opens a guarded screen.
 - Honesty, in plain words: a client-side PIN keeps honest people honest. Anyone holding the phone with developer tools, or anyone who reads the app's code, can read the local database and flip a flag. It stops DJ from tapping "sign off" by mistake or on purpose; it does not stop a determined person. It is not real security. Real access control means accounts and a backend, which is Phase 8.
 
@@ -470,7 +471,7 @@ Primary path, Phases 1 to 6: GitHub Pages published by a GitHub Actions workflow
 - Optional one-time tap so a phase can be tested before its pull request merges: Settings, Environments, github-pages, Deployment branches and tags, Add deployment branch or tag rule, `masterclass/*`. GitHub may protect the `github-pages` environment to the default branch by default; the first run tells us. Without the rule, Pages deploys from main only, and testing happens after the merge.
 - The lead's work: `.github/workflows/masterclass-pages.yml` (outside `masterclass/`, needs "repo OK") with `on.push` for `main` and `masterclass/**` filtered to `paths: ["masterclass/**"]`, plus `workflow_dispatch`; permissions `contents: read`, `pages: write`, `id-token: write`; steps checkout, setup-node reading `masterclass/.nvmrc`, `npm ci` and `npm run build` with working directory `masterclass`, `actions/configure-pages`, `actions/upload-pages-artifact` with path `masterclass/dist`, `actions/deploy-pages` in the `github-pages` environment. In Vite: `base: '/aurigen-directory/'` for Pages and `'/'` for Netlify, switched by an environment variable. Manifest `start_url` and `scope` follow the base. The service worker is registered at `${import.meta.env.BASE_URL}sw.js`. A `404.html` boots the app so a refresh on a deep link works.
 - Enabling Pages by API from the VM is not possible: the proxy returns 403 for the Pages, hooks, and environments endpoints, while plain repo reads, pulls, and pushes work. So the browser tap is the route.
-- The Pages URL is public. No customer data, no secrets, no PIN values in a test build. The app's content is the knowledge base, which is already public on GitHub.
+- The Pages URL is public. No customer data, no secrets, no PIN values in a test build. The app's content is the knowledge base, which is already public on GitHub (minus section 15.5, removed 2026-10-10).
 
 Runner-up: Netlify draft deploys through `.github/workflows/masterclass-netlify.yml` (the third root file, `workflow_dispatch` only, never on push; one input, `action`: `draft`, `production`, `create-site`). Its `draft` action runs `netlify deploy --dir masterclass/dist --no-build --alias masterclass-test` on GitHub's runner and gives a root-path HTTPS URL, free by Netlify's own rule (only production deploys are metered). The VM cannot run it: it has no Netlify token, and a GitHub Actions secret is only visible inside a workflow run. Needs a personal access token Lando creates on his phone (Applications, Personal access tokens, New access token, with an expiration date that reaches past Phase 7) and saves as the repository secret `NETLIFY_AUTH_TOKEN`, plus the project id as `NETLIFY_SITE_ID` after the `create-site` run; the exact taps are in `docs/BLUEPRINT.md` 10.4. The "Run workflow" button exists only once the file is on `main`, so it lands with the Pages workflow in the Phase 1 pull request and does nothing until the secrets exist. Use it if the Pages environment rule or the Pages cache (about 10 minutes, `[VERIFY]`) gets in the way. Caution: if the team's default project visibility is Private, the draft URL needs a Netlify login on the phone and the project cannot be made public before its first production deploy; then the free phone path is Pages only and the draft is a lead-side smoke test read from the run log (D5).
 
@@ -487,7 +488,7 @@ Do Netlify Deploy Previews spend credits? No. "Deploy Previews or branch deploys
 - A temporary tunnel from the VM (ngrok, cloudflared): the VM is ephemeral, the tunnel needs a binary and often a token, and the URL dies with the session. Lando would never have a stable URL between sessions.
 - Localhost: not reachable from a phone.
 - Netlify Deploy Previews: free, but they need the site linked to Git, which turns every merge into a 15-credit production deploy and ties up the single Free-plan build slot.
-- Vercel previews: already building for this repo, but the project is on a personal scope whose plan is unknown, Hobby forbids commercial use, and previews may sit behind a Vercel login on the phone.
+- Vercel previews: already building for this repo, but the project is on a personal scope whose plan is unknown, Hobby forbids commercial use, and previews sit behind a Vercel login (checked 2026-10-10).
 - Cloudflare Workers Static Assets with `wrangler deploy`: free and root-path; needs an API token Lando creates on his phone. Kept as fallback C.
 - Surge: the account and token are created in a terminal, so a password would pass through chat.
 - Firebase Hosting: a Google login flow and a service account for a test host. Too heavy.
@@ -500,7 +501,7 @@ Do Netlify Deploy Previews spend credits? No. "Deploy Previews or branch deploys
 - Two workflow files land at the repo root (outside `masterclass/`): the Pages deploy, filtered so Aurigen pushes never trigger it, and the Netlify publish button, which runs only on a tap.
 - Data does not move between links by itself. The shop phone's real jobs live on the Pages install from Phase 3 to Phase 6 and move to the Netlify URL once, at v1.0, by Backup and Import; DJ's study phone does the same. The persistence suite proves that an export on one origin and an import on the other give equal counters and founder's slots.
 - The app must work under two base paths. Vite's `base` and the manifest scope handle it; the build is tested under both.
-- Pages is a test host only. Lando confirms he is comfortable with the test build being publicly reachable during development.
+- Pages is a test host only. Lando confirmed on 2026-10-10 ("Repo OK") that he is comfortable with the test build being publicly reachable during development; its content is the knowledge base minus the removed market research.
 - Pages caching may delay a service worker update by minutes; the update banner's hourly check covers it.
 
 ### Sources
@@ -531,7 +532,95 @@ Do Netlify Deploy Previews spend credits? No. "Deploy Previews or branch deploys
 
 ### Status
 
-Proposed. Lando approves the two workflow files and `.vercelignore` with "repo OK" and does the one-time Pages tap when the lead sends the Phase 1 link, not before.
+Accepted by Lando on 2026-10-10 ("Repo OK"; "Phase 1 workflow files are fine under the same OK"). `.vercelignore` is verified on production as of 2026-10-10. The two workflow files land in the Phase 1 pull request. Lando does the one-time Pages tap when the lead sends the Phase 1 link, not before. No pull request watching: Lando merges each phase pull request himself. `[HOUSE]`.
+
+## D10: Customer View and the phone, nothing from the phone shows
+
+### In plain words (Lando, read this part)
+
+- Your rule, 2026-10-10: while Customer View is on, nothing from your phone may show. No text previews, no job alerts. Calls from Suzie can ring.
+- The app can only control itself: it goes silent while Customer View is on. Your iPhone's Focus handles the rest, and the app reminds you to turn it on every time you switch Customer View on.
+
+### Context
+
+A customer standing at the screen can read a text preview or a job alert the moment it drops onto the screen. A web app installed to the Home Screen cannot read, block, or silence another app's notifications, and it cannot turn an iPhone Focus on or off; Apple exposes nothing of the kind to a web page. What the phone offers is Focus. Apple's iPhone User Guide says that when you set up a Focus "you can select people and apps you want to receive notifications from by either silencing them or allowing them," that under People you tap "Allow Notifications From" and pick contacts, and that you "can also turn on options to allow calls from certain groups of people and allow repeated calls (two or more calls from the same person within 3 minutes)." Under Apps the same choice exists, with a separate "Time Sensitive Notifications" switch that "allows all apps to send time-sensitive notifications immediately." A Focus is turned on from Control Center: "Open Control Center, tap Focus, then tap the Focus you want to turn on." Apple also states one limit: people who message you see that notifications are silenced "but they can still notify you if something is urgent." The app itself has no push notifications in v1 (D8, blueprint section 11); its only alerts are on-screen ones it draws itself.
+
+### Decision
+
+- The app's side, coded and tested: while Customer View is on, the app sends no notification and renders no toast, banner, or in-app alert of its own. The update banner (already suppressed), the weekly backup reminder, the "Undo last" toast, the "Ready offline" marker, and any timer-ended notice are held and shown after Customer View is off. The privacy test asserts it on every screen.
+- The phone's side, Lando's: the moment Customer View is switched on, the app shows one customer-safe reminder, "Turn on your Customer Focus: Control Center, Focus," with a single "Done" button. It shows once per switch-on, never again on a refresh, and never after that while Customer View is on.
+- One-time setup, in the handoff doc (lead, Phase 7) and on the switch screen's first run: Settings, Focus, make a Focus named Customer; under People, Allow Notifications From, add Suzie; under Apps, allow none and leave Time Sensitive Notifications off. Then every Customer View session starts with that Focus on. Calls from Suzie ring; text previews and other alerts stay off the screen.
+- The rule is `[HOUSE]` 2026-10-10. The Focus behavior on Lando's own phone (that Suzie's calls ring, that text previews stay hidden, and whether an "urgent" message breaks through) is checked at the Phase 4 gate during the mock walkaround; until then it is `[VERIFY on his phone]`.
+
+### Alternatives rejected and why
+
+- Doing nothing beyond hiding internal fields: the leak Lando named comes from other apps, which `<Internal>` cannot touch.
+- Asking Lando to remember the Focus himself: he will forget mid-walkaround; the reminder costs one tap.
+- Turning the Focus on from the app: no web API exists for it, so the reminder is the most a web app can do.
+- Refusing to switch Customer View on until a Focus is on: the app cannot read whether a Focus is on, so it would be a guess and a dead end.
+- Web Push for the app's own alerts: not in v1 (Phase 8), and it would add a notification source to silence.
+
+### Consequences
+
+- Customer View is quiet by code on the app's side and by Focus on the phone's side; the reminder sits on the switch, so neither is skipped by accident.
+- The reminder is one more customer-safe element the privacy test must allow, and the only toast-like element it allows in Customer View.
+- Held alerts appear when Customer View turns off; the Runner shows them one at a time.
+- If Lando changes phones, the Focus is set up again; the handoff doc carries the steps.
+
+### Sources
+
+- Apple Support, iPhone User Guide (iOS 27), "Allow or silence notifications for a Focus on iPhone": https://support.apple.com/guide/iphone/allow-or-silence-notifications-for-a-focus-iph21d43af5b/ios (read 2026-10-10)
+- Apple Support, iPhone User Guide (iOS 27), "Turn on or schedule a Focus on iPhone": https://support.apple.com/guide/iphone/turn-a-focus-on-or-off-iph5c3f5b77b/ios (read 2026-10-10)
+- Web Push only in Home Screen apps and only in Phase 8: the Browser facts section below (read 2026-10-07)
+- Lando's answer, 2026-10-10, quoted in the record at the end of this file
+
+### Status
+
+Accepted by Lando on 2026-10-10. `[HOUSE]`.
+
+## D11: Crew polishing needs the Level 4 sign-off on the shop phone
+
+### In plain words (Lando, read this part)
+
+- Your rule, 2026-10-10: DJ's phone is for study only. Sign-offs live on the shop phone and happen with your PIN while you watch him do the skill. Finishing a level on his phone unlocks nothing. Machine polishing needs the Level 4 sign-off; Level 0 does not gate polishing. If you are standing there, you sign off on the shop phone right then. The car keeps moving: you polish, DJ does what he is cleared for. Owner override only with your PIN and a logged reason.
+
+### Context
+
+The question was: DJ's study phone says he passed, the shop phone shows no sign-off, and the polish stage is next. The blueprint already keeps sign-offs on the shop phone (D3, D4) and refuses sign-off records in an imported progress file. It did not yet say which sign-off gates the polish stage, or what happens to the job while the gate is closed.
+
+### Decision
+
+- The polish stage guard (blueprint 3.2) has two checks: a logged test spot for every job, and, when the active profile on the shop phone is a crew member, a Signed off state for that member's Level 4 skill (machine polishing; the skill id is the one the learning-designer names in `content/academy/signoff/`). Level 0 (ground rules) is never checked by the Runner.
+- A study phone cannot create a sign-off, and an imported progress file cannot either; a file that marks every lesson, drill, and quiz complete leaves the skill at most Ready for sign-off. The import test (blueprint 3.8) asserts it.
+- When Lando is present, he signs off on the shop phone right then: PIN, skill, done. No file is needed.
+- The job never stops for a missing sign-off. The owner switches the active profile to himself and runs the polish stage; the crew member runs the stages he is cleared for. The refusal message says exactly that.
+- Override: owner PIN plus a reason of at least 3 characters, written to the job's `polishOverride` and the audit log, shown on the job sheet. The data layer refuses an override without the pass or without a reason.
+- `stageTimings` records who ran each stage (`runByCrewId`), so the debrief and the audit log can show who polished.
+
+### Alternatives rejected and why
+
+- Trusting the study phone's "passed" state: it is a file anyone can edit, and it was never a sign-off. Lando said "block him."
+- Gating on Level 0 as well: Level 0 is the ground rules lesson; Lando said it does not gate polishing, and a second gate would stop the job for no safety gain.
+- Pausing the job until the sign-off exists: the car would sit; Lando wants it to keep moving with him on the polisher.
+- Letting the owner sign off from the Runner screen in one tap: a sign-off is a record of a watched skill, not a convenience; it stays on the Academy sign-off screen, behind the PIN, and the Runner links to it.
+- Sync of sign-offs to the study phone: Phase 8.
+
+### Consequences
+
+- The crew view of the Job Runner exists only on the shop phone and reads the same database as the sign-offs, so the gate is immediate and real.
+- The shop phone needs an active profile setting (owner by default; a crew profile when a crew member runs stages). Switching to a crew profile needs no PIN; starting a polish stage as the owner profile needs the owner pass, or the gate means nothing.
+- Three assertions join blueprint 3.8: a crew member without Level 4 cannot open the polish stage; an imported study-phone file never creates a sign-off; an override is logged.
+- The Phase 5 gate stands: DJ finishes Level 0 on his phone, Lando imports and signs off one skill on the shop phone. Finishing Level 0 unlocks nothing by itself.
+
+### Sources
+
+- `BUILD_PROMPT.md` section 6 (Skill and Job state maps: crew can never sign themselves off; no polishing without a test spot; override logged)
+- Knowledge base section 2, rule 4 (test spot on every car) and section 8 (the machine polishing SOP that Level 4 teaches)
+- Lando's answer, 2026-10-10, quoted in the record at the end of this file
+
+### Status
+
+Accepted by Lando on 2026-10-10. `[HOUSE]`.
 
 ## Browser facts that shape the Job Runner (recorded here so D1 and the blueprint cite one place)
 
@@ -541,3 +630,22 @@ Proposed. Lando approves the two workflow files and `.vercelignore` with "repo O
 - No install prompt API on iOS: https://caniuse.com/mdn-api_window_beforeinstallprompt_event (read 2026-10-07). Install from Safari's Share menu; Chrome, Edge, Firefox, and Orion can also offer it since iOS 16.4: https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable (read 2026-10-07). The install card tells the user to use Safari.
 - Web Push: Home Screen web apps only, since iOS 16.4, on a tap. Phase 8 only. Source: https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/ (read 2026-10-07).
 - Current iOS is 27 (Safari 27 shipped September 2026). The 26.6 and 27.0 feature posts change none of the rules above. Sources: https://webkit.org/blog/18325/webkit-features-for-safari-27-0/ and https://webkit.org/blog/18178/webkit-features-for-safari-26-6/ (read 2026-10-07).
+
+## Decisions taken by Lando, 2026-10-10 (all `[HOUSE]`)
+
+Recorded here in his words so a future session finds them in one place. Each one is also written into the section it changes.
+
+| # | Decision, in Lando's words | Where it lives |
+|---|---|---|
+| 1 | "Repo OK. One change: delete section 15.5 (market research) from the knowledge base. The rest can stay public." | D0; knowledge base 15.5 is a one-line tombstone; blueprint section 12 item 13 |
+| 2 | "Defaults OK for 1 to 16, with two edits" (items 3 and 4 below) | Blueprint section 12, items 1 to 16 |
+| 3 | "Item 9: the pad ladder is yellow + M210, then maroon + M210, then maroon + Ultimate Compound followed by yellow + M210. Black is a wax and finishing pad only and never appears in the ladder. Pads on hand: Uro-Tec yellow x3, maroon x2, HF finishing pads (colors unconfirmed), one black pad." | Blueprint 2.3 (the pad ladder Quick Card) and section 12 item 9; knowledge base 8.5 and 3.2 already say the same |
+| 4 | "Item 14: interior-only jobs don't count toward 25. Only jobs that touch paint count." | Blueprint 3.3, section 6 (the rule in code), 3.8 tests, section 12 item 14; `touchesPaint` on PriceItem in section 7 |
+| 5 | "Look: A. In Customer View keep the accent sparse. Off-white, photos, and the panel-map readings carry that screen." | Blueprint 2.1, 2.5, section 5; `docs/DESIGN-DIRECTIONS.md` (ui-designer) |
+| 6 | "Design questions: while I polish, the phone is propped on the cart at arm's length. Polisher in my right hand, left thumb taps. Keep the left/right switch." | Blueprint 2.3 (hands-busy mode), section 5, section 12 closing note; `docs/DESIGN-DIRECTIONS.md` section 8 |
+| 7 | "First real job in the app: the next family car, no firm date yet. Until Phase 3 lands, the Model Y job sheet in reference/ is the stopgap." | Blueprint section 9, under the phase table |
+| 8 | "Customer View: nothing from my phone may show. Mute every app notification while Customer View is on, and when I switch it on, remind me to turn on an iPhone Focus. Calls from Suzie can ring. No text previews, no job alerts." | D10; blueprint 2.5, 3.4, section 5, 3.8 privacy tests |
+| 9 | "Block him. DJ's phone is for study only. Sign-offs live on the shop phone and happen with my PIN while I watch him do the skill. Finishing a level on his phone unlocks nothing, and Level 0 doesn't gate polishing anyway; machine polishing needs the Level 4 sign-off. If I'm standing there, I sign off on the shop phone right then. The car keeps moving: I polish, DJ does what he's cleared for. Owner override only with my PIN and a logged reason." | D11; blueprint 2.3, 2.4, 3.1, 3.2, 3.8 tests |
+| 10 | "No PR watching. Phase 1 workflow files are fine under the same OK." | D0 and D9 (the two root workflow files); `docs/STATUS.md` (lead) |
+
+Not yet said: `build it`. Nothing else is open.
