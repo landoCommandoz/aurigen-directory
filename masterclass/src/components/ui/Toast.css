@@ -67,3 +67,12 @@
   flex: none;
   order: var(--thumb-order); /* Undo last sits under the thumb: left by default */
 }
+
+/*
+ * The first 350 ms after a toast appears (TAP_GUARD_MS in useTapGuard.ts):
+ * its action takes no tap, so the second tap of a double tap lands on the
+ * toast and never undoes what the first tap did.
+ */
+.ui-toast[data-tap-guard='on'] .ui-toast__action {
+  pointer-events: none;
+}

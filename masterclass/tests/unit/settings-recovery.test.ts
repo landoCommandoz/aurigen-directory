@@ -6,8 +6,9 @@
  * - a newer version's row while Customer View is on: the flag survives, the way out works;
  * - the salvage never opens a gate: a shop row with no PIN never reads as a shop phone, never
  *   turns Customer View on, never opens the owner pass;
- * - DEF-13 (new in pass 2): when the role or the PIN field itself is from a newer version, no
- *   backup can be made at all, so the jobs cannot leave the phone. Marked it.fails until fixed.
+ * - DEF-13 (new in pass 2, fixed in the fix wave): when the role or the PIN field itself is from a
+ *   newer version, the backup still carries every job, marked settingsUnreadable, and still opens
+ *   no gate. The restore side of DEF-13 is in def13-restore.test.ts.
  */
 import 'fake-indexeddb/auto';
 import { afterAll, afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -110,7 +111,13 @@ describe('DEF-08 recheck: the salvage never opens a gate', () => {
     expect(await turnCustomerViewOn()).toMatchObject({ ok: false });
     expect(await verifyPin(PIN)).toMatchObject({ ok: false });
     expect(ownerPassActive()).toBe(false);
-    await expect(exportBackup({ photos: 'omitted' })).rejects.toThrow(SETTINGS_UNREADABLE_MESSAGE);
+    // DEF-13: the backup is made anyway, marked unreadable, never as a shop phone or with a PIN.
+    const prepared = await exportBackup({ photos: 'omitted' });
+    expect(prepared).toMatchObject({ settings: 'unreadable', unreadableReasons: ['shopRoleWithoutPin'] });
+    const file = JSON.parse(prepared.json) as Record<string, unknown>;
+    expect(file).not.toHaveProperty('deviceRole');
+    expect((file.tables as { settings: unknown[] }).settings).toEqual([]);
+    expect(prepared.summary).toMatchObject({ deviceRole: 'unknown', hasPin: false });
   });
 
   it('a damaged ordinary field never resets the role to a weaker or stronger one: role and PIN read as saved', async () => {
@@ -125,33 +132,43 @@ describe('DEF-08 recheck: the salvage never opens a gate', () => {
   });
 });
 
-describe('DEF-13 (new in pass 2): the role or PIN field from a newer version traps the jobs', () => {
+describe('DEF-13 (fixed in the fix wave): the role or PIN field from a newer version no longer traps the jobs', () => {
   // D5 allows a rollback. If a later version adds a role (for example a crew tablet) or moves the
-  // PIN to a new hash, the older copy can no longer read that field. The fix for DEF-08 refuses to
-  // guess those two fields, which is right for the gates, but it also refuses the backup, so the
-  // jobs cannot leave the phone, and the words on screen send the person to Backup, which just failed.
-  it.fails('a role this version does not know: a backup can still be made with every job in it', async () => {
-    const jobs = await shopPhoneWithJobs(25);
-    await patchRow({ deviceRole: 'crewTablet' });
-    reload();
-    const prepared = await exportBackup({ photos: 'omitted' });
-    expect(prepared.summary.jobs).toBe(jobs);
-  });
-
-  it.fails('a PIN record from a newer hash: a backup can still be made with every job in it', async () => {
+  // PIN to a new hash, the older copy can no longer read that field. The backup must still carry
+  // every job, and must never guess the role or the PIN.
+  async function unreadableBackup(patch: (pin: Record<string, unknown>) => Record<string, unknown>, reason: string): Promise<number> {
     const jobs = await shopPhoneWithJobs(25);
     const pin = (await rawRow()).ownerPin as Record<string, unknown>;
-    await patchRow({ ownerPin: { ...pin, algorithm: 'Argon2id' } });
+    await patchRow(patch(pin));
     reload();
     const prepared = await exportBackup({ photos: 'omitted' });
     expect(prepared.summary.jobs).toBe(jobs);
+    expect(prepared.summary.carsLogged).toBe(25);
+    expect(prepared).toMatchObject({ settings: 'unreadable', unreadableReasons: [reason] });
+    const file = JSON.parse(prepared.json) as Record<string, unknown>;
+    expect(file).not.toHaveProperty('deviceRole');
+    expect((file.tables as { settings: unknown[]; jobs: unknown[] }).settings).toEqual([]);
+    expect((file.tables as { jobs: unknown[] }).jobs).toHaveLength(jobs);
+    expect((file.settingsUnreadable as { reasons: string[] }).reasons).toEqual([reason]);
+    // The file reads back as the unreadable kind; the shop path refuses it, Restore can read it.
+    const read = await readBackup(prepared.json);
+    expect(read).toMatchObject({ ok: true, summary: { deviceRole: 'unknown', jobs } });
+    return prepared.summary.jobs;
+  }
+
+  it('a role this version does not know: a backup can still be made with every job in it', async () => {
+    expect(await unreadableBackup(() => ({ deviceRole: 'crewTablet' }), 'deviceRoleUnreadable')).toBeGreaterThan(25);
   });
 
-  it('today: the refusal is plain words, writes nothing, and opens no gate', async () => {
+  it('a PIN record from a newer hash: a backup can still be made with every job in it', async () => {
+    expect(await unreadableBackup((pin) => ({ ownerPin: { ...pin, algorithm: 'Argon2id' } }), 'ownerPinUnreadable')).toBeGreaterThan(25);
+  });
+
+  it('after the fix the backup still opens no gate and writes nothing to the row', async () => {
     const jobs = await shopPhoneWithJobs(25);
     await patchRow({ deviceRole: 'crewTablet' });
     reload();
-    await expect(exportBackup({ photos: 'omitted' })).rejects.toThrow(SETTINGS_UNREADABLE_MESSAGE);
+    expect((await exportBackup({ photos: 'omitted' })).settings).toBe('unreadable');
     expect(await verifyPin(PIN)).toMatchObject({ ok: false, code: 'storage' });
     clearOwnerPass();
     expect(ownerPassActive()).toBe(false);
@@ -159,5 +176,7 @@ describe('DEF-13 (new in pass 2): the role or PIN field from a newer version tra
     expect(await rawRow()).toMatchObject({ deviceRole: 'crewTablet' });
     expect(await withDb((db) => db.jobs.count())).toBe(jobs);
     expect((await settingsSettled()).status).toBe('unavailable');
+    // The ordinary words are still plain, and are never schema text.
+    expect(SETTINGS_UNREADABLE_MESSAGE).not.toMatch(/Unrecognized|Invalid|expected|schema/i);
   });
 });

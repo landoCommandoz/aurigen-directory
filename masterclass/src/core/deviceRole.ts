@@ -8,22 +8,30 @@
  * owner PIN exists, and the screen has a clear Cancel. One shop phone at a time: a second phone
  * can only become the shop phone by importing the latest backup. 'Start fresh' is a separate
  * choice with a warning that the counts reset to zero."
+ *
+ * Hand over to another phone (D12 amendment, 2026-10-11 [HOUSE default]): handOver() shares the
+ * backup through the share sheet first, and only a share that resolved switches this phone to
+ * study, in one transaction with its roleChange entry (canHandOver, settingsOnHandOver).
  */
 import {
   START_FRESH_CLEARS,
   START_FRESH_WARNING,
   canBecomeShop,
   canBecomeStudy,
+  canHandOver,
+  settingsOnHandOver,
   settingsOnPinCreated,
   PinEntry,
   type DeviceRoleName,
   type SettingsValue,
   type AuditLogValue,
+  type HandOverShareOutcome,
 } from '../schemas';
+import { shareBackup, type PreparedBackup, type ShareOutcome } from './backup';
 import type { VerifiedBackup } from './backupFile';
 import { importBackup } from './backupImport';
 import { newId, nowIso } from './clock';
-import { auditEntry, readSettingsIn, storageRefusal, validRow, withDb, writeSettingsIn } from './db';
+import { auditEntry, readSettingsForRecoveryIn, readSettingsIn, storageRefusal, validRow, withDb, writeSettingsIn } from './db';
 import { RefusedError, refuse, type Refusal } from './errors';
 import { grantPassForNewPin, hashPin, ownerPassActive } from './pin';
 
@@ -41,6 +49,9 @@ export type RoleCode =
   | 'invalidPin'
   | 'notConfirmed'
   | 'shopNeedsShopBackup'
+  | 'backupNotOffered'
+  | 'notShop'
+  | 'shareNotDone'
   | 'storage';
 
 export type RoleResult = { ok: true; role: DeviceRoleName } | Refusal<RoleCode>;
@@ -83,7 +94,7 @@ export async function chooseStudy(): Promise<RoleResult> {
 export type BecomeShopRequest =
   | { path?: null }
   | { path: 'startFresh'; warningAccepted: boolean; newPin?: string }
-  | { path: 'importBackup'; backup: VerifiedBackup; confirmedNewest: boolean };
+  | { path: 'importBackup'; backup: VerifiedBackup; confirmedNewest: boolean; backupOffered?: boolean };
 
 /**
  * The shop path. With no path (the bare "This is the shop phone" tap) it refuses and writes
@@ -100,7 +111,7 @@ export async function becomeShop(request: BecomeShopRequest = {}): Promise<RoleR
     return startFresh({ warningAccepted: r.warningAccepted, ...(r.newPin === undefined ? {} : { newPin: r.newPin }) });
   }
   const r = request as Extract<BecomeShopRequest, { path: 'importBackup' }>;
-  const result = await importBackup(r.backup, { path: 'importBackup', confirmed: r.confirmedNewest });
+  const result = await importBackup(r.backup, { path: 'importBackup', confirmed: r.confirmedNewest, backupOffered: r.backupOffered === true });
   return result.ok ? { ok: true, role: result.deviceRole } : (result as Refusal<RoleCode>);
 }
 
@@ -189,5 +200,46 @@ export async function demoteToStudy(): Promise<RoleResult> {
     );
   } catch (error) {
     return asResult(error);
+  }
+}
+
+export type HandOverResult = RoleResult & { share: ShareOutcome | null };
+
+/** How the share sheet ended, in canHandOver's terms. Only a resolved share counts: a download or a text copy never does. */
+export function handOverShareOutcome(outcome: ShareOutcome): HandOverShareOutcome {
+  if (outcome.ok) return outcome.path === 'share' ? 'shared' : 'failed';
+  return outcome.code === 'canceled' ? 'canceled' : 'failed';
+}
+
+/**
+ * "Save backup and hand over". Call it straight from the button's tap, with the backup prepared
+ * when the screen opened: the share sheet opens first, with nothing awaited before it. Only when
+ * the share resolves does one transaction write the study role and its roleChange entry.
+ * ownerPassAtStart is the owner pass as it was at the tap: without it nothing is shared or
+ * written; a pass that lapses while the share sheet is open does not undo a backup that left.
+ * Cancel or a failed share changes nothing and writes no audit entry.
+ */
+export async function handOver(prepared: PreparedBackup, opts: { ownerPassAtStart: boolean }): Promise<HandOverResult> {
+  // Before the share sheet, with nothing awaited: the role the prepared backup was made under and
+  // the pass at the tap. A study phone, or no pass, shares nothing. The transaction checks again.
+  const before = canHandOver({ currentRole: prepared.summary.deviceRole === 'shop' ? 'shop' : 'study', ownerPassAtStart: opts.ownerPassAtStart, share: 'shared' });
+  if (!before.allowed) return { ...refuse(before.code, before.message), share: null };
+  const share = await shareBackup(prepared);
+  try {
+    const result = await withDb((db) =>
+      db.transaction('rw', db.settings, db.auditLog, async () => {
+        // The recovery read: the backup already left, so a damaged ordinary field must not stop the
+        // switch (it is written back at its default). The role and the PIN are never guessed.
+        const current = (await readSettingsForRecoveryIn(db)).settings;
+        const decision = canHandOver({ currentRole: current.deviceRole, ownerPassAtStart: opts.ownerPassAtStart, share: handOverShareOutcome(share) });
+        if (!decision.allowed) throw new RefusedError(refuse(decision.code, decision.message));
+        await writeSettingsIn(db, settingsOnHandOver(current, nowIso()));
+        await db.auditLog.add(auditEntry('roleChange', 'Shop phone to study phone (hand over)'));
+        return { ok: true as const, role: 'study' as const };
+      }),
+    );
+    return { ...result, share };
+  } catch (error) {
+    return { ...asResult(error), share };
   }
 }

@@ -55,12 +55,17 @@
   transform: scale(1.1);
 }
 
+/*
+ * Two lines are always reserved, so no message moves the keys: not the
+ * status, not a one-line wrong PIN, not the two-line "did not match" on the
+ * retry step (QA DEF-15: a step in place keeps every key where it was).
+ */
 .ui-pinpad__message {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  min-height: calc(var(--fs-body) * var(--lh-snug));
+  min-height: calc(var(--fs-body) * var(--lh-snug) * 2);
   color: var(--text-2);
   font-size: var(--fs-body);
   line-height: var(--lh-snug);
@@ -82,6 +87,30 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-3);
   width: 100%;
+  animation: ui-fade-in var(--dur-base) var(--ease-out) both; /* the keys arrive inside the guard window */
+}
+
+/*
+ * The first 350 ms after the pad appears (TAP_GUARD_MS in useTapGuard.ts):
+ * no key takes a tap, so the second tap of a double tap on the button that
+ * opened the pad lands on the grid and does nothing (QA DEF-04).
+ */
+.ui-pinpad[data-tap-guard='on'] .ui-pinpad__key {
+  pointer-events: none;
+}
+
+/*
+ * A pad that steps in place to its next entry (the confirmation of a new
+ * PIN, or a fresh try after a mismatch) has no hold (QA DEF-15, pinStep.ts).
+ * Its keys never moved and take taps at once, so they do not fade in again;
+ * the new label fades in instead, so the step still reads.
+ */
+.ui-pinpad[data-step='true'] .ui-pinpad__keys {
+  animation: none;
+}
+
+.ui-pinpad[data-step='true'] .ui-pinpad__label {
+  animation: ui-fade-in var(--dur-fast) var(--ease-out) both;
 }
 
 .ui-pinpad__key {

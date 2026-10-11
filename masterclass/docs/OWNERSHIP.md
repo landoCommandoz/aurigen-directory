@@ -1,6 +1,6 @@
 # Ownership: who writes what
 
-Phase 0, step 5. Written 2026-10-08 by the architect role, revised the same day after review. Revised 2026-10-10 in Phase 1: `src/schemas/README.md` named, and the content writers' rule added under "Where the lines are thin". One writer per file across agents, always. This file is the map.
+Phase 0, step 5. Written 2026-10-08 by the architect role, revised the same day after review. Revised 2026-10-10 in Phase 1: `src/schemas/README.md` named, and the content writers' rule added under "Where the lines are thin". Revised 2026-10-11 (DEF-13): the backup recovery rules and the frozen shapes added under "Where the lines are thin". One writer per file across agents, always. This file is the map.
 
 Lando: nothing in here needs your answer.
 
@@ -101,6 +101,8 @@ masterclass/
     core/                            app-engineer      (db.ts Dexie tables; state machines; search engine; speech; wake lock; pin; export and import; clipboard; counters; customerView.tsx: the <Internal> component, useCustomerView(), customerSafe(items), the one mechanism behind Customer View)
     schemas/                         architect         (zod: content types, runtime records, config, backup file, search files; the only shared contract)
       README.md                      architect         (the content file layout every content writer and the content build follow)
+      backup-recovery.ts             architect         (DEF-13: backupSettingsState, restorePlan, settingsAfterRestore, signOffsAfterRestore; pure rules core/backup.ts and core/backupImport.ts follow)
+      frozen-shapes.test.ts          architect         (fails on any change to DeviceRole, OwnerPin, or the 6-digit PIN entry; never edited to pass)
     generated/                       app-engineer      (build output: content bundle and search index; gitignored)
     design/                          ui-designer       (tokens.css, fonts.css, motion.css, print.css, the signature moment)
     components/
@@ -148,3 +150,5 @@ Never touched by anyone in this build: `.claude/agents/`, the root `CLAUDE.md`, 
 - Customer View has one mechanism and one writer. `src/core/customerView.tsx` (app-engineer) holds the `<Internal>` component, the `useCustomerView()` hook, and the `customerSafe(items)` filter. Every feature, whoever owns it (app-engineer's jobrunner, academy, settings; business-customer's customer and business; ui-designer's components), wraps its internal elements in `<Internal>` and never writes its own version. business-customer owns the switch screen and the customer session rule in `src/features/customer/`. The privacy test in `tests/privacy/` (qa-adversary) is the enforcement: it fails on any internal element found on the page with Customer View on.
 - Every content writer (content-curator, troubleshooter, learning-designer, business-customer) and the content build (app-engineer, `scripts/content/`) follow `src/schemas/README.md`: folders, file formats, id rules, status and visibility, and the exact exports the build uses. A writer who needs a new field files the need with the architect; nobody adds a field the schema does not have, because the schemas are strict and the build refuses unknown fields.
 - Sign-off criteria have one writer. The pass mark, drill minimum, and prerequisites live only in `content/academy/signoff/<skillId>.yaml` (learning-designer). A Lesson (content-curator) names its `skillId` and nothing more. The build refuses a lesson with a `skillId` and no file, and a file with no lesson.
+- Backup and Restore with an unreadable settings row (DEF-13, D12 amendment). The rules are pure functions in `src/schemas/backup-recovery.ts` (architect): what a backup carries, and what a restore applies, keeps, and flags. `src/core/backup.ts`, `src/core/backupImport.ts`, `src/core/settingsRead.ts`, and the Backup screen in `src/features/settings/` (app-engineer) follow them and never restate them; a case the rules do not cover goes back to the architect. The guard field list is `SETTINGS_GUARD_FIELDS` in that module, so `settingsRead.ts` imports it instead of keeping its own copy.
+- Frozen shapes. `DeviceRole`, `OwnerPin`, and `PinEntry` in `src/schemas/runtime-device.ts` never change; `src/schemas/frozen-shapes.test.ts` fails if they do. Any agent that needs a new kind of device or a new PIN hash files the need with the architect, who adds a new optional settings field. Nobody edits the frozen test to make it pass.

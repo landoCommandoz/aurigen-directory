@@ -101,15 +101,16 @@ test.describe('DEF-08 recheck: a field a newer version added', () => {
   });
 });
 
-// DEF-13 (fix-before-deploy, new in pass 2): the DEF-08 fix refuses to guess the role or the PIN,
-// which is right for the gates, but it also refuses the backup. A newer version that adds a device
-// role, or moves the PIN to a new hash, followed by a rollback (D5), leaves the jobs with no way off
-// the phone. The notice says "open Settings, Backup to save a backup or restore one"; Backup then
-// says "The backup could not be prepared" with the same words: a loop with no exit.
+// DEF-13 (fix-before-deploy, new in pass 2; fixed in the fix wave): the DEF-08 fix refused to guess
+// the role or the PIN, which is right for the gates, but it also refused the backup, and the words
+// looped back to Backup. Now the backup carries every job with a settingsUnreadable section, never a
+// role or a PIN, and the Backup screen never tells the person to open Backup. The restore side is in
+// settings-restore.spec.ts.
 test.describe('DEF-13: the role or PIN field from a newer version', () => {
-  for (const [label, patch] of [
-    ['a device role this version does not know', { deviceRole: 'crewTablet' }],
-    ['a PIN record from a newer hash', { 'ownerPin.algorithm': 'Argon2id' }],
+  for (const [label, patch, reason] of [
+    ['a device role this version does not know', { deviceRole: 'crewTablet' }, 'deviceRoleUnreadable'],
+    ['a PIN record from a newer hash', { 'ownerPin.algorithm': 'Argon2id' }, 'ownerPinUnreadable'],
+    ['a shop role with the PIN record gone', { ownerPin: null }, 'shopRoleWithoutPin'],
   ] as const) {
     test(`${label}: Backup still saves a file with the jobs`, async ({ page }) => {
       await makeShopPhone(page);
@@ -118,12 +119,27 @@ test.describe('DEF-13: the role or PIN field from a newer version', () => {
       await openApp(page, '/');
       await expect(page.getByText('Settings could not be read', { exact: true })).toBeVisible();
       await page.getByRole('button', { name: 'Open Backup' }).click();
-      await waitForScreen(page);
+      await expect(page.getByRole('heading', { level: 1, name: 'Backup and restore' })).toBeVisible();
+      // Read the words once the backup is prepared and the line about the settings is on screen.
+      await expect(page.getByText(/role and owner PIN could not be read, so the shop tools stay locked/)).toBeVisible();
       const words = (await page.locator('main').innerText()).replace(/\s+/g, ' ');
       test.info().annotations.push({ type: 'Backup screen words', description: words.slice(0, 600) });
       expect(problems.page).toEqual([]);
       await expect(page.getByText('The backup could not be prepared.', { exact: false })).toHaveCount(0);
+      expect(words).not.toMatch(/open Settings, Backup|Unrecognized|Invalid option|expected one of|schema/);
       await expect(page.getByRole('button', { name: 'Save backup', exact: true })).toBeEnabled();
+      const download = await clickAndDownload(page, 'Save backup');
+      const file = JSON.parse(readFileSync(await download.path(), 'utf8')) as Record<string, unknown> & { tables: { settings: unknown[] } };
+      expect(file).not.toHaveProperty('deviceRole');
+      expect(file.tables.settings).toEqual([]);
+      expect((file.settingsUnreadable as { reasons: string[] }).reasons).toEqual([reason]);
+      // No gate opened, and the row is left exactly as the newer version wrote it.
+      expect(await rawSettingsRow(page)).toMatchObject(reason === 'shopRoleWithoutPin' ? { deviceRole: 'shop', ownerPin: null } : reason === 'deviceRoleUnreadable' ? { deviceRole: 'crewTablet' } : { deviceRole: 'shop' });
+      await openApp(page, '/');
+      await page.getByRole('group', { name: 'Mode' }).getByText('Customer', { exact: true }).click();
+      await page.waitForTimeout(300);
+      await expect(page.locator('html')).not.toHaveAttribute('data-density', 'customer');
+      expect(problems.page).toEqual([]);
     });
   }
 });

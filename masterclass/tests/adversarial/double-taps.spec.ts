@@ -40,6 +40,8 @@ test('double tap "Create the owner PIN": one PIN pad, and the second tap does no
   // If the second tap had landed on a key, one dot would be filled.
   const filled = await page.locator('.ui-pinpad__dot[data-filled="true"]').count();
   test.info().annotations.push({ type: 'dots-after-double-tap', description: String(filled) });
+  // DEF-04 (fixed in the fix wave): at 375 px the second tap used to type one stray digit.
+  expect(filled).toBe(0);
   expect(await readSettings(page).then((s) => s.ownerPin)).toBeNull();
 });
 
@@ -79,10 +81,9 @@ test('double tap "This is the shop phone" with the owner pass open: nothing is w
   expect((await readSettings(page)).deviceRole).toBe('study');
 });
 
-// DEF-03: the guard holds only while the share or download is in flight. The Chromium download
-// finishes and the next copy is prepared in under 40 ms, so a second tap saves a second file.
+// DEF-03 (fixed in the fix wave): after a save the button holds, reading "Saved", until OK and
+// BACKUP_HOLD_MS (2 s) have both passed, so a second tap never makes a second file.
 test('double tap "Save your first backup": one file, one export entry', async ({ page }) => {
-  test.fail(true, 'DEF-03: a second tap 40 ms later saves a second file');
   await openApp(page, '/settings/setup');
   await page.getByRole('button', { name: 'This is a study phone' }).click();
   await page.getByRole('button', { name: 'Create the owner PIN' }).click();
@@ -99,11 +100,9 @@ test('double tap "Save your first backup": one file, one export entry', async ({
   expect((await auditTypes(page)).filter((t) => t === 'export')).toHaveLength(1);
 });
 
-// DEF-04: the second tap lands on the PIN pad's Cancel key, which sits where the action button was,
-// and the flow drops back to the overview. Nothing is written (safe), but the tap is undone.
-test('double tap the Start fresh action after typing the word: the PIN screen stays, then one shop phone', async ({ page }, testInfo) => {
-  // At 430 px the PIN pad's Cancel key sits under the action button; at the other widths it does not.
-  test.fail(testInfo.project.name === 'w430', 'DEF-04: the second tap lands on the PIN pad Cancel at 430 px');
+// DEF-04 (fixed in the fix wave): the PIN pad takes no taps for its first 350 ms (useTapGuard), so
+// the second tap no longer lands on its Cancel key at 430 px.
+test('double tap the Start fresh action after typing the word: the PIN screen stays, then one shop phone', async ({ page }) => {
   await openApp(page, '/settings/device');
   await page.getByRole('button', { name: 'Start fresh', exact: true }).click();
   await page.getByLabel('Type zero to confirm').fill('zero');
@@ -117,6 +116,60 @@ test('double tap the Start fresh action after typing the word: the PIN screen st
   await expect(page.getByText(/This is now the shop phone\./)).toBeVisible();
   expect(await auditTypes(page)).toEqual(['pinSet', 'roleChange', 'startFresh']);
 });
+
+test('DEF-03 recheck: the Backup screen "Save backup" at four double-tap gaps saves one file each time, and a later deliberate tap still works', async ({ page }) => {
+  await setUpStudyPhone(page);
+  await openApp(page, '/settings/backup');
+  const downloads: string[] = [];
+  page.on('download', (d) => downloads.push(d.suggestedFilename()));
+  const save = page.getByRole('button', { name: 'Save backup', exact: true });
+  for (const gap of [40, 120, 400, 1000]) {
+    const before = downloads.length;
+    await expect(save).toBeEnabled();
+    await expect(save).not.toHaveAttribute('aria-busy', 'true');
+    const box = await save.boundingBox();
+    if (box === null) throw new Error('Save backup not visible');
+    await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+    await page.waitForTimeout(gap);
+    await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+    await page.waitForTimeout(300);
+    expect(downloads.length - before, `gap ${gap} ms`).toBe(1);
+    // No dead end: OK lets go once the 2 s hold has passed, and the button reads Save backup again.
+    await page.getByRole('button', { name: 'OK', exact: true }).click();
+    await expect(save).toBeVisible({ timeout: 4_000 });
+  }
+  // The setup backup plus one per gap.
+  expect((await auditTypes(page)).filter((t) => t === 'export')).toHaveLength(5);
+});
+
+// DEF-15 (found in pass 3, fixed in pass 4 by src/components/ui/pinStep.ts): the confirmation pad is
+// a new PinPad (NewPinEntry key={phase}), and its 350 ms tap guard used to start again in the middle
+// of the person's rhythm, dropping the first one or two confirmation digits. A pad that steps in
+// place now has no arrival hold. More paces and edges: tests/adversarial/pin-step.spec.ts.
+for (const mode of ['taps', 'hardware keys'] as const) {
+  test(`DEF-15: a new PIN and its confirmation typed at a steady 250 ms pace (${mode}) save the PIN`, async ({ page }) => {
+    await openApp(page, '/settings/setup');
+    await page.getByRole('button', { name: 'Create the owner PIN' }).click();
+    const pad = page.locator('fieldset.ui-pinpad');
+    await expect(pad).toBeVisible();
+    await page.waitForTimeout(500);
+    const centers: Record<string, { x: number; y: number }> = {};
+    for (const digit of new Set(PIN)) {
+      const box = await pad.getByRole('button', { name: digit, exact: true }).boundingBox();
+      if (box === null) throw new Error('key not visible');
+      centers[digit] = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+    }
+    for (const digit of PIN + PIN) {
+      const c = centers[digit];
+      if (mode === 'taps' && c !== undefined) await page.mouse.click(c.x, c.y);
+      else await page.keyboard.press(digit);
+      await page.waitForTimeout(250);
+    }
+    const dots = await page.locator('.ui-pinpad__dot[data-filled="true"]').count();
+    test.info().annotations.push({ type: 'dots-left-on-the-confirmation-pad', description: String(dots) });
+    await expect(page.getByRole('heading', { level: 1, name: 'Save your first backup' })).toBeVisible({ timeout: 3_000 });
+  });
+}
 
 test('double tap the Customer mode and then "Exit Customer View": on once, off once, no crash', async ({ page }) => {
   const problems = watchProblems(page);

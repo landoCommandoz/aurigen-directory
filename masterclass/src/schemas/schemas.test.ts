@@ -8,9 +8,12 @@ import {
   QuickCard,
   TABLE_NAMES,
   assertCustomerRenderable,
+  SOP,
+  Settings,
   backupReminderDue,
   bandFor,
   canBecomeShop,
+  canHandOver,
   checkContentSet,
   defaultSettings,
   nextJobState,
@@ -19,6 +22,7 @@ import {
   parseBackupFile,
   parseCrewProgressFile,
   parseGaugeInput,
+  settingsOnHandOver,
   setupStep,
   type ContentItemValue,
 } from './index';
@@ -262,6 +266,50 @@ describe('device role and first run (D12)', () => {
     expect(backupReminderDue(base, t + 6 * 86_400_000)).toBe(false);
     expect(backupReminderDue(base, t + 7 * 86_400_000)).toBe(true);
     expect(backupReminderDue({ ...base, customerViewOn: true }, t + 8 * 86_400_000)).toBe(false);
+  });
+});
+
+describe('Hand over to another phone (2026-10-11 [HOUSE default])', () => {
+  const shop = { currentRole: 'shop', ownerPassAtStart: true } as const;
+
+  it('switches only a shop phone, only after the PIN, and only once the share resolved', () => {
+    expect(canHandOver({ ...shop, currentRole: 'study', share: 'shared' })).toMatchObject({ allowed: false, code: 'notShop' });
+    expect(canHandOver({ ...shop, ownerPassAtStart: false, share: 'shared' })).toMatchObject({ allowed: false, code: 'noOwnerPass' });
+    for (const share of ['notStarted', 'canceled', 'failed'] as const) {
+      expect(canHandOver({ ...shop, share })).toMatchObject({ allowed: false, code: 'shareNotDone', message: expect.stringMatching(/^Nothing changed/) });
+    }
+    expect(canHandOver({ ...shop, share: 'shared' })).toEqual({ allowed: true });
+  });
+
+  it('writes a study row that keeps the PIN, turns Customer View off, and dates the choice', () => {
+    const pin = { algorithm: 'PBKDF2-SHA-256', iterations: 100_000, salt: 'c2FsdA==', hash: 'aGFzaA==', setAt: NOW } as const;
+    const current = { ...defaultSettings(NOW), deviceRole: 'shop' as const, ownerPin: pin, roleChosenAt: NOW, customerViewOn: true, focusReminderShown: true, carsLoggedBefore: 4 };
+    const next = settingsOnHandOver(current, '2026-10-11T18:00:00.000Z');
+    expect(next).toMatchObject({ deviceRole: 'study', ownerPin: pin, carsLoggedBefore: 4, customerViewOn: false, focusReminderShown: false, roleChosenAt: '2026-10-11T18:00:00.000Z' });
+    expect(Settings.safeParse(next).success).toBe(true);
+    expect(canBecomeShop({ pinExists: true }).allowed).toBe(false);
+  });
+});
+
+describe('bike hand polishing is not machine polishing (2026-10-11 [HOUSE default])', () => {
+  const sop = (stage: string, vehicleBranch?: string) => ({
+    id: 'sop-fixture',
+    type: 'sop',
+    title: 'Fixture',
+    audience: ['owner', 'crew'],
+    visibility: 'internal',
+    status: 'house',
+    stage,
+    steps: [{ text: 'Work it by hand' }],
+    ...(vehicleBranch === undefined ? {} : { vehicleBranch }),
+  });
+
+  it('allows hand-polish on the bike branch only; polish (machine) stays allowed on any branch', () => {
+    expect(SOP.safeParse(sop('hand-polish', 'bike')).success).toBe(true);
+    expect(SOP.safeParse(sop('hand-polish')).success).toBe(false);
+    expect(SOP.safeParse(sop('hand-polish', 'tesla')).success).toBe(false);
+    expect(SOP.safeParse(sop('polish', 'bike')).success).toBe(true);
+    expect(ContentItem.safeParse(sop('hand-polish', 'any')).success).toBe(false);
   });
 });
 

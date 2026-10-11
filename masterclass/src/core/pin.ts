@@ -7,8 +7,9 @@
  * the page is hidden (phone locked, app switched) and on every reload. Guarded writes call
  * ownerPassActive() inside their own transaction.
  *
- * Three wrong PINs in a row lock PIN entry for 30 seconds and write one audit entry. The lock
- * survives a reload because it is read back from that audit entry.
+ * Three wrong PINs in a row lock PIN entry for 30 seconds and write one audit entry. The count
+ * and the lock survive a reload (DEF-05): both are saved per PIN in pinGuard.ts, and the lock is
+ * also read back from its audit entry.
  *
  * Honest limit (D4): this keeps honest people honest. Anyone with developer tools can read the
  * database. Real access control is accounts and a server, Phase 8.
@@ -19,6 +20,7 @@ import { monotonicMs, nowIso, nowMs } from './clock';
 import { pbkdf2Sha256, randomBytes, sha256 } from './crypto';
 import { auditEntry, readSettingsForRecoveryIn, readSettingsIn, storageRefusal, withDb, writeSettingsIn } from './db';
 import { RefusedError, refuse, type Refusal } from './errors';
+import { readPinGuard, writePinGuard, type PinGuardState } from './pinGuard';
 import { createStore, useStore } from './store';
 
 export const PIN_ITERATIONS = 100_000;
@@ -135,10 +137,32 @@ export function clearOwnerPass(): void {
 
 /* ---------- Lockout ---------- */
 
-/** Locked until this wall-clock time, from memory or from the last lock audit entry (survives reload). */
-async function lockedUntil(): Promise<number | null> {
+/** "27 seconds" or "1 second". */
+function secondsWords(ms: number): string {
+  const seconds = Math.max(1, Math.ceil(ms / 1000));
+  return `${seconds} ${seconds === 1 ? 'second' : 'seconds'}`;
+}
+
+/** The countdown line on a locked PIN pad, in plain words. */
+export function lockCountdownWords(ms: number): string {
+  return `Locked after three wrong PINs. Try again in ${secondsWords(ms)}.`;
+}
+
+/**
+ * Locked until this wall-clock time: from memory, from the saved lock for this PIN (pinGuard.ts),
+ * or from the last lock audit entry. All three survive what they can: memory a screen change, the
+ * saved lock and the audit entry a reload. A clock moved back past the lock start does not extend it.
+ */
+async function lockedUntil(saved: PinGuardState): Promise<number | null> {
+  const now = nowMs();
   const memory = pinStatus.get().lockedUntilWall;
-  if (memory !== null && nowMs() < memory) return memory;
+  if (memory !== null && now < memory) return memory;
+  if (memory !== null) pinStatus.update({ lockedUntilWall: null });
+  if (saved.lockedAt !== null && now >= saved.lockedAt && now < saved.lockedAt + PIN_LOCK_MS) {
+    const until = saved.lockedAt + PIN_LOCK_MS;
+    pinStatus.update({ lockedUntilWall: until });
+    return until;
+  }
   try {
     const last = await withDb((db) => db.auditLog.where('type').equals('pinFail').reverse().sortBy('at'));
     const lock = last.find((entry) => entry.detail === LOCK_DETAIL);
@@ -178,11 +202,6 @@ export async function hasPin(): Promise<boolean> {
  */
 export async function verifyPin(pin: string): Promise<VerifyResult> {
   if (!PinEntry.safeParse(pin).success) return refuse('invalid', 'The PIN is 6 digits.');
-  const until = await lockedUntil();
-  if (until !== null) {
-    const seconds = Math.ceil((until - nowMs()) / 1000);
-    return { ...refuse('locked', `Too many wrong PINs. Try again in ${seconds} seconds.`), lockedForMs: until - nowMs() };
-  }
   // The recovery read (DEF-08): the PIN can be checked, and the owner pass opened for a Restore,
   // even when another settings field is damaged. The PIN field itself is never guessed.
   let settings;
@@ -192,21 +211,46 @@ export async function verifyPin(pin: string): Promise<VerifyResult> {
     return storageRefusal(error);
   }
   if (settings.ownerPin === null) return refuse('noPin', 'No owner PIN is set on this phone yet. Set it from the setup banner.');
+  const salt = settings.ownerPin.salt;
+  const saved = readPinGuard(salt);
+  const until = await lockedUntil(saved);
+  if (until !== null) {
+    return { ...refuse('locked', `Too many wrong PINs. Try again in ${secondsWords(until - nowMs())}.`), lockedForMs: until - nowMs() };
+  }
   if (await pinMatches(pin, settings.ownerPin)) {
     issueOwnerPass();
+    writePinGuard(salt, { fails: 0, lockedAt: null });
     return { ok: true };
   }
-  const fails = pinStatus.get().consecutiveFails + 1;
+  // The count survives a reload (DEF-05): the saved count for this PIN, or this session's if storage is blocked.
+  const fails = Math.max(saved.fails, pinStatus.get().consecutiveFails) + 1;
   if (fails >= PIN_MAX_TRIES) {
-    const lockUntil = nowMs() + PIN_LOCK_MS;
-    pinStatus.update({ consecutiveFails: 0, lockedUntilWall: lockUntil });
+    const lockedAt = nowMs();
+    pinStatus.update({ consecutiveFails: 0, lockedUntilWall: lockedAt + PIN_LOCK_MS });
+    writePinGuard(salt, { fails: 0, lockedAt });
     clearOwnerPass();
     await withDb((db) => db.auditLog.add(auditEntry('pinFail', LOCK_DETAIL))).catch(() => undefined);
     return { ...refuse('locked', 'Three wrong PINs. PIN entry is locked for 30 seconds.'), lockedForMs: PIN_LOCK_MS };
   }
   pinStatus.update({ consecutiveFails: fails });
+  writePinGuard(salt, { fails, lockedAt: null });
   const left = PIN_MAX_TRIES - fails;
   return { ...refuse('wrong', `Wrong PIN. ${left} ${left === 1 ? 'try' : 'tries'} left.`), triesLeft: left };
+}
+
+/**
+ * Milliseconds left on the PIN lock, 0 when entry is open. Read the same way verifyPin reads it,
+ * so a PIN screen opened after a reload shows the countdown at once. Never throws.
+ */
+export async function pinLockRemainingMs(): Promise<number> {
+  try {
+    const settings = (await withDb((db) => db.transaction('r', db.settings, () => readSettingsForRecoveryIn(db)))).settings;
+    const saved: PinGuardState = settings.ownerPin === null ? { fails: 0, lockedAt: null } : readPinGuard(settings.ownerPin.salt);
+    const until = await lockedUntil(saved);
+    return until === null ? 0 : Math.max(0, until - nowMs());
+  } catch {
+    return 0;
+  }
 }
 
 export type SetPinResult = { ok: true; firstPin: boolean } | Refusal<'invalid' | 'noOwnerPass' | 'storage'>;

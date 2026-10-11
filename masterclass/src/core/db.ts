@@ -242,6 +242,11 @@ export async function readSettingsRowIn(db: MasterclassDb): Promise<SettingsValu
  */
 export async function readSettingsForRecoveryIn(db: MasterclassDb): Promise<SalvagedSettings> {
   const row: unknown = await db.settings.get(SETTINGS_ID);
+  return salvageSettingsRow(row);
+}
+
+/** The recovery read on a row already in hand (undefined: no row yet, read as the defaults). Throws RecordInvalid like the salvage. */
+export function salvageSettingsRow(row: unknown): SalvagedSettings {
   if (row === undefined) return { settings: defaultSettings(nowIso()), ignored: [], repaired: [] };
   const salvaged = salvageStoredSettings(row, nowIso());
   noteIgnoredSettingsFields(salvaged.ignored);

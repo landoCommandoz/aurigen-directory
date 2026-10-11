@@ -239,6 +239,8 @@ test.describe('developer panel (production build, behind the owner PIN)', () => 
         test.info().annotations.push({ type: 'preview-clamped', description: `${width} preview is ${innerWidth} px inside a ${viewport} px window` });
         expect(innerWidth).toBeLessThan(width);
         expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(viewport);
+        // DEF-12 (fixed in the fix wave): the button names the width the frame really shows.
+        await expect(bar.getByRole('button', { name: width === 375 ? 'Mobile 375' : 'Tablet 768' })).toHaveText(new RegExp(`shown at ${innerWidth} here`));
       }
       // The app inside the frame shows no preview bar of its own.
       await expect(inner.getByRole('toolbar', { name: 'Device preview' })).toHaveCount(0);

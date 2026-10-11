@@ -8,6 +8,11 @@
  * PIN exists, and the screen has a clear Cancel. One shop phone at a time: a second phone becomes
  * the shop phone only by importing the newest backup. Start fresh is a separate choice with a
  * warning that the counts reset to zero.
+ *
+ * Hand over to another phone (D12 amendment, 2026-10-11 [HOUSE default]): shop phone only. The
+ * owner PIN, then one "Save backup and hand over" button (CONFIRM), then handingOver while the
+ * share sheet is open; only a share that resolved switches the phone (core handOver). PIN_AGAIN
+ * sends the person back to the PIN when the owner pass ran out before the tap.
  */
 export type RoleView =
   | 'overview'
@@ -23,6 +28,9 @@ export type RoleView =
   | 'freshing'
   | 'studyPin'
   | 'studying'
+  | 'handoverPin'
+  | 'handoverReady'
+  | 'handingOver'
   | 'result';
 
 export type RoleEvent =
@@ -38,16 +46,18 @@ export type RoleEvent =
   | 'WORD_OK_NEEDS_PIN'
   | 'NEW_PIN'
   | 'STUDY_TAP'
+  | 'HANDOVER_TAP'
+  | 'PIN_AGAIN'
   | 'DONE'
   | 'FAILED'
   | 'CANCEL'
   | 'BACK';
 
 /** Working states: a core call is in flight, so Cancel is not offered (the write is one transaction). */
-export const WORKING_VIEWS: readonly RoleView[] = ['importing', 'freshing', 'studying'];
+export const WORKING_VIEWS: readonly RoleView[] = ['importing', 'freshing', 'studying', 'handingOver'];
 
 export const roleTransitions = {
-  overview: { SHOP_TAP: 'shopPin', CHOOSE_IMPORT: 'importPick', CHOOSE_FRESH: 'freshWarning', STUDY_TAP: 'studyPin' },
+  overview: { SHOP_TAP: 'shopPin', CHOOSE_IMPORT: 'importPick', CHOOSE_FRESH: 'freshWarning', STUDY_TAP: 'studyPin', HANDOVER_TAP: 'handoverPin' },
   shopPin: { PIN_OK: 'shopChoice', CANCEL: 'overview' },
   shopChoice: { CHOOSE_IMPORT: 'importPick', CHOOSE_FRESH: 'freshWarning', CANCEL: 'overview' },
   importPick: { FILE_OK: 'importConfirm', CANCEL: 'overview' },
@@ -60,6 +70,9 @@ export const roleTransitions = {
   freshing: { DONE: 'result', FAILED: 'freshWarning' },
   studyPin: { PIN_OK: 'studying', CANCEL: 'overview' },
   studying: { DONE: 'result', FAILED: 'overview' },
+  handoverPin: { PIN_OK: 'handoverReady', CANCEL: 'overview' },
+  handoverReady: { CONFIRM: 'handingOver', PIN_AGAIN: 'handoverPin', CANCEL: 'overview' },
+  handingOver: { DONE: 'result', FAILED: 'handoverReady' },
   result: { BACK: 'overview' },
 } as const satisfies Record<RoleView, Partial<Record<RoleEvent, RoleView>>>;
 

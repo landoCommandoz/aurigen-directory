@@ -36,6 +36,10 @@ function main(): number {
 try {
   process.exitCode = main();
 } catch (error) {
-  console.error('content build crashed:', error instanceof Error ? (error.stack ?? error.message) : error);
+  // Content problems never reach here (pipeline.ts lists them). This is a bug in the build itself.
+  const message = error instanceof Error ? error.message : String(error);
+  console.error(`content build stopped by a bug in the build script, not in your content: ${message}`);
+  console.error('Nothing was written to src/generated/. Run with DEBUG=1 to see where it stopped.');
+  if (process.env.DEBUG && error instanceof Error && error.stack) console.error(error.stack);
   process.exitCode = 1;
 }

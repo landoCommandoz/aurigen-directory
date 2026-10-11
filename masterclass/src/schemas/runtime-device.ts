@@ -8,6 +8,13 @@ import { At, RecordId, recordShape, type TableName } from './records';
 
 /* ---------- Device role ---------- */
 
+/**
+ * FROZEN (DEF-13, 2026-10-11). DEVICE_ROLES, DeviceRole, and the Settings field `deviceRole` keep
+ * exactly this shape for good. D5 allows a rollback, and an older copy that cannot read the role
+ * locks the gates. A future need (a crew tablet, a kiosk) is a NEW optional Settings field, for
+ * example `deviceKind`, which an older copy drops on read (settingsRead.ts) and keeps working.
+ * src/schemas/frozen-shapes.test.ts fails on any change here. Do not edit that test to pass.
+ */
 export const DEVICE_ROLES = ['study', 'shop'] as const;
 export const DeviceRole = z.enum(DEVICE_ROLES);
 export type DeviceRoleName = z.infer<typeof DeviceRole>;
@@ -89,13 +96,76 @@ export function canBecomeStudy(input: { currentRole: DeviceRoleName; ownerPassVa
   return { allowed: true };
 }
 
+/* ---------- Hand over to another phone (2026-10-11, [HOUSE default], D12 amendment) ---------- */
+
+/**
+ * How the hand-over backup's share sheet ended. Only 'shared' (navigator.share resolved) switches
+ * the phone. A download or a text copy does not count: a device with no file share sheet uses
+ * Save backup, then "Switch to study phone", as before.
+ */
+export const HAND_OVER_SHARE_OUTCOMES = ['notStarted', 'shared', 'canceled', 'failed'] as const;
+export type HandOverShareOutcome = (typeof HAND_OVER_SHARE_OUTCOMES)[number];
+
+export interface HandOverInput {
+  currentRole: DeviceRoleName;
+  /**
+   * The owner pass was valid when Hand over started (the PIN comes first). It may lapse while the
+   * share sheet is open; a backup that already left the phone is not undone by that.
+   */
+  ownerPassAtStart: boolean;
+  share: HandOverShareOutcome;
+}
+
+export type HandOverDecision =
+  | { allowed: true }
+  | { allowed: false; code: 'notShop' | 'noOwnerPass' | 'shareNotDone'; message: string };
+
+/**
+ * "Hand over to another phone", on the shop phone: owner PIN, then a backup through the share
+ * sheet, and only after the share resolves does this phone switch to study (logged roleChange).
+ * Until then nothing changes, so one shop phone at a time stays true in every order of events.
+ */
+export function canHandOver(input: HandOverInput): HandOverDecision {
+  if (input.currentRole !== 'shop') {
+    return { allowed: false, code: 'notShop', message: 'Only the shop phone can hand over. This phone is already a study phone.' };
+  }
+  if (!input.ownerPassAtStart) {
+    return { allowed: false, code: 'noOwnerPass', message: 'Enter the owner PIN to hand over this phone.' };
+  }
+  if (input.share !== 'shared') {
+    return {
+      allowed: false,
+      code: 'shareNotDone',
+      message: 'Nothing changed. This phone stays the shop phone until the backup is saved through the share sheet.',
+    };
+  }
+  return { allowed: true };
+}
+
+/**
+ * The settings row the hand-over switch writes, in one transaction with its roleChange audit
+ * entry. The PIN, the jobs, and the Academy records stay on the phone; a study phone shows no job
+ * screens and cannot sign off (ROLE_CAN), so what stays is read only for Academy.
+ */
+export function settingsOnHandOver(current: SettingsValue, nowIso: string): SettingsValue {
+  return { ...current, deviceRole: 'study', roleChosenAt: nowIso, customerViewOn: false, focusReminderShown: false };
+}
+
 /* ---------- Owner PIN (D4) ---------- */
 
 /** What a person types. Never stored, never logged. */
 export const PIN_LENGTH = 6;
 export const PinEntry = z.string().regex(/^\d{6}$/, { error: 'The PIN is 6 digits' });
 
-/** The stored PIN: a salted hash only. PBKDF2 through Web Crypto; plain salted SHA-256 is the fallback (D4). */
+/**
+ * The stored PIN: a salted hash only. PBKDF2 through Web Crypto; plain salted SHA-256 is the fallback (D4).
+ *
+ * FROZEN (DEF-13, 2026-10-11): the fields, their order, their checks, and the two algorithm names
+ * never change. A new hash (Argon2id, more iterations than an old phone can bear) goes in a NEW
+ * optional Settings field next to `ownerPin`, and the version that writes it keeps writing this
+ * record for the same PIN, so a rolled-back copy still checks the current PIN. Changing this shape
+ * makes every older copy lock the owner out. src/schemas/frozen-shapes.test.ts fails on any change.
+ */
 export const OwnerPin = z.strictObject({
   algorithm: z.enum(['PBKDF2-SHA-256', 'SHA-256']),
   iterations: z.number().int().min(1),

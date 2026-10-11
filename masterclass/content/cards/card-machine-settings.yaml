@@ -5,6 +5,7 @@ kind: settings
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "8.3"
 tags: [polish, machine, speed, pressure, settings]
 synonyms:
@@ -22,6 +23,18 @@ sources:
   - label: HF product page, item 56367
     date: 2026-10-07
     note: Speeds 4 to 6 for polishing or compounding
+  - label: HF item page, 56367
+    url: https://go.harborfreight.com/sku/56367/
+    date: 2026-10-10
+    note: Speeds 2 to 3 to apply or remove wax or sealant, speeds 4 to 6 when compounding or polishing. Fact-checker FC-22.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: BAUER 56367 owner's manual, 2021
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-10
+    note: Page 8 says only use slower speeds for polishing and does not define slower. Page 8 also says keep pressure off the tool and let the foam pad lightly contact the surface. Fact-checker FC-22 and FC-23.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
 rows:
   - label: Square
     value: 2 x 2 ft, taped. One square at a time.
@@ -35,10 +48,19 @@ rows:
   - label: HF polishing range
     value: Speeds 4 to 6.
     status: sourced
+  - label: Speed, the 56367 manual
+    value: The 56367 manual says only use slower speeds for polishing, or the paint may be damaged. It does not say which speeds count as slower.
+    status: sourced
   - label: Arm speed
     value: About 1 inch per second. Slower than feels right.
   - label: Pressure
     value: About 10 lb. Practice on a bathroom scale.
+  - label: Pressure, the 56367 manual
+    value: The 56367 manual says keep pressure off the tool. The foam pad should lightly touch the paint.
+    status: sourced
+  - label: Lando decides which applies (pending)
+    value: Speed 4 and about 10 lb, or the manual's slower speeds and light touch. Until he decides, the house settings stay.
+    status: verify
   - label: One set
     value: Left to right, overlapping by half, then top to bottom.
   - label: Sets per square

@@ -113,10 +113,8 @@ test('the study phone setup also leaves no small target on the setup and backup 
   expect(problems).toEqual([]);
 });
 
-// DEF-07 (later): the device preview buttons set min-height 44px (src/features/settings/dev/dev.css),
-// which wins over the Shop density's 64 px. A developer tool, but it shows on every screen once on.
+// DEF-07 (fixed in the fix wave): the device preview buttons follow --target-min, 64 px in Shop.
 test('the device preview buttons are 64 px tall in Shop density', async ({ page }) => {
-  test.fail(true, 'DEF-07: .mc-preview__button min-height 44px overrides Shop density');
   await setUpStudyPhone(page);
   await turnDeveloperToolsOn(page);
   await openApp(page, '/');

@@ -1,6 +1,7 @@
 /**
  * What a checked backup holds, shown before anything is replaced (D12): its date, the device role
  * it came from, jobs, cars toward 25, founder's slots used, photos, and whether it carries a PIN.
+ * A file made while its phone could not read its role or PIN says "Not readable" for both (DEF-13).
  */
 import type { BackupSummary as Summary } from '../../../core/backupFile';
 import { formatBytes, formatWhen, roleWords, yesNo } from './format';
@@ -29,7 +30,7 @@ export function BackupSummary({ summary }: { summary: Summary }) {
         { label: SUMMARY_LABELS.cars, value: String(summary.carsLogged) },
         { label: SUMMARY_LABELS.founder, value: String(summary.founderSlotsUsed) },
         { label: SUMMARY_LABELS.photos, value: summary.photos === 'included' ? `${summary.photoCount} included` : 'Not included' },
-        { label: SUMMARY_LABELS.pin, value: yesNo(summary.hasPin) },
+        { label: SUMMARY_LABELS.pin, value: summary.settings === 'unreadable' ? 'Not readable' : yesNo(summary.hasPin) },
         { label: SUMMARY_LABELS.version, value: summary.appVersion },
         { label: SUMMARY_LABELS.size, value: formatBytes(summary.bytes) },
       ]}

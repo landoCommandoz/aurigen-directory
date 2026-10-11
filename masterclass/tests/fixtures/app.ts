@@ -5,7 +5,7 @@
  * shortcut is readStore(), which reads IndexedDB directly so a test can prove that a refused or
  * doubled tap wrote nothing.
  */
-import { expect, type Download, type Page } from '@playwright/test';
+import { expect, type Download, type Page, type Request } from '@playwright/test';
 
 /** The owner PIN every test uses. Six digits (D4). */
 export const PIN = '482915';
@@ -33,11 +33,34 @@ export interface PageProblems {
   page: string[];
   failed: string[];
   http: string[];
+  /** net::ERR_ABORTED failures, each with the main-frame document it began on; sorted out by settleAborted(). */
+  aborted: { line: string; document: number }[];
+  /** Main-frame documents committed so far: a goto or reload counts, an in-app step (pushState) does not. */
+  documents: number;
+  /** Not a problem, kept for the record: requests the browser cancelled because the test loaded a new page. */
+  superseded: string[];
 }
 
 /** Collect console errors, page errors, failed requests, and responses of 400 or above. */
 export function watchProblems(page: Page): PageProblems {
-  const problems: PageProblems = { console: [], page: [], failed: [], http: [] };
+  const problems: PageProblems = { console: [], page: [], failed: [], http: [], aborted: [], documents: 0, superseded: [] };
+  const documentAtStart = new WeakMap<Request, number>();
+  // A main-frame load is a navigation request followed by a commit (framenavigated). The old document
+  // keeps drawing, and can still ask for a font, until that commit, so the count moves at the commit.
+  let loadPending = false;
+  page.on('request', (request) => {
+    documentAtStart.set(request, problems.documents);
+    try {
+      if (request.isNavigationRequest() && request.frame() === page.mainFrame()) loadPending = true;
+    } catch {
+      // A request with no frame (a service worker's own fetch) never loads a page.
+    }
+  });
+  page.on('framenavigated', (frame) => {
+    if (frame !== page.mainFrame() || !loadPending) return; // a same-document step is not a new page
+    loadPending = false;
+    problems.documents += 1;
+  });
   page.on('console', (message) => {
     if (message.type() === 'error') problems.console.push(message.text());
   });
@@ -46,7 +69,12 @@ export function watchProblems(page: Page): PageProblems {
     const failure = request.failure()?.errorText ?? 'failed';
     // A download handed to the browser reports net::ERR_ABORTED on the blob URL; that is the download, not a failure.
     if (request.url().startsWith('blob:')) return;
-    problems.failed.push(`${request.method()} ${request.url()} ${failure}`);
+    const line = `${request.method()} ${request.url()} ${failure}`;
+    if (failure === 'net::ERR_ABORTED' && !request.isNavigationRequest()) {
+      problems.aborted.push({ line, document: documentAtStart.get(request) ?? problems.documents });
+      return;
+    }
+    problems.failed.push(line);
   });
   page.on('response', (response) => {
     if (response.status() >= 400) problems.http.push(`${response.status()} ${response.url()}`);
@@ -54,7 +82,22 @@ export function watchProblems(page: Page): PageProblems {
   return problems;
 }
 
+/**
+ * A full page load from the test (goto, reload) cancels whatever the last page still had in flight,
+ * such as the idle search preload or a font (pass 4: run 2 caught this once on pages375). That is the
+ * browser leaving the page, not a failure; the next page loads the file again. So net::ERR_ABORTED on
+ * a request that began on an earlier document than the last one loaded is set aside (kept in
+ * superseded for the record). Every other abort, and every other failure, still counts.
+ */
+export function settleAborted(problems: PageProblems): void {
+  for (const { line, document } of problems.aborted.splice(0)) {
+    if (document < problems.documents) problems.superseded.push(line);
+    else problems.failed.push(line);
+  }
+}
+
 export function expectNoProblems(problems: PageProblems): void {
+  settleAborted(problems);
   expect(problems.page, 'page errors').toEqual([]);
   expect(problems.console, 'console errors').toEqual([]);
   expect(problems.failed, 'failed requests').toEqual([]);
@@ -269,7 +312,8 @@ export async function customerViewLeaks(page: Page): Promise<string[]> {
       if (/\/(fixit|cards|search|settings|academy|job|business)(\/|$)/.test(href)) out.push(`an internal link to ${href}`);
     }
     const text = document.body.innerText;
-    for (const word of ['[VERIFY', '[SUPERSEDED', 'nverified', 'Fix It', 'Quick card', 'Quick Card', 'Developer', 'Install', 'owner PIN', 'Owner PIN', 'Set up this phone', 'Backup due', 'Update ready', 'Ready offline', 'founder']) {
+    // Build words count as internal too (DEF-11): a customer never reads about phases or previews.
+    for (const word of ['[VERIFY', '[SUPERSEDED', 'nverified', 'Fix It', 'Quick card', 'Quick Card', 'Developer', 'Install', 'owner PIN', 'Owner PIN', 'Set up this phone', 'Backup due', 'Update ready', 'Ready offline', 'founder', 'Phase', 'phase', 'preview', 'Preview', 'placeholder', 'reference/', 'Masterclass']) {
       if (text.includes(word)) out.push(`the text "${word}"`);
     }
     return out;

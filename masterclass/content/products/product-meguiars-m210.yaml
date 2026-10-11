@@ -1,10 +1,11 @@
 id: product-meguiars-m210
 type: product
-title: Meguiar's M210 finishing polish
+title: Meguiar's M210 Ultra Pro Finishing Polish
 brand: Meguiar's
 audience: [owner, crew]
 visibility: internal
 status: sourced
+version: 2
 kbRef: "3.3"
 tags: [polish, finishing polish, ladder]
 synonyms:
@@ -15,15 +16,26 @@ synonyms:
   - the polish
   - polish
   - m two ten
+  - ultra pro finishing polish
+  - mirror glaze polish
 sources:
-  - label: Meguiar's M210 label
-    date: 2026-10-06
-    note: Built for dark and sensitive paint
+  - label: Meguiar's M210 professional page
+    url: https://www.meguiars.com/professional/products/meguiars-m210-mirror-glaze-ultra-pro-finishing-polish-deep-glossy-finish
+    date: 2026-10-10
+    note: Full name Meguiar's M210 Mirror Glaze Ultra Pro Finishing Polish. Deep, glossy finish on dark and sensitive paints. Safe by hand, dual action, or rotary. Read through the search index. Fact-checker FC-09 and FC-10.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Meguiar's M210 product page, M21032
+    url: https://www.meguiars.com/products/professional/paint/meguiars-professional-m210-ultra-pro-finishing-polish-mirror-glaze
+    date: 2026-10-10
+    note: M21032 is the 32 oz bottle. M21001 is the gallon. Read through the search index. Fact-checker FC-09.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
 jobs:
   - Polish, the one-step
   - Rungs 1 and 2 of the pad ladder, on yellow or maroon
   - The yellow pass that clears compound haze
-labelNotes: The label says it is built for dark and sensitive paint.
+labelNotes: "Meguiar's says it creates a deep, glossy finish even on dark and sensitive paints, and it is safe by hand, DA, or rotary. Meguiar's full name: Meguiar's M210 Mirror Glaze Ultra Pro Finishing Polish."
 related:
   - card-pad-ladder
   - card-pad-priming

@@ -14,11 +14,19 @@
  * (overscroll-behavior and touch-action), never by locking the body.
  * There is no swipe to close: Shop Mode has no gestures.
  * Rendered into document.body, so set data-density on <html>.
+ *
+ * The sheet opens over the button that opened it. For TAP_GUARD_MS (350 ms)
+ * after each opening, nothing in the layer takes a tap: the backdrop, Close,
+ * and every button in the body and footer. So the second tap of a double tap
+ * neither closes the sheet at once nor presses a button that just opened
+ * under the thumb (QA DEF-04). Escape, Tab, and Enter or Space on a focused control work as
+ * always (see useTapGuard).
  */
 import { useEffect, useId, useRef, useState, type ReactNode, type RefObject } from 'react';
 import { createPortal } from 'react-dom';
 import { Button } from './Button';
 import { useFocusTrap } from './useFocusTrap';
+import { useTapGuard } from './useTapGuard';
 import { exitDelay } from './util';
 import './Drawer.css';
 
@@ -84,11 +92,17 @@ export function Drawer({
   }, [phase]);
 
   useFocusTrap(sheetRef, phase === 'open', initialFocusRef);
+  const guard = useTapGuard(phase === 'open');
 
   if (phase === 'closed' || typeof document === 'undefined') return null;
 
   return createPortal(
-    <div className="ui-drawer-layer" data-state={phase}>
+    <div
+      className="ui-drawer-layer"
+      data-state={phase}
+      data-tap-guard={guard.holding ? 'on' : undefined}
+      {...guard.captureHandlers}
+    >
       <div className="ui-drawer-backdrop" aria-hidden="true" onClick={() => onCloseRef.current()} />
       {/* A non-modal <dialog open>: showModal() would put the sheet in the top
           layer and make toasts ("Undo last") unreachable. The focus trap,

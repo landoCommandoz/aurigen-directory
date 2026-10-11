@@ -5,6 +5,7 @@ model: 1918E-B
 audience: [owner, crew]
 visibility: internal
 status: sourced
+version: 2
 kbRef: "3.1"
 tags: [polisher, machine, da, long-throw]
 synonyms:
@@ -17,13 +18,29 @@ synonyms:
   - long throw polisher
   - random orbital
   - polisher speeds
+  - test run
 sources:
   - label: HF product page, item 56367
     date: 2026-10-07
     note: Specs, speed guidance, and FAQ on vibration
-  - label: BAUER 56367 owner's manual
-    date: 2026-10-07
-    note: Stop use if abnormal vibration occurs; tech and parts line; M8 x 1.25 spec listing
+  - label: HF product page, item 56367, spec table
+    url: https://www.harborfreight.com/75-amp-6-in-20-mm-long-throw-random-orbit-da-polisher-56367.html
+    date: 2026-10-10
+    note: "Thread Size M8-1.25. Model 1918E-B. The thread size comes from this page, not the manual. Read through the search index. Fact-checker FC-17 and FC-18."
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: HF item page, 56367
+    url: https://go.harborfreight.com/sku/56367/
+    date: 2026-10-10
+    note: Speeds 2 to 3 to apply or remove wax or sealant, speeds 4 to 6 when compounding or polishing. Fact-checker FC-22.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: BAUER 56367 owner's manual, 2021
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-10
+    note: Page 3 and page 10 on abnormal vibration. Page 7, the 30-second test run. Page 8, slower speeds and pressure off the tool. Page 10, checks before each use. Every page footer prints the tech line. No thread size anywhere in the manual. Fact-checker FC-18, FC-20, FC-22, FC-23, and FC-24.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
 specs:
   - label: Harbor Freight item
     value: "56367"
@@ -59,8 +76,21 @@ specs:
     value: Spread on 1 to 2. Work on 4.
     status: house
     kbRef: "8.3"
+  - label: Speed, the 56367 manual
+    value: The 56367 manual says only use slower speeds for polishing, or the paint may be damaged. It does not say which speeds count as slower.
+    status: sourced
+  - label: House pressure
+    value: About 10 lb. Last set, let the machine float on its own weight.
+    status: house
+    kbRef: "8.3"
+  - label: Pressure, the 56367 manual
+    value: The 56367 manual says keep pressure off the tool. The foam pad should lightly touch the paint.
+    status: sourced
+  - label: Lando decides which applies (pending)
+    value: Speed 4 and about 10 lb, or the manual's slower speeds and light touch. Until he decides, the house settings stay.
+    status: verify
   - label: Backing plate thread
-    value: M8 x 1.25
+    value: M8 x 1.25, from the HF product page
     status: sourced
     kbRef: "14"
   - label: Tech and parts line, printed in the manual
@@ -75,7 +105,11 @@ specs:
     status: verify
     kbRef: "18.2"
 checks:
-  - text: Abnormal vibration? Stop use immediately. The manual says so.
+  - text: "Test run before you polish: pad mounted on the backing pad, plug in, set the highest speed, and run it at least 30 seconds off the car."
+    status: sourced
+  - text: Abnormal noise or vibration? Stop use immediately. Get it fixed before further use. The manual says so.
+    status: sourced
+  - text: Before each use, look for loose hardware, misaligned or binding parts, and cracked or broken parts. Do not use damaged equipment.
     status: sourced
   - text: To reduce vibration, center the foam pad on the backing pad and spread compound evenly around the pad.
     status: sourced

@@ -3,14 +3,15 @@
  *
  * PinGate: "Enter owner PIN". A correct PIN opens core's 5 minute owner pass, then onSuccess runs.
  *   With the pass already open it calls onSuccess at once (D4: the pass lives 5 minutes).
- *   Wrong PINs show the tries left; the third locks entry for 30 seconds with a countdown.
+ *   Wrong PINs show the tries left; the third locks entry for 30 seconds with a countdown in
+ *   seconds. A lock still running after a reload shows as soon as the pad opens (DEF-05).
  * NewPinEntry: a new PIN entered twice. A mismatch starts again. The digits live in memory only,
  *   are never logged, and are dropped as soon as onComplete has them.
  */
 import { useEffect, useRef, useState } from 'react';
 import { PinPad } from '../../../components/ui';
-import { nowMs } from '../../../core/clock';
-import { ownerPassActive, verifyPin } from '../../../core/pin';
+import { PIN_LOCK_MS, ownerPassActive, verifyPin } from '../../../core/pin';
+import { usePinLock } from '../../../core/usePinLock';
 
 export interface PinGateProps {
   label?: string;
@@ -23,8 +24,7 @@ export interface PinGateProps {
 export function PinGate({ label = 'Enter owner PIN', onSuccess, onCancel, skipIfPassActive = true }: PinGateProps) {
   const [checking, setChecking] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
-  const [lockedUntil, setLockedUntil] = useState<number | null>(null);
-  const [now, setNow] = useState(() => nowMs());
+  const lock = usePinLock();
   const mounted = useRef(true);
   const done = useRef(false);
   const latest = useRef(onSuccess);
@@ -44,19 +44,6 @@ export function PinGate({ label = 'Enter owner PIN', onSuccess, onCancel, skipIf
     };
   }, [skipIfPassActive]);
 
-  useEffect(() => {
-    if (lockedUntil === null) return undefined;
-    const timer = window.setInterval(() => {
-      const t = nowMs();
-      setNow(t);
-      if (t >= lockedUntil) {
-        setLockedUntil(null);
-        setError(undefined);
-      }
-    }, 500);
-    return () => window.clearInterval(timer);
-  }, [lockedUntil]);
-
   async function check(pin: string) {
     if (checking || done.current) return;
     setChecking(true);
@@ -70,23 +57,23 @@ export function PinGate({ label = 'Enter owner PIN', onSuccess, onCancel, skipIf
       return;
     }
     if (result.code === 'locked') {
-      setLockedUntil(nowMs() + (result.lockedForMs ?? 30_000));
-      setNow(nowMs());
+      lock.lockFor(result.lockedForMs ?? PIN_LOCK_MS);
+      setError(undefined);
+      return;
     }
     setError(result.message);
   }
 
-  const locked = lockedUntil !== null && now < lockedUntil;
-  const status = locked ? `Locked. Try again in ${Math.max(1, Math.ceil((lockedUntil - now) / 1000))} seconds.` : checking ? 'Checking' : undefined;
+  const status = lock.words ?? (checking ? 'Checking' : undefined);
 
   return (
     <PinPad
       label={label}
       onComplete={(pin) => void check(pin)}
       onCancel={onCancel}
-      error={locked ? undefined : error}
+      error={lock.words !== undefined ? undefined : error}
       status={status}
-      disabled={checking || locked}
+      disabled={checking || lock.locked}
     />
   );
 }

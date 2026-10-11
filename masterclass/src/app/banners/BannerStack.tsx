@@ -39,6 +39,17 @@ const SETUP_COPY = {
   },
 } as const;
 
+/** The Home notice when the settings row cannot be read (DEF-08, DEF-13): what happened, then the one thing to do. */
+export const SETTINGS_NOTICE_TEXT =
+  "This phone's saved settings could not be read, so nothing was changed. They may come from a newer version of the app. Your jobs are still on this phone: tap Open Backup and save a backup now. Fix It, Quick Cards, and Search still work.";
+
+const BACKUP_PATH = '/settings/backup';
+
+/** The Backup and restore screen, where the settings notice never shows (DEF-13). */
+export function isBackupScreen(path: string): boolean {
+  return path.replace(/\/+$/, '') === BACKUP_PATH;
+}
+
 export function BannerStack({ path }: { path: string }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -90,16 +101,20 @@ export function BannerStack({ path }: { path: string }) {
     switch (key) {
       case 'storage':
         // A settings row this version cannot read (a newer version wrote it, DEF-08) is not a
-        // Private Browsing or space problem: plain words and the way to Backup and Restore.
+        // Private Browsing or space problem: plain words and one real next step. Backup always
+        // works now, whatever part of the row cannot be read (DEF-13), so the step is Save backup.
         if (snapshot.status === 'unavailable' && snapshot.error instanceof RecordInvalid) {
+          // The Backup screen says this in its own words, right above Save backup; a notice there
+          // telling the person to open Backup would send them in a circle (DEF-13).
+          if (isBackupScreen(path)) return null;
           return (
             <Banner
               key={key}
               tone="warning"
               title="Settings could not be read"
-              action={{ label: 'Open Backup', onAction: () => navigate('/settings/backup') }}
+              action={{ label: 'Open Backup', onAction: () => navigate(BACKUP_PATH) }}
             >
-              {snapshot.error.message} Fix It, Quick Cards, and Search still work.
+              {SETTINGS_NOTICE_TEXT}
             </Banner>
           );
         }

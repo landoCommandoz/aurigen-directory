@@ -96,3 +96,13 @@ test('the scroll container scrolls and the bottom row stays put on a long screen
   // The document itself never scrolls (html, body, #root are 100dvh flex columns).
   expect(await page.evaluate(() => document.scrollingElement?.scrollTop ?? 0)).toBe(0);
 });
+
+// DEF-10 (fixed in the fix wave): the Job Runner placeholder named reference/, a folder in the code
+// repo that the phone cannot open. No screen should send the person to a path in the repo.
+test('no placeholder points at a folder in the code repo', async ({ page }) => {
+  for (const path of ['/job', '/business', '/academy']) {
+    await openApp(page, path);
+    const words = await page.locator('main').innerText();
+    expect(words, path).not.toMatch(/reference\/|docs\/|content\/|src\//);
+  }
+});

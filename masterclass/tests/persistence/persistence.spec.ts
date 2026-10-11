@@ -70,6 +70,27 @@ test.describe('state that must survive', () => {
     const fails = (await readStore<{ type: string }>(page, 'auditLog')).filter((a) => a.type === 'pinFail');
     expect(fails).toHaveLength(1);
   });
+  test('DEF-05: two wrong PINs, a reload, and a third wrong PIN lock entry; the countdown shows at once on the next pad', async ({ page }) => {
+    await makeShopPhone(page, { backup: false });
+    await page.reload();
+    await openApp(page, '/settings/device');
+    await page.getByRole('button', { name: 'Make this a study phone' }).click();
+    await tapPin(page, '000000');
+    await expect(page.getByText('Wrong PIN. 2 tries left.')).toBeVisible();
+    await tapPin(page, '000000');
+    await expect(page.getByText('Wrong PIN. 1 try left.')).toBeVisible();
+    await page.reload();
+    await openApp(page, '/settings/device');
+    await page.getByRole('button', { name: 'Make this a study phone' }).click();
+    await tapPin(page, '000000');
+    await expect(page.getByText(/Locked after three wrong PINs|PIN entry is locked/).first()).toBeVisible();
+    await page.reload();
+    await openApp(page, '/settings/device');
+    await page.getByRole('button', { name: 'Make this a study phone' }).click();
+    // The lock is read back before anything is typed (DEF-05: shown as soon as the pad opens).
+    await expect(page.getByText(/Locked after three wrong PINs\. Try again in \d+ seconds?\./)).toBeVisible();
+    expect((await readSettings(page)).deviceRole).toBe('shop');
+  });
 });
 
 test.describe('state that must not survive', () => {

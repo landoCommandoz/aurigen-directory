@@ -1,26 +1,30 @@
 /**
- * Backup into the phone (D3, D12, BLUEPRINT 3.9). Two steps, so the screen can ask before
- * anything changes:
- *   1. readBackup(fileOrText): JSON, schema, format version, checksum. Writes nothing. Returns the
- *      summary the confirm screen shows (date, jobs, cars logged, founder's slots, role).
- *   2. importBackup(verified, { path, confirmed }): one transaction replaces every table. Customer
- *      View is off afterwards, the audit log records the import and any role change, and the
- *      counters are recomputed from the imported job log.
+ * Backup into the phone (D3, D12, BLUEPRINT 3.9). The screen asks before anything changes:
+ *   1. readBackup(fileOrText): JSON, schema, format version, checksum. Writes nothing. Reads both
+ *      kinds of version 1 file (DEF-13: one may have unreadable settings).
+ *   2. previewRestore(verified, path) in restorePreview.ts: the plan and both sets of counts (this
+ *      phone now, then the file), for the confirm screen. Writes nothing.
+ *   3. importBackup(verified, { path, confirmed, backupOffered }): one transaction that follows
+ *      restorePlan (src/schemas/backup-recovery.ts) on this phone's row as it reads inside that
+ *      transaction, so the plan and the write see the same row. Customer View is off afterwards,
+ *      the audit log records the import and any role change, and the counters are recomputed.
  *
- * Rules: a shop backup may land on any phone (that is how a second phone becomes the shop phone).
- * A study backup is refused on the shop path and on a shop phone (it would replace the jobs).
- * A phone that already has an owner PIN asks for it (the owner pass) before being replaced.
- * The phone's own settings row is read with the recovery read (DEF-08), so a row a newer version
- * wrote, or one with a damaged field, can still be replaced; its role and PIN are never guessed.
+ * The rules live in restorePlan and are not restated here: which settings row lands (the file's,
+ * this phone's, or a fresh study row), when the owner pass is needed (this phone has a readable
+ * PIN), when a backup of this phone must have been offered first (its own settings are
+ * unreadable), and how restored sign-offs land (needs re-check unless the PIN that made them
+ * comes with the file).
  */
-import { canBecomeShop, type DeviceRoleName, type JobPhotoValue, type TableName } from '../schemas';
+import { restorePlan, settingsAfterRestore, signOffsAfterRestore, type DeviceRoleName, type JobPhotoValue, type RestorePath, type RestorePlanOk, type SettingsValue, type TableName } from '../schemas';
 import { base64ToBytes } from './base64';
-import { verifyBackupBlob, verifyBackupText, type ReadBackupResult, type VerifiedBackup } from './backupFile';
+import { parsedBackupOf, verifyBackupBlob, verifyBackupText, type ReadBackupResult, type VerifiedBackup } from './backupFile';
+import { nowIso } from './clock';
 import { getPriceItems } from './content';
 import { summarizeCounters, type CounterSummary } from './counters';
-import { ALL_TABLES, readSettingsForRecoveryIn, storageRefusal, validRow, withDb, writeSettingsIn } from './db';
-import { markShopViaImport } from './importRules';
+import { storageRefusal, validRow, withDb, writeSettingsIn } from './db';
+import { restoreAudit } from './importRules';
 import { RefusedError, refuse, type Refusal } from './errors';
+import { readThisPhoneSettingsIn } from './phoneSettings';
 import { clearOwnerPass, ownerPassActive } from './pin';
 
 /** Step 1: check a picked file or pasted text. Nothing is written. */
@@ -29,17 +33,30 @@ export async function readBackup(source: Blob | string): Promise<ReadBackupResul
 }
 
 export interface ImportOptions {
-  /** 'importBackup': the "This is the shop phone" path (shop backups only). 'restore': Settings, Restore. */
-  path: 'importBackup' | 'restore';
-  /** The person answered yes to "Is this the newest backup from the shop phone?" (or "Replace everything on this phone?"). */
+  /** 'importBackup': the "This is the shop phone" path (readable shop backups only). 'restore': Settings, Restore. */
+  path: RestorePath;
+  /** The person answered yes to "Is this the newest backup from the shop phone?" (or typed the word for Restore). */
   confirmed: boolean;
+  /** The screen offered a backup of this phone first. Required when this phone's own settings are unreadable (DEF-13). */
+  backupOffered?: boolean;
 }
 
-export type ImportCode = 'notConfirmed' | 'notShopBackup' | 'noOwnerPass' | 'shopNeedsShopBackup' | 'noPin' | 'choosePath' | 'warningNotAccepted' | 'storage';
+export type ImportCode =
+  | 'notConfirmed'
+  | 'notShopBackup'
+  | 'noOwnerPass'
+  | 'shopNeedsShopBackup'
+  | 'noPin'
+  | 'choosePath'
+  | 'warningNotAccepted'
+  | 'backupNotOffered'
+  | 'storage';
 
 export type ImportResult =
-  | { ok: true; deviceRole: DeviceRoleName; roleChanged: boolean; counters: CounterSummary }
+  | { ok: true; deviceRole: DeviceRoleName; roleChanged: boolean; counters: CounterSummary; plan: RestorePlanOk }
   | Refusal<ImportCode>;
+
+export const BACKUP_NOT_OFFERED_MESSAGE = "This phone's role and owner PIN could not be read. Save a backup of this phone first, then restore.";
 
 function photoRows(backup: VerifiedBackup): JobPhotoValue[] {
   return backup.backup.tables.jobPhotos.map(({ data, ...meta }) =>
@@ -47,24 +64,16 @@ function photoRows(backup: VerifiedBackup): JobPhotoValue[] {
   );
 }
 
-/** Step 2: replace every table with the backup's rows, in one transaction. */
+/** Step 3: replace every table with the backup's rows, in one transaction, as restorePlan says. */
 export async function importBackup(backup: VerifiedBackup, opts: ImportOptions): Promise<ImportResult> {
   if (backup.verified !== true) return refuse('notConfirmed', 'Check the backup file first.');
   if (!opts.confirmed) {
     return refuse('notConfirmed', 'Nothing changed. Confirm that this is the newest backup from the shop phone.');
   }
-  const incomingRole = backup.backup.deviceRole;
-  if (opts.path === 'importBackup') {
-    const decision = canBecomeShop({
-      path: 'importBackup',
-      pinExists: backup.backup.tables.settings[0]?.ownerPin != null,
-      backupDeviceRole: incomingRole,
-    });
-    if (!decision.allowed) return refuse(decision.code, decision.message);
-  }
-
+  const parsed = parsedBackupOf(backup.backup);
   const tables = backup.backup.tables;
-  const rowsByTable: Record<Exclude<TableName, 'settings' | 'jobPhotos'>, readonly unknown[]> = {
+  const fileSettings: SettingsValue | undefined = parsed.settings === 'readable' ? parsed.backup.tables.settings[0] : undefined;
+  const rowsByTable: Record<Exclude<TableName, 'settings' | 'jobPhotos' | 'signOffs'>, readonly unknown[]> = {
     jobs: tables.jobs,
     stageTimings: tables.stageTimings,
     panelReadings: tables.panelReadings,
@@ -73,7 +82,6 @@ export async function importBackup(backup: VerifiedBackup, opts: ImportOptions):
     fieldNotes: tables.fieldNotes,
     crewMembers: tables.crewMembers,
     skillStates: tables.skillStates,
-    signOffs: tables.signOffs,
     quizAttempts: tables.quizAttempts,
     drillLogs: tables.drillLogs,
     flashcardStates: tables.flashcardStates,
@@ -85,24 +93,32 @@ export async function importBackup(backup: VerifiedBackup, opts: ImportOptions):
     const photos = photoRows(backup);
     const outcome = await withDb((db) =>
       db.transaction('rw', db.tables, async () => {
-        const current = (await readSettingsForRecoveryIn(db)).settings;
-        if (current.ownerPin !== null && !ownerPassActive()) {
+        // This phone's row as it reads now (never the throwing guard read): the plan decides.
+        const here = await readThisPhoneSettingsIn(db);
+        const plan = restorePlan(parsed, { settings: here.guard, jobs: await db.jobs.count() }, opts.path);
+        if (!plan.ok) throw new RefusedError(refuse(plan.code, plan.message));
+        if (plan.needs.ownerPass && !ownerPassActive()) {
           throw new RefusedError(refuse('noOwnerPass', 'This phone has an owner PIN. Enter it before replacing its data.'));
         }
-        if (incomingRole === 'study' && current.deviceRole === 'shop') {
-          throw new RefusedError(
-            refuse('shopNeedsShopBackup', 'This is the shop phone. A study backup would replace its jobs. Switch it to a study phone first.'),
-          );
+        if (plan.needs.backupFirst && opts.backupOffered !== true) {
+          throw new RefusedError(refuse('backupNotOffered', BACKUP_NOT_OFFERED_MESSAGE));
         }
-        const { settings, audit } = markShopViaImport(current, backup);
-        for (const name of ALL_TABLES) await db.table(name).clear();
+        const settings = settingsAfterRestore(plan, {
+          file: fileSettings,
+          thisPhone: here.state === 'readable' ? here.salvaged.settings : undefined,
+          nowIso: nowIso(),
+        });
+        for (const name of plan.replaces) await db.table(name).clear();
+        await db.settings.clear();
         for (const [name, rows] of Object.entries(rowsByTable)) {
           if (rows.length > 0) await db.table(name).bulkAdd([...rows]);
         }
+        const signOffs = signOffsAfterRestore(tables.signOffs, plan.signOffs.comeBack);
+        if (signOffs.length > 0) await db.signOffs.bulkAdd(signOffs);
         if (photos.length > 0) await db.jobPhotos.bulkAdd(photos);
-        await writeSettingsIn(db, settings);
-        await db.auditLog.bulkAdd(audit);
-        return { roleChanged: current.deviceRole !== settings.deviceRole, deviceRole: settings.deviceRole, seed: settings.carsLoggedBefore };
+        const written = await writeSettingsIn(db, settings);
+        await db.auditLog.bulkAdd(restoreAudit(plan, backup, opts.path));
+        return { plan, settings: written };
       }),
     );
     // The PIN may have changed with the backup; the old pass does not carry over.
@@ -110,9 +126,10 @@ export async function importBackup(backup: VerifiedBackup, opts: ImportOptions):
     const jobs = await withDb((db) => db.jobs.toArray());
     return {
       ok: true,
-      deviceRole: outcome.deviceRole,
-      roleChanged: outcome.roleChanged,
-      counters: summarizeCounters(jobs, getPriceItems(), outcome.seed),
+      deviceRole: outcome.settings.deviceRole,
+      roleChanged: outcome.plan.roleChange !== null,
+      counters: summarizeCounters(jobs, getPriceItems(), outcome.settings.carsLoggedBefore),
+      plan: outcome.plan,
     };
   } catch (error) {
     if (error instanceof RefusedError) return error.refusal as Refusal<ImportCode>;

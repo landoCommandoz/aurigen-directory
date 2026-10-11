@@ -1,15 +1,411 @@
 # QA report: Phase 1 gate
 
-Owner: qa-adversary. Branch `masterclass/phase-1`. Two passes so far, both on 2026-10-11, both in the cloud VM against the production build served by `vite preview` at `/` (Netlify shape) and at `/aurigen-directory/` (GitHub Pages shape). Every number comes from a command run that day; the key output lines are quoted.
+Owner: qa-adversary. Branch `masterclass/phase-1`. Four passes so far, all on 2026-10-11, all in the cloud VM against the production build served by `vite preview` at `/` (Netlify shape) and at `/aurigen-directory/` (GitHub Pages shape). Every number comes from a command run that day; the key output lines are quoted.
 
 How this file reads, newest first:
 
-1. Pass 2 (recheck): verdict, what the owners fixed, what was rechecked and how, the new defects.
-2. The defect register: every defect from both passes with its current status.
+1. Pass 4 (the fix wave recheck, second round): verdict, DEF-15 in detail, the recheck of every earlier defect, commands.
+2. The defect register: every defect from all four passes with its status after each pass.
 3. What only the phone can answer: the checklist Lando ticks.
-4. Pass 1 record, kept as written, with the original reproduction steps for every defect.
+4. Test inventory and how to run.
+5. Pass 3 record (fix wave recheck, first round), kept as written.
+6. Pass 2 record (recheck), kept as written.
+7. Pass 1 record, kept as written, with the original reproduction steps for DEF-01 to DEF-12.
 
-## Pass 2 verdict (recheck, 2026-10-11, about 01:55 to 02:35 UTC)
+## Pass 4 verdict (fix wave recheck, second round, 2026-10-11, about 06:30 to 08:05 UTC)
+
+**Gate: passed. No defect is open.** DEF-15, the one defect pass 3 found, is fixed by ui-designer and verified. The ten defects closed in pass 3 (DEF-13 fix-before-deploy; DEF-03, DEF-04, DEF-05, DEF-06, DEF-07, DEF-10, DEF-11, DEF-12, DEF-14 later) still hold: every test written for them passes in every full run of this pass. Hand over still holds in every order of events. Nothing new was found in the app. One full run failed once on a race in QA's own test helper (a request the test itself cancelled by loading a new page); QA fixed the helper and added a test for that moment, and the final full run passed. No test anywhere is marked as a known failure any more: no `test.fail`, no `it.fails`, no skip.
+
+The only app change since pass 3 is the DEF-15 fix in `src/components/ui/` (ui-designer) and its note in `docs/DESIGN-DIRECTIONS.md`. A file scan of `src`, `scripts`, `content`, `public`, and the configs for anything newer than 04:30 UTC lists only those files and the generated content bundle.
+
+### Lando, in plain words
+
+- The PIN typing problem from the last pass is fixed. Type a new PIN and its confirmation straight through at any normal speed and it saves. A double tap on the last digit still never types an extra digit.
+- The keys stay exactly where they are when the pad asks for the PIN again, and after "did not match", on every screen size from 320 px up.
+- Everything fixed last time still works: backups with an unreadable role, Hand over, one tap one backup, the wrong-PIN count after a reload, the customer screen. Mobile performance is 91 to 92 (target 90+); layout shift is 0.001.
+- Good to know, not a bug: the pad cannot tell a double tap from a very fast second tap on the same key. If your PIN starts with its own last digit (like 5 8 2 9 1 5) and you jump into the confirmation much faster than you typed the PIN, the first tap can be taken as a double tap and the screen waits with 5 dots. Tap Cancel and type it again at your normal pace. Nothing wrong is ever saved.
+
+## Pass 4: commands and key output
+
+| Command | Result | Key lines |
+|---|---|---|
+| `npm run check`, before QA's changes | exit 0, 41 s | `Test Files 52 passed (52)`, `Tests 980 passed (980)` (pass 3: 961). The owner's new `src/components/ui/__tests__/PinPadStep.test.tsx` adds 20 tests; `PinPad.test.tsx` has one fewer: its four DEF-04 pointer-guard tests are unchanged, and its hardware-key test now asserts that keys count at once inside the window (the DEF-15 rule). QA's DEF-15 tests are e2e only, so `check` was already green |
+| `npm run check`, after QA's changes | exit 0, 43 s | typecheck clean (both programs); `oxlint --deny-warnings` no output; `content build: 77 items (quickcard 14, equipment 22, product 21, glossaryterm 20), 0 customer-safe, 0 superseded left out, 0 sign-off files, 0 synonym groups, 77 search documents`; `Test Files 52 passed (52)`, `Tests 980 passed (980)` |
+| `npx vitest run tests/unit` (QA suites only), twice | exit 0 | `Test Files 10 passed (10)`, `Tests 475 passed (475)` both times |
+| `npx vitest run src/components/ui` (the owner's component suites, including the DEF-15 tests) | exit 0 | `Test Files 11 passed (11)`, `Tests 100 passed (100)` |
+| `npm run build` | exit 0, 15 s | `✓ 349 modules transformed`; `index 199.30 kB (gzip 62.45 kB)`; `vendor 469.55 kB (gzip 146.03 kB)`; `precache 19 entries (938.37 KiB)` |
+| `VITE_BASE=/aurigen-directory/ npm run build` | exit 0, 15 s | `✓ 349 modules transformed`; `precache 19 entries (938.85 KiB)`; `dist/index.html` links `/aurigen-directory/manifest.webmanifest`; manifest `start_url "."`, `scope "."` |
+| `node --check` on `dist/sw.js` and every `dist/assets/*.js` (both builds) | pass | no output |
+| `npm run test:e2e`, run 1 (full: builds `/` and `/aurigen-directory/`, serves 4173 and 4174) | **exit 0**, 11.8 min | `Running 901 tests using 3 workers`; `901 passed (11.8m)`; JSON stats `expected 901, unexpected 0, flaky 0, skipped 0` |
+| `npm run test:e2e`, run 2 (full, with the 2 PIN tests added after run 1) | exit 1, 11.9 min | `Running 911 tests using 3 workers`; `1 failed`, `910 passed (11.8m)`; JSON stats `expected 910, unexpected 1, flaky 0, skipped 0`. The one failure was a race in QA's test, not the app: see "Run 2's one failure" below |
+| `npm run check`, after the fix to QA's request watcher | exit 0, 42 s | `Test Files 52 passed (52)`, `Tests 980 passed (980)` |
+| `npm run test:e2e`, run 3 (full, the final state of every file) | **exit 0**, 12.0 min | `Running 912 tests using 3 workers`; `912 passed (12.0m)`; JSON stats `expected 912, unexpected 0, flaky 0, skipped 0`. Every test is plain: none is marked `test.fail` |
+| Lighthouse 13.5.0, mobile, 3 runs | ran | performance 0.92, 0.91, 0.91; accessibility 1.00; best practices 1.00; SEO 0.54 (noindex on purpose); FCP 2.3 s; LCP 3.0, 3.1, 3.1 s; TBT 80, 70, 30 ms; **CLS 0.001** every run (the same two shifts as pass 3: `nav.app-bottom` 0.0008, `header.app-top > div.app-top__actions` 0.0006) |
+| Lighthouse 13.5.0, `--preset=desktop` | ran | performance 1.00, accessibility 1.00, best practices 1.00, SEO 0.54 (`is-crawlable`, `robots-txt` only); FCP 0.5 s, LCP 0.6 s, TBT 0 ms, CLS 0.0001 |
+| axe-core 4 (WCAG 2.0 to 2.2 A and AA, best practice), scratch probe | ran | 32 screens at 375 and 1440 px: the 16 routes; 5 PIN screens (the new PIN pad on arrival, the confirmation step, the mismatch step, Change PIN current and new); the 3 Hand over screens; the 6 unreadable-settings screens; Customer View with and without the Focus reminder: `total axe violations: 0` |
+| PIN cadence probe (scratch), 375 px | ran | PIN `482915`, new PIN then confirmation at a steady gap: saved at every gap tried. Taps 60, 80, 100, 120, 200, 250, 300 ms; touch taps the same; hardware keys 20, 60, 120, 250 ms. PIN `582915` (starts with its own last digit): saved at every gap from 80 ms up by mouse, at every touch gap including 60 ms, and at every key gap; at 60 ms mouse taps, faster than a thumb can hit separate keys, the first confirmation digit is dropped. Pass 3 for comparison: 4 or 5 dots at 120 to 300 ms |
+| PIN key position probe (scratch) | ran | all 12 keys measured on the first pad, the confirmation, and the mismatch retry, at 320, 360, 375, 430, 768, 1024, 1440 px, in Shop and Academy density: **0 keys moved**. "The two PINs did not match. Enter a new PIN again." takes 2 lines everywhere, inside the 2 reserved; axe 0 on every pad; no sideways scroll; 0 page or console errors |
+| Slow phone probe (scratch, CPU 6 times slower), 375 px | ran | `482915` at 250 and 120 ms, `582915` at 250 and 150 ms: saved. A double tap on the last digit of the first entry: 0 dots on the confirmation, then saved |
+| Change PIN probe (scratch), 375 and 1440 px | ran | the current PIN is checked in about 34 ms, then "New owner PIN" opens with its pad 57 px lower at 375 px (37 px at 1440 px, under the screen's one line of text) and holding 350 ms, as any pad on a new screen does. Typing the new PIN straight on from the current one without looking at the new screen keeps 2 or 3 of the 6 digits (at 250, 400, 600 ms per digit), because the keys moved. Looking first, then typing, saves it (e2e, 5 widths) |
+| Navigation during the search preload (scratch, Pages build, offline and online) | ran | a `page.goto` the moment the idle search preload starts gives exactly `GET .../search-index-CNPyF5Qb.js net::ERR_ABORTED`, and sometimes `fonts/barlow-500.woff2` and `barlow-700.woff2` the same way; the next page loads the chunk again (`finished`) and shows its screen |
+| Customer View probe (scratch), 375 and 1440 px | ran | words on screen, exactly: `Lando's Detailing Serving Tooele, Stansbury, and Grantsville. Ask Lando about today's work. Call or text (801) 680-5090. Exit Customer View`; elements painted in `--accent` or `--accent-muted`: `0`; with the Customer View hint deleted, the only top box drawn during a reload: `div aria-hidden=true text="" h=81` |
+
+Readings from the e2e runs: a 6 times slower CPU draws Home with the bottom row in 933 to 1054 ms in run 3 (885 to 1103 ms in run 1; limit 5000). The double tap on "Create the owner PIN" leaves 0 dots at every width. The pass 3 DEF-15 test now saves the PIN at every width (`dots-left-on-the-confirmation-pad 0`). On the Pages build, Home leads to `/aurigen-directory/`. The first visit is still not controlled by the service worker and the second is (prompt mode, by design in D1).
+
+Nothing was left running: Playwright stopped both servers, the scratch preview servers on 4180 (root build) and 4181 (Pages build) were stopped, and ports 4173, 4174, 4180, and 4181 refuse connections. Lighthouse and axe-core ran from the scratch folder, never from the project. No git command was run.
+
+## Pass 4: the recheck of each defect
+
+| Defect | Severity | Owner's change since pass 3 | Recheck | Evidence |
+|---|---|---|---|---|
+| DEF-15 | later | ui-designer: `src/components/ui/pinStep.ts` (new: `stepHoldFor`, `noteFinish`, `finishToStepFrom`, `isEchoOfFinish`, `STEP_GUARD_MS = 150`, `STEP_GUARD_MIN_MS = 80`); `PinPad.tsx` (a pad that replaces one whose entry has just finished steps in place, with no arrival hold; hardware keys are never held); `useTapGuard.ts` (comment only); `PinPad.css` (two message lines reserved; a stepped pad's keys do not fade in again); `__tests__/PinPadStep.test.tsx` (new, 20 tests); `docs/DESIGN-DIRECTIONS.md` "PIN step in place". app-engineer: no change needed (`NewPinEntry` in `PinGate.tsx` is unchanged) | **closed** | the pass 3 `test.fail` pair (taps, hardware keys) passes as plain tests at 5 widths; new `tests/adversarial/pin-step.spec.ts` (11 tests x 5 widths); the probes above. Details below |
+| DEF-13 | fix-before-deploy | none | still closed | `settings-rollback.spec.ts` (the 3 settings-rollback cases: a role from a newer version, a PIN from a newer hash, a shop role with the PIN gone) and `settings-restore.spec.ts` (restore on an unreadable phone never grants shop or a PIN; sign-offs come back `needsRecheck` when the destination has no readable PIN) pass at 5 widths in every full run; `tests/unit/def13-restore.test.ts` and `settings-recovery.test.ts` pass; axe 0 on the 6 unreadable-settings screens |
+| DEF-03 | later | none | still closed | the Backup screen at four double-tap gaps saves one file each time, and "double tap Save your first backup" saves one file (5 widths, every run) |
+| DEF-04 | later | none (the arrival hold is unchanged for a pad that opens from a button) | still closed | "double tap Create the owner PIN" leaves 0 dots and the 430 px Start fresh double tap keeps the PIN screen (5 widths); new: on Change PIN, a double tap on the last digit of the current PIN types nothing into the new PIN pad |
+| DEF-05 | later | none | still closed | `tests/unit/pin-timing.test.ts`; `persistence.spec.ts` (2 wrong, reload, 1 wrong locks; the countdown shows after another reload), 5 widths |
+| DEF-06 | later | none | still closed | `tests/unit/customer-safe.test.ts` (three copies of one id give 2 problems, nothing written) |
+| DEF-07 | later | none | still closed | `a11y-flows.spec.ts` device preview buttons 64 px tall in Shop, 5 widths |
+| DEF-10 | later | none | still closed | `routes.spec.ts`: no placeholder names a repo folder, 5 widths |
+| DEF-11 | later | none | still closed | every privacy test with the build-word scanner passes at 5 widths; the Customer View probe reads the exact words above with 0 accent elements |
+| DEF-12 | later | none | still closed | `shell.spec.ts`: a clamped preview's button names its real width, 5 widths |
+| DEF-14 | later | none | still closed | Lighthouse mobile CLS 0.001 on 3 runs |
+| DEF-01, DEF-02, DEF-08, DEF-09 | earlier passes | none | still closed | their pass 1 and pass 2 tests pass in every full run (privacy flash tests, encoded line breaks, unrecognised settings fields, `pages375`) |
+| Content (the curator's 14 files from pass 3) | n/a | none since pass 3 | still holds | content build `77 items ... 0 customer-safe`: every item is internal; the 16 seed search cases put the expected top result first (`tests/unit/search-cases.test.ts` inside `npm run check`); the Customer View leak test over every route plus the verify card `/cards/card-ipa-wipe` and `/search?q=ipa` passes at 5 widths: no verify row, no internal element, no internal or build word |
+| Hand over (D12 amendment) | n/a | none | still holds | `tests/adversarial/hand-over.spec.ts` (7 tests x 5 widths) and `tests/unit/hand-over.test.ts` (25 tests) pass in every run; axe 0 on its 3 screens |
+
+### DEF-15 in detail: what was tried and what held
+
+The fix's rule: a pad that mounts in the same task as the finish of the pad before it (NewPinEntry swaps its pad with `key={phase}` inside `onComplete`) steps in place. Its keys are live at once and do not fade in again; only the label fades in. The one tap it drops is a pointer tap on the key that finished the entry, or on whatever key now covers that spot, sooner than the hold: 60% of the middle gap of the entry just typed, never under 80 ms and never over 150 ms. Hardware keys, Enter, and Space are never dropped. A pad that arrives later, after a PIN check or on a new screen, is a new arrival and holds the full 350 ms as before.
+
+- **A steady rhythm saves the PIN.** In the browser at 5 widths: taps at 120, 250, and 300 ms per digit, and hardware keys at 60 and 250 ms. In the probe: every tap gap from 60 to 300 ms and every key gap from 20 to 250 ms. The confirmation pad has no `data-tap-guard` and carries `data-step="true"`.
+- **A PIN that starts with its own last digit** (`582915`) confirms at a steady 120 ms in the browser at 5 widths, and at every steady gap from 80 ms up in the probe, the same on a 6 times slower CPU at 150 and 250 ms.
+- **The doubled last digit is still dropped.** A double tap on the last digit of the first entry leaves the confirmation pad at 0 dots at 5 widths (40 ms), and at 40, 80, and 120 ms in the probe, by mouse and by touch, and on a 6 times slower CPU. The PIN then saves with one `pinSet`. A double tap on the last digit of the confirmation saves one PIN in the setup flow (pass 3 test) and, new, makes one shop phone in Start fresh with no backup saved and audit `pinSet, roleChange, startFresh`.
+- **The keys never move.** All 12 keys keep the same box through the first entry, the confirmation, and the "did not match" retry, at 5 widths in the browser and at 320 to 1440 px in Shop and Academy density in the probe. A steady retry after the mismatch saves the PIN, and nothing is saved before it.
+- **Pads that must still hold do.** A pad opened by a button ("Create the owner PIN", Start fresh) still ignores the second tap of a double tap (DEF-04 tests). On Change PIN, the new PIN pad arrives on a new screen after the current PIN is checked: a double tap on the last current digit types nothing into it, and the new PIN then saves (second `pinSet`, a different hash).
+- **A pad that stays put never holds.** After "Wrong PIN. 2 tries left." on the Developer tools drawer, the correct PIN typed at 120 ms per digit opens Developer tools.
+- **Targets, motion, and access.** The confirmation and mismatch pads keep every key at least 44 px wide and 64 px tall in Shop density with no sideways scroll (5 widths). With reduced motion nothing in the pad animates or transitions for more than 10 ms, before or after the step. axe: 0 violations on the arrival, confirmation, and mismatch pads.
+- **Memory only.** The hand-off between the two pads holds the finishing key, the tap point, and the time for one task, in memory; it is never stored or logged.
+
+Observed, not a defect (the trade-off the rule makes, written into DESIGN-DIRECTIONS "PIN step in place"):
+
+- No rule can tell a double tap from a very fast deliberate second tap on the same key. A tap on the finishing key counts as a double tap when it lands sooner than 60% of the person's own pace (capped at 150 ms). Probe: `582915` with the first entry at 400 ms per digit and the first confirmation digit 120 ms after the last digit: dropped, 5 dots, no message. At 160 or 200 ms: saved. At a steady pace it saves at every pace a thumb can reach (80 ms per digit and slower). Nothing wrong is ever saved; the person sees 5 dots and starts again. Recorded with numbers in case a phone shows otherwise; there is a line for it in the phone checklist.
+- Change PIN is two screens. After the current PIN, "New owner PIN" opens with its pad lower on the screen and the usual 350 ms hold of a new arrival, so a person who types the new PIN without looking at the new screen hits the wrong keys. That is the rule as written (a pad on a new screen is a new arrival, DESIGN-DIRECTIONS); the person chooses a new PIN there, so a look is expected. Recorded with the numbers above.
+
+### Run 2's one failure: a race in QA's test, fixed in QA's helper
+
+- **What failed.** `tests/e2e/pages-base.spec.ts` "every asset and the service worker live under the base path; the app installs and works offline there" (`pages375`) in run 2 only, on `failed requests`: `GET http://localhost:4174/aurigen-directory/assets/search-index-CNPyF5Qb.js net::ERR_ABORTED`. The same test passed in run 1, in 20 repeats on its own, and in passes 1 to 3.
+- **Why.** `src/main.tsx` loads the search index while the phone is idle after each page load. The test reloads offline and then calls `page.goto('cards')`, a full page load. When the full suite keeps the machine busy, the preload is still in flight at that moment, and the browser cancels it, as it cancels everything a page still has in flight when it is left. A scratch probe makes that moment happen on purpose and gets the same line every time, sometimes with two fonts the old page was still drawing (`barlow-500.woff2`, `barlow-700.woff2`). The next page loads the chunk again and its screen works, offline too. In the app a person moves between screens without a page load, so nothing is cancelled; after a reload, the next load fetches it again.
+- **Not an app defect.** No screen, search, or offline behavior was wrong; the watcher counted a request the test itself had cancelled.
+- **The fix (QA's files only).** `tests/fixtures/app.ts`: `watchProblems` now notes which page each request began on (a page counts when its load commits, so the old page's last font requests stay with the old page), and `expectNoProblems` first calls the new `settleAborted`, which sets aside only `net::ERR_ABORTED` on a request that began on an earlier page than the last one loaded. Those go to `superseded`, kept for the record. Every other failure still counts. A scratch check confirmed both sides: a request aborted on the page still showing, and a request that failed on an earlier page, are both still reported as failures.
+- **The new test.** `pages-base.spec.ts` "a full reload while the search index is still loading, offline: no error, and the next screen searches" reloads offline, waits for the preload request to start, loads Search at once, and finds "Pre-polish wash bucket mix" for "bucket". It passed 8 of 8 repeats on its own and in run 3, and records what was set aside, for example `GET .../search-index-CNPyF5Qb.js net::ERR_ABORTED; GET .../fonts/barlow-500.woff2 net::ERR_ABORTED; ...` (one repeat in four records none: the preload had already finished).
+
+## Pass 4: Lando's 15-point audit on the changed files
+
+Files: `src/components/ui/pinStep.ts` (new, 98 lines), `PinPad.tsx` (220), `PinPad.css` (155), `useTapGuard.ts` (106), `__tests__/PinPadStep.test.tsx` (new, 212), `__tests__/PinPad.test.tsx` (221), `__tests__/tap.ts`, `docs/DESIGN-DIRECTIONS.md` (lines 37 and 38), and QA's four changed test files.
+
+| Tier | Result | Files that fail |
+|---|---|---|
+| 1 Structure | pass | none. Both `tsc` programs clean, oxlint clean, every changed file ends with a newline, `node --check` passes on every built script of both builds |
+| 2 Logic | pass | none. `stepHoldFor` falls back to 150 ms for an empty list, NaN, or negative gaps; `isEchoOfFinish` returns false for no finish, a keyboard click (detail 0), a NaN or negative gap, and a zero-size box; no `switch` was added; every PIN screen keeps Cancel, and a wrong confirmation leads back to the first entry with the reason in words |
+| 3 Journey | pass | setup, Start fresh, Change PIN, Developer tools, and the Hand over PIN walked at 5 widths; the PIN saves and the next screen appears at once |
+| 4 Runtime | pass | no storage access added; the hand-off lives in memory for one task and is cleared by a zero timer; no `console` call; no `window.self`, `window.top`, `btoa`, `atob`, `eval`, `innerHTML`; 0 page and 0 console errors in every new test |
+| 5 Build rules | pass | no file over 400 lines in `src`, `scripts`, `tests` (largest app file `src/features/settings/DeviceRoleScreen.tsx` 353; largest QA files `tests/unit/def13-restore.test.ts` 333 and `tests/fixtures/app.ts` 321; `tests/adversarial/pin-step.spec.ts` 210) |
+
+Specific checks:
+
+- Hardcoded colors outside `tokens.css`: none (hex, rgb, rgba, hsl, oklch, color-mix).
+- Em or en dashes: a scan of 337 files (`src`, `content`, `scripts`, `tests`, `docs`, `knowledge`, `public`, `index.html`, the configs, `CLAUDE.md`): none.
+- `overflow: hidden` or `clip`, `max-height`, `:hover`: none in any CSS (the only hits are comments saying so).
+- Secrets: none added.
+- Touch targets and horizontal scroll: the stepped pads pass at 5 widths (above); every route still passes in every full run.
+
+## Pass 4: tests added or changed by QA
+
+| File | Change |
+|---|---|
+| `tests/adversarial/double-taps.spec.ts` | DEF-15 `test.fail` removed: the two steady 250 ms tests (taps, hardware keys) are plain tests and pass at 5 widths |
+| `tests/fixtures/app.ts` | `watchProblems` notes which page each request began on; new `settleAborted`, called by `expectNoProblems`, sets aside only `net::ERR_ABORTED` on a request a later page load overtook (run 2's race) |
+| `tests/e2e/pages-base.spec.ts` | new: a full reload while the search index is still loading, offline: no error, and the next screen searches |
+| `tests/adversarial/pin-step.spec.ts` | new, 11 tests x 5 widths: steady paces 120 and 300 ms; hardware keys at 60 ms; a PIN that starts with its own last digit; the doubled last digit of the first entry; keys that never move through the confirmation and the mismatch, then a steady retry; Change PIN after a doubled last digit; a quick retry after a wrong PIN; Start fresh with a doubled last digit; the stepped pads' targets and sideways scroll; reduced motion |
+
+## Defect register (current, after pass 4)
+
+Severity: blocks-gate (the gate cannot pass), fix-before-deploy (fix before the first Netlify publish at the Phase 3 gate, when real jobs start living on the phone), later. Owners from `docs/OWNERSHIP.md`. Reproduction steps: DEF-01 to DEF-12 in the pass 1 record, DEF-13 and DEF-14 in the pass 2 record, DEF-15 in the pass 3 record.
+
+| ID | Severity | Owner | File | One line | Pass 1 | Pass 2 | Pass 3 | Pass 4 |
+|---|---|---|---|---|---|---|---|---|
+| DEF-09 | blocks-gate | app-engineer | `src/app/deepLink.ts` | On the Pages base, Home went to `/aurigen-directory`, outside the offline copy's scope | open | closed | closed | closed (still passes) |
+| DEF-01 | fix-before-deploy | app-engineer | `src/app/Shell.tsx` | The internal top bar drew while the saved Customer View flag loaded | open | closed | closed | closed (still passes) |
+| DEF-02 | fix-before-deploy | app-engineer | `src/app/routes.tsx` | An encoded line break in the first path segment rendered a blank page | open | closed | closed | closed (still passes) |
+| DEF-08 | fix-before-deploy | app-engineer (architect for the read rule) | `src/core/db.ts`, `src/core/settingsRead.ts` | One unrecognised settings field blocked backup, restore, and setup | open | closed (residual DEF-13) | closed | closed (still passes) |
+| DEF-13 | fix-before-deploy | architect (decides), then app-engineer | `src/schemas/backup.ts`, `src/schemas/backup-recovery.ts`, `src/core/backup.ts`, `src/core/backupImport.ts`, `src/core/phoneSettings.ts` | A role or PIN field a newer version changed blocked the backup, and the words looped back to Backup | n/a | new, open | closed | closed (still passes) |
+| DEF-03 | later | app-engineer | `src/features/settings/ui/BackupNow.tsx` | A second tap 40 ms or more after the first saved a second backup | open | open | closed | closed (still passes) |
+| DEF-04 | later | app-engineer, ui-designer (`PinPad.tsx`, `useTapGuard.ts`) | `src/features/settings/DeviceRoleScreen.tsx`, `src/components/ui/PinPad.tsx` | A double tap landed on the PIN pad's Cancel (430 px) or typed a stray digit (375 px) | open | open | closed (residual DEF-15) | closed (still passes) |
+| DEF-05 | later | app-engineer | `src/core/pin.ts`, `src/core/pinGuard.ts` | The wrong-PIN count lived in memory; a reload between tries reset it | open | open | closed | closed (still passes) |
+| DEF-06 | later | app-engineer | `scripts/content/pipeline.ts` | A duplicate id crashed the content build instead of listing the problem | open | open | closed | closed (still passes) |
+| DEF-07 | later | app-engineer | `src/features/settings/dev/dev.css` | Device preview buttons were 44 px tall in Shop density | open | open | closed | closed (still passes) |
+| DEF-10 | later | app-engineer | `src/app/screens/RoomPlaceholder.tsx` | The Job Runner placeholder pointed to `reference/`, which the phone cannot open | open | open | closed | closed (still passes) |
+| DEF-11 | later | app-engineer | `src/app/screens/CustomerScreen.tsx` | The customer screen said "arrive in Phase 4" and "this is a preview" | open | open | closed | closed (still passes) |
+| DEF-12 | later | app-engineer | `src/features/settings/DevicePreviewBar.tsx`, `src/app/PreviewHost.tsx` | "Mobile 375" showed a 341 px frame on a 375 px screen under a 375 label | open | open | closed | closed (still passes) |
+| DEF-14 | later | app-engineer | `src/app/Shell.tsx` | On a first launch the held top bar appeared late and pushed the screen down (CLS 0.10) | n/a | new, open | closed | closed (still passes) |
+| DEF-15 | later | ui-designer (`PinPad.tsx`, `pinStep.ts`, `useTapGuard.ts`) | `src/components/ui/PinPad.tsx`, `src/components/ui/pinStep.ts` | The PIN confirmation dropped its first one or two digits when typed at a steady 120 to 300 ms per digit | n/a | n/a | new, open | **closed** |
+
+## What only the phone can answer (tick these on your iPhone)
+
+Do this from the GitHub Pages link (https://landocommandoz.github.io/aurigen-directory/). One thing first, because the iPhone keeps the Home Screen app's storage apart from Safari's:
+
+- [ ] After Add to Home Screen, open the app from its icon **with signal** and wait until the top line says **Ready offline**. Only then turn on airplane mode. (The copy Safari saved does not carry over to the icon.)
+
+The 9-item device checklist (BLUEPRINT section 9). Items 7, 8, and 9 last, with a test record only.
+
+- [ ] 1. iOS version (Settings, General, About). The keep-the-screen-on feature needs 18.4 or newer. Write it down: ______
+- [ ] 2. Developer panel, "Storage kept (persisted)" and "Answer to the keep request": write both values: ______ / ______ (No inside the installed app is the one to report)
+- [ ] 3. Settings, Read aloud, Test voice, then lock the screen right away: does the voice keep going? Yes / No
+- [ ] 4. Developer panel, Test share PNG, PDF, JSON: which apps appear for each? ______
+- [ ] 5. Which voices the panel lists, and does the default English voice sound acceptable? ______
+- [ ] 6. Turn on Low Power Mode, tap the keep-awake test in the panel: does the screen stay on for 30 seconds? Yes / No
+- [ ] 7. Clear Safari history and website data (this signs you out of websites), reopen the installed app: is the test record still there? Yes / No
+- [ ] 8. Create a new test record in the installed app (for Phase 1: set the owner PIN and save the first backup; the PIN and "Last backup" are the record)
+- [ ] 9. Delete the icon, reinstall from the same link: is the record from item 8 still there? Yes / No
+
+Also on the phone, because Chromium cannot stand in for Safari here:
+
+- [ ] Airplane mode, then in the installed app tap Home, Fix It, Quick Cards, Search, and open a card. Then tap Home and pull the app closed from the app switcher, and open it again from the icon, still in airplane mode: the Home screen opens.
+- [ ] When you create the owner PIN (item 8), type the PIN and then its confirmation without stopping, at your normal speed, with the thumb you use in the garage: it saves on the first try. (If your PIN starts with its own last digit and the confirmation waits with 5 dots, write down that it happened.)
+- [ ] Save the first backup: the share sheet opens (not a download). Pick Save to Files. Then Settings, Backup and restore, Restore from a file, pick that file: it shows this phone's counts first, then the file's, and asks for the word before replacing.
+- [ ] Hand over (only if you have a second phone to try it on; it really switches this phone to study): Settings, Device role, Hand over to another phone, your PIN, Save backup and hand over, Save to Files. This phone now says study phone. On the other phone: Settings, Device role, Import the newest backup, pick that file. That phone is the shop phone. (Also try closing the share sheet without saving: the first phone must still say shop phone.)
+- [ ] Turn Customer View on from Home: the Focus reminder shows once; the screen shows only your name, the towns, one line, and your number; the bottom row holds only "Exit Customer View". Close the app from the app switcher and open it again: no "Masterclass 101" top line flashes before the customer screen.
+- [ ] The text is readable at arm's length on the cart, and every button can be hit with the left thumb.
+
+## Test inventory and how to run
+
+From `masterclass/`:
+
+- `npm run check` runs the unit suites (app-engineer's, architect's, and ui-designer's under `src/`, QA's under `tests/unit/`). Known-defect unit tests use `it.fails` so `check` stays green while they are open; today there are none.
+- `npm run test:e2e` builds, serves `/` on 4173 and the Pages build on 4174, and runs every browser suite. Known "later" defects use `test.fail`; blocks-gate and fix-before-deploy defects fail outright. Today there are none of either, so it exits 0 with every test plain. `PW_SKIP_BUILD=1` reuses a fresh `dist/`; `PW_REUSE_SERVER=1` reuses running servers; `PW_WORKERS` sets the worker count; `PW_CHROMIUM` points at another Chromium binary if the bundled revision ever stops matching.
+
+| File | What it covers |
+|---|---|
+| `playwright.config.ts` | 5 width projects plus `pages375`, two web servers, retries 0, trace off |
+| `tests/fixtures/app.ts` | UI helpers: PIN taps, setup and Start fresh through the UI, IndexedDB reads, tap-target scanner, Customer View leak scanner (internal elements, internal words, build words), the problem watcher (console and page errors, failed requests, HTTP 400+; a request cancelled because the test loaded a new page is set aside) |
+| `tests/fixtures/content.ts` | one valid item per content type and the ways to break each |
+| `tests/fixtures/jobs.ts` | seeded logs: 24 and 25 cars, 4 and 5 founder jobs, bad and good gauge readings |
+| `tests/unit/schemas.test.ts` | content schemas, readings, bands, flags, settings rules |
+| `tests/unit/pin-timing.test.ts` | owner pass and lockout timing; the saved wrong-PIN count (DEF-05) |
+| `tests/unit/device-role.test.ts` | role transitions, Start fresh, import, backup round trip and counters |
+| `tests/unit/customer-safe.test.ts` | customerSafe filter, content build on temp folders (DEF-06) |
+| `tests/unit/search-cases.test.ts` | knowledge base 24 cases on the seed content, timing |
+| `tests/unit/rules.test.tsx` | every flow table, banner rules, developer tools rule, deep link guard, DEF-01 and DEF-02 at unit level |
+| `tests/unit/shell-recheck.test.tsx` | pass 2: DEF-01 first frame, DEF-02 addresses, DEF-09 basename |
+| `tests/unit/settings-recovery.test.ts` | DEF-08 edges, DEF-13 backup side |
+| `tests/unit/def13-restore.test.ts` | pass 3: DEF-13 restore side, tampered files |
+| `tests/unit/hand-over.test.ts` | pass 3: Hand over rules and order of events |
+| `tests/e2e/routes.spec.ts` | every route at every width; no placeholder names a repo folder (DEF-10) |
+| `tests/e2e/shell.spec.ts` | install card, setup banner and flow, developer panel, device preview (DEF-12), shop phone path |
+| `tests/e2e/a11y-flows.spec.ts` | flow-screen targets, landmarks and names, focus, reduced motion (DEF-07) |
+| `tests/e2e/pages-base.spec.ts` | the GitHub Pages base path, offline, link scope, Back step (DEF-09), a reload during the search preload |
+| `tests/privacy/customer-view.spec.ts` | Customer View leak test, reload flashes with and without the hint (DEF-01, DEF-11) |
+| `tests/persistence/persistence.spec.ts` | reloads, kills, mid-flow refreshes, offline, the wrong-PIN count (DEF-05) |
+| `tests/adversarial/double-taps.spec.ts` | impatient and confused users (DEF-03, DEF-04, DEF-15) |
+| `tests/adversarial/pin-step.spec.ts` | pass 4: the PIN step in place after the DEF-15 fix: paces, doubled digits, keys that never move, pads that hold and pads that never hold |
+| `tests/adversarial/hostile.spec.ts` | storage, backups, URL tricks, toggles, tiny screen, slow phone (DEF-02, DEF-08) |
+| `tests/adversarial/settings-rollback.spec.ts` | settings from a newer version: the backup side (DEF-08, DEF-13) |
+| `tests/adversarial/settings-restore.spec.ts` | pass 3: DEF-13 restore side in the browser |
+| `tests/adversarial/hand-over.spec.ts` | pass 3: Hand over in the browser |
+
+## Pass 3 record (fix wave recheck, first round, 2026-10-11, about 04:30 to 05:30 UTC, kept as written)
+
+Everything in this section is the pass 3 report as it was written before the DEF-15 fix. Where it says "open" or "fails", that was true at pass 3; the current status of every defect is in the register above. The pass 3 copies of the phone checklist and the test inventory were replaced by the current ones above: the only changes are the new PIN typing line on the phone list, the new `pin-step.spec.ts` row, the problem watcher in the `tests/fixtures/app.ts` row, the reload-during-preload test in the `pages-base.spec.ts` row, and the note that no known-defect test is left.
+
+### Verdict (pass 3, fix wave recheck, 2026-10-11, about 04:30 to 05:30 UTC)
+
+**Gate: passed. No blocks-gate or fix-before-deploy defect remains.** All ten defects that were open after pass 2 are closed and verified: DEF-13 (fix-before-deploy) and DEF-03, DEF-04, DEF-05, DEF-06, DEF-07, DEF-10, DEF-11, DEF-12, DEF-14 (later). The new "Hand over to another phone" holds in every order of events tried. Every known-defect test from passes 1 and 2 is now a plain test and passes.
+
+One new defect, **DEF-15 (later)**, came in with the DEF-04 fix. The PIN confirmation pad now ignores taps and keys for its first 350 ms, and it appears right in the middle of the person's typing rhythm. If you type the new PIN and its confirmation at a steady 120 to 300 ms per digit, the first one or two confirmation digits are dropped. The screen then waits on "Enter the same PIN again" with 4 or 5 dots and no message. Nothing wrong is ever saved. Owner: ui-designer (`PinPad`), with app-engineer (`NewPinEntry`). Lando's standard is to fix it now, so it is listed for the next wave, not left for later.
+
+#### Lando, in plain words
+
+- A phone that cannot read which phone it is, or its PIN, now always saves a backup with every job in it. Restoring that file never makes a phone the shop phone and never brings a PIN. Its sign-offs come back marked "needs re-check".
+- Hand over works the way you set it. Your PIN comes first, Cancel changes nothing, and the phone becomes a study phone only after the share sheet says the backup is saved. That file then makes the new phone the shop phone with the same jobs and counts.
+- One tap saves one backup. Wrong PIN tries still count after a reload. The customer screen shows only your business name, the towns, "Ask Lando about today's work.", and your phone number.
+- The first launch no longer jumps. Mobile performance is 91 to 93 (the target is 90+), and layout shift is 0.001.
+- New, small: if you type a new PIN and then its confirmation without a pause, the confirmation can drop its first digit or two. Until it is fixed, pause for a beat when the screen says "Enter the same PIN again".
+
+### Pass 3: commands and key output
+
+| Command | Result | Key lines |
+|---|---|---|
+| `npm run check` | exit 0, 40 s | typecheck clean (both programs); `oxlint --deny-warnings` no output; `content build: 77 items (quickcard 14, equipment 22, product 21, glossaryterm 20), 0 customer-safe, 0 superseded left out, 0 sign-off files, 0 synonym groups, 77 search documents`; `Test Files 51 passed (51)`, `Tests 961 passed (961)`. No unit test is marked `it.fails` any more |
+| `npx vitest run tests/unit` (QA suites only) | exit 0, run 3 times | `Test Files 10 passed (10)`, `Tests 475 passed (475)` each time. The four new and changed files ran 6 more times on their own: `Tests 62 passed (62)` each time |
+| Before QA's changes: `npm run check` | exit 1 | exactly what app-engineer reported: 4 `it.fails` that now pass (DEF-05, DEF-06, DEF-13 twice) and 2 QA assertions that still expected the old DEF-13 refusal |
+| `npm run build` | exit 0 | `✓ 348 modules transformed`; `index 198.11 kB (gzip 61.92 kB)`; `vendor 469.55 kB (gzip 146.03 kB)`; `precache 19 entries (937.05 KiB)` |
+| `VITE_BASE=/aurigen-directory/ npm run build` | exit 0 | `✓ 348 modules transformed`; `precache 19 entries (937.52 KiB)`; `dist/index.html` links `/aurigen-directory/manifest.webmanifest`; manifest `"start_url":"."`, `"scope":"."` |
+| `node --check` on `dist/sw.js` and every `dist/assets/*.js` | pass | no output |
+| `npm run test:e2e` (full: builds `/` and `/aurigen-directory/`, serves 4173 and 4174) | **exit 0**, 11.2 min | `856 passed (11.2m)`; JSON stats `expected 856, unexpected 0, flaky 0, skipped 0`. The 856 include 10 known-defect results marked `test.fail` that failed as expected: DEF-15, 2 tests x 5 widths |
+| `settings-rollback.spec.ts` at 5 widths, after tightening when it reads the screen | exit 0 | `25 passed (43.1s)` |
+| Lighthouse 13.5.0, mobile, 3 runs | ran | performance 0.91, 0.93, 0.92; accessibility 1.00; best practices 1.00; SEO 0.54 (noindex on purpose); FCP 2.3 s; LCP 3.1, 2.8, 3.0 s; TBT 50, 20, 30 ms; **CLS 0.001** every run. The two shifts left are 0.0008 (`nav.app-bottom`) and 0.0006 (`header.app-top > div.app-top__actions`); the 0.098 culprit from pass 2 (`div.app-scroll`) is gone |
+| Lighthouse 13.5.0, `--preset=desktop` | ran | performance 1.00, accessibility 1.00, best practices 1.00, SEO 0.54 (`is-crawlable`, `robots-txt` only); FCP 0.5 s, LCP 0.7 s, TBT 0 ms, CLS 0 |
+| axe-core 4 (WCAG 2.0 to 2.2 A and AA, best practice), scratch probe | ran | 16 routes (including the verify card `/cards/card-ipa-wipe`, `/search?q=bucket`, `/%0a`) plus 11 new or changed screens (Hand over PIN, ready, result; Home and Backup with an unreadable role; the held "Saved" button; the restore confirm on an unreadable phone; the restore result; the import refusal; Customer View with and without the Focus reminder), at 375 and 1440 px: `total axe violations: 0` |
+| PIN cadence probe (scratch), 375 px | ran | new PIN then confirmation at a steady gap. Taps: `120 ms: 4 dots, still on Enter the same PIN again`; `200 ms: 5`; `300 ms: 5`; `400 ms: saved`; `500 ms: saved`. Hardware keys: the same five results (DEF-15) |
+| Customer View probe (scratch), 375 and 1440 px | ran | words on screen, exactly: `Lando's Detailing Serving Tooele, Stansbury, and Grantsville. Ask Lando about today's work. Call or text (801) 680-5090. Exit Customer View`; elements painted in `--accent` or `--accent-muted`: `0`; with the Customer View hint deleted, the only top box drawn during a reload: `div aria-hidden=true text="" h=81` |
+
+Readings from the e2e run: a 6 times slower CPU draws Home with the bottom row in 1030 to 1223 ms (limit 5000). The double tap on "Create the owner PIN" leaves 0 dots at every width (pass 2: 1 at 375 px). "Mobile 375" on a 375 px window is a 341 px frame and its button now says so. On the Pages build, Home leads to `/aurigen-directory/`. The first visit is still not controlled by the service worker and the second is (prompt mode, by design in D1).
+
+Nothing was left running: Playwright stopped both servers, the scratch preview server was stopped, and ports 4173 and 4174 refuse connections. Lighthouse and axe-core ran from the scratch folder, never from the project. No git command was run.
+
+### Pass 3: the recheck of each defect
+
+The owners' fix reports named the files. Each fix was read, each known-defect test was turned into a plain test, and new tests were then aimed at the edges of each fix.
+
+| Defect | Severity | Owner's change (files) | Recheck | Evidence |
+|---|---|---|---|---|
+| DEF-13 | fix-before-deploy | architect: `src/schemas/backup.ts` (`settingsUnreadable`, `parseAnyBackupFile`), `src/schemas/backup-recovery.ts` (`backupSettingsState`, `restorePlan`, `settingsAfterRestore`, `signOffsAfterRestore`), `frozen-shapes.test.ts`. app-engineer: `src/core/phoneSettings.ts` (new), `backup.ts`, `backupFile.ts`, `backupImport.ts`, `restorePreview.ts` (new), `importRules.ts`, `errors.ts`; `BackupScreen.tsx`, `DeviceRoleScreen.tsx`, `restoreFlow.ts`, `ui/RestoreConfirm.tsx`, `ui/BackupNow.tsx`, `ui/BackupSummary.tsx` | **closed** | Unit: the 2 pass 2 `it.fails` pass as plain tests; `tests/unit/def13-restore.test.ts` (new, 13 tests). E2E: `settings-rollback.spec.ts` DEF-13 for a role from a newer version, a PIN from a newer hash, and a shop role with the PIN gone (3 tests x 5 widths); `settings-restore.spec.ts` (new, 6 tests x 5 widths). Details below |
+| DEF-03 | later | `src/features/settings/ui/BackupNow.tsx`: a synchronous in-flight guard, then the button holds as "Saved" until OK and 2 s (`BACKUP_HOLD_MS`) | **closed** | the pass 1 `test.fail` passes as a plain test at 5 widths; new: on the Backup screen, double taps at 40, 120, 400, and 1000 ms each save exactly 1 file, and after OK the next deliberate tap saves the next (5 `export` entries for setup plus 4 rounds) |
+| DEF-04 | later | ui-designer: `src/components/ui/useTapGuard.ts` (new, `TAP_GUARD_MS = 350`), used by `PinPad`, `Drawer`, `Toast`; app-engineer: `ui/TapGuarded.tsx` around the Start fresh choice row and the Hand over button | **closed** (residual filed as DEF-15) | the 430 px `test.fail` passes as a plain test; the 375 px stray digit is now asserted: 0 dots at all 5 widths; new: a double tap on the last digit of the Hand over PIN never presses "Save backup and hand over" (0 shares) |
+| DEF-05 | later | `src/core/pinGuard.ts` (new): the count and lock time in localStorage, tied to the PIN's salt; `pin.ts`, `usePinLock.ts`, `PinGate.tsx` (the lock shows as soon as the pad opens) | **closed** | the pass 1 `it.fails` passes as a plain test; 6 new unit edges: one wrong PIN per reload still locks on the third; a correct PIN resets the count; a new PIN starts again at zero; 10 damaged or tampered saved values read as zero, never crash, and a lock already running still holds from its audit entry when the saved value is wiped; with localStorage blocked the count holds for the session; the saved value never holds a PIN. New e2e (5 widths): 2 wrong, reload, 1 wrong locks, and after another reload the countdown shows before any digit is typed |
+| DEF-06 | later | `scripts/content/pipeline.ts`: the duplicate is reported with both files and the second is left out | **closed** | the pass 1 `it.fails` passes as a plain test; new: three copies of one id give 2 problems, each naming the file that is kept, no stack trace, nothing written |
+| DEF-07 | later | `src/features/settings/dev/dev.css`: `min-height: var(--target-min)` | **closed** | the pass 1 `test.fail` passes as a plain test at 5 widths |
+| DEF-10 | later | `src/app/screens/RoomPlaceholder.tsx`: "keep using the Model Y job sheet you already have"; `shell.test.tsx` updated | **closed** | new e2e (5 widths): `/job`, `/business`, `/academy` name no folder in the repo (`reference/`, `docs/`, `content/`, `src/`) |
+| DEF-11 | later | `src/app/screens/CustomerScreen.tsx`: the brand name, the service area, "Ask Lando about today's work.", the phone number; no accent | **closed** | the Customer View leak scanner (`tests/fixtures/app.ts`) now also fails on build words (`Phase`, `phase`, `preview`, `placeholder`, `reference/`, `Masterclass`); every privacy test passes at 5 widths with it. Probe: the exact words above, 0 elements in an accent color |
+| DEF-12 | later | `src/features/settings/DevicePreviewBar.tsx` `previewLabel`, `PreviewHost.tsx` | **closed** | the e2e preview test now asserts that a clamped frame's button names its real width: "Mobile 375, shown at 341 here" and "Tablet 768, shown at 341 here" at 375 px, "Tablet 768, shown at 396 here" at 430 px, "Tablet 768, shown at 734 here" at 768 px |
+| DEF-14 | later | `src/app/Shell.tsx`: while the bar is held with the hint "unknown", an empty `aria-hidden` box of the bar's height holds its place | **closed** | Lighthouse mobile CLS 0.001 on 3 runs (pass 2: 0.099 to 0.106), performance 0.91 to 0.93 (target 90+). Probe: the held box has no text, is `aria-hidden`, 81 px tall; the privacy test with the hint missing on every load passes at 5 widths |
+
+#### DEF-13 in detail: what was tried and what held
+
+The architect's rule is that a file whose role and PIN could not be read is data without a role. These checks went after that rule from every side.
+
+- **The backup is never refused.** A role this version does not know (`"crewTablet"`), a PIN record from a newer hash (`"Argon2id"`), and a shop role with the PIN gone each save a file. Each file has every job, no `deviceRole`, an empty settings table, and a `settingsUnreadable` section with the matching reason (`deviceRoleUnreadable`, `ownerPinUnreadable`, `shopRoleWithoutPin`). The settings row stays exactly as the newer version left it. Customer View cannot be switched on, the PIN check refuses, and the owner pass stays closed. The Backup screen says "This phone's role and owner PIN could not be read, so the shop tools stay locked. Your jobs are still here: tap Save backup below". It never says "open Settings, Backup" and never shows schema text (5 widths each).
+- **Restore never grants shop or a PIN.** We restored the unreadable file onto four kinds of phone:
+  - a shop phone with its own PIN: its own owner PIN is asked first (the file's PIN is "Wrong PIN"). It stays the shop phone with its own PIN and its own cars seed (7, not the file's 40). The counts follow the file's jobs (30 jobs, 25 + 7 cars). No roleChange entry is written, and the import entry says "this phone kept its own settings".
+  - a study phone with no PIN: the typed word only. It stays a study phone with no PIN.
+  - a study phone with its own PIN: that phone's PIN is asked. The file's PIN never lands.
+  - a phone whose own role or PIN cannot be read: no PIN is asked. Restore is refused (`backupNotOffered`) until a backup of this phone has been offered, and that offered backup saves from the confirm itself (the unreadable kind, 30 jobs). After the restore the phone is a study phone with no PIN, with the role not yet chosen, so the banner says "Is this the shop phone?" again. The audit says "Unreadable phone to study phone (restore)". Neither PIN opens anything, and Customer View stays off.
+- **Sign-offs come back flagged.** In every case above, both restored sign-offs read `needsRecheck: true`. A readable study backup with no PIN that holds a sign-off also flags it. A flagged sign-off stays flagged through a later backup and restore that does bring its PIN.
+- **The shop path refuses the file.** "This is the shop phone" and then Import says "This backup's role and owner PIN could not be read, so it cannot make this phone the shop phone. Use Start fresh with your PIN, then restore this backup to bring every job back." The Yes button is off, Cancel changes nothing, and `parseBackupFile` refuses the file.
+- **The plan is checked again inside the write.** A row that turns unreadable between the preview and Apply is caught: the restore refuses with `backupNotOffered`, and nothing changes.
+- **Tampered files are refused, nothing written.** We tried seven kinds:
+  - a `deviceRole` added back at the top;
+  - a shop settings row with a PIN slipped into the tables, with the checksum re-signed;
+  - an empty reason list;
+  - an unknown reason;
+  - a raw row of 16,385 characters;
+  - an extra key in the section;
+  - the section written as a string.
+
+  A raw row edited to claim the shop role and a known PIN is never read: that restore leaves a study phone with no PIN.
+- **The documented cases behave as written.** A readable shop backup restored onto a phone whose settings are unreadable makes it the shop phone with the file's PIN, after the typed word and with no owner pass, as BLUEPRINT 3.8 says. A readable file from before the fix still parses on the shop path and imports.
+- **A refresh before Apply writes nothing.** On the broken phone's restore confirm, the word was typed and the page refreshed. The phone still holds its own 32 jobs and its unreadable role, and the confirm had said "This backup holds fewer jobs (30) than this phone has now (32)".
+
+#### Hand over to another phone (D12 amendment, `[HOUSE default]`)
+
+Chromium on Linux has no share sheet, so an init script stands one in. It can resolve, close, stay open, or fail on storage. Its resolve waits 300 ms, as a real sheet stays up while the person picks a target.
+
+| Check from the brief | Result | Evidence |
+|---|---|---|
+| PIN required | pass | the Hand over button opens "Enter the owner PIN to hand over this phone"; with no owner pass at the tap the share sheet never opens and nothing is written (unit); if the phone locks on the ready screen (visibility hidden), the next tap goes back to the PIN pad with 0 shares (e2e, 5 widths) |
+| Cancel changes nothing | pass | Cancel on the PIN pad returns to Device role with the settings row and the whole audit log unchanged and 0 shares; after a closed share sheet, Cancel returns to Device role with the settings row unchanged, no `export` and no hand-over `roleChange` entry (e2e, 5 widths) |
+| Role switches to study only after the backup resolves | pass | with the share sheet held open, the role reads shop and no roleChange exists until it resolves (unit); while it is open the panel offers no Cancel, and a reload then reopens the app as the shop phone with no roleChange (e2e, 5 widths); a closed sheet says "Nothing changed. This phone stays the shop phone until the backup is saved through the share sheet." with Try again and Cancel; a download never switches the phone (unit); with storage full right after the share the screen says "The backup was saved, but this phone could not switch itself to a study phone." with Try again and Cancel, no page error, and a reload shows the shop phone with nothing half written (e2e, 5 widths) |
+| The old phone cannot create jobs afterwards | pass | `/job` says "Jobs run on the shop phone only. This phone is a study phone."; `/business` says the Business room opens on the shop phone only; the Customer mode is refused; Device role shows "This is a study phone." with no Hand over; `ROLE_CAN.study` has `createJobs`, `businessRoom`, `signOff`, `customerView` all false (unit and e2e). The PIN and every job stay on the old phone |
+| Audit entry | pass | exactly one `roleChange` "Shop phone to study phone (hand over)" and one `export` after a resolved share; none after a canceled share, a failed share, a download, a storage failure, or a lapsed pass at the tap (unit and e2e) |
+| The next phone | pass | the file the share sheet carried imports on a fresh phone through "Import the newest backup" and makes it the shop phone with the same 35 jobs, the same cars count, 4 founder's slots, and the same PIN (unit and e2e) |
+| Edges | pass | an owner pass that runs out while the sheet is open does not stop the switch; another tab switching the phone to study mid-share leaves one roleChange; two calls at once switch once; a phone whose own role cannot be read cannot hand over (nothing shared); a device with no file share sheet shows no Hand over button and names the two separate steps; `canHandOver` over all 16 combinations of role, pass, and share outcome allows exactly one |
+| Layout | pass | the PIN, ready, and result screens: no target under 44 x 44, none under 64 px tall in Shop density, no horizontal scroll (5 widths); axe 0 violations (375 and 1440 px) |
+
+Observed, not a defect: with a stand-in share that resolves at once, the second tap of a double tap on "Save backup and hand over" lands on "Back to device role" on the result screen and skips the next-step words. A real share sheet covers the screen for longer than any double tap, so a phone cannot reach this; the test stand-in now waits 300 ms like a sheet. It is recorded in case a later change makes the result appear without the sheet.
+
+#### The content changes and Customer View
+
+The curator changed 14 seed files: 4 Quick Cards, 1 glossary term, 6 products, and 3 equipment files. The content build lists 77 items: 61 house, 7 verify, 9 sourced, **all 77 internal, 0 customer-safe**. The 16 seed search cases still put the expected top result first (`tests/unit/search-cases.test.ts` passes inside `npm run check`). The Customer View leak test covers every route plus the verify card `/cards/card-ipa-wipe`, `/search?q=ipa`, and the developer panel by URL. It passes at 5 widths with the stricter word list: no verify row, no `[VERIFY`, no "nverified", no internal element, no internal word in the accessibility tree.
+
+#### New in pass 3: DEF-15 (later): the PIN confirmation drops digits typed at a steady pace
+
+- **Where.** `src/components/ui/PinPad.tsx` (ui-designer) arms `useTapGuard` on every mount, and its document key listener drops digit keys while the guard holds. `src/features/settings/ui/PinGate.tsx` `NewPinEntry` (app-engineer) renders `<PinPad key={phase}>`, so the confirmation is a new pad and the 350 ms guard starts again right after the sixth digit of the first entry.
+- **Reproduce** (Playwright at any width, or by hand on a phone):
+  1. Open `/settings/setup` and tap Create the owner PIN.
+  2. Wait half a second.
+  3. Type `482915482915` at a steady 250 ms per digit, as taps on the keys or as hardware digit keys.
+
+  Result: the screen stays on "Enter the same PIN again" with 5 of 6 dots filled and no message, and no PIN is saved. The probe: 4 dots at 120 ms per digit, 5 at 200 and 300 ms, saved at 400 and 500 ms. Taps and hardware keys give the same result.
+- **Expected.** A steady rhythm creates the PIN; only the second tap of a double tap (about 40 ms) is dropped. The designer's fix report also says "Keyboard users are never slowed down", but the PIN pad drops hardware digit keys during its guard.
+- **Impact.** Nothing wrong is ever saved. A short confirmation never completes, and a padded one reports "The two PINs did not match" and starts again. It is confusing on the first-run setup and Start fresh, and worse with gloves. Before the fix wave the confirmation pad had no guard, so this is new.
+- **Suggested fix** (ui-designer decides, with app-engineer for `NewPinEntry`): do not re-arm the full guard when the pad steps in place to the confirmation. The keys do not move there, so only a doubled last digit can land on them, and a window of about 150 ms still drops a 40 ms double tap. Never drop hardware digit keys.
+- **Test.** `tests/adversarial/double-taps.spec.ts` "DEF-15: a new PIN and its confirmation typed at a steady 250 ms pace (taps / hardware keys) save the PIN" (2 tests, `test.fail`, 5 widths).
+
+### Pass 3: Lando's 15-point audit on the changed files
+
+**Files:**
+
+- `scripts/content/` (2)
+- `src/app/`: `BottomRow`, `PreviewHost`, `Shell`, `BannerStack`, `CustomerScreen`, `RoomPlaceholder`, `shell.css`
+- `src/components/ui/`: `useTapGuard`, `PinPad`, `Drawer`, `Toast` and their CSS, `index.ts`
+- `src/core/`: `backup`, `backupFile`, `backupImport`, `db`, `deviceRole`, `errors`, `importRules`, `phoneSettings`, `pin`, `pinGuard`, `restorePreview`, `settingsRead`, `usePinLock`
+- `src/features/settings/`: `BackupScreen`, `DevicePreviewBar`, `DeviceRoleScreen`, `RoleOverview`, `StateReadouts`, `dev.css`, `hooks`, `index`, `restoreFlow`, `roleFlow`, and `ui/`: `BackupNow`, `BackupSummary`, `HandOverPanel`, `PinGate`, `RestoreConfirm`, `TapGuarded`, `format`, `screen.css`
+- `src/schemas/`: `backup`, `backup-recovery`, `content-shop`, `index`, `runtime-device`
+- the 14 content files
+- QA's files changed in this pass
+
+| Tier | Result | Files that fail |
+|---|---|---|
+| 1 Structure | pass | none. Both `tsc` programs clean, oxlint clean, every changed file ends with a newline, `node --check` passes on every built script |
+| 2 Logic | pass with one defect | `src/components/ui/PinPad.tsx` with `PinGate.tsx` `NewPinEntry` (DEF-15: a normal typing pace leaves the confirmation waiting). Every `switch` in the changed files has a `default` (6 checked; the seventh hit is a comment). Every new screen has a way out: Hand over PIN (Cancel, Back to Settings), ready (Cancel, Try again), working (Back to Settings), result (Back to device role, Back to Settings); restore confirm (Cancel at every step) |
+| 3 Journey | pass | first load to every exit walked at 5 widths; Hand over and every restore path change the role and the screens at once |
+| 4 Runtime | pass | no TypeErrors on any route (0 page errors, 0 console errors on 14 routes x 5 widths); the new localStorage access (`pinGuard.ts`) is wrapped in try/catch with a zero fallback and a session fallback in memory; the only new `console.error` (`backup.ts`) logs a storage error object, never a PIN, hash, or setting; the saved wrong-PIN count holds the PIN's salt and never a PIN; no `window.self`, `window.top`, `btoa`, `atob`, `eval`, `innerHTML` |
+| 5 Build rules | pass | no file over 400 lines in `src`, `scripts`, `tests` (largest app file `src/features/settings/DeviceRoleScreen.tsx` 353; largest QA file `tests/unit/def13-restore.test.ts` 333); the developer panel shows the wrong-PIN count kept across reloads and the settings row state ("Cannot be read as is: ...") |
+
+Specific checks:
+
+- Hardcoded colors outside `tokens.css`: none (hex, rgb, rgba, hsl, oklch, color-mix).
+- Em or en dashes in `src`, `content`, `scripts`, `tests`, `docs`, `knowledge`, `public`, `index.html`, and the configs: none.
+- `overflow: hidden` or `clip`, `max-height`, `:hover`: none in any CSS (the only hits are comments saying so).
+- Secrets: none added.
+- Touch targets and horizontal scroll: every route at 5 widths and every new screen pass (above).
+
+### Pass 3: tests added or changed by QA
+
+| File | Change |
+|---|---|
+| `tests/unit/pin-timing.test.ts` | DEF-05 `it.fails` turned into a plain test; 6 new edge tests |
+| `tests/unit/customer-safe.test.ts` | DEF-06 `it.fails` turned into a plain test; three copies of one id |
+| `tests/unit/settings-recovery.test.ts` | DEF-13 `it.fails` (2) turned into plain tests that also check the file's shape and reason; the "today: refused" test replaced by "after the fix: still opens no gate"; the DEF-08 shop-row-with-no-PIN test now expects an unreadable backup instead of a refusal |
+| `tests/unit/def13-restore.test.ts` | new: the DEF-13 restore plan through core, on 5 kinds of phone, the shop path, readable files, the re-check inside the write, 7 tampered files (13 tests) |
+| `tests/unit/hand-over.test.ts` | new: `canHandOver` over all 16 combinations, `settingsOnHandOver`, the order of events, afterwards (25 tests) |
+| `tests/adversarial/hand-over.spec.ts` | new: Hand over in the browser (7 tests x 5 widths) |
+| `tests/adversarial/settings-restore.spec.ts` | new: DEF-13 restore in the browser (6 tests x 5 widths) |
+| `tests/adversarial/settings-rollback.spec.ts` | DEF-13: a third case (shop role with the PIN gone), the file's shape, no gate opened, and the words read on the Backup screen once it is ready |
+| `tests/adversarial/double-taps.spec.ts` | DEF-03 and DEF-04 `test.fail` removed; 0 stray dots asserted; Backup screen at four gaps; DEF-15 (2 tests, `test.fail`) |
+| `tests/e2e/a11y-flows.spec.ts` | DEF-07 `test.fail` removed |
+| `tests/e2e/shell.spec.ts` | DEF-12: a clamped preview's button names its real width |
+| `tests/e2e/routes.spec.ts` | DEF-10: no placeholder names a folder in the repo |
+| `tests/persistence/persistence.spec.ts` | DEF-05 in the browser: the count and the countdown survive reloads |
+| `tests/fixtures/app.ts` | the Customer View leak scanner also fails on build words (DEF-11) |
+
+### Defect register (after pass 3)
+
+Severity: blocks-gate (the gate cannot pass), fix-before-deploy (fix before the first Netlify publish at the Phase 3 gate, when real jobs start living on the phone), later. Owners from `docs/OWNERSHIP.md`. Reproduction steps: DEF-01 to DEF-12 in the pass 1 record, DEF-13 and DEF-14 in the pass 2 record, DEF-15 above.
+
+| ID | Severity | Owner | File | One line | Pass 1 | Pass 2 | Pass 3 |
+|---|---|---|---|---|---|---|---|
+| DEF-09 | blocks-gate | app-engineer | `src/app/deepLink.ts` | On the Pages base, Home went to `/aurigen-directory`, outside the offline copy's scope | open | closed | closed (still passes) |
+| DEF-01 | fix-before-deploy | app-engineer | `src/app/Shell.tsx` | The internal top bar drew while the saved Customer View flag loaded | open | closed | closed (still passes) |
+| DEF-02 | fix-before-deploy | app-engineer | `src/app/routes.tsx` | An encoded line break in the first path segment rendered a blank page | open | closed | closed (still passes) |
+| DEF-08 | fix-before-deploy | app-engineer (architect for the read rule) | `src/core/db.ts`, `src/core/settingsRead.ts` | One unrecognised settings field blocked backup, restore, and setup | open | closed (residual DEF-13) | closed (still passes) |
+| DEF-13 | fix-before-deploy | architect (decides), then app-engineer | `src/schemas/backup.ts`, `src/schemas/backup-recovery.ts`, `src/core/backup.ts`, `src/core/backupImport.ts`, `src/core/phoneSettings.ts` | A role or PIN field a newer version changed blocked the backup, and the words looped back to Backup | n/a | new, open | **closed** |
+| DEF-03 | later | app-engineer | `src/features/settings/ui/BackupNow.tsx` | A second tap 40 ms or more after the first saved a second backup | open | open | **closed** |
+| DEF-04 | later | app-engineer, ui-designer (`PinPad.tsx`, `useTapGuard.ts`) | `src/features/settings/DeviceRoleScreen.tsx`, `src/components/ui/PinPad.tsx` | A double tap landed on the PIN pad's Cancel (430 px) or typed a stray digit (375 px) | open | open | **closed** (residual DEF-15) |
+| DEF-05 | later | app-engineer | `src/core/pin.ts`, `src/core/pinGuard.ts` | The wrong-PIN count lived in memory; a reload between tries reset it | open | open | **closed** |
+| DEF-06 | later | app-engineer | `scripts/content/pipeline.ts` | A duplicate id crashed the content build instead of listing the problem | open | open | **closed** |
+| DEF-07 | later | app-engineer | `src/features/settings/dev/dev.css` | Device preview buttons were 44 px tall in Shop density | open | open | **closed** |
+| DEF-10 | later | app-engineer | `src/app/screens/RoomPlaceholder.tsx` | The Job Runner placeholder pointed to `reference/`, which the phone cannot open | open | open | **closed** |
+| DEF-11 | later | app-engineer | `src/app/screens/CustomerScreen.tsx` | The customer screen said "arrive in Phase 4" and "this is a preview" | open | open | **closed** |
+| DEF-12 | later | app-engineer | `src/features/settings/DevicePreviewBar.tsx`, `src/app/PreviewHost.tsx` | "Mobile 375" showed a 341 px frame on a 375 px screen under a 375 label | open | open | **closed** |
+| DEF-14 | later | app-engineer | `src/app/Shell.tsx` | On a first launch the held top bar appeared late and pushed the screen down (CLS 0.10) | n/a | new, open | **closed** |
+| DEF-15 | later | ui-designer (`PinPad.tsx`, `useTapGuard.ts`), with app-engineer (`PinGate.tsx` `NewPinEntry`) | `src/components/ui/PinPad.tsx`, `src/features/settings/ui/PinGate.tsx` | The PIN confirmation drops its first one or two digits when typed at a steady 120 to 300 ms per digit | n/a | n/a | **new, open** |
+
+## Pass 2 record (recheck, 2026-10-11, about 01:55 to 02:35 UTC, kept as written)
+
+Everything in this section is the pass 2 report as it was written before the fix wave. Where it says "open" or "fails", that was true at pass 2; the current status of every defect is in the register above. The pass 2 copies of the phone checklist and the test inventory were replaced by the current ones above: the only changes are the Hand over item, the restore line (counts first, then the word), the customer screen line, and the new test files.
+
+### Verdict (pass 2, recheck, 2026-10-11, about 01:55 to 02:35 UTC)
 
 **Gate: passed for everything the VM can check. No blocks-gate defect remains.** DEF-09, the one blocker from pass 1, is fixed and verified: on the GitHub Pages build every link on every screen stays inside the offline copy, and a reload with no signal after tapping Home opens the app. The three fix-before-deploy defects from pass 1 (DEF-01, DEF-02, DEF-08) are fixed and verified.
 
@@ -21,7 +417,7 @@ What remains:
 
 The rest of the gate (install from the Pages link over HTTPS, airplane mode, the 9-item device checklist) is Lando's, on the phone. The list is below.
 
-### Lando, in plain words
+#### Lando, in plain words
 
 - The Pages link problem is fixed. Home, every other button, and Back all stay inside the copy the phone keeps for no signal. You can run the airplane mode test now.
 - Customer View no longer flashes "Masterclass 101" on a reload, even if the phone has lost its quick note of the Customer View setting.
@@ -30,7 +426,7 @@ The rest of the gate (install from the Pages link over HTTPS, airplane mode, the
 - The first time the app opens, the screen jumps down once when the top bar appears. Small, later.
 - Eight small items from the first pass are still open. All are "later".
 
-## Pass 2: commands and key output
+### Pass 2: commands and key output
 
 | Command | Result | Key lines |
 |---|---|---|
@@ -48,7 +444,7 @@ Readings from the e2e run: Home on the Pages build now leads to `/aurigen-direct
 
 Nothing was left running: both preview servers were stopped and ports 4173 and 4174 are free. Lighthouse and axe-core were run from the scratch folder (`npm i --prefix <scratchpad>/lh lighthouse axe-core`), never installed into the project.
 
-## Pass 2: what the owners changed, and the recheck of each defect
+### Pass 2: what the owners changed, and the recheck of each defect
 
 The owners did not send a list, so the recheck started from the files changed after pass 1 ended (01:12 UTC) and mapped each one to a defect. Every pass 1 test for a fixed defect now passes; tests that were marked `it.fails` were turned into plain tests. New tests were then written against the edges of each fix.
 
@@ -67,7 +463,7 @@ The owners did not send a list, so the recheck started from the files changed af
 | DEF-11 | later | none | **open** | `src/app/screens/CustomerScreen.tsx` line 35 still says "arrive in Phase 4. Until then this is a preview" |
 | DEF-12 | later | none | **open** | `src/app/shell.css` line 192 `max-width: 100%`; e2e reading: "375 preview is 341 px inside a 375 px window" |
 
-### New in pass 2: DEF-13 (fix-before-deploy): a role or PIN field from a newer version still traps the jobs
+#### New in pass 2: DEF-13 (fix-before-deploy): a role or PIN field from a newer version still traps the jobs
 
 - Where: `src/core/settingsRead.ts` `salvageStoredSettings` refuses (`RecordInvalid`) when `deviceRole` or `ownerPin` fails its check, by design ("never guessed"). `src/core/backup.ts` `exportBackup` reads settings only through that salvage, so the whole backup is refused, not only the settings row. Restore is refused too: it needs the owner pass, and the PIN cannot be read. The words come from `src/core/errors.ts` `SETTINGS_UNREADABLE_MESSAGE`.
 - When it happens: D5 allows a rollback. A later version adds a device role (for example a crew tablet) or moves the PIN to a new hash, the phone gets that version, and then the site is rolled back. The older copy cannot read either field. A damaged PIN record does the same.
@@ -76,21 +472,21 @@ The owners did not send a list, so the recheck started from the files changed af
 - Suggested fix (architect decides, app-engineer applies): either (a) let the backup carry the jobs and every other table when the role or PIN cannot be read, marked so that Restore treats its settings as unreadable and asks for the owner's decision on another phone; or (b) freeze the `DeviceRole` and `OwnerPin` shapes in `src/schemas/runtime-device.ts`, with a schema test that fails on any change, so a later version adds a new field instead of changing these two. In both cases, change the words on the Backup screen so they do not point at Backup.
 - Tests: `tests/adversarial/settings-rollback.spec.ts` "DEF-13: ... Backup still saves a file with the jobs" (2 tests x 5 widths, fail today); `tests/unit/settings-recovery.test.ts` (2 x `it.fails`, plus a passing test that pins down today's safe refusal).
 
-### New in pass 2: DEF-14 (later): the screen jumps on the first launch
+#### New in pass 2: DEF-14 (later): the screen jumps on the first launch
 
 - Where: `src/app/Shell.tsx`. With no hint yet (a first launch, or localStorage blocked), `showTopBar` holds the top bar until the settings row answers, then draws it, which pushes `.app-scroll` down. Before the DEF-01 fix the bar was drawn from the first frame.
 - Evidence: Lighthouse mobile layout shift culprit `div#root > div.app-frame > div.app-scroll`, score 0.098 of a 0.106 total (pass 1 total: 0.051); mobile performance 0.89, 0.90, 0.90 against the BUILD_PROMPT target of 90+ (pass 1: 0.92). Lighthouse always measures a first launch. On the phone, the second launch onward has the hint "off" and draws the bar at once.
 - Suggested fix: while the bar is held with the hint "unknown", hold its space with an empty box of the same height (no text, `aria-hidden`), so nothing internal shows and nothing moves.
 - No test fails for it today; the Lighthouse numbers above are the record.
 
-### Edges of the fixes that were probed and held
+#### Edges of the fixes that were probed and held
 
 - DEF-01: a phone upgraded from the pass 1 build (no hint) holds the bar (unit and e2e). From the `showTopBar` table and the code: a hint left "on" after Customer View went off only holds the bar until the row answers; storage stuck for more than 4 seconds with the hint "on" keeps the bar hidden and offers Reload in the body, so there is no dead end.
 - DEF-02: line separators U+2028 and U+2029 (which the router's `*` also cannot match) land on Not found. A twice-encoded line break passes the Pages guard but reaches the router as plain text and lands on Not found.
 - DEF-08: `__proto__` and nested unknown keys are dropped, never applied (owner's test plus mine); a shop row with no PIN is never salvaged into a shop phone; a damaged field is written back at its default only on the next ordinary write, never guessed for the role or PIN.
 - DEF-09: Netlify (`/`) is unchanged; a back step that loads a new page (not a same-page step) goes to the server, which on GitHub Pages redirects the bare base to the slash.
 
-## Pass 2: Lando's 15-point audit on the changed files
+### Pass 2: Lando's 15-point audit on the changed files
 
 Files: `src/app/Shell.tsx`, `src/app/deepLink.ts`, `src/app/routes.tsx`, `src/app/unmatched.ts`, `src/app/screens/NotFound.tsx`, `src/app/banners/BannerStack.tsx`, `src/core/customerViewHint.ts`, `src/core/customerView.tsx`, `src/core/settingsRead.ts`, `src/core/db.ts`, `src/core/errors.ts`, `src/core/backup.ts`, `src/core/backupImport.ts`, `src/core/pin.ts`, `src/core/settingsStore.ts`, `src/features/settings/dev/StateReadouts.tsx`, `src/features/settings/ui/BackupNow.tsx`, the owners' new tests (`src/app/__tests__/deepLink.test.ts`, `shellDefects.test.tsx`, `shellState.test.ts`, `src/core/settingsRead.test.ts`, `settingsRecovery.test.ts`), and QA's files changed in this pass.
 
@@ -104,7 +500,7 @@ Files: `src/app/Shell.tsx`, `src/app/deepLink.ts`, `src/app/routes.tsx`, `src/ap
 
 Specific checks: hardcoded colors outside `tokens.css` and `icon.svg`: none (hex, rgb, rgba, hsl, oklch, color-mix). Em or en dashes in `src`, `content`, `scripts`, `tests`, `docs`, `knowledge`, `public`, `index.html`, configs: none. `overflow: hidden` or `clip`, `max-height`: none in any CSS (only comments saying so). `:hover` rules: none. Secrets: none added.
 
-## Pass 2: tests added or changed by QA
+### Pass 2: tests added or changed by QA
 
 | File | Change |
 |---|---|
@@ -115,7 +511,7 @@ Specific checks: hardcoded colors outside `tokens.css` and `icon.svg`: none (hex
 | `tests/e2e/pages-base.spec.ts` | 2 new tests: links on 12 screens stay in scope; the same-page Back step |
 | `tests/adversarial/settings-rollback.spec.ts` | new: DEF-08 in the browser (2 tests) and DEF-13 (2 tests), 5 widths each |
 
-## Defect register (current, after pass 2)
+### Defect register (after pass 2)
 
 Severity: blocks-gate (the gate cannot pass), fix-before-deploy (fix before the first Netlify publish at the Phase 3 gate, when real jobs start living on the phone), later. Owners from `docs/OWNERSHIP.md`. Reproduction steps for DEF-01 to DEF-12 are in the pass 1 record below; DEF-13 and DEF-14 are above.
 
@@ -135,62 +531,6 @@ Severity: blocks-gate (the gate cannot pass), fix-before-deploy (fix before the 
 | DEF-11 | later | app-engineer | `src/app/screens/CustomerScreen.tsx` line 35 | The customer screen tells the customer "arrive in Phase 4" and "this is a preview" | open | open |
 | DEF-12 | later | app-engineer | `src/app/PreviewHost.tsx`, `src/app/shell.css` line 192 | "Mobile 375" shows a 341 px frame on a 375 px screen | open | open |
 | DEF-14 | later | app-engineer | `src/app/Shell.tsx` | On a first launch the held top bar appears late and pushes the screen down (CLS 0.10, mobile performance 89 to 90) | new | **open** |
-
-## What only the phone can answer (tick these on your iPhone)
-
-Do this from the GitHub Pages link (https://landocommandoz.github.io/aurigen-directory/). DEF-09 is fixed, so this is ready. One thing first, because the iPhone keeps the Home Screen app's storage apart from Safari's:
-
-- [ ] After Add to Home Screen, open the app from its icon **with signal** and wait until the top line says **Ready offline**. Only then turn on airplane mode. (The copy Safari saved does not carry over to the icon.)
-
-The 9-item device checklist (BLUEPRINT section 9). Items 7, 8, and 9 last, with a test record only.
-
-- [ ] 1. iOS version (Settings, General, About). The keep-the-screen-on feature needs 18.4 or newer. Write it down: ______
-- [ ] 2. Developer panel, "Storage kept (persisted)" and "Answer to the keep request": write both values: ______ / ______ (No inside the installed app is the one to report)
-- [ ] 3. Settings, Read aloud, Test voice, then lock the screen right away: does the voice keep going? Yes / No
-- [ ] 4. Developer panel, Test share PNG, PDF, JSON: which apps appear for each? ______
-- [ ] 5. Which voices the panel lists, and does the default English voice sound acceptable? ______
-- [ ] 6. Turn on Low Power Mode, tap the keep-awake test in the panel: does the screen stay on for 30 seconds? Yes / No
-- [ ] 7. Clear Safari history and website data (this signs you out of websites), reopen the installed app: is the test record still there? Yes / No
-- [ ] 8. Create a new test record in the installed app (for Phase 1: set the owner PIN and save the first backup; the PIN and "Last backup" are the record)
-- [ ] 9. Delete the icon, reinstall from the same link: is the record from item 8 still there? Yes / No
-
-Also on the phone, because Chromium cannot stand in for Safari here:
-
-- [ ] Airplane mode, then in the installed app tap Home, Fix It, Quick Cards, Search, and open a card. Then tap Home and pull the app closed from the app switcher, and open it again from the icon, still in airplane mode: the Home screen opens (this is the DEF-09 fix on the real phone).
-- [ ] Save the first backup: the share sheet opens (not a download). Pick Save to Files. Then Settings, Backup and restore, Restore from a file, pick that file: it shows the date and counts and asks before replacing.
-- [ ] Turn Customer View on from Home: the Focus reminder shows once; the bottom row holds only "Exit Customer View". Close the app from the app switcher and open it again: no "Masterclass 101" top line flashes before the customer screen (the DEF-01 fix).
-- [ ] The text is readable at arm's length on the cart, and every button can be hit with the left thumb.
-
-## Test inventory and how to run
-
-From `masterclass/`:
-
-- `npm run check` runs the unit suites (app-engineer's under `src/` and QA's under `tests/unit/`). Known-defect unit tests use `it.fails`, so `check` stays green while they are open.
-- `npm run test:e2e` builds, serves `/` on 4173 and the Pages build on 4174, and runs every browser suite. Known "later" defects use `test.fail`; blocks-gate and fix-before-deploy defects fail outright, so today it exits 1 on DEF-13 only. `PW_SKIP_BUILD=1` reuses a fresh `dist/`; `PW_REUSE_SERVER=1` reuses running servers; `PW_WORKERS` sets the worker count; `PW_CHROMIUM` points at another Chromium binary if the bundled revision ever stops matching.
-
-| File | What it covers |
-|---|---|
-| `playwright.config.ts` | 5 width projects plus `pages375`, two web servers, retries 0, trace off |
-| `tests/fixtures/app.ts` | UI helpers: PIN taps, setup and Start fresh through the UI, IndexedDB reads, tap-target and Customer View leak scanners |
-| `tests/fixtures/content.ts` | one valid item per content type and the ways to break each |
-| `tests/fixtures/jobs.ts` | seeded logs: 24 and 25 cars, 4 and 5 founder jobs, bad and good gauge readings |
-| `tests/unit/schemas.test.ts` | content schemas, readings, bands, flags, settings rules |
-| `tests/unit/pin-timing.test.ts` | owner pass and lockout timing (DEF-05) |
-| `tests/unit/device-role.test.ts` | role transitions, Start fresh, import, backup round trip and counters |
-| `tests/unit/customer-safe.test.ts` | customerSafe filter, content build on temp folders (DEF-06) |
-| `tests/unit/search-cases.test.ts` | knowledge base 24 cases on the seed content, timing |
-| `tests/unit/rules.test.tsx` | every flow table, banner rules, developer tools rule, deep link guard, DEF-01 and DEF-02 at unit level |
-| `tests/unit/shell-recheck.test.tsx` | pass 2: DEF-01 first frame, DEF-02 addresses, DEF-09 basename |
-| `tests/unit/settings-recovery.test.ts` | pass 2: DEF-08 edges, DEF-13 |
-| `tests/e2e/routes.spec.ts` | every route at every width |
-| `tests/e2e/shell.spec.ts` | install card, setup banner and flow, developer panel, device preview, shop phone path |
-| `tests/e2e/a11y-flows.spec.ts` | flow-screen targets, landmarks and names, focus, reduced motion (DEF-07) |
-| `tests/e2e/pages-base.spec.ts` | the GitHub Pages base path, offline, link scope, Back step (DEF-09) |
-| `tests/privacy/customer-view.spec.ts` | Customer View leak test, reload flashes with and without the hint (DEF-01) |
-| `tests/persistence/persistence.spec.ts` | reloads, kills, mid-flow refreshes, offline |
-| `tests/adversarial/double-taps.spec.ts` | impatient and confused users (DEF-03, DEF-04) |
-| `tests/adversarial/hostile.spec.ts` | storage, backups, URL tricks, toggles, tiny screen, slow phone (DEF-02, DEF-08) |
-| `tests/adversarial/settings-rollback.spec.ts` | pass 2: settings from a newer version in the browser (DEF-08, DEF-13) |
 
 ## Pass 1 record (first pass, 2026-10-11, about 00:30 to 01:12 UTC, kept as written)
 

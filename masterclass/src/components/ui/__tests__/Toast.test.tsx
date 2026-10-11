@@ -3,6 +3,8 @@ import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { useEffect, useState } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ToastProvider, useToast, type ToastApi, type ToastOptions } from '../Toast';
+import { TAP_GUARD_MS } from '../useTapGuard';
+import { fingerTap } from './tap';
 
 beforeEach(() => {
   vi.useFakeTimers();
@@ -65,6 +67,22 @@ describe('Toast', () => {
     expect(undo).toHaveBeenCalledTimes(1);
     advance(250);
     expect(screen.queryByText('Step done')).toBeNull();
+  });
+
+  it('ignores a tap on the action for the guard window, so a double tap never undoes the first tap', () => {
+    const undo = vi.fn<() => void>();
+    render(<Shell />);
+    show('Step done', { action: { label: 'Undo last', onAction: undo } });
+    const toast = document.querySelector('.ui-toast');
+    expect(toast).toHaveAttribute('data-tap-guard', 'on');
+    advance(40);
+    fingerTap(screen.getByRole('button', { name: 'Undo last' }));
+    expect(undo).not.toHaveBeenCalled();
+    expect(screen.getByText('Step done')).toBeInTheDocument();
+    advance(TAP_GUARD_MS);
+    expect(toast).not.toHaveAttribute('data-tap-guard');
+    fingerTap(screen.getByRole('button', { name: 'Undo last' }));
+    expect(undo).toHaveBeenCalledTimes(1);
   });
 
   it('pauses its timer while keyboard focus is on the action', () => {

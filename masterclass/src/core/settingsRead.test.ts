@@ -3,9 +3,9 @@
  * DEF-08: the settings row is read leniently and written strictly. Pure rules from settingsRead.ts.
  */
 import { describe, expect, it } from 'vitest';
-import { defaultSettings } from '../schemas';
+import { SETTINGS_GUARD_FIELDS, defaultSettings } from '../schemas';
 import { RecordInvalid, SETTINGS_UNREADABLE_MESSAGE } from './errors';
-import { GUARD_FIELDS, SETTINGS_FIELDS, parseStoredSettings, salvageStoredSettings } from './settingsRead';
+import { SETTINGS_FIELDS, parseStoredSettings, salvageStoredSettings } from './settingsRead';
 
 const T0 = '2026-10-10T12:00:00.000Z';
 const NOW = '2026-10-11T08:00:00.000Z';
@@ -85,8 +85,8 @@ describe('salvageStoredSettings (backup, the guard read in Restore, the PIN chec
   });
 
   it('never guesses the role or the PIN', () => {
-    expect(GUARD_FIELDS).toEqual(['deviceRole', 'ownerPin']);
-    for (const field of GUARD_FIELDS) {
+    expect(SETTINGS_GUARD_FIELDS).toEqual(['deviceRole', 'ownerPin']);
+    for (const field of SETTINGS_GUARD_FIELDS) {
       const error = refusal(() => salvageStoredSettings({ ...shopRow(), [field]: { broken: true } }, NOW));
       expect(error.reading).toBe(true);
       expect(error.issues).toEqual([`${field}: cannot be read, and is never guessed`]);

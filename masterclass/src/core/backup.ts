@@ -2,19 +2,25 @@
  * Backup out of the phone (D3, D12): build the file from every table, hand it to the share
  * sheet, and record "last backup". Import lives in backupImport.ts.
  *
+ * A backup is never refused because this phone's settings row cannot be read (DEF-13, D12
+ * amendment). If the role or the PIN record cannot be read, the file carries every other table
+ * and a settingsUnreadable section instead of the settings row; it never guesses a role or a PIN
+ * (phoneSettings.ts, src/schemas/backup-recovery.ts).
+ *
  * The share sheet needs a fresh tap (MDN; WebKit consumes the activation, which lasts 5 seconds).
  * So the screen calls exportBackup() when it opens, and shareBackup(prepared) from the button tap
  * with nothing awaited before navigator.share. A download link is the desktop fallback only: on
  * an installed iPhone app a download traps the user on a sheet (D3), so there it is refused.
  */
 import { config } from '../app/config';
-import { backupReminderDue, type SettingsValue } from '../schemas';
+import { backupReminderDue, type SettingsUnreadableReasonName, type SettingsValue } from '../schemas';
 import { bytesToBase64 } from './base64';
-import { buildBackupFile, type BackupSummary, type BackupTablesValue, type PhotoMode, summarizeBackup } from './backupFile';
+import { buildBackupFile, type BackupSettingsInput, type BackupSummary, type BackupTablesValue, type PhotoMode, summarizeBackup } from './backupFile';
 import { localDateStamp, nowIso, nowMs } from './clock';
 import { getPriceItems } from './content';
-import { auditEntry, readSettingsForRecoveryIn, readSettingsIn, withDb, writeSettingsIn } from './db';
-import { refuse, type Refusal } from './errors';
+import { auditEntry, readSettingsIn, withDb, writeSettingsIn } from './db';
+import { RecordInvalid, refuse, type Refusal } from './errors';
+import { readThisPhoneSettingsIn } from './phoneSettings';
 import { canShareFiles, errorNameOf, isIos, isStandalone } from './platform';
 
 export interface PreparedBackup {
@@ -30,6 +36,10 @@ export interface PreparedBackup {
    * file (DEF-08). Empty almost always. The role and the PIN are never among them.
    */
   settingsRepaired: string[];
+  /** 'unreadable': the role or PIN record could not be read, so the file holds no settings row (DEF-13). */
+  settings: 'readable' | 'unreadable';
+  /** Why, as codes for the developer panel. Empty when readable. */
+  unreadableReasons: SettingsUnreadableReasonName[];
 }
 
 export function backupFilename(ms: number = nowMs()): string {
@@ -39,8 +49,10 @@ export function backupFilename(ms: number = nowMs()): string {
 /**
  * Build a backup of every table. photos 'included' embeds each photo as base64; 'omitted' is the
  * small JSON-only baseline (for "Copy backup text"). Reads one consistent snapshot.
- * The settings row comes through the recovery read (DEF-08): a field a newer version added is
- * left out, and a damaged field is written at its default, so the jobs can always leave the phone.
+ * The settings row is classified first (DEF-13): readable, it comes through the recovery read
+ * (DEF-08: a field a newer version added is left out, a damaged field is written at its default);
+ * unreadable, the file holds no settings row and a settingsUnreadable section. Either way the
+ * jobs leave the phone. Throws only for storage failures or a broken row in another table.
  */
 export async function exportBackup(opts: { photos?: PhotoMode } = {}): Promise<PreparedBackup> {
   const photos = opts.photos ?? 'included';
@@ -59,7 +71,7 @@ export async function exportBackup(opts: { photos?: PhotoMode } = {}): Promise<P
       quizAttempts: await db.quizAttempts.toArray(),
       drillLogs: await db.drillLogs.toArray(),
       flashcardStates: await db.flashcardStates.toArray(),
-      settings: await readSettingsForRecoveryIn(db),
+      phone: await readThisPhoneSettingsIn(db),
       auditLog: await db.auditLog.toArray(),
     })),
   );
@@ -70,16 +82,14 @@ export async function exportBackup(opts: { photos?: PhotoMode } = {}): Promise<P
     const { blob, ...meta } = row;
     jobPhotos.push({ ...meta, data: bytesToBase64(new Uint8Array(await blob.arrayBuffer())) });
   }
-  const settings: SettingsValue = snapshot.settings.settings;
-  const tables: BackupTablesValue = { ...snapshot, jobPhotos, settings: [settings] };
+  const { phone, ...rows } = snapshot;
+  const readable = phone.state === 'readable';
+  const tables: BackupTablesValue = { ...rows, jobPhotos, settings: readable ? [phone.salvaged.settings] : [] };
+  const settingsInput: BackupSettingsInput = readable
+    ? { state: 'readable', deviceRole: phone.salvaged.settings.deviceRole }
+    : { state: 'unreadable', section: phone.guard.section };
   const createdAt = nowIso();
-  const { file: backup, json } = await buildBackupFile({
-    tables,
-    createdAt,
-    appVersion: config.version,
-    deviceRole: settings.deviceRole,
-    photos,
-  });
+  const { file: backup, json } = await buildBackupFile({ tables, createdAt, appVersion: config.version, settings: settingsInput, photos });
   const filename = backupFilename();
   return {
     filename,
@@ -88,8 +98,16 @@ export async function exportBackup(opts: { photos?: PhotoMode } = {}): Promise<P
     photos,
     createdAt,
     summary: summarizeBackup(backup, json.length, getPriceItems()),
-    settingsRepaired: snapshot.settings.repaired,
+    settingsRepaired: readable ? phone.salvaged.repaired : [],
+    settings: phone.state,
+    unreadableReasons: readable ? [] : [...phone.guard.section.reasons],
   };
+}
+
+/** The audit words for a backup that left the phone. Never the PIN or a setting value. */
+function backupDetail(prepared: PreparedBackup, how: string): string {
+  const unreadable = prepared.settings === 'unreadable' ? "; this phone's role and owner PIN could not be read, so the file holds no settings row" : '';
+  return `${how} (photos ${prepared.photos}, ${prepared.summary.jobs} jobs${unreadable})`;
 }
 
 export type ShareOutcome =
@@ -120,7 +138,7 @@ export async function shareBackup(prepared: PreparedBackup, opts: { asText?: boo
       }
       return { ...refuse('failed', 'The share sheet did not open. Try again, or copy the backup text.'), path: 'share' };
     }
-    await recordBackup(`Backup shared through the share sheet (photos ${prepared.photos}, ${prepared.summary.jobs} jobs)`);
+    await recordBackup(backupDetail(prepared, 'Backup shared through the share sheet'));
     return { ok: true, path: 'share', note: null };
   }
 
@@ -145,7 +163,7 @@ export async function shareBackup(prepared: PreparedBackup, opts: { asText?: boo
   } catch {
     return { ...refuse('failed', 'The backup file could not be saved here. Copy the backup text instead.'), path: 'download' };
   }
-  await recordBackup(`Backup saved as a download (photos ${prepared.photos}, ${prepared.summary.jobs} jobs)`);
+  await recordBackup(backupDetail(prepared, 'Backup saved as a download'));
   return {
     ok: true,
     path: 'download',
@@ -175,7 +193,7 @@ export async function copyBackupText(prepared: PreparedBackup): Promise<ShareOut
   if (!copied) {
     return { ...refuse('failed', 'The phone did not allow copying. Tap Copy backup text again.'), path: 'clipboard' };
   }
-  await recordBackup(`Backup text copied (no photos, ${prepared.summary.jobs} jobs)`);
+  await recordBackup(backupDetail(prepared, 'Backup text copied'));
   return { ok: true, path: 'clipboard', note: 'Paste it into Notes or Files now. Photos are not in the text copy.' };
 }
 
@@ -190,14 +208,22 @@ async function recordBackup(detail: string): Promise<void> {
 
 /**
  * Record a backup: lastBackupAt now and the weekly reminder on (Lando: the reminder turns on with
- * the PIN, and stays on). Writes an export audit entry in the same transaction.
+ * the PIN, and stays on). Writes an export audit entry in the same transaction, always: when this
+ * phone's settings row cannot be read or written (DEF-08, DEF-13), the entry still lands and says
+ * the time was not saved, and the result is null.
  */
-export async function markLastBackup(detail = 'Backup saved'): Promise<SettingsValue> {
+export async function markLastBackup(detail = 'Backup saved'): Promise<SettingsValue | null> {
   return withDb((db) =>
     db.transaction('rw', db.settings, db.auditLog, async () => {
-      const current = await readSettingsIn(db);
-      const next = await writeSettingsIn(db, { ...current, lastBackupAt: nowIso(), backupReminderWeekly: true });
-      await db.auditLog.add(auditEntry('export', detail));
+      let next: SettingsValue | null = null;
+      try {
+        const current = await readSettingsIn(db);
+        next = await writeSettingsIn(db, { ...current, lastBackupAt: nowIso(), backupReminderWeekly: true });
+      } catch (error) {
+        if (!(error instanceof RecordInvalid)) throw error;
+      }
+      const words = next === null ? `${detail}. Last backup time not saved: this phone's settings could not be read.` : detail;
+      await db.auditLog.add(auditEntry('export', words));
       return next;
     }),
   );

@@ -18,7 +18,7 @@
  *
  * Nested objects are not loosened: an ownerPin with an unknown key is refused, never trimmed.
  */
-import { SETTINGS_ID, Settings, type SettingsValue } from '../schemas';
+import { SETTINGS_GUARD_FIELDS, SETTINGS_ID, Settings, type SettingsValue } from '../schemas';
 import { RecordInvalid } from './errors';
 
 type FieldSchema = { safeParse: (value: unknown) => { success: boolean } };
@@ -28,8 +28,8 @@ const FIELDS = Settings.shape as unknown as Record<string, FieldSchema>;
 /** Every top-level settings field this version knows. */
 export const SETTINGS_FIELDS: readonly string[] = Object.keys(FIELDS);
 
-/** Never reset to a default by the salvage: a guess here would change who may do what. */
-export const GUARD_FIELDS: readonly string[] = ['deviceRole', 'ownerPin'];
+/** Never reset to a default by the salvage: a guess here would change who may do what (DEF-13 rules). */
+const GUARD_FIELDS: readonly string[] = SETTINGS_GUARD_FIELDS;
 
 export interface StoredSettings {
   settings: SettingsValue;

@@ -20,6 +20,16 @@
   pointer-events: none; /* a quick next tap reaches the page underneath */
 }
 
+/*
+ * The first 350 ms after the sheet opens (TAP_GUARD_MS in useTapGuard.ts):
+ * the backdrop and the sheet take no taps, so the second tap of a double tap
+ * on the opener lands on the layer itself and does nothing (QA DEF-04). The
+ * layer still covers the page, so the tap never reaches the opener either.
+ */
+.ui-drawer-layer[data-tap-guard='on'] > * {
+  pointer-events: none;
+}
+
 .ui-drawer-backdrop {
   position: absolute;
   inset: 0;

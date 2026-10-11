@@ -2,7 +2,7 @@
 
 Phase 0, step 5. Written 2026-10-08 by the architect role. One record per decision. Every record has Context, Decision, Alternatives rejected and why, Consequences, Sources, Status.
 
-Status, updated 2026-10-10: D0 and D9 are accepted (Lando's "Repo OK"), and D10 and D11 record two decisions he took the same day. Lando typed `build it` on 2026-10-10, so D1 to D8 are accepted as written, with the amendments noted in D1, D3, and D4; his "Defaults OK for 1 to 16" covers the blueprint's section 12 items these records carry. D12 and D13 record his Phase 1 decisions, taken the same day. Sources are the URLs from the research verified on 2026-10-07, the Claude Code docs read on 2026-10-08, the Apple Support pages read on 2026-10-10, and the MDN page and WebKit source read on 2026-10-10 for D12. Anything the research could not confirm is marked `[VERIFY]` and is never stated as fact. The dated record of every decision Lando took on 2026-10-10, in his words, is at the end of this file.
+Status, updated 2026-10-10: D0 and D9 are accepted (Lando's "Repo OK"), and D10 and D11 record two decisions he took the same day. Lando typed `build it` on 2026-10-10, so D1 to D8 are accepted as written, with the amendments noted in D1, D3, and D4; his "Defaults OK for 1 to 16" covers the blueprint's section 12 items these records carry. D12 and D13 record his Phase 1 decisions, taken the same day. Sources are the URLs from the research verified on 2026-10-07, the Claude Code docs read on 2026-10-08, the Apple Support pages read on 2026-10-10, and the MDN page and WebKit source read on 2026-10-10 for D12. Anything the research could not confirm is marked `[VERIFY]` and is never stated as fact. The dated record of every decision Lando took on 2026-10-10, in his words, is at the end of this file. On 2026-10-11 (Phase 1 defect wave) D12 gained two amendments (the jobs can always leave the phone, DEF-13; Hand over to another phone) and D11 one (bike hand polishing); the two defaults the lead took that day are listed at the end, after Lando's table, and Lando may overrule either.
 
 ADR means one written decision with its reasons. Lando: you only need D0 (where the code lives), D5 (Netlify money), D10 (Customer View and your phone), D11 (DJ and the Level 4 sign-off), D12 (which phone is the shop phone, and the first backup), and D13 (the thin panel outline). The rest is for the builders.
 
@@ -628,9 +628,20 @@ The question was: DJ's study phone says he passed, the shop phone shows no sign-
 - Knowledge base section 2, rule 4 (test spot on every car) and section 8 (the machine polishing SOP that Level 4 teaches)
 - Lando's answer, 2026-10-10, quoted in the record at the end of this file
 
+### Amendment, 2026-10-11: bike hand polishing `[HOUSE default]`
+
+The lead's default, taken 2026-10-11; Lando may overrule it.
+
+- In plain words: the test spot check and the Level 4 check are for the polisher. Bike tanks and fenders are polished by hand, so a bike's hand polish step opens without a test spot, and DJ can do it without the Level 4 sign-off.
+- For the builders: the two guards check the `polish` stage (machine polishing, `POLISH_STAGE_ID`) only. A bike job's `hand-polish` stage opens with no test spot record and for any crew profile. Knowledge base 12.1: "Hand-polish tanks and fenders. The 6 in. pad does not fit a tank." When bikes get machine work (the 3 in. machine from bike revenue, also 12.1), that work is the `polish` stage and both guards apply.
+- The content schema refuses a `hand-polish` SOP outside the bike branch (`src/schemas/content-shop.ts`), so a car can never route around the guards by hand.
+- Unchanged by this default: matte paint gets no compound, polish, or wax of any kind (knowledge base 12.1 and 7.4). The Phase 3 Runner leaves both `polish` and `hand-polish` out of a job whose finish is matte.
+- Rejected: gating hand polishing on the test spot (knowledge base rule 4 is about cars, and the test spot picks a pad and polish combo for the machine; there is none by hand); gating it on Level 4 (Level 4 teaches the machine, and the gate would stop DJ on work he can do).
+- Tests: `docs/BLUEPRINT.md` 3.8 (polish stage guard).
+
 ### Status
 
-Accepted by Lando on 2026-10-10. `[HOUSE]`.
+Accepted by Lando on 2026-10-10. `[HOUSE]`. The 2026-10-11 amendment is a `[HOUSE default]` until Lando confirms or overrules it.
 
 ## D12: Device role and first run
 
@@ -687,9 +698,43 @@ D3 and D4 said the role and the PIN are set at first run. Lando's Phase 1 answer
 - WebKit source, `LocalDOMWindow.cpp` on main: `defaultTransientActivationDuration { 5_s }`: https://github.com/WebKit/WebKit/blob/main/Source/WebCore/page/LocalDOMWindow.cpp (read 2026-10-10). Shipping iOS versions may differ from main; the Phase 1 device checklist covers the share sheet.
 - Separate storage per install and Web Share with files since iOS 15: the D3 sources (read 2026-10-07).
 
+### Amendment, 2026-10-11: the jobs can always leave the phone (DEF-13)
+
+The lead's call on QA defect DEF-13, specified by the architect. It changes no rule Lando set; it closes a trap.
+
+In plain words (Lando): if this phone ever cannot read which phone it is or its PIN record (that can only happen after the site is rolled back to an older version, or if the record is damaged), Backup still saves every job, reading, photo, crew record, and sign-off. The file says plainly that the role and PIN could not be read and never pretends to know them. Restoring that file never makes a phone the shop phone and never brings a PIN: the phone keeps its own role and PIN, and a phone with neither stays a study phone until you set it up the normal way. Sign-offs in that file come back marked "needs re-check" until you confirm each one with your PIN.
+
+For the builders. The schema is `src/schemas/backup.ts`; the rules are `src/schemas/backup-recovery.ts` (pure functions); the tests are `docs/BLUEPRINT.md` 3.8.
+
+1. A backup is never refused because the settings row is unreadable. `backupSettingsState(row)` checks the two guard fields (`deviceRole`, `ownerPin`) and the shop-needs-a-PIN rule. Readable: the backup is built as before, and the DEF-08 salvage resets a damaged ordinary field. Unreadable: the file is a `BackupFileSettingsUnreadable`, with no `deviceRole`, an empty settings table, a `settingsUnreadable` section (reason codes, and the raw row as opaque JSON text cut at 16,384 characters, for diagnosis only), and every other table whole. If the salvage still fails on a row whose guard fields read fine, the file is built the same way with the reason `otherFieldUnreadable`.
+2. Compatibility: the format stays version 1. `settingsUnreadable` is one optional top-level key. A file without it is exactly the file written before today, so every older file still parses, and the checksum still covers the tables only. `parseAnyBackupFile` reads both kinds for Restore; `parseBackupFile` reads only readable files, for the shop path. An older copy of the app refuses a file that has the new key as damaged, which writes nothing.
+3. Restore follows `restorePlan(file, destination)`. A readable file: its settings row lands, as before (`settingsFrom: 'file'`). A file with unreadable settings on a phone whose own row reads: this phone keeps its whole settings row, its role, its PIN, and its cars-logged seed (`'thisPhone'`). Both unreadable: a new study row with no PIN and the role not chosen, so the setup banner starts again (`'fresh'`). A file with unreadable settings never sets the shop role or a PIN anywhere. The shop path ("This is the shop phone", Import) refuses it with words that name the way through.
+4. A phone whose own role or PIN cannot be read cannot check the owner pass, so Restore there does not ask for it. Instead the screen offers a backup of this phone first (the restore replaces its jobs), shows the counts first (this phone now, then the file), and needs the typed word. A phone with a readable PIN still needs the owner pass, and every restore needs the typed word, as before.
+5. A sign-off travels only with the PIN that made it. Restored sign-offs keep their state only when the restore brings that PIN (a readable file with a PIN, whose PIN becomes this phone's PIN, exactly the D12 import). In every other case each restored sign-off is written with `needsRecheck: true`, and the polish stage guard (Phase 3) counts a skill as Signed off only when its `signOffId` points at a sign-off with `needsRecheck` false. This is one step stricter than "flag them when the destination has no readable PIN," on purpose: otherwise a person could Start fresh with a PIN of their own, restore the file, and get old sign-offs back clean, which D4 forbids.
+6. The way back, for `docs/HANDOFF.md`: first choice, update the app (the rollback caused it; going forward makes the row readable again). Otherwise, save the backup; then on the phone that will be the shop phone, create the PIN, "This is the shop phone," Start fresh, and Restore the backup with the PIN and the typed word. Every job returns and the counts follow, because they are computed from the jobs. Then set "cars logged before this app" again and confirm each sign-off. On the broken phone itself, restore the backup onto it first (it becomes a study phone with no PIN), then the same steps. If the jobs moved to another phone, switch the old phone to study with the PIN once an update makes its settings readable again, as after any import (item 8).
+7. Frozen shapes: `DeviceRole`, `OwnerPin`, and the 6-digit PIN entry never change (`src/schemas/frozen-shapes.test.ts` fails on any change). A newer version that needs a new kind of device or a new hash adds a new optional settings field instead (`deviceKind`; `ownerPinV2`, written next to `ownerPin` for the same PIN). So no planned change should ever cause this; the backup path stays as the defense against damage. D5 rollbacks stay allowed.
+8. Words: the Backup screen never tells the person to open Backup, and no message about this case shows schema text.
+
+Alternatives rejected: refusing the backup until the role is known (the DEF-08 behavior, which trapped the jobs; clearing site data was the only exit); guessing the role as study and the PIN as none inside the file (a backup would then claim facts nobody knows, and a later rule that trusts the file could act on them); copying the raw role and PIN into the restored phone (an unknown role or an unreadable PIN would land in a row the app cannot read, recreating the trap on the next phone); freezing the shapes alone (it prevents a planned change, not damage).
+
+### Amendment, 2026-10-11: Hand over to another phone `[HOUSE default]`
+
+The lead's default, taken 2026-10-11 and built in Phase 1; Lando may overrule it.
+
+In plain words (Lando): the shop phone's Settings gets "Hand over to another phone." You enter your PIN and save a backup through the share sheet. Only once the share sheet says the backup is saved does this phone switch itself to a study phone. Its jobs stay on it, read only, and its Academy keeps working. On the new phone: This is the shop phone, Import the newest backup. One shop phone at a time then holds without you having to remember to switch the old one.
+
+For the builders:
+
+- Rules: `canHandOver` and `settingsOnHandOver` in `src/schemas/runtime-device.ts`. Only a share that resolved counts (`share: 'shared'`). Cancel or failure changes nothing. A download or a text copy does not count; a device with no file share sheet keeps the two separate steps (Save backup, then "Switch to study phone", item 8).
+- Order: owner PIN, then the screen with one "Save backup and hand over" button (the share needs its own fresh tap, item 7), then, when the share resolves, one transaction writes the study role and a `roleChange` audit entry ("Shop phone to study phone (hand over)"). The owner pass is checked at the start; a pass that lapses while the share sheet is open does not undo a backup that already left. The PIN, the jobs, and the Academy records stay on the phone; a study phone shows no job screens and cannot sign off.
+- The result screen names the next step on the new phone. The state map is `docs/BLUEPRINT.md` 3.9 and the tests are 3.8.
+- Risk that stays: if the app is closed while the share sheet is open and the file was saved, the share never resolves here, the phone stays the shop phone, and the file can still make a second one. The import screen's note to switch the other phone to study remains the backstop.
+
+Alternatives rejected: switching to study before the share (a canceled share would leave the jobs on a study phone, and the only ways back to shop are Import, which needs a backup, or Start fresh, which empties the jobs); detecting the new phone's import (needs sync, Phase 8); leaving it to memory (item 8 alone, the rule this default improves on).
+
 ### Status
 
-Accepted by Lando on 2026-10-10. `[HOUSE]`.
+Accepted by Lando on 2026-10-10. `[HOUSE]`. The DEF-13 amendment (2026-10-11) is the lead's call on a defect and changes none of Lando's rules. The Hand over amendment is a `[HOUSE default]` until Lando confirms or overrules it.
 
 ## D13: Thin panel outline in the customer paint report
 
@@ -762,3 +807,12 @@ Recorded here in his words so a future session finds them in one place. Each one
 | 16 | "Leave the git history alone." (his decision on the removed knowledge base 15.5 text, which remains in earlier commits) | D0 |
 
 Said on 2026-10-10: `build it`. Phase 1 (Foundation) is underway.
+
+## Defaults taken by the lead, 2026-10-11 (`[HOUSE default]`, Lando may overrule)
+
+Not Lando's words: these are the lead's calls in the Phase 1 defect wave, recorded so Lando can confirm or overrule each one. Until he does, they stand as written.
+
+| # | Default | Where it lives |
+|---|---|---|
+| L1 | "Hand over to another phone" on the shop phone: owner PIN, then a backup through the share sheet, and only after the share resolves does the phone switch to study; it keeps its data read only for Academy. Keeps one shop phone at a time true. Built in Phase 1. | D12 amendment (Hand over); blueprint 3.8, 3.9; `canHandOver`, `settingsOnHandOver` in `src/schemas/runtime-device.ts` |
+| L2 | Bike hand polishing is not gated by the test spot or the Level 4 check, which cover machine polishing only. | D11 amendment; blueprint 3.2 guards, 3.8; the `hand-polish` SOP rule in `src/schemas/content-shop.ts` |

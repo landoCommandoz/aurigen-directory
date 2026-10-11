@@ -149,10 +149,9 @@ describe('the content build on a temporary content folder', () => {
     expect(buildContent({ root, write: false }).ok).toBe(true);
   });
 
-  // DEF-06 (later): the duplicate is reported, but both copies still go into the search index, and
-  // MiniSearch throws "duplicate ID". The CLI then prints "content build crashed" with a stack trace
-  // instead of the plain list of problems. The build still exits 1 and writes nothing.
-  it.fails('refuses two files with the same id with a plain problem, without crashing', () => {
+  // DEF-06 (fixed in the fix wave): the duplicate is reported with both files and the second file is
+  // left out, so the search index never sees two items with one id and nothing throws.
+  it('refuses two files with the same id with a plain problem, without crashing', () => {
     const root = tempRoot({
       'content/cards/card-fixture-mix.yaml': card(VALID.quickcard),
       'content/cards/card-fixture-mix-copy.yaml': card(VALID.quickcard),
@@ -163,6 +162,25 @@ describe('the content build on a temporary content folder', () => {
     }).not.toThrow();
     expect(result).not.toBeNull();
     expect((result as unknown as { ok: boolean }).ok).toBe(false);
+    expect(existsSync(join(root, 'src/generated'))).toBe(false);
+  });
+
+  it('DEF-06 recheck: three copies of one id are each named, with the file that already uses it, and no stack trace', () => {
+    const root = tempRoot({
+      'content/cards/card-fixture-mix.yaml': card(VALID.quickcard),
+      'content/cards/card-fixture-mix-a.yaml': card(VALID.quickcard),
+      'content/cards/card-fixture-mix-b.yaml': card(VALID.quickcard),
+    });
+    const result = buildContent({ root, write: true });
+    expect(result.ok).toBe(false);
+    const dupes = result.problems.filter((p) => p.includes('Duplicate id "card-fixture-mix"'));
+    expect(dupes).toHaveLength(2);
+    // The first file in walk order is kept; each other copy names it.
+    const files = ['content/cards/card-fixture-mix.yaml', 'content/cards/card-fixture-mix-a.yaml', 'content/cards/card-fixture-mix-b.yaml'];
+    const kept = files.filter((f) => !dupes.some((line) => line.startsWith(`${f}:`)));
+    expect(kept).toHaveLength(1);
+    for (const line of dupes) expect(line).toContain(`${kept[0] ?? ''} already uses it, so this file was left out`);
+    expect(result.problems.join('\n')).not.toMatch(/MiniSearch|at Object\.|\.ts:\d+:\d+/);
     expect(existsSync(join(root, 'src/generated'))).toBe(false);
   });
 

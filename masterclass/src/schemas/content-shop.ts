@@ -70,7 +70,11 @@ export const SopStep = z.strictObject({
 });
 export type SopStepValue = z.infer<typeof SopStep>;
 
-/** A procedure for one stage. Markdown file; the body goes in `body` (shown above the steps). */
+/**
+ * A procedure for one stage. Markdown file; the body goes in `body` (shown above the steps).
+ * `hand-polish` is bike only (2026-10-11 [HOUSE default]): the test spot and Level 4 guards check
+ * machine polishing (`polish`) only, so a car SOP may never route around them by hand.
+ */
 export const SOP = Base.extend({
   id: idWithPrefix('sop'),
   type: z.literal('sop'),
@@ -79,6 +83,9 @@ export const SOP = Base.extend({
   plannedMinutes: z.number().int().positive().optional(),
   vehicleBranch: z.enum(['any', 'tesla', 'bike']).default('any'),
   body: z.string().default(''),
+}).refine((s) => s.stage !== 'hand-polish' || s.vehicleBranch === 'bike', {
+  error: 'Stage hand-polish is for bikes only: set vehicleBranch: bike (cars are machine polished, stage polish)',
+  path: ['vehicleBranch'],
 });
 export type SopItem = z.infer<typeof SOP>;
 

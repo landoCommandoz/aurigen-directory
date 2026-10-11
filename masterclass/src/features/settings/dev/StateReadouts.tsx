@@ -10,6 +10,7 @@ import { useCustomerView } from '../../../core/customerView';
 import { useDbStatus, type DbStatus } from '../../../core/db';
 import { RecordInvalid } from '../../../core/errors';
 import { ownerPassRemainingMs, usePinStatus } from '../../../core/pin';
+import { readPinGuard } from '../../../core/pinGuard';
 import { isStandalone } from '../../../core/platform';
 import { usePwaStatus } from '../../../core/pwa';
 import { useSearchStatus } from '../../../core/search';
@@ -24,6 +25,7 @@ export const STATE_LABELS = {
   role: 'Device role',
   pin: 'Owner PIN set',
   pass: 'Owner pass active',
+  pinFails: 'Wrong PINs in a row (kept across reloads)',
   setup: 'Setup step',
   lastBackup: 'Last backup',
   reminder: 'Weekly backup reminder',
@@ -102,6 +104,7 @@ export function StateReadouts() {
             { label: STATE_LABELS.role, value: `${roleWords(setup.deviceRole)}${setup.roleChosen ? '' : ' (not chosen yet)'}` },
             { label: STATE_LABELS.pin, value: setup.pinExists ? `Yes, set ${formatWhen(setup.pinSetAt)}` : 'No' },
             { label: STATE_LABELS.pass, value: passLeft > 0 ? `Yes, ${formatRemaining(passLeft)} left` : pin.lockedUntilWall !== null ? 'No (PIN entry locked)' : 'No' },
+            { label: STATE_LABELS.pinFails, value: s?.ownerPin ? `${Math.max(readPinGuard(s.ownerPin.salt).fails, pin.consecutiveFails)} of 3` : 'No PIN' },
             { label: STATE_LABELS.setup, value: setup.ready ? SETUP_STEP_WORDS[setup.step] : 'Loading' },
             { label: STATE_LABELS.lastBackup, value: formatWhen(setup.lastBackupAt) },
             { label: STATE_LABELS.reminder, value: `${setup.reminderOn ? 'On' : 'Off'}${setup.backupDue ? ', due now' : ''}` },

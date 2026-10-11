@@ -4,6 +4,7 @@ title: 6 in. backing plate for the BAUER 56367
 audience: [owner, crew]
 visibility: internal
 status: sourced
+version: 2
 kbRef: "14"
 tags: [backing plate, polisher, parts, m8]
 synonyms:
@@ -15,25 +16,42 @@ synonyms:
   - replacement plate
   - new backing plate
   - m8 plate
+  - spindle bolt
 sources:
-  - label: BAUER 56367 owner's manual spec listing
-    date: 2026-10-07
-    note: Plate thread M8 x 1.25
+  - label: HF product page, item 56367, spec table
+    url: https://www.harborfreight.com/75-amp-6-in-20-mm-long-throw-random-orbit-da-polisher-56367.html
+    date: 2026-10-10
+    note: "Thread Size M8-1.25. The thread size comes from this page, not the manual. Read through the search index. Fact-checker FC-17 and FC-18."
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
   - label: AutoGeek forum, 56367 owner report
+    url: https://www.autogeekonline.net/forum/auto-detailing-tools-and-accessories/126678-new-bauer-hf-56367-long-throw-polisher-non-standard-backing-plate.html
     date: 2026-10-07
-    note: M8 x 1.25 thread
+    note: M8 x 1.25 thread. The stock plate uses a center cap screw. Supporting only.
+  - label: HF product page, item 64913
+    url: https://www.harborfreight.com/6-in-hook-and-loop-backing-pad-for-dual-action-and-random-orbit-polishers-64913.html
+    date: 2026-10-10
+    note: "Arbor Size 5/16 in.-24. Listed at $6.99 when the page was last indexed, so the price may have moved. Read through the search index. Fact-checker FC-19."
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: BAUER 56367 owner's manual, 2021
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-10
+    note: Page 10, Replacing Backing Pad, with the Spindle Bolt and the spindle lock. Page 11, give UPC 193175448170 for parts; some parts are not sold separately. Tech line on every page. Fact-checker FC-20 and FC-21.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
 specs:
   - label: Size
     value: 6 in. (150 mm), hook and loop
     status: sourced
   - label: Mount
-    value: Bolts on through a center hole with a low-head cap screw
+    value: Bolts on through a center hole with the Spindle Bolt. Use a hex wrench. The spindle lock is under the auxiliary handle; remove two screws and slide the handle off to reach it. Do not overtighten.
     status: sourced
   - label: Thread
     value: M8 x 1.25
     status: sourced
   - label: Do not buy
-    value: HF item 64913, the $6.99 BAUER 6 in. backing pad on the shelf. It is 5/16 in.-24 thread. It does not fit the 56367.
+    value: HF item 64913, the $6.99 BAUER 6 in. backing pad on the shelf. It is 5/16 in.-24 thread. That is an inch thread and the 56367 is metric, so it does not fit.
     status: sourced
   - label: Replace with
     value: A 6 in. (150 mm) plate made for a long-throw, mounted with an M8 bolt.
@@ -42,7 +60,10 @@ specs:
     value: Long-throw machines are counterweighted for 5 or 6 in. plates. A 3 in. plate causes violent vibration and can wear out the bearings.
     status: sourced
   - label: First call
-    value: HF tech and parts line, 1-888-866-5797. Ask for the replacement backing pad for item 56367.
+    value: HF tech and parts line, 1-888-866-5797, printed in the manual. Give them UPC 193175448170 and ask for the replacement backing pad for item 56367.
+    status: sourced
+  - label: Will HF have one
+    value: Not confirmed. The manual warns some parts are not sold separately.
     status: verify
   - label: Backup plate
     value: ShineMate Heavy Duty, M8 thread, M8 bolt included, sold as fitting most 5 to 6 in. long-throws. Listed at $23.05 at Parks Car Care for the 5 in.; confirm the 6 in. price.

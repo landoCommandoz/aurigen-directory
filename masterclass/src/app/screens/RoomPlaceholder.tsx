@@ -14,7 +14,7 @@ const COPY: Record<PlaceholderRoom, { title: string; lede: string; body: string;
   job: {
     title: 'Job Runner',
     lede: 'The Job Runner arrives in Phase 3.',
-    body: 'Until then, the Model Y job sheet in reference/ is the stopgap. Fix It and the Quick Cards work now, offline.',
+    body: 'Until then, keep using the Model Y job sheet you already have. Fix It and the Quick Cards work now, offline.',
     shopOnly: 'Jobs run on the shop phone only. This phone is a study phone.',
   },
   business: {

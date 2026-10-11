@@ -5,6 +5,7 @@ brand: Chemical Guys
 audience: [owner, crew]
 visibility: internal
 status: sourced
+version: 2
 kbRef: "3.3"
 tags: [wash, soap, strip wash, clay lube]
 synonyms:
@@ -17,30 +18,40 @@ synonyms:
   - pre polish soap
   - clay lube soap
 sources:
-  - label: Chemical Guys Citrus Wash & Gloss label
-    date: 2026-10-06
-    note: 1 oz per 5 gal to wash, 1 oz per gal to strip wax
+  - label: Chemical Guys guide, how to choose the right car wash soap
+    url: https://www.chemicalguys.com/blogs/exterior-how-tos/how-to-choose-the-right-car-wash-soap
+    date: 2026-10-10
+    note: 1 oz for a regular wash, up to 3 oz to strip old coatings. It does not say per how much water. Retail copies of the label say 1 oz per 5 gal to wash. Fact-checker FC-01 and FC-02.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Chemical Guys product page, Citrus Wash & Gloss
+    url: https://www.chemicalguys.com/products/citrus-wash-and-gloss-concentrated-ultra-premium-hyper-wash-and-gloss
+    date: 2026-10-10
+    note: No bucket ratio, no pump sprayer, no pre-soak, and no dwell time on the page. Fact-checker FC-01 and FC-03.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
 jobs:
   - Pre-polish strip wash
   - Clay lube base
 dilutions:
-  - use: Wash, per the label
-    ratio: 1 oz per 5 gal
+  - use: Wash, Chemical Guys
+    ratio: 1 oz per 5-gal bucket
     status: sourced
-  - use: Strip wax, per the label
-    ratio: 1 oz per gal
-    status: sourced
+  - use: Strip wax, Chemical Guys strip figure
+    ratio: About 3 oz per 5-gal bucket. Read the strip line on your 64 oz bottle.
+    status: verify
   - use: Pre-polish wash bucket
     ratio: 4 oz in 4 gal water
     status: house
   - use: Clay tub
     ratio: 1 oz in 1 gal water
     status: house
-  - use: Pump-sprayer pre-soak, a candidate the label has not been checked for
-    ratio: Strip strength
+  - use: Pump-sprayer pre-soak
+    ratio: No Chemical Guys direction found. Not part of any wash until a label or Chemical Guys answer covers it. On a Tesla, see the Tesla card.
     status: verify
 related:
   - card-bucket-mix
   - card-clay-tub
   - term-strip-wash
   - product-meguiars-super-soap
+  - card-tesla-wash-mode-tape

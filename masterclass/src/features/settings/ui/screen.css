@@ -86,6 +86,12 @@
   align-items: center;
 }
 
+/* Buttons that appear where the last tap landed take no taps for a moment (useTapGuard, DEF-04),
+ * so the second tap of a double tap lands on the row and does nothing. */
+.mc-tap-guard[data-tap-guard='on'] * {
+  pointer-events: none;
+}
+
 .mc-readouts {
   display: grid;
   grid-template-columns: minmax(0, 1fr);

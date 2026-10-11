@@ -18,11 +18,17 @@
  * the rest wait their turn. The action button and the toast sit on the thumb
  * side (data-hand on <html>; left by default). Toasts float above the bottom
  * row (--toast-offset, from --bottom-row-height in tokens.css).
+ *
+ * "Undo last" appears in the thumb zone right after a tap. For TAP_GUARD_MS
+ * (350 ms) after a toast appears its action takes no tap, so the second tap
+ * of a double tap never undoes what the first one did (the DEF-04 family;
+ * see useTapGuard). Keyboard focus and Enter on the action work as always.
  */
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { Button } from './Button';
 import { CheckGlyph, InfoGlyph, WarningGlyph } from './glyphs';
+import { useTapGuard } from './useTapGuard';
 import { exitDelay } from './util';
 import './Toast.css';
 
@@ -156,6 +162,7 @@ function ToastCard({ item, onDismiss }: ToastCardProps) {
   const remaining = useRef(Math.max(MIN_DURATION, item.duration ?? DEFAULT_DURATION));
   const tone = item.tone ?? 'info';
   const { id, leaving } = item;
+  const guard = useTapGuard();
 
   useEffect(() => {
     if (paused || leaving) return undefined;
@@ -172,8 +179,10 @@ function ToastCard({ item, onDismiss }: ToastCardProps) {
       className="ui-toast"
       data-tone={tone}
       data-state={leaving ? 'leaving' : 'shown'}
+      data-tap-guard={guard.holding ? 'on' : undefined}
       onPointerEnter={() => setPaused(true)}
       onPointerLeave={() => setPaused(false)}
+      {...guard.captureHandlers}
     >
       <span className="ui-toast__glyph" aria-hidden="true">
         {TONE_GLYPH[tone]}

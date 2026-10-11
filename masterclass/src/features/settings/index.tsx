@@ -15,7 +15,7 @@ export { DeviceRoleScreen } from './DeviceRoleScreen';
 export { BackupScreen } from './BackupScreen';
 export { DeveloperPanel } from './DeveloperPanel';
 export type { DeveloperPanelProps } from './DeveloperPanel';
-export { DevicePreviewBar } from './DevicePreviewBar';
+export { DevicePreviewBar, PREVIEW_CHROME_PX, previewLabel, useViewportWidth } from './DevicePreviewBar';
 export type { DevicePreviewBarProps } from './DevicePreviewBar';
 export { useSetupState, useHandedness, setHandedness } from './hooks';
 export type { SetupState, Handedness } from './hooks';

@@ -4,8 +4,9 @@ title: HF finishing foam pads, 6 in.
 audience: [owner, crew]
 visibility: internal
 status: verify
+version: 2
 kbRef: "3.2"
-tags: [pad, finishing pad, unconfirmed]
+tags: [pad, finishing pad, unconfirmed, pad washing]
 synonyms:
   - hf pads
   - harbor freight pads
@@ -13,6 +14,14 @@ synonyms:
   - finishing pads
   - cart pads
   - foam finishing pads
+  - wash hf pads
+sources:
+  - label: BAUER 56367 owner's manual, 2021
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-10
+    note: Page 10, the pads may be machine-washed in cold water with detergent, then machine-dried at medium heat. Harbor Freight guidance for its own pads only. Fact-checker FC-25.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
 specs:
   - label: On hand
     value: x2, on the original HF cart
@@ -24,6 +33,17 @@ specs:
     value: Not on the pad ladder.
     status: house
     kbRef: "8.5"
+  - label: Washing, house
+    value: Same night. Warm water, not hot, with a drop of laundry detergent. Press the water out, never wring. Dry face down on a rack.
+    status: house
+    kbRef: "13.1"
+  - label: Washing, the 56367 manual
+    value: The 56367 manual says the pads may be machine-washed in cold water with detergent, then machine-dried at medium heat.
+    status: sourced
+  - label: Lando decides which applies (pending)
+    value: For these HF pads, hand wash in warm water, or the manual's machine wash cold and dry on medium. This covers the HF pads only. Uro-Tec care has not been checked with Buff and Shine.
+    status: verify
 related:
   - card-pad-ladder
   - equipment-pad-black
+  - equipment-bauer-56367

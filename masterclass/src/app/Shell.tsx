@@ -20,7 +20,8 @@
  * customer density and no top bar; "unknown" (first launch, storage blocked) also holds the top
  * bar; "off" draws the title without its buttons, as before. If storage is stuck past
  * SLOW_STORAGE_MS and the hint is not "on", the title shows with the Reload offer, so the frame
- * is never bare.
+ * is never bare. While the bar is held with the hint "unknown", an empty aria-hidden box of the
+ * bar's height holds its place (holdTopSpace, DEF-14), so the screen does not jump when it draws.
  */
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router';
@@ -69,6 +70,7 @@ function AppFrame({ previewBar }: { previewBar: boolean }) {
   const handedness = snapshot.settings?.handedness ?? 'left';
   const internal = customerView.ready && !customerView.on;
   const header = showTopBar({ ready: customerView.ready, on: customerView.on, hint: customerView.hint, slow });
+  const holdSpace = holdTopSpace({ ready: customerView.ready, hint: customerView.hint, header });
 
   useLayoutEffect(() => {
     applyDocumentAttributes(density, handedness);
@@ -112,6 +114,12 @@ function AppFrame({ previewBar }: { previewBar: boolean }) {
   return (
     <div className="app-frame">
       {previewBar ? <DevicePreviewBar /> : null}
+      {holdSpace ? (
+        // No text, no controls, nothing a screen reader finds: only the bar's height (DEF-14).
+        <div className="app-top app-top--hold" aria-hidden="true" data-print="hide">
+          <span className="app-top__hold" />
+        </div>
+      ) : null}
       {!header ? null : (
         <header className="app-top" data-print="hide">
           <div className="app-top__brand">
@@ -135,7 +143,7 @@ function AppFrame({ previewBar }: { previewBar: boolean }) {
           ) : null}
         </header>
       )}
-      <div ref={scrollRef} className="app-scroll" data-headless={header ? undefined : 'true'}>
+      <div ref={scrollRef} className="app-scroll" data-headless={header || holdSpace ? undefined : 'true'}>
         <BannerStack path={location.pathname} />
         {body}
       </div>
@@ -154,6 +162,16 @@ export function showTopBar(input: { ready: boolean; on: boolean; hint: 'on' | 'o
   if (input.ready) return !input.on;
   if (input.hint === 'off') return true;
   return input.hint === 'unknown' && input.slow;
+}
+
+/**
+ * Whether to hold the top bar's space with an empty box (pure, tested; DEF-14). Only while the
+ * bar itself is held because the hint is "unknown" (a first launch, or storage blocked): then the
+ * bar most likely draws once settings are read, and the box keeps the screen from jumping down.
+ * Never with the hint "on" (Customer View: no bar, the page clears the status bar itself).
+ */
+export function holdTopSpace(input: { ready: boolean; hint: 'on' | 'off' | 'unknown'; header: boolean }): boolean {
+  return !input.ready && !input.header && input.hint === 'unknown';
 }
 
 /** True once storage has kept the app waiting SLOW_STORAGE_MS; false again when it answers. */

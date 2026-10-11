@@ -1,6 +1,6 @@
 # Handoff: Phase 1 (Foundation)
 
-For Lando, DJ, and Suzie. Phase 1 version, drafted 2026-10-11 for the lead. Lando: read all of it. DJ: sections 2, 6, and 10. Suzie: sections 2, 6, and 7.
+For Lando, DJ, and Suzie. Phase 1 version, 2026-10-11. Lando: read all of it. DJ: sections 2, 6, and 10. Suzie: sections 2, 6, and 7.
 
 Phase 1 is the base of the app. It installs on the phone, works with no signal, searches the 77 items that exist so far (14 Quick Cards, 21 products, 22 tools, 20 glossary words), and sets up the phone, the owner PIN, and backups. The jobs, lessons, and customer screens come in later phases (section 11).
 
@@ -57,9 +57,9 @@ How the app keeps them:
 
 Moving the shop phone to a new phone:
 
-1. Old phone: Settings, Backup and restore, Save backup, Save to Files.
-2. New phone: install (section 2), Settings, Device role, Import the newest backup, pick the file. Check the date and counts, then tap Yes, this is the newest backup. The shop role and the PIN come with it.
-3. Old phone: Settings, Device role, Make this a study phone, enter the PIN.
+1. Old phone: Settings, Device role, Hand over to another phone. Enter the PIN, tap Save backup and hand over, and save the file to Files (iCloud Drive). Only when the share sheet says it saved does this phone switch itself to study. Cancel at any step changes nothing.
+2. New phone: install (section 2), Settings, Device role, This is the shop phone, then Import, and pick the file you just saved. Check the date and counts, then tap Yes, this is the newest backup. The shop role and the PIN come with it.
+3. If the old phone's share sheet cannot take a file, the screen says so and shows the two steps instead: Save backup, then Make this a study phone with the PIN. Do both, in that order.
 
 ## 6. Give DJ the study phone
 
@@ -78,7 +78,7 @@ Suzie: nothing to set up in Phase 1. To look around, install it the same way as 
 
 ## 7. Customer View (a preview in Phase 1)
 
-On the shop phone: Home, tap the Customer View tile. A reminder shows once: "Turn on your Customer Focus: Control Center, Focus." Tap Done. The screen shows only the business name, the service area, the phone number, and a line about Phase 4, and the bottom row holds only Exit Customer View. In Phase 1 that exit is one tap. From Phase 4, ending a customer session needs your PIN.
+On the shop phone: Home, tap the Customer View tile. A reminder shows once: "Turn on your Customer Focus: Control Center, Focus." Tap Done. The screen shows only the business name, the towns you serve, one line ("Ask Lando about today's work."), and your phone number. The bottom row holds only Exit Customer View. In Phase 1 that exit is one tap. From Phase 4, ending a customer session needs your PIN.
 
 One-time Focus setup on your iPhone: Settings, Focus, add a Focus (+), Custom, name it Customer. Under People, Allow Notifications From, add Suzie. Under Apps, allow none and leave Time Sensitive Notifications off. Then Suzie's calls ring and text previews stay off the screen. Whether an "urgent" message gets through is `[VERIFY]` at the Phase 4 walkaround.
 
@@ -137,4 +137,4 @@ Telling the lead: what you tapped, what the screen said (a screenshot is best), 
 - Job log, dashboard, Field Notes, and the weekly review: Phase 6.
 - The Netlify link: one production check at the Phase 3 gate, and v1.0 with your real data in Phase 7.
 - A forgot-PIN reset screen, and Suzie's Ops role: later phases.
-- Known small issues are listed in `docs/QA-REPORT.md`. None of them blocks this test.
+- `docs/QA-REPORT.md` lists everything that was tested. No known issue is open.

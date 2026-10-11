@@ -33,6 +33,40 @@ export class StorageUnavailable extends Error {
 export const SETTINGS_UNREADABLE_MESSAGE =
   "This phone's saved settings could not be read, so nothing was changed. They may come from a newer version of the app. Your jobs are still on this phone: open Settings, Backup to save a backup or restore one.";
 
+/*
+ * The words for the Backup, Restore, and Hand over screens when settings cannot be read (DEF-13,
+ * architect's exact text, 2026-10-11). The Backup screen uses these and never
+ * SETTINGS_UNREADABLE_MESSAGE, which points at Backup (the Home notice keeps that one).
+ */
+
+/** A. The Backup screen, when this phone's role or PIN record cannot be read. */
+export const BACKUP_SETTINGS_UNREADABLE_MESSAGE =
+  "This phone's role and owner PIN could not be read, so the shop tools stay locked. Your jobs are still here: tap Save backup below to keep a copy of them now.";
+
+/** B. The Backup screen, when making the backup fails for any other reason. Shown with a Try again button. */
+export const BACKUP_NOT_MADE_MESSAGE =
+  "The backup could not be made, and nothing on this phone was changed. Tap Try again; if it fails again, do not clear the app's data, because your jobs are still on this phone.";
+
+/** C. The restore confirm, on a phone whose own settings are unreadable. */
+export const RESTORE_HERE_UNREADABLE_MESSAGE =
+  "This phone's role and owner PIN could not be read, so the PIN cannot be checked here. Save a backup of this phone first, then type replace to restore.";
+
+/** D. The restore confirm, for a file made while its phone's settings were unreadable. */
+export const RESTORE_FILE_UNREADABLE_MESSAGE =
+  "This backup has every job, but its role and owner PIN could not be read. This phone keeps its own role and PIN, and its sign-offs come back marked needs re-check.";
+
+/** D, when this phone's own settings are unreadable too (restorePlan 'fresh'): this phone has no role or PIN to keep. */
+export const RESTORE_BOTH_UNREADABLE_MESSAGE =
+  'This backup has every job, but its role and owner PIN could not be read. After the restore this phone is a study phone with no PIN, and its sign-offs come back marked needs re-check.';
+
+/**
+ * E. The Hand over result. The architect's text said "tap This is the shop phone"; on a new phone
+ * with no PIN that button is off, and the way in is "Make this the shop phone from a backup" on
+ * the Device role screen (the lead's brief), so the words name that.
+ */
+export const HAND_OVER_DONE_MESSAGE =
+  'This phone is now a study phone. On the new phone, open Settings, Device role, and use Make this the shop phone from a backup with the file you just saved.';
+
 /** A write refused by its schema, in plain words (the detail is a bug for the builders, not for the person). */
 export const RECORD_NOT_SAVED_MESSAGE = 'The app could not save this, so nothing was saved. Try again; if it keeps happening, save a backup and tell Lando.';
 

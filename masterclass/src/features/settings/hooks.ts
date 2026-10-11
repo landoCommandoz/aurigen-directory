@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { backupReminderDue, setupStep, type DeviceRoleName, type SettingsValue, type SetupStep } from '../../schemas';
 import { nowMs } from '../../core/clock';
 import { updateSettings } from '../../core/db';
-import { describeError } from '../../core/errors';
+import { RecordInvalid, describeError } from '../../core/errors';
 import { useSettings } from '../../core/settingsStore';
 
 export interface SetupState {
@@ -18,6 +18,8 @@ export interface SetupState {
   ready: boolean;
   /** Storage is unavailable: the values below are the in-memory defaults. */
   storageProblem: string | null;
+  /** The stored settings row cannot be read as is (DEF-08, DEF-13): storageProblem then holds SETTINGS_UNREADABLE_MESSAGE. */
+  settingsUnreadable: boolean;
   pinExists: boolean;
   /** When the PIN was set, for the honesty line in Settings. */
   pinSetAt: string | null;
@@ -52,11 +54,12 @@ function useMinuteTick(): number {
   return tick;
 }
 
-export function setupStateFrom(settings: SettingsValue | null, now: number, storageProblem: string | null): SetupState {
+export function setupStateFrom(settings: SettingsValue | null, now: number, storageProblem: string | null, settingsUnreadable = false): SetupState {
   if (settings === null) {
     return {
       ready: false,
       storageProblem,
+      settingsUnreadable,
       pinExists: false,
       pinSetAt: null,
       deviceRole: 'study',
@@ -70,6 +73,7 @@ export function setupStateFrom(settings: SettingsValue | null, now: number, stor
   return {
     ready: true,
     storageProblem,
+    settingsUnreadable,
     pinExists: settings.ownerPin !== null,
     pinSetAt: settings.ownerPin?.setAt ?? null,
     deviceRole: settings.deviceRole,
@@ -85,7 +89,8 @@ export function useSetupState(): SetupState {
   const snapshot = useSettings();
   const now = useMinuteTick();
   const problem = snapshot.status === 'unavailable' ? snapshot.error.message : null;
-  return setupStateFrom(snapshot.settings, now, problem);
+  const unreadable = snapshot.status === 'unavailable' && snapshot.error instanceof RecordInvalid;
+  return setupStateFrom(snapshot.settings, now, problem, unreadable);
 }
 
 export type Handedness = SettingsValue['handedness'];

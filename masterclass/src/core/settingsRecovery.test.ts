@@ -168,8 +168,14 @@ describe('a PIN that cannot be read is never guessed', () => {
     clearOwnerPass();
   });
 
-  it('no backup, no PIN check, no Restore: each says so in plain words and nothing changes', async () => {
-    await expect(exportBackup({ photos: 'omitted' })).rejects.toThrow(SETTINGS_UNREADABLE_MESSAGE);
+  it('the backup is still made (DEF-13) with no settings row and no guessed PIN; the PIN check refuses; nothing changes', async () => {
+    const prepared = await exportBackup({ photos: 'omitted' });
+    expect(prepared.settings).toBe('unreadable');
+    expect(prepared.unreadableReasons).toEqual(['ownerPinUnreadable']);
+    const file = JSON.parse(prepared.json) as Record<string, unknown> & { tables: { settings: unknown[] } };
+    expect(file).not.toHaveProperty('deviceRole');
+    expect(file.tables.settings).toEqual([]);
+    expect(prepared.summary).toMatchObject({ deviceRole: 'unknown', hasPin: false, settings: 'unreadable' });
     expect(await verifyPin(PIN)).toEqual({ ok: false, code: 'storage', message: SETTINGS_UNREADABLE_MESSAGE });
     expect(await hasPin()).toBe(false);
     expect(await storedRow()).toMatchObject({ ownerPin: { broken: true }, deviceRole: 'shop' });

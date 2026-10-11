@@ -11,7 +11,7 @@
  */
 import { useMemo, useState, type SyntheticEvent } from 'react';
 import { Banner } from '../components/ui';
-import { DevicePreviewBar, setPreviewWidth, type PreviewWidth } from '../features/settings';
+import { DevicePreviewBar, previewLabel, setPreviewWidth, useViewportWidth, type PreviewWidth } from '../features/settings';
 
 export const PREVIEW_FRAME_ATTR = 'data-mc-preview';
 
@@ -36,6 +36,9 @@ export function PreviewHost({ width }: { width: Exclude<PreviewWidth, null> }) {
     }
   }, []);
   const [blocked, setBlocked] = useState(false);
+  // The frame fits a narrower window (max-width in shell.css); its name says the width it shows (DEF-12).
+  const windowWidth = useViewportWidth();
+  const title = previewLabel({ width, label: `App preview, ${width} px wide` }, windowWidth);
 
   function onLoad(event: SyntheticEvent<HTMLIFrameElement>) {
     try {
@@ -58,7 +61,7 @@ export function PreviewHost({ width }: { width: Exclude<PreviewWidth, null> }) {
         <iframe
           className="app-preview__frame"
           {...{ [PREVIEW_FRAME_ATTR]: '' }}
-          title={`App preview, ${width} px wide`}
+          title={title}
           src={src}
           // Border-box: add the frame's two 1 px borders so the page inside is exactly `width` wide.
           style={{ width: `calc(${width}px + 2px)` }}

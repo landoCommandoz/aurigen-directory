@@ -1,5 +1,5 @@
 import 'fake-indexeddb/auto';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { __setClockForTests } from './clock';
 import { __resetDbForTests, getSettings, withDb } from './db';
 import {
@@ -8,13 +8,16 @@ import {
   __resetPinStateForTests,
   hasPin,
   hashPin,
+  lockCountdownWords,
   ownerPassActive,
   ownerPassIssuedAt,
+  pinLockRemainingMs,
   pinMatches,
   resetPin,
   setPin,
   verifyPin,
 } from './pin';
+import { PIN_GUARD_KEY } from './pinGuard';
 
 let mono = 0;
 let wall = Date.parse('2026-10-10T12:00:00.000Z');
@@ -162,3 +165,86 @@ describe('Forgot PIN (D4)', () => {
     expect(types).toContain('pinReset');
   });
 });
+
+describe('the wrong-PIN count and the lock survive a reload (DEF-05)', () => {
+  /** A reload: memory gone (the pass, the count, the lock); the database and local storage stay. */
+  const reload = () => __resetPinStateForTests();
+
+  it('two wrong PINs, a reload, one more: locked, with one pinFail entry', async () => {
+    await setPin('482915');
+    reload();
+    await verifyPin('000000');
+    await verifyPin('000000');
+    reload();
+    expect(await verifyPin('000000')).toMatchObject({ ok: false, code: 'locked', lockedForMs: PIN_LOCK_MS });
+    expect(await withDb((db) => db.auditLog.where('type').equals('pinFail').count())).toBe(1);
+  });
+
+  it('a correct PIN clears the count: after it and a reload, a wrong PIN leaves two tries', async () => {
+    await setPin('482915');
+    reload();
+    await verifyPin('000000');
+    await verifyPin('000000');
+    expect(await verifyPin('482915')).toEqual({ ok: true });
+    reload();
+    expect(await verifyPin('000000')).toMatchObject({ code: 'wrong', triesLeft: 2 });
+  });
+
+  it('a new PIN starts the count again (the saved count belongs to the PIN it was made against)', async () => {
+    await setPin('482915');
+    reload();
+    await verifyPin('000000');
+    await verifyPin('000000');
+    expect(await resetPin('222222', { backupOffered: true })).toMatchObject({ ok: true });
+    reload();
+    expect(await verifyPin('000000')).toMatchObject({ code: 'wrong', triesLeft: 2 });
+  });
+
+  it('the lock outlives a reload even with its audit entry gone, and a PIN screen can read the seconds left at once', async () => {
+    await setPin('482915');
+    reload();
+    for (let i = 0; i < 3; i += 1) await verifyPin('000000');
+    await withDb((db) => db.auditLog.where('type').equals('pinFail').delete());
+    reload();
+    wall += 10_000;
+    expect(await pinLockRemainingMs()).toBe(PIN_LOCK_MS - 10_000);
+    expect(await verifyPin('482915')).toMatchObject({ ok: false, code: 'locked', message: 'Too many wrong PINs. Try again in 20 seconds.' });
+    wall += PIN_LOCK_MS;
+    expect(await pinLockRemainingMs()).toBe(0);
+    expect(await verifyPin('482915')).toEqual({ ok: true });
+  });
+
+  it('a damaged saved record reads as zero, never as a lock', async () => {
+    await setPin('482915');
+    reload();
+    window.localStorage.setItem(PIN_GUARD_KEY, '{not json');
+    expect(await verifyPin('000000')).toMatchObject({ code: 'wrong', triesLeft: 2 });
+    window.localStorage.setItem(PIN_GUARD_KEY, JSON.stringify({ salt: 'someone-else', fails: 2, lockedAt: wall }));
+    expect(await pinLockRemainingMs()).toBe(0);
+  });
+
+  it('with local storage blocked, the count still holds for the session', async () => {
+    await setPin('482915');
+    reload();
+    const get = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      throw new DOMException('blocked', 'SecurityError');
+    });
+    const set = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new DOMException('blocked', 'SecurityError');
+    });
+    try {
+      await verifyPin('000000');
+      await verifyPin('000000');
+      expect(await verifyPin('000000')).toMatchObject({ code: 'locked' });
+    } finally {
+      get.mockRestore();
+      set.mockRestore();
+    }
+  });
+
+  it('the countdown words are plain and count whole seconds', () => {
+    expect(lockCountdownWords(27_400)).toBe('Locked after three wrong PINs. Try again in 28 seconds.');
+    expect(lockCountdownWords(400)).toBe('Locked after three wrong PINs. Try again in 1 second.');
+  });
+});
+

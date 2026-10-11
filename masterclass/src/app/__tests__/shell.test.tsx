@@ -74,11 +74,12 @@ describe('no dead ends', () => {
     expect(within(main).getByRole('link', { name: 'Fix It' }).getAttribute('href')).toBe('/fixit');
   });
 
-  it('the Job Runner placeholder names Phase 3 and the stopgap, with Fix It, Quick cards, and Home', async () => {
+  it('the Job Runner placeholder names Phase 3 and the job sheet the phone can act on, with Fix It, Quick cards, and Home', async () => {
     renderAt('/job');
     const main = await screen.findByRole('main', { name: 'Job Runner' });
     expect(main.textContent).toContain('The Job Runner arrives in Phase 3.');
-    expect(main.textContent).toContain('Model Y job sheet in reference/ is the stopgap');
+    expect(main.textContent).toContain('Until then, keep using the Model Y job sheet you already have.');
+    expect(main.textContent).not.toContain('reference/');
     for (const name of ['Fix It', 'Quick cards', 'Home']) expect(within(main).getByRole('link', { name })).toBeTruthy();
     // A study phone is told the Job Runner is shop-phone only, with the way to set it up.
     expect(await within(main).findByRole('link', { name: 'Set up this phone' })).toBeTruthy();

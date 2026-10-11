@@ -4,7 +4,7 @@
  * base path, so every goto below is relative ("cards", not "/cards").
  */
 import { expect, test } from '@playwright/test';
-import { expectNoProblems, waitForScreen, watchProblems } from '../fixtures/app';
+import { expectNoProblems, settleAborted, waitForScreen, watchProblems } from '../fixtures/app';
 
 test.use({ serviceWorkers: 'allow' });
 
@@ -34,6 +34,30 @@ test('every asset and the service worker live under the base path; the app insta
   await expect(page.getByRole('heading', { level: 1, name: 'Clay tub lube mix' })).toBeVisible();
   expect(new URL(page.url()).pathname).toBe(`${BASE}cards/card-clay-tub`);
   await context.setOffline(false);
+  expectNoProblems(problems);
+});
+
+// Pass 4: run 2 of the full suite failed the test above once, on a GET of the search-index chunk
+// ending in net::ERR_ABORTED. The cause is the test's own page.goto landing while the idle search
+// preload (src/main.tsx) was still in flight: the browser cancels it and the next page loads it
+// again. This makes that moment happen on purpose: the person's next screen must still search,
+// offline, with no error. expectNoProblems (settleAborted) sets the cancelled request aside.
+test('a full reload while the search index is still loading, offline: no error, and the next screen searches', async ({ page, context }) => {
+  const problems = watchProblems(page);
+  await page.goto('./');
+  await waitForScreen(page);
+  await offlineReady(page);
+  await context.setOffline(true);
+  const preload = page.waitForRequest((request) => request.url().includes('/assets/search-index-'));
+  await page.reload({ waitUntil: 'commit' });
+  await preload;
+  await page.goto('search');
+  await waitForScreen(page);
+  await page.getByRole('searchbox', { name: 'Search' }).fill('bucket');
+  await expect(page.getByRole('button', { name: /^Pre-polish wash bucket mix/ }).first()).toBeVisible();
+  await context.setOffline(false);
+  settleAborted(problems);
+  test.info().annotations.push({ type: 'requests cancelled by the reload', description: problems.superseded.join('; ') || 'none' });
   expectNoProblems(problems);
 });
 

@@ -38,6 +38,14 @@
   gap: var(--space-2);
 }
 
+/* Follows the density target (DEF-07): 64 px in Shop, 44 px in Academy, through the token. */
 .mc-preview__button {
-  min-height: 44px;
+  min-height: var(--target-min);
+}
+
+/* Why a width is off on this window (DEF-12). */
+.mc-preview__note {
+  flex-basis: 100%;
+  color: var(--text-2);
+  font-size: var(--fs-small);
 }

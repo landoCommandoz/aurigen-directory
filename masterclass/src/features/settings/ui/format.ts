@@ -38,12 +38,15 @@ export function formatMB(mb: number | null | undefined): string {
   return `${mb} MB`;
 }
 
-export function roleWords(role: 'study' | 'shop'): string {
+/** 'unknown': a backup made while its phone could not read its role (DEF-13). */
+export function roleWords(role: 'study' | 'shop' | 'unknown'): string {
   switch (role) {
     case 'shop':
       return 'Shop phone';
     case 'study':
       return 'Study phone';
+    case 'unknown':
+      return 'Not readable';
     default:
       return 'Study phone';
   }

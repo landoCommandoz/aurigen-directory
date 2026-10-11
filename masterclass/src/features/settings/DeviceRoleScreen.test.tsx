@@ -4,8 +4,9 @@ import { cleanup, fireEvent, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { getSettings, withDb } from '../../core/db';
 import { startFresh } from '../../core/deviceRole';
-import { clearOwnerPass, setPin } from '../../core/pin';
-import { afterAllReset, renderScreen, resetAll, tapPin } from './__tests__/harness';
+import { HAND_OVER_DONE_MESSAGE } from '../../core/errors';
+import { __resetPinStateForTests, clearOwnerPass, ownerPassActive, setPin, verifyPin } from '../../core/pin';
+import { afterAllReset, installShare, removeShare, renderScreen, resetAll, tapPin } from './__tests__/harness';
 import { DeviceRoleScreen } from './DeviceRoleScreen';
 import { nextRoleView, roleTransitions, shopTapAllowed, START_FRESH_WORD, typedWordMatches, type RoleEvent, type RoleView } from './roleFlow';
 
@@ -17,6 +18,7 @@ beforeEach(async () => {
 
 afterEach(() => {
   cleanup();
+  removeShare();
   afterAllReset();
 });
 
@@ -34,7 +36,7 @@ async function snapshot() {
 describe('device role table', () => {
   const EVENTS: RoleEvent[] = [
     'SHOP_TAP', 'PIN_OK', 'CHOOSE_IMPORT', 'CHOOSE_FRESH', 'FILE_OK', 'CONFIRM', 'CONFIRM_NEEDS_PIN',
-    'WORD_OK', 'WORD_OK_NEW_PIN', 'WORD_OK_NEEDS_PIN', 'NEW_PIN', 'STUDY_TAP', 'DONE', 'FAILED', 'CANCEL', 'BACK',
+    'WORD_OK', 'WORD_OK_NEW_PIN', 'WORD_OK_NEEDS_PIN', 'NEW_PIN', 'STUDY_TAP', 'HANDOVER_TAP', 'PIN_AGAIN', 'DONE', 'FAILED', 'CANCEL', 'BACK',
   ];
 
   it('moves only along the rows of the table and refuses every other event', () => {
@@ -45,10 +47,20 @@ describe('device role table', () => {
   });
 
   it('offers Cancel back to the overview from every step that has not started writing', () => {
-    for (const view of ['shopPin', 'shopChoice', 'importPick', 'importConfirm', 'importPin', 'freshWarning', 'freshPinNew', 'freshPinVerify', 'studyPin'] as RoleView[]) {
+    for (const view of ['shopPin', 'shopChoice', 'importPick', 'importConfirm', 'importPin', 'freshWarning', 'freshPinNew', 'freshPinVerify', 'studyPin', 'handoverPin', 'handoverReady'] as RoleView[]) {
       expect(nextRoleView(view, 'CANCEL')).toBe('overview');
     }
-    for (const view of ['importing', 'freshing', 'studying'] as RoleView[]) expect(nextRoleView(view, 'CANCEL')).toBeNull();
+    for (const view of ['importing', 'freshing', 'studying', 'handingOver'] as RoleView[]) expect(nextRoleView(view, 'CANCEL')).toBeNull();
+  });
+
+  it('Hand over: PIN, then one confirm into the working view; a failed share goes back, a lapsed pass goes back to the PIN', () => {
+    expect(nextRoleView('overview', 'HANDOVER_TAP')).toBe('handoverPin');
+    expect(nextRoleView('handoverPin', 'PIN_OK')).toBe('handoverReady');
+    expect(nextRoleView('handoverReady', 'CONFIRM')).toBe('handingOver');
+    expect(nextRoleView('handoverReady', 'PIN_AGAIN')).toBe('handoverPin');
+    expect(nextRoleView('handingOver', 'DONE')).toBe('result');
+    expect(nextRoleView('handingOver', 'FAILED')).toBe('handoverReady');
+    expect(nextRoleView('handingOver', 'CONFIRM')).toBeNull();
   });
 
   it('allows the shop tap only with a PIN, on a study phone', () => {
@@ -163,3 +175,82 @@ describe('DeviceRoleScreen', () => {
     expect(audit.filter((a) => a.type === 'roleChange').map((a) => a.detail)).toContain('Shop phone to study phone (owner PIN)');
   });
 });
+
+describe('Hand over to another phone (shop phone)', () => {
+  async function readyToHandOver() {
+    await startFresh({ warningAccepted: true, newPin: '482915' });
+    clearOwnerPass();
+    await openRole();
+    fireEvent.click(await screen.findByRole('button', { name: 'Hand over to another phone' }));
+    tapPin('482915');
+    const button = await screen.findByRole('button', { name: 'Save backup and hand over' });
+    await waitFor(() => expect(button).not.toHaveAttribute('aria-busy'));
+    return button;
+  }
+
+  it('the share resolved: a study phone, one roleChange entry, and what to do on the new phone', async () => {
+    const share = installShare('ok');
+    const button = await readyToHandOver();
+    expect(screen.getByText('Nothing has changed yet.')).toBeInTheDocument();
+    fireEvent.click(button);
+    expect(await screen.findByText(HAND_OVER_DONE_MESSAGE)).toBeInTheDocument();
+    expect(share.calls).toHaveLength(1);
+    const { settings, audit } = await snapshot();
+    expect(settings.deviceRole).toBe('study');
+    expect(settings.ownerPin).not.toBeNull();
+    expect(audit.filter((a) => a.detail === 'Shop phone to study phone (hand over)')).toHaveLength(1);
+  });
+
+  it('a closed share sheet changes nothing, says so, and offers Try again and Cancel', async () => {
+    installShare('AbortError');
+    const button = await readyToHandOver();
+    const before = await snapshot();
+    fireEvent.click(button);
+    expect(await screen.findByText(/Nothing changed. This phone stays the shop phone/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Try again' })).toBeInTheDocument();
+    const after = await snapshot();
+    expect(after.settings).toEqual(before.settings);
+    expect(after.audit).toHaveLength(before.audit.length);
+    fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
+    expect(await screen.findByRole('heading', { name: 'Device role' })).toBeInTheDocument();
+    expect((await getSettings()).deviceRole).toBe('shop');
+  });
+
+  it('Cancel on the PIN changes nothing', async () => {
+    installShare('ok');
+    await startFresh({ warningAccepted: true, newPin: '482915' });
+    clearOwnerPass();
+    const before = await snapshot();
+    await openRole();
+    fireEvent.click(await screen.findByRole('button', { name: 'Hand over to another phone' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
+    expect(await screen.findByRole('heading', { name: 'Device role' })).toBeInTheDocument();
+    expect(await snapshot()).toEqual(before);
+  });
+
+  it('a device whose share sheet cannot take a file is told the two separate steps, with no Hand over button', async () => {
+    await startFresh({ warningAccepted: true, newPin: '482915' });
+    await openRole();
+    expect(await screen.findByText(/do it in two steps/)).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Hand over to another phone' })).toBeNull();
+    expect(screen.getByRole('button', { name: 'Make this a study phone' })).toBeInTheDocument();
+  });
+});
+
+describe('the PIN lock after a reload (DEF-05)', () => {
+  it('shows the seconds left as soon as the pad opens; a PIN typed then is refused and nothing changes', async () => {
+    await startFresh({ warningAccepted: true, newPin: '482915' });
+    clearOwnerPass();
+    for (let i = 0; i < 3; i += 1) await verifyPin('000000');
+    __resetPinStateForTests();
+    await openRole();
+    fireEvent.click(await screen.findByRole('button', { name: 'Make this a study phone' }));
+    expect(await screen.findByText(/^Locked after three wrong PINs\. Try again in \d+ seconds\.$/)).toBeInTheDocument();
+    tapPin('482915');
+    await waitFor(async () => expect((await verifyPin('482915')).ok).toBe(false));
+    expect(ownerPassActive()).toBe(false);
+    expect((await getSettings()).deviceRole).toBe('shop');
+    expect(screen.queryByText(/This is now a study phone/)).toBeNull();
+  });
+});
+

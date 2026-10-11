@@ -8,3 +8,4 @@ export * from './search';
 export * from './runtime';
 export * from './config';
 export * from './backup';
+export * from './backup-recovery';

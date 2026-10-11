@@ -144,12 +144,98 @@ describe('three wrong PINs lock entry for 30 seconds', () => {
     expect(await verifyPin(WRONG)).toMatchObject({ code: 'wrong', triesLeft: 2 });
   });
 
-  // DEF-05 (later): the wrong-PIN count lives in memory only, so a reload between tries resets it.
-  // Two wrong PINs, reload, two wrong PINs, reload... never locks. D4 says three wrong attempts lock.
-  it.fails('two wrong PINs, a reload, and one more wrong PIN still lock entry (the count survives a reload)', async () => {
+  // DEF-05 (fixed in the fix wave): the count is saved per PIN (src/core/pinGuard.ts), so a reload
+  // between tries no longer resets it. D4: three wrong attempts in a row lock.
+  it('two wrong PINs, a reload, and one more wrong PIN still lock entry (the count survives a reload)', async () => {
     await verifyPin(WRONG);
     await verifyPin(WRONG);
     reload();
     expect(await verifyPin(WRONG)).toMatchObject({ ok: false, code: 'locked' });
+  });
+});
+
+describe('DEF-05 recheck: the saved wrong-PIN count at its edges', () => {
+  const KEY = 'masterclass.pinGuard';
+
+  it('one wrong PIN per reload, three reloads: the third still locks', async () => {
+    expect(await verifyPin(WRONG)).toMatchObject({ code: 'wrong', triesLeft: 2 });
+    reload();
+    expect(await verifyPin(WRONG)).toMatchObject({ code: 'wrong', triesLeft: 1 });
+    reload();
+    expect(await verifyPin(WRONG)).toMatchObject({ code: 'locked' });
+    expect((await audit()).filter((e) => e.type === 'pinFail')).toHaveLength(1);
+  });
+
+  it('a correct PIN resets the saved count: two wrong, right, reload, one wrong leaves two tries', async () => {
+    await verifyPin(WRONG);
+    await verifyPin(WRONG);
+    expect(await verifyPin(PIN)).toEqual({ ok: true });
+    reload();
+    expect(await verifyPin(WRONG)).toMatchObject({ code: 'wrong', triesLeft: 2 });
+  });
+
+  it('a new PIN starts the count again: two wrong on the old PIN never carry to the new one', async () => {
+    await verifyPin(WRONG);
+    await verifyPin(WRONG);
+    expect(await verifyPin(PIN)).toEqual({ ok: true });
+    expect((await setPin('135790')).ok).toBe(true);
+    clearOwnerPass();
+    reload();
+    expect(await verifyPin(WRONG)).toMatchObject({ code: 'wrong', triesLeft: 2 });
+  });
+
+  it('a tampered or damaged saved value reads as zero and never crashes or unlocks a running lock early', async () => {
+    const salt = (await getSettings()).ownerPin?.salt ?? '';
+    const damaged = [
+      'not json',
+      '[]',
+      'null',
+      '{"salt":1,"fails":2}',
+      JSON.stringify({ salt: 'another PIN', fails: 2 }),
+      JSON.stringify({ salt, fails: -1 }),
+      JSON.stringify({ salt, fails: 'two' }),
+      JSON.stringify({ salt, fails: 1e9 }),
+      JSON.stringify({ salt, fails: 1.5 }),
+      JSON.stringify({ salt, fails: 0, lockedAt: 'soon' }),
+    ];
+    for (const raw of damaged) {
+      window.localStorage.setItem(KEY, raw);
+      reload();
+      expect(await verifyPin(WRONG)).toMatchObject({ code: 'wrong' });
+      expect(await verifyPin(PIN)).toEqual({ ok: true });
+    }
+    // A lock in progress, then the saved value is wiped: the lock still holds from its audit entry.
+    for (let i = 0; i < 3; i += 1) await verifyPin(WRONG);
+    window.localStorage.removeItem(KEY);
+    reload();
+    wall += 5_000;
+    expect(await verifyPin(PIN)).toMatchObject({ code: 'locked' });
+  });
+
+  it('with storage blocked the count still holds for the session (three in a row lock) and nothing throws', async () => {
+    const real = Object.getOwnPropertyDescriptor(window, 'localStorage');
+    Object.defineProperty(window, 'localStorage', {
+      configurable: true,
+      get() {
+        throw new DOMException('blocked', 'SecurityError');
+      },
+    });
+    try {
+      expect(await verifyPin(WRONG)).toMatchObject({ code: 'wrong', triesLeft: 2 });
+      expect(await verifyPin(WRONG)).toMatchObject({ code: 'wrong', triesLeft: 1 });
+      expect(await verifyPin(WRONG)).toMatchObject({ code: 'locked' });
+      reload();
+      wall += 1_000;
+      expect(await verifyPin(PIN)).toMatchObject({ code: 'locked' });
+    } finally {
+      if (real !== undefined) Object.defineProperty(window, 'localStorage', real);
+    }
+  });
+
+  it('the saved value holds no PIN, wrong or right', async () => {
+    await verifyPin(WRONG);
+    const saved = window.localStorage.getItem(KEY) ?? '';
+    expect(saved).not.toContain(WRONG);
+    expect(saved).not.toContain(PIN);
   });
 });

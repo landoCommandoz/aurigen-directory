@@ -35,6 +35,17 @@ html[data-density] {
   background-repeat: no-repeat;
 }
 
+/* The held bar's place (DEF-14): the same frame as .app-top, one empty line as tall as the bar's
+ * row (the larger of its buttons and the title with the offline marker). No text, aria-hidden. */
+.app-top--hold {
+  flex-wrap: nowrap;
+}
+
+.app-top__hold {
+  display: block;
+  min-height: max(var(--target-min), calc(var(--fs-h3) * var(--lh-tight) + 2px + var(--fs-small) * var(--lh-snug)));
+}
+
 .app-top__brand {
   display: flex;
   flex-direction: column;

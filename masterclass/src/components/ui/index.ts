@@ -36,3 +36,5 @@ export type { FieldProps } from './Field';
 
 export { CheckGlyph, InfoGlyph, OctagonGlyph, SpinnerGlyph, WarningGlyph } from './glyphs';
 export { useFocusTrap } from './useFocusTrap';
+export { TAP_GUARD_MS, useTapGuard } from './useTapGuard';
+export type { TapGuard, TapGuardHandlers } from './useTapGuard';

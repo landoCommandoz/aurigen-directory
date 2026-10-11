@@ -125,6 +125,24 @@ describe('content build', () => {
     expect(r.problems.some((p) => p.includes('card-old.yml') && p.includes('.yaml'))).toBe(true);
   });
 
+  it('two files with the same id (DEF-06): the duplicate is named and left out, nothing throws, nothing is written', () => {
+    put('content/cards/card-bucket-mix.yaml', CARD);
+    put('content/cards/card-bucket-mix-copy.yaml', CARD);
+    let r: ReturnType<typeof buildContent> | null = null;
+    expect(() => {
+      r = buildContent({ root });
+    }).not.toThrow();
+    const result = r as unknown as ReturnType<typeof buildContent>;
+    expect(result.ok).toBe(false);
+    const dupes = result.problems.filter((p) => p.includes('Duplicate id "card-bucket-mix"'));
+    expect(dupes).toHaveLength(1);
+    expect(dupes[0]).toMatch(/card-bucket-mix(-copy)?\.yaml: id: .*already uses it, so this file was left out/);
+    expect(dupes[0]).toContain('card-bucket-mix-copy.yaml');
+    expect(result.bundle.items.map((i) => i.id)).toEqual(['card-bucket-mix']);
+    expect(result.problems.some((p) => /MiniSearch|stack|at Object\./.test(p))).toBe(false);
+    expect(existsSync(join(root, GENERATED_DIR))).toBe(false);
+  });
+
   it('leaves superseded items out of the bundle and the index', () => {
     put('content/cards/card-bucket-mix.yaml', CARD.replace('status: house', 'status: superseded'));
     put('content/cards/card-bucket-mix-v2.yaml', CARD.replace(/card-bucket-mix/g, 'card-bucket-mix-v2').replace('kind: mix', 'kind: mix\nsupersedes: card-bucket-mix'));

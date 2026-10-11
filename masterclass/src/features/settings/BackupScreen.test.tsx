@@ -8,12 +8,14 @@ import { __setContentBundleForTests } from '../../core/content';
 import { emptyBundle } from '../../core/contentBundle';
 import { getSettings, withDb } from '../../core/db';
 import { startFresh } from '../../core/deviceRole';
+import { BACKUP_NOT_MADE_MESSAGE, BACKUP_SETTINGS_UNREADABLE_MESSAGE, RESTORE_FILE_UNREADABLE_MESSAGE, RESTORE_HERE_UNREADABLE_MESSAGE, SETTINGS_UNREADABLE_MESSAGE } from '../../core/errors';
 import { clearOwnerPass } from '../../core/pin';
 import { afterAllReset, installShare, removeShare, renderScreen, resetAll, tapPin } from './__tests__/harness';
 import { BackupScreen } from './BackupScreen';
 import { DeviceRoleScreen } from './DeviceRoleScreen';
 import { nextRestoreView, restoreBlocker, restoreTransitions, type RestoreEvent, type RestoreView } from './restoreFlow';
 import { RESTORE_WORD } from './roleFlow';
+import { SETTINGS_UNREADABLE_SHOP_PATH_MESSAGE } from '../../schemas';
 
 const ROUTES = { '/settings/backup': <BackupScreen />, '/settings/device': <DeviceRoleScreen />, '/settings': <p>Settings home</p> };
 
@@ -197,3 +199,122 @@ describe('device role import path', () => {
     expect(screen.getByRole('button', { name: 'Yes, this is the newest backup' })).toBeDisabled();
   });
 });
+
+/** Change the stored settings row behind the app's back, the way a newer version would leave it. */
+async function patchRow(patch: Record<string, unknown>): Promise<void> {
+  await withDb(async (db) => {
+    const row = await db.settings.get('device');
+    await db.settings.put({ ...row, ...patch } as never);
+  });
+}
+
+describe('DEF-03: one tap is one backup', () => {
+  it('a second tap while saving, or right after, does nothing; the button reads Saved until OK and at least 2 seconds', async () => {
+    const share = installShare('ok');
+    renderScreen('/settings/backup', ROUTES);
+    const button = await screen.findByRole('button', { name: 'Save backup' });
+    await act(async () => {
+      fireEvent.click(button);
+      fireEvent.click(button);
+    });
+    expect(share.calls).toHaveLength(1);
+    const saved = await screen.findByRole('button', { name: 'Saved' });
+    expect(saved).toBeDisabled();
+    fireEvent.click(saved);
+    expect(share.calls).toHaveLength(1);
+    fireEvent.click(screen.getByRole('button', { name: 'OK' }));
+    // OK alone does not let go before the 2 seconds are up.
+    expect(screen.getByRole('button', { name: 'Saved' })).toBeDisabled();
+    expect(await screen.findByRole('button', { name: 'Save backup' }, { timeout: 3500 })).toBeEnabled();
+    const exports = await withDb((db) => db.auditLog.where('type').equals('export').count());
+    expect(exports).toBe(1);
+  }, 8000);
+});
+
+describe('DEF-13 on the Backup screen', () => {
+  it('a role this version cannot read: the architect\'s words, never "open Backup", and Save backup works', async () => {
+    await shopBackupText();
+    await patchRow({ deviceRole: 'crewTablet' });
+    const share = installShare('ok');
+    renderScreen('/settings/backup', ROUTES);
+    expect(await screen.findByText(BACKUP_SETTINGS_UNREADABLE_MESSAGE)).toBeInTheDocument();
+    expect(screen.queryByText(SETTINGS_UNREADABLE_MESSAGE)).toBeNull();
+    expect(screen.queryByText(/open Settings, Backup/)).toBeNull();
+    const button = await screen.findByRole('button', { name: 'Save backup' });
+    await act(async () => {
+      fireEvent.click(button);
+    });
+    expect(share.calls).toHaveLength(1);
+    const shared = share.calls[0]?.files?.[0];
+    if (shared === undefined) throw new Error('no file was shared');
+    const text = await shared.text();
+    expect(JSON.parse(text)).toMatchObject({ settingsUnreadable: { reasons: ['deviceRoleUnreadable'] } });
+    expect(JSON.parse(text).tables.jobs).toHaveLength(6);
+  });
+
+  it('a backup that cannot be made for another reason: nothing changed, Try again, and no advice to clear the data', async () => {
+    // A job row a newer version wrote, which this version's schema refuses: the file cannot be built.
+    await withDb((db) => db.jobs.add({ id: 'not-a-job' } as never));
+    renderScreen('/settings/backup', ROUTES);
+    expect(await screen.findByText(BACKUP_NOT_MADE_MESSAGE)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Try again' })).toBeEnabled();
+    expect(screen.queryByText(/could not be prepared/)).toBeNull();
+  });
+
+  it('restore on a phone whose own settings cannot be read: counts first, text C, a backup offered, then the typed word with no PIN', async () => {
+    const text = await shopBackupText();
+    await resetAll();
+    __setContentBundleForTests({ ...emptyBundle(), items: priceItems() });
+    await startFresh({ warningAccepted: true, newPin: '135790' });
+    await withDb((db) => db.jobs.add(makeJob('delivered', { packageId: POLISH_SEDAN })));
+    await patchRow({ ownerPin: { broken: true } });
+    clearOwnerPass();
+    const { container } = renderScreen('/settings/backup', ROUTES);
+    fireEvent.click(await screen.findByRole('button', { name: 'Restore from a file' }));
+    pickFile(container, text);
+    expect(await screen.findByText(RESTORE_HERE_UNREADABLE_MESSAGE)).toBeInTheDocument();
+    expect(screen.getByText(/^This phone now: 1 job, /)).toBeInTheDocument();
+    expect(await screen.findByRole('button', { name: 'Save a backup of this phone' })).toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText(`Type ${RESTORE_WORD} to confirm`), { target: { value: RESTORE_WORD } });
+    fireEvent.click(screen.getByRole('button', { name: 'Apply' }));
+    expect(screen.queryByRole('group', { name: /PIN/ })).toBeNull();
+    expect(await screen.findByText(/Restored. This phone now has 6 jobs/)).toBeInTheDocument();
+    expect((await getSettings()).deviceRole).toBe('shop');
+  });
+
+  it('restore of a file whose settings could not be read: text D, and the phone keeps its role', async () => {
+    await shopBackupText();
+    await patchRow({ deviceRole: 'crewTablet' });
+    const unreadable = (await exportBackup({ photos: 'omitted' })).json;
+    await resetAll();
+    __setContentBundleForTests({ ...emptyBundle(), items: priceItems() });
+    const { container } = renderScreen('/settings/backup', ROUTES);
+    fireEvent.click(await screen.findByRole('button', { name: 'Restore from a file' }));
+    pickFile(container, unreadable);
+    expect(await screen.findByText(RESTORE_FILE_UNREADABLE_MESSAGE)).toBeInTheDocument();
+    const row = (label: string) => screen.getByText(label).closest('div')?.querySelector('dd')?.textContent;
+    expect(row('Device role in the file')).toBe('Not readable');
+    expect(row('Owner PIN in the file')).toBe('Not readable');
+    fireEvent.change(screen.getByLabelText(`Type ${RESTORE_WORD} to confirm`), { target: { value: RESTORE_WORD } });
+    fireEvent.click(screen.getByRole('button', { name: 'Apply' }));
+    expect(await screen.findByText(/Restored. This phone now has 6 jobs/)).toBeInTheDocument();
+    expect((await getSettings()).deviceRole).toBe('study');
+  });
+});
+
+describe('DEF-13 on the shop path', () => {
+  it('"Import the newest backup" refuses a file whose role and PIN could not be read, naming the way through', async () => {
+    await shopBackupText();
+    await patchRow({ deviceRole: 'crewTablet' });
+    const unreadable = (await exportBackup({ photos: 'omitted' })).json;
+    await resetAll();
+    __setContentBundleForTests({ ...emptyBundle(), items: priceItems() });
+    const { container } = renderScreen('/settings/device', ROUTES);
+    fireEvent.click(await screen.findByRole('button', { name: 'Import the newest backup' }));
+    pickFile(container, unreadable);
+    expect(await screen.findByText(SETTINGS_UNREADABLE_SHOP_PATH_MESSAGE)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Yes, this is the newest backup' })).toBeDisabled();
+    expect((await getSettings()).deviceRole).toBe('study');
+  });
+});
+

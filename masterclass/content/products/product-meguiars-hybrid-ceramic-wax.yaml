@@ -4,7 +4,8 @@ title: Meguiar's Hybrid Ceramic Wax, 32 oz spray
 brand: Meguiar's
 audience: [owner, crew]
 visibility: internal
-status: verify
+status: sourced
+version: 2
 kbRef: "9.1"
 tags: [protection, ceramic wax, spray wax, drying aid]
 synonyms:
@@ -16,15 +17,37 @@ synonyms:
   - wax as you dry
   - ceramic spray
   - drying aid
+  - two coats
 sources:
-  - label: Meguiar's Hybrid Ceramic Wax label
-    date: 2026-10-06
-    note: Reconfirm the label
+  - label: Meguiar's UK product page, Hybrid Ceramic Wax G190526EU
+    url: https://www.meguiars.co.uk/product/meguiars-hybrid-ceramic-wax-768ml/
+    date: 2026-10-10
+    note: After washing and rinsing, spray it on, rinse again with a strong stream, then dry. No rubbing, buffing, or curing time. Fact-checker FC-04.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Meguiar's US product page, Hybrid Ceramic Wax G190526
+    url: https://www.meguiars.com/automotive/products/meguiars-hybrid-ceramic-wax-easy-use-ceramic-wax-protection-g190526-26-oz
+    date: 2026-10-10
+    note: Same steps and no curing time. Read through the search index. Fact-checker FC-04.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Meguiar's UK launch article, Hybrid Ceramic Wax
+    url: https://www.meguiars.co.uk/showroom/introducing-meguiars-hybrid-ceramic-wax/
+    date: 2026-10-10
+    note: Two coats recommended. Apply on the wet car, dry, re-wet, and repeat. The next-day timing is a house choice. Fact-checker FC-05.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Meguiar's ingredient search, Hybrid Ceramic Wax
+    url: https://www.meguiars.com/ingredient-search/hybrid-ceramic-wax-g1905-g190526-g190532sp
+    date: 2026-10-10
+    note: G190532SP is the 32 oz bottle. Read through the search index. Fact-checker FC-07.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
 jobs:
   - Spray protection, the same day you polish
   - Drying aid against hard water spots
   - A coat on chrome after chrome polish, on bikes
-labelNotes: "Standard method: on a wet car, spray, rinse, dry. No haze, no buffing, no waiting. Wax as you dry: wet panel, light mist, dry with a clean towel, skip the second rinse. No cure time. A whole-car coat the next day counts as the second coat on a freshly polished panel."
+labelNotes: "Standard method: on a wet car, spray, rinse, dry. No haze, no buffing, no waiting. Wax as you dry: wet panel, light mist, dry with a clean towel, skip the second rinse. No cure time. Meguiar's recommends two coats: apply on the wet car, dry, re-wet, and repeat. House plan: a whole-car coat the next day counts as the second coat on a freshly polished panel. If your bottle says something different, the bottle wins."
 related:
   - card-bike-rules
   - card-stop-rules

@@ -1,6 +1,6 @@
 # How to add content
 
-For Lando. How to add a Quick Card, a product, a tool, or a glossary word now, and a Fix It entry, a lesson, or a price change once those exist. Phase 1 version, drafted 2026-10-11 for the lead. Every template below passed the real content check on that date.
+For Lando. How to add a Quick Card, a product, a tool, or a glossary word now, and a Fix It entry, a lesson, or a price change once those exist. Phase 1 version, 2026-10-11. Every template below passed the real content check on that date.
 
 ## The one rule
 

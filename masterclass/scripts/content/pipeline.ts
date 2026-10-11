@@ -8,6 +8,10 @@
  * 6. checkContentSet (references, duplicates, supersession, customer-safe rule, sign-off pairing);
  * 7. synonyms (absent means none yet) and tests/search-cases.yaml (absent means skipped);
  * 8. leave superseded items out; write src/generated/ only when everything passed.
+ *
+ * Content problems never throw (DEF-06): a duplicate id is reported with both files and the second
+ * file is left out, so the search index never meets the same id twice; anything the index or the
+ * search cases still refuse becomes one plain problem line. The CLI prints the list and exits 1.
  */
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { basename, join } from 'node:path';
@@ -159,8 +163,12 @@ export function buildContent(opts: BuildOptions): BuildResult {
       continue;
     }
     const item = result.data as ContentItemValue;
-    if (fileOf.has(item.id)) problems.push(`${rel}: id: Duplicate id "${item.id}": ${fileOf.get(item.id)} already uses it`);
-    else fileOf.set(item.id, rel);
+    if (fileOf.has(item.id)) {
+      // Reported, and this second file is left out: one id, one item (DEF-06).
+      problems.push(`${rel}: id: Duplicate id "${item.id}": ${fileOf.get(item.id)} already uses it, so this file was left out`);
+      continue;
+    }
+    fileOf.set(item.id, rel);
     items.push(item);
   }
 
@@ -234,8 +242,13 @@ export function buildContent(opts: BuildOptions): BuildResult {
     signOffs: [...signOffs].sort((a, b) => a.skillId.localeCompare(b.skillId)),
     synonyms,
   };
-  const index = buildSearchIndex(renderable, synonyms);
-  stats.searchIndexDocs = index.documentCount;
+  let index: ReturnType<typeof buildSearchIndex> | null = null;
+  try {
+    index = buildSearchIndex(renderable, synonyms);
+    stats.searchIndexDocs = index.documentCount;
+  } catch (error) {
+    problems.push(`content: the search index could not be built (${error instanceof Error ? error.message : String(error)})`);
+  }
 
   /* 7 (continued): search cases, run against the same index the app ships */
   const casesPath = join(root, SEARCH_CASES_FILE);
@@ -250,11 +263,12 @@ export function buildContent(opts: BuildOptions): BuildResult {
       stats.searchCases.count = cases.length;
       const refProblems = searchCaseReferenceProblems(cases, new Set(renderable.map((i) => i.id)));
       problems.push(...refProblems.map((p) => `${SEARCH_CASES_FILE}: ${p}`));
-      if (problems.length > 0) {
+      if (problems.length > 0 || index === null) {
         notes.push('Search cases were not run, because of the problems listed.');
       } else {
+        const built = index;
         cases.forEach((c, i) => {
-          const top = runSearch(index, c.query, { limit: 1 })[0];
+          const top = runSearch(built, c.query, { limit: 1 })[0];
           if (top !== undefined && c.expect.includes(top.id)) stats.searchCases.passed += 1;
           else problems.push(`${SEARCH_CASES_FILE}: cases[${i}] "${c.query}": expected ${c.expect.join(' or ')} on top, got ${top === undefined ? 'no result' : `"${top.id}"`}`);
         });
@@ -271,7 +285,7 @@ export function buildContent(opts: BuildOptions): BuildResult {
 
   stats.notes = notes;
   const wrote: string[] = [];
-  if (problems.length === 0 && write) {
+  if (problems.length === 0 && write && index !== null) {
     const outDir = join(root, GENERATED_DIR);
     mkdirSync(outDir, { recursive: true });
     writeAtomic(join(outDir, OUTPUT_FILES.bundle), JSON.stringify(bundle));
