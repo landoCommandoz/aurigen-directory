@@ -1,14 +1,21 @@
 # STATUS: Lando's Detailing Masterclass 101
 
-The status board. Every session starts here. Owner: the lead. Updated 2026-10-11 (Phase 1 built, QA gate passed, pull request open).
+The status board. Every session starts here. Owner: the lead. Updated 2026-10-11 (Phase 1 merged and live; Phase 2 in progress).
 
 ## Where things are
 
-- Phase 1 (Foundation) is built, tested, and on the branch `masterclass/phase-1`, with a pull request to `main`. It also carries the Phase 0 decisions branch (pull request #164) underneath it.
-- Live link after the merge: https://landocommandoz.github.io/aurigen-directory/ (GitHub Pages, free, 0 Netlify credits). Pages deploys from `main` only. Lando's one tap, once: the repo on github.com, Settings, Pages, Source, GitHub Actions.
-- CI: every push that touches `masterclass/` runs the Masterclass Pages workflow: install, `npm run check`, and the Pages build. Green on the branch.
-- Netlify: nothing connected. Credits spent so far: 0. The tap-to-run Netlify workflow exists and does nothing until Lando adds the token at the Phase 3 gate.
+- Phase 1 (Foundation) is merged to `main` (pull requests #164, #165, #166) and live at https://landocommandoz.github.io/aurigen-directory/. The Pages switch is on, and the deploy from `main` succeeded on 2026-10-11. The Aurigen Vercel site still returns 404 for every `/masterclass/` path.
+- Phase 2 (Content) is in progress on the branch `masterclass/phase-2`, started 2026-10-11.
+- Lando's reply on 2026-10-11 said "Checklist done, answers above. Start Phase 2." No answers came through: not in chat, not on the pull requests, not in a commit. Phase 2 runs on everything that does not depend on them. The pending items are below; each is shown as a pending row in the content, never decided.
+- CI: every push that touches `masterclass/` runs the Masterclass Pages workflow (install, `npm run check`, the Pages build). Only `main` deploys.
+- Netlify: nothing connected. Credits spent so far: 0.
 - Lando does not want pull request watching. He merges each phase pull request himself.
+
+## Waiting on Lando (asked 2026-10-11, not received)
+
+- The Phase 1 device checklist answers (`docs/HANDOFF.md` section 9). Needed for Phase 3 (read-aloud after lock, wake lock, share sheet).
+- Decision 1, Teslas (FC-16). Decision 2, polisher speed and pressure (FC-22, FC-23). Decision 3, aftercare wording (FC-06). Decision 4, the knowledge base corrections (FC-02, FC-10, FC-18, FC-24). Defaults were offered; "defaults OK" covers all four.
+- Phase 2 pre-build questions: his own words for the problems that bite most (feeds synonyms); what DJ does when the label and the app disagree and Lando is not there (a crew rule); the one screen a new hire reads first (Level 0 order).
 
 ## Read in this order (new session)
 
@@ -29,7 +36,7 @@ The status board. Every session starts here. Owner: the lead. Updated 2026-10-11
 - Design: Direction A tokens, self-hosted Barlow and Barlow Condensed, motion and print styles, base components, app icon.
 - Tests: 980 unit tests and 912 end-to-end tests (375, 430, 768, 1024, 1440 px plus the Pages base), all passing, none marked as a known failure. Lighthouse mobile 91 to 92 performance, 100 accessibility; axe 0 violations.
 
-## Open decisions (Lando)
+## Open decisions (Lando), detail
 
 1. Teslas (verification log FC-16): Tesla's manual says no chemical wheel cleaners or pre-wash products, no cutting pastes or harsh-abrasive polishes, and cleaning damage is not under warranty. The house SOP uses Armor All on wheels, a pump-sprayer pre-soak, and compound on rung 3. Proposed default: on Teslas, bucket soap and a soft brush on wheels, no pre-soak, the ladder stops at maroon + M210, compound only with the owner's OK after seeing the test spot.
 2. Polisher speed and pressure (FC-22, FC-23): the 56367 manual says "only use slower speeds for polishing" and "keep pressure off of the tool"; the HF product page says speeds 4 to 6; the house rule is speed 4 and about 10 lb. Proposed default: keep the house settings and show the manual's lines on the card.
@@ -56,8 +63,8 @@ The 9-item device checklist in `docs/HANDOFF.md` section 9 and `docs/BLUEPRINT.m
 
 ## Next
 
-Phase 2 (Content): all knowledge base content converted, Fix It at 33 or more entries, Levels 0 to 4, synonyms and 45 or more search cases, fact-check pass. Starts after Lando merges Phase 1, answers the open decisions above (or says defaults OK), and answers the Phase 2 pre-build questions.
+Phase 2 (Content), now running: curriculum map, lessons for Levels 0 to 4, SOPs, Fix It 33 or more, synonyms and 45 or more search cases, a fact-check sweep, the minimal pages that make new content reachable (symptom tiles, fix page, lesson, SOP, and item pages), then the QA gate. Lando's answers fold in when they arrive.
 
 ## Last change
 
-2026-10-11: Phase 1 foundation, fix wave (DEF-03 to DEF-15 closed), Hand over, fact-checker corrections applied to content, handoff docs; pull request opened.
+2026-10-11: Phase 1 merged and live; Phase 2 started on `masterclass/phase-2`; answers from Lando not received.
