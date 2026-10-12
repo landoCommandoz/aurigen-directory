@@ -4,7 +4,7 @@ title: 6 in. backing plate for the BAUER 56367
 audience: [owner, crew]
 visibility: internal
 status: sourced
-version: 2
+version: 3
 kbRef: "14"
 tags: [backing plate, polisher, parts, m8]
 synonyms:
@@ -37,8 +37,26 @@ sources:
   - label: BAUER 56367 owner's manual, 2021
     url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
     date: 2026-10-10
-    note: Page 10, Replacing Backing Pad, with the Spindle Bolt and the spindle lock. Page 11, give UPC 193175448170 for parts; some parts are not sold separately. Tech line on every page. Fact-checker FC-20 and FC-21.
+    note: Page 10, Replacing Backing Pad, with the Spindle Bolt and the spindle lock. Page 11, give UPC 193175448170 for parts; some parts are not sold separately. Tech line on every page. Max accessory diameter 6 in. (150 mm). Fact-checker FC-20, FC-21, FC-54.
     confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: AutoGeek forum thread, 56367 backing plate (posts Jun 6 to Aug 30, 2020)
+    url: https://www.autogeekonline.net/forum/auto-detailing-tools-and-accessories/126678-new-bauer-hf-56367-long-throw-polisher-non-standard-backing-plate.html
+    date: 2026-10-11
+    note: The Maxshine plate one owner swapped in was a 125 mm (5 in.) plate, and he never said how it ran. Another owner said a Griot's BOSS G21 plate looks very similar; nobody reported fitting one. Fact-checker FC-57.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Parks Car Care, ShineMate Backing Plate DA Heavy Duty (5 in. and 6 in.)
+    url: https://parkscarcare.net/products/shinemate-5-backing-plate-da-heavy-duty
+    date: 2026-10-11
+    note: 6 in. listed at $23.05, the same as the 5 in., out of stock on 2026-10-11. Seller copy says a standard M8 female thread fits most 5 to 6 in. long-throws and an M8 male mounting bolt is included. The seller is a source for its own price only, not for fit. Fact-checker FC-58 and FC-59.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Buff and Shine product page, 634CR 6 in. yellow Uro-Tec
+    url: https://buffandshine.com/products/634cr-6-yellow-uro-tec-foam-pad-polishing
+    date: 2026-10-11
+    note: Buff and Shine pairs its 6 in. Uro-Tec pads with its own 600Y plate, listed with 5/16 in.-24 threads. Fact-checker FC-54.
+    confirmedOn: 2026-10-11
     confirmedBy: fact-checker
 specs:
   - label: Size
@@ -66,10 +84,28 @@ specs:
     value: Not confirmed. The manual warns some parts are not sold separately.
     status: verify
   - label: Backup plate
-    value: ShineMate Heavy Duty, M8 thread, M8 bolt included, sold as fitting most 5 to 6 in. long-throws. Listed at $23.05 at Parks Car Care for the 5 in.; confirm the 6 in. price.
+    value: ShineMate Heavy Duty 6 in. The seller says M8 thread, M8 bolt included, and that it fits most 5 to 6 in. long-throws.
     status: verify
-  - label: Owner reports
-    value: One 56367 owner swapped in a Maxshine plate. Another said a Griot's BOSS 21 plate looks nearly identical.
+  - label: Backup plate fit
+    value: Not confirmed. The seller describes a female M8 thread plus an M8 bolt. The 56367 plate mounts with a Spindle Bolt through a center hole. Compare the hub to the stock plate before you bolt it on.
+    status: verify
+  - label: Backup plate price
+    value: $23.05 at Parks Car Care for the 6 in., the same as the 5 in. Out of stock on 2026-10-11.
+    status: sourced
+  - label: Not a backup, the forum Maxshine swap
+    value: The forum owner's Maxshine was a 5 in. (125 mm) plate. That is a downsize, which this entry says never to do. He never said how it ran.
+    status: sourced
+  - label: Not a backup, Maxshine 6 in.
+    value: A retailer lists Maxshine's standard 6 in. DA plate with 5/16 in. threads, not M8.
+    status: verify
+  - label: Not a backup, Griot's BOSS G21
+    value: One owner said it looks very similar. Nobody reported fitting one.
+    status: verify
+  - label: Do not buy, Buff and Shine 600Y
+    value: Buff and Shine's own 6 in. plate has 5/16 in.-24 threads. The 56367 uses M8.
+    status: sourced
+  - label: Pads on this plate (pending)
+    value: Buff and Shine's 6 in. Uro-Tec has a 7 in. face, and the manual says the largest accessory is 6 in. Which Uro-Tec size goes on the 56367 is for Lando to decide.
     status: verify
   - label: Spare
     value: A spare 6 in. M8 plate is on the purchase roadmap.
@@ -90,3 +126,6 @@ related:
   - equipment-bauer-56367
   - term-long-throw
   - card-machine-settings
+  - term-backing-plate
+  - term-m8
+  - term-hook-and-loop

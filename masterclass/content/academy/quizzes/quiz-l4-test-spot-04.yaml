@@ -1,0 +1,33 @@
+id: quiz-l4-test-spot-04
+type: quizquestion
+title: After compound
+quizId: quiz-l4-test-spot
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.5"
+tags:
+  - test spot
+  - ladder
+  - sign-off quiz
+  - level 4
+synonyms:
+  - test spot quiz
+  - pad ladder questions
+  - which combo test
+  - test spot sign off quiz
+prompt: "On a car that is not a Tesla, rung 3 at 112 µm: maroon + Ultimate Compound, 3 to 4 sets. What comes next?"
+choices:
+  - Done. Move to the next square.
+  - A second compound pass to be sure.
+  - Always follow with yellow + M210.
+  - Wax it to seal the compound.
+correctIndex: 2
+explanation: Wipe the compound with its own towel, then always yellow + M210 to clear the compound haze. Every compounded square gets both passes.
+scenario: true
+related:
+  - lesson-l4-08-test-spot-ladder
+  - card-pad-ladder
+  - term-test-spot

@@ -1,0 +1,32 @@
+id: quiz-l3-inspect-measure-10
+type: quizquestion
+title: What the customer signs
+quizId: quiz-l3-inspect-measure
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "16"
+tags:
+  - walkaround
+  - sign-off quiz
+  - level 3
+synonyms:
+  - level 3 quiz
+  - inspect and measure quiz
+  - walkaround test
+  - level 3 sign off quiz
+prompt: What does the customer sign before the work starts?
+choices:
+  - The test spot acknowledgment.
+  - A waiver that covers any damage.
+  - A receipt for the deposit.
+  - A promise every scratch comes out.
+correctIndex: 0
+explanation: "The acknowledgment reads: \"I saw the test spot and understand what polishing can and can't fix.\" Read the script, then get the signature."
+scenario: true
+related:
+  - lesson-l3-05-walkaround-script
+  - card-kills-the-buff
+  - card-thickness-bands

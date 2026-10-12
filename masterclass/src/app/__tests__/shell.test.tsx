@@ -3,7 +3,7 @@ import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testi
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ToastProvider } from '../../components/ui';
-import { getItemsByType } from '../../core/content';
+import { getItemsByType, loadAllContent } from '../../core/content';
 import { CustomerViewProvider, turnCustomerViewOn } from '../../core/customerView';
 import { __resetDbForTests, updateSettings } from '../../core/db';
 import { startFresh } from '../../core/deviceRole';
@@ -13,6 +13,10 @@ import { config } from '../config';
 import { setMode } from '../mode';
 import { ROUTE_PATHS, AppRoutes } from '../routes';
 import { sessionNotices } from '../banners/sessionNotices';
+
+// Pages load their content in shards after the shell draws (DEF-17). These tests check what each
+// page draws with its content in, so every shard is loaded once, up front.
+await loadAllContent();
 
 function renderAt(path: string) {
   return render(
@@ -85,13 +89,26 @@ describe('no dead ends', () => {
     expect(await within(main).findByRole('link', { name: 'Set up this phone' })).toBeTruthy();
   });
 
-  it('the Academy placeholder lists Levels 0 to 8 and links to Quick cards and Search', async () => {
+  it('the Academy outline lists Levels 0 to 8, says what arrives in Phase 5, and offers Quick cards and Search', async () => {
     renderAt('/academy');
-    const main = await screen.findByRole('main', { name: 'Academy' });
-    expect(main.textContent).toContain('Lessons arrive in Phase 2 and 5.');
+    const heading = await screen.findByRole('heading', { level: 1, name: 'Academy' });
+    const main = heading.closest('main');
+    if (main === null) throw new Error('the Academy heading is not in a main');
+    expect(main.textContent).toContain('Drills, quizzes, and sign-off arrive in Phase 5.');
     for (let level = 0; level <= 8; level += 1) expect(main.textContent).toContain(`Level ${level}.`);
-    expect(within(main).getByRole('link', { name: 'Quick cards' })).toBeTruthy();
-    expect(within(main).getByRole('link', { name: 'Search' })).toBeTruthy();
+    expect(within(main).getByRole('button', { name: 'Quick cards' })).toBeTruthy();
+    expect(within(main).getByRole('button', { name: 'Search' })).toBeTruthy();
+  });
+
+  it('every new page offers a way back: fix, lesson, procedure, and item pages, found or not', async () => {
+    for (const path of ['/fixit/fix-nope', '/academy/lesson-nope', '/sops', '/sops/sop-nope', '/items/product-nope']) {
+      const view = renderAt(path);
+      await shellReady();
+      const main = (await screen.findAllByRole('main'))[0];
+      if (main === undefined) throw new Error(`${path}: no main`);
+      expect({ path, buttons: within(main).getAllByRole('button').length > 1 }).toEqual({ path, buttons: true });
+      view.unmount();
+    }
   });
 });
 

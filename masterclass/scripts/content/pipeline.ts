@@ -40,8 +40,8 @@ import { CONTENT_BUNDLE_VERSION, type ContentBundle, type ContentStats } from '.
 import { buildSearchIndex, runSearch } from '../../src/core/searchEngine';
 import { formatIssues, parseYamlMapping, splitFrontMatter, walkFiles, type Parsed } from './files';
 
-/** Phase 2 turns this on: fewer than MIN_SEARCH_CASES cases then fails the build (README section 7). */
-export const ENFORCE_MIN_SEARCH_CASES = false;
+/** On from Phase 2: fewer than MIN_SEARCH_CASES cases fails the build (README section 7). A missing file is still skipped. */
+export const ENFORCE_MIN_SEARCH_CASES = true;
 
 export interface BuildOptions {
   /** The masterclass/ folder. */
@@ -241,6 +241,7 @@ export function buildContent(opts: BuildOptions): BuildResult {
     items: renderable,
     signOffs: [...signOffs].sort((a, b) => a.skillId.localeCompare(b.skillId)),
     synonyms,
+    customerSafeIds: renderable.filter((item) => isCustomerRenderable(item)).map((item) => item.id),
   };
   let index: ReturnType<typeof buildSearchIndex> | null = null;
   try {

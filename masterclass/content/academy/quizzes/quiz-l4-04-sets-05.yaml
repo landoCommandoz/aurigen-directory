@@ -1,0 +1,33 @@
+id: quiz-l4-04-sets-05
+type: quizquestion
+title: Arm speed
+quizId: quiz-l4-04-sets
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.3"
+tags:
+  - sets
+  - marker line
+  - quiz
+  - level 4
+synonyms:
+  - sets quiz
+  - crosshatch questions
+  - marker line test
+  - arm speed quiz
+prompt: How fast does your arm move the polisher across the square?
+choices:
+  - About 1 foot per second.
+  - As fast as you can keep it flat.
+  - About 1 inch per second.
+  - It does not matter.
+correctIndex: 2
+explanation: About 1 inch per second. Slower than feels right.
+scenario: true
+related:
+  - lesson-l4-04-speed-sets-marker
+  - term-set
+  - term-crosshatch

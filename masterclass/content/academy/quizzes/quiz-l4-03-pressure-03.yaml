@@ -1,0 +1,31 @@
+id: quiz-l4-03-pressure-03
+type: quizquestion
+title: Plastic bumper
+quizId: quiz-l4-03-pressure
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.3"
+tags:
+  - pressure
+  - quiz
+  - level 4
+synonyms:
+  - pressure quiz
+  - how hard do I press questions
+  - float test
+  - grip quiz
+prompt: You move from the hood to a plastic bumper. What changes?
+choices:
+  - Less pressure, lower speed, less time.
+  - Nothing changes. Plastic polishes the same.
+  - More pressure, because plastic is tough.
+  - More product, because plastic runs dry.
+correctIndex: 0
+explanation: "Plastic bumpers heat fast: lighter pressure, lower speed, shorter time."
+scenario: true
+related:
+  - lesson-l4-03-pressure
+  - card-machine-settings

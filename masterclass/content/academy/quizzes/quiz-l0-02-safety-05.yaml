@@ -1,0 +1,31 @@
+id: quiz-l0-02-safety-05
+type: quizquestion
+title: Hot bike
+quizId: quiz-l0-02-safety
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "12.1"
+tags:
+  - safety
+  - quiz
+  - level 0
+synonyms:
+  - safety quiz
+  - stay safe test
+  - shop safety questions
+  - polisher safety quiz
+prompt: A rider pulls in and wants a wash right away. The pipes are still hot. What do you do?
+choices:
+  - Wash it, but keep water off the pipes.
+  - Cool the pipes down with the hose first.
+  - Wait until the bike is stone cold.
+  - Spray bug remover on the exhaust while it is warm.
+correctIndex: 2
+explanation: The bike must be stone cold. Water on hot pipes stains chrome, and bug remover on a hot exhaust bakes on.
+scenario: true
+related:
+  - lesson-l0-02-stay-safe
+  - equipment-bauer-56367

@@ -3,10 +3,17 @@
  * version waits until Lando taps "Update now", and never takes over while a job is running.
  *
  * App version states: current -> updateAvailable -> updating -> (reload) -> updated -> current.
- * "Ready offline": the service worker has saved the full copy (onOfflineReady on first install,
- * or a controlling worker on any later launch; a worker only activates after its precache is done).
+ * "Ready offline" (offline copy states, QA DEF-27): the full copy is saved AND it serves this page
+ * (navigator.serviceWorker.controller is set). onOfflineReady fires when the copy is saved, a moment
+ * before the first install takes over the open page (clientsClaim, D1 amendment 2026-10-12); until
+ * then the marker says "Saving for offline". A controlling worker always has its full copy (it only
+ * activates once its precache is done), so a page served at launch is ready at once.
  * The page reload after an update waits for a quiet moment: no running stage, no Job Runner
  * screen, Customer View off. Another tab that applies the update triggers the same deferral here.
+ * Two signals mark the reload pending: the plugin's onNeedReload (only for a page a worker served
+ * at load), and a controllerchange from one worker to another (QA DEF-30: the first session, where
+ * workbox-window reports isUpdate false for good, so onNeedReload never comes). The first claim
+ * (no worker before it) only marks the copy ready and never reloads.
  */
 import type { RegisterSWOptions } from 'vite-plugin-pwa/types';
 import { nowMs } from './clock';
@@ -30,10 +37,34 @@ export function nextAppVersionState(state: AppVersionState, event: AppVersionEve
   return row[event] ?? null;
 }
 
+/**
+ * The offline copy, for this page (QA DEF-27). notSaved: no finished copy yet. savedNotServing: the
+ * copy is saved but this page is not served by it yet (the first install, until it takes the page;
+ * or a page opened with a hard reload, which the saved copy never serves). ready: a worker serves
+ * this page. Ready has no way out while the page lives: a page keeps its controller until it
+ * unloads, and the next launch starts from the table again.
+ */
+export type OfflineCopyState = 'notSaved' | 'savedNotServing' | 'ready';
+export type OfflineCopyEvent = 'COPY_SAVED' | 'PAGE_CONTROLLED';
+
+export const offlineCopyTransitions = {
+  notSaved: { COPY_SAVED: 'savedNotServing', PAGE_CONTROLLED: 'ready' },
+  savedNotServing: { PAGE_CONTROLLED: 'ready' },
+  ready: {},
+} as const satisfies Record<OfflineCopyState, Partial<Record<OfflineCopyEvent, OfflineCopyState>>>;
+
+export function nextOfflineCopyState(state: OfflineCopyState, event: OfflineCopyEvent): OfflineCopyState | null {
+  const row: Partial<Record<OfflineCopyEvent, OfflineCopyState>> = offlineCopyTransitions[state];
+  return row[event] ?? null;
+}
+
 export interface PwaStatus {
   supported: boolean;
   registered: boolean;
   state: AppVersionState;
+  /** The offline copy table above. */
+  offlineCopy: OfflineCopyState;
+  /** "Ready offline": offlineCopy is ready (saved and serving this page). */
   offlineReady: boolean;
   /** The new worker took control; the page reloads at the next quiet moment. */
   reloadPending: boolean;
@@ -45,6 +76,7 @@ export const pwaStatus = createStore<PwaStatus>({
   supported: typeof navigator !== 'undefined' && 'serviceWorker' in navigator,
   registered: false,
   state: 'current',
+  offlineCopy: 'notSaved',
   offlineReady: false,
   reloadPending: false,
   lastCheckAt: null,
@@ -60,6 +92,26 @@ function apply(event: AppVersionEvent): boolean {
   if (next === null) return false;
   pwaStatus.update({ state: next });
   return true;
+}
+
+function applyOfflineCopy(event: OfflineCopyEvent): void {
+  const next = nextOfflineCopyState(pwaStatus.get().offlineCopy, event);
+  if (next !== null) pwaStatus.update({ offlineCopy: next, offlineReady: next === 'ready' });
+}
+
+/** The worker serving this page, or null; a container that cannot be read counts as none. */
+function readController(container: ServiceWorkerContainer): ServiceWorker | null {
+  try {
+    return container.controller ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/** PAGE_CONTROLLED once a service worker serves this page (read at boot and on every controllerchange). */
+function noteController(container: ServiceWorkerContainer): void {
+  // A container that cannot be read leaves the marker where it is, never on a false "Ready offline".
+  if (readController(container) !== null) applyOfflineCopy('PAGE_CONTROLLED');
 }
 
 /* ---------- Quiet moments ---------- */
@@ -115,6 +167,7 @@ let updateServiceWorker: ((reloadPage?: boolean) => Promise<void>) | null = null
 let registration: ServiceWorkerRegistration | null = null;
 let swScriptUrl: string | null = null;
 let checkTimer: ReturnType<typeof setInterval> | null = null;
+let stopWatchingController: (() => void) | null = null;
 let initialized = false;
 let reloadPage: () => void = () => window.location.reload();
 
@@ -140,9 +193,33 @@ export async function checkForUpdate(): Promise<void> {
 export async function reloadIfPending(): Promise<boolean> {
   if (!pwaStatus.get().reloadPending) return false;
   if ((await updateBlocker()) !== null) return false;
+  // Both takeover signals can arrive in the same moment; only the first caller past the guard reloads.
+  if (!pwaStatus.get().reloadPending) return false;
   pwaStatus.update({ reloadPending: false });
   reloadPage();
   return true;
+}
+
+/** A new worker took this page. Never reload mid-job: the quiet-moment guard decides when. */
+function newVersionTookOver(): void {
+  pwaStatus.update({ reloadPending: true });
+  void reloadIfPending();
+}
+
+/** The worker that served this page at the last look (boot, then every controllerchange). */
+let knownController: ServiceWorker | null = null;
+
+/**
+ * controllerchange. One worker replacing another is a new version taking this page (Update now,
+ * here or in another tab): reload at the next quiet moment (DEF-30). A first claim (no worker
+ * before) or an event with no new worker only updates the offline copy table.
+ */
+function onControllerChange(container: ServiceWorkerContainer): void {
+  const before = knownController;
+  const after = readController(container);
+  knownController = after;
+  noteController(container);
+  if (before !== null && after !== null && after !== before) newVersionTookOver();
 }
 
 export interface InitPwaOptions {
@@ -161,7 +238,20 @@ export async function initPwa(opts: InitPwaOptions = {}): Promise<void> {
     pwaStatus.update({ supported: false });
     return;
   }
-  pwaStatus.update({ supported: true, offlineReady: navigator.serviceWorker.controller !== null });
+  const container = navigator.serviceWorker;
+  pwaStatus.update({ supported: true });
+  knownController = readController(container);
+  noteController(container);
+  try {
+    // The first install takes the open page a moment after onOfflineReady (clientsClaim, DEF-27):
+    // that claim only changes the marker. A later change from one worker to another is an update
+    // taking the page, and reloads at the next quiet moment (DEF-30), as onNeedReload does below.
+    const listener = () => onControllerChange(container);
+    container.addEventListener('controllerchange', listener);
+    stopWatchingController = () => container.removeEventListener('controllerchange', listener);
+  } catch (error) {
+    pwaStatus.update({ lastError: describeError(error) });
+  }
   try {
     const register = opts.register ?? (await import('./pwaRegister')).registerSW;
     updateServiceWorker = register({
@@ -169,16 +259,21 @@ export async function initPwa(opts: InitPwaOptions = {}): Promise<void> {
       onNeedRefresh: () => {
         apply('NEED_REFRESH');
       },
-      onOfflineReady: () => pwaStatus.update({ offlineReady: true }),
+      onOfflineReady: () => {
+        applyOfflineCopy('COPY_SAVED');
+        noteController(container);
+      },
       onNeedReload: () => {
-        // The new worker took control (here or in another tab). Never reload mid-job.
-        pwaStatus.update({ reloadPending: true });
-        void reloadIfPending();
+        // The new worker took control (here or in another tab), on a page a worker served at load.
+        newVersionTookOver();
       },
       onRegisteredSW: (url, r) => {
         swScriptUrl = url;
         registration = r ?? null;
-        pwaStatus.update({ registered: true, offlineReady: pwaStatus.get().offlineReady || r?.active != null });
+        pwaStatus.update({ registered: true });
+        // An active worker has its full copy; whether it serves this page is the controller's say.
+        if (r?.active != null) applyOfflineCopy('COPY_SAVED');
+        noteController(container);
         if (r !== undefined && checkTimer === null) {
           checkTimer = setInterval(() => void checkForUpdate(), UPDATE_CHECK_MS);
           if (typeof document !== 'undefined') {
@@ -244,11 +339,14 @@ export async function dismissWhatsNew(version: string): Promise<void> {
 export function __resetPwaForTests(): void {
   if (checkTimer !== null) clearInterval(checkTimer);
   checkTimer = null;
+  stopWatchingController?.();
+  stopWatchingController = null;
+  knownController = null;
   initialized = false;
   updateServiceWorker = null;
   registration = null;
   swScriptUrl = null;
   jobRunnerOpen = false;
   reloadPage = () => window.location.reload();
-  pwaStatus.set({ supported: true, registered: false, state: 'current', offlineReady: false, reloadPending: false, lastCheckAt: null, lastError: null });
+  pwaStatus.set({ supported: true, registered: false, state: 'current', offlineCopy: 'notSaved', offlineReady: false, reloadPending: false, lastCheckAt: null, lastError: null });
 }

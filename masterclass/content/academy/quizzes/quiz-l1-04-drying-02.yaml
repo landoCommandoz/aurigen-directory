@@ -1,0 +1,32 @@
+id: quiz-l1-04-drying-02
+type: quizquestion
+title: Before the towels
+quizId: quiz-l1-04-drying
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.1"
+tags:
+  - drying
+  - hard water
+  - quiz
+  - level 1
+synonyms:
+  - drying quiz
+  - hard water questions
+  - water spots test
+  - how do I dry quiz
+prompt: The rinse is done. What comes before the drying towels?
+choices:
+  - Blow out the gaps with the compressor.
+  - Towel the roof first, then the hood.
+  - Open the doors and dry the jambs.
+  - Spray ceramic wax on every panel.
+correctIndex: 0
+explanation: "Compressor first: mirrors, handles, badges, charge port door, liftgate seams, grille, and trim seams. Then towels, then open every door and dry the jambs."
+scenario: true
+related:
+  - lesson-l1-04-hard-water-drying
+  - term-sheeting-rinse

@@ -19,7 +19,7 @@ import { restorePlan, settingsAfterRestore, signOffsAfterRestore, type DeviceRol
 import { base64ToBytes } from './base64';
 import { parsedBackupOf, verifyBackupBlob, verifyBackupText, type ReadBackupResult, type VerifiedBackup } from './backupFile';
 import { nowIso } from './clock';
-import { getPriceItems } from './content';
+import { loadPriceItems } from './content';
 import { summarizeCounters, type CounterSummary } from './counters';
 import { storageRefusal, validRow, withDb, writeSettingsIn } from './db';
 import { restoreAudit } from './importRules';
@@ -29,7 +29,8 @@ import { clearOwnerPass, ownerPassActive } from './pin';
 
 /** Step 1: check a picked file or pasted text. Nothing is written. */
 export async function readBackup(source: Blob | string): Promise<ReadBackupResult> {
-  return typeof source === 'string' ? verifyBackupText(source, getPriceItems()) : verifyBackupBlob(source, getPriceItems());
+  const prices = await loadPriceItems();
+  return typeof source === 'string' ? verifyBackupText(source, prices) : verifyBackupBlob(source, prices);
 }
 
 export interface ImportOptions {
@@ -124,11 +125,12 @@ export async function importBackup(backup: VerifiedBackup, opts: ImportOptions):
     // The PIN may have changed with the backup; the old pass does not carry over.
     clearOwnerPass();
     const jobs = await withDb((db) => db.jobs.toArray());
+    const prices = await loadPriceItems();
     return {
       ok: true,
       deviceRole: outcome.settings.deviceRole,
       roleChanged: outcome.plan.roleChange !== null,
-      counters: summarizeCounters(jobs, getPriceItems(), outcome.settings.carsLoggedBefore),
+      counters: summarizeCounters(jobs, prices, outcome.settings.carsLoggedBefore),
       plan: outcome.plan,
     };
   } catch (error) {

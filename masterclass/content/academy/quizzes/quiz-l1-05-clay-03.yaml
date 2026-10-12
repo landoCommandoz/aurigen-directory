@@ -1,0 +1,32 @@
+id: quiz-l1-05-clay-03
+type: quizquestion
+title: Tar that will not lift
+quizId: quiz-l1-05-clay
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "6"
+tags:
+  - clay
+  - quiz
+  - level 1
+synonyms:
+  - clay quiz
+  - bag test questions
+  - clay bar test
+  - decon quiz
+prompt: Rocker tar will not come off with the clay. What now?
+choices:
+  - Stop. Use bug and tar remover.
+  - Press harder with the clay.
+  - Use a wheel brush on it.
+  - Scrape it off with a fingernail.
+correctIndex: 0
+explanation: If clay will not lift it, more clay is the wrong tool.
+scenario: true
+related:
+  - lesson-l1-05-clay
+  - card-clay-tub
+  - term-bag-test

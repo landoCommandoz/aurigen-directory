@@ -1,0 +1,32 @@
+id: quiz-l1-05-clay-04
+type: quizquestion
+title: The section starts to dry
+quizId: quiz-l1-05-clay
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "6"
+tags:
+  - clay
+  - quiz
+  - level 1
+synonyms:
+  - clay quiz
+  - bag test questions
+  - clay bar test
+  - decon quiz
+prompt: You are claying and the section starts to dry. What do you do?
+choices:
+  - Keep going and finish fast.
+  - Switch to plain water.
+  - Soak it with lube again.
+  - Move on to the next section.
+correctIndex: 2
+explanation: "Never let a section go dry. The lube is the clay tub mix: 1 gal water + 1 oz Citrus Wash & Gloss."
+scenario: true
+related:
+  - lesson-l1-05-clay
+  - card-clay-tub
+  - term-bag-test

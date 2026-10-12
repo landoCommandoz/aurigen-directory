@@ -1,0 +1,31 @@
+id: quiz-l2-interior-05
+type: quizquestion
+title: The final check
+quizId: quiz-l2-interior
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - sign-off quiz
+  - level 2
+synonyms:
+  - level 2 quiz
+  - interior quiz
+  - full interior test
+  - level 2 sign off quiz
+prompt: The interior is done. How do you check it?
+choices:
+  - The way the customer will.
+  - From outside, doors shut.
+  - Only the dash.
+  - Skip it. You were careful.
+correctIndex: 0
+explanation: "Sit where they sit and look where they look: dash not shiny, wheel and pedals zero slick, no streaks, their bag of items where they can see it."
+scenario: true
+related:
+  - lesson-l2-06-full-interior
+  - lesson-l2-01-interior-order

@@ -2,11 +2,12 @@ id: term-dwell
 type: glossaryterm
 title: Dwell time
 term: Dwell
-definition: The wait while a product sits and works before you rinse it off. Bug & Tar foam gets a one-minute dwell, then you wash it off. Use dwell time for other work, like starting the vacuum during the clay dwell.
+definition: The wait while a product sits and works before you rinse it off. Bug & Tar foam is the one you will see most. Let it sit, then wash it off. Read the can for how long. Use dwell time for other work, like starting the vacuum during the clay dwell.
 alsoCalled: [dwell time]
 audience: [owner, ops, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "5.1"
 tags: [wash, timing]
 synonyms:
@@ -16,6 +17,10 @@ synonyms:
   - soak time
   - how long to wait
   - working the dwell
+sources:
+  - label: Verification log FC-45
+    date: 2026-10-11
+    note: The house one-minute Bug & Tar dwell is not confirmed by any label, so this term gives no time. The can wins.
 related:
   - product-meguiars-bug-tar
   - equipment-shop-vac

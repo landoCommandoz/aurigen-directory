@@ -1,0 +1,32 @@
+id: quiz-l1-05-clay-01
+type: quizquestion
+title: Which panels get clay
+quizId: quiz-l1-05-clay
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "6"
+tags:
+  - clay
+  - quiz
+  - level 1
+synonyms:
+  - clay quiz
+  - bag test questions
+  - clay bar test
+  - decon quiz
+prompt: In the sandwich bag, the hood feels smooth and the lower doors feel gritty. What do you clay?
+choices:
+  - Every panel, to be safe.
+  - The lower doors.
+  - Only the hood.
+  - Nothing yet.
+correctIndex: 1
+explanation: The bag test decides which panels get clay.
+scenario: true
+related:
+  - lesson-l1-05-clay
+  - card-clay-tub
+  - term-bag-test

@@ -1,0 +1,35 @@
+id: quiz-l4-01-long-throw-01
+type: quizquestion
+title: Rotary or not
+quizId: quiz-l4-01-long-throw
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "3.1"
+tags:
+  - polisher
+  - quiz
+  - level 4
+synonyms:
+  - polisher quiz
+  - long throw questions
+  - know the machine test
+  - test run quiz
+sources:
+  - label: HF product page, item 56367 (knowledge base 3.1)
+    date: 2026-10-07
+    note: 7.5 Amp, 6 in., 20 mm long-throw random orbit DA polisher. Free-spinning dual action, not a rotary.
+prompt: DJ calls the BAUER a rotary. What is it?
+choices:
+  - A rotary.
+  - A random-orbit sander.
+  - A wax-only buffer.
+  - A dual action long-throw.
+correctIndex: 3
+explanation: The BAUER 56367 is a 20 mm long-throw random orbit DA. The Black & Decker rotary only spins, and it never touches customer paint.
+scenario: true
+related:
+  - lesson-l4-01-know-the-machine
+  - equipment-bauer-56367

@@ -1,0 +1,31 @@
+skillId: skill-l2-interior
+title: Interior
+lessonId: lesson-l2-06-full-interior
+quizId: quiz-l2-interior
+quizPassScore: 80
+drillMinimum: 8
+prerequisites:
+  - skill-l0-ground-rules
+gates: []
+ownerChecks:
+  - Looks in the back seat before quoting.
+  - Takes everything out first, with personal items in one bag the customer can see.
+  - Puts money or valuables on the dash, and says so.
+  - Knocks it down from the top before the vacuum, then vacuums top down with the seats slid forward and back.
+  - text: "Who may run power tools, the shop vac and the Dremel Versa included: Lando decides (pending)."
+    status: verify
+  - Pulls pet hair with the rubber tool before vacuuming, three passes minimum.
+  - Sprays the towel, never the panel.
+  - Leaves nothing shiny on the dash, and zero slick on the steering wheel and the pedals.
+  - Blots the headliner with a barely damp towel.
+  - "Does the glass last with two clean towels: inside side to side, outside up and down."
+  - Gets air on wet carpet before handoff.
+  - text: "On a Tesla, the house interior is the same: Quik Interior Detailer on the towel, and a dry microfiber on the screens."
+    status: house
+  - text: On a Tesla, Tesla's manual says no solvents (including alcohol), hand sanitizer, bleach, citrus, naphtha, or silicone-based products inside, a lint-free display cloth on the touchscreen and never a recently washed microfiber, and only warm water and mild soap on the seats.
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending).
+    status: verify
+  - text: How to treat a spot, and with which product, is not set (pending). Not checked until Lando sets it.
+    status: verify
+status: verify

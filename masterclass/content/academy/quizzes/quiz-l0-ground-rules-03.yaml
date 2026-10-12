@@ -1,0 +1,35 @@
+id: quiz-l0-ground-rules-03
+type: quizquestion
+title: Sorting towels at close-down
+quizId: quiz-l0-ground-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+version: 2
+kbRef: "13.2"
+tags:
+  - setup
+  - ground rules
+  - sign-off quiz
+  - level 0
+synonyms:
+  - level 0 quiz
+  - ground rules quiz
+  - setup quiz
+  - shop setup test
+  - level 0 sign off quiz
+prompt: End of the day. You have wash towels, polish-removal towels, and two towels that wiped the wheels. How do they go?
+choices:
+  - One load. The washer cleans it all.
+  - "Three piles: water-only, product, and wheels."
+  - "Two piles: wheel towels with the water-only."
+  - "Two piles: product towels with the water-only."
+correctIndex: 1
+explanation: The wheel pile never rejoins the paint pile. Product towels need their own soak and wash.
+scenario: true
+related:
+  - lesson-l0-06-shop-setup
+  - card-setup-kit
+  - card-stop-rules

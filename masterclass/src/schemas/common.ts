@@ -80,7 +80,8 @@ export const QuizId = idWithPrefix(QUIZ_ID_PREFIX);
 
 /**
  * Job stages, shared by SOP files (content) and the Job Runner records (runtime).
- * Order on a job comes from the SOP files, not from this list. Knowledge base 5.1, 17.2, 18.3, 12.1.
+ * Order on a job is not this list's order. No SOP field sets it yet: the Phase 3 run plan does,
+ * from knowledge base 17.2 (the house order). Knowledge base 5.1, 17.2, 18.3, 12.1.
  * "polish" is machine polishing: the one stage the test spot and Level 4 guards check (D11).
  * Bikes are hand polished (knowledge base 12.1), so they use "hand-polish", which no guard checks.
  */

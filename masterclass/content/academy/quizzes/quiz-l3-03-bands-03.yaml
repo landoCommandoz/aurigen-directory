@@ -1,0 +1,32 @@
+id: quiz-l3-03-bands-03
+type: quizquestion
+title: 118 on the trunk
+quizId: quiz-l3-03-bands
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.3"
+tags:
+  - bands
+  - gauge
+  - quiz
+  - level 3
+synonyms:
+  - bands quiz
+  - thickness bands questions
+  - what is allowed test
+  - gauge reading quiz
+prompt: On a car that is not a Tesla, the trunk's lowest reading is 118 µm. Does that mean it needs compound?
+choices:
+  - Yes. Over 100 needs compound.
+  - Yes, two compound passes.
+  - No. Allowed, not required.
+  - No. No machine at all.
+correctIndex: 2
+explanation: "Over 100 means compound is allowed, not required. The test spot decides: the paint picks the combo, not the number."
+scenario: true
+related:
+  - lesson-l3-03-thickness-bands
+  - card-thickness-bands

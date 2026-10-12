@@ -1,0 +1,32 @@
+id: quiz-l1-04-drying-05
+type: quizquestion
+title: Walking away from a wet car
+quizId: quiz-l1-04-drying
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.4"
+tags:
+  - drying
+  - hard water
+  - quiz
+  - level 1
+synonyms:
+  - drying quiz
+  - hard water questions
+  - water spots test
+  - how do I dry quiz
+prompt: The car is wet in the sun and you need to grab something from the garage. What do you do?
+choices:
+  - Go. It will be fine for a minute.
+  - Go, and rinse it again when you get back.
+  - Go, and spray wax on it first.
+  - Do not walk away. Dry it first.
+correctIndex: 3
+explanation: "From the hard water prevention list: never walk away from a wet car in the sun, and dry immediately."
+scenario: true
+related:
+  - lesson-l1-04-hard-water-drying
+  - term-sheeting-rinse

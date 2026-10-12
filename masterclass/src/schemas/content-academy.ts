@@ -52,6 +52,13 @@ export const Drill = Base.extend({
   instructions: z.array(Line).min(1),
   logField: z.strictObject({ label: z.string().min(1), unit: z.string().min(1) }).optional(),
   repsPerSession: z.number().int().min(1).default(1),
+  /**
+   * What one session must show to count as a pass (added 2026-10-11, Phase 2), in the logField
+   * unit where there is one. Numbers exactly as the knowledge base writes them; never a tolerance
+   * it does not give. Each line may carry its own status. The drill minimum still counts logged
+   * sessions, passed or not; v1 records no pass per session (DrillLog has no such field).
+   */
+  passMark: z.array(Line).default([]),
   body: z.string().default(''),
 });
 export type DrillItem = z.infer<typeof Drill>;
@@ -97,6 +104,9 @@ export type FlashcardItem = z.infer<typeof Flashcard>;
 export const SIGNOFF_GATES = ['polish-stage'] as const;
 export const SignOffGate = z.enum(SIGNOFF_GATES);
 
+/** house: Lando accepted the numbers. verify: a proposal (the default). */
+export const SIGNOFF_STATUSES = ['house', 'verify'] as const;
+
 /**
  * Not a content item. One YAML file per skill: content/academy/signoff/<skillId>.yaml.
  * The only place a pass mark, a drill minimum, or prerequisites are written (learning-designer).
@@ -114,5 +124,18 @@ export const SignOffCriteria = z.strictObject({
   drillMinimum: z.number().int().min(0),
   prerequisites: z.array(SkillId).default([]),
   gates: z.array(SignOffGate).default([]),
+  /**
+   * What the owner watches the crew member do before entering the PIN (added 2026-10-11, Phase 2;
+   * BLUEPRINT 2.4: a sign-off is given while Lando watches). One observable action per line; a line
+   * may carry its own status.
+   */
+  ownerChecks: z.array(Line).default([]),
+  /**
+   * Whether Lando accepted quizPassScore and drillMinimum (added 2026-10-11, Phase 2). The knowledge
+   * base sets neither, so a new file is a proposal: verify, the default. house only after Lando's
+   * word is recorded (BLUEPRINT 12 or DECISIONS). The numbers apply either way, so the polish-stage
+   * gate never switches off; verify only adds the unverified badge on the sign-off screen.
+   */
+  status: z.enum(SIGNOFF_STATUSES).default('verify'),
 });
 export type SignOffCriteriaItem = z.infer<typeof SignOffCriteria>;

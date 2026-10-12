@@ -1,0 +1,24 @@
+id: term-repaint
+type: glossaryterm
+title: Repaint
+term: Repaint
+definition: A panel that has been painted again. On the gauge it reads way above the rest of the car, about 220 µm or more. Go gentle or skip it, log it, and tell the customer. Point out repaints at the walkaround.
+alsoCalled: [repainted panel]
+audience: [owner, ops, crew]
+visibility: internal
+status: house
+kbRef: "7.3"
+tags: [paint, gauge, walkaround]
+synonyms:
+  - repainted
+  - painted panel
+  - reads way high
+  - thick panel
+  - body shop paint
+  - gauge reads 220
+related:
+  - card-thickness-bands
+  - card-kills-the-buff
+  - equipment-rd-tc100
+  - sop-measure
+  - lesson-l3-03-thickness-bands

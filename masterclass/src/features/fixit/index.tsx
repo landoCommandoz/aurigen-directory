@@ -1,5 +1,7 @@
 /**
  * Fix It feature: the export contract the shell mounts.
- *   /fixit  FixItGrid (Phase 1: search plus the Quick Cards as tiles; symptom tiles in Phase 2)
+ *   /fixit      FixItGrid (search, the symptom tiles by group, the Quick Cards)
+ *   /fixit/:id  FixPage (reads the :id route param itself)
  */
-export { FixItGrid, PHASE_2_LINE } from './FixItGrid';
+export { FixItGrid, EMPTY_FIXES_LINE } from './FixItGrid';
+export { FixPage } from './FixPage';

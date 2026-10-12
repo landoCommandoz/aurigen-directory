@@ -1,0 +1,31 @@
+id: quiz-l2-interior-03
+type: quizquestion
+title: Interior Only, SUV
+quizId: quiz-l2-interior
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "15.1"
+tags:
+  - interior
+  - sign-off quiz
+  - level 2
+synonyms:
+  - level 2 quiz
+  - interior quiz
+  - full interior test
+  - level 2 sign off quiz
+prompt: Interior Only on an SUV, drop-off. What is the list price?
+choices:
+  - $150
+  - $180
+  - $230
+  - $280
+correctIndex: 1
+explanation: Interior Only is $150 for a sedan and $180 for an SUV or truck.
+scenario: true
+related:
+  - lesson-l2-06-full-interior
+  - lesson-l2-01-interior-order

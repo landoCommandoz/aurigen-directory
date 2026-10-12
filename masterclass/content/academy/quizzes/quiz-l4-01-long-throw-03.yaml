@@ -1,0 +1,35 @@
+id: quiz-l4-01-long-throw-03
+type: quizquestion
+title: A smaller plate to calm it
+quizId: quiz-l4-01-long-throw
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "14"
+tags:
+  - polisher
+  - quiz
+  - level 4
+synonyms:
+  - polisher quiz
+  - long throw questions
+  - know the machine test
+  - test run quiz
+sources:
+  - label: Backing plate research (knowledge base 14)
+    date: 2026-10-07
+    note: Unplugged checks of the bolt, pad, hooks, and plate. Long-throw machines are counterweighted for 5 or 6 in. plates.
+prompt: The polisher vibrates hard. DJ suggests a 3 in. backing plate to calm it down. Good idea?
+choices:
+  - Yes. Smaller is smoother.
+  - No. A 3 in. plate makes it worse.
+  - Yes, but only on bumpers.
+  - Tape the pad to the plate instead.
+correctIndex: 1
+explanation: A long-throw is counterweighted for 5 or 6 in. plates. A 3 in. plate causes violent vibration and can wear out the bearings. Never downsize to stop a vibration.
+scenario: true
+related:
+  - lesson-l4-01-know-the-machine
+  - equipment-bauer-56367

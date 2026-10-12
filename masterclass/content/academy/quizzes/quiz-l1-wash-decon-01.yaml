@@ -1,0 +1,41 @@
+id: quiz-l1-wash-decon-01
+type: quizquestion
+title: Lando's Tesla, before water
+quizId: quiz-l1-wash-decon
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "11"
+tags:
+  - wash
+  - decon
+  - sign-off quiz
+  - level 1
+  - tesla
+synonyms:
+  - level 1 quiz
+  - wash and decon quiz
+  - full wash test
+  - level 1 sign off quiz
+sources:
+  - label: Tesla Model Y 2020 to 2024 owner's manual, Car Wash Mode
+    url: https://www.tesla.com/ownersmanual/2020_2024_modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
+    date: 2026-10-10
+    note: Controls > Service > Car Wash Mode; parked and not actively charging; what it turns off; turns off above 9 mph or on Exit. Software 2026.32 manual. Read through the search index. Fact-checker FC-13 and FC-14.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+prompt: It is Lando's 2022 Model Y. Before any water touches it, what do you do?
+choices:
+  - Turn on Car Wash Mode.
+  - Nothing special. Start the rinse.
+  - Crack the windows an inch.
+  - Turn on Sentry Mode.
+correctIndex: 0
+explanation: Controls > Service > Car Wash Mode, before any water. The car must be parked and not charging.
+scenario: true
+related:
+  - lesson-l1-06-full-wash
+  - card-tesla-wash-mode-tape
+  - card-bucket-mix

@@ -1,0 +1,39 @@
+id: quiz-l1-01-wheels-01
+type: quizquestion
+title: Four dirty wheels
+quizId: quiz-l1-01-wheels
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+version: 2
+kbRef: "5.1"
+tags:
+  - wheels
+  - quiz
+  - level 1
+synonyms:
+  - wheels quiz
+  - wheel cleaning questions
+  - wheels first test
+  - brush quiz
+sources:
+  - label: Armor All product page, Extreme Wheel & Tire Cleaner
+    url: https://armorall.com/product/extreme-wheel-tire-cleaner
+    date: 2026-10-11
+    note: Use it on one wheel at a time. Wet and cool the wheel with a hose. Allow the foam to penetrate for 30 seconds. Fact-checker FC-26, corrected from about a minute.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+prompt: Four dirty wheels on a family SUV that is not a Tesla. How do you work them?
+choices:
+  - Spray all four, then brush all four.
+  - "One at a time: spray, wait, brush, rinse."
+  - Brush them dry first, then spray.
+  - Spray all four and let them soak 10 minutes.
+correctIndex: 1
+explanation: The label says one wheel at a time. Wet and cool the wheel, spray the face and the barrel, let it work 30 seconds, brush, and rinse before it dries. Spray all four at once and the cleaner dries on the last ones.
+scenario: true
+related:
+  - lesson-l1-01-wheels-first
+  - equipment-wheel-brushes

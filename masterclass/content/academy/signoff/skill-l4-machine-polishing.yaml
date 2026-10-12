@@ -1,0 +1,43 @@
+skillId: skill-l4-machine-polishing
+title: Machine polishing (opens the polish stage)
+lessonId: lesson-l4-07-full-square
+quizId: quiz-l4-machine
+quizPassScore: 90
+drillMinimum: 12
+prerequisites:
+  - skill-l3-inspect-measure
+gates:
+  - polish-stage
+ownerChecks:
+  - text: "Who may run power tools, the polisher included: Lando decides (pending)."
+    status: verify
+  - text: "Runs the unplugged checks, then the 56367 manual's test run: highest speed, at least 30 seconds, off the car."
+    status: sourced
+  - text: Stops and sets the tool aside on any abnormal noise or vibration, as the 56367 manual says.
+    status: sourced
+  - Primes a new pad once, then uses 1 to 2 drops per square.
+  - Mists a dry pad lightly, and never soaks it.
+  - Puts the pad flat on the paint before the trigger, and lets go of the trigger before the lift.
+  - Spreads at speed 1 to 2 across the whole square.
+  - text: "Grip, the house way: two hands, loose grip, guide, don't push."
+    status: house
+  - text: The 56367 manual says keep a firm grip with both hands to resist starting torque.
+    status: sourced
+  - text: Lando decides the grip wording (pending).
+    status: verify
+  - text: Works at the house speed, speed 4, with the house pressure, about 10 lb, and floats the last set.
+    status: house
+  - text: The 56367 manual says only use slower speeds for polishing.
+    status: sourced
+  - text: The 56367 manual says keep pressure off the tool; the foam pad should lightly touch the paint.
+    status: sourced
+  - text: Lando decides which applies (pending). Until he decides, the house settings stay.
+    status: verify
+  - Runs 4 to 6 crosshatch sets at about 1 inch per second, with the marker line turning.
+  - Stops when the polish goes clear.
+  - Wipes once, mists with IPA, wipes clean, and checks with the light low and from a few feet back.
+  - Stays an inch off edges and body lines, and hand tests the panel for heat.
+  - Blows out or brushes the pad after every square.
+  - Stops at paint color on the pad.
+  - Polishes three squares in a row at about 4 minutes each, with no haze under the light.
+status: verify

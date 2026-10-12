@@ -5,6 +5,7 @@ kind: mix
 audience: [owner, crew]
 visibility: internal
 status: sourced
+version: 2
 kbRef: "4"
 tags: [mix, wash, bucket, maintenance]
 synonyms:
@@ -20,6 +21,9 @@ sources:
   - label: Meguiar's specialist
     date: 2026-10-06
     note: Meguiar's soaps about 1 oz per gallon; Super Soap 2 oz per gal when you want it stronger
+  - label: Verification log FC-79
+    date: 2026-10-11
+    note: Not reconfirmed. No Meguiar's label ratio was found for Super Soap or Ultimate Wash & Wax. Read the bottles for the exact name, item number, size, and ratio.
 rows:
   - label: Meguiar's soap
     value: About 1 oz per gal
@@ -35,6 +39,9 @@ rows:
     value: Use the pre-polish bucket mix instead, at strip strength.
     status: house
     kbRef: "23"
+  - label: Your bottle
+    value: No Meguiar's label ratio was found on recheck. Read your bottle. The bottle wins.
+    status: verify
   - label: Never in the bucket
     value: Dish soap, Spic and Span, wheel brushes, or the clay mitt.
     status: house

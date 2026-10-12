@@ -1,0 +1,34 @@
+id: quiz-l0-ground-rules-09
+type: quizquestion
+title: Guarantee every scratch
+quizId: quiz-l0-ground-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - setup
+  - ground rules
+  - sign-off quiz
+  - level 0
+synonyms:
+  - level 0 quiz
+  - ground rules quiz
+  - setup quiz
+  - shop setup test
+  - level 0 sign off quiz
+prompt: A customer asks, "Can you guarantee all the scratches come out?" What do you say?
+choices:
+  - '"Yes, every one, guaranteed."'
+  - '"Yes, for $50 more, guaranteed."'
+  - '"Yes, once we compound the whole car."'
+  - '"No promise. I test one spot first."'
+correctIndex: 3
+explanation: Never promise a scratch comes out. The test spot shows what the paint will do.
+scenario: true
+related:
+  - lesson-l0-06-shop-setup
+  - card-setup-kit
+  - card-stop-rules

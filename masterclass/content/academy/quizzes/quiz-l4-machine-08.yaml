@@ -1,0 +1,45 @@
+id: quiz-l4-machine-08
+type: quizquestion
+title: Satin trim on a Model Y
+quizId: quiz-l4-machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+version: 2
+kbRef: "11"
+tags:
+  - polish
+  - machine
+  - sign-off quiz
+  - level 4
+  - tesla
+synonyms:
+  - level 4 quiz
+  - machine polishing quiz
+  - full square test
+  - level 4 sign off quiz
+sources:
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Chrome and metal surfaces. Polish, abrasive cleaners, alcohol-based gel products, and hard cloths can damage the finish on chrome and metal surfaces. Read directly. Fact-checker FC-43.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Meguiar's product page, Ultimate Compound G17216
+    url: https://www.meguiars.com/products/automotive/paint/meguiars-ultimate-compound-g17216-152oz
+    date: 2026-10-11
+    note: Not for use on flat, matte, or satin finishes. Read through the search index. Fact-checker FC-43. The old line that polish turns the trim chalky white is unconfirmed and is not tested.
+prompt: You are about to polish the doors of a Tesla Model Y. What do you do with the satin black window trim first?
+choices:
+  - Nothing. Polish is safe on trim.
+  - Polish it lightly to match.
+  - Compound it so it shines.
+  - Tape it off.
+correctIndex: 3
+explanation: Tape it first. It is on the Tesla tape list. Tesla's manual says polish can damage chrome and metal finishes, and Meguiar's says Ultimate Compound is not for satin finishes.
+scenario: true
+related:
+  - lesson-l4-07-full-square
+  - card-machine-settings

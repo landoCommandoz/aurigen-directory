@@ -5,6 +5,7 @@ kind: list
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "8.5"
 tags: [polish, pad, test spot, compound, ladder]
 synonyms:
@@ -21,6 +22,18 @@ sources:
   - label: Lando
     date: 2026-10-10
     note: Ladder order, black pad rule, and pads on hand confirmed (BLUEPRINT section 12 item 9)
+  - label: Buff and Shine product page, 672CR 6 in. maroon Uro-Tec
+    url: https://buffandshine.com/products/672cr-6-maroon-uro-tec-foam-pad-medium-cut
+    date: 2026-10-11
+    note: Maroon is medium cut. A 6 in. Uro-Tec has a 6 in. back and a 7 in. face. Fact-checker FC-54 and FC-66.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: BAUER 56367 owner's manual, 2021
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-11
+    note: Max accessory diameter 6 in. (150 mm). Fact-checker FC-54.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 rows:
   - label: Rule
     value: Test spot on every car before polishing. The paint picks the combo, not a guess.
@@ -31,6 +44,9 @@ rows:
     value: Yellow + M210. Wipe, IPA, light. Swirls gone? That is the combo for the whole car.
   - label: Rung 2
     value: Still swirled? Maroon + M210 on the same square.
+  - label: Maroon, Buff and Shine
+    value: Medium cut. More cut than the yellow.
+    status: sourced
   - label: Rung 3
     value: Still swirled, and the panel reads 100 µm or more? Maroon + Ultimate Compound, 3 to 4 sets. Wipe with its own towel.
   - label: Rung 3, always next
@@ -49,6 +65,9 @@ rows:
   - label: Pads on hand
     value: Uro-Tec yellow x3, Uro-Tec maroon x2, one black pad.
     kbRef: "3.2"
+  - label: Pad size, Buff and Shine and the 56367 manual
+    value: Buff and Shine's 6 in. Uro-Tec has a 6 in. back and a 7 in. face. The 56367 manual says the largest accessory is 6 in. (150 mm). Read the yellow and maroon pad entries before you mount a pad.
+    status: sourced
   - label: HF finishing pads
     value: x2. Colors and what actually arrived are not confirmed.
     status: verify
@@ -63,3 +82,5 @@ related:
   - product-meguiars-m210
   - product-meguiars-ultimate-compound
   - term-test-spot
+  - sop-test-spot
+  - term-haze

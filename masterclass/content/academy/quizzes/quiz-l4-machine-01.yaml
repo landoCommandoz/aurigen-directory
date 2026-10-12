@@ -1,0 +1,32 @@
+id: quiz-l4-machine-01
+type: quizquestion
+title: Time for one square
+quizId: quiz-l4-machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.7"
+tags:
+  - polish
+  - machine
+  - sign-off quiz
+  - level 4
+synonyms:
+  - level 4 quiz
+  - machine polishing quiz
+  - full square test
+  - level 4 sign off quiz
+prompt: On a one-step, how long should one 2 x 2 ft square take, wipe and check included?
+choices:
+  - About 4 minutes.
+  - About 1 minute.
+  - About 10 minutes.
+  - About 20 minutes.
+correctIndex: 0
+explanation: About 4 minutes per section, including the wipe and the check.
+scenario: true
+related:
+  - lesson-l4-07-full-square
+  - card-machine-settings

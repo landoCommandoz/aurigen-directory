@@ -26,23 +26,22 @@ export const SEARCH_FIELDS = ['title', 'synonyms', 'tags', 'body'] as const;
 /** say: the item's own say-it phrases and title, normalized, one per line, for the exact-phrase bonus. */
 export const SEARCH_STORE_FIELDS = ['type', 'title', 'status', 'say'] as const;
 
-/** Quiz questions and flashcards are left out: they would surface answers and crowd the garage results. */
-export const SEARCH_TYPES: readonly ContentTypeName[] = [
-  'fixnode',
-  'quickcard',
-  'sop',
-  'lesson',
-  'product',
-  'equipment',
-  'glossaryterm',
-  'drill',
-  'policy',
-  'script',
-  'priceitem',
-];
+/**
+ * The types search returns. Every one of them opens a page of its own (Phase 2,
+ * src/features/shared/contentRoutes.ts). Left out:
+ * - drills, quiz questions, flashcards (and sign-off files, which are not content items): they would
+ *   surface answers and crowd the garage results; they open in the Phase 5 Academy app;
+ * - price items, policies, scripts: no page until Phase 4. Add them back here with their pages.
+ */
+export const SEARCH_TYPES: readonly ContentTypeName[] = ['fixnode', 'quickcard', 'sop', 'lesson', 'product', 'equipment', 'glossaryterm'];
 
 export const FIELD_BOOST = { title: 3, synonyms: 2.2, tags: 1.4, body: 1 } as const;
-const TYPE_BOOST: Partial<Record<ContentTypeName, number>> = { fixnode: 1.25, quickcard: 1.2, sop: 1.05, priceitem: 0.7, script: 0.85 };
+/**
+ * A small lift per type, so a fix beats a product or a lesson for a symptom word, and a card beats a
+ * lesson for a number. The troubleshooter's search cases (tests/search-cases.yaml, run by the
+ * content build) decide the final tuning.
+ */
+export const TYPE_BOOST: Partial<Record<ContentTypeName, number>> = { fixnode: 1.25, quickcard: 1.2, sop: 1.05 };
 
 export interface SearchDoc {
   id: string;
@@ -66,7 +65,15 @@ export interface SearchHit {
   score: number;
 }
 
-const STOP_WORDS = new Set(['a', 'an', 'the', 'and', 'or', 'of', 'to', 'in', 'on', 'at', 'for', 'is', 'it', 'its', 'my', 'i', 'me', 'be', 'are', 'was', 'this', 'that', 'do', 'does', 'how', 'what', 'why']);
+/**
+ * Dropped from items and queries alike. The second line is dictation filler (apostrophes already
+ * stripped): left in, "theres" fuzzy-matches "there" and "just" or "like" lift whatever body text
+ * happens to hold them above the fix the person asked for.
+ */
+export const STOP_WORDS: ReadonlySet<string> = new Set([
+  'a', 'an', 'the', 'and', 'or', 'of', 'to', 'in', 'on', 'at', 'for', 'is', 'it', 'its', 'my', 'i', 'me', 'be', 'are', 'was', 'this', 'that', 'do', 'does', 'how', 'what', 'why',
+  'theres', 'thats', 'im', 'ive', 'ugh', 'like', 'just',
+]);
 
 /** Lowercase, strip accents and apostrophes, keep letters and digits. */
 export function normalizeText(text: string): string {
@@ -138,7 +145,7 @@ function bodyText(item: ContentItemValue): string[] {
     case 'quickcard':
       return rows(item.rows, s);
     case 'product':
-      return [item.brand, ...item.jobs, ...item.dilutions.filter((d) => d.status !== 'superseded').map((d) => `${d.use} ${d.ratio}`), ...item.neverFor, item.labelNotes ?? ''];
+      return [item.brand, ...item.jobs, ...item.dilutions.filter((d) => d.status !== 'superseded').map((d) => `${d.use} ${d.ratio}`), ...item.neverFor, ...lines(item.notes, s), item.labelNotes ?? ''];
     case 'equipment':
       return [item.model ?? '', ...rows(item.specs, s), ...lines(item.checks, s)];
     case 'glossaryterm':
@@ -208,6 +215,14 @@ export function buildSearchIndex(items: readonly ContentItemValue[], groups: Syn
 /** Load the index the content build wrote (src/generated/search-index.json). */
 export function loadSearchIndex(json: AsPlainObject): MiniSearch<SearchDoc> {
   return MiniSearch.loadJS<SearchDoc>(json, searchOptions());
+}
+
+/**
+ * The same index, loaded in batches with pauses between them (MiniSearch loadJSAsync), so the
+ * phone stays responsive to a tap while the index is read (QA DEF-17). The app uses this one.
+ */
+export function loadSearchIndexAsync(json: AsPlainObject): Promise<MiniSearch<SearchDoc>> {
+  return MiniSearch.loadJSAsync<SearchDoc>(json, searchOptions());
 }
 
 /* ---------- Querying ---------- */

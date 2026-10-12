@@ -1,0 +1,31 @@
+id: quiz-l3-04-eight-checks-05
+type: quizquestion
+title: Clear edges on the hood
+quizId: quiz-l3-04-eight-checks
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.4"
+tags:
+  - kills the buff
+  - quiz
+  - level 3
+synonyms:
+  - eight checks quiz
+  - kills the buff questions
+  - walk away test
+  - paint check quiz
+prompt: At an angle, you see clear edges on the hood and mirrors. What changes?
+choices:
+  - Nothing. Polish it as normal.
+  - A vinyl wrap. Walk away from it.
+  - Film. Film-safe polish, no compound.
+  - Compound to blend the edges in.
+correctIndex: 2
+explanation: "Paint protection film: film-safe polish, low speed, no compound, never over an edge."
+scenario: true
+related:
+  - lesson-l3-04-kills-the-buff
+  - card-kills-the-buff

@@ -1,0 +1,31 @@
+id: quiz-l2-interior-04
+type: quizquestion
+title: Interior plus pet hair, mobile
+quizId: quiz-l2-interior
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "15.4"
+tags:
+  - interior
+  - sign-off quiz
+  - level 2
+synonyms:
+  - level 2 quiz
+  - interior quiz
+  - full interior test
+  - level 2 sign off quiz
+prompt: Sedan, Interior Only, plus pet hair, mobile, inside the service area. What is the total?
+choices:
+  - $230
+  - $200
+  - $180
+  - $260
+correctIndex: 0
+explanation: $150 + $50 pet hair + $30 mobile = $230.
+scenario: true
+related:
+  - lesson-l2-06-full-interior
+  - lesson-l2-01-interior-order

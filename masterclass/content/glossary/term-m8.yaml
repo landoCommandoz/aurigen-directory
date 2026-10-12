@@ -1,0 +1,35 @@
+id: term-m8
+type: glossaryterm
+title: M8 thread
+term: M8
+definition: The thread on the BAUER 56367 backing plate, M8 x 1.25, a metric thread. A replacement plate must mount with an M8 bolt. The HF 64913 pad on the shelf is 5/16 in.-24, an inch thread, so it does not fit.
+alsoCalled: [M8 x 1.25, M8-1.25]
+audience: [owner, ops, crew]
+visibility: internal
+status: sourced
+kbRef: "14"
+tags: [polisher, parts, thread, backing plate]
+synonyms:
+  - m8
+  - what thread is the plate
+  - plate thread size
+  - metric thread
+  - will this plate fit
+  - "64913"
+sources:
+  - label: HF product page, item 56367, spec table
+    url: https://www.harborfreight.com/75-amp-6-in-20-mm-long-throw-random-orbit-da-polisher-56367.html
+    date: 2026-10-10
+    note: "Thread Size M8-1.25. The thread size comes from this page, not the manual. Read through the search index. Fact-checker FC-17 and FC-18."
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: HF product page, item 64913
+    url: https://www.harborfreight.com/6-in-hook-and-loop-backing-pad-for-dual-action-and-random-orbit-polishers-64913.html
+    date: 2026-10-10
+    note: "Arbor Size 5/16 in.-24. Read through the search index. Fact-checker FC-19."
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+related:
+  - term-backing-plate
+  - equipment-backing-plate
+  - equipment-bauer-56367

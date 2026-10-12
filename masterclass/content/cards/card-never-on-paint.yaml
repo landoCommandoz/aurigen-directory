@@ -5,6 +5,7 @@ kind: list
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "3.4"
 tags: [never, garage only, products, tools, safety]
 synonyms:
@@ -17,6 +18,13 @@ synonyms:
   - turtle wax
   - what stays in the garage
   - forbidden products
+sources:
+  - label: Chemical Guys, can you use dish soap to wash your car
+    url: https://www.chemicalguys.com/blogs/exterior-how-tos/can-you-use-dish-soap-to-wash-your-car
+    date: 2026-10-11
+    note: Dish soap strips away wax and sealants. Fact-checker FC-111.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 rows:
   - label: Craftsman random-orbit sander
     value: Garage only.
@@ -36,6 +44,9 @@ rows:
     value: Garage only.
   - label: Dish soap
     value: Garage only. Never in the wash bucket.
+  - label: Why no dish soap
+    value: Chemical Guys says dish soap strips away wax and sealants.
+    status: sourced
 related:
   - product-turtle-wax-compounds
   - product-minwax-polyurethane

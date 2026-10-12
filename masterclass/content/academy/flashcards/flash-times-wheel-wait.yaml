@@ -1,0 +1,33 @@
+id: flash-times-wheel-wait
+type: flashcard
+title: Wheel cleaner wait
+deck: times
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+version: 2
+kbRef: "5.1"
+tags:
+  - times
+  - flashcard
+synonyms:
+  - wheel cleaner wait
+  - wheel dwell
+  - time flashcard
+  - how long card
+  - how long on the wheel cleaner
+sources:
+  - label: Armor All product page, Extreme Wheel & Tire Cleaner
+    url: https://armorall.com/product/extreme-wheel-tire-cleaner
+    date: 2026-10-11
+    note: Wet and cool the wheel with a hose. Saturate it. Allow the foam to penetrate for 30 seconds. One wheel at a time. Fact-checker FC-26, corrected from about a minute.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+front: On a car that is not a Tesla, how long does the wheel cleaner work before you brush?
+back: 30 seconds, by the label. Wet and cool the wheel first. Then brush, and rinse before it dries.
+related:
+  - lesson-l1-01-wheels-first
+  - sop-wheels
+  - product-armor-all-extreme-wheel-tire

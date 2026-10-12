@@ -1,0 +1,30 @@
+id: flash-machine-test-run
+type: flashcard
+title: The manual's test run
+deck: machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "3.1"
+tags:
+  - machine
+  - flashcard
+synonyms:
+  - 30 second test run
+  - test run
+  - polisher flashcard
+  - machine numbers card
+sources:
+  - label: BAUER 56367 owner's manual, 2021
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-10
+    note: "Page 3 and page 10: if abnormal vibration occurs, stop use; have the problem corrected before further use. Page 7: test run at the highest speed for at least 30 seconds. Page 10: checks before each use. Fact-checker FC-24."
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+front: What is the manual's test run?
+back: "Pad mounted, highest speed, at least 30 seconds, off the car. Abnormal noise or vibration: get it fixed before further use."
+related:
+  - equipment-bauer-56367
+  - lesson-l4-01-know-the-machine

@@ -1,0 +1,33 @@
+id: quiz-l4-test-spot-01
+type: quizquestion
+title: Where the test spot goes
+quizId: quiz-l4-test-spot
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.5"
+tags:
+  - test spot
+  - ladder
+  - sign-off quiz
+  - level 4
+synonyms:
+  - test spot quiz
+  - pad ladder questions
+  - which combo test
+  - test spot sign off quiz
+prompt: Where does the test spot go?
+choices:
+  - The easiest panel, so it looks good.
+  - The worst panel, split with tape.
+  - The roof, where nobody looks.
+  - A small corner of the bumper.
+correctIndex: 1
+explanation: "Rule 4: a test spot on every car before polishing. Tape it on the worst panel and split it so you can compare halves."
+scenario: true
+related:
+  - lesson-l4-08-test-spot-ladder
+  - card-pad-ladder
+  - term-test-spot

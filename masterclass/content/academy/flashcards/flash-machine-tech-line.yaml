@@ -1,0 +1,30 @@
+id: flash-machine-tech-line
+type: flashcard
+title: "Replacement plate: first call"
+deck: machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "14"
+tags:
+  - machine
+  - flashcard
+synonyms:
+  - hf parts line
+  - replacement plate
+  - polisher flashcard
+  - machine numbers card
+sources:
+  - label: BAUER 56367 owner's manual, 2021
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-10
+    note: "Every page: for technical questions, call 1-888-866-5797. Page 11: specify UPC 193175448170 when ordering parts. Fact-checker FC-20."
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+front: Who do you call first for a replacement backing plate?
+back: The HF tech and parts line, 1-888-866-5797. Give UPC 193175448170 and ask for the replacement backing pad for item 56367.
+related:
+  - equipment-backing-plate
+  - lesson-l4-06-pad-care-backing-plate

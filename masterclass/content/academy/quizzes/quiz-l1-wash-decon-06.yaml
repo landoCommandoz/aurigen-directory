@@ -1,0 +1,33 @@
+id: quiz-l1-wash-decon-06
+type: quizquestion
+title: Dropped clay mid-panel
+quizId: quiz-l1-wash-decon
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - wash
+  - decon
+  - sign-off quiz
+  - level 1
+synonyms:
+  - level 1 quiz
+  - wash and decon quiz
+  - full wash test
+  - level 1 sign off quiz
+prompt: A clay piece drops on the driveway mid-panel. What happens?
+choices:
+  - Trash it. Use the other half.
+  - Rinse it and keep going.
+  - Knead it until it looks clean.
+  - Use it on the wheels.
+correctIndex: 0
+explanation: Rule 8. A dropped bar picked up grit. Tearing the bar in half means a drop costs one piece.
+scenario: true
+related:
+  - lesson-l1-06-full-wash
+  - card-tesla-wash-mode-tape
+  - card-bucket-mix

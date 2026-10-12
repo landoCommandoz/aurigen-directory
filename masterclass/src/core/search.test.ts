@@ -1,10 +1,10 @@
 // @vitest-environment node
 import { afterEach, describe, expect, it } from 'vitest';
 import { ContentItem, type ContentItemValue } from '../schemas';
-import { getContentBundle, __setContentBundleForTests } from './content';
+import { getContentBundle, loadAllContent, __setContentBundleForTests } from './content';
 import { emptyBundle } from './contentBundle';
 import { __resetSearchForTests, search, searchStatus } from './search';
-import { buildSearchIndex, loadSearchIndex, runSearch, type SynonymGroups } from './searchEngine';
+import { buildSearchIndex, loadSearchIndex, loadSearchIndexAsync, runSearch, STOP_WORDS, type SynonymGroups } from './searchEngine';
 
 const fix = (id: string, title: string, extra: Record<string, unknown> = {}): ContentItemValue =>
   ContentItem.parse({
@@ -89,9 +89,31 @@ describe('search engine', () => {
     expect(runSearch(index, 'mix', { types: ['fixnode'] })).toEqual([]);
   });
 
+  it('drops dictation fillers: they match nothing and do not count against the real words', () => {
+    for (const w of ['theres', 'thats', 'im', 'ive', 'ugh', 'like', 'just']) expect(STOP_WORDS.has(w)).toBe(true);
+    expect(runSearch(index, "ugh there's like just I'm I've that's")).toEqual([]);
+    // Same hits and same scores as the bare words ("pad dry" is no exact say-it phrase, so no bonus differs).
+    expect(runSearch(index, 'theres like pad dry just')).toEqual(runSearch(index, 'pad dry'));
+    // "theres" used to fuzzy-match "there" in any step that held it.
+    const there = buildSearchIndex([fix('fix-11', 'Haze after compound', { steps: ['Look there again under the light'] })], []);
+    expect(runSearch(there, 'theres')).toEqual([]);
+    expect(runSearch(there, 'there')[0]?.id).toBe('fix-11');
+  });
+
   it('a saved index loads back with the same results (the build writes it, the phone reads it)', () => {
     const reloaded = loadSearchIndex(JSON.parse(JSON.stringify(index)));
     expect(runSearch(reloaded, 'alcohol')).toEqual(runSearch(index, 'alcohol'));
+  });
+
+  it('the batched load the app uses (DEF-17) answers exactly like the one-step load', async () => {
+    const big = buildSearchIndex(syntheticItems(300), groups);
+    const json = JSON.parse(JSON.stringify(big)) as Parameters<typeof loadSearchIndex>[0];
+    const batched = await loadSearchIndexAsync(json);
+    const oneStep = loadSearchIndex(json);
+    expect(batched.documentCount).toBe(oneStep.documentCount);
+    for (const q of ['jerking', 'swirl haze', 'polsher pad', 'alcohol', 'fix 101', 'tesla tape']) {
+      expect({ q, hits: runSearch(batched, q) }).toEqual({ q, hits: runSearch(oneStep, q) });
+    }
   });
 });
 
@@ -109,6 +131,8 @@ describe('search speed: under 100 ms', () => {
   });
 
   it('on the seed bundle from npm run content (if built), through the app search()', async () => {
+    // The content loads in shards (DEF-17); load them all to time the whole bundle.
+    await loadAllContent();
     const bundle = getContentBundle();
     __setContentBundleForTests(bundle.items.length > 0 ? bundle : { ...emptyBundle(), items: syntheticItems(200) });
     await search('warm up');

@@ -1,0 +1,32 @@
+id: quiz-l4-05-edges-heat-05
+type: quizquestion
+title: White residue on the trim
+quizId: quiz-l4-05-edges-heat
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "21"
+tags:
+  - edges
+  - heat
+  - quiz
+  - level 4
+synonyms:
+  - edges quiz
+  - heat questions
+  - tape test
+  - body line quiz
+prompt: After polishing, there is white residue on the black trim. What caused it?
+choices:
+  - Too little polish.
+  - Untaped trim.
+  - The wrong towel.
+  - Cold weather.
+correctIndex: 1
+explanation: Tape the trim before polishing. How to remove the residue is not confirmed yet.
+scenario: true
+related:
+  - lesson-l4-05-edges-curves-heat
+  - equipment-painters-tape

@@ -1,0 +1,31 @@
+id: quiz-l0-03-never-02
+type: quizquestion
+title: Out of wash soap
+quizId: quiz-l0-03-never
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "4"
+tags:
+  - never list
+  - quiz
+  - level 0
+synonyms:
+  - never list quiz
+  - what can not I use quiz
+  - garage only test
+  - never in the bucket questions
+prompt: You are mixing the bucket for a car getting polished this afternoon. The Citrus Wash & Gloss is empty, and someone hands you dish soap. Do you use it?
+choices:
+  - Yes. A few drops; polishing removes residue.
+  - Use Ultimate Wash & Wax instead today.
+  - No. Dish soap never goes in the bucket.
+  - Use Spic and Span in a weak mix.
+correctIndex: 2
+explanation: Dish soap is on both never lists. Ultimate Wash & Wax is for maintenance washes only, never before a polish.
+scenario: true
+related:
+  - lesson-l0-03-never-list
+  - card-never-on-paint

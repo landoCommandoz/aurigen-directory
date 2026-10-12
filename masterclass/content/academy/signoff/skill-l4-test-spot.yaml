@@ -1,0 +1,29 @@
+skillId: skill-l4-test-spot
+title: Test spot and the ladder
+lessonId: lesson-l4-08-test-spot-ladder
+quizId: quiz-l4-test-spot
+quizPassScore: 100
+drillMinimum: 3
+prerequisites:
+  - skill-l4-machine-polishing
+gates: []
+ownerChecks:
+  - text: "Who may run power tools, the polisher included: Lando decides (pending)."
+    status: verify
+  - Tapes a 2 x 2 ft square on the worst panel and splits it with tape.
+  - Starts at rung 1, yellow + M210, and climbs one rung at a time.
+  - Wipes, mists with IPA, and checks with the light before each next rung.
+  - Stops climbing at the first rung that clears the swirls.
+  - Uses compound only on a panel that reads 100 µm or more, on its own pad, wiped with its own towel.
+  - Always follows compound with yellow + M210.
+  - Never runs more than one compound pass per section.
+  - Stops at rung 4 and says it stays.
+  - Shows both halves and re-quotes before going further than what was sold.
+  - Writes the winning combo on the job sheet.
+  - text: On a Tesla, the house ladder allows Ultimate Compound on rung 3.
+    status: house
+  - text: On a Tesla, Tesla's manual says do not use cutting pastes, color restoration compounds, or polishes with harsh abrasives.
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending).
+    status: verify
+status: verify

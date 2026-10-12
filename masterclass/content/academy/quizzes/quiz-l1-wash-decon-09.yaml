@@ -1,0 +1,34 @@
+id: quiz-l1-wash-decon-09
+type: quizquestion
+title: Spots forming in July
+quizId: quiz-l1-wash-decon
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+version: 2
+kbRef: "5.4"
+tags:
+  - wash
+  - decon
+  - sign-off quiz
+  - level 1
+synonyms:
+  - level 1 quiz
+  - wash and decon quiz
+  - full wash test
+  - level 1 sign off quiz
+prompt: July in Tooele. Water is drying in spots before you can rinse. What helps?
+choices:
+  - Shade, cool panels, smaller sections.
+  - Wash the whole car, then rinse once.
+  - Work faster in the sun.
+  - Let the panels air dry.
+correctIndex: 0
+explanation: Shade, cool panels, smaller sections, and dry right away. That is the hard water prevention list.
+scenario: true
+related:
+  - lesson-l1-06-full-wash
+  - card-tesla-wash-mode-tape
+  - card-bucket-mix

@@ -1,0 +1,36 @@
+id: quiz-l0-05-fixable-04
+type: quizquestion
+title: Headlights for good?
+quizId: quiz-l0-05-fixable
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+version: 2
+kbRef: "9.4"
+tags:
+  - fingernail test
+  - quiz
+  - level 0
+synonyms:
+  - what can be fixed quiz
+  - fingernail test questions
+  - will it buff out quiz
+  - scratch promise test
+sources:
+  - label: Verification log FC-78
+    date: 2026-10-11
+    note: No Blue Magic label or maker source was read. The month before the lights yellow again is a house number, so no time frame is quoted to a customer until a label confirms one.
+prompt: A customer asks if the headlight job will keep their yellow lights clear for good. What do you tell them?
+choices:
+  - Yes. The restorer is permanent.
+  - It is a refresh, not a fix.
+  - Yes, if you do it twice in one visit.
+  - Yes, for a year. Guaranteed.
+correctIndex: 1
+explanation: "It brightens but does not hold. Sell it as a refresh, $30 a pair, never as a fix. Do not quote how long it lasts: no label confirms a time yet."
+scenario: true
+related:
+  - lesson-l0-05-what-can-be-fixed
+  - card-pad-ladder

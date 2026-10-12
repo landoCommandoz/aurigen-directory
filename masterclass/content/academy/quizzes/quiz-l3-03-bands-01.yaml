@@ -1,0 +1,32 @@
+id: quiz-l3-03-bands-01
+type: quizquestion
+title: 82 on the left rear door
+quizId: quiz-l3-03-bands
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.3"
+tags:
+  - bands
+  - gauge
+  - quiz
+  - level 3
+synonyms:
+  - bands quiz
+  - thickness bands questions
+  - what is allowed test
+  - gauge reading quiz
+prompt: The gauge reads 82 on the left rear door. That is its lowest reading. What is allowed?
+choices:
+  - Tell the customer. Finishing polish only.
+  - Full ladder. Compound is allowed.
+  - Polish only, yellow or maroon. No compound.
+  - No machine. Hand protection only.
+correctIndex: 0
+explanation: "75 to 84 µm: tell the customer; finishing polish only, minimal passes, or hand work."
+scenario: true
+related:
+  - lesson-l3-03-thickness-bands
+  - card-thickness-bands

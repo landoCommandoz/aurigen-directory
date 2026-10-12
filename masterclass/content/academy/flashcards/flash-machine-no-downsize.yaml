@@ -1,0 +1,27 @@
+id: flash-machine-no-downsize
+type: flashcard
+title: Never downsize the plate
+deck: machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "14"
+tags:
+  - machine
+  - flashcard
+synonyms:
+  - smaller plate
+  - 3 inch plate
+  - polisher flashcard
+  - machine numbers card
+sources:
+  - label: Backing plate research (knowledge base 14)
+    date: 2026-10-07
+    note: Unplugged checks of the bolt, pad, hooks, and plate. Long-throw machines are counterweighted for 5 or 6 in. plates.
+front: Can a smaller backing plate stop a vibration?
+back: No. A long-throw is counterweighted for 5 or 6 in. plates. A 3 in. plate causes violent vibration and can wear out the bearings.
+related:
+  - equipment-backing-plate
+  - lesson-l4-01-know-the-machine

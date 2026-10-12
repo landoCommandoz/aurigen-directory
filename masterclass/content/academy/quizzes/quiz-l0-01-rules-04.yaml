@@ -1,0 +1,31 @@
+id: quiz-l0-01-rules-04
+type: quizquestion
+title: Polish at their house
+quizId: quiz-l0-01-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - rules
+  - quiz
+  - level 0
+synonyms:
+  - rules quiz
+  - house rules test
+  - quiz on the 13 rules
+  - level 0 rules questions
+prompt: A customer wants their car polished in their own driveway. Lando has logged 9 cars that touched paint. Can you take the job there?
+choices:
+  - Yes. Add the $30 mobile fee and the travel fee.
+  - Yes, if they have shade, power, and water.
+  - Yes, once the five founder jobs are done.
+  - No. Polish jobs stay at home until 25 cars.
+correctIndex: 3
+explanation: Rule 1. Every polish job stays at home, drop-off, until 25 cars are logged. Home has shade, power, water, and the compressor.
+scenario: true
+related:
+  - lesson-l0-01-rules-that-never-bend
+  - card-stop-rules

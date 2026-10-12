@@ -17,7 +17,7 @@ import { backupReminderDue, type SettingsUnreadableReasonName, type SettingsValu
 import { bytesToBase64 } from './base64';
 import { buildBackupFile, type BackupSettingsInput, type BackupSummary, type BackupTablesValue, type PhotoMode, summarizeBackup } from './backupFile';
 import { localDateStamp, nowIso, nowMs } from './clock';
-import { getPriceItems } from './content';
+import { loadPriceItems } from './content';
 import { auditEntry, readSettingsIn, withDb, writeSettingsIn } from './db';
 import { RecordInvalid, refuse, type Refusal } from './errors';
 import { readThisPhoneSettingsIn } from './phoneSettings';
@@ -97,7 +97,7 @@ export async function exportBackup(opts: { photos?: PhotoMode } = {}): Promise<P
     file: new File([json], filename, { type: 'application/json' }),
     photos,
     createdAt,
-    summary: summarizeBackup(backup, json.length, getPriceItems()),
+    summary: summarizeBackup(backup, json.length, await loadPriceItems()),
     settingsRepaired: readable ? phone.salvaged.repaired : [],
     settings: phone.state,
     unreadableReasons: readable ? [] : [...phone.guard.section.reasons],

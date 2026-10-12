@@ -1,0 +1,33 @@
+id: term-hook-and-loop
+type: glossaryterm
+title: Hook and loop
+term: Hook and loop
+definition: How the pad holds onto the backing plate. Check the hooks with the polisher unplugged. Bald or melted hooks, worn hooks on the plate or the pad, or heat can make a pad fly off or not stick.
+alsoCalled: [hook-and-loop, velcro]
+audience: [owner, ops, crew]
+visibility: internal
+status: sourced
+kbRef: "14"
+tags: [polisher, pad, backing plate]
+synonyms:
+  - hooks
+  - bald hooks
+  - melted hooks
+  - pad wont stick
+  - velcro on the pad
+  - pad keeps coming off
+sources:
+  - label: Knowledge base 14, backing plate research
+    date: 2026-10-07
+    note: Unplugged checks before buying a plate, including hooks not bald or melted.
+  - label: HF product page, item 56367, spec table
+    url: https://www.harborfreight.com/75-amp-6-in-20-mm-long-throw-random-orbit-da-polisher-56367.html
+    date: 2026-10-10
+    note: The 56367 ships with a 6 in. BAUER hook-and-loop backing pad. Read through the search index. Fact-checker FC-17.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+related:
+  - term-backing-plate
+  - equipment-backing-plate
+  - equipment-pad-urotec-yellow
+  - lesson-l4-06-pad-care-backing-plate

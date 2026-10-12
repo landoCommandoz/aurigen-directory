@@ -1,16 +1,16 @@
 /**
- * The body of the item sheet: one content item shown by its type. Quick Cards, products,
- * equipment, glossary terms, and Fix It entries (Phase 2 content) render in full; other types show
- * their title and say which phase brings their screen. Superseded rows and lines never render.
+ * The body of the item page (/items/:id) and the fallback sheet: products, tools, and glossary
+ * terms render in full. Fix It entries, Quick Cards, lessons, and procedures have pages of their
+ * own (shared/contentRoutes.ts), so they never land here; any other type says which phase brings
+ * its screen. Superseded rows and lines never render.
+ * A product's notes (DEF-20) are lines with their own status: a house line, a maker's line beside
+ * it, and a decision Lando has not made, each with its own badge. The label paragraph stays last.
  */
-import { StopBand } from '../../components/ui';
-import { lineText, visibleLines, type ContentItemValue } from '../../schemas';
+import { visibleLines, type ContentItemValue } from '../../schemas';
 import { Internal } from '../../core/customerView';
 import { LinesList, RowsList, UnverifiedBadge } from './contentViews';
 
 const LATER_PHASE: Partial<Record<ContentItemValue['type'], string>> = {
-  sop: 'Procedures open in the Job Runner, Phase 3.',
-  lesson: 'Lessons open in the Academy, Phase 5.',
   drill: 'Drills open in the Academy, Phase 5.',
   quizquestion: 'Quizzes open in the Academy, Phase 5.',
   flashcard: 'Flashcards open in the Academy, Phase 5.',
@@ -19,20 +19,17 @@ const LATER_PHASE: Partial<Record<ContentItemValue['type'], string>> = {
   script: 'Scripts open in Customer View, Phase 4.',
 };
 
-function Heading({ children }: { children: string }) {
-  return <h3 className="sr-detail__heading">{children}</h3>;
+/** 2 on the item page (under its h1), 3 in the sheet (under the drawer's h2), so no level is skipped. */
+export type DetailHeadingLevel = 2 | 3;
+
+function Heading({ children, level }: { children: string; level: DetailHeadingLevel }) {
+  const Tag = level === 2 ? 'h2' : 'h3';
+  return <Tag className="sr-detail__heading">{children}</Tag>;
 }
 
-export function ItemDetail({ item }: { item: ContentItemValue }) {
+export function ItemDetail({ item, headingLevel = 2 }: { item: ContentItemValue; headingLevel?: DetailHeadingLevel }) {
   const badge = <UnverifiedBadge show={item.status === 'verify'} />;
   switch (item.type) {
-    case 'quickcard':
-      return (
-        <div className="sr-detail">
-          {badge}
-          <RowsList rows={item.rows} label={item.title} />
-        </div>
-      );
     case 'product':
       return (
         <div className="sr-detail">
@@ -41,18 +38,24 @@ export function ItemDetail({ item }: { item: ContentItemValue }) {
             {badge}
           </p>
           {item.neverOnPaint ? <p className="sr-detail__flag">Never on customer paint.</p> : null}
-          <Heading>What it is for</Heading>
+          <Heading level={headingLevel}>What it is for</Heading>
           <LinesList lines={item.jobs} itemStatus={item.status} />
           {item.dilutions.filter((d) => d.status !== 'superseded').length > 0 ? (
             <>
-              <Heading>Dilutions</Heading>
+              <Heading level={headingLevel}>Dilutions</Heading>
               <RowsList rows={item.dilutions.map((d) => ({ label: d.use, value: d.ratio, status: d.status }))} />
             </>
           ) : null}
           {item.neverFor.length > 0 ? (
             <>
-              <Heading>Never for</Heading>
+              <Heading level={headingLevel}>Never for</Heading>
               <LinesList lines={item.neverFor} itemStatus={item.status} />
+            </>
+          ) : null}
+          {visibleLines(item.notes, item.status).length > 0 ? (
+            <>
+              <Heading level={headingLevel}>Notes</Heading>
+              <LinesList lines={item.notes} itemStatus={item.status} label="Notes" />
             </>
           ) : null}
           {item.labelNotes ? <p>{item.labelNotes}</p> : null}
@@ -70,10 +73,10 @@ export function ItemDetail({ item }: { item: ContentItemValue }) {
             badge
           )}
           {item.neverOnPaint ? <p className="sr-detail__flag">Never on customer paint.</p> : null}
-          <RowsList rows={item.specs} label="Specs" />
+          <RowsList rows={item.specs} label="Specs" itemStatus={item.status} />
           {visibleLines(item.checks, item.status).length > 0 ? (
             <>
-              <Heading>Checks</Heading>
+              <Heading level={headingLevel}>Checks</Heading>
               <LinesList lines={item.checks} itemStatus={item.status} />
             </>
           ) : null}
@@ -90,29 +93,11 @@ export function ItemDetail({ item }: { item: ContentItemValue }) {
           {item.alsoCalled.length > 0 ? <p className="ui-muted">Also called: {item.alsoCalled.join(', ')}</p> : null}
         </div>
       );
-    case 'fixnode':
-      return (
-        <div className="sr-detail">
-          {badge}
-          {visibleLines(item.stopIf, item.status).map((line, index) => (
-            <StopBand key={`${lineText(line)}-${index}`}>{lineText(line)}</StopBand>
-          ))}
-          {item.checks.length > 0 ? <Heading>30-second checks</Heading> : null}
-          <LinesList lines={item.checks} itemStatus={item.status} />
-          <Heading>Likely causes</Heading>
-          <LinesList lines={item.causes} itemStatus={item.status} />
-          <Heading>Do this</Heading>
-          <LinesList lines={item.steps} itemStatus={item.status} ordered />
-          {item.stillHappening.length > 0 ? <Heading>Still happening?</Heading> : null}
-          <LinesList lines={item.stillHappening} itemStatus={item.status} />
-          <LinesList lines={item.notes} itemStatus={item.status} />
-        </div>
-      );
     default:
       return (
         <div className="sr-detail">
           {badge}
-          <p>{LATER_PHASE[item.type] ?? 'This item opens in a later phase.'}</p>
+          <p>{LATER_PHASE[item.type] ?? 'This item has a page of its own. Search for it by name.'}</p>
           {item.kbRef ? (
             <Internal>
               <p className="ui-muted">Knowledge base {item.kbRef}</p>

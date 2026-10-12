@@ -4,7 +4,8 @@ title: Meguiar's Bug & Tar foam
 brand: Meguiar's
 audience: [owner, crew]
 visibility: internal
-status: house
+status: verify
+version: 3
 kbRef: "3.3"
 tags: [wash, bugs, tar, pre-wash]
 synonyms:
@@ -15,13 +16,30 @@ synonyms:
   - bugs on the front
   - rocker tar
   - bug spray
+sources:
+  - label: Meguiar's UK article, Heavy Duty Bug & Tar Remover
+    url: https://www.meguiars.co.uk/showroom/introducing-meguiars-heavy-duty-bug-tar-remover/
+    date: 2026-10-11
+    note: Spray it on, let it soften the contaminants, then hose it off or wash over it with a mitt. Works without scrubbing. Gives no dwell time. Lando's can is not confirmed as the same item. Fact-checker FC-44 and FC-45.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Verification log FC-45
+    date: 2026-10-11
+    note: The one-minute dwell is unconfirmed. The only label text found is a UK retail copy of a different-named product, so it does not settle the time. Read the dwell time on Lando's can.
 jobs:
   - Front end, mirrors, and rocker tar, before washing
-  - Foam on, one-minute dwell, then wash it off. No scrubbing.
+  - Foam on. Let it soften the bugs and tar. Then hose it off or wash over it. No scrubbing.
   - Rocker tar before clay. If clay will not lift tar, use this, not more clay.
 neverFor:
   - A hot motorcycle exhaust. It bakes on.
+notes:
+  - text: The house dwell is about one minute, but no label confirms that number.
+    status: verify
+  - text: Read the dwell time on your can. The can wins.
+    status: house
+labelNotes: "Meguiar's says spray it on, let it soften the bugs and tar, then hose it off or wash over it. No scrubbing."
 related:
   - card-clay-tub
   - card-bike-rules
   - term-dwell
+  - sop-wash

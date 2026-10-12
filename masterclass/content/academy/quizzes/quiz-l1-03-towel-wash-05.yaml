@@ -1,0 +1,32 @@
+id: quiz-l1-03-towel-wash-05
+type: quizquestion
+title: The roof starts drying
+quizId: quiz-l1-03-towel-wash
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.2"
+tags:
+  - wash
+  - towels
+  - quiz
+  - level 1
+synonyms:
+  - towel wash quiz
+  - 16 towels questions
+  - contact wash test
+  - bucket mix quiz
+prompt: Halfway through the wash, the roof starts drying in the sun while you work the doors. What do you do?
+choices:
+  - Keep going and dry it at the end.
+  - Wipe it with a dry towel now.
+  - Wipe it with your wash towel.
+  - Rinse it. Keep the car wet.
+correctIndex: 3
+explanation: Keep the whole car wet. If a panel starts drying, rinse it.
+scenario: true
+related:
+  - lesson-l1-03-towel-wash
+  - card-bucket-mix

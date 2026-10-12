@@ -1,0 +1,23 @@
+id: flash-prices-target
+type: flashcard
+title: Hourly target
+deck: prices
+audience:
+  - owner
+  - ops
+  - crew
+visibility: internal
+status: house
+kbRef: "15.1"
+tags:
+  - prices
+  - flashcard
+synonyms:
+  - hourly rate
+  - dollars per hour
+  - price flashcard
+  - menu price card
+front: What is the gross hourly target?
+back: $60 to $75 per hour.
+related:
+  - lesson-l1-06-full-wash

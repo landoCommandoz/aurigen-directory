@@ -1,0 +1,33 @@
+id: quiz-l0-04-paint-01
+type: quizquestion
+title: Does polish add shine?
+quizId: quiz-l0-04-paint
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "16"
+tags:
+  - paint
+  - clear coat
+  - quiz
+  - level 0
+synonyms:
+  - paint quiz
+  - clear coat test
+  - how paint works questions
+  - microns quiz
+prompt: A customer asks, "Does polish put a layer of shine on top?" What is true?
+choices:
+  - Yes. It adds a hard protective layer.
+  - No. It removes a thin layer of clear coat.
+  - Yes. It fills the swirls in for good.
+  - No. It adds a thin layer of base coat.
+correctIndex: 1
+explanation: Polish takes clear coat off. That is the first line of the customer script, and it is why every pass costs something.
+scenario: true
+related:
+  - lesson-l0-04-how-paint-works
+  - term-clear-coat
+  - term-micron-mil

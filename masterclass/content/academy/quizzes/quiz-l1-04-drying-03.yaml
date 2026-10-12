@@ -1,0 +1,32 @@
+id: quiz-l1-04-drying-03
+type: quizquestion
+title: Using the drying towel
+quizId: quiz-l1-04-drying
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.1"
+tags:
+  - drying
+  - hard water
+  - quiz
+  - level 1
+synonyms:
+  - drying quiz
+  - hard water questions
+  - water spots test
+  - how do I dry quiz
+prompt: How do you use the drying towel on a panel?
+choices:
+  - Scrub in small circles, panel by panel.
+  - Wring it out and wipe fast.
+  - Pat the panel with one corner.
+  - Lay it flat and pull it toward you.
+correctIndex: 3
+explanation: Towels laid flat and pulled toward you.
+scenario: true
+related:
+  - lesson-l1-04-hard-water-drying
+  - term-sheeting-rinse

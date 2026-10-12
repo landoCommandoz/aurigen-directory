@@ -1,0 +1,34 @@
+id: quiz-l0-ground-rules-08
+type: quizquestion
+title: Rinsing the clay mitt
+quizId: quiz-l0-ground-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "4"
+tags:
+  - setup
+  - ground rules
+  - sign-off quiz
+  - level 0
+synonyms:
+  - level 0 quiz
+  - ground rules quiz
+  - setup quiz
+  - shop setup test
+  - level 0 sign off quiz
+prompt: You are about to drop the clay mitt into the wash bucket to rinse it. Stop or go?
+choices:
+  - Go. It is just soapy water.
+  - Go, after the wheels are done.
+  - Stop. The clay mitt never goes in.
+  - Go, if the bucket is fresh.
+correctIndex: 2
+explanation: "Never in the wash bucket: Ultimate Wash & Wax before polishing, dish soap, Spic and Span, wheel brushes, and the clay mitt."
+scenario: true
+related:
+  - lesson-l0-06-shop-setup
+  - card-setup-kit
+  - card-stop-rules

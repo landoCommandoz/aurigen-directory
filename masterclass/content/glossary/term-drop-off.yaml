@@ -1,0 +1,22 @@
+id: term-drop-off
+type: glossaryterm
+title: Drop-off
+term: Drop-off
+definition: The customer leaves the car at Lando's home shop. Drop-off is the default, and list prices are drop-off prices. Every polish job is drop-off until 25 cars are logged. Motorcycles are drop-off only.
+alsoCalled: [drop off, at the shop]
+audience: [owner, ops, crew]
+visibility: internal
+status: house
+kbRef: "15.1"
+tags: [business, booking, pricing]
+synonyms:
+  - drop off
+  - bring it to us
+  - leave the car
+  - at home shop
+  - shop job
+  - not mobile
+related:
+  - term-mobile-fee
+  - card-stop-rules
+  - term-founders-rate

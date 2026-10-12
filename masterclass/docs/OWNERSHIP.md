@@ -1,6 +1,6 @@
 # Ownership: who writes what
 
-Phase 0, step 5. Written 2026-10-08 by the architect role, revised the same day after review. Revised 2026-10-10 in Phase 1: `src/schemas/README.md` named, and the content writers' rule added under "Where the lines are thin". Revised 2026-10-11 (DEF-13): the backup recovery rules and the frozen shapes added under "Where the lines are thin". One writer per file across agents, always. This file is the map.
+Phase 0, step 5. Written 2026-10-08 by the architect role, revised the same day after review. Revised 2026-10-10 in Phase 1: `src/schemas/README.md` named, and the content writers' rule added under "Where the lines are thin". Revised 2026-10-11 (DEF-13): the backup recovery rules and the frozen shapes added under "Where the lines are thin". Revised 2026-10-11 (Phase 2): `docs/CURRICULUM.md` added, owner learning-designer, with its line under "Where the lines are thin". Revised 2026-10-12: `docs/FACT-REVIEW.md` added, owner lead. One writer per file across agents, always. This file is the map.
 
 Lando: nothing in here needs your answer.
 
@@ -23,10 +23,12 @@ Lando: nothing in here needs your answer.
 | `docs/DECISIONS.md` | architect | Everyone; the lead cites the ADR number in task briefs |
 | `docs/OWNERSHIP.md` | architect | Everyone, before writing any file |
 | `docs/DESIGN-DIRECTIONS.md` | ui-designer | Lando picks; app-engineer and business-customer build to the pick |
+| `docs/CURRICULUM.md` | learning-designer | Lando and the lead (the plan in plain English); content-curator (lesson `level` and `order` follow it); app-engineer (the Phase 5 Academy) |
 | `docs/STATUS.md` | lead | Every session start |
 | `docs/HOW-TO-ADD.md` | lead | Lando, after v1 |
 | `docs/HANDOFF.md` | lead | Lando, DJ, Suzie |
 | `docs/QA-REPORT.md` | qa-adversary | The lead and every owner with a defect to fix |
+| `docs/FACT-REVIEW.md` | lead | Lando at the Phase 2 gate: the corrected facts, the decisions, the one-glance checks, and what is still unconfirmed, generated from `knowledge/verification-log.md` (the log wins; the lead regenerates, the fact-checker never writes it) |
 | `knowledge/KNOWLEDGE_BASE.md` | lead, with Lando only | Everyone; it wins every conflict except the product label |
 | `knowledge/verification-log.md` | fact-checker | content-curator, troubleshooter, business-customer, the lead |
 | `CLAUDE.md`, `BUILD_PROMPT.md`, `START_HERE.md` | lead | Everyone |
@@ -56,10 +58,12 @@ masterclass/
     DECISIONS.md                     architect
     OWNERSHIP.md                     architect
     DESIGN-DIRECTIONS.md             ui-designer
+    CURRICULUM.md                    learning-designer (the curriculum map in plain English: levels, lessons in order, skills, what each sign-off asks, the Levels 5 to 8 outline)
     STATUS.md                        lead
     HOW-TO-ADD.md                    lead
     HANDOFF.md                       lead
     QA-REPORT.md                     qa-adversary
+    FACT-REVIEW.md                   lead            (the Phase 2 gate list for Lando: corrected facts, decisions, one-glance checks, still unconfirmed; generated from knowledge/verification-log.md)
 
   knowledge/
     KNOWLEDGE_BASE.md                lead, with Lando only
@@ -84,7 +88,7 @@ masterclass/
       drills/                        learning-designer
       quizzes/                       learning-designer (QuizQuestion files)
       flashcards/                    learning-designer
-      signoff/                       learning-designer (one <skillId>.yaml per skill: lessonId, quizId, quizPassScore, drillMinimum, prerequisites; the only place these live; a Lesson carries skillId only; the build checks that every lesson with a skillId has a file and every file matches a lesson)
+      signoff/                       learning-designer (one <skillId>.yaml per skill: lessonId, quizId, quizPassScore, drillMinimum, prerequisites, ownerChecks, status; the only place these live; a Lesson carries skillId only; the build checks that every lesson with a skillId has a file and every file matches a lesson)
     business/                        business-customer (PriceItem, Policy files; founder's rate; unlocks; the two-step line with unit quote and no amount)
     customer/                        business-customer (Script files, aftercare card text, paint report wording)
 
@@ -149,6 +153,7 @@ Never touched by anyone in this build: `.claude/agents/`, the root `CLAUDE.md`, 
 - `public/icons/` is app-engineer's directory, but the artwork comes from ui-designer as files in `src/design/` that app-engineer copies at build time. No shared file.
 - Customer View has one mechanism and one writer. `src/core/customerView.tsx` (app-engineer) holds the `<Internal>` component, the `useCustomerView()` hook, and the `customerSafe(items)` filter. Every feature, whoever owns it (app-engineer's jobrunner, academy, settings; business-customer's customer and business; ui-designer's components), wraps its internal elements in `<Internal>` and never writes its own version. business-customer owns the switch screen and the customer session rule in `src/features/customer/`. The privacy test in `tests/privacy/` (qa-adversary) is the enforcement: it fails on any internal element found on the page with Customer View on.
 - Every content writer (content-curator, troubleshooter, learning-designer, business-customer) and the content build (app-engineer, `scripts/content/`) follow `src/schemas/README.md`: folders, file formats, id rules, status and visibility, and the exact exports the build uses. A writer who needs a new field files the need with the architect; nobody adds a field the schema does not have, because the schemas are strict and the build refuses unknown fields.
-- Sign-off criteria have one writer. The pass mark, drill minimum, and prerequisites live only in `content/academy/signoff/<skillId>.yaml` (learning-designer). A Lesson (content-curator) names its `skillId` and nothing more. The build refuses a lesson with a `skillId` and no file, and a file with no lesson.
+- `docs/CURRICULUM.md` (learning-designer) is the plan; the lesson files (content-curator) are what the app reads. The curriculum lists each level's lesson ids in order, and the content-curator writes each lesson's `level` and `order` to match. Neither edits the other's file; a mismatch goes to the lead. The learning-designer picks the Level 0 order from the knowledge base and notes that Lando may reorder it.
+- Sign-off criteria have one writer. The pass mark, drill minimum, prerequisites, and what Lando watches for (`ownerChecks`) live only in `content/academy/signoff/<skillId>.yaml` (learning-designer). A Lesson (content-curator) names its `skillId` and nothing more. The build refuses a lesson with a `skillId` and no file, and a file with no lesson.
 - Backup and Restore with an unreadable settings row (DEF-13, D12 amendment). The rules are pure functions in `src/schemas/backup-recovery.ts` (architect): what a backup carries, and what a restore applies, keeps, and flags. `src/core/backup.ts`, `src/core/backupImport.ts`, `src/core/settingsRead.ts`, and the Backup screen in `src/features/settings/` (app-engineer) follow them and never restate them; a case the rules do not cover goes back to the architect. The guard field list is `SETTINGS_GUARD_FIELDS` in that module, so `settingsRead.ts` imports it instead of keeping its own copy.
 - Frozen shapes. `DeviceRole`, `OwnerPin`, and `PinEntry` in `src/schemas/runtime-device.ts` never change; `src/schemas/frozen-shapes.test.ts` fails if they do. Any agent that needs a new kind of device or a new PIN hash files the need with the architect, who adds a new optional settings field. Nobody edits the frozen test to make it pass.

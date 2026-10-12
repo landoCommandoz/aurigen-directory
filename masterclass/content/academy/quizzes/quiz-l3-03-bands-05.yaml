@@ -1,0 +1,36 @@
+id: quiz-l3-03-bands-05
+type: quizquestion
+title: One fender way below the rest
+quizId: quiz-l3-03-bands
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.3"
+tags:
+  - bands
+  - gauge
+  - quiz
+  - level 3
+synonyms:
+  - bands quiz
+  - thickness bands questions
+  - what is allowed test
+  - gauge reading quiz
+sources:
+  - label: Lando, BLUEPRINT section 12 (defaults accepted 2026-10-10)
+    date: 2026-10-10
+    note: "Item 1: $275 founder rate for both sizes. Item 2: smoke odor quoted on inspection. Item 4: Monthly Maintenance contents not set. Item 9: black pad never on the ladder. Item 11: photo consent off until yes. Item 14: what counts toward 25 cars. Item 15: two-step quoted after the test spot. Item 16: thin panel is more than 40 µm below the median."
+prompt: The other panels have a median of 150 µm. The left fender reads 104 at its lowest. What is it?
+choices:
+  - A normal panel. It is over 100.
+  - A thin panel. Go light or skip.
+  - A repaint. Go gentle or skip.
+  - Clear coat failure. Do not polish.
+correctIndex: 1
+explanation: A panel more than 40 µm below the median of the other panels is thin. 150 minus 104 is 46.
+scenario: true
+related:
+  - lesson-l3-03-thickness-bands
+  - card-thickness-bands

@@ -1,0 +1,31 @@
+id: quiz-l1-01-wheels-02
+type: quizquestion
+title: Which brush on the face
+quizId: quiz-l1-01-wheels
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.1"
+tags:
+  - wheels
+  - quiz
+  - level 1
+synonyms:
+  - wheels quiz
+  - wheel cleaning questions
+  - wheels first test
+  - brush quiz
+prompt: The long brush is for the barrel and the stiff brush is for the tire. Which brush goes on the face of the wheel?
+choices:
+  - The soft brush.
+  - The stiff brush.
+  - The long brush.
+  - A wash towel.
+correctIndex: 0
+explanation: Soft on the face, long brush in the barrel, stiff on the tire.
+scenario: true
+related:
+  - lesson-l1-01-wheels-first
+  - equipment-wheel-brushes

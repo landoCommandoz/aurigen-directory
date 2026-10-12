@@ -1,0 +1,31 @@
+id: quiz-l4-03-pressure-04
+type: quizquestion
+title: The line slows on a tough spot
+quizId: quiz-l4-03-pressure
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.3"
+tags:
+  - pressure
+  - quiz
+  - level 4
+synonyms:
+  - pressure quiz
+  - how hard do I press questions
+  - float test
+  - grip quiz
+prompt: The marker line slows while you press on a tough spot. What do you do?
+choices:
+  - Ease up and flatten the pad.
+  - Press harder.
+  - Tilt onto the edge to dig.
+  - Add more product.
+correctIndex: 0
+explanation: If the marker line stops turning, ease up and flatten the pad.
+scenario: true
+related:
+  - lesson-l4-03-pressure
+  - card-machine-settings

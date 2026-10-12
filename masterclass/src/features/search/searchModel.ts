@@ -1,10 +1,11 @@
 /**
- * Pure helpers for the search screens: plain names per content type, grouping hits by type in the
- * order of their best hit (so the top result is in the first group), the empty-state cards, and
- * where a hit opens. No DOM, no React.
+ * Pure helpers for the search screens: plain names per content type, grouping hits by type (the
+ * top result's group first, then Fix It, then the rest by their best hit), the empty-state cards,
+ * and where a hit opens. No DOM, no React.
  */
 import type { ContentItemValue, ContentTypeName } from '../../schemas';
 import type { SearchHit } from '../../core/search';
+import { pageRoute } from '../shared/contentRoutes';
 
 export const TYPE_GROUP_LABELS: Record<ContentTypeName, string> = {
   fixnode: 'Fix It',
@@ -12,7 +13,7 @@ export const TYPE_GROUP_LABELS: Record<ContentTypeName, string> = {
   sop: 'Procedures',
   lesson: 'Lessons',
   product: 'Products',
-  equipment: 'Equipment',
+  equipment: 'Tools',
   glossaryterm: 'Glossary',
   drill: 'Drills',
   policy: 'Policies',
@@ -28,7 +29,7 @@ export const TYPE_SINGULAR: Record<ContentTypeName, string> = {
   sop: 'Procedure',
   lesson: 'Lesson',
   product: 'Product',
-  equipment: 'Equipment',
+  equipment: 'Tool',
   glossaryterm: 'Glossary term',
   drill: 'Drill',
   policy: 'Policy',
@@ -44,7 +45,12 @@ export interface HitGroup {
   hits: SearchHit[];
 }
 
-/** Group hits by type. Groups follow the rank of their first hit; hits keep their rank inside a group. */
+/**
+ * Group hits by type, Fix It first (Phase 2). The group holding the top result always leads, so
+ * the first row on screen is the result Enter opens and the one the search cases test. Fix It
+ * comes next whenever it is not already first; the other groups follow the rank of their best hit.
+ * Hits keep their rank inside a group.
+ */
 export function groupHits(hits: readonly SearchHit[]): HitGroup[] {
   const groups = new Map<ContentTypeName, HitGroup>();
   for (const hit of hits) {
@@ -55,7 +61,18 @@ export function groupHits(hits: readonly SearchHit[]): HitGroup[] {
     }
     group.hits.push(hit);
   }
-  return Array.from(groups.values());
+  const ordered = Array.from(groups.values());
+  const fixAt = ordered.findIndex((group) => group.type === 'fixnode');
+  if (fixAt > 1) {
+    const [fixes] = ordered.splice(fixAt, 1);
+    if (fixes !== undefined) ordered.splice(1, 0, fixes);
+  }
+  return ordered;
+}
+
+/** The first row on screen, the one Enter opens: the top hit, because its group leads. */
+export function firstShown(hits: readonly SearchHit[]): SearchHit | undefined {
+  return groupHits(hits)[0]?.hits[0];
 }
 
 /**
@@ -79,9 +96,9 @@ export function topCards<T extends Pick<ContentItemValue, 'id'>>(cards: readonly
   return picked.slice(0, count);
 }
 
-/** Where a result opens: Quick Cards have their own page; everything else opens in a sheet. */
+/** Where a result opens: every searchable type has its own page (contentRoutes.ts); null means none yet. */
 export function hitRoute(hit: Pick<SearchHit, 'id' | 'type'>): string | null {
-  return hit.type === 'quickcard' ? `/cards/${encodeURIComponent(hit.id)}` : null;
+  return pageRoute(hit);
 }
 
 /** "3 results" or the empty message, for the live region. */

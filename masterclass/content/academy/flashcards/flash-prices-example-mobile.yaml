@@ -1,0 +1,23 @@
+id: flash-prices-example-mobile
+type: flashcard
+title: "Worked price: SUV mobile"
+deck: prices
+audience:
+  - owner
+  - ops
+  - crew
+visibility: internal
+status: house
+kbRef: "15.4"
+tags:
+  - prices
+  - flashcard
+synonyms:
+  - mobile price example
+  - travel math
+  - price flashcard
+  - menu price card
+front: SUV Full Detail, mobile, 12 miles outside the zone. Total, deposit, and due at the end?
+back: $280 + $30 + (12 x $1.50 = $18) = $328. Deposit $50, due $278.
+related:
+  - lesson-l0-01-rules-that-never-bend

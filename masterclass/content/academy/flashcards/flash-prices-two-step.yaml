@@ -1,0 +1,28 @@
+id: flash-prices-two-step
+type: flashcard
+title: Two-step price
+deck: prices
+audience:
+  - owner
+  - ops
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - prices
+  - flashcard
+synonyms:
+  - two step price
+  - two step correction
+  - price flashcard
+  - menu price card
+sources:
+  - label: Lando, BLUEPRINT section 12 (defaults accepted 2026-10-10)
+    date: 2026-10-10
+    note: "Item 1: $275 founder rate for both sizes. Item 2: smoke odor quoted on inspection. Item 4: Monthly Maintenance contents not set. Item 9: black pad never on the ladder. Item 11: photo consent off until yes. Item 14: what counts toward 25 cars. Item 15: two-step quoted after the test spot. Item 16: thin panel is more than 40 µm below the median."
+front: What does two-step correction cost?
+back: It has no price. It is not sold until 25 cars are logged, and then it is quoted after the test spot.
+related:
+  - term-two-step
+  - lesson-l0-01-rules-that-never-bend

@@ -1,0 +1,33 @@
+id: quiz-l4-04-sets-02
+type: quizquestion
+title: Sets per square
+quizId: quiz-l4-04-sets
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.3"
+tags:
+  - sets
+  - marker line
+  - quiz
+  - level 4
+synonyms:
+  - sets quiz
+  - crosshatch questions
+  - marker line test
+  - arm speed quiz
+prompt: How many sets go on one 2 x 2 ft square?
+choices:
+  - 4 to 6.
+  - 1 to 2.
+  - "10."
+  - As many as you have time for.
+correctIndex: 0
+explanation: 4 to 6 sets per square, then wipe once.
+scenario: true
+related:
+  - lesson-l4-04-speed-sets-marker
+  - term-set
+  - term-crosshatch

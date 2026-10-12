@@ -1,0 +1,32 @@
+id: quiz-l3-inspect-measure-09
+type: quizquestion
+title: Wrapped car, wants a buff
+quizId: quiz-l3-inspect-measure
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.4"
+tags:
+  - walkaround
+  - sign-off quiz
+  - level 3
+synonyms:
+  - level 3 quiz
+  - inspect and measure quiz
+  - walkaround test
+  - level 3 sign off quiz
+prompt: The car is wrapped in vinyl, and the owner wants it buffed. What do you do?
+choices:
+  - Walk away.
+  - Buff it at a low speed.
+  - Compound the wrap lightly.
+  - Polish it by hand.
+correctIndex: 0
+explanation: A wrap gets no compound and no polish. Wrap-safe wash and sealant only.
+scenario: true
+related:
+  - lesson-l3-05-walkaround-script
+  - card-kills-the-buff
+  - card-thickness-bands

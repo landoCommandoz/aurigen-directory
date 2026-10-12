@@ -2,11 +2,12 @@ id: term-long-throw
 type: glossaryterm
 title: Long-throw
 term: Long-throw
-definition: A DA with an orbit of 15 mm or more. Yours throws 20 mm. Long-throws are counterweighted for 5 or 6 in. plates, so never downsize the plate.
+definition: A DA with an orbit of 15 mm or more. Yours throws 20 mm, a bigger orbit than a short-throw polisher. Harbor Freight says it does 3 times the corrective work per orbit. Long-throws are counterweighted for 5 or 6 in. plates, so never downsize the plate.
 alsoCalled: [long throw]
 audience: [owner, ops, crew]
 visibility: internal
 status: verify
+version: 2
 kbRef: "22"
 tags: [polisher, machine, orbit]
 synonyms:
@@ -20,6 +21,12 @@ sources:
   - label: HF product page, item 56367
     date: 2026-10-07
     note: 20 mm long-throw
+  - label: HF item page, 56367
+    url: https://go.harborfreight.com/sku/56367/
+    date: 2026-10-11
+    note: The long-throw 20 mm orbit produces 3 times the corrective action per orbit of a standard or short-throw DA. No source says some float is normal. Fact-checker FC-61 and FC-63.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 related:
   - term-dual-action
   - equipment-bauer-56367

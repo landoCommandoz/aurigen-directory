@@ -1,0 +1,32 @@
+id: quiz-l3-01-light-02
+type: quizquestion
+title: A spiderweb on the hood
+quizId: quiz-l3-01-light
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.1"
+tags:
+  - inspect
+  - light
+  - quiz
+  - level 3
+synonyms:
+  - light quiz
+  - inspection questions
+  - swirls test
+  - read the paint quiz
+prompt: Under the light, you see a fine spiderweb pattern all over the hood. What is it?
+choices:
+  - Scratches that stay.
+  - Clear coat failure.
+  - Swirls.
+  - Water spots.
+correctIndex: 2
+explanation: Swirls look like a spiderweb.
+scenario: true
+related:
+  - lesson-l3-01-light-and-eyes
+  - equipment-inspection-light

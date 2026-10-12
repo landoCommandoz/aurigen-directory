@@ -12,6 +12,12 @@ export interface ContentBundle {
   items: ContentItemValue[];
   signOffs: SignOffCriteriaItem[];
   synonyms: SynonymFileValue['groups'];
+  /**
+   * The ids isCustomerRenderable passes, written by the content build, so the build-time shard
+   * cut (scripts/content/viteShards.ts) marks the catalog without loading the schemas. Optional:
+   * a bundle without it marks nothing safe (fail closed); the app's own cut checks every item.
+   */
+  customerSafeIds?: string[];
 }
 
 /** src/generated/content-stats.json: what the last build saw, for the developer panel and the lead. */

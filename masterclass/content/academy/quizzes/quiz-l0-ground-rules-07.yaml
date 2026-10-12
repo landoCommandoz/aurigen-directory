@@ -1,0 +1,34 @@
+id: quiz-l0-ground-rules-07
+type: quizquestion
+title: Shine on a bike sidewall
+quizId: quiz-l0-ground-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - setup
+  - ground rules
+  - sign-off quiz
+  - level 0
+synonyms:
+  - level 0 quiz
+  - ground rules quiz
+  - setup quiz
+  - shop setup test
+  - level 0 sign off quiz
+prompt: A customer drops off a motorcycle. Can you put tire shine on the sidewall if you keep it off the tread?
+choices:
+  - Yes, if you keep it off the tread.
+  - Yes, with a water-based shine.
+  - Only on the rear tire.
+  - No. No tire shine on a bike, ever.
+correctIndex: 3
+explanation: Rule 11. A rider depends on those tires.
+scenario: true
+related:
+  - lesson-l0-06-shop-setup
+  - card-setup-kit
+  - card-stop-rules

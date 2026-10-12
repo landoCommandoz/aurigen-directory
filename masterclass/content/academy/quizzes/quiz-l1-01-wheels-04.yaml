@@ -1,0 +1,31 @@
+id: quiz-l1-01-wheels-04
+type: quizquestion
+title: The towel that wiped a wheel
+quizId: quiz-l1-01-wheels
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "13.2"
+tags:
+  - wheels
+  - quiz
+  - level 1
+synonyms:
+  - wheels quiz
+  - wheel cleaning questions
+  - wheels first test
+  - brush quiz
+prompt: You wipe a finished wheel with a towel. Where does that towel go?
+choices:
+  - Back in the wash bucket.
+  - The paint pile, after a rinse.
+  - The wheel pile, for good.
+  - The drying towel pile.
+correctIndex: 2
+explanation: Wheel towels are wheel towels for good. The wheel pile never rejoins the paint pile.
+scenario: true
+related:
+  - lesson-l1-01-wheels-first
+  - equipment-wheel-brushes

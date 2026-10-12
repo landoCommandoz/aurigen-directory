@@ -3,14 +3,15 @@
  *
  * D10 and BLUEPRINT 3.4: in Customer View, or while the persisted flag is still loading, the
  * app renders no banner of its own at all; everything is held until Customer View is off.
- * Order, most urgent first: storage blocked, offline with no saved copy, the app version
- * notices (3.5), the setup step or the weekly backup reminder (D12), the install card (D3).
+ * Order, most urgent first: storage blocked, offline with no saved copy (or a saved copy this
+ * page opened without, QA DEF-29), the app version notices (3.5), the setup step or the weekly
+ * backup reminder (D12), the install card (D3).
  * The last three show on Home and Settings only (NOTICE_SCREENS).
  */
-import type { AppVersionState } from '../../core/pwa';
+import type { AppVersionState, OfflineCopyState } from '../../core/pwa';
 import type { SetupStep } from '../../schemas';
 
-export type BannerKey = 'storage' | 'offlineNotSaved' | 'update' | 'updating' | 'updated' | 'setup' | 'backupDue' | 'install';
+export type BannerKey = 'storage' | 'offlineNotSaved' | 'offlineSaved' | 'update' | 'updating' | 'updated' | 'setup' | 'backupDue' | 'install';
 
 export interface BannerInput {
   /** The Customer View flag has been read. */
@@ -19,6 +20,11 @@ export interface BannerInput {
   storageProblem: string | null;
   online: boolean;
   offlineReady: boolean;
+  /**
+   * The offline copy table (src/core/pwa.ts). When given it decides, and savedNotServing gets its
+   * own notice (QA DEF-29); when left out, offlineReady false reads as notSaved.
+   */
+  offlineCopy?: OfflineCopyState;
   /** A service worker is supported and this is a production build. */
   offlineCopyExpected: boolean;
   versionState: AppVersionState;
@@ -46,7 +52,11 @@ export function pickBanners(input: BannerInput): BannerKey[] {
   if (!input.ready || input.customerViewOn) return [];
   const keys: BannerKey[] = [];
   if (input.storageProblem !== null) keys.push('storage');
-  if (!input.online && !input.offlineReady && input.offlineCopyExpected) keys.push('offlineNotSaved');
+  const copy = input.offlineCopy ?? (input.offlineReady ? 'ready' : 'notSaved');
+  if (!input.online && input.offlineCopyExpected) {
+    if (copy === 'notSaved') keys.push('offlineNotSaved');
+    else if (copy === 'savedNotServing') keys.push('offlineSaved');
+  }
 
   switch (input.versionState) {
     case 'updateAvailable':

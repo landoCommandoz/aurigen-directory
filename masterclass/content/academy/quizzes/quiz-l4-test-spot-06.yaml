@@ -1,0 +1,33 @@
+id: quiz-l4-test-spot-06
+type: quizquestion
+title: More than what was sold
+quizId: quiz-l4-test-spot
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.5"
+tags:
+  - test spot
+  - ladder
+  - sign-off quiz
+  - level 4
+synonyms:
+  - test spot quiz
+  - pad ladder questions
+  - which combo test
+  - test spot sign off quiz
+prompt: The test spot shows the car needs more than what was sold. What do you do?
+choices:
+  - Show both halves and re-quote.
+  - Do it and charge at pickup.
+  - Do only what was sold. Say nothing.
+  - Skip the rest of the car.
+correctIndex: 0
+explanation: Show both halves and re-quote before going further than what was sold.
+scenario: true
+related:
+  - lesson-l4-08-test-spot-ladder
+  - card-pad-ladder
+  - term-test-spot

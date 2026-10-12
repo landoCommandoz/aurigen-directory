@@ -1,0 +1,32 @@
+id: quiz-l4-machine-06
+type: quizquestion
+title: Pulling the trigger
+quizId: quiz-l4-machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.3"
+tags:
+  - polish
+  - machine
+  - sign-off quiz
+  - level 4
+synonyms:
+  - level 4 quiz
+  - machine polishing quiz
+  - full square test
+  - level 4 sign off quiz
+prompt: When do you pull the trigger?
+choices:
+  - Pull in the air, then lower it.
+  - Pull it as the pad lands.
+  - Pad flat on the paint, then pull.
+  - It does not matter.
+correctIndex: 2
+explanation: Pad flat on the paint before you pull. Let go while the pad is still on the paint, then lift. A pad that starts or stops in the air slings product.
+scenario: true
+related:
+  - lesson-l4-07-full-square
+  - card-machine-settings

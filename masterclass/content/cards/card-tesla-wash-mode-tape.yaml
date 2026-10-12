@@ -5,7 +5,7 @@ kind: list
 audience: [owner, crew]
 visibility: internal
 status: house
-version: 2
+version: 3
 kbRef: "11"
 tags: [tesla, model y, tape, wash, car wash mode, warranty]
 synonyms:
@@ -32,7 +32,7 @@ sources:
   - label: Tesla Model Y owner's manual, cleaning cautions, current model
     url: https://www.tesla.com/ownersmanual/modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
     date: 2026-10-10
-    note: No cutting pastes, color restoration compounds, or harsh-abrasive polishes. Cleaning-product damage is not covered by the warranty. Seen on the 2025 and newer Model Y manual and other Tesla manuals; the 2020 to 2024 page could not be checked line by line. Read through the search index. Fact-checker FC-16.
+    note: No cutting pastes, color restoration compounds, or harsh-abrasive polishes. Cleaning-product damage is not covered by the warranty. Read through the search index. Fact-checker FC-16.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
   - label: Tesla Model Y owner's manual, wheel cleaner caution
@@ -41,11 +41,37 @@ sources:
     note: No chemical-based wheel cleaners or pre-wash products. Same wording in the Model 3, S, X, and Cybertruck manuals. Read through the search index. Fact-checker FC-16.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Pages 178 to 181, Cleaning. Every FC-16 caution is in this manual, so it covers a 2022 Model Y. Also the camera, mitt, hose, touchscreen, interior, chrome and metal, and acidic product cautions, the Car Wash Mode path, and the camera list. Read directly. Fact-checker FC-33 to FC-38, FC-40, FC-43, FC-47.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2025 and newer owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Page 200. Same Car Wash Mode path and cleaning cautions. Six body cameras, with a front bumper camera above the grille that has its own sprayer. Lenses get water, then a microfiber. Read directly. Fact-checker FC-33, FC-39, FC-40.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Model Y Service Manual contents, fixed glass roof
+    url: https://service.tesla.com/docs/ModelY/ServiceManual/en-us/GUID-4AF149E1-9CC3-48F7-B6F1-471068A8E8C9.html
+    date: 2026-10-11
+    note: Lists the fixed glass roof. Read through the search index. Skipping it in the polish route is house. Fact-checker FC-41.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla DIY page, removing and installing wheel covers
+    url: https://service.tesla.com/docs/Public/diy/modely/en_us/GUID-377C88DB-7FBE-4320-BC1A-0A01AF48005C.html
+    date: 2026-10-11
+    note: Covers removal for lug nut access only. A cover must be fully secured before driving. Leaving the covers on to clean is house. Verification log FC-42.
+  - label: Meguiar's product page, Ultimate Compound G17216
+    url: https://www.meguiars.com/products/automotive/paint/meguiars-ultimate-compound-g17216-152oz
+    date: 2026-10-11
+    note: Not for use on flat, matte, or satin finishes. Read through the search index. Verification log FC-43.
 rows:
   - label: Car Wash Mode
     value: On before any water.
-  - label: Menu path, 2020 to 2024 Model Y
-    value: "Controls > Service > Car Wash Mode."
+  - label: Menu path, Model Y
+    value: "Controls > Service > Car Wash Mode. Same path on the 2020 to 2024 and the 2025 and newer Model Y."
     status: sourced
   - label: What it does
     value: Closes all windows, locks the charge port, and turns off the wipers, Sentry Mode, walk-away door locking, and parking chimes. The car must be parked and not charging. It turns off above 9 mph or when you touch Exit.
@@ -54,11 +80,18 @@ rows:
     value: Tesla's manual says the charge port or wipers can be damaged, and car wash damage is not covered by the warranty.
     status: sourced
   - label: Tape the window trim
-    value: Satin black window trim. Polish turns it chalky white.
+    value: Satin black window trim. Keep polish off it.
+  - label: Why the trim gets tape
+    value: Tesla's manual says polish can damage chrome and metal finishes. Meguiar's says Ultimate Compound is not for satin finishes.
+    status: sourced
   - label: Tape the door handles
     value: Flush door handle edges.
-  - label: Tape the cameras
-    value: All five. Two B-pillar, two fender repeaters, one above the rear plate.
+  - label: Tape the cameras, 2020 to 2024 Model Y
+    value: All five. Two B-pillar, two fender repeaters, one above the rear plate. The windshield cameras sit behind the glass.
+    status: sourced
+  - label: Tape the cameras, 2025 and newer Model Y
+    value: Six. Also tape the front bumper camera above the grille. It has its own washer nozzle.
+    status: sourced
   - label: Tape the badges
     value: Every badge.
   - label: Tape the glass header
@@ -66,13 +99,44 @@ rows:
   - label: Tape the cladding
     value: Textured cladding on the wheel arches and the lower bumper.
   - label: Roof
-    value: It is glass. Wash it, never polish it. Skip it in the measure and polish routes.
+    value: It is glass.
+    status: sourced
+  - label: Roof, house
+    value: Wash it, never polish it. Skip it in the measure and polish routes.
   - label: Charge port door
     value: Stays closed.
-  - label: Camera lenses
+  - label: Pre-rinse, house
+    value: Pre-rinse on jet 3 to 4 minutes, top down.
+    kbRef: "5.1"
+  - label: Hose, Tesla's manual
+    value: Tesla's manual says do not aim a hose directly at windows, door or hood seals, electronic modules, or exposed cabling, and do not wash in direct sunlight.
+    status: sourced
+  - label: Lando decides how this applies to Teslas (pending)
+    value: The pre-rinse on jet.
+    status: verify
+  - label: Wash and clay mitts, house
+    value: The towel method with 16 microfiber towels, or the two-bucket mitt method. The clay mitt on every car.
+    kbRef: "5.2"
+  - label: Mitts, Tesla's manual
+    value: Tesla's manual says avoid tight-napped or rough cloths, such as washing mitts, and recommends a high-quality microfiber cloth.
+    status: sourced
+  - label: Lando decides how this applies to Teslas (pending)
+    value: The two-bucket mitt method and the clay mitt.
+    status: verify
+  - label: Camera lenses, house
     value: Glass cleaner only.
+    kbRef: "11"
+  - label: Camera lenses, Tesla's manual
+    value: Spray water on the lens. On a 2020 to 2024 Model Y built before about late May 2023 in Fremont or Austin, do not wipe the lens with a hand or a cloth. On later cars, dry it with a microfiber cloth. Never use chemical-based or abrasive cleaners on a lens.
+    status: sourced
+  - label: Lando decides how this applies to Teslas (pending)
+    value: Camera lenses. A 2022 Model Y built in Fremont or Austin is in the no-wipe group unless its build date says otherwise. Read the build month on the driver door jamb label.
+    status: verify
   - label: Wheels
     value: Leave the aero covers on during the wheel clean.
+  - label: Wheel covers, Tesla
+    value: If a cover ever comes off, Tesla says it must be fully secured before the car moves.
+    status: sourced
   - label: Wheel cleaner, house
     value: Armor All Extreme Wheel & Tire, a brush, and the hose, the same as every car.
     kbRef: "5.1"
@@ -85,14 +149,42 @@ rows:
   - label: Compound, Tesla's manual
     value: Tesla's manual says do not use cutting pastes, color restoration compounds, or polishes with harsh abrasives. They can scour the surface and permanently damage the paint.
     status: sourced
+  - label: Lando decides how this applies to Teslas (pending)
+    value: The house wheel step, the pre-soak, and the compound rung.
+    status: verify
+  - label: Water-spot remover, Tesla's manual
+    value: Tesla's manual says do not use acidic products. Some water-spot removers are strong acids.
+    status: sourced
+  - label: Lando decides how this applies to Teslas (pending)
+    value: Any water-spot remover on a Tesla. No remover is chosen yet.
+    status: verify
+  - label: Touchscreen, house
+    value: Dry microfiber or a screen-safe cleaner only.
+    kbRef: "10"
+  - label: Touchscreen, Tesla's manual
+    value: "Turn on Screen Clean Mode: Controls > Display > Screen Clean Mode. Use a soft lint-free cloth made for displays. No cleaners such as glass cleaner, no hand sanitizer, no wet wipes, and no dry statically-charged cloth such as a recently washed microfiber."
+    status: sourced
+  - label: Lando decides how this applies to Teslas (pending)
+    value: The touchscreen.
+    status: verify
+  - label: Interior, house
+    value: Wipe hard surfaces with Quik Interior Detailer sprayed on the towel.
+    kbRef: "10"
+  - label: Leather, house
+    value: Cleaner, then conditioner. Products not confirmed.
+    status: verify
+    kbRef: "10"
+  - label: Interior, Tesla's manual
+    value: No solvents (including alcohol), hand sanitizer, bleach, citrus, naphtha, or silicone-based products on interior parts. Seats get warm water and mild soap on a microfiber, then dry. No conditioners or protectants. Never spray the seat directly. Interior lights get a cloth with warm water only.
+    status: sourced
+  - label: Lando decides how this applies to Teslas (pending)
+    value: The interior wipe and the leather steps.
+    status: verify
   - label: Warranty, Tesla's manual
     value: Tesla's manual says damage or discoloration from cleaning products is not covered by the warranty.
     status: sourced
-  - label: Lando decides which applies (pending)
-    value: On a Tesla, the house wheel step, pre-soak, and compound rung, or Tesla's manual.
-    status: verify
-  - label: Other years and models
-    value: Cameras, trim, and the Car Wash Mode menu path differ. Check each car.
+  - label: Other Tesla models
+    value: The Car Wash Mode path on the Model S, Model X, and Cybertruck is not checked. Cameras and trim differ by model. Check each car.
     status: verify
 related:
   - card-setup-kit
@@ -101,3 +193,7 @@ related:
   - card-stop-rules
   - product-armor-all-extreme-wheel-tire
   - card-pad-ladder
+  - sop-setup-tesla
+  - sop-tape-tesla
+  - sop-wash-tesla
+  - sop-glass-tesla

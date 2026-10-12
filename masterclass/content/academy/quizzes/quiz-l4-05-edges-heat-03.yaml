@@ -1,0 +1,32 @@
+id: quiz-l4-05-edges-heat-03
+type: quizquestion
+title: Cannot keep a hand on it
+quizId: quiz-l4-05-edges-heat
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.3"
+tags:
+  - edges
+  - heat
+  - quiz
+  - level 4
+synonyms:
+  - edges quiz
+  - heat questions
+  - tape test
+  - body line quiz
+prompt: Halfway through a square, you put your hand on the panel and cannot keep it there. What do you do?
+choices:
+  - Stop and let it cool.
+  - Keep going and finish the square.
+  - Mist it with IPA to cool it.
+  - Speed up.
+correctIndex: 0
+explanation: "Too hot to keep your hand on: stop and let it cool."
+scenario: true
+related:
+  - lesson-l4-05-edges-curves-heat
+  - equipment-painters-tape

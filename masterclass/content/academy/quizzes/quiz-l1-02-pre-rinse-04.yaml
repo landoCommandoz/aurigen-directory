@@ -1,0 +1,31 @@
+id: quiz-l1-02-pre-rinse-04
+type: quizquestion
+title: Caked dirt after the rinse
+quizId: quiz-l1-02-pre-rinse
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.1"
+tags:
+  - pre-rinse
+  - quiz
+  - level 1
+synonyms:
+  - pre rinse quiz
+  - rinse questions
+  - bug and tar quiz
+  - how long do I rinse test
+prompt: After the pre-rinse, caked dirt is still on the rockers. What is the move?
+choices:
+  - Scrub it off with a wash towel.
+  - Pre-soak it with Citrus in the pump sprayer.
+  - Rinse longer. Never scrub harder.
+  - Hit it with a little dish soap.
+correctIndex: 2
+explanation: Rinse longer, never scrub harder. The pump-sprayer pre-soak is not confirmed, so it is in no wash yet. Dish soap is on the never list.
+scenario: true
+related:
+  - lesson-l1-02-pre-rinse
+  - product-meguiars-bug-tar

@@ -1,18 +1,20 @@
 /**
  * The one search box (BLUEPRINT 2.1, 5): typed or dictated words (the keyboard's mic), results
- * from the device in well under 100 ms, grouped by type. Enter opens the top result. "/" focuses
- * the box from anywhere, Escape clears it, and the arrow keys move through the results.
- * Search is internal: in Customer View the box is not on the page (BLUEPRINT 3.4).
+ * from the device in well under 100 ms, grouped by type with Fix It first (searchModel.groupHits).
+ * Enter opens the top result, which is always the first row on screen; every result opens its own
+ * page. "/" focuses the box from anywhere, Escape clears it, and the arrow keys move through the
+ * results. Search is internal: in Customer View the box is not on the page (BLUEPRINT 3.4).
+ * When the index did not load, the box says so with Try again, never "Nothing found" (QA DEF-26).
  */
 import { useEffect, useId, useRef, type KeyboardEvent } from 'react';
-import { Row, RowList } from '../../components/ui';
-import { getItemsByType } from '../../core/content';
+import { Button, Row, RowList } from '../../components/ui';
+import { getItemsByType, useContent, type LoadableShard } from '../../core/content';
 import { Internal } from '../../core/customerView';
-import { searchNow } from '../../core/search';
+import { search, searchNow } from '../../core/search';
 import type { ContentTypeName } from '../../schemas';
 import { UnverifiedBadge } from './contentViews';
 import { useItemOpener } from './ItemSheet';
-import { groupHits, resultsWords, topCards, TYPE_SINGULAR } from './searchModel';
+import { firstShown, groupHits, resultsWords, topCards, TYPE_SINGULAR } from './searchModel';
 import { useSearch } from './useSearchResults';
 import './search.css';
 
@@ -28,6 +30,10 @@ export interface SearchBoxProps {
   limit?: number;
   types?: readonly ContentTypeName[];
 }
+
+/** The empty box on the search screen shows the top Quick Cards; elsewhere the box needs no content shard. */
+const EMPTY_STATE_CONTENT: readonly LoadableShard[] = ['quickcard'];
+const NO_CONTENT: readonly LoadableShard[] = [];
 
 function typingElsewhere(target: EventTarget | null): boolean {
   return target instanceof HTMLElement && (target.isContentEditable || target.closest('input, textarea, select') !== null);
@@ -47,9 +53,10 @@ function SearchBoxInner({ label = 'Search', focusOnOpen = false, initialQuery = 
   const inputId = useId();
   const hintId = useId();
   const opener = useItemOpener();
-  const { query, setQuery, hits, loading, error } = useSearch(initialQuery, types === undefined ? { limit } : { limit, types });
+  const { query, setQuery, hits, loading, error, prepare, retry } = useSearch(initialQuery, types === undefined ? { limit } : { limit, types });
   const groups = groupHits(hits);
   const empty = query.trim() === '';
+  useContent(showEmptyState ? EMPTY_STATE_CONTENT : NO_CONTENT);
 
   // "/" focuses the box from anywhere (BLUEPRINT 5, PC at night), unless typing in another field.
   useEffect(() => {
@@ -100,9 +107,22 @@ function SearchBoxInner({ label = 'Search', focusOnOpen = false, initialQuery = 
       const q = query.trim();
       if (q === '') return;
       // Fresh answer for exactly what is typed, so a fast Enter never opens a stale result.
-      const fresh = searchNow(q, types === undefined ? { limit } : { limit, types });
-      const top = (fresh ?? hits)[0];
-      if (top !== undefined) opener.open(top);
+      const opts = types === undefined ? { limit } : { limit, types };
+      const fresh = searchNow(q, opts);
+      if (fresh !== null) {
+        const top = firstShown(fresh);
+        if (top !== undefined) opener.open(top);
+        return;
+      }
+      // The index is still loading (the first search on this screen): open the top answer when it
+      // arrives, if the box still holds the same words and is still on screen.
+      search(q, opts)
+        .then((answer) => {
+          if (input.current?.value.trim() !== q) return;
+          const top = firstShown(answer);
+          if (top !== undefined) opener.open(top);
+        })
+        .catch(() => undefined);
     } else if (event.key === 'Escape') {
       event.preventDefault();
       if (query !== '') change('');
@@ -117,7 +137,7 @@ function SearchBoxInner({ label = 'Search', focusOnOpen = false, initialQuery = 
   }
 
   const cards = empty && showEmptyState ? topCards(getItemsByType('quickcard')) : [];
-  const words = loading ? 'Searching' : resultsWords(query, hits.length);
+  const words = error ?? (loading ? 'Searching' : resultsWords(query, hits.length));
 
   return (
     <div className="sr-box">
@@ -138,6 +158,7 @@ function SearchBoxInner({ label = 'Search', focusOnOpen = false, initialQuery = 
         placeholder="Type or say a word"
         aria-describedby={hintId}
         value={query}
+        onFocus={prepare}
         onChange={(event) => change(event.target.value)}
         onKeyDown={onInputKey}
       />
@@ -148,7 +169,16 @@ function SearchBoxInner({ label = 'Search', focusOnOpen = false, initialQuery = 
         {words}
       </p>
       <div ref={results} className="sr-results">
-        {error !== null ? <p className="mc-status">{error}</p> : null}
+        {error !== null ? (
+          <div className="sr-results__problem">
+            <p className="mc-status" data-tone="warning">
+              {error}
+            </p>
+            <Button size="shop" onClick={retry}>
+              Try again
+            </Button>
+          </div>
+        ) : null}
         {!empty && !loading && hits.length === 0 && error === null ? <p className="sr-results__none">{words}</p> : null}
         {groups.map((group) => (
           <section key={group.type} className="sr-results__group">

@@ -1,0 +1,32 @@
+id: flash-tesla-tape
+type: flashcard
+title: Model Y tape list
+deck: tesla
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+version: 2
+kbRef: "11"
+tags:
+  - tesla
+  - flashcard
+synonyms:
+  - tesla tape list
+  - what to tape
+  - tesla flashcard
+  - model y card
+sources:
+  - label: Tesla Model Y 2020 to 2024 and 2025 and newer owner's manuals, China edition
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Five body cameras on the 2020 to 2024 Model Y; the 2025 and newer adds a front bumper camera. Read directly. Fact-checker FC-40. The tape list itself is house.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+front: What gets taped on a Model Y before polishing?
+back: Satin black window trim, flush door handle edges, the body cameras (five, or six on a 2025 or newer), badges, the black glass header, and the textured cladding on the wheel arches and lower bumper.
+related:
+  - card-tesla-wash-mode-tape
+  - lesson-l4-05-edges-curves-heat
+  - flash-tesla-cameras

@@ -1,0 +1,32 @@
+id: quiz-l1-04-drying-01
+type: quizquestion
+title: The final rinse
+quizId: quiz-l1-04-drying
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.1"
+tags:
+  - drying
+  - hard water
+  - quiz
+  - level 1
+synonyms:
+  - drying quiz
+  - hard water questions
+  - water spots test
+  - how do I dry quiz
+prompt: Last rinse before drying. What do you do with the nozzle?
+choices:
+  - Set it to jet for a strong final rinse.
+  - Set it to mist for a gentle final rinse.
+  - Skip the final rinse and dry.
+  - Take it off. Let the open hose sheet it off.
+correctIndex: 3
+explanation: Nozzle off, open hose, and let the water sheet off top down. The sheeting rinse is on the hard water prevention list.
+scenario: true
+related:
+  - lesson-l1-04-hard-water-drying
+  - term-sheeting-rinse

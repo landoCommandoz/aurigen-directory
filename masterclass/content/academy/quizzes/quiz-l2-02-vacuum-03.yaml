@@ -1,0 +1,32 @@
+id: quiz-l2-02-vacuum-03
+type: quizquestion
+title: Crumbs in the cup holders
+quizId: quiz-l2-02-vacuum
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - vacuum
+  - quiz
+  - level 2
+synonyms:
+  - vacuum quiz
+  - knock it down questions
+  - vacuum order test
+  - seats forward and back quiz
+prompt: Crumbs are packed into the cup holders. What do you do?
+choices:
+  - Vacuum harder with the crevice tool.
+  - Wipe them out with interior detailer.
+  - Leave them for the customer.
+  - Bristle pad first, then vacuum.
+correctIndex: 3
+explanation: "Cup holders and seams: the Dremel Versa bristle pad, then vacuum."
+scenario: true
+related:
+  - lesson-l2-02-knock-down-vacuum
+  - equipment-shop-vac

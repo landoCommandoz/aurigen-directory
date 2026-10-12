@@ -67,6 +67,12 @@ export const SopStep = z.strictObject({
   stopIf: z.string().min(1).optional(),
   panelRoute: z.enum(['wash', 'polish', 'measure', 'wax', 'glass']).optional(),
   quickCardId: idWithPrefix('card').optional(),
+  /**
+   * Rows shown under the step that are not actions (added 2026-10-11, Phase 2): a maker's line
+   * next to the house line, or a pending decision (status verify). Each may carry its own status.
+   * The Runner reads them after the step and never asks for "Done, next" on a note.
+   */
+  notes: z.array(Line).default([]),
 });
 export type SopStepValue = z.infer<typeof SopStep>;
 
@@ -112,6 +118,16 @@ export const Product = Base.extend({
   neverFor: z.array(z.string().min(1)).default([]),
   /** On the never-on-customer-paint list (knowledge base 3.4). */
   neverOnPaint: z.boolean().default(false),
+  /**
+   * Rows that are not a job, a limit, or the label's words (added 2026-10-12, DEF-20), each with its
+   * own optional status: a house line, a maker's line beside it (sourced), and a decision Lando has
+   * not made (verify), as on Teslas (FC-16). Same name and rule as FixNode.notes and SopStep.notes.
+   */
+  notes: z.array(Line).default([]),
+  /**
+   * The label's own words, one paragraph, carrying the item's status. A house line, a maker's line
+   * that disagrees with it, or a pending decision goes in `notes`, never here.
+   */
   labelNotes: z.string().min(1).optional(),
 });
 export type ProductItem = z.infer<typeof Product>;

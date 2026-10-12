@@ -1,0 +1,31 @@
+id: quiz-l0-01-rules-02
+type: quizquestion
+title: The label and the app disagree
+quizId: quiz-l0-01-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - rules
+  - quiz
+  - level 0
+synonyms:
+  - rules quiz
+  - house rules test
+  - quiz on the 13 rules
+  - level 0 rules questions
+prompt: A new bottle of a product you use every week says something different on its label than this app says. Which one wins?
+choices:
+  - This app, because Lando checked it.
+  - Whichever one is newer online.
+  - The label on the bottle.
+  - A detailing video from a pro.
+correctIndex: 2
+explanation: Rule 12. The label on the bottle beats this app. Labels change, and the bottle in your hand can be newer than the one Lando checked.
+scenario: true
+related:
+  - lesson-l0-01-rules-that-never-bend
+  - card-stop-rules

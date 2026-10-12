@@ -1,0 +1,32 @@
+id: quiz-l2-02-vacuum-04
+type: quizquestion
+title: Dog hair on the back seat
+quizId: quiz-l2-02-vacuum
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - vacuum
+  - quiz
+  - level 2
+synonyms:
+  - vacuum quiz
+  - knock it down questions
+  - vacuum order test
+  - seats forward and back quiz
+prompt: The back seat is covered in dog hair. What comes before the vacuum?
+choices:
+  - Nothing. Vacuum it.
+  - A lint roller.
+  - The rubber tool or pumice.
+  - Interior detailer on the hair.
+correctIndex: 2
+explanation: Rubber tool or pumice first, then vacuum. Three passes minimum.
+scenario: true
+related:
+  - lesson-l2-02-knock-down-vacuum
+  - equipment-shop-vac

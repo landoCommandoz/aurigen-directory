@@ -1,0 +1,31 @@
+id: flash-tesla-roof
+type: flashcard
+title: Model Y roof
+deck: tesla
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+version: 2
+kbRef: "11"
+tags:
+  - tesla
+  - flashcard
+synonyms:
+  - tesla roof
+  - glass roof
+  - tesla flashcard
+  - model y card
+sources:
+  - label: Tesla Model Y Service Manual, contents
+    url: https://service.tesla.com/docs/ModelY/ServiceManual/en-us/GUID-4AF149E1-9CC3-48F7-B6F1-471068A8E8C9.html
+    date: 2026-10-11
+    note: Lists "Glass - Roof - Fixed (Remove and Replace)". Read through the search index. Fact-checker FC-41. Skipping the roof in the measure and polish routes is house.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+front: What do you do with the Model Y roof?
+back: It is glass. Skip it when you measure and polish. It gets washed, not polished.
+related:
+  - card-tesla-wash-mode-tape
+  - lesson-l3-02-tc100-gauge

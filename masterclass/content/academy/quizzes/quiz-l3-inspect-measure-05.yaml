@@ -1,0 +1,32 @@
+id: quiz-l3-inspect-measure-05
+type: quizquestion
+title: A dent nobody mentioned
+quizId: quiz-l3-inspect-measure
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "21"
+tags:
+  - walkaround
+  - sign-off quiz
+  - level 3
+synonyms:
+  - level 3 quiz
+  - inspect and measure quiz
+  - walkaround test
+  - level 3 sign off quiz
+prompt: During the walkaround you find a dent the customer did not mention. What do you do?
+choices:
+  - Say nothing. It was there already.
+  - Photograph it, tell them now, note it.
+  - Mention it at pickup.
+  - Fix it for free.
+correctIndex: 1
+explanation: "Existing damage: photograph it, tell them now, and note it on the job sheet, before you start."
+scenario: true
+related:
+  - lesson-l3-05-walkaround-script
+  - card-kills-the-buff
+  - card-thickness-bands

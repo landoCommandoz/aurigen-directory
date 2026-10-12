@@ -1,0 +1,32 @@
+id: quiz-l4-machine-10
+type: quizquestion
+title: Polish dusting
+quizId: quiz-l4-machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "21"
+tags:
+  - polish
+  - machine
+  - sign-off quiz
+  - level 4
+synonyms:
+  - level 4 quiz
+  - machine polishing quiz
+  - full square test
+  - level 4 sign off quiz
+prompt: The polish is dusting. What are the likely causes?
+choices:
+  - Too little time on the square.
+  - Worked too long, a dry pad, or heat.
+  - A pad that is too wet with mist.
+  - A cool panel in the shade.
+correctIndex: 1
+explanation: "Causes: worked too long, a dry pad, too much heat. Fix: shorter cycles, mist the pad, less product, and stop when it goes clear."
+scenario: true
+related:
+  - lesson-l4-07-full-square
+  - card-machine-settings
