@@ -2,7 +2,7 @@
 
 This is the plan for the app. The decisions in it were taken on 2026-10-10, and Lando typed `build it` the same day. Phase 1 (Foundation) is underway.
 
-Phase 0, step 5. Written 2026-10-08 by the architect role and revised the same day after three reviews. Updated 2026-10-10 with Lando's gate decisions (section 12 and `docs/DECISIONS.md`), then with his Phase 1 decisions (`docs/DECISIONS.md` D12 and D13: the first run, the device role, the first backup, the thin panel outline). Updated 2026-10-11 in the Phase 1 defect wave: the jobs can always leave the phone even when its role or PIN record cannot be read (DEF-13, D12 amendment), "Hand over to another phone," and bike hand polishing (both `[HOUSE default]`, D12 and D11 amendments), in 2.1, 3.2, 3.8, and 3.9. From Phase 1 the zod schemas in `src/schemas/` are the contract for sections 6 and 7; where they differ from the sketches here, the schema files win.
+Phase 0, step 5. Written 2026-10-08 by the architect role and revised the same day after three reviews. Updated 2026-10-10 with Lando's gate decisions (section 12 and `docs/DECISIONS.md`), then with his Phase 1 decisions (`docs/DECISIONS.md` D12 and D13: the first run, the device role, the first backup, the thin panel outline). Updated 2026-10-11 in the Phase 1 defect wave: the jobs can always leave the phone even when its role or PIN record cannot be read (DEF-13, D12 amendment), "Hand over to another phone," and bike hand polishing (both `[HOUSE default]`, D12 and D11 amendments), in 2.1, 3.2, 3.8, and 3.9. Updated 2026-10-12 (DEF-27, `docs/DECISIONS.md` D1 amendment): the first install serves the page already open, one line each in 3.5 and 3.8. From Phase 1 the zod schemas in `src/schemas/` are the contract for sections 6 and 7; where they differ from the sketches here, the schema files win.
 
 ## Read this first (Lando, on your phone)
 
@@ -270,6 +270,8 @@ How a leak is prevented: internal items are not on the page at all, so even a sc
 
 Guard, an update never interrupts a running job: a new version waits until you tap "Update now," and never while a job is open. The technical setup behind that (the PWA plugin's prompt mode and the app's reload hook) is in `docs/DECISIONS.md` D1. If a second tab triggers the update (only possible in a Safari tab, not in the Home Screen app), the same deferral runs in every tab.
 
+The first install (2026-10-12, DEF-27, `docs/DECISIONS.md` D1 amendment): there is no older version to wait behind, so the saved copy takes over the page already open at once (`clientsClaim` true, `skipWaiting` still false), and "Ready offline" shows only once it serves that page; updates still wait in Update available until "Update now" is tapped, so this table and its guard are unchanged, and Try again reloads into the saved copy whenever one is installed.
+
 ### 3.6 Connectivity
 
 | State | Enters when | Leaves when | On refresh mid-transition | Risk |
@@ -307,6 +309,7 @@ Unit tests (state tables, counters, bands, prices):
 Persistence tests (quality bar item 7):
 
 - Refresh, kill, and lock mid-stage: same step, timer right. Refresh mid-pause: still paused, same `pausedMs`.
+- First session offline (DEF-27, D1 amendment 2026-10-12): a fresh profile opens the app with signal, waits for "Ready offline," then goes offline with no reload; by taps only, the Academy, "One full square," Fix It, fix-01, its Related procedure ("Machine polishing, one-step") and word ("Long-throw") all open, and "did not load" never shows. "Ready offline" never shows while the page has no controller. With a new version waiting, nothing reloads or swaps until "Update now" is tapped.
 - Fake clock moved back 10 minutes mid-stage: the timer holds at its last value, shows "Clock changed, timer held," never shows a negative or shrinking time, and resumes from the held value on the next tap. Fake clock moved forward 10 minutes: elapsed grows by 10 minutes, a countdown that ended reads "Ended while the screen was off. Check the panel," and no step advanced.
 - Export on one origin (the Pages path), import on another (the root path): cars logged, founder's slots used, every job state, and the PIN hash are equal.
 - Refresh during the device role flow: on the choice screen, on the Start fresh warning, or during PIN entry, nothing has been written and the app reopens as before; after the role write and before the first backup, the app reopens as the shop phone with the banner on "Save your first backup."

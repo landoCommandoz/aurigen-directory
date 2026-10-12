@@ -5,7 +5,7 @@ brand: Not confirmed
 audience: [owner, crew]
 visibility: internal
 status: verify
-version: 2
+version: 3
 kbRef: "3.3"
 tags: [unconfirmed]
 synonyms:
@@ -21,6 +21,12 @@ sources:
     note: A carnauba spray wax, item WAC21516, 16 oz, sold out when read. Whether this is Lando's bottle is not confirmed. Verification log FC-77.
 jobs:
   - Unknown. It stays off every checklist and card until Lando says what it is and its job.
-labelNotes: "Chemical Guys sells a Blazin' Banana carnauba spray wax. If that is this bottle, it is a wax, so house rule 5 applies: no wax before the paint is polished. It is not in any SOP. Lando confirms what it is and decides its job (pending)."
+notes:
+  - text: Chemical Guys sells a Blazin' Banana carnauba spray wax. Whether that is this bottle is not confirmed.
+    status: verify
+  - text: "If it is that spray wax, house rule 5 applies: no wax before the paint is polished. It is not in any SOP."
+    status: house
+  - text: Lando confirms what it is and decides its job (pending).
+    status: verify
 related:
   - product-tuff-stuff

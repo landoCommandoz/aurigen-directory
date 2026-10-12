@@ -6,7 +6,8 @@
  * Every check runs on the bundle the content build makes and, for characters, on the raw files.
  * A failure names the item, the field, and the words. Known open defects are `it.fails` with their
  * DEF number, so the suite stays green while the defect is open and turns red the day it is fixed
- * (then the test is flipped). Open in this file since Phase 2 pass 3: DEF-20 (DEF-16 closed in pass 2).
+ * (then the test is flipped). None open in this file since Phase 2 pass 5 (DEF-16 closed in pass 2,
+ * DEF-20 in pass 4, DEF-28 in pass 5).
  */
 import { describe, expect, it } from 'vitest';
 import { lineStatus, visibleLines, type LineValue } from '../../src/schemas';
@@ -190,22 +191,135 @@ describe('Phase 2 truth rules', () => {
     expect(misses).toEqual([]);
   });
 
-  // DEF-20 (later, content-curator): the item page draws Product.notes since pass 3, but two products
-  // still hold the Tesla house line, Tesla's manual line, and the pending row (and the bike row) inside
-  // labelNotes, a paragraph with no status of its own, so the pending sentences get no badge
-  // (src/schemas/README.md, the product pattern). Flip when the lines are in notes.
-  it.fails('DEF-20: no product holds a pending sentence in labelNotes; the Tesla rows are notes lines with their own status', () => {
-    const products = all.filter((i) => i.type === 'product');
-    const pendingInLabel = products.filter((p) => /\(pending\)/.test(p.labelNotes ?? '')).map((p) => p.id);
-    expect(pendingInLabel).toEqual([]);
-    for (const id of ['product-armor-all-extreme-wheel-tire', 'product-meguiars-ultimate-compound']) {
+  // DEF-20 (closed in pass 4): six products held a "(pending)" sentence, and with it the house line
+  // and the maker's line beside it, inside labelNotes, a paragraph with no status of its own. Pass 3
+  // named two of them; the content-curator moved the lines on all six into Product.notes, one line
+  // each with its own status (src/schemas/README.md, the product pattern; D2 amendment 2026-10-12).
+  describe('DEF-20: pending rows, house lines, and maker lines are product notes, never labelNotes', () => {
+    const products = all.flatMap((i) => (i.type === 'product' ? [i] : []));
+    const notesOf = (id: string) => {
       const product = products.find((p) => p.id === id);
-      const notes = product?.type === 'product' ? product.notes : [];
-      const statuses = notes.map((n) => ({ text: typeof n === 'string' ? n : n.text, status: lineStatus(n, product?.status ?? 'verify') }));
-      expect(statuses.some((n) => n.status === 'house'), `${id} house note`).toBe(true);
-      expect(statuses.some((n) => n.status === 'sourced' && /tesla/i.test(n.text)), `${id} Tesla manual note`).toBe(true);
-      expect(statuses.some((n) => n.status === 'verify' && /Lando decides how this applies to Teslas \(pending\)/.test(n.text)), `${id} pending note`).toBe(true);
-    }
+      expect(product, `${id}`).toBeDefined();
+      return (product?.notes ?? []).map((n) => ({ text: typeof n === 'string' ? n : n.text, status: lineStatus(n, product?.status ?? 'verify') }));
+    };
+    const MOVED = [
+      'product-armor-all-extreme-tire-shine',
+      'product-armor-all-extreme-wheel-tire',
+      'product-blazin-banana',
+      'product-meguiars-quik-interior-detailer',
+      'product-meguiars-ultimate-compound',
+      'product-tuff-stuff',
+    ];
+
+    it('no product holds a pending sentence in labelNotes, and every pending note is a verify line', () => {
+      expect(products.filter((p) => /\(pending\)|lando decides/i.test(p.labelNotes ?? '')).map((p) => p.id)).toEqual([]);
+      const pendingNotes = products.flatMap((p) => notesOf(p.id).filter((n) => /\(pending\)/.test(n.text)).map((n) => ({ id: p.id, ...n })));
+      expect(pendingNotes.length).toBeGreaterThanOrEqual(8);
+      expect(pendingNotes.filter((n) => n.status !== 'verify').map((n) => `${n.id} [${n.status}]: ${n.text}`)).toEqual([]);
+    });
+
+    it('the six moved products keep their pending rows as notes, and their labelNotes name no house line or Tesla', () => {
+      for (const id of MOVED) {
+        expect(notesOf(id).some((n) => n.status === 'verify' && /\(pending\)/.test(n.text)), `${id} pending note`).toBe(true);
+        const label = products.find((p) => p.id === id)?.labelNotes ?? '';
+        expect(label, `${id} labelNotes`).not.toMatch(/\bhouse\b|\btesla\b|\blando\b/i);
+      }
+    });
+
+    it('the Tesla rows: a house line, a sourced Tesla manual line, and the pending row, in that order where a house line exists', () => {
+      for (const id of ['product-armor-all-extreme-wheel-tire', 'product-meguiars-ultimate-compound']) {
+        const notes = notesOf(id);
+        const house = notes.findIndex((n) => n.status === 'house' && /tesla/i.test(n.text));
+        const manual = notes.findIndex((n) => n.status === 'sourced' && /tesla's manual/i.test(n.text));
+        const pending = notes.findIndex((n) => n.status === 'verify' && /Lando decides how this applies to Teslas \(pending\)/.test(n.text));
+        expect([house >= 0, manual >= 0, pending >= 0], `${id}`).toEqual([true, true, true]);
+        expect(house < manual && manual < pending, `${id} order`).toBe(true);
+      }
+      for (const id of ['product-meguiars-quik-interior-detailer', 'product-tuff-stuff']) {
+        const notes = notesOf(id);
+        expect(notes.some((n) => n.status === 'sourced' && /tesla's manual/i.test(n.text)), `${id} Tesla manual note`).toBe(true);
+        expect(notes.some((n) => n.status === 'verify' && /Lando decides how this applies to Teslas \(pending\)/.test(n.text)), `${id} pending note`).toBe(true);
+      }
+    });
+
+    it('no fact was lost in the move: the label words and the numbers are still on each page', () => {
+      const text = (id: string) => {
+        const p = products.find((x) => x.id === id);
+        return [p?.labelNotes ?? '', ...notesOf(id).map((n) => n.text), ...(p?.jobs ?? []), ...(p?.neverFor ?? [])].join(' ');
+      };
+      expect(text('product-armor-all-extreme-tire-shine')).toMatch(/4 to 6 inches[\s\S]*8 to 12 inches/);
+      expect(text('product-armor-all-extreme-tire-shine')).toMatch(/at least 3 to 5 minutes on the trigger label, at least 5 minutes on the aerosol label/);
+      expect(text('product-armor-all-extreme-tire-shine')).toMatch(/no tire shine on a motorcycle at all/);
+      expect(text('product-armor-all-extreme-wheel-tire')).toMatch(/30 seconds/);
+      expect(text('product-armor-all-extreme-wheel-tire')).toMatch(/not covered by the warranty/);
+      expect(text('product-armor-all-extreme-wheel-tire')).toMatch(/On a bike, what to use on the wheels is for Lando to decide \(pending\)/);
+      expect(text('product-meguiars-ultimate-compound')).toMatch(/cutting pastes, color restoration compounds, or polishes with harsh abrasives/);
+      expect(text('product-meguiars-quik-interior-detailer')).toMatch(/touchscreen gets no cleaners at all/);
+      expect(text('product-tuff-stuff')).toMatch(/Lando decides what it is for \(pending\)/);
+      expect(text('product-blazin-banana')).toMatch(/house rule 5 applies: no wax before the paint is polished/);
+    });
+  });
+
+  // DEF-28 (closed in pass 5), found in pass 4: four more products mixed house policy into labelNotes,
+  // which holds the label's own words only (D2 amendment 2026-10-12; README, product pattern:
+  // "labelNotes is the label's own words, one paragraph, nothing else"). The content-curator moved
+  // each house line to a house note and each unconfirmed number to a verify note (version +1 each).
+  // These tests hold the rule on every item with labelNotes, and pin what the move must keep.
+  describe('DEF-28: labelNotes holds the label\'s words only; house lines and open numbers are notes with their own status', () => {
+    const withLabel = all.flatMap((i) => ('labelNotes' in i && typeof i.labelNotes === 'string' ? [{ id: i.id, labelNotes: i.labelNotes }] : []));
+    const products = all.flatMap((i) => (i.type === 'product' ? [i] : []));
+    const product = (id: string) => {
+      const p = products.find((x) => x.id === id);
+      expect(p, `${id}`).toBeDefined();
+      return p;
+    };
+    const notesOf = (id: string) => {
+      const p = product(id);
+      return (p?.notes ?? []).map((n) => ({ text: typeof n === 'string' ? n : n.text, status: lineStatus(n, p?.status ?? 'verify') }));
+    };
+
+    it('no labelNotes holds a house line, a pending row, a name, a doubt, or a "read your bottle" line', () => {
+      expect(withLabel.length).toBeGreaterThanOrEqual(6);
+      const NOT_LABEL = /\bhouse\b|\blando\b|\btesla\b|\(pending\)|\bpending\b|not confirmed|unconfirmed|no label|no source|\bconfirms?\b|read (your|the) (bottle|can|label|directions)|\bwins\b|\bcrew\b|\bwe\b/i;
+      expect(withLabel.filter((x) => NOT_LABEL.test(x.labelNotes)).map((x) => `${x.id}: ${x.labelNotes}`)).toEqual([]);
+    });
+
+    it('the four moved products went up a version and carry their house lines as house notes and their open numbers as verify notes', () => {
+      expect(
+        ['product-blue-magic-headlight-restorer', 'product-meguiars-bug-tar', 'product-meguiars-hot-shine', 'product-meguiars-hybrid-ceramic-wax'].map((id) => [id, product(id)?.version]),
+      ).toEqual([
+        ['product-blue-magic-headlight-restorer', 2],
+        ['product-meguiars-bug-tar', 3],
+        ['product-meguiars-hot-shine', 3],
+        ['product-meguiars-hybrid-ceramic-wax', 4],
+      ]);
+      const has = (id: string, status: string, re: RegExp) => notesOf(id).some((n) => n.status === status && re.test(n.text));
+      // Blue Magic: the two house numbers stay open (FC-78 unconfirmed), and the bottle wins.
+      expect(has('product-blue-magic-headlight-restorer', 'verify', /about two minutes per light[\s\S]*about a month[\s\S]*no label or maker source confirms/i)).toBe(true);
+      expect(has('product-blue-magic-headlight-restorer', 'house', /the bottle wins/i)).toBe(true);
+      expect(product('product-blue-magic-headlight-restorer')?.labelNotes).toBeUndefined();
+      // FC-78: neither number is stated anywhere else on the page with a settled status.
+      const blueMagic = product('product-blue-magic-headlight-restorer');
+      expect([...(blueMagic?.jobs ?? []), ...(blueMagic?.neverFor ?? [])].filter((t) => /minute|month/i.test(t))).toEqual([]);
+      // Bug & Tar: the one-minute dwell is open (FC-45); the can wins.
+      expect(has('product-meguiars-bug-tar', 'verify', /about one minute[\s\S]*no label confirms/i)).toBe(true);
+      expect(has('product-meguiars-bug-tar', 'house', /the can wins/i)).toBe(true);
+      // Hot Shine: the house rule is a house line; the unread directions and the trigger bottle are open (FC-31, FC-32).
+      expect(has('product-meguiars-hot-shine', 'house', /spray the applicator, never on a motorcycle/i)).toBe(true);
+      expect(has('product-meguiars-hot-shine', 'verify', /two-wheeler line were not read/i)).toBe(true);
+      expect(has('product-meguiars-hot-shine', 'verify', /trigger bottle was not checked/i)).toBe(true);
+      // Hybrid Ceramic Wax: the next-day coat is house (FC-05), the 50 F line and the house uses are open (FC-49, FC-51, FC-87).
+      expect(has('product-meguiars-hybrid-ceramic-wax', 'house', /next day counts as the second coat/i)).toBe(true);
+      expect(has('product-meguiars-hybrid-ceramic-wax', 'verify', /below about 50 F/)).toBe(true);
+      expect(has('product-meguiars-hybrid-ceramic-wax', 'verify', /hard water spots, and on bike chrome, are house uses Meguiar's has not confirmed/)).toBe(true);
+      expect(has('product-meguiars-hybrid-ceramic-wax', 'house', /the bottle wins/i)).toBe(true);
+    });
+
+    it('the label words stayed in labelNotes, word for word', () => {
+      expect(product('product-meguiars-bug-tar')?.labelNotes).toBe("Meguiar's says spray it on, let it soften the bugs and tar, then hose it off or wash over it. No scrubbing.");
+      expect(product('product-meguiars-hot-shine')?.labelNotes).toMatch(/^If your Hot Shine is an aerosol can, it is a flammable aerosol\. Keep it away from the heat gun, hot surfaces, and sparks\. Use it outdoors or where the air moves \(Meguiar's safety data sheet\)\. Keep it out of your eyes\.$/);
+      expect(product('product-meguiars-hybrid-ceramic-wax')?.labelNotes).toMatch(/^Standard method: on a wet car, spray, rinse, dry\.[\s\S]*Meguiar's recommends two coats: apply on the wet car, dry, re-wet, and repeat\.$/);
+    });
   });
 
   it('the label beats the app (house rule 12) is house, and what crew does next is pending (pre-build answer 6)', () => {

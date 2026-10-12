@@ -5,7 +5,7 @@ brand: Tuff Stuff
 audience: [owner, crew]
 visibility: internal
 status: verify
-version: 2
+version: 3
 kbRef: "3.3"
 tags: [unconfirmed, foam cleaner]
 synonyms:
@@ -26,7 +26,15 @@ sources:
     confirmedBy: fact-checker
 jobs:
   - Role not confirmed. It stays off every checklist and card until Lando says what it is for.
-labelNotes: "Its job here is not decided. Lando decides what it is for (pending). On a Tesla, Tesla's manual says seats get warm water and mild soap only, never a spray straight on the seat, and no solvents, citrus, or silicone-based products inside. Whether Tuff Stuff contains any of those was not checked. Lando decides how this applies to Teslas (pending)."
+notes:
+  - text: Its job here is not decided. Lando decides what it is for (pending).
+    status: verify
+  - text: On a Tesla, Tesla's manual says seats get warm water and mild soap only, never a spray straight on the seat, and no solvents, citrus, or silicone-based products inside.
+    status: sourced
+  - text: Whether Tuff Stuff contains any of those was not checked.
+    status: verify
+  - text: Lando decides how this applies to Teslas (pending).
+    status: verify
 related:
   - product-blazin-banana
   - sop-interior

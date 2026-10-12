@@ -5,7 +5,7 @@ brand: Meguiar's
 audience: [owner, crew]
 visibility: internal
 status: verify
-version: 2
+version: 3
 kbRef: "3.3"
 tags: [compound, correction, ladder]
 synonyms:
@@ -51,7 +51,13 @@ neverFor:
   - Vinyl wrap, paint protection film, or matte and satin paint
   - A pad used for polish. One pad per liquid.
   - More than one compound pass per section
-labelNotes: "On a Tesla, the house ladder and Tesla's manual disagree. House: compound is rung 3, only when the test spot proves it is needed. Tesla's manual says do not use cutting pastes, color restoration compounds, or polishes with harsh abrasives, because they can permanently damage the paint, and cleaning-product damage is not covered by the warranty. Lando decides how this applies to Teslas (pending)."
+notes:
+  - text: "On a Tesla, the house ladder is the same as every car: compound is rung 3, only when the test spot proves it is needed."
+    status: house
+  - text: On a Tesla, Tesla's manual disagrees with the house ladder. It says do not use cutting pastes, color restoration compounds, or polishes with harsh abrasives, because they can permanently damage the paint. It also says damage or discoloration from cleaning products is not covered by the warranty.
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending).
+    status: verify
 related:
   - card-pad-ladder
   - card-thickness-bands

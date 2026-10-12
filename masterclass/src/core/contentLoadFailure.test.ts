@@ -45,10 +45,10 @@ async function loadWith(summary: unknown, loaders: Partial<Record<LoadableShard,
 }
 
 /** The reload seam of the module instance content.ts uses (same registry after loadWith). */
-async function pageReloader(answers: boolean) {
+async function pageReloader(answers: boolean, savedCopy = false) {
   const page = await import('./freshPage');
   const reload = vi.fn<() => void>();
-  page.__setPageReloaderForTests({ answers: () => Promise.resolve(answers), reload, graceMs: 0 });
+  page.__setPageReloaderForTests({ savedCopy: () => Promise.resolve(savedCopy), answers: () => Promise.resolve(answers), reload, graceMs: 0 });
   return reload;
 }
 
@@ -119,7 +119,7 @@ describe('content that does not arrive', () => {
     const page = await import('./freshPage');
     const reload = vi.fn<() => void>();
     let answer: (value: boolean) => void = () => undefined;
-    page.__setPageReloaderForTests({ answers: () => new Promise<boolean>((resolve) => (answer = resolve)), reload, graceMs: 0 });
+    page.__setPageReloaderForTests({ savedCopy: () => Promise.resolve(false), answers: () => new Promise<boolean>((resolve) => (answer = resolve)), reload, graceMs: 0 });
     expect(await content.ensureContent(['quickcard'])).toBe(false);
     expect(reload).not.toHaveBeenCalled();
     const retry = content.retryContent(['quickcard']);
@@ -144,10 +144,22 @@ describe('content that does not arrive', () => {
     expect(content.CONTENT_NO_SIGNAL).not.toMatch(/TypeError|https?:\/\/|\.js\b/);
   });
 
+  it('DEF-27: Try again with no signal while the saved copy is installed reloads into it, and the screen keeps Opening meanwhile', async () => {
+    const shards = await import('./contentShards');
+    const content = await loadWith(shards.shardOf(bundle, 'summary'), { quickcard: () => Promise.reject(new TypeError('offline, page not served by the saved copy yet')) });
+    const reload = await pageReloader(false, true);
+    expect(await content.ensureContent(['quickcard'])).toBe(false);
+    expect(reload).not.toHaveBeenCalled();
+    expect(await content.retryContent(['quickcard'])).toBe(false);
+    expect(reload).toHaveBeenCalledTimes(1);
+    // Never the "no signal" line when a reload into the saved copy was possible.
+    expect(content.contentStore.get().failed.quickcard).toBe(content.CONTENT_NOT_LOADED);
+  });
+
   it('a load that is not Try again (a screen, the warm-up, search) never reloads the page', async () => {
     const shards = await import('./contentShards');
     const content = await loadWith(shards.shardOf(bundle, 'summary'), { quickcard: () => Promise.reject(new TypeError('offline')) });
-    const reload = await pageReloader(true);
+    const reload = await pageReloader(true, true);
     expect(await content.ensureContent(['quickcard'])).toBe(false);
     expect(await content.loadAllContent()).toBe(false);
     expect(reload).not.toHaveBeenCalled();

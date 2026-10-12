@@ -90,17 +90,21 @@ describe('search when its index did not load', () => {
     expect(search.searchNow('jerking')?.[0]?.id).toBe(FIX_JERK);
   });
 
-  it('Try again with no signal says so and never reloads; with the address answering it reloads the page', async () => {
+  it('Try again with no signal says so and never reloads; with the address answering, or the saved copy installed (DEF-27), it reloads the page', async () => {
     const { search, page } = await loadWith({ index: flaky(99, () => prebuilt), shardFailures: 99 });
     // A page to reload (this file runs without a browser window).
     vi.stubGlobal('window', {});
     const reload = vi.fn<() => void>();
-    page.__setPageReloaderForTests({ answers: () => Promise.resolve(false), reload, graceMs: 0 });
+    page.__setPageReloaderForTests({ savedCopy: () => Promise.resolve(false), answers: () => Promise.resolve(false), reload, graceMs: 0 });
     await expect(search.retrySearch()).rejects.toThrow(search.SEARCH_NO_SIGNAL);
     expect(reload).not.toHaveBeenCalled();
-    page.__setPageReloaderForTests({ answers: () => Promise.resolve(true), reload, graceMs: 0 });
+    page.__setPageReloaderForTests({ savedCopy: () => Promise.resolve(false), answers: () => Promise.resolve(true), reload, graceMs: 0 });
     await expect(search.retrySearch()).rejects.toThrow(search.SEARCH_NOT_LOADED);
     expect(reload).toHaveBeenCalledTimes(1);
+    // DEF-27: no signal, but the saved copy is installed: the reload goes into it, never "no signal".
+    page.__setPageReloaderForTests({ savedCopy: () => Promise.resolve(true), answers: () => Promise.resolve(false), reload, graceMs: 0 });
+    await expect(search.retrySearch()).rejects.toThrow(search.SEARCH_NOT_LOADED);
+    expect(reload).toHaveBeenCalledTimes(2);
     // The next word still asks again: nothing failed is cached.
     expect(search.searchStatus.get().state).toBe('failed');
   });
@@ -109,7 +113,7 @@ describe('search when its index did not load', () => {
     const { search, page } = await loadWith({ index: flaky(99, () => prebuilt), shardFailures: 99 });
     vi.stubGlobal('window', {});
     const reload = vi.fn<() => void>();
-    page.__setPageReloaderForTests({ answers: () => Promise.resolve(true), reload, graceMs: 0 });
+    page.__setPageReloaderForTests({ savedCopy: () => Promise.resolve(true), answers: () => Promise.resolve(true), reload, graceMs: 0 });
     await expect(search.search('jerking')).rejects.toBeInstanceOf(search.SearchNotLoaded);
     await expect(search.preloadSearch()).rejects.toBeInstanceOf(search.SearchNotLoaded);
     expect(reload).not.toHaveBeenCalled();

@@ -5,7 +5,7 @@ brand: Armor All
 audience: [owner, crew]
 visibility: internal
 status: verify
-version: 2
+version: 3
 kbRef: "3.3"
 tags: [tires, dressing, tire shine]
 synonyms:
@@ -41,7 +41,18 @@ neverFor:
   - Paint, glass, clear plastic, or fabric
   - The car before the paint is polished
   - Grey faded trim. That needs a trim restorer.
-labelNotes: "The house method and the label differ. House: spray onto the applicator, not the tire, so no overspray lands on paint. Armor All label: spray evenly onto a clean, dry tire from 4 to 6 inches (trigger) or 8 to 12 inches (aerosol), and do not wipe. The label also says keep it off paint, glass, clear plastic, and fabric. Lando decides which method the crew uses (pending). Dry time: at least 3 to 5 minutes on the trigger label, at least 5 minutes on the aerosol label. Which one Lando owns is not recorded, so read your bottle. The label says not for cycle tires, cycle seats, pedals, grips, or steering wheels. The house rule is stricter: no tire shine on a motorcycle at all."
+notes:
+  - text: "House: spray it onto the applicator, not the tire, so no overspray lands on paint."
+    status: house
+  - text: The Armor All label disagrees with the house method. It says spray evenly onto a clean, dry tire from 4 to 6 inches (trigger) or 8 to 12 inches (aerosol), and do not wipe.
+    status: sourced
+  - text: Lando decides which method the crew uses (pending).
+    status: verify
+  - text: Which one Lando owns, the trigger or the aerosol, is not recorded. Read your bottle.
+    status: verify
+  - text: "On a bike, the house rule is stricter than the label: no tire shine on a motorcycle at all."
+    status: house
+labelNotes: "Armor All label: keep it off paint, glass, clear plastic, and fabric. Dry time: at least 3 to 5 minutes on the trigger label, at least 5 minutes on the aerosol label. Not for cycle tires, cycle seats, pedals, grips, or steering wheels."
 related:
   - product-meguiars-hot-shine
   - card-bike-rules

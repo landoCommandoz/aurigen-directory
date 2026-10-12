@@ -6,6 +6,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig, type Plugin } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { contentShardsPlugin } from './scripts/content/viteShards.ts';
+import { swUpdateGuardPlugin } from './scripts/pwa/swGuard.ts';
 
 /**
  * Base path. "/" for Netlify (the default). The GitHub Pages workflow sets
@@ -237,13 +238,19 @@ export default defineConfig({
         // A deep link opened offline gets the app shell; the router takes it from there.
         navigateFallback: 'index.html',
         cleanupOutdatedCaches: true,
-        // Prompt mode: the new worker waits. Never claim open pages on its own.
-        clientsClaim: false,
+        // D1 amendment 2026-10-12 (QA DEF-27): the first install has no older worker to wait
+        // behind, so it activates at once, and clientsClaim lets it serve the page already open:
+        // "Ready offline" is then true in the first session too. It only matters for a page no
+        // worker controls yet; an update still waits (skipWaiting false) until "Update now" sends
+        // SKIP_WAITING. swUpdateGuardPlugin below fails the build if sw.js breaks either rule.
+        clientsClaim: true,
         skipWaiting: false,
       },
       // No service worker in `vite dev`: dev builds always load fresh code.
       devOptions: { enabled: false },
     }),
+    // Runs after the plugin above writes sw.js: updates wait for "Update now", the first install claims the page.
+    swUpdateGuardPlugin(),
     // ===== end PWA block =====
 
     shellGuardsPlugin(base),

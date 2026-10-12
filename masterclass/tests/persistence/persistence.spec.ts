@@ -202,14 +202,26 @@ test.describe('offline (quality bar item 5, BUILD_PROMPT gate: opens in airplane
     await context.setOffline(false);
   });
 
-  test('the first visit is not controlled by the service worker until the next load (prompt mode, clientsClaim false)', async ({ page }) => {
+  // Renamed in Phase 2 pass 5: the title said "clientsClaim false", the Phase 1 setting. Since the D1
+  // amendment of 2026-10-12 (DEF-27) the first install takes the open page without a reload.
+  test('the first visit is not served by the service worker as it loads; once the copy is saved the install takes the open page with no reload (D1 amendment 2026-10-12), and the next load is served from the start', async ({ page }) => {
+    let loads = 0;
+    page.on('load', () => {
+      loads += 1;
+    });
+    await page.addInitScript(() => {
+      (window as unknown as { __qaControlledAtStart: boolean }).__qaControlledAtStart = navigator.serviceWorker?.controller != null;
+    });
     await openApp(page, '/');
-    await page.evaluate(async () => navigator.serviceWorker.ready);
-    const firstLoad = await page.evaluate(() => navigator.serviceWorker.controller !== null);
+    expect(await page.evaluate(() => (window as unknown as { __qaControlledAtStart: boolean }).__qaControlledAtStart), 'the first page is not served as it loads').toBe(false);
+    await expect(page.locator('.app-status')).toContainText('Ready offline', { timeout: 15_000 });
+    const takenOver = await page.evaluate(() => navigator.serviceWorker.controller !== null);
+    expect(takenOver, 'taken over in the same document').toBe(true);
+    expect(loads, 'no reload for the takeover').toBe(1);
     await page.reload();
     await waitForScreen(page);
-    const secondLoad = await page.evaluate(() => navigator.serviceWorker.controller !== null);
-    test.info().annotations.push({ type: 'controller', description: `first load controlled=${firstLoad}, second load controlled=${secondLoad}` });
+    const secondLoad = await page.evaluate(() => (window as unknown as { __qaControlledAtStart: boolean }).__qaControlledAtStart);
+    test.info().annotations.push({ type: 'controller', description: `first load taken over=${takenOver}, second load served from the start=${secondLoad}` });
     expect(secondLoad).toBe(true);
   });
 });

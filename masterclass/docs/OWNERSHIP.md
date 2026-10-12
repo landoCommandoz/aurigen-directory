@@ -1,6 +1,6 @@
 # Ownership: who writes what
 
-Phase 0, step 5. Written 2026-10-08 by the architect role, revised the same day after review. Revised 2026-10-10 in Phase 1: `src/schemas/README.md` named, and the content writers' rule added under "Where the lines are thin". Revised 2026-10-11 (DEF-13): the backup recovery rules and the frozen shapes added under "Where the lines are thin". Revised 2026-10-11 (Phase 2): `docs/CURRICULUM.md` added, owner learning-designer, with its line under "Where the lines are thin". One writer per file across agents, always. This file is the map.
+Phase 0, step 5. Written 2026-10-08 by the architect role, revised the same day after review. Revised 2026-10-10 in Phase 1: `src/schemas/README.md` named, and the content writers' rule added under "Where the lines are thin". Revised 2026-10-11 (DEF-13): the backup recovery rules and the frozen shapes added under "Where the lines are thin". Revised 2026-10-11 (Phase 2): `docs/CURRICULUM.md` added, owner learning-designer, with its line under "Where the lines are thin". Revised 2026-10-12: `docs/FACT-REVIEW.md` added, owner lead. One writer per file across agents, always. This file is the map.
 
 Lando: nothing in here needs your answer.
 
@@ -28,6 +28,7 @@ Lando: nothing in here needs your answer.
 | `docs/HOW-TO-ADD.md` | lead | Lando, after v1 |
 | `docs/HANDOFF.md` | lead | Lando, DJ, Suzie |
 | `docs/QA-REPORT.md` | qa-adversary | The lead and every owner with a defect to fix |
+| `docs/FACT-REVIEW.md` | lead | Lando at the Phase 2 gate: the corrected facts, the decisions, the one-glance checks, and what is still unconfirmed, generated from `knowledge/verification-log.md` (the log wins; the lead regenerates, the fact-checker never writes it) |
 | `knowledge/KNOWLEDGE_BASE.md` | lead, with Lando only | Everyone; it wins every conflict except the product label |
 | `knowledge/verification-log.md` | fact-checker | content-curator, troubleshooter, business-customer, the lead |
 | `CLAUDE.md`, `BUILD_PROMPT.md`, `START_HERE.md` | lead | Everyone |
@@ -62,6 +63,7 @@ masterclass/
     HOW-TO-ADD.md                    lead
     HANDOFF.md                       lead
     QA-REPORT.md                     qa-adversary
+    FACT-REVIEW.md                   lead            (the Phase 2 gate list for Lando: corrected facts, decisions, one-glance checks, still unconfirmed; generated from knowledge/verification-log.md)
 
   knowledge/
     KNOWLEDGE_BASE.md                lead, with Lando only

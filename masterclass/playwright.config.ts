@@ -3,7 +3,7 @@
  *
  *   tests/e2e          every route at five widths: errors, scroll, tap targets, clipping, shell rules
  *   tests/privacy      Customer View leak test (BLUEPRINT 3.4 and 3.8)
- *   tests/persistence  refresh and offline (quality bar items 5 and 7)
+ *   tests/persistence  refresh, offline, and updates (quality bar items 5 and 7)
  *   tests/adversarial  impatient, edge-case, confused, malicious users (CLAUDE.md)
  *
  * Unit suites live in tests/unit and run under Vitest (npm test). Playwright only picks up *.spec.ts.
@@ -25,7 +25,7 @@ const BASE_URL = `http://localhost:${PORT}`;
 /** The GitHub Pages build (D9): base /aurigen-directory/, built into .cache/ (gitignored), served on 4174. */
 const PAGES_PORT = 4174;
 const PAGES_BASE = '/aurigen-directory/';
-const PAGES_URL = `http://localhost:${PAGES_PORT}${PAGES_BASE}`;
+export const PAGES_URL = `http://localhost:${PAGES_PORT}${PAGES_BASE}`;
 const PAGES_DIST = '.cache/pages-dist';
 
 const FALLBACK_CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
@@ -70,6 +70,9 @@ projects.push({
 
 export default defineConfig({
   testDir: './tests',
+  // After the web servers have built the first version: build the second version for the update
+  // tests (tests/persistence/phase2-update.spec.ts), at both base paths, into .cache/ (Phase 2 pass 4).
+  globalSetup: './tests/fixtures/second-version-build.ts',
   testMatch: ['e2e/**/*.spec.ts', 'privacy/**/*.spec.ts', 'persistence/**/*.spec.ts', 'adversarial/**/*.spec.ts'],
   outputDir: './test-results',
   fullyParallel: true,

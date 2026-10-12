@@ -5,7 +5,7 @@ brand: Armor All
 audience: [owner, crew]
 visibility: internal
 status: verify
-version: 3
+version: 4
 kbRef: "3.3"
 tags: [wheels, tires, cleaner, tesla, gloves, eye protection]
 synonyms:
@@ -56,7 +56,18 @@ neverFor:
   - A damaged wheel, or a wheel with damaged clear coat
   - Brake parts
   - Motorcycle wheels or uncoated polished aluminum, until the maker says yes
-labelNotes: "Armor All label: wear eye protection and rubber gloves. Wet and cool the wheel with a hose. Hold the bottle 6 inches away and soak the wheel. Let the foam work 30 seconds. Wipe with a soft cloth or sponge, rinse well, and dry. Test a hidden spot first. If it hazes or spots, stop. Never on a warm or damaged wheel, or a wheel with damaged clear coat. Keep it off brake parts. Before using it on motorcycles or uncoated polished aluminum, check with the maker. Do not let the wash water reach storm drains, streams, or lakes. The label says a soft cloth or sponge; brushes are a house choice. On a bike: what to use on the wheels is for Lando to decide (pending). On a Tesla: the house step and Tesla's manual disagree. House: the same wheel step as every car. Tesla's manual says do not use chemical-based wheel cleaners or pre-wash products, because they can damage the finish on the wheels. It also says damage from cleaning products is not covered by the warranty. Lando decides how this applies to Teslas (pending)."
+notes:
+  - text: The label says wipe with a soft cloth or sponge. Brushes are a house choice.
+    status: sourced
+  - text: On a bike, what to use on the wheels is for Lando to decide (pending).
+    status: verify
+  - text: On a Tesla, the house step is the same wheel step as every car.
+    status: house
+  - text: On a Tesla, Tesla's manual disagrees with the house step. It says do not use chemical-based wheel cleaners or pre-wash products, because they can damage the finish on the wheels. It also says damage or discoloration from cleaning products is not covered by the warranty.
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending).
+    status: verify
+labelNotes: "Armor All label: wear eye protection and rubber gloves. Wet and cool the wheel with a hose. Hold the bottle 6 inches away and soak the wheel. Let the foam work 30 seconds. Wipe with a soft cloth or sponge, rinse well, and dry. Test a hidden spot first. If it hazes or spots, stop. Never on a warm or damaged wheel, or a wheel with damaged clear coat. Keep it off brake parts. Before using it on motorcycles or uncoated polished aluminum, check with the maker. Do not let the wash water reach storm drains, streams, or lakes."
 related:
   - equipment-wheel-brushes
   - product-armor-all-extreme-tire-shine

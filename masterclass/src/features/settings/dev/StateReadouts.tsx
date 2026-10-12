@@ -12,7 +12,7 @@ import { RecordInvalid } from '../../../core/errors';
 import { ownerPassRemainingMs, usePinStatus } from '../../../core/pin';
 import { readPinGuard } from '../../../core/pinGuard';
 import { isStandalone } from '../../../core/platform';
-import { usePwaStatus } from '../../../core/pwa';
+import { usePwaStatus, type OfflineCopyState } from '../../../core/pwa';
 import { useSearchStatus, type SearchStatus } from '../../../core/search';
 import { useSettings } from '../../../core/settingsStore';
 import { useStore } from '../../../core/store';
@@ -35,6 +35,7 @@ export const STATE_LABELS = {
   network: 'Online or offline',
   sw: 'Service worker',
   offlineReady: 'Ready offline',
+  offlineCopy: 'Offline copy for this page',
   update: 'Update available',
   reload: 'Reload waiting for a quiet moment',
   swCheck: 'Last update check',
@@ -79,6 +80,22 @@ function searchWords(search: SearchStatus): string {
       return `Did not load; the next search tries again. ${search.lastError ?? ''}`.trim();
     default:
       return 'Not loaded yet (loads on first search)';
+  }
+}
+
+/** The offline copy table (src/core/pwa.ts, QA DEF-27): Ready offline only once the copy serves this page. */
+function offlineCopyWords(state: OfflineCopyState): string {
+  switch (state) {
+    case 'ready':
+      return 'Saved, and serving this page';
+    case 'savedNotServing':
+      return 'Saved, not serving this page yet (Try again reloads into it)';
+    case 'notSaved':
+      return 'Not saved yet';
+    default: {
+      const never: never = state;
+      return String(never);
+    }
   }
 }
 
@@ -157,6 +174,7 @@ export function StateReadouts() {
             { label: STATE_LABELS.network, value: connectivityLabel(network, pwa.offlineReady) },
             { label: STATE_LABELS.sw, value: pwa.supported ? `${pwa.registered ? 'Registered' : 'Not registered'}, state ${pwa.state}` : 'Not supported here' },
             { label: STATE_LABELS.offlineReady, value: yesNo(pwa.offlineReady) },
+            { label: STATE_LABELS.offlineCopy, value: offlineCopyWords(pwa.offlineCopy) },
             { label: STATE_LABELS.update, value: yesNo(pwa.state === 'updateAvailable') },
             { label: STATE_LABELS.reload, value: yesNo(pwa.reloadPending) },
             { label: STATE_LABELS.swCheck, value: formatWhen(pwa.lastCheckAt) },

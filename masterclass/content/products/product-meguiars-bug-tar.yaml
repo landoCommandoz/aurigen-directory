@@ -5,7 +5,7 @@ brand: Meguiar's
 audience: [owner, crew]
 visibility: internal
 status: verify
-version: 2
+version: 3
 kbRef: "3.3"
 tags: [wash, bugs, tar, pre-wash]
 synonyms:
@@ -32,7 +32,12 @@ jobs:
   - Rocker tar before clay. If clay will not lift tar, use this, not more clay.
 neverFor:
   - A hot motorcycle exhaust. It bakes on.
-labelNotes: "Meguiar's says spray it on, let it soften the bugs and tar, then hose it off or wash over it. No scrubbing. The house dwell is about one minute, but no label confirms that number. Read the dwell time on your can. The can wins."
+notes:
+  - text: The house dwell is about one minute, but no label confirms that number.
+    status: verify
+  - text: Read the dwell time on your can. The can wins.
+    status: house
+labelNotes: "Meguiar's says spray it on, let it soften the bugs and tar, then hose it off or wash over it. No scrubbing."
 related:
   - card-clay-tub
   - card-bike-rules

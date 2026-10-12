@@ -99,42 +99,6 @@ test('a search typed in the first second after an offline reload still answers (
   await context.setOffline(false);
 });
 
-// DEF-27 (fix-before-deploy, app-engineer): on the first visit (and the first launch from the Home
-// Screen icon, which has its own storage on iOS) the service worker saves the copy and the chip says
-// "Ready offline", but it does not control the open page (clientsClaim false, prompt mode). With no
-// reload, every lazy chunk the warm-up did not bring in (lessons, procedures, products, tools, words)
-// goes to the network. On GitHub Pages the browser's own cache covers that for 10 minutes
-// (max-age=600); vite preview sends no-cache, which is the same as after those 10 minutes. Try again
-// then checks the app's address from the uncontrolled page, gets no answer, and says "no signal"
-// forever, while the chip says "Offline, ready". A reload would be served by the saved copy.
-test('DEF-27: "Ready offline", then airplane mode with no reload: the Academy, a lesson, the jerking fix, its procedure, and a word open', async ({ page, context }) => {
-  test.fail(true, 'DEF-27: the page is not controlled by the service worker until a reload, so lazy chunks fail offline and Try again says "no signal"');
-  test.setTimeout(60_000);
-  await readyOffline(page);
-  // The warm-up has brought in the index, the fixes, the cards, and the catalog.
-  await expect
-    .poll(async () => page.evaluate(() => performance.getEntriesByType('resource').filter((e) => /\/assets\/(search-index|content-(fixnode|quickcard|catalog))-/.test(e.name)).length), { timeout: 10_000 })
-    .toBeGreaterThanOrEqual(4);
-  test.info().annotations.push({ type: 'controlled before airplane mode', description: String(await page.evaluate(() => navigator.serviceWorker.controller !== null)) });
-  await context.setOffline(true);
-  await expect(page.locator('.app-status')).toContainText('Offline, ready');
-  // In-app taps only, as a person does: no reload.
-  await page.getByRole('button', { name: /^Academy/ }).click();
-  const again = page.getByRole('button', { name: 'Try again' });
-  if (await again.isVisible().catch(() => false)) await again.click();
-  await expect(page.getByRole('button', { name: /One full square, start to finish/ })).toBeVisible({ timeout: 6_000 });
-  await page.getByRole('button', { name: /One full square, start to finish/ }).click();
-  await expect(page.getByRole('heading', { level: 1, name: /One full square/ })).toBeVisible();
-  await page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'Fix It' }).click();
-  await page.getByRole('button', { name: /^Polisher jerks, walks, or hops side to side/ }).click();
-  await expect(page.getByRole('heading', { level: 1, name: 'Polisher jerks, walks, or hops side to side' })).toBeVisible();
-  // Its Related list: a procedure and a word, each a lazy piece the warm-up did not bring in.
-  const related = page.getByRole('list', { name: 'Related' });
-  await related.getByRole('button', { name: /^Machine polishing, one-step/ }).click();
-  await expect(page.getByRole('list', { name: 'The steps' })).toBeVisible();
-  await page.goBack();
-  await page.getByRole('list', { name: 'Related' }).getByRole('button', { name: /^Long-throw/ }).click();
-  await expect(page.getByRole('heading', { level: 1, name: /Long-throw/ })).toBeVisible();
-  await expect(page.getByText(/did not load/)).toHaveCount(0);
-  await context.setOffline(false);
-});
+
+// DEF-27 (closed in pass 4): the first session, "Ready offline", then airplane mode with no reload.
+// Its test is now a normal test, at both base paths, in tests/persistence/phase2-first-session.spec.ts.

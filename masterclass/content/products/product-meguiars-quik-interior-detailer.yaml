@@ -5,7 +5,7 @@ brand: Meguiar's
 audience: [owner, crew]
 visibility: internal
 status: verify
-version: 2
+version: 3
 kbRef: "3.3"
 tags: [interior, wipe, detailer, tesla]
 synonyms:
@@ -32,7 +32,17 @@ jobs:
   - Interior wipe, sprayed on the towel
 neverFor:
   - Spraying straight on a panel. Overspray lands on glass and screens.
-labelNotes: "House: spray it on the towel, never on the panel, then wipe. Meguiar's has not confirmed it is screen-safe, so do not treat it as a screen cleaner. On a Tesla, the house wipe and Tesla's manual disagree. Tesla's manual says no solvents (including alcohol), hand sanitizer, bleach, citrus, naphtha, or silicone-based products on interior parts. It says seats get warm water and mild soap on a microfiber, nothing more. It says the touchscreen gets no cleaners at all. Whether this detailer contains any of the listed ingredients was not checked. Lando decides how this applies to Teslas (pending)."
+notes:
+  - text: "House: spray it on the towel, never on the panel, then wipe."
+    status: house
+  - text: Meguiar's has not confirmed it is screen-safe, so do not treat it as a screen cleaner.
+    status: verify
+  - text: On a Tesla, Tesla's manual disagrees with the house wipe. It says no solvents (including alcohol), hand sanitizer, bleach, citrus, naphtha, or silicone-based products on interior parts. It says seats get warm water and mild soap on a microfiber, nothing more. It says the touchscreen gets no cleaners at all.
+    status: sourced
+  - text: Whether this detailer contains any of the listed ingredients was not checked.
+    status: verify
+  - text: Lando decides how this applies to Teslas (pending).
+    status: verify
 related:
   - equipment-microfiber-towels
   - equipment-shop-vac

@@ -87,6 +87,17 @@ describe('pickBanners', () => {
     expect(pick({ online: false, offlineReady: false, offlineCopyExpected: false })).toEqual([]);
   });
 
+  it('offline with the copy saved but not serving this page says it is saved, never that it is missing (QA DEF-29)', () => {
+    expect(pick({ online: false, offlineReady: false, offlineCopy: 'savedNotServing' })).toEqual(['offlineSaved']);
+    expect(pick({ online: false, offlineReady: false, offlineCopy: 'notSaved' })).toEqual(['offlineNotSaved']);
+    expect(pick({ online: false, offlineReady: true, offlineCopy: 'ready' })).toEqual([]);
+    expect(pick({ online: true, offlineReady: false, offlineCopy: 'savedNotServing' })).toEqual([]);
+    expect(pick({ online: false, offlineReady: false, offlineCopy: 'savedNotServing', offlineCopyExpected: false })).toEqual([]);
+    expect(pick({ path: '/academy', online: false, offlineReady: false, offlineCopy: 'savedNotServing' })).toEqual(['offlineSaved']);
+    expect(pick({ customerViewOn: true, online: false, offlineReady: false, offlineCopy: 'savedNotServing' })).toEqual([]);
+    expect(pick({ storageProblem: 'blocked', online: false, offlineReady: false, offlineCopy: 'savedNotServing', versionState: 'updated' })).toEqual(['storage', 'offlineSaved', 'updated']);
+  });
+
   it('puts storage first and drops the setup notice while nothing can be saved', () => {
     expect(pick({ storageProblem: 'Storage is blocked.', setupStep: 'chooseRole', installCard: true })).toEqual(['storage', 'install']);
   });

@@ -5,7 +5,7 @@ brand: Meguiar's
 audience: [owner, crew]
 visibility: internal
 status: verify
-version: 2
+version: 3
 kbRef: "3.3"
 tags: [tires, dressing, tire shine, backup, flammable]
 synonyms:
@@ -37,7 +37,14 @@ neverFor:
   - Any motorcycle. Ever.
   - The car before the paint is polished
   - Anywhere near the heat gun, a hot surface, or sparks, if yours is an aerosol
-labelNotes: "If your Hot Shine is an aerosol can, it is a flammable aerosol. Keep it away from the heat gun, hot surfaces, and sparks. Use it outdoors or where the air moves (Meguiar's safety data sheet). Keep it out of your eyes. The trigger bottle was not checked. Meguiar's directions for Hot Shine and its two-wheeler line were not read, so the house rule stands: spray the applicator, never on a motorcycle. Read your bottle."
+notes:
+  - text: "House rule: spray the applicator, never on a motorcycle."
+    status: house
+  - text: Meguiar's directions for Hot Shine and its two-wheeler line were not read. Read your bottle.
+    status: verify
+  - text: The safety data sheet lines are for the aerosol cans. The trigger bottle was not checked.
+    status: verify
+labelNotes: "If your Hot Shine is an aerosol can, it is a flammable aerosol. Keep it away from the heat gun, hot surfaces, and sparks. Use it outdoors or where the air moves (Meguiar's safety data sheet). Keep it out of your eyes."
 related:
   - product-armor-all-extreme-tire-shine
   - card-bike-rules
