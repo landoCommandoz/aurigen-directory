@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "10"
 tags:
   - interior
@@ -19,12 +20,21 @@ synonyms:
   - vacuum top down practice
   - seats forward and back drill
   - interior vacuum practice
+sources:
+  - label: Utah Labor Commission, youth employment page
+    url: https://laborcommission.utah.gov/divisions/utah-antidiscrimination-and-labor-uald/wage-claim/
+    date: 2026-10-11
+    note: The Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending). Fact-checker FC-107.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 needs:
   - The shop vac with attachments
   - The Dremel Versa with the bristle pad
   - A timer
   - Lando to check with a light
 instructions:
+  - text: "Who may run power tools, the shop vac and the Dremel Versa included: Lando decides (pending)."
+    status: verify
   - Start the timer.
   - "Knock it down from the top: headliner, vents, seams, seat rails."
   - Run the Dremel Versa bristle pad in the cup holders and seams.

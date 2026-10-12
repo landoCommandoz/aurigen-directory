@@ -7,6 +7,7 @@ order: 5
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "6"
 tags: [clay, decon, bag test, lube, level 1]
 synonyms:
@@ -23,6 +24,18 @@ sources:
   - label: Knowledge base 6, clay on soft or black paint
     date: 2026-10-06
     note: Clay can mar soft or black paint. Clay mitts are riskier on black or soft paint. Plan a polish after clay.
+  - label: Ragnify product page, clay mitt 2-pack, medium
+    url: https://www.ragnify.com/products/ragnify-pack-of-2-clay-mitt-auto-detailing-medium-grade-clay-bar-alternative-mitt-for-flawless-removal-of-surface-bonded-micro-contaminant-red
+    date: 2026-10-11
+    note: If you drop it, rinse it with water and the dust falls off. Rinse it with soap and air dry after use. Use it only after washing the car. Fact-checker FC-52.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Avoid tight-napped or rough cloths, such as washing mitts. A high-quality microfiber cloth is recommended. Read directly. Fact-checker FC-34.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 steps:
   - Put your hand in a sandwich bag.
   - Glide it over each panel.
@@ -40,7 +53,16 @@ steps:
   - Clay paint only. Skip the glass.
   - Clay will not lift the tar? Stop. That is a job for bug and tar remover, not more clay.
   - Drop the bar? It goes in the trash.
-  - text: Drop the mitt? Rinse it thoroughly before it goes near paint again. The maker's care is not confirmed.
+  - text: Use the clay mitt only after the car is washed. Ragnify says so.
+    status: sourced
+  - text: Drop the mitt? Rinse it with water until all the grit is gone. Ragnify says so.
+    status: sourced
+  - Check the mitt before it goes back on paint.
+  - text: After the job, rinse the mitt with soap and water and let it air dry. Ragnify says so.
+    status: sourced
+  - text: On a Tesla, Tesla's manual says avoid tight-napped or rough cloths, such as washing mitts.
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending). This covers the clay mitt on a Tesla.
     status: verify
   - text: Plan a polish after clay. Clay can mar soft or black paint.
     status: sourced
@@ -61,16 +83,27 @@ numbers:
     value: Hood and roof. They take the longest.
     kbRef: "6"
   - label: Time plan, full detail
-    value: Iron and clay, 30 min
+    value: Iron and clay, 30 min. The plan names an iron remover, and none is owned or chosen.
+    status: verify
     kbRef: "17.2"
   - label: Iron remover
     value: Not owned. A candidate to look at, not decided.
     status: verify
     kbRef: "3.5"
-  - label: Clay mitt care
-    value: Rinse it thoroughly. The maker's guidance is not checked.
-    status: verify
+  - label: Clay mitt care, Ragnify
+    value: Use it only after the car is washed. Dropped? Rinse it with water until the grit is gone. After the job, rinse it with soap and water and let it air dry.
+    status: sourced
     kbRef: "6"
+  - label: Clay mitt care, house
+    value: Check it before it goes back on paint. It never goes in the wash bucket.
+    kbRef: "6"
+  - label: Clay mitt, Tesla's manual
+    value: On a Tesla, Tesla's manual says avoid tight-napped or rough cloths, such as washing mitts, and recommends a high-quality microfiber cloth.
+    status: sourced
+    kbRef: "11"
+  - label: On a Tesla, the clay mitt
+    value: Lando decides how this applies to Teslas (pending).
+    status: verify
   - label: Soft or black paint
     value: Clay can mar it. Mitts are riskier on it. Plan a polish after clay.
     status: sourced
@@ -130,7 +163,11 @@ Knead the clay to a clean face after every panel, so you are not dragging the la
 
 A dropped bar goes in the trash. It picked up grit from the floor. That is rule 8.
 
-A dropped clay mitt gets rinsed thoroughly before it goes near paint again. The mitt maker's own care directions are not checked yet, so that line carries the unverified badge. Never put either one back on the paint unchecked. The mitt never goes in the wash bucket.
+A dropped clay mitt gets rinsed with water until all the grit is gone. That is Ragnify's own direction for Lando's mitt. Check it before it goes back on paint. Never put either one back on the paint unchecked. The mitt never goes in the wash bucket.
+
+Ragnify also says use the mitt only after the car is washed, and after the job, rinse it with soap and water and let it air dry.
+
+On a Tesla, the clay mitt is not settled. Tesla's manual says avoid tight-napped or rough cloths, such as washing mitts. Lando decides how this applies to Teslas.
 
 ## Clay leaves its own marks
 

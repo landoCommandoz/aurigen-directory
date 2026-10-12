@@ -5,6 +5,7 @@ kind: table
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "7.3"
 tags: [gauge, thickness, microns, measure, bands]
 synonyms:
@@ -21,7 +22,19 @@ synonyms:
 sources:
   - label: Knowledge base 7.3
     date: 2026-09-22
-    note: Background film numbers only (factory total film and clear coat); reconfirm
+    note: The bands are a conservative house standard. The background film numbers now follow DeFelsko (fact-checker FC-71 and FC-72).
+  - label: DeFelsko, automotive paint detailing
+    url: https://www.defelsko.com/resources/automotive-paint-detailing
+    date: 2026-10-11
+    note: Most factory paint jobs run 4 to 7 mils (100 to 180 microns). DeFelsko makes gauges, not paint. Fact-checker FC-72.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: DeFelsko, how to use paint thickness gauges for better automotive detailing
+    url: https://www.defelsko.com/resources/how-to-use-paint-thickness-gauges-for-better-automotive-detailing
+    date: 2026-10-11
+    note: Clear coat usually runs 1.5 to 2.0 mils (35 to 50 microns). Most carmakers recommend removing no more than 0.3 mils (8 microns) of clear coat. Fact-checker FC-71.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 rows:
   - label: 100 µm or more
     value: Full ladder permitted. Over 100 means compound is allowed, not required.
@@ -44,9 +57,15 @@ rows:
     kbRef: "21"
   - label: What this table is
     value: A conservative house standard, not a manufacturer spec.
-  - label: Background
-    value: Factory total film is usually about 100 to 180 µm. The clear coat itself is only about 38 to 50 µm of that.
-    status: verify
+  - label: Background, total film
+    value: Factory total film is usually about 100 to 180 µm.
+    status: sourced
+  - label: Background, clear coat
+    value: The clear coat is about 35 to 50 µm (1.5 to 2 mils) of that.
+    status: sourced
+  - label: How little to take
+    value: DeFelsko says most carmakers recommend removing no more than about 8 µm (0.3 mil) of clear coat.
+    status: sourced
   - label: Units
     value: Microns (µm). 1 mil = 25.4 µm.
     kbRef: "0"

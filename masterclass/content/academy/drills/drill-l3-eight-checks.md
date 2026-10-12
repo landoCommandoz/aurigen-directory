@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "7.4"
 tags:
   - kills the buff
@@ -19,6 +20,13 @@ synonyms:
   - walk away list drill
   - paint checks practice
   - what kills the buff drill
+sources:
+  - label: State Auto risk-control bulletin TB-F41, garage operations and care, custody, and control
+    url: https://sacom-l3.stateauto.com/uploadedfiles/Content/pdfs/TB-F41-1112-NW%20Garage%20Operations%20and%20Care-Custody-Control.pdf
+    date: 2026-10-11
+    note: One insurer, 2012. Garagekeepers insurance does not provide protection when you cause damage to a vehicle through your own work on it. What Lando's own policy covers is not confirmed. Fact-checker FC-104.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 needs:
   - Lando, naming each check or showing a car
   - No card
@@ -51,4 +59,4 @@ related:
 | Glaze or filler job | Swirls returned a week after a cheap detail | Strip wash first |
 | Clear coat failure | Peeling, flaking, cloudy patches | Do not polish |
 
-Walk away from: failing clear coat, fresh paint under 30 days, a wrapped car whose owner wants it buffed, flood, mold, or biohazard cars, and any car worth more than your insurance covers. Lando's insurance status is not confirmed yet, so that last line carries the unverified badge in the lesson.
+Walk away from: failing clear coat, fresh paint under 30 days, a wrapped car whose owner wants it buffed, flood, mold, or biohazard cars, and any car worth more than your insurance covers. Lando's insurance status is not confirmed yet, so that last line carries the unverified badge in the lesson. One insurer's bulletin says garagekeepers coverage may not pay when your own work damages the car, for example polishing through the clear coat. What Lando's own policy covers is not confirmed (pending).

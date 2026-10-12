@@ -23,9 +23,16 @@ sources:
   - label: Knowledge base 6 and 5.1
     date: 2026-10-07
     note: Bug & Tar on rocker tar first. If clay won't lift it, that is a job for bug and tar remover, not more clay. Bug & Tar foam, one-minute dwell, then wash it off. No scrubbing.
+  - label: Meguiar's UK, Heavy Duty Bug & Tar Remover launch article
+    url: https://www.meguiars.co.uk/showroom/introducing-meguiars-heavy-duty-bug-tar-remover/
+    date: 2026-10-11
+    note: Spray it on, wait and let it soften the contaminants, then hose it off or wash over it. Works without scrubbing. It gives no dwell time. Loaded directly. Fact-checker FC-44 and FC-45. The one-minute dwell is not confirmed; a UK retail label for a similar can says about 5 minutes.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 stopIf:
   - Clay will not lift the tar. Stop claying that spot. More clay is not the fix.
 checks:
+  - "Bug & Tar: read the dwell time on your can. The label on the can beats this app."
   - Is it tar, on the rockers or behind the wheels?
   - Did Bug & Tar go on before the wash?
 causes:
@@ -34,9 +41,12 @@ causes:
 steps:
   - Stop claying that spot.
   - Foam Bug & Tar on the tar.
-  - Let it dwell one minute.
-  - Wash it off.
-  - Do not scrub.
+  - text: Let it dwell one minute.
+    status: verify
+  - text: Wash it off.
+    status: sourced
+  - text: Do not scrub.
+    status: sourced
   - Bag test the spot again.
   - Still gritty? Clay it.
 stillHappening:

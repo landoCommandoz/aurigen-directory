@@ -4,6 +4,7 @@ title: Microfiber towels
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "5.2"
 tags: [towels, wash, laundry, microfiber]
 synonyms:
@@ -19,6 +20,12 @@ sources:
   - label: Knowledge base 13.3
     date: 2026-10-07
     note: Hot water for the product piles; Meguiar's washes its own polishing cloths hot
+  - label: The Rag Company use and care tips
+    url: https://www.theragcompany.com/use-and-care-tips
+    date: 2026-10-11
+    note: Warm or cold water; avoid hot water and sanitize cycles. No fabric softener, no bleach. Tumble dry on low or air dry. Keep microfiber away from cotton and anything that sheds lint. A towel maker's own care guide, not Lando's towel brand. Fact-checker FC-88 and FC-89.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 specs:
   - label: Wash method
     value: 16 or more, one per panel, folded in quarters.
@@ -35,12 +42,22 @@ checks:
     status: house
   - text: Product towels soak 1 hour in warm soapy water first. Wax-residue towels get at least two washes.
     status: house
-  - text: Hot water for the product piles. Warm is fine for the water-only pile.
+  - text: House rule. Hot water for the product piles. Warm is fine for the water-only pile.
+    status: house
+  - text: The Rag Company, a towel maker, says warm or cold water, never hot.
     status: sourced
+  - text: Follow the care tag on your towels. Lando decides hot or warm (pending).
+    status: verify
   - Dye-free, fragrance-free detergent. Full cycle, extra rinse.
-  - Never fabric softener, dryer sheets, or bleach.
-  - Microfiber only. Never with cotton or terry.
-  - Dry on low or air dry. Dryer heat melts microfiber, not the washer.
+  - text: Never fabric softener or bleach.
+    status: sourced
+  - Never dryer sheets.
+  - text: Microfiber only. Never with cotton or terry.
+    status: sourced
+  - text: Dry on low or air dry.
+    status: sourced
+  - text: Dryer heat is what melts microfiber.
+    status: house
 related:
   - card-setup-kit
   - equipment-wheel-brushes

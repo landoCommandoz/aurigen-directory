@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "11"
 tags:
   - tesla
@@ -16,8 +17,14 @@ synonyms:
   - charge port
   - tesla flashcard
   - model y card
+  - wheel cover came off
+sources:
+  - label: Tesla DIY page, removing and installing wheel covers
+    url: https://service.tesla.com/docs/Public/diy/modely/en_us/GUID-377C88DB-7FBE-4320-BC1A-0A01AF48005C.html
+    date: 2026-10-11
+    note: To prevent the wheel cover from falling off, ensure that it is fully secured before driving. Leaving the covers on to clean is house; no Tesla source covers it. Fact-checker FC-42.
 front: On a Model Y, what about the wheel aero covers and the charge port door?
-back: Leave the aero covers on during the wheel clean. The charge port door stays closed.
+back: Leave the aero covers on during the wheel clean. If one ever comes off, Tesla says it must be fully secured before the car moves. The charge port door stays closed.
 related:
   - card-tesla-wash-mode-tape
   - lesson-l1-01-wheels-first

@@ -3,6 +3,8 @@
  * terms render in full. Fix It entries, Quick Cards, lessons, and procedures have pages of their
  * own (shared/contentRoutes.ts), so they never land here; any other type says which phase brings
  * its screen. Superseded rows and lines never render.
+ * A product's notes (DEF-20) are lines with their own status: a house line, a maker's line beside
+ * it, and a decision Lando has not made, each with its own badge. The label paragraph stays last.
  */
 import { visibleLines, type ContentItemValue } from '../../schemas';
 import { Internal } from '../../core/customerView';
@@ -17,11 +19,15 @@ const LATER_PHASE: Partial<Record<ContentItemValue['type'], string>> = {
   script: 'Scripts open in Customer View, Phase 4.',
 };
 
-function Heading({ children }: { children: string }) {
-  return <h3 className="sr-detail__heading">{children}</h3>;
+/** 2 on the item page (under its h1), 3 in the sheet (under the drawer's h2), so no level is skipped. */
+export type DetailHeadingLevel = 2 | 3;
+
+function Heading({ children, level }: { children: string; level: DetailHeadingLevel }) {
+  const Tag = level === 2 ? 'h2' : 'h3';
+  return <Tag className="sr-detail__heading">{children}</Tag>;
 }
 
-export function ItemDetail({ item }: { item: ContentItemValue }) {
+export function ItemDetail({ item, headingLevel = 2 }: { item: ContentItemValue; headingLevel?: DetailHeadingLevel }) {
   const badge = <UnverifiedBadge show={item.status === 'verify'} />;
   switch (item.type) {
     case 'product':
@@ -32,18 +38,24 @@ export function ItemDetail({ item }: { item: ContentItemValue }) {
             {badge}
           </p>
           {item.neverOnPaint ? <p className="sr-detail__flag">Never on customer paint.</p> : null}
-          <Heading>What it is for</Heading>
+          <Heading level={headingLevel}>What it is for</Heading>
           <LinesList lines={item.jobs} itemStatus={item.status} />
           {item.dilutions.filter((d) => d.status !== 'superseded').length > 0 ? (
             <>
-              <Heading>Dilutions</Heading>
+              <Heading level={headingLevel}>Dilutions</Heading>
               <RowsList rows={item.dilutions.map((d) => ({ label: d.use, value: d.ratio, status: d.status }))} />
             </>
           ) : null}
           {item.neverFor.length > 0 ? (
             <>
-              <Heading>Never for</Heading>
+              <Heading level={headingLevel}>Never for</Heading>
               <LinesList lines={item.neverFor} itemStatus={item.status} />
+            </>
+          ) : null}
+          {visibleLines(item.notes, item.status).length > 0 ? (
+            <>
+              <Heading level={headingLevel}>Notes</Heading>
+              <LinesList lines={item.notes} itemStatus={item.status} label="Notes" />
             </>
           ) : null}
           {item.labelNotes ? <p>{item.labelNotes}</p> : null}
@@ -64,7 +76,7 @@ export function ItemDetail({ item }: { item: ContentItemValue }) {
           <RowsList rows={item.specs} label="Specs" itemStatus={item.status} />
           {visibleLines(item.checks, item.status).length > 0 ? (
             <>
-              <Heading>Checks</Heading>
+              <Heading level={headingLevel}>Checks</Heading>
               <LinesList lines={item.checks} itemStatus={item.status} />
             </>
           ) : null}

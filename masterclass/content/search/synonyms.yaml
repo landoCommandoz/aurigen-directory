@@ -46,6 +46,8 @@ groups:
     note: Knowledge base 21 FIX-01 stop line
   - words: [backing plate, backing pad, pad holder]
     note: Knowledge base 14. HF calls it a backing pad
+  - words: [gfci, gfi, ground fault, ground fault outlet]
+    note: Knowledge base 18.2 and fact-checker FC-56 (56367 manual, GFCI supply in damp places)
   - words: [too hot, super hot, really hot, overheating, scorching]
     note: Knowledge base 21 FIX-12 and 8.3
   - words: [marker line, sharpie line, marker mark]
@@ -70,6 +72,10 @@ groups:
   # ---------- Wash, dry, clay ----------
   - words: [water spots, water spotting, water marks, mineral spots, hard water]
     note: Knowledge base 5.4 and FIX-15
+  - words: [water spot remover, spot remover, acid spot remover]
+    note: Knowledge base 5.4 and fact-checker FC-47 (no remover chosen; some are strong acids)
+  - words: [wheel cleaner, rim cleaner, wheel and tire cleaner]
+    note: Knowledge base 5.1 and fact-checker FC-26 and FC-27
   - words: [clay lube, clay lubricant, clay water, clay tub, clay mix]
     note: Knowledge base 4 and 6
   - words: [dropped, fell, hit the floor, hit the ground]
@@ -104,6 +110,8 @@ groups:
   # ---------- Interior ----------
   - words: [pet hair, dog hair, cat hair, fur, animal hair, shedding]
     note: Knowledge base 21 FIX-31
+  - words: [touchscreen, touch screen, center screen, infotainment screen]
+    note: Knowledge base 10 and fact-checker FC-36 (Tesla touchscreen, pending)
   - words: [dash, dashboard, dash board]
     note: Knowledge base 21 FIX-32
   - words: [greasy, oily, slippery]
@@ -120,6 +128,8 @@ groups:
     note: Knowledge base 11
   - words: [sentry, sentry mode]
     note: Knowledge base 11
+  - words: [camera lens, camera lenses, camera glass]
+    note: Knowledge base 11 and fact-checker FC-33 (pending)
   - words: [glass roof, sunroof, moonroof, panoramic roof]
     note: Knowledge base 11. The Model Y roof is glass
 
@@ -128,6 +138,12 @@ groups:
     note: Knowledge base 12
   - words: [rotor, rotors, brake disc, brake discs]
     note: Knowledge base 12.1
+  - words: [belt drive, final drive belt, drive belt]
+    note: Fact-checker FC-85 (Harley touring bikes use a belt final drive; pending)
+  - words: [o-rings, o-ring, x-ring, x-rings]
+    note: Knowledge base 12.1 and fact-checker FC-84
+  - words: [store it clean, winter prep, bike storage prep, storing the bike, winterize, winterizing]
+    note: Knowledge base 12.2 (the Store-It-Clean winter prep) and 18.2. Until price items have a page (Phase 4, DEF-22), "store it clean" lands on the lessons that hold it, not on the cleanup procedure
 
   # ---------- Time and setup ----------
   - words: [out of time, running late, running behind, behind schedule]

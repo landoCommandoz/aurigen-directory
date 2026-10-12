@@ -22,7 +22,19 @@ sayIt:
 sources:
   - label: Knowledge base 2, rule 8, and 6
     date: 2026-10-07
-    note: A dropped clay bar goes in the trash. Tear the bar in half and keep one piece in the case, so a drop costs one piece. Clay mitt, rinse it thoroughly; the maker's guidance is not confirmed.
+    note: A dropped clay bar goes in the trash. Tear the bar in half and keep one piece in the case, so a drop costs one piece. Clay mitt, rinse it thoroughly.
+  - label: Ragnify clay mitt product page
+    url: https://www.ragnify.com/products/ragnify-pack-of-2-clay-mitt-auto-detailing-medium-grade-clay-bar-alternative-mitt-for-flawless-removal-of-surface-bonded-micro-contaminant-red
+    date: 2026-10-11
+    note: If you accidentally drop it, just rinse it with water and all the dust will fall off. Rinse the clay mitt with soap and air dry after use. Use only after washing the vehicle. Lando's mitt is a Ragnify medium 2-pack. Loaded directly. Fact-checker FC-52.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, exterior cleaning cautions
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Avoid using tight-napped or rough cloths, such as washing mitts. A high-quality microfiber cleaning cloth is recommended. Same text in the 2025 and newer manual. Loaded directly. Fact-checker FC-34.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 stopIf:
   - A dropped clay bar goes in the trash. No exceptions.
   - Never put a dropped bar or mitt back on paint unchecked.
@@ -36,14 +48,21 @@ causes:
 steps:
   - "Dropped clay bar: throw it in the trash."
   - Take the other half out of the case.
-  - text: "Dropped clay mitt: rinse it thoroughly."
-    status: verify
+  - text: "Dropped clay mitt: rinse it with water until the grit is gone."
+    status: sourced
+  - Check the mitt before it goes back on paint.
   - "Dropped wash mitt: it is done for the day."
   - Never put either back on paint unchecked.
 stillHappening:
   - Tear the next bar in half and keep one piece in the case, so a drop costs one piece.
 notes:
-  - text: The clay mitt maker's care steps are not confirmed.
+  - text: After every job, rinse the clay mitt with soap and water and let it air dry.
+    status: sourced
+  - text: On a Tesla, the house method uses the clay mitt, and the booklet's wash alternative uses a wash mitt.
+    status: house
+  - text: Tesla's manual says avoid tight-napped or rough cloths, such as washing mitts, and recommends a high-quality microfiber cloth.
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending).
     status: verify
 lessonId: lesson-l1-05-clay
 equipmentIds:

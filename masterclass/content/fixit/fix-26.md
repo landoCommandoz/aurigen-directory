@@ -32,6 +32,12 @@ sources:
     note: Controls > Service > Car Wash Mode. The car must be stationary and not actively charging. It closes all windows, locks the charge port, and turns off the wipers, Sentry Mode, walk-away door locking, and parking chimes. It turns off above 9 mph or on Exit. Skipping it may damage the charge port or wipers, and car wash damage is not covered by the warranty. Read through the search index. Fact-checker FC-13 and FC-14.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: Tesla Model Y 2025 and newer owner's manual, China edition
+    url: https://www.tesla.cn/ownersmanual/modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Page 200, to enable, touch Controls > Service > Car Wash Mode. The vehicle must be stationary and not actively charging. It disables above 15 km/h or on Exit. Same path as the 2020 to 2024 Model Y. Loaded directly. Fact-checker FC-39. Model S, Model X, and Cybertruck not checked.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 stopIf:
   - No water on a Tesla until Car Wash Mode is on.
 checks:
@@ -59,10 +65,12 @@ steps:
   - Check the charge port door is closed.
   - Start the wash again.
 stillHappening:
-  - text: "Can't find Car Wash Mode on this car: the menu path is checked for the 2020 to 2024 Model Y only. Other years and models may differ."
+  - text: "Can't find Car Wash Mode on this car: the menu path is checked for the Model Y only, 2020 to 2024 and 2025 or newer. Other models may differ."
     status: verify
   - "Something got damaged, like the charge port or the wipers: open the broke something fix."
 notes:
+  - text: The menu path is the same on the 2020 to 2024 and the 2025 or newer Model Y.
+    status: sourced
   - text: Car Wash Mode closes all windows, locks the charge port, and turns off the wipers, Sentry Mode, walk-away door locking, and parking chimes.
     status: sourced
   - text: Tesla's manual says skipping Car Wash Mode can damage the charge port or the wipers, and car wash damage is not covered by the warranty.

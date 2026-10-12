@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "8.2"
 tags:
   - priming
@@ -24,12 +25,20 @@ sources:
     url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
     date: 2026-10-10
     note: Only use slower speeds for polishing (slower is not defined). Keep pressure off of the tool; the foam pad should lightly contact the surface. Fact-checker FC-22 and FC-23, conflicting with the house settings; Lando decides.
+  - label: Utah Labor Commission, youth employment page
+    url: https://laborcommission.utah.gov/divisions/utah-antidiscrimination-and-labor-uald/wage-claim/
+    date: 2026-10-11
+    note: The Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending). Fact-checker FC-107.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 needs:
   - A clean, dry yellow pad
   - Meguiar's M210
   - A spray bottle of water
   - A scrap hood or practice panel. Never a customer car before your Level 4 sign-off.
 instructions:
+  - text: "Who may run power tools, the polisher included: Lando decides (pending)."
+    status: verify
   - Read the back of the M210 bottle first.
   - text: "The label's priming directions are not checked yet. The label on the bottle beats this app. If they differ, what crew does next: Lando decides (pending)."
     status: verify

@@ -7,6 +7,7 @@ order: 5
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "8.1"
 tags: [polish, tape, edges, body lines, curves, heat, bumpers, level 4]
 synonyms:
@@ -26,6 +27,28 @@ sources:
   - label: Lando, knowledge base 2, 8.1, 8.3, and 11
     date: 2026-10-07
     note: Rules 6 and 9, the tape list, curves, plastic bumpers, the hand test for heat, and the Tesla tape list and polish route.
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Five body cameras. Polish, abrasive cleaners, hand sanitizer, and hard cloths can damage chrome and metal finishes. Some cleaners can damage or discolor plastic trim, exterior lights, or camera lenses. No hot water, detergents, highly alkaline or caustic cleaners, or acidic products. Read directly. Fact-checker FC-40, FC-43, FC-53.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2025 and newer owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Six body cameras, with one on the front bumper above the grille. Read directly. Fact-checker FC-40.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Meguiar's product page, Ultimate Compound G17216
+    url: https://www.meguiars.com/products/automotive/paint/meguiars-ultimate-compound-g17216-152oz
+    date: 2026-10-11
+    note: Not for use on flat, matte, or satin finishes. Read through the search index. The chalky white claim is not confirmed. Verification log FC-43.
+  - label: Verification log FC-51 and FC-53
+    date: 2026-10-11
+    note: No label gives a cold limit; Meguiar's checked pages show no temperature line. The trim residue method names no product, and the house owns no all-purpose cleaner.
+  - label: Verification log FC-107
+    date: 2026-10-11
+    note: The Utah Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending).
 steps:
   - Work in shade, on a cool panel, with no wind.
   - Put your hand on the panel. It must be cool enough to hold your hand on.
@@ -36,7 +59,8 @@ steps:
   - Tape the sharp body lines.
   - On a Tesla, tape the satin black window trim.
   - On a Tesla, tape the flush door handle edges.
-  - On a Tesla, tape all five cameras.
+  - text: On a Tesla, tape every body camera. Five on a 2020 to 2024 Model Y. Six on a 2025 or newer, with one on the front bumper above the grille.
+    status: sourced
   - On a Tesla, tape the badges and the black glass header.
   - On a Tesla, tape the textured cladding on the wheel arches and the lower bumper.
   - Tape the panel into 2 x 2 ft squares.
@@ -76,7 +100,19 @@ numbers:
     value: 2 x 2 ft, taped. One square at a time.
     kbRef: "8.1"
   - label: Tesla tape list
-    value: Satin black window trim (polish turns it chalky white), flush door handle edges, the five cameras (two B-pillar, two fender repeaters, one above the rear plate), badges, the black glass header, and the textured cladding on the wheel arches and lower bumper
+    value: Satin black window trim, flush door handle edges, the cameras, badges, the black glass header, and the textured cladding on the wheel arches and lower bumper
+    kbRef: "11"
+  - label: Why the satin trim gets tape
+    value: Tesla's manual says polish can damage chrome and metal finishes. Meguiar's says Ultimate Compound is not for satin finishes.
+    status: sourced
+    kbRef: "11"
+  - label: Tesla cameras, 2020 to 2024 Model Y
+    value: Five. Two B-pillar, two fender repeaters, one above the rear plate.
+    status: sourced
+    kbRef: "11"
+  - label: Tesla cameras, 2025 and newer Model Y
+    value: Six. The sixth is on the front bumper above the grille.
+    status: sourced
     kbRef: "11"
   - label: Tesla polish route
     value: Hood first, then liftgate, L fender, L doors, L quarter, R quarter, R doors, R fender, and bumpers last, because plastic heats fast. No roof, no glass.
@@ -85,13 +121,24 @@ numbers:
     value: The cause is untaped trim. Tape before polishing.
     kbRef: "21"
   - label: Removing white residue
-    value: A soft brush and a trim-safe cleaner. The method is not confirmed.
+    value: A soft brush and a trim-safe cleaner. The method is not confirmed, no product is named, and the house owns no all-purpose cleaner.
     status: verify
     kbRef: "21"
+  - label: Trim cleaner on a Tesla
+    value: On a Tesla, Tesla's manual says no highly alkaline, caustic, or acidic cleaners, and some cleaners can discolor plastic trim.
+    status: sourced
+    kbRef: "11"
+  - label: On a Tesla, trim residue
+    value: Lando decides how this applies to Teslas (pending).
+    status: verify
   - label: Cold weather
-    value: Below about 50 F, polish stops behaving. Garage it or move the date. Not confirmed against the labels.
+    value: Below about 50 F, polish stops behaving. Garage it or move the date. No label gives a number yet. Read the backs of the M210, Ultimate Compound, and ceramic wax bottles.
     status: verify
     kbRef: "18.2"
+  - label: Who may run power tools (pending)
+    value: Lando decides.
+    status: verify
+    kbRef: "19"
   - label: Other Teslas
     value: Other model years and models have different cameras and trim. Check each car.
     status: verify
@@ -104,7 +151,8 @@ mistakes:
   - Polishing in the sun or in wind.
   - Full pressure and full time on a plastic bumper.
   - Keeping on when the panel is too hot to keep your hand on.
-  - Polishing a Tesla's satin black window trim. It turns chalky white.
+  - Polishing a Tesla's satin black window trim. Keep polish off it.
+  - Forgetting the sixth camera on a 2025 or newer Model Y.
   - Polishing a Tesla's glass roof.
   - Parking the machine spinning in one spot.
 drillIds: [drill-l4-edges-heat]
@@ -129,17 +177,17 @@ Edges and body lines always read low on the paint gauge. Less paint there means 
 
 ## Why you tape before the pad touches paint
 
-Untaped trim and badges come out with white residue on them. On a Tesla, polish turns the satin black window trim chalky white.
+Untaped trim and badges come out with white residue on them. On a Tesla, keep polish off the satin black window trim. Tesla's manual says polish can damage chrome and metal finishes, and Meguiar's says Ultimate Compound is not for satin finishes.
 
 Tape the rubber and plastic trim, the emblems, and the sharp body lines. Then tape the panel into 2 x 2 ft squares and work one square at a time.
 
 Test the tape first. Cheap beige tape can leave residue once it heats up, and polishing makes heat. Try it on scrap before it goes on a customer's car.
 
-How to clean white residue off trim, if it happens anyway, is not confirmed yet. A soft brush and a trim-safe cleaner is the line in the knowledge base, and it carries a badge until it is checked.
+How to clean white residue off trim, if it happens anyway, is not confirmed yet. A soft brush and a trim-safe cleaner is the line in the knowledge base, and it carries a badge until it is checked. No product is named, and the house owns no all-purpose cleaner. On a Tesla, Tesla's manual says no highly alkaline, caustic, or acidic cleaners, so any trim cleaner on a Tesla waits for Lando.
 
 ## The Tesla tape list
 
-A Tesla has more to tape. The satin black window trim. The flush door handle edges. All five cameras: two on the B-pillars, two fender repeaters, and one above the rear plate. The badges. The black glass header. The textured cladding on the wheel arches and the lower bumper.
+A Tesla has more to tape. The satin black window trim. The flush door handle edges. The cameras: on a 2020 to 2024 Model Y, five of them, two on the B-pillars, two fender repeaters, and one above the rear plate. A 2025 or newer Model Y adds a sixth on the front bumper above the grille. The badges. The black glass header. The textured cladding on the wheel arches and the lower bumper.
 
 The roof is glass. It gets washed, never polished, and it is skipped in the measure and polish routes.
 
@@ -163,4 +211,6 @@ Never park the machine spinning in one spot. Keep it moving until the trigger is
 
 ## Cold days
 
-Cold matters too, but the number is not confirmed. The knowledge base says below about 50 F, polish stops behaving, so garage it or move the date. That line is waiting on the product labels and carries a badge.
+Cold matters too, but the number is not confirmed. The knowledge base says below about 50 F, polish stops behaving, so garage it or move the date. None of the Meguiar's pages checked give a temperature, so the line waits on the backs of the bottles and carries a badge.
+
+Who may run the polisher is Lando's call, and it is not decided yet.

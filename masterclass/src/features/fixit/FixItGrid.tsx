@@ -14,18 +14,43 @@
  */
 import { useNavigate } from 'react-router';
 import { Button, StopBand, Tile, TileGrid } from '../../components/ui';
-import { getItemsByType } from '../../core/content';
+import { getItemsByType, useContent, type LoadableShard } from '../../core/content';
+import { useCustomerView } from '../../core/customerView';
 import { KIND_LABELS, groupCards } from '../cards/cardModel';
 import { SearchBox } from '../search/SearchBox';
 import { pageRoute } from '../shared/contentRoutes';
+import { contentBusy, ContentWaitBody } from '../shared/ContentWait';
 import { Actions, Screen, Section } from '../settings/ui/Screen';
 import { groupFixes, stopBandText } from './fixModel';
 import { GroupGlyph } from './glyphs';
 import './fixit.css';
 
 export const EMPTY_FIXES_LINE = 'No Fix It entries in this build yet. Search, or open a Quick Card.';
+/** The symptom tiles and the Quick Card tiles. The search box needs neither, so it shows at once. */
+export const FIX_GRID_CONTENT: readonly LoadableShard[] = ['fixnode', 'quickcard'];
 
 export function FixItGrid() {
+  const cv = useCustomerView();
+  const content = useContent(FIX_GRID_CONTENT, cv.ready);
+  // One Screen and one search box whether or not the tiles are in, so a word typed while they
+  // load stays in the box.
+  return (
+    <Screen title="Fix It" back={{ to: '/', label: 'Home' }} className="fx-screen" busy={contentBusy(content)}>
+      <Section index={1}>
+        <SearchBox label="What is happening?" />
+      </Section>
+      {content.ready ? (
+        <FixItTiles />
+      ) : (
+        <Section index={2}>
+          <ContentWaitBody content={content} />
+        </Section>
+      )}
+    </Screen>
+  );
+}
+
+function FixItTiles() {
   const navigate = useNavigate();
   const groups = groupFixes(getItemsByType('fixnode'));
   const cards = groupCards(getItemsByType('quickcard')).flatMap((group) => group.cards);
@@ -35,11 +60,7 @@ export function FixItGrid() {
   };
 
   return (
-    <Screen title="Fix It" back={{ to: '/', label: 'Home' }} className="fx-screen">
-      <Section index={1}>
-        <SearchBox label="What is happening?" />
-      </Section>
-
+    <>
       {groups.length === 0 ? (
         <Section index={2}>
           <p className="fx-empty">{EMPTY_FIXES_LINE}</p>
@@ -91,6 +112,6 @@ export function FixItGrid() {
           </Button>
         </Actions>
       </Section>
-    </Screen>
+    </>
   );
 }

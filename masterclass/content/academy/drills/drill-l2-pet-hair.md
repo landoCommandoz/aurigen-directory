@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "10"
 tags:
   - interior
@@ -19,11 +20,20 @@ synonyms:
   - rubber tool drill
   - three passes drill
   - hair removal practice
+sources:
+  - label: Utah Labor Commission, youth employment page
+    url: https://laborcommission.utah.gov/divisions/utah-antidiscrimination-and-labor-uald/wage-claim/
+    date: 2026-10-11
+    note: The Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending). Fact-checker FC-107.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 needs:
   - A car or a floor mat with pet hair in the carpet
   - The Analan rubber tool, or pumice
   - The shop vac
 instructions:
+  - text: "Who may run power tools, the shop vac included: Lando decides (pending)."
+    status: verify
   - Pull the hair with the rubber tool first.
   - Vacuum it up.
   - That is one pass. Count it out loud.

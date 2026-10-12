@@ -9,6 +9,18 @@ import { CUSTOMER_VIEW_NOTICE } from '../settings/ui/InternalNotice';
 import { DRILL, FIX_JERK, LESSON_PRESSURE, PRODUCT, TERM, TOOL } from '../shared/__tests__/fixture';
 import { loadFixtureBundle } from '../shared/__tests__/helpers';
 import { ItemPage } from './ItemPage';
+import { ItemSheet } from './ItemSheet';
+
+/** Heading levels in document order; a step down may go any distance, a step up only by one. */
+function skippedHeadings(root: ParentNode = document): string[] {
+  const levels = Array.from(root.querySelectorAll('h1, h2, h3, h4, h5, h6')).map((h) => ({ level: Number(h.tagName.slice(1)), text: h.textContent ?? '' }));
+  const skips: string[] = [];
+  levels.forEach((h, i) => {
+    const before = levels[i - 1];
+    if (before !== undefined && h.level > before.level + 1) skips.push(`h${before.level} "${before.text}" to h${h.level} "${h.text}"`);
+  });
+  return skips;
+}
 
 const ROUTES = {
   '/items/:id': <ItemPage />,
@@ -46,6 +58,25 @@ describe('ItemPage', () => {
     const related = screen.getByRole('list', { name: 'Related' });
     expect(within(related).getAllByRole('listitem')).toHaveLength(1);
     expect(screen.queryByText('Scale pressure drill')).toBeNull();
+  });
+
+  it('never skips a heading level on a product or a tool page (DEF-19)', async () => {
+    renderScreen(`/items/${PRODUCT}`, ROUTES);
+    expect(await screen.findByRole('heading', { level: 2, name: 'What it is for' })).toBeInTheDocument();
+    expect(skippedHeadings()).toEqual([]);
+    cleanup();
+    renderScreen(`/items/${TOOL}`, ROUTES);
+    expect(await screen.findByRole('heading', { level: 1, name: 'Test polisher' })).toBeInTheDocument();
+    expect(skippedHeadings()).toEqual([]);
+  });
+
+  it('in the sheet, the detail headings sit one level under the sheet title', async () => {
+    renderScreen('/sheet', { '/sheet': <ItemSheet id={PRODUCT} onClose={() => undefined} /> });
+    // The sheet waits for the saved Customer View flag (fail closed), then shows the item.
+    expect(await screen.findByRole('heading', { level: 2, name: 'Test polish' })).toBeInTheDocument();
+    const dialog = screen.getByRole('dialog');
+    expect(within(dialog).getByRole('heading', { level: 3, name: 'What it is for' })).toBeInTheDocument();
+    expect(skippedHeadings(dialog)).toEqual([]);
   });
 
   it('shows a glossary term', async () => {

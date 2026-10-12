@@ -11,10 +11,14 @@
 #   15.1 mobile and travel is the mobile fee term and the mobile polishing fix. 15.2 is the
 #   cancel and deposit fix (fix-89). 9.4 is the headlight fix and the headlight restorer.
 #
-# Two knowledge base 24 cases are parked below Part 2, commented out, because no searchable
-# item holds their section yet: "price suv full detail" (15.1) and "store it clean" (12.2).
-# Price items are Phase 4 (business-customer), and search leaves price items out until they
-# have a page (src/core/searchEngine.ts SEARCH_TYPES). Turn them back on when both land.
+# Two knowledge base 24 cases are parked below Part 2, commented out (QA DEF-22, later):
+# "price suv full detail" (15.1) and "store it clean" (12.2). Their answers are price items,
+# which are Phase 4 (business-customer), and search leaves price items out until they have a
+# page (src/core/searchEngine.ts SEARCH_TYPES). QA pins exactly this pair as parked in
+# tests/unit/search-cases.test.ts (PARKED). Until then the Level 7 outline lessons hold the
+# same prices, and search lands there (two interim guards and the parked block, at the end of
+# Part 2). Turn both back on when price items have pages, and QA empties PARKED in the
+# same change.
 #
 # Part 2 is the way a frustrated person types or dictates with gloves on: no apostrophes,
 # filler words, slang, and the words a dictation app gets wrong ("hoping" for "hopping").
@@ -110,6 +114,36 @@ cases:
   - { query: how much pressure, expect: [card-machine-settings, lesson-l4-03-pressure], kb: "8.3 and fact-checker FC-23 (pending)" }
   - { query: label says something different, expect: [fix-80], kb: "2, house rule 12" }
 
-  # Parked (knowledge base 24, no searchable item holds the section yet; see the top of this file)
+  # Part 4: fact-check guards (verification log FC-26 onward, 2026-10-11). Each query lands on the
+  # fix that now holds a label caution, a STOP line, or a pending decision row.
+  - { query: how long do i let the wheel cleaner sit, expect: [fix-60, product-armor-all-extreme-wheel-tire, sop-wheels], kb: "5.1 and fact-checker FC-26 (label says 30 seconds)" }
+  - { query: wheel cleaner left haze on the rim, expect: [fix-60], kb: "5.1 and fact-checker FC-27 (stop if it hazes)" }
+  - { query: how long does tire shine dry, expect: [fix-20, product-armor-all-extreme-tire-shine, sop-tires-trim], kb: "9.2 and fact-checker FC-29" }
+  - { query: heat gun near tire shine, expect: [fix-20, product-meguiars-hot-shine], kb: "fact-checker FC-32 (flammable aerosol)" }
+  - { query: gfci, expect: [fix-58, card-setup-kit, equipment-bauer-56367], kb: "18.2 and fact-checker FC-56" }
+  - { query: cord outside in the wet, expect: [fix-58], kb: "18.2 and fact-checker FC-56" }
+  - { query: polisher twisted out of my hand, expect: [fix-01], kb: "FIX-01 and fact-checker FC-55 (grip pending)" }
+  - { query: which pad size fits the polisher, expect: [fix-01, lesson-l4-06-pad-care-backing-plate, fix-23, equipment-backing-plate], kb: "3.2, 14, and fact-checker FC-54 (pending)" }
+  - { query: water spot remover, expect: [fix-15], kb: "5.4 and fact-checker FC-47 (acid stop line)" }
+  - { query: dropped my clay mitt in the dirt, expect: [fix-17], kb: "FIX-17 and fact-checker FC-52" }
+  - { query: tesla camera lens, expect: [fix-81, sop-glass-tesla, card-tesla-wash-mode-tape], kb: "11 and fact-checker FC-33 (pending)" }
+  - { query: how do i clean the tesla screen, expect: [fix-68, card-tesla-wash-mode-tape], kb: "10, 11, and fact-checker FC-36 (pending)" }
+  - { query: tesla seat stain, expect: [fix-74], kb: "10, 11, and fact-checker FC-37 (pending)" }
+  - { query: can i put the pads in the dryer, expect: [fix-50, sop-cleanup], kb: "13.1 and fact-checker FC-70 (pending)" }
+  - { query: towels hot or warm water, expect: [fix-76, equipment-microfiber-towels], kb: "13.3 and fact-checker FC-88 (pending)" }
+  - { query: harley belt, expect: [fix-85], kb: "12.2 and fact-checker FC-85 (pending)" }
+
+  # Interim guards for the parked pair (DEF-22): each price question lands on the lesson that
+  # holds the price row, not on a procedure or a fix. Revisit both when price items land.
+  # "store it clean": the Store-It-Clean row (lesson-l7-07-seasons, also listed in the menus).
+  - { query: how much is store it clean, expect: [lesson-l7-07-seasons, lesson-l7-01-menus], kb: "12.2 (interim, DEF-22)" }
+  # "price suv full detail": the Full Detail row, SUV or truck (lesson-l7-01-menus), dictated.
+  - { query: how much for a full detail on an suv, expect: [lesson-l7-01-menus], kb: "15.1 (interim, DEF-22)" }
+
+  # Parked (knowledge base 24, QA DEF-22; the answer is a price item, which has no page until
+  # Phase 4; see the top of this file). Today, 2026-10-12, "price suv full detail" tops on
+  # lesson-l7-01-menus (kbRef 15.1, the SUV Full Detail row) and "store it clean" tops on
+  # lesson-l7-07-seasons (the Store-It-Clean row, kbRef 12.2; the lesson's kbRef is 18.2).
+  # In Phase 4, replace each placeholder with the price item id, uncomment, and run npm run content.
   # - { query: price suv full detail, expect: [<the SUV Full Detail price item>], kb: "15.1" }
   # - { query: store it clean, expect: [<the Store-It-Clean price item>], kb: "12.2" }

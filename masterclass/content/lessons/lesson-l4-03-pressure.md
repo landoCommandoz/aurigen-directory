@@ -6,6 +6,7 @@ level: 4
 order: 3
 audience: [owner, crew]
 visibility: internal
+version: 2
 status: house
 kbRef: "8.3"
 tags: [polish, machine, pressure, scale, level 4]
@@ -30,6 +31,15 @@ sources:
     note: Page 8, step 7, keep pressure off of the tool when operating; the foam pad should lightly contact the polishing surface. Fact-checker FC-23.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: BAUER 56367 owner's manual, 2021, rechecked
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-11
+    note: General power tool safety, maintain a firm grip on the tool with both hands to resist starting torque. Start and stop the tool only while it is held firmly against the surface of the vehicle. Fact-checker FC-55.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Verification log FC-107
+    date: 2026-10-11
+    note: The Utah Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending).
 steps:
   - Unplug the polisher.
   - Set a bathroom scale on a flat, solid surface.
@@ -39,8 +49,13 @@ steps:
   - Hold it there and feel what about 10 lb takes.
   - Ease off until the scale shows only the machine's own weight. That is the float for the last set.
   - Do it again until your arms know both.
-  - On the paint, keep two hands on the machine with a loose grip.
-  - Guide it. Do not push it.
+  - On the paint, keep two hands on the machine.
+  - text: "House: a loose grip. Guide it. Do not push it."
+    status: house
+  - text: The 56367 manual says keep a firm grip with both hands to resist starting torque, and keep pressure off the tool.
+    status: sourced
+  - text: Lando decides the grip wording (pending).
+    status: verify
   - Keep the pad flat.
   - text: Work at about 10 lb.
     status: house
@@ -71,6 +86,20 @@ numbers:
   - label: Pressure over about 10 lb
     value: One cause of the polisher jerking, walking, or hopping. So is a grip that is too tight.
     kbRef: "21"
+  - label: Grip, house
+    value: Two hands, loose grip. Guide it, don't push.
+    status: house
+    kbRef: "21"
+  - label: Grip, the 56367 manual
+    value: The 56367 manual says keep a firm grip with both hands to resist starting torque, and keep pressure off the tool.
+    status: sourced
+  - label: Lando decides the grip wording (pending)
+    value: Loose grip, or the manual's firm grip with both hands. Both agree on two hands and no pushing down.
+    status: verify
+  - label: Who may run power tools (pending)
+    value: Lando decides.
+    status: verify
+    kbRef: "19"
   - label: Plastic bumpers
     value: They heat fast. Lighter pressure, lower speed, shorter time.
     kbRef: "8.3"
@@ -110,6 +139,8 @@ About 10 lb is the house number. It is hard to judge by feel alone. A bathroom s
 The pad on this machine turns on its own. Push too hard and it slows down or stops. You see it on the marker line: when the line slows or stops, ease up and flatten the pad. Lesson 4 covers the marker line.
 
 Pressure over about 10 lb, and a grip that is too tight, are also causes of the polisher jerking, walking, or hopping side to side. The polisher jerking was one of the Oct 7 problems. The fix list includes two hands, a loose grip, and guiding the machine instead of pushing it.
+
+The grip is not settled. The house says a loose grip. The 56367 manual says keep a firm grip with both hands, so the tool cannot twist away when it starts, and keep pressure off the tool. Both agree on two hands and on not pushing down. Lando decides the wording. Until then, both lines show.
 
 ## Where you use less
 

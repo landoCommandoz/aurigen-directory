@@ -241,6 +241,7 @@ export function buildContent(opts: BuildOptions): BuildResult {
     items: renderable,
     signOffs: [...signOffs].sort((a, b) => a.skillId.localeCompare(b.skillId)),
     synonyms,
+    customerSafeIds: renderable.filter((item) => isCustomerRenderable(item)).map((item) => item.id),
   };
   let index: ReturnType<typeof buildSearchIndex> | null = null;
   try {

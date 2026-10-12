@@ -25,13 +25,23 @@ sources:
     note: Test spot on the worst panel (the hood on Lando's Model Y). Rungs 1 and 2 use M210. Rung 3, maroon + Ultimate Compound only at 100 µm or more, always followed by yellow + M210, one compound pass per section max. Paint color on the pad means stop. Glass roof skipped.
   - label: Knowledge base 7.2, Tesla Model Y readings
     date: 2026-10-06
-    note: Model Y owners commonly measure about 4 to 6 mils (100 to 150 µm), highest on the hood.
+    note: Model Y owners commonly measure about 4 to 6 mils (100 to 150 µm), highest on the hood. Owner reports, not a spec (fact-checker FC-73).
   - label: Tesla Model Y owner's manual, cleaning cautions
     url: https://www.tesla.com/ownersmanual/modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
     date: 2026-10-10
-    note: Do not use cutting pastes, color restoration compounds, or polishes containing harsh abrasives. These can scour the surface and permanently damage the paint. Damage or discoloration from cleaning products is not covered by the warranty. Seen on the 2025 and newer Model Y manual and other Tesla manuals; the 2020 to 2024 page could not be checked line by line. Read through the search index. Fact-checker FC-16.
+    note: Do not use cutting pastes, color restoration compounds, or polishes containing harsh abrasives. These can scour the surface and permanently damage the paint. Damage or discoloration from cleaning products is not covered by the warranty. Seen on the 2025 and newer Model Y manual and other Tesla manuals. Read through the search index. Fact-checker FC-16. FC-38 found the same lines in the 2020 to 2024 Model Y manual.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Pages 178 to 181, Cleaning. No chemical based wheel cleaners or pre-wash products. No cutting pastes, color restoration compounds, or polishes containing harsh abrasives. Damage or discoloration from cleaning products is not covered by the warranty. Also says an approved polish with a very mild abrasive may be used occasionally. Loaded directly. Fact-checker FC-38.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Motors Club forum, Tesla paint depth thread
+    url: https://teslamotorsclub.com/tmc/threads/tesla-paint-depth-vs-other-cars.221821/
+    date: 2026-10-11
+    note: One owner's Model Y read about 4.03 to 5.92 mils, hood highest, rear quarters lowest. Forum, supporting only. Tesla publishes no paint thickness. Fact-checker FC-73.
 stopIf:
   - Paint color on the pad. Stop now. You are through the clear.
   - "Under 100 µm: no compound on any car."
@@ -67,7 +77,9 @@ notes:
   - text: Whether Tesla's line on harsh-abrasive polishes covers M210 is not checked.
     status: verify
   - On the Model Y the roof is glass. Skip it in the measure and polish routes.
-  - text: Tesla Model Y owners commonly measure about 4 to 6 mils (100 to 150 µm), highest on the hood.
+  - text: On a Tesla Model Y, owners report about 4 to 6 mils (100 to 150 µm), highest on the hood. Tesla publishes no paint thickness.
+    status: verify
+  - text: Tesla's manual also says you can occasionally use an approved polish with a very mild abrasive, filling compounds, and wax.
     status: sourced
 lessonId: lesson-l4-08-test-spot-ladder
 productIds:

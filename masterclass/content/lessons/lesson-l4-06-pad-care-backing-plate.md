@@ -7,6 +7,7 @@ order: 6
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "8.4"
 tags: [pad, pad care, cleanup, backing plate, m8, level 4]
 synonyms:
@@ -51,6 +52,39 @@ sources:
   - label: Knowledge base 14, backing plate research
     date: 2026-10-07
     note: Unplugged checks, the counterweight reason never to downsize, and what to replace it with.
+  - label: Buff and Shine FAQ
+    url: https://buffandshine.com/pages/faqs
+    date: 2026-10-11
+    note: Warm or cold water, never hot. Air-dry washed pads on a flat surface. Never put pads in the dryer, as they will warp. Never place a pad face down on any surface. Fact-checker FC-70.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Buff and Shine product page, 634CR 6 in. yellow Uro-Tec
+    url: https://buffandshine.com/products/634cr-6-yellow-uro-tec-foam-pad-polishing
+    date: 2026-10-11
+    note: Pad size 6 in., loop 6 in., face 7 in., foam 1 in. Orbits up to 21 mm. Pairs with the 600Y plate, listed with 5/16 in.-24 threads. Fact-checker FC-54.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: BAUER 56367 owner's manual, 2021, rechecked
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-11
+    note: Max accessory diameter 6 in. (150 mm). Fact-checker FC-54.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: AutoGeek forum thread, 56367 backing plate (posts Jun 6 to Aug 30, 2020)
+    url: https://www.autogeekonline.net/forum/auto-detailing-tools-and-accessories/126678-new-bauer-hf-56367-long-throw-polisher-non-standard-backing-plate.html
+    date: 2026-10-11
+    note: The Maxshine plate one owner swapped in was a 125 mm (5 in.) plate, and he never said how it ran. Another owner said a Griot's BOSS G21 plate looks very similar; nobody reported fitting one. Fact-checker FC-57.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Parks Car Care, ShineMate Backing Plate DA Heavy Duty (5 in. and 6 in.)
+    url: https://parkscarcare.net/products/shinemate-5-backing-plate-da-heavy-duty
+    date: 2026-10-11
+    note: 6 in. listed at $23.05, the same as the 5 in., out of stock on 2026-10-11. Seller copy says a standard M8 female thread and an M8 male bolt included. The seller is a source for its own price only, not for fit. Fact-checker FC-58 and FC-59.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Verification log FC-107
+    date: 2026-10-11
+    note: The Utah Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending).
 steps:
   - Blow out or brush the pad after every square.
   - Look at the pad face. Paint color on the pad means stop.
@@ -62,7 +96,12 @@ steps:
   - Wash it in warm water with a drop of laundry detergent. Not hot.
   - Work the face until the water runs clear.
   - Press the water out. Never wring it.
-  - Dry it face down on a rack.
+  - text: "House: dry it face down on a rack."
+    status: house
+  - text: Buff and Shine says air-dry pads flat, never face down on any surface, and never in the dryer.
+    status: sourced
+  - text: Lando decides how pads dry (pending).
+    status: verify
   - Let it dry fully before the next use.
   - Wipe the polish off the backing plate.
   - text: Unplug the polisher before you check the plate.
@@ -119,8 +158,16 @@ numbers:
   - label: Lando decides which applies to the HF pads (pending)
     value: Hand wash in warm water, or the manual's machine wash cold and dry on medium. This covers the HF pads only.
     status: verify
-  - label: Uro-Tec care from Buff and Shine
-    value: Not checked yet.
+  - label: Uro-Tec wash water, Buff and Shine
+    value: Warm or cold, never hot.
+    status: sourced
+    kbRef: "13.1"
+  - label: Uro-Tec drying, Buff and Shine
+    value: Air-dry flat. Never face down on any surface. Never in the dryer; heat warps them.
+    status: sourced
+    kbRef: "13.1"
+  - label: Lando decides how pads dry (pending)
+    value: Face down on a rack, the house way, or flat, the Buff and Shine way.
     status: verify
     kbRef: "13.1"
   - label: Dried compound
@@ -130,6 +177,14 @@ numbers:
     value: 6 in. hook and loop. Bolts on through a center hole with the Spindle Bolt.
     status: sourced
     kbRef: "14"
+  - label: Uro-Tec sizes
+    value: Buff and Shine names Uro-Tec pads by the size of the back. Its 6 in. pad has a 6 in. back and a 7 in. face. Some stores sell the 5 in.-back pad, which has a 6 in. face, as a 6 in. pad. The 56367 manual says the largest accessory is 6 in. (150 mm).
+    status: sourced
+    kbRef: "3.2"
+  - label: Which Uro-Tec size goes on the 56367 (pending)
+    value: Measure your pads. A model number of 534 or 572 means a 5 in. back; 634 or 672 means a 6 in. back. Lando decides.
+    status: verify
+    kbRef: "3.2"
   - label: Thread
     value: M8 x 1.25, from the HF product page
     status: sourced
@@ -155,21 +210,38 @@ numbers:
     status: verify
     kbRef: "14"
   - label: Backup plate
-    value: ShineMate Heavy Duty, M8 thread, M8 bolt included, sold as fitting most 5 to 6 in. long-throws. Listed at $23.05 at Parks Car Care for the 5 in.; confirm the 6 in. price. Fit not confirmed.
+    value: ShineMate Heavy Duty 6 in. The seller says M8 thread, M8 bolt included, and that it fits most 5 to 6 in. long-throws. Fit not confirmed. Compare the hub to the stock plate first.
     status: verify
     kbRef: "14"
-  - label: Owner reports
-    value: One 56367 owner swapped in a Maxshine plate. Another said a Griot's BOSS 21 plate looks nearly identical. Fit not confirmed.
+  - label: Backup plate price
+    value: $23.05 at Parks Car Care for the 6 in., the same as the 5 in. Out of stock on 2026-10-11.
+    status: sourced
+    kbRef: "14"
+  - label: Not a backup, the forum Maxshine swap
+    value: It was a 5 in. (125 mm) plate. That is the downsize this lesson says never to do, and the owner never said how it ran.
+    status: sourced
+    kbRef: "14"
+  - label: Not a backup, Maxshine 6 in. and Griot's BOSS G21
+    value: A retailer lists the Maxshine 6 in. with 5/16 in. threads, not M8. One owner said the BOSS G21 looks very similar; nobody reported fitting one.
     status: verify
+    kbRef: "14"
+  - label: Do not buy, Buff and Shine 600Y
+    value: Buff and Shine's own 6 in. plate has 5/16 in.-24 threads. The 56367 uses M8.
+    status: sourced
     kbRef: "14"
   - label: Spare plate
     value: A spare 6 in. M8 plate is on the purchase roadmap.
     kbRef: "3.5"
+  - label: Who may run power tools (pending)
+    value: Lando decides.
+    status: verify
+    kbRef: "19"
 mistakes:
   - Running a loaded pad. It stops cutting and starts smearing.
   - Using one pad for compound and polish.
   - Leaving polish or compound in a pad overnight. Dried compound is a dead pad.
   - Washing pads in hot water. Hot is hard on foam.
+  - Putting a Uro-Tec pad in the dryer. Heat warps it.
   - Wringing a pad.
   - Using a pad before it is fully dry.
   - Checking the plate with the polisher plugged in.
@@ -210,13 +282,19 @@ One pad per liquid. A pad that touched compound never touches polish.
 
 Pads get washed the same night, before polish dries in. Dried compound in a pad is a dead pad.
 
-Pull the pad off the backing plate. Wash it in warm water with a drop of laundry detergent. Not hot: hot water is hard on foam. Work the face until the water runs clear. Press the water out, never wring it. Dry it face down on a rack, and let it dry fully before the next use. Then wipe the polish off the backing plate.
+Pull the pad off the backing plate. Wash it in warm water with a drop of laundry detergent. Not hot: hot water is hard on foam, and Buff and Shine says the same. Work the face until the water runs clear. Press the water out, never wring it. Let it dry fully before the next use. Then wipe the polish off the backing plate.
 
-Towels are different. Product towels get washed hot. Pads stay warm. The knowledge base settled that on Oct 7.
+How the pad dries is not settled. The house dries it face down on a rack. Buff and Shine says air-dry it flat, never face down on any surface, and never in the dryer, because heat warps the foam. Lando decides. Until then, both lines show.
+
+Towels are different. The house washes product towels hot, though a towel maker says warm or cold, and Lando decides that one too. Pads always stay warm or cooler, never hot.
 
 ## The HF pads, and what is still open
 
-Harbor Freight's manual says its own pads may be machine-washed in cold water with detergent and machine-dried at medium heat. That differs from the house hand wash. It applies only to the HF finishing pads, and which way those pads get washed is Lando's call, still pending. Buff and Shine's care guidance for the Uro-Tec pads has not been checked.
+Harbor Freight's manual says its own pads may be machine-washed in cold water with detergent and machine-dried at medium heat. That differs from the house hand wash. It applies only to the HF finishing pads, and which way those pads get washed is Lando's call, still pending. It never applies to the Uro-Tec pads: Buff and Shine says never put them in the dryer.
+
+## Pad size and the plate
+
+Buff and Shine names its Uro-Tec pads by the size of the back. Its 6 in. pad has a 6 in. back and a 7 in. face. Some stores sell the 5 in.-back pad, which has a 6 in. face, as a 6 in. pad. The 56367 manual says the largest accessory is 6 in. (150 mm). A pad that does not match its plate can run off-center and vibrate. Measure the back and the face of your pads. Which size goes on the 56367 is Lando's call.
 
 ## The backing plate
 
@@ -234,7 +312,9 @@ Harbor Freight sells a $6.99 BAUER 6 in. backing pad, item 64913. It does not fi
 
 Call the HF tech and parts line first: 1-888-866-5797. It is printed in the manual. Give them UPC 193175448170 and ask for the replacement backing pad for item 56367. Whether they have one is not confirmed; the manual warns some parts are not sold separately.
 
-If they do not, the replacement is a 6 in. (150 mm) plate made for a long-throw, mounted with an M8 bolt. One backup is the ShineMate Heavy Duty plate, M8 thread with the M8 bolt included. Its fit and its 6 in. price are not confirmed. One 56367 owner reported swapping in a Maxshine plate, and another said a Griot's BOSS 21 plate looks nearly identical. Those are reports, not checks. Compare the new plate's hub to the old one before you bolt it on.
+If they do not, the replacement is a 6 in. (150 mm) plate made for a long-throw, mounted with an M8 bolt. One backup is the ShineMate Heavy Duty 6 in. plate. Its seller says M8 thread with an M8 bolt included, and lists it at $23.05, out of stock on 2026-10-11. Its fit on the 56367 is not confirmed: the 56367 plate mounts with a Spindle Bolt through a center hole, so compare the new plate's hub to the old one before you bolt it on.
+
+Two plates from the forums are not backups. The Maxshine one owner swapped in was a 5 in. plate, the downsize you never do, and he never said how it ran. A Griot's BOSS G21 looked similar to another owner, but nobody reported fitting one. And Buff and Shine's own 600Y plate has 5/16 in.-24 threads, the wrong thread for the 56367.
 
 Never go smaller to stop a vibration. Long-throw machines are counterweighted for 5 or 6 in. plates. A 3 in. plate causes violent vibration and can wear out the bearings.
 

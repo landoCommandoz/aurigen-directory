@@ -4,6 +4,7 @@ title: Buff and Shine Uro-Tec maroon pad, 6 in.
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "3.2"
 tags: [pad, polishing pad, maroon, uro-tec, cut]
 synonyms:
@@ -15,33 +16,85 @@ synonyms:
   - more cut pad
   - the maroon
   - compound pad
+  - medium cut pad
 sources:
-  - label: Detailed Image Uro-Tec listing
-    date: 2026-10-02
-    note: Beveled design makes the working face about 1 in. larger than the backing
+  - label: Buff and Shine product page, 672CR 6 in. maroon Uro-Tec
+    url: https://buffandshine.com/products/672cr-6-maroon-uro-tec-foam-pad-medium-cut
+    date: 2026-10-11
+    note: Maroon is medium cut, the workhorse of the line, for one-step compound and polish combinations. Same spec table as the 634CR yellow, so a 6 in. back and a 7 in. face, 1 in. foam. Fact-checker FC-54, FC-66, FC-67, FC-68.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Buff and Shine product page, 634CR 6 in. yellow Uro-Tec (spec table)
+    url: https://buffandshine.com/products/634cr-6-yellow-uro-tec-foam-pad-polishing
+    date: 2026-10-11
+    note: Pad size 6 in., loop 6 in., face 7 in., foam 1 in. Orbits 8, 15, and 21 mm. Pairs with the 600Y plate, which has 5/16 in.-24 threads. Fact-checker FC-54.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: BAUER 56367 owner's manual, 2021
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-11
+    note: Max accessory diameter 6 in. (150 mm). Fact-checker FC-54.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Buff and Shine FAQ and buffing tips
+    url: https://buffandshine.com/pages/faqs
+    date: 2026-10-11
+    note: Warm or cold water, never hot. Air-dry flat. Never put pads in the dryer. Never place a pad face down on any surface. Fact-checker FC-70.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 specs:
   - label: On hand
     value: x2
     status: house
   - label: Job
-    value: Heavier polishing and more cut. Rung 2 with M210, rung 3 with Ultimate Compound.
+    value: Rung 2 with M210, rung 3 with Ultimate Compound.
     status: house
     kbRef: "8.5"
-  - label: Working face
-    value: The beveled design makes it about 1 in. larger than the backing.
+  - label: Buff and Shine
+    value: Medium cut. More cut than the yellow.
     status: sourced
   - label: Thickness
-    value: Not confirmed. One note said about 5/8 in.; a Detailed Image listing says 1 in. Measure the pads.
+    value: The foam is 1 in. thick. That is Buff and Shine's spec.
+    status: sourced
+  - label: Face and back
+    value: The face is 1 in. wider than the back. The 6 in. pad has a 6 in. back and a 7 in. face.
+    status: sourced
+  - label: Size names
+    value: Buff and Shine names Uro-Tec pads by the size of the back. Some stores sell the 5 in.-back pad, which has a 6 in. face, as a 6 in. pad.
+    status: sourced
+  - label: Largest pad, the 56367 manual
+    value: The Bauer manual says the largest accessory is 6 in. (150 mm).
+    status: sourced
+  - label: Orbit
+    value: Rated for orbits up to 21 mm. That covers the polisher's 20 mm throw.
+    status: sourced
+  - label: Your pads
+    value: Measure the hook-and-loop back and the face. A model number of 534 or 572 means a 5 in. back. 634 or 672 means a 6 in. back.
     status: verify
+  - label: Which size goes on the 56367 (pending)
+    value: Lando decides which Uro-Tec size goes on the 56367.
+    status: verify
+  - label: Plate warning
+    value: Do not buy Buff and Shine's 600Y plate for the 56367. It has 5/16 in.-24 threads. The 56367 uses M8.
+    status: sourced
 checks:
   - text: One pad per liquid. A maroon that touched compound never touches polish.
     status: house
   - text: Blow out or brush it after every square.
     status: house
-  - text: Same night, wash it in warm water, not hot, with a drop of laundry detergent. Dried compound in a pad is a dead pad.
+  - text: Same night, wash it with a drop of laundry detergent. Dried compound in a pad is a dead pad.
     status: house
+  - text: Warm water, never hot. Never put it in the dryer. Buff and Shine says so.
+    status: sourced
+  - text: House rule. Press the water out, never wring, and dry it face down on a rack.
+    status: house
+  - text: Buff and Shine says air-dry it flat, and never place a pad face down on any surface.
+    status: sourced
+  - text: Lando decides how pads dry (pending).
+    status: verify
 related:
   - card-pad-ladder
   - equipment-pad-urotec-yellow
+  - equipment-backing-plate
   - product-meguiars-ultimate-compound
   - product-meguiars-m210

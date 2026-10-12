@@ -25,6 +25,10 @@ sources:
   - label: Knowledge base 2, 8.3, 18.1, 18.2, and 21
     date: 2026-10-07
     note: Shade, cool panels, no wind for polishing and protection; the hand-on-panel test. Below about 50 F, garage it or move the date (tagged verify against labels). Utah winter, sell interiors and maintenance washes, not corrections.
+  - label: Meguiar's FAQ on its own forum, temperature ranges
+    url: https://www.meguiarsonline.com/forum/information-station/hot-topics-frequently-asked-questions/3180-what-temperature-ranges-are-best-for-applying-cleaners-polishes-and-waxes
+    date: 2026-10-11
+    note: Best surface temperature is about 60 to 80 F. Products work within a broader range, about 50 to 90 F. Surface and air temperature can differ by 10 to 50 degrees. Read through the search index; the forum now redirects to meguiars.com. Supporting only, not a label. Fact-checker FC-51. No label gives a number.
 stopIf:
   - Sun on the panel. No polishing and no protection in the sun.
   - Wind. No polishing and no protection in the wind.
@@ -52,7 +56,9 @@ stillHappening:
   - "The panel heats up while you polish: open the panel too hot fix."
   - "Utah winter: sell interiors and maintenance washes, not corrections."
 notes:
-  - text: Cold-weather limits for M210, Ultimate Compound, and Hybrid Ceramic Wax are not checked against the labels yet.
+  - text: Cold-weather limits for M210, Ultimate Compound, and Hybrid Ceramic Wax are not on any label the fact-checker could read. Read the backs of the bottles.
+    status: verify
+  - text: A Meguiar's FAQ says its products work from about 50 to 90 F surface temperature, and best at 60 to 80 F. Panel and air temperature can differ a lot.
     status: verify
   - Drop-off at home has shade, power, water, and the compressor.
   - Plastic bumpers heat fast. Lighter pressure, lower speed, shorter time.

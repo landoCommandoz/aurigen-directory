@@ -8,6 +8,8 @@ prerequisites:
   - skill-l4-machine-polishing
 gates: []
 ownerChecks:
+  - text: "Who may run power tools, the polisher included: Lando decides (pending)."
+    status: verify
   - Tapes a 2 x 2 ft square on the worst panel and splits it with tape.
   - Starts at rung 1, yellow + M210, and climbs one rung at a time.
   - Wipes, mists with IPA, and checks with the light before each next rung.

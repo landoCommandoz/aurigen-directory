@@ -7,8 +7,9 @@ order: 3
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "10"
-tags: [interior, wipe, dress, dash, screens, headliner, leather]
+tags: [interior, wipe, dress, dash, screens, headliner, leather, tesla]
 synonyms:
   - wipe the dash
   - interior wipe
@@ -22,18 +23,38 @@ synonyms:
   - dress the plastics
   - leather seats
   - overspray on the glass
+sources:
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Interior, no solvents (including alcohol), hand sanitizer, bleach, citrus, naphtha, or silicone-based products. Seats, warm water and mild soap on a soft cloth, then wipe dry; anything more than soap can be too harsh; no conditioners or protectants; never spray the seat directly. Interior lights, no soap or chemical cleaners. Touchscreen, a soft lint-free display cloth; no glass cleaner, no hand sanitizer, no wet wipes, no dry statically-charged cloth such as a recently washed microfiber; Screen Clean Mode under Controls, Display. Read directly. Fact-checker FC-36 and FC-37.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Verification log FC-75
+    date: 2026-10-11
+    note: Meguiar's own page for Quik Interior Detailer could not be read. Retail copies of its label claim it is safe on screens; not confirmed. Spraying the towel is house and stricter than the label.
 steps:
   - Spray Meguiar's Quik Interior Detailer on the towel, never on the panel.
   - Wipe the hard surfaces top down.
   - Wipe the screens with a dry microfiber, or a screen-safe cleaner only.
+  - text: Quik Interior Detailer is not confirmed screen-safe by Meguiar's. Do not count it as a screen cleaner.
+    status: verify
+  - text: "On a Tesla, Tesla's manual says turn on Screen Clean Mode (Controls > Display > Screen Clean Mode) and use a soft lint-free cloth made for displays. No cleaners, no hand sanitizer, no wet wipes, and no dry statically-charged cloth such as a recently washed microfiber."
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending). This covers the touchscreen.
+    status: verify
   - Blot the headliner with a barely damp towel.
   - Clean the steering wheel and the pedals.
   - Dry the steering wheel and the pedals until there is zero slick.
   - Dress the plastics matte.
   - Check the dash. Nothing shiny. If it looks wet, you used too much.
   - text: "Leather: cleaner, then conditioner."
-    status: house
+    status: verify
   - text: Which leather cleaner and conditioner Lando owns is not confirmed yet (pending).
+    status: verify
+  - text: On a Tesla, Tesla's manual says no solvents (including alcohol), hand sanitizer, bleach, citrus, naphtha, or silicone-based products on interior parts. Seats get warm water and mild soap on a microfiber, then a dry wipe. No conditioners or protectants. Never spray the seat directly.
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending). This covers the interior wipe and the leather steps.
     status: verify
 numbers:
   - label: Interior wipe in a full detail
@@ -53,6 +74,17 @@ numbers:
     status: verify
   - label: Screen-safe cleaner
     value: No product named in the kit yet (pending)
+    status: verify
+  - label: Touchscreen, Tesla's manual
+    value: On a Tesla, Screen Clean Mode on, a soft lint-free display cloth, no cleaners, and never a dry statically-charged cloth such as a freshly washed microfiber.
+    status: sourced
+    kbRef: "11"
+  - label: Interior and seats, Tesla's manual
+    value: On a Tesla, no alcohol, citrus, bleach, naphtha, or silicone-based products inside. Seats get warm water and mild soap only. No conditioners. Interior lights get warm water only.
+    status: sourced
+    kbRef: "11"
+  - label: On a Tesla, screens, wipe, and leather
+    value: Lando decides how this applies to Teslas (pending).
     status: verify
   - label: Armor All Original protectant
     value: On the never list. It stays in the garage.
@@ -97,7 +129,15 @@ A shiny dash glares in the windshield. The driver sees the dash reflected in the
 
 ## Why the screens get almost nothing
 
-Screens get a dry microfiber or a screen-safe cleaner only. The knowledge base does not name a screen-safe product in the kit yet, so that row carries an unverified badge.
+Screens get a dry microfiber or a screen-safe cleaner only. The knowledge base does not name a screen-safe product in the kit yet, so that row carries an unverified badge. Quik Interior Detailer is not confirmed screen-safe by Meguiar's, so it does not count.
+
+## Teslas: the manual is stricter
+
+Tesla's manual is stricter than the house steps, and Lando decides how it applies to Teslas. Until he does, both lines show.
+
+- Touchscreen: turn on Screen Clean Mode, then a soft lint-free cloth made for displays. No cleaners of any kind, and no dry statically-charged cloth such as a freshly washed microfiber, which is the house tool.
+- Interior parts: no alcohol, citrus, bleach, naphtha, hand sanitizer, or silicone-based products. Nobody has checked what Quik Interior Detailer contains.
+- Seats: warm water and mild soap on a microfiber, then a dry wipe. No conditioners or protectants, and never spray the seat directly.
 
 ## Why the headliner gets blotted
 

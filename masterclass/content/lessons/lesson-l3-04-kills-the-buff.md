@@ -7,6 +7,7 @@ order: 4
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "7.4"
 tags: [walkaround, quote, wrap, ppf, ceramic coating, matte, walk away]
 synonyms:
@@ -27,6 +28,19 @@ sources:
   - label: Lando
     date: 2026-10-10
     note: Insurance status unknown. The insurance walk-away line stays internal with an unverified badge (BLUEPRINT section 12 item 7)
+  - label: State Auto risk-control bulletin TB-F41, garage operations and care, custody, and control (2012)
+    url: https://sacom-l3.stateauto.com/uploadedfiles/Content/pdfs/TB-F41-1112-NW%20Garage%20Operations%20and%20Care-Custody-Control.pdf
+    date: 2026-10-11
+    note: Garagekeepers insurance does not protect you if you damage a vehicle through your own work on it. One insurer, 2012. Lando's own policy wording governs. Fact-checker FC-104.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Verification log FC-86
+    date: 2026-10-11
+    note: Matte paint and Harley Denim care stays house. Harley's care chart lists a Denim paint cleaner, and a licensed vendor says gloss polish or wax adds unwanted shine to matte. Exact do-not-wax wording was not found.
+  - label: Meguiar's product page, Ultimate Compound G17216
+    url: https://www.meguiars.com/products/automotive/paint/meguiars-ultimate-compound-g17216-152oz
+    date: 2026-10-11
+    note: Not for use on flat, matte, or satin finishes. Read through the search index. Verification log FC-43.
 steps:
   - "Check for vinyl wrap: seams at the edges, no clear shine inside the jamb."
   - "Check for paint protection film: clear edges on the hood, fenders, and mirrors, seen at an angle."
@@ -85,6 +99,14 @@ numbers:
     value: Any car worth more than your insurance covers
     status: verify
     kbRef: "7.4"
+  - label: Insurance and your own work
+    value: One insurer says garagekeepers coverage does not pay when you damage a car through your own work on it. Polishing through the clear coat may not be covered.
+    status: sourced
+    kbRef: "19"
+  - label: Is polishing damage covered (pending)
+    value: Not known. Ask the agent in writing whether polishing damage is covered and what would cover it. Lando decides after the answer.
+    status: verify
+    kbRef: "19"
 mistakes:
   - Quoting before you run the 8 checks.
   - Polishing a ceramic coated car without saying first that polishing removes the coating.
@@ -137,6 +159,8 @@ Five cars you turn down:
 5. Any car worth more than your insurance covers.
 
 The fifth line carries an unverified badge. Lando's insurance status for customer vehicles is not confirmed, so the line stays internal until it is.
+
+One more thing about insurance. Garagekeepers coverage is the kind that covers customer cars in your care, but one insurer says it does not pay when you damage a car through your own work on it. Going through the clear coat with a polisher may not be covered. Nobody should assume polishing damage is insured until the agent answers in writing.
 
 ## Why walking away is part of the job
 

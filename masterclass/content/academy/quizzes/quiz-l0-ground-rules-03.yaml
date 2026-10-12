@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "13.2"
 tags:
   - setup
@@ -21,7 +22,7 @@ synonyms:
   - level 0 sign off quiz
 prompt: End of the day. You have wash towels, polish-removal towels, and two towels that wiped the wheels. How do they go?
 choices:
-  - One load. Hot water cleans it all.
+  - One load. The washer cleans it all.
   - "Three piles: water-only, product, and wheels."
   - "Two piles: wheel towels with the water-only."
   - "Two piles: product towels with the water-only."

@@ -7,6 +7,7 @@ order: 8
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "8.5"
 tags: [polish, test spot, ladder, compound, pads, level 4]
 synonyms:
@@ -32,8 +33,26 @@ sources:
   - label: Tesla Model Y owner's manual, cleaning cautions, current model
     url: https://www.tesla.com/ownersmanual/modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
     date: 2026-10-10
-    note: Do not use cutting pastes, color restoration compounds, or polishes containing harsh abrasives; they can scour the surface and permanently damage the paint. Damage or discoloration from cleaning products is not covered by the warranty. Seen on the 2025 and newer Model Y manual and other Tesla manuals; the 2020 to 2024 page could not be checked line by line. Read through the search index. Fact-checker FC-16.
+    note: Do not use cutting pastes, color restoration compounds, or polishes containing harsh abrasives; they can scour the surface and permanently damage the paint. Damage or discoloration from cleaning products is not covered by the warranty. Read through the search index. Fact-checker FC-16.
     confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: The cutting paste and warranty cautions are in this manual too, so they cover a 2022 Model Y. Read directly. Fact-checker FC-38.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Buff and Shine product page, 672CR 6 in. maroon Uro-Tec
+    url: https://buffandshine.com/products/672cr-6-maroon-uro-tec-foam-pad-medium-cut
+    date: 2026-10-11
+    note: Maroon is medium cut, the workhorse of the line. Fact-checker FC-66.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Buff and Shine product page, 634CR 6 in. yellow Uro-Tec
+    url: https://buffandshine.com/products/634cr-6-yellow-uro-tec-foam-pad-polishing
+    date: 2026-10-11
+    note: Yellow is the standard polishing pad in the line. Fact-checker FC-65.
+    confirmedOn: 2026-10-11
     confirmedBy: fact-checker
   - label: Meguiar's product page, Ultimate Compound G17216, 15.2 oz
     url: https://www.meguiars.com/products/automotive/paint/meguiars-ultimate-compound-g17216-152oz
@@ -41,6 +60,9 @@ sources:
     note: Safe by hand or dual action polisher. Clear coat safe. No pad type or speed number. Read through the search index. Fact-checker FC-11 and FC-12.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: Verification log FC-107
+    date: 2026-10-11
+    note: The Utah Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending).
 steps:
   - Pick the worst panel on the car.
   - Check that panel's readings and its band.
@@ -80,6 +102,10 @@ numbers:
   - label: Rung 2
     value: Still swirled? Maroon + M210 on the same square.
     kbRef: "8.5"
+  - label: The pads, Buff and Shine
+    value: Yellow is the standard polishing pad. Maroon is medium cut, more cut than the yellow.
+    status: sourced
+    kbRef: "3.2"
   - label: Rung 3
     value: Still swirled, and the panel reads 100 µm or more? Maroon + Ultimate Compound, 3 to 4 sets. Wipe with its own towel.
     kbRef: "8.5"
@@ -129,6 +155,10 @@ numbers:
   - label: Rule 2
     value: No two-step correction is sold until 25 cars are logged.
     kbRef: "2"
+  - label: Who may run power tools (pending)
+    value: Lando decides.
+    status: verify
+    kbRef: "19"
 mistakes:
   - Skipping the test spot. Rule 4 says every car gets one.
   - Testing on an easy panel instead of the worst one.
@@ -188,7 +218,7 @@ Tape a 2 x 2 ft square on the worst panel. Split it with tape so you can compare
 
 Rung 1 is yellow + M210. Run the square the way lesson 7 taught you. Wipe, mist with IPA, wipe clean, and check with the light. Swirls gone? That is the combo for the whole car. That is a one-step. Stop climbing.
 
-Rung 2 is maroon + M210 on the same square. The maroon has more cut than the yellow. Wipe, IPA, light.
+Rung 2 is maroon + M210 on the same square. Buff and Shine calls the maroon a medium-cut pad, with more cut than the yellow polishing pad. Wipe, IPA, light.
 
 Rung 3 is only for a panel that is still swirled and reads 100 µm or more. Maroon + Ultimate Compound, 3 to 4 sets. Wipe the compound off with its own towel. Then always follow with yellow + M210 to clear the compound haze. Every compounded square gets both passes. Never ship a compounded panel without the yellow + M210 pass.
 

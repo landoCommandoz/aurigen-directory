@@ -5,23 +5,31 @@
  */
 import { useNavigate } from 'react-router';
 import { Button, Row, RowList } from '../../components/ui';
-import { getItemsByType } from '../../core/content';
+import { getItemsByType, useContent, type LoadableShard } from '../../core/content';
+import { useCustomerView } from '../../core/customerView';
 import { UnverifiedBadge } from '../search/contentViews';
+import { contentBusy, ContentWaitBody } from '../shared/ContentWait';
 import { Actions, Screen, Section, StatusLine } from '../settings/ui/Screen';
 import { BRANCH_LABELS, sopsByStage } from './academyModel';
 import './academy.css';
 
+const SOP_LIST_CONTENT: readonly LoadableShard[] = ['sop'];
+
 export function SopList() {
   const navigate = useNavigate();
-  const groups = sopsByStage(getItemsByType('sop'));
+  const cv = useCustomerView();
+  const content = useContent(SOP_LIST_CONTENT, cv.ready);
+  const groups = content.ready ? sopsByStage(getItemsByType('sop')) : [];
   return (
     <Screen
       title="Procedures"
       eyebrow="Academy"
       back={{ to: '/academy', label: 'Academy' }}
+      busy={contentBusy(content)}
       lede="Every stage of a job, step by step. The Job Runner runs them with timers in Phase 3."
     >
-      {groups.length === 0 ? <StatusLine>No procedures in this build yet.</StatusLine> : null}
+      {!content.ready ? <ContentWaitBody content={content} /> : null}
+      {content.ready && groups.length === 0 ? <StatusLine>No procedures in this build yet.</StatusLine> : null}
       {groups.map((group, index) => (
         <Section key={group.stage} title={group.label} index={index + 1}>
           <RowList label={group.label}>

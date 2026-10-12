@@ -7,6 +7,7 @@ vehicleBranch: any
 audience: [owner, crew]
 visibility: internal
 status: sourced
+version: 2
 kbRef: "9.1"
 plannedMinutes: 30
 tags: [protect, ceramic wax, spray wax, drying aid, protection]
@@ -32,6 +33,9 @@ sources:
     note: Two coats recommended. Apply on the wet car, dry, re-wet, and repeat. The next-day timing is a house choice. Fact-checker FC-05.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: Verification log FC-49
+    date: 2026-10-11
+    note: Applying it on the wet car is Meguiar's method. No Meguiar's page says it prevents water spots, so the drying-aid claim stays unconfirmed.
 steps:
   - text: Check for shade, cool panels, and no wind.
     timer: { kind: stage, seconds: 1800 }
@@ -40,6 +44,9 @@ steps:
       - Protect the same day you polish. Fresh polished paint is bare.
   - text: Start with the car wet.
     status: sourced
+    notes:
+      - text: The house also counts it as a drying aid against hard water spots. Meguiar's does not say it prevents water spots.
+        status: verify
   - text: Spray Hybrid Ceramic Wax onto the wet paint.
     status: sourced
     panelRoute: wax

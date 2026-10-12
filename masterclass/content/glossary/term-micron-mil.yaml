@@ -2,11 +2,12 @@ id: term-micron-mil
 type: glossaryterm
 title: Microns (µm) and mils
 term: µm and mil
-definition: The units for paint thickness. This app and your gauge use microns (µm). 1 mil = 25.4 µm.
+definition: The units for paint thickness. This app and your gauge use microns (µm). 1 mil = 25.4 µm. Factory paint is usually about 100 to 180 µm in total.
 alsoCalled: [micron, microns, mil, mils, um]
 audience: [owner, ops, crew]
 visibility: internal
-status: house
+status: sourced
+version: 2
 kbRef: "0"
 tags: [gauge, units, thickness]
 synonyms:
@@ -17,6 +18,13 @@ synonyms:
   - um
   - convert mils
   - units
+sources:
+  - label: DeFelsko, automotive paint detailing
+    url: https://www.defelsko.com/resources/automotive-paint-detailing
+    date: 2026-10-11
+    note: Most factory paint jobs run 4 to 7 mils (100 to 180 microns). Fact-checker FC-72.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 related:
   - card-thickness-bands
   - equipment-rd-tc100

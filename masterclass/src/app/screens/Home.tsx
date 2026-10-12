@@ -9,7 +9,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Banner, Row, RowList, Tile, TileGrid } from '../../components/ui';
-import { getItemsByType } from '../../core/content';
+import { contentCount } from '../../core/content';
 import { Internal, useCustomerView } from '../../core/customerView';
 import { useSettings } from '../../core/settingsStore';
 import { SearchBox } from '../../features/search';
@@ -19,9 +19,10 @@ import { ModeSwitch } from '../ModeSwitch';
 import { config } from '../config';
 import { Block, Page } from './Page';
 
+/** From the content summary, which is in the app code: Home never waits for a content shard (DEF-17). */
 function countOf(type: 'quickcard' | 'fixnode' | 'lesson'): number {
   try {
-    return getItemsByType(type).length;
+    return contentCount(type);
   } catch {
     return 0;
   }

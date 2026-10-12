@@ -11,10 +11,11 @@
  */
 import { useNavigate, useParams } from 'react-router';
 import { Button, Row, StopBand } from '../../components/ui';
-import { getItem } from '../../core/content';
+import { getItem, useContent, type LoadableShard } from '../../core/content';
 import { useCustomerView } from '../../core/customerView';
 import type { SopItem, SopStepValue } from '../../schemas';
 import { badgeFor, LineBadge, LinesList, UnverifiedBadge } from '../search/contentViews';
+import { ContentWait } from '../shared/ContentWait';
 import { Markdown } from '../shared/Markdown';
 import { ReadAloud } from '../shared/ReadAloud';
 import { RelatedList } from '../shared/RelatedList';
@@ -24,6 +25,8 @@ import { BRANCH_LABELS, sopSpeechText, STAGE_LABELS, timerWords, visibleSteps } 
 import './academy.css';
 
 const BACK = { to: '/sops', label: 'All procedures' };
+/** The procedures, the Quick Cards their steps open, and the catalog for the Related list. */
+const SOP_CONTENT: readonly LoadableShard[] = ['sop', 'quickcard', 'catalog'];
 
 function StepCard({ step, sop }: { step: SopStepValue; sop: SopItem }) {
   const navigate = useNavigate();
@@ -91,8 +94,10 @@ export function SopPage() {
   const { id = '' } = useParams();
   const navigate = useNavigate();
   const cv = useCustomerView();
+  const content = useContent(SOP_CONTENT, cv.ready);
 
-  if (!cv.ready) return <Screen title="Procedure" back={BACK} />;
+  if (!cv.ready) return <ContentWait title="Procedure" back={BACK} />;
+  if (!content.ready) return <ContentWait title="Procedure" back={BACK} content={content} />;
   const found = getItem(id, { customerView: cv.on });
   const sop = found?.type === 'sop' ? found : undefined;
   if (sop === undefined) {

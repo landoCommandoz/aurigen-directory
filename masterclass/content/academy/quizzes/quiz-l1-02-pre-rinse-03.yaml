@@ -6,7 +6,8 @@ audience:
   - owner
   - crew
 visibility: internal
-status: house
+status: sourced
+version: 2
 kbRef: "5.1"
 tags:
   - pre-rinse
@@ -17,14 +18,21 @@ synonyms:
   - rinse questions
   - bug and tar quiz
   - how long do I rinse test
+sources:
+  - label: Meguiar's UK article, Heavy Duty Bug & Tar Remover
+    url: https://www.meguiars.co.uk/showroom/introducing-meguiars-heavy-duty-bug-tar-remover/
+    date: 2026-10-11
+    note: Spray it on, let it soften the contaminants, then hose it off or wash over it. Works without scrubbing. Gives no dwell time, so the one-minute dwell is unconfirmed. Fact-checker FC-44 and FC-45.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 prompt: Bugs on the front bumper of a car that is not a Tesla. You foam Bug & Tar on them. What next?
 choices:
   - Scrub it off right away with a towel.
-  - Dwell one minute, then wash it off.
-  - Let it dry on, then rinse it off.
-  - Leave it 10 minutes to soften.
+  - Let it soften, then hose or wash it off.
+  - Work it in with the soft wheel brush.
+  - Wipe it off dry with a drying towel.
 correctIndex: 1
-explanation: One-minute dwell, then wash it off. No scrubbing.
+explanation: Meguiar's says spray it on, let it soften the bugs and tar, then hose it off or wash over it. No scrubbing. How long to wait is not confirmed by a label yet, so read your can. The can wins.
 scenario: true
 related:
   - lesson-l1-02-pre-rinse

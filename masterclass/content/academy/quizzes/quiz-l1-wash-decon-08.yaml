@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: sourced
+version: 2
 kbRef: "4"
 tags:
   - wash
@@ -22,14 +23,17 @@ sources:
   - label: Meguiar's specialist, maintenance wash ratio (knowledge base 4)
     date: 2026-10-06
     note: Meguiar's soaps about 1 oz per gallon. Super Soap at 2 oz per gallon when you want it stronger.
+  - label: Verification log FC-79
+    date: 2026-10-11
+    note: Not reconfirmed. No Meguiar's label ratio was found for Super Soap or Ultimate Wash & Wax. Read the bottles for the exact name, item number, size, and ratio.
 prompt: A monthly customer is in for a maintenance wash. No polish today. What goes in the bucket?
 choices:
   - Citrus Wash & Gloss at strip strength.
   - A few drops of dish soap.
   - Spic and Span, mixed weak.
-  - A Meguiar's soap, about 1 oz per gallon.
+  - A Meguiar's soap, the maintenance mix.
 correctIndex: 3
-explanation: The strip-strength bucket is for cars that get polished. A maintenance wash uses a Meguiar's soap at about 1 oz per gallon, per a Meguiar's specialist.
+explanation: The strip-strength bucket is for cars that get polished. A maintenance wash uses a Meguiar's soap at about 1 oz per gallon, per a Meguiar's specialist. Read your bottle too. The bottle wins.
 scenario: true
 related:
   - lesson-l1-06-full-wash

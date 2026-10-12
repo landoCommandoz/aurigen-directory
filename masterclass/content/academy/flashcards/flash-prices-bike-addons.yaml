@@ -8,6 +8,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "12.2"
 tags:
   - prices
@@ -18,7 +19,14 @@ synonyms:
   - helmet price
   - price flashcard
   - menu price card
+sources:
+  - label: Harley-Davidson 2023 Street Glide (US) specifications
+    url: https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2023/flhx/specifications_flhx_us.pdf
+    date: 2026-10-11
+    note: Primary drive chain, final drive belt. The footnote says all models feature a carbon fiber belt final drive. The 2024 sheet says the same. How the chain add-on applies to belt bikes is Lando's decision (pending). Fact-checker FC-85.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 front: What are the bike add-on prices?
-back: Chain clean and lube $25. Helmet $20. Heavy chrome pitting quoted on sight.
+back: "Chain clean and lube $25, on a chain-drive bike. Check the final drive first: Harley touring bikes use a belt. Helmet $20. Heavy chrome pitting quoted on sight."
 related:
   - card-bike-rules

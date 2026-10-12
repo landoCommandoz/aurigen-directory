@@ -4,6 +4,7 @@ title: Black finishing and wax pad
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "3.2"
 tags: [pad, finishing pad, wax pad, black]
 synonyms:
@@ -17,10 +18,16 @@ sources:
   - label: Lando
     date: 2026-10-10
     note: One black pad on hand; black is a wax and finishing pad only and never appears in the ladder
+  - label: Verification log FC-69
+    date: 2026-10-11
+    note: Unconfirmed. The brand is not recorded. Buff and Shine's black Uro-Tec (620CR) is its softest pad, for fine finishing and applying protection, with the same spec table as the yellow. That only applies if this pad is a Uro-Tec.
 specs:
   - label: On hand
     value: One
     status: house
+  - label: Brand
+    value: Not recorded. Lando confirms whether it is a Buff and Shine Uro-Tec black (pending). If it is, the size check on the yellow and maroon pads applies to it too.
+    status: verify
   - label: Job
     value: Finishing and wax or sealant application only.
     status: house

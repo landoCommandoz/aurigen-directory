@@ -24,7 +24,7 @@ sayIt:
 sources:
   - label: Knowledge base 9.1, Hybrid Ceramic Wax
     date: 2026-10-06
-    note: Streaks or high spots get 2 to 3 sprays on a clean damp towel and a re-wipe. The section is tagged sourced 2026-10-06 with reconfirm label. The fact-checker reconfirmed the main method only (FC-04), not this streak line.
+    note: Streaks or high spots get 2 to 3 sprays on a clean damp towel and a re-wipe. The section is tagged sourced 2026-10-06 with reconfirm label. The fact-checker reconfirmed the main method only (FC-04). On 2026-10-11 it found no Meguiar's source for the streak line; the UK product page and launch article say nothing about streaks or high spots (FC-50).
   - label: Knowledge base 2, rule 6
     date: 2026-10-07
     note: Shade, cool panels, no wind for polishing and protection. The panel must be cool enough to hold your hand on.

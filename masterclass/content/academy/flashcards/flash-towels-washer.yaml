@@ -1,26 +1,36 @@
 id: flash-towels-washer
 type: flashcard
-title: Washer settings
+title: Towel washer basics
 deck: towels-pads
 audience:
   - owner
   - crew
 visibility: internal
-status: sourced
+status: verify
+version: 3
 kbRef: "13.3"
 tags:
-  - towels-pads
+  - towels
   - flashcard
 synonyms:
-  - hot or cold wash
-  - towel laundry
-  - towel flashcard
-  - laundry card
+  - washer temperature
+  - hot or warm water for towels
+  - towel detergent
+  - towels and pads card
+  - how do I wash the towels
 sources:
   - label: Washer temperature (knowledge base 13.3)
     date: 2026-10-07
-    note: Hot water for the product piles; Meguiar's washes its own polishing cloths hot. Warm is fine for the water-only pile.
-front: What water and detergent for microfiber?
-back: Hot for the product piles; warm is fine for the water-only pile. Dye-free, fragrance-free detergent, full cycle, extra rinse.
+    note: Warm is fine for the water-only pile. Dye-free, fragrance-free detergent. Full cycle, extra rinse. The product-pile water line is left off this card (FC-88, conflicting).
+  - label: The Rag Company, use and care tips
+    url: https://www.theragcompany.com/use-and-care-tips
+    date: 2026-10-11
+    note: Choose warm or cold water. Avoid hot water and sanitize cycles. Low heat or no heat only. A towel maker's own guidance; Lando's towel brand is not recorded. Fact-checker FC-88 conflicts with the house hot wash for the product pile, so the shop setup lesson and fix-76 carry that line, not this card.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+front: Microfiber towels in the washer. What detergent and cycle, and what water for the water-only pile?
+back: Follow the care tag on your towels. Water-only pile, warm is fine. Every pile, dye-free, fragrance-free detergent, full cycle, extra rinse. Water for the product pile is in the shop setup lesson.
 related:
   - lesson-l0-06-shop-setup
+  - equipment-microfiber-towels
+  - fix-76

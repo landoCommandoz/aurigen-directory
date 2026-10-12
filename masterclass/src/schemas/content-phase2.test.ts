@@ -1,7 +1,8 @@
 /**
  * Phase 2 contract readiness (architect, 2026-10-11). Each Phase 2 need is written the way a content
  * file would hold it and parsed, so the field-by-field answer in the architect's report is executable.
- * Covers the three additive fields: SopStep.notes, Drill.passMark, SignOffCriteria.ownerChecks and status.
+ * Covers the additive fields: SopStep.notes, Drill.passMark, SignOffCriteria.ownerChecks and status,
+ * and Product.notes (2026-10-12, DEF-20).
  */
 import { describe, expect, it } from 'vitest';
 import {
@@ -9,6 +10,7 @@ import {
   Drill,
   FixNode,
   Lesson,
+  Product,
   QuizQuestion,
   SOP,
   SignOffCriteria,
@@ -111,6 +113,38 @@ describe('SopStep.notes (added 2026-10-11)', () => {
   it('keeps a verify note out of Customer View', () => {
     const item = ContentItem.parse(sop([{ text: 'Rinse', notes: [{ text: 'Pending', status: 'verify' }] }], { visibility: 'customer-safe' }));
     expect(customerRenderProblems(item).some((p) => p.includes('notes[0] has its own status verify'))).toBe(true);
+  });
+});
+
+describe('Product.notes (added 2026-10-12, DEF-20)', () => {
+  const product = (extra: Record<string, unknown> = {}) =>
+    base('product-armor-all-extreme-wheel-tire', 'product', {
+      brand: 'Armor All',
+      tags: ['tesla'],
+      jobs: ['Wheels and tires, first in the wash'],
+      ...extra,
+    });
+
+  it('defaults to no notes, so every existing product file still parses', () => {
+    expect(Product.parse(product()).notes).toEqual([]);
+  });
+
+  it('holds the house line, the maker line, and the pending row, each with its own status', () => {
+    const parsed = Product.parse(product({ status: 'verify', notes: threeRows, sources: [teslaSource] }));
+    expect(parsed.notes.map((n) => (typeof n === 'string' ? 'plain' : n.status))).toEqual(['house', 'sourced', 'verify']);
+    expect(parsed.labelNotes).toBeUndefined();
+  });
+
+  it('still refuses an unknown key, so a typo never drops the rows silently', () => {
+    expect(Product.safeParse(product({ note: threeRows })).success).toBe(false);
+    expect(Product.safeParse(product({ notes: [{ text: 'Pending', status: 'pending' }] })).success).toBe(false);
+  });
+
+  it('keeps a verify note out of Customer View even on a house product', () => {
+    const item = ContentItem.parse(product({ visibility: 'customer-safe', notes: threeRows, sources: [teslaSource] }));
+    const problems = customerRenderProblems(item);
+    expect(problems.some((p) => p.includes('notes[2] has its own status verify'))).toBe(true);
+    expect(problems.some((p) => p.includes('notes[1] is marked sourced but the item has no confirmed source'))).toBe(true);
   });
 });
 

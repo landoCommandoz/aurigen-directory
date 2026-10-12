@@ -7,6 +7,7 @@ order: 3
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "3.4"
 tags: [never, garage only, wash bucket, products, tools, level 0]
 synonyms:
@@ -28,8 +29,20 @@ sources:
   - label: Tesla Model Y owner's manual, cleaning cautions, current model
     url: https://www.tesla.com/ownersmanual/modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
     date: 2026-10-10
-    note: No cutting pastes, color restoration compounds, or harsh-abrasive polishes. Cleaning-product damage is not covered by the warranty. Seen on the 2025 and newer Model Y manual and other Tesla manuals; the 2020 to 2024 page could not be checked line by line. Read through the search index. Fact-checker FC-16.
+    note: No cutting pastes, color restoration compounds, or harsh-abrasive polishes. Cleaning-product damage is not covered by the warranty. Read through the search index. Fact-checker FC-16.
     confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: The FC-16 cautions are in this manual too, so they cover a 2022 Model Y. Page 178, camera lenses, spray water; on older builds never wipe the lens with a hand or a cloth; no chemical-based or abrasive cleaners. Read directly. Fact-checker FC-33 and FC-38.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: D.I.D chain maintenance, Dec 1, 2022
+    url: https://didchain.com/blogs/news/d-i-d-chain-maintenance
+    date: 2026-10-11
+    note: O-ring safe cleaner and O-ring safe lube. Never steam, thinner, gasoline, benzene, or a wire brush. Fact-checker FC-84.
+    confirmedOn: 2026-10-11
     confirmedBy: fact-checker
 steps:
   - Check the cart before a job starts.
@@ -39,7 +52,12 @@ steps:
   - Read the label on any product you have not used before. The label on the bottle beats this app.
   - Put nothing slick on the car until the paint is polished. No tire shine, no trim dressing, no wax before correction.
   - On a bike, no tire shine. Ever.
-  - On a Tesla, use glass cleaner only on the camera lenses.
+  - text: On a Tesla, house rule. Camera lenses get glass cleaner only.
+    status: house
+  - text: On a Tesla, Tesla's manual says spray water on the lens, never use chemical-based or abrasive cleaners on it, and on older cars never wipe it.
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending).
+    status: verify
   - On a Tesla, never polish the roof. It is glass.
 numbers:
   - label: Never on customer paint, 1
@@ -83,7 +101,11 @@ numbers:
     status: verify
     kbRef: "12.1"
   - label: On a bike, the chain
-    value: Chain-specific cleaner and chain lube only. Household degreaser strips the O-rings.
+    value: An O-ring safe chain cleaner and an O-ring safe chain lube only. Never gasoline, thinner, steam, a pressure washer, or a wire brush.
+    status: sourced
+    kbRef: "12.1"
+  - label: On a bike, the chain, house example
+    value: Household degreaser strips the O-rings.
     kbRef: "12.1"
   - label: Matte or satin paint, any vehicle
     value: No compound, no polish, no wax. Matte-safe cleaner only.
@@ -108,6 +130,13 @@ numbers:
     kbRef: "11"
   - label: Warranty, Tesla's manual
     value: On a Tesla, Tesla's manual says damage or discoloration from cleaning products is not covered by the warranty.
+    status: sourced
+    kbRef: "11"
+  - label: Camera lenses, the house step
+    value: On a Tesla, glass cleaner only.
+    kbRef: "11"
+  - label: Camera lenses, Tesla's manual
+    value: On a Tesla, spray water on the lens. Never use chemical-based or abrasive cleaners on a lens. On a 2020 to 2024 Model Y built before about late May 2023 in Fremont or Austin, never wipe the lens with a hand or a cloth.
     status: sourced
     kbRef: "11"
   - label: On a Tesla
@@ -177,7 +206,7 @@ No tire shine, no trim dressing, and no wax goes on the car until the paint is p
 
 ## Bikes have their own list
 
-No tire shine on a motorcycle, ever. Not the sidewall, not near it. Nothing slick on the brake rotors, grips, pegs, or seat. The windshield is plastic: no alcohol, no glass cleaner, no compound, no clay. Which cleaner is safe on it is not confirmed yet. The chain gets chain cleaner and chain lube only, because household degreaser strips the O-rings. Matte paint, like Harley Denim, gets no compound, no polish, and no wax.
+No tire shine on a motorcycle, ever. Not the sidewall, not near it. Nothing slick on the brake rotors, grips, pegs, or seat. The windshield is plastic: no alcohol, no glass cleaner, no compound, no clay. Which cleaner is safe on it is not confirmed yet. The chain gets an O-ring safe chain cleaner and an O-ring safe chain lube only. Never gasoline, thinner, steam, a pressure washer, or a wire brush, because the wrong solvent ruins the chain's seals. Household degreaser strips the O-rings. Matte paint, like Harley Denim, gets no compound, no polish, and no wax.
 
 ## Teslas: the house steps and Tesla's manual disagree
 
@@ -189,4 +218,6 @@ It says do not use cutting pastes, color restoration compounds, or polishes with
 
 It also says damage or discoloration from cleaning products is not covered by Tesla's warranty.
 
-Lando decides how this applies to Teslas. Until he does, none of the three is settled on a Tesla, and each one shows as pending. What is settled: the camera lenses get glass cleaner only, and the glass roof is washed, never polished.
+Camera lenses are a fourth. The house says glass cleaner only. Tesla's manual says spray water on the lens and never use chemical-based or abrasive cleaners on it, and on older cars never wipe it at all.
+
+Lando decides how this applies to Teslas. Until he does, none of these is settled on a Tesla, and each one shows as pending. What is settled: the glass roof is washed, never polished. These Tesla lines are in the manual for the 2020 to 2024 Model Y, Lando's own car.

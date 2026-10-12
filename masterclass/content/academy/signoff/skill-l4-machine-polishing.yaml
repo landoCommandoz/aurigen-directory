@@ -9,6 +9,8 @@ prerequisites:
 gates:
   - polish-stage
 ownerChecks:
+  - text: "Who may run power tools, the polisher included: Lando decides (pending)."
+    status: verify
   - text: "Runs the unplugged checks, then the 56367 manual's test run: highest speed, at least 30 seconds, off the car."
     status: sourced
   - text: Stops and sets the tool aside on any abnormal noise or vibration, as the 56367 manual says.
@@ -17,6 +19,12 @@ ownerChecks:
   - Mists a dry pad lightly, and never soaks it.
   - Puts the pad flat on the paint before the trigger, and lets go of the trigger before the lift.
   - Spreads at speed 1 to 2 across the whole square.
+  - text: "Grip, the house way: two hands, loose grip, guide, don't push."
+    status: house
+  - text: The 56367 manual says keep a firm grip with both hands to resist starting torque.
+    status: sourced
+  - text: Lando decides the grip wording (pending).
+    status: verify
   - text: Works at the house speed, speed 4, with the house pressure, about 10 lb, and floats the last set.
     status: house
   - text: The 56367 manual says only use slower speeds for polishing.

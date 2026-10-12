@@ -118,6 +118,16 @@ export const Product = Base.extend({
   neverFor: z.array(z.string().min(1)).default([]),
   /** On the never-on-customer-paint list (knowledge base 3.4). */
   neverOnPaint: z.boolean().default(false),
+  /**
+   * Rows that are not a job, a limit, or the label's words (added 2026-10-12, DEF-20), each with its
+   * own optional status: a house line, a maker's line beside it (sourced), and a decision Lando has
+   * not made (verify), as on Teslas (FC-16). Same name and rule as FixNode.notes and SopStep.notes.
+   */
+  notes: z.array(Line).default([]),
+  /**
+   * The label's own words, one paragraph, carrying the item's status. A house line, a maker's line
+   * that disagrees with it, or a pending decision goes in `notes`, never here.
+   */
   labelNotes: z.string().min(1).optional(),
 });
 export type ProductItem = z.infer<typeof Product>;

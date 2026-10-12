@@ -7,6 +7,7 @@ order: 3
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "5.2"
 tags: [wash, contact wash, towels, bucket, hose, level 1]
 synonyms:
@@ -30,6 +31,15 @@ sources:
   - label: Knowledge base 4, maintenance wash bucket
     date: 2026-10-06
     note: Meguiar's soaps about 1 oz per gallon, per a Meguiar's specialist. Super Soap at 2 oz per gallon when you want it stronger.
+  - label: Verification log FC-79
+    date: 2026-10-11
+    note: Not reconfirmed. No Meguiar's label ratio was found for Super Soap or Ultimate Wash & Wax, and no 16 oz Super Soap was found. Read the bottles for the exact name, size, and ratio.
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Avoid tight-napped or rough cloths, such as washing mitts. A high-quality microfiber cleaning cloth is recommended. Hand wash with a clean soft cloth. Read directly. Fact-checker FC-34.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 steps:
   - Mix the bucket for the job. The pre-polish mix before a polish, the maintenance mix on a maintenance wash.
   - Fold 16 microfiber towels in quarters.
@@ -62,6 +72,10 @@ numbers:
     value: Meguiar's soaps about 1 oz per gallon, per a Meguiar's specialist. Super Soap at 2 oz per gallon when you want it stronger.
     status: sourced
     kbRef: "4"
+  - label: Maintenance bucket, your bottle
+    value: No Meguiar's label ratio was found on recheck. Read your bottle. The bottle wins.
+    status: verify
+    kbRef: "4"
   - label: Never in the wash bucket
     value: Ultimate Wash & Wax before polishing, dish soap, Spic and Span, wheel brushes, the clay mitt
     kbRef: "4"
@@ -77,6 +91,13 @@ numbers:
   - label: New mitt
     value: Break it in with soapy water on the windshield for a minute or two.
     kbRef: "5.2"
+  - label: Mitts, Tesla's manual
+    value: On a Tesla, Tesla's manual says avoid tight-napped or rough cloths, such as washing mitts, and recommends a high-quality microfiber cloth.
+    status: sourced
+    kbRef: "11"
+  - label: On a Tesla, the two-bucket mitt wash
+    value: Lando decides how this applies to Teslas (pending). The towel method already fits Tesla's line.
+    status: verify
 mistakes:
   - Dipping a used towel back in the bucket.
   - Wiping in circles.
@@ -127,13 +148,15 @@ Utah water spots when it dries on paint. Keep the whole car wet the entire time.
 
 Before a polish, the bucket is 4 gal water and 4 oz CG Citrus Wash & Gloss. That is 1 oz per gallon, the house strip strength, because polishing follows. Chemical Guys says 1 oz per 5-gal bucket for a regular wash. Its strip figure reads as about 3 oz per 5-gal bucket, but that number is not confirmed until Lando reads the strip line on his 64 oz bottle. The house ratio stays the same either way.
 
-On a maintenance wash, Meguiar's soaps run about 1 oz per gallon, per a Meguiar's specialist. Super Soap goes to 2 oz per gallon when you want it stronger.
+On a maintenance wash, Meguiar's soaps run about 1 oz per gallon, per a Meguiar's specialist. Super Soap goes to 2 oz per gallon when you want it stronger. A recheck found no Meguiar's label that prints those numbers, so read your bottle. The bottle wins.
 
 Ultimate Wash & Wax is for maintenance washes only, never before a polish. Dish soap, Spic and Span, wheel brushes, and the clay mitt never go in the wash bucket.
 
 ## The two-bucket alternative
 
 The two-bucket mitt wash is still allowed as the alternative: a mitt and two grit guards, rinse the mitt after every panel, and a dropped mitt is done for the day. Break a new mitt in with soapy water on the windshield for a minute or two.
+
+On a Tesla, that alternative is not settled. Tesla's manual says avoid tight-napped or rough cloths, such as washing mitts, and recommends a high-quality microfiber cloth. The towel method already fits that line. Lando decides how the mitt applies to Teslas.
 
 ## Teslas
 

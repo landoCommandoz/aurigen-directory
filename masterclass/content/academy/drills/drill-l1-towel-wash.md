@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "5.2"
 tags:
   - wash
@@ -23,6 +24,9 @@ sources:
   - label: Meguiar's specialist, maintenance wash ratio (knowledge base 4)
     date: 2026-10-06
     note: Meguiar's soaps about 1 oz per gallon. Super Soap at 2 oz per gallon when you want it stronger.
+  - label: Verification log FC-79
+    date: 2026-10-11
+    note: Not reconfirmed. No Meguiar's label ratio was found for Super Soap or Ultimate Wash & Wax. Read the bottles for the exact name, item number, size, and ratio.
 needs:
   - 16 microfiber towels folded in quarters
   - The bucket, mixed for the job
@@ -33,6 +37,8 @@ instructions:
   - "Mix the bucket for the job. Before a polish: 4 gal water + 4 oz CG Citrus Wash & Gloss."
   - text: "On a maintenance wash: a Meguiar's soap at about 1 oz per gallon."
     status: sourced
+  - text: No Meguiar's label ratio was found on recheck. Read your bottle. The bottle wins.
+    status: verify
   - Put all 16 towels in the bucket.
   - Start the timer.
   - Wash roof to rockers, one panel at a time.

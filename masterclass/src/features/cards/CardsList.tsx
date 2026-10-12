@@ -4,11 +4,12 @@
  */
 import { useNavigate } from 'react-router';
 import { Row, RowList } from '../../components/ui';
-import { contentStatus, getItemsByType } from '../../core/content';
+import { contentStatus, getItemsByType, useContent, type LoadableShard } from '../../core/content';
 import { Internal, useCustomerView } from '../../core/customerView';
 import type { QuickCardItem } from '../../schemas';
 import { UnverifiedBadge } from '../search/contentViews';
 import { SearchBox } from '../search/SearchBox';
+import { contentBusy, ContentWaitBody } from '../shared/ContentWait';
 import { Screen, Section, StatusLine } from '../settings/ui/Screen';
 import { groupCards } from './cardModel';
 import './cards.css';
@@ -42,8 +43,11 @@ function CardGroups({ cards, customerView }: { cards: readonly QuickCardItem[]; 
   );
 }
 
+const CARDS_CONTENT: readonly LoadableShard[] = ['quickcard'];
+
 export function CardsList() {
   const cv = useCustomerView();
+  const content = useContent(CARDS_CONTENT, cv.ready);
   const status = contentStatus();
   const all = getItemsByType('quickcard');
   const safe = getItemsByType('quickcard', { customerView: true });
@@ -51,6 +55,8 @@ export function CardsList() {
   let body;
   if (!cv.ready) {
     body = <StatusLine>Loading</StatusLine>;
+  } else if (cv.on && !content.ready) {
+    body = <ContentWaitBody content={content} />;
   } else if (cv.on) {
     body = safe.length > 0 ? <CardGroups cards={safe} customerView /> : <StatusLine>No cards to show here yet.</StatusLine>;
   } else {
@@ -59,15 +65,21 @@ export function CardsList() {
         <Section index={1}>
           <SearchBox label="Search the cards and more" />
         </Section>
-        {!status.built ? <StatusLine tone="warning">{status.problem ?? 'The content is missing from this build.'}</StatusLine> : null}
-        {all.length === 0 && status.built ? <StatusLine>No Quick Cards in this build yet.</StatusLine> : null}
-        <CardGroups cards={all} customerView={false} />
+        {!content.ready ? (
+          <ContentWaitBody content={content} />
+        ) : (
+          <>
+            {!status.built ? <StatusLine tone="warning">{status.problem ?? 'The content is missing from this build.'}</StatusLine> : null}
+            {all.length === 0 && status.built ? <StatusLine>No Quick Cards in this build yet.</StatusLine> : null}
+            <CardGroups cards={all} customerView={false} />
+          </>
+        )}
       </Internal>
     );
   }
 
   return (
-    <Screen title="Quick Cards" back={{ to: '/', label: 'Home' }} internal={false} lede={cv.ready && !cv.on ? 'Mixes, settings, and rules, one tap from the cart.' : undefined}>
+    <Screen title="Quick Cards" back={{ to: '/', label: 'Home' }} internal={false} busy={!cv.ready || contentBusy(content)} lede={cv.ready && !cv.on ? 'Mixes, settings, and rules, one tap from the cart.' : undefined}>
       {body}
     </Screen>
   );

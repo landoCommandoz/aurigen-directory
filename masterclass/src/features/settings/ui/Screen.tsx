@@ -27,6 +27,8 @@ export interface ScreenProps {
   /** Internal screens render a plain notice instead of their content in Customer View. */
   internal?: boolean;
   className?: string;
+  /** Still loading what it draws (aria-busy on the main region, as the shell's Opening frame does). */
+  busy?: boolean;
 }
 
 /** The load moment: pass the block's position (0, 1, 2 ...). Capped by the motion tokens. */
@@ -34,7 +36,7 @@ export function rise(index: number): CSSProperties {
   return { '--i': String(index) } as CSSProperties;
 }
 
-export function Screen({ title, eyebrow, back, lede, children, internal = true, className }: ScreenProps) {
+export function Screen({ title, eyebrow, back, lede, children, internal = true, className, busy = false }: ScreenProps) {
   const navigate = useNavigate();
   const body = (
     <>
@@ -50,7 +52,7 @@ export function Screen({ title, eyebrow, back, lede, children, internal = true, 
     </>
   );
   return (
-    <main className={['mc-screen', className].filter(Boolean).join(' ')}>
+    <main className={['mc-screen', className].filter(Boolean).join(' ')} aria-busy={busy ? true : undefined}>
       {internal ? <InternalNotice>{body}</InternalNotice> : body}
     </main>
   );

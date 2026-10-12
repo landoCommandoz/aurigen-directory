@@ -47,9 +47,30 @@ sources:
     note: Tech line on every page, UPC 193175448170 for parts, some parts not sold separately (FC-20). Spindle bolt with a hex wrench, counterclockwise to remove, do not overtighten, spindle lock under the auxiliary handle (FC-21). The 30-second test run and abnormal vibration (FC-24).
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: AutoGeek forum, BAUER 56367 non-standard backing plate thread
+    url: https://www.autogeekonline.net/forum/auto-detailing-tools-and-accessories/126678-new-bauer-hf-56367-long-throw-polisher-non-standard-backing-plate.html
+    date: 2026-10-11
+    note: The owner's Maxshine swap was a 125 mm (5 in.) plate, and he did not say how it ran. Another owner said a Griot's BOSS G21 plate looks very similar; nobody reported fitting one. Forum. Fact-checker FC-57.
+  - label: Retail listing, Maxshine MSDABP6
+    date: 2026-10-11
+    note: Maxshine's standard 6 in. DA plate is listed with a 5/16 in. thread, not M8. Retailer only; no Maxshine maker page found. Fact-checker FC-57.
+  - label: Parks Car Care, ShineMate Backing Plate DA Heavy Duty
+    url: https://parkscarcare.net/products/shinemate-5-backing-plate-da-heavy-duty
+    date: 2026-10-11
+    note: The 6 in. is $23.05, the same as the 5 in., and was out of stock on 2026-10-11. Seller copy says a standard M8 female thread, an M8 male mounting bolt included, and fits most 5 to 6 in. long-throws. The seller is a source for its price only, not for fit. Fact-checker FC-58 and FC-59.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Buff and Shine 634CR Uro-Tec pad and 600Y plate
+    url: https://buffandshine.com/products/634cr-6-yellow-uro-tec-foam-pad-polishing
+    date: 2026-10-11
+    note: The 6 in. pad has a 6 in. loop back and a 7 in. face and pairs with the 600Y plate. The 600Y is listed with 5/16 in.-24 threads. Loaded directly. Fact-checker FC-54.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 stopIf:
   - Abnormal vibration. Stop use now.
   - Do not buy HF item 64913 for the 56367. It is 5/16 in.-24 thread and does not fit.
+  - text: Do not buy Buff and Shine's 600Y plate for the 56367. It has 5/16 in.-24 threads. The 56367 uses M8.
+    status: sourced
   - Never downsize to a 3 in. plate to stop vibration. It causes violent vibration and can wear out the bearings.
 checks:
   - Unplug it first.
@@ -77,12 +98,22 @@ stillHappening:
   - "Still abnormal noise or vibration on the test run: do not polish. Get it fixed before further use."
   - text: HF may not sell the plate. The manual says some parts are not sold separately.
     status: sourced
-  - text: "Backup plates: ShineMate Heavy Duty (M8 thread, M8 bolt included). Owners report a Maxshine plate, and a Griot's BOSS 21 plate that looks nearly identical. Fit and the 6 in. price are not confirmed. Check before you buy."
+  - text: "Backup plate: ShineMate Heavy Duty 6 in. The seller says M8 thread with an M8 bolt included. Fit on the 56367 is not confirmed. Check before you buy."
     status: verify
+  - text: The ShineMate 6 in. was $23.05 at Parks Car Care on 2026-10-11, the same as the 5 in. It was out of stock.
+    status: sourced
+  - text: The seller describes a female M8 thread plus an M8 bolt. The 56367 plate mounts with a spindle bolt through a center hole. Compare the hub to the stock plate before you bolt it on.
+    status: verify
+  - text: "Not backups: the forum Maxshine swap was a 5 in. plate, the downsize this fix forbids. A retailer lists Maxshine's standard 6 in. plate with 5/16 in. threads. Nobody reported fitting a Griot's BOSS G21 plate."
+    status: sourced
 notes:
   - "The right plate: 6 in. (150 mm), made for a long-throw, mounted with an M8 bolt. The thread is M8 x 1.25."
   - Long-throw machines are counterweighted for 5 or 6 in. plates.
-  - text: Whether HF has the replacement plate in stock is not confirmed.
+  - text: Whether HF can supply the replacement plate is not confirmed. Only a call to the parts line settles it.
+    status: verify
+  - text: Buff and Shine's 6 in. Uro-Tec has a 6 in. back and a 7 in. face. Its 5 in. pad has a 5 in. back and a 6 in. face.
+    status: sourced
+  - text: "Which Uro-Tec size goes on the 56367: Lando decides (pending)."
     status: verify
 lessonId: lesson-l4-06-pad-care-backing-plate
 equipmentIds:

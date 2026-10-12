@@ -4,6 +4,7 @@ title: Shop vac with attachments
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "10"
 tags: [interior, vacuum]
 synonyms:
@@ -13,11 +14,17 @@ synonyms:
   - vacuum the car
   - wet dry vac
   - shopvac
+sources:
+  - label: Verification log FC-107
+    date: 2026-10-11
+    note: The Utah Labor Commission says minors may not work in hazardous occupations, including operating power equipment. Whether a shop vac counts is not settled. DJ's age is not recorded. Who may run power tools is Lando's decision (pending).
 checks:
   - Knock it down from the top first. Headliner, vents, seams, seat rails.
   - Vacuum top down. Seats, under the seats, carpet, trunk.
   - Slide the seats forward, then back.
   - Start the vacuum during the clay dwell to work the dwell.
+  - text: Who may run power tools is for Lando to decide (pending).
+    status: verify
 related:
   - equipment-dremel-versa
   - equipment-analan-rubber-tool

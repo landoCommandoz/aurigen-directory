@@ -7,6 +7,7 @@ vehicleBranch: any
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "8.3"
 plannedMinutes: 150
 tags: [polish, machine, one-step, square, speed, pressure, sets]
@@ -36,6 +37,15 @@ sources:
     note: Page 7, the 30-second test run. Page 8, only use slower speeds for polishing, and keep pressure off of the tool so the foam pad lightly contacts the surface. Pages 3 and 10, abnormal noise or vibration. Fact-checker FC-22, FC-23, and FC-24.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: BAUER 56367 owner's manual, 2021, rechecked
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-11
+    note: Keep a firm grip on the tool with both hands to resist starting torque. GFCI supply in damp places. A W-A cord outdoors. Keep electrical connections off the ground. Add the amps when one cord runs more than one tool. Fact-checker FC-55 and FC-56.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Verification log FC-107
+    date: 2026-10-11
+    note: The Utah Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending).
 steps:
   - text: Check for shade, a cool panel, and no wind.
     stopIf: Sun, wind, or a panel too hot to hold your hand on. Do not polish.
@@ -49,7 +59,15 @@ steps:
   - text: "Test run it off the car: pad mounted, plug it in, highest speed, at least 30 seconds."
     status: sourced
     stopIf: Abnormal noise or vibration. Stop. Get it fixed before further use.
+    notes:
+      - text: Who may run power tools is for Lando to decide (pending).
+        status: verify
   - text: Run the cord over your shoulder.
+    notes:
+      - text: Outdoors, use a cord marked W-A. Near water, plug into a GFCI outlet. Keep plug connections off the wet ground. One cord, one tool.
+        status: sourced
+      - text: 12-gauge cord, 50 ft max. That is stricter than the manual's cord table.
+        status: sourced
   - text: Tape the panel into 2 x 2 ft squares. One square at a time.
     panelRoute: polish
   - text: Put on the pad the test spot picked, with its polish.
@@ -68,6 +86,14 @@ steps:
   - text: "New pad only: add 3 to 4 pea-size drops."
   - text: "Every square after that: 1 to 2 drops, not a full dose."
   - text: Set the dial to speed 1 to 2.
+  - text: Hold the polisher with two hands.
+    notes:
+      - text: "House: loose grip. Guide it, don't push."
+        status: house
+      - text: The 56367 manual says keep a firm grip with both hands to resist starting torque, and keep pressure off the tool.
+        status: sourced
+      - text: Lando decides the grip wording (pending).
+        status: verify
   - text: Set the pad flat on the paint before you pull the trigger.
     timer: { kind: section, seconds: 240 }
     notes:
@@ -157,6 +183,10 @@ One 2 x 2 ft square at a time, with the combo the test spot picked. Keep the pad
 Prime a new pad once. After that, 1 to 2 drops per square: the pad is already charged. If the polish looks dry and you cannot finish the square, mist the pad with water. Never a full dose, and never wipe and re-apply between passes. Wipe once, at the end of the sets.
 
 Speed and pressure are not settled. The house setting is speed 4 and about 10 lb. Harbor Freight's product page says speeds 4 to 6 for polishing. The 56367 manual says only use slower speeds for polishing and keep pressure off the tool. Lando decides which applies, and every place that shows speed or pressure shows all of it.
+
+Grip is not settled either. The house says loose grip, guide it, don't push. The manual says a firm grip with both hands, so the tool cannot twist away when it starts. Both agree on two hands and no pushing down.
+
+Power: outdoors, a W-A cord. Near water, a GFCI outlet. Plug connections stay off the wet ground. Who may run the polisher is Lando's call.
 
 Paint color on the pad means stop: you are through the clear. Old single-stage paint is the only exception.
 

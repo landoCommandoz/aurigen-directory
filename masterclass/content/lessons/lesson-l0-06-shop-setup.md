@@ -7,6 +7,7 @@ order: 6
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "18.3"
 tags: [setup, staging, cart, close down, laundry, towels, level 0]
 synonyms:
@@ -24,6 +25,19 @@ sources:
   - label: Knowledge base 13.3, washer temperature
     date: 2026-10-07
     note: Hot water for the product piles; Meguiar's washes its own polishing cloths hot. Warm is fine for the water-only pile.
+  - label: The Rag Company use and care tips
+    url: https://www.theragcompany.com/use-and-care-tips
+    date: 2026-10-11
+    note: Warm or cold water; avoid hot water and sanitize cycles. Low heat or no heat only. A towel maker's own guide, not Lando's towel brand. Fact-checker FC-88.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tooele City Code, sections 4-11-11 and 9-4-16
+    url: https://www.tooelecity.gov/government/city_code.php
+    date: 2026-10-11
+    note: 4-11-11, unlawful to let water from a source you control run onto the surface of a sidewalk. 9-4-16, in a declared water shortage the mayor can restrict washing automobiles. These apply only inside Tooele City. Verification log FC-93.
+  - label: Verification log FC-90, FC-92, FC-99
+    date: 2026-10-11
+    note: The hose and pressure washer water figures are unconfirmed; other figures suggest a hose uses far more than double. Dumping buckets in a sink or toilet is a house rule; no city rule is cited for it. Whether the home shop fits city or county home business rules is not settled.
 steps:
   - The night before, mix or measure the wash bucket.
   - Count the towels into piles.
@@ -39,7 +53,11 @@ steps:
   - "At close-down, sort the towels into three piles: water-only, product, and wheels."
   - Soak the product pile 1 hour in warm soapy water before it goes in the washer.
   - text: Wash the product piles in hot water. Warm is fine for the water-only pile.
+    status: house
+  - text: The Rag Company, a towel maker, says warm or cold water, never hot.
     status: sourced
+  - text: Follow the care tag on your towels. Lando decides hot or warm (pending).
+    status: verify
   - Wash the wheel towels in their own load.
   - Wash towels with wax residue at least twice.
   - Use dye-free, fragrance-free detergent, a full cycle, and an extra rinse.
@@ -76,21 +94,38 @@ numbers:
   - label: Wax-residue towels
     value: At least two washes
     kbRef: "13.2"
-  - label: Washer water
+  - label: Washer water, house
     value: Hot for the product piles. Warm is fine for the water-only pile.
-    status: sourced
     kbRef: "13.3"
+  - label: Washer water, a towel maker
+    value: The Rag Company says warm or cold, never hot.
+    status: sourced
+  - label: Washer water (pending)
+    value: Follow the care tag on your towels. Lando decides hot or warm.
+    status: verify
   - label: Dryer
-    value: Low, or air dry. Dryer heat is what melts microfiber, not the washer.
+    value: Low, or air dry. Dryer heat is what melts microfiber.
     kbRef: "13.3"
   - label: Water a wash uses
-    value: A hose uses roughly double a pressure washer. A full wash off a pressure washer runs about 25 to 35 gallons.
+    value: The house note says a hose uses roughly double a pressure washer, and a pressure-washer wash runs about 25 to 35 gallons. Not confirmed. Other figures suggest a hose uses far more than double.
     status: verify
     kbRef: "5.5"
-  - label: Tooele City runoff answer
-    value: Not in yet. Lando calls once and writes the answer down (pending).
+  - label: Runoff answer (pending)
+    value: Not in yet. Lando calls the city or county once and writes the answer down.
     status: verify
     kbRef: "5.5"
+  - label: Inside Tooele City limits, sidewalks
+    value: City Code 4-11-11 says do not let water from anything you control run onto a sidewalk.
+    status: sourced
+    kbRef: "5.5"
+  - label: Inside Tooele City limits, water shortage
+    value: During a declared water shortage, the mayor can restrict car washing (City Code 9-4-16).
+    status: sourced
+    kbRef: "5.5"
+  - label: Where the shop may work (pending)
+    value: Not settled. Whether the home is inside Tooele City, and what its home business rules allow, is for Lando to find out and decide.
+    status: verify
+    kbRef: "18.1"
 mistakes:
   - Leaving setup for the morning of the job.
   - Spreading the kit around the driveway so you walk for every tool.
@@ -146,16 +181,18 @@ Close-down starts with towels. They go in three piles, and the piles never mix.
 
 Water-only: wash and drying towels. Warm water is fine.
 
-Product: anything that touched polish, compound, IPA, or ceramic wax. Soak it 1 hour in warm soapy water first, then wash it hot. Hot water lifts the greasy residue, and Meguiar's washes its own polishing cloths hot. Towels with wax residue get at least two washes.
+Product: anything that touched polish, compound, IPA, or ceramic wax. Soak it 1 hour in warm soapy water first, then the house washes it hot, because hot water lifts the greasy residue. Towels with wax residue get at least two washes.
+
+Hot or warm is not settled. The Rag Company, a towel maker, says warm or cold, never hot. Follow the care tag on your towels until Lando decides.
 
 Wheels: their own load, and they are wheel towels for good. A wheel towel that sneaks back into the paint pile carries wheel grime onto paint.
 
 ## How microfiber dies
 
-Microfiber dies three ways: softener, heat, and cotton. Never use fabric softener, dryer sheets, or bleach, and empty the softener cup on a shared washer. Dry on low or air dry, because dryer heat is what melts microfiber, not the washer. Wash microfiber only, never with cotton or terry. Use dye-free, fragrance-free detergent, a full cycle, and an extra rinse.
+Microfiber dies three ways: softener, heat, and cotton. Never use fabric softener, dryer sheets, or bleach, and empty the softener cup on a shared washer. Dry on low or air dry, because dryer heat is what melts microfiber. Wash microfiber only, never with cotton or terry. Use dye-free, fragrance-free detergent, a full cycle, and an extra rinse.
 
 ## Everything else
 
 Pads get washed the same night, before polish dries in. Dried compound in a pad is a dead pad. Level 4 teaches the pad wash.
 
-Clay goes back in its case. Buckets get dumped in a sink or a toilet, never the street, and wash water stays out of the storm drains. Lando still needs to call Tooele City once about runoff and write the answer down. The compressor gets drained the way its own manual says, which is not checked yet.
+Clay goes back in its case. Buckets get dumped in a sink or a toilet, never the street, and wash water stays out of the storm drains. That is a house rule. Lando still needs to call the city or county once about runoff and write the answer down. If the shop is inside Tooele City limits, the city code also says no water running onto the sidewalk. The compressor gets drained the way its own manual says, which is not checked yet.

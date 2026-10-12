@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "8.3"
 tags:
   - pressure
@@ -24,6 +25,12 @@ sources:
     url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
     date: 2026-10-10
     note: Only use slower speeds for polishing (slower is not defined). Keep pressure off of the tool; the foam pad should lightly contact the surface. Fact-checker FC-22 and FC-23, conflicting with the house settings; Lando decides.
+  - label: BAUER 56367 owner's manual, 2021, rechecked
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-11
+    note: General power tool safety, maintain a firm grip on the tool with both hands to resist starting torque. Operation, keep pressure off of the tool; the foam pad should lightly contact the polishing surface. Fact-checker FC-55, conflicting with the house loose grip; Lando decides.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 needs:
   - A bathroom scale on a flat, solid surface
   - The polisher, unplugged, with a pad on it
@@ -31,7 +38,13 @@ needs:
 instructions:
   - Unplug the polisher.
   - Set the pad flat on the scale.
-  - Put both hands on the machine, with a loose grip.
+  - Put both hands on the machine.
+  - text: "House grip: two hands, loose grip, guide, don't push."
+    status: house
+  - text: The 56367 manual says keep a firm grip with both hands to resist starting torque, and keep pressure off the tool.
+    status: sourced
+  - text: Lando decides the grip wording (pending). Both lines agree on two hands.
+    status: verify
   - Press until the scale reads about 10 lb.
   - Start the timer and hold it there for 30 seconds.
   - Ease off until the scale shows only the machine's own weight. That is the float for the last set.

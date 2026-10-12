@@ -7,9 +7,11 @@
  */
 import { Navigate, useNavigate, useParams } from 'react-router';
 import { Button } from '../../components/ui';
-import { getItem } from '../../core/content';
+import { getItem, useContent, type LoadableShard } from '../../core/content';
+import { typeOfId } from '../../core/contentShards';
 import { useCustomerView } from '../../core/customerView';
 import { pageRoute, PAGE_BASE } from '../shared/contentRoutes';
+import { ContentWait } from '../shared/ContentWait';
 import { RelatedList } from '../shared/RelatedList';
 import { SourcesList } from '../shared/SourcesList';
 import { Actions, Screen, Section, StatusLine } from '../settings/ui/Screen';
@@ -41,8 +43,14 @@ export function ItemPage() {
   const { id = '' } = useParams();
   const navigate = useNavigate();
   const cv = useCustomerView();
+  // The id names its type (every id starts with its type's prefix), so only that shard loads,
+  // plus the catalog for the Related list. An id with no known prefix is simply not found.
+  const type = typeOfId(id);
+  const needs: readonly LoadableShard[] = type === undefined ? [] : [type, 'catalog'];
+  const content = useContent(needs, cv.ready);
 
-  if (!cv.ready) return <Screen title="Opening" back={BACK} />;
+  if (!cv.ready) return <ContentWait title="Opening" back={BACK} />;
+  if (!content.ready) return <ContentWait title="Opening" back={BACK} content={content} />;
   const item = getItem(id, { customerView: cv.on });
   if (item === undefined) return <Missing />;
 

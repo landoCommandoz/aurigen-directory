@@ -7,6 +7,7 @@ order: 2
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "5.1"
 tags: [pre-rinse, rinse, bugs, tar, pre-soak, wash, level 1]
 synonyms:
@@ -30,8 +31,32 @@ sources:
   - label: Tesla Model Y owner's manual, wheel cleaner and pre-wash caution
     url: https://www.tesla.com/ownersmanual/modely/en_ae/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
     date: 2026-10-10
-    note: No chemical-based wheel cleaners or pre-wash products. Same wording in the Model 3, S, X, and Cybertruck manuals; the 2020 to 2024 Model Y page could not be checked line by line. Read through the search index. Fact-checker FC-16.
+    note: No chemical-based wheel cleaners or pre-wash products. Same wording in the Model 3, S, X, and Cybertruck manuals. Read through the search index. Fact-checker FC-16.
     confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: The pre-wash caution is in the 2020 to 2024 manual too. Cautions for exterior cleaning, do not aim water hoses directly at windows, door or hood seals, electronic modules, or exposed cabling; do not wash in direct sunlight. Read directly. Fact-checker FC-35 and FC-38.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2025 and newer owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Page 200. The same Car Wash Mode path, Controls > Service > Car Wash Mode. Read directly. Fact-checker FC-39.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Chemical Guys, what happens if you don't wash your car
+    url: https://www.chemicalguys.com/blogs/exterior-how-tos/what-happens-if-you-dont-wash-your-car
+    date: 2026-10-11
+    note: Tree sap, bug splatter, and bird droppings contain acids that quickly etch into clear coats. Fact-checker FC-114.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Meguiar's UK article, Heavy Duty Bug & Tar Remover
+    url: https://www.meguiars.co.uk/showroom/introducing-meguiars-heavy-duty-bug-tar-remover/
+    date: 2026-10-11
+    note: Spray it on, let it soften the contaminants, then hose it off or wash over it. Works without scrubbing. Gives no dwell time, so the one-minute dwell is unconfirmed. Fact-checker FC-44 and FC-45.
+    confirmedOn: 2026-10-11
     confirmedBy: fact-checker
   - label: Chemical Guys product page, Citrus Wash & Gloss
     url: https://www.chemicalguys.com/products/citrus-wash-and-gloss-concentrated-ultra-premium-hyper-wash-and-gloss
@@ -49,11 +74,17 @@ steps:
   - On a Tesla, turn on Car Wash Mode before any water.
   - Set the hose nozzle to jet.
   - Rinse top down for 3 to 4 minutes.
+  - text: On a Tesla, Tesla's manual says do not aim a hose directly at windows, door or hood seals, electronic modules, or exposed cabling, and do not wash in direct sunlight.
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending).
+    status: verify
   - Give extra rinse to the bumpers, the rockers, and behind the wheels.
   - Touch nothing to the paint until the pre-rinse is done.
   - Foam Bug & Tar on the bugs and the rocker tar.
-  - Let it dwell one minute.
-  - Wash it off. Do not scrub.
+  - text: Let it sit about one minute so it softens the bugs and tar. No label confirms that time. Read the can.
+    status: verify
+  - text: Wash it off or hose it off. Do not scrub.
+    status: sourced
   - Still caked after the rinse? Rinse longer. Never scrub harder.
 numbers:
   - label: Pre-rinse
@@ -63,19 +94,34 @@ numbers:
     value: Bumpers, rockers, and behind the wheels
     kbRef: "5.1"
   - label: Bug & Tar
-    value: Foam on bugs and rocker tar. One-minute dwell, then wash it off. No scrubbing.
+    value: Foam on bugs and rocker tar. Let it soften them, then wash or hose it off. No scrubbing.
+    status: sourced
+    kbRef: "5.1"
+  - label: Why bugs come off early
+    value: Chemical Guys says bug splatter and bird droppings carry acids that quickly etch the clear coat.
+    status: sourced
+  - label: Bug & Tar wait
+    value: About one minute, a house number. No label confirms it. Read the can; the can wins.
+    status: verify
     kbRef: "5.1"
   - label: Time plan, full detail
     value: Pre-rinse and bugs, 10 min
     kbRef: "17.2"
-  - label: Car Wash Mode, 2020 to 2024 Model Y
-    value: "Controls > Service > Car Wash Mode. Parked and not charging."
+  - label: Car Wash Mode, Model Y
+    value: "Controls > Service > Car Wash Mode. Parked and not charging. Same path on the 2020 to 2024 and the 2025 and newer Model Y."
     status: sourced
     kbRef: "11"
-  - label: Car Wash Mode, other years and models
+  - label: Car Wash Mode, Model S, Model X, and Cybertruck
     value: Menu path not checked.
     status: verify
     kbRef: "11"
+  - label: Pre-rinse, Tesla's manual
+    value: On a Tesla, Tesla's manual says do not aim a hose directly at windows, door or hood seals, electronic modules, or exposed cabling, and do not wash in direct sunlight.
+    status: sourced
+    kbRef: "11"
+  - label: On a Tesla, the pre-rinse on jet
+    value: Lando decides how this applies to Teslas (pending).
+    status: verify
   - label: Foam cannon
     value: Not used. It is useless until there is a pressure washer.
     kbRef: "3.1"
@@ -107,7 +153,7 @@ mistakes:
   - Rinsing for one minute because the car looks clean.
   - Skipping the bumpers, the rockers, and behind the wheels.
   - Scrubbing bugs or tar.
-  - Leaving Bug & Tar on past its one-minute dwell.
+  - Treating the one-minute Bug & Tar wait as a label number. It is a house number. Read the can.
   - Running a pump-sprayer pre-soak as if it were settled. It is not confirmed.
   - On a Tesla, putting water on the car before Car Wash Mode is on.
 drillIds: [drill-l1-pre-rinse]
@@ -123,7 +169,7 @@ related:
   - lesson-l1-05-clay
   - lesson-l1-06-full-wash
 ---
-**Goal:** Rinse 3 to 4 minutes before anything touches the paint, give Bug & Tar a one-minute dwell, and know why the pre-soak is not settled yet.
+**Goal:** Rinse 3 to 4 minutes before anything touches the paint, let Bug & Tar soften the bugs and tar without scrubbing, and know why the pre-soak is not settled yet.
 
 ## Why the rinse comes before any touch
 
@@ -133,7 +179,9 @@ Rinse 3 to 4 minutes on jet, top down, so the dirt runs down and off instead of 
 
 ## Bugs and tar: let it work
 
-Bug & Tar foam goes on the bugs and the rocker tar. Give it a one-minute dwell, then wash it off. No scrubbing. The product does the work while it sits.
+Bug & Tar foam goes on the bugs and the rocker tar. Let it sit so it softens them, then wash it off or hose it off. No scrubbing. Meguiar's says it works without scrubbing. The product does the work while it sits.
+
+How long it sits is not settled. The house says about one minute, but no label confirms that number. Read the dwell time on the can. The can wins.
 
 If the dirt is still caked after the rinse, rinse longer. Never scrub harder.
 
@@ -151,6 +199,8 @@ The full-detail time plan still holds 10 min for a pre-soak. Treat that slot as 
 
 ## Teslas
 
-On a Tesla, Car Wash Mode goes on before any water. On the 2020 to 2024 Model Y the path is Controls, then Service, then Car Wash Mode, and the car must be parked and not charging. Other years and models are not checked.
+On a Tesla, Car Wash Mode goes on before any water. On the Model Y, the 2020 to 2024 cars and the 2025 and newer cars alike, the path is Controls, then Service, then Car Wash Mode, and the car must be parked and not charging. The Model S, Model X, and Cybertruck are not checked.
+
+Tesla's manual also says do not aim a hose directly at windows, door or hood seals, electronic modules, or exposed cabling, and do not wash in direct sunlight. The house pre-rinse is on jet. The house shade rule already matches the sunlight line. Lando decides how the rest applies to Teslas.
 
 Whether Bug & Tar counts as a pre-wash product under Tesla's manual has not been checked either. It shows as pending on a Tesla until it is.

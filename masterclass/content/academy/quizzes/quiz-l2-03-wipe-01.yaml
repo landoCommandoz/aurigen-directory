@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "10"
 tags:
   - interior
@@ -18,7 +19,11 @@ synonyms:
   - dash questions
   - shiny dash test
   - headliner quiz
-prompt: You are wiping the dash with Meguiar's Quik Interior Detailer. Where do you spray it?
+sources:
+  - label: Verification log FC-75
+    date: 2026-10-11
+    note: Retail copies of the label say mist it on one section at a time and wipe. Spraying the towel is house and stricter than the label. On a Tesla, interior products are pending (FC-37), so this question is set on a car that is not a Tesla.
+prompt: You are wiping the dash of a car that is not a Tesla with Meguiar's Quik Interior Detailer. Where do you spray it?
 choices:
   - Straight on the dash.
   - On the windshield, then wipe down.

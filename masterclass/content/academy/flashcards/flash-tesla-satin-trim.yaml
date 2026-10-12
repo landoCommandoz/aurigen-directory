@@ -6,7 +6,8 @@ audience:
   - owner
   - crew
 visibility: internal
-status: house
+status: sourced
+version: 2
 kbRef: "11"
 tags:
   - tesla
@@ -16,8 +17,20 @@ synonyms:
   - chalky trim
   - tesla flashcard
   - model y card
-front: What does polish do to the Model Y satin black window trim?
-back: Turns it chalky white. Tape it.
+  - polish on the trim
+sources:
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Chrome and metal surfaces. Polish, abrasive cleaners, alcohol-based gel products, and hard cloths can damage the finish on chrome and metal surfaces. Read directly. Fact-checker FC-43.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Meguiar's product page, Ultimate Compound G17216
+    url: https://www.meguiars.com/products/automotive/paint/meguiars-ultimate-compound-g17216-152oz
+    date: 2026-10-11
+    note: Not for use on flat, matte, or satin finishes. Read through the search index. Fact-checker FC-43. The old line that polish turns the trim chalky white is unconfirmed and is not taught.
+front: Why does the Model Y satin black window trim get taped before polishing?
+back: To keep polish off it. Tesla's manual says polish can damage chrome and metal finishes, and Meguiar's says Ultimate Compound is not for satin finishes.
 related:
   - card-tesla-wash-mode-tape
   - lesson-l4-05-edges-curves-heat

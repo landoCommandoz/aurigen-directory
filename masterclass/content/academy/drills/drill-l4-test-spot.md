@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "8.5"
 tags:
   - test spot
@@ -28,6 +29,12 @@ sources:
     url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
     date: 2026-10-10
     note: Only use slower speeds for polishing (slower is not defined). Keep pressure off of the tool; the foam pad should lightly contact the surface. Fact-checker FC-22 and FC-23, conflicting with the house settings; Lando decides.
+  - label: Utah Labor Commission, youth employment page
+    url: https://laborcommission.utah.gov/divisions/utah-antidiscrimination-and-labor-uald/wage-claim/
+    date: 2026-10-11
+    note: The Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending). Fact-checker FC-107.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 needs:
   - A swirled scrap hood that is not from a Tesla. Never a customer car before your sign-offs.
   - "A Uro-Tec yellow pad, and two maroon pads: one for M210, one for compound"
@@ -36,6 +43,8 @@ needs:
   - The IPA panel wipe, clean towels, and a light held low
   - A job sheet
 instructions:
+  - text: "Who may run power tools, the polisher included: Lando decides (pending)."
+    status: verify
   - Measure the panel. Write down its lowest reading.
   - Tape a 2 x 2 ft square on the worst spot.
   - Split it with tape so you can compare halves.

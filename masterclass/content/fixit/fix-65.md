@@ -52,8 +52,10 @@ steps:
 stillHappening:
   - "Spots after drying: open the water spots fix."
 notes:
-  - text: The ceramic wax is also a drying aid. Spray it on the wet car, then dry with a clean towel.
+  - text: Spray the ceramic wax on the wet car, then dry with a clean towel.
     status: sourced
+  - text: Using it as a drying aid against hard water spots is a house plan. No Meguiar's page says it prevents spots.
+    status: verify
   - "On a bike: dry with the air compressor, every crevice."
   - On a Tesla, the charge port door stays closed. It is on the compressor list.
   - Rinse, dry, and jambs take about 20 minutes in the plan.

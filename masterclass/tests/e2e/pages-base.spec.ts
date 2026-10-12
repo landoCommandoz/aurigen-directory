@@ -134,3 +134,33 @@ test('a back step onto the bare base address gets its slash back, and a reload t
   await expect(page.getByRole('heading', { level: 1, name: 'Masterclass 101' })).toBeVisible({ timeout: 5000 });
   await context.setOffline(false);
 });
+
+// Phase 2: the fix, lesson, procedure, and item pages under the base path. A Pages deep link, a
+// Related tap, a search Enter, and a reload with no signal all stay under /aurigen-directory/.
+test('Phase 2 pages under the base path: deep link, Related tap, search, and an offline reload', async ({ page, context }) => {
+  const problems = watchProblems(page);
+  await page.goto('./');
+  await waitForScreen(page);
+  await offlineReady(page);
+  await page.goto('./?p=%2Ffixit%2Ffix-01');
+  await expect(page.getByRole('heading', { level: 1, name: 'Polisher jerks, walks, or hops side to side' })).toBeVisible();
+  expect(new URL(page.url()).pathname).toBe(`${BASE}fixit/fix-01`);
+  await page.getByRole('list', { name: 'Related' }).locator('button').first().click();
+  await waitForScreen(page);
+  expect(new URL(page.url()).pathname.startsWith(`${BASE}`)).toBe(true);
+  for (const path of ['academy/lesson-l4-07-full-square', 'sops/sop-polish', 'items/equipment-bauer-56367', 'fixit/fix-09']) {
+    await page.goto(path);
+    await waitForScreen(page);
+    expect(await page.locator('h1').first().innerText(), path).not.toMatch(/not found|No screen here/i);
+  }
+  await page.goto('search');
+  await page.getByRole('searchbox').first().fill('jerking');
+  await page.getByRole('searchbox').first().press('Enter');
+  await expect(page.getByRole('heading', { level: 1, name: 'Polisher jerks, walks, or hops side to side' })).toBeVisible();
+  expect(new URL(page.url()).pathname).toBe(`${BASE}fixit/fix-01`);
+  await context.setOffline(true);
+  await page.reload().catch(() => undefined);
+  await expect(page.getByRole('heading', { level: 1, name: 'Polisher jerks, walks, or hops side to side' })).toBeVisible({ timeout: 5000 });
+  await context.setOffline(false);
+  expectNoProblems(problems);
+});

@@ -7,6 +7,7 @@ order: 5
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "9.3"
 tags: [glass, windows, windshield, streaks, interior]
 synonyms:
@@ -22,6 +23,25 @@ synonyms:
   - inside glass
   - camera lens
   - bike windshield
+sources:
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Page 178, Cleaning a Camera. On older builds, spray water on the lens and do not wipe it with a hand or a cloth; on later builds, spray water and dry with a microfiber. No chemical-based or abrasive cleaners on a lens. Read directly. Fact-checker FC-33.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, US edition, cleaning
+    url: https://www.tesla.com/ownersmanual/2020_2024_modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
+    date: 2026-10-11
+    note: The no-wipe group is cars built in Fremont and Gigafactory Austin before about late May 2023. Read through the search index. Fact-checker FC-33.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: National Cycle windshield instruction sheet, 2016
+    url: https://www.nationalcycle.com/media/wysiwyg/pdf/ispl/10-118601-000.pdf
+    date: 2026-10-11
+    note: No household glass cleaners, and keep alcohol off the windshield. Do not clean it in hot sun. Fact-checker FC-82.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 steps:
   - Do the glass last. It is the last thing inside and the last thing outside.
   - Take two clean towels, one wet and one dry.
@@ -32,10 +52,14 @@ steps:
   - Clean the top edge of the glass.
   - Do the far corner of the windshield from the passenger seat.
   - "See a streak? Read its direction. Side to side is inside. Up and down is outside."
-  - text: On a Tesla, camera lenses get glass cleaner only.
+  - text: On a Tesla, house rule. Camera lenses get glass cleaner only.
     status: house
+  - text: On a Tesla, Tesla's manual says spray water on the lens. On a 2020 to 2024 Model Y built before about late May 2023 in Fremont or Austin, do not wipe the lens with a hand or a cloth. On later cars, dry it with a microfiber cloth. Never use chemical-based or abrasive cleaners on a lens.
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending).
+    status: verify
   - text: On a bike, the windshield is plastic. No alcohol and no glass cleaner.
-    status: house
+    status: sourced
 numbers:
   - label: Windows down for the top edge
     value: 1 to 2 inches
@@ -93,9 +117,9 @@ Drop each window 1 to 2 inches and clean the top edge. Do the windshield from th
 
 ## Teslas and bikes
 
-On a Tesla, the camera lenses get glass cleaner only.
+On a Tesla, the camera lenses are not settled. The house line is glass cleaner only. Tesla's manual says spray water on the lens and never use chemical-based or abrasive cleaners on it. On a 2020 to 2024 Model Y built before about late May 2023 in Fremont or Austin, it says never wipe the lens with a hand or a cloth, because grit can scratch it. Lando's 2022 is in that group unless its build date says otherwise. Lando decides how this applies to Teslas.
 
-On a bike, the windshield is plastic. No alcohol and no glass cleaner. The approved plastic cleaner is not confirmed yet, so that row carries an unverified badge.
+On a bike, the windshield is plastic. No alcohol and no glass cleaner; the windshield maker says so. The approved plastic cleaner is not confirmed yet, so that row carries an unverified badge.
 
 ## What is not settled
 

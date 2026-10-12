@@ -32,12 +32,30 @@ sources:
     note: Thin panel means more than 40 µm below the median of the other measured panels. Lando accepted the default on 2026-10-10.
   - label: Knowledge base 7.3, background film numbers
     date: 2026-09-22
-    note: Factory total film about 100 to 180 µm, clear coat about 38 to 50 µm of that. Tagged reconfirm. On the fact-checker's queue.
+    note: Factory total film about 100 to 180 µm, clear coat about 38 to 50 µm of that. The fact-checker corrected the clear coat to 35 to 50 µm (FC-71) and confirmed the total film (FC-72).
+  - label: DeFelsko, how to use paint thickness gauges for automotive detailing
+    url: https://www.defelsko.com/resources/how-to-use-paint-thickness-gauges-for-better-automotive-detailing
+    date: 2026-10-11
+    note: Clear coat thickness usually ranges from 1.5 to 2.0 mils (35 to 50 microns). Most auto manufacturers recommend removing no more than 0.3 mils (8 microns) of clear coat. Loaded directly. Fact-checker FC-71.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: DeFelsko, automotive paint detailing
+    url: https://www.defelsko.com/resources/automotive-paint-detailing
+    date: 2026-10-11
+    note: Most factory paint jobs range from 4 to 7 mils (100 to 180 microns). DeFelsko makes gauges, not paint. Loaded directly. Fact-checker FC-72.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
   - label: Tesla Model Y owner's manual, cleaning cautions
     url: https://www.tesla.com/ownersmanual/modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
     date: 2026-10-10
     note: No cutting pastes, color restoration compounds, or harsh-abrasive polishes. Cleaning-product damage is not covered by the warranty. Read through the search index. Fact-checker FC-16.
     confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Pages 178 to 181, Cleaning. No chemical based wheel cleaners or pre-wash products. No cutting pastes, color restoration compounds, or polishes containing harsh abrasives. Damage or discoloration from cleaning products is not covered by the warranty. Also says an approved polish with a very mild abrasive may be used occasionally. Loaded directly. Fact-checker FC-38.
+    confirmedOn: 2026-10-11
     confirmedBy: fact-checker
 stopIf:
   - "Under 75: no machine. Hand protection only."
@@ -73,8 +91,10 @@ notes:
   - Thin means more than 40 µm below the median of the other measured panels.
   - Edges and body lines always read low. Stay an inch off.
   - These bands are a conservative house standard, not a manufacturer spec.
-  - text: Factory total film is usually about 100 to 180 µm. The clear coat itself is only about 38 to 50 µm of that.
-    status: verify
+  - text: Factory total film is usually about 100 to 180 µm. The clear coat is about 35 to 50 µm (1.5 to 2 mils) of that.
+    status: sourced
+  - text: DeFelsko says most carmakers recommend removing no more than about 8 µm (0.3 mil) of clear coat.
+    status: sourced
   - text: "On a Tesla, the house ladder allows compound at 100 µm or more when the test spot proves it."
     status: house
   - text: "Tesla's manual says: Do not use cutting pastes, color restoration compounds, or polishes containing harsh abrasives. These can scour the surface and permanently damage the paint."

@@ -7,6 +7,7 @@ vehicleBranch: any
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "10"
 plannedMinutes: 65
 tags: [interior, vacuum, wipe, dash, mats, glass]
@@ -19,6 +20,16 @@ synonyms:
   - wipe the dash
   - inside of the car
   - interior detail
+sources:
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Interior, no solvents (including alcohol), hand sanitizer, bleach, citrus, naphtha, or silicone-based products. Seats, warm water and mild soap on a soft cloth, wipe dry, nothing more; no conditioners or protectants; never spray the seat directly. Interior lights, no soap or chemical cleaners. Touchscreen, a soft lint-free display cloth, no cleaners, no wet wipes, no dry statically-charged cloth such as a recently washed microfiber; Screen Clean Mode is under Controls, Display. Read directly. Fact-checker FC-36 and FC-37.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Verification log FC-75 and FC-80
+    date: 2026-10-11
+    note: Meguiar's own page for Quik Interior Detailer could not be read, so it is not confirmed screen-safe. No all-purpose cleaner is chosen, so no APC ratio is settled.
 steps:
   - text: "Take everything out: trash, mats, car seats, and loose items."
   - text: Put the customer's personal items in one bag they can see.
@@ -40,7 +51,18 @@ steps:
   - text: Wipe the hard surfaces top down with Quik Interior Detailer sprayed on the towel.
     notes:
       - Spray the towel, never the panel. Overspray lands on glass and screens.
+      - text: Quik Interior Detailer is not confirmed screen-safe by Meguiar's.
+        status: verify
+      - text: On a Tesla, Tesla's manual says no solvents (including alcohol), hand sanitizer, bleach, citrus, naphtha, or silicone-based products on interior parts. Interior lights get a cloth with warm water only.
+        status: sourced
+      - text: Lando decides how this applies to Teslas (pending). Nobody has checked what Quik Interior Detailer contains.
+        status: verify
   - text: Clean the screens with a dry microfiber or a screen-safe cleaner only.
+    notes:
+      - text: "On a Tesla, Tesla's manual says turn on Screen Clean Mode (Controls > Display > Screen Clean Mode). Use a soft lint-free cloth made for displays. No cleaners such as glass cleaner, no hand sanitizer, no wet wipes, and no dry statically-charged cloth such as a recently washed microfiber."
+        status: sourced
+      - text: Lando decides how this applies to Teslas (pending).
+        status: verify
   - text: Blot the headliner with a barely damp towel.
     notes:
       - Blot only. Soak it and the glue lets go.
@@ -58,6 +80,10 @@ steps:
     status: verify
     notes:
       - text: Which leather products are in the kit is not confirmed.
+        status: verify
+      - text: On a Tesla, Tesla's manual says seats get warm water and mild soap on a microfiber, then a dry wipe. No conditioners or protectants. Never spray the seat directly.
+        status: sourced
+      - text: Lando decides how this applies to Teslas (pending).
         status: verify
   - text: Grab two clean glass towels for the inside glass, one wet and one dry.
     notes:
@@ -90,3 +116,5 @@ The customer's things go in one bag they can see. Money or valuables go on the d
 A clean daily driver takes about 1 hr 5 min inside. A family car with pet hair, crumbs, and stains takes 2 hrs or more. Interiors are priced by condition, so look in the back seat before you quote.
 
 The spot method, the interior dressing, and the leather products are not set yet. They show as unverified until Lando names them.
+
+On a Tesla, Tesla's manual is stricter than this SOP. It says no alcohol, citrus, or silicone-based products inside, soap and water only on the seats with no conditioner, and no cleaners on the touchscreen, not even a freshly washed dry microfiber. Lando decides how each of these applies to Teslas. Until then, the Tesla lines show next to the house steps.

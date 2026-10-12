@@ -7,6 +7,7 @@ vehicleBranch: any
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "7.2"
 tags: [measure, inspect, gauge, light, thickness, tc100]
 synonyms:
@@ -23,6 +24,9 @@ sources:
   - label: Knowledge base 7.2, TC100 research
     date: 2026-10-06
     note: Screen codes, zero on the plate only, hold flat, door jamb baseline, 3 to 5 readings per panel, 20 µm swings within a foot are normal.
+  - label: Verification log FC-74
+    date: 2026-10-11
+    note: Not reconfirmed. No R&D TC100 manual or maker page was found. Another maker's gauge manual says a zero is only valid on the calibration plate or other bare metal. Read the TC100's printed manual for the zero and SNG steps.
 steps:
   - text: Hold the light low across the paint.
   - text: Look for swirls. They look like a spiderweb.
@@ -33,6 +37,9 @@ steps:
   - text: Zero the TC100 on its bare plate. Only there.
     status: sourced
     stopIf: Never press ZERO on the car. It offsets every later reading.
+    notes:
+      - text: The TC100's own manual has not been read for the zero steps. Read it once and check it matches.
+        status: verify
   - text: Read the door jamb first and write it down. That is your baseline.
     status: sourced
   - text: Hold the gauge flat on the panel.

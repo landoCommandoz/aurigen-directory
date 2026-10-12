@@ -8,10 +8,10 @@ import { config } from './app/config';
 import { parseAppConfig } from './schemas';
 import { restoreDeepLink } from './app/deepLink';
 import { initInstallPrompt } from './app/installCard';
+import { scheduleWarmUp } from './app/warmUp';
 import { applyDocumentAttributes, modeStore } from './app/mode';
 import { initConnectivity } from './core/connectivity';
 import { checkUpdatedOnBoot, initPwa } from './core/pwa';
-import { preloadSearch } from './core/search';
 import { initStorageProbe } from './core/storage';
 
 // This module ran, so the boot guard in index.html can stand down.
@@ -93,12 +93,10 @@ function afterRender(): void {
   if (import.meta.env.PROD) step('offline helper', () => initPwa());
   // "Updated" banner once after a new version boots (3.5); a first install records the version silently.
   step('version check', () => checkUpdatedOnBoot(config.version));
-  // Load the search index while the phone is idle, so the first search answers at once.
-  step('search preload', () => {
-    const idle = (window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback;
-    if (typeof idle === 'function') idle(() => void preloadSearch(), { timeout: 3000 });
-    else window.setTimeout(() => void preloadSearch(), 1500);
-  });
+  // After the first screen, while the phone is idle: the search index, then the Fix It and Quick
+  // Card content, so the first search and the first fix open at once (DEF-17: never before the
+  // first screen draws).
+  step('warm-up', () => scheduleWarmUp());
 }
 
 function boot(): void {

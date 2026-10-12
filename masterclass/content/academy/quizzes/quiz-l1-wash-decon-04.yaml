@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "17.2"
 tags:
   - wash
@@ -25,7 +26,7 @@ choices:
   - 1 hour.
   - 15 minutes.
 correctIndex: 1
-explanation: "The plan: wheels 25, pre-rinse and bugs 10, contact wash 30, iron and clay 30, rinse, dry, and jambs 20. Log the real time so you can see where the day goes."
+explanation: "The plan: wheels 25, pre-rinse and bugs 10, contact wash 30, rinse, dry, and jambs 20. Log the real time so you can see where the day goes."
 scenario: true
 related:
   - lesson-l1-06-full-wash

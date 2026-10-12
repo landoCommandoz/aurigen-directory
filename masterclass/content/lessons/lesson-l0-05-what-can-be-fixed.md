@@ -7,6 +7,7 @@ order: 5
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "7.1"
 tags: [fingernail test, light, scratches, swirls, promises, level 0]
 synonyms:
@@ -19,6 +20,22 @@ synonyms:
   - rock chips
   - what can't be fixed
   - too deep to polish
+sources:
+  - label: 3M Scratch Removal System 39071 instructions
+    url: https://multimedia.3m.com/mws/media/642801O/scratch-removal-system-part-number-39071-dfu.pdf
+    date: 2026-10-11
+    note: Removing a defect removes a very thin layer of the clear coat. Deep or wide scratches, or scratches through the clear, will not come out; some need a repaint. Fact-checker FC-109.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Chemical Guys, types of car scratches
+    url: https://www.chemicalguys.com/blogs/exterior-how-tos/types-of-car-scratches
+    date: 2026-10-11
+    note: If you catch the scratch with your fingernail, it likely extends into the paint layer. A pebble can chip or gouge the clear coat. Fact-checker FC-109.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Verification log FC-78
+    date: 2026-10-11
+    note: No Blue Magic label or maker source was read. The two minutes per light and the month before the lights yellow again are house numbers. Customer wording names no time frame until a label confirms one.
 steps:
   - Hold a light low across the paint.
   - Look for swirls. They look like a spiderweb.
@@ -35,8 +52,13 @@ numbers:
   - label: Fingernail test
     value: Nail catches, it stays.
     kbRef: "2"
+  - label: Why the nail test works
+    value: Chemical Guys says a scratch that catches your fingernail likely goes into the paint layer. 3M says deep scratches and scratches through the clear will not polish out.
+    status: sourced
+    kbRef: "16"
   - label: Rock chips
     value: Usually can't be fully removed.
+    status: sourced
     kbRef: "16"
   - label: Rung 4 of the ladder
     value: Still there after compound and polish means too deep. Note it, show the customer, do not chase it.
@@ -48,7 +70,11 @@ numbers:
     value: Peeling, flaking, cloudy patches. Do not polish.
     kbRef: "7.4"
   - label: Headlights
-    value: Brightens but does not hold. Without a sealant on top, they yellow again in about a month.
+    value: Brightens but does not hold.
+    kbRef: "9.4"
+  - label: Headlights, how long it lasts
+    value: The house says that without a sealant on top, they yellow again in about a month. No label confirms that time, so never quote it to a customer yet.
+    status: verify
     kbRef: "9.4"
   - label: Headlight refresh price
     value: $30 a pair, sold as a refresh, not a fix
@@ -105,7 +131,7 @@ Rock chips usually can't be fully removed. Failing clear coat (peeling, flaking,
 
 ## Headlights are a refresh
 
-Blue Magic by hand brightens a yellow headlight, but it does not hold. Without a sealant on top, the lights yellow again in about a month. Sell it as a refresh, $30 a pair, never as a fix.
+Blue Magic by hand brightens a yellow headlight, but it does not hold. Sell it as a refresh, $30 a pair, never as a fix. The house says the lights yellow again in about a month without a sealant on top. No label confirms that time yet, so do not quote a time frame to a customer.
 
 ## Say it the same way every time
 

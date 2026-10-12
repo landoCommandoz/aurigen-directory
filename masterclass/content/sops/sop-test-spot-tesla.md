@@ -7,6 +7,7 @@ vehicleBranch: tesla
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "8.5"
 plannedMinutes: 10
 tags: [test spot, ladder, pad, compound, tesla, model y, warranty]
@@ -24,8 +25,14 @@ sources:
   - label: Tesla Model Y owner's manual, cleaning cautions, current model
     url: https://www.tesla.com/ownersmanual/modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
     date: 2026-10-10
-    note: No cutting pastes, color restoration compounds, or polishes with harsh abrasives. Cleaning-product damage is not covered by the warranty. Seen on the 2025 and newer Model Y manual and other Tesla manuals; the 2020 to 2024 page could not be checked line by line. Read through the search index. Fact-checker FC-16.
+    note: No cutting pastes, color restoration compounds, or polishes with harsh abrasives. Cleaning-product damage is not covered by the warranty. Read through the search index. Fact-checker FC-16.
     confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: The cutting paste and warranty cautions are in this manual too, so they cover a 2022 Model Y. It also allows an approved polish with a very mild abrasive, now and then. Read directly. Fact-checker FC-38.
+    confirmedOn: 2026-10-11
     confirmedBy: fact-checker
 steps:
   - text: Pick the worst panel.

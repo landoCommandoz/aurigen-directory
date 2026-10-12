@@ -1,12 +1,13 @@
 id: quiz-l0-02-safety-01
 type: quizquestion
-title: Hot wheels after a drive
+title: Hot wheels, cleaner in hand
 quizId: quiz-l0-02-safety
 audience:
   - owner
   - crew
 visibility: internal
-status: house
+status: sourced
+version: 2
 kbRef: "5.1"
 tags:
   - safety
@@ -17,14 +18,21 @@ synonyms:
   - stay safe test
   - shop safety questions
   - polisher safety quiz
-prompt: A car just pulled in from a highway drive. The wheels are hot to the touch. You are next on the wheels. What do you do?
+sources:
+  - label: Armor All product page, Extreme Wheel & Tire Cleaner
+    url: https://armorall.com/product/extreme-wheel-tire-cleaner
+    date: 2026-10-11
+    note: Wear eye protection and rubber gloves. Do not use on wheels that are warm to the touch or damaged. Fact-checker FC-27.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+prompt: A car that is not a Tesla just pulled in from a highway drive. The wheels are hot to the touch. You have the wheel cleaner in hand. What do you do?
 choices:
   - Spray now and rinse it off fast.
+  - Gloves on and spray now. Rinse fast.
+  - Wait till cool. Gloves and eye protection on.
   - Spray extra so the cleaner stays wet.
-  - Let the wheels cool, then spray.
-  - Do the paint first and come back to them.
 correctIndex: 2
-explanation: The wheel must be cool before you spray it, and the cleaner gets rinsed before it dries.
+explanation: The wheel cleaner label says never use it on a wheel that is warm to the touch, and wear eye protection and rubber gloves. Let the wheels cool, gear up, then spray, and rinse before it dries.
 scenario: true
 related:
   - lesson-l0-02-stay-safe

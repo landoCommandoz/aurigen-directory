@@ -7,6 +7,7 @@ vehicleBranch: tesla
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "8.3"
 plannedMinutes: 150
 tags: [polish, machine, one-step, square, speed, pressure, sets, tesla, model y, warranty]
@@ -36,9 +37,30 @@ sources:
   - label: Tesla Model Y owner's manual, cleaning cautions, current model
     url: https://www.tesla.com/ownersmanual/modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
     date: 2026-10-10
-    note: No cutting pastes, color restoration compounds, or polishes with harsh abrasives. Cleaning-product damage is not covered by the warranty. Seen on the 2025 and newer Model Y manual and other Tesla manuals; the 2020 to 2024 page could not be checked line by line. Read through the search index. Fact-checker FC-16.
+    note: No cutting pastes, color restoration compounds, or polishes with harsh abrasives. Cleaning-product damage is not covered by the warranty. Read through the search index. Fact-checker FC-16.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: The cutting paste and warranty cautions are in the 2020 to 2024 manual too, so they cover a 2022 Model Y. It also allows an approved polish with a very mild abrasive, now and then, and says no chrome polish or other abrasive cleaners. Five body cameras on this model. Read directly. Fact-checker FC-38 and FC-40.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2025 and newer owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Six body cameras, including one on the front bumper above the grille. Read directly. Fact-checker FC-40.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: BAUER 56367 owner's manual, 2021, rechecked
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-11
+    note: Keep a firm grip on the tool with both hands to resist starting torque. GFCI supply in damp places. A W-A cord outdoors. Keep electrical connections off the ground. Add the amps when one cord runs more than one tool. Fact-checker FC-55 and FC-56.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Verification log FC-107
+    date: 2026-10-11
+    note: The Utah Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending).
 steps:
   - text: Check for shade, a cool panel, and no wind.
     stopIf: Sun, wind, or a panel too hot to hold your hand on. Do not polish.
@@ -52,7 +74,18 @@ steps:
   - text: "Test run it off the car: pad mounted, plug it in, highest speed, at least 30 seconds."
     status: sourced
     stopIf: Abnormal noise or vibration. Stop. Get it fixed before further use.
+    notes:
+      - text: Who may run power tools is for Lando to decide (pending).
+        status: verify
+  - text: Check every body camera is taped. Five on a 2020 to 2024 Model Y. Six on a 2025 or newer, with one on the front bumper above the grille.
+    status: sourced
+    quickCardId: card-tesla-wash-mode-tape
   - text: Run the cord over your shoulder.
+    notes:
+      - text: Outdoors, use a cord marked W-A. Near water, plug into a GFCI outlet. Keep plug connections off the wet ground. One cord, one tool.
+        status: sourced
+      - text: 12-gauge cord, 50 ft max. That is stricter than the manual's cord table.
+        status: sourced
   - text: Tape the panel into 2 x 2 ft squares. One square at a time.
     panelRoute: polish
     notes:
@@ -76,6 +109,14 @@ steps:
   - text: "New pad only: add 3 to 4 pea-size drops."
   - text: "Every square after that: 1 to 2 drops, not a full dose."
   - text: Set the dial to speed 1 to 2.
+  - text: Hold the polisher with two hands.
+    notes:
+      - text: "House: loose grip. Guide it, don't push."
+        status: house
+      - text: The 56367 manual says keep a firm grip with both hands to resist starting torque, and keep pressure off the tool.
+        status: sourced
+      - text: Lando decides the grip wording (pending).
+        status: verify
   - text: Set the pad flat on the paint before you pull the trigger.
     timer: { kind: section, seconds: 240 }
     notes:
@@ -175,5 +216,9 @@ The Tesla polish is the regular one-step on the Tesla route: hood first to build
 Compound is not settled on a Tesla. The house ladder allows it on rung 3, and Tesla's manual says do not use cutting pastes, color restoration compounds, or polishes with harsh abrasives, and cleaning-product damage is not covered by Tesla's warranty. Lando decides how this applies to Teslas. Until he does, the compound step carries the pending row and an unverified badge.
 
 Speed and pressure are not settled on any car. The house setting is speed 4 and about 10 lb. Harbor Freight's product page says speeds 4 to 6 for polishing. The 56367 manual says only use slower speeds for polishing and keep pressure off the tool. Lando decides which applies.
+
+Every body camera is taped before the pad touches paint. A 2025 or newer Model Y has a sixth camera on the front bumper.
+
+Grip is not settled. The house says loose grip, guide it, don't push. The manual says a firm grip with both hands, so the tool cannot twist away when it starts. Power: outdoors, a W-A cord; near water, a GFCI outlet; plug connections off the wet ground. Who may run the polisher is Lando's call.
 
 Paint color on the pad means stop: you are through the clear.

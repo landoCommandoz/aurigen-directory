@@ -4,9 +4,10 @@ title: Meguiar's Hot Shine tire shine
 brand: Meguiar's
 audience: [owner, crew]
 visibility: internal
-status: house
+status: verify
+version: 2
 kbRef: "3.3"
-tags: [tires, dressing, tire shine, backup]
+tags: [tires, dressing, tire shine, backup, flammable]
 synonyms:
   - hot shine
   - meguiars tire shine
@@ -14,11 +15,31 @@ synonyms:
   - tire gel
   - tire shine backup
   - meguiars hot shine
+sources:
+  - label: Meguiar's safety data sheet, Hot Shine Tire Coating (High Gloss) G13815
+    url: https://cdmsweb.3m.com/ingredientcommunication/file/Media/3D-RC8t5LUQ
+    date: 2026-10-11
+    note: Flammable aerosol. Pressurized container may burst if heated. Keep away from heat, hot surfaces, sparks, and open flames. Use only outdoors or in a well-ventilated area. Causes serious eye irritation. Fact-checker FC-32.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Meguiar's safety data sheet, Hot Shine Reflect G18715
+    url: https://cdmsweb.3m.com/ingredientcommunication/file/Media/FVKHlgbnvF4
+    date: 2026-10-11
+    note: Signal word Danger. Gas under pressure; may explode if heated. Fact-checker FC-32.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Verification log FC-31
+    date: 2026-10-11
+    note: No Hot Shine label was read from Meguiar's. Retail copies say it is not for two-wheeled vehicles and is sprayed onto the tire. Which Hot Shine Lando owns is not recorded.
 jobs:
   - Tire shine backup, same rule as the Armor All. Spray it onto the applicator.
 neverFor:
   - Any motorcycle. Ever.
   - The car before the paint is polished
+  - Anywhere near the heat gun, a hot surface, or sparks, if yours is an aerosol
+labelNotes: "If your Hot Shine is an aerosol can, it is a flammable aerosol. Keep it away from the heat gun, hot surfaces, and sparks. Use it outdoors or where the air moves (Meguiar's safety data sheet). Keep it out of your eyes. The trigger bottle was not checked. Meguiar's directions for Hot Shine and its two-wheeler line were not read, so the house rule stands: spray the applicator, never on a motorcycle. Read your bottle."
 related:
   - product-armor-all-extreme-tire-shine
   - card-bike-rules
+  - card-setup-kit
+  - sop-tires-trim

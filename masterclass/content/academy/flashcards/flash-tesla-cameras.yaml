@@ -1,23 +1,38 @@
 id: flash-tesla-cameras
 type: flashcard
-title: Model Y cameras
+title: Model Y cameras to tape
 deck: tesla
 audience:
   - owner
   - crew
 visibility: internal
-status: house
+status: sourced
+version: 2
 kbRef: "11"
 tags:
   - tesla
   - flashcard
 synonyms:
   - tesla cameras
-  - camera lenses
+  - how many cameras
   - tesla flashcard
   - model y card
-front: What goes on the Model Y camera lenses, and where are the five cameras?
-back: Glass cleaner only. Two B-pillar, two fender repeaters, and one above the rear plate. Tape all five before polishing.
+  - where are the cameras
+sources:
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: A camera above the rear license plate, one in each door pillar, one on each front fender. Three more sit behind the windshield. Read directly. Fact-checker FC-40.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2025 and newer owner's manual, China edition
+    url: https://www.tesla.cn/ownersmanual/modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Adds a camera above the grille on the front bumper, with its own sprayer nozzle. Read directly. Fact-checker FC-40.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+front: How many body cameras do you tape on a Model Y before polishing, and where are they?
+back: "2020 to 2024: five. Two B-pillar, two fender repeaters, one above the rear plate. 2025 or newer: six. Add the front bumper camera above the grille."
 related:
   - card-tesla-wash-mode-tape
   - lesson-l4-05-edges-curves-heat

@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: sourced
+version: 2
 kbRef: "14"
 tags:
   - pads
@@ -31,6 +32,12 @@ sources:
     note: Thread Size M8-1.25. Read through the search index. Fact-checker FC-17 and FC-18.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: Buff and Shine product page, 634CR Uro-Tec yellow
+    url: https://buffandshine.com/products/634cr-6-yellow-uro-tec-foam-pad-polishing
+    date: 2026-10-11
+    note: Pairs the 6 in. pad with Buff and Shine's 600Y plate, listed as a 6 in. J-Hook backing plate with 5/16 in.-24 threads, which does not match the M8 56367. Fact-checker FC-54 and FC-57.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 prompt: The backing plate is worn. At Harbor Freight, the $6.99 BAUER 6 in. backing pad, item 64913, is on the shelf. Buy it?
 choices:
   - Yes. Same brand, same size.
@@ -38,7 +45,7 @@ choices:
   - Yes, buy two.
   - No. It does not fit the 56367.
 correctIndex: 3
-explanation: Item 64913 is 5/16 in.-24 thread. The 56367 is M8 x 1.25. Inch and metric threads do not interchange.
+explanation: Item 64913 is 5/16 in.-24 thread. The 56367 is M8 x 1.25. Inch and metric threads do not interchange. The same goes for Buff and Shine's 600Y plate, which is 5/16 in.-24 too.
 scenario: true
 related:
   - lesson-l4-06-pad-care-backing-plate

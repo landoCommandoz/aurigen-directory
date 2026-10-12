@@ -145,7 +145,7 @@ function bodyText(item: ContentItemValue): string[] {
     case 'quickcard':
       return rows(item.rows, s);
     case 'product':
-      return [item.brand, ...item.jobs, ...item.dilutions.filter((d) => d.status !== 'superseded').map((d) => `${d.use} ${d.ratio}`), ...item.neverFor, item.labelNotes ?? ''];
+      return [item.brand, ...item.jobs, ...item.dilutions.filter((d) => d.status !== 'superseded').map((d) => `${d.use} ${d.ratio}`), ...item.neverFor, ...lines(item.notes, s), item.labelNotes ?? ''];
     case 'equipment':
       return [item.model ?? '', ...rows(item.specs, s), ...lines(item.checks, s)];
     case 'glossaryterm':
@@ -215,6 +215,14 @@ export function buildSearchIndex(items: readonly ContentItemValue[], groups: Syn
 /** Load the index the content build wrote (src/generated/search-index.json). */
 export function loadSearchIndex(json: AsPlainObject): MiniSearch<SearchDoc> {
   return MiniSearch.loadJS<SearchDoc>(json, searchOptions());
+}
+
+/**
+ * The same index, loaded in batches with pauses between them (MiniSearch loadJSAsync), so the
+ * phone stays responsive to a tap while the index is read (QA DEF-17). The app uses this one.
+ */
+export function loadSearchIndexAsync(json: AsPlainObject): Promise<MiniSearch<SearchDoc>> {
+  return MiniSearch.loadJSAsync<SearchDoc>(json, searchOptions());
 }
 
 /* ---------- Querying ---------- */

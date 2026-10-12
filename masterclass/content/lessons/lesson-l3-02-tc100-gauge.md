@@ -7,6 +7,7 @@ order: 2
 audience: [owner, crew]
 visibility: internal
 status: sourced
+version: 2
 kbRef: "7.2"
 tags: [gauge, measure, thickness, microns, job sheet]
 synonyms:
@@ -25,9 +26,18 @@ synonyms:
 sources:
   - label: Knowledge base 7.2, TC100 research
     date: 2026-10-06
-    note: Screen symbols, zeroing on the plate, baseline, 3 to 5 readings, normal swings, Model Y owner readings
+    note: Screen symbols, zeroing on the plate, baseline, 3 to 5 readings, normal swings
+  - label: Verification log FC-74
+    date: 2026-10-11
+    note: Not reconfirmed. No R&D TC100 manual or maker page was found. Another maker's gauge manual says a zero is only valid on the calibration plate or other bare metal. Read the TC100's printed manual for the zero and SNG steps.
+  - label: Tesla Motors Club forum, Tesla paint depth
+    url: https://teslamotorsclub.com/tmc/threads/tesla-paint-depth-vs-other-cars.221821/
+    date: 2026-10-11
+    note: One owner's Model Y read about 4.03 to 5.92 mils, hood highest, rear quarters lowest. An owner report, not a Tesla spec. Tesla publishes no paint thickness. Verification log FC-73.
 steps:
   - Zero the gauge only on its included bare plate.
+  - text: Read the TC100's printed manual once for the zero and SNG steps. Nobody has checked it against this lesson yet.
+    status: verify
   - Never press ZERO on the car. It offsets every later reading.
   - Check the screen says SNG, the single-reading mode.
   - Leave the units on µm.
@@ -70,8 +80,13 @@ numbers:
     value: Hood, roof, trunk, LF fender, LF door, LR door, LR quarter, RF fender, RF door, RR door, RR quarter
     kbRef: "16"
     status: house
-  - label: Tesla Model Y
-    value: Owners commonly measure about 4 to 6 mils (100 to 150 µm), highest on the hood. Lando's hood read above 100 everywhere.
+  - label: Tesla Model Y, what owners report
+    value: About 4 to 6 mils (100 to 150 µm), highest on the hood. That comes from an owner forum, not from Tesla.
+    status: verify
+    kbRef: "7.2"
+  - label: Lando's hood
+    value: Read above 100 everywhere.
+    status: house
     kbRef: "7.2"
 mistakes:
   - Pressing ZERO on the car. Every reading after it is off.
@@ -131,4 +146,4 @@ On a Tesla, the roof is glass. Skip it. It gets washed, never measured or polish
 
 ## Teslas read in a known range
 
-Model Y owners commonly measure about 4 to 6 mils, which is 100 to 150 µm, highest on the hood. Lando's own hood read above 100 everywhere. Those numbers are a guide, never a reason to skip measuring.
+Owners report about 4 to 6 mils on a Model Y, which is 100 to 150 µm, highest on the hood. That comes from an owner forum, not from Tesla, which publishes no paint thickness. Lando's own hood read above 100 everywhere. Those numbers are a guide, never a reason to skip measuring.

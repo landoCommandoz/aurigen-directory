@@ -28,6 +28,13 @@ sources:
   - label: Knowledge base 7.3 and 11
     date: 2026-10-07
     note: Edges and body lines always read low, so stay an inch off. On the Model Y the roof is glass and is skipped in the measure route.
+  - label: Tesla Motors Club forum, Tesla paint depth thread
+    url: https://teslamotorsclub.com/tmc/threads/tesla-paint-depth-vs-other-cars.221821/
+    date: 2026-10-11
+    note: One owner's Model Y read about 4.03 to 5.92 mils, hood highest, rear quarters lowest. Forum, supporting only. Tesla publishes no paint thickness. Fact-checker FC-73.
+  - label: Fact-checker FC-74, TC100 zero and screen codes
+    date: 2026-10-11
+    note: No R&D TC100 manual or maker page was found to recheck the zero and screen-code steps. Another maker's gauge manual (Sauter) says a zero is not valid unless the probe sits directly on the calibration plate or other uncoated metal. Lando's check is the printed TC100 manual.
 stopIf:
   - Never press ZERO on the car. It offsets every later reading.
 checks:
@@ -63,7 +70,10 @@ stillHappening:
 notes:
   - 20 µm swings within a foot are normal.
   - Leave the units alone. µm is microns.
-  - Tesla Model Y owners commonly measure about 4 to 6 mils (100 to 150 µm), highest on the hood.
+  - text: On a Tesla Model Y, owners report about 4 to 6 mils (100 to 150 µm), highest on the hood. Tesla publishes no paint thickness.
+    status: verify
+  - text: The zero and screen-code steps come from the 2026-10-06 research. No TC100 manual was found online to recheck them. Read the printed TC100 manual.
+    status: verify
   - text: "On a Tesla, the roof is glass. Skip it in the measure route."
     status: house
 lessonId: lesson-l3-02-tc100-gauge

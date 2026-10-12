@@ -18,10 +18,11 @@
  */
 import { useNavigate, useParams } from 'react-router';
 import { Button, StopBand } from '../../components/ui';
-import { getItem } from '../../core/content';
+import { getItem, useContent, type LoadableShard } from '../../core/content';
 import { useCustomerView } from '../../core/customerView';
 import { lineStatus, lineText, visibleLines, type FixNodeItem } from '../../schemas';
 import { badgeFor, LineBadge, LinesList, UnverifiedBadge } from '../search/contentViews';
+import { ContentWait } from '../shared/ContentWait';
 import { Markdown } from '../shared/Markdown';
 import { ReadAloud } from '../shared/ReadAloud';
 import { RelatedList } from '../shared/RelatedList';
@@ -31,6 +32,8 @@ import { fixRelatedIds, fixSpeechText, GROUP_LABELS } from './fixModel';
 import './fixit.css';
 
 const BACK = { to: '/fixit', label: 'All symptoms' };
+/** The fixes, and the catalog for the Related list. */
+export const FIX_PAGE_CONTENT: readonly LoadableShard[] = ['fixnode', 'catalog'];
 
 function StopLines({ fix }: { fix: FixNodeItem }) {
   const lines = visibleLines(fix.stopIf, fix.status);
@@ -103,8 +106,10 @@ export function FixPage() {
   const { id = '' } = useParams();
   const navigate = useNavigate();
   const cv = useCustomerView();
+  const content = useContent(FIX_PAGE_CONTENT, cv.ready);
 
-  if (!cv.ready) return <Screen title="Fix It" back={BACK} />;
+  if (!cv.ready) return <ContentWait title="Fix It" back={BACK} />;
+  if (!content.ready) return <ContentWait title="Fix It" back={BACK} content={content} />;
   const found = getItem(id, { customerView: cv.on });
   const fix = found?.type === 'fixnode' ? found : undefined;
   if (fix === undefined) {

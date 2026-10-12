@@ -7,6 +7,7 @@ order: 6
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "5.1"
 tags: [wash, decon, order, time plan, level 1]
 synonyms:
@@ -29,7 +30,7 @@ sources:
   - label: Tesla Model Y owner's manual, wheel cleaner and pre-wash caution
     url: https://www.tesla.com/ownersmanual/modely/en_ae/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
     date: 2026-10-10
-    note: No chemical-based wheel cleaners or pre-wash products. Same wording in the Model 3, S, X, and Cybertruck manuals; the 2020 to 2024 Model Y page could not be checked line by line. Read through the search index. Fact-checker FC-16.
+    note: No chemical-based wheel cleaners or pre-wash products. Same wording in the Model 3, S, X, and Cybertruck manuals. Read through the search index. Fact-checker FC-16.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
   - label: Tesla Model Y owner's manual, warranty line
@@ -38,12 +39,56 @@ sources:
     note: Damage or discoloration from cleaning products is not covered by the warranty. Read through the search index. Fact-checker FC-16.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: The wheel cleaner, pre-wash, and warranty cautions are in this manual too. Do not aim water hoses directly at windows, door or hood seals, electronic modules, or exposed cabling; do not wash in direct sunlight. Remove bird droppings, dead insects, tar spots, and other corrosive substances right away; do not wait for a complete wash. Read directly. Fact-checker FC-35, FC-38, FC-114.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2025 and newer owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: The same Car Wash Mode path. Read directly. Fact-checker FC-39.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Armor All product page, Extreme Wheel & Tire Cleaner
+    url: https://armorall.com/product/extreme-wheel-tire-cleaner
+    date: 2026-10-11
+    note: Let the foam work 30 seconds. Do not allow wash water to enter storm drains, streams, or lakes. Fact-checker FC-26 and FC-91.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Chemical Guys, what happens if you don't wash your car
+    url: https://www.chemicalguys.com/blogs/exterior-how-tos/what-happens-if-you-dont-wash-your-car
+    date: 2026-10-11
+    note: Bird droppings can begin damaging paint in a few hours. Tree sap, bug splatter, and bird droppings contain acids that quickly etch into clear coats. Fact-checker FC-114.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Meguiar's UK article, Heavy Duty Bug & Tar Remover
+    url: https://www.meguiars.co.uk/showroom/introducing-meguiars-heavy-duty-bug-tar-remover/
+    date: 2026-10-11
+    note: Spray it on, let it soften the contaminants, then hose it off or wash over it. Works without scrubbing. Gives no dwell time. Fact-checker FC-44 and FC-45.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tooele City Code, sections 4-11-11 and 9-4-16
+    url: https://www.tooelecity.gov/government/city_code.php
+    date: 2026-10-11
+    note: 4-11-11, unlawful to let water from a source you control run onto the surface of a sidewalk. 9-4-16, in a declared water shortage the mayor can restrict washing automobiles. These apply only inside Tooele City. Verification log FC-93.
+  - label: Verification log FC-90 and FC-92
+    date: 2026-10-11
+    note: The hose and pressure washer water figures are unconfirmed; other figures suggest a hose uses far more than double. Dumping buckets in a sink or toilet is a house rule; no city rule is cited for it.
 steps:
   - Set up from the staged kit.
   - On a Tesla, turn on Car Wash Mode before any water.
   - Wheels and tires first, one wheel at a time, on a cool wheel.
   - Pre-rinse on jet for 3 to 4 minutes, top down.
-  - Foam Bug & Tar on the bugs and rocker tar. One-minute dwell, then wash it off.
+  - text: On a Tesla, Tesla's manual says do not aim a hose directly at windows, door or hood seals, electronic modules, or exposed cabling.
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending).
+    status: verify
+  - text: Foam Bug & Tar on the bugs and rocker tar. Let it soften them, then wash it off. No scrubbing.
+    status: sourced
+  - text: The house wait is about one minute. No label confirms it. Read the can.
+    status: verify
   - Contact wash roof to rockers, one panel at a time, with the towel method.
   - Final rinse with the nozzle off. Let the water sheet off top down.
   - Blow out the gaps with the compressor.
@@ -53,6 +98,7 @@ steps:
   - Clay the gritty panels.
   - Log your time for each stage.
   - Dump the buckets in a sink or a toilet, never the street.
+  - Keep wash water out of the storm drains.
 numbers:
   - label: Wheels
     value: 25 min, with the mats soaking meanwhile
@@ -68,7 +114,8 @@ numbers:
     value: 30 min
     kbRef: "17.2"
   - label: Iron and clay
-    value: 30 min, starting the vacuum during the dwell. No iron remover is owned.
+    value: 30 min, starting the vacuum during the dwell. The plan names an iron remover, and none is owned or chosen.
+    status: verify
     kbRef: "17.2"
   - label: Rinse, dry, and jambs
     value: 20 min
@@ -83,18 +130,29 @@ numbers:
   - label: Lando's second session, Oct 7
     value: Most of the time went to setup. The interior got cut, and he still ran out of time.
     kbRef: "17.3"
-  - label: Car Wash Mode, 2020 to 2024 Model Y
-    value: "Controls > Service > Car Wash Mode."
+  - label: Car Wash Mode, Model Y
+    value: "Controls > Service > Car Wash Mode. Same path on the 2020 to 2024 and the 2025 and newer Model Y."
     status: sourced
     kbRef: "11"
   - label: What Car Wash Mode does
     value: Closes all windows, locks the charge port, and turns off the wipers, Sentry Mode, walk-away door locking, and parking chimes. The car must be parked and not charging. It turns off above 9 mph or when you touch Exit.
     status: sourced
     kbRef: "11"
-  - label: Car Wash Mode, other years and models
+  - label: Car Wash Mode, Model S, Model X, and Cybertruck
     value: Menu path not checked.
     status: verify
     kbRef: "11"
+  - label: Bugs and bird droppings
+    value: Chemical Guys says bird droppings, bug splatter, and tree sap carry acids that quickly etch the clear coat. Tesla's manual says remove them right away and do not wait for a full wash.
+    status: sourced
+  - label: Wheel cleaner wait
+    value: 30 seconds. That is the label.
+    status: sourced
+    kbRef: "5.1"
+  - label: Bug & Tar wait
+    value: About one minute, a house number. No label confirms it.
+    status: verify
+    kbRef: "5.1"
   - label: Wheel cleaner, the house step
     value: Armor All Extreme Wheel & Tire, a brush, and the hose, on every car.
     kbRef: "5.1"
@@ -106,11 +164,27 @@ numbers:
     value: On a Tesla, Tesla's manual says do not use chemical-based wheel cleaners or pre-wash products. It also says damage or discoloration from cleaning products is not covered by the warranty.
     status: sourced
     kbRef: "11"
+  - label: Pre-rinse, Tesla's manual
+    value: On a Tesla, Tesla's manual says do not aim a hose directly at windows, door or hood seals, electronic modules, or exposed cabling, and do not wash in direct sunlight.
+    status: sourced
+    kbRef: "11"
   - label: On a Tesla, the wash
     value: Lando decides how this applies to Teslas (pending).
     status: verify
   - label: Water a hose wash uses
-    value: Roughly double a pressure washer. A full wash off a pressure washer runs about 25 to 35 gallons.
+    value: The house note says roughly double a pressure washer, and a pressure-washer wash runs about 25 to 35 gallons. Not confirmed. Other figures suggest a hose uses far more than double.
+    status: verify
+    kbRef: "5.5"
+  - label: Storm drains
+    value: Keep wash water out of them. Armor All's wheel cleaner label says do not let wash water reach storm drains, streams, or lakes.
+    status: sourced
+    kbRef: "5.5"
+  - label: Inside Tooele City limits
+    value: City Code 4-11-11 says do not let water from anything you control run onto a sidewalk. During a declared water shortage, the mayor can restrict car washing (City Code 9-4-16).
+    status: sourced
+    kbRef: "5.5"
+  - label: Runoff answer (pending)
+    value: Lando calls the city or county once about driveway runoff and writes the answer down.
     status: verify
     kbRef: "5.5"
 mistakes:
@@ -155,7 +229,7 @@ related:
 
 Set up from the staged kit. On a Tesla, Car Wash Mode goes on before any water. Then wheels and tires, then the pre-rinse, then Bug & Tar, then the contact wash, then the final rinse, then dry, then decon.
 
-Each step protects the next one. Wheels go first because their cleaner splashes. The pre-rinse comes before any touch because dirt is grit. Bug & Tar dwells so you never scrub. The contact wash goes roof to rockers so low dirt never travels up. The sheeting rinse and fast drying beat Utah hard water. The bag test and clay come last, on clean paint, and only on the panels that need it.
+Each step protects the next one. Wheels go first because their cleaner splashes. The pre-rinse comes before any touch because dirt is grit. Bug & Tar sits so you never scrub, and bugs come off early because bug splatter and bird droppings carry acids that etch the clear coat. The contact wash goes roof to rockers so low dirt never travels up. The sheeting rinse and fast drying beat Utah hard water. The bag test and clay come last, on clean paint, and only on the panels that need it.
 
 ## The plan and the clock
 
@@ -173,10 +247,14 @@ Knowledge base 5.1 dries the car first and then clays. The 17.2 time plan lists 
 
 ## Teslas
 
-On the 2020 to 2024 Model Y, Car Wash Mode is Controls, then Service, then Car Wash Mode. It closes all windows, locks the charge port, and turns off the wipers, Sentry Mode, walk-away door locking, and parking chimes. The car must be parked and not charging, and the mode turns off above 9 mph or when you touch Exit. Skip it, and the windows can drop, the wipers can run, and Sentry can fire mid-wash. Other years and models are not checked.
+On the Model Y, 2020 to 2024 and 2025 and newer alike, Car Wash Mode is Controls, then Service, then Car Wash Mode. It closes all windows, locks the charge port, and turns off the wipers, Sentry Mode, walk-away door locking, and parking chimes. The car must be parked and not charging, and the mode turns off above 9 mph or when you touch Exit. Skip it, and the windows can drop, the wipers can run, and Sentry can fire mid-wash. The Model S, Model X, and Cybertruck are not checked.
 
-Two wash steps are not settled on a Tesla. The house wheel step uses Armor All Extreme Wheel & Tire, and the house plan has a pump-sprayer pre-soak. Tesla's manual says do not use chemical-based wheel cleaners or pre-wash products, and it says cleaning-product damage is not covered by Tesla's warranty. Lando decides how this applies to Teslas. Until he does, both show as pending.
+Tesla's manual also says do not aim a hose directly at windows, door or hood seals, electronic modules, or exposed cabling. The house pre-rinse is on jet, so Lando decides how that applies to Teslas.
+
+Two more wash steps are not settled on a Tesla. The house wheel step uses Armor All Extreme Wheel & Tire, and the house plan has a pump-sprayer pre-soak. Tesla's manual says do not use chemical-based wheel cleaners or pre-wash products, and it says cleaning-product damage is not covered by Tesla's warranty. Lando decides how this applies to Teslas. Until he does, both show as pending.
 
 ## Water
 
-A hose wash uses roughly double the water of a pressure washer, and a full wash off a pressure washer runs about 25 to 35 gallons. Those numbers are not confirmed. What is house: dump the buckets in a sink or a toilet, never the street, and keep wash water out of the storm drains.
+The house note says a hose wash uses roughly double the water of a pressure washer, and a full wash off a pressure washer runs about 25 to 35 gallons. Those numbers are not confirmed, and other figures suggest a hose uses far more than double. What is house: dump the buckets in a sink or a toilet, never the street, and keep wash water out of the storm drains. Armor All's wheel cleaner label says the same about storm drains.
+
+If the shop is inside Tooele City limits, the city code says no water running onto the sidewalk, and in a declared water shortage the mayor can restrict car washing. Lando still owes one call to the city or county about driveway runoff.

@@ -7,6 +7,7 @@ vehicleBranch: bike
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "12.1"
 tags: [hand polish, bike, motorcycle, tank, fenders, chrome, matte]
 synonyms:
@@ -16,6 +17,10 @@ synonyms:
   - polish the chrome
   - motorcycle polish
   - tank polish
+sources:
+  - label: Verification log FC-86 and FC-87
+    date: 2026-10-11
+    note: Matte and Harley Denim care stays house; Harley's care chart and a licensed vendor agree. Ceramic wax on bike chrome is not confirmed by Meguiar's; its pages list no surfaces for the spray.
 steps:
   - text: Check the finish.
     quickCardId: card-bike-rules
@@ -41,4 +46,4 @@ Tanks and fenders are polished by hand. The 6 in. pad does not fit a tank, and t
 
 Matte paint, including Harley Denim, gets no compound, no polish, and no wax. Matte-safe cleaner only.
 
-Chrome gets chrome polish, then a coat of ceramic wax in the protect stage. The hand polish and the chrome polish products are not set yet.
+Chrome gets chrome polish, then a coat of ceramic wax in the protect stage. Meguiar's has not confirmed the ceramic wax for chrome. The hand polish and the chrome polish products are not set yet.

@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "5.1"
 tags:
   - pre-rinse
@@ -17,7 +18,7 @@ synonyms:
   - rinse questions
   - bug and tar quiz
   - how long do I rinse test
-prompt: Hose in hand, jet nozzle on. How long is the pre-rinse, and which way do you go?
+prompt: A car that is not a Tesla. Hose in hand, jet nozzle on. How long is the pre-rinse, and which way do you go?
 choices:
   - 30 seconds, top down.
   - 10 minutes, bottom up.

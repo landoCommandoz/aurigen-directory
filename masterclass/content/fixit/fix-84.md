@@ -23,8 +23,24 @@ sources:
   - label: Knowledge base 12.1 and 21
     date: 2026-10-07
     note: Motorcycle windshields are plastic. No alcohol, no glass cleaner, no compound, no clay. The approved plastic cleaner is not confirmed.
+  - label: National Cycle windshield instruction sheet, 2016
+    url: https://www.nationalcycle.com/media/wysiwyg/pdf/ispl/10-118601-000.pdf
+    date: 2026-10-11
+    note: Do not clean polycarbonate in hot sun or high temperatures. Do not clean the screen with household glass cleaners. Do not allow brake fluid, alcohol, or strong solvents to contact the windshield. Clean with a soft cloth, plenty of warm water, and if needed a non-abrasive soap such as dishwashing liquid. Loaded directly. Fact-checker FC-82 and FC-83.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Harley-Davidson service information, windshield care
+    url: https://serviceinfo.harley-davidson.com/sip/service/procedure/1952428810735561133/BLAISE/393859/en_US?nid=6372
+    date: 2026-10-11
+    note: Ammonia-based window cleaners cause permanent yellowing. Powdered, abrasive, or alkaline cleansers can damage the windshield. Read through the search index. Fact-checker FC-82.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 stopIf:
-  - "A bike windshield is plastic. No alcohol, no glass cleaner, no compound, no clay."
+  - text: "A bike windshield is plastic. No alcohol, no glass cleaner, no compound."
+    status: sourced
+  - No clay on it either.
+  - text: Do not clean it in hot sun.
+    status: sourced
 checks:
   - What is in your hand? The IPA bottle and glass cleaner stay away.
   - Is it haze, bugs, or scratches?
@@ -40,7 +56,7 @@ stillHappening:
     status: verify
   - "Other bike questions: open the motorcycle, what can't I use fix."
 notes:
-  - text: No approved plastic cleaner is confirmed yet.
+  - text: No approved plastic cleaner is confirmed yet. One windshield maker names warm water and dishwashing liquid, while the house keeps dish soap in the garage. Lando decides (pending).
     status: verify
   - The glass rules for cars do not apply. This is plastic.
 productIds:

@@ -26,8 +26,20 @@ sources:
   - label: Tesla Model Y owner's manual, cleaning cautions, current model
     url: https://www.tesla.com/ownersmanual/modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
     date: 2026-10-10
-    note: No cutting pastes, color restoration compounds, or polishes with harsh abrasives. Cleaning-product damage is not covered by the warranty. Seen on the 2025 and newer Model Y manual and other Tesla manuals; the 2020 to 2024 page could not be checked line by line. Read through the search index. Fact-checker FC-16.
+    note: No cutting pastes, color restoration compounds, or polishes with harsh abrasives. Cleaning-product damage is not covered by the warranty. Seen on the 2025 and newer Model Y manual and other Tesla manuals. Read through the search index. Fact-checker FC-16. FC-38 found the same lines in the 2020 to 2024 Model Y manual.
     confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Buff and Shine 672CR, 6 in. maroon Uro-Tec pad
+    url: https://buffandshine.com/products/672cr-6-maroon-uro-tec-foam-pad-medium-cut
+    date: 2026-10-11
+    note: Maroon (Medium Cut), the workhorse of the line, reliable medium-cut performance, ideal for one-step compound and polish combinations. Loaded directly. Fact-checker FC-66.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Pages 178 to 181, Cleaning. No chemical based wheel cleaners or pre-wash products. No cutting pastes, color restoration compounds, or polishes containing harsh abrasives. Damage or discoloration from cleaning products is not covered by the warranty. Also says an approved polish with a very mild abrasive may be used occasionally. Loaded directly. Fact-checker FC-38.
+    confirmedOn: 2026-10-11
     confirmedBy: fact-checker
 stopIf:
   - One compound pass per section, max. Do not compound it again.
@@ -55,6 +67,8 @@ stillHappening:
   - "Haze, not swirls: open the haze after compound fix."
 notes:
   - Over 100 µm means compound is allowed, not required.
+  - text: The maroon pad is medium cut (Buff and Shine). It cuts more than the yellow.
+    status: sourced
   - text: "On a Tesla, the house ladder allows Ultimate Compound on rung 3."
     status: house
   - text: "Tesla's manual says: Do not use cutting pastes, color restoration compounds, or polishes containing harsh abrasives. These can scour the surface and permanently damage the paint."

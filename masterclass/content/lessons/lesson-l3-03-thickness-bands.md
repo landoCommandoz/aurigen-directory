@@ -7,6 +7,7 @@ order: 3
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "7.3"
 tags: [gauge, thickness, bands, microns, thin panel, repaint]
 synonyms:
@@ -31,7 +32,19 @@ sources:
     note: The band comes from the lowest reading on the panel. The rest of the car is the median of the lowest readings of the other measured panels.
   - label: Knowledge base 7.3, background film numbers
     date: 2026-09-22
-    note: Factory total film and clear coat figures. Reconfirm. On the fact-checker's queue.
+    note: The background figures now follow DeFelsko, rechecked by the fact-checker (FC-71 and FC-72).
+  - label: DeFelsko, automotive paint detailing
+    url: https://www.defelsko.com/resources/automotive-paint-detailing
+    date: 2026-10-11
+    note: Most factory paint jobs run 4 to 7 mils (100 to 180 microns). Some roofs run only 3 mils (75 microns). DeFelsko makes gauges, not paint. Fact-checker FC-72.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: DeFelsko, how to use paint thickness gauges for better automotive detailing
+    url: https://www.defelsko.com/resources/how-to-use-paint-thickness-gauges-for-better-automotive-detailing
+    date: 2026-10-11
+    note: Clear coat usually runs 1.5 to 2.0 mils (35 to 50 microns). Most carmakers recommend removing no more than 0.3 mils (8 microns) of clear coat. Fact-checker FC-71.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
   - label: Tesla Model Y owner's manual, cleaning cautions, current model
     url: https://www.tesla.com/ownersmanual/modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
     date: 2026-10-10
@@ -88,9 +101,17 @@ numbers:
   - label: What this table is
     value: A conservative house standard, not a manufacturer spec
     kbRef: "7.3"
-  - label: Background
-    value: Factory total film is usually about 100 to 180 µm. The clear coat itself is only about 38 to 50 µm of that.
-    status: verify
+  - label: Background, total film
+    value: Factory total film is usually about 100 to 180 µm.
+    status: sourced
+    kbRef: "7.3"
+  - label: Background, clear coat
+    value: The clear coat is about 35 to 50 µm (1.5 to 2 mils) of that.
+    status: sourced
+    kbRef: "7.3"
+  - label: How little to take
+    value: DeFelsko says most carmakers recommend removing no more than about 8 µm (0.3 mil) of clear coat.
+    status: sourced
     kbRef: "7.3"
 mistakes:
   - Using the average, or the highest reading, instead of the lowest.
@@ -152,4 +173,4 @@ On most cars, 100 µm or more opens the full ladder, compound included when the 
 
 ## The background numbers
 
-The knowledge base gives a background: factory total film is usually about 100 to 180 µm, and the clear coat is only about 38 to 50 µm of that. Those two figures were checked once and are waiting to be reconfirmed, so they carry an unverified badge. They explain why the bands are careful. They do not change the bands.
+The background: factory total film is usually about 100 to 180 µm, and the clear coat is about 35 to 50 µm (1.5 to 2 mils) of that. Both figures come from DeFelsko, a paint gauge maker. DeFelsko also says most carmakers recommend removing no more than about 8 µm of clear coat. That is why the bands are careful. The background does not change the bands.

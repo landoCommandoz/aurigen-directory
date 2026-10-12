@@ -6,6 +6,7 @@ level: 4
 order: 7
 audience: [owner, crew]
 visibility: internal
+version: 2
 status: house
 kbRef: "8.3"
 tags: [polish, machine, one-step, square, time, sign-off, level 4]
@@ -41,6 +42,9 @@ sources:
     note: Page 8, only use slower speeds for polishing, and keep pressure off of the tool so the foam pad lightly contacts the surface. Fact-checker FC-22 and FC-23.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: Verification log FC-107
+    date: 2026-10-11
+    note: The Utah Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending).
 steps:
   - Check for shade, a cool panel, and no wind.
   - Check the panel's readings allow the machine.
@@ -165,6 +169,10 @@ numbers:
   - label: On a Tesla
     value: Start on the hood. The roof is glass, so skip it. No roof, no glass.
     kbRef: "11"
+  - label: Who may run power tools (pending)
+    value: Lando decides.
+    status: verify
+    kbRef: "19"
 mistakes:
   - Wiping and re-applying between passes.
   - Judging the square before the IPA wipe. Polish oils hide swirls.

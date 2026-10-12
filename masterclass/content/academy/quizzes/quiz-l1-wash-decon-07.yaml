@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "5.5"
 tags:
   - wash
@@ -18,6 +19,13 @@ synonyms:
   - wash and decon quiz
   - full wash test
   - level 1 sign off quiz
+sources:
+  - label: Armor All product page, Extreme Wheel & Tire Cleaner
+    url: https://armorall.com/product/extreme-wheel-tire-cleaner
+    date: 2026-10-11
+    note: Do not allow wash water to enter storm drains, streams or lakes. Fact-checker FC-91. Dumping buckets in a sink or toilet is house; no city rule is cited until the city answers (FC-92, FC-93).
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 prompt: The wash is done. Where do you dump the buckets?
 choices:
   - In a sink or a toilet.
@@ -25,7 +33,7 @@ choices:
   - Down the storm drain.
   - In the gutter by the curb.
 correctIndex: 0
-explanation: Never the street. Keep wash water out of the storm drains.
+explanation: House rule, a sink or a toilet, never the street. The wheel cleaner label also says do not let wash water enter storm drains, streams, or lakes.
 scenario: true
 related:
   - lesson-l1-06-full-wash

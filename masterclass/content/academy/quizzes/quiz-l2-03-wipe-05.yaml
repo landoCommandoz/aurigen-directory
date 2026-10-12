@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "10"
 tags:
   - interior
@@ -18,14 +19,21 @@ synonyms:
   - dash questions
   - shiny dash test
   - headliner quiz
-prompt: The center touchscreen has fingerprints. What do you use?
+sources:
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Touchscreen. A soft lint-free cloth made for displays. No cleaners such as glass cleaner, no hand sanitizer, no wet wipe, no dry statically-charged cloth such as a recently washed microfiber. Screen Clean Mode under Controls > Display. Read directly. Fact-checker FC-36, conflicting with the house screen line; Lando decides. This question is set on a car that is not a Tesla.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+prompt: The center touchscreen of a car that is not a Tesla has fingerprints. What do you use?
 choices:
   - A dry microfiber or a screen-safe cleaner.
   - Interior detailer sprayed on the screen.
   - The IPA panel wipe.
   - Glass cleaner sprayed on the screen.
 correctIndex: 0
-explanation: Screens get a dry microfiber or a screen-safe cleaner only.
+explanation: Screens get a dry microfiber or a screen-safe cleaner only. On a Tesla, the touchscreen is not settled yet, because Tesla's manual names a recently washed microfiber as a risk. Lando decides (pending).
 scenario: true
 related:
   - lesson-l2-03-wipe-dress

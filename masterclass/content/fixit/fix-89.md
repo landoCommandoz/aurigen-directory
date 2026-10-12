@@ -43,6 +43,8 @@ stillHappening:
   - text: "Crew: who handles payment or a cancellation when Lando is not there is not set. Lando decides (pending)."
     status: verify
 notes:
+  - text: Holding the keys until payment is a house policy. Whether Utah law backs it is not checked. Never tell a customer it is the law.
+    status: verify
   - The deposit is $50. It holds the slot and comes off the final price.
   - Payment is due at completion, before keys go back.
   - "Condition fees: pet hair $50, heavy mess $75+, smoke odor quoted on inspection."

@@ -25,6 +25,11 @@ sources:
   - label: Knowledge base 17, 8.7, 9.1, and 20
     date: 2026-10-07
     note: Time map, full detail order with dwell, actuals from Oct 6 and Oct 7, about 4 minutes per section, protect the same day you polish, and the cutoff time that blocks starting a polish.
+  - label: Booklet page 9, time map and full detail order
+    date: 2026-10-11
+    note: The fact-checker checked the totals against the booklet. 39 sections, one-step 2 h 30 m, full detail straight through 7 h 10 m. House numbers. Fact-checker FC-115.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 stopIf:
   - Past the cutoff time? Do not start polishing.
   - Polished paint gets protection the same day. Do not leave it bare.
@@ -60,6 +65,8 @@ notes:
   - "Oct 6: wheels and wash were done at 5:25 PM. The plan was 6:10. Oct 7: the interior got cut, and time still ran out."
   - The Job Runner shows a cutoff time and will not start polishing after it.
   - text: The cutoff time itself is not set in the knowledge base.
+    status: verify
+  - text: The full detail total counts a 10-minute pre-soak and 30 minutes of iron and clay. The pre-soak is not confirmed, and the house owns no iron remover.
     status: verify
 lessonId: lesson-l4-07-full-square
 related:

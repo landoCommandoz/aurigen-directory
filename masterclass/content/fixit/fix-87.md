@@ -37,7 +37,8 @@ steps:
   - "Matte: clean it with a matte-safe cleaner only."
   - Gloss tank and fenders? Polish them by hand.
   - Polish the chrome with chrome polish.
-  - Give the chrome a coat of ceramic wax.
+  - text: Give the chrome a coat of ceramic wax.
+    status: verify
   - Heavy chrome pitting? Quote it on sight.
 stillHappening:
   - "Other bike questions: open the motorcycle, what can't I use fix."

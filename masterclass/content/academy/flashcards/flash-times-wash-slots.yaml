@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "17.2"
 tags:
   - times
@@ -16,7 +17,11 @@ synonyms:
   - wash stage times
   - time flashcard
   - how long card
-front: In the full-detail plan, how long are the wheels, pre-rinse and bugs, contact wash, iron and clay, and rinse, dry, and jambs?
-back: Wheels 25, pre-rinse and bugs 10, contact wash 30, iron and clay 30, rinse, dry, and jambs 20 (minutes).
+sources:
+  - label: Verification log FC-115
+    date: 2026-10-11
+    note: The 17.2 times are house numbers from the booklet, and the arithmetic checks out. The iron and clay slot names an iron remover the shop does not own, so it is left off this card. The pre-soak slot is unconfirmed (FC-03).
+front: In the full-detail plan, how long are the wheels, pre-rinse and bugs, contact wash, and rinse, dry, and jambs?
+back: Wheels 25, pre-rinse and bugs 10, contact wash 30, rinse, dry, and jambs 20 (minutes).
 related:
   - lesson-l1-06-full-wash

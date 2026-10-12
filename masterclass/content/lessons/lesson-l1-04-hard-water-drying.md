@@ -7,6 +7,7 @@ order: 4
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "5.4"
 tags: [drying, hard water, rinse, compressor, jambs, level 1]
 synonyms:
@@ -32,6 +33,21 @@ sources:
     note: Apply while the car is still wet, then dry it off. Two coats recommended. Fact-checker FC-05.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: Verification log FC-46, FC-48, FC-49
+    date: 2026-10-11
+    note: No Meguiar's page says the ceramic wax or a quick detailer removes or prevents water spots. There is no exterior quick detailer in the kit. Etched spots needing polish rests on a forum how-to only.
+  - label: Chemical Guys safety data sheet, Heavy Duty Water Spot Remover SPI108
+    url: https://chemicalguys.com/cdn/shop/files/SDS_SPI108_-_Heavy_Duty_Water_Spot_Remover.pdf
+    date: 2026-10-11
+    note: Danger. Causes severe skin burns and eye damage. Wear gloves and eye protection. Contains sulphuric acid and ammonium bifluoride. Not a product Lando owns. Fact-checker FC-47.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Do not use acidic products either. Read directly. Fact-checker FC-47.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 steps:
   - Work in shade, on cool panels.
   - Wash in smaller sections so nothing dries before you rinse it.
@@ -44,8 +60,10 @@ steps:
   - Dry right away, panel by panel.
   - Open every door and dry the jambs.
   - Getting this car polished? No ceramic spray as a drying aid. Nothing slick goes on before the polish.
-  - text: No polish to follow? The ceramic wax can be your drying aid. Spray it on the wet car, rinse, and dry.
+  - text: No polish to follow? Spray the ceramic wax on the wet car, rinse, and dry.
     status: sourced
+  - text: The house uses the ceramic wax as a drying aid against spots. Meguiar's does not say it prevents water spots.
+    status: verify
   - text: Found spots after drying? See the removal rows. The products for them are not confirmed.
     status: verify
 numbers:
@@ -79,13 +97,26 @@ numbers:
     status: sourced
     kbRef: "9.1"
   - label: Fresh spots
-    value: Wipe off with a damp towel and a quick detailer or the ceramic spray. Products not confirmed.
+    value: Wipe off with a damp towel and a quick detailer or the ceramic spray. Products not confirmed, and there is no exterior quick detailer in the kit.
     status: verify
     kbRef: "5.4"
   - label: Mineral spots
     value: Need a water-spot remover. None is owned or confirmed.
     status: verify
     kbRef: "5.4"
+  - label: Water-spot remover warning
+    value: Some are strong acids. One sold by Chemical Guys is labeled Danger. It causes severe skin burns and eye damage.
+    status: sourced
+  - label: Water-spot remover (pending)
+    value: Nobody uses one until Lando picks a product and reads its label.
+    status: verify
+  - label: On a Tesla, acids
+    value: Tesla's manual says do not use acidic products.
+    status: sourced
+    kbRef: "11"
+  - label: On a Tesla, water-spot remover
+    value: Lando decides how this applies to Teslas (pending).
+    status: verify
   - label: Etched spots
     value: Need polish. Not confirmed.
     status: verify
@@ -137,10 +168,12 @@ Then the towels. Lay the drying towel flat on the panel and pull it toward you. 
 
 Meguiar's Hybrid Ceramic Wax goes on a wet car. Spray it on, do a second rinse with a strong stream, then dry. No rubbing, no buffing, no cure time. The "wax as you dry" way skips the second rinse: wet panel, light mist, dry with a clean towel. Both are Meguiar's own directions, checked.
 
-That makes it a good drying aid against hard water, with one hard limit. Rule 5 says nothing slick goes on the car until the paint is polished. If this car is getting polished, no ceramic spray goes on now. It goes on the same day, after the polish.
+The house uses it as a drying aid against hard water. Meguiar's has not said it prevents water spots, so that use carries a badge. It has one hard limit. Rule 5 says nothing slick goes on the car until the paint is polished. If this car is getting polished, no ceramic spray goes on now. It goes on the same day, after the polish.
 
 ## When spots happen anyway
 
-Fresh spots wipe off with a damp towel and a quick detailer or the ceramic spray. Mineral spots need a water-spot remover. Etched spots need polish. Those removal steps and products are not confirmed yet, and no water-spot remover is owned, so each one carries the unverified badge. On a car about to be polished, rule 5 still holds: no ceramic spray before the polish.
+Fresh spots wipe off with a damp towel and a quick detailer or the ceramic spray. Mineral spots need a water-spot remover. Etched spots need polish. Those removal steps and products are not confirmed yet, so each one carries the unverified badge. There is no exterior quick detailer in the kit, and no water-spot remover is owned.
+
+Water-spot removers need care. Some are strong acids. One sold by Chemical Guys is labeled Danger: it causes severe skin burns and eye damage. Nobody uses a remover until Lando picks one and reads its label. On a Tesla, Tesla's manual says do not use acidic products at all. On a car about to be polished, rule 5 still holds: no ceramic spray before the polish.
 
 The long-term fix on the list is spot-free or deionized rinse water. Its cost is not checked.

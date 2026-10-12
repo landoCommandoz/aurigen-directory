@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "21"
 tags:
   - pressure
@@ -17,14 +18,21 @@ synonyms:
   - how hard do I press questions
   - float test
   - grip quiz
-prompt: The polisher keeps jerking and walking. You are gripping tight and pushing it into the paint. What changes?
+sources:
+  - label: BAUER 56367 owner's manual, 2021, rechecked
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-11
+    note: General power tool safety, maintain a firm grip on the tool with both hands to resist starting torque. Operation, keep pressure off of the tool; the foam pad should lightly contact the polishing surface. Fact-checker FC-55, conflicting with the house loose grip; Lando decides the grip wording.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+prompt: The polisher keeps jerking and walking. You are pushing it hard into the paint. What changes?
 choices:
-  - Loose grip. Guide it, do not push.
+  - Two hands, pad flat, stop pushing.
   - Push harder to hold it still.
   - Tilt the pad onto its edge.
-  - Hold it tight with one hand.
+  - Hold it with one hand.
 correctIndex: 0
-explanation: Two hands, loose grip, guide it, and keep the pad flat. Pushing with a grip that is too tight is one cause of a jerking polisher.
+explanation: Pushing it into the paint is one cause of a jerking polisher. Keep two hands on it and the pad flat, and guide it. How tight to hold it is not settled yet. The house says a loose grip, and the 56367 manual says a firm grip with both hands to resist starting torque. Lando decides the grip wording (pending).
 scenario: true
 related:
   - lesson-l4-03-pressure

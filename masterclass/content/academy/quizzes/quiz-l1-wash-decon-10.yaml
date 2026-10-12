@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "5.2"
 tags:
   - wash
@@ -18,7 +19,14 @@ synonyms:
   - wash and decon quiz
   - full wash test
   - level 1 sign off quiz
-prompt: On a two-bucket wash, you drop the mitt on the driveway. What happens to it?
+sources:
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Avoid using tight-napped or rough cloths, such as washing mitts. A high-quality microfiber cleaning cloth is recommended. Read directly. Fact-checker FC-34, conflicting with the two-bucket mitt method on Teslas; Lando decides. This question is set on a car that is not a Tesla.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+prompt: On a two-bucket wash of a car that is not a Tesla, you drop the mitt on the driveway. What happens to it?
 choices:
   - Rinse it and keep going.
   - Rinse it in the wash bucket.

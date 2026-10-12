@@ -7,6 +7,7 @@ alsoCalled: [matte, satin, flat finish, Denim]
 audience: [owner, ops, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "7.4"
 tags: [paint, finish, walkaround, kills the buff, bike]
 synonyms:
@@ -16,6 +17,14 @@ synonyms:
   - satin finish
   - can I polish matte
   - dull finish on purpose
+sources:
+  - label: Verification log FC-86
+    date: 2026-10-11
+    note: The house rule stands. Harley's care chart lists a Denim paint cleaner, and a licensed vendor says gloss polish or wax adds unwanted shine to matte. Exact do-not-wax wording was not found.
+  - label: Meguiar's product page, Ultimate Compound G17216
+    url: https://www.meguiars.com/products/automotive/paint/meguiars-ultimate-compound-g17216-152oz
+    date: 2026-10-11
+    note: Not for use on flat, matte, or satin finishes. Read through the search index. Verification log FC-43.
 related:
   - card-kills-the-buff
   - card-bike-rules

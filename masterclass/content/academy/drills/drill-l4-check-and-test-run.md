@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: sourced
+version: 2
 kbRef: "14"
 tags:
   - polisher
@@ -30,10 +31,18 @@ sources:
   - label: Backing plate research (knowledge base 14)
     date: 2026-10-07
     note: Unplugged checks of the bolt, pad, hooks, and plate. Long-throw machines are counterweighted for 5 or 6 in. plates.
+  - label: Utah Labor Commission, youth employment page
+    url: https://laborcommission.utah.gov/divisions/utah-antidiscrimination-and-labor-uald/wage-claim/
+    date: 2026-10-11
+    note: The Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending). Fact-checker FC-107.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 needs:
   - The BAUER 56367 with a pad mounted
   - Lando watching
 instructions:
+  - text: "Who may run power tools, the polisher included: Lando decides (pending)."
+    status: verify
   - Unplug the polisher.
   - Check the center bolt is tight.
   - Check the pad is centered on the backing plate.

@@ -10,19 +10,32 @@ import { expect, type Download, type Page, type Request } from '@playwright/test
 /** The owner PIN every test uses. Six digits (D4). */
 export const PIN = '482915';
 
-/** Every address the shell mounts (src/app/routes.tsx ROUTE_PATHS), with a real card for /cards/:id. */
+/**
+ * Every address the shell mounts (src/app/routes.tsx ROUTE_PATHS), with a real item for each
+ * :id route. Phase 2 added the fix, lesson, procedure, and item pages: the longest fix title, a
+ * STOP fix, a Tesla fix, the longest lesson, a Tesla procedure, a tool, and a glossary term.
+ */
 export const ROUTES = [
   '/',
   '/fixit',
+  '/fixit/fix-01',
+  '/fixit/fix-09',
+  '/fixit/fix-78',
   '/cards',
   '/cards/card-bucket-mix',
+  '/cards/card-machine-settings',
   '/search',
+  '/items/equipment-bauer-56367',
+  '/items/term-long-throw',
   '/settings',
   '/settings/setup',
   '/settings/device',
   '/settings/backup',
   '/settings/developer',
   '/academy',
+  '/academy/lesson-l4-07-full-square',
+  '/sops',
+  '/sops/sop-wheels-tesla',
   '/job',
   '/business',
   '/no-such-route',

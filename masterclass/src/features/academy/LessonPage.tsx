@@ -13,10 +13,11 @@
  */
 import { useNavigate, useParams } from 'react-router';
 import { Button, Row, RowList } from '../../components/ui';
-import { getItem, getItemsByType } from '../../core/content';
+import { getItem, getItemsByType, useContent, type LoadableShard } from '../../core/content';
 import { useCustomerView } from '../../core/customerView';
 import { visibleLines, type LessonItem } from '../../schemas';
 import { LinesList, RowsList, UnverifiedBadge } from '../search/contentViews';
+import { ContentWait } from '../shared/ContentWait';
 import { Markdown } from '../shared/Markdown';
 import { RelatedList } from '../shared/RelatedList';
 import { SourcesList } from '../shared/SourcesList';
@@ -25,6 +26,8 @@ import { lessonNeighbours, PHASE_5_LINE, splitGoal } from './academyModel';
 import './academy.css';
 
 const BACK = { to: '/academy', label: 'Academy' };
+/** The lessons (the page and its neighbours), and the catalog for the Related list. */
+const LESSON_CONTENT: readonly LoadableShard[] = ['lesson', 'catalog'];
 
 function Neighbours({ lesson }: { lesson: LessonItem }) {
   const navigate = useNavigate();
@@ -100,8 +103,10 @@ export function LessonPage() {
   const { lessonId = '' } = useParams();
   const navigate = useNavigate();
   const cv = useCustomerView();
+  const content = useContent(LESSON_CONTENT, cv.ready);
 
-  if (!cv.ready) return <Screen title="Lesson" back={BACK} />;
+  if (!cv.ready) return <ContentWait title="Lesson" back={BACK} />;
+  if (!content.ready) return <ContentWait title="Lesson" back={BACK} content={content} />;
   const found = getItem(lessonId, { customerView: cv.on });
   const lesson = found?.type === 'lesson' ? found : undefined;
   if (lesson === undefined) {

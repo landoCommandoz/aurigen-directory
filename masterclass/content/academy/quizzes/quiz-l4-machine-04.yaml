@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "21"
 tags:
   - polish
@@ -18,6 +19,13 @@ synonyms:
   - machine polishing quiz
   - full square test
   - level 4 sign off quiz
+sources:
+  - label: State Auto risk-control bulletin TB-F41, garage operations and care, custody, and control
+    url: https://sacom-l3.stateauto.com/uploadedfiles/Content/pdfs/TB-F41-1112-NW%20Garage%20Operations%20and%20Care-Custody-Control.pdf
+    date: 2026-10-11
+    note: One insurer, 2012. Garagekeepers insurance does not provide protection when you cause damage to a vehicle through your own work on it. What Lando's own policy covers is not confirmed. Fact-checker FC-104.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 prompt: Mid-square on a modern car, you see the car's color on the pad. What do you do?
 choices:
   - Keep going with lighter pressure.
@@ -25,7 +33,7 @@ choices:
   - Switch pads and finish the square.
   - Add polish and keep going.
 correctIndex: 1
-explanation: You are through the clear. Stop, photograph it, tell the customer, log it, and do not touch that panel again. Old single-stage paint is the only exception.
+explanation: You are through the clear. Stop, photograph it, tell the customer, log it, and do not touch that panel again. Old single-stage paint is the only exception. Do not count on insurance to fix it. One insurer says garagekeepers coverage may not pay when your own work damages a car, and what Lando's policy covers is not confirmed (pending).
 scenario: true
 related:
   - lesson-l4-07-full-square

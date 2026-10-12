@@ -3,7 +3,7 @@ import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testi
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ToastProvider } from '../../components/ui';
-import { getItemsByType } from '../../core/content';
+import { getItemsByType, loadAllContent } from '../../core/content';
 import { CustomerViewProvider, turnCustomerViewOn } from '../../core/customerView';
 import { __resetDbForTests, updateSettings } from '../../core/db';
 import { startFresh } from '../../core/deviceRole';
@@ -13,6 +13,10 @@ import { config } from '../config';
 import { setMode } from '../mode';
 import { ROUTE_PATHS, AppRoutes } from '../routes';
 import { sessionNotices } from '../banners/sessionNotices';
+
+// Pages load their content in shards after the shell draws (DEF-17). These tests check what each
+// page draws with its content in, so every shard is loaded once, up front.
+await loadAllContent();
 
 function renderAt(path: string) {
   return render(

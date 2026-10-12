@@ -1,4 +1,614 @@
-# QA report: Phase 1 gate
+# QA report: Phase 1 and Phase 2 gates
+
+Owner: qa-adversary. Every number below comes from a command run in the cloud VM against the production build served by `vite preview` at `/` (Netlify shape) and at `/aurigen-directory/` (GitHub Pages shape). The key output lines are quoted.
+
+How this file reads, newest first:
+
+1. **Phase 2 gate, pass 3** (the second recheck, branch `masterclass/phase-2`, 2026-10-12): verdict, the eight checks with evidence, commands, the recheck of every pass 2 defect, the new defect (DEF-27) with reproduction steps, the content audit (no content change since pass 2), the 15-point audit, QA's test changes, the current Phase 2 defect register, two phone checks.
+2. **Phase 2 gate, pass 2** (2026-10-12), kept as written: DEF-24 to DEF-26 as found, the recheck of pass 1's defects, 17 more sampled numbers (87 in all), one phone check.
+3. **Phase 2 gate, pass 1** (2026-10-12), kept as written: the first verdict, DEF-16 to DEF-23 as found, the full content audit table and the 70-number sample, the pass 1 phone checklist additions.
+4. **Phase 1 gate record** (branch `masterclass/phase-1`, passes 1 to 4, 2026-10-11), kept as written: its verdicts, its defect register (DEF-01 to DEF-15, all closed), the phone checklist, the test inventory, and the reproduction steps.
+
+# Phase 2 gate, pass 3 (recheck, 2026-10-12, about 09:24 to 10:30 UTC)
+
+## Verdict
+
+**Gate: not passed. 3 defects are open: 0 blocks-gate, 1 fix-before-deploy, 2 later.** Pass 2's three new defects are closed (DEF-24, DEF-25, DEF-26), and the app-engineer's half of DEF-20 is done. Pass 3 found one new defect by attacking DEF-26's fix: DEF-27. The full browser run is green: `1448 passed`, 0 unexpected, 0 flaky, with DEF-27's new test failing as expected at five widths.
+
+- **Fix before deploy.** DEF-27 (app-engineer): on the first visit, and on the first launch from the Home Screen icon, the app says "Ready offline" before the saved copy serves the open page. The service worker saves everything, but it does not take over a page that is already open (`clientsClaim: false`, prompt mode). Pages the warm-up did not bring in (every lesson, procedure, product, tool, and word) still come from the network. On GitHub Pages the browser's own cache covers them for 10 minutes (`max-age=600`). After that, in airplane mode, the Academy says "This page did not load", and Try again says "There is no signal right now" every time, while the top line says "Offline, ready". Only closing and reopening the app helps. Fix It, the jerking fix, the Quick Cards, and search still work, because the warm-up loads them. A reload would also be served by the saved copy, but Try again never reloads here, because the address check from the not-yet-served page gets no answer. Before DEF-17's split, the content was inside the app code, so this could not happen.
+- **Later.** DEF-20 (content-curator): the item page now draws `Product.notes` with a badge per line. The two product files still hold the Tesla house line, Tesla's manual line, and "Lando decides how this applies to Teslas (pending)" inside `labelNotes`, a paragraph with no badge. Both items carry the page badge and say "pending", so nothing reads as settled. DEF-22 (troubleshooter, Phase 4): two knowledge base 24 price cases stay parked by design. There are now two interim guards, both passing.
+
+What held, with evidence below: `npm run check` is green and the flaky owner test is steady (12 of 12 runs). A failed content piece now comes back with Try again, under a fresh address, with no reload. A tab left open across a deploy reloads once (also on a double tap) and opens the lesson, at `/` and at `/aurigen-directory/`. With no signal, the line says so and the app never reloads into the browser's offline page. Every failure line is plain words. Search says "Search did not load" with Try again, never "Nothing found", and the next word answers once the signal is back. Lighthouse mobile is 0.92 to 0.95. axe found 0 problems on 355 screens, including the new failure screens. The offline copy is 33 entries (2,531.01 KiB), with every lazy piece in it. The content has not changed since pass 2 (hash snapshot), and every truth rule and all 87 sampled numbers pass again.
+
+## Lando, in plain words
+
+- The three things QA flagged last time are fixed. If a page fails to load on a weak signal, Try again now works once the signal is back, the message is plain English, and search no longer says "Nothing found" when it simply did not load. The test that passed or failed by chance is steady. The curriculum count is right.
+- One thing to fix before this goes on your phone. The first time you open the app (from the link, or the first time from the icon), it says "Ready offline" a little before that is fully true. If you go to the garage, turn on airplane mode, and open a lesson without closing the app first, the lesson may not open, and Try again keeps saying there is no signal. Fix It, the jerking fix, the cards, and search still work. Closing the app and opening it again fixes it until the app-engineer's fix lands.
+- Nothing here needs your answer. Two new phone checks are at the end of this section.
+
+## The brief's eight checks
+
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| 1 | `npm run check`, both builds, `npm run test:e2e` (full); Phase 1 suites still pass | **pass** | Check, start of pass: exit 1, `Tests 1 failed \| 1407 passed (1408)`. The one failure is DEF-25's `it.fails`, which failed as designed because the line was fixed (flipped). The brief's integration note (4 failures in `tests/unit/search-cases.test.ts`) is from integration run 1, before pass 1 fixed that file; today it is `150 passed`. Check, end of pass: **exit 0**, `Test Files 73 passed (73)`, `Tests 1408 passed \| 1 expected fail (1409)` (the expected fail is DEF-20); two more `npx vitest run`: the same. Both builds exit 0, no chunk warning. e2e full: **exit 0**, `1488 tests`, `1448 passed`, `40 skipped` (the crawl runs at 375 px only), JSON `unexpected 0, flaky 0`, 23.8 min; every Phase 1 suite passes |
+| 2 | Content audit | **pass** (DEF-20 later) | No content file changed since pass 2 (`sha1sum` of `content/`, `src/`, `scripts/`, `docs/`, `knowledge/`, `public/`, `tests/` against pass 2's closing snapshot: 20 changed and 8 new files, none under `content/` or `knowledge/`). `phase2-truth.test.ts` (22 tests plus DEF-20's new `it.fails`), `phase2-numbers.test.ts` (89 tests, 87 numbers), `phase2-counts.test.ts` (16 tests); 0 em or en dashes in 937 project files; no "first 24 hours" or "keep it dry" anywhere; 0 customer-safe items |
+| 3 | Counts against the Phase 2 bar | **pass** | Fix It 89, fix-01 to fix-33 present. Levels 0 to 4: 31 lessons (6, 6, 6, 5, 8), each with steps and a why, 31 drills, 31 quizzes of 4 to 10 questions (167), 6 sign-off files, one per skill. Levels 5 to 8: 26 outlines (7, 5, 8, 6). 101 search cases, 101 pass. Slowest query 2.04 to 4.60 ms over three runs (the slowest "label says something different"), index load 9.4 to 16.9 ms, 272 documents |
+| 4 | The v1 line, five widths, no dead ends | **pass** (DEF-27 is the first session in airplane mode) | `phase2-v1.spec.ts` (9 tests x 5 widths): two taps to fix-01, "jerking" puts fix-01 first, Read aloud offered. `phase2-pages.spec.ts`: 272 pages x 5 widths, no sideways scroll, no clipped title, 44 px targets, 64 px in Shop. `phase2-links.spec.ts`: the crawl of every content page, Fix It, the Academy, the cards, the procedures, and search results: 0 dead ends, Not found never reached from an internal link. New in `phase2-shards.spec.ts`: a failed piece is never a dead end (Try again and Home, then the page). Scratch probe of the failure screens (a lesson, fix-01, a word, search) at 375, 430, 768, 1024, 1440 px in Shop density: Try again and Home 64 px tall, no sideways scroll |
+| 5 | Offline | **pass after "Ready offline" and a reload; fail in the same session (DEF-27)** | `phase2-offline.spec.ts` (2 tests x 5 widths): after "Ready offline", airplane mode, reload: Fix It, fix-01, a lesson, a procedure, a tool, search then Enter, cold deep links to fix-09, a card, a product, a word, an outline lesson, the card list; the offline copy holds 33 entries, including all 16 lazy pieces. New: DEF-27 as `test.fail` at 5 widths (the same steps with no reload: the Academy does not open). Probe on a server with the Pages cache header: `max-age=600` opens the Academy offline (the browser's cache); `max-age=0`, the same as after 10 minutes: "This page did not load", then "There is no signal right now" on every Try again |
+| 6 | Customer View | **pass** | `phase2-customer-view.spec.ts` and `customer-view.spec.ts`: all 272 content pages, `/sops`, two searches: only "Lando's Detailing" and "Exit Customer View", nothing internal in the page or the accessibility tree, no flash on refresh; `phase2-shards.spec.ts`: still only the customer screen 2.5 s after load. The new failure line and the search Try again sit inside internal screens and the internal search box, so Customer View never draws them |
+| 7 | Lighthouse mobile 90+; precache size; largest file | **pass** | Mobile Home **0.95, 0.92, 0.93, 0.93, 0.92** (LCP 2.9 s, TBT 80 to 110 ms, CLS 0.001 to 0.008); fix-01 **0.92, 0.92**; `lesson-l6-01-tesla` **0.92**; a product page **0.93**; accessibility and best practices 1.00 on every run; desktop 1.00. Precache **33 entries, 2,531.01 KiB** (pass 2: 2,526.99). Largest file `assets/vendor-*.js` 470,219 bytes (22% of the 2 MiB per-file limit); `search-index-*.js` 424,543; `content-lesson-*.js` 354,756; the app code `index-*.js` 234,406 (pass 2: 230,440) |
+| 8 | Lando's 15-point audit on every changed code file | **pass, except Tier 2 (DEF-27)** | 21 app files changed or added since pass 2, plus QA's 4; details below |
+
+## Commands and key output
+
+| Command | Result | Key lines |
+|---|---|---|
+| `npm run check` (start of pass) | exit 1, 64.8 s | content `599 items (quickcard 14, drill 31, equipment 22, fixnode 89, flashcard 129, lesson 57, product 21, quizquestion 167, sop 31, glossaryterm 38), 0 customer-safe, 0 superseded left out, 6 sign-off files, 62 synonym groups, 272 search documents, search cases 101 of 101 passed`; `Test Files 1 failed \| 72 passed (73)`, `Tests 1 failed \| 1407 passed (1408)`: `DEF-25 ... Error: Expect test to fail` |
+| `npx vitest run src/features/shared/__tests__/ContentWait.test.tsx` (12 runs) | 12 green | `Tests 9 passed (9)` each; pass 2's reproducer (`-t "pages on the generated content\|does not load the index"`): `3 passed \| 6 skipped` |
+| `npx vitest run tests/unit` (QA's suites, after QA's changes) | exit 0 | `Test Files 13 passed (13)`, `Tests 732 passed \| 1 expected fail (733)` (DEF-20) |
+| `npx tsc --noEmit -p tsconfig.node.json`; `npx oxlint --deny-warnings` | exit 0 | clean |
+| `VITE_BASE=/aurigen-directory/ npm run build` | exit 0, 18.5 s | `✓ 390 modules transformed`; no chunk warning; `precache 33 entries (2531.48 KiB)`; `index.html` links `/aurigen-directory/manifest.webmanifest` and preloads only `rolldown-runtime` and `vendor`; the lazy-chunk guard (`viteShards.ts`) passed |
+| `npm run build` (left in `dist/`) | exit 0, 18.3 s | `index 234.40 kB (gzip 72.87 kB)`, `vendor 470.21 kB (gzip 146.24 kB)`, `search-index 424.54 kB (gzip 102.61 kB)`, `content-lesson 354.75 kB (gzip 89.19 kB)`, `content-fixnode 266.42 kB (gzip 66.53 kB)`; `precache 33 entries (2531.01 KiB)`; each lazy loader reads `` ()=>w(()=>import(`./content-lesson-BGNcr8Lu.js`).then(e=>e.default),[]) ``, the shape `freshImport.ts` reads |
+| Lighthouse 13.5.0, mobile Home x5, fix-01 x2, a lesson, a product, desktop | ran | numbers in check 7 |
+| axe-core 4.14 (WCAG 2.0 to 2.2 A and AA, best practice), scratch sweep | ran, 5.5 min | `pages checked: 355; total axe violations: 0`: pass 2's 345 screens, plus the failure line on a lesson, fix-01, the Academy, and a product, and "Search did not load", at 375 and 1440 px |
+| `PW_SKIP_BUILD=1 npx playwright test` the two changed specs, w375 and w1440 | first run: 31 passed, 3 failed | the 3 were QA's own test races (the search screen focuses its box on open, which starts the index load at once, and the warm-up can answer the word on its own); fixed in the tests; then `-g "DEF-26"` at 5 widths: `35 passed` |
+| `npm run test:e2e` (full, both builds) | **exit 0**, 23.8 min | `Running 1488 tests using 3 workers`; `1448 passed`, `40 skipped`; JSON `expected 1448, unexpected 0, flaky 0` (5 of the 1448 are DEF-27's `test.fail`, failing as expected); Home before any content piece: load 158 to 205 ms, FCP 64 to 144 ms, 0 lazy requests before either, at 5 widths; offline copy 33 entries at 5 widths |
+| `PW_SKIP_BUILD=1 npx playwright test tests/persistence/phase2-offline.spec.ts -g "DEF-27"` (after the full run, the test extended to fix-01's Related procedure and word) | exit 0 | `5 passed` (expected failures at 5 widths); a temporary copy of the same steps with a reload before airplane mode, at w375 and w1440: `2 passed`, so every step and name in the test is right (copy deleted) |
+| `npm run check` (final) | **exit 0**, 64 s | content `599 items ... search cases 101 of 101 passed`; `Test Files 73 passed (73)`, `Tests 1408 passed \| 1 expected fail (1409)` (DEF-20); `npx vitest run` twice more: the same; `search-cases.test.ts` three times with the console on: `slowest 4.60 ms`, `2.62 ms`, `2.04 ms` |
+| Scratch probes (Playwright library, `vite preview` of a copy of `dist/` on 4180, the Pages build on 4182, a static server with Pages' cache header on 4190 (`max-age=600`) and 4191 (`max-age=0`)) | ran | Listed under "The recheck of each pass 2 defect" and DEF-27 |
+
+Nothing was left running: Playwright stopped its two servers; the scratch servers on 4180, 4182, 4190, and 4191 were stopped, and ports 4173, 4174, 4180, 4182, 4190, and 4191 refuse connections. Lighthouse and axe-core ran from the scratch folder. No file outside QA's own changed during the pass (hash snapshot of `src/`, `content/`, `scripts/`, `docs/`, `knowledge/`, `public/`, `tests/`, and the root config files at the start and the end). Only read-only git commands were run, at the start, to see what changed (`git log`, `git status --short`, `git diff --stat`); nothing was staged, committed, or checked out.
+
+## The recheck of each pass 2 defect
+
+| ID | Pass 2 | What the owner changed | Recheck evidence | Pass 3 |
+|---|---|---|---|---|
+| DEF-26 | fix-before-deploy, app-engineer | `src/core/freshImport.ts` (new): a second try imports the same chunk under `?mc-retry=N`, the address read from the loader's own text; `src/core/freshPage.ts` (new): Try again reloads the page only when the app's own address answers (a 5 s check), and two taps share one check and one reload; `content.ts` keeps the error for the developer panel and shows `This page did not load. Check the signal, then tap Try again.`; `search.ts` never keeps an index from a failed load, never builds one from part of the content, and says `Search did not load` (`failed` state); `useSearchResults.ts` and `SearchBox.tsx` show the line with Try again, and answer the word on screen once the index arrives by any path; `viteShards.ts` fails the build if a lazy chunk's loader stops reading `import("./file.js")` | `phase2-shards.spec.ts`, DEF-26 block, 7 tests x 5 widths, all pass: a blocked lesson opens on Try again under `?mc-retry=1` with no reload; the line is plain (no `TypeError`, no address, no `.js`); with no signal at all, Try again says "This page still did not load. There is no signal right now." and the page never reloads; signal back, Try again opens it; a 404 until a reload (a tab open across a deploy): a double tap reloads once and opens the lesson; search shows "Search did not load" with Try again and never "Nothing found", Enter opens nothing, then Try again finds fix-01; the next keystroke with the signal back finds fix-01 with no Try again; search Try again with no signal says so. Probe at `/aurigen-directory/`: the same, the address check goes to `/aurigen-directory/`, and the reload keeps the deep link. axe: the failure screens are clean | **closed** (attacking it found DEF-27) |
+| DEF-24 | fix-before-deploy, app-engineer | `search.ts`: a generation number; `__resetSearchForTests()` bumps it and a load from before the reset writes nothing; two new tests in `searchLoadFailure.test.ts` | 12 runs of the file: 12 green (pass 2: 7 of 9 red); pass 2's reproducer: green; `npm run check` green at the end | **closed** |
+| DEF-25 | later, learning-designer | `docs/CURRICULUM.md` Counts: "Levels 5 to 8: 26 outline lessons (Level 5: 7, Level 6: 5, Level 7: 8, Level 8: 6)." | The `it.fails` failed as designed ("Expect test to fail"); flipped to a pin on the total and on the split per level, against the outlines in the app | **closed** |
+| DEF-20 | later, app-engineer then content-curator | app-engineer: `ItemDetail.tsx` draws `notes` under a "Notes" heading (h2 on the page, h3 in the sheet), one line each, a badge per pending line, superseded lines never; `searchEngine.ts` indexes `notes`; `productNotes.test.tsx` (new). content-curator: not yet | `grep "(pending)"` in `labelNotes`: `product-armor-all-extreme-wheel-tire` (the bike row and the Tesla rows) and `product-meguiars-ultimate-compound` (the Tesla rows). New QA `it.fails` in `phase2-truth.test.ts` passes while they stay there | **open** (later); owner now content-curator only |
+| DEF-22 | later, troubleshooter (Phase 4 with business-customer) | A second interim guard: "how much for a full detail on an suv" lands on `lesson-l7-01-menus` | `tests/search-cases.yaml`: 101 cases, 101 pass; the parked pair still pinned in `search-cases.test.ts` | **open** (later, by design until Phase 4) |
+
+## New defect (Phase 2, pass 3)
+
+### DEF-27 (fix-before-deploy, app-engineer): "Ready offline" in the first session, then airplane mode: lessons, procedures, and item pages do not open, and Try again says "no signal" forever
+
+- **Files.** `vite.config.ts` (`clientsClaim: false`: a first install does not take over the open page); `src/core/freshPage.ts` (`appAnswers` fetches the app's address from the page; a page the service worker does not serve yet gets no answer offline, so Try again never reloads); `src/core/pwa.ts` (`offlineReady` is true once the worker is installed, whether or not it serves this page); `src/app/warmUp.ts` (the warm-up loads only the index, the fixes, the cards, and the catalog).
+- **What happens.** The first visit to the Pages link, or the first launch from the Home Screen icon (on iOS the Home Screen app may keep its own storage, so its first launch can be a first visit): the service worker installs and saves all 33 files, and the top line says "Ready offline". The open page is still not served by it (`navigator.serviceWorker.controller` is null) until the next launch or reload. Every lazy piece the warm-up did not load goes to the network. In airplane mode the Academy shows "This page did not load. Check the signal, then tap Try again."; Try again asks for a fresh copy (fails), checks the app's address from the page (fails), and says "This page still did not load. There is no signal right now." every time. The top line says "Offline, ready" the whole time. Fix It, fix-01, the cards, and search work (the warm-up brought them in). The related links on a fix page to a tool, a product, a word, or a procedure do not. A reload or a fresh launch is served by the saved copy and everything opens.
+- **The 10-minute window.** On GitHub Pages, files carry `Cache-Control: max-age=600`, so the browser's own cache answers for 10 minutes after the copy was saved. Probe on a static server with that header: the Academy opens offline. With `max-age=0` (the same as 10 minutes later; `vite preview` sends `no-cache`): it fails as above. iPhone Safari's cache may differ; that part is a phone check.
+- **When it bites.** Lando's own steps: install, open from the icon with signal, wait for Ready offline, then go to the garage without closing the app. Pass 1's phone checklist walks the same steps on the installed app, ending on "One full square"; on its first launch it meets this. A new hire on the first Saturday, the same.
+- **Reproduce.** `npx playwright test tests/persistence/phase2-offline.spec.ts -g "DEF-27"`: a `test.fail`, failing as expected at 5 widths. By hand: `npm run build`, `npx vite preview`, open `/` in a fresh Chrome profile, wait for "Ready offline" and 4 more seconds, DevTools Network "Offline" (no reload), tap the Academy: the failure line; Try again: "There is no signal right now"; reload: everything opens.
+- **Fix ideas (owner's choice).** (a) In `freshPage.ts`, treat a page with no controller but an active registration (`navigator.serviceWorker.getRegistration()` then `.active`) as answering: a reload is a navigation, and the saved copy serves it, also offline. Try again then heals the page in one tap. (b) `clientsClaim: true` with `skipWaiting` still false: a first install then serves the open page at once; an update still waits for the person to accept it, which reloads anyway. This touches the stack decision in `docs/DECISIONS.md` (prompt mode; `autoUpdate` was rejected because it sets `skipWaiting` and `clientsClaim` and reloads on its own), so it goes through the architect. (c) Hold "Ready offline" until the page is served by the copy (and say "Saved. Reopen the app to use it offline." until then). Then QA flips the test.
+
+Also seen, not filed:
+- When the search index fails, search's fallback asks for all 15 content pieces (about 1.3 MB) to build an index on the phone. That is the design, and on a weak signal it is a lot. With every piece blocked, one typed word made 16 requests and the warm-up 16 more.
+- In the first 1.2 s after opening with no signal, a Try again's "no signal" line can be replaced by "This page did not load" when the warm-up's search fallback tries the same pieces again. Both lines are plain and true.
+- The search screen says "Everything is on the phone, so it works with no signal." under which, before the offline copy exists, the box can say "Search did not load". Phase 1 wording; true once the app says Ready offline (and, after DEF-27's fix, served by it).
+
+## Content audit, pass 3
+
+No file under `content/` changed since pass 2 (hash snapshot against pass 2's closing one), and `knowledge/` did not change. The only content-adjacent changes are `tests/search-cases.yaml` (the troubleshooter's second interim guard, 101 cases) and `docs/CURRICULUM.md` (DEF-25). Every rule in pass 1's "Content audit" table and pass 2's additions ran again inside `npm run check` on the same 599 items and passed. The 87 sampled numbers (pass 1's rows 1 to 70 and pass 2's rows 71 to 87) passed again in `phase2-numbers.test.ts`. New in pass 3: DEF-20's `it.fails`, which names the two products whose `labelNotes` still hold a "(pending)" sentence; it also checks that, once moved, each has a house note, a sourced Tesla manual note, and the verify row "Lando decides how this applies to Teslas (pending)".
+
+| Rule | Result | How |
+|---|---|---|
+| No superseded fact (knowledge base 23) presented as current | pass | `phase2-truth.test.ts`: knowledge base 23 and 9.1 rules, 0 superseded items, the renderer drops every superseded line |
+| No market research figure, no 15.5 | pass | same suite |
+| No "first 24 hours" aftercare line (FC-06) | pass | same suite; a project-wide grep finds nothing |
+| No em or en dashes | pass | 937 project files, 0 |
+| Every item internal, 0 customer-safe | pass | content build `0 customer-safe`; same suite |
+| Every verify line renders with the unverified badge, never in Customer View | pass | `phase2-pages.spec.ts` (272 pages x 5 widths), `phase2-customer-view.spec.ts` |
+| Numbers match the knowledge base or the verification log | pass | 87 sampled numbers, unchanged content |
+| Pending rows for Tesla (FC-16) and speed and pressure (FC-22, FC-23) wherever those topics appear | pass (DEF-20 later) | same suite; the two products' rows are pending in words, in the wrong field |
+| No quiz answer or flashcard depends on a pending decision | pass | 167 right answers and 129 flashcard answers |
+
+## Lando's 15-point audit on the changed code files (pass 3)
+
+Files: the 21 app files changed or added since pass 2: new `src/core/freshImport.ts`, `freshPage.ts`, and their tests, `lazyChunks.test.ts`, `searchLoadFailure.test.ts`, `src/features/search/productNotes.test.tsx`, `searchFailure.test.tsx`; changed `scripts/content/viteShards.ts`, `src/app/warmUp.ts`, `src/core/content.ts`, `contentLoaders.ts`, `contentLoadFailure.test.ts`, `search.ts`, `searchEngine.ts`, `src/features/search/ItemDetail.tsx`, `SearchBox.tsx`, `search.css`, `useSearchResults.ts`, `src/features/settings/dev/StateReadouts.tsx`, `src/features/shared/__tests__/ContentWait.test.tsx`. Plus QA's 4 (below).
+
+| Tier | Result | Notes |
+|---|---|---|
+| 1 Structure | pass | both `tsc` programs clean, `oxlint --deny-warnings` clean, both builds compile; every changed file ends with a newline and a closed block |
+| 2 Logic | **fail, DEF-27** | every state has a way in and out: loading ("Opening"), failed (plain line, Try again, Home), no signal (its own line), reloading (stays "Opening"); search: idle, loading, ready, failed, each shown; every `switch` has a `default` (`searchWords` in the developer panel, `ItemDetail`); `importedAddress` falls back to calling the loader again when it cannot read an address; `reloadForFreshCopy` never rejects and shares one reload between two taps. But in the first session after "Ready offline" with no signal, Try again cannot recover a page the saved copy could serve (DEF-27) |
+| 3 Journey | pass | the crawl, the v1 line at 5 widths, Back and Forward across a loading piece, Enter before the index arrives, a failed piece to Try again or Home, a deploy-across-tab reload that keeps the address |
+| 4 Runtime | pass | 0 page errors in every new browser test; errors are caught and shown in plain words, the detail kept for the developer panel (`failedDetail`, `lastError`); `console.error` only on error paths (the warm-up's failed index, a reload that throws); no storage access added; no `window.self`, `window.top`, `btoa`, `eval`, `innerHTML`, or `dangerouslySetInnerHTML`; `Function.prototype.toString` reads only the app's own loaders; the fresh import and the address check pass the page's CSP (`script-src 'self'`, `connect-src 'self'`) |
+| 5 Build rules | pass | no file over 400 lines (largest app files `src/core/content.ts` 371, `src/core/searchEngine.ts` 278, `SearchBox.tsx` 219, `StateReadouts.tsx` 183; largest QA file `tests/e2e/phase2-shards.spec.ts` 321); the developer panel shows each failed piece's error and the search index state ("Did not load; the next search tries again", "Loading, a fresh copy after N failed") |
+
+Specific checks: the only CSS change (`search.css`, `.sr-results__problem`) uses tokens only (`--space-3`, `--dur-fast`, `--ease-out`), no color, no `overflow: hidden`, no `max-height`, no `:hover`; Try again is a Shop-size button (64 px in Shop density); 0 em or en dashes in 937 project files; no secret, key, or address added.
+
+## Tests added or changed by QA (pass 3)
+
+| File | Change |
+|---|---|
+| `tests/unit/phase2-counts.test.ts` | DEF-25 flipped: the Counts line must state the number of outlines in the app and the same split per level |
+| `tests/unit/phase2-truth.test.ts` | New `it.fails` for DEF-20: no product holds a "(pending)" sentence in `labelNotes`, and the two products carry a house note, a sourced Tesla manual note, and the pending row as `notes` lines |
+| `tests/e2e/phase2-shards.spec.ts` | DEF-26's three `test.fail` replaced by 7 tests x 5 widths: Try again under a fresh address with no reload; plain words; no signal says so and never reloads; signal back opens; a deploy-across-tab 404 reloads once on a double tap and opens the lesson; search "did not load" with Try again, never "Nothing found", Enter opens nothing; the next word answers once the signal is back; search Try again with no signal says so |
+| `tests/persistence/phase2-offline.spec.ts` | New `test.fail` for DEF-27: "Ready offline", airplane mode with no reload, then by taps only: the Academy, "One full square", Fix It, fix-01, its Related procedure ("Machine polishing, one-step") and word ("Long-throw"), and never "did not load" |
+
+`playwright.config.ts` is unchanged. Known defects in QA's tests: DEF-20 (`it.fails`, unit) and DEF-27 (`test.fail`, browser, 5 widths). They pass while the defect is open and fail the day it is fixed; QA then flips them. DEF-22 is pinned as parked in `search-cases.test.ts`.
+
+## Defect register, Phase 2 (current, after pass 3)
+
+| ID | Severity | Owner | File | One line | Pass 1 | Pass 2 | Pass 3 |
+|---|---|---|---|---|---|---|---|
+| DEF-27 | fix-before-deploy | app-engineer | `src/core/freshPage.ts`, `vite.config.ts`, `src/core/pwa.ts` | First session after "Ready offline", airplane mode, no reload: lessons, procedures, and item pages do not open; Try again says "no signal" forever while the top says "Offline, ready" | | | new, open |
+| DEF-20 | later | content-curator (app-engineer's part done) | `content/products/product-armor-all-extreme-wheel-tire.yaml`, `product-meguiars-ultimate-compound.yaml` | The Tesla house line, manual line, and pending row (and the bike row) still sit in `labelNotes`, a paragraph with no badge; move them to `notes` | new, open | open (schema done) | open (renderer done) |
+| DEF-22 | later | troubleshooter, with business-customer in Phase 4 | `tests/search-cases.yaml` | Two knowledge base 24 price cases parked until price items have pages (two interim guards pass) | new, open | open | open |
+| DEF-26 | fix-before-deploy | app-engineer | `src/core/content.ts`, `src/core/search.ts`, `src/features/shared/ContentWait.tsx` | A failed piece stayed failed until a reload; raw TypeError; search said "Nothing found" | | new, open | **closed** |
+| DEF-24 | fix-before-deploy | app-engineer | `src/core/search.ts`, `ContentWait.test.tsx` | Flaky test: an index load from an earlier test landed after the reset | | new, open | **closed** |
+| DEF-25 | later | learning-designer | `docs/CURRICULUM.md` | The Counts line said 23 outline lessons | | new, open | **closed** |
+| DEF-16 to DEF-19, DEF-21, DEF-23 | | | | Closed in pass 2; their tests pass in this run | | | closed |
+
+The Phase 1 register (DEF-01 to DEF-15) is below, all closed; every test written for them passed in the full run.
+
+## What only the phone can answer (pass 3 addition)
+
+- [ ] After DEF-27 is fixed, on a phone that has never opened the app (or delete the Home Screen app first): install from the Pages link, open from the icon with signal, wait for **Ready offline**, then wait 11 more minutes with the app open. Turn on airplane mode without closing the app. Tap the Academy, then "One full square": the lesson opens. Back to Fix It, the jerking fix, then "Machine polishing, one-step" in its Related list: it opens. ______
+- [ ] Before the fix, the same steps tell us how big the problem is on an iPhone: does the lesson open in airplane mode without closing the app? Yes / No ______
+
+# Phase 2 gate, pass 2 (recheck, 2026-10-12, about 07:45 to 08:45 UTC, kept as written)
+
+## Verdict
+
+**Gate: not passed. 5 defects are open: 0 blocks-gate, 2 fix-before-deploy, 3 later.** Six of pass 1's eight are closed (DEF-16, DEF-17, DEF-18, DEF-19, DEF-21, DEF-23). DEF-20 and DEF-22 stay open (later). Pass 2 found three new ones (DEF-24, DEF-25, DEF-26). The full browser run is green: `1423 passed`, 0 unexpected, 0 flaky, with DEF-26's three tests failing as expected at five widths.
+
+- **Fix before deploy.** DEF-26, found by attacking DEF-17's fix: the content now loads in 16 pieces, and a piece that fails to download once stays failed until the page is reloaded. "Try again" asks the browser for the same failed piece and fails every time; the line shows the raw `TypeError: Failed to fetch dynamically imported module: http://.../content-lesson-....js`; and search, with nothing loaded, answers "Nothing found" to "jerking" and every other word, even after the signal is back, and Enter does nothing. Before the fix the content was inside the app code, so this could not happen. It bites on the first visit to the Pages link before "Ready offline" on a weak garage signal, or in a Safari tab left open across a deploy. An installed phone that says "Ready offline" is not affected: every piece is in the offline copy.
+- **Fix before deploy.** DEF-24: an app-engineer test is flaky. `src/features/shared/__tests__/ContentWait.test.tsx`, "a box on screen does not load the index until it is focused", failed the first `npm run check` of this pass and 7 of 9 runs of its own file; the final `npm run check` and three more full runs were green. A search index load started by an earlier test finishes after the next test's reset. The app is right; the test is not reliable, and CI runs it before every deploy.
+- **Later.** DEF-20 (the item page does not draw the new product `notes` yet, so two products still hold the Tesla lines in one paragraph); DEF-22 (two knowledge base 24 cases parked until price items have pages, now with an interim guard case); DEF-25 (`docs/CURRICULUM.md` says 23 outline lessons are planned; it lists 26 topics, and the app has 26 outlines).
+
+What held, with evidence below: the app opens fast again (Lighthouse mobile on Home 0.95, 0.91, 0.92, 0.92, 0.94; fix-01 0.91 and 0.92; a lesson 0.93); no content piece or search index is requested before the first paint or the load event, at five widths; the offline copy holds all 16 lazy pieces, and a fix, two lessons, a procedure, a product, a tool, a word, a card, the card list, and search all open in airplane mode; a slow network shows "Opening" and never a false "not found"; Customer View shows only the customer screen on all 272 content addresses, also after every piece has arrived; the crawl made 3,220 taps with no dead end; axe found 0 problems on 345 screens; the content passes every truth rule on 599 items, including the 26 new outline lessons and 17 more sampled numbers (87 in all, all matching).
+
+## Lando, in plain words
+
+- Most of what QA flagged last time is fixed. The app opens fast again on a phone (Lighthouse 0.91 to 0.95; the target is 0.90). The flashcard that held your pending towel decision now leaves it to the lesson. A gloved double tap on Read aloud keeps reading. The Academy now shows 26 outline lessons for Levels 5 to 8.
+- Two things to fix before this goes on your phone. First: the content now loads in pieces, and if a piece fails once (weak signal on the very first visit), "Try again" never works and search says "Nothing found" for everything until you close and reopen the app. Once the app says "Ready offline", this cannot happen. Second: one of the app-engineer's tests passes or fails by chance; the app is fine, but the check that runs before every deploy must be reliable.
+- Nothing here needs your answer. The phone checks at the end of the pass 1 section still stand, plus one new one at the end of this section.
+
+## The brief's eight checks
+
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| 1 | `npm run check`, both builds, `npm run test:e2e` (full); Phase 1 suites still pass | **pass, with DEF-24** | check, start of pass: exit 1, `Tests 2 failed \| 1348 passed (1350)`: DEF-16's `it.fails` (fixed, so it failed as designed; flipped) and DEF-24. Check, end of pass: **exit 0**, `Test Files 67 passed (67)`, `Tests 1370 passed \| 1 expected fail (1371)` (the expected fail is DEF-25); three more `npx vitest run`: green. Both builds exit 0, no chunk warning. e2e full: **exit 0**, `1463 tests`, `1423 passed`, `40 skipped` (the crawl runs at 375 px only), JSON `unexpected 0, flaky 0`, 23.9 min; every Phase 1 suite passes |
+| 2 | Content audit | **pass** (DEF-20, DEF-25 later) | `phase2-truth.test.ts` (22 tests), `phase2-numbers.test.ts` (89 tests: 87 numbers), `phase2-counts.test.ts` (16 tests); `phase2-pages.spec.ts` (every verify line and pending row carries its badge on all 272 pages at 5 widths); `phase2-customer-view.spec.ts` (never in Customer View). Details in "Content audit, pass 2" |
+| 3 | Counts against the Phase 2 bar | **pass** | Fix It 89, fix-01 to fix-33 present; Levels 0 to 4: 31 lessons with steps and a why, a drill each, 31 quizzes of 4 to 10 questions (167), 6 sign-off files; Levels 5 to 8: 26 outlines; 100 search cases, 100 pass; slowest query 2.98 ms ("polish turned to powder"), index load 16.5 ms, 272 documents |
+| 4 | The v1 line, five widths, no dead ends | **pass** | `phase2-v1.spec.ts` (9 tests x 5 widths): Fix It then the jerking tile shows fix-01 in two taps; "jerking" puts fix-01 first; Read aloud is offered; `phase2-hostile.spec.ts`: a 6 times slower CPU draws Fix It in 497 to 796 ms and fix-01 in 583 to 888 ms, and answers "jerking" in 105 to 336 ms; `phase2-pages.spec.ts`: 272 pages x 5 widths, no sideways scroll, no clipped title, every target 44 px and 64 px in Shop; `phase2-links.spec.ts`: 3,220 taps over all 272 content pages, Fix It, the Academy, the cards, the procedures, and search results, 0 dead ends, Not found never reached from an internal link |
+| 5 | Offline | **pass** (DEF-26 is before the offline copy exists) | `phase2-offline.spec.ts` (2 tests x 5 widths): after "Ready offline", airplane mode, reload: two taps to fix-01, a lesson, a procedure, a tool, search then Enter, cold deep links to fix-09, a card, a product, a word, an outline lesson, the card list; the offline copy holds 33 entries, including all 16 lazy pieces; `pages-base.spec.ts` the same under `/aurigen-directory/` |
+| 6 | Customer View | **pass** | `phase2-customer-view.spec.ts`: 275 addresses at 375 px (all 272 content pages, `/sops`, two searches), one of each type at the other widths: only "Lando's Detailing" and "Exit Customer View", nothing internal in the page or the accessibility tree, no flash on refresh, Back and Forward; new in `phase2-shards.spec.ts`: still only the customer screen 2.5 s after load, when the warm-up has brought in the index and the Fix It content |
+| 7 | Lighthouse mobile 90+; precache size; largest file | **pass** (DEF-17 closed) | mobile Home **0.95, 0.91, 0.92, 0.92, 0.94** (LCP 2.6 to 3.0 s, TBT 70 to 130 ms, CLS 0.001); fix-01 **0.91, 0.92**; `lesson-l6-01-tesla` **0.93**; accessibility and best practices 1.00 on every run; desktop 1.00. Precache **33 entries, 2,526.99 KiB** (pass 1: 19, 2,211.80 KiB). Largest file `assets/vendor-*.js` 470,219 bytes (22% of the 2 MiB per-file limit); largest content piece `content-lesson-*.js` 354,756 bytes; the search index 424,543 bytes |
+| 8 | Lando's 15-point audit on every changed code file | **pass, except Tier 2 (DEF-26)** | 49 app files changed since pass 1, plus QA's 6; details below |
+
+## Commands and key output
+
+| Command | Result | Key lines |
+|---|---|---|
+| `npm run check` (start of pass) | exit 1, 60.6 s | content `599 items (quickcard 14, drill 31, equipment 22, fixnode 89, flashcard 129, lesson 57, product 21, quizquestion 167, sop 31, glossaryterm 38), 0 customer-safe, 0 superseded left out, 6 sign-off files, 62 synonym groups, 272 search documents, search cases 100 of 100 passed`; `Tests 2 failed \| 1348 passed (1350)`: `DEF-16 ... Error: Expect test to fail` and `ContentWait.test.tsx > ... does not load the index until it is focused: expected 'ready' to be 'idle'` |
+| `npx vitest run src/features/shared/__tests__/ContentWait.test.tsx` (9 runs) | 7 red, 2 green | `1 failed \| 8 passed` or `9 passed`; alone (`-t "does not load the index"`): pass; with the two tests before it (`-t "pages on the generated content\|does not load the index"`): `1 failed \| 2 passed`; with any other earlier test: pass (DEF-24) |
+| `VITE_BASE=/aurigen-directory/ npm run build` | exit 0, 19.1 s | `✓ 388 modules transformed`; no chunk size warning; `precache 33 entries (2527.45 KiB)`; `index.html` links `/aurigen-directory/manifest.webmanifest` and preloads only `rolldown-runtime` and `vendor`; manifest `start_url "."`, `scope "."` |
+| `npm run build` (left in `dist/`) | exit 0, 18.0 s | `index 230.44 kB (gzip 71.44 kB)`, `vendor 470.21 kB (gzip 146.24 kB)`, `search-index 424.54 kB (gzip 102.61 kB)`, `content-lesson 354.75 kB (gzip 89.19 kB)`, `content-fixnode 266.42 kB (gzip 66.53 kB)`; `precache 33 entries (2526.99 KiB)` |
+| Lighthouse 13.5.0, mobile, Home x5, fix-01 x2, a lesson, desktop | ran | Home 0.95, 0.91, 0.92, 0.92, 0.94; fix-01 0.91, 0.92; Tesla lesson 0.93; desktop 1.00; first-load scripts `index` 70 KiB, `vendor` 142 KiB, `rolldown-runtime` 1 KiB, `pwaRegister` 1 KiB; no content piece in the critical path (fix-01 loads `content-fixnode` 65 KiB and `content-catalog` 12 KiB after the first paint) |
+| `npx vitest run tests/unit` (QA's suites, after QA's changes) | exit 0 | `Test Files 13 passed (13)`, `Tests 730 passed \| 1 expected fail (731)` (DEF-25) |
+| `npx tsc --noEmit -p tsconfig.node.json`; `npx oxlint --deny-warnings` | exit 0 | clean |
+| `PW_SKIP_BUILD=1 npx playwright test` the changed specs, w375 and w1440 | exit 0 | `42 passed` (6 of them DEF-26's expected failures) |
+| `npm run test:e2e` (full, both builds) | **exit 0**, 23.9 min | `Running 1463 tests using 3 workers`; `1423 passed`, `40 skipped`; JSON `expected 1423, unexpected 0, flaky 0` (15 of the 1423 are DEF-26's `test.fail`, failing as expected); Home before any content piece: load 171 to 251 ms, FCP 80 to 168 ms, 0 lazy requests before either; offline copy 33 entries |
+| axe-core 4.14 (WCAG 2.0 to 2.2 A and AA, best practice), scratch sweep | ran, 5.3 min | `pages checked: 345; total axe violations: 0`: all 272 content pages and 6 lists at 375 px in Shop density, a tenth at 1440 px, a tenth at 768 px in Academy density, each after its content arrived and the load animation ended. `heading-order` (DEF-19) is gone |
+| `npm run check` (final) | **exit 0**, 68 s | `Test Files 67 passed (67)`, `Tests 1370 passed \| 1 expected fail (1371)` |
+| `npx vitest run` (3 more full runs) | 3 green | `1370 passed \| 1 expected fail (1371)` each |
+| Scratch probes (Playwright library, `vite preview` on 4180) | ran | Read aloud: a second tap 150 or 250 ms after the first is held, 400 or 600 ms pauses; a double tap on Stop reading lands on the row (`DIV.mc-actions`), not on the new Read aloud; a blocked lesson piece: three Try again taps after unblocking, still the failure line; a reload: the lesson. Search with every piece blocked: "Nothing found for "jerking"", still after unblocking. The outline lessons' numbers: every digit is in the knowledge base or the log (only years and "1099" come from the log) |
+
+Nothing was left running: Playwright stopped its two servers, the scratch preview on 4180 was stopped, and ports 4173, 4174, and 4180 refuse connections. Lighthouse and axe-core ran from the scratch folder. No file outside QA's own changed during the pass (a hash snapshot of `src/`, `content/`, `scripts/`, `docs/`, `knowledge/`, `public/`, and `tests/` at the start and the end). No git command was run.
+
+## The recheck of each pass 1 defect
+
+| ID | Pass 1 | What the owner changed | Recheck evidence | Pass 2 |
+|---|---|---|---|---|
+| DEF-18 | blocks-gate, app-engineer | `src/features/cards/cards.test.tsx` counts the badges inside the card's own rows (the `dl` labelled with the card title), with the expected rows taken from the card data, and the Related badges from the related items' own status | `npm run check`: `cards.test.tsx` passes (11 of 11); a content status change can no longer break it | **closed** |
+| DEF-17 | fix-before-deploy, app-engineer | The content is cut into one lazy chunk per type plus a catalog and extras (`scripts/content/viteShards.ts`, `src/core/contentShards.ts`, `contentLoaders.ts`, `content.ts`); Home draws from an item-count summary; a warm-up loads the search index and the Fix It content after the load event plus 1.2 s (`src/app/warmUp.ts`); the index ships as `JSON.parse` of one string and loads in batches | Lighthouse mobile on Home **0.95, 0.91, 0.92, 0.92, 0.94** (LCP 2.6 to 3.0 s; was 4.7 s), fix-01 **0.91, 0.92**, desktop 1.00; `phase2-shards.spec.ts`: no shard or index request starts before the load event or the first paint, at 5 widths; the offline copy holds all 16 lazy chunks; offline, Customer View, the crawl, and the v1 line all pass | **closed** (the fix opened DEF-24 and DEF-26) |
+| DEF-16 | fix-before-deploy, learning-designer | `flash-towels-washer` answer: care tag; water-only pile warm; dye-free, fragrance-free detergent; full cycle; extra rinse; "Water for the product pile is in the shop setup lesson." The product-pile line stays in `lesson-l0-06-shop-setup` (house, the towel maker's line, pending) and fix-76 | `phase2-truth.test.ts`: the `it.fails` failed as expected the day it was fixed ("Expect test to fail"); flipped to a pin that also checks the settled parts and the links | **closed** |
+| DEF-23 | later, app-engineer | `useTapHold` (`src/features/shared/useTapHold.ts`): the voice row takes no pointer taps for the tap guard time after a tap swaps its first button; keyboard activation is never held | `phase2-hostile.spec.ts` at 5 widths: a double tap on Read aloud leaves the voice reading (`speak` only); new: double taps on Pause, Resume, and Stop reading each do one thing, and a deliberate second tap 600 ms later still pauses. Scratch probe: a second tap 150 or 250 ms after Read aloud is held; 400 or 600 ms pauses | **closed** |
+| DEF-19 | later, app-engineer | `ItemDetail` headings are `h2` on the item page and `h3` inside the search sheet (under the drawer's `h2`) | `/items/product-meguiars-m210`: h1, then h2 What it is for, Related, Where this comes from; axe sweep below | **closed** (axe: 0 violations on 345 screens) |
+| DEF-20 | later, architect then content-curator | Architect: `Product.notes: Line[]` (D2 amendment 2026-10-12, README pattern section). Not yet: `ItemDetail.tsx` does not draw `notes`, and the two product files still hold the three Tesla statements in `labelNotes` (the README says to move them only after the page draws `notes`) | `grep -n notes src/features/search/ItemDetail.tsx`: nothing; `labelNotes` of `product-armor-all-extreme-wheel-tire` and `product-meguiars-ultimate-compound` still ends "Lando decides how this applies to Teslas (pending)." | **open** (later); owner now app-engineer (draw `notes`), then content-curator (move the lines) |
+| DEF-21 | later, content-curator | 26 outline lessons, Levels 5 to 8 (7, 5, 8, 6), `outline: true`, each with a goal, a why, 3 to 23 steps, numbers rows with their own status, and related links | `phase2-counts.test.ts` (new block): one outline per curriculum topic, in order, no drill, quiz, or sign-off; odor and two-step write no method (verify); 17 of their numbers added to the sample; every truth rule passes on them; their 26 pages pass the page, badge, crawl, and Customer View suites | **closed** (one doc line left, DEF-25) |
+| DEF-22 | later, troubleshooter (Phase 4 with business-customer) | An interim guard case: "how much is store it clean" lands on the Level 7 lessons that hold the price | `tests/search-cases.yaml`: 100 cases, 100 pass; the parked pair still pinned | **open** (later, by design until Phase 4) |
+
+## New defects (Phase 2, pass 2)
+
+### DEF-24 (fix-before-deploy, app-engineer): a flaky owner test can turn `npm run check` red
+
+- **Files.** `src/features/shared/__tests__/ContentWait.test.tsx` (line 89, "a box on screen does not load the index until it is focused"); `src/core/search.ts` (`__resetSearchForTests`, `load`).
+- **What happens.** The test renders a search box, waits 50 ms, and expects `searchStatus.state` to be `idle`. Often it finds `ready`. The two tests before it ("a fix page says Opening ...", and "the Fix It grid keeps its search box ...", which types "swirl") start a search index load. Since 07:38 the index loads in batches (`loadSearchIndexAsync`, part of DEF-17's fix), so that load can still be running when the next test's `beforeEach` calls `__resetSearchForTests()`. The reset sets `idle` and forgets the promise, but the old load then finishes and writes `state: 'ready'`. The app never resets search, so the app is right; the harness is racy. `content.ts` already guards the same race with a generation number; `search.ts` does not.
+- **How often.** The first `npm run check` of this pass: red (`Tests 2 failed | 1348 passed`, this and DEF-16's flip). The final `npm run check` and three more `npx vitest run`: green. The file alone: red in 7 of 9 runs. A test that fails by chance in the check that runs before every deploy has to be fixed before this merges.
+- **Reproduce.** From `masterclass/`: `npx vitest run src/features/shared/__tests__/ContentWait.test.tsx` a few times: mostly `1 failed | 8 passed`, `AssertionError: expected 'ready' to be 'idle'`. Alone, `-t "does not load the index"`: passes. With the two tests before it, `-t "pages on the generated content|does not load the index"`: `1 failed | 2 passed`. With any other earlier test: passes.
+- **Fix.** A generation number in `search.ts` that `__resetSearchForTests()` bumps and `load()` checks before it writes the status or the index (as `content.ts` does), or let the earlier tests wait for the load they start.
+
+### DEF-26 (fix-before-deploy, app-engineer): a chunk that failed once stays failed until a reload, and search then says "Nothing found"
+
+- **Files.** `src/core/content.ts` (`loadShard`: the failure line and the retry), `src/features/shared/ContentWait.tsx` (Try again), `src/core/search.ts` (`load` builds an index from whatever loaded and `preloadSearch` keeps it for the session), `src/app/warmUp.ts` (its comment says search loads the index on first use; it does not after a failure).
+- **What happens.** DEF-17's fix moved the content out of the app code into 16 lazy chunks. When one of them fails to download:
+  1. The page shows the failure line with Try again and Home (no dead page, good). But the browser keeps a failed dynamic import, so Try again imports the same failed module and fails again, every time, even with the signal back. Only a reload helps.
+  2. The line is the raw error: "The content did not load (TypeError: Failed to fetch dynamically imported module: http://localhost:4180/assets/content-lesson-BGNcr8Lu.js). Tap Try again, or reload." That is not plain English for DJ, and it prints a file address.
+  3. Search: when the index chunk fails, search falls back to building an index from the shards; when those fail too, it builds an empty index, marks it ready, and keeps it. Every word answers "Nothing found for "jerking". Try fewer words, or open the Quick Cards." and Enter does nothing. With the signal back, the same, until a reload. A false "nothing found" on the v1 word is worse than "search did not load".
+- **When it bites.** The first open of the Pages link before "Ready offline" on a weak garage signal (a lazy chunk is fetched over the network), or a Safari tab left open across a deploy (the old chunk names are gone). Not on an installed phone that says "Ready offline": every chunk is in the offline copy, and `phase2-offline.spec.ts` passes at 5 widths.
+- **Reproduce.** `npx playwright test tests/e2e/phase2-shards.spec.ts -g "DEF-26"`: three `test.fail` tests, failing as expected at 5 widths. By hand: `npm run build`, serve `dist/`, block `content-lesson-*.js` in DevTools (Network request blocking), open `/academy/lesson-l4-07-full-square`, unblock, tap Try again: the same line again. Block every `content-*` and `search-index-*` file, open `/search`, type "jerking", unblock, type it again: "Nothing found".
+- **Fix ideas (owner's choice).** On a failed chunk, Try again reloads the page (the service worker or the network then serves it), or re-imports with a cache-busting query; plain words ("This page did not load. Check the signal, then tap Try again."); never cache a search index built from a failed load, show "Search did not load" with Try again instead of "Nothing found", and try again on the next word. Then QA flips the three tests.
+
+### DEF-25 (later, learning-designer): the curriculum still says 23 outline lessons
+
+- **File.** `docs/CURRICULUM.md`, "Counts (2026-10-11, after the fact-check)": "Levels 5 to 8: 23 outline lessons planned."
+- **What happens.** The curriculum's own outline lists 26 topics (Level 5: 7, Level 6: 5, Level 7: 8, Level 8: 6), and the app now has 26 outline lessons, one per topic. Lando reads this file.
+- **Reproduce.** `npx vitest run tests/unit/phase2-counts.test.ts -t "DEF-25"`: an `it.fails` that passes while the line is wrong.
+- **Fix.** "Levels 5 to 8: 26 outline lessons (Level 5: 7, Level 6: 5, Level 7: 8, Level 8: 6)." Then QA flips the test.
+
+Also seen, not filed: at 375 px, tapping Pause swaps it for the wider "Resume", and "Stop reading" drops to a second line (a 76 px jump). The tap guard holds the row, so a double tap cannot land on the wrong button; it is a small jolt to the eye only.
+
+## Content audit, pass 2
+
+Every rule in pass 1's "Content audit" table re-ran on the 599 items of this build inside `npm run check` and passed, now including the 26 outline lessons, the rewritten flashcard, the 62 synonym groups, and the 100 search cases: no superseded fact as current, the fact-checker's corrections applied, no market figure and no 15.5, no aftercare line (FC-06; the final walkaround and booking outlines say only that the card's wording is not written and Lando decides it, as verify), no em or en dash in 921 project files, no bracket tag in text, every item internal (0 customer-safe), every open fact verify, house rule 12 house and the crew's next step pending. What pass 2 looked at in particular:
+
+| Rule | Result | How |
+|---|---|---|
+| No quiz answer or flashcard depends on a pending decision | **pass** (DEF-16 closed) | 167 right answers and 129 flashcard answers; `flash-towels-washer` keeps the settled parts and points to the shop setup lesson, which holds the house line, the towel maker's line, and the pending row |
+| Tesla (FC-16) in the outlines | pass | `lesson-l6-01-tesla`: the house wheel and compound row (house), Tesla's two manual rows (sourced), "Lando decides how this applies to Teslas (pending)" (verify), and the same three rows for camera lenses, mitts, the hose, the touchscreen, and the interior; the pre-soak is its own verify row. `lesson-l5-05-exterior-glass` sends Teslas to the Tesla glass procedure |
+| Speed and pressure (FC-22, FC-23) in the outlines | pass | `lesson-l8-05-black-pad` states the black pad's sealant speed (house, knowledge base 3.2) and a verify row "The house polishing speed and pressure wait on Lando's decision"; no outline states speed 4 or about 10 lb |
+| Methods the knowledge base does not have | pass | odor and the two-step: one verify step each ("no odor method yet", "no two-step procedure yet"), no invented step; the smoke odor fee says "quoted on inspection", never a number (BLUEPRINT 12 item 2) |
+| Numbers in the outlines | pass | a scratch scan of every digit in the 26 outlines: all in the knowledge base, except model years and "1099", which are in the verification log; 17 sampled below with their words |
+| Founder's rate "for a sedan or an SUV" (`lesson-l7-01-menus`, house) | pass | knowledge base 15.1 tags it `[VERIFY with Lando]`; BLUEPRINT 12 item 1 default ("$275 for both sizes"), accepted by Lando on 2026-10-10 |
+| Product notes (DEF-20) | open, later | the two product pages still hold the three Tesla statements in `labelNotes`; the item carries the page badge and the words say pending, so nothing reads as settled |
+
+### The number sample, pass 2 additions (17 numbers from the outline lessons; 87 in all)
+
+Rows 1 to 70 are pass 1's table above, all still passing. "Renders as" is the status of the line the number sits on.
+
+| # | Item | The item says | Renders as | Source | The source says |
+|---|---|---|---|---|---|
+| 71 | `lesson-l5-03-tire-dressing` | At least 3 to 5 minutes before the car moves | sourced | verification log | at least 3 to 5 min (trigger), 5 min (aerosol) |
+| 72 | `lesson-l5-05-exterior-glass` | Drop the windows 1 to 2 inches | house | knowledge base | Drop windows 1 to 2 inches |
+| 73 | `lesson-l6-03-headlight-refresh` | $30 a pair | house | knowledge base | headlight refresh $30/pair |
+| 74 | `lesson-l6-04-pet-hair-job` | 2 hrs or more | house | knowledge base | stains: 2 hrs or more |
+| 75 | `lesson-l7-01-menus` | Standard $75, bagger or touring $95 | house | knowledge base | \| Wash & Protect (1 hr): ... \| $75 \| $95 \| |
+| 76 | `lesson-l7-01-menus` | badge removal $40 | house | knowledge base | badge removal $40 |
+| 77 | `lesson-l7-01-menus` | $60 to $75 per hour gross | house | knowledge base | Target: $60 to $75 per hour gross |
+| 78 | `lesson-l7-03-five-policies` | 24 hours notice | house | knowledge base | Cancellation: 24 hours notice or the deposit stays |
+| 79 | `lesson-l7-05-honest-selling` | fresh paint under 30 days | house | knowledge base | fresh paint under 30 days |
+| 80 | `lesson-l8-01-two-step` | 4 h 55 m | house | knowledge base | \| **Total on paint** \| 39 \| **2 h 30 m** \| **4 h 55 m** \| |
+| 81 | `lesson-l8-01-two-step` | 3 to 4 cutting plus 3 finishing | house | knowledge base | two-step 3 to 4 cutting plus 3 finishing |
+| 82 | `lesson-l8-02-speed` | 5:25 PM against a 6:10 plan | house | knowledge base | wheels + wash done 5:25 PM (plan was 6:10) |
+| 83 | `lesson-l8-03-two-person-flow` | About 5 h | house | knowledge base | Two people (one in, one out): about 5 h |
+| 84 | `lesson-l8-04-mobile-polishing` | The polisher draws 7.5 A | sourced | verification log | 120VAC / 60Hz / 7.5A |
+| 85 | `lesson-l8-04-mobile-polishing` | 12-gauge, 50 ft max | house | knowledge base | 12-gauge cord, 50 ft max |
+| 86 | `lesson-l8-04-mobile-polishing` | within 20 minutes of each other | house | knowledge base | within 20 minutes of each other |
+| 87 | `lesson-l8-05-black-pad` | speed 2 to 3 | house | knowledge base | sealant at speed 2 to 3 |
+
+## Lando's 15-point audit on the changed code files (pass 2)
+
+Files: the 49 app files changed since pass 1 (newer than QA's pass 1 tests, under `src/`, `scripts/`, and `vite.config.ts`): new `scripts/content/viteShards.ts`, `src/core/contentShards.ts`, `contentLoaders.ts`, `src/app/warmUp.ts`, `src/features/shared/ContentWait.tsx`, `useTapHold.ts` and their tests; changed `src/core/content.ts`, `contentBundle.ts`, `search.ts`, `searchEngine.ts`, `backup.ts`, `backupImport.ts`, `restorePreview.ts`, `src/main.tsx`, `src/app/screens/Home.tsx`, the Academy, card, Fix It, search, and shared screens that now wait on their content, `ReadAloud.tsx`, `ItemDetail.tsx`, `src/schemas/content-shop.ts` and README, `vite.config.ts`, `scripts/content/pipeline.ts`. Plus QA's 6.
+
+| Tier | Result | Notes |
+|---|---|---|
+| 1 Structure | pass | both `tsc` programs clean, `oxlint --deny-warnings` clean, both builds compile; every changed file ends with a newline and a closed block |
+| 2 Logic | **fail, DEF-26** | every new `switch` has a `default` (`shardOf`, `isShard`); a page waiting on content says "Opening" with `aria-busy`, never "not found" (tested on a slow network); an unknown id still ends at its not-found screen; a failure is a final state with Try again and Home. But Try again cannot recover a failed piece, and search turns a failed load into "Nothing found" (DEF-26) |
+| 3 Journey | pass | the crawl (3,220 taps at 375 px), the v1 line at 5 widths, Back and Forward across a piece that is still loading, Enter typed before the index arrives (opens fix-01) |
+| 4 Runtime | pass, with DEF-26 | 0 page errors and 0 console errors in every new browser test; no storage access added; no `window.self`, `window.top`, `btoa`, `eval`, `innerHTML`, or `dangerouslySetInnerHTML`; `console.error` only on error paths (boot, backup time, the warm-up). The warm-up's line "search loads it on first use" never prints and is not true after a failure (DEF-26). The failure line prints a file address to the screen (DEF-26) |
+| 5 Build rules | pass | no file over 400 lines (largest app files `src/core/content.ts` 312, `scripts/content/pipeline.ts` 298, `vite.config.ts` 283, `src/core/searchEngine.ts` 278; largest QA files `tests/adversarial/phase2-hostile.spec.ts` 288, `tests/unit/phase2-truth.test.ts` 262); the developer panel gains "Content shards in memory" (loaded, loading, failed) |
+
+Specific checks: the only CSS change (`shared.css`) is `pointer-events: none` under the tap guard, no color; 0 em or en dashes in 921 project files; no `overflow: hidden`, `max-height`, or `:hover` added; 44 px targets and 64 px in Shop on every content page at 5 widths; no secret, key, or address added.
+
+## Tests added or changed by QA (pass 2)
+
+| File | Change |
+|---|---|
+| `tests/unit/phase2-truth.test.ts` | DEF-16 flipped: the flashcard rule now covers every flashcard, and a pin checks `flash-towels-washer` keeps the settled parts, says no "hot", and links to the shop setup lesson and fix-76 |
+| `tests/unit/phase2-counts.test.ts` | new block, Levels 5 to 8: one outline per curriculum topic (7, 5, 8, 6), in order; each marked as an outline, with a goal, a why, 3 or more steps, and a link on; no drill, quiz, skill, or sign-off; odor and the two-step write no method; DEF-25 as `it.fails` |
+| `tests/unit/phase2-numbers.test.ts` | 17 numbers from the outline lessons added (87 in all) |
+| `tests/e2e/phase2-shards.spec.ts` | new, 10 tests x 5 widths: nothing lazy before the first paint or the load event, and no content preload in `index.html`; the warm-up brings in the index, the fixes, the cards, and the catalog, the lessons wait for the Academy; slow-network deep links to 7 pages never draw a not-found title; 6 unknown ids end at not found; Enter before the index arrives; Customer View after every piece arrived; Back and Forward across a loading piece; DEF-26 as three `test.fail` |
+| `tests/persistence/phase2-offline.spec.ts` | every lazy chunk in `dist/assets` (16) must be in the offline copy; cold offline deep links to a card, a product, a word, an outline lesson, and the card list |
+| `tests/adversarial/phase2-hostile.spec.ts` | DEF-23 flipped (the voice log is exactly `speak`); new: double taps on Pause, Resume, and Stop reading each do one thing; a deliberate second tap 600 ms after Read aloud still pauses |
+
+`playwright.config.ts` is unchanged. Known defects in QA's tests: DEF-25 (`it.fails`, unit) and DEF-26 (three `test.fail`, browser). They pass while the defect is open and fail the day it is fixed; QA then flips them. DEF-24 is itself an owner test. DEF-20 and DEF-22 have no QA test that fails today.
+
+## Defect register, Phase 2 (after pass 2; the current register is in pass 3 above)
+
+| ID | Severity | Owner | File | One line | Pass 1 | Pass 2 |
+|---|---|---|---|---|---|---|
+| DEF-26 | fix-before-deploy | app-engineer | `src/core/content.ts`, `src/core/search.ts`, `src/features/shared/ContentWait.tsx` | A content piece or the index that failed once stays failed until a reload: Try again never works, the line shows a raw TypeError, search answers "Nothing found" | | new, open |
+| DEF-24 | fix-before-deploy | app-engineer | `src/features/shared/__tests__/ContentWait.test.tsx`, `src/core/search.ts` | Flaky test: an index load from an earlier test lands after the reset (red in 1 of 5 full runs, 7 of 9 file runs) | | new, open |
+| DEF-25 | later | learning-designer | `docs/CURRICULUM.md` | The Counts line says 23 outline lessons; the curriculum lists 26 and the app has 26 | | new, open |
+| DEF-20 | later | app-engineer (draw `notes`), then content-curator (move the lines); architect's part done | `src/features/search/ItemDetail.tsx`; two product files | The Tesla house line, manual line, and pending row still sit in one paragraph on two product pages | new, open | open (schema done) |
+| DEF-22 | later | troubleshooter, with business-customer in Phase 4 | `tests/search-cases.yaml` | Two knowledge base 24 cases parked until price items have pages (interim guard case added) | new, open | open |
+| DEF-18 | blocks-gate | app-engineer | `src/features/cards/cards.test.tsx` | Badge count test broke on a content status change | new, open | **closed** |
+| DEF-17 | fix-before-deploy | app-engineer | `src/core/content.ts`, `vite.config.ts` | Lighthouse mobile 0.76 to 0.83 | new, open | **closed** (0.91 to 0.95) |
+| DEF-16 | fix-before-deploy | learning-designer | `content/academy/flashcards/flash-towels-washer.yaml` | A flashcard answer held a pending decision | new, open | **closed** |
+| DEF-23 | later | app-engineer | `src/features/shared/ReadAloud.tsx` | A double tap on Read aloud paused the reading | new, open | **closed** |
+| DEF-19 | later | app-engineer | `src/features/search/ItemDetail.tsx` | Product and tool pages skipped from h1 to h3 | new, open | **closed** (axe 0 on 345 screens) |
+| DEF-21 | later | content-curator | `content/lessons/` | No outline lessons for Levels 5 to 8 | new, open | **closed** (26 outlines) |
+
+The Phase 1 register (DEF-01 to DEF-15) is below, all closed; every test written for them passed in the full run.
+
+## What only the phone can answer (pass 2 addition)
+
+- [ ] After DEF-26 is fixed, on the Pages link in a private Safari tab (so nothing is saved yet): open Home, turn on airplane mode before "Ready offline" shows, tap the Academy tile. You should see one plain line with Try again and Home. Turn airplane mode off and tap Try again: the Academy opens. Then Search, type "jerking": the jerking fix is first. ______
+
+# Phase 2 gate, pass 1 (2026-10-12, about 04:10 to 05:35 UTC, kept as written)
+
+## Verdict
+
+**Gate: not passed. 8 defects are open: 1 blocks-gate, 2 fix-before-deploy, 5 later.** All are new in Phase 2 (DEF-16 to DEF-23). None of the Phase 1 defects came back: the full browser run passed every Phase 1 test.
+
+- **Blocks the gate.** DEF-18: `npm run check` is red. An app-engineer unit test (`src/features/cards/cards.test.tsx`) counts the "unverified" badges on the real pad ladder card and expects 1; the fact application turned `product-meguiars-ultimate-compound` to verify, so the card's Related list now (correctly) shows a second badge. The app is right; the test is stale. CI runs `npm run check`, so the branch cannot go green until it is fixed.
+- **Fix before deploy.** DEF-17: Lighthouse mobile performance fell to 0.76 to 0.83 (target 90, Phase 1 was 0.91 to 0.93). LCP went from about 3.0 s to 4.7 s because the 1.09 MiB content chunk (262 KB gzip) now loads before the first screen. DEF-16: one flashcard (`flash-towels-washer`) puts a pending decision (FC-88, product towels hot or warm) in its answer.
+- **Later.** DEF-23 a gloved double tap on Read aloud pauses the reading at once (the second tap lands on Pause); DEF-19 heading order on the 41 product and tool pages (axe best practice); DEF-20 the Tesla lines on two product pages sit in a paragraph, not as their own sourced and pending rows (the product schema has no per-line field); DEF-21 Levels 5 to 8 have no outline lessons in the app (the outline lives in `docs/CURRICULUM.md` only); DEF-22 two knowledge base 24 search cases stay parked until price items get pages in Phase 4.
+
+What held, with evidence below: the content is clean on every truth rule QA could automate (no superseded fact as current, no market figure, no aftercare line, no dash, all 573 items internal, every open fact carries verify, Tesla and speed and pressure always show the house line, the maker's line, and a pending row); 70 sampled numbers match the knowledge base or the verification log; Fix It has 89 entries with fix-01 to fix-33 present; Levels 0 to 4 are complete (31 lessons, 31 drills, 31 quizzes of 4 to 10 questions, 6 sign-off files); 99 search cases pass with the slowest at 2.71 ms; the v1 line works in two taps or one word at every width, read aloud included (a single tap; see DEF-23 for a double tap); no dead end in 246 content pages and the four lists; offline works for a fix, a lesson, a procedure, an item, and search; Customer View shows nothing internal on any of the 246 content addresses.
+
+## Lando, in plain words
+
+- The content is solid. Every number QA checked matches your knowledge base or the fact-checker's log, nothing old or unconfirmed reads as settled, and every decision you have not made shows as "pending", including Teslas and the polisher speed and pressure.
+- Fix It works the way you asked: Fix It, then the jerking tile, and fix-01 is on screen. Typing "jerking" puts it first. Read aloud reads the STOP lines first, then the steps. It all works in airplane mode.
+- Three things must be fixed before this goes live: a test the app-engineer wrote is out of date (the app is fine), the app's first load on a phone got slower because the content is much bigger, and one flashcard answer includes a decision you have not made yet.
+- One to fix by the garage test: if you double-tap Read aloud with gloves on, the second tap lands on Pause and the voice stops. One firm tap works.
+- Nothing here needs your answer. The phone checks at the end of this section are for when the build is live.
+
+## The brief's eight checks
+
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| 1 | `npm run check`, both builds, `npm run test:e2e` (full); Phase 1 suites still pass | **fail** (DEF-18) | check: exit 1, `Tests 1 failed \| 1291 passed \| 1 expected fail (1293)`, the one failure is DEF-18 (the expected fail is DEF-16). Both builds exit 0 (one Vite chunk-size warning, DEF-17). e2e full: exit 0, `1363 passed`, `40 skipped` (the crawl runs at 375 px only), 0 failed, 21.9 min; every Phase 1 suite passes, with QA's sign-off address test updated for the new `/academy/:lessonId` route |
+| 2 | Content audit | **pass, except DEF-16** (and DEF-20 later) | `tests/unit/phase2-truth.test.ts` (22 tests), `tests/unit/phase2-numbers.test.ts` (72 tests), `tests/e2e/phase2-pages.spec.ts` (badges at 5 widths), details in "Content audit" below |
+| 3 | Counts against the Phase 2 bar | **pass** (DEF-21, DEF-22 later) | `tests/unit/phase2-counts.test.ts` (12 tests), `tests/unit/search-cases.test.ts` (148 tests): Fix It 89; fix-01 to fix-33 present; 31 lessons Levels 0 to 4 with steps and a why; a drill and a quiz (4 to 10 questions, counts equal the curriculum) per lesson; 6 sign-off files; 99 search cases, 99 pass; slowest query 2.71 ms ("car wash mode"), index load 12.9 ms |
+| 4 | The v1 line, five widths, no dead ends | **pass** (DEF-23 later: a double tap on Read aloud) | `tests/e2e/phase2-v1.spec.ts` (9 tests x 5 widths): two taps to fix-01, "jerking" first on Fix It, Search, and Home, Enter opens it, Read aloud below every STOP band, the voice reads STOP then steps and stops on leaving; tiles 64 px or taller; `phase2-pages.spec.ts` (246 pages x 5 widths): no sideways scroll, no clipped text, every target 44 px and 64 px tall in Shop; `phase2-links.spec.ts`: 2,930 taps (2,514 on the 246 content pages, 189 on Fix It, the Academy, Quick Cards, and the procedures, 227 on search results for 12 words), 0 dead ends, 0 taps that did nothing, and every Related list shows every linked item that has a page |
+| 5 | Offline | **pass** | `tests/persistence/phase2-offline.spec.ts` (2 tests x 5 widths): airplane mode after "Ready offline", two taps to fix-01, a lesson from the outline, a procedure and an item by deep link, search then Enter, a cold deep link to fix-09; the search index chunk is in the offline copy; plus the Pages base path (`pages-base.spec.ts`, new test) |
+| 6 | Customer View | **pass** | `tests/privacy/phase2-customer-view.spec.ts`: all 246 content addresses at 375 px (one of each type at the other widths), `/sops`, `/search?q=jerking`: only "Lando's Detailing" and "Exit Customer View", no badge, STOP band, or result, nothing internal in the accessibility tree; no internal element drawn for even one frame on a refresh; Back and Forward onto a fix and a lesson after Customer View went on; the Phase 1 privacy test now covers the 9 new routes too |
+| 7 | Lighthouse mobile 90+; precache size; largest file | **fail** (DEF-17) | mobile performance 0.76, 0.83, 0.81 on Home and 0.83 on fix-01 (accessibility 1.00, best practices 1.00); desktop 0.99. Precache 19 entries, 2,211.80 KiB (Phase 1: 938 KiB). Largest file `assets/content-BVzfO9vE.js` 1,116,094 bytes (262.41 kB gzip), 53% of the 2 MiB per-file precache limit |
+| 8 | Lando's 15-point audit on every changed code file | **pass** | 56 app files changed in Phase 2 plus QA's 15; details below |
+
+## Commands and key output
+
+| Command | Result | Key lines |
+|---|---|---|
+| `npm run content` (start of pass) | exit 0, 1.7 s | `573 items (quickcard 14, drill 31, equipment 22, fixnode 89, flashcard 129, lesson 31, product 21, quizquestion 167, sop 31, glossaryterm 38), 0 customer-safe, 0 superseded left out, 6 sign-off files, 61 synonym groups, 246 search documents, search cases 99 of 99 passed` |
+| `npx vitest run tests/unit/search-cases.test.ts` (before QA's change) | exit 1 | `4 failed \| 16 passed`: the Phase 1 test expected every bundle item in the index (only 246 of the 573 items are searchable now) and the seed sections as top results; `"gauge 85" top was fix-22 (kb 21)`, `"bike tire shine" top was fix-30`, `"backing plate" top was fix-23` (all three are right in Phase 2). Rewritten against `tests/search-cases.yaml` |
+| `npm run test:e2e`, baseline (Phase 1 suites on the Phase 2 code, before QA's changes) | exit 1, 13.6 min | `907 passed`, `5 failed`: `hostile.spec.ts` "a sign-off address typed by hand finds no sign-off screen" at 5 widths, because `/academy/signoff` now matches `/academy/:lessonId` and shows "Lesson not found" (with All lessons and Search) instead of "No screen here". Not an app defect; QA's test updated |
+| `npm run typecheck` | exit 0 | both programs clean |
+| `npx oxlint --deny-warnings` | exit 0 | no output |
+| `npm run check` (after QA's changes) | **exit 1**, 54 s | typecheck and lint clean; content as above; `Test Files 1 failed \| 60 passed (61)`, `Tests 1 failed \| 1291 passed \| 1 expected fail (1293)`. The failure: `src/features/cards/cards.test.tsx > CardView > shows each row, and the unverified badge only on the verify row`: `expected [ Array(2) ] to have a length of 1` (DEF-18). The expected fail is DEF-16 |
+| `npx vitest run tests/unit` (QA's suites) | exit 0 | `Test Files 13 passed (13)`, `Tests 708 passed \| 1 expected fail (709)` |
+| `VITE_BASE=/aurigen-directory/ npm run build` | exit 0 | `✓ 368 modules transformed`; `content-BVzfO9vE.js 1,116.09 kB (gzip 262.41 kB)`; `(!) Some chunks are larger than 1024 kB after minification`; `precache 19 entries (2212.27 KiB)`; `dist/index.html` links `/aurigen-directory/manifest.webmanifest`; manifest `start_url "."`, `scope "."` |
+| `npm run build` (left in `dist/`) | exit 0 | `✓ 368 modules transformed`; `index 220.68 kB (gzip 68.56 kB)`, `search-index 310.13 kB (gzip 87.69 kB)`, `vendor 470.21 kB (gzip 146.24 kB)`, `content 1,116.09 kB (gzip 262.41 kB)`; same chunk warning; `precache 19 entries (2211.80 KiB)` |
+| `npm run test:e2e` (full, both builds, after QA's changes) | **exit 0**, 21.9 min | `Running 1403 tests using 3 workers`; `1363 passed`, `40 skipped`; JSON stats `expected 1363, skipped 40, unexpected 0, flaky 0`. Readings: a 6 times slower CPU draws Home in 1038 to 1550 ms (limit 5000); Fix It then fix-01 in 479 to 935 ms and 737 to 988 ms, and "jerking" answers in 98 to 127 ms on that CPU; the offline copy holds 19 entries; Customer View checked 249 addresses at 375 px |
+| `npx playwright test tests/adversarial/phase2-hostile.spec.ts` (after the run, the Read aloud test corrected) | exit 0 | `45 passed`; the double tap on Read aloud is now `test.fail` (DEF-23) and fails as expected at 5 widths: annotation `speak, cancel; buttons Resume, Repeat, Stop reading` |
+| `npm run check` (final, after every QA change) | **exit 1**, 61 s | same as above: `Tests 1 failed \| 1291 passed \| 1 expected fail (1293)`; the failure is DEF-18 |
+| Lighthouse 13.5.0, mobile, 3 runs on Home | ran | performance **0.76, 0.83, 0.81**; accessibility 1.00; best practices 1.00; SEO 0.54 (noindex on purpose); FCP 3.5, 0.9, 2.1 s; **LCP 4.7 s** every run (score 0.33); TBT 30 ms; CLS 0.001, 0.001, 0.008. Scripts on the first load: `index` 67 KiB, `vendor` 142 KiB, `content` 255 KiB, `search-index` 84 KiB (transfer) |
+| Lighthouse 13.5.0, mobile, `/fixit/fix-01` | ran | performance 0.83, accessibility 1.00, best practices 1.00; FCP 2.1 s, LCP 4.4 s, TBT 80 ms, CLS 0.001 |
+| Lighthouse 13.5.0, `--preset=desktop` | ran | performance 0.99, accessibility 1.00, best practices 1.00; LCP 0.8 s, CLS 0 |
+| Installability (DevTools Protocol) | ran | `installability errors []` |
+| axe-core 4.14 (WCAG 2.0 to 2.2 A and AA, best practice), scratch sweep | ran | 314 screens: all 246 content pages and 6 lists at 375 px (Shop), a tenth at 1440 px, a tenth at 768 px in Academy density, after the load animation ends. Only rule hit: `heading-order` (best practice), 1 node on each product and tool page (DEF-19). `color-contrast` 0 (a first sweep that ran during the load animation flagged faded tiles; with the animation finished there are none) |
+| Content scans (scratch probes, kept in the unit tests) | ran | numbers not found in the knowledge base: 38 distinct values, every one in the verification log, BLUEPRINT 12 (an accepted default), or a quiz scenario input (a reading of 94, a 2021 SUV); dollar amounts: every one in the knowledge base or the log except two quiz distractors ($200, $260), never the right answer |
+
+Nothing was left running: Playwright stopped both servers, the scratch preview servers on 4180 (Lighthouse) and 4181 (the Read aloud probe) were stopped, and ports 4173, 4174, 4180, and 4181 refuse connections. Lighthouse and axe-core ran from the scratch folder, never from the project. No git command was run.
+
+## Defects (Phase 2, pass 1)
+
+Severity for Phase 2: blocks-gate (a gate check fails or the branch cannot go green), fix-before-deploy (fix before this phase merges to `main`, which deploys the Pages link Lando installs from), later. Owners from `docs/OWNERSHIP.md`; a content defect goes to the owner of the file.
+
+### DEF-18 (blocks-gate, app-engineer): `npm run check` is red on a stale card test
+
+- **File.** `src/features/cards/cards.test.tsx`, "CardView > shows each row, and the unverified badge only on the verify row" (line 128).
+- **What happens.** The test renders the real `card-pad-ladder` and expects exactly one "unverified" badge, on the HF finishing pads row. The fact application set `content/products/product-meguiars-ultimate-compound.yaml` to `status: verify` (it was house in the last commit), and that product is in the card's Related list, so `RelatedList` now draws a second badge on its row. The page is right: a verify item gets the badge wherever it is listed.
+- **Reproduce.** From `masterclass/`: `npx vitest run src/features/cards/cards.test.tsx`. Result: `1 failed | 10 passed`, `AssertionError: expected [ Array(2) ] to have a length of 1`.
+- **Fix.** Count the badges inside the card's rows only (the `dl` labelled with the card title), or load the test fixture bundle instead of the real content, so a content edit cannot break it. No content change.
+
+### DEF-17 (fix-before-deploy, app-engineer): Lighthouse mobile performance 0.76 to 0.83 (target 90)
+
+- **Files.** `src/core/content.ts` (the bundle is an eager `import.meta.glob`), `vite.config.ts` (the `content` chunk).
+- **What happens.** The content bundle is 1,116,094 bytes (262 KB gzip) and loads before the first screen draws. Under Lighthouse's mobile throttling the largest paint moves from about 3.0 s (Phase 1) to 4.7 s on Home and 4.4 s on fix-01; TBT stays 30 to 80 ms and CLS 0.001, so the loss is the download in the critical path. Vite also warns `Some chunks are larger than 1024 kB`. On an installed phone the chunk comes from the offline copy, but it is still parsed before the first screen, and the 2 MiB per-file precache limit (D1) is 53% used before Levels 5 to 8 and the customer content arrive.
+- **Reproduce.** `npm run build`, serve `dist/` (`npx vite preview --outDir <copy of dist> --port 4180`), then `lighthouse http://localhost:4180/` (mobile default) three times: performance 0.76, 0.83, 0.81; LCP 4.7 s; `network-requests` lists `content-*.js` 255 KiB before the first paint.
+- **Fix ideas (owner's choice).** Draw the shell and Home before the content arrives (import the bundle after first paint, with the existing "content missing" status as the fallback), and split what no Phase 2 screen reads out of the eager chunk: drills, quiz questions, flashcards, and sign-offs are about 325 KiB of the 1,111 KiB JSON, and the `sources` records another 251 KiB. Recheck: Lighthouse mobile 0.90 or more on 3 runs, and the offline tests still pass.
+
+### DEF-16 (fix-before-deploy, learning-designer): a flashcard answer holds a pending decision
+
+- **File.** `content/academy/flashcards/flash-towels-washer.yaml`, `back`.
+- **What happens.** The answer reads "Product pile, the house says hot and one towel maker says warm or cold, never hot; Lando decides (pending)." A flashcard answer must not depend on a decision Lando has not made (the brief, check 2). The card is honest, but the right answer to "What water ... do the microfiber towels get?" is not settled, so a crew member cannot get it right.
+- **Reproduce.** `npx vitest run tests/unit/phase2-truth.test.ts -t "DEF-16"`: the test is `it.fails` and passes, which means the defect is present. A scan of every flashcard answer and every right quiz answer for "(pending)", "Lando decides", "not settled", "speed 4", "10 lb", "loose grip", and "face down on a rack" finds only this one.
+- **Fix.** Keep the settled parts in the answer (follow the care tag; water-only pile warm; dye-free, fragrance-free detergent; full cycle; extra rinse) and leave the product-pile temperature to the lesson and fix-76, which already show the house line, the towel maker's line, and the pending row. Then flip the `it.fails` (QA).
+
+### DEF-23 (later, app-engineer): a double tap on Read aloud pauses the reading at once
+
+- **File.** `src/features/shared/ReadAloud.tsx` (the same spot holds "Read aloud", then "Pause" the moment the voice starts).
+- **What happens.** The first tap starts the voice and the button under the thumb becomes "Pause" in the same render. The second tap of a gloved double tap lands on Pause, and `pause()` stops the voice (it keeps the place for Resume). The person hears a word or nothing, and sees Resume. This is the Phase 1 DEF-04 pattern (a double tap landing on the next control) on the v1 line's own button.
+- **Reproduce.** `npx playwright test tests/adversarial/phase2-hostile.spec.ts -g "double tap Read aloud"`: `test.fail` at 5 widths, annotation `speak, cancel; buttons Resume, Repeat, Stop reading`. Scratch probe with a stand-in voice: a second tap 40, 80, 150, 250, or 400 ms after the first, by touch at 375 px and by mouse at 1440 px, always ends paused (`speak@888, cancel@949`).
+- **Fix ideas.** Hold the swapped button for the tap guard the PIN pad uses (about 350 ms, `useTapGuard`), or keep Pause out of the spot Read aloud was in. Then flip the `test.fail` (QA). Fix before the Phase 3 garage test at the latest.
+
+### DEF-19 (later, app-engineer): product and tool pages skip from h1 to h3
+
+- **File.** `src/features/search/ItemDetail.tsx` (`Heading` renders `h3`; the section around it has no `h2`).
+- **What happens.** On 41 item pages (21 products: "What it is for", "Dilutions", "Never for"; 20 tools: "Checks") the headings go h1 then h3. axe `heading-order` (best practice), 1 node per page, at every width and density. A screen reader user jumping by heading level misses them.
+- **Reproduce.** Open `/items/product-meguiars-m210` and list the headings: `h1 Meguiar's M210...`, then `h3 What it is for`. The scratch axe sweep lists the rule on every product and tool page.
+- **Fix.** `h2` for these headings (or a titled `Section`).
+
+### DEF-20 (later, architect then content-curator): two products hold the Tesla conflict in a paragraph, not in rows
+
+- **Files.** `content/products/product-armor-all-extreme-wheel-tire.yaml`, `content/products/product-meguiars-ultimate-compound.yaml` (`labelNotes`); the schema `src/schemas/content-shop.ts` (product `jobs` and `neverFor` are plain strings).
+- **What happens.** Wherever content touches a Tesla, the house line, Tesla's manual line (sourced, with its URL), and "Lando decides how this applies to Teslas (pending)" (verify) are to be separate rows. On these two product pages all three sit inside one `labelNotes` paragraph, so no "pending" badge is drawn on the pending sentence. Both items are status verify, so the page still carries the "unverified" badge at the top, and the words say pending; nothing is presented as settled. The schema README's pattern section names where the three rows go for fixes, SOPs, lessons, and drills, but not for products, and a product has no field that takes a line with its own status.
+- **Reproduce.** Open `/items/product-armor-all-extreme-wheel-tire`: the Tesla lines are in the last paragraph with no badge of their own.
+- **Fix.** Architect: a `notes: Line[]` field on products (or name `jobs` as `Line[]`), and a line in the README pattern section. Then content-curator: move the three lines into it.
+
+### DEF-21 (later, content-curator, with learning-designer's curriculum): Levels 5 to 8 have no outline lessons in the app
+
+- **Files.** `content/lessons/` (no `level` 5 to 8 file); `docs/CURRICULUM.md` "Levels 5 to 8 (outline only)" ("23 outline lessons planned").
+- **What happens.** OWNERSHIP names `content/lessons/` as holding "Levels 0 to 4 full, 5 to 8 outlines", and the schema has `outline: true` for them. None was written, so `/academy` shows each of Levels 5 to 8 as "An outline in v1." followed by "No lessons in this build yet." The outline is complete in `docs/CURRICULUM.md`, which Lando reads; it is not in the app.
+- **Reproduce.** Open `/academy`, scroll to Level 5.
+- **Fix.** Write the 23 outline lessons from the curriculum (a short why and the topics as steps), or change the level line so the screen does not promise an outline it does not show.
+
+### DEF-22 (later, troubleshooter, with business-customer in Phase 4): two knowledge base 24 cases are parked
+
+- **File.** `tests/search-cases.yaml` (the two commented cases under Part 2).
+- **What happens.** "price suv full detail" (15.1) and "store it clean" (12.2) are not run: their answers are price items, which have no page and are left out of search until Phase 4 (`SEARCH_TYPES`). 41 of the 43 knowledge base 24 rows run and pass. QA's test pins the parked pair, so a third one cannot quietly drop out.
+- **Fix.** Turn both back on when price items get pages (Phase 4).
+
+Also seen, not filed (writing only): five lesson and fix steps are a maker's quote rather than one action (`lesson-l2-03-wipe-dress` steps of 268 and 283 characters, `lesson-l2-05-glass` 286, `lesson-l1-02-pre-rinse` 166, `fix-79` 178, `fix-81` 182). They are allowed by the README pattern ("in a lesson they are numbers rows or lines"), but they read aloud as long blocks; moving them to `numbers` or `notes` would keep the steps to one action each.
+
+## Content audit
+
+All of it runs inside `npm run check` (QA's `tests/unit/phase2-*.test.ts`) on the bundle the content build makes, so it re-runs on every content edit. Paragraph fields (a lesson's why, a Markdown body) are judged one sentence at a time with the sentence or two after it, so "... 3 cups water. That ratio is not confirmed yet." passes and a bare statement fails; a self-test in the same file proves the scanner flags a bare statement.
+
+| Rule | Result | How |
+|---|---|---|
+| No superseded fact (knowledge base 23 and 9.1) as current | pass | IPA 50/50, Pro Speed, CM-224, the booklet's haze 3 to 5 minutes, foam cannon pre-soak, "under 70 to 80", "[YOUR PRICE]", microfiber cutting pads, "need compound and don't have it", pads and towels both warm, Wash & Wax before a polish: every hit says the guidance is old, never used, or not settled (a "Never in the bucket" row, a mistakes line, a booklet note). 0 superseded items in the bundle |
+| The fact-checker's corrections applied | pass | FC-02 (strip ratio not "the label"), FC-08 (17.5%), FC-10 (M210 "even on" dark paint), FC-18 (M8 from the HF page), FC-26 (wheel cleaner 30 seconds), FC-29 (tire shine at least 3 to 5 minutes), FC-66 (maroon medium cut), FC-67 (1 in. foam), FC-71 (clear coat 35 to 50 µm): 0 old wordings outside a note that records the correction |
+| No market research figure; 15.5 never cited | pass | 0 hits for market research, competitor, going rate, industry average, average price, 15.5. Every dollar amount is in the knowledge base or the log, except two quiz distractors ($200, $260) that are never the right answer |
+| No aftercare line (FC-06) | pass | 0 hits for "first 24 hours", "keep it dry", "still setting up"; no file under `content/customer/` |
+| No em or en dash | pass | 0 in the 580 files under `content/` (synonyms and sign-offs included), `tests/search-cases.yaml`, and `docs/CURRICULUM.md` |
+| No status tag in brackets inside text | pass | 0 in every string of 573 items |
+| Every item internal | pass | 573 of 573 `visibility: internal`; build stats `0 customer-safe` |
+| Open facts carry verify | pass | IPA ratio, below about 50 F, 2,000 W generator, APC 10:1 and 4:1, 25 to 35 gallons, Monthly Maintenance, the insurance walk-away line, the ShineMate fit, the trim-safe cleaner, the one-minute Bug & Tar wait: every line or row that states one is verify, or says in the next sentence that it is not confirmed |
+| Blazin' Banana, Tuff Stuff, HF finishing pad colors on no card or SOP step (BLUEPRINT 12 items 8, 9) | pass | 0 |
+| Every verify line renders with its badge | pass | `phase2-pages.spec.ts` at 5 widths: 262 "unverified" and 181 "pending" badges found exactly on their lines and rows across the 246 pages, and every verify item (16 with pages) has its own badge at the top |
+| Never in Customer View | pass | `phase2-customer-view.spec.ts` (all 246 addresses): no badge, no line, nothing internal in the page or the tree |
+| Tesla (FC-16) | pass, except DEF-20 (later) | every Tesla-only fix, SOP, card, lesson, and drill that uses wheel cleaner, a pre-soak, or compound carries Tesla's manual line (sourced) and a "(pending)" row (verify); no line written for a Tesla states one of the three as settled; no quiz asks about them on a Tesla. The two product pages hold the same three statements in a paragraph (DEF-20) |
+| Speed and pressure (FC-22, FC-23) | pass | all 16 items that say speed 4 or about 10 lb (the machine settings card, 6 drills, the 56367 tool, fix-01, fix-02, 4 lessons, 2 SOPs) carry the manual's "slower speeds" and "pressure off" lines (sourced) and a pending row (verify) |
+| Other conflicts shown the same way | pass (scratch probe) | FC-28 tire shine on the applicator, FC-55 grip, FC-70 pad drying, FC-88 towel water, FC-33 camera lenses, FC-36 touchscreen: every house line sits with the maker's line and a pending row (the HF pad uses the 56367 manual's washing line, as FC-25 says) |
+| No quiz answer or flashcard depends on a pending decision | **fail, DEF-16** | 167 right answers and 129 flashcard answers scanned: one flashcard (`flash-towels-washer`) |
+| House rule 12 and the crew's next step (pre-build answer 6) | pass | "The label on the bottle beats this app" is house wherever it appears; every "What crew does next" row is verify and says "Lando decides (pending)" (fix-04, fix-80, lessons l0-01, l2-03, l4-02, two drills, two SOPs) |
+| Lando's own words (pre-build answer 5) | pass | `synonyms.yaml` opens with the commented block "Lando's own words (pending)" |
+| Level 0 order (pre-build answer 7) | pass | `docs/CURRICULUM.md` "Level 0 order (Lando may reorder)" |
+| Writing rules | pass | every item has 4 or more search words and at least one related link; every page links on to another page; quiz choices distinct; the right answers spread over positions 0 to 3 (43, 37, 46, 41) |
+
+### The number sample (70 numbers, all seven types)
+
+Each row is a test in `tests/unit/phase2-numbers.test.ts`: the item says the words, the source says its words, and the numbers in both are the same. "Renders as" is the status of the line the number sits on; "(paragraph)" means a Markdown paragraph or a flashcard or quiz text, which carries the item's status. 70 of 70 match.
+
+| # | Item | The item says | Renders as | Source | The source says |
+|---|---|---|---|---|---|
+| 1 | `lesson-l0-01-rules-that-never-bend` | until 25 cars are logged | house | knowledge base | until 25 cars are logged |
+| 2 | `lesson-l0-02-stay-safe` | at least 30 seconds | sourced | verification log | run 30 seconds off the car |
+| 3 | `lesson-l0-04-how-paint-works` | 100 to 180 µm | sourced | knowledge base | about 100 to 180 µm |
+| 4 | `lesson-l0-04-how-paint-works` | 35 to 50 µm (1.5 to 2 mils) | sourced | verification log | 1.5 to 2.0 mils (35 to 50 microns) |
+| 5 | `lesson-l0-06-shop-setup` | 1 hour in warm soapy water | house | knowledge base | soak 1 hour in warm soapy water |
+| 6 | `lesson-l1-01-wheels-first` | 30 seconds | sourced | verification log | 30 seconds, not about a minute |
+| 7 | `lesson-l1-03-towel-wash` | 16 microfiber towels in quarters | house | knowledge base | 16 microfiber towels in the bucket, one per panel, folded in quarters |
+| 8 | `lesson-l1-04-hard-water-drying` | Rinse, dry, and jambs, 20 min | house | knowledge base | rinse/dry/jambs 20 |
+| 9 | `lesson-l2-05-glass` | Glass towels per full detail: 4 | house | knowledge base | glass 4 |
+| 10 | `lesson-l2-06-full-interior` | Sedan $150, SUV or truck $180 | house | knowledge base | \| Interior Only \| $150 \| $180 \| |
+| 11 | `lesson-l3-03-thickness-bands` | 100 µm or more | house | knowledge base | \| 100 µm or more \| Full ladder permitted |
+| 12 | `lesson-l3-02-tc100-gauge` | 4 to 6 mils (100 to 150 µm) | verify | verification log | about 4 to 6 mils (100 to 150 µm), highest on the hood (forum) |
+| 13 | `sop-clay` | 2 x 2 ft | house | knowledge base | Work 2 x 2 ft sections |
+| 14 | `sop-measure` | about 220 µm or more | house | knowledge base | (about 220+) |
+| 15 | `sop-measure-tesla` | More than 40 µm below the median | house | BLUEPRINT 12 (accepted) | more than 40 µm below the median of the other measured panels |
+| 16 | `sop-polish` | speed 1 to 2 | house | knowledge base | Spread on speed 1 to 2 |
+| 17 | `sop-polish` | 4 to 6 sets | house | knowledge base | 4 to 6 sets per square |
+| 18 | `sop-polish-tesla` | 3 drops | house | knowledge base | 3 drops worked into the face |
+| 19 | `sop-setup` | 15 minutes | verify | knowledge base | Setup target time: 15 minutes |
+| 20 | `sop-test-spot` | under 100 µm | house | knowledge base | reads 100 µm or more |
+| 21 | `sop-wheels-tesla` | Let it work 30 seconds | sourced | verification log | Allow the foam to penetrate for 30 seconds |
+| 22 | `sop-wash` | 3 to 4 minutes | house | knowledge base | Pre-rinse on jet 3 to 4 minutes |
+| 23 | `card-bucket-mix` | 4 gal | house | knowledge base | 4 gal water + 4 oz CG Citrus Wash & Gloss |
+| 24 | `card-clay-tub` | 1 gal | house | knowledge base | 1 gal water + 1 oz Citrus Wash & Gloss |
+| 25 | `card-ipa-wipe` | 1 cup | verify | knowledge base | 1 cup 70% IPA + 3 cups water |
+| 26 | `card-ipa-wipe` | 17.5% alcohol | verify | verification log | (17.5% alcohol) |
+| 27 | `card-machine-settings` | About 1 inch per second | house | knowledge base | About 1 inch per second |
+| 28 | `card-machine-settings` | About 10 lb | house | knowledge base | About 10 lb of pressure |
+| 29 | `card-thickness-bands` | about 220+ | house | knowledge base | (about 220+) |
+| 30 | `card-pad-ladder` | x2 | house | knowledge base | Maroon 6 in. x2 |
+| 31 | `card-tesla-wash-mode-tape` | Controls > Service > Car Wash Mode | sourced | knowledge base | Controls > Service > Car Wash Mode |
+| 32 | `card-bike-rules` | A 3 in. machine comes later | house | knowledge base | A 3 in. machine comes later |
+| 33 | `fix-01` | speed 1 to 2 | house | knowledge base | spread at speed 1 to 2 |
+| 34 | `fix-01` | about 10 lb | house | knowledge base | pressure over ~10 lb |
+| 35 | `fix-01` | 1-888-866-5797 | sourced | knowledge base | 1-888-866-5797 |
+| 36 | `fix-04` | 1 to 2 drops | house | knowledge base | mist the pad face with water; 1 to 2 drops |
+| 37 | `fix-05` | 4 to 6 sets | house | knowledge base | 4 to 6 sets, wipe once at the end |
+| 38 | `fix-14` | 3 to 4 minutes | house | knowledge base | jet 3 to 4 minutes |
+| 39 | `fix-18` | 2 to 3 sprays | verify | knowledge base | 2 to 3 sprays on a clean damp towel |
+| 40 | `fix-21` | 20 µm | sourced | knowledge base | 20 µm swings within a foot are normal |
+| 41 | `fix-22` | Under 75 | house | knowledge base | \| Under 75 \| No machine |
+| 42 | `fix-23` | 5/16 in.-24 | sourced | knowledge base | is 5/16 in.-24 thread |
+| 43 | `fix-23` | $23.05 | sourced | verification log | $23.05 |
+| 44 | `fix-26` | 9 mph | sourced | verification log | 9 mph |
+| 45 | `fix-33` | 50 F | verify | knowledge base | below about 50 F |
+| 46 | `fix-81` | five body cameras | sourced | verification log | five (2020 to 2024) |
+| 47 | `fix-88` | $1.50 per mile | house | knowledge base | $1.50 per mile outside Tooele |
+| 48 | `fix-89` | 24 hours | house | knowledge base | 24 hours notice or the deposit stays |
+| 49 | `quiz-l0-ground-rules-05` | 1 hour in warm soapy water | house | knowledge base | soak 1 hour in warm soapy water |
+| 50 | `quiz-l1-02-pre-rinse-01` | 3 to 4 minutes | house | knowledge base | Pre-rinse on jet 3 to 4 minutes |
+| 51 | `quiz-l1-wash-decon-04` | 30 | house | knowledge base | contact wash 30 |
+| 52 | `quiz-l3-03-bands-02` | 90 to 99 | house | knowledge base | \| 90 to 99 \| Polish only |
+| 53 | `quiz-l3-02-gauge-03` | 20 µm | sourced | knowledge base | 20 µm swings within a foot are normal |
+| 54 | `quiz-l4-test-spot-04` | 3 to 4 sets | house (paragraph) | knowledge base | maroon + Ultimate Compound (3 to 4 sets) |
+| 55 | `quiz-l4-06-pads-plate-01` | 5/16 in.-24 | sourced (paragraph) | knowledge base | is 5/16 in.-24 thread |
+| 56 | `quiz-l4-06-pads-plate-02` | 1-888-866-5797 | sourced (paragraph) | knowledge base | HF tech/parts line 1-888-866-5797 |
+| 57 | `flash-gauge-mil` | 25.4 µm | house (paragraph) | knowledge base | 1 mil = 25.4 µm |
+| 58 | `flash-ladder-rung-3` | 3 to 4 sets | house (paragraph) | knowledge base | maroon + Ultimate Compound (3 to 4 sets) |
+| 59 | `flash-machine-test-run` | at least 30 seconds | sourced (paragraph) | verification log | run 30 seconds off the car |
+| 60 | `flash-policies-cancel` | 24 hours | house (paragraph) | knowledge base | 24 hours notice or the deposit stays |
+| 61 | `flash-prices-full-detail` | Sedan $230. SUV or truck $280 | house (paragraph) | knowledge base | \| Full Detail (no polish) \| $230 \| $280 \| |
+| 62 | `flash-times-wash-slots` | contact wash 30 | house (paragraph) | knowledge base | contact wash 30 |
+| 63 | `flash-towels-per-detail` | 24 to 30 | house (paragraph) | knowledge base | Call it 24 to 30 |
+| 64 | `flash-prices-example-mobile` | $328 | house (paragraph) | knowledge base | = $328 |
+| 65 | `drill-l0-explain-paint` | 1 mil | house | knowledge base | 1 mil = 25.4 µm |
+| 66 | `drill-l1-dry` | 20 min | house | knowledge base | rinse/dry/jambs 20 |
+| 67 | `drill-l1-wheels` | 30 seconds | sourced | verification log | Allow the foam to penetrate for 30 seconds |
+| 68 | `drill-l3-gauge-sheet` | the 11 panels | sourced | knowledge base | 11 panels x 3 readings |
+| 69 | `drill-l4-marker-line` | speed 1 to 2 | house | knowledge base | Spread on speed 1 to 2 |
+| 70 | `drill-l4-timed-square` | 4 minutes | house | knowledge base | About 4 minutes per 2 x 2 ft section |
+
+## Lando's 15-point audit on the changed code files
+
+Files: the 56 app files changed or added in Phase 2 (`git diff --name-only cb07ee8` plus untracked, under `src/` and `scripts/`): `scripts/content/pipeline.ts`; `src/app/routes.tsx`, `src/app/screens/Home.tsx`, `src/app/__tests__/shell.test.tsx` (and `src/app/screens/AcademyOutline.tsx` removed); `src/core/content.ts`, `search.ts`, `searchEngine.ts` and their tests; `src/features/academy/` (8 files), `cards/` (4), `fixit/` (8), `search/` (9), `shared/` (13); `src/schemas/README.md`, `common.ts`, `content-academy.ts`, `content-shop.ts`, `content-phase2.test.ts`. Plus QA's 15 files listed under "Tests added or changed by QA".
+
+| Tier | Result | Notes |
+|---|---|---|
+| 1 Structure | pass | both `tsc` programs clean, `oxlint --deny-warnings` clean, both builds compile; every file ends cleanly |
+| 2 Logic | pass | every `switch` (searchEngine `bodyText`, Markdown blocks and heading levels, ItemDetail) has a `default` (two end in a `never` check); every page has an unknown-id screen with two ways out; empty lists say so ("No lessons in this build yet.", "No procedures in this build yet.", an empty Fix It grid keeps search and cards); the content-missing status shows on the Academy |
+| 3 Journey | pass | walked by the crawl (every button on 246 pages and the 4 lists, at 375 px) and the v1 line at 5 widths; no tap does nothing, no tap lands on "not found" |
+| 4 Runtime | pass | no storage access added; no `console` call outside tests; no `window.self`, `window.top`, `btoa`, `eval`, `innerHTML`, or `dangerouslySetInnerHTML` (Markdown builds React elements and keeps a link's words only); 0 page and 0 console errors in every new browser test; hostile addresses with `<img onerror>` and `<script>` in the path, query, and hash run nothing |
+| 5 Build rules | pass | no file over 400 lines (largest app file `scripts/content/pipeline.ts` 297, `src/core/searchEngine.ts` 270; largest QA file `tests/adversarial/hostile.spec.ts` 355, `tests/fixtures/app.ts` 334) |
+
+Specific checks: colors only from tokens (no hex, rgb, hsl, oklch, or color-mix in the 4 new CSS files; the only non-token values are `inherit` and `currentColor`); 0 em or en dashes in 879 project files (src, content, scripts, tests, docs, knowledge, public, configs); no `overflow: hidden` or `clip`, no `max-height`, no `:hover` in any new CSS; 44 px targets everywhere and 64 px tall in Shop density on every content page at 5 widths (`phase2-pages.spec.ts`); no secret, key, or address added.
+
+## Tests added or changed by QA
+
+| File | Change |
+|---|---|
+| `tests/unit/search-cases.test.ts` | rewritten for Phase 2: reads `tests/search-cases.yaml` (troubleshooter's) and runs every case on the index as the app ships it; the first row on screen (what Enter opens) is the top result; every knowledge base 24 row is a case except the 2 parked (pinned); each section 24 top result comes from its section or named fix (two fix seeds that hold the section's fact are named); slowest query and index load timed; the v1 word typed 9 ways; garbage and 2,800-character queries; no drill, quiz, or flashcard in results |
+| `tests/unit/phase2-truth.test.ts` | new: the truth and writing rules above, with DEF-16 as `it.fails`, and a self-test of the sentence scanner |
+| `tests/unit/phase2-counts.test.ts` | new: Fix It count, curriculum against lessons, drills, quizzes, sign-offs, flashcard decks, search words, related links, no dead-end page |
+| `tests/unit/phase2-numbers.test.ts` | new: the 70-number sample, printed with each line's status |
+| `tests/fixtures/contentAudit.ts` | new: the content build once per file, text units with the status they render with, the curriculum table parser, the sentence scanner |
+| `tests/fixtures/bundle.ts` | new: the generated bundle for the browser suites, page routes (the app's own `pageRoute`), the Related rule, the badge each line must carry |
+| `tests/fixtures/app.ts` | `ROUTES` gains 9 Phase 2 addresses (3 fixes, a card, 2 items, a lesson, the procedures list, a Tesla procedure), so the route, accessibility, and privacy suites cover them at 5 widths |
+| `tests/adversarial/hostile.spec.ts` | the sign-off address test updated for `/academy/:lessonId` ("Lesson not found" is a right answer too) and widened to 9 addresses; new: a quiz question, flashcard, or drill opened by hand shows no answer |
+| `tests/e2e/phase2-v1.spec.ts` | new, 9 tests x 5 widths: the v1 line |
+| `tests/e2e/phase2-pages.spec.ts` | new, 10 chunks x 5 widths: every content page |
+| `tests/e2e/phase2-links.spec.ts` | new, 10 tests at 375 px (skipped at other widths): the crawl |
+| `tests/e2e/pages-base.spec.ts` | new test: Phase 2 pages under `/aurigen-directory/`, a Pages deep link to fix-01, a Related tap, search, an offline reload |
+| `tests/persistence/phase2-offline.spec.ts` | new, 2 tests x 5 widths: airplane mode with the Phase 2 content |
+| `tests/privacy/phase2-customer-view.spec.ts` | new, 3 tests x 5 widths: every content address, refresh flashes, Back and Forward |
+| `tests/adversarial/phase2-hostile.spec.ts` | new, 9 tests x 5 widths: double taps (tile, Related row, search result, Read aloud: `test.fail`, DEF-23), 18 hostile addresses, no IndexedDB, 320 px, a 6 times slower CPU, a 5,000-character paste. The Read aloud test first asserted only that `pause` was never called; the app pauses with `cancel`, so the first version passed while the defect was there. Corrected after the full run and re-run at 5 widths |
+
+`playwright.config.ts` is unchanged. Known defects in QA's tests: DEF-16 (`it.fails`, unit) and DEF-23 (`test.fail`, browser). They pass while the defect is open and fail the day it is fixed; QA then flips them. DEF-17, DEF-18, DEF-19, DEF-20, DEF-21, and DEF-22 have no QA test that fails today: DEF-18 is itself a failing owner test, DEF-17 is a Lighthouse figure, and the rest are recorded here.
+
+## Defect register, Phase 2 (after pass 1; the current register is in pass 2 above)
+
+| ID | Severity | Owner | File | One line | Pass 1 |
+|---|---|---|---|---|---|
+| DEF-18 | blocks-gate | app-engineer | `src/features/cards/cards.test.tsx` | A unit test counts badges on the real pad ladder card; a content status change made `npm run check` red | new, open |
+| DEF-17 | fix-before-deploy | app-engineer | `src/core/content.ts`, `vite.config.ts` | The 1.09 MiB content chunk loads before the first screen: Lighthouse mobile 0.76 to 0.83, LCP 4.7 s | new, open |
+| DEF-16 | fix-before-deploy | learning-designer | `content/academy/flashcards/flash-towels-washer.yaml` | A flashcard answer holds the pending towel-water decision (FC-88) | new, open |
+| DEF-23 | later | app-engineer | `src/features/shared/ReadAloud.tsx` | A double tap on Read aloud lands on Pause: the reading stops at once | new, open |
+| DEF-19 | later | app-engineer | `src/features/search/ItemDetail.tsx` | 41 product and tool pages go from h1 to h3 (axe heading-order) | new, open |
+| DEF-20 | later | architect, then content-curator | `src/schemas/content-shop.ts`; two product files | The Tesla house line, manual line, and pending row sit in one paragraph on two product pages | new, open |
+| DEF-21 | later | content-curator (curriculum: learning-designer) | `content/lessons/` | No outline lessons for Levels 5 to 8; the Academy says "An outline in v1." then "No lessons in this build yet." | new, open |
+| DEF-22 | later | troubleshooter, with business-customer in Phase 4 | `tests/search-cases.yaml` | Two knowledge base 24 cases parked until price items have pages | new, open |
+
+The Phase 1 register (DEF-01 to DEF-15) is below, all closed; every test written for them still passes in the full run.
+
+## What only the phone can answer (Phase 2 additions)
+
+The Phase 1 list below still stands. Add these once this build is on the Pages link:
+
+- [ ] With signal, open the installed app and wait for **Ready offline**. Airplane mode. Tap Fix It, then "Polisher jerks, walks, or hops side to side": the fix opens. Tap Read aloud: the voice reads the STOP lines first, then the steps. Lock the screen: write down whether the voice keeps going. ______
+- [ ] Still in airplane mode: Search, say "jerking" with the keyboard mic: the jerking fix is the first row. Then open the Academy, Level 4, "One full square": the lesson opens.
+- [ ] Time the first open after a reboot (not the first install): how many seconds from the icon to the Home screen? ______ (DEF-17 is about this on a slow first load)
+- [ ] On a fix page with gloves on: double-tap Read aloud. Does it keep reading? Yes / No
+
+# Phase 1 gate record (passes 1 to 4, 2026-10-11, kept as written)
 
 Owner: qa-adversary. Branch `masterclass/phase-1`. Four passes so far, all on 2026-10-11, all in the cloud VM against the production build served by `vite preview` at `/` (Netlify shape) and at `/aurigen-directory/` (GitHub Pages shape). Every number comes from a command run that day; the key output lines are quoted.
 

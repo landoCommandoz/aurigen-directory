@@ -23,22 +23,33 @@ sources:
   - label: Knowledge base 5.1, 3.3, 6, and 12.1
     date: 2026-10-07
     note: Pre-rinse first, nothing touches paint before it. Bug & Tar foam on bugs and rocker tar, one-minute dwell, then wash it off, no scrubbing. Front end and mirrors. Bag test, then clay what is gritty. On a bike, bug remover on a hot exhaust bakes on.
+  - label: Meguiar's UK, Heavy Duty Bug & Tar Remover launch article
+    url: https://www.meguiars.co.uk/showroom/introducing-meguiars-heavy-duty-bug-tar-remover/
+    date: 2026-10-11
+    note: Spray it on, wait and let it soften the contaminants, then hose it off or wash over it. Works without scrubbing. It gives no dwell time. Loaded directly. Fact-checker FC-44 and FC-45. The one-minute dwell is not confirmed; a UK retail label for a similar can says about 5 minutes.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 stopIf:
   - Never scrub bugs.
   - "On a bike: stone cold first. Bug remover on a hot exhaust bakes on."
 checks:
+  - "Bug & Tar: read the dwell time on your can. The label on the can beats this app."
   - Did the pre-rinse run 3 to 4 minutes first?
-  - Did the Bug & Tar dwell one full minute?
+  - text: Did the Bug & Tar dwell one full minute?
+    status: verify
   - Is it bugs, or tar on the rockers?
 causes:
-  - The Bug & Tar did not dwell the full minute.
+  - text: The Bug & Tar did not dwell the full minute.
+    status: verify
   - Bug & Tar went on before the pre-rinse, or not at all.
   - Bug remains bonded to the paint. That is bonded contamination.
 steps:
   - Pre-rinse first. Nothing touches the paint before it.
   - Foam Bug & Tar on the bugs.
-  - Wait one minute.
-  - Wash it off. No scrubbing.
+  - text: Wait one minute.
+    status: verify
+  - text: Wash it off. No scrubbing.
+    status: sourced
   - After the wash and dry, bag test that spot.
   - Gritty? Clay it.
 stillHappening:

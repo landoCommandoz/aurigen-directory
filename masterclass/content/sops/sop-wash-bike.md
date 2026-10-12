@@ -7,6 +7,7 @@ vehicleBranch: bike
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "12.1"
 tags: [wash, bike, motorcycle, hose on low, stone cold]
 synonyms:
@@ -16,6 +17,13 @@ synonyms:
   - wash a harley
   - hose on low
   - stone cold bike
+sources:
+  - label: Armor All product page, Extreme Wheel & Tire Cleaner
+    url: https://armorall.com/product/extreme-wheel-tire-cleaner
+    date: 2026-10-11
+    note: Before use on motorcycles or uncoated polished aluminum, check with the manufacturer. Fact-checker FC-27.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 steps:
   - text: Check the bike is stone cold, pipes and engine included.
     quickCardId: card-bike-rules
@@ -30,6 +38,10 @@ steps:
         status: verify
       - Bug remover never goes on a hot exhaust. It bakes on.
       - Nothing slick on brake rotors, grips, pegs, or the seat.
+      - text: On a bike, the Armor All wheel cleaner label says check with the maker before you use it on a motorcycle.
+        status: sourced
+      - text: What to use on bike wheels is for Lando to decide (pending).
+        status: verify
 related:
   - card-bike-rules
   - card-stop-rules

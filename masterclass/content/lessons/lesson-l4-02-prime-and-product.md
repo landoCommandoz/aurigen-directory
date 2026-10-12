@@ -6,6 +6,7 @@ level: 4
 order: 2
 audience: [owner, crew]
 visibility: internal
+version: 2
 status: house
 kbRef: "8.2"
 tags: [polish, pad, priming, product amount, m210, level 4]
@@ -44,6 +45,9 @@ sources:
     url: https://www.detailedimage.com/Meguiars-M43/Ultra-Pro-Finishing-Polish-M210-P1792/16-oz-S3/
     date: 2026-10-10
     note: A retailer's copy of the M210 label says to prime new or dry pads by misting M34 Final Inspection. Supporting only, not confirmed. Lando does not own M34. Fact-checker FC-12.
+  - label: Verification log FC-107
+    date: 2026-10-11
+    note: The Utah Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending).
 steps:
   - Read the back of the polish bottle. The label on the bottle beats this app.
   - text: "Label and this app disagree? What crew does next: Lando decides (pending)."
@@ -104,6 +108,10 @@ numbers:
     value: Not checked yet. The fact-checker asked Lando to read the back of his bottle.
     status: verify
     kbRef: "3.3"
+  - label: Who may run power tools (pending)
+    value: Lando decides.
+    status: verify
+    kbRef: "19"
 mistakes:
   - A full dose on every section. The pad is already charged.
   - Wiping and re-applying polish between passes.

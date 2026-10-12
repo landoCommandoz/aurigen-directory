@@ -2,11 +2,12 @@ id: term-opm
 type: glossaryterm
 title: OPM (orbits per minute)
 term: OPM
-definition: Orbits per minute. Your BAUER's six-speed dial runs about 2,000 to 4,600 OPM.
+definition: Orbits per minute. Your BAUER's six-speed dial runs about 2,000 to 4,600 per minute with no load on the pad.
 alsoCalled: [orbits per minute]
 audience: [owner, ops, crew]
 visibility: internal
 status: sourced
+version: 2
 kbRef: "3.1"
 tags: [polisher, speed]
 synonyms:
@@ -20,6 +21,18 @@ sources:
   - label: HF product page, item 56367
     date: 2026-10-07
     note: Six-speed dial, about 2,000 to 4,600 OPM
+  - label: BAUER 56367 owner's manual, 2021
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-11
+    note: No load speed 2,000 to 4,600 per minute. The manual's symbol means no-load revolutions per minute. Fact-checker FC-61.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: HF item page, 56367
+    url: https://go.harborfreight.com/sku/56367/
+    date: 2026-10-11
+    note: Six-speed dial with electronic speed control. Fact-checker FC-61.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 related:
   - term-dual-action
   - equipment-bauer-56367

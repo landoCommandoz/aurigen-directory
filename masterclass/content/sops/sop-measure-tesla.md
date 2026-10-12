@@ -7,6 +7,7 @@ vehicleBranch: tesla
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "7.2"
 tags: [measure, inspect, gauge, light, thickness, tc100, tesla, model y, glass roof]
 synonyms:
@@ -19,7 +20,14 @@ synonyms:
 sources:
   - label: Knowledge base 7.2, TC100 research
     date: 2026-10-06
-    note: Screen codes, zero on the plate only, hold flat, door jamb baseline, 3 to 5 readings per panel, 20 µm swings within a foot are normal, Model Y owners commonly read about 4 to 6 mils.
+    note: Screen codes, zero on the plate only, hold flat, door jamb baseline, 3 to 5 readings per panel, 20 µm swings within a foot are normal.
+  - label: Verification log FC-74
+    date: 2026-10-11
+    note: Not reconfirmed. No R&D TC100 manual or maker page was found. Another maker's gauge manual says a zero is only valid on the calibration plate or other bare metal. Read the TC100's printed manual for the zero and SNG steps.
+  - label: Tesla Motors Club forum, Tesla paint depth
+    url: https://teslamotorsclub.com/tmc/threads/tesla-paint-depth-vs-other-cars.221821/
+    date: 2026-10-11
+    note: One owner's Model Y read about 4.03 to 5.92 mils, hood highest, rear quarters lowest. An owner report, not a Tesla spec. Tesla publishes no paint thickness. Verification log FC-73.
 steps:
   - text: Hold the light low across the paint.
   - text: Look for swirls. They look like a spiderweb.
@@ -30,6 +38,9 @@ steps:
   - text: Zero the TC100 on its bare plate. Only there.
     status: sourced
     stopIf: Never press ZERO on the car. It offsets every later reading.
+    notes:
+      - text: The TC100's own manual has not been read for the zero steps. Read it once and check it matches.
+        status: verify
   - text: Read the door jamb first and write it down. That is your baseline.
     status: sourced
   - text: Skip the roof. It is glass.
@@ -42,8 +53,10 @@ steps:
       - Stay an inch off edges and body lines. They always read low.
       - text: 20 µm swings within a foot are normal.
         status: sourced
-      - text: Model Y owners commonly measure about 4 to 6 mils (100 to 150 µm), highest on the hood. Lando's hood read above 100 everywhere.
-        status: sourced
+      - text: Owners report about 4 to 6 mils (100 to 150 µm) on a Model Y, highest on the hood. That is from an owner forum, not from Tesla.
+        status: verify
+      - text: Lando's hood read above 100 everywhere.
+        status: house
   - text: Write every reading down.
     notes:
       - "The job sheet panels: hood, trunk, LF fender, LF door, LR door, LR quarter, RF fender, RF door, RR door, RR quarter. The roof is glass, so it gets no reading."
@@ -66,4 +79,4 @@ related:
 ---
 The Tesla measure is the regular measure with one change: the roof is glass, so it gets no reading and never goes on the polish route.
 
-Model Y owners commonly read about 4 to 6 mils (100 to 150 µm), highest on the hood. That is background, not a band. The bands card decides what each panel is allowed to take.
+Owners report about 4 to 6 mils (100 to 150 µm) on a Model Y, highest on the hood. That comes from an owner forum, not from Tesla, and it is background, not a band. The bands card decides what each panel is allowed to take.

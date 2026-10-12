@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
 import { defineConfig, type Plugin } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import { contentShardsPlugin } from './scripts/content/viteShards.ts';
 
 /**
  * Base path. "/" for Netlify (the default). The GitHub Pages workflow sets
@@ -171,12 +172,19 @@ function shellGuardsPlugin(base: string): Plugin {
   };
 }
 
+/** A chunk name with no leading "_" (see chunkFileNames below). */
+function readableChunkName(name: string): string {
+  return name.replace(/^_mc-content-shard_/, 'content-').replace(/^_mc-json_/, '').replace(/^_+/, '') || 'chunk';
+}
+
 const base = resolveBase(process.env.VITE_BASE);
 
 export default defineConfig({
   base,
   plugins: [
     react(),
+    // The content bundle, cut into one lazy chunk per shard (QA DEF-17; src/core/contentShards.ts).
+    contentShardsPlugin(),
 
     // ===== PWA (D1, BLUEPRINT 3.5 and 5) =====
     // vite-plugin-pwa 2, generateSW, registerType 'prompt': a new service worker
@@ -218,8 +226,8 @@ export default defineConfig({
       },
       workbox: {
         // Everything Shop Mode, Fix It, Search, Quick Cards, and the Academy need is
-        // precached at install: the app code (the content bundle is inside it), the
-        // lazy search-index chunk (js), styles, the five woff2 fonts, icons, and the
+        // precached at install: the app code, every lazy content shard and the lazy
+        // search-index chunk (all js), styles, the five woff2 fonts, icons, and the
         // HTML. The plugin adds the web manifest itself.
         globPatterns: ['**/*.{js,css,html,woff2,svg,png,ico,json}'],
         // D1: the 2 MiB per-file limit stays (Workbox's default, written out here).
@@ -241,26 +249,32 @@ export default defineConfig({
     shellGuardsPlugin(base),
     cspPlugin(),
   ],
+  // JSON modules (the content shards, the search index) ship as JSON.parse of one string, which the
+  // phone parses far faster than the same data as an object literal.
+  json: { stringify: true },
   build: {
     outDir: 'dist',
     emptyOutDir: true,
     rolldownOptions: {
       output: {
         // Long-lived chunks, so an update downloads only what changed: the libraries change
-        // rarely, the content bundle changes with every content edit, the app code in between.
-        // The search index stays its own lazy chunk (src/core/search.ts).
+        // rarely, the app code more often. The content is not grouped: each content shard is its
+        // own lazy chunk (content.json?mc-shard=<name>, src/core/contentLoaders.ts), loaded when a
+        // screen draws it, and the search index stays its own lazy chunk (src/core/search.ts).
+        // Nothing from src/generated is on the first screen's path except the item counts.
         codeSplitting: {
-          groups: [
-            { name: 'content', test: /[\\/]src[\\/]generated[\\/]content\.json$/ },
-            { name: 'vendor', test: /[\\/]node_modules[\\/]/ },
-          ],
+          groups: [{ name: 'vendor', test: /[\\/]node_modules[\\/]/ }],
         },
+        // The shards come from virtual modules ("\0mc-content-shard:fixnode"), whose default chunk
+        // names start with "_". Some static hosts hide such files, so they ship as
+        // content-fixnode-<hash>.js and search-index-<hash>.js.
+        chunkFileNames: (chunk) => `assets/${readableChunkName(chunk.name)}-[hash].js`,
       },
     },
-    // The phone runs every chunk from the offline copy, so size here is a one-time download per
-    // update, not a page-load cost. The real ceiling is the 2 MiB per-file precache limit above
-    // (D1), which fails the build. Warn at 1 MiB so growth is seen long before that.
-    chunkSizeWarningLimit: 1024,
+    // The real ceiling is the 2 MiB per-file precache limit above (D1), which fails the build.
+    // Warn at 512 KiB: the largest content shard (the lessons) is about 270 KiB today, so a warning
+    // means one shard has doubled and should be cut again (src/core/contentShards.ts).
+    chunkSizeWarningLimit: 512,
   },
   preview: {
     port: 4173,

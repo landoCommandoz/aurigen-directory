@@ -7,6 +7,7 @@ order: 4
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "7.3"
 tags: [paint, clear coat, base coat, single-stage, microns, level 0]
 synonyms:
@@ -22,10 +23,32 @@ synonyms:
 sources:
   - label: Knowledge base 7.3, factory paint figures
     date: 2026-09-22
-    note: Factory total film and clear coat figures were checked against a live source on this date. The knowledge base marks them to reconfirm, and the fact-checker has them in its queue.
+    note: The figures now follow DeFelsko, rechecked by the fact-checker (FC-71 and FC-72).
+  - label: DeFelsko, automotive paint detailing
+    url: https://www.defelsko.com/resources/automotive-paint-detailing
+    date: 2026-10-11
+    note: Most factory paint jobs run 4 to 7 mils (100 to 180 microns). DeFelsko makes gauges, not paint. Fact-checker FC-72.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: DeFelsko, how to use paint thickness gauges for better automotive detailing
+    url: https://www.defelsko.com/resources/how-to-use-paint-thickness-gauges-for-better-automotive-detailing
+    date: 2026-10-11
+    note: Clear coat usually runs 1.5 to 2.0 mils (35 to 50 microns). Most carmakers recommend removing no more than 0.3 mils (8 microns) of clear coat. Fact-checker FC-71.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: 3M Scratch Removal System 39071 instructions
+    url: https://multimedia.3m.com/mws/media/642801O/scratch-removal-system-part-number-39071-dfu.pdf
+    date: 2026-10-11
+    note: Removing a paint defect removes a very thin layer of the clear coat. Fact-checker FC-109.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
   - label: Knowledge base 7.2, R&D TC100 gauge notes
     date: 2026-10-06
-    note: Normal 20 µm swings within a foot, and what Tesla Model Y owners commonly measure.
+    note: Normal 20 µm swings within a foot.
+  - label: Tesla Motors Club forum, Tesla paint depth
+    url: https://teslamotorsclub.com/tmc/threads/tesla-paint-depth-vs-other-cars.221821/
+    date: 2026-10-11
+    note: One owner's Model Y read about 4.03 to 5.92 mils, hood highest. An owner report, not a Tesla spec. Tesla publishes no paint thickness. Verification log FC-73.
 steps:
   - Picture the paint as layers.
   - The clear coat is the clear top layer.
@@ -41,11 +64,15 @@ steps:
 numbers:
   - label: Factory total paint film
     value: Usually about 100 to 180 µm
-    status: verify
+    status: sourced
     kbRef: "7.3"
   - label: Clear coat inside that total
-    value: Only about 38 to 50 µm
-    status: verify
+    value: About 35 to 50 µm (1.5 to 2 mils)
+    status: sourced
+    kbRef: "7.3"
+  - label: How little to take
+    value: DeFelsko says most carmakers recommend removing no more than about 8 µm (0.3 mil) of clear coat.
+    status: sourced
     kbRef: "7.3"
   - label: 1 mil
     value: 25.4 µm
@@ -54,9 +81,9 @@ numbers:
     value: 20 µm within a foot
     status: sourced
     kbRef: "7.2"
-  - label: Tesla Model Y, what owners commonly measure
-    value: About 4 to 6 mils (100 to 150 µm), highest on the hood
-    status: sourced
+  - label: Tesla Model Y, what owners report
+    value: About 4 to 6 mils (100 to 150 µm), highest on the hood. From an owner forum, not from Tesla.
+    status: verify
     kbRef: "7.2"
   - label: Edges and body lines
     value: Always read low. Stay an inch off.
@@ -100,9 +127,9 @@ So every pass costs something. That is why you measure before you polish, run a 
 
 Paint is measured in microns (µm). Your gauge reads microns. Some owners and forums talk in mils, and 1 mil is 25.4 µm.
 
-Factory paint, all layers together, is usually about 100 to 180 µm. The clear coat is only about 38 to 50 µm of that. Those two figures were checked once and still need a recheck, so they carry the unverified badge. Either way, the point stands: the layer you polish is a small slice of the total.
+Factory paint, all layers together, is usually about 100 to 180 µm. The clear coat is about 35 to 50 µm of that, which is 1.5 to 2 mils. Both figures come from DeFelsko, a paint gauge maker. The point: the layer you polish is a small slice of the total. DeFelsko also says most carmakers recommend removing no more than about 8 µm of clear coat. That is why every pass counts.
 
-Readings move around. A 20 µm swing within a foot is normal. Tesla Model Y owners commonly measure about 4 to 6 mils (100 to 150 µm), highest on the hood. Lando's hood read above 100 everywhere.
+Readings move around. A 20 µm swing within a foot is normal. Owners report about 4 to 6 mils (100 to 150 µm) on a Tesla Model Y, highest on the hood. That comes from an owner forum, not from Tesla, so it carries a badge. Lando's hood read above 100 everywhere.
 
 Edges and body lines always read low. There is less clear there to lose, which is why you stay an inch off them and tape them.
 

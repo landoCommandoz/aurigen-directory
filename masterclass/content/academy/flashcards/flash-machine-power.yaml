@@ -1,0 +1,34 @@
+id: flash-machine-power
+type: flashcard
+title: Polisher power and cords
+deck: machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "18.2"
+tags:
+  - machine
+  - safety
+  - flashcard
+synonyms:
+  - polisher power
+  - what cord
+  - extension cord
+  - gfci
+  - outdoor cord
+  - polisher flashcard
+sources:
+  - label: BAUER 56367 owner's manual, 2021, rechecked
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-11
+    note: 120 VAC, 60 Hz, 7.5 A on a 15 A circuit. Cord table for 7.1 to 12.0 A, 14 gauge at 50 ft, 12 gauge at 75 ft. GFCI supply in damp places. A cord marked W-A outdoors. Keep electrical connections off the ground. One cord for more than one tool, add the amps. The house 12-gauge, 50 ft limit is stricter than the table. Fact-checker FC-56.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+front: What power does the polisher need, and what are the cord rules?
+back: 7.5 A, so any normal 120 V household outlet on a 15 A circuit. 12-gauge cord, 50 ft max. Outdoors, a cord marked W-A. Near water, a GFCI outlet. Plug connections off the wet ground. One cord, one tool.
+related:
+  - lesson-l0-02-stay-safe
+  - equipment-bauer-56367
+  - flash-machine-cord

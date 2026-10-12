@@ -7,6 +7,7 @@ order: 1
 audience: [owner, crew]
 visibility: internal
 status: sourced
+version: 2
 kbRef: "3.1"
 tags: [polisher, machine, da, long-throw, test run, level 4]
 synonyms:
@@ -24,7 +25,7 @@ synonyms:
 sources:
   - label: HF product page, item 56367
     date: 2026-10-07
-    note: Knowledge base 3.1. Specs, speed guidance, and the FAQ line to center the foam pad on the backing pad and spread compound evenly to reduce vibration.
+    note: Knowledge base 3.1. Specs and speed guidance. The FAQ line to center the foam pad and spread compound evenly was not found again on 2026-10-11 (verification log FC-62).
   - label: HF product page, item 56367, spec table
     url: https://www.harborfreight.com/75-amp-6-in-20-mm-long-throw-random-orbit-da-polisher-56367.html
     date: 2026-10-10
@@ -46,6 +47,21 @@ sources:
   - label: Knowledge base 14, backing plate checks
     date: 2026-10-07
     note: Unplugged checks of the center bolt, the pad, the hooks, and the plate.
+  - label: BAUER 56367 owner's manual, 2021, rechecked
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-11
+    note: No load speed 2,000 to 4,600 per minute. 120 VAC, 60 Hz, 7.5 A on a 15 A circuit. GFCI supply in damp places, a W-A cord outdoors, plug connections off the ground. If the foam pad keeps coming off the backing pad, too much wax may have been applied. Max accessory diameter 6 in. (150 mm). Fact-checker FC-54, FC-56, FC-61, FC-62.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: HF item page, 56367, rechecked
+    url: https://go.harborfreight.com/sku/56367/
+    date: 2026-10-11
+    note: The long-throw 20 mm orbit produces 3 times the corrective action per orbit of a standard or short-throw DA. Six-speed dial with electronic speed control. No source says some float is normal. Fact-checker FC-61 and FC-63.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Verification log FC-107
+    date: 2026-10-11
+    note: The Utah Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending).
 steps:
   - Unplug the polisher.
   - Check the center bolt is tight.
@@ -54,7 +70,11 @@ steps:
   - Spin the plate by hand and watch the edge for a crack or a warp.
   - Look for loose hardware, misaligned or binding parts, and cracked or broken parts.
   - Do not use damaged equipment.
+  - text: Who may run power tools is for Lando to decide (pending).
+    status: verify
   - Plug it in.
+  - text: Outdoors, use a cord marked W-A. Near water, plug into a GFCI outlet. Keep plug connections off the wet ground.
+    status: sourced
   - Hold it off the car.
   - Set the dial to the highest speed.
   - Pull the trigger and run it for at least 30 seconds.
@@ -77,17 +97,32 @@ numbers:
     value: A free-spinning dual action (DA). Not a rotary.
     kbRef: "3.1"
   - label: Speed dial
-    value: Six speeds, about 2,000 to 4,600 OPM
+    value: Six speeds, about 2,000 to 4,600 per minute at no load
+    status: sourced
     kbRef: "3.1"
   - label: Electronics
     value: Constant-speed, soft start
     kbRef: "3.1"
-  - label: Pads
-    value: 6 in.
+  - label: Backing plate and largest pad
+    value: The plate is 6 in. The manual says the largest accessory is 6 in. (150 mm).
+    status: sourced
     kbRef: "3.1"
+  - label: Which Uro-Tec size goes on it (pending)
+    value: Buff and Shine's 6 in. Uro-Tec has a 7 in. face. Lando decides which size goes on the 56367.
+    status: verify
+    kbRef: "3.2"
   - label: Electrical rating, the manual
-    value: 120 V, 60 Hz, 7.5 A
+    value: 120 V, 60 Hz, 7.5 A, on a 15 A circuit. Any normal household outlet.
+    status: sourced
     kbRef: "3.1"
+  - label: Cord
+    value: 12-gauge, 50 ft max. Outdoors, marked W-A. Near water, a GFCI outlet. Plug connections off the wet ground.
+    status: sourced
+    kbRef: "18.2"
+  - label: Who may run power tools (pending)
+    value: Lando decides.
+    status: verify
+    kbRef: "19"
   - label: Test run, the manual
     value: Pad mounted, highest speed, at least 30 seconds, off the car
     kbRef: "3.1"
@@ -113,8 +148,12 @@ numbers:
     value: An orbit of 15 mm or more. This one throws 20 mm.
     status: verify
     kbRef: "22"
+  - label: Bigger orbit
+    value: A 20 mm long-throw makes a bigger orbit than a short-throw polisher. Harbor Freight says it does 3 times the corrective work per orbit.
+    status: sourced
+    kbRef: "3.1"
   - label: Float
-    value: A 20 mm long-throw moves more than a short-throw. Some float is normal. The wording is not confirmed.
+    value: Some float is normal. No source says this yet, so the line is not confirmed.
     status: verify
     kbRef: "21"
   - label: Rotary
@@ -166,11 +205,11 @@ A rotary is different. A rotary only spins. The Black & Decker rotary polisher i
 
 On Oct 7, Lando thought this polisher was a rotary. It is not. Getting this right matters. The marker line check in lesson 4 only makes sense on a DA: the pad turns on its own, and too much pressure, a tilted pad, a curve, or too much product can stall it.
 
-Long-throw means a big orbit. This one throws 20 mm. A long-throw moves more than a short-throw, and some float is normal. That last line is still waiting on confirmed wording, so it carries a badge.
+Long-throw means a big orbit. This one throws 20 mm, a bigger orbit than a short-throw polisher. Harbor Freight says it does 3 times the corrective work per orbit. Some float is normal, but no source says that yet, so that line carries a badge.
 
 ## The dial
 
-The dial has six speeds, about 2,000 to 4,600 OPM. OPM means orbits per minute. The electronics are constant-speed, with a soft start.
+The dial has six speeds, about 2,000 to 4,600 per minute with no load on the pad. You will hear it called OPM, orbits per minute. The electronics are constant-speed, with a soft start.
 
 Harbor Freight's product page says speeds 2 to 3 are for applying or removing wax or sealant, and speeds 4 to 6 are for polishing or compounding. The house spreads on 1 to 2 and works on 4.
 
@@ -184,7 +223,13 @@ Unplug it first. Your fingers are near the plate. Then check four things: the ce
 
 The manual adds its own check before each use: loose hardware, misaligned or binding parts, and cracked or broken parts. Do not use damaged equipment.
 
-Harbor Freight's FAQ adds two ways to reduce vibration: center the foam pad on the backing pad, and spread compound evenly around the pad.
+Harbor Freight's FAQ once added two ways to reduce vibration: center the foam pad on the backing pad, and spread compound evenly around the pad. That FAQ line was not found again on recheck, so it carries a badge. The manual does say this: if the foam pad keeps coming off the backing pad, too much wax may have been applied.
+
+## Power
+
+The polisher draws 7.5 A and needs a 120 V, 15 A circuit, so any normal household outlet runs it. Use a 12-gauge cord, 50 ft max. Outdoors, the cord must be marked W-A. Near water, plug into a GFCI outlet, and keep the plug connections off the wet ground.
+
+Who may run the polisher is Lando's call, and it is not decided yet.
 
 ## Why the test run
 

@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: house
+version: 2
 kbRef: "5.1"
 tags:
   - pre-rinse
@@ -17,7 +18,7 @@ synonyms:
   - rinse questions
   - bug and tar quiz
   - how long do I rinse test
-prompt: The car looks clean after one minute of rinsing. Can you start the towel wash?
+prompt: A car that is not a Tesla looks clean after one minute of rinsing. Can you start the towel wash?
 choices:
   - No. The full 3 to 4 minutes first.
   - Yes. Clean paint is ready to wash.

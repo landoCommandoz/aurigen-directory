@@ -4,18 +4,32 @@ title: Ragnify medium clay mitt, 2-pack
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "6"
-tags: [clay, decon, mitt]
+tags: [clay, decon, mitt, tesla]
 synonyms:
   - clay mitt
   - ragnify
   - clay glove
   - mitt
   - clay towel
+  - dropped the mitt
 sources:
   - label: Knowledge base 6
     date: 2026-10-06
     note: Clay mitts are riskier on black or soft paint
+  - label: Ragnify product page, clay mitt 2-pack, medium
+    url: https://www.ragnify.com/products/ragnify-pack-of-2-clay-mitt-auto-detailing-medium-grade-clay-bar-alternative-mitt-for-flawless-removal-of-surface-bonded-micro-contaminant-red
+    date: 2026-10-11
+    note: If you drop it, rinse it with water and the dust falls off. Rinse it with soap and air dry after use. Use it only after washing the car. Any shampoo or soap works as lube. Fact-checker FC-52.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Avoid tight-napped or rough cloths, such as washing mitts. A high-quality microfiber cloth is recommended. Read directly. Fact-checker FC-34.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 specs:
   - label: Arrival
     value: It was in transit on Oct 6. Confirm it arrived.
@@ -24,11 +38,24 @@ specs:
 checks:
   - text: Clay mitts are riskier on black or soft paint.
     status: sourced
-  - text: Dropped mitt? Rinse it thoroughly. The maker's guidance is not confirmed yet.
-    status: verify
+  - text: Use it only after the car is washed. Ragnify says so.
+    status: sourced
+  - text: Dropped the mitt? Rinse it with water until all the grit is gone. Ragnify says so.
+    status: sourced
+  - text: Check it before it goes back on paint.
+    status: house
+  - text: After every job, rinse it with soap and water and let it air dry. Ragnify says so.
+    status: sourced
   - Never put it in the wash bucket.
-  - Never put it back on paint unchecked.
+  - text: On a Tesla, house rule. The clay mitt is used on every car.
+    status: house
+  - text: On a Tesla, Tesla's manual says avoid tight-napped or rough cloths, such as washing mitts. It recommends a high-quality microfiber cloth.
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending).
+    status: verify
 related:
   - equipment-clay-bar
   - card-clay-tub
   - card-bucket-mix
+  - card-tesla-wash-mode-tape
+  - sop-clay

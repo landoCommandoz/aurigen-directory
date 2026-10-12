@@ -1,12 +1,13 @@
 id: quiz-l4-06-pads-plate-04
 type: quizquestion
-title: What is wrong with this wash
+title: Hot water and the dryer
 quizId: quiz-l4-06-pads-plate
 audience:
   - owner
   - crew
 visibility: internal
-status: house
+status: sourced
+version: 2
 kbRef: "13.1"
 tags:
   - pads
@@ -18,14 +19,21 @@ synonyms:
   - backing plate questions
   - pad wash test
   - which plate fits quiz
-prompt: DJ washed a Uro-Tec pad in hot water, wrung it out, and set it face up to dry. What does the house way change?
+sources:
+  - label: Buff and Shine FAQ
+    url: https://buffandshine.com/pages/faqs
+    date: 2026-10-11
+    note: Warm or cold water only, never hot. Never put pads in the dryer, they will warp. Air-dry flat; never place a pad face down on any surface. How pads dry conflicts with the house; Lando decides. Fact-checker FC-70.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+prompt: DJ is about to wash a Uro-Tec pad in hot water, then put it in the dryer. What changes?
 choices:
-  - Nothing. That is the right way.
+  - Nothing. Heat gets it clean and dry.
+  - Hot water is fine. Skip the dryer.
+  - Warm water, never hot. No dryer.
   - Add bleach to the hot water.
-  - Warm water, press, dry face down.
-  - Dry it in the dryer on high.
 correctIndex: 2
-explanation: "Warm water, not hot: hot is hard on foam. Press the water out, never wring. Dry face down on a rack."
+explanation: Warm water, never hot. Heat is hard on foam. Buff and Shine says never put its pads in the dryer, because they warp. How the pad dries after that is not settled. The house dries it face down on a rack, and Buff and Shine says dry it flat, never face down. Lando decides (pending).
 scenario: true
 related:
   - lesson-l4-06-pad-care-backing-plate

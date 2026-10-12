@@ -22,6 +22,9 @@ sources:
   - label: Knowledge base 7.2, TC100 research
     date: 2026-10-06
     note: Zero only on the included bare plate. Never press ZERO on the car; it offsets every later reading. Hold it flat. Door jamb first is the baseline. 3 to 5 readings per panel.
+  - label: Fact-checker FC-74, TC100 zero and screen codes
+    date: 2026-10-11
+    note: No R&D TC100 manual or maker page was found to recheck the zero and screen-code steps. Another maker's gauge manual (Sauter) says a zero is not valid unless the probe sits directly on the calibration plate or other uncoated metal. Lando's check is the printed TC100 manual.
 stopIf:
   - Never press ZERO on the car. It offsets every later reading.
 checks:
@@ -42,6 +45,8 @@ stillHappening:
   - "Readings still look wrong: open the gauge reading looks wrong fix."
 notes:
   - 20 µm swings within a foot are normal.
+  - text: The zero step comes from the 2026-10-06 research. No TC100 manual was found online to recheck it. Read the printed TC100 manual.
+    status: verify
 lessonId: lesson-l3-02-tc100-gauge
 equipmentIds:
   - equipment-rd-tc100

@@ -7,7 +7,7 @@
  */
 import { restorePlan, type RestorePath, type RestorePlan } from '../schemas';
 import { parsedBackupOf, summarizeBackup, type BackupSummary, type VerifiedBackup } from './backupFile';
-import { getPriceItems } from './content';
+import { loadPriceItems } from './content';
 import { summarizeCounters } from './counters';
 import { storageRefusal, withDb } from './db';
 import type { Refusal } from './errors';
@@ -37,13 +37,14 @@ export async function previewRestore(backup: VerifiedBackup, path: RestorePath):
     );
     const plan = restorePlan(parsedBackupOf(backup.backup), { settings: read.here.guard, jobs: read.jobs.length }, path);
     const carsSeed = read.here.state === 'readable' ? read.here.salvaged.settings.carsLoggedBefore : 0;
-    const counts = summarizeCounters(read.jobs, getPriceItems(), carsSeed);
+    const prices = await loadPriceItems();
+    const counts = summarizeCounters(read.jobs, prices, carsSeed);
     const fileSeed = plan.ok && plan.settingsFrom === 'thisPhone' ? carsSeed : 0;
     return {
       ok: true,
       plan,
       thisPhone: { jobs: counts.jobs, carsLogged: counts.carsLogged, founderSlotsUsed: counts.founderSlotsUsed, settings: read.here.state, carsSeed },
-      file: summarizeBackup(backup.backup, backup.summary.bytes, getPriceItems(), { carsSeed: fileSeed }),
+      file: summarizeBackup(backup.backup, backup.summary.bytes, prices, { carsSeed: fileSeed }),
     };
   } catch (error) {
     return storageRefusal(error);

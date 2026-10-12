@@ -6,10 +6,11 @@
  */
 import { useNavigate, useParams } from 'react-router';
 import { Button } from '../../components/ui';
-import { getItem } from '../../core/content';
+import { getItem, useContent, type LoadableShard } from '../../core/content';
 import { Internal, showUnverifiedBadge, useCustomerView } from '../../core/customerView';
 import type { QuickCardItem } from '../../schemas';
 import { RowsList, UnverifiedBadge } from '../search/contentViews';
+import { ContentWait } from '../shared/ContentWait';
 import { ReadAloud } from '../shared/ReadAloud';
 import { RelatedList } from '../shared/RelatedList';
 import { Actions, Screen, Section, StatusLine } from '../settings/ui/Screen';
@@ -17,6 +18,8 @@ import { cardSpeechText, KIND_LABELS } from './cardModel';
 import './cards.css';
 
 const BACK = { to: '/cards', label: 'All Quick Cards' };
+/** The cards, and the catalog for the Related list. */
+const CARD_CONTENT: readonly LoadableShard[] = ['quickcard', 'catalog'];
 
 function CardBody({ card, customerView }: { card: QuickCardItem; customerView: boolean }) {
   return (
@@ -48,10 +51,10 @@ export function CardView() {
   const { id = '' } = useParams();
   const navigate = useNavigate();
   const cv = useCustomerView();
+  const content = useContent(CARD_CONTENT, cv.ready);
 
-  if (!cv.ready) {
-    return <Screen title="Quick Card" back={BACK} />;
-  }
+  if (!cv.ready) return <ContentWait title="Quick Card" back={BACK} />;
+  if (!content.ready) return <ContentWait title="Quick Card" back={BACK} content={content} />;
 
   const found = getItem(id, { customerView: cv.on });
   const card = found?.type === 'quickcard' ? found : undefined;

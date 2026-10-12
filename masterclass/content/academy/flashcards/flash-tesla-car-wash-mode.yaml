@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: sourced
+version: 2
 kbRef: "11"
 tags:
   - tesla
@@ -23,8 +24,14 @@ sources:
     note: Controls > Service > Car Wash Mode; parked and not actively charging; what it turns off; turns off above 9 mph or on Exit. Software 2026.32 manual. Read through the search index. Fact-checker FC-13 and FC-14.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
-front: On a 2020 to 2024 Model Y, how do you turn on Car Wash Mode, and when?
-back: Controls > Service > Car Wash Mode, before any water. The car must be parked and not charging.
+  - label: Tesla Model Y 2025 and newer owner's manual, China edition
+    url: https://www.tesla.cn/ownersmanual/modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Page 200, the same path, Controls > Service > Car Wash Mode, stationary and not actively charging. Read directly. Fact-checker FC-39. Model S, Model X, and Cybertruck not checked.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+front: On a Model Y, how do you turn on Car Wash Mode, and when?
+back: Controls > Service > Car Wash Mode, before any water. Same path on the 2020 to 2024 and the 2025 or newer Model Y. The car must be parked and not charging.
 related:
   - card-tesla-wash-mode-tape
   - lesson-l1-06-full-wash

@@ -5,7 +5,7 @@ kind: settings
 audience: [owner, crew]
 visibility: internal
 status: house
-version: 2
+version: 3
 kbRef: "8.3"
 tags: [polish, machine, speed, pressure, settings]
 synonyms:
@@ -35,10 +35,31 @@ sources:
     note: Page 8 says only use slower speeds for polishing and does not define slower. Page 8 also says keep pressure off the tool and let the foam pad lightly contact the surface. Fact-checker FC-22 and FC-23.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: BAUER 56367 owner's manual, 2021, rechecked
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-11
+    note: Maintain a firm grip on the tool with both hands to resist starting torque. Max accessory diameter 6 in. (150 mm). Fact-checker FC-54 and FC-55.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Buff and Shine product page, 634CR 6 in. yellow Uro-Tec
+    url: https://buffandshine.com/products/634cr-6-yellow-uro-tec-foam-pad-polishing
+    date: 2026-10-11
+    note: Pad size 6 in., loop 6 in., face 7 in. Fact-checker FC-54.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 rows:
   - label: Square
     value: 2 x 2 ft, taped. One square at a time.
     kbRef: "8.1"
+  - label: Grip, house
+    value: Two hands, loose grip. Guide it, don't push.
+    kbRef: "21"
+  - label: Grip, the 56367 manual
+    value: The 56367 manual says keep a firm grip with both hands to resist starting torque, and keep pressure off the tool.
+    status: sourced
+  - label: Lando decides the grip wording (pending)
+    value: Loose grip, or the manual's firm grip with both hands. Both agree on two hands and no pushing down.
+    status: verify
   - label: Start
     value: Pad flat on the paint before you pull the trigger.
   - label: Spread
@@ -70,6 +91,12 @@ rows:
   - label: Product
     value: 1 to 2 drops per section after priming. Not a full dose.
     kbRef: "8.2"
+  - label: Pad size, Buff and Shine and the 56367 manual
+    value: Buff and Shine's 6 in. Uro-Tec has a 6 in. back and a 7 in. face. The 56367 manual says the largest accessory is 6 in. (150 mm).
+    status: sourced
+  - label: Which Uro-Tec size goes on the 56367 (pending)
+    value: Measure your pads. Lando decides.
+    status: verify
   - label: Pad looks dry
     value: Mist the pad face lightly with water. Do not soak it.
     kbRef: "8.2"

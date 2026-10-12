@@ -7,6 +7,7 @@ audience:
   - crew
 visibility: internal
 status: sourced
+version: 2
 kbRef: "7.2"
 tags:
   - tesla
@@ -19,9 +20,13 @@ synonyms:
 sources:
   - label: R&D TC100 gauge notes (knowledge base 7.2)
     date: 2026-10-06
-    note: Zero only on the bare plate; door jamb baseline; 3 to 5 readings per panel; 20 µm swings within a foot are normal; Tesla Model Y owners commonly measure 100 to 150 µm.
-front: What do Tesla Model Y owners commonly measure?
-back: About 4 to 6 mils (100 to 150 µm), highest on the hood.
+    note: Zero only on the bare plate (not reconfirmed, no TC100 manual was found, FC-74); door jamb baseline; 3 to 5 readings per panel; 20 µm swings within a foot are normal; Model Y owners report about 100 to 150 µm, an owner report and not a Tesla spec (FC-73).
+  - label: Tesla Motors Club forum, Tesla paint depth
+    url: https://teslamotorsclub.com/tmc/threads/tesla-paint-depth-vs-other-cars.221821/
+    date: 2026-10-11
+    note: One owner's Model Y read about 4.03 to 5.92 mils, hood highest. Supporting only. Tesla publishes no paint thickness. Fact-checker FC-73.
+front: What do Model Y owners report on the paint gauge?
+back: About 4 to 6 mils (100 to 150 µm), highest on the hood. That is owner reports, not a Tesla spec. Your own readings win.
 related:
   - lesson-l3-02-tc100-gauge
   - equipment-rd-tc100

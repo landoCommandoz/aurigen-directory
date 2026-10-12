@@ -6,6 +6,7 @@ level: 4
 order: 4
 audience: [owner, crew]
 visibility: internal
+version: 2
 status: house
 kbRef: "8.3"
 tags: [polish, machine, speed, sets, crosshatch, marker line, level 4]
@@ -41,6 +42,9 @@ sources:
     note: Page 8, step 3, only use slower speeds for polishing, otherwise damage may occur to the paint; slower is not defined. Page 8, start and stop the tool only while it is held firmly against the surface of the vehicle. Fact-checker FC-22 and FC-23.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: Verification log FC-107
+    date: 2026-10-11
+    note: The Utah Labor Commission says minors may not work in hazardous occupations, including operating power equipment. DJ's age is not recorded. Who may run power tools is Lando's decision (pending).
 steps:
   - Draw a marker line on the edge of the pad.
   - Put 1 to 2 drops on the primed pad.
@@ -119,6 +123,10 @@ numbers:
   - label: Wipe
     value: Once, at the end of the square's sets. Never wipe and re-apply between passes.
     kbRef: "8.3"
+  - label: Who may run power tools (pending)
+    value: Lando decides.
+    status: verify
+    kbRef: "19"
 mistakes:
   - Spreading at a high speed. It slings.
   - Pulling the trigger with the pad in the air.

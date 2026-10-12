@@ -150,3 +150,9 @@
 [data-density='academy'] .sh-reading :is(p, dd, blockquote, li:not(.ui-row)) {
   max-inline-size: min(100%, 31em);
 }
+
+/* The voice row takes no taps for a moment after its first button swaps (useTapGuard, DEF-23), so
+ * the second tap of a double tap on "Read aloud" lands on the row and does nothing. */
+.sh-voice__controls[data-tap-guard='on'] * {
+  pointer-events: none;
+}

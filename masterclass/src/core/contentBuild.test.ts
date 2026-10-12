@@ -64,7 +64,7 @@ describe('content build', () => {
     expect(r.notes.join(' ')).toMatch(/0 items/);
     expect(r.notes.join(' ')).toMatch(/search-cases\.yaml not found/);
     for (const f of Object.values(OUTPUT_FILES)) expect(existsSync(generated(f))).toBe(true);
-    expect(JSON.parse(readFileSync(generated(OUTPUT_FILES.bundle), 'utf8'))).toEqual({ version: 1, items: [], signOffs: [], synonyms: [] });
+    expect(JSON.parse(readFileSync(generated(OUTPUT_FILES.bundle), 'utf8'))).toEqual({ version: 1, items: [], signOffs: [], synonyms: [], customerSafeIds: [] });
   });
 
   it('succeeds on an empty content/ folder', () => {
