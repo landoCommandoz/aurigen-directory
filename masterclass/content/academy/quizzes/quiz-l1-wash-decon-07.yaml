@@ -1,0 +1,33 @@
+id: quiz-l1-wash-decon-07
+type: quizquestion
+title: Where the buckets go
+quizId: quiz-l1-wash-decon
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.5"
+tags:
+  - wash
+  - decon
+  - sign-off quiz
+  - level 1
+synonyms:
+  - level 1 quiz
+  - wash and decon quiz
+  - full wash test
+  - level 1 sign off quiz
+prompt: The wash is done. Where do you dump the buckets?
+choices:
+  - In a sink or a toilet.
+  - In the street.
+  - Down the storm drain.
+  - In the gutter by the curb.
+correctIndex: 0
+explanation: Never the street. Keep wash water out of the storm drains.
+scenario: true
+related:
+  - lesson-l1-06-full-wash
+  - card-tesla-wash-mode-tape
+  - card-bucket-mix

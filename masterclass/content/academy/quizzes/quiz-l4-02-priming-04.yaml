@@ -1,0 +1,32 @@
+id: quiz-l4-02-priming-04
+type: quizquestion
+title: Compound pad for polish
+quizId: quiz-l4-02-priming
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.2"
+tags:
+  - priming
+  - polish
+  - quiz
+  - level 4
+synonyms:
+  - priming quiz
+  - how much polish questions
+  - pad priming test
+  - drops per section quiz
+prompt: The maroon pad ran Ultimate Compound on the test spot. Can it now run M210?
+choices:
+  - Yes. Maroon is a polish pad too.
+  - Yes, after you blow it out.
+  - No. One pad per liquid.
+  - Yes, on the next car.
+correctIndex: 2
+explanation: One pad per liquid.
+scenario: true
+related:
+  - lesson-l4-02-prime-and-product
+  - card-pad-priming

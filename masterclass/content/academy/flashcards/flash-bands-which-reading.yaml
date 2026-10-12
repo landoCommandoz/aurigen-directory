@@ -1,0 +1,27 @@
+id: flash-bands-which-reading
+type: flashcard
+title: Which reading sets the band
+deck: bands
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.3"
+tags:
+  - bands
+  - flashcard
+synonyms:
+  - lowest reading
+  - which number counts
+  - thickness bands flashcard
+  - gauge band card
+sources:
+  - label: BLUEPRINT section 2.3, gauge entry
+    date: 2026-10-10
+    note: The panel band is computed from the lowest reading on that panel against the knowledge base 7.3 table.
+front: A panel has three readings. Which one sets its band?
+back: The lowest reading on the panel.
+related:
+  - card-thickness-bands
+  - lesson-l3-03-thickness-bands

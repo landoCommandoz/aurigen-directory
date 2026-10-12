@@ -1,0 +1,31 @@
+id: quiz-l0-03-never-01
+type: quizquestion
+title: The crusted compound
+quizId: quiz-l0-03-never
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.6"
+tags:
+  - never list
+  - quiz
+  - level 0
+synonyms:
+  - never list quiz
+  - what can not I use quiz
+  - garage only test
+  - never in the bucket questions
+prompt: Polish day. The Turtle Wax Polishing Compound sits next to the M210, and its cap is crusted. Can it go on the cart?
+choices:
+  - Yes, once you scrape the crust off.
+  - Yes, but only for the compound rung.
+  - No. It is on the never-on-paint list.
+  - Only on plastic bumpers, by hand.
+correctIndex: 2
+explanation: All three Turtle Wax compounds stay in the garage. The crusted cap is dried abrasive.
+scenario: true
+related:
+  - lesson-l0-03-never-list
+  - card-never-on-paint

@@ -1,0 +1,32 @@
+id: quiz-l3-01-light-03
+type: quizquestion
+title: When to photograph
+quizId: quiz-l3-01-light
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - inspect
+  - light
+  - quiz
+  - level 3
+synonyms:
+  - light quiz
+  - inspection questions
+  - swirls test
+  - read the paint quiz
+prompt: When do you photograph the flaws?
+choices:
+  - Before anything touches the car.
+  - After the polish, to show the change.
+  - Only the big ones, at the walkaround.
+  - At pickup, with the customer.
+correctIndex: 0
+explanation: Photograph every flaw before you start. Rule 13 puts the before photos ahead of everything.
+scenario: true
+related:
+  - lesson-l3-01-light-and-eyes
+  - equipment-inspection-light

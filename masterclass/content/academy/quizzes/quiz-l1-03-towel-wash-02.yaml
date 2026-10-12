@@ -1,0 +1,32 @@
+id: quiz-l1-03-towel-wash-02
+type: quizquestion
+title: Bucket for a polish job
+quizId: quiz-l1-03-towel-wash
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "4"
+tags:
+  - wash
+  - towels
+  - quiz
+  - level 1
+synonyms:
+  - towel wash quiz
+  - 16 towels questions
+  - contact wash test
+  - bucket mix quiz
+prompt: "You are mixing the bucket for a car getting polished today: 4 gallons of water. How much Citrus Wash & Gloss?"
+choices:
+  - 4 oz.
+  - 1 oz.
+  - 8 oz.
+  - None. Use Ultimate Wash & Wax.
+correctIndex: 0
+explanation: The pre-polish bucket is 4 gal water + 4 oz CG Citrus Wash & Gloss. That is 1 oz per gal, house strip strength, because polishing follows.
+scenario: true
+related:
+  - lesson-l1-03-towel-wash
+  - card-bucket-mix

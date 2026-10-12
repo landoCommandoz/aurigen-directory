@@ -1,0 +1,32 @@
+id: quiz-l2-03-wipe-05
+type: quizquestion
+title: The touchscreen
+quizId: quiz-l2-03-wipe
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - dash
+  - quiz
+  - level 2
+synonyms:
+  - wipe and dress quiz
+  - dash questions
+  - shiny dash test
+  - headliner quiz
+prompt: The center touchscreen has fingerprints. What do you use?
+choices:
+  - A dry microfiber or a screen-safe cleaner.
+  - Interior detailer sprayed on the screen.
+  - The IPA panel wipe.
+  - Glass cleaner sprayed on the screen.
+correctIndex: 0
+explanation: Screens get a dry microfiber or a screen-safe cleaner only.
+scenario: true
+related:
+  - lesson-l2-03-wipe-dress
+  - product-meguiars-quik-interior-detailer

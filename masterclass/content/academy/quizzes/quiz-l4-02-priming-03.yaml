@@ -1,0 +1,32 @@
+id: quiz-l4-02-priming-03
+type: quizquestion
+title: Pad dry mid-square
+quizId: quiz-l4-02-priming
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.2"
+tags:
+  - priming
+  - polish
+  - quiz
+  - level 4
+synonyms:
+  - priming quiz
+  - how much polish questions
+  - pad priming test
+  - drops per section quiz
+prompt: Mid-square, the pad looks dry and you cannot finish the section. What do you do?
+choices:
+  - Mist the pad lightly with water.
+  - Add a full dose of polish.
+  - Wipe the square and re-apply.
+  - Stop for the day.
+correctIndex: 0
+explanation: A light mist, never a soak. Re-mist every 2 or 3 sections as needed.
+scenario: true
+related:
+  - lesson-l4-02-prime-and-product
+  - card-pad-priming

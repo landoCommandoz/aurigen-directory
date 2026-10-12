@@ -1,0 +1,31 @@
+id: quiz-l2-interior-10
+type: quizquestion
+title: Two people on a full detail
+quizId: quiz-l2-interior
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "17.2"
+tags:
+  - interior
+  - sign-off quiz
+  - level 2
+synonyms:
+  - level 2 quiz
+  - interior quiz
+  - full interior test
+  - level 2 sign off quiz
+prompt: Two people work a full detail, one inside and one outside. About how long does it take?
+choices:
+  - About 5 h.
+  - About 3 h.
+  - 7 h 10 m.
+  - About 10 h.
+correctIndex: 0
+explanation: "One person straight through: 7 h 10 m. Working the dwell: 6 h 30 m. Two people: about 5 h."
+scenario: true
+related:
+  - lesson-l2-06-full-interior
+  - lesson-l2-01-interior-order

@@ -1,0 +1,31 @@
+id: quiz-l1-02-pre-rinse-01
+type: quizquestion
+title: How long to rinse
+quizId: quiz-l1-02-pre-rinse
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.1"
+tags:
+  - pre-rinse
+  - quiz
+  - level 1
+synonyms:
+  - pre rinse quiz
+  - rinse questions
+  - bug and tar quiz
+  - how long do I rinse test
+prompt: Hose in hand, jet nozzle on. How long is the pre-rinse, and which way do you go?
+choices:
+  - 30 seconds, top down.
+  - 10 minutes, bottom up.
+  - Until it looks clean.
+  - 3 to 4 minutes, top down.
+correctIndex: 3
+explanation: Extra on the bumpers, the rockers, and behind the wheels. Nothing touches the paint before the pre-rinse is done.
+scenario: true
+related:
+  - lesson-l1-02-pre-rinse
+  - product-meguiars-bug-tar

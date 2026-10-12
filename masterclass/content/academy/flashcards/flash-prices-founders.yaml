@@ -1,0 +1,28 @@
+id: flash-prices-founders
+type: flashcard
+title: Founder's rate
+deck: prices
+audience:
+  - owner
+  - ops
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - prices
+  - flashcard
+synonyms:
+  - founders rate
+  - "275"
+  - price flashcard
+  - menu price card
+sources:
+  - label: Lando, BLUEPRINT section 12 (defaults accepted 2026-10-10)
+    date: 2026-10-10
+    note: "Item 1: $275 founder rate for both sizes. Item 2: smoke odor quoted on inspection. Item 4: Monthly Maintenance contents not set. Item 9: black pad never on the ladder. Item 11: photo consent off until yes. Item 14: what counts toward 25 cars. Item 15: two-step quoted after the test spot. Item 16: thin panel is more than 40 µm below the median."
+front: What is the founder's rate, and who gets it?
+back: $275, sedan or SUV, for the first five machine-polish jobs. Say it is a founder's rate.
+related:
+  - term-founders-rate
+  - lesson-l0-01-rules-that-never-bend

@@ -19,7 +19,7 @@ import { ModeSwitch } from '../ModeSwitch';
 import { config } from '../config';
 import { Block, Page } from './Page';
 
-function countOf(type: 'quickcard' | 'fixnode'): number {
+function countOf(type: 'quickcard' | 'fixnode' | 'lesson'): number {
   try {
     return getItemsByType(type).length;
   } catch {
@@ -40,6 +40,7 @@ export function Home() {
   const settings = snapshot.settings;
   const cards = countOf('quickcard');
   const fixes = countOf('fixnode');
+  const lessons = countOf('lesson');
 
   async function openCustomerView() {
     if (turningOn) return;
@@ -75,7 +76,7 @@ export function Home() {
           <TileGrid label="Rooms">
             <Tile
               label="Fix It"
-              detail={fixes > 0 ? `What went wrong and how to fix it. Live now: ${plural(fixes, 'fix', 'fixes')}.` : 'What went wrong and how to fix it. Live now; the fix pages land in Phase 2.'}
+              detail={fixes > 0 ? `What went wrong and how to fix it. Live now: ${plural(fixes, 'fix', 'fixes')}.` : 'What went wrong and how to fix it. Search and the Quick Cards work now.'}
               onClick={() => navigate('/fixit')}
             />
             <Tile
@@ -84,7 +85,11 @@ export function Home() {
               onClick={() => navigate('/cards')}
             />
             <Tile label="Job Runner" detail="Runs a job step by step with timers. Arrives in Phase 3." onClick={() => navigate('/job')} />
-            <Tile label="Academy" detail="Levels 0 to 8: lessons, drills, quizzes, sign-offs. Arrives in Phase 2 and 5." onClick={() => navigate('/academy')} />
+            <Tile
+              label="Academy"
+              detail={lessons > 0 ? `Levels 0 to 8. Read now: ${plural(lessons, 'lesson', 'lessons')}. Drills, quizzes, and sign-off in Phase 5.` : 'Levels 0 to 8. Drills, quizzes, and sign-off in Phase 5.'}
+              onClick={() => navigate('/academy')}
+            />
             <Tile
               label="Customer View"
               detail="Switch it on to see what a customer sees. Its screens arrive in Phase 4."

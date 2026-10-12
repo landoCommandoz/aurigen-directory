@@ -1,0 +1,34 @@
+id: quiz-l0-ground-rules-01
+type: quizquestion
+title: Friday night before a full detail
+quizId: quiz-l0-ground-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "18.3"
+tags:
+  - setup
+  - ground rules
+  - sign-off quiz
+  - level 0
+synonyms:
+  - level 0 quiz
+  - ground rules quiz
+  - setup quiz
+  - shop setup test
+  - level 0 sign off quiz
+prompt: It is Friday night. Saturday is a full detail. What do you do tonight?
+choices:
+  - Nothing. Setup is faster in the morning.
+  - Wash the car tonight so Saturday is shorter.
+  - Charge the compressor only. The rest is quick.
+  - Pre-stage the bucket, towels, pads, and kit.
+correctIndex: 3
+explanation: "Pre-stage the night before: bucket mixed or measured, towels counted into piles, pads clean and dry, IPA bottle filled and labeled, tape in your pocket, compressor charged, cords run. Setup took most of the time on Oct 7."
+scenario: true
+related:
+  - lesson-l0-06-shop-setup
+  - card-setup-kit
+  - card-stop-rules

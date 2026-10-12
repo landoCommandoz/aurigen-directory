@@ -1,0 +1,33 @@
+id: quiz-l4-machine-08
+type: quizquestion
+title: Satin trim on a Model Y
+quizId: quiz-l4-machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "11"
+tags:
+  - polish
+  - machine
+  - sign-off quiz
+  - level 4
+  - tesla
+synonyms:
+  - level 4 quiz
+  - machine polishing quiz
+  - full square test
+  - level 4 sign off quiz
+prompt: On a Tesla Model Y, what happens if polish gets on the satin black window trim?
+choices:
+  - Nothing. It is safe.
+  - It gets shinier.
+  - It peels right away.
+  - It turns chalky white.
+correctIndex: 3
+explanation: Tape it first. The satin black window trim is on the Tesla tape list.
+scenario: true
+related:
+  - lesson-l4-07-full-square
+  - card-machine-settings

@@ -1,42 +1,38 @@
 /**
- * /fixit: the Fix It entry (BLUEPRINT 2.2, wireframe 6.1). The symptom tiles are Phase 2 content.
- * Until they land, the screen still does the real job: the search box at the top (typed or said),
- * and every Quick Card as a big tile. When Fix It entries exist in the bundle, they show as tiles
- * grouped by symptom group and open in a sheet. Home is always in reach. Internal: in Customer
- * View the screen shows a plain notice instead.
+ * /fixit: the symptom grid (BLUEPRINT 2.2, wireframe 6.1). Fix It in the bottom row, then a tile,
+ * is two taps to a fix; one word in the box at the top, then Enter, is the other way in.
+ *
+ *   search box (typed or said; results Fix It first)
+ *   one section per Fix It group, in FIX_GROUPS order, with plain names:
+ *     a big tile per symptom (group glyph plus the symptom words, 96 px tall, 64 px minimum in Shop)
+ *     the STOP symptom as the one full-width red band
+ *   the Quick Cards as tiles
+ *   Home and All Quick Cards
+ *
+ * With zero Fix It entries in the bundle the screen still does the real job: search and the cards.
+ * Internal: in Customer View the screen shows a plain notice instead (Screen, InternalNotice).
  */
 import { useNavigate } from 'react-router';
-import { Button, Tile, TileGrid } from '../../components/ui';
+import { Button, StopBand, Tile, TileGrid } from '../../components/ui';
 import { getItemsByType } from '../../core/content';
-import { FIX_GROUPS, type FixNodeItem } from '../../schemas';
 import { KIND_LABELS, groupCards } from '../cards/cardModel';
-import { useItemOpener } from '../search/ItemSheet';
 import { SearchBox } from '../search/SearchBox';
+import { pageRoute } from '../shared/contentRoutes';
 import { Actions, Screen, Section } from '../settings/ui/Screen';
+import { groupFixes, stopBandText } from './fixModel';
+import { GroupGlyph } from './glyphs';
 import './fixit.css';
 
-export const PHASE_2_LINE = 'Fix It symptom tiles arrive in Phase 2. Until then, search or open a Quick Card.';
-
-const GROUP_LABELS: Record<FixNodeItem['group'], string> = {
-  machine: 'Machine',
-  paint: 'Paint',
-  'wash-dry': 'Wash and dry',
-  clay: 'Clay',
-  protect: 'Protect',
-  glass: 'Glass',
-  interior: 'Interior',
-  gauge: 'Gauge',
-  'setup-time': 'Setup and time',
-  customer: 'Customer',
-  bike: 'Bike',
-  tesla: 'Tesla',
-};
+export const EMPTY_FIXES_LINE = 'No Fix It entries in this build yet. Search, or open a Quick Card.';
 
 export function FixItGrid() {
   const navigate = useNavigate();
-  const opener = useItemOpener();
-  const fixes = getItemsByType('fixnode');
+  const groups = groupFixes(getItemsByType('fixnode'));
   const cards = groupCards(getItemsByType('quickcard')).flatMap((group) => group.cards);
+  const open = (target: { id: string; type: 'fixnode' }) => {
+    const route = pageRoute(target);
+    if (route !== null) navigate(route);
+  };
 
   return (
     <Screen title="Fix It" back={{ to: '/', label: 'Home' }} className="fx-screen">
@@ -44,27 +40,36 @@ export function FixItGrid() {
         <SearchBox label="What is happening?" />
       </Section>
 
-      {fixes.length === 0 ? (
+      {groups.length === 0 ? (
         <Section index={2}>
-          <p className="fx-phase">{PHASE_2_LINE}</p>
+          <p className="fx-empty">{EMPTY_FIXES_LINE}</p>
         </Section>
       ) : (
-        FIX_GROUPS.map((group, index) => {
-          const inGroup = fixes.filter((fix) => fix.group === group);
-          if (inGroup.length === 0) return null;
-          return (
-            <Section key={group} title={GROUP_LABELS[group]} index={index + 2}>
-              <TileGrid label={GROUP_LABELS[group]}>
-                {inGroup.map((fix) => (
-                  <Tile key={fix.id} label={fix.title} onClick={() => opener.open(fix)} />
+        groups.map((group, index) => (
+          <Section key={group.group} title={group.label} index={index + 2} className="fx-group">
+            {group.tiles.length > 0 ? (
+              <TileGrid label={group.label}>
+                {group.tiles.map((fix) => (
+                  <Tile
+                    key={fix.id}
+                    icon={<GroupGlyph group={group.group} />}
+                    label={fix.title}
+                    detail={fix.status === 'verify' ? 'Unverified' : undefined}
+                    onClick={() => open(fix)}
+                  />
                 ))}
               </TileGrid>
-            </Section>
-          );
-        })
+            ) : null}
+            {group.stops.map((fix) => (
+              <StopBand key={fix.id} onClick={() => open(fix)}>
+                {stopBandText(fix.title)}
+              </StopBand>
+            ))}
+          </Section>
+        ))
       )}
 
-      <Section title="Quick Cards" index={3}>
+      <Section title="Quick Cards" index={groups.length + 2}>
         {cards.length === 0 ? (
           <p className="ui-muted">No Quick Cards in this build yet.</p>
         ) : (
@@ -76,7 +81,7 @@ export function FixItGrid() {
         )}
       </Section>
 
-      <Section index={4}>
+      <Section index={groups.length + 3}>
         <Actions>
           <Button size="shop" onClick={() => navigate('/')}>
             Home
@@ -86,7 +91,6 @@ export function FixItGrid() {
           </Button>
         </Actions>
       </Section>
-      {opener.sheet}
     </Screen>
   );
 }

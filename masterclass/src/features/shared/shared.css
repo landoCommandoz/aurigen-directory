@@ -1,0 +1,152 @@
+/*
+ * Shared content pages: read-aloud controls, Markdown bodies, sources, and the pending badge.
+ * Colors from src/design/tokens.css only. Lists never cap their height; nothing hides overflow.
+ */
+.sh-voice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Reading text holds the density's line length: 68 characters in Academy (under 80). */
+.sh-read,
+.md {
+  max-inline-size: var(--measure);
+}
+
+.md {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  line-height: var(--lh-body);
+}
+
+.md p,
+.md-quote {
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.md-heading {
+  margin: var(--space-3) 0 0;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+}
+
+.md-list {
+  margin: 0;
+  padding-inline-start: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.md-quote {
+  padding: var(--space-2) var(--space-4);
+  border-inline-start: var(--rule-width) solid var(--indicator);
+  color: var(--text);
+}
+
+.md code {
+  font-family: var(--font-body);
+  font-weight: var(--weight-medium);
+}
+
+/* A table, one description list per row: the first cell leads, the rest sit under their column names. */
+.md-table {
+  display: flex;
+  flex-direction: column;
+  border-top: var(--rule-width) solid var(--hairline);
+}
+
+.md-table__row {
+  margin: 0;
+  padding: var(--space-3) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  border-bottom: var(--rule-width) solid var(--hairline);
+}
+
+.md-table__cell dt {
+  color: var(--text-2);
+  font-size: var(--fs-small);
+  font-weight: var(--weight-medium);
+}
+
+.md-table__cell dd {
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.md-table__cell:first-child dt {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.md-table__cell:first-child dd {
+  font-weight: var(--weight-bold);
+}
+
+/* A decision Lando has not made: solid edge and full-strength words, so it never reads as settled. */
+.mc-badge--pending {
+  border-style: solid;
+  border-color: var(--text-2);
+  color: var(--text);
+}
+
+/* Badges inside the red STOP band take the band's near-black words, never the dim color. */
+.ui-stopband .mc-badge {
+  color: inherit;
+  border-color: currentColor;
+}
+
+.sh-sources__list {
+  margin: 0;
+  padding-inline-start: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-inline-size: var(--measure);
+  font-size: var(--fs-small);
+}
+
+.sh-sources__list li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.sh-sources__label {
+  font-weight: var(--weight-medium);
+}
+
+.sh-sources__note {
+  color: var(--text);
+}
+
+.sh-sources__url {
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+
+/* The lines and rows of a content page: a pending row stands apart from the settled ones. */
+.sr-lines li[data-pending='true'],
+.sr-rows__row[data-pending='true'] {
+  border-inline-start: var(--rule-width) dashed var(--line-strong);
+  padding-inline-start: var(--space-3);
+}
+
+/*
+ * Academy density reading view: under 80 letters a line (BUILD_PROMPT 10). The --measure token is
+ * 68ch, and "ch" is the width of "0", which in Barlow is wider than an average letter: 68ch runs
+ * 86 to 93 letters at 18 px. 31em holds measured lesson text to about 68 to 76 letters. Applied to
+ * the reading text of the content pages only; rows, buttons, and bands keep the column width.
+ */
+[data-density='academy'] .sh-reading :is(p, dd, blockquote, li:not(.ui-row)) {
+  max-inline-size: min(100%, 31em);
+}

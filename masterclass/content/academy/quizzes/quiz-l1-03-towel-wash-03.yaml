@@ -1,0 +1,32 @@
+id: quiz-l1-03-towel-wash-03
+type: quizquestion
+title: Wiping in circles
+quizId: quiz-l1-03-towel-wash
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.2"
+tags:
+  - wash
+  - towels
+  - quiz
+  - level 1
+synonyms:
+  - towel wash quiz
+  - 16 towels questions
+  - contact wash test
+  - bucket mix quiz
+prompt: DJ is wiping the door in circles. What do you tell him?
+choices:
+  - Straight lines, front to back.
+  - That is right. Circles are fine.
+  - Up and down only.
+  - Circles, but lighter.
+correctIndex: 0
+explanation: Straight lines, front to back. Never circles.
+scenario: true
+related:
+  - lesson-l1-03-towel-wash
+  - card-bucket-mix

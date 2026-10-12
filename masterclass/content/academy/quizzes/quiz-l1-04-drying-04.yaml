@@ -1,0 +1,32 @@
+id: quiz-l1-04-drying-04
+type: quizquestion
+title: Ceramic spray before a polish
+quizId: quiz-l1-04-drying
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - drying
+  - hard water
+  - quiz
+  - level 1
+synonyms:
+  - drying quiz
+  - hard water questions
+  - water spots test
+  - how do I dry quiz
+prompt: This car gets polished tomorrow. DJ grabs the ceramic wax spray to use as a drying aid. Right call?
+choices:
+  - No. Nothing slick before the polish.
+  - Yes. It stops water spots.
+  - Yes, on the glass only.
+  - Yes. The polish takes it off anyway.
+correctIndex: 0
+explanation: "Rule 5: nothing slick on the car until the paint is polished. The ceramic spray as a drying aid is for cars with no polish to follow."
+scenario: true
+related:
+  - lesson-l1-04-hard-water-drying
+  - term-sheeting-rinse

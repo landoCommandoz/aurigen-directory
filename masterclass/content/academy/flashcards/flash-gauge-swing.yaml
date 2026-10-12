@@ -1,0 +1,27 @@
+id: flash-gauge-swing
+type: flashcard
+title: Normal swing
+deck: gauge
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "7.2"
+tags:
+  - gauge
+  - flashcard
+synonyms:
+  - 20 micron swing
+  - readings jump around
+  - paint gauge flashcard
+  - tc100 card
+sources:
+  - label: R&D TC100 gauge notes (knowledge base 7.2)
+    date: 2026-10-06
+    note: Zero only on the bare plate; door jamb baseline; 3 to 5 readings per panel; 20 µm swings within a foot are normal; Tesla Model Y owners commonly measure 100 to 150 µm.
+front: Two readings a foot apart differ by up to 20 µm. Is that a problem?
+back: No. 20 µm swings within a foot are normal.
+related:
+  - equipment-rd-tc100
+  - lesson-l3-02-tc100-gauge

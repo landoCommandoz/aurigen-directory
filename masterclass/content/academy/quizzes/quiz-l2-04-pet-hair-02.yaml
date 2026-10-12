@@ -1,0 +1,32 @@
+id: quiz-l2-04-pet-hair-02
+type: quizquestion
+title: Pet hair on an Interior Only
+quizId: quiz-l2-04-pet-hair
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "15.1"
+tags:
+  - interior
+  - pet hair
+  - quiz
+  - level 2
+synonyms:
+  - pet hair quiz
+  - dog hair questions
+  - wet carpet test
+  - pet hair add on quiz
+prompt: A customer booked Interior Only for a sedan, and the back seat is full of dog hair. What changes on the price?
+choices:
+  - A $50 pet hair add-on.
+  - Nothing. Interior Only covers it.
+  - Double the price.
+  - Switch them to a Full Detail.
+correctIndex: 0
+explanation: Pet hair is quoted separately. The add-on is $50.
+scenario: true
+related:
+  - lesson-l2-04-pet-hair-spots
+  - equipment-analan-rubber-tool

@@ -11,12 +11,6 @@
   font-size: var(--fs-small);
 }
 
-.qc-voice {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
 .qc-source {
   font-size: var(--fs-small);
 }

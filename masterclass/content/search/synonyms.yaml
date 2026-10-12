@@ -1,0 +1,154 @@
+# ---------------------------------------------------------------------------
+# Lando's own words (pending)
+#
+# Lando was asked for the words he and DJ actually say when something goes
+# wrong. His answer has not arrived. Until it does, every group below comes
+# from knowledge base 21 (the FIX-01 "Say it" list and each seed's title),
+# the knowledge base 24 search test set, and the way a frustrated person
+# dictates with gloves on (no apostrophes, slang, "all over", dictation
+# misses). When his words arrive, add them here as new groups or append
+# them to the group that means the same thing, then run npm run content.
+#
+# Slots for his words (fill in, then uncomment):
+# - words: [<Lando's word for the polisher jerking>, jerking, hopping]
+#   note: Lando, his own words
+# - words: [<DJ's word for the pad stopping>, stalls, quit spinning]
+#   note: DJ, his own words
+# ---------------------------------------------------------------------------
+#
+# How a group works (src/core/searchEngine.ts): when an item holds any word or
+# phrase of a group, every word of the group is added to that item's search
+# words. So a query word finds every item that holds any word of its group.
+# Keep groups narrow. A common word ("pad", "polish", "wash", "paint", "roof",
+# "lube", "charge") in a group spreads the whole group across dozens of items
+# and buries the right answer. Use a phrase instead ("clay lube", not "lube").
+# Owner: troubleshooter.
+version: 1
+groups:
+  # ---------- Machine ----------
+  - words: [jerking, jerks, jerky, hopping, hops, hoping, bouncing, bouncy, bucking, kicking, fighting me]
+    note: Knowledge base 21 FIX-01 say-it list, plus dictated variants. "hoping" is a dictation miss for "hopping"
+  - words: [polisher, buffer, buffing machine, orbital polisher]
+    note: What people call the BAUER 56367 (knowledge base 3.1)
+  - words: [vibrating, vibration, vibrates, shaking, shakes, shaky, wobble, wobbling, wobbly, numb hands, hands going numb]
+    note: Knowledge base 21 FIX-03 and FIX-01 stop line
+  - words: [stalls, stalling, stalled, bogging, bogs down, quit spinning, stopped spinning, not spinning, not rotating, stops turning]
+    note: Knowledge base 21 FIX-02 and 8.3 marker line
+  - words: [slinging, sling, slung, splatter, spatter, splattering, flinging, flung]
+    note: Knowledge base 21 FIX-06 and FIX-20
+  - words: [velcro, hook and loop]
+    note: Knowledge base 14 and FIX-07
+  - words: [dusting, dusty, powder, powdery, powdering]
+    note: Knowledge base 21 FIX-08
+  - words: [grinding, squealing, clicking, rattling, whining, screeching]
+    note: Knowledge base 21 FIX-01 and FIX-03 stop line, the polisher sounds wrong
+  - words: [burning smell, smells hot, smells like burning, motor smell, stinks, smoking, smoke coming out]
+    note: Knowledge base 21 FIX-01 stop line
+  - words: [backing plate, backing pad, pad holder]
+    note: Knowledge base 14. HF calls it a backing pad
+  - words: [too hot, super hot, really hot, overheating, scorching]
+    note: Knowledge base 21 FIX-12 and 8.3
+  - words: [marker line, sharpie line, marker mark]
+    note: Knowledge base 8.3 rotation check
+
+  # ---------- Paint and polish ----------
+  - words: [burn through, burned through, burnt through, strike through, color transfer]
+    note: Knowledge base 21 FIX-09
+  - words: [swirls, swirled, spiderwebs, spiderweb, spider webs, spiderwebbing, cobwebs]
+    note: Knowledge base 21 FIX-10 and 7.1
+  - words: [haze, hazy, hazing, cloudy, milky, foggy, fogged]
+    note: Knowledge base 21 FIX-11
+  - words: [white stuff, white crap, white crud, white gunk, white junk, white residue, white marks, white crust]
+    note: Knowledge base 21 FIX-13, the words people use for dried polish on trim
+  - words: [ultimate compound, rubbing compound, cutting compound]
+    note: Knowledge base 8.5 rung 3. "Rubbing compound" is the store name people know
+  - words: [streaks, streaky, streaking, smeary, smeared, smears]
+    note: Knowledge base 21 FIX-18 and FIX-19
+  - words: [scratched, dinged, chipped, broke, broken, busted, snapped, messed up]
+    note: Knowledge base 21 FIX-28
+
+  # ---------- Wash, dry, clay ----------
+  - words: [water spots, water spotting, water marks, mineral spots, hard water]
+    note: Knowledge base 5.4 and FIX-15
+  - words: [clay lube, clay lubricant, clay water, clay tub, clay mix]
+    note: Knowledge base 4 and 6
+  - words: [dropped, fell, hit the floor, hit the ground]
+    note: Knowledge base 21 FIX-17
+  - words: [bugs, bug guts, bug remover]
+    note: Knowledge base 5.1 Bug & Tar
+  - words: [towels, microfiber, microfibers, rags]
+    note: Knowledge base 5.2 and 13.2
+  - words: [ipa, alcohol, rubbing alcohol, isopropyl, panel wipe, ipa wipe]
+    note: Knowledge base 4 and 8.3
+  - words: [bucket mix, soap mix, wash mix, soap ratio]
+    note: Knowledge base 4
+  - words: [everywhere, all over, all over the place]
+    note: Dictated filler. "Polish all over" means the same as "polish everywhere"
+
+  # ---------- Gauge ----------
+  - words: [gauge, gage, tc100, paint meter, depth gauge]
+    note: Knowledge base 7.2. "Gage" is a common spelling and dictation result
+  - words: [micron, microns, mils]
+    note: Knowledge base 7.2 and 7.3
+  - words: [thin paint, thin clear, thin panel, low reading]
+    note: Knowledge base 7.3 and FIX-22
+
+  # ---------- Protection, glass, headlights ----------
+  - words: [tire shine, tire dressing, tire gel, tire spray]
+    note: Knowledge base 9.2 and FIX-20
+  - words: [headlights, headlight, head lights, headlamps, headlamp]
+    note: Knowledge base 9.4
+  - words: [windshield, windscreen, front glass]
+    note: Knowledge base 9.3 and 12.1
+
+  # ---------- Interior ----------
+  - words: [pet hair, dog hair, cat hair, fur, animal hair, shedding]
+    note: Knowledge base 21 FIX-31
+  - words: [dash, dashboard, dash board]
+    note: Knowledge base 21 FIX-32
+  - words: [greasy, oily, slippery]
+    note: Knowledge base 21 FIX-32 and 10
+  - words: [stain, stains, stained, spill, spilled]
+    note: Knowledge base 10
+  - words: [headliner, roof liner, roof lining]
+    note: Knowledge base 10
+  - words: [carpet, carpets, floor mats, rugs]
+    note: Knowledge base 10
+
+  # ---------- Tesla ----------
+  - words: [car wash mode, carwash mode, wash mode]
+    note: Knowledge base 11
+  - words: [sentry, sentry mode]
+    note: Knowledge base 11
+  - words: [glass roof, sunroof, moonroof, panoramic roof]
+    note: Knowledge base 11. The Model Y roof is glass
+
+  # ---------- Motorcycle ----------
+  - words: [motorcycle, motorbike, harley, bagger, touring bike, cruiser]
+    note: Knowledge base 12
+  - words: [rotor, rotors, brake disc, brake discs]
+    note: Knowledge base 12.1
+
+  # ---------- Time and setup ----------
+  - words: [out of time, running late, running behind, behind schedule]
+    note: Knowledge base 21 FIX-25
+  - words: [setup, set up, setting up, getting ready]
+    note: Knowledge base 18.3 and FIX-24
+  - words: [cold, freezing, chilly]
+    note: Knowledge base 21 FIX-33
+  - words: [windy, breezy]
+    note: Knowledge base 21 FIX-33
+
+  # ---------- Customer and money ----------
+  - words: [too expensive, too much money, a lot of money, costs too much, pricey, overpriced]
+    note: Knowledge base 21 FIX-29
+  - words: [cancellation, cancel, cancelled, canceled, cancelling, reschedule]
+    note: Knowledge base 15.2
+  - words: [no show, no-show, didnt show, didnt show up, never showed]
+    note: Knowledge base 15.2
+  - words: [mobile, come to me, come to my house, at my house, house call, we come to you]
+    note: Knowledge base 15.1 and 18.2
+  - words: [travel fee, mileage, per mile, drive out]
+    note: Knowledge base 15.1
+  - words: [label, back of the bottle, directions on the bottle]
+    note: House rule 12, knowledge base 2

@@ -1,9 +1,10 @@
 /**
- * Every address in the app (Phase 1). Paths are relative to the base path: the router's
+ * Every address in the app (Phase 2). Paths are relative to the base path: the router's
  * basename is import.meta.env.BASE_URL, so the same routes work at / (Netlify) and at
  * /aurigen-directory/ (GitHub Pages). Features own their screens (export contract); the shell
- * owns Home, the Academy and room placeholders, and Not found. Any unknown address lands on
- * Not found, which offers Home and Fix It.
+ * owns Home, the room placeholders, and Not found. Any unknown address lands on Not found, which
+ * offers Home and Fix It. Every content item that search or a related link can reach has a page:
+ * a fix, a card, a lesson, a procedure, or an item (product, tool, glossary term).
  *
  * No address renders nothing (DEF-02): react-router's "*" pattern does not match a line break,
  * so a first segment holding an encoded CR or LF ("/%0a") matches no route at all. When nothing
@@ -11,11 +12,11 @@
  * real address travels in the location state for Not found to show.
  */
 import { matchRoutes, useLocation, useRoutes, type Location, type RouteObject } from 'react-router';
+import { AcademyOutline, LessonPage, SopList, SopPage } from '../features/academy';
 import { CardView, CardsList } from '../features/cards';
-import { FixItGrid } from '../features/fixit';
-import { SearchScreen } from '../features/search';
+import { FixItGrid, FixPage } from '../features/fixit';
+import { ItemPage, SearchScreen } from '../features/search';
 import { BackupScreen, DeveloperPanel, DeviceRoleScreen, SettingsHome, SetupFlow } from '../features/settings';
-import { AcademyOutline } from './screens/AcademyOutline';
 import { Home } from './screens/Home';
 import { NotFound } from './screens/NotFound';
 import { RoomPlaceholder } from './screens/RoomPlaceholder';
@@ -26,15 +27,20 @@ import { NO_SCREEN_PATH, type UnmatchedState } from './unmatched';
 export const ROUTE_PATHS = [
   '/',
   '/fixit',
+  '/fixit/:id',
   '/cards',
   '/cards/:id',
   '/search',
+  '/items/:id',
   '/settings',
   '/settings/setup',
   '/settings/device',
   '/settings/backup',
   '/settings/developer',
   '/academy',
+  '/academy/:lessonId',
+  '/sops',
+  '/sops/:id',
   '/job',
   '/business',
 ] as const;
@@ -45,15 +51,20 @@ const ROUTES: RouteObject[] = [
     children: [
       { index: true, element: <Home /> },
       { path: 'fixit', element: <FixItGrid /> },
+      { path: 'fixit/:id', element: <FixPage /> },
       { path: 'cards', element: <CardsList /> },
       { path: 'cards/:id', element: <CardView /> },
       { path: 'search', element: <SearchScreen /> },
+      { path: 'items/:id', element: <ItemPage /> },
       { path: 'settings', element: <SettingsHome /> },
       { path: 'settings/setup', element: <SetupFlow /> },
       { path: 'settings/device', element: <DeviceRoleScreen /> },
       { path: 'settings/backup', element: <BackupScreen /> },
       { path: 'settings/developer', element: <DeveloperPanel /> },
       { path: 'academy', element: <AcademyOutline /> },
+      { path: 'academy/:lessonId', element: <LessonPage /> },
+      { path: 'sops', element: <SopList /> },
+      { path: 'sops/:id', element: <SopPage /> },
       { path: 'job', element: <RoomPlaceholder room="job" /> },
       { path: 'business', element: <RoomPlaceholder room="business" /> },
       { path: '*', element: <NotFound /> },

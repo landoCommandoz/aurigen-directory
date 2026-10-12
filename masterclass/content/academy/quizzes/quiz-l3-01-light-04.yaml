@@ -1,0 +1,32 @@
+id: quiz-l3-01-light-04
+type: quizquestion
+title: No catch
+quizId: quiz-l3-01-light
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.1"
+tags:
+  - inspect
+  - light
+  - quiz
+  - level 3
+synonyms:
+  - light quiz
+  - inspection questions
+  - swirls test
+  - read the paint quiz
+prompt: Your nail does not catch on a light scratch. Will polish remove it?
+choices:
+  - Yes. No catch means it comes out.
+  - Maybe. The test spot decides.
+  - No. Polish never removes scratches.
+  - Only with compound, every time.
+correctIndex: 1
+explanation: A catch means it stays. No catch means the test spot decides. Never promise either way.
+scenario: true
+related:
+  - lesson-l3-01-light-and-eyes
+  - equipment-inspection-light

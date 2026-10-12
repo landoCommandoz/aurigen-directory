@@ -1,13 +1,14 @@
 /**
  * Search in the app (BLUEPRINT 2.1): one box, typed or dictated words, results from the content
  * bundle on the device in well under 100 ms. The index is prebuilt by the content build
- * (src/generated/search-index.json) and loaded once; if it is missing or unreadable, it is built
- * in memory from the bundle instead, so search always works offline.
+ * (src/generated/search-index.json) and loaded once; if it is missing or unreadable, or the bundle
+ * in use is not the one that build wrote (tests), it is built in memory from the bundle instead, so
+ * search always works offline and always matches the content on screen.
  * Search is an internal tool: it is not offered in Customer View (3.4).
  */
 import type MiniSearch from 'minisearch';
 import type { AsPlainObject } from 'minisearch';
-import { getContentBundle } from './content';
+import { getContentBundle, usingGeneratedBundle } from './content';
 import { describeError } from './errors';
 import { buildSearchIndex, loadSearchIndex, runSearch, type RunSearchOptions, type SearchDoc, type SearchHit } from './searchEngine';
 import { createStore, useStore } from './store';
@@ -41,7 +42,8 @@ function now(): number {
 async function load(): Promise<MiniSearch<SearchDoc>> {
   const started = now();
   searchStatus.update({ state: 'loading' });
-  const loader = Object.values(generatedIndex)[0];
+  // The prebuilt index matches only the bundle the same content build wrote.
+  const loader = usingGeneratedBundle() ? Object.values(generatedIndex)[0] : undefined;
   if (loader !== undefined) {
     try {
       const loaded = loadSearchIndex(await loader());

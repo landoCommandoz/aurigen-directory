@@ -1,0 +1,156 @@
+---
+id: lesson-l1-02-pre-rinse
+type: lesson
+title: Pre-rinse, bugs and tar, and the pre-soak question
+level: 1
+order: 2
+audience: [owner, crew]
+visibility: internal
+status: house
+kbRef: "5.1"
+tags: [pre-rinse, rinse, bugs, tar, pre-soak, wash, level 1]
+synonyms:
+  - pre rinse
+  - prerinse
+  - rinse first
+  - how long do I rinse
+  - bugs on the bumper
+  - tar on the rockers
+  - pre soak
+  - presoak
+  - caked on dirt
+  - bug and tar dwell
+sources:
+  - label: Tesla Model Y 2020 to 2024 owner's manual, Car Wash Mode
+    url: https://www.tesla.com/ownersmanual/2020_2024_modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
+    date: 2026-10-10
+    note: Menu path, what the mode does, parked and not charging, turns off above 9 mph or on Exit. Manual for software 2026.32. Read through the search index. Fact-checker FC-13 and FC-14.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Tesla Model Y owner's manual, wheel cleaner and pre-wash caution
+    url: https://www.tesla.com/ownersmanual/modely/en_ae/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
+    date: 2026-10-10
+    note: No chemical-based wheel cleaners or pre-wash products. Same wording in the Model 3, S, X, and Cybertruck manuals; the 2020 to 2024 Model Y page could not be checked line by line. Read through the search index. Fact-checker FC-16.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Chemical Guys product page, Citrus Wash & Gloss
+    url: https://www.chemicalguys.com/products/citrus-wash-and-gloss-concentrated-ultra-premium-hyper-wash-and-gloss
+    date: 2026-10-10
+    note: Directions for a foam cannon only. No pump sprayer, no pre-soak, no dwell time. Fact-checker FC-03.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Chemical Guys guide, how to choose the right car wash soap
+    url: https://www.chemicalguys.com/blogs/exterior-how-tos/how-to-choose-the-right-car-wash-soap
+    date: 2026-10-10
+    note: Bucket directions only. No pump sprayer, no pre-soak, no dwell time. Fact-checker FC-03.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+steps:
+  - On a Tesla, turn on Car Wash Mode before any water.
+  - Set the hose nozzle to jet.
+  - Rinse top down for 3 to 4 minutes.
+  - Give extra rinse to the bumpers, the rockers, and behind the wheels.
+  - Touch nothing to the paint until the pre-rinse is done.
+  - Foam Bug & Tar on the bugs and the rocker tar.
+  - Let it dwell one minute.
+  - Wash it off. Do not scrub.
+  - Still caked after the rinse? Rinse longer. Never scrub harder.
+numbers:
+  - label: Pre-rinse
+    value: 3 to 4 minutes on jet, top down
+    kbRef: "5.1"
+  - label: Extra rinse
+    value: Bumpers, rockers, and behind the wheels
+    kbRef: "5.1"
+  - label: Bug & Tar
+    value: Foam on bugs and rocker tar. One-minute dwell, then wash it off. No scrubbing.
+    kbRef: "5.1"
+  - label: Time plan, full detail
+    value: Pre-rinse and bugs, 10 min
+    kbRef: "17.2"
+  - label: Car Wash Mode, 2020 to 2024 Model Y
+    value: "Controls > Service > Car Wash Mode. Parked and not charging."
+    status: sourced
+    kbRef: "11"
+  - label: Car Wash Mode, other years and models
+    value: Menu path not checked.
+    status: verify
+    kbRef: "11"
+  - label: Foam cannon
+    value: Not used. It is useless until there is a pressure washer.
+    kbRef: "3.1"
+  - label: Pre-soak, the house plan
+    value: On a car with caked dirt, a pump-sprayer pre-wash on the lower third, the front end, and behind the wheels, left to dwell without drying, then rinsed on jet. Method and product not confirmed.
+    status: verify
+    kbRef: "5.3"
+  - label: Pre-soak, Chemical Guys
+    value: Chemical Guys gives no pump-sprayer, pre-soak, or dwell-time direction for Citrus Wash & Gloss. The pre-soak stays out of every wash until a label or a Chemical Guys answer covers it.
+    status: sourced
+    kbRef: "5.3"
+  - label: Pre-soak, time plan
+    value: The full-detail plan holds 10 min for it. The step itself is not confirmed.
+    status: verify
+    kbRef: "17.2"
+  - label: Pre-wash, Tesla's manual
+    value: On a Tesla, Tesla's manual says do not use chemical-based wheel cleaners or pre-wash products. They can damage the finish on the wheels.
+    status: sourced
+    kbRef: "11"
+  - label: On a Tesla, Bug & Tar
+    value: Not checked yet against Tesla's line on pre-wash products.
+    status: verify
+    kbRef: "11"
+  - label: On a Tesla, the pre-soak and pre-wash
+    value: Lando decides how this applies to Teslas (pending).
+    status: verify
+mistakes:
+  - Touching the paint before the pre-rinse is done.
+  - Rinsing for one minute because the car looks clean.
+  - Skipping the bumpers, the rockers, and behind the wheels.
+  - Scrubbing bugs or tar.
+  - Leaving Bug & Tar on past its one-minute dwell.
+  - Running a pump-sprayer pre-soak as if it were settled. It is not confirmed.
+  - On a Tesla, putting water on the car before Car Wash Mode is on.
+drillIds: [drill-l1-pre-rinse]
+quizId: quiz-l1-02-pre-rinse
+related:
+  - product-meguiars-bug-tar
+  - product-cg-citrus-wash-gloss
+  - equipment-foam-cannon
+  - card-tesla-wash-mode-tape
+  - term-dwell
+  - lesson-l1-01-wheels-first
+  - lesson-l1-03-towel-wash
+  - lesson-l1-05-clay
+  - lesson-l1-06-full-wash
+---
+**Goal:** Rinse 3 to 4 minutes before anything touches the paint, give Bug & Tar a one-minute dwell, and know why the pre-soak is not settled yet.
+
+## Why the rinse comes before any touch
+
+Dirt on paint is grit. Anything you drag across grit, a towel, a mitt, your hand, scratches the paint you are about to sell. The pre-rinse floats off what it can before anything touches the car. That is why nothing touches the paint until it is done.
+
+Rinse 3 to 4 minutes on jet, top down, so the dirt runs down and off instead of onto panels you already rinsed. Give extra time to the bumpers, the rockers, and behind the wheels. That is where the heaviest dirt sits.
+
+## Bugs and tar: let it work
+
+Bug & Tar foam goes on the bugs and the rocker tar. Give it a one-minute dwell, then wash it off. No scrubbing. The product does the work while it sits.
+
+If the dirt is still caked after the rinse, rinse longer. Never scrub harder.
+
+## The pre-soak question
+
+After the first wash of Lando's Model Y, a lot of caked dirt was still on the car. With no pressure washer and no foam cannon, the plan was to add a dwell step: a pump-sprayer pre-wash on the lower third, the front end, and behind the wheels, left to sit without drying, then rinsed on jet.
+
+It is not settled, and it is not in any wash yet. Three reasons:
+
+1. Chemical Guys gives no pump-sprayer, pre-soak, or dwell-time direction for Citrus Wash & Gloss. Its directions cover a wash bucket and a foam cannon only. No label covers this use, so it stays out until one does.
+2. Tesla's manual says do not use pre-wash products on its cars. Lando's own car is a Tesla, and Lando decides how this applies to Teslas.
+3. The old foam cannon pre-soak in the booklet needs a pressure washer, and Lando does not own one.
+
+The full-detail time plan still holds 10 min for a pre-soak. Treat that slot as pending. Lando's field note also says the first wash of a neglected car is always the worst, and the second wash goes faster.
+
+## Teslas
+
+On a Tesla, Car Wash Mode goes on before any water. On the 2020 to 2024 Model Y the path is Controls, then Service, then Car Wash Mode, and the car must be parked and not charging. Other years and models are not checked.
+
+Whether Bug & Tar counts as a pre-wash product under Tesla's manual has not been checked either. It shows as pending on a Tesla until it is.

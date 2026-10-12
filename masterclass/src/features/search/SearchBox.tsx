@@ -1,8 +1,9 @@
 /**
  * The one search box (BLUEPRINT 2.1, 5): typed or dictated words (the keyboard's mic), results
- * from the device in well under 100 ms, grouped by type. Enter opens the top result. "/" focuses
- * the box from anywhere, Escape clears it, and the arrow keys move through the results.
- * Search is internal: in Customer View the box is not on the page (BLUEPRINT 3.4).
+ * from the device in well under 100 ms, grouped by type with Fix It first (searchModel.groupHits).
+ * Enter opens the top result, which is always the first row on screen; every result opens its own
+ * page. "/" focuses the box from anywhere, Escape clears it, and the arrow keys move through the
+ * results. Search is internal: in Customer View the box is not on the page (BLUEPRINT 3.4).
  */
 import { useEffect, useId, useRef, type KeyboardEvent } from 'react';
 import { Row, RowList } from '../../components/ui';
@@ -12,7 +13,7 @@ import { searchNow } from '../../core/search';
 import type { ContentTypeName } from '../../schemas';
 import { UnverifiedBadge } from './contentViews';
 import { useItemOpener } from './ItemSheet';
-import { groupHits, resultsWords, topCards, TYPE_SINGULAR } from './searchModel';
+import { firstShown, groupHits, resultsWords, topCards, TYPE_SINGULAR } from './searchModel';
 import { useSearch } from './useSearchResults';
 import './search.css';
 
@@ -101,7 +102,7 @@ function SearchBoxInner({ label = 'Search', focusOnOpen = false, initialQuery = 
       if (q === '') return;
       // Fresh answer for exactly what is typed, so a fast Enter never opens a stale result.
       const fresh = searchNow(q, types === undefined ? { limit } : { limit, types });
-      const top = (fresh ?? hits)[0];
+      const top = firstShown(fresh ?? hits);
       if (top !== undefined) opener.open(top);
     } else if (event.key === 'Escape') {
       event.preventDefault();

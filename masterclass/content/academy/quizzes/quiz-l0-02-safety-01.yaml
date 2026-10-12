@@ -1,0 +1,31 @@
+id: quiz-l0-02-safety-01
+type: quizquestion
+title: Hot wheels after a drive
+quizId: quiz-l0-02-safety
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.1"
+tags:
+  - safety
+  - quiz
+  - level 0
+synonyms:
+  - safety quiz
+  - stay safe test
+  - shop safety questions
+  - polisher safety quiz
+prompt: A car just pulled in from a highway drive. The wheels are hot to the touch. You are next on the wheels. What do you do?
+choices:
+  - Spray now and rinse it off fast.
+  - Spray extra so the cleaner stays wet.
+  - Let the wheels cool, then spray.
+  - Do the paint first and come back to them.
+correctIndex: 2
+explanation: The wheel must be cool before you spray it, and the cleaner gets rinsed before it dries.
+scenario: true
+related:
+  - lesson-l0-02-stay-safe
+  - equipment-bauer-56367

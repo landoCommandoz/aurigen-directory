@@ -1,0 +1,33 @@
+id: quiz-l0-04-paint-04
+type: quizquestion
+title: Peeling clear on the roof
+quizId: quiz-l0-04-paint
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.4"
+tags:
+  - paint
+  - clear coat
+  - quiz
+  - level 0
+synonyms:
+  - paint quiz
+  - clear coat test
+  - how paint works questions
+  - microns quiz
+prompt: The roof has peeling, flaking, and cloudy patches. The customer still wants it polished. What is the call?
+choices:
+  - Do not polish it.
+  - Polish lightly to blend it in.
+  - Compound it once, then polish.
+  - Wax over it to hide it.
+correctIndex: 0
+explanation: Clear coat failure cannot be polished. Failing clear coat is also on the walk-away list.
+scenario: true
+related:
+  - lesson-l0-04-how-paint-works
+  - term-clear-coat
+  - term-micron-mil

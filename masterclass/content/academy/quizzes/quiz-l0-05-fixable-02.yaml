@@ -1,0 +1,31 @@
+id: quiz-l0-05-fixable-02
+type: quizquestion
+title: Judging a fresh square
+quizId: quiz-l0-05-fixable
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.3"
+tags:
+  - fingernail test
+  - quiz
+  - level 0
+synonyms:
+  - what can be fixed quiz
+  - fingernail test questions
+  - will it buff out quiz
+  - scratch promise test
+prompt: You just finished a test square. It looks perfect and still has polish oil on it. Before you judge it, what do you do?
+choices:
+  - Judge it now while the shine is fresh.
+  - Put ceramic wax on it, then check it.
+  - Wait until tomorrow, then check it.
+  - IPA, wipe, then check with the light.
+correctIndex: 3
+explanation: Polish oils hide swirls. The IPA wipe takes the oils off so you see the real paint.
+scenario: true
+related:
+  - lesson-l0-05-what-can-be-fixed
+  - card-pad-ladder

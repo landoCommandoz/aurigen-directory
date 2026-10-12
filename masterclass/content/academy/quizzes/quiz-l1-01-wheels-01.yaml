@@ -1,0 +1,31 @@
+id: quiz-l1-01-wheels-01
+type: quizquestion
+title: Four dirty wheels
+quizId: quiz-l1-01-wheels
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.1"
+tags:
+  - wheels
+  - quiz
+  - level 1
+synonyms:
+  - wheels quiz
+  - wheel cleaning questions
+  - wheels first test
+  - brush quiz
+prompt: Four dirty wheels on a family SUV that is not a Tesla. How do you work them?
+choices:
+  - Spray all four, then brush all four.
+  - "One at a time: spray, wait, brush, rinse."
+  - Brush them dry first, then spray.
+  - Spray all four and let them soak 10 minutes.
+correctIndex: 1
+explanation: Spray the face and the barrel, wait about a minute, brush, and rinse before it dries. Spray all four at once and the cleaner dries on the last ones.
+scenario: true
+related:
+  - lesson-l1-01-wheels-first
+  - equipment-wheel-brushes

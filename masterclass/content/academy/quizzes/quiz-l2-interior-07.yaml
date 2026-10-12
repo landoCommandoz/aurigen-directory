@@ -1,0 +1,31 @@
+id: quiz-l2-interior-07
+type: quizquestion
+title: Skipping the knock-down
+quizId: quiz-l2-interior
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - sign-off quiz
+  - level 2
+synonyms:
+  - level 2 quiz
+  - interior quiz
+  - full interior test
+  - level 2 sign off quiz
+prompt: You are running behind. Can you skip knocking it down and just vacuum?
+choices:
+  - Yes, if you vacuum twice.
+  - Yes, on a clean daily driver.
+  - Skip the vacuum instead.
+  - No. Knock it down first.
+correctIndex: 3
+explanation: Knock it down from the top, then vacuum top down.
+scenario: true
+related:
+  - lesson-l2-06-full-interior
+  - lesson-l2-01-interior-order

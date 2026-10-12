@@ -1,9 +1,11 @@
 /**
- * Opens a content item that has no page of its own yet (products, equipment, glossary terms, Fix It
- * entries until Phase 3) in a bottom sheet. Quick Cards open their own page instead.
+ * Opens a content item. From Phase 2 every type search returns has its own page
+ * (shared/contentRoutes.ts), so open() navigates there. The bottom sheet is the fallback for a type
+ * with no page yet (drills, quizzes, flashcards, prices, policies, scripts: Phase 4 and 5), so a
+ * stray id still shows its title and a way out instead of nothing.
  *
  *   const opener = useItemOpener();
- *   opener.open(hit);           // a card navigates; anything else opens the sheet
+ *   opener.open(hit);           // a page navigates; a type with no page opens the sheet
  *   return <>{...}{opener.sheet}</>;
  */
 import { useCallback, useState, type ReactNode } from 'react';
@@ -35,7 +37,7 @@ export function ItemSheet({ id, onClose }: { id: string | null; onClose: () => v
               navigate(route);
             }}
           >
-            Open the full card
+            Open its page
           </Button>
         ) : undefined
       }

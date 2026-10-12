@@ -157,9 +157,10 @@ describe('content build', () => {
     put('content/cards/card-bucket-mix.yaml', CARD);
     put('content/fixit/fix-01.md', FIX);
     put('tests/search-cases.yaml', 'version: 1\ncases:\n  - { query: jerking, expect: [fix-01] }\n  - { query: bucket mix, expect: [card-bucket-mix] }\n');
-    const ok = buildContent({ root, write: false });
+    // A two-case fixture is short of the Phase 2 minimum, so it opts out of that one rule here.
+    const ok = buildContent({ root, write: false, enforceMinSearchCases: false });
     expect(ok.problems).toEqual([]);
-    expect(ok.stats.searchCases).toMatchObject({ found: true, count: 2, passed: 2 });
+    expect(ok.stats.searchCases).toMatchObject({ found: true, count: 2, passed: 2, enforced: false });
     expect(ok.notes.join(' ')).toMatch(/requires 45/);
 
     put('tests/search-cases.yaml', 'version: 1\ncases:\n  - { query: bucket mix, expect: [fix-01] }\n  - { query: x, expect: [fix-77] }\n');
@@ -174,6 +175,22 @@ describe('content build', () => {
     const r = buildContent({ root, write: false, enforceMinSearchCases: true });
     expect(r.problems.some((p) => p.includes('"bucket mix": expected fix-01 on top, got "card-bucket-mix"'))).toBe(true);
     expect(r.problems.some((p) => p.includes('requires 45'))).toBe(true);
+  });
+
+  it('Phase 2 default: a short case file fails even when every case passes, writes nothing; a missing file is still skipped', () => {
+    put('content/cards/card-bucket-mix.yaml', CARD);
+    put('content/fixit/fix-01.md', FIX);
+    const missing = buildContent({ root, write: false });
+    expect(missing.ok).toBe(true);
+    expect(missing.stats.searchCases).toMatchObject({ found: false, enforced: true });
+
+    put('tests/search-cases.yaml', 'version: 1\ncases:\n  - { query: jerking, expect: [fix-01] }\n');
+    const short = buildContent({ root });
+    expect(short.ok).toBe(false);
+    expect(short.stats.searchCases).toMatchObject({ count: 1, passed: 1, minimum: 45, enforced: true });
+    expect(short.problems).toEqual(['tests/search-cases.yaml: 1 search cases; the build requires 45 from Phase 2 on.']);
+    expect(short.wrote).toEqual([]);
+    expect(existsSync(join(root, GENERATED_DIR))).toBe(false);
   });
 
   it('reads synonyms when present and refuses a malformed synonym file', () => {

@@ -1,0 +1,31 @@
+id: quiz-l2-05-glass-02
+type: quizquestion
+title: A side-to-side streak
+quizId: quiz-l2-05-glass
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "9.3"
+tags:
+  - glass
+  - quiz
+  - level 2
+synonyms:
+  - glass quiz
+  - streak questions
+  - window cleaning test
+  - two towel glass quiz
+prompt: You see a streak running side to side on the windshield. Which side is it on?
+choices:
+  - Outside.
+  - Inside.
+  - You cannot tell.
+  - Both sides.
+correctIndex: 1
+explanation: Inside you wipe side to side; outside, up and down. A streak's direction tells you its side.
+scenario: true
+related:
+  - lesson-l2-05-glass
+  - equipment-microfiber-towels

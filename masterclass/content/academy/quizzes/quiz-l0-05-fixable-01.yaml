@@ -1,0 +1,31 @@
+id: quiz-l0-05-fixable-01
+type: quizquestion
+title: That will buff out, right?
+quizId: quiz-l0-05-fixable
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - fingernail test
+  - quiz
+  - level 0
+synonyms:
+  - what can be fixed quiz
+  - fingernail test questions
+  - will it buff out quiz
+  - scratch promise test
+prompt: A customer points at a scratch on the door and asks, "That will buff out, right?" Your fingernail catches in it. What do you say?
+choices:
+  - '"Yes, it will buff right out."'
+  - '"It stays. I will show you before I start."'
+  - '"Probably, once we compound it."'
+  - '"We will know for sure after the job."'
+correctIndex: 1
+explanation: Rule 7. If a nail catches, it stays. Show the customer before you start, and never promise it comes out.
+scenario: true
+related:
+  - lesson-l0-05-what-can-be-fixed
+  - card-pad-ladder

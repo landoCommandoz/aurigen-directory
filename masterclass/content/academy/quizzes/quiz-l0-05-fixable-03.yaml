@@ -1,0 +1,31 @@
+id: quiz-l0-05-fixable-03
+type: quizquestion
+title: Still there after compound
+quizId: quiz-l0-05-fixable
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.5"
+tags:
+  - fingernail test
+  - quiz
+  - level 0
+synonyms:
+  - what can be fixed quiz
+  - fingernail test questions
+  - will it buff out quiz
+  - scratch promise test
+prompt: A scratch is still there after compound and the yellow + M210 pass. What now?
+choices:
+  - One more compound pass on that spot.
+  - Switch to the black pad and keep going.
+  - Too deep. Note it, show them, stop.
+  - Try the Turtle Wax compound on it.
+correctIndex: 2
+explanation: "That is rung 4 of the ladder: note it, show the customer, and do not chase it. One compound pass per section is the limit."
+scenario: true
+related:
+  - lesson-l0-05-what-can-be-fixed
+  - card-pad-ladder

@@ -1,0 +1,31 @@
+id: quiz-l3-04-eight-checks-01
+type: quizquestion
+title: Slick, squeaky paint
+quizId: quiz-l3-04-eight-checks
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.4"
+tags:
+  - kills the buff
+  - quiz
+  - level 3
+synonyms:
+  - eight checks quiz
+  - kills the buff questions
+  - walk away test
+  - paint check quiz
+prompt: Water beads up tight, and the paint feels slick and squeaky. The customer wants a polish. What do you say first?
+choices:
+  - Nothing special. Polish it as normal.
+  - Ceramic coating. Say polish removes it.
+  - A vinyl wrap. Walk away from it.
+  - Matte paint. No polish at all.
+correctIndex: 1
+explanation: "Ceramic coating: tight beading, slick squeaky paint. Polishing removes it."
+scenario: true
+related:
+  - lesson-l3-04-kills-the-buff
+  - card-kills-the-buff

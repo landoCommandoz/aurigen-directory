@@ -1,0 +1,31 @@
+id: quiz-l2-05-glass-03
+type: quizquestion
+title: The towel that touched polish
+quizId: quiz-l2-05-glass
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "9.3"
+tags:
+  - glass
+  - quiz
+  - level 2
+synonyms:
+  - glass quiz
+  - streak questions
+  - window cleaning test
+  - two towel glass quiz
+prompt: The only clean-looking towel left wiped polish yesterday. Can you use it on the glass?
+choices:
+  - Yes. It looks clean.
+  - Yes, after a rinse.
+  - No. Never on glass.
+  - Only on the inside.
+correctIndex: 2
+explanation: A towel that touched wax or polish streaks the glass.
+scenario: true
+related:
+  - lesson-l2-05-glass
+  - equipment-microfiber-towels

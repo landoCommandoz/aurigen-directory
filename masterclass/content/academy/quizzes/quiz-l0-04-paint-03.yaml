@@ -1,0 +1,33 @@
+id: quiz-l0-04-paint-03
+type: quizquestion
+title: Red on the pad, old pickup
+quizId: quiz-l0-04-paint
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.4"
+tags:
+  - paint
+  - clear coat
+  - quiz
+  - level 0
+synonyms:
+  - paint quiz
+  - clear coat test
+  - how paint works questions
+  - microns quiz
+prompt: Lando is polishing a 1972 pickup with its original single-stage paint, and red shows on the pad. What happens?
+choices:
+  - Stop for good. The pad is through the clear coat.
+  - Press harder to get past the color layer.
+  - Switch to compound to cut through it faster.
+  - The one exception. Say it, note it, back off pressure.
+correctIndex: 3
+explanation: On old single-stage paint, the color is the top layer, so some color on the pad is normal. On any modern car, color on the pad means stop.
+scenario: true
+related:
+  - lesson-l0-04-how-paint-works
+  - term-clear-coat
+  - term-micron-mil

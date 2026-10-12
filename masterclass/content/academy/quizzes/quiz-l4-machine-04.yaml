@@ -1,0 +1,32 @@
+id: quiz-l4-machine-04
+type: quizquestion
+title: Color on the pad mid-square
+quizId: quiz-l4-machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "21"
+tags:
+  - polish
+  - machine
+  - sign-off quiz
+  - level 4
+synonyms:
+  - level 4 quiz
+  - machine polishing quiz
+  - full square test
+  - level 4 sign off quiz
+prompt: Mid-square on a modern car, you see the car's color on the pad. What do you do?
+choices:
+  - Keep going with lighter pressure.
+  - Stop. Photograph, tell, and log it.
+  - Switch pads and finish the square.
+  - Add polish and keep going.
+correctIndex: 1
+explanation: You are through the clear. Stop, photograph it, tell the customer, log it, and do not touch that panel again. Old single-stage paint is the only exception.
+scenario: true
+related:
+  - lesson-l4-07-full-square
+  - card-machine-settings

@@ -1,0 +1,32 @@
+id: quiz-l4-06-pads-plate-05
+type: quizquestion
+title: Between squares
+quizId: quiz-l4-06-pads-plate
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.4"
+tags:
+  - pads
+  - backing plate
+  - quiz
+  - level 4
+synonyms:
+  - pad care quiz
+  - backing plate questions
+  - pad wash test
+  - which plate fits quiz
+prompt: What happens to the pad after every square?
+choices:
+  - Nothing until the panel is done.
+  - Blow it out or brush it.
+  - Rinse it in the wash bucket.
+  - Add a full dose of polish.
+correctIndex: 1
+explanation: A loaded pad stops cutting and starts smearing.
+scenario: true
+related:
+  - lesson-l4-06-pad-care-backing-plate
+  - equipment-backing-plate

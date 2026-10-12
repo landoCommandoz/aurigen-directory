@@ -1,0 +1,35 @@
+id: quiz-l3-02-gauge-01
+type: quizquestion
+title: Where to zero
+quizId: quiz-l3-02-gauge
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "7.2"
+tags:
+  - gauge
+  - quiz
+  - level 3
+synonyms:
+  - gauge quiz
+  - tc100 questions
+  - paint gauge test
+  - zero the gauge quiz
+sources:
+  - label: R&D TC100 gauge notes (knowledge base 7.2)
+    date: 2026-10-06
+    note: Zero only on the bare plate; door jamb baseline; 3 to 5 readings per panel; 20 µm swings within a foot are normal; Tesla Model Y owners commonly measure 100 to 150 µm.
+prompt: The readings look odd and you think the gauge needs zeroing. Where do you zero it?
+choices:
+  - On the hood, before you start.
+  - On the door jamb.
+  - On the glass, where there is no paint.
+  - Only on its bare plate.
+correctIndex: 3
+explanation: Zero only on the included bare plate. Never press ZERO on the car; it offsets every reading after it.
+scenario: true
+related:
+  - lesson-l3-02-tc100-gauge
+  - equipment-rd-tc100

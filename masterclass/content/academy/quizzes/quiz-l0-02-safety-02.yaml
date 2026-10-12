@@ -1,0 +1,35 @@
+id: quiz-l0-02-safety-02
+type: quizquestion
+title: Checking the plate
+quizId: quiz-l0-02-safety
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "14"
+tags:
+  - safety
+  - quiz
+  - level 0
+synonyms:
+  - safety quiz
+  - stay safe test
+  - shop safety questions
+  - polisher safety quiz
+sources:
+  - label: Backing plate research (knowledge base 14)
+    date: 2026-10-07
+    note: Unplugged checks of the bolt, pad, hooks, and plate. Long-throw machines are counterweighted for 5 or 6 in. plates.
+prompt: Lando asks you to check whether the backing plate is cracked. The polisher is plugged in on the cart. What is your first move?
+choices:
+  - Spin the plate by hand to look.
+  - Run it at the highest speed and watch.
+  - Unplug it.
+  - Tighten the center bolt first.
+correctIndex: 2
+explanation: Every check of the bolt, the pad, the hooks, or the plate happens with the polisher unplugged.
+scenario: true
+related:
+  - lesson-l0-02-stay-safe
+  - equipment-bauer-56367

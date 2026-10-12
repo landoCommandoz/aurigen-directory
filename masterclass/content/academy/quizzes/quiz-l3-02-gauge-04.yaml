@@ -1,0 +1,35 @@
+id: quiz-l3-02-gauge-04
+type: quizquestion
+title: Reading on the body line
+quizId: quiz-l3-02-gauge
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.3"
+tags:
+  - gauge
+  - quiz
+  - level 3
+synonyms:
+  - gauge quiz
+  - tc100 questions
+  - paint gauge test
+  - zero the gauge quiz
+sources:
+  - label: R&D TC100 gauge notes (knowledge base 7.2)
+    date: 2026-10-06
+    note: Zero only on the bare plate; door jamb baseline; 3 to 5 readings per panel; 20 µm swings within a foot are normal; Tesla Model Y owners commonly measure 100 to 150 µm.
+prompt: Right on the sharp body line of a door, the gauge reads 78. The flat of the door reads 125. What do you do?
+choices:
+  - Call the door 75 to 84.
+  - No machine on that door.
+  - Re-read an inch off the line.
+  - Tell the customer it is thin.
+correctIndex: 2
+explanation: Edges and body lines always read low. Stay an inch off them when you measure.
+scenario: true
+related:
+  - lesson-l3-02-tc100-gauge
+  - equipment-rd-tc100

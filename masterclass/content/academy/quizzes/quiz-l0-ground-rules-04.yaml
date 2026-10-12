@@ -1,0 +1,34 @@
+id: quiz-l0-ground-rules-04
+type: quizquestion
+title: Softener in the washer
+quizId: quiz-l0-ground-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "13.3"
+tags:
+  - setup
+  - ground rules
+  - sign-off quiz
+  - level 0
+synonyms:
+  - level 0 quiz
+  - ground rules quiz
+  - setup quiz
+  - shop setup test
+  - level 0 sign off quiz
+prompt: The product towels are going in a shared washer. The softener cup has softener in it, and there is a box of dryer sheets. What do you do?
+choices:
+  - Use both. Soft towels scratch less.
+  - Use only the dryer sheets.
+  - Add bleach to lift the polish.
+  - Empty the softener cup. No dryer sheets.
+correctIndex: 3
+explanation: Never fabric softener, dryer sheets, or bleach on microfiber.
+scenario: true
+related:
+  - lesson-l0-06-shop-setup
+  - card-setup-kit
+  - card-stop-rules

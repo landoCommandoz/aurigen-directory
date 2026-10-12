@@ -8,10 +8,18 @@ import { preloadSearch, searchNow } from '../../core/search';
 import type { ContentItemValue } from '../../schemas';
 import { afterAllReset, currentPath, loadSeedBundle, renderScreen, resetAll } from '../settings/__tests__/harness';
 import { CUSTOMER_VIEW_NOTICE } from '../settings/ui/InternalNotice';
-import { groupHits, hitRoute, resultsWords, topCards, TOP_CARD_IDS } from './searchModel';
+import { DRILL, FIX_JERK } from '../shared/__tests__/fixture';
+import { loadFixtureBundle } from '../shared/__tests__/helpers';
+import { firstShown, groupHits, hitRoute, resultsWords, topCards, TOP_CARD_IDS } from './searchModel';
 import { SearchScreen } from './SearchScreen';
 
-const ROUTES = { '/search': <SearchScreen />, '/cards/:id': <p>Card page</p>, '/': <p>Home</p> };
+const ROUTES = {
+  '/search': <SearchScreen />,
+  '/cards/:id': <p>Card page</p>,
+  '/fixit/:id': <p>Fix page</p>,
+  '/items/:id': <p>Item page</p>,
+  '/': <p>Home</p>,
+};
 
 let items: ContentItemValue[] = [];
 
@@ -39,6 +47,16 @@ describe('search model', () => {
     expect(groups.map((g) => g.label)).toEqual(['Products', 'Quick Cards', 'Glossary']);
     expect(groups[0]?.hits.map((h) => h.id)).toEqual(['product-a', 'product-b']);
     expect(groupHits([])).toEqual([]);
+    expect(firstShown([])).toBeUndefined();
+  });
+
+  it('puts Fix It first, right after the group holding the top result when that is not a fix', () => {
+    const fixTop = groupHits([hit('fix-01', 'fixnode', 9), hit('card-a', 'quickcard', 8)]);
+    expect(fixTop.map((g) => g.label)).toEqual(['Fix It', 'Quick Cards']);
+    const cardTop = [hit('card-a', 'quickcard', 9), hit('product-a', 'product', 8), hit('lesson-a', 'lesson', 7), hit('fix-02', 'fixnode', 6)];
+    expect(groupHits(cardTop).map((g) => g.label)).toEqual(['Quick Cards', 'Fix It', 'Products', 'Lessons']);
+    // The first row on screen is always the top result, the one Enter opens and the search cases test.
+    expect(firstShown(cardTop)?.id).toBe('card-a');
   });
 
   it('picks the five top cards in the preferred order and fills any gap', () => {
@@ -51,9 +69,11 @@ describe('search model', () => {
     expect(topCards([])).toEqual([]);
   });
 
-  it('sends cards to their page and everything else to the sheet', () => {
+  it('sends every result to its own page', () => {
     expect(hitRoute({ id: 'card-pad-ladder', type: 'quickcard' })).toBe('/cards/card-pad-ladder');
-    expect(hitRoute({ id: 'product-meguiars-m210', type: 'product' })).toBeNull();
+    expect(hitRoute({ id: 'product-meguiars-m210', type: 'product' })).toBe('/items/product-meguiars-m210');
+    expect(hitRoute({ id: 'fix-01', type: 'fixnode' })).toBe('/fixit/fix-01');
+    expect(hitRoute({ id: 'drill-x', type: 'drill' })).toBeNull();
   });
 
   it('words the result count for the live region', () => {
@@ -88,14 +108,13 @@ describe('search on the seed content', () => {
     expect(currentPath()).toBe('/cards/card-machine-settings');
   });
 
-  it('opens a product in a sheet, with its words', async () => {
+  it('opens a product on its own page', async () => {
     renderScreen('/search', ROUTES);
     fireEvent.change(await screen.findByLabelText('Search'), { target: { value: 'M210' } });
     const products = await screen.findByRole('list', { name: 'Products' });
     fireEvent.click(within(products).getByText(titleOf('product-meguiars-m210')));
-    const sheet = await screen.findByRole('dialog');
-    expect(within(sheet).getByText('What it is for')).toBeInTheDocument();
-    fireEvent.click(within(sheet).getByRole('button', { name: 'Close' }));
+    expect(currentPath()).toBe('/items/product-meguiars-m210');
+    expect(screen.queryByRole('dialog')).toBeNull();
   });
 
   it('shows the top five cards when empty, and says so plainly when nothing matches', async () => {
@@ -123,5 +142,38 @@ describe('search on the seed content', () => {
     renderScreen('/search', ROUTES);
     expect(await screen.findByText(CUSTOMER_VIEW_NOTICE)).toBeInTheDocument();
     expect(screen.queryByLabelText('Search')).toBeNull();
+  });
+});
+
+describe('search on Phase 2 content (fixture bundle)', () => {
+  beforeEach(() => {
+    loadFixtureBundle();
+  });
+
+  it('a symptom word puts Fix It first, and Enter opens the fix page', async () => {
+    renderScreen('/search', ROUTES);
+    const box = await screen.findByLabelText('Search');
+    fireEvent.change(box, { target: { value: 'jerking' } });
+    const first = (await screen.findAllByRole('heading', { level: 2 }))[0];
+    expect(first?.textContent).toBe('Fix It');
+    fireEvent.keyDown(box, { key: 'Enter' });
+    expect(currentPath()).toBe(`/fixit/${FIX_JERK}`);
+  });
+
+  it('never shows a drill, a quiz question, or a flashcard, even for their own words', async () => {
+    await preloadSearch();
+    for (const q of ['scale pressure drill', 'jerking drill', 'pressure quiz', 'how hard', 'pressure flashcard']) {
+      const hits = searchNow(q) ?? [];
+      expect(hits.filter((h) => ['drill', 'quizquestion', 'flashcard'].includes(h.type) || h.id === DRILL).map((h) => `${q}: ${h.id}`)).toEqual([]);
+    }
+  });
+
+  it('the no-results state says so plainly, and Enter does nothing', async () => {
+    renderScreen('/search', ROUTES);
+    const box = await screen.findByLabelText('Search');
+    fireEvent.change(box, { target: { value: 'zzqqxxv' } });
+    expect(await screen.findByText(/Nothing found for "zzqqxxv"/, { selector: '.sr-results__none' })).toBeInTheDocument();
+    fireEvent.keyDown(box, { key: 'Enter' });
+    expect(currentPath()).toBe('/search?q=zzqqxxv');
   });
 });

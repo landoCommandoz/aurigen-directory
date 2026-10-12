@@ -1,0 +1,31 @@
+id: quiz-l2-01-order-01
+type: quizquestion
+title: First thing inside
+quizId: quiz-l2-01-order
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - quiz
+  - level 2
+synonyms:
+  - interior order quiz
+  - customer items questions
+  - interior steps test
+  - what goes first inside quiz
+prompt: You open the doors on a customer's car for an interior. What is the first thing you do?
+choices:
+  - Vacuum the carpet.
+  - Wipe the dash.
+  - Take everything out.
+  - Clean the glass.
+correctIndex: 2
+explanation: "Everything out first: trash, mats, car seats, and loose items. Then the mats, then knock it down from the top."
+scenario: true
+related:
+  - lesson-l2-01-interior-order
+  - lesson-l2-06-full-interior

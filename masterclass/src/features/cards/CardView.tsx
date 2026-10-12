@@ -1,108 +1,22 @@
 /**
  * /cards/:id: one Quick Card, read-aloud friendly (BLUEPRINT 2.3, 5). Each row is a label and a
  * value in big type. "Read aloud" uses the phone's own voice; the first tap unlocks it (iOS).
- * Verify rows carry the internal "unverified" badge. Related items sit at the bottom: cards open
- * their page, anything else opens in a sheet. Internal cards never render in Customer View.
+ * Verify rows carry the internal "unverified" badge, pending rows the "pending" badge. Related
+ * items sit at the bottom, each opening its own page. Internal cards never render in Customer View.
  */
-import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { Button, Row, RowList } from '../../components/ui';
+import { Button } from '../../components/ui';
 import { getItem } from '../../core/content';
 import { Internal, showUnverifiedBadge, useCustomerView } from '../../core/customerView';
-import { pause, repeat, resume, speak, stop, useSpeechStatus } from '../../core/speech';
-import type { ContentItemValue, QuickCardItem } from '../../schemas';
+import type { QuickCardItem } from '../../schemas';
 import { RowsList, UnverifiedBadge } from '../search/contentViews';
-import { useItemOpener } from '../search/ItemSheet';
-import { TYPE_SINGULAR } from '../search/searchModel';
+import { ReadAloud } from '../shared/ReadAloud';
+import { RelatedList } from '../shared/RelatedList';
 import { Actions, Screen, Section, StatusLine } from '../settings/ui/Screen';
 import { cardSpeechText, KIND_LABELS } from './cardModel';
 import './cards.css';
 
 const BACK = { to: '/cards', label: 'All Quick Cards' };
-
-function ReadAloud({ card }: { card: QuickCardItem }) {
-  const speech = useSpeechStatus();
-  const [note, setNote] = useState<string | null>(null);
-  const [mine, setMine] = useState(false);
-  const mineRef = useRef(false);
-
-  // Leaving the card stops what it started, so the voice never reads a card that is not on screen.
-  useEffect(
-    () => () => {
-      if (mineRef.current) stop();
-    },
-    [],
-  );
-
-  function claim(on: boolean) {
-    mineRef.current = on;
-    setMine(on);
-  }
-
-  function read() {
-    const result = speak(cardSpeechText(card));
-    claim(result.ok);
-    setNote(result.ok ? null : result.message);
-  }
-
-  const active = mine && (speech.speaking || speech.paused);
-  return (
-    <div className="qc-voice">
-      <Actions>
-        {!active ? (
-          <Button variant="primary" size="shop" onClick={read} disabled={!speech.supported}>
-            Read aloud
-          </Button>
-        ) : speech.paused ? (
-          <Button variant="primary" size="shop" onClick={() => resume()}>
-            Resume
-          </Button>
-        ) : (
-          <Button variant="primary" size="shop" onClick={() => pause()}>
-            Pause
-          </Button>
-        )}
-        {active ? (
-          <>
-            <Button size="shop" onClick={() => repeat()}>
-              Repeat
-            </Button>
-            <Button
-              size="shop"
-              onClick={() => {
-                stop();
-                claim(false);
-              }}
-            >
-              Stop reading
-            </Button>
-          </>
-        ) : null}
-      </Actions>
-      {!speech.supported ? <p className="ui-muted">This phone has no built-in voice for web apps. The card still reads on screen.</p> : null}
-      {note !== null ? <StatusLine tone="warning">{note}</StatusLine> : null}
-      {speech.lastError !== null && active ? <p className="ui-muted">{speech.lastError}</p> : null}
-    </div>
-  );
-}
-
-function Related({ item, customerView }: { item: QuickCardItem; customerView: boolean }) {
-  const opener = useItemOpener();
-  const related = item.related
-    .map((id) => getItem(id, { customerView }))
-    .filter((r): r is ContentItemValue => r !== undefined && r.id !== item.id);
-  if (related.length === 0) return null;
-  return (
-    <Section title="Related" index={3}>
-      <RowList label="Related">
-        {related.map((r) => (
-          <Row key={r.id} as="li" title={r.title} detail={TYPE_SINGULAR[r.type]} trailing="Open" onClick={() => opener.open(r)} />
-        ))}
-      </RowList>
-      {opener.sheet}
-    </Section>
-  );
-}
 
 function CardBody({ card, customerView }: { card: QuickCardItem; customerView: boolean }) {
   return (
@@ -113,10 +27,10 @@ function CardBody({ card, customerView }: { card: QuickCardItem; customerView: b
             <UnverifiedBadge show /> Check this card against the label before relying on it.
           </p>
         ) : null}
-        <ReadAloud card={card} />
+        <ReadAloud text={() => cardSpeechText(card)} />
       </Section>
       <Section index={2} className="qc-card">
-        <RowsList rows={card.rows} label={card.title} />
+        <RowsList rows={card.rows} label={card.title} itemStatus={card.status} />
         {customerView ? null : (
           <Internal>
             <p className="ui-muted qc-source">
@@ -125,7 +39,7 @@ function CardBody({ card, customerView }: { card: QuickCardItem; customerView: b
           </Internal>
         )}
       </Section>
-      <Related item={card} customerView={customerView} />
+      <RelatedList ids={card.related} selfId={card.id} index={3} />
     </>
   );
 }

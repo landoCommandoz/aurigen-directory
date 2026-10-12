@@ -1,0 +1,32 @@
+id: quiz-l4-machine-02
+type: quizquestion
+title: Finishing a square
+quizId: quiz-l4-machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.3"
+tags:
+  - polish
+  - machine
+  - sign-off quiz
+  - level 4
+synonyms:
+  - level 4 quiz
+  - machine polishing quiz
+  - full square test
+  - level 4 sign off quiz
+prompt: The sets are done. What is the order to finish the square?
+choices:
+  - Wipe after each set, then wax it.
+  - IPA first, then polish it again.
+  - Move on. Wipe the whole panel later.
+  - Wipe once, IPA, clean towel, light.
+correctIndex: 3
+explanation: Wipe once, at the end of the square. Then IPA mist, wipe with a clean towel, and check with the light low and from a few feet back.
+scenario: true
+related:
+  - lesson-l4-07-full-square
+  - card-machine-settings

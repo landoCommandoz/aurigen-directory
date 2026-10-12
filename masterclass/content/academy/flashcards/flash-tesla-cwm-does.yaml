@@ -1,0 +1,30 @@
+id: flash-tesla-cwm-does
+type: flashcard
+title: What Car Wash Mode does
+deck: tesla
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "11"
+tags:
+  - tesla
+  - flashcard
+synonyms:
+  - what car wash mode does
+  - wipers ran
+  - tesla flashcard
+  - model y card
+sources:
+  - label: Tesla Model Y 2020 to 2024 owner's manual, Car Wash Mode
+    url: https://www.tesla.com/ownersmanual/2020_2024_modely/en_us/GUID-65384C1F-86F2-44E8-A8BC-8A12E7E00A40.html
+    date: 2026-10-10
+    note: Controls > Service > Car Wash Mode; parked and not actively charging; what it turns off; turns off above 9 mph or on Exit. Software 2026.32 manual. Read through the search index. Fact-checker FC-13 and FC-14.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+front: What does Car Wash Mode do, and what turns it off?
+back: Closes all windows, locks the charge port, and turns off the wipers, Sentry Mode, walk-away door locking, and parking chimes. It turns off above 9 mph or when you touch Exit.
+related:
+  - card-tesla-wash-mode-tape
+  - lesson-l1-06-full-wash

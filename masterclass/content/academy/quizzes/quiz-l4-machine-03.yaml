@@ -1,0 +1,32 @@
+id: quiz-l4-machine-03
+type: quizquestion
+title: Past the cutoff
+quizId: quiz-l4-machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "20"
+tags:
+  - polish
+  - machine
+  - sign-off quiz
+  - level 4
+synonyms:
+  - level 4 quiz
+  - machine polishing quiz
+  - full square test
+  - level 4 sign off quiz
+prompt: It is past the job's cutoff time, and the next square is taped and ready. What do you do?
+choices:
+  - Start it. It is only 4 minutes.
+  - Finish this square, IPA it, stop.
+  - Start it, and skip the wipe.
+  - Skip the IPA and keep going.
+correctIndex: 1
+explanation: Finish the square you are on, IPA it, and stop. The Job Runner will not start polishing after the cutoff.
+scenario: true
+related:
+  - lesson-l4-07-full-square
+  - card-machine-settings

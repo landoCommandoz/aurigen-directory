@@ -1,0 +1,31 @@
+id: quiz-l0-01-rules-01
+type: quizquestion
+title: Before the hose comes out
+quizId: quiz-l0-01-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - rules
+  - quiz
+  - level 0
+synonyms:
+  - rules quiz
+  - house rules test
+  - quiz on the 13 rules
+  - level 0 rules questions
+prompt: Saturday morning. The car is in the driveway and you have the hose in your hand. Nobody has done the walkaround or taken before photos yet. What do you do?
+choices:
+  - Wait. Walkaround and before photos come first.
+  - Start the pre-rinse. Water is not the same as touching it.
+  - Rinse only the wheels while you wait for Lando.
+  - Take the photos after the wash, when flaws show better.
+correctIndex: 0
+explanation: Rule 13. The walkaround and before photos come first, before any stage starts. Damage you find after you start looks like damage you caused.
+scenario: true
+related:
+  - lesson-l0-01-rules-that-never-bend
+  - card-stop-rules

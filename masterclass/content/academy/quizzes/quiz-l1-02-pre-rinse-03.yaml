@@ -1,0 +1,31 @@
+id: quiz-l1-02-pre-rinse-03
+type: quizquestion
+title: Bugs on the bumper
+quizId: quiz-l1-02-pre-rinse
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.1"
+tags:
+  - pre-rinse
+  - quiz
+  - level 1
+synonyms:
+  - pre rinse quiz
+  - rinse questions
+  - bug and tar quiz
+  - how long do I rinse test
+prompt: Bugs on the front bumper of a car that is not a Tesla. You foam Bug & Tar on them. What next?
+choices:
+  - Scrub it off right away with a towel.
+  - Dwell one minute, then wash it off.
+  - Let it dry on, then rinse it off.
+  - Leave it 10 minutes to soften.
+correctIndex: 1
+explanation: One-minute dwell, then wash it off. No scrubbing.
+scenario: true
+related:
+  - lesson-l1-02-pre-rinse
+  - product-meguiars-bug-tar

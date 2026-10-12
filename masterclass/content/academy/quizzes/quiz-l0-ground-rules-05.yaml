@@ -1,0 +1,34 @@
+id: quiz-l0-ground-rules-05
+type: quizquestion
+title: Before the product towels wash
+quizId: quiz-l0-ground-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "13.2"
+tags:
+  - setup
+  - ground rules
+  - sign-off quiz
+  - level 0
+synonyms:
+  - level 0 quiz
+  - ground rules quiz
+  - setup quiz
+  - shop setup test
+  - level 0 sign off quiz
+prompt: The polish-removal towels are headed to the washer. What happens first?
+choices:
+  - Nothing. Straight into the washer.
+  - Soak them 1 hour in warm soapy water.
+  - Soak them overnight in bleach water.
+  - Rinse them in cold water for 5 minutes.
+correctIndex: 1
+explanation: The product pile soaks 1 hour in warm soapy water first. Towels with wax residue get at least two washes.
+scenario: true
+related:
+  - lesson-l0-06-shop-setup
+  - card-setup-kit
+  - card-stop-rules

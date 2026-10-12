@@ -1,0 +1,34 @@
+id: quiz-l0-ground-rules-06
+type: quizquestion
+title: The dryer setting
+quizId: quiz-l0-ground-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "13.3"
+tags:
+  - setup
+  - ground rules
+  - sign-off quiz
+  - level 0
+synonyms:
+  - level 0 quiz
+  - ground rules quiz
+  - setup quiz
+  - shop setup test
+  - level 0 sign off quiz
+prompt: The microfiber is washed. The dryer is set to high. What setting do you use?
+choices:
+  - High, to dry them fast.
+  - Medium, with a few cotton towels.
+  - High, with a dryer sheet.
+  - Low, or air dry.
+correctIndex: 3
+explanation: Dryer heat is what melts microfiber, not the washer.
+scenario: true
+related:
+  - lesson-l0-06-shop-setup
+  - card-setup-kit
+  - card-stop-rules

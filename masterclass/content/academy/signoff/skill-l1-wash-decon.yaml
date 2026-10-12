@@ -1,0 +1,30 @@
+skillId: skill-l1-wash-decon
+title: Wash and decon
+lessonId: lesson-l1-06-full-wash
+quizId: quiz-l1-wash-decon
+quizPassScore: 80
+drillMinimum: 8
+prerequisites:
+  - skill-l0-ground-rules
+gates: []
+ownerChecks:
+  - text: "On a Tesla, turns on Car Wash Mode before any water. The Model Y manual gives the path: Controls > Service > Car Wash Mode."
+    status: sourced
+  - Does the wheels first, one wheel at a time, on a cool wheel, on a car that is not a Tesla.
+  - Rinses each wheel before the cleaner dries, and keeps the wheel brushes off the paint and out of the bucket.
+  - text: On a Tesla, the house wheel step is Armor All Extreme Wheel & Tire, a brush, and the hose.
+    status: house
+  - text: On a Tesla, Tesla's manual says do not use chemical-based wheel cleaners or pre-wash products.
+    status: sourced
+  - text: Lando decides how this applies to Teslas (pending).
+    status: verify
+  - Pre-rinses 3 to 4 minutes, top down, before anything touches the paint.
+  - Gives Bug & Tar a one-minute dwell, and never scrubs.
+  - Never puts a used towel back in the bucket, and never lets lower panels share a towel.
+  - Keeps the whole car wet through the wash.
+  - Runs the sheeting rinse, blows out the gaps, dries with towels laid flat and pulled, and dries every jamb.
+  - Bag tests before he clays, keeps every section wet with lube, and trashes a dropped bar.
+  - Leaves no water spots Lando can find under the light.
+  - text: Runs no pump-sprayer pre-soak. It is not confirmed (pending).
+    status: verify
+status: verify

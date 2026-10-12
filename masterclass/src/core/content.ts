@@ -22,6 +22,8 @@ function pickBundle(): { bundle: ContentBundle; built: boolean; problem: string 
 }
 
 let state = pickBundle();
+/** False once a test swaps in its own bundle: the prebuilt search index then no longer matches it. */
+let generatedInUse = true;
 let byId = new Map<string, ContentItemValue>(state.bundle.items.map((item) => [item.id, item]));
 
 /** Whether a bundle was found, how many items it holds, and why not if not. */
@@ -31,6 +33,14 @@ export function contentStatus(): { built: boolean; items: number; signOffs: numb
 
 export function getContentBundle(): ContentBundle {
   return state.bundle;
+}
+
+/**
+ * True when the bundle in use is the one the content build wrote, so the prebuilt search index
+ * (written by the same build) matches it. Search builds its index from the bundle otherwise.
+ */
+export function usingGeneratedBundle(): boolean {
+  return generatedInUse && state.built;
 }
 
 export type ItemOfType<T extends ContentTypeName> = Extract<ContentItemValue, { type: T }>;
@@ -75,5 +85,6 @@ export function polishGateSkillId(): string | null {
 /** Tests only: swap in a bundle (null restores the generated one). */
 export function __setContentBundleForTests(bundle: ContentBundle | null): void {
   state = bundle === null ? pickBundle() : { bundle, built: true, problem: null };
+  generatedInUse = bundle === null;
   byId = new Map(state.bundle.items.map((item) => [item.id, item]));
 }

@@ -1,0 +1,41 @@
+id: quiz-l4-01-long-throw-04
+type: quizquestion
+title: The unplugged checks
+quizId: quiz-l4-01-long-throw
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "14"
+tags:
+  - polisher
+  - quiz
+  - level 4
+synonyms:
+  - polisher quiz
+  - long throw questions
+  - know the machine test
+  - test run quiz
+sources:
+  - label: Backing plate research (knowledge base 14)
+    date: 2026-10-07
+    note: Unplugged checks of the bolt, pad, hooks, and plate. Long-throw machines are counterweighted for 5 or 6 in. plates.
+  - label: BAUER 56367 owner's manual, 2021
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-10
+    note: "Page 3 and page 10: if abnormal vibration occurs, stop use; have the problem corrected before further use. Page 7: test run at the highest speed for at least 30 seconds. Page 10: checks before each use. Fact-checker FC-24."
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+prompt: What do you check with the polisher unplugged before a job?
+choices:
+  - Only the cord and the plug.
+  - Bolt, pad, hooks, and plate.
+  - Only the speed dial.
+  - Nothing. The test run finds it.
+correctIndex: 1
+explanation: Center bolt tight, pad centered, hooks not bald or melted, plate not cracked or warped (spin it). The manual adds loose hardware, misaligned or binding parts, and cracked parts.
+scenario: true
+related:
+  - lesson-l4-01-know-the-machine
+  - equipment-bauer-56367

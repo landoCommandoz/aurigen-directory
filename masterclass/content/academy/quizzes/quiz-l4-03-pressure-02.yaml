@@ -1,0 +1,31 @@
+id: quiz-l4-03-pressure-02
+type: quizquestion
+title: Jerking and walking
+quizId: quiz-l4-03-pressure
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "21"
+tags:
+  - pressure
+  - quiz
+  - level 4
+synonyms:
+  - pressure quiz
+  - how hard do I press questions
+  - float test
+  - grip quiz
+prompt: The polisher keeps jerking and walking. You are gripping tight and pushing it into the paint. What changes?
+choices:
+  - Loose grip. Guide it, do not push.
+  - Push harder to hold it still.
+  - Tilt the pad onto its edge.
+  - Hold it tight with one hand.
+correctIndex: 0
+explanation: Two hands, loose grip, guide it, and keep the pad flat. Pushing with a grip that is too tight is one cause of a jerking polisher.
+scenario: true
+related:
+  - lesson-l4-03-pressure
+  - card-machine-settings

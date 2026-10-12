@@ -1,0 +1,32 @@
+id: quiz-l1-05-clay-02
+type: quizquestion
+title: Grabbing and noise
+quizId: quiz-l1-05-clay
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "6"
+tags:
+  - clay
+  - quiz
+  - level 1
+synonyms:
+  - clay quiz
+  - bag test questions
+  - clay bar test
+  - decon quiz
+prompt: The clay grabs and makes noise on the hood. What does it mean, and what do you do?
+choices:
+  - It is clean. Move on to the next section.
+  - Contamination. More lube, light pressure.
+  - Contamination. Press harder until it stops.
+  - Let it dry, then buff it off.
+correctIndex: 1
+explanation: Grabbing and noise means contamination. Keep it soaked with lube and glide with light pressure until it goes silent and smooth.
+scenario: true
+related:
+  - lesson-l1-05-clay
+  - card-clay-tub
+  - term-bag-test

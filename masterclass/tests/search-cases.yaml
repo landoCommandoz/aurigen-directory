@@ -1,0 +1,115 @@
+# Search cases. Owner: troubleshooter. The content build (npm run content) runs every case
+# against the same index the app ships and fails when the top result is not one of `expect`.
+#
+# Part 1 is knowledge base 24, in its order. `kb` keeps the knowledge base wording of the answer.
+# A section number maps to the items that hold that section today:
+#   FIX-NN is fix-NN. 4 is the mix cards. 7.2 is the gauge lesson, the TC100 item, and the
+#   zero fix. 7.3 is the thickness bands card and lesson. 7.4 is the kills-the-buff card and
+#   lesson. 8.2 is the pad priming card and lesson. 11 is the Tesla card and the Tesla roof fix.
+#   12.1 is the bike rules card and the bike fixes. 13 and 13.1 are the cleanup SOP, the towel
+#   laundry fix, the pad care lesson, and the crusty pad fix. 14 is the backing plate item.
+#   15.1 mobile and travel is the mobile fee term and the mobile polishing fix. 15.2 is the
+#   cancel and deposit fix (fix-89). 9.4 is the headlight fix and the headlight restorer.
+#
+# Two knowledge base 24 cases are parked below Part 2, commented out, because no searchable
+# item holds their section yet: "price suv full detail" (15.1) and "store it clean" (12.2).
+# Price items are Phase 4 (business-customer), and search leaves price items out until they
+# have a page (src/core/searchEngine.ts SEARCH_TYPES). Turn them back on when both land.
+#
+# Part 2 is the way a frustrated person types or dictates with gloves on: no apostrophes,
+# filler words, slang, and the words a dictation app gets wrong ("hoping" for "hopping").
+version: 1
+cases:
+  # Part 1: knowledge base 24
+  - { query: jerking, expect: [fix-01], kb: FIX-01 }
+  - { query: polisher hopping, expect: [fix-01], kb: FIX-01 }
+  - { query: pad not spinning, expect: [fix-02], kb: FIX-02 }
+  - { query: vibrating bad, expect: [fix-03], kb: FIX-03 }
+  - { query: polish drying, expect: [fix-04], kb: FIX-04 }
+  - { query: how much polish, expect: [card-pad-priming, lesson-l4-02-prime-and-product], kb: "8.2" }
+  - { query: wet the pad, expect: [card-pad-priming, lesson-l4-02-prime-and-product, fix-04], kb: 8.2 / FIX-04 }
+  - { query: slinging, expect: [fix-06], kb: FIX-06 }
+  - { query: pad falling off, expect: [fix-07], kb: FIX-07 }
+  - { query: paint on pad, expect: [fix-09], kb: FIX-09 }
+  - { query: still swirls, expect: [fix-10], kb: FIX-10 }
+  - { query: haze, expect: [fix-11], kb: FIX-11 }
+  - { query: dirt after wash, expect: [fix-14], kb: FIX-14 }
+  - { query: water spots, expect: [fix-15], kb: FIX-15 }
+  - { query: dropped clay, expect: [fix-17], kb: FIX-17 }
+  - { query: wax streaks, expect: [fix-18], kb: FIX-18 }
+  - { query: glass streaks, expect: [fix-19], kb: FIX-19 }
+  - { query: backing plate, expect: [fix-23, equipment-backing-plate], kb: FIX-23 / 14 }
+  - { query: bucket mix, expect: [card-bucket-mix], kb: "4" }
+  - { query: ipa mix, expect: [card-ipa-wipe], kb: "4" }
+  - { query: clay lube, expect: [card-clay-tub], kb: "4" }
+  - { query: gauge 85, expect: [card-thickness-bands, lesson-l3-03-thickness-bands, fix-22], kb: 7.3 / FIX-22 }
+  - { query: zero gauge, expect: [lesson-l3-02-tc100-gauge, equipment-rd-tc100, fix-42], kb: "7.2" }
+  - { query: car wash mode, expect: [card-tesla-wash-mode-tape], kb: "11" }
+  - { query: tesla roof, expect: [fix-81, card-tesla-wash-mode-tape], kb: "11" }
+  - { query: bike tire shine, expect: [card-bike-rules, fix-30], kb: "12.1" }
+  - { query: chain, expect: [fix-85, sop-chain-bike, card-bike-rules], kb: "12.1" }
+  - { query: matte paint, expect: [card-kills-the-buff, lesson-l3-04-kills-the-buff, term-matte-satin, fix-53, card-bike-rules], kb: 7.4 / 12.1 }
+  - { query: towel wash, expect: [fix-76, sop-cleanup], kb: "13" }
+  - { query: pad wash, expect: [lesson-l4-06-pad-care-backing-plate, sop-cleanup, fix-50], kb: "13.1" }
+  - { query: mobile fee, expect: [term-mobile-fee, fix-88], kb: "15.1" }
+  - { query: travel fee, expect: [term-mobile-fee, fix-88], kb: "15.1" }
+  - { query: deposit, expect: [fix-89], kb: "15.2" }
+  - { query: cancellation, expect: [fix-89], kb: "15.2" }
+  - { query: what kills the buff, expect: [card-kills-the-buff, lesson-l3-04-kills-the-buff], kb: "7.4" }
+  - { query: scratch customer, expect: [fix-27], kb: FIX-27 }
+  - { query: broke something, expect: [fix-28], kb: FIX-28 }
+  - { query: setup slow, expect: [fix-24], kb: FIX-24 }
+  - { query: out of time, expect: [fix-25], kb: FIX-25 }
+  - { query: headlights, expect: [fix-82, product-blue-magic-headlight-restorer], kb: "9.4" }
+  - { query: pet hair, expect: [fix-31], kb: FIX-31 }
+
+  # Part 2: dictated with gloves on, frustrated
+  - { query: thing keeps jumping, expect: [fix-01], kb: FIX-01 }
+  - { query: polisher hoping all over, expect: [fix-01], kb: FIX-01 (dictation heard hopping as hoping) }
+  - { query: the buffer is fighting me, expect: [fix-01], kb: FIX-01 }
+  - { query: pad quit spinning, expect: [fix-02], kb: FIX-02 }
+  - { query: machine shaking like crazy, expect: [fix-03], kb: FIX-03 }
+  - { query: polish wont come off, expect: [fix-08, fix-04], kb: FIX-08 / FIX-04 }
+  - { query: polish flinging everywhere, expect: [fix-06], kb: FIX-06 }
+  - { query: pad keeps flying off, expect: [fix-07], kb: FIX-07 }
+  - { query: polish turned to powder, expect: [fix-08], kb: FIX-08 }
+  - { query: theres paint on my pad, expect: [fix-09], kb: FIX-09 }
+  - { query: swirls are still there, expect: [fix-10], kb: FIX-10 }
+  - { query: its all hazy after i compounded, expect: [fix-11], kb: FIX-11 }
+  - { query: hood is super hot, expect: [fix-12], kb: FIX-12 }
+  - { query: white crap on the trim, expect: [fix-13], kb: FIX-13 }
+  - { query: water spots everywhere, expect: [fix-15], kb: FIX-15 }
+  - { query: clay fell on the floor, expect: [fix-17], kb: FIX-17 }
+  - { query: wax is all streaky, expect: [fix-18], kb: FIX-18 }
+  - { query: windows are all streaky, expect: [fix-19], kb: FIX-19 }
+  - { query: tire shine all over the paint, expect: [fix-20], kb: FIX-20 }
+  - { query: door is only reading like 80, expect: [fix-22, card-thickness-bands, lesson-l3-03-thickness-bands], kb: FIX-22 / 7.3 }
+  - { query: how much compound, expect: [card-pad-priming, lesson-l4-02-prime-and-product], kb: "8.2" }
+  - { query: ugh setup is taking forever again, expect: [fix-24], kb: FIX-24 }
+  - { query: way behind schedule, expect: [fix-25], kb: FIX-25 }
+  - { query: tesla windows went down, expect: [fix-26], kb: FIX-26 }
+  - { query: customer wants this scratch gone, expect: [fix-27], kb: FIX-27 }
+  - { query: i scratched the customers car, expect: [fix-28], kb: FIX-28 }
+  - { query: customer says its too much money, expect: [fix-29], kb: FIX-29 }
+  - { query: dog hair everywhere, expect: [fix-31], kb: FIX-31 }
+  - { query: dash is all shiny, expect: [fix-32], kb: FIX-32 }
+  - { query: is it too cold to polish today, expect: [fix-33], kb: FIX-33 }
+  - { query: polisher smells like its burning, expect: [fix-34], kb: "21 (new: machine noise or smell)" }
+  - { query: the bottle says something different, expect: [fix-80], kb: "2, house rule 12" }
+  - { query: can i use wheel cleaner on the tesla, expect: [fix-78], kb: "11 and fact-checker FC-16" }
+  - { query: bugs stuck all over the bumper, expect: [fix-64], kb: "5.1" }
+  - { query: can i use compound on my tesla, expect: [fix-79], kb: "8.5 and fact-checker FC-16 (pending)" }
+
+  # Part 3: safety and pending-decision guards. A STOP fix or a card that holds a pending
+  # decision row must stay on top for these, so a new item can never bury it.
+  - { query: burned through the clear, expect: [fix-09], kb: FIX-09 STOP }
+  - { query: grinding noise, expect: [fix-34], kb: FIX-01 stop line }
+  - { query: polisher smoking, expect: [fix-34], kb: FIX-01 stop line (burning smell) }
+  - { query: dropped the polisher, expect: [fix-23], kb: "14 unplugged plate checks (no knowledge base entry for a drop yet)" }
+  - { query: what speed, expect: [card-machine-settings, lesson-l4-04-speed-sets-marker], kb: "8.3 and fact-checker FC-22 (pending)" }
+  - { query: how much pressure, expect: [card-machine-settings, lesson-l4-03-pressure], kb: "8.3 and fact-checker FC-23 (pending)" }
+  - { query: label says something different, expect: [fix-80], kb: "2, house rule 12" }
+
+  # Parked (knowledge base 24, no searchable item holds the section yet; see the top of this file)
+  # - { query: price suv full detail, expect: [<the SUV Full Detail price item>], kb: "15.1" }
+  # - { query: store it clean, expect: [<the Store-It-Clean price item>], kb: "12.2" }

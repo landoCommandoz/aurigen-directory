@@ -1,0 +1,32 @@
+id: quiz-l2-03-wipe-01
+type: quizquestion
+title: Where to spray
+quizId: quiz-l2-03-wipe
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - dash
+  - quiz
+  - level 2
+synonyms:
+  - wipe and dress quiz
+  - dash questions
+  - shiny dash test
+  - headliner quiz
+prompt: You are wiping the dash with Meguiar's Quik Interior Detailer. Where do you spray it?
+choices:
+  - Straight on the dash.
+  - On the windshield, then wipe down.
+  - On the towel.
+  - On the towel and the dash.
+correctIndex: 2
+explanation: Overspray lands on the glass and the screens.
+scenario: true
+related:
+  - lesson-l2-03-wipe-dress
+  - product-meguiars-quik-interior-detailer

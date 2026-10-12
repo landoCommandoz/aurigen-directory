@@ -11,7 +11,7 @@ import { cardSpeechText, groupCards, KIND_LABELS, speakable } from './cardModel'
 import { CardsList } from './CardsList';
 import { CardView } from './CardView';
 
-const ROUTES = { '/cards': <CardsList />, '/cards/:id': <CardView />, '/': <p>Home</p> };
+const ROUTES = { '/cards': <CardsList />, '/cards/:id': <CardView />, '/items/:id': <p>Item page</p>, '/': <p>Home</p> };
 
 let cards: QuickCardItem[] = [];
 
@@ -157,16 +157,17 @@ describe('CardView', () => {
     expect(screen.getByRole('button', { name: 'Read aloud' })).toBeDisabled();
   });
 
-  it('opens a related card on its page and a related tool in a sheet', async () => {
+  it('opens a related card on its page and a related tool on its item page', async () => {
     renderScreen('/cards/card-pad-ladder', ROUTES);
     const related = await screen.findByRole('list', { name: 'Related' });
     fireEvent.click(within(related).getByText('Paint thickness bands'));
     expect(currentPath()).toBe('/cards/card-thickness-bands');
     const again = await screen.findByRole('list', { name: 'Related' });
-    const tool = within(again).getAllByText('Equipment')[0];
-    if (tool === undefined) throw new Error('no related equipment');
+    const tool = within(again).getAllByText('Tool')[0];
+    if (tool === undefined) throw new Error('no related tool');
     fireEvent.click(tool);
-    expect(await screen.findByRole('dialog')).toBeInTheDocument();
+    expect(currentPath()).toMatch(/^\/items\/equipment-/);
+    expect(screen.queryByRole('dialog')).toBeNull();
   });
 
   it('an unknown card id says so and offers the way back', async () => {

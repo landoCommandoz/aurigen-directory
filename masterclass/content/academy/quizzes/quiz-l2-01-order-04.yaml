@@ -1,0 +1,31 @@
+id: quiz-l2-01-order-04
+type: quizquestion
+title: Starting with the glass
+quizId: quiz-l2-01-order
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - quiz
+  - level 2
+synonyms:
+  - interior order quiz
+  - customer items questions
+  - interior steps test
+  - what goes first inside quiz
+prompt: DJ starts the interior on the windows because they are the dirtiest. What do you tell him?
+choices:
+  - Good call. Dirtiest first.
+  - Glass is last.
+  - Glass first, then vacuum.
+  - Any order works inside.
+correctIndex: 1
+explanation: "The order: everything out, mats, knock it down, vacuum top down, wipe hard surfaces top down, spots, dress plastics matte, glass last."
+scenario: true
+related:
+  - lesson-l2-01-interior-order
+  - lesson-l2-06-full-interior

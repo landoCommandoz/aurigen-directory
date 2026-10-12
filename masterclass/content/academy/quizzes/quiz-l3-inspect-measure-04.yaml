@@ -1,0 +1,36 @@
+id: quiz-l3-inspect-measure-04
+type: quizquestion
+title: No answer on photos
+quizId: quiz-l3-inspect-measure
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "16"
+tags:
+  - walkaround
+  - sign-off quiz
+  - level 3
+synonyms:
+  - level 3 quiz
+  - inspect and measure quiz
+  - walkaround test
+  - level 3 sign off quiz
+sources:
+  - label: Lando, BLUEPRINT section 12 (defaults accepted 2026-10-10)
+    date: 2026-10-10
+    note: "Item 1: $275 founder rate for both sizes. Item 2: smoke odor quoted on inspection. Item 4: Monthly Maintenance contents not set. Item 9: black pad never on the ladder. Item 11: photo consent off until yes. Item 14: what counts toward 25 cars. Item 15: two-step quoted after the test spot. Item 16: thin panel is more than 40 µm below the median."
+prompt: You ask if the before and after photos may be posted. The customer does not answer. What do you do?
+choices:
+  - Treat it as no.
+  - Post them, plates blurred.
+  - Post them without the plates.
+  - Post them on a private account.
+correctIndex: 0
+explanation: Photo consent defaults to no until the customer says yes.
+scenario: true
+related:
+  - lesson-l3-05-walkaround-script
+  - card-kills-the-buff
+  - card-thickness-bands

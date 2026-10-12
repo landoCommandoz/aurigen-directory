@@ -67,6 +67,12 @@ export const SopStep = z.strictObject({
   stopIf: z.string().min(1).optional(),
   panelRoute: z.enum(['wash', 'polish', 'measure', 'wax', 'glass']).optional(),
   quickCardId: idWithPrefix('card').optional(),
+  /**
+   * Rows shown under the step that are not actions (added 2026-10-11, Phase 2): a maker's line
+   * next to the house line, or a pending decision (status verify). Each may carry its own status.
+   * The Runner reads them after the step and never asks for "Done, next" on a note.
+   */
+  notes: z.array(Line).default([]),
 });
 export type SopStepValue = z.infer<typeof SopStep>;
 

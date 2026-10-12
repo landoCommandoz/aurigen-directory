@@ -1,0 +1,34 @@
+id: quiz-l0-ground-rules-02
+type: quizquestion
+title: Ten steps to the clay bin
+quizId: quiz-l0-ground-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "18.3"
+tags:
+  - setup
+  - ground rules
+  - sign-off quiz
+  - level 0
+synonyms:
+  - level 0 quiz
+  - ground rules quiz
+  - setup quiz
+  - shop setup test
+  - level 0 sign off quiz
+prompt: You set up, and the clay bin is across the driveway, about ten steps from the car. Is the setup right?
+choices:
+  - Yes. Clay comes late in the job.
+  - Yes, as long as the bins are sorted.
+  - No. Nothing more than three steps away.
+  - Yes. Only the polish bin has to be close.
+correctIndex: 2
+explanation: Never more than three steps for anything. Everything lives on one cart or bin set at the back corner of the car.
+scenario: true
+related:
+  - lesson-l0-06-shop-setup
+  - card-setup-kit
+  - card-stop-rules

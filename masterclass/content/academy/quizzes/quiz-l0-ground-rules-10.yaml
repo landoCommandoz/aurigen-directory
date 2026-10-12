@@ -1,0 +1,34 @@
+id: quiz-l0-ground-rules-10
+type: quizquestion
+title: The unlabeled bottle
+quizId: quiz-l0-ground-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "4"
+tags:
+  - setup
+  - ground rules
+  - sign-off quiz
+  - level 0
+synonyms:
+  - level 0 quiz
+  - ground rules quiz
+  - setup quiz
+  - shop setup test
+  - level 0 sign off quiz
+prompt: You need the IPA panel wipe. You find an unlabeled spray bottle of clear liquid on the shelf. What do you do?
+choices:
+  - Leave it. Use the labeled Zep sprayer.
+  - Use it. It is probably the IPA.
+  - Smell it first to check what it is.
+  - Add water and use it as a wipe.
+correctIndex: 0
+explanation: The IPA bottle is filled and labeled the night before. An unlabeled bottle of clear liquid gets mistaken for something else.
+scenario: true
+related:
+  - lesson-l0-06-shop-setup
+  - card-setup-kit
+  - card-stop-rules

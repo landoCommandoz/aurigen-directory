@@ -1,0 +1,31 @@
+id: quiz-l1-01-wheels-03
+type: quizquestion
+title: Paint first, wheels soaking
+quizId: quiz-l1-01-wheels
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.1"
+tags:
+  - wheels
+  - quiz
+  - level 1
+synonyms:
+  - wheels quiz
+  - wheel cleaning questions
+  - wheels first test
+  - brush quiz
+prompt: DJ wants to wash the paint first and let the wheels soak. What do you tell him?
+choices:
+  - Fine. The soak helps the cleaner work.
+  - Wheels last, so the brushes stay clean.
+  - No. Wheels first, because cleaner splashes.
+  - The order does not matter.
+correctIndex: 2
+explanation: Do the wheels after the paint and the cleaner splashes onto clean panels.
+scenario: true
+related:
+  - lesson-l1-01-wheels-first
+  - equipment-wheel-brushes

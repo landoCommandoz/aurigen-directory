@@ -1,0 +1,27 @@
+id: flash-tesla-gauge
+type: flashcard
+title: Model Y gauge readings
+deck: tesla
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "7.2"
+tags:
+  - tesla
+  - flashcard
+synonyms:
+  - tesla paint thickness
+  - model y microns
+  - tesla flashcard
+  - model y card
+sources:
+  - label: R&D TC100 gauge notes (knowledge base 7.2)
+    date: 2026-10-06
+    note: Zero only on the bare plate; door jamb baseline; 3 to 5 readings per panel; 20 µm swings within a foot are normal; Tesla Model Y owners commonly measure 100 to 150 µm.
+front: What do Tesla Model Y owners commonly measure?
+back: About 4 to 6 mils (100 to 150 µm), highest on the hood.
+related:
+  - lesson-l3-02-tc100-gauge
+  - equipment-rd-tc100
