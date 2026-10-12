@@ -629,7 +629,7 @@ export const Base = z.strictObject({
 });
 ```
 
-Per-type fields (the shape that matters). Superseded in Phase 1 by `src/schemas/content*.ts`, and the writer's guide is `src/schemas/README.md`. The differences: every id carries its type's prefix (`fix-`, `lesson-`, `card-`); a source is `{ label, url?, date, note?, confirmedOn?, confirmedBy? }`; FixNode gains `notes` and an optional Markdown `body`; SOP `stage` is one of a fixed stage list (with `hand-polish` for bikes); Product gains `neverOnPaint`; Drill's `minimumReps` became `repsPerSession`, because the sign-off drill minimum lives only in the criteria file; PriceItem's `vehicle` became `vehicleType` plus `size`, and it gains `quoteText` and `mobileUnlockAtCars`, with the founder's rate and the unlock count written in content, not fixed in code; Script `when` adds `paint-report` and `aftercare`; SignOffCriteria gains `title` and `gates` (exactly one skill gates the polish stage). Phase 2, 2026-10-11, four optional fields with defaults (`docs/DECISIONS.md` D2 amendment): an SOP step gains `notes` (rows under a step that are not actions), Drill gains `passMark`, and SignOffCriteria gains `ownerChecks` (what Lando watches) and `status` (`house` or `verify`, default `verify`):
+Per-type fields (the shape that matters). Superseded in Phase 1 by `src/schemas/content*.ts`, and the writer's guide is `src/schemas/README.md`. The differences: every id carries its type's prefix (`fix-`, `lesson-`, `card-`); a source is `{ label, url?, date, note?, confirmedOn?, confirmedBy? }`; FixNode gains `notes` and an optional Markdown `body`; SOP `stage` is one of a fixed stage list (with `hand-polish` for bikes); Product gains `neverOnPaint`; Drill's `minimumReps` became `repsPerSession`, because the sign-off drill minimum lives only in the criteria file; PriceItem's `vehicle` became `vehicleType` plus `size`, and it gains `quoteText` and `mobileUnlockAtCars`, with the founder's rate and the unlock count written in content, not fixed in code; Script `when` adds `paint-report` and `aftercare`; SignOffCriteria gains `title` and `gates` (exactly one skill gates the polish stage). Phase 2, 2026-10-11, four optional fields with defaults (`docs/DECISIONS.md` D2 amendment): an SOP step gains `notes` (rows under a step that are not actions), Drill gains `passMark`, and SignOffCriteria gains `ownerChecks` (what Lando watches) and `status` (`house` or `verify`, default `verify`). 2026-10-12 (DEF-20, the same D2 amendment): Product gains `notes` (lines with their own status, for a house line, a maker's line beside it, and a pending decision; `labelNotes` keeps the label's words only):
 
 ```ts
 export const FixNode = Base.extend({
@@ -697,7 +697,8 @@ export const Product = Base.extend({
   jobs: z.array(z.string()).min(1),
   dilutions: z.array(z.strictObject({ use: z.string(), ratio: z.string(), status: Status })).default([]),
   neverFor: z.array(z.string()).default([]),
-  labelNotes: z.string().optional(),
+  notes: z.array(Line).default([]),             // 2026-10-12: house line, maker's line, pending row, each with its own status
+  labelNotes: z.string().optional(),            // the label's own words only
 });
 
 export const Equipment = Base.extend({
