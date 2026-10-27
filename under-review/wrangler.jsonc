@@ -1,0 +1,12 @@
+// Under-review version of the live `aurigen` Worker (same name, so it replaces the live site).
+// No assets, no D1 binding, no variables. The D1 database itself is not deleted.
+// Restore the full site with the "restore" option in .github/workflows/aurigen-site.yml.
+{
+  "name": "aurigen",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  // Clear the live site's daily cron, which this page has no handler for.
+  "triggers": { "crons": [] },
+  "observability": { "enabled": false }
+}

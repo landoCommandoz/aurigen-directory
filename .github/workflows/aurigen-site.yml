@@ -1,0 +1,98 @@
+# Aurigen live site switch. Runs ONLY when a person taps "Run workflow". No Claude, no API cost.
+#   under-review  Replaces the live `aurigen` Worker with a plain 503 "under review" page.
+#   restore       Rebuilds and redeploys the full site from a branch you name.
+# Costs nothing: Cloudflare Workers Free plan, and Actions minutes are free on this public repo.
+# Needs the repository secret CLOUDFLARE_API_TOKEN (already used by Foundry).
+name: Aurigen site
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "under-review (hide the site) or restore (put the full site back)"
+        type: choice
+        options:
+          - under-review
+          - restore
+        default: under-review
+      restore_branch:
+        description: "restore only: branch whose cloudflare/ folder to deploy"
+        type: string
+        default: foundry/aurigen-free
+      confirm_restore:
+        description: "restore only: I know this republishes the full site, including any text not yet audited"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aurigen-site
+  cancel-in-progress: false
+
+env:
+  CLOUDFLARE_ACCOUNT_ID: 8b3ad3f477589843fe0d802015b25dea
+  SITE_URL: https://aurigen.landonbrewington12.workers.dev
+
+jobs:
+  under-review:
+    if: inputs.mode == 'under-review'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Deploy the under-review page
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx --yes wrangler@4.148.0 deploy --config under-review/wrangler.jsonc
+      - name: Check the live address
+        run: |
+          set -euo pipefail
+          sleep 10
+          for path in / /state/az/ /extras/; do
+            code=$(curl -sS -o page.html -w "%{http_code}" "${SITE_URL}${path}")
+            echo "${path} -> HTTP ${code}"
+            [ "$code" = 503 ] || { echo "::error::expected 503 on ${path}"; exit 1; }
+            grep -q "re-checked against current law" page.html || { echo "::error::page text missing on ${path}"; exit 1; }
+          done
+          echo "The site now shows the under-review page."
+
+  restore:
+    if: inputs.mode == 'restore'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Require the confirmation box
+        if: ${{ !inputs.confirm_restore }}
+        run: |
+          echo "::error::Tick 'I know this republishes the full site' to restore."
+          exit 1
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.restore_branch }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Build and deploy the full site
+        working-directory: cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+          npx wrangler deploy
+      - name: Check the live address
+        run: |
+          set -euo pipefail
+          sleep 10
+          for path in / /state/az/; do
+            code=$(curl -sS -o /dev/null -w "%{http_code}" "${SITE_URL}${path}")
+            echo "${path} -> HTTP ${code}"
+            [ "$code" = 200 ] || { echo "::error::expected 200 on ${path}"; exit 1; }
+          done
+          echo "The full site is back."

@@ -1,17 +1,28 @@
 # Foundry: a walk-away Claude Code run on one spec in foundry/.
-# Runs ONLY when a person taps "Run workflow". Never on push or on a schedule.
+# Starts ONLY when a person taps "Run workflow", or when a chained run starts the next one.
+# Never on push or on a schedule.
 #
-# What it costs: Anthropic API usage on ANTHROPIC_API_KEY for this one run. The real cap is the
-# spend limit on the Anthropic Console workspace that owns the key. Turns (150) and time (75 min)
-# also cap the run. GitHub Actions minutes are free because this repo is public.
+# What it costs: Anthropic API usage on ANTHROPIC_API_KEY. The real cap is the spend limit on the
+# Anthropic Console workspace that owns the key. Turns (150) and time (75 min) cap each run, and a
+# chain stops after 20 runs. Each run's API cost is reported in the result issue.
+# GitHub Actions minutes are free while this repo is public. If it is ever private, a chain stops
+# before it uses more than PRIVATE_MINUTES_BUDGET minutes, so other repos keep their free minutes.
 #
 # Secrets (Settings > Secrets and variables > Actions):
 #   ANTHROPIC_API_KEY     required
 #   CLOUDFLARE_API_TOKEN  needed by specs that deploy to Cloudflare
 #   POLAR_ACCESS_TOKEN    needed by specs that set up Polar products
 #
-# Where the work lands: branch foundry/<spec name without .md>. A re-run of the same spec continues
-# that branch. Nothing is ever pushed to main. The run ends by opening one issue with the result.
+# Where the work lands: branch foundry/<spec name without .md>. Every run of the same spec continues
+# that branch. Nothing is ever pushed to main.
+#
+# Result issue: one per spec title. If an open issue with the same title exists, its body is updated
+# instead of opening a new one.
+#
+# Chaining: a spec opts in by keeping foundry/out/chain/<spec name>.json up to date as
+# {"total": <items>, "done": <items finished>}. With "chain" ticked (the default), the next run starts
+# by itself until: all items are done, a run fails, a run finishes zero new items, 20 runs have run,
+# or (private repo only) the minutes budget would be passed. The issue gets one comment when it stops.
 #
 # The workflow's own token cannot change files under .github/workflows/, so specs must not ask for that.
 name: Foundry
@@ -20,14 +31,31 @@ on:
   workflow_dispatch:
     inputs:
       task:
-        description: "Spec file inside foundry/, for example aurigen-free.md"
+        description: "Spec file inside foundry/, for example aurigen-law-audit.md"
         type: string
         required: true
-        default: aurigen-free.md
+        default: aurigen-law-audit.md
+      chain:
+        description: "Keep starting the next run while the spec has work left (only specs that opt in)"
+        type: boolean
+        default: true
+      chain_run:
+        description: "Leave as 1. Set by the chain itself."
+        type: number
+        default: 1
+      chain_minutes:
+        description: "Leave as 0. Actions minutes used so far by this chain."
+        type: number
+        default: 0
+      chain_cost:
+        description: "Leave as 0. API dollars used so far by this chain."
+        type: string
+        default: "0"
 
 permissions:
   contents: write
   issues: write
+  actions: write
 
 concurrency:
   group: foundry-${{ inputs.task }}
@@ -35,11 +63,15 @@ concurrency:
 
 env:
   CLOUDFLARE_ACCOUNT_ID: 8b3ad3f477589843fe0d802015b25dea
+  CHAIN_MAX_RUNS: 20
+  # GitHub Free includes 2,000 private-repo minutes a month for the whole account. A chain in a
+  # private repo keeps itself under this many, leaving the rest for other repos.
+  PRIVATE_MINUTES_BUDGET: 600
 
 jobs:
   foundry:
     runs-on: ubuntu-latest
-    # 75 minutes for Claude plus room for the save and issue steps to always run.
+    # 75 minutes for Claude plus room for the save, issue and chain steps to always run.
     timeout-minutes: 90
     steps:
       - name: Check out the repo
@@ -53,8 +85,9 @@ jobs:
           TASK: ${{ inputs.task }}
         run: |
           set -euo pipefail
+          echo "start=$(date -u +%s)" >> "$GITHUB_OUTPUT"
           if ! printf '%s' "$TASK" | grep -Eq '^[a-z0-9][a-z0-9._-]*\.md$'; then
-            echo "::error::task must be a file name like aurigen-free.md (lowercase, no folders)"
+            echo "::error::task must be a file name like aurigen-law-audit.md (lowercase, no folders)"
             exit 1
           fi
           if ! git cat-file -e "${GITHUB_SHA}:foundry/${TASK}" 2>/dev/null; then
@@ -71,22 +104,33 @@ jobs:
             git checkout -b "$branch"
             echo "Starting new branch $branch"
           fi
-          # Always work from the spec as it stands on the branch the run was started from.
+          # Always work from the spec and shared tools as they stand on the branch the run was started from.
           git show "${GITHUB_SHA}:foundry/${TASK}" > "foundry/${TASK}"
+          if git cat-file -e "${GITHUB_SHA}:foundry/tools" 2>/dev/null; then
+            git checkout "$GITHUB_SHA" -- foundry/tools
+          fi
           mkdir -p foundry/out
           rm -f foundry/out/ISSUE.md foundry/out/ISSUE_TITLE.txt
+          done_before=0
+          if [ -f "foundry/out/chain/${slug}.json" ]; then
+            done_before=$(jq -r '.done // 0' "foundry/out/chain/${slug}.json" 2>/dev/null || echo 0)
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           {
             echo "spec=foundry/${TASK}"
             echo "slug=${slug}"
             echo "branch=${branch}"
+            echo "done_before=${done_before}"
           } >> "$GITHUB_OUTPUT"
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+
+      - name: Make sure pdftotext is installed
+        run: command -v pdftotext || (sudo apt-get update -q && sudo apt-get install -y -q --no-install-recommends poppler-utils)
 
       - name: Run Claude Code on the spec
         id: claude
@@ -106,7 +150,8 @@ jobs:
                 "CLOUDFLARE_ACCOUNT_ID": "${{ env.CLOUDFLARE_ACCOUNT_ID }}",
                 "POLAR_ACCESS_TOKEN": "${{ secrets.POLAR_ACCESS_TOKEN }}",
                 "FOUNDRY_BRANCH": "${{ steps.prep.outputs.branch }}",
-                "FOUNDRY_SPEC": "${{ steps.prep.outputs.spec }}"
+                "FOUNDRY_SPEC": "${{ steps.prep.outputs.spec }}",
+                "FOUNDRY_CHAIN_RUN": "${{ inputs.chain_run }}"
               }
             }
           prompt: |
@@ -115,11 +160,13 @@ jobs:
 
             Your task is the spec at ${{ steps.prep.outputs.spec }}. Read it fully first, then do it.
             Where the spec conflicts with CLAUDE.md or other repo notes, the spec wins.
+            This is run ${{ inputs.chain_run }} of a chain of up to 20 for this spec.
 
             Run rules:
             - You are on branch ${{ steps.prep.outputs.branch }}. Commit with git after each finished piece,
               so a timeout never loses work. Do not push. A later workflow step pushes for you.
             - Never edit anything under .github/workflows/. This run's token cannot push those changes.
+            - Never edit foundry/tools/. Those are fixed tools; use them as the spec says.
             - Never print, log, echo, commit or write to any file the values of CLOUDFLARE_API_TOKEN,
               POLAR_ACCESS_TOKEN or ANTHROPIC_API_KEY. Read them only from the environment.
             - Never spend money, add a payment method, or start or upgrade any paid plan on any service.
@@ -129,6 +176,29 @@ jobs:
             - Before your turns or time run out, write the result issue the spec asks for:
               the title on one line in foundry/out/ISSUE_TITLE.txt and the body in foundry/out/ISSUE.md.
               Commit both.
+
+      - name: Read how the Claude run ended
+        id: result
+        if: always() && steps.prep.outcome == 'success'
+        run: |
+          set -euo pipefail
+          f="${RUNNER_TEMP}/claude-execution-output.json"
+          if [ -f "$f" ]; then
+            node -e '
+              const m = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
+              const r = [...m].reverse().find((x) => x && x.type === "result") || {};
+              const out = [
+                "subtype=" + (r.subtype || "none"),
+                "turns=" + (r.num_turns ?? "unknown"),
+                "cost=" + (typeof r.total_cost_usd === "number" ? r.total_cost_usd.toFixed(2) : "0"),
+              ].join("\n");
+              require("fs").appendFileSync(process.env.GITHUB_OUTPUT, out + "\n");
+              console.log(out);
+            ' "$f"
+          else
+            echo "No execution record found (the step may have been stopped by its time limit)."
+            printf 'subtype=none\nturns=unknown\ncost=0\n' >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Save the work to the branch
         id: save
@@ -149,6 +219,12 @@ jobs:
             git checkout "$GITHUB_SHA" -- .github/workflows
             git add -A .github/workflows
             git commit -m "Foundry: restore workflow files (the run's token cannot change them)"
+          fi
+          # The shared tools are fixed; undo any change the run made to them.
+          if git cat-file -e "${GITHUB_SHA}:foundry/tools" 2>/dev/null && [ -n "$(git diff --name-only "$GITHUB_SHA" HEAD -- foundry/tools)" ]; then
+            git checkout "$GITHUB_SHA" -- foundry/tools
+            git add -A foundry/tools
+            git commit -m "Foundry: restore foundry/tools (runs must not change them)"
           fi
           # Refuse to push if any secret value ended up in the branch.
           leak=0
@@ -177,14 +253,99 @@ jobs:
           echo "pushed=failed" >> "$GITHUB_OUTPUT"
           exit 1
 
-      - name: Open the result issue
+      - name: Decide whether the chain continues
+        id: chain
+        if: always() && steps.prep.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHAIN: ${{ inputs.chain }}
+          SLUG: ${{ steps.prep.outputs.slug }}
+          RUN_NO: ${{ inputs.chain_run }}
+          PREV_MINUTES: ${{ inputs.chain_minutes }}
+          PREV_COST: ${{ inputs.chain_cost }}
+          START: ${{ steps.prep.outputs.start }}
+          DONE_BEFORE: ${{ steps.prep.outputs.done_before }}
+          SUBTYPE: ${{ steps.result.outputs.subtype }}
+          RUN_COST: ${{ steps.result.outputs.cost }}
+          PUSHED: ${{ steps.save.outputs.pushed }}
+        run: |
+          set -uo pipefail
+          now=$(date -u +%s)
+          # Billed minutes round up; add 3 for checkout and setup before the start mark.
+          used=$(( PREV_MINUTES + (now - START + 59) / 60 + 3 ))
+          cost=$(awk -v a="${PREV_COST:-0}" -v b="${RUN_COST:-0}" 'BEGIN { printf "%.2f", a + b }')
+          file="foundry/out/chain/${SLUG}.json"
+          total=0; done_after=0
+          if [ -f "$file" ]; then
+            total=$(jq -r '.total // 0' "$file" 2>/dev/null || echo 0)
+            done_after=$(jq -r '.done // 0' "$file" 2>/dev/null || echo 0)
+          fi
+          private=$(gh api "repos/${GITHUB_REPOSITORY}" --jq .private 2>/dev/null || echo true)
+          cont=false; quiet=false; reason=""
+          if [ ! -f "$file" ]; then
+            quiet=true; reason="this spec does not chain"
+          elif [ "$CHAIN" != "true" ]; then
+            reason="chaining was switched off for this run"
+          elif [ "$total" -gt 0 ] && [ "$done_after" -ge "$total" ]; then
+            reason="all ${total} are done"
+          elif [ "$SUBTYPE" != "success" ] && [ "$SUBTYPE" != "error_max_turns" ]; then
+            reason="the run failed (Claude ended with: ${SUBTYPE:-none})"
+          elif [ "${PUSHED:-}" != "yes" ]; then
+            reason="the run's work was not saved (save step: ${PUSHED:-did not run})"
+          elif [ "$done_after" -le "$DONE_BEFORE" ]; then
+            reason="the run finished zero new items (still ${done_after} of ${total})"
+          elif [ "$RUN_NO" -ge "$CHAIN_MAX_RUNS" ]; then
+            reason="it reached the limit of ${CHAIN_MAX_RUNS} runs"
+          elif [ "$private" = "true" ] && [ $(( used + 90 )) -gt "$PRIVATE_MINUTES_BUDGET" ]; then
+            reason="the repo is private and another run could pass the ${PRIVATE_MINUTES_BUDGET}-minute budget (${used} used)"
+          else
+            cont=true; reason="${done_after} of ${total} done; starting run $(( RUN_NO + 1 ))"
+          fi
+          echo "Chain: continue=${cont}. ${reason}. Minutes used ${used}. API cost so far \$${cost}."
+          {
+            echo "continue=${cont}"
+            echo "quiet=${quiet}"
+            echo "reason=${reason}"
+            echo "next_run=$(( RUN_NO + 1 ))"
+            echo "minutes=${used}"
+            echo "cost=${cost}"
+            echo "done=${done_after}"
+            echo "total=${total}"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Start the next run
+        id: dispatch
+        if: always() && steps.chain.outputs.continue == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TASK: ${{ inputs.task }}
+          NEXT: ${{ steps.chain.outputs.next_run }}
+          MINUTES: ${{ steps.chain.outputs.minutes }}
+          COST: ${{ steps.chain.outputs.cost }}
+        run: |
+          set -euo pipefail
+          gh workflow run foundry.yml --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" \
+            -f task="$TASK" -f chain=true -f chain_run="$NEXT" -f chain_minutes="$MINUTES" -f chain_cost="$COST"
+          echo "started=yes" >> "$GITHUB_OUTPUT"
+          echo "Started run ${NEXT}. It waits until this run finishes."
+
+      - name: Update the result issue
         if: always() && steps.prep.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
           SLUG: ${{ steps.prep.outputs.slug }}
           BRANCH: ${{ steps.prep.outputs.branch }}
-          CLAUDE_OUTCOME: ${{ steps.claude.outcome }}
+          RUN_NO: ${{ inputs.chain_run }}
+          SUBTYPE: ${{ steps.result.outputs.subtype }}
+          TURNS: ${{ steps.result.outputs.turns }}
+          RUN_COST: ${{ steps.result.outputs.cost }}
           PUSHED: ${{ steps.save.outputs.pushed }}
+          CONTINUE: ${{ steps.chain.outputs.continue }}
+          QUIET: ${{ steps.chain.outputs.quiet }}
+          REASON: ${{ steps.chain.outputs.reason }}
+          CHAIN_COST: ${{ steps.chain.outputs.cost }}
+          CHAIN_MINUTES: ${{ steps.chain.outputs.minutes }}
+          STARTED: ${{ steps.dispatch.outputs.started }}
         run: |
           set -euo pipefail
           run_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
@@ -192,6 +353,15 @@ jobs:
           title="NEEDS LANDO: Foundry ${SLUG} result"
           if [ -s foundry/out/ISSUE_TITLE.txt ]; then
             title="$(head -n 1 foundry/out/ISSUE_TITLE.txt | cut -c1-200)"
+          fi
+          if [ "${QUIET:-true}" = "true" ]; then
+            chain_line=""
+          elif [ "${CONTINUE:-false}" = "true" ] && [ "${STARTED:-}" = "yes" ]; then
+            chain_line="Chain: run ${RUN_NO} finished, run $((RUN_NO + 1)) has started (${REASON})."
+          elif [ "${CONTINUE:-false}" = "true" ]; then
+            chain_line="Chain: STOPPED after run ${RUN_NO}, because starting the next run failed. Press Run workflow again to continue."
+          else
+            chain_line="Chain: STOPPED after run ${RUN_NO}, because ${REASON}."
           fi
           {
             if [ -s foundry/out/ISSUE.md ]; then
@@ -201,8 +371,24 @@ jobs:
             fi
             echo
             echo "---"
+            [ -n "$chain_line" ] && echo "$chain_line"
+            echo "This run: Claude ended with ${SUBTYPE:-none} after ${TURNS:-unknown} turns, API cost \$${RUN_COST:-0}. Save step: ${PUSHED:-not run}."
+            [ -n "$chain_line" ] && echo "Chain so far: API cost \$${CHAIN_COST:-0}, about ${CHAIN_MINUTES:-0} Actions minutes."
             echo "Run: ${run_url}"
             echo "Branch: ${branch_url}"
-            echo "Claude step: ${CLAUDE_OUTCOME:-unknown}. Save step: ${PUSHED:-not run}."
+            echo "Updated: $(date -u '+%Y-%m-%d %H:%M UTC')"
           } > "${RUNNER_TEMP}/issue.md"
-          gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body-file "${RUNNER_TEMP}/issue.md"
+          num=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 200 --json number,title \
+                | jq -r --arg t "$title" '[.[] | select(.title == $t)][0].number // empty')
+          if [ -n "$num" ]; then
+            gh issue edit "$num" --repo "$GITHUB_REPOSITORY" --body-file "${RUNNER_TEMP}/issue.md"
+            echo "Updated issue #${num}."
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body-file "${RUNNER_TEMP}/issue.md"
+            num=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 200 --json number,title \
+                  | jq -r --arg t "$title" '[.[] | select(.title == $t)][0].number // empty')
+          fi
+          # One comment (and so one notification) only when a chain stops.
+          if [ -n "$num" ] && [ "${QUIET:-true}" != "true" ] && [ "${STARTED:-}" != "yes" ]; then
+            gh issue comment "$num" --repo "$GITHUB_REPOSITORY" --body "$chain_line"
+          fi

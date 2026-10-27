@@ -8,6 +8,7 @@
   The run works on branch foundry/aurigen-free and opens issue "NEEDS LANDO: Aurigen result".
 - Added foundry/aurigen-design.md: next Foundry spec (Records Room, Legal Notice, Field Survey concepts). Lando runs it.
 - Added foundry/aurigen-law-audit.md: multi-run law audit (17 never-rechecked states first). Run it before anything goes public.
+- Added aurigen-site workflow (under-review / restore), foundry/tools/ downloader, Foundry chaining + single issue, vercel.json redirect.
 
 ### LAST SESSION DATE:
 2026-03-29
