@@ -1,6 +1,12 @@
 # AURIGEN HANDOFF DOCUMENT
 ## Updated after every session. Read before every session.
 
+### LAW AUDIT RUN 2 (2026-10-27, Foundry chain, branch foundry/aurigen-law-audit)
+- Done this run: HI, KY, LA, ME, MS, ND, NM. Total 11 of 51. Next: OK, PA, TX, UT, WI, WV.
+- Per-state authoring scripts: foundry/out/law-audit/authoring/<st>.mjs (lib.mjs build(), report.mjs). After a state: check-law --state, law-sources.mjs, law-progress.mjs <st> done.
+- Blocked hosts: capitol.hawaii.gov (403), mauicounty.gov (403), legislature.maine.gov (intermittent resets; .pdf copies sometimes work), legislature.ms.gov (TLS error; MS code is vendor-hosted).
+- Gaps to revisit: NM code not fetched (TRD quotes used); MS rate unverified; ME § 505 rate; 2023-2026 bill searches only from section histories for KY/LA/ME.
+
 ### LAW AUDIT RUN 1 (2026-10-27, Foundry chain, branch foundry/aurigen-law-audit)
 - Spec: foundry/aurigen-law-audit.md. Done: AK, AL, CA, DC (4 of 51). HI in progress (see foundry/out/law-audit/hi.md).
 - Gate: cloudflare/scripts/check-law.mjs (now in `npm run build`; fails until all 51 states have ledgers, by design).
