@@ -335,6 +335,28 @@
    "text_sha256": "0dad7525c45c70e4c3e31bff693a828c2e4ff028ef309f633dd9c016c756f07c",
    "fetched_at": "2026-10-27T06:37:17.352Z",
    "snapshot": "foundry/out/law-audit/sources/nm/trd-press-2026-03.json"
+  },
+  "https://oktaxrolls.com/county/Delaware": {
+   "state": "OK",
+   "statutes": [
+    "68 O.S. § 3105 (as described by Delaware County Treasurer)",
+    "68 O.S. §§ 3125-3131 (as described by Delaware County Treasurer)",
+    "68 O.S. § 3135 (as described by Delaware County Treasurer)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "dbd81473b3b393a6b2cf329e5f01c661bcdd719e482ab7c0d128ceb71c3d5ba6",
+   "fetched_at": "2026-10-27T06:42:04.459Z",
+   "snapshot": "foundry/out/law-audit/sources/ok/oktaxrolls-delaware.json"
+  },
+  "https://docs.oklahomacounty.org/treasurer/ImportantDates.asp": {
+   "state": "OK",
+   "statutes": [
+    "none: administrative practice (Oklahoma County Treasurer calendar)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e5381f54b389dec0ae5ec6b1167b05688ad2d92dce5aaf071b310d06b934cef9",
+   "fetched_at": "2026-10-27T06:42:01.435Z",
+   "snapshot": "foundry/out/law-audit/sources/ok/okcounty-important-dates.json"
   }
  }
 }

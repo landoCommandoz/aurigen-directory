@@ -1,7 +1,7 @@
 # Law audit summary
 
 Spec: `foundry/aurigen-law-audit.md`. Gate: `cloudflare/scripts/check-law.mjs`. Ledgers: `cloudflare/data/law/<st>.json`.
-States done: 11 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM).
+States done: 12 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK).
 
 | State | Status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |
 |---|---|---|---|---|---|---|---|---|---|
@@ -16,7 +16,7 @@ States done: 11 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM).
 | MS | done | 2026-10-27 | 68 | 2 | 51 | 1 | 14 | 67 | [ms.md](ms.md) |
 | ND | done | 2026-10-27 | 64 | 6 | 58 | 0 | 0 | 57 | [nd.md](nd.md) |
 | NM | done | 2026-10-27 | 67 | 4 | 60 | 3 | 0 | 61 | [nm.md](nm.md) |
-| OK | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| OK | done | 2026-10-27 | 61 | 3 | 21 | 22 | 15 | 58 | [ok.md](ok.md) |
 | PA | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | TX | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | UT | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
@@ -72,6 +72,20 @@ States done: 11 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM).
 - MS `type`: SOS rules say land is "sold at public sale" with a two-year redemption; the code (not reachable) was not read to confirm the lien label
 - NM `redemption`: TRD FAQ says "all sales are final"; the statute on redemption after sale was not read
 - NM `otc.available`: TRD pages read do not mention over-the-counter sales
+- OK `type`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- OK `rateNote`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- OK `bidMethod`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- OK `auctionPlatform`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- OK `auctionTiming`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- OK `summary.1`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- OK `summary.2`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- OK `typeWhy.1`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- OK `beginnerTip.2`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- OK `ddExtra.3`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- OK `signup.steps.3`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- OK `signup.steps.4`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- OK `otc.available`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- OK `otc.note.1`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
 
 ## Unreachable sources ("Couldn't reach source")
 
@@ -92,3 +106,13 @@ States done: 11 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM).
 - MS `rateWhy.2`: https://www.legislature.ms.gov/legislation/mississippi-code/
 - MS `keyNotes.2`: https://www.legislature.ms.gov/legislation/mississippi-code/
 - MS `risks.2`: https://www.legislature.ms.gov/legislation/mississippi-code/
+- OK `rate`: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/SB/SB181%20ENR.PDF
+- OK `redemption`: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/SB/SB181%20ENR.PDF
+- OK `statute`: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/SB/SB181%20ENR.PDF
+- OK `summary.4`: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/SB/SB181%20ENR.PDF
+- OK `typeWhy.2`: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/SB/SB181%20ENR.PDF
+- OK `typeWhy.3`: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/SB/SB181%20ENR.PDF
+- OK `rateWhy.1`: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/SB/SB181%20ENR.PDF
+- OK `rateWhy.2`: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/SB/SB181%20ENR.PDF
+- OK `risks.2`: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/SB/SB181%20ENR.PDF
+- OK `surplus.1`: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/SB/SB181%20ENR.PDF
