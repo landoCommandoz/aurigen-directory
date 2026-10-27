@@ -47,6 +47,7 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - Removed .github/workflows/scrape.yml (dead scraper schedule).
 - foundry/aurigen-free.md overrides this file where they conflict (no paywall, free Cloudflare, Polar extras).
 - Added foundry/aurigen-design.md (3 design concepts at preview addresses; live site untouched). Not run yet.
+- Added foundry/aurigen-law-audit.md (multi-run official-source audit of all 51 states, EN+ES; live site untouched). PRIORITY before going public.
 
 ## OPEN CRITICAL ITEMS
 1. FTC: Founding member 500-cap claim — needs Lando confirmation
