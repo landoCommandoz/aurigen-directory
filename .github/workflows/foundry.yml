@@ -25,6 +25,13 @@
 # or (private repo only) the minutes budget would be passed. The issue gets one comment when it stops.
 #
 # The workflow's own token cannot change files under .github/workflows/, so specs must not ask for that.
+# That also means the work branch must carry the same .github/workflows files as the branch the run is
+# started from. The prep step checks this first and stops in seconds if they differ (see "workflow drift").
+#
+# Pinned on purpose so a forced Node upgrade or a new release cannot change a walk-away run:
+#   runner image  ubuntu-24.04 (not ubuntu-latest, which is moving to Ubuntu 26)
+#   actions       full commit ids with the release in a comment; all three run on Node 24
+# To update a pin: look up the new release's commit id, change it here and in aurigen-site.yml, and run once.
 name: Foundry
 
 on:
@@ -70,12 +77,12 @@ env:
 
 jobs:
   foundry:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # 75 minutes for Claude plus room for the save, issue and chain steps to always run.
     timeout-minutes: 90
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
         with:
           fetch-depth: 0
 
@@ -104,6 +111,13 @@ jobs:
             git checkout -b "$branch"
             echo "Starting new branch $branch"
           fi
+          # Workflow drift: this run's token cannot push changes to .github/workflows, and the save step would
+          # have to undo any difference. Stop now, in seconds, instead of after 75 minutes of paid work.
+          if [ -n "$(git diff --name-only "$GITHUB_SHA" HEAD -- .github/workflows)" ]; then
+            echo "::error::Workflow drift: branch ${branch} has different .github/workflows files than ${GITHUB_REF_NAME}. A run cannot push workflow files. Copy ${GITHUB_REF_NAME}'s workflow files onto ${branch} by hand, push it, and run again. Files that differ:"
+            git diff --name-only "$GITHUB_SHA" HEAD -- .github/workflows
+            exit 1
+          fi
           # Always work from the spec and shared tools as they stand on the branch the run was started from.
           git show "${GITHUB_SHA}:foundry/${TASK}" > "foundry/${TASK}"
           if git cat-file -e "${GITHUB_SHA}:foundry/tools" 2>/dev/null; then
@@ -125,7 +139,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
           node-version: "22"
 
@@ -136,10 +150,15 @@ jobs:
         id: claude
         timeout-minutes: 75
         continue-on-error: true
-        uses: anthropics/claude-code-action@v1
+        uses: anthropics/claude-code-action@8041f1d17e0e7d2f2cfe35002962e9f26237c0bb # v1.0.263
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ github.token }}
+          # A chained run is started by this workflow's own token, so GitHub reports the actor as the
+          # github-actions bot and the action refuses bots by default. Allow exactly that one bot.
+          # Never use '*'. This workflow only has the workflow_dispatch trigger, which needs write access
+          # to start by hand, and only this repo's own workflows can act as github-actions here.
+          allowed_bots: "github-actions"
           claude_args: |
             --max-turns 150
             --allowedTools "Bash,Read,Edit,Write,Glob,Grep,WebFetch,WebSearch,TodoWrite"
@@ -391,4 +410,18 @@ jobs:
           # One comment (and so one notification) only when a chain stops.
           if [ -n "$num" ] && [ "${QUIET:-true}" != "true" ] && [ "${STARTED:-}" != "yes" ]; then
             gh issue comment "$num" --repo "$GITHUB_REPOSITORY" --body "$chain_line"
+          fi
+
+      - name: Fail the run if Claude itself failed
+        if: always() && steps.prep.outcome == 'success'
+        env:
+          CLAUDE_OUTCOME: ${{ steps.claude.outcome }}
+          SUBTYPE: ${{ steps.result.outputs.subtype }}
+          REASON: ${{ steps.chain.outputs.reason }}
+        run: |
+          # The Claude step continues on error so the save, chain and issue steps always run. This last step
+          # turns the run red afterwards. Reaching the turn limit is normal and does not count as a failure.
+          if [ "$CLAUDE_OUTCOME" = "failure" ] && [ "$SUBTYPE" != "success" ] && [ "$SUBTYPE" != "error_max_turns" ]; then
+            echo "::error::Claude did not finish (ended with: ${SUBTYPE:-none}). ${REASON:-}"
+            exit 1
           fi
