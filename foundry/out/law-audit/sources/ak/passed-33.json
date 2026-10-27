@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ak",
+ "slug": "passed-33",
+ "url": "https://www.akleg.gov/basis/Bill/Passed/33",
+ "final_url": "https://www.akleg.gov/basis/Bill/Passed/33",
+ "fetched_at": "2026-10-27T05:45:31.154Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "d8d1402e62d01185c8be9c486d994a1ed0c5276a2cacbffde04c46cfb38f458a",
+ "raw_bytes": 185639,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "272e5e6de0dabdc706bc5da98f1380297ea0e16ebc8b24763c89b574d62ea884",
+ "text_chars": 26809
+}

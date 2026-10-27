@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ak",
+ "slug": "sirs-34",
+ "url": "https://www.akleg.gov/basis/Statutes/Sirs/34",
+ "final_url": "https://www.akleg.gov/basis/Statutes/Sirs/34",
+ "fetched_at": "2026-10-27T05:45:21.991Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "64e40cb88f495cff97745236ea80411cff56d02a28f1490dd65abb23f2b4573d",
+ "raw_bytes": 41799,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "9a2d1c3323c563b19cae4de2b65b9a286d3f5d8eb28ed27205e73b27a2ec7aa6",
+ "text_chars": 2932
+}

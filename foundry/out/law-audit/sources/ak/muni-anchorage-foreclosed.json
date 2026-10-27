@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ak",
+ "slug": "muni-anchorage-foreclosed",
+ "url": "https://www.muni.org/Departments/hlb/pages/resforeclosedproperties.aspx",
+ "final_url": "https://www.muni.org/Departments/hlb/pages/resforeclosedproperties.aspx",
+ "fetched_at": "2026-10-27T05:46:27.195Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "9225753b044ab5d00fb2771c1c5b4d1a2ef6b9b34facbc37ec1f78e37fd8bc48",
+ "raw_bytes": 39350,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "10ffb52446bfd309bf3ad8b28ee2ac0c33ea678016d29b86d6cef74ef6df83ca",
+ "text_chars": 3506
+}

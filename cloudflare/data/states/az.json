@@ -1,0 +1,644 @@
+{
+ "code": "AZ",
+ "name": "Arizona",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "16% per year simple interest",
+ "rateNote": "Bid-down interest rate — investor accepts lowest rate",
+ "redemption": "3 years",
+ "bidMethod": "Bid-down interest rate",
+ "statute": "ARS §42-18112",
+ "officialLink": "https://www.azleg.gov/ars/42/18112.htm",
+ "auctionPlatform": "Online (GovEase / county-run — Pima confirmed online Feb 2026)",
+ "auctionTiming": "February (most counties)",
+ "keyNotes": [
+  "16% max is strong for a bid-down state",
+  "After 3 years investor can apply for treasurer's deed",
+  "Pima County 2026 sale confirmed online via GovEase"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "Arizona conducts reverse-bid auctions in February where investors compete to accept lower interest rates from the 16% ceiling in 1% increments. Unsold liens go to direct purchase (OTC) year-round at the full 16% rate. After 3-year redemption, lien holder must file judicial foreclosure in Superior Court (not a treasurer's deed). Only 1-2% of liens reach foreclosure. 15 counties, Maricopa (Phoenix) is the largest market. Must foreclose within 10 years or lien becomes invalid. Statutes: ARS §42-18053 (16% rate), §42-18112 (auction), §42-18114 (bid-down), §42-18122 (OTC), §42-18201 (foreclosure), §42-18204 (deed).",
+ "typeWhy": "Arizona sells tax lien certificates, not property. The investor holds the lien while the owner retains title and has 3 years to redeem. Liens are auctioned via reverse-bid format starting at 16%. ARS §42-18053, §42-18112.",
+ "rateWhy": "Arizona sets a statutory ceiling of 16% annual simple interest, then uses a reverse-bid auction where investors compete by accepting progressively lower rates in 1% increments. 0% bids are accepted. Unsold liens available OTC at the full 16%. ARS §42-18053, §42-18114.",
+ "beginnerFriendly": true,
+ "notBeginnerReason": "",
+ "beginnerTip": "Start with Pinal or Yavapai counties — less competition than Maricopa. OTC purchases are available year-round at 16% in most counties. Go to the county treasurer's office directly and ask for the unsold lien list.",
+ "risks": [
+  "Maricopa and Pima counties are saturated — institutional buyers push rates to 0–3%",
+  "3-year holding period before initiating judicial foreclosure via Superior Court (ARS §42-18201) — requires 30-day certified-mail notice before filing",
+  "Only 1-2% of liens result in property acquisition — most are redeemed",
+  "Easements and improvement district liens (Title 48/Title 9) survive foreclosure per ARS §42-18204",
+  "Must foreclose within 10 years or lien becomes invalid — set calendar reminders",
+  "Many parcels are undeveloped desert with no road access or development potential"
+ ],
+ "ddExtra": [
+  "Run parcel through county GIS to confirm road access and zoning",
+  "Verify no irrigation district or water district secondary liens",
+  "Check ADWR (Arizona Department of Water Resources) for water rights status on agricultural parcels",
+  "Fractions of a month are counted as whole months for interest calculation",
+  "Be aware of SB 1291 (2024) — extended surplus claim period from 1 year to 3 years"
+ ],
+ "auctionSignup": {
+  "platform": "RealAuction (majority of counties)",
+  "steps": [
+   "Go to your target county treasurer's website or RealAuction.com — find Arizona county treasurers at aztaxsale.info",
+   "Create an account 2 weeks before the auction date (February annually)",
+   "Fund your account via ACH or wire transfer — certified funds only. Minimum deposits vary by county",
+   "Bid online during the auction window — you're bidding DOWN from 16% in 1% increments to win the certificate"
+  ],
+  "depositInfo": "Varies by county. Certified funds only (cash, cashier's check, money order). Maricopa requires pre-funding.",
+  "directLink": "https://www.realauction.com"
+ },
+ "otc": {
+  "available": true,
+  "note": "Unsold liens available year-round directly from county treasurers at the full statutory 16% rate. One of the most accessible OTC programs for beginners — no auction competition."
+ },
+ "platforms": [
+  "RealAuction.com",
+  "aztaxsale.info",
+  "County treasurer portals"
+ ],
+ "tylerCompliance": {
+  "status": "compliant",
+  "summary": "Arizona existing surplus statute was already substantially compliant; minor updates enacted.",
+  "details": "Arizona ARS §42-18303 already required the county treasurer to distribute surplus proceeds from tax lien foreclosure sales to parties with recorded interest. Post-Tyler, SB 1291 (2024) added explicit notice-by-mail requirements and extended the claim period from 1 year to 3 years.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": "SB 1291 (2024); ARS §42-18303"
+ },
+ "featuredCounties": [
+  {
+   "name": "Maricopa",
+   "link": "https://treasurer.maricopa.gov/tax-lien",
+   "notes": "Largest auction in AZ. High competition. Online only."
+  },
+  {
+   "name": "Pima",
+   "link": "https://www.pima.gov/government/treasurer",
+   "notes": "Second largest. Moderate competition."
+  },
+  {
+   "name": "Pinal",
+   "link": "https://pinalcountyaz.gov/Treasurer",
+   "notes": "Less competition. Good for beginners."
+  },
+  {
+   "name": "Yavapai",
+   "link": "https://www.yavapai.us/treasurer",
+   "notes": "Rural, lower competition, OTC available."
+  }
+ ],
+ "rules": {
+  "type": "lien",
+  "auction": {
+   "frequency": "Annual",
+   "saleMonth": "February",
+   "bidMethod": "Online reverse auction — bid DOWN from 16% in 1% increments",
+   "startRate": "16%",
+   "zeroBid": "Accepted — earns zero interest",
+   "certificateName": "Certificate of Purchase",
+   "singleBidderRule": true,
+   "deposit": "10% of intended bids, $500 minimum, ACH only",
+   "statute": "ARS §42-18126"
+  },
+  "otc": {
+   "available": true,
+   "name": "OTC Assignment / State CP",
+   "rate": "16% (statutory maximum)",
+   "availableWhen": "Year-round except Jan–Mar (varies by county)",
+   "process": "Purchase via county treasurer or RealAuction assignment portal",
+   "fee": "Per ARS §42-18116 and §42-18118",
+   "statute": "ARS §42-18118",
+   "note": "Struck to State of Arizona when no bidder. Available by mail or online."
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Purchase (Sub-Tax)",
+   "fee": "$5.00 per parcel",
+   "statute": "ARS §42-18121",
+   "note": "Earns same rate as original certificate. County-specific date windows apply."
+  },
+  "redemption": {
+   "period": "Anytime before foreclosure judgment (lien expires 10 years if no action)",
+   "statute": "ARS §42-18151, §42-18152",
+   "homesteadDifferent": false,
+   "agDifferent": false,
+   "note": "Foreclosure eligible 3 years after purchase. 10-year lien expiry if no action."
+  },
+  "deedPath": {
+   "name": "Foreclosure of Right to Redeem",
+   "eligibleAfter": "3 years from date of purchase",
+   "process": "Civil action in Superior Court → certified judgment → Treasurer executes deed",
+   "statute": "ARS §42-18201 et seq.",
+   "deedFee": "$50 per parcel (ARS §42-18204)",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": true,
+   "name": "Excess Proceeds",
+   "statute": "ARS §42-18303",
+   "process": "Overbid at deed sale → former owner claims through county treasurer / Superior Court",
+   "note": "At tax deeded land sale stage only"
+  }
+ },
+ "es": {
+  "type": "lien",
+  "rate": "Hasta 16%",
+  "redemption": "3 años",
+  "summary": "Arizona realiza subastas de puja inversa en febrero. Los gravámenes no vendidos van a compra directa OTC todo el año a nivel de condado. Estatutos: ARS §42-18053 (tasa del 16%), §42-18112 (subasta), §42-18114 (puja inversa), §42-18122 (OTC), §42-18201 (ejecución).",
+  "typeWhy": "Arizona es un estado de gravamen porque el condado vende certificados de gravamen fiscal en subastas de puja inversa, donde los inversores compiten pujando a la baja desde el techo del 16%. El inversor no recibe la propiedad sino el derecho de cobro (ARS §42-18053, §42-18112).",
+  "rateWhy": "La tasa estatutaria máxima del 16% es una de las más altas del país. Las subastas de puja inversa desde ese techo significan que la competencia puede reducir la tasa efectiva, aunque las compras OTC mantienen el 16% completo (ARS §42-18114).",
+  "notBeginnerReason": "",
+  "beginnerTip": "Comience con Pinal o Yavapai — menos competencia que Maricopa. OTC disponible todo el año al 16%. Vaya al tesorero del condado y pida la lista de gravámenes no vendidos.",
+  "risks": [
+   "Maricopa y Pima saturados — institucionales reducen tasas al 0–3%",
+   "3 años de retención antes de iniciar ejecución judicial vía Tribunal Superior (ARS §42-18201) — no es escritura del tesorero",
+   "Muchas parcelas son desierto sin acceso ni potencial de desarrollo",
+   "Verifique derechos de agua activos y gravámenes de distritos de irrigación",
+   "Confirme que la parcela no sea tierra de fideicomiso estatal"
+  ],
+  "ddExtra": [
+   "Ejecute la parcela en el GIS del condado para confirmar acceso y zonificación",
+   "Verifique gravámenes secundarios de distritos de irrigación o agua",
+   "Revise ADWR para derechos de agua en parcelas agrícolas",
+   "Tenga en cuenta SB 1431 (2024) — nuevas reglas de excedentes pueden afectar la distribución de superávit post-ejecución"
+  ],
+  "auctionSignup": {
+   "platform": "Específico por condado (Maricopa usa sistema en línea)",
+   "steps": [
+    "Vaya al sitio del tesorero de su condado objetivo — aztaxsale.info o sitio individual del condado",
+    "Cree una cuenta 2 semanas antes de la subasta (generalmente febrero)",
+    "Financie su cuenta mediante ACH o transferencia bancaria",
+    "Puje en línea — está pujando A LA BAJA desde 16% para ganar el certificado"
+   ],
+   "depositInfo": "Maricopa requiere fondos anticipados. La mayoría requiere transferencia o ACH antes del día de subasta.",
+   "directLink": "https://treasurer.maricopa.gov/tax-lien"
+  },
+  "otc": {
+   "available": true,
+   "note": "Gravámenes no vendidos disponibles todo el año de los tesoreros de condados al 16% estatutario. El mejor programa OTC del país para principiantes."
+  }
+ },
+ "counties": [
+  {
+   "name": "Apache",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.apachecountyaz.gov/Treasurer",
+     "saleUrl": "https://apache.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 18, 2026",
+     "note": "Bidding opens Feb 4"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar (varies by county)",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Struck to State of Arizona when no bidder. Available by mail or online.",
+     "url": "https://www.apachecountyaz.gov/Treasurer"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Cochise",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.cochise.az.gov/treasurer",
+     "saleUrl": "https://cochise.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 2026"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar (varies by county)",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Struck to State of Arizona when no bidder. Available by mail or online.",
+     "url": "https://www.cochise.az.gov/treasurer"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Coconino",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.coconino.az.gov/376/Tax-Liens",
+     "saleUrl": "https://coconino.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 10, 2026",
+     "note": "Published AZ Daily Sun Jan 20 2026"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar (varies by county)",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Struck to State of Arizona when no bidder. Available by mail or online.",
+     "url": "https://www.coconino.az.gov/376/Tax-Liens"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Gila",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.gilacountyaz.gov/government/treasurer/tax_lein_sale.php",
+     "saleUrl": "https://gila.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 2026"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar (varies by county)",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Struck to State of Arizona when no bidder. Available by mail or online.",
+     "url": "https://www.gilacountyaz.gov/government/treasurer/tax_lein_sale.php"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Graham",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.graham.az.gov/362/Tax-Sale-Lien-Guidelines",
+     "saleUrl": "https://graham.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 25, 2026",
+     "note": "2024 taxes sold; foreclosure after 3 yrs"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar (varies by county)",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Struck to State of Arizona when no bidder. Available by mail or online.",
+     "url": "https://www.graham.az.gov/362/Tax-Sale-Lien-Guidelines"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Greenlee",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://greenlee.az.gov/tax-lien-sale-faq/",
+     "saleUrl": "https://greenlee.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 2026"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar (varies by county)",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Struck to State of Arizona when no bidder. Available by mail or online.",
+     "url": "https://greenlee.az.gov/tax-lien-sale-faq/"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "La Paz",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lapaztreas.com/tax-lien-sale-1",
+     "saleUrl": "https://lapaz.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 25, 2026",
+     "note": "List published Feb 11 2026 in Parker Pioneer"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar (varies by county)",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Struck to State of Arizona when no bidder. Available by mail or online.",
+     "url": "https://lapaztreas.com/tax-lien-sale-1"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Maricopa",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://treasurer.maricopa.gov/Pages/LoadPage?page=LiensAndResearch",
+     "saleUrl": "https://maricopa.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 10, 2026",
+     "note": "Bidding opens Jan 16; $500 min deposit"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar; in-person or mail",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Assignments available starting March 3 2025 for 2023 certs",
+     "url": "https://treasurer.maricopa.gov/Pages/LoadPage?page=LiensAndResearch"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Mohave",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.mohave.gov/departments/treasurer/tax-liens/tax-lien-sale/",
+     "saleUrl": "https://mohave.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 2026"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar (varies by county)",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Struck to State of Arizona when no bidder. Available by mail or online.",
+     "url": "https://www.mohave.gov/departments/treasurer/tax-liens/tax-lien-sale/"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Navajo",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.navajocountyaz.gov/459/February-Lien-Sale-Instructions",
+     "saleUrl": "https://navajo.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 11, 2026",
+     "note": "7am MST; bidding opens Feb 3"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar (varies by county)",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Struck to State of Arizona when no bidder. Available by mail or online.",
+     "url": "https://www.navajocountyaz.gov/459/February-Lien-Sale-Instructions"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Pima",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.to.pima.gov/taxLienSale/",
+     "saleUrl": "https://pima.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 26, 2026",
+     "note": "Registration Feb 2–19; first batch closes 8am MST"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round EXCEPT Jan, Feb, March",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "$50 data fee for parcel list (updated monthly)",
+     "url": "https://www.to.pima.gov/taxLienSale/"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Pinal",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.pinal.gov/780/Tax-Lien-Sale",
+     "saleUrl": "https://pinal.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 12, 2026",
+     "note": "Deposit via wire/ACH day before sale"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar (varies by county)",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Struck to State of Arizona when no bidder. Available by mail or online.",
+     "url": "https://www.pinal.gov/780/Tax-Lien-Sale"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Santa Cruz",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.santacruzcountyaz.gov/317/Treasurer",
+     "saleUrl": "https://santacruz.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 10, 2026",
+     "note": "CC/debit deadline Feb 3; ACH only after sale"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar (varies by county)",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Struck to State of Arizona when no bidder. Available by mail or online.",
+     "url": "https://www.santacruzcountyaz.gov/317/Treasurer"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Yavapai",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.yavapaiaz.gov/Mapping-and-Properties/Property-Taxes/Treasurers-Office/Treasurers-Tax-Lien-Sale",
+     "saleUrl": "https://yavapai.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 10, 2026"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar (varies by county)",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Struck to State of Arizona when no bidder. Available by mail or online.",
+     "url": "https://www.yavapaiaz.gov/Mapping-and-Properties/Property-Taxes/Treasurers-Office/Treasurers-Tax-Lien-Sale"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Yuma",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years",
+   "rate": "16% per year simple interest",
+   "platform": "RealAuction",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.yumacountyaz.gov/government/treasurer/tax-lien-information",
+     "saleUrl": "https://yuma.arizonataxsale.com",
+     "platform": "RealAuction",
+     "saleDate2026": "February 2026"
+    },
+    "otc": {
+     "available": true,
+     "name": "OTC Assignment / State CP",
+     "rate": "16% (statutory maximum)",
+     "availableWhen": "Year-round except Jan–Mar (varies by county)",
+     "process": "Purchase via county treasurer or RealAuction assignment portal",
+     "fee": "Per ARS §42-18116 and §42-18118",
+     "statute": "ARS §42-18118",
+     "note": "Struck to State of Arizona when no bidder. Available by mail or online.",
+     "url": "https://www.yumacountyaz.gov/government/treasurer/tax-lien-information"
+    }
+   },
+   "verifiedDate": ""
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ca",
+ "slug": "sco-tcrm-ch8",
+ "url": "https://sco.ca.gov/Files-ARD-Tax-Info/Tax-Collector-Ref-Man/ctcrm_chapter8.pdf",
+ "final_url": "https://sco.ca.gov/Files-ARD-Tax-Info/Tax-Collector-Ref-Man/ctcrm_chapter8.pdf",
+ "fetched_at": "2026-10-27T05:54:41.643Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "9b2306cbda558672bd262851ccd0d1112d17cba0bb42bae26d31e95ce14ffd89",
+ "raw_bytes": 1142908,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "b8fb957b3d8d772b5b83cc1c6a275957b0cd40da8a69c8cbd06f59d9cd9d3cd4",
+ "text_chars": 179093
+}

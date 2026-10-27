@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "dc",
+ "slug": "dcc-47-1353",
+ "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1353",
+ "final_url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1353",
+ "fetched_at": "2026-10-27T05:57:06.137Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "8cb178a41bd61407d52a8650706eee304126c38f68d13c91df245262f74db7f8",
+ "raw_bytes": 33232,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "2f671a147cd074763286412b0890277ba22b3aba0dab58942e58f0b0bf856044",
+ "text_chars": 14200
+}

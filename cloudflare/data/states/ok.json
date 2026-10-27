@@ -1,0 +1,1347 @@
+{
+ "code": "OK",
+ "name": "Oklahoma",
+ "type": "hybrid",
+ "typeLabel": "Hybrid (lien then deed)",
+ "rate": "8%",
+ "rateNote": "County auctions property — no post-sale redemption",
+ "redemption": "2 years",
+ "bidMethod": "Highest bidder",
+ "statute": "68 O.S. §3101",
+ "officialLink": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=138625",
+ "auctionPlatform": "County-run — in-person",
+ "auctionTiming": "June (most counties)",
+ "keyNotes": [
+  "No post-sale redemption — buyer takes immediate title",
+  "June auction annual timing",
+  "Rural land opportunities in eastern Oklahoma"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "Oklahoma holds October tax lien auction followed by June resale and Commissioner's sale. OTC available first Monday of October. Rate is only 8%. Statute: OS Title 68 §3101.",
+ "typeWhy": "Oklahoma sells tax lien certificates at its annual October auction, followed by resale for unsold inventory. The owner retains title during the 2-year redemption period. OS Title 68 §3101.",
+ "rateWhy": "Oklahoma sets a fixed statutory rate of 8% per annum — one of the lowest lien state rates in the country. OS Title 68 §3101.",
+ "beginnerFriendly": true,
+ "notBeginnerReason": "",
+ "beginnerTip": "Oklahoma County (OKC) and Tulsa County have the best inventory. The 8% rate is low but the OTC direct purchase option on the first Monday of October is beginner-friendly — no auction competition.",
+ "risks": [
+  "8% is among the lowest lien rates in the country — make sure the return justifies the capital",
+  "2-year redemption before deed proceedings",
+  "Limited online infrastructure in rural counties"
+ ],
+ "ddExtra": [
+  "Calculate whether 8% justifies your capital commitment vs. other states",
+  "Verify road access on rural parcels",
+  "Confirm OTC availability date with county treasurer — it's the first Monday of October"
+ ],
+ "auctionSignup": {
+  "platform": "County treasurer (Oklahoma County uses online system)",
+  "steps": [
+   "Find your target county treasurer at ok.gov/treasurer",
+   "Oklahoma County (OKC): check oklahomacounty.org/treasurer for online registration",
+   "Register at least 2 weeks before the October auction",
+   "OTC: show up at the county treasurer's office on the first Monday of October for direct purchase"
+  ],
+  "depositInfo": "Varies by county.",
+  "directLink": "https://www.ok.gov/treasurer/Property_Tax/index.html"
+ },
+ "otc": {
+  "available": true,
+  "note": "OTC available first Monday of October each year — direct purchase from county treasurer at 8% rate."
+ },
+ "platforms": [
+  "County treasurer offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [
+  {
+   "name": "Oklahoma",
+   "link": "https://www.oklahomacounty.org/departments/county-treasurer",
+   "notes": "OKC area. Best inventory."
+  },
+  {
+   "name": "Tulsa",
+   "link": "https://www2.tulsacounty.org/treasurer/",
+   "notes": "Good inventory."
+  }
+ ],
+ "rules": {
+  "type": "hybrid",
+  "statute": "68 OS §3101–§3147 (Delinquent Taxes and Collection)",
+  "threeStageProcess": {
+   "stage1_taxSale": {
+    "name": "Tax Sale",
+    "date": "First Monday in October annually",
+    "type": "Tax Lien Certificate",
+    "bidMethod": "Random selection / impartial drawing (68 OS §3108(A))",
+    "interestRate": "8% per annum on lien cert (68 OS §3113)",
+    "redemptionPeriod": "2 years from date of sale (68 OS §3117(b))",
+    "redemptionNote": "Owner may redeem at any time BEFORE county treasurer executes deed. No post-deed redemption.",
+    "unsold": "Unsold liens assigned to county — available OTC anytime prior to 2-year redemption expiry",
+    "statute": "68 OS §3107, §3108, §3113, §3117"
+   },
+   "stage2_resale": {
+    "name": "Tax Resale",
+    "date": "Second Monday in June annually",
+    "type": "Tax Deed (Treasurer's Deed)",
+    "eligibility": "Properties with taxes delinquent 3+ years from date taxes first became due and payable",
+    "bidMethod": "Highest bidder — minimum bid = 2/3 assessed value OR total taxes owed (whichever is lesser)",
+    "redemption": "None post-resale. Owner must redeem before deed is executed.",
+    "deedIssuance": "Deed executed and delivered to purchaser within 30 days of sale",
+    "unsold": "Unsold properties struck off to county → County Commissioner Sale",
+    "exemption": "⚡ Counties >100,000 population: single-family owner-occupied, 65+ or totally disabled, income ≤ HHS poverty guidelines, FMV ≤ $180,000 — EXEMPT from tax sale",
+    "statute": "68 OS §3105, §3125, §3127"
+   },
+   "stage3_commissionerSale": {
+    "name": "County Commissioner Sale",
+    "type": "Tax Deed",
+    "timing": "Year-round — as scheduled by county commissioners",
+    "price": "Set by county commissioners",
+    "statute": "68 OS §3135"
+   }
+  },
+  "auction": {
+   "taxSale_date2026": "First Monday in October 2026 (Oct 5, 2026)",
+   "resale_date2026": "Second Monday in June 2026 (June 8, 2026)",
+   "platform": "In-person county courthouse — each of 77 counties independently",
+   "note": "Oklahoma County (largest) uses online platform. Check docs.oklahomacounty.org/treasurer"
+  },
+  "otc": {
+   "available": true,
+   "name": "County-Held OTC Liens + County Commissioner Sale Properties",
+   "process": {
+    "liens": "Unsold Tax Sale liens assigned to county. Available OTC from county treasurer anytime within 2-year redemption period. County-held certs earn 12%/yr (vs 8% for private investor certs).",
+    "deeds": "Post-Resale unsold properties: contact county commissioners for availability and pricing."
+   },
+   "statute": "68 OS §3108, §3135"
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — Oklahoma cert holder does not pay subsequent taxes; owner must pay or additional delinquency triggers separate lien"
+  },
+  "redemption": {
+   "stage1": "2 years from Tax Sale date. Anytime before treasurer executes deed after 2 years.",
+   "stage2": "Must redeem BEFORE resale deed is executed. No post-deed redemption.",
+   "amounts": "Sum originally delinquent + interest + additional costs (not to exceed 10%/yr per 68 OS §3113)",
+   "minorException": "Minors or mentally incapacitated persons may redeem within 1 year after disability expires",
+   "statute": "68 OS §3113, §3117",
+   "homesteadDifferent": true,
+   "homesteadNote": "Large-county exemption (>100K pop): certain elderly/disabled/low-income homeowners exempt from sale entirely"
+  },
+  "deedPath": {
+   "name": "Treasurer's Deed (Resale) / Tax Deed (Commissioner Sale)",
+   "resale": "68 OS §3118: deed vests absolute estate in fee simple. Extinguishes mortgages of record.",
+   "challenge": "1-year post-recording window to challenge deed procedurally (68 OS §3141). After 1 year — only fraud/constitutional grounds.",
+   "quietTitle": "⚡ Quiet title strongly recommended. Tax deed not warranty deed. County makes no representations.",
+   "statute": "68 OS §3118, §3141",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": true,
+   "name": "Excess Proceeds",
+   "statute": "68 OS §3103 — excess proceeds of personal property lien release to county treasurer. Tyler v. Hennepin applies to real property surplus.",
+   "process": "Surplus from resale: court-supervised or treasurer distribution. Tyler v. Hennepin compliance applies.",
+   "note": "[VERIFY] — OK surplus statutes for real property sales not as clearly codified as some states. Confirm with county treasurer."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "8%",
+  "redemption": "2 años",
+  "summary": "Oklahoma realiza subasta de gravamen fiscal en octubre seguida de reventa en junio y venta del Comisionado. OTC disponible el primer lunes de octubre. Tasa es solo del 8%. Estatuto: OS Título 68 §3101.",
+  "typeWhy": "Oklahoma es un estado de gravamen porque los condados venden certificados de gravamen fiscal en la subasta anual de octubre con período de redención de 2 años (OS Título 68 §3101).",
+  "rateWhy": "La tasa del 8% es una de las más bajas entre los estados de gravamen (OS Título 68 §3101).",
+  "notBeginnerReason": "",
+  "beginnerTip": "El Condado Oklahoma (OKC) y Tulsa tienen el mejor inventario. La tasa del 8% es baja pero la opción OTC el primer lunes de octubre es amigable para principiantes — sin competencia en subasta.",
+  "risks": [
+   "8% es la tasa de gravamen más baja del país — asegúrese de que el retorno justifique el capital",
+   "Redención de 2 años antes de los procedimientos de escritura",
+   "Infraestructura en línea limitada en condados rurales"
+  ],
+  "ddExtra": [
+   "Calcule si el 8% justifica su compromiso de capital vs. otros estados",
+   "Verifique acceso vial en parcelas rurales",
+   "Confirme la fecha de disponibilidad OTC — es el primer lunes de octubre"
+  ],
+  "auctionSignup": {
+   "platform": "Tesorero del condado (el Condado Oklahoma usa sistema en línea)",
+   "steps": [
+    "Encuentre al tesorero de su condado en ok.gov/treasurer",
+    "Condado Oklahoma (OKC): oklahomacounty.org/treasurer para registro en línea",
+    "Regístrese al menos 2 semanas antes de la subasta de octubre",
+    "OTC: preséntese en la oficina del tesorero del condado el primer lunes de octubre"
+   ],
+   "depositInfo": "Varía por condado.",
+   "directLink": "https://www.ok.gov/treasurer/Property_Tax/index.html"
+  },
+  "otc": {
+   "available": true,
+   "note": "OTC disponible el primer lunes de octubre cada año — compra directa del tesorero al 8%."
+  }
+ },
+ "counties": [
+  {
+   "name": "Adair",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.adaircounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Alfalfa",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.alfalfacounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Atoka",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.atokacounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Beaver",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.beavercounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Beckham",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.beckhamcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Blaine",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.blainecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bryan",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.bryancounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Caddo",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.caddocounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Canadian",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.canadiancounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carter",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.cartercounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cherokee",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.cherokeecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Choctaw",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.choctawcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cimarron",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.cimarroncounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cleveland",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.clevelandcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Coal",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.coalcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Comanche",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.comanchecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cotton",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.cottoncounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Craig",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.craigcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Creek",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.creekcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Custer",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.custercounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Delaware",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.delawarecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dewey",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.deweycounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ellis",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.elliscounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Garfield",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.garfieldcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Garvin",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.garvincounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grady",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.gradycounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grant",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.grantcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Greer",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.greercounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harmon",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.harmoncounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harper",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.harpercounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Haskell",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.haskellcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hughes",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.hughescounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.jacksoncounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.jeffersoncounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Johnston",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.johnstoncounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kay",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.kaycounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kingfisher",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.kingfishercounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kiowa",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.kiowacounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Latimer",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.latimercounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Le Flore",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.leflorecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.lincolncounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Logan",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.logancounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Love",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.lovecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Major",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.majorcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marshall",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.marshallcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mayes",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.mayescounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McClain",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.mcclaincounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McCurtain",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.mccurtaincounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McIntosh",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.mcintoshcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Murray",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.murraycounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Muskogee",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.muskogeecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Noble",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.noblecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nowata",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.nowatacounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Okfuskee",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.okfuskeecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Oklahoma",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "Online + in-person",
+   "url": "https://docs.oklahomacounty.org/treasurer/TaxLiens.asp",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Okmulgee",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.okmulgeecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Osage",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.osagecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ottawa",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.ottawacounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pawnee",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.pawneecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Payne",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.paynecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pittsburg",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.pittsburgcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pontotoc",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.pontotoccounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pottawatomie",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.pottawatomiecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pushmataha",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.pushmatahacounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Roger Mills",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.rogermillscounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rogers",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.rogerscounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Seminole",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.seminolecounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sequoyah",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.sequoyahcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stephens",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.stephenscounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Texas",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.texascounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tillman",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.tillmancounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tulsa",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.tulsacounty.org/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wagoner",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.wagonercounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.washingtoncounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washita",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.washitacounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Woods",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.woodscounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Woodward",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "2 years",
+   "rate": "8%",
+   "platform": "In-person courthouse",
+   "url": "https://www.woodwardcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "taxSaleDate2026": "October 5, 2026 (1st Monday October)",
+    "resaleDate2026": "June 8, 2026 (2nd Monday June)"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

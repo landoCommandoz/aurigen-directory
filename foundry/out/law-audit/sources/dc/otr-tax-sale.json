@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "dc",
+ "slug": "otr-tax-sale",
+ "url": "https://otr.cfo.dc.gov/page/real-property-tax-sale",
+ "final_url": "https://otr.cfo.dc.gov/page/real-property-tax-lien-sale-and-resources",
+ "fetched_at": "2026-10-27T05:56:22.765Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "3232f0b84bd973e03b6f1ad28b39c80990cbcf3f92ace9e2004250402247a56d",
+ "raw_bytes": 137009,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "b13bbe58f146aff0931e2dafadd5b499a8029a9d2855b83dc1aa14134c6f8fe9",
+ "text_chars": 12411
+}

@@ -1,0 +1,1583 @@
+{
+ "code": "NC",
+ "name": "North Carolina",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "N/A",
+ "rateNote": "Unique upset bid process — sale not final until 10-day window closes",
+ "redemption": "10-day upset bid period post-auction",
+ "bidMethod": "Highest bidder — subject to upset bid period",
+ "statute": "NC GS §105-374",
+ "officialLink": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-374.html",
+ "auctionPlatform": "County-run — in-person and online varies",
+ "auctionTiming": "Year-round",
+ "keyNotes": [
+  "UNIQUE: 10-day upset bid window after winning bid — any party can overbid by 5% within 10 days",
+  "Sale is NOT final until 10-day upset bid period expires with no higher offer",
+  "No post-sale redemption once upset bid period closes",
+  "Growing market — Charlotte and Triangle metro attract competition"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "North Carolina holds tax deed sales. After auction, there is a 10-day 'upset bid' window where any party can submit a 5% higher bid and win the property. Good inventory in Charlotte and Raleigh metro areas. Statute: NCGS §105-374.",
+ "typeWhy": "North Carolina sells the property deed outright at auction. While there is no traditional redemption period, a 10-day upset bid window allows any party to submit a higher bid. NCGS §105-374.",
+ "rateWhy": "North Carolina is a deed state with no statutory interest rate. Returns depend on the auction price relative to market value. NCGS §105-374.",
+ "beginnerFriendly": true,
+ "notBeginnerReason": "",
+ "beginnerTip": "Mecklenburg (Charlotte), Wake (Raleigh), and Durham counties have the best inventory. Factor the 10-day upset bid period into your planning — never make improvements or arrangements during those 10 days.",
+ "risks": [
+  "10-day upset bid period: anyone can outbid you by 5% after you win — you don't own it until day 11",
+  "Two execution methods (in rem vs. judicial) — confirm which your county uses",
+  "Strong tenant protections — budget for eviction costs on occupied properties"
+ ],
+ "ddExtra": [
+  "Confirm which execution method the county uses for the sale",
+  "Do not schedule contractors or movers until the 10-day upset bid period expires",
+  "Check for active IRS liens — these survive NC tax deed sales"
+ ],
+ "auctionSignup": {
+  "platform": "County tax collector or sheriff (in-person or online)",
+  "steps": [
+   "Find your target county tax collector at dornc.com or the county government website",
+   "Register for the upcoming sale — some NC counties use online platforms, others are in-person",
+   "Attend the auction and bid — if you win, be aware of the 10-day upset bid window",
+   "Monitor for upset bids during the 10-day window before assuming you own the property"
+  ],
+  "depositInfo": "Typically 5–10% deposit at auction. Varies by county.",
+  "directLink": "https://www.ncdor.gov/taxes-forms/property-tax"
+ },
+ "otc": {
+  "available": false,
+  "note": "No statewide OTC. Check county for surplus sale inventory."
+ },
+ "platforms": [
+  "County tax collector offices",
+  "County sheriff offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [
+  {
+   "name": "Mecklenburg",
+   "link": "https://tax.mecknc.gov/",
+   "notes": "Charlotte. Strong inventory."
+  },
+  {
+   "name": "Wake",
+   "link": "https://www.wake.gov/departments-government/tax-administration",
+   "notes": "Raleigh. Good suburban inventory."
+  }
+ ],
+ "rules": {
+  "type": "deed",
+  "auction": {
+   "frequency": "Year-round / ongoing — no fixed statewide schedule",
+   "method": "Public auction at courthouse steps — commissioner or attorney conducts",
+   "bidMethod": "Premium bid — highest bidder",
+   "minimumBid": "Opening bid set by county (approx. taxes + interest + costs + fees)",
+   "deposit": "Typically 5–20% of winning bid due immediately day of sale (certified funds)",
+   "payment": "Balance due within 10 days after upset bid period expires",
+   "deed": "Commissioner's Deed or Non-Warranty Sheriff's Deed — fee simple, free and clear",
+   "twoTypes": "GS §105-374 (mortgage-style, attorney-handled) OR GS §105-375 (in-rem, county/sheriff-handled)",
+   "statute": "NC GS §105-374, §105-375"
+  },
+  "upsetBid": {
+   "CRITICAL": true,
+   "description": "Every NC tax foreclosure sale is subject to a 10-day upset bid period after the report of sale is filed.",
+   "minimum": "Upset bid must exceed prior bid by 5% — OR minimum increase of $750 (whichever is greater)",
+   "process": "Filed with Clerk of Superior Court — certified funds required",
+   "dayCount": "Day of sale = Day 1. If Day 10 falls on weekend/holiday, next business day counts.",
+   "openPeriod": "Each new upset bid restarts the 10-day clock",
+   "confirmation": "After 10 days with no upset bid — commissioner applies for judgment of confirmation from Clerk of Superior Court",
+   "statute": "NC GS §105-374(o), §1-339.25, §1-339.64"
+  },
+  "otc": {
+   "available": true,
+   "name": "Surplus / County-Acquired Property Sale",
+   "trigger": "No bidder at tax sale — county acquires. Held as surplus property.",
+   "process": "Contact county tax office or county manager. Upset bid process required for county surplus sales too (GS §153A-176).",
+   "statute": "NC GS §105-376(c), §153A-176",
+   "note": "NC does NOT sell tax lien certificates. Only deed foreclosure path exists."
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — North Carolina is deed foreclosure state, no lien cert sub-tax"
+  },
+  "redemption": {
+   "available": true,
+   "period": "Until confirmation of sale by Clerk of Superior Court (after upset bid period + confirmation)",
+   "process": "Owner or any party with recorded interest pays all taxes, interest, fees, and foreclosure costs",
+   "noRedemptionAfter": "Once Clerk confirms sale — no further redemption",
+   "statute": "NC GS §105-374"
+  },
+  "deedPath": {
+   "name": "Commissioner's Deed (GS §105-374) / Sheriff's Deed (GS §105-375)",
+   "titleQuality": "Fee simple, free and clear of ALL liens, claims, rights, interests (except taxes not included in judgment)",
+   "quietTitleRequired": false,
+   "statute": "NC GS §105-375 — fee simple free and clear"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Proceeds",
+   "statute": "NC GS §105-374(q)",
+   "process": "Commissioner applies proceeds: 1) Costs 2) Tax liens/interest 3) Other taxing unit liens 4) Surplus → court registry for persons entitled",
+   "claimProcess": "File special proceeding with Clerk under GS §1-339.71 if adverse claims exist",
+   "note": "Tyler v. Hennepin applies — NC distributes surplus to prior owner"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "deed",
+  "rate": "N/A",
+  "redemption": "Período de puja de protesta de 10 días post-subasta",
+  "summary": "Carolina del Norte realiza ventas de escrituras fiscales. Después de la subasta, hay una ventana de 'puja de protesta' de 10 días donde cualquier parte puede enviar una puja un 5% más alta y ganar la propiedad. Estatuto: NCGS §105-374.",
+  "typeWhy": "Carolina del Norte es un estado de escritura porque los condados venden propiedades directamente, sin período de redención tradicional. Existe una ventana de 10 días de puja de protesta (NCGS §105-374).",
+  "rateWhy": "No se aplica tasa de interés ya que es un estado de escritura. El retorno depende del precio final incluyendo posibles pujas de protesta (NCGS §105-374).",
+  "notBeginnerReason": "",
+  "beginnerTip": "Los condados Mecklenburg (Charlotte), Wake (Raleigh) y Durham tienen el mejor inventario. Tenga en cuenta el período de puja de protesta de 10 días — nunca realice mejoras ni arreglos durante esos 10 días.",
+  "risks": [
+   "Período de puja de protesta de 10 días: cualquiera puede superarle en un 5% — no es suya hasta el día 11",
+   "Dos métodos de ejecución (in rem vs. judicial) — confirme cuál usa su condado",
+   "Fuertes protecciones de inquilinos — presupueste costos de desalojo en propiedades ocupadas"
+  ],
+  "ddExtra": [
+   "Confirme qué método de ejecución usa el condado",
+   "No programe contratistas ni mudanzas hasta que expire el período de puja de protesta de 10 días",
+   "Revise gravámenes activos del IRS — estos sobreviven a las ventas de escrituras fiscales de NC"
+  ],
+  "auctionSignup": {
+   "platform": "Recaudador de impuestos del condado o sheriff (en persona o en línea)",
+   "steps": [
+    "Encuentre al recaudador de impuestos de su condado en dornc.com o el sitio del gobierno del condado",
+    "Regístrese para la próxima venta — algunos condados usan plataformas en línea, otros son en persona",
+    "Asista a la subasta y puje — si gana, tenga en cuenta la ventana de puja de protesta de 10 días",
+    "Monitoree las pujas de protesta durante los 10 días antes de asumir que posee la propiedad"
+   ],
+   "depositInfo": "Normalmente depósito del 5–10% en la subasta. Varía por condado.",
+   "directLink": "https://www.ncdor.gov/taxes-forms/property-tax"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin OTC estatal. Revise el condado para inventario de venta de excedente."
+  }
+ },
+ "counties": [
+  {
+   "name": "Alamance",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.alamance-nc.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Alexander",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.alexandercountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Alleghany",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.alleghanycounty.us/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Anson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.ansonco.net/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ashe",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.ashecountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Avery",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.averycounty.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Beaufort",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.beaufortcountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bertie",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.bertiecounty.net/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bladen",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.bladenco.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Brunswick",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.brunswickcountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Buncombe",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.buncombecounty.org/governing/depts/TaxCol/ForeClosureSales.aspx",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Burke",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.burkenc.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cabarrus",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.cabarruscounty.us/government/departments/tax-administration/delinquent-tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Caldwell",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.caldwellcountync.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Camden",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.camdennc.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carteret",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.carteretcountync.gov/1149/Tax-Foreclosure-Sales",
+   "notes": [
+    "20% deposit day of sale; 5% upset bid minimum"
+   ],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Caswell",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.caswellcountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Catawba",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.catawbacountync.gov/government/departments/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chatham",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.chathamcountync.gov/government/departments-programs-i-z/tax-administration/tax-foreclosure-sales",
+   "notes": [
+    "ZLS attorney-handled; 20% deposit day of sale"
+   ],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cherokee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.cherokeecounty-nc.gov/227/Tax-Foreclosures",
+   "notes": [
+    "Sheriff's Deed after 10-day upset bid period"
+   ],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chowan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.chowancounty-nc.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clay",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.clayconc.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cleveland",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.clevelandcounty.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Columbus",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.columbusco.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Craven",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.cravencountync.gov/departments/tax/tax_administration/foreclosure_sales/index.php",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cumberland",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.co.cumberland.nc.us/government/county-departments/tax-administration/foreclosure-sales",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Currituck",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.co.currituck.nc.us/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dare",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.darenc.gov/departments/tax/foreclosure-sales",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Davidson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.co.davidson.nc.us/index.aspx?NID=141",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Davie",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.daviecountync.gov/departments/tax-administration/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Duplin",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.duplincountync.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Durham",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.dconc.gov/government/departments-f-z/tax-administration/delinquent-taxes/foreclosure-sales",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Edgecombe",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.edgecombeco.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Forsyth",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse/Online",
+   "url": "https://www.forsyth.cc/tax/foreclosure.aspx",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.franklincountync.us/services/tax/foreclosure-sales",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gaston",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.gastongov.com/departments/tax-office/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gates",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.gatescountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Graham",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.grahamcounty.net/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Granville",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.granvillecounty.org/tax-collector/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Greene",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.greenecountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Guilford",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.guilfordcountync.gov/our-county/departments/tax/delinquent-taxes/tax-foreclosures",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Halifax",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.halifaxnc.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harnett",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.harnett.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Haywood",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.haywood.nc.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Henderson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.hendersoncountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hertford",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.hertfordco.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hoke",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.hokecounty.net/490/Foreclosure-Sales",
+   "notes": [
+    "5% or $750 deposit (greater); in-rem + mortgage-style both used"
+   ],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hyde",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.hydecounty.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Iredell",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.iredellcountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.jacksonnc.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Johnston",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.johnstonnc.com/TaxCollector/foreclosure.cfm",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jones",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.jonescountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.leecountync.gov/departments/tax-administration/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lenoir",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.lenoircountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.lincolncounty.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Macon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.maconnc.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Madison",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.madisoncountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Martin",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.martincountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McDowell",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.mcdowellgov.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mecklenburg",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse/Online",
+   "url": "https://www.mecknc.gov/tservices/tax/pages/taxforeclosure.aspx",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mitchell",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.mitchellcountygovernment.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Montgomery",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.montgomerycountync.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Moore",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.moorecounty.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nash",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.nashcountync.gov/departments/tax-administration/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "New Hanover",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.nhcgov.com/tax/Pages/Foreclosures.aspx",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Northampton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.northamptonnc.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Onslow",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.onslowcountync.gov/1151/Tax-Foreclosure-Sales",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Orange",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.orangecountync.gov/departments/tax_administration/delinquent_tax_foreclosure.php",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pamlico",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.pamlicocounty.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pasquotank",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.pasquotankcountygo.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pender",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://pendercountync.gov/464/Tax-Foreclosure-Surplus-Property",
+   "notes": [
+    "5% or $750 upset bid minimum; surplus property also listed"
+   ],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Perquimans",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.perquimanscounty.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Person",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.personcounty.net/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pitt",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.pittcountync.gov/government/departments/tax-administration/foreclosure-sales",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Polk",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.polknc.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Randolph",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.randolphcountync.gov/departments/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Richmond",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.richmondnc.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Robeson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.robesoncounty.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rockingham",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.rockinghamcountyng.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rowan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.rowancountync.gov/government/departments/tax-administration/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rutherford",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.rutherfordcountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sampson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.sampsonnc.com/departments/tax-administration/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Scotland",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.scotlandcounty.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stanly",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.stanlycounty.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stokes",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.co.stokes.nc.us/departments/county_owned_surplus_property.php",
+   "notes": [
+    "Surplus property listed; upset bid per GS 153A-176"
+   ],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Surry",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.co.surry.nc.us/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Swain",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.swaincountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Transylvania",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.transylvaniacounty.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tyrrell",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.tyrrellcountygovernment.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Union",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.unioncountync.gov/government/departments/tax-administration/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Vance",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.vancecounty.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wake",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse/Online",
+   "url": "https://www.wake.gov/departments-agencies/tax-administration/delinquent-taxes/foreclosures",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Warren",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.warrencountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.washingtoncountync.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Watauga",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.wataugacounty.org/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wayne",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.waynegov.com/government/departments/tax-office/delinquent-taxes/tax-foreclosures/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wilkes",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.wilkescountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wilson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.wilson-co.com/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Yadkin",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.yadkincountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Yancey",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "10-day upset bid period post-auction",
+   "rate": "N/A",
+   "platform": "Courthouse",
+   "url": "https://www.yanceycountync.gov/tax/foreclosure-sales/",
+   "notes": [],
+   "extra": {
+    "frequency": "Ongoing"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

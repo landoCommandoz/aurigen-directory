@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "al",
+ "slug": "sb257-2018-eng",
+ "url": "https://alison.legislature.state.al.us/files/pdf/SearchableInstruments/2018RS/PrintFiles/SB257-Eng.pdf",
+ "final_url": "https://alison.legislature.state.al.us/files/pdf/SearchableInstruments/2018RS/PrintFiles/SB257-Eng.pdf",
+ "fetched_at": "2026-10-27T05:50:20.040Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "c8ccb63a6bf4b261214344800df7337f1350b9601586bb91a094744007da2429",
+ "raw_bytes": 50815,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "bf77ceec2d8f31c60f737beb557cdd2c7c34f57080bb4c4e008deedb07e00225",
+ "text_chars": 19477
+}

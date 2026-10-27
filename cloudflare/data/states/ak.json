@@ -1,0 +1,412 @@
+{
+ "code": "AK",
+ "name": "Alaska",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "Varies",
+ "rateNote": "Borough system — not county-based",
+ "redemption": "1 year",
+ "bidMethod": "Varies by borough municipality",
+ "statute": "AS §29.45.330",
+ "officialLink": "https://www.akleg.gov/basis/statutes.asp#29.45.330",
+ "auctionPlatform": "Borough-run — in-person and online varies",
+ "auctionTiming": "Varies by borough",
+ "keyNotes": [
+  "Alaska uses boroughs not counties — 19 organized boroughs plus unorganized areas",
+  "Low inventory state — remote and rural parcels dominate",
+  "Bidding method varies by municipality — always contact borough directly before registering"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "Alaska operates through boroughs (not counties). The Matanuska-Susitna and Fairbanks North Star boroughs occasionally sell tax-foreclosed properties. Statute: AS §29.45.",
+ "typeWhy": "Alaska sells the property outright through borough-level tax foreclosure auctions — the buyer receives a deed, not a lien. Some boroughs allow a 1-year redemption period. AS §29.45.",
+ "rateWhy": "Alaska has no fixed statutory interest rate on tax sales. Bidding is market-driven, with prices determined by competitive auction at the borough level. AS §29.45.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Borough-based system, limited inventory, federal land ownership restricts most parcels. Requires local connections.",
+ "beginnerTip": "Not a recommended starting state. If pursuing Alaska, focus on Matanuska-Susitna Borough which has the most consistent auction activity.",
+ "risks": [
+  "Federal land ownership restricts a large percentage of available parcels",
+  "Remote properties have extreme logistics costs",
+  "Very low inventory — not a reliable primary market",
+  "Borough rules vary significantly"
+ ],
+ "ddExtra": [
+  "Verify parcel is not federal, state, or Native corporation land before bidding",
+  "Check BLM land atlas for ownership classification",
+  "Confirm road access — many parcels are landlocked or fly-in only"
+ ],
+ "auctionSignup": {
+  "platform": "Borough-specific",
+  "steps": [
+   "Identify your target borough at commerce.alaska.gov",
+   "Contact the borough assessor or tax collector directly — no centralized state system",
+   "Request the tax foreclosure list when available",
+   "Register and attend the auction per borough instructions — most require in-person attendance"
+  ],
+  "depositInfo": "Varies by borough. Confirm directly.",
+  "directLink": "https://commerce.alaska.gov/web/dcra"
+ },
+ "otc": {
+  "available": false,
+  "note": "No statewide OTC program."
+ },
+ "platforms": [
+  "Borough assessor offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "deed",
+  "statute": "AS §29.45.290–§29.45.500 (Municipal Taxation — Enforcement of Tax Liens)",
+  "structure": "Alaska has boroughs (not counties) + home rule municipalities. Only taxing municipalities (25 total) levy property tax. Rural Alaska unorganized areas generally have no property tax.",
+  "critical": "⚡ Alaska does NOT hold public tax auctions where anyone can bid on tax-delinquent property. Municipality files court petition, acquires property through judicial decree, then sells through its own process.",
+  "process": {
+   "step1": "Delinquent taxes become lien on property.",
+   "step2": "Municipality files petition with Superior Court for judicial foreclosure (AS §29.45.320, §29.45.330).",
+   "step3": "Publication: delinquent tax list published in newspaper for 4 weeks (or posted if no newspaper).",
+   "step4": "Within 10 days of first publication: municipality mails certified mail notice to owner.",
+   "step5": "30-day answer period: interested parties may file answer with court (AS §29.45.370).",
+   "step6": "Court enters Judgment and Decree of Foreclosure. Property transfers to municipality.",
+   "step7": "Municipality holds property ≥1 year (redemption period).",
+   "step8": "Municipality sells foreclosed property (sealed bids, public auction, or other process per municipal ordinance).",
+   "stat": "AS §29.45.320, §29.45.330, §29.45.380, §29.45.390, §29.45.400, §29.45.460"
+  },
+  "auction": {
+   "frequency": "As scheduled by each municipality. FNSB: at least every 2 years.",
+   "platform": {
+    "anchorage": "Sealed bid auction (typical). Properties listed at muni.org/Departments/hlb/pages/resforeclosedproperties.aspx. 2026 properties listed.",
+    "fnsb": "Public auction — Aug 28, 2026 CONFIRMED",
+    "other": "Each municipality sets its own process per AS §29.45.460(b)"
+   },
+   "confirmed2026": {
+    "fnsb": "August 28, 2026 — Fairbanks North Star Borough — CONFIRMED OFFICIAL (fnsb.gov)",
+    "anchorage": "2026 properties listed at muni.org — sale date TBD. Typical: sealed bid process.",
+    "fnsb_interest": "FNSB delinquency: 5% penalty + 8%/yr simple interest on taxes due"
+   }
+  },
+  "otc": {
+   "available": false,
+   "name": "N/A — Alaska municipal foreclosure only. No OTC lien cert sales.",
+   "note": "Contact individual municipalities for surplus/unsold foreclosed property listings."
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — No private lien cert holders in Alaska"
+  },
+  "delinquencyInterest": {
+   "fnsb": "5% penalty + 8%/yr simple interest",
+   "anchorage": "Varies — contact MOA Treasury (907) 343-6650",
+   "statute": "AS §29.45 — rates set by each municipality"
+  },
+  "redemption": {
+   "period": "1 year from date property transferred to municipality by court decree",
+   "amounts": "Lien amount + penalties + interest + costs (including AS §29.45.440(a) costs)",
+   "payTo": "Municipality",
+   "possession": "Owner may reside in property during redemption period. Municipality may declare immediate forfeiture if owner damages property.",
+   "preDecree": "Owner may stop foreclosure anytime before court transfers property by paying full delinquency.",
+   "statute": "AS §29.45.400, §29.45.340",
+   "homesteadDifferent": false
+  },
+  "repurchaseRight": {
+   "period": "10 years from date foreclosure completed (if property not yet sold to new owner)",
+   "amounts": "Debt amount + interest ≤15%/yr from foreclosure judgment date + delinquent taxes that would have accrued + maintenance/management costs exceeding rental income + insurance + HOA dues",
+   "statute": "AS §29.45.470",
+   "note": "10-year right expires if municipality sells property to third party"
+  },
+  "deedPath": {
+   "name": "Municipality acquires by court decree → sells to buyer",
+   "titleEffect": "Buyer gets title to property. Mortgage and other liens eliminated.",
+   "anchorageProcess": "MOA: sealed bids generally. Property profiles (litigation guarantee + vicinity map) available before sale.",
+   "statute": "AS §29.45.460, §29.45.480",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": true,
+   "name": "Excess Sale Proceeds",
+   "statute": "AS §29.45.480(b)",
+   "claimPeriod": "6 months from date of sale",
+   "process": "Upon sale: municipality provides written notice to former owner of excess amount and claim procedure. Claim must be filed within 6 months — permanently barred after.",
+   "scope": "Applies if property held <10 years after redemption period and NOT designated for public purpose",
+   "anchorageNote": "⚡ Anchorage MOA: 'A claim for the excess filed after six months of the date of sale is forever barred.' Municipality sends written notice of excess and claim procedure.",
+   "noticeRequired": "Municipality MUST give written notice of surplus and claim procedure to former owner (AS §29.45.460(c))"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "deed",
+  "rate": "Varía",
+  "redemption": "1 año",
+  "summary": "Alaska opera a través de boroughs. Los boroughs de Matanuska-Susitna y Fairbanks North Star ocasionalmente venden propiedades embargadas. Estatuto: AS §29.45.",
+  "typeWhy": "Alaska es un estado de escritura porque los boroughs venden directamente la propiedad embargada por impuestos, transfiriendo el título al comprador en la subasta (AS §29.45).",
+  "rateWhy": "La tasa varía por borough ya que no existe una tasa estatutaria fija. Cada borough establece sus propios términos de venta según su regulación local.",
+  "notBeginnerReason": "Sistema basado en boroughs, inventario limitado, la propiedad federal restringe la mayoría de las parcelas.",
+  "beginnerTip": "No es un estado inicial recomendado. Si busca Alaska, enfóquese en Matanuska-Susitna que tiene la actividad más consistente.",
+  "risks": [
+   "La propiedad federal restringe gran porcentaje de parcelas",
+   "Propiedades remotas con costos de logística extremos",
+   "Inventario muy bajo",
+   "Las reglas del borough varían significativamente"
+  ],
+  "ddExtra": [
+   "Verifique que la parcela no sea tierra federal, estatal o de corporación nativa",
+   "Revise el atlas de BLM para clasificación de propiedad",
+   "Confirme acceso vial — muchas parcelas solo accesibles por avión"
+  ],
+  "auctionSignup": {
+   "platform": "Específico por borough",
+   "steps": [
+    "Identifique su borough objetivo en commerce.alaska.gov",
+    "Contacte al tasador o recaudador del borough directamente — sin sistema estatal centralizado",
+    "Solicite la lista de ejecuciones fiscales cuando esté disponible",
+    "Regístrese y asista según las instrucciones del borough"
+   ],
+   "depositInfo": "Varía por borough. Confirme directamente.",
+   "directLink": "https://commerce.alaska.gov/web/dcra"
+  },
+  "otc": {
+   "available": false,
+   "note": "No hay programa OTC estatal."
+  }
+ },
+ "counties": [
+  {
+   "name": "Municipality of Anchorage",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.muni.org/Departments/hlb/pages/resforeclosedproperties.aspx",
+   "notes": [
+    "⚡ 2026 properties listed. Sealed bid process typical. Treasury: (907) 343-6650"
+   ],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fairbanks North Star Borough",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.fnsb.gov/169/Tax-Foreclosure",
+   "notes": [
+    "⚡ Aug 28, 2026 CONFIRMED. Delinquency: 5% penalty + 8%/yr."
+   ],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Matanuska-Susitna Borough",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.matsugov.us/treasury/delinquent-taxes",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kenai Peninsula Borough",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.kpb.us/treasurer/delinquent-taxes",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kodiak Island Borough",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.kodiakak.us/treasurer/delinquent-taxes",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "City and Borough of Juneau",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://juneau.org/finance/property-taxes",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "City and Borough of Sitka",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.cityofsitka.com/government/departments/finance/taxes",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ketchikan Gateway Borough",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.kgbak.us/departments/finance/property-tax",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bristol Bay Borough",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.bristolbayborough.org/finance",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Denali Borough",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.denaligov.org/finance",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Haines Borough",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://hainesak.gov/finance",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Petersburg Borough",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.petersburgak.gov/government/finance",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "City of Wrangell",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.wrangell.com/finance",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Skagway Borough",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.skagway.org/finance",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lake and Peninsula Borough",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.lakeandpenboroughak.us",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Aleutians East Borough",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.aleutianseast.org",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Aleutians West Census Area",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://commerce.alaska.gov/web/dcra",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Northwest Arctic Borough",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://www.nwabor.org",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nome Census Area",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year",
+   "rate": "Varies",
+   "platform": "Municipal/Borough — judicial foreclosure + sealed bid or public auction",
+   "url": "https://commerce.alaska.gov/web/dcra",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

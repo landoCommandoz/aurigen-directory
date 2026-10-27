@@ -1,0 +1,587 @@
+{
+ "code": "UT",
+ "name": "Utah",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "N/A",
+ "rateNote": "Statewide same-day auction — all counties sell on same day in May",
+ "redemption": "None post-sale (5-year delinquency required before sale)",
+ "bidMethod": "Highest bidder (premium bid)",
+ "statute": "Utah Code §59-2-1351",
+ "officialLink": "https://le.utah.gov/xcode/Title59/Chapter2/59-2-S1351.html",
+ "auctionPlatform": "County treasurer — in-person (all counties same day)",
+ "auctionTiming": "May — all counties statewide on same day",
+ "keyNotes": [
+  "All 29 counties auction on the same day in May — investor must choose which county to attend",
+  "No post-sale redemption — clean title conveyed",
+  "Always research water rights on Utah properties — water rights are separate from land and critical in this state",
+  "Salt Lake and Utah County properties attract heavy competition"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "Utah holds all county tax deed auctions on the same day each May. Properties must be 5 years delinquent before auction. Each county registers separately — no statewide system. No redemption post-sale. Sheriff sale option also available. Limited urban inventory outside Salt Lake City. Statute: UCA §59-2-1351.1.",
+ "typeWhy": "Utah sells the property deed outright at annual May auctions after 5 years of tax delinquency. There is no post-sale redemption period. UCA §59-2-1351.1.",
+ "rateWhy": "Utah is a deed state with no statutory interest rate. Returns are market-driven at auction. UCA §59-2-1351.1.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "All counties auction same day in May, 5-year delinquency required before sale, separate registration per county required.",
+ "beginnerTip": "Salt Lake and Utah counties have the best inventory. Contact each county treasurer separately in March — by April, the list of remaining properties after owner payments shrinks significantly.",
+ "risks": [
+  "5-year delinquency requirement before sale limits available inventory",
+  "Separate registration for each county — time-intensive",
+  "Limited urban inventory outside Wasatch Front"
+ ],
+ "ddExtra": [
+  "Register with each target county separately at least 30 days before May auction",
+  "Confirm the exact May auction date — it can vary by a few days",
+  "Review the delinquent list in April for remaining properties after owner payments"
+ ],
+ "auctionSignup": {
+  "platform": "County treasurer (each county registers separately)",
+  "steps": [
+   "Find your target county treasurer at utah.gov/government/counties.html",
+   "Contact each target county separately — no statewide registration system",
+   "Request the property list 60 days before the May auction",
+   "Attend in-person — most Utah counties do not offer online bidding"
+  ],
+  "depositInfo": "Varies by county. Confirm with each county treasurer separately.",
+  "directLink": "https://propertytax.utah.gov/"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "County treasurer offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [
+  {
+   "name": "Salt Lake",
+   "link": "https://slco.org/treasurer/",
+   "notes": "Best inventory in UT."
+  },
+  {
+   "name": "Utah",
+   "link": "https://www.utahcounty.gov/dept/Treas/",
+   "notes": "Provo area. Good inventory."
+  }
+ ],
+ "rules": {
+  "type": "deed",
+  "statute": "UCA §59-2-1339 through §59-2-1362 (Tax Sales)",
+  "critical": "⚡ Utah does NOT sell tax lien certificates (UCA §13-50-337 prohibits). Annual May tax sale is a DEED sale. Bid-down ownership percentage is unique to Utah.",
+  "process": {
+   "delinquencyTrigger": "4 years delinquent from final payment deadline (some counties: 5 years including year of sale)",
+   "certification": "March 15/16: 5-year delinquent parcels forwarded to County Auditor for Tax Sale",
+   "sale": "Annual — 3rd Thursday of May (Utah County: online + live auction. Weber: in-person Ogden.)",
+   "bidDown": "Bidding starts at 100% undivided interest. As bidding continues, percentage bid DOWN. Winner accepts lowest % of ownership for amount of taxes owed. Original owner retains remaining %.",
+   "coOwnership": "Post-sale: TWO owners — investor (bid %) + original owner (remaining %). Both are co-owners.",
+   "deedIssuance": "Tax deed issued after sale ratified by County Commission — usually 60–180 days post-sale.",
+   "stat": "UCA §59-2-1351.1, §59-2-1351.7"
+  },
+  "auction": {
+   "frequency": "Annual — 3rd Thursday of May",
+   "confirmed2026": {
+    "weber": "May 21, 2026 — Weber Center, Commission Chambers, 2380 Washington Blvd., Ogden, UT 84401. Registration 9 AM.",
+    "utahCounty": "3rd Thursday May 2026 — online auction (vendor TBD) + live auction at Utah County Admin Bldg, 100 E Center St, Provo",
+    "note": "Check individual county auditor/clerk websites for exact dates. Weber typical: Thursday before Memorial Day."
+   },
+   "platform": "Utah County: online auction platform + in-person. Weber: in-person. Other counties: varies.",
+   "payment": "Full amount in cash or certified funds — due same day. Utah County: cash, certified check, money order. Duchesne: credit card (max $4K/transaction) or wire.",
+   "antiBuyback": "⚡ Owner/lienholders/family/associates CANNOT purchase own parcel at sale. Treated as redemption — no new deed issued."
+  },
+  "otc": {
+   "available": true,
+   "name": "Struck-Off / County-Owned Property",
+   "statute": "UCA §59-2-1351.3 (struck off to county), §59-2-1351.5 (disposition)",
+   "process": "Parcels with no bids struck off to county. County holds and may sell. Contact county auditor/clerk directly.",
+   "note": "Some counties post unsold lists on their websites"
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — Utah deed state, no lien cert mechanism"
+  },
+  "redemption": {
+   "preAuction": "Owner/lienholders may redeem (pay all delinquent taxes + penalties + interest + fees) until FIRST BID is offered. No redemption after bidding starts.",
+   "postSale": "⚡ ZERO post-sale redemption period. Utah has NO statutory right of redemption after sale.",
+   "irsRedemption": "120-day IRS redemption right applies if federal lien",
+   "thirdPartyPayment": "If third party pays delinquency before first bid — property still redeemed, ownership stays with original owner",
+   "statute": "UCA §59-2-1346",
+   "homesteadDifferent": false
+  },
+  "interestAndPenalty": {
+   "interest": "Federal Funds Rate (established annually) — varies year to year",
+   "penalty1": "1% minimum/$10 per parcel (Dec 1–Jan 31 and Nov–Dec delinquency)",
+   "penalty2": "2.5% minimum/$10 per parcel (Feb 1 onward, on original delinquent tax)",
+   "statute": "UCA §59-2-1331"
+  },
+  "deedPath": {
+   "name": "Tax Deed (Quit Claim style — similar to QC deed per Utah County FAQ)",
+   "process": "Deed issued after County Commission ratification (60–180 days post-sale). Records with county recorder.",
+   "coOwnershipNote": "If bid was for less than 100% — investor and original owner are co-owners. Investor must partition or negotiate buyout to gain full title.",
+   "titleQuality": "No warranty. AS-IS.",
+   "statute": "UCA §59-2-1351.1",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": true,
+   "name": "Excess Sale Proceeds",
+   "statute": "UCA §59-2 (implied) + county ordinances",
+   "claimPeriod": "90 days after sale ratification by County Commission",
+   "afterExpiry": "Forwarded to Utah State Treasurer Unclaimed Property (mycash.utah.gov)",
+   "process": "Former owner contacts county treasurer. After 90 days — claim via mycash.utah.gov",
+   "note": "Tyler v. Hennepin applies. Utah surplus flows to State Treasurer unclaimed property fund if unclaimed within 90 days."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "deed",
+  "rate": "N/A",
+  "redemption": "Sin redención post-venta (5 años de morosidad requeridos antes de la venta)",
+  "summary": "Utah realiza todas las subastas de escrituras fiscales del condado el mismo día cada mayo. Cada condado registra por separado — sin sistema estatal. La opción de venta del alguacil también está disponible. Inventario urbano limitado fuera de Salt Lake City. Estatuto: UCA §59-2-1351.1.",
+  "typeWhy": "Utah es un estado de escritura porque los condados venden propiedades embargadas directamente en la subasta estatal de mayo, sin derecho de redención. Se requieren 5 años de morosidad (UCA §59-2-1351.1).",
+  "rateWhy": "No se aplica tasa de interés ya que es un estado de escritura. El requisito de 5 años de morosidad limita el inventario disponible (UCA §59-2-1351.1).",
+  "notBeginnerReason": "Todos los condados subastan el mismo día en mayo, 5 años de morosidad requeridos antes de la venta, se requiere registro separado por condado.",
+  "beginnerTip": "Los condados Salt Lake y Utah tienen el mejor inventario. Contacte cada tesorero del condado por separado en marzo — para abril, la lista de propiedades restantes después de los pagos de propietarios se reduce significativamente.",
+  "risks": [
+   "Redención de 4 años — largo compromiso de capital",
+   "Registro separado para cada condado — intensivo en tiempo",
+   "Inventario urbano limitado fuera del Wasatch Front"
+  ],
+  "ddExtra": [
+   "Regístrese con cada condado objetivo por separado al menos 30 días antes de la subasta de mayo",
+   "Confirme la fecha exacta de la subasta de mayo — puede variar unos días",
+   "Revise la lista de morosidad en abril para propiedades restantes después de pagos de propietarios"
+  ],
+  "auctionSignup": {
+   "platform": "Tesorero del condado (cada condado registra por separado)",
+   "steps": [
+    "Encuentre al tesorero de su condado objetivo en utah.gov/government/counties.html",
+    "Contacte cada condado objetivo por separado — sin sistema de registro estatal",
+    "Solicite la lista de propiedades 60 días antes de la subasta de mayo",
+    "Asista en persona — la mayoría de los condados de Utah no ofrecen pujas en línea"
+   ],
+   "depositInfo": "Varía por condado. Confirme con cada tesorero del condado por separado.",
+   "directLink": "https://propertytax.utah.gov/"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Beaver",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://beaver.utah.gov/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Box Elder",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.boxeldercounty.org/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cache",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.cachecounty.gov/tax-administration/tax-sale.html",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carbon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.carbon.utah.gov/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Daggett",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.daggettcounty.org/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Davis",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.daviscountyutah.gov/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Duchesne",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://duchesne.utah.gov/gov/elected-officials/clerk-auditor/delinquent-tax/tax-sale-list/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Emery",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.emerycounty.com/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Garfield",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.garfield.utah.gov/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grand",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.grandcountyutah.net/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Iron",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.ironcounty.net/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Juab",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.juabcounty.com/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kane",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.kane.utah.gov/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Millard",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.millardcounty.com/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Morgan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://morgancountyutah.gov/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Piute",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.piute.utah.gov/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rich",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.richcountyutah.org/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Salt Lake",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.slco.org/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "San Juan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://sanjuancountyutah.org/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sanpete",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.sanpete.com/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sevier",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.sevier.utah.gov/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Summit",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.summitcounty.org/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tooele",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.tooeleco.org/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Uintah",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.uintah.utah.gov/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Utah",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "Online auction + in-person (Utah County Auditor)",
+   "url": "https://auditor.utahcounty.gov/may-tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wasatch",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.wasatch.utah.gov/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.washco.utah.gov/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wayne",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person courthouse / county auditor",
+   "url": "https://www.wayne.utah.gov/clerk-auditor",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "3rd Thursday May 2026 — check county auditor site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Weber",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale (5-year delinquency required before sale)",
+   "rate": "N/A",
+   "platform": "In-person — Weber Center, Ogden",
+   "url": "https://www.webercountyutah.gov/Clerk_Auditor/tax_sale.php",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "May 21, 2026 — CONFIRMED"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

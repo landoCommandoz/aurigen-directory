@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "al",
+ "slug": "dor-property-tax",
+ "url": "https://www.revenue.alabama.gov/property-tax/",
+ "final_url": "https://www.revenue.alabama.gov/division/property-tax/",
+ "fetched_at": "2026-10-27T05:51:11.776Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "6ff43eaf3ecd54082a22ad4eab8aaf71ac9fbec515fa497e9e97273ba763bcd7",
+ "raw_bytes": 322686,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "3ca28841a3d32855aece2438f5f8da68c435db20e97abf1cc579d3bbdaeb0aaf",
+ "text_chars": 4468
+}

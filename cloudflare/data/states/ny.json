@@ -1,0 +1,1050 @@
+{
+ "code": "NY",
+ "name": "New York",
+ "type": "hybrid",
+ "typeLabel": "Hybrid (lien then deed)",
+ "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+ "rateNote": "Upstate only for retail investors — NYC is institutional",
+ "redemption": "Varies",
+ "bidMethod": "Bid-down interest rate (upstate)",
+ "statute": "RPTL §1110",
+ "officialLink": "https://www.nysenate.gov/legislation/laws/RPT/1110",
+ "auctionPlatform": "Varies by municipality — online and in-person",
+ "auctionTiming": "Varies by county",
+ "keyNotes": [
+  "NYC has transitioned toward land bank model — institutional only, retail access essentially closed",
+  "Upstate counties (Albany, Erie, Monroe) accessible for retail investors",
+  "Adams vetoed 4 NYC reform bills December 31, 2025 — NYC market status in flux"
+ ],
+ "investorAlert": "⚠️ NYC is NOT accessible for retail tax lien investors. Land bank transition underway. Mayor Adams vetoed 4 reform bills Dec 31, 2025. Upstate New York only for individual investors.",
+ "pendingLegislation": null,
+ "summary": "New York is hybrid: NYC and Long Island operate lien markets (NYC lien sale is one of the largest in the world, requires bulk qualification). Upstate counties vary between lien and deed sales. Statute: NY RPTL §1110.",
+ "typeWhy": "New York is a hybrid state: NYC and Long Island operate tax lien sales where investors purchase certificates, while upstate counties vary between lien and deed formats. NY RPTL §1110.",
+ "rateWhy": "NYC tax lien certificates carry an 18% statutory rate, while upstate deed sale returns vary by county. The rate structure depends on which system the target county uses. NY RPTL §1110.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "NYC lien sales require bulk qualification. Upstate varies by county — some lien, some deed. Complex system requires legal expertise.",
+ "beginnerTip": "Skip NYC — it's not for beginners. Focus on upstate deed counties like Onondaga (Syracuse), Monroe (Rochester), or Erie (Buffalo) where processes are more accessible.",
+ "risks": [
+  "NYC requires bulk qualification — not accessible to individual investors",
+  "Upstate counties vary between lien and deed — confirm before registering",
+  "Strong tenant protection laws statewide — occupied property eviction can take 12+ months"
+ ],
+ "ddExtra": [
+  "Confirm whether your target county uses lien or deed format",
+  "NYC: understand bulk qualification requirements before pursuing",
+  "Check for active tax exemptions (STAR, senior, veterans) that complicate lien status"
+ ],
+ "auctionSignup": {
+  "platform": "NYC: cityofnewyork.us tax lien sale; Upstate: county-specific",
+  "steps": [
+   "For NYC: go to nyc.gov/taxlien — bulk qualification required, minimum purchase amounts apply",
+   "For upstate counties: contact the county treasurer or real property tax office directly",
+   "Confirm whether your target county is a lien or deed state before registering",
+   "Register per county instructions — processes vary significantly"
+  ],
+  "depositInfo": "NYC: significant capital requirement for bulk purchase. Upstate: varies.",
+  "directLink": "https://www.nyc.gov/site/finance/property/property-lien-sales.page"
+ },
+ "otc": {
+  "available": false,
+  "note": "No statewide OTC."
+ },
+ "platforms": [
+  "nyc.gov/taxlien",
+  "County treasurer offices (upstate)"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "hybrid",
+  "stateOverview": {
+   "nyc": "NYC sells liens to SINGLE authorized buyer (NYCTL Trust) — NOT open to public investors per NYC Admin Code §11-319",
+   "nassau": "Annual individual lien sale — investors may bid at public online auction. 10% rate for first 24 months, 5%/6mo thereafter.",
+   "nassauSale2026": "February 17, 2026 — online. Registration deadline Feb 4; 10% due day of; 90% due March 19 2026.",
+   "suffolk": "Individual lien sales — varies by municipality. Contact town tax receiver.",
+   "upstate": "Most counties use RPTL Article 11 in-rem deed foreclosure — county acquires after judgment, resells at public auction.",
+   "redemptionStandard": "2 years from filing of list of delinquent taxes (RPTL §1110). Local law may extend to 3–4 years for residential."
+  },
+  "auction": {
+   "nassauPlatform": "Online auction (hosted by Bid4Assets / county portal)",
+   "upstatePlatform": "GovEase / Bid4Assets / county auction — varies by county",
+   "bidMethod": "Highest bidder (lien or deed auction)",
+   "statute": "NY RPTL §1110, §1136, §1194"
+  },
+  "otc": {
+   "available": true,
+   "name": "In-Rem County-Acquired / Surplus Property Sale",
+   "trigger": "No redemption after in-rem foreclosure — county holds property",
+   "process": "Contact county real property tax office. Some counties list on county website or AuctionGov.",
+   "note": "Varies widely by county. Upstate counties often have modest inventory at reasonable prices."
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payment (lien counties)",
+   "note": "Nassau: paying subsequent delinquent years protects lien position. Contact county for process."
+  },
+  "redemption": {
+   "standardPeriod": "2 years from filing of delinquent tax list",
+   "residentialExtension": "3–4 years in many counties for residential property by local law",
+   "abandonedVacant": "Can be shortened to 1 year for vacant or abandoned property",
+   "statute": "NY RPTL §1110, §1111",
+   "note": "In-rem foreclosure counties: redemption runs until 13 days after personal notice is mailed"
+  },
+  "deedPath": {
+   "inRem": {
+    "name": "In-Rem Foreclosure Deed",
+    "statute": "NY RPTL Article 11 Title 3",
+    "process": "County files petition → public notice → 60-day answer period → default judgment → county acquires → auction",
+    "titleQuality": "Clean title — all prior interests extinguished by judgment",
+    "quietTitleRequired": false
+   },
+   "lienForeclosure": {
+    "name": "Mortgage-Style Lien Foreclosure",
+    "statute": "NY RPTL §1194",
+    "process": "Lien holder forecloses as in mortgage action after redemption period expires",
+    "quietTitleRequired": false
+   }
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Proceeds",
+   "statute": "NY RPTL §1135, §1166; pending A6108 (2025)",
+   "alert": "⚡ NY LAW ALERT: A6108 (2025) pending — would require counties to return surplus to former owners. Tyler v. Hennepin drove this reform. First round of MN settlement payments Feb 17 2026.",
+   "currentLaw": "County may retain surplus under current RPTL §1166 — unconstitutional per Tyler but statute not yet fully reformed statewide",
+   "process": "File claim per RPTL §1135 (in-rem surplus). Local process varies.",
+   "note": "Strongly recommend monitoring A6108 progress if investing in NY."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "hybrid",
+  "rate": "Varía (gravamen de NYC: 18%; upstate escritura: varía)",
+  "redemption": "Varía",
+  "summary": "Nueva York es híbrida: NYC y Long Island operan mercados de gravámenes (la venta de gravámenes de NYC es una de las más grandes del mundo, requiere calificación masiva). Los condados del upstate varían. Estatuto: NY RPTL §1110.",
+  "typeWhy": "Nueva York es un estado híbrido porque NYC opera ventas de gravámenes fiscales mientras que los condados del upstate varían entre gravámenes y escrituras (NY RPTL §1110).",
+  "rateWhy": "Los gravámenes de NYC generan hasta el 18%, mientras que los condados del upstate establecen sus propias tasas según su sistema (NY RPTL §1110).",
+  "notBeginnerReason": "Las ventas de gravámenes de NYC requieren calificación masiva. El upstate varía por condado. Sistema complejo que requiere experiencia legal.",
+  "beginnerTip": "Omita NYC — no es para principiantes. Enfóquese en condados de escritura del upstate como Onondaga (Syracuse), Monroe (Rochester) o Erie (Buffalo) donde los procesos son más accesibles.",
+  "risks": [
+   "NYC requiere calificación masiva — no accesible para inversores individuales",
+   "Los condados del upstate varían entre gravamen y escritura — confirme antes de registrarse",
+   "Fuertes leyes de protección de inquilinos — el desalojo puede tomar más de 12 meses"
+  ],
+  "ddExtra": [
+   "Confirme si su condado objetivo usa formato de gravamen o escritura",
+   "NYC: comprenda los requisitos de calificación masiva antes de proceder",
+   "Revise exenciones fiscales activas (STAR, adultos mayores, veteranos) que complican el estado del gravamen"
+  ],
+  "auctionSignup": {
+   "platform": "NYC: cityofnewyork.us venta de gravamen fiscal; Upstate: específico por condado",
+   "steps": [
+    "Para NYC: nyc.gov/taxlien — se requiere calificación masiva, se aplican montos mínimos de compra",
+    "Para condados del upstate: contacte al tesorero del condado o a la oficina de impuesto a la propiedad directamente",
+    "Confirme si su condado objetivo es estado de gravamen o escritura antes de registrarse",
+    "Regístrese según instrucciones del condado — los procesos varían significativamente"
+   ],
+   "depositInfo": "NYC: requisito de capital significativo para compra masiva. Upstate: varía.",
+   "directLink": "https://www.nyc.gov/site/finance/property/property-lien-sales.page"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin OTC estatal."
+  }
+ },
+ "counties": [
+  {
+   "name": "Albany",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase/County",
+   "url": "https://www.albanycounty.com/government/departments/department-of-finance",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Allegany",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.alleganyco.com/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bronx (NYC)",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "Authorized buyer only",
+   "url": "https://www.nyc.gov/site/finance/property/property-lien-sales.page",
+   "notes": [
+    "⚡ NYC: Lien sold to single authorized buyer. 2025 sale June 3 2025.",
+    "⚡ NYC Bronx: Lien sale — NOT open to public investors"
+   ],
+   "extra": {
+    "method": "NYC Lien Sale — NOT public"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Broome",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.broomecounty.us/realproperty/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cattaraugus",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase/County",
+   "url": "https://www.cattco.org/real-property-tax",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cayuga",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.cayugacounty.us/government/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chautauqua",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.co.chautauqua.ny.us/434/In-Rem-Foreclosure",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chemung",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.chemungcounty.com/government/departments/finance/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chenango",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.co.chenango.ny.us/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clinton",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.clintoncounty.gov/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Columbia",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.columbiacountyny.com/departments/realprop/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cortland",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.cortland.org/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Delaware",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.co.delaware.ny.us/departments/finance/rptax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dutchess",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.dutchessny.gov/Departments/Finance/Real-Property-Tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Erie",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www3.erie.gov/realproperty/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Essex",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.co.essex.ny.us/department/real-property/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.franklincony.org/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fulton",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.fultoncounty.org/departments/real-property/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Genesee",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.co.genesee.ny.us/departments/realproperty/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Greene",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.greenegovernment.com/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hamilton",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.hamiltoncounty.gov/departments/real-property/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Herkimer",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://herkimercounty.org/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.co.jefferson.ny.us/departments/real-property/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kings (NYC)",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "Authorized buyer only",
+   "url": "https://www.nyc.gov/site/finance/property/property-lien-sales.page",
+   "notes": [
+    "⚡ NYC Brooklyn: same as all NYC boroughs",
+    "⚡ NYC Kings/Brooklyn: Lien sale NOT public"
+   ],
+   "extra": {
+    "method": "NYC Lien Sale — NOT public"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lewis",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.lewiscounty.com/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Livingston",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.livingston.org/departments/realproperty/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Madison",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.madisoncounty.ny.gov/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Monroe",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.monroecounty.gov/finance-realproperty.php",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Montgomery",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.co.montgomery.ny.us/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nassau",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Varies",
+   "rate": "10% for 24 months; 5%/6mo thereafter",
+   "platform": "Online auction",
+   "url": "https://www.nassaucountyny.gov/527/Annual-Tax-Lien-Sale",
+   "notes": [
+    "⚡ Nassau: Feb 17 2026 confirmed. Reg deadline Feb 4. 10% due day of; 90% by March 19.",
+    "⚡ Nassau County: Feb 17 2026 lien sale confirmed"
+   ],
+   "extra": {
+    "method": "Individual lien sale",
+    "rate": "10% for 24 months; 5%/6mo thereafter",
+    "saleDate2026": "February 17, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "New York (Manhattan NYC)",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "Authorized buyer only",
+   "url": "https://www.nyc.gov/site/finance/property/property-lien-sales.page",
+   "notes": [
+    "⚡ NYC Manhattan: Lien sale NOT public"
+   ],
+   "extra": {
+    "method": "NYC Lien Sale — NOT public"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Niagara",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.niagaracounty.com/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Oneida",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.ocgov.net/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Onondaga",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.ongov.net/rpt/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ontario",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.co.ontario.ny.us/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Orange",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.orangecountygov.com/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Orleans",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.orleansny.com/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Oswego",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.co.oswego.ny.us/real-property/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Otsego",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.otsegocounty.com/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Putnam",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.putnamcountyny.gov/departments/finance/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Queens (NYC)",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "Authorized buyer only",
+   "url": "https://www.nyc.gov/site/finance/property/property-lien-sales.page",
+   "notes": [
+    "⚡ NYC Queens: Lien sale NOT public"
+   ],
+   "extra": {
+    "method": "NYC Lien Sale — NOT public"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rensselaer",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.rensco.com/departments/finance/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Richmond (NYC)",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "Authorized buyer only",
+   "url": "https://www.nyc.gov/site/finance/property/property-lien-sales.page",
+   "notes": [
+    "⚡ NYC Staten Island: Lien sale NOT public"
+   ],
+   "extra": {
+    "method": "NYC Lien Sale — NOT public"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rockland",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.co.rockland.ny.us/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Saratoga",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.saratogacountyny.gov/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Schenectady",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.schenectadycounty.com/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Schoharie",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.schohariecounty-ny.gov/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Schuyler",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.schuylercounty.us/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Seneca",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.co.seneca.ny.us/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Lawrence",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.stlawco.org/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Steuben",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.steubencony.org/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Suffolk",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "Municipal — varies by town",
+   "url": "https://www.suffolkcountyny.gov/Departments/Real-Property-Tax",
+   "notes": [
+    "Suffolk County's 10 towns conduct own lien sales separately. Contact each town directly.",
+    "⚡ Suffolk: 10 separate town-level lien sales — contact each town receiver"
+   ],
+   "extra": {
+    "method": "Municipal lien sales — contact town tax receiver"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sullivan",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.co.sullivan.ny.us/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tioga",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.tiogacountyny.com/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tompkins",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.tompkinscountyny.gov/assessment",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ulster",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.ulstercountyny.gov/real-property-tax",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Warren",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.warrencountyny.gov/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.co.washington.ny.us/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wayne",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.co.wayne.ny.us/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Westchester",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "GovEase",
+   "url": "https://www.westchestergov.com/realproperty",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wyoming",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.wyomingco.net/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Yates",
+   "kind": "county",
+   "saleType": "other",
+   "redemption": "Varies",
+   "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+   "platform": "County",
+   "url": "https://www.yatescounty.org/departments/real-property-tax/",
+   "notes": [],
+   "extra": {
+    "method": "In-rem deed foreclosure"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

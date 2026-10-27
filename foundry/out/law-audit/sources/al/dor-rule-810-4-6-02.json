@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "al",
+ "slug": "dor-rule-810-4-6-02",
+ "url": "https://www.revenue.alabama.gov/wp-content/uploads/2021/12/810-4-6-.02.pdf",
+ "final_url": "https://www.revenue.alabama.gov/wp-content/uploads/2021/12/810-4-6-.02.pdf",
+ "fetched_at": "2026-10-27T05:49:37.679Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "04884ca91d95fc716af70e704692f1dfd78564eac88787448b13e20102b74345",
+ "raw_bytes": 98117,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "f4709ddf80b217a37ddab77617190e1f72c62ef3559b43eac315d0ee97ab01d9",
+ "text_chars": 2888
+}

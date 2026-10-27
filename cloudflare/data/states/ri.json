@@ -1,0 +1,248 @@
+{
+ "code": "RI",
+ "name": "Rhode Island",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "16% penalty (6 months); 1%/mo thereafter",
+ "rateNote": "Highest bidder — redemption open until Superior Court forecloses right",
+ "redemption": "1 year",
+ "bidMethod": "Highest bidder",
+ "statute": "RIGL §44-9",
+ "officialLink": "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/INDEX.htm",
+ "auctionPlatform": "Municipal tax collector — varies by city/town",
+ "auctionTiming": "Year-round — East Providence 2026 sale confirmed April 15, 2026",
+ "keyNotes": [
+  "1-year standard redemption but owner can continue redeeming until court enters final foreclosure decree",
+  "Investor must file Superior Court action to cut off redemption after 1 year",
+  "18% annualized rate — strong return for a redeemable state",
+  "High redemption rate — primarily interest income play",
+  "East Providence 2026 sale: April 15, 2026 confirmed"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "Rhode Island has 39 municipalities each conducting their own irregular tax lien sales. Very low volume. No centralized platform. Statute: RI Gen Laws §44-9-1.",
+ "typeWhy": "Rhode Island municipalities conduct tax lien sales — the investor purchases the lien while the owner retains title during a 1-year redemption period. Each municipality operates independently. RI Gen Laws §44-9-1.",
+ "rateWhy": "Rhode Island imposes a 16% penalty on redemption within the first 6 months, then 1% per month thereafter. This front-loaded penalty structure rewards early redemption. RI Gen Laws §44-9-1.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "39 tiny municipalities with very low volume, no state infrastructure, irregular sales.",
+ "beginnerTip": "Providence and Pawtucket have the most consistent sale activity in RI. For such a small state, your time may be better spent on a neighboring state with more inventory.",
+ "risks": [
+  "Sales are irregular — municipalities conduct auctions infrequently",
+  "No centralized platform",
+  "Very low volume makes this an unreliable strategy"
+ ],
+ "ddExtra": [
+  "Contact the municipal treasurer directly — don't assume a sale is happening",
+  "Verify the 1-year redemption period is still intact",
+  "Check for municipal improvement liens"
+ ],
+ "auctionSignup": {
+  "platform": "Municipal treasurer (town-specific)",
+  "steps": [
+   "Contact the target municipality's treasurer directly — ri.gov for municipal directory",
+   "Ask when the next tax sale is scheduled — most municipalities sell infrequently",
+   "Register per municipality instructions",
+   "Most are in-person"
+  ],
+  "depositInfo": "Varies by municipality.",
+  "directLink": "https://www.ri.gov/towns/"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "Municipal treasurer offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "statute": "RIGL Chapter 44-9 (Tax Sales) — §44-9-1 through §44-9-56",
+  "structure": "39 municipalities run independent tax sales. No county-level auction. Each city/town manages its own lien sales.",
+  "process": {
+   "step1": "Taxes delinquent → municipality schedules annual tax sale",
+   "step2": "Notice: first-class mail 90+ days prior, certified mail 40+ days prior, newspaper publication + public posting",
+   "step3": "Public auction — collector sells municipal tax lien to highest bidder. Purchaser gets Tax Collector's Deed (lien cert, not ownership).",
+   "step4": "Year 1: municipality handles redemptions, records certificates. After year 1: lienholder handles redemptions directly.",
+   "step5": "After 1 year from sale: title holder jointly and severally liable with owner for property compliance.",
+   "step6": "Foreclose: After 1 year — lien holder petitions Superior Court to foreclose all rights of redemption (§44-9-25)",
+   "stat": "RIGL §44-9-1, §44-9-8, §44-9-19, §44-9-21, §44-9-25"
+  },
+  "auction": {
+   "frequency": "Annual — as scheduled by each municipality",
+   "platform": "Municipality-run. Providence uses CivicSource (confirmed active). Others in-person.",
+   "bidMethod": "Premium bid — highest bidder. Competitive; experienced investors often bid down to minimum redemption.",
+   "payment": "Cash or cashier's check. No personal checks.",
+   "deposit": "Providence requires $1,500 certified check bond to guarantee payment upon winning bid.",
+   "registration": "In advance required (Providence: 3 weeks prior). Business entities must submit last annual report.",
+   "statute": "RIGL §44-9-1, §44-9-3"
+  },
+  "confirmed2026": {
+   "eastProvidence": "April 15, 2026 — confirmed official (eastprovidenceri.gov)",
+   "providence": "Spring 2026 — check providenceri.gov/collector for exact date (CivicSource)",
+   "note": "Each municipality sets its own date. Check town/city tax collector website for exact 2026 date."
+  },
+  "otc": {
+   "available": true,
+   "name": "Tax Title Assignment",
+   "statute": "RIGL §44-9-8.1 et seq.",
+   "process": "Municipality may assign its tax title (from properties it acquired where no bidder) to private investors. Contact municipal tax collector/treasurer directly.",
+   "note": "RIHMFC (RI Housing) has specific assignment provisions per §44-9-8.3"
+  },
+  "subTax": {
+   "available": true,
+   "name": "Intervening Tax Payments",
+   "statute": "RIGL §44-9-21",
+   "note": "Lienholder may pay subsequent taxes. Added to redemption amount investor earns interest on."
+  },
+  "redemption": {
+   "withinSixMonths": "10% of purchase price penalty + 1%/month interest on purchase price from sale date + intervening taxes + costs",
+   "afterSixMonths": "Additional 1% of purchase price per succeeding month + same interest + intervening taxes + costs",
+   "fromMunicipality": "First year: redeem from city/town treasurer. After 1 year: redeem directly from lienholder.",
+   "untilForeclosure": "Right of redemption survives until Superior Court enters final decree foreclosing redemption rights",
+   "statute": "RIGL §44-9-19, §44-9-21",
+   "homesteadDifferent": false
+  },
+  "deedPath": {
+   "name": "Superior Court Decree — Title Absolute After Foreclosure (§44-9-24)",
+   "process": "After 1 year from sale — petition Superior Court to foreclose redemption (§44-9-25). Court process. Decree bars all rights of redemption.",
+   "titleEffect": "Absolute title after court decree. Free and clear of redemption rights.",
+   "alternativeNoForeclosure": "§44-9-36: City/town may sell property without full foreclosure in certain situations.",
+   "statute": "RIGL §44-9-24, §44-9-25",
+   "quietTitleRequired": false,
+   "note": "⚡ Post-1-year: title holder jointly/severally liable with owner for property maintenance, compliance with use/occupancy statutes. Significant investor risk if property has violations."
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Proceeds",
+   "statute": "RIGL §44-9-37 (surplus from sale without foreclosure)",
+   "process": "Surplus from municipality's sale without foreclosure returned to former owner per §44-9-37. Tyler v. Hennepin applies.",
+   "note": "Tyler v. Hennepin compliance not yet legislatively codified in RI as of 2026 — municipalities should follow constitutional requirements regardless"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "16% penalización (6 meses); 1%/mes después",
+  "redemption": "1 año",
+  "summary": "Rhode Island tiene 39 municipios realizando sus propias ventas de gravámenes irregulares. Volumen muy bajo. Sin plataforma centralizada. Estatuto: RI Gen Laws §44-9-1.",
+  "typeWhy": "Rhode Island es un estado de gravamen donde los 39 municipios realizan ventas de gravámenes fiscales de forma irregular e independiente con período de redención de 1 año (RI Gen Laws §44-9-1).",
+  "rateWhy": "La penalización del 16% en los primeros 6 meses seguida del 1% mensual crea un retorno decreciente con el tiempo (RI Gen Laws §44-9-1).",
+  "notBeginnerReason": "39 municipios pequeños con volumen muy bajo, sin infraestructura estatal, ventas irregulares.",
+  "beginnerTip": "Providence y Pawtucket tienen la actividad de venta más consistente en RI. Para un estado tan pequeño, su tiempo podría estar mejor empleado en un estado vecino con más inventario.",
+  "risks": [
+   "Las ventas son irregulares — los municipios realizan subastas con poca frecuencia",
+   "Sin plataforma centralizada",
+   "Volumen muy bajo hace esto una estrategia poco confiable"
+  ],
+  "ddExtra": [
+   "Contacte al tesorero municipal directamente — no asuma que hay una venta en curso",
+   "Verifique que el período de redención de 1 año esté intacto",
+   "Revise gravámenes de mejoras municipales"
+  ],
+  "auctionSignup": {
+   "platform": "Tesorero municipal (específico por ciudad)",
+   "steps": [
+    "Contacte al tesorero del municipio objetivo directamente — ri.gov para directorio municipal",
+    "Pregunte cuándo es la próxima venta fiscal — la mayoría de los municipios venden con poca frecuencia",
+    "Regístrese según instrucciones del municipio",
+    "La mayoría son en persona"
+   ],
+   "depositInfo": "Varía por municipio.",
+   "directLink": "https://www.ri.gov/towns/"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Bristol",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "16% penalty (6 months); 1%/mo thereafter",
+   "platform": "Municipal tax collector — in-person / CivicSource (Providence confirmed)",
+   "url": "https://www.bristolri.gov/tax-collector",
+   "notes": [
+    "3 municipalities. Each runs independent lien sale. ⚡ East Providence 2026: April 15. Providence 2026: Spring (CivicSource). Check individual city/town for exact date."
+   ],
+   "extra": {
+    "municipalities": 3
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kent",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "16% penalty (6 months); 1%/mo thereafter",
+   "platform": "Municipal tax collector — in-person / CivicSource (Providence confirmed)",
+   "url": "https://www.kentri.gov/tax-collector",
+   "notes": [
+    "5 municipalities. Each runs independent lien sale. ⚡ East Providence 2026: April 15. Providence 2026: Spring (CivicSource). Check individual city/town for exact date."
+   ],
+   "extra": {
+    "municipalities": 5
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Newport",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "16% penalty (6 months); 1%/mo thereafter",
+   "platform": "Municipal tax collector — in-person / CivicSource (Providence confirmed)",
+   "url": "https://www.newportri.gov/tax-collector",
+   "notes": [
+    "6 municipalities. Each runs independent lien sale. ⚡ East Providence 2026: April 15. Providence 2026: Spring (CivicSource). Check individual city/town for exact date."
+   ],
+   "extra": {
+    "municipalities": 6
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Providence",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "16% penalty (6 months); 1%/mo thereafter",
+   "platform": "Municipal tax collector — in-person / CivicSource (Providence confirmed)",
+   "url": "https://www.providenceri.gov/collector/tax-sale-information/",
+   "notes": [
+    "20 municipalities. Each runs independent lien sale. ⚡ East Providence 2026: April 15. Providence 2026: Spring (CivicSource). Check individual city/town for exact date."
+   ],
+   "extra": {
+    "municipalities": 20
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "16% penalty (6 months); 1%/mo thereafter",
+   "platform": "Municipal tax collector — in-person / CivicSource (Providence confirmed)",
+   "url": "https://www.southkingstownri.com/tax-collector",
+   "notes": [
+    "9 municipalities. Each runs independent lien sale. ⚡ East Providence 2026: April 15. Providence 2026: Spring (CivicSource). Check individual city/town for exact date."
+   ],
+   "extra": {
+    "municipalities": 9
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

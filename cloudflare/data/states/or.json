@@ -1,0 +1,674 @@
+{
+ "code": "OR",
+ "name": "Oregon",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "N/A",
+ "rateNote": "County auctions property after 3-year delinquency",
+ "redemption": "None post-sale",
+ "bidMethod": "Highest bidder",
+ "statute": "ORS Ch. 312 (2025 update)",
+ "officialLink": "https://www.oregonlegislature.gov/bills_laws/ors/ors312.html",
+ "auctionPlatform": "County-run — online and in-person varies",
+ "auctionTiming": "Varies by county",
+ "keyNotes": [
+  "3-year delinquency before county can auction",
+  "No post-sale redemption — buyer takes clean title",
+  "2025 ORS 312.510 update — verify current county procedures"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "Oregon requires 3 years delinquency before county takes deed, then 2 years county hold before auction. Opening bids set at 80% of assessed value. Statute: ORS §312.060.",
+ "typeWhy": "Oregon sells the property deed outright after a 3-year delinquency period. There is no post-sale redemption. ORS §312.060.",
+ "rateWhy": "Oregon is a deed state with no statutory interest rate. Opening bids are set at 80% of assessed value, limiting deep-discount opportunity. ORS §312.060.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "80% of assessed value minimum bid, 3 years delinquency + 2 years county hold, virtually no below-market opportunity.",
+ "beginnerTip": "Oregon is not recommended for investors seeking below-market deals. The 80% minimum makes it impractical.",
+ "risks": [
+  "80% minimum of assessed value leaves minimal margin",
+  "5-year total cycle (3-year delinquency + 2-year county hold) is the longest effective cycle",
+  "No OTC option"
+ ],
+ "ddExtra": [
+  "Verify the county's assessed value vs. market value before bidding",
+  "Check for environmental or wetlands designations",
+  "Calculate whether the 80% minimum leaves any workable margin"
+ ],
+ "auctionSignup": {
+  "platform": "County tax collector (varies)",
+  "steps": [
+   "Contact the county tax collector — oregon.gov/dor for county directory",
+   "Request the upcoming auction schedule and property list",
+   "Register per county instructions — most are in-person",
+   "Be prepared for opening bids near 80% of assessed value"
+  ],
+  "depositInfo": "Varies by county.",
+  "directLink": "https://www.oregon.gov/dor/programs/property/Pages/default.aspx"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "County tax collector offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "deed",
+  "process": {
+   "delinquencyTrigger": "3 years from first date of delinquency (May 16 of tax year)",
+   "interest": "1.333% per month (16% annualized) on delinquent taxes — accrues monthly on 16th",
+   "foreclosureList": "County tax collector prepares annual foreclosure list within 2 months of delinquency date",
+   "publication": "August — published in local newspaper + 5% publication penalty assessed",
+   "applicationForJudgment": "County Counsel files application for General Judgment with Circuit Court",
+   "redemptionAfterJudgment": "Owner or interested party may redeem: 2 years from date of General Judgment",
+   "endOfRedemption": "Notice sent before redemption expiration. After 2 years — county gets absolute title.",
+   "auction": "County auctions property. Buildable or >$15K value: Sheriff's Sale. Otherwise: private negotiated sale."
+  },
+  "auction": {
+   "platform": "GovEase / Bid4Assets / PublicSurplus / county sheriff auction / oral auction — varies by county",
+   "minimumBid": "All taxes, interest, penalties, costs",
+   "bidMethod": "Highest bidder",
+   "buildable": "Buildable lots or value >$15K: must be sold at Sheriff's Sale (public auction)",
+   "nonBuildable": "Non-buildable or value ≤$15K: county may sell via private negotiated sale",
+   "statute": "ORS 312.120, ORS 312.270"
+  },
+  "otc": {
+   "available": true,
+   "name": "County Surplus Property / Private Sale",
+   "trigger": "No bid at Sheriff's Sale OR non-buildable property",
+   "process": "Contact county property management office. Complete Surplus Property Purchase Inquiry form.",
+   "statute": "ORS 312.270, ORS 275.275",
+   "note": "Columbia County confirmed: non-buildable lots available via private sale"
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — Oregon is deed foreclosure state"
+  },
+  "redemption": {
+   "period": "2 years from date of General Judgment (not from delinquency date)",
+   "process": "Pay all years in judgment + interest + costs + penalties to county tax collector",
+   "afterJudgment": "County sends end-of-redemption notice before expiration. Certified funds required.",
+   "statute": "ORS 312.120",
+   "homesteadDifferent": false,
+   "agDifferent": false,
+   "note": "Deschutes example: 2023 tax delinquency → eligible foreclsoure May 16 2026 → judgment → 2-year redemption runs to ~mid-2028"
+  },
+  "deedPath": {
+   "name": "Sheriff's Deed / County Deed",
+   "titleQuality": "No warranty. As-is. Title company may require quiet title for insurance.",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true,
+   "statute": "ORS 312.270"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Proceeds",
+   "statute": "ORS 312.540, ORS 312.550, ORS 312.560; 2025 c.475",
+   "alert": "⚡ HB 4056 (2024) + 2025 c.475: Oregon enacted Tyler-compliant surplus process. County must publish surplus info on state and county websites. Claimant files within 2 years of sale date.",
+   "process": "File Request for Surplus Proceeds with county within 2 years of sale date. Yamhill County confirmed this process.",
+   "orrDorInvolvement": "OR DOR hosting county discussions for uniform surplus process per HB 4056",
+   "note": "Unclaimed surplus → State Treasurer after claim period (ORS 312.560)"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "deed",
+  "rate": "N/A",
+  "redemption": "Ninguna post-venta",
+  "summary": "Oregón requiere 3 años de morosidad antes de que el condado tome la escritura, luego 2 años de retención antes de la subasta. Las pujas iniciales se establecen al 80% del valor tasado. Estatuto: ORS §312.060.",
+  "typeWhy": "Oregon es un estado de escritura porque los condados venden propiedades embargadas directamente, sin derecho de redención posterior a la venta (ORS §312.060).",
+  "rateWhy": "No se aplica tasa de interés. Las pujas iniciales al 80% del valor tasado limitan las oportunidades de descuento (ORS §312.060).",
+  "notBeginnerReason": "Puja mínima del 80% del valor tasado, 3 años de morosidad + 2 años de retención del condado, prácticamente sin oportunidad por debajo del mercado.",
+  "beginnerTip": "Oregón no se recomienda para inversores que buscan ofertas por debajo del mercado. El mínimo del 80% lo hace impracticable.",
+  "risks": [
+   "Mínimo del 80% del valor tasado deja margen mínimo",
+   "Ciclo total de 5 años es el ciclo efectivo más largo",
+   "Sin opción OTC"
+  ],
+  "ddExtra": [
+   "Verifique el valor tasado del condado vs. valor de mercado antes de pujar",
+   "Revise designaciones ambientales o de humedales",
+   "Calcule si el mínimo del 80% deja algún margen viable"
+  ],
+  "auctionSignup": {
+   "platform": "Recaudador de impuestos del condado (varía)",
+   "steps": [
+    "Contacte al recaudador de impuestos del condado — oregon.gov/dor para directorio del condado",
+    "Solicite el próximo calendario de subasta y lista de propiedades",
+    "Regístrese según instrucciones del condado — la mayoría son en persona",
+    "Prepárese para pujas iniciales cerca del 80% del valor tasado"
+   ],
+   "depositInfo": "Varía por condado.",
+   "directLink": "https://www.oregon.gov/dor/programs/property/Pages/default.aspx"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Baker",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County/Sheriff",
+   "url": "https://www.bakercounty.org/assessor-tax-collector/tax-foreclosure/",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Benton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "GovEase/County",
+   "url": "https://www.co.benton.or.us/finance/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clackamas",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "Bid4Assets",
+   "url": "https://www.clackamas.us/treasurer/foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clatsop",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.clatsop.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Columbia",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County/Sheriff",
+   "url": "https://www.columbiacountyor.gov/departments/BoardofCommissionersOffice/surplus-property",
+   "notes": [
+    "Sheriff's sale if >$15K or buildable. Private sale otherwise."
+   ],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Coos",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.coos.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Crook",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.crook.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Curry",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.curry.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Deschutes",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County/GovEase",
+   "url": "https://www.deschutes.org/finance/page/property-tax-collection-foreclosure-information",
+   "notes": [
+    "Detailed timeline confirmed: 3yr delinquency → Aug publication → 5% penalty → judgment → 2yr redemption. Interest 1.333%/mo."
+   ],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Douglas",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "Oral auction / County",
+   "url": "https://www.douglascountyor.gov/614/Tax-Foreclosed-Properties",
+   "notes": [
+    "2025 auction — oral auction, in-person. Properties published June 17 2025."
+   ],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gilliam",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.gilliam.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grant",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.grantcounty-or.gov/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harney",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.harney.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hood River",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County/GovEase",
+   "url": "https://www.co.hood-river.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.jacksoncounty.org/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.jeffco.net/propertytaxes/page/property-tax-foreclosure",
+   "notes": [
+    "Full timeline documented. 16 notices before 3-yr mark. 2yr redemption post-judgment."
+   ],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Josephine",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.josephine.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Klamath",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County/GovEase",
+   "url": "https://www.klamathcounty.org/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lake",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.lake.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lane",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.lanecounty.org/government/county_departments/assessment_and_taxation/property_tax_foreclosure/index",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.lincoln.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Linn",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.linncountyoregon.gov/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Malheur",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.malheurco.org/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marion",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.marion.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Morrow",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.morrow.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Multnomah",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "GovEase/Bid4Assets",
+   "url": "https://www.multco.us/assessment-taxation/property-tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Polk",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.polk.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sherman",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.sherman.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tillamook",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.tillamook.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Umatilla",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.umatillacounty.net/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Union",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.union-county.org/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wallowa",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.wallowa.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wasco",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.co.wasco.or.us/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "GovEase/Bid4Assets",
+   "url": "https://www.co.washington.or.us/assessor/tax-foreclosure.cfm",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wheeler",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.wheelercounty.org/assessor/page/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Yamhill",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "County/GovEase",
+   "url": "https://www.co.yamhill.or.us/assessor/page/tax-foreclosure",
+   "notes": [
+    "⚡ Surplus: Request for Surplus Proceeds within 2 years of sale date — confirmed",
+    "⚡ Yamhill: Surplus request form available — 2-year claim window confirmed"
+   ],
+   "extra": {
+    "saleFrequency": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "al",
+ "slug": "code-coatoc",
+ "url": "https://alison.legislature.state.al.us/codeofalabama/1975/coatoc.htm",
+ "final_url": "https://alison.legislature.state.al.us/codeofalabama/1975/coatoc.htm",
+ "fetched_at": "2026-10-27T05:49:47.486Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "9b53f83806c8793103893c0595e5261f5c2300b74b50cf39748e9d02e3759a42",
+ "raw_bytes": 58348,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "571e96e1dd5f7c28c70a636a1e779562391e2daabd9fb3b175ee0b8423c06027",
+ "text_chars": 1822
+}

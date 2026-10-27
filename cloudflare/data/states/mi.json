@@ -1,0 +1,1188 @@
+{
+ "code": "MI",
+ "name": "Michigan",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "N/A (deed state)",
+ "rateNote": "3-year forfeiture process — public auction after foreclosure",
+ "redemption": "None post-sale",
+ "bidMethod": "Highest bidder",
+ "statute": "MCL §211.78",
+ "officialLink": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78",
+ "auctionPlatform": "Michigan Land Bank / county-run (GovEase in many counties)",
+ "auctionTiming": "July–September (most counties)",
+ "keyNotes": [
+  "3-year process: year 1 forfeiture notice, year 2 foreclosure judgment, year 3 auction",
+  "Tyler v. Hennepin ruling now requires surplus proceeds returned to former owner",
+  "Strong rural opportunity in northern Michigan and Upper Peninsula",
+  "Wayne County (Detroit) has highest volume — heavy institutional competition"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "Michigan holds 3 annual auctions: July (minimum bid = back taxes + fees), September (same minimums), and November (no minimum). Wayne County (Detroit) uses Bid4Assets with significant urban inventory. Unsold properties transfer to municipality. Statute: MCL §211.78.",
+ "typeWhy": "Michigan sells the property deed outright at auction with no post-sale redemption period. The buyer receives full title through three annual auction rounds. MCL §211.78.",
+ "rateWhy": "Michigan is a pure deed state with no statutory interest rate. Returns are market-driven: minimum bids start at back taxes plus fees. MCL §211.78.",
+ "beginnerFriendly": true,
+ "notBeginnerReason": "",
+ "beginnerTip": "The November auction is where the real value is — no minimum bid means you can get properties for $500–$2,000 in Detroit. Properties sell as-is with no warranty. Inspect or get a drive-by photo before bidding on anything.",
+ "risks": [
+  "July and September have minimum bids — November is where the real deals are",
+  "Properties sold as-is with no title guarantee — title issues are common in Wayne County",
+  "Detroit-area properties may have squatters, blight violations, or demolition orders"
+ ],
+ "ddExtra": [
+  "Check the Wayne County Land Bank for properties not in the public auction",
+  "Run a blight violation search before bidding on any Detroit property",
+  "Order a drive-by photo — Wayne County has many properties in poor condition"
+ ],
+ "auctionSignup": {
+  "platform": "Bid4Assets.com (Wayne County) + county-specific for others",
+  "steps": [
+   "For Wayne County: go to bid4assets.com and search 'Wayne County Michigan'",
+   "Create a Bid4Assets account and verify your identity (ID required)",
+   "Submit a deposit ($500–$2,000 depending on the sale) to qualify for bidding",
+   "Bid online during the auction window — November sale has no minimum"
+  ],
+  "depositInfo": "Bid4Assets deposit: typically $500–$2,000 refundable after sale.",
+  "directLink": "https://www.bid4assets.com/michigan"
+ },
+ "otc": {
+  "available": false,
+  "note": "Unsold properties go to the municipality — check Wayne County Land Bank for available inventory."
+ },
+ "platforms": [
+  "Bid4Assets.com",
+  "County drain commissioner offices"
+ ],
+ "tylerCompliance": {
+  "status": "compliant",
+  "summary": "Michigan was directly impacted by Tyler-related precedent and overhauled its foreclosure surplus law.",
+  "details": "Michigan 2024 reform of MCL §211.78 et seq. now requires counties to return surplus from tax foreclosure sales to the former owner. Prior to reform, Michigan counties retained all proceeds. Michigan now requires notice, a 2-year claim period, and interest on held surplus.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": "SB 496 (2024); MCL §211.78t"
+ },
+ "featuredCounties": [
+  {
+   "name": "Wayne",
+   "link": "https://www.bid4assets.com/michigan",
+   "notes": "Detroit. Largest inventory. November sale = no minimum. Use Bid4Assets."
+  },
+  {
+   "name": "Oakland",
+   "link": "https://www.oakgov.com/treasurer/",
+   "notes": "Suburban Detroit. Better property condition."
+  },
+  {
+   "name": "Macomb",
+   "link": "https://www.macombgov.org/Treasurer",
+   "notes": "Good suburban inventory."
+  }
+ ],
+ "rules": {
+  "type": "deed",
+  "process": {
+   "year1": "Tax Year +1: Taxes returned as delinquent to County Treasurer. 1%/month interest.",
+   "year2forfeiture": "March 1, Tax Year +2: Property forfeited to County Treasurer. Interest jumps to 1.5%/month + $175 forfeiture fee + $280 state fee. Redemption still possible.",
+   "year2petition": "By June 15, Tax Year +2: Foreclosing Governmental Unit (FGU) files foreclosure petition with Circuit Court.",
+   "year3judgment": "By late March, Tax Year +3: Court enters foreclosure judgment. Redemption deadline: March 31, Tax Year +3.",
+   "year3sale": "Summer, Tax Year +3: FGU conducts foreclosure auction via Bid4Assets or tax-sale.info.",
+   "localFirst": "Local units have first right of refusal per MCL 211.78m.",
+   "landBank": "Unsold parcels and municipality-rejected parcels go to State Land Bank Authority."
+  },
+  "auction": {
+   "frequency": "Annual — summer (July–September)",
+   "platform": "Bid4Assets (majority of counties) / tax-sale.info (State FGU counties)",
+   "bidMethod": "Highest bidder",
+   "minimumBid": "Varies — typically delinquent taxes + fees",
+   "statute": "MCL 211.78m"
+  },
+  "otc": {
+   "available": false,
+   "name": "No standard OTC — Land Bank acquires unsold parcels",
+   "note": "State Land Bank Authority takes unsold/municipality-rejected parcels. Contact county land bank for direct purchase opportunities.",
+   "landBankUrl": "https://www.michigan.gov/mshda/developers/land-bank"
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — Michigan deed state, no lien certificate sub-tax",
+   "note": "Subsequent taxes are handled through the county delinquency process, not by investors"
+  },
+  "redemption": {
+   "period": "Until March 31 of Tax Year +3 (approx. 1 year after forfeiture)",
+   "interestForfeiture": "1.5% per month (back-dated to original delinquency date)",
+   "additionalFees": "$175 forfeiture fee + $280 state fee + administrative fees",
+   "statute": "MCL 211.78g",
+   "homesteadDifferent": false,
+   "agDifferent": false,
+   "note": "Redemption before March 31 stops foreclosure. After that — title goes to FGU."
+  },
+  "deedPath": {
+   "name": "Foreclosure Deed / Quit Claim Deed from FGU",
+   "process": "FGU auctions → winning bidder receives deed",
+   "titleQuality": "Clear title — MCL 211.78k foreclosure extinguishes all prior interests",
+   "quietTitleRequired": false,
+   "note": "Michigan foreclosure deed is one of the cleanest titles in any deed state"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus / Remaining Proceeds",
+   "statute": "MCL 211.78t",
+   "alert": "⚡ MAJOR: Rafaelli v. Oakland County (MI Supreme Court) + Tyler v. Hennepin (US Supreme Court) — former owners entitled to surplus proceeds. Retroactive to Dec 22, 2014.",
+   "process": "File Form 5743 (Notice of Intent) with FGU by July 1 following foreclosure. FGU notifies by Jan 31. File court motion Feb 1–May 15 if proceeds available.",
+   "retroactiveClaims": "Sales before Dec 22, 2020 — use Form 6156. Deadline varies. Consult attorney.",
+   "note": "Oakland County: Notarized Form 5743 by July 1. Court motion by May 15."
+  }
+ },
+ "es": {
+  "type": "deed",
+  "rate": "N/A (estado de escritura)",
+  "redemption": "Ninguna post-venta",
+  "summary": "Michigan realiza 3 subastas anuales: julio (puja mínima = impuestos atrasados + tarifas), septiembre (mismos mínimos) y noviembre (sin mínimo). El Condado Wayne (Detroit) usa Bid4Assets. Estatuto: MCL §211.78.",
+  "typeWhy": "Michigan es un estado de escritura porque los condados venden propiedades directamente al postor ganador sin derecho de redención posterior a la venta (MCL §211.78).",
+  "rateWhy": "No se aplica tasa de interés ya que es un estado de escritura. Las tres ventanas anuales crean diferentes niveles de oportunidad (MCL §211.78).",
+  "notBeginnerReason": "",
+  "beginnerTip": "La subasta de noviembre es donde está el valor real — sin puja mínima significa propiedades por $500–$2,000 en Detroit. Propiedades se venden tal como están sin garantía. Inspeccione o tome foto desde la calle antes de pujar.",
+  "risks": [
+   "Julio y septiembre tienen pujas mínimas — noviembre es donde están las verdaderas ofertas",
+   "Propiedades vendidas tal como están sin garantía de título",
+   "Las propiedades del área de Detroit pueden tener ocupantes ilegales, violaciones de deterioro o órdenes de demolición"
+  ],
+  "ddExtra": [
+   "Revise el Banco de Tierras del Condado Wayne para propiedades no en la subasta pública",
+   "Ejecute búsqueda de violaciones de deterioro antes de pujar en cualquier propiedad de Detroit",
+   "Solicite foto desde la calle — el Condado Wayne tiene muchas propiedades en mal estado"
+  ],
+  "auctionSignup": {
+   "platform": "Bid4Assets.com (Condado Wayne) + específico por condado para otros",
+   "steps": [
+    "Para Wayne County: bid4assets.com y busque 'Wayne County Michigan'",
+    "Cree una cuenta en Bid4Assets y verifique su identidad (se requiere identificación)",
+    "Envíe un depósito ($500–$2,000 según la venta) para calificar",
+    "Puje en línea durante la ventana de subasta — la venta de noviembre no tiene mínimo"
+   ],
+   "depositInfo": "Depósito de Bid4Assets: normalmente $500–$2,000 reembolsable después de la venta.",
+   "directLink": "https://www.bid4assets.com/michigan"
+  },
+  "otc": {
+   "available": false,
+   "note": "Las propiedades no vendidas van al municipio — revise el Banco de Tierras del Condado Wayne para inventario disponible."
+  }
+ },
+ "counties": [
+  {
+   "name": "Alcona",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.alconacounty.org/equalization/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Alger",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.algercounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Allegan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.allegancounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Alpena",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.alpenacounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Antrim",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.antrimcounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Arenac",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.arenaccountymi.gov/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Baraga",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.baragacounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Barry",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.barrycounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Bay",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.baycounty-mi.gov/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Benzie",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.benzieco.net/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Berrien",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.berriencounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Branch",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.countyofbranch.com/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Calhoun",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.calhouncountymi.gov/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Cass",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.casscounty.com/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Charlevoix",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.charlevoixcounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Cheboygan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.cheboygancounty.net/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Chippewa",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.chippewacountymi.gov/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Clare",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.clareco.net/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Clinton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.clinton-county.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Crawford",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.crawfordco.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Delta",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.deltacounty.com/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Dickinson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.dickinsoncountymi.gov/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Eaton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.eatoncounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Emmet",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.emmetcounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Genesee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://gc4me.com/departments/equalization/tax_reversion/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Gladwin",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.gladwincounty-mi.gov/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Gogebic",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.gogebiccounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Grand Traverse",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.grandtraverse.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Gratiot",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.gratiotmi.com/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Hillsdale",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.hillsdalecounty.net/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Houghton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.houghtoncounty.net/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Huron",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.huroncounty.us/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Ingham",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.ingham.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Ionia",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.ioniacounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Iosco",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.ioscocounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Iron",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.iron.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Isabella",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.isabellacounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.co.jackson.mi.us/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Kalamazoo",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.kalcounty.com/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Kalkaska",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.kalkaskacounty.net/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Kent",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.accesskent.com/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Keweenaw",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.keweenawcounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lake",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.lakecountymi.gov/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lapeer",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.lapeercounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Leelanau",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.leelanaucounty.com/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lenawee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.lenawee.mi.us/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Livingston",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.livgov.com/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Luce",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "tax-sale.info",
+   "url": "https://www.lucecountymi.com/treasurer/",
+   "notes": [
+    "State FGU county"
+   ],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Mackinac",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "tax-sale.info",
+   "url": "https://www.mackinaccounty.net/treasurer/",
+   "notes": [
+    "State FGU county"
+   ],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Macomb",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.macombgov.org/treasurer/",
+   "notes": [
+    "Surplus claims: Form 5743 by July 1"
+   ],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Manistee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.manisteecounty.net/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Marquette",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.co.marquette.mi.us/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Mason",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.masoncounty.net/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Mecosta",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.mecostacounty.org/government/treasurer.php",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Menominee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.menomineecounty.com/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Midland",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.co.midland.mi.us/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Missaukee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.missaukee.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Monroe",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.co.monroe.mi.us/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Montcalm",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.montcalm.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Montmorency",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "tax-sale.info",
+   "url": "https://www.montmorencycounty.org/treasurer/",
+   "notes": [
+    "State FGU county"
+   ],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Muskegon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.co.muskegon.mi.us/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Newaygo",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.newaygocounty.net/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Oakland",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.oakgov.com/government/oakland-county-treasurer-s-office/property-taxes/property-tax-foreclosure-surplus-claims",
+   "notes": [
+    "Surplus claims: Form 5743 by July 1, court motion by May 15",
+    "⚡ Oakland: Surplus claim process active — Form 5743 required"
+   ],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Oceana",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.oceana.mi.us/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Ogemaw",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.ogemawcounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Ontonagon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "tax-sale.info",
+   "url": "https://www.ontonagoncounty.org/treasurer/",
+   "notes": [
+    "State FGU county"
+   ],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Osceola",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.osceolacountymi.com/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Oscoda",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "tax-sale.info",
+   "url": "https://www.oscodacountymi.com/treasurer/",
+   "notes": [
+    "State FGU county"
+   ],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Otsego",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.otsegocountymi.gov/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Ottawa",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.miottawa.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Presque Isle",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "tax-sale.info",
+   "url": "https://www.presqueislecounty.org/treasurer/",
+   "notes": [
+    "State FGU county"
+   ],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Roscommon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.roscommoncounty.net/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Saginaw",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.saginawcounty.com/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Sanilac",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.sanilaccounty.net/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Schoolcraft",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "tax-sale.info",
+   "url": "https://www.schoolcraftcounty.net/treasurer/",
+   "notes": [
+    "State FGU county"
+   ],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Shiawassee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.shiawassee.net/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "St. Clair",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.stclaircounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "St. Joseph",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.stjosephcountymi.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Tuscola",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.tuscolacounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Van Buren",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.vanburencountymi.gov/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Washtenaw",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.washtenaw.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Wayne",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.waynecounty.com/elected/treasurer/tax-auction.aspx",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  },
+  {
+   "name": "Wexford",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A (deed state)",
+   "platform": "Bid4Assets",
+   "url": "https://www.wexfordcounty.org/treasurer/",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": ""
+  }
+ ]
+}

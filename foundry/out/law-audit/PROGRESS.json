@@ -1,0 +1,476 @@
+{
+ "order": [
+  "AK",
+  "AL",
+  "CA",
+  "DC",
+  "HI",
+  "KY",
+  "LA",
+  "ME",
+  "MS",
+  "ND",
+  "NM",
+  "OK",
+  "PA",
+  "TX",
+  "UT",
+  "WI",
+  "WV",
+  "AR",
+  "CO",
+  "CT",
+  "IA",
+  "IL",
+  "MA",
+  "MD",
+  "NH",
+  "SD",
+  "AZ",
+  "DE",
+  "FL",
+  "GA",
+  "ID",
+  "IN",
+  "KS",
+  "MI",
+  "MN",
+  "MO",
+  "MT",
+  "NC",
+  "NE",
+  "NJ",
+  "NV",
+  "NY",
+  "OH",
+  "OR",
+  "RI",
+  "SC",
+  "TN",
+  "VA",
+  "VT",
+  "WA",
+  "WY"
+ ],
+ "states": {
+  "AK": {
+   "status": "done",
+   "date": "2026-10-27",
+   "claims": 69,
+   "supported": 1,
+   "corrected": 60,
+   "flagged": 6,
+   "unreachable": 2,
+   "trimmed": 50
+  },
+  "AL": {
+   "status": "done",
+   "date": "2026-10-27",
+   "claims": 70,
+   "supported": 2,
+   "corrected": 66,
+   "flagged": 2,
+   "unreachable": 0,
+   "trimmed": 62
+  },
+  "CA": {
+   "status": "done",
+   "date": "2026-10-27",
+   "claims": 70,
+   "supported": 7,
+   "corrected": 62,
+   "flagged": 1,
+   "unreachable": 0,
+   "trimmed": 55
+  },
+  "DC": {
+   "status": "done",
+   "date": "2026-10-27",
+   "claims": 74,
+   "supported": 1,
+   "corrected": 71,
+   "flagged": 2,
+   "unreachable": 0,
+   "trimmed": 56
+  },
+  "HI": {
+   "status": "in_progress",
+   "date": "2026-10-27",
+   "claims": 0,
+   "supported": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 0,
+   "note": "HRS site HTTP 403; county ordinance sources identified; see hi.md"
+  },
+  "KY": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "LA": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "ME": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "MS": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "ND": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "NM": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "OK": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "PA": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "TX": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "UT": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "WI": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "WV": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "AR": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "CO": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "CT": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "IA": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "IL": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "MA": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "MD": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "NH": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "SD": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "AZ": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "DE": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "FL": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "GA": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "ID": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "IN": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "KS": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "MI": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "MN": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "MO": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "MT": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "NC": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "NE": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "NJ": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "NV": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "NY": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "OH": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "OR": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "RI": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "SC": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "TN": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "VA": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "VT": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "WA": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  },
+  "WY": {
+   "status": "todo",
+   "date": null,
+   "claims": 0,
+   "corrected": 0,
+   "flagged": 0,
+   "unreachable": 0
+  }
+ }
+}

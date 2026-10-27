@@ -1,0 +1,86 @@
+<section class="prose narrow" id="extras">
+  <p class="eyebrow" id="xPreview" hidden>Preview — not visible to the public yet</p>
+  <h1>Extras</h1>
+  <p class="lede">Everything on this site stays free. These optional extras save time if you work in spreadsheets or a calendar. They do not unlock any information, because nothing on the site is locked.</p>
+  <p class="callout" id="xThanks" hidden>Thanks for your purchase. Polar emails your license key. Paste it below to download or set up your feed.</p>
+
+  <div class="extras-card">
+    <h2>Spreadsheet Pack — $19 one-time</h2>
+    <p><b>What you get:</b> two CSV files that open in Excel, Numbers or Google Sheets.</p>
+    <ul>
+      <li><b>Counties file:</b> every county, parish, borough and town record in the directory (about 3,300 rows): sale type, redemption, interest or penalty, auction platform, official link, sale timing text, notes and research date.</li>
+      <li><b>States file:</b> one row per state and DC: sale type, rate, redemption, bid method, statute and link, auction timing, OTC, and the date and source of the last official check.</li>
+    </ul>
+    <p><b>Updates:</b> the files are rebuilt every time the site is updated. Your key works for re-downloads for 12 months.</p>
+    <p><a class="btn" data-checkout="pack" href="#">Buy the Spreadsheet Pack</a></p>
+  </div>
+
+  <div class="extras-card">
+    <h2>Sale Calendar — $3/month or $29/year</h2>
+    <p><b>What you get:</b> a private calendar link (.ics) for Google Calendar, Apple Calendar or Outlook, showing upcoming tax sale dates for the states and counties you choose.</p>
+    <p><b>Where dates come from:</b> the sale dates and schedules in this directory, such as “1st Tuesday of every month” in Texas, worked out for the next 12 months. Today that covers about 770 counties, mostly in Texas and Georgia, plus some in Oklahoma, Missouri, Mississippi, North Dakota, Utah, Delaware and Colorado. Counties with vague timing (for example “typically spring”) are left out rather than guessed.</p>
+    <p><b>Updates:</b> your calendar app re-checks the feed about every 12 hours. The dates change only when the directory is updated. This is not a live feed from the counties. Sales get postponed or cancelled, so always confirm with the county.</p>
+    <p><a class="btn" data-checkout="calMonthly" href="#">$3 / month</a> <a class="btn ghost" data-checkout="calYearly" href="#">$29 / year</a></p>
+  </div>
+
+  <div class="extras-card">
+    <h2>Use your key</h2>
+    <label for="xKey">License key (from your Polar email)</label>
+    <input id="xKey" class="field" autocomplete="off" spellcheck="false" placeholder="AURPACK-… or AURCAL-…">
+    <button type="button" class="btn" id="xCheck">Check key</button>
+    <p id="xMsg" role="status"></p>
+    <div id="xPack" hidden>
+      <h3>Downloads</h3>
+      <p><a class="btn ghost" id="xCsvC" href="#">Counties CSV</a> <a class="btn ghost" id="xCsvS" href="#">States CSV</a></p>
+    </div>
+    <div id="xCal" hidden>
+      <h3>Your calendar</h3>
+      <label for="xFollow">States or counties to follow, separated by commas (for example: <code>TX, GA:fulton, OK</code>)</label>
+      <input id="xFollow" class="field" autocomplete="off" placeholder="TX, GA:fulton">
+      <button type="button" class="btn" id="xSave">Save</button>
+      <p>Subscribe in your calendar app with this link (keep it private, it contains your key):</p>
+      <input id="xIcs" class="field" readonly>
+    </div>
+  </div>
+
+  <h2>Refunds and help</h2>
+  <p>Payments are handled by Polar, which acts as the seller of record. For a refund or any problem, reply to your Polar receipt email or open an issue at <a href="https://github.com/landoCommandoz/aurigen-directory/issues" rel="noopener">github.com/landoCommandoz/aurigen-directory/issues</a>. Don’t post your license key there.</p>
+  <p class="disclaimer-line">Not legal or financial advice. Rules change. Confirm with the county before you bid.</p>
+</section>
+<script type="application/json" id="xConfig">__POLAR_CONFIG__</script>
+<script>
+(function () {
+  var cfg = JSON.parse(document.getElementById('xConfig').textContent);
+  var q = cfg.preview ? '&preview=1' : '';
+  var $ = function (id) { return document.getElementById(id); };
+  if (cfg.preview) $('xPreview').hidden = false;
+  if (/[?&]thanks=1/.test(location.search)) $('xThanks').hidden = false;
+  Array.prototype.forEach.call(document.querySelectorAll('[data-checkout]'), function (a) {
+    var u = cfg.checkout[a.getAttribute('data-checkout')];
+    if (u) { a.href = u; a.rel = 'noopener'; } else { a.removeAttribute('href'); a.textContent += ' (not set up)'; }
+  });
+  function key() { return $('xKey').value.trim(); }
+  $('xCheck').addEventListener('click', function () {
+    $('xMsg').textContent = 'Checking…';
+    fetch('/api/license', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ key: key() }) })
+      .then(function (r) { return r.json(); }).then(function (d) {
+        if (!d.valid || (!d.pack && !d.calendar)) { $('xMsg').textContent = d.error || 'That key was not accepted. Check it and try again.'; return; }
+        $('xMsg').textContent = 'Key accepted.';
+        var k = encodeURIComponent(key());
+        $('xPack').hidden = !d.pack;
+        $('xCal').hidden = !d.calendar;
+        $('xCsvC').href = '/api/export.csv?file=counties&key=' + k + q;
+        $('xCsvS').href = '/api/export.csv?file=states&key=' + k + q;
+        $('xIcs').value = location.origin + '/api/calendar.ics?key=' + k + q;
+      }).catch(function () { $('xMsg').textContent = 'Could not reach the server. Try again.'; });
+  });
+  $('xSave').addEventListener('click', function () {
+    var follow = $('xFollow').value.split(',').map(function (s) {
+      var p = s.trim().split(':');
+      return p[0].toUpperCase() + (p[1] ? ':' + p[1].trim().toLowerCase().replace(/[^a-z0-9]+/g, '-') : '');
+    }).filter(function (s) { return /^[A-Z]{2}/.test(s); });
+    fetch('/api/follow', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ key: key(), follow: follow }) })
+      .then(function (r) { return r.json(); }).then(function (d) { $('xMsg').textContent = d.ok ? 'Saved ' + d.count + ' to your calendar.' : (d.error || 'Not saved.'); });
+  });
+})();
+</script>
