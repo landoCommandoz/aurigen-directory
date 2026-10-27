@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nd",
+ "slug": "ndcc-57-24",
+ "url": "https://ndlegis.gov/cencode/t57c24.pdf",
+ "final_url": "https://ndlegis.gov/cencode/t57c24.pdf",
+ "fetched_at": "2026-10-27T06:35:46.703Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "005fc8715dae1aa41a05210dd87e0805d0190a202931112fde91b7cd60fef3df",
+ "raw_bytes": 37039,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "857185df4c99fb34a775a3c78524661ebe21b353da507429949ef400c56840da",
+ "text_chars": 99
+}

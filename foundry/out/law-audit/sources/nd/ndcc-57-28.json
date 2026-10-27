@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nd",
+ "slug": "ndcc-57-28",
+ "url": "https://ndlegis.gov/cencode/t57c28.pdf",
+ "final_url": "https://ndlegis.gov/cencode/t57c28.pdf",
+ "fetched_at": "2026-10-27T06:35:49.367Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "3d2e07d2f373819b02624b23e14dfe2761983994841ead7898fed07cbdcf0509",
+ "raw_bytes": 121847,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "c851ee812e992cc1a195d5c32c88c8e456b2d5fe2b7f63a1f44dd9bd8c547d2f",
+ "text_chars": 37744
+}
