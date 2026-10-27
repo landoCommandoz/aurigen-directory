@@ -40,6 +40,13 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - HANDOFF.md must be updated after every session
 - CLAUDE.md SESSION MEMORY updated after every session
 
+## SESSION 16 (2026-10-27) — MOVE TO FREE CLOUDFLARE
+- Old hosting is gone: Netlify site 404, Supabase/scrapers/Sage dead. Static copy still on Vercel (main).
+- aurigendirectory.com: Name.com, paid through 2027-03-24, parked, no MX records.
+- Added .github/workflows/foundry.yml (manual Claude Code run on a spec in foundry/) and foundry/aurigen-free.md.
+- Removed .github/workflows/scrape.yml (dead scraper schedule).
+- foundry/aurigen-free.md overrides this file where they conflict (no paywall, free Cloudflare, Polar extras).
+
 ## OPEN CRITICAL ITEMS
 1. FTC: Founding member 500-cap claim — needs Lando confirmation
 2. C2: states-en.js serverless gating (get-states.js built, needs C2 JWT session validation)

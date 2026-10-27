@@ -1,6 +1,12 @@
 # AURIGEN HANDOFF DOCUMENT
 ## Updated after every session. Read before every session.
 
+### SESSION 16 (2026-10-27): FREE CLOUDFLARE MOVE, SETUP ONLY
+- Built: Foundry workflow (.github/workflows/foundry.yml) and its first spec (foundry/aurigen-free.md).
+- Removed: dead scraper schedule (.github/workflows/scrape.yml).
+- Next: Lando merges to main, adds 3 secrets, taps Run workflow with task aurigen-free.md.
+  The run works on branch foundry/aurigen-free and opens issue "NEEDS LANDO: Aurigen result".
+
 ### LAST SESSION DATE:
 2026-03-29
 
