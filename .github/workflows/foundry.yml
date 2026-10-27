@@ -40,6 +40,8 @@
 name: Foundry
 
 on:
+  push:   # SCRATCH-ONLY
+    branches: [scratch/sdk-test]   # SCRATCH-ONLY
   workflow_dispatch:
     inputs:
       task:
@@ -82,7 +84,7 @@ permissions:
   actions: write
 
 concurrency:
-  group: foundry-${{ inputs.task }}
+  group: foundry-${{ inputs.task || 'sdk-test.md' }}
   cancel-in-progress: false
 
 env:
@@ -106,7 +108,7 @@ jobs:
       - name: Check the spec and pick the work branch
         id: prep
         env:
-          TASK: ${{ inputs.task }}
+          TASK: ${{ inputs.task || 'sdk-test.md' }}
         run: |
           set -euo pipefail
           echo "start=$(date -u +%s)" >> "$GITHUB_OUTPUT"
@@ -215,7 +217,7 @@ jobs:
           SPEC: ${{ steps.prep.outputs.spec }}
           BRANCH: ${{ steps.prep.outputs.branch }}
           RUN_NO: ${{ inputs.chain_run }}
-          MAXT: ${{ inputs.max_turns }}
+          MAXT: ${{ inputs.max_turns || '3' }}
         run: |
           cat > "${RUNNER_TEMP}/foundry-prompt.txt" <<EOF
           You are running unattended in GitHub Actions. Nobody can answer questions, so never stop to ask.
@@ -255,7 +257,7 @@ jobs:
           FOUNDRY_SPEC: ${{ steps.prep.outputs.spec }}
           FOUNDRY_CHAIN_RUN: ${{ inputs.chain_run }}
           FOUNDRY_PROMPT_FILE: ${{ runner.temp }}/foundry-prompt.txt
-          FOUNDRY_MAX_TURNS: ${{ inputs.max_turns }}
+          FOUNDRY_MAX_TURNS: ${{ inputs.max_turns || '3' }}
           FOUNDRY_MODEL: ${{ inputs.model }}
           # Hard cap for one run, so a stuck run cannot burn credit. The chain also tracks the total.
           FOUNDRY_MAX_BUDGET_USD: "10"
