@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/state/:code([a-zA-Z]{2})", "destination": "https://aurigen.landonbrewington12.workers.dev/state/:code/", "statusCode": 307 },
+    { "source": "/state/:code([a-zA-Z]{2})/:rest*", "destination": "https://aurigen.landonbrewington12.workers.dev/state/:code/", "statusCode": 307 },
+    { "source": "/about", "destination": "https://aurigen.landonbrewington12.workers.dev/about/", "statusCode": 307 },
+    { "source": "/legal/:rest*", "destination": "https://aurigen.landonbrewington12.workers.dev/legal/", "statusCode": 307 },
+    { "source": "/:path*", "destination": "https://aurigen.landonbrewington12.workers.dev/", "statusCode": 307 }
+  ]
+}
