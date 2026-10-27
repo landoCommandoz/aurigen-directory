@@ -77,3 +77,5 @@ Checked against official government sources only (state legislature statute site
 - "Confirmed" means the official text read this run matched our data on the fields checked; the note says which fields were not re-read.
 - Unconfirmed states kept their existing values; nothing was changed for them.
 - Texas: statutes.capitol.texas.gov refused connections all run, so Texas stays unconfirmed.
+- Illinois (build step): the site shows the redemption change as "2–2.5 years for older certificates; 3 years (1 year for vacant, commercial or 7+ unit property) for certificates from sales on or after July 10, 2026", because P.A. 104-553 applies only to certificates issued on or after its effective date.
+- How changes reach the site: `cloudflare/scripts/build-site.mjs` applies each change to the state page and to every county record that still had the old state value. The legacy root data files were left alone (spec rule 5: don't touch the old app files). Each state page shows the old and new value.
