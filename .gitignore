@@ -10,3 +10,6 @@ pipeline/local-biz/email-errors.log
 # Cloudflare local state and secrets
 .wrangler/
 .dev.vars
+
+# Law audit raw downloads (hashes are kept in the .json records)
+foundry/out/law-audit/raw/
