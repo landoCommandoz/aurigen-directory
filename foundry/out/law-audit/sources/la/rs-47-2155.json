@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "la",
+ "slug": "rs-47-2155",
+ "url": "https://legis.la.gov/legis/LawPrint.aspx?d=631551",
+ "final_url": "https://legis.la.gov/legis/LawPrint.aspx?d=631551",
+ "fetched_at": "2026-10-27T06:28:56.342Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "1620ed70a353e50c1112e6638d5a390bcdfbf27c86c97c108503a2416953ee2b",
+ "raw_bytes": 17565,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "345cbedc5b9eca845e430cfa9cc229a5c555110a23b6d93e19c9d478bf576d18",
+ "text_chars": 5486
+}

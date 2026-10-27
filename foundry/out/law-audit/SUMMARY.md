@@ -1,7 +1,7 @@
 # Law audit summary
 
 Spec: `foundry/aurigen-law-audit.md`. Gate: `cloudflare/scripts/check-law.mjs`. Ledgers: `cloudflare/data/law/<st>.json`.
-States done: 6 of 51 (AK, AL, CA, DC, HI, KY).
+States done: 7 of 51 (AK, AL, CA, DC, HI, KY, LA).
 
 | State | Status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |
 |---|---|---|---|---|---|---|---|---|---|
@@ -11,7 +11,7 @@ States done: 6 of 51 (AK, AL, CA, DC, HI, KY).
 | DC | done | 2026-10-27 | 74 | 1 | 71 | 2 | 0 | 56 | [dc.md](dc.md) |
 | HI | done | 2026-10-27 | 68 | 6 | 56 | 1 | 5 | 62 | [hi.md](hi.md) |
 | KY | done | 2026-10-27 | 66 | 5 | 61 | 0 | 0 | 60 | [ky.md](ky.md) |
-| LA | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| LA | done | 2026-10-27 | 68 | 2 | 65 | 1 | 0 | 62 | [la.md](la.md) |
 | ME | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | MS | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | ND | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
@@ -67,6 +67,7 @@ States done: 6 of 51 (AK, AL, CA, DC, HI, KY).
 - CA `otc.available`: No official text fetched on OTC; SCO manual says unsold property may be re-offered at a reduced minimum bid
 - DC `rate`: Fetched D.C. Code §§ 47-1330 to 47-1382.01 say redemption includes "interest thereon" but the 18% figure was not found in the sections read; confirm the rate section
 - HI `otc.available`: No official source fetched on over-the-counter sales in any Hawaii county
+- LA `otc.available`: Unsold liens go to the political subdivision (R.S. 47:2154(E)); no section read on later purchase from the subdivision
 
 ## Unreachable sources ("Couldn't reach source")
 
