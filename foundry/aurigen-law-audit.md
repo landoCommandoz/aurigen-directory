@@ -300,7 +300,9 @@ itself. It stops when any of these happens:
 - all 51 states are done
 - a run fails
 - a run finishes zero states
-- 20 runs have run
+- 20 runs have run (a retry counts as a run)
+- two no-op runs in a row (a no-op is a run with fewer than 5 turns or $0.00 cost; the first one is retried once, after 2 minutes)
+- the Anthropic API refuses the key, the credit or the spend limit before a run starts
 - if the repo were private, its minutes budget would be passed
 
 So finish and commit whole states. A run that finishes no whole state stops the chain.

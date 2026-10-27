@@ -23,6 +23,10 @@
 # {"total": <items>, "done": <items finished>}. With "chain" ticked (the default), the next run starts
 # by itself until: all items are done, a run fails, a run finishes zero new items, 20 runs have run,
 # or (private repo only) the minutes budget would be passed. The issue gets one comment when it stops.
+# No-op rule: a run with fewer than 5 turns or $0.00 cost did no real work. It is retried once, after
+# 2 minutes, and the chain stops if the retry is a no-op too. A retry counts toward the 20 runs.
+# Before each run a one-token call (a fraction of a cent) checks the API key. A refused key, no credit or
+# a spend limit stops the chain at once with the API's own error text, because waiting cannot fix it.
 #
 # The workflow's own token cannot change files under .github/workflows/, so specs must not ask for that.
 # That also means the work branch must carry the same .github/workflows files as the branch the run is
@@ -56,6 +60,10 @@ on:
         default: 0
       chain_cost:
         description: "Leave as 0. API dollars used so far by this chain."
+        type: string
+        default: "0"
+      chain_retry:
+        description: "Leave as 0. Set to 1 by the chain when this run is the one automatic retry of a no-op."
         type: string
         default: "0"
 
@@ -146,8 +154,40 @@ jobs:
       - name: Make sure pdftotext is installed
         run: command -v pdftotext || (sudo apt-get update -q && sudo apt-get install -y -q --no-install-recommends poppler-utils)
 
+      - name: Check the Anthropic API answers
+        id: api
+        if: steps.prep.outcome == 'success'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -uo pipefail
+          # One-token call on the smallest model (a fraction of a cent). A missing key, no credit, a spend
+          # limit or a rate limit then shows its real error text here, instead of a silent no-op run.
+          body="${RUNNER_TEMP}/preflight.json"; : > "$body"
+          ok=true; fatal=false
+          if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
+            code=000; err="the ANTHROPIC_API_KEY repository secret is empty or missing"; ok=false; fatal=true
+          else
+            code=$(curl -sS -m 45 -o "$body" -w '%{http_code}' https://api.anthropic.com/v1/messages \
+              -H "x-api-key: ${ANTHROPIC_API_KEY}" -H "anthropic-version: 2023-06-01" -H "content-type: application/json" \
+              -d '{"model":"claude-haiku-5-5","max_tokens":1,"messages":[{"role":"user","content":"ok"}]}' \
+              2>"${RUNNER_TEMP}/preflight.err") || code=000
+            err=$(jq -r '.error.message // empty' "$body" 2>/dev/null || true)
+            [ -n "$err" ] || err=$(cat "${RUNNER_TEMP}/preflight.err" 2>/dev/null || true)
+            case "$code" in
+              200) ;;
+              400|401|402|403) ok=false; fatal=true ;;   # key, credit or spend limit: waiting will not fix it
+              000|408|429|5??) ok=false ;;               # busy or unreachable: worth one retry
+              *) echo "::warning::The API check answered HTTP ${code}; starting the run anyway." ;;
+            esac
+          fi
+          msg=$(printf '%s' "$err" | tr '\r\n\t' '   ' | sed -E 's/sk-ant-[A-Za-z0-9_-]+/[key]/g; s/  +/ /g' | cut -c1-240)
+          echo "Anthropic API check: HTTP ${code}. ${msg}"
+          { echo "ok=${ok}"; echo "fatal=${fatal}"; echo "http=${code}"; echo "msg=${msg}"; } >> "$GITHUB_OUTPUT"
+
       - name: Run Claude Code on the spec
         id: claude
+        if: steps.api.outputs.ok == 'true'
         timeout-minutes: 75
         continue-on-error: true
         uses: anthropics/claude-code-action@8041f1d17e0e7d2f2cfe35002962e9f26237c0bb # v1.0.263
@@ -199,6 +239,9 @@ jobs:
       - name: Read how the Claude run ended
         id: result
         if: always() && steps.prep.outcome == 'success'
+        env:
+          PREFLIGHT_OK: ${{ steps.api.outputs.ok }}
+          PREFLIGHT_MSG: ${{ steps.api.outputs.msg }}
         run: |
           set -euo pipefail
           f="${RUNNER_TEMP}/claude-execution-output.json"
@@ -206,17 +249,25 @@ jobs:
             node -e '
               const m = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
               const r = [...m].reverse().find((x) => x && x.type === "result") || {};
+              // The action hides the error text in its log; the record has it. Keep one short redacted line.
+              const clean = (v) => String(v ?? "").replace(/sk-ant-[A-Za-z0-9_-]+/g, "[key]").replace(/\s+/g, " ").trim().slice(0, 240);
+              const isErr = r.is_error === true;
               const out = [
                 "subtype=" + (r.subtype || "none"),
                 "turns=" + (r.num_turns ?? "unknown"),
                 "cost=" + (typeof r.total_cost_usd === "number" ? r.total_cost_usd.toFixed(2) : "0"),
+                "is_error=" + isErr,
+                "error=" + (isErr ? clean(r.result) : ""),
               ].join("\n");
               require("fs").appendFileSync(process.env.GITHUB_OUTPUT, out + "\n");
               console.log(out);
             ' "$f"
+          elif [ "${PREFLIGHT_OK:-}" != "true" ]; then
+            echo "Claude was not started because the API check failed: ${PREFLIGHT_MSG:-no answer}"
+            printf 'subtype=api_refused\nturns=0\ncost=0\nis_error=true\nerror=%s\n' "${PREFLIGHT_MSG:-no answer}" >> "$GITHUB_OUTPUT"
           else
             echo "No execution record found (the step may have been stopped by its time limit)."
-            printf 'subtype=none\nturns=unknown\ncost=0\n' >> "$GITHUB_OUTPUT"
+            printf 'subtype=none\nturns=unknown\ncost=0\nis_error=false\nerror=\n' >> "$GITHUB_OUTPUT"
           fi
 
       - name: Save the work to the branch
@@ -286,6 +337,10 @@ jobs:
           DONE_BEFORE: ${{ steps.prep.outputs.done_before }}
           SUBTYPE: ${{ steps.result.outputs.subtype }}
           RUN_COST: ${{ steps.result.outputs.cost }}
+          TURNS: ${{ steps.result.outputs.turns }}
+          ERROR: ${{ steps.result.outputs.error }}
+          RETRY: ${{ inputs.chain_retry }}
+          PREFLIGHT_FATAL: ${{ steps.api.outputs.fatal }}
           PUSHED: ${{ steps.save.outputs.pushed }}
         run: |
           set -uo pipefail
@@ -300,31 +355,52 @@ jobs:
             done_after=$(jq -r '.done // 0' "$file" 2>/dev/null || echo 0)
           fi
           private=$(gh api "repos/${GITHUB_REPOSITORY}" --jq .private 2>/dev/null || echo true)
-          cont=false; quiet=false; reason=""
+          cont=false; quiet=false; reason=""; kind=none; retry=0
+          # A no-op did no real work: fewer than 5 turns, or no cost at all.
+          noop=false
+          if [[ "${TURNS:-}" =~ ^[0-9]+$ ]] && [ "$TURNS" -lt 5 ]; then noop=true; fi
+          if awk -v c="${RUN_COST:-0}" 'BEGIN { exit !(c + 0 <= 0) }'; then noop=true; fi
+          detail="${TURNS:-unknown} turns, \$${RUN_COST:-0}"
+          [ -n "${ERROR:-}" ] && detail="${detail}, error: ${ERROR}"
           if [ ! -f "$file" ]; then
             quiet=true; reason="this spec does not chain"
           elif [ "$CHAIN" != "true" ]; then
             reason="chaining was switched off for this run"
           elif [ "$total" -gt 0 ] && [ "$done_after" -ge "$total" ]; then
             reason="all ${total} are done"
+          elif [ "${PREFLIGHT_FATAL:-false}" = "true" ]; then
+            reason="the Anthropic API refused the request before the run started (${ERROR:-no message}). Waiting will not fix it: check the key, the credit balance and the workspace spend limit, then press Run workflow"
+          elif [ "$noop" = "true" ] && [ "${RETRY:-0}" -ge 1 ]; then
+            reason="two no-op runs in a row (${detail})"
+          elif [ "$noop" = "true" ]; then
+            kind=retry
           elif [ "$SUBTYPE" != "success" ] && [ "$SUBTYPE" != "error_max_turns" ]; then
             reason="the run failed (Claude ended with: ${SUBTYPE:-none})"
           elif [ "${PUSHED:-}" != "yes" ]; then
             reason="the run's work was not saved (save step: ${PUSHED:-did not run})"
           elif [ "$done_after" -le "$DONE_BEFORE" ]; then
             reason="the run finished zero new items (still ${done_after} of ${total})"
-          elif [ "$RUN_NO" -ge "$CHAIN_MAX_RUNS" ]; then
-            reason="it reached the limit of ${CHAIN_MAX_RUNS} runs"
-          elif [ "$private" = "true" ] && [ $(( used + 90 )) -gt "$PRIVATE_MINUTES_BUDGET" ]; then
-            reason="the repo is private and another run could pass the ${PRIVATE_MINUTES_BUDGET}-minute budget (${used} used)"
           else
-            cont=true; reason="${done_after} of ${total} done; starting run $(( RUN_NO + 1 ))"
+            kind=next
+          fi
+          # A run would be started: the run cap and the private-repo budget still apply (a retry is a run).
+          if [ "$kind" != "none" ]; then
+            if [ "$RUN_NO" -ge "$CHAIN_MAX_RUNS" ]; then
+              reason="it reached the limit of ${CHAIN_MAX_RUNS} runs"
+            elif [ "$private" = "true" ] && [ $(( used + 90 )) -gt "$PRIVATE_MINUTES_BUDGET" ]; then
+              reason="the repo is private and another run could pass the ${PRIVATE_MINUTES_BUDGET}-minute budget (${used} used)"
+            elif [ "$kind" = "retry" ]; then
+              cont=true; retry=1; reason="run ${RUN_NO} was a no-op (${detail}); trying once more in 2 minutes"
+            else
+              cont=true; reason="${done_after} of ${total} done; starting run $(( RUN_NO + 1 ))"
+            fi
           fi
           echo "Chain: continue=${cont}. ${reason}. Minutes used ${used}. API cost so far \$${cost}."
           {
             echo "continue=${cont}"
             echo "quiet=${quiet}"
             echo "reason=${reason}"
+            echo "retry=${retry}"
             echo "next_run=$(( RUN_NO + 1 ))"
             echo "minutes=${used}"
             echo "cost=${cost}"
@@ -341,10 +417,13 @@ jobs:
           NEXT: ${{ steps.chain.outputs.next_run }}
           MINUTES: ${{ steps.chain.outputs.minutes }}
           COST: ${{ steps.chain.outputs.cost }}
+          RETRY_NEXT: ${{ steps.chain.outputs.retry }}
         run: |
           set -euo pipefail
+          # The one automatic retry waits 2 minutes, so a short rate limit or outage can clear first.
+          if [ "${RETRY_NEXT:-0}" = "1" ]; then sleep 120; fi
           gh workflow run foundry.yml --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" \
-            -f task="$TASK" -f chain=true -f chain_run="$NEXT" -f chain_minutes="$MINUTES" -f chain_cost="$COST"
+            -f task="$TASK" -f chain=true -f chain_run="$NEXT" -f chain_minutes="$MINUTES" -f chain_cost="$COST" -f chain_retry="${RETRY_NEXT:-0}"
           echo "started=yes" >> "$GITHUB_OUTPUT"
           echo "Started run ${NEXT}. It waits until this run finishes."
 
@@ -359,6 +438,7 @@ jobs:
           TURNS: ${{ steps.result.outputs.turns }}
           RUN_COST: ${{ steps.result.outputs.cost }}
           PUSHED: ${{ steps.save.outputs.pushed }}
+          ERROR: ${{ steps.result.outputs.error }}
           CONTINUE: ${{ steps.chain.outputs.continue }}
           QUIET: ${{ steps.chain.outputs.quiet }}
           REASON: ${{ steps.chain.outputs.reason }}
@@ -392,6 +472,7 @@ jobs:
             echo "---"
             [ -n "$chain_line" ] && echo "$chain_line"
             echo "This run: Claude ended with ${SUBTYPE:-none} after ${TURNS:-unknown} turns, API cost \$${RUN_COST:-0}. Save step: ${PUSHED:-not run}."
+            [ -n "${ERROR:-}" ] && echo "Error text from the API: ${ERROR}"
             [ -n "$chain_line" ] && echo "Chain so far: API cost \$${CHAIN_COST:-0}, about ${CHAIN_MINUTES:-0} Actions minutes."
             echo "Run: ${run_url}"
             echo "Branch: ${branch_url}"
@@ -417,11 +498,18 @@ jobs:
         env:
           CLAUDE_OUTCOME: ${{ steps.claude.outcome }}
           SUBTYPE: ${{ steps.result.outputs.subtype }}
+          ERROR: ${{ steps.result.outputs.error }}
+          PREFLIGHT_OK: ${{ steps.api.outputs.ok }}
           REASON: ${{ steps.chain.outputs.reason }}
         run: |
           # The Claude step continues on error so the save, chain and issue steps always run. This last step
           # turns the run red afterwards. Reaching the turn limit is normal and does not count as a failure.
-          if [ "$CLAUDE_OUTCOME" = "failure" ] && [ "$SUBTYPE" != "success" ] && [ "$SUBTYPE" != "error_max_turns" ]; then
-            echo "::error::Claude did not finish (ended with: ${SUBTYPE:-none}). ${REASON:-}"
+          # A result flagged as an error counts, even though its subtype can read "success".
+          if [ "${PREFLIGHT_OK:-}" != "true" ]; then
+            echo "::error::The Anthropic API check failed, so Claude was not started. ${ERROR:-} ${REASON:-}"
+            exit 1
+          fi
+          if [ "$CLAUDE_OUTCOME" = "failure" ] && [ "$SUBTYPE" != "error_max_turns" ]; then
+            echo "::error::Claude ended with an error (${SUBTYPE:-none}). ${ERROR:-} ${REASON:-}"
             exit 1
           fi
