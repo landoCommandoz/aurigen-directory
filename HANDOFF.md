@@ -6,6 +6,7 @@
 - Removed: dead scraper schedule (.github/workflows/scrape.yml).
 - Next: Lando merges to main, adds 3 secrets, taps Run workflow with task aurigen-free.md.
   The run works on branch foundry/aurigen-free and opens issue "NEEDS LANDO: Aurigen result".
+- Added foundry/aurigen-design.md: next Foundry spec (Records Room, Legal Notice, Field Survey concepts). Lando runs it.
 
 ### LAST SESSION DATE:
 2026-03-29

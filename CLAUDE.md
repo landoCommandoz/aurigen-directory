@@ -46,6 +46,7 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - Added .github/workflows/foundry.yml (manual Claude Code run on a spec in foundry/) and foundry/aurigen-free.md.
 - Removed .github/workflows/scrape.yml (dead scraper schedule).
 - foundry/aurigen-free.md overrides this file where they conflict (no paywall, free Cloudflare, Polar extras).
+- Added foundry/aurigen-design.md (3 design concepts at preview addresses; live site untouched). Not run yet.
 
 ## OPEN CRITICAL ITEMS
 1. FTC: Founding member 500-cap claim — needs Lando confirmation
