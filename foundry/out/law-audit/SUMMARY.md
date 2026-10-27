@@ -1,7 +1,7 @@
 # Law audit summary
 
 Spec: `foundry/aurigen-law-audit.md`. Gate: `cloudflare/scripts/check-law.mjs`. Ledgers: `cloudflare/data/law/<st>.json`.
-States done: 7 of 51 (AK, AL, CA, DC, HI, KY, LA).
+States done: 8 of 51 (AK, AL, CA, DC, HI, KY, LA, ME).
 
 | State | Status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |
 |---|---|---|---|---|---|---|---|---|---|
@@ -12,7 +12,7 @@ States done: 7 of 51 (AK, AL, CA, DC, HI, KY, LA).
 | HI | done | 2026-10-27 | 68 | 6 | 56 | 1 | 5 | 62 | [hi.md](hi.md) |
 | KY | done | 2026-10-27 | 66 | 5 | 61 | 0 | 0 | 60 | [ky.md](ky.md) |
 | LA | done | 2026-10-27 | 68 | 2 | 65 | 1 | 0 | 62 | [la.md](la.md) |
-| ME | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| ME | done | 2026-10-27 | 68 | 5 | 57 | 1 | 5 | 58 | [me.md](me.md) |
 | MS | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | ND | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | NM | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
@@ -68,6 +68,7 @@ States done: 7 of 51 (AK, AL, CA, DC, HI, KY, LA).
 - DC `rate`: Fetched D.C. Code §§ 47-1330 to 47-1382.01 say redemption includes "interest thereon" but the 18% figure was not found in the sections read; confirm the rate section
 - HI `otc.available`: No official source fetched on over-the-counter sales in any Hawaii county
 - LA `otc.available`: Unsold liens go to the political subdivision (R.S. 47:2154(E)); no section read on later purchase from the subdivision
+- ME `otc.available`: No official text on over-the-counter sales; § 943-C requires broker listing of tax-acquired property
 
 ## Unreachable sources ("Couldn't reach source")
 
@@ -76,3 +77,6 @@ States done: 7 of 51 (AK, AL, CA, DC, HI, KY, LA).
 - HI `summary.4`: https://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, http://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, https://data.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm
 - HI `typeWhy.3`: https://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, http://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, https://data.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm
 - HI `rateWhy.3`: https://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, http://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, https://data.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm
+- ME `rate`: https://legislature.maine.gov/statutes/36/title36sec505.html, https://legislature.maine.gov/statutes/36/title36sec505.pdf
+- ME `rateWhy.1`: https://legislature.maine.gov/statutes/36/title36sec505.html, https://legislature.maine.gov/statutes/36/title36sec505.pdf
+- ME `rateWhy.3`: https://legislature.maine.gov/statutes/36/title36sec505.html, https://legislature.maine.gov/statutes/36/title36sec505.pdf

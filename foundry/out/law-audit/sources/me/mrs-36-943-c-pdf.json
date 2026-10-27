@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "me",
+ "slug": "mrs-36-943-c-pdf",
+ "url": "https://legislature.maine.gov/statutes/36/title36sec943-C.pdf",
+ "final_url": "https://legislature.maine.gov/statutes/36/title36sec943-C.pdf",
+ "fetched_at": "2026-10-27T06:31:40.548Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "2aa9b7e5e078be4d8fa558cc758775b795950293c253cff33e2cb040e4f9c9c9",
+ "raw_bytes": 126684,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "75b70ec3c94122edb5e223d91596f29480dbccb5f2cb4b1c9b093ce54a14495c",
+ "text_chars": 10251
+}

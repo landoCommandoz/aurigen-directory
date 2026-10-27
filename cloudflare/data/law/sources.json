@@ -257,6 +257,36 @@
    "text_sha256": "5e397e7f5c40103dc997107da1d6d607b8df8470349236717d9f830c73e4cb7c",
    "fetched_at": "2026-10-27T06:29:16.582Z",
    "snapshot": "foundry/out/law-audit/sources/la/rs-47-2266-1.json"
+  },
+  "https://legislature.maine.gov/statutes/36/title36sec942.html": {
+   "state": "ME",
+   "statutes": [
+    "36 M.R.S. § 942"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "95eb2d891b8c41cb0f660dc51796e1e5e3dcf4d33e9a3b898e7ee8510c02eab5",
+   "fetched_at": "2026-10-27T06:30:53.317Z",
+   "snapshot": "foundry/out/law-audit/sources/me/mrs-36-942.json"
+  },
+  "https://legislature.maine.gov/statutes/36/title36sec943.html": {
+   "state": "ME",
+   "statutes": [
+    "36 M.R.S. § 943"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "623e5a839cf14375dd0ea1db65b007aa6b0ab85633212af39ee35a0de0c32282",
+   "fetched_at": "2026-10-27T06:32:01.162Z",
+   "snapshot": "foundry/out/law-audit/sources/me/mrs-36-943.json"
+  },
+  "https://legislature.maine.gov/statutes/36/title36sec943-C.pdf": {
+   "state": "ME",
+   "statutes": [
+    "36 M.R.S. § 943-C"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "75b70ec3c94122edb5e223d91596f29480dbccb5f2cb4b1c9b093ce54a14495c",
+   "fetched_at": "2026-10-27T06:31:40.548Z",
+   "snapshot": "foundry/out/law-audit/sources/me/mrs-36-943-c-pdf.json"
   }
  }
 }
