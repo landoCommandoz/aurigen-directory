@@ -5,7 +5,7 @@
   "scripts": {
     "data": "node scripts/build-data.mjs",
     "build": "node scripts/build-data.mjs > data/coverage.txt && node scripts/build-site.mjs",
-    "check": "node --check scripts/build-data.mjs && node --check scripts/build-site.mjs && node --check src/worker.js && node --check public/assets/app.js",
+    "check": "node --check scripts/build-data.mjs && node --check scripts/build-site.mjs && node --check src/worker.js && node --check src/app.js",
     "deploy": "npm run build && wrangler deploy"
   },
   "devDependencies": {
