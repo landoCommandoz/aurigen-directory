@@ -1,7 +1,7 @@
 # Law audit summary
 
 Spec: `foundry/aurigen-law-audit.md`. Gate: `cloudflare/scripts/check-law.mjs`. Ledgers: `cloudflare/data/law/<st>.json`.
-States done: 4 of 51 (AK, AL, CA, DC).
+States done: 5 of 51 (AK, AL, CA, DC, HI).
 
 | State | Status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |
 |---|---|---|---|---|---|---|---|---|---|
@@ -9,7 +9,7 @@ States done: 4 of 51 (AK, AL, CA, DC).
 | AL | done | 2026-10-27 | 70 | 2 | 66 | 2 | 0 | 62 | [al.md](al.md) |
 | CA | done | 2026-10-27 | 70 | 7 | 62 | 1 | 0 | 55 | [ca.md](ca.md) |
 | DC | done | 2026-10-27 | 74 | 1 | 71 | 2 | 0 | 56 | [dc.md](dc.md) |
-| HI | in_progress | 2026-10-27 | 0 | 0 | 0 | 0 | 0 | 0 | [hi.md](hi.md) |
+| HI | done | 2026-10-27 | 68 | 6 | 56 | 1 | 5 | 62 | [hi.md](hi.md) |
 | KY | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | LA | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | ME | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
@@ -66,7 +66,12 @@ States done: 4 of 51 (AK, AL, CA, DC).
 - AL `rate`: Ala. Admin. Code r. 810-4-6-.02 says 8% for tax sales after Jan 1, 2020; the DOR Land Sales FAQ still says 12% per annum; the Code text could not be read (script-only site)
 - CA `otc.available`: No official text fetched on OTC; SCO manual says unsold property may be re-offered at a reduced minimum bid
 - DC `rate`: Fetched D.C. Code §§ 47-1330 to 47-1382.01 say redemption includes "interest thereon" but the 18% figure was not found in the sections read; confirm the rate section
+- HI `otc.available`: No official source fetched on over-the-counter sales in any Hawaii county
 
 ## Unreachable sources ("Couldn't reach source")
 
 - AK `signup.steps.1`: https://www.commerce.alaska.gov/web/dcra/, https://www.commerce.alaska.gov/web/dcra/OfficeoftheStateAssessor.aspx
+- HI `statute`: https://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, http://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, https://data.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm
+- HI `summary.4`: https://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, http://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, https://data.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm
+- HI `typeWhy.3`: https://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, http://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, https://data.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm
+- HI `rateWhy.3`: https://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, http://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, https://data.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm
