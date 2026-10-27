@@ -24,12 +24,14 @@
   });
 
   // ----- home: search (index loaded on first use) -----
+  var TL = { lien: 'Tax lien', deed: 'Tax deed', hybrid: 'Hybrid', redeemable: 'Redeemable deed', other: 'Other' };
   var q = $('#q'), results = $('#results'), idx = null, loading = false;
   function loadIdx(cb) {
     if (idx) return cb();
     if (loading) return;
     loading = true;
-    fetch('/assets/search.json').then(function (r) { return r.json(); }).then(function (d) { idx = d; cb(); }).catch(function () { loading = false; });
+    // Re-run the search once loaded so typing during the fetch isn't lost.
+    fetch('/assets/search.json').then(function (r) { return r.json(); }).then(function (d) { idx = d; cb(); if (q.value.trim()) runSearch(); }).catch(function () { loading = false; });
   }
   function runSearch() {
     var v = norm(q.value.trim());
@@ -39,7 +41,7 @@
       idx.s.forEach(function (s) { if (norm(s[1]).indexOf(v) === 0 || s[0].toLowerCase() === v) out.push('<li><a href="/state/' + s[0].toLowerCase() + '/"><span>' + esc(s[1]) + '</span><span class="muted">State</span></a></li>'); });
       for (var i = 0; i < idx.c.length && out.length < 12; i++) {
         var c = idx.c[i];
-        if (norm(c[0]).indexOf(v) === 0) out.push('<li><a href="/state/' + c[1].toLowerCase() + '/#c-' + c[3] + '"><span>' + esc(c[0]) + ', ' + c[1] + '</span><span class="muted">' + esc(c[2]) + '</span></a></li>');
+        if (norm(c[0]).indexOf(v) === 0) out.push('<li><a href="/state/' + c[1].toLowerCase() + '/#c-' + c[3] + '"><span>' + esc(c[0]) + ', ' + c[1] + '</span><span class="muted">' + esc(TL[c[2]] || c[2]) + '</span></a></li>');
       }
       results.innerHTML = out.length ? out.join('') : '<li class="muted" style="padding:.7rem .8rem">No matches</li>';
       results.hidden = false;

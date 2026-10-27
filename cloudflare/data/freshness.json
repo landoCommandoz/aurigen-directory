@@ -125,12 +125,12 @@
     "lastChecked": "2026-10-27"
   },
   "ID": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
+    "status": "confirmed",
+    "sourceUrl": "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1007/",
+    "sourceTitle": "Idaho Code 63-1007 (legislature.idaho.gov)",
+    "note": "Redemption rights expire 14 months from issuance of the tax deed to the county (earlier if county sells/transfers). Sale method not re-read.",
+    "changes": [],
+    "lastChecked": "2026-10-27"
   },
   "IL": {
     "status": "changed",
@@ -218,20 +218,20 @@
     "changes": []
   },
   "MI": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
+    "status": "confirmed",
+    "sourceUrl": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78m",
+    "sourceTitle": "MCL 211.78m (legislature.mi.gov)",
+    "note": "Foreclosed property sold at auction subject to minimum bid; conveyed to highest bidder. No post-sale redemption described.",
+    "changes": [],
+    "lastChecked": "2026-10-27"
   },
   "MN": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
+    "status": "confirmed",
+    "sourceUrl": "https://www.revisor.mn.gov/statutes/cite/281.17",
+    "sourceTitle": "Minn. Stat. 281.17 (revisor.mn.gov)",
+    "note": "3-year redemption runs from the tax judgment sale to the state, before forfeiture; forfeited land is later sold by the county with no post-sale redemption.",
+    "changes": [],
+    "lastChecked": "2026-10-27"
   },
   "MO": {
     "status": "confirmed",
@@ -282,12 +282,19 @@
     "lastChecked": "2026-10-27"
   },
   "NH": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
+    "status": "changed",
+    "sourceUrl": "https://gc.nh.gov/rsa/html/V/80/80-mrg.htm",
+    "sourceTitle": "RSA 80:32, 80:69, 80:76 (gc.nh.gov)",
+    "note": "Redemption interest is 14% per annum under both tax sale (80:32) and tax lien (80:69) procedures; tax deed after 2 years (80:76). Bid method not re-read.",
+    "changes": [
+      {
+        "field": "rate",
+        "old": "18%",
+        "new": "14%",
+        "note": "RSA 80:32 and 80:69: interest at 14 percent per annum (amended 2018, 282, eff. April 1, 2019)."
+      }
+    ],
+    "lastChecked": "2026-10-27"
   },
   "NJ": {
     "status": "confirmed",
@@ -306,20 +313,20 @@
     "changes": []
   },
   "NV": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
+    "status": "confirmed",
+    "sourceUrl": "https://www.leg.state.nv.us/nrs/nrs-361.html",
+    "sourceTitle": "NRS 361.585, 361.595 (leg.state.nv.us)",
+    "note": "After redemption period expires, deed goes to county treasurer in trust; commissioners order treasurer to sell for not less than taxes, costs, penalties and interest. No post-sale redemption.",
+    "changes": [],
+    "lastChecked": "2026-10-27"
   },
   "NY": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
+    "status": "confirmed",
+    "sourceUrl": "https://www.nysenate.gov/legislation/laws/RPT/1110",
+    "sourceTitle": "NY RPTL 1110 (nysenate.gov)",
+    "note": "Default redemption expires 2 years after lien date; districts may extend (residential/farm) or shorten to 1 year for vacant/abandoned, so Varies is accurate. Rate and bid method not re-read.",
+    "changes": [],
+    "lastChecked": "2026-10-27"
   },
   "OH": {
     "status": "confirmed",
@@ -338,12 +345,12 @@
     "changes": []
   },
   "OR": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
+    "status": "confirmed",
+    "sourceUrl": "https://www.oregonlegislature.gov/bills_laws/ors/ors312.html",
+    "sourceTitle": "ORS 312.120 (oregonlegislature.gov)",
+    "note": "County holds foreclosed property 2 years from judgment for redemption, then may sell it; no redemption after county sale.",
+    "changes": [],
+    "lastChecked": "2026-10-27"
   },
   "PA": {
     "lastChecked": null,
@@ -370,12 +377,19 @@
     "lastChecked": "2026-10-27"
   },
   "SD": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
+    "status": "changed",
+    "sourceUrl": "https://sdlegislature.gov/api/Statutes/10-23-8.html",
+    "sourceTitle": "SDCL 10-23-8 and 10-25-1 (sdlegislature.gov)",
+    "note": "Lowest interest rate bid wins; no bid above 10% per year is valid. Tax deed proceeding may start after 3 years from certificate sale (within 6 years).",
+    "changes": [
+      {
+        "field": "rate",
+        "old": "12%",
+        "new": "10% max (bid down)",
+        "note": "SDCL 10-23-8: no rate of interest higher than ten percent per year is a valid bid."
+      }
+    ],
+    "lastChecked": "2026-10-27"
   },
   "TN": {
     "lastChecked": null,
@@ -418,12 +432,12 @@
     "lastChecked": "2026-10-27"
   },
   "WA": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
+    "status": "confirmed",
+    "sourceUrl": "https://app.leg.wa.gov/RCW/default.aspx?cite=84.64.080",
+    "sourceTitle": "RCW 84.64.080 (app.leg.wa.gov)",
+    "note": "Treasurer sells to highest and best bidder, minimum bid = taxes, interest, costs; tax deed vests title (no post-sale redemption stated).",
+    "changes": [],
+    "lastChecked": "2026-10-27"
   },
   "WI": {
     "lastChecked": null,
