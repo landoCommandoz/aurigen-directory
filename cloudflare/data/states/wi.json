@@ -1,0 +1,1257 @@
+{
+ "code": "WI",
+ "name": "Wisconsin",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "N/A",
+ "rateNote": "Year-round sales — clean title conveyed",
+ "redemption": "None post-sale (2-year delinquency before county takes deed)",
+ "bidMethod": "Highest bidder",
+ "statute": "WI Statutes §74.53",
+ "officialLink": "https://docs.legis.wisconsin.gov/statutes/statutes/74/53",
+ "auctionPlatform": "County-run — in-person and online varies",
+ "auctionTiming": "Year-round",
+ "keyNotes": [
+  "Year-round sales across all 72 counties",
+  "Rural Wisconsin strong for land and recreational property",
+  "Environmental title risks in industrial counties — always check DNR records before bidding on former industrial land",
+  "Clean title conveyed at sale"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "Wisconsin counties sell tax deeds after 2-year tax certificate. Milwaukee and Dane have best inventory. Online infrastructure is growing but limited. Some counties use land banks. Statute: WS §74.57.",
+ "typeWhy": "Wisconsin sells the property deed outright after a 2-year tax certificate period during which the county holds the delinquent property. There is no post-sale redemption. WS §74.57.",
+ "rateWhy": "Wisconsin is a deed state with no statutory interest rate. Returns are market-driven at auction. WS §74.57.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "2-year redemption, limited centralized platform, and county-by-county coordination required.",
+ "beginnerTip": "Milwaukee and Dane (Madison) counties have the best WI inventory. Contact the Milwaukee County Treasurer specifically — they have the most organized auction process in the state.",
+ "risks": [
+  "2-year cycle before auction",
+  "No statewide online platform",
+  "Some counties use land banks rather than public auctions"
+ ],
+ "ddExtra": [
+  "Contact the county treasurer to confirm the 2-year delinquency threshold has passed",
+  "Check the Milwaukee County Land Records System for upcoming actions",
+  "Verify whether the county plans to auction vs. use a land bank for specific parcels"
+ ],
+ "auctionSignup": {
+  "platform": "County treasurer (varies — Milwaukee uses online system)",
+  "steps": [
+   "Find your target county treasurer at wi.gov/government/counties",
+   "Contact the treasurer to confirm the delinquency threshold and upcoming sale schedule",
+   "Milwaukee County has online auction capabilities — check milwaukee.county.gov/treasurer",
+   "Register per county instructions"
+  ],
+  "depositInfo": "Varies by county.",
+  "directLink": "https://www.revenue.wi.gov/Pages/PropertyTax/home.aspx"
+ },
+ "otc": {
+  "available": false,
+  "note": "Check county land bank for properties not in public auction."
+ },
+ "platforms": [
+  "County treasurer offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [
+  {
+   "name": "Milwaukee",
+   "link": "https://county.milwaukee.gov/EN/Treasurer",
+   "notes": "Best inventory in WI. Online capable."
+  },
+  {
+   "name": "Dane",
+   "link": "https://www.countyofdane.com/treasurer",
+   "notes": "Madison area. Good inventory."
+  }
+ ],
+ "rules": {
+  "type": "deed",
+  "statute": "Wis. Stat. §74.57 (Tax Certificate) + §75.01–§75.521 (Tax Sales/Foreclosure)",
+  "critical": "⚡ Wisconsin does NOT sell tax lien certificates to private investors (§74.57(3) prohibits county from selling, assigning, or transferring tax certificates). County holds all certificates.",
+  "process": {
+   "step1": "Taxes delinquent after Jan 31. Interest + penalty: 1%/month from Feb 1. Washington County confirmed: 1.5%/month = 18%/yr.",
+   "step2": "September 1: County treasurer issues Tax Certificate for ALL parcels with unpaid taxes as of Aug 31. Includes all delinquent real property taxes, special assessments, special charges, special taxes.",
+   "step3": "Treasurer mails notice to homeowner within 90 days of certificate issuance (§74.59).",
+   "step4": "2-year redemption period begins. Owner may redeem by paying all delinquent amounts + interest + penalties + costs.",
+   "step5": "After 2 years without redemption — county may pursue ONE of 3 title-taking paths.",
+   "titlePaths": {
+    "path1_taxDeed": "Tax Deed Process (§75.12, §75.14): County applies to county clerk for tax deed. Clerk issues deed to county. County records deed.",
+    "path2_mortgage": "Mortgage Foreclosure Process (§75.19): County forecloses using same process as mortgage lender. Court-supervised.",
+    "path3_inRem": "In Rem Statutory Foreclosure (§75.521): County files petition with court listing all delinquent properties. Most common in rural/smaller counties. Court enters judgment. GAL appointed for minors/incompetents."
+   },
+   "stat": "Wis. Stat. §74.57, §75.12, §75.14, §75.19, §75.521"
+  },
+  "auction": {
+   "frequency": "After county takes title — county sells at public auction. As scheduled by county.",
+   "platform": "County-run — in-person or online depending on county",
+   "bidMethod": "Premium bid — highest bidder",
+   "note": "County must sell property after taking title per §75.35. Timing varies by county."
+  },
+  "otc": {
+   "available": true,
+   "name": "County-Owned Tax-Deeded Properties",
+   "process": "Contact county treasurer or clerk directly. Counties may offer unsold tax-deeded properties.",
+   "note": "No standard OTC lien cert sales — county holds all certs"
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — No private lien cert holders in Wisconsin"
+  },
+  "delinquencyInterest": {
+   "standard": "1%/month (12%/yr) — confirmed at multiple WI counties",
+   "milwaukee": "⚡ Milwaukee County: 18%/yr (1.5%/month) — confirmed per county treasurer",
+   "washington": "1.5%/month — confirmed Washington County",
+   "statute": "Wis. Stat. §74.47"
+  },
+  "redemption": {
+   "period": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "delayException": "If treasurer fails to mail required notice — redemption period starts from mailing date, not certificate date",
+   "erosionException": "1-year redemption if county incurred expenses for erosion control",
+   "amounts": "All delinquent taxes + special assessments + special charges + interest + penalties + costs",
+   "statute": "Wis. Stat. §74.57, §75.03",
+   "homesteadDifferent": false
+  },
+  "deedPath": {
+   "name": "Tax Deed to County / Foreclosure Judgment (3 paths)",
+   "titleEffect": "County takes title. Then sells to new owner.",
+   "restrictionsSurvive": "⚡ Covenants and restrictions running with land SURVIVE tax deed (§75.14(4)) — unlike most states",
+   "challenge": "Former owner may challenge within limitation period set by §75.27. Notice required before limitation runs.",
+   "statute": "Wis. Stat. §75.12, §75.14, §75.19, §75.521",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": true,
+   "name": "Excess Sale Proceeds",
+   "statute": "Wis. Stat. §75.35 (sale of county-held property) + Tyler v. Hennepin (2023)",
+   "process": "Post-Tyler: Wisconsin counties must return surplus to former owner. State law changed after Tyler ruling.",
+   "note": "⚡ Pre-Tyler: WI counties kept surplus. Now excess must go to former property owner after county recoups taxes + costs + interest."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "deed",
+  "rate": "N/A",
+  "redemption": "2 años",
+  "summary": "Los condados de Wisconsin venden escrituras fiscales después del certificado fiscal de 2 años. Milwaukee y Dane tienen el mejor inventario. La infraestructura en línea está creciendo pero es limitada. Algunos condados usan bancos de tierras. Estatuto: WS §74.57.",
+  "typeWhy": "Wisconsin es un estado de escritura porque los condados venden escrituras fiscales después de un período de certificado de 2 años, sin derecho de redención posterior a la venta (WS §74.57).",
+  "rateWhy": "No se aplica tasa de interés ya que es un estado de escritura. Algunos condados usan bancos de tierras en lugar de subastas públicas (WS §74.57).",
+  "notBeginnerReason": "Redención de 2 años, plataforma centralizada limitada y se requiere coordinación condado por condado.",
+  "beginnerTip": "Milwaukee y Dane (Madison) tienen el mejor inventario de WI. Contacte específicamente al Tesorero del Condado Milwaukee — tienen el proceso de subasta más organizado del estado.",
+  "risks": [
+   "Ciclo de 2 años antes de la subasta",
+   "Sin plataforma estatal en línea",
+   "Algunos condados usan bancos de tierras en lugar de subastas públicas"
+  ],
+  "ddExtra": [
+   "Contacte al tesorero del condado para confirmar que el umbral de morosidad de 2 años ha pasado",
+   "Revise el Sistema de Registros de Tierras del Condado Milwaukee para próximas acciones",
+   "Verifique si el condado planea subastar vs. usar un banco de tierras para parcelas específicas"
+  ],
+  "auctionSignup": {
+   "platform": "Tesorero del condado (varía — Milwaukee usa sistema en línea)",
+   "steps": [
+    "Encuentre al tesorero de su condado en wi.gov/government/counties",
+    "Contacte al tesorero para confirmar el umbral de morosidad y el próximo calendario de venta",
+    "El Condado Milwaukee tiene capacidades de subasta en línea — revise milwaukee.county.gov/treasurer",
+    "Regístrese según instrucciones del condado"
+   ],
+   "depositInfo": "Varía por condado.",
+   "directLink": "https://www.revenue.wi.gov/Pages/PropertyTax/home.aspx"
+  },
+  "otc": {
+   "available": false,
+   "note": "Revise el banco de tierras del condado para propiedades no en subasta pública."
+  }
+ },
+ "counties": [
+  {
+   "name": "Adams",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.adams.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ashland",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.ashland.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Barron",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.barron.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bayfield",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.bayfield.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Brown",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.brown.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Buffalo",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.buffalo.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Burnett",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.burnett.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Calumet",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.calumet.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chippewa",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.chippewa.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clark",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.clark.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Columbia",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.columbia.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Crawford",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.crawford.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dane",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.dane.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dodge",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.dodge.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Door",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.door.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Douglas",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.douglas.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dunn",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.dunn.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Eau Claire",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.eau.claire.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Florence",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.florence.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fond du Lac",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.fond.du.lac.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Forest",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.forest.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grant",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.grant.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Green",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.green.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Green Lake",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.green.lake.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Iowa",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.iowa.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Iron",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.iron.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.jackson.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.jefferson.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Juneau",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.juneau.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kenosha",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.kenosha.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kewaunee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.kewaunee.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "La Crosse",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.la.crosse.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lafayette",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.lafayettecountywi.org/treasurer/page/property-tax-foreclosure-sale",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Langlade",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.langlade.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.lincoln.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Manitowoc",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.manitowoc.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marathon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.marathon.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marinette",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.marinette.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marquette",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.marquette.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Menominee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.menominee.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Milwaukee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://county.milwaukee.gov/EN/Treasurer/Delinquent-Property-Taxes",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "⚡ Milwaukee: 18%/yr (1.5%/month)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Monroe",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.monroe.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Oconto",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.ocontocountywi.gov/416/In-Rem-Foreclosure-of-Tax-Liens",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Oneida",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.oneida.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Outagamie",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.outagamie.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ozaukee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.ozaukee.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pepin",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.pepin.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pierce",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.pierce.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Polk",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.polk.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Portage",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.portage.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Price",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.price.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Racine",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.racine.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Richland",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.richland.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rock",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.rock.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rusk",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.rusk.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sauk",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.sauk.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sawyer",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.sawyer.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Shawano",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.shawano.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sheboygan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.sheboygan.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Croix",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.st..croix.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Taylor",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.taylor.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Trempealeau",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.trempealeau.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Vernon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.vernon.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Vilas",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.vilas.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Walworth",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.walworth.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washburn",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.washburn.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.washcowisco.gov/departments/county_treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Waukesha",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.waukesha.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Waupaca",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.waupaca.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Waushara",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.waushara.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Winnebago",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.winnebago.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wood",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2 years from issuance of tax certificate (September 1 of certificate year)",
+   "rate": "N/A",
+   "platform": "County treasurer/clerk — in-person or online per county",
+   "url": "https://www.co.wood.wi.us/treasurer",
+   "notes": [],
+   "extra": {
+    "certIssuanceDate": "September 1 annually",
+    "delinquencyNote": "1%/month (12%/yr)"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

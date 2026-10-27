@@ -1,0 +1,387 @@
+{
+ "code": "VT",
+ "name": "Vermont",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "12%",
+ "rateNote": "255 towns each run their own sales — highly fragmented",
+ "redemption": "1 year",
+ "bidMethod": "Highest bidder",
+ "statute": "32 V.S.A. §5251",
+ "officialLink": "https://legislature.vermont.gov/statutes/section/32/135/05251",
+ "auctionPlatform": "Town-run — in-person",
+ "auctionTiming": "Varies by town",
+ "keyNotes": [
+  "255 towns run independent sales — no centralized system",
+  "State liens may survive tax deed sale — title research critical",
+  "Land Court action recommended for clean title"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "Vermont municipalities can sell tax liens but rarely do. Sales are extremely rare. Overbid is NOT returned and does NOT earn interest — bid only at tax value. Statute: VT Stat Title 32 Ch.133.",
+ "typeWhy": "Vermont municipalities can sell tax lien certificates, though sales are extremely rare. The owner retains title during the 1-year redemption period. VT Stat Title 32 Ch.133.",
+ "rateWhy": "Vermont sets a fixed statutory rate of 12% per annum. Overbid amounts are not returned and do not earn interest. VT Stat Title 32 Ch.133.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Extremely rare municipal sales, virtually no inventory. Not a viable market.",
+ "beginnerTip": "Vermont is not a viable market. Do not plan a strategy around it.",
+ "risks": [
+  "Sales are extremely rare — most investors never find one",
+  "Overbid is not returned and earns no interest — critical to understand before bidding",
+  "No centralized system"
+ ],
+ "ddExtra": [
+  "If you find a sale, bid only at the tax value — overbid is never returned",
+  "Verify the municipality intends to proceed — many announce sales and cancel"
+ ],
+ "auctionSignup": {
+  "platform": "Municipal tax collector (extremely rare)",
+  "steps": [
+   "Monitor Vermont municipal meeting minutes — sales are announced here when they occur",
+   "Contact town clerks in Burlington, Rutland, and Essex for any upcoming sales",
+   "Register per municipality instructions if a sale is confirmed",
+   "Remember: overbid is not returned and earns no interest — bid at or below tax owed"
+  ],
+  "depositInfo": "Varies.",
+  "directLink": "https://tax.vermont.gov/property-owners/property-tax"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "Municipal tax collector offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "statute": "32 VSA Chapter 133 §5252 (Warrant), §5253 (Notice), §5255 (Report of Sale), §5260 (Redemption), §5263 (SOL)",
+  "structure": "246 municipalities run independent tax sales. No county-level auction. Each town/city manages its own tax sale.",
+  "process": {
+   "threshold": "Delinquency > 1 year AND minimum $1,500 owed before warrant may be extended",
+   "paymentPlan": "⚡ Municipality MUST offer written reasonable repayment plan before initiating sale. Cannot proceed until taxpayer declines or defaults.",
+   "warrant": "Collector extends warrant (lien) on land. Warrant and levy recorded per §5252(a).",
+   "notice": "Certified mail return receipt to last known address: 10 days prior (residents), 20 days prior (non-residents). Newspaper publication 3 consecutive weeks.",
+   "bilingualNotice": "⚡ 2023 No. 106 (eff. May 13 2024): Notice must include statement translated into 5 most common non-English languages in VT, with resource for translation.",
+   "auction": "Public auction — municipality sells at highest bid. Purchaser receives deed subject to 1-year redemption.",
+   "stat": "32 VSA §5252, §5253"
+  },
+  "pendingLegislation": {
+   "bill": "S.196 (2026 Vermont Legislative Session)",
+   "amends": "32 VSA §5252 (warrant procedure), §5253 (notice requirements), §5260 (redemption), adds §5254a",
+   "status": "Introduced 2026 session — MONITOR. Amendments to notice and redemption provisions.",
+   "sourceUrl": "https://legislature.vermont.gov/Documents/2026/Docs/BILLS/S-0196/S-0196%20As%20Introduced.pdf",
+   "alert": "⚡ Vermont S.196 (2026) — pending bill that amends tax sale notice and redemption statutes. Check legislature.vermont.gov for status before teaching VT rules in seminars."
+  },
+  "auction": {
+   "frequency": "As scheduled by each municipality — no fixed statewide date",
+   "platform": "Municipality-run — in-person auction. No statewide platform.",
+   "bidMethod": "Premium bid — highest bidder. Purchaser receives Tax Collector's Deed subject to 1-year redemption.",
+   "payment": "Immediate payment at auction. Exact requirements set by municipality.",
+   "statute": "32 VSA §5254"
+  },
+  "otc": {
+   "available": false,
+   "name": "N/A — Vermont tax sales are municipality-run public auctions. No OTC mechanism.",
+   "note": "Contact individual municipalities directly for delinquent property inquiries."
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — Vermont lien stays with municipality/purchaser as sold at auction"
+  },
+  "redemption": {
+   "period": "1 year from day of sale",
+   "amounts": "Sum for which land was sold + 1%/month interest from day of sale to day of payment + costs",
+   "paymentTo": "Collector who made sale (or town clerk if collector died/moved)",
+   "statute": "32 VSA §5260",
+   "homesteadDifferent": false,
+   "notice90to120days": "⚡ Collector must post notice in public place 90–120 days prior to end of redemption period (2023 amendment, eff. May 2024)"
+  },
+  "deedPath": {
+   "name": "Tax Collector's Deed",
+   "timing": "Deed issued AFTER 1-year redemption period expires without redemption",
+   "marketableTitle": "Requires: (1) notice consistent with §5252/§5253 and constitutional due process, AND (2) 1-year SOL from date of levy has passed (32 VSA §5263)",
+   "statute": "32 VSA §5255, §5261, §5263",
+   "titleEffect": "Conveys title against taxpayer and all persons claiming under taxpayer. State tax liens and federal tax liens may survive.",
+   "stateLinenSurvival": "⚡ VT Dept of Taxes position: state tax liens NOT extinguished by tax sale. Federal government takes same position for IRS liens.",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true,
+   "note": "Title insurance: examiner must verify notice compliance AND confirm 1-year SOL has passed. Court order confirms title if defect exists."
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus / Excess Proceeds",
+   "statute": "No explicit VT statute (noted as 'unsettled' in Vermont Attorney's Title Corp Standard 19.1)",
+   "status": "⚡ UNSETTLED — Vermont has no clear codified surplus distribution statute as of 2026. Tyler v. Hennepin constitutional requirements apply regardless.",
+   "note": "In Re Estate of Mary Lee Settle-Tazewell case noted as pending resolution. Best practice: municipalities should distribute surplus to former owner. Contact VT Dept of Taxes for guidance.",
+   "tylerCompliance": "Constitutional requirement under Tyler v. Hennepin — former owner entitled to surplus even without explicit VT statute"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "12%",
+  "redemption": "1 año",
+  "summary": "Los municipios de Vermont pueden vender gravámenes fiscales pero rara vez lo hacen. Las ventas son extremadamente raras. El exceso de puja NO se devuelve y NO genera intereses — puje solo al valor fiscal. Estatuto: VT Stat Título 32 Cap.133.",
+  "typeWhy": "Vermont es un estado de gravamen donde los municipios pueden vender gravámenes fiscales, aunque las ventas son extremadamente raras. Período de redención de 1 año (VT Stat Título 32 Cap.133).",
+  "rateWhy": "La tasa del 12% es moderada. El detalle crítico es que el exceso de puja NO se devuelve y NO genera intereses (VT Stat Título 32 Cap.133).",
+  "notBeginnerReason": "Ventas municipales extremadamente raras, prácticamente sin inventario. No es un mercado viable.",
+  "beginnerTip": "Vermont no es un mercado viable. No planifique una estrategia en torno a él.",
+  "risks": [
+   "Las ventas son extremadamente raras — la mayoría de los inversores nunca encuentran una",
+   "El exceso de puja no se devuelve y no genera intereses — crítico entender antes de pujar",
+   "Sin sistema centralizado"
+  ],
+  "ddExtra": [
+   "Si encuentra una venta, puje solo al valor fiscal — el exceso de puja nunca se devuelve",
+   "Verifique que el municipio tiene intención de proceder — muchos anuncian ventas y cancelan"
+  ],
+  "auctionSignup": {
+   "platform": "Recaudador de impuestos municipal (extremadamente raro)",
+   "steps": [
+    "Monitoree las actas de reuniones municipales de Vermont — las ventas se anuncian aquí cuando ocurren",
+    "Contacte a los secretarios de Burlington, Rutland y Essex para cualquier próxima venta",
+    "Regístrese según instrucciones del municipio si se confirma una venta",
+    "Recuerde: el exceso de puja no se devuelve y no genera intereses — puje al valor fiscal o por debajo"
+   ],
+   "depositInfo": "Varía.",
+   "directLink": "https://tax.vermont.gov/property-owners/property-tax"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Addison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://addisondeeds.com",
+   "notes": [
+    "23 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 23
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bennington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://benningtondeeds.com",
+   "notes": [
+    "11 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 11
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Caledonia",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://caledoniadeeds.com",
+   "notes": [
+    "17 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 17
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chittenden",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://www.ccrpcvt.org/registry-of-deeds",
+   "notes": [
+    "19 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 19
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Essex",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://essexdeeds.com",
+   "notes": [
+    "11 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 11
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://franklindeeds.com",
+   "notes": [
+    "14 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 14
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grand Isle",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://grandisledeeds.com",
+   "notes": [
+    "5 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 5
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lamoille",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://lamoilledeeds.com",
+   "notes": [
+    "11 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 11
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Orange",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://orangedeeds.com",
+   "notes": [
+    "20 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 20
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Orleans",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://orleansdeeds.com",
+   "notes": [
+    "27 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 27
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rutland",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://rutlanddeeds.com",
+   "notes": [
+    "27 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 27
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://washingtondeeds.com",
+   "notes": [
+    "22 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 22
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Windham",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://windhamdeeds.com",
+   "notes": [
+    "28 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 28
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Windsor",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from day of sale",
+   "rate": "12%",
+   "platform": "Municipal tax collector — in-person public auction",
+   "url": "https://windsordeeds.com",
+   "notes": [
+    "25 municipalities. Each runs independent tax sale. ⚡ S.196 (2026 session) pending — amends notice + redemption statutes. Monitor legislature.vermont.gov. Surplus law unsettled — Tyler v. Hennepin applies."
+   ],
+   "extra": {
+    "municipalities": 25
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

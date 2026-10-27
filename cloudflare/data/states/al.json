@@ -1,0 +1,1117 @@
+{
+ "code": "AL",
+ "name": "Alabama",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "12% per annum",
+ "rateNote": "Bid-down interest rate — converted from deed state in 2018",
+ "redemption": "3 years",
+ "bidMethod": "Bid-down interest rate",
+ "statute": "AL Code §40-10-180",
+ "officialLink": "https://alison.legislature.state.al.us/codeofalabama/1975/coatoc.htm",
+ "auctionPlatform": "County-run — in-person",
+ "auctionTiming": "April–June (most counties)",
+ "keyNotes": [
+  "Converted from deed to lien state via Act 2018-577 — pre-2018 research is outdated",
+  "12% fixed bid-down rate",
+  "3-year redemption then automatic deed conversion",
+  "Foreclosure still required for fully clean insurable title post-conversion",
+  "67 counties — strong rural land inventory"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "Alabama sells tax lien certificates at the county level. Investors purchase the lien and the property owner has 3 years to redeem at 12% annual interest. If unredeemed, the investor can pursue a tax deed through a separate process. Statute: AL Code §40-10-1 et seq.",
+ "typeWhy": "Alabama sells tax lien certificates at the county level — the investor purchases only the lien, not the property, and the owner retains title during the 3-year redemption period. AL Code §40-10-1 et seq.",
+ "rateWhy": "Alabama fixes the interest rate at 12% per annum on the lien amount, accruing for the full 3-year redemption period. This is a statutory flat rate, not auction-determined. AL Code §40-10-1 et seq.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Long redemption, title issues common, institutional competition in metro areas.",
+ "beginnerTip": "Start with rural counties where institutional buyers are absent. Avoid Jefferson and Madison counties until you have experience.",
+ "risks": [
+  "Institutional buyers dominate Jefferson (Birmingham) and Madison (Huntsville) counties",
+  "3-year redemption period ties up capital",
+  "Title is not guaranteed — quiet title action may be required",
+  "Many rural parcels have access or environmental issues"
+ ],
+ "ddExtra": [
+  "Verify the 3-year delinquency threshold has been met before bidding",
+  "Order a title search — Alabama deed sales do not guarantee clean title",
+  "Check county GIS for road access on rural parcels"
+ ],
+ "auctionSignup": {
+  "platform": "County-level (varies by county)",
+  "steps": [
+   "Contact your target county's Revenue Commissioner office — find them at revenue.alabama.gov/property-tax",
+   "Request the delinquent property list (usually available 30–60 days before auction)",
+   "Register in person at the courthouse — bring government-issued ID and a cashier's check or wire confirmation for your deposit",
+   "Attend the auction on the scheduled date — bidding is oral and open"
+  ],
+  "depositInfo": "Typically 10–20% of bid required day-of. Confirm with county.",
+  "directLink": "https://revenue.alabama.gov/property-tax/"
+ },
+ "otc": {
+  "available": false,
+  "note": "No statewide direct purchase program."
+ },
+ "platforms": [
+  "County courthouse (in-person)"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "auction": {
+   "frequency": "Annual — spring (April–June depending on county)",
+   "method": "Online bid-down — GovEase platform statewide",
+   "bidMethod": "Interest rate bid-down from 12% in 1% increments",
+   "startRate": "12% per annum (simple, prorated monthly)",
+   "zeroBid": "Accepted — earns zero interest",
+   "tieBreaker": "Random number generator per §40-10-184(b)",
+   "platform": "GovEase (govease.com) — all counties",
+   "w9Required": true,
+   "certificateName": "Tax Lien Certificate",
+   "certificateFee": "$5 per parcel",
+   "statute": "Code of Alabama §40-10-180 through §40-10-200; Act 2018-577"
+  },
+  "firstRights": {
+   "available": true,
+   "name": "First Right of Refusal / First Rights Claims",
+   "description": "Existing certificate holder has right to pay current year taxes before they go to auction",
+   "process": "Handled through GovEase or county office (varies)",
+   "statute": "Code of Alabama §40-10-191",
+   "note": "CRITICAL: If not exercised, new certificate from current year is PARAMOUNT to prior cert"
+  },
+  "otc": {
+   "available": true,
+   "name": "OTC Tax Lien Purchase (Unsold Liens)",
+   "trigger": "Liens not sold at auction held by county/state",
+   "rate": "Up to 12% (cannot exceed 12%)",
+   "availableWhen": "After annual auction concludes",
+   "process": "Contact Revenue Commissioner office directly",
+   "statute": "Code of Alabama §40-10-184",
+   "note": "Mobile County confirmed: unsold liens available OTC. No fee for email list — call 251-574-8530"
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payment",
+   "statute": "Code of Alabama §40-10-191; Act 2024-324",
+   "note": "Certificate holder may pay subsequent delinquent taxes. Added to certificate. Earns same rate."
+  },
+  "redemption": {
+   "period": "3 years from date of tax lien auction",
+   "rate": "Certificate bid rate (max 12%)",
+   "redemptionFee": "$10",
+   "statute": "Code of Alabama §40-10-193; Admin Rule 810-4-6-.02",
+   "homesteadDifferent": false,
+   "agDifferent": false,
+   "whoMayRedeem": "Owner, heirs, personal representative, mortgagee, purchaser of property or portion",
+   "paymentMethod": "Certified funds only (cash, cashier's check, money order)",
+   "note": "Interest on redemption: bid rate if pre-2020 tax sale; 8% if post-Jan 1, 2020 tax sale (Act 2018-494)"
+  },
+  "deedPath": {
+   "name": "Foreclosure of Right to Redeem / Quiet Title",
+   "eligibleAfter": "4 years from auction date (Act 2024-261 — was 3 years)",
+   "absoluteDeadline": "10 years from auction date",
+   "process": "Circuit Court action to foreclose right to redeem and quiet title",
+   "statute": "Code of Alabama §40-10-197; Act 2024-261",
+   "quietTitleRequired": true,
+   "note": "⚡ CHANGED 2024: Minimum wait increased from 3 to 4 years per Act 2024-261. All holders of ALL outstanding certs for parcel must be consolidated before filing."
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Funds",
+   "statute": "Code of Alabama §40-10-28",
+   "trigger": "Sale price at original deed sale exceeds taxes+costs",
+   "claimPeriod": "During 3-year redemption period — credited toward redemption. After redemption — released to redeeming party.",
+   "note": "County retains surplus if property not redeemed. Consult attorney."
+  },
+  "mobileSaleDate": "May 11, 2026 (confirmed)"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "12% por año",
+  "redemption": "3 años",
+  "summary": "Alabama realiza ventas de escrituras fiscales a nivel de condado. Las propiedades deben estar en mora 3 años antes de que el condado las subaste. Estatuto: AL Code §40-10-1 et seq.",
+  "typeWhy": "Alabama es un estado de gravamen fiscal porque el condado vende el gravamen sobre la propiedad morosa, no la propiedad en sí. El inversor adquiere el derecho de cobro y, si no se redime en 3 años, puede iniciar un proceso separado para obtener la escritura (AL Code §40-10-1 et seq.).",
+  "rateWhy": "La tasa del 12% anual es fija por estatuto. Es una de las más bajas entre los estados de gravamen, lo que refleja el largo período de redención de 3 años que equilibra la protección del propietario con el retorno del inversor.",
+  "notBeginnerReason": "Período de redención largo, problemas de título frecuentes, competencia institucional en áreas metropolitanas.",
+  "beginnerTip": "Comience con condados rurales donde los compradores institucionales estén ausentes. Evite Jefferson y Madison hasta tener experiencia.",
+  "risks": [
+   "Los compradores institucionales dominan Jefferson (Birmingham) y Madison (Huntsville)",
+   "Redención de 3 años inmoviliza el capital",
+   "El título no está garantizado — puede requerirse título silencioso",
+   "Muchas parcelas rurales tienen problemas de acceso o ambientales"
+  ],
+  "ddExtra": [
+   "Verifique el umbral de morosidad de 3 años antes de pujar",
+   "Solicite búsqueda de título — las ventas de Alabama no garantizan título limpio",
+   "Revise el GIS del condado para acceso vial en parcelas rurales"
+  ],
+  "auctionSignup": {
+   "platform": "A nivel de condado (varía por condado)",
+   "steps": [
+    "Contacte la oficina del Comisionado de Rentas de su condado objetivo — revenue.alabama.gov/property-tax",
+    "Solicite la lista de propiedades en mora (disponible 30–60 días antes de la subasta)",
+    "Regístrese en persona en el tribunal — traiga identificación oficial y cheque de caja para su depósito",
+    "Asista a la subasta en la fecha programada — las pujas son orales y abiertas"
+   ],
+   "depositInfo": "Normalmente 10–20% de la puja requerido el día del evento. Confirme con el condado.",
+   "directLink": "https://revenue.alabama.gov/property-tax/"
+  },
+  "otc": {
+   "available": false,
+   "note": "No hay programa de compra directa estatal."
+  }
+ },
+ "counties": [
+  {
+   "name": "Autauga",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.autaugaco.org/revenue/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026 (verify with county)"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Baldwin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://baldwincountyal.gov/government/revenue-commission/tax-lien-auction",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Barbour",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.barbourcountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Bibb",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.bibbco.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Blount",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.blountcountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Bullock",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.bullockcountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Butler",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.butlercountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Calhoun",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.calhouncountyal.gov/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Chambers",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.chamberscountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Cherokee",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://cherokeepropertytax.com/online-tax-lien-sale-faq/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Chilton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.chiltoncountyalabama.gov/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Choctaw",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.choctawcountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Clarke",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.clarkecountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Clay",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.claycountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Cleburne",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.cleburne.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Coffee",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.coffeecountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Colbert",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.colbertcountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Conecuh",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.conecuhcountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Coosa",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.coosacountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Covington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.covingtoncountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Crenshaw",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.crenshawcountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Cullman",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.cullmancounty.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Dale",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.dalecountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Dallas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.dallascountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "DeKalb",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.dekalbcountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Elmore",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.elmorecountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Escambia",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.escambiacountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Etowah",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.etowahcountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Fayette",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.fayettecountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.franklincountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Geneva",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.genevacountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Greene",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.greenecountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Hale",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.halecountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Henry",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.henrycountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Houston",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://houstoncountyal.gov/revenue/tax_sale/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.jacksoncountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.jccal.org/Default.asp?ID=2350",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lamar",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.lamarcountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lauderdale",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.lauderdalecountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lawrence",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.lawrencecountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lee",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.leecountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Limestone",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.limestonecountyalabama.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lowndes",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.lowndescountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Macon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://maconcountyal.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Madison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.madisoncountyal.gov/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Marengo",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.marengocountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Marion",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.marioncountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Marshall",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.marshallco.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Mobile",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://mobilecopropertytax.com/taxliensale/",
+   "notes": [
+    "⚡ Confirmed May 11 2026. Reg opens April 6. OTC ends March 23 2026.",
+    "⚡ Mobile County: May 11 2026 sale confirmed"
+   ],
+   "extra": {
+    "saleDate2026": "May 11, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Monroe",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.monroecountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Montgomery",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.mc-ala.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Morgan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.morgancountyrevenue.com/tax-sale",
+   "notes": [
+    "⚡ Confirmed May 12 2026",
+    "⚡ Morgan County: May 12 2026 confirmed"
+   ],
+   "extra": {
+    "saleDate2026": "May 12, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Perry",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.perrycountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Pickens",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.pickenscountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Pike",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.pikecountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Randolph",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.randolphcountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Russell",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.russellcountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Shelby",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.shelbyal.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "St. Clair",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.stclairco.com/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Sumter",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.sumtercountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Talladega",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.talladegacountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Tallapoosa",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.tallapoosacountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Tuscaloosa",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.tuscco.com/government/departments/tax-collector/tax-lien-sale/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Walker",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.walkercountyrevenue.com/Default.asp?ID=70",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.washingtoncountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Wilcox",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.wilcoxcountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Winston",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax lien auction",
+   "rate": "12% per annum",
+   "platform": "GovEase",
+   "url": "https://www.winstoncountyalabama.org/revenue",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "April–May 2026"
+   },
+   "verifiedDate": ""
+  }
+ ]
+}

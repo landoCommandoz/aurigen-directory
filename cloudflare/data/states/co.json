@@ -1,0 +1,1086 @@
+{
+ "code": "CO",
+ "name": "Colorado",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+ "rateNote": "Variable rate — resets annually September 1",
+ "redemption": "3 years",
+ "bidMethod": "Highest bidder (premium bid)",
+ "statute": "CRS §39-11.5",
+ "officialLink": "https://leg.colorado.gov/sites/default/files/images/olls/crs2024-title-39.pdf",
+ "auctionPlatform": "Mix of online and in-person by county",
+ "auctionTiming": "October–November (most counties)",
+ "keyNotes": [
+  "Rate resets every September 1 — confirm current year rate before investing",
+  "HB 24-1056 (July 2024): deeds no longer auto-issued after lien maturity — public auction now required",
+  "Overbid earns no interest — bid only up to tax amount"
+ ],
+ "investorAlert": "⚠️ HB 24-1056 effective July 2024: Tax deeds are NO LONGER automatically issued after lien maturity. A public auction is now required. Pre-2024 research on deed acquisition process is outdated.",
+ "pendingLegislation": null,
+ "summary": "Colorado holds online county tax lien sales in November. Rate = Federal Discount Rate (Sept 1) + 9%, rounded to nearest whole %, floor 8%. 2025 rate = 14%. Rate locks for certificate life. Bidding is premium bid-up (NOT rate bid-down) — highest premium over face amount wins. Premium is NOT interest-bearing. CRITICAL: HB 24-1056 (July 2024) changed the deed process — deeds are NO LONGER auto-issued to lien holders. After 3-year redemption, property goes to public auction. Lien holder has 8 business days to match winning bid. Certificates auto-cancel after 15 years (CRS §39-11-148). 64 counties. Statutes: CRS §39-11-101 through §39-12-113 (sale/redemption); CRS §39-11.5 (Treasurer's Deed public auction, HB 24-1056).",
+ "typeWhy": "Colorado sells tax lien certificates — the investor purchases the right to collect delinquent taxes plus interest, not the property itself. The owner retains title during the 3-year redemption window. CRS §39-11-101.",
+ "rateWhy": "Colorado ties its tax lien interest rate to the Federal Discount Rate plus a statutory 9% premium, recalculated annually (floor 8%). 2025 rate = 14%. The rate is NOT bid-down at auction — it's fixed statewide. Investors compete by bidding premium over face amount. CRS §39-11-101.",
+ "beginnerFriendly": true,
+ "notBeginnerReason": "",
+ "beginnerTip": "Look at rural eastern Colorado counties (Kiowa, Cheyenne, Kit Carson) for OTC purchases at the full rate with zero auction competition.",
+ "risks": [
+  "Rate fluctuates annually with the Federal Discount Rate — verify current rate before bidding (2025 = 14%, floor 8%)",
+  "HB 24-1056 (July 2024): Deeds NO LONGER auto-issued to lien holder — property goes to public auction after 3-year redemption. Lien holder has 8 business days to match winning bid.",
+  "Premium paid at auction is NOT interest-bearing — avoid overbidding",
+  "HOA and special improvement district liens can compete with or survive tax sales",
+  "IRS federal tax liens survive if IRS not notified (120-day federal redemption)",
+  "Certificates auto-cancel after 15 years (CRS §39-11-148)"
+ ],
+ "ddExtra": [
+  "Verify the current rate by calling the county treasurer — it changes annually based on Sept 1 Federal Discount Rate",
+  "Check for HOA liens and special improvement district assessments",
+  "Confirm parcel is not in a federal conservation area or water district with superior claims",
+  "Treasurer's Deed conveys unmarketable title for 7 years — budget for quiet title action"
+ ],
+ "auctionSignup": {
+  "platform": "RealAuction (majority of counties)",
+  "steps": [
+   "Find your target county's treasurer at colorado.gov/treasury or Google '[county name] CO treasurer tax lien sale'",
+   "Register on the county's auction platform (majority use RealAuction; some use county portals)",
+   "Submit ACH or wire deposit per county instructions — typically 2 weeks before November auction. W-9 required.",
+   "Bid online during the auction window — you're bidding PREMIUM OVER face amount, NOT rate"
+  ],
+  "depositInfo": "Varies by county. Common: 10% of intended bid (El Paso). Some flat fee ($75 Garfield). W-9 required.",
+  "directLink": "https://www.realauction.com"
+ },
+ "otc": {
+  "available": true,
+  "note": "Unsold liens available for direct purchase from county treasurers after annual sale."
+ },
+ "platforms": [
+  "RealAuction.com",
+  "County treasurer portals"
+ ],
+ "tylerCompliance": {
+  "status": "compliant",
+  "summary": "Colorado enacted HB 24-1057 requiring surplus proceeds be returned to former owners.",
+  "details": "Colorado HB 24-1057 amended C.R.S. §39-12-103 to require county treasurers to return surplus proceeds from tax lien sales and treasurer deed sales to the former owner. The law mandates notice by certified mail and establishes a 3-year claim period. Effective August 2024.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": "HB 24-1057 (2024); C.R.S. §39-12-103"
+ },
+ "featuredCounties": [
+  {
+   "name": "El Paso",
+   "link": "https://treasurer.elpasoco.com/",
+   "notes": "Largest auction in CO. Moderate competition."
+  },
+  {
+   "name": "Denver",
+   "link": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Department-of-Finance/Our-Divisions/Treasury",
+   "notes": "Urban, competitive."
+  },
+  {
+   "name": "Kiowa",
+   "link": "https://www.kiowacounty.org",
+   "notes": "Rural, excellent OTC availability, minimal competition."
+  }
+ ],
+ "rules": {
+  "type": "lien",
+  "auction": {
+   "frequency": "Annual — September through December (November most common)",
+   "platform": "GovEase (majority) / county-run portals / courthouse (rural counties)",
+   "bidMethod": "Premium bid — highest bidder",
+   "rateCalc": "9 percentage points above federal discount rate as of September 1, rounded to nearest %",
+   "rate2025": "14%",
+   "rateNote": "2026 rate set September 1 2026 — check cctpta.org for confirmed rates",
+   "premiumNote": "CRITICAL: Premium bids NOT refunded. Interest earned only on face amount (delinquent taxes), NOT on premium overbid.",
+   "certificateExpiry": "15 years — auto-cancelled per CRS 39-11-148 if no deed application",
+   "statute": "CRS §39-11-101 et seq."
+  },
+  "otc": {
+   "available": true,
+   "name": "County-Held Certificates",
+   "trigger": "Liens not sold at annual auction — held by county treasurer",
+   "rate": "Same as auction rate for that year",
+   "process": "Contact county treasurer directly. Some post lists on website.",
+   "statute": "CRS §39-11-113",
+   "note": "Morgan County confirmed: county-held certs available from treasurer office"
+  },
+  "subTax": {
+   "available": true,
+   "name": "Endorsement / Subsequent Tax Payment",
+   "rate": "Same as original certificate rate",
+   "process": "Cert holder pays subsequent delinquent taxes — endorsed onto original certificate",
+   "statute": "CRS §39-11-119",
+   "note": "Available August 1 each year after original purchase. First-received basis if multiple holders."
+  },
+  "redemption": {
+   "period": "3 years from date of sale",
+   "minimumRedemption": "8% per annum minimum (floor), CRS §39-12-111(2)",
+   "interestOn": "Face amount of certificate only — NOT on any premium bid",
+   "statute": "CRS §39-12-103, §39-12-111",
+   "homesteadDifferent": false,
+   "agDifferent": false,
+   "note": "After redemption — refund of cert amount plus interest. Premium never refunded."
+  },
+  "deedPath": {
+   "name": "Treasurer's Deed via Public Auction",
+   "eligibleAfter": "3 years from purchase (redemption period expires)",
+   "absoluteDeadline": "Must apply within 15 years",
+   "process": "Cert holder requests Treasurer's Deed auction. ~$750–$1,000 deposit for costs. County publishes notice. Public auction held.",
+   "statute": "CRS §39-11-120 et seq.; CRS §39-11.5-104",
+   "titleQuality": "Quitclaim-style — no warranties. Quiet title recommended for title insurance.",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true,
+   "note": "⚡ HB 24-1056 (2024): Treasurer's Deed auction process updated post-Tyler v. Hennepin. Any overbid at TD auction returned to prior owner. Larimer County confirmed Nov 2026 sale date."
+  },
+  "surplus": {
+   "available": true,
+   "name": "Auction Overbid",
+   "trigger": "Bid exceeds face cert amount at Treasurer's Deed auction",
+   "statute": "CRS §39-11.5 (post HB 24-1056)",
+   "process": "Overbid held for prior owner. Tyler v. Hennepin compliance — CO updated process in 2024.",
+   "note": "Regular lien sale premium is NOT surplus — not returned. Only TD auction overbid above all taxes/costs returned to prior owner."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "Tasa de Descuento Federal + 9%",
+  "redemption": "3 años",
+  "summary": "Colorado realiza ventas de gravámenes en línea a nivel de condado. Tasa = Tasa de Descuento Federal + 9% (calculada anualmente). Gravámenes no vendidos disponibles para compra directa. Estatuto: CRS §39-11-101.",
+  "typeWhy": "Colorado es un estado de gravamen porque los condados venden certificados de gravamen fiscal sobre propiedades morosas. El inversor adquiere el derecho de cobro, no la propiedad, y debe esperar 3 años antes de poder iniciar la ejecución (CRS §39-11-101).",
+  "rateWhy": "La tasa se calcula como la Tasa de Descuento Federal + 9%, lo que la hace variable año a año. Esta fórmula vincula el retorno del inversor a las condiciones del mercado financiero federal (CRS §39-11-101).",
+  "notBeginnerReason": "",
+  "beginnerTip": "Busque condados rurales del este de Colorado (Kiowa, Cheyenne, Kit Carson) para compras OTC a la tasa completa sin competencia.",
+  "risks": [
+   "La tasa fluctúa anualmente — calcule la tasa actual antes de pujar",
+   "Los gravámenes de HOA y distritos de mejoras pueden competir o sobrevivir ventas fiscales",
+   "Algunas parcelas son tierra agrícola encerrada con desarrollo limitado"
+  ],
+  "ddExtra": [
+   "Verifique la tasa actual llamando al tesorero del condado — cambia anualmente",
+   "Revise gravámenes de HOA y evaluaciones de distritos de mejoras especiales",
+   "Confirme que la parcela no esté en área de conservación federal"
+  ],
+  "auctionSignup": {
+   "platform": "SRI Tax Sale Services o portales específicos del condado",
+   "steps": [
+    "Encuentre al tesorero de su condado en colorado.gov/treasury",
+    "Regístrese en la plataforma de subasta del condado (muchos usan sriservices.com)",
+    "Envíe depósito por ACH o transferencia — normalmente 2 semanas antes",
+    "Puje en línea durante la ventana de subasta"
+   ],
+   "depositInfo": "Depósito requerido. Varía por condado.",
+   "directLink": "https://sriservices.com/taxsales/colorado"
+  },
+  "otc": {
+   "available": true,
+   "note": "Gravámenes no vendidos disponibles para compra directa de tesoreros de condados después de la venta anual."
+  }
+ },
+ "counties": [
+  {
+   "name": "Adams",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.adcogov.org/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Alamosa",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.alamosacounty.org/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Arapahoe",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.arapahoegov.com/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Archuleta",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://archuletacounty.org/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Baca",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.bacacounty.net/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bent",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.bentcounty.org/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Boulder",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.bouldercounty.gov/property-and-land/taxes/tax-lien-sale/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Broomfield",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.broomfield.org/1736/Tax-Lien-Sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chaffee",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.chaffeecounty.org/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cheyenne",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.cheyennecountyco.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clear Creek",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.clearcreekcounty.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Conejos",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.conejoscountyco.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Costilla",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.costillacounty.co.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Crowley",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.crowleycounty.net/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Custer",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.custercountyco.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Delta",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.deltacounty.com/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Denver",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.denvergov.org/content/denvergov/en/denver-sheriff-department/what-we-do/civil-operations/tax-lien-sale.html",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dolores",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.dolorescounty.org/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Douglas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.douglas.co.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Eagle",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.eaglecounty.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "El Paso",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.elpasoco.com/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Elbert",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.elbertcounty-co.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fremont",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.fremontco.com/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Garfield",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.garfield-county.com/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gilpin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.gilpincounty.org/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grand",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.co.grand.co.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gunnison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.gunnisoncounty.org/214/Tax-LienTreasurers-Deed-Process",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hinsdale",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.hinsdalecountyco.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Huerfano",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.huerfanocountyco.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.jacksoncountycolorado.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.jeffco.us/2432/Pre-Sale-Procedures",
+   "notes": [
+    "⚡ 2026 sale November 2026 confirmed"
+   ],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kiowa",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.kiowacountyco.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kit Carson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.kitcarsoncounty.org/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "La Plata",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.co.laplata.co.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lake",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.lakecountyco.com/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Larimer",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "In-person/GovEase",
+   "url": "https://www.larimer.gov/treasurer/thirdparty/liens/sale",
+   "notes": [
+    "⚡ Larimer: Nov 19 2026 confirmed — Larimer County Fairgrounds, Loveland CO",
+    "⚡ Larimer County: Nov 19 2026 confirmed"
+   ],
+   "extra": {
+    "saleDate2026": "November 19, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Las Animas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.lasanimascounty.org/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.lincolncountyco.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Logan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.logancountycolorado.org/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mesa",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.mesacounty.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mineral",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.mineralcountyco.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Moffat",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.moffatcounty.net/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Montezuma",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.co.montezuma.co.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Montrose",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.montrosecounty.net/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Morgan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://morgancounty.colorado.gov/tax-lien-sale",
+   "notes": [
+    "County-held certs available OTC"
+   ],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Otero",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.oterocountyco.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ouray",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.ouraycountyco.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Park",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.parkco.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Phillips",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://phillipscounty.colorado.gov/tax-lien-information/tax-lien-sale",
+   "notes": [
+    "⚡ 2025 sale Oct 28 — GovEase online"
+   ],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pitkin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.pitkincounty.com/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Prowers",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.prowerscounty.net/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pueblo",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.pueblocounty.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rio Blanco",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.rblanco.com/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rio Grande",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.riograndecounty.org/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Routt",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.co.routt.co.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Saguache",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.saguachecounty.net/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "San Juan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.sanjuancountycolorado.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "San Miguel",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.sanmiguelcountyco.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sedgwick",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.sedgwickcountyco.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Summit",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.summitcountyco.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Teller",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase/County",
+   "url": "https://www.co.teller.co.us/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.washingtoncountyco.com/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Weld",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "GovEase",
+   "url": "https://www.weldgov.com/departments/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Yuma",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of sale",
+   "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+   "platform": "County",
+   "url": "https://www.yumacountyco.gov/treasurer/tax-lien-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

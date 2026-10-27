@@ -1,0 +1,230 @@
+{
+ "code": "DE",
+ "name": "Delaware",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "15-20% penalty (varies by county)",
+ "rateNote": "No statutory interest rate — deed state with short redemption window",
+ "redemption": "60 days to 1 year",
+ "bidMethod": "Premium bid (highest dollar) — sheriff conducts sale",
+ "statute": "Del. Code Ann. tit. 9 §8729; §8771",
+ "officialLink": "https://delcode.delaware.gov/title9/c087/index.html",
+ "auctionPlatform": "Sheriff-run — 3 counties only (Kent, New Castle, Sussex)",
+ "auctionTiming": "Varies by county",
+ "keyNotes": [
+  "Only 3 counties hold tax deed sales — very low inventory state",
+  "Sheriff conducts all sales — not county treasurer",
+  "Standard redemption: 60 days after court approval of sale",
+  "Alternative procedure available with 1-year redemption — Del. Code tit. 9 §8771",
+  "Dept. of Finance must approve final bid before redemption clock starts"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "Delaware has only 3 counties (Kent, New Castle, Sussex), each running independent auctions. Inventory is very limited. Statute: Del. Code Title 9 §8721.",
+ "typeWhy": "Delaware sells the property deed at auction but grants the original owner a redemption window of 60 days to 1 year depending on the county, making it a redeemable deed state. Del. Code Title 9 §8721.",
+ "rateWhy": "Delaware counties impose a 15-20% penalty on redemption, varying by county. With only 3 counties (Kent, New Castle, Sussex), each sets its own penalty structure. Del. Code Title 9 §8721.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Only 3 counties, very limited inventory, not a viable primary market.",
+ "beginnerTip": "Delaware works best as a supplemental state, not a primary market. If you're already working the Mid-Atlantic region, add it to your list.",
+ "risks": [
+  "Very limited inventory — 3 counties total",
+  "Low auction activity makes this an unreliable primary strategy",
+  "Competitive in New Castle County (Wilmington area)"
+ ],
+ "ddExtra": [
+  "Verify the exact redemption period for your county — it ranges 60 days to 1 year",
+  "Check for Wilmington city-specific tax liens which operate separately from New Castle County"
+ ],
+ "auctionSignup": {
+  "platform": "County-specific",
+  "steps": [
+   "Contact the specific county's finance office — New Castle: newcastlede.gov, Kent: co.kent.de.us, Sussex: sussexcountyde.gov",
+   "Request the upcoming tax sale schedule and delinquent property list",
+   "Register with the county per their instructions",
+   "Attend the auction — most are in-person"
+  ],
+  "depositInfo": "Varies by county.",
+  "directLink": "https://newcastlede.gov/205/Finance"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "County finance offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [
+  {
+   "name": "New Castle",
+   "link": "https://newcastlede.gov/205/Finance",
+   "notes": "Most inventory. Competitive near Wilmington."
+  },
+  {
+   "name": "Kent",
+   "link": "https://co.kent.de.us",
+   "notes": "Low volume."
+  },
+  {
+   "name": "Sussex",
+   "link": "https://www.sussexcountyde.gov",
+   "notes": "Low volume, mostly rural."
+  }
+ ],
+ "rules": {
+  "type": "deed",
+  "stateStructure": {
+   "note": "Delaware has only 3 counties. Each county independently handles tax sales via 'Monition' (judicial notice/writ) process through Superior Court. Sheriff conducts sale.",
+   "uniqueFeature": "Monition = formal legal notice served on property + published. Superior Court must approve all sales.",
+   "monitionMethod": "Subchapter II — Superior Court judicial process used for tax sales in all 3 counties"
+  },
+  "auction": {
+   "frequency": "As scheduled — no fixed statewide date",
+   "method": "Public auction by Sheriff — highest bidder",
+   "bidMethod": "Premium bid",
+   "payment": {
+    "newCastle": "100% due day of sale (monition/tax sales)",
+    "kent": "Varies — contact Levy Court Finance",
+    "sussex": "20% deposit day of sale; balance by 3PM; 100% full payment for monition/tax sales"
+   },
+   "approval": "Superior Court must confirm all sales (9 Del. C. §8726)",
+   "statute": "9 Del. C. §8725 et seq."
+  },
+  "otc": {
+   "available": false,
+   "name": "N/A — Delaware judicial sale process only. Contact county finance offices for any surplus county-owned property."
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — Delaware judicial deed state"
+  },
+  "deedPath": {
+   "name": "Sheriff's Deed (after Superior Court confirmation)",
+   "process": "Sale → Superior Court confirms → Sheriff delivers certificate → deed after redemption period expires",
+   "titleQuality": "Free and clear of all liens held by parties given notice in proceedings",
+   "statute": "9 Del. C. §8756"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Proceeds",
+   "statute": "9 Del. C. §8757",
+   "process": "Superior Court handles distribution of surplus after all tax obligations paid",
+   "note": "Tyler v. Hennepin applies — DE judicial process routes surplus via court to former owners"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "redeemable deed",
+  "rate": "15-20% (varía por condado)",
+  "redemption": "60 días a 1 año",
+  "summary": "Delaware tiene solo 3 condados (Kent, New Castle, Sussex), cada uno realizando subastas independientes. Estatuto: Del. Code Título 9 §8721.",
+  "typeWhy": "Delaware es un estado de escritura redimible porque los condados venden la propiedad en subasta fiscal, pero el propietario original retiene un derecho de redención que varía de 60 días a 1 año según el condado (Del. Code Título 9 §8721).",
+  "rateWhy": "La penalización del 15-20% varía por condado. Cada uno de los 3 condados establece su propia estructura de penalización dentro de ese rango estatutario (Del. Code Título 9 §8721).",
+  "notBeginnerReason": "Solo 3 condados, inventario muy limitado, no es un mercado primario viable.",
+  "beginnerTip": "Delaware funciona mejor como estado suplementario, no como mercado primario.",
+  "risks": [
+   "Inventario muy limitado — 3 condados total",
+   "Bajo flujo de operaciones hace esto poco confiable",
+   "Competitivo en New Castle (área de Wilmington)"
+  ],
+  "ddExtra": [
+   "Verifique el período de redención exacto — varía de 60 días a 1 año",
+   "Revise gravámenes fiscales específicos de Wilmington que operan por separado"
+  ],
+  "auctionSignup": {
+   "platform": "Específico por condado",
+   "steps": [
+    "Contacte la oficina de finanzas del condado — New Castle: newcastlede.gov, Kent: co.kent.de.us, Sussex: sussexcountyde.gov",
+    "Solicite el calendario de venta fiscal próximo y lista de propiedades en mora",
+    "Regístrese con el condado según sus instrucciones",
+    "Asista a la subasta — la mayoría son en persona"
+   ],
+   "depositInfo": "Varía por condado.",
+   "directLink": "https://newcastlede.gov/205/Finance"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "New Castle",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "60 days from day sale confirmed by Superior Court",
+   "rate": "15-20% penalty (varies by county)",
+   "platform": "Sheriff's Office",
+   "url": "https://www.newcastlede.gov/188/Sale-Lists",
+   "notes": [
+    "Monthly sheriff sales 3rd Monday. Monition (tax) sales: 100% day of sale. Mortgage/judgment: 20% deposit.",
+    "⚡ New Castle: 60-day redemption only at 15% premium"
+   ],
+   "extra": {
+    "saleFrequency": "Monthly (3rd Monday of month)",
+    "redemption": {
+     "period": "60 days from day sale confirmed by Superior Court",
+     "premium": "15% of purchase price",
+     "statute": "9 Del. C. §8758",
+     "note": "⚡ 60-day window only — much shorter than Kent/Sussex. Owner must act fast."
+    },
+    "payment": "100% due day of sale for monition (tax) sales. $500 late payment fee if final payment after due date.",
+    "assignmentFee": "0.25% of high bid (min $125), effective July 1 2024"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kent",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year from date sale is confirmed",
+   "rate": "15-20% penalty (varies by county)",
+   "platform": "Levy Court / Sheriff",
+   "url": "https://www.kentcountyde.gov/My-Government/Departments/Finance/Monition-Sale-Procedures",
+   "notes": [
+    "Properties published in Wednesday editions of Delaware State News and Dover Post 2-3 weeks prior to sale."
+   ],
+   "extra": {
+    "saleFrequency": "As scheduled — contact Levy Court Finance Division",
+    "redemption": {
+     "period": "1 year from date sale is confirmed",
+     "premium": "20% of purchase price",
+     "statute": "9 Del. C. §8776",
+     "note": "Owner/heirs/executors/administrators may redeem within 1 year. No deed issued until redemption period expires."
+    },
+    "payment": "Varies by sale type — contact Levy Court Finance"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sussex",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "1 year from date sale is confirmed",
+   "rate": "15-20% penalty (varies by county)",
+   "platform": "Sheriff's Office",
+   "url": "https://sussexcountyde.gov/sheriff-sales",
+   "notes": [
+    "All sales subject to Superior Court approval per 9 Del. C. §8726."
+   ],
+   "extra": {
+    "saleFrequency": "As scheduled — typically multiple times per year",
+    "redemption": {
+     "period": "1 year from date sale is confirmed",
+     "premium": "20% of purchase price",
+     "statute": "9 Del. C. §8776",
+     "note": "No deed issued until 1-year redemption period expires without redemption"
+    },
+    "payment": "Day of sale: $4,000 deposit to register. 20% total deposit due by 3PM day of sale. Remaining balance by court deadline.",
+    "transferTax": "2.5% Delaware Realty Transfer Tax + 1.5% Sussex County Realty Tax — split buyer/seller"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

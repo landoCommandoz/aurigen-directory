@@ -1,0 +1,1589 @@
+{
+ "code": "IA",
+ "name": "Iowa",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+ "rateNote": "Highest fixed rate in the US — flat rate, no bidding",
+ "redemption": "1 year 9 months (21 months) + 90-day notice",
+ "bidMethod": "Premium bid (highest dollar wins)",
+ "statute": "Iowa Code §447.9",
+ "officialLink": "https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=447",
+ "auctionPlatform": "Varies by county",
+ "auctionTiming": "Third Monday in June",
+ "keyNotes": [
+  "24% is the highest fixed lien rate in the US",
+  "Affidavit of service deadline is strict — miss it and you lose the lien entirely",
+  "Overbid earns no interest"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "Iowa holds its annual tax lien sale on the third Monday of June statewide. Rate is a flat 24%/year (2%/month) — highest fixed rate in the U.S. NOT bid down at auction. UNIQUE BID METHOD: Bidding is on percentage of property OWNERSHIP, not on rate or price. Lowest percentage interest wins. CRITICAL DEADLINES: After 21 months, holder MUST serve 90-day notice on owner + all parties of record (§447.9). After 90 days, file affidavit with Treasurer (§447.12). If affidavit NOT filed within 3 YEARS of sale, certificate automatically CANCELLED — total loss (§446.37). 99 counties. Statute: Iowa Code §446 (sales), §447 (redemption), §447.9 (90-day notice), §447.12 (affidavit), §446.37 (cancellation).",
+ "typeWhy": "Iowa sells tax lien certificates at its annual June sale. The investor holds the lien while the owner has 21 months before the 90-day notice period begins. Iowa Code §446.",
+ "rateWhy": "Iowa sets a statutory flat rate of 24% per annum (2% per month) on tax lien certificates — the highest fixed rate in the country. This rate is NOT auction-determined or bid-down; all certificates earn the same 24%. Iowa Code §446.",
+ "beginnerFriendly": true,
+ "notBeginnerReason": "",
+ "beginnerTip": "Iowa's 24% rate is the best in the country. TWO critical rules: (1) Set a calendar reminder to serve your 90-day notice at exactly 21 months (§447.9). (2) File affidavit with Treasurer within 3 YEARS of sale or certificate auto-cancels (§446.37). Missing either deadline = total loss. That's the #1 mistake Iowa investors make.",
+ "risks": [
+  "CRITICAL: Must serve 90-day notice at 21 months (§447.9) — missing this blocks deed",
+  "CRITICAL: Must file affidavit within 3 YEARS of sale or certificate auto-cancels — total loss (§446.37)",
+  "Bidding is on percentage of property ownership, not rate — unique mechanism",
+  "Agricultural land dominates inventory in many counties — limited development potential",
+  "Agricultural drainage district liens can be superior to your lien"
+ ],
+ "ddExtra": [
+  "Set TWO hard calendar reminders: month 21 (serve 90-day notice via certified mail) and year 3 (file affidavit deadline)",
+  "Bidding is on ownership %, not rate — lowest percentage interest wins",
+  "Subscribe to the county treasurer's mailing list for the June auction date",
+  "Check for agricultural drainage district liens — these can be superior to your lien"
+ ],
+ "auctionSignup": {
+  "platform": "Iowa Tax Auction / GovEase (split by county)",
+  "steps": [
+   "Go to iowataxauction.com or govease.com and find your target county's June sale",
+   "Create an account and register — ~$40 non-refundable registration fee + W-9 required",
+   "Third Monday of June statewide — register in advance",
+   "Full payment required at sale. Certified funds only."
+  ],
+  "depositInfo": "~$40 non-refundable registration + W-9. Full payment at sale.",
+  "directLink": "https://www.iowataxauction.com"
+ },
+ "otc": {
+  "available": false,
+  "note": "Liens not sold at auction must be purchased directly from the county — contact treasurer after the June sale."
+ },
+ "platforms": [
+  "Iowa Tax Auction",
+  "GovEase",
+  "County treasurer offices"
+ ],
+ "tylerCompliance": {
+  "status": "compliant",
+  "summary": "Iowa reformed its tax sale surplus process through SF 569.",
+  "details": "Iowa passed SF 569 (2024) amending Iowa Code §446.31 to require that any surplus from tax sale exceeding the delinquent amount, interest, and costs must be returned to the former property owner. The county treasurer must provide written notice within 30 days and hold funds for 2 years before escheat.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": "SF 569 (2024); Iowa Code §446.31"
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "auction": {
+   "frequency": "Annual",
+   "saleMonth": "June",
+   "saleDate2026": "June 15, 2026 (3rd Monday — confirmed multiple counties)",
+   "bidMethod": "Online bid-down — percentage of undivided interest (100% to 1%)",
+   "startRate": "100% undivided interest",
+   "winnerMethod": "Lowest % bidder (county receives proportional interest)",
+   "tieBreaker": "Random selection",
+   "platform": "iowataxauction.com (majority) | GovEase (Polk County)",
+   "registrationOpens": "Mid-May annually",
+   "registrationFee": "$25–$58 per bidder ID (varies by county)",
+   "w9Required": true,
+   "certificateName": "Certificate of Purchase at Tax Sale",
+   "statute": "IA Code §446.7 et seq."
+  },
+  "adjournedSale": {
+   "available": true,
+   "name": "Adjourned Tax Sale",
+   "trigger": "Unsold parcels from annual sale",
+   "frequency": "Monthly — if registered bidders present",
+   "platform": "iowataxauction.com",
+   "statute": "IA Code §446.17",
+   "note": "Polk County holds monthly adjourned sales throughout year"
+  },
+  "otc": {
+   "available": true,
+   "name": "Public Bidder Sale / County-Held Certificate Assignment",
+   "rate": "2% per month (same as auction)",
+   "trigger": "Parcel advertised AND unsold 2 consecutive years — county MUST buy",
+   "availableWhen": "After county acquires — contact county treasurer",
+   "process": "Contact county treasurer or board of supervisors for assignment",
+   "statute": "IA Code §446.19",
+   "note": "Each county handles differently. Some forward to land bank / deed program."
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payment",
+   "rate": "2% per month (same as certificate)",
+   "eligibleAfter": "45 days after subsequent installment delinquency",
+   "typicalDates": "May 15 and November 15",
+   "statute": "IA Code §446.18 (referenced)",
+   "deadline": "Received by 4:30 PM last business day of month — postmarks NOT accepted",
+   "warning": "If you fail to pay, taxes re-sell. New cert holder supersedes your right to pay subsequent taxes."
+  },
+  "redemption": {
+   "period": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "maxInterestPeriod": "3 years — interest stops accruing",
+   "rate": "2% per month (24% annualized)",
+   "fees": "$20 certificate fee + $20 redemption fee",
+   "statute": "IA Code §447.1 et seq.",
+   "homesteadDifferent": false,
+   "agDifferent": false,
+   "whoMayRedeem": "Titleholder, person taxed, possessor, mortgagee, vendor, lessor with recorded lease, any person with recorded interest",
+   "note": "Payment must be received by end of month — postmark not sufficient"
+  },
+  "noticeOfExpiration": {
+   "name": "Notice of Expiration of Right of Redemption",
+   "eligibleAfter": "21 months from sale date",
+   "process": "Investor files notice → 90-day owner redemption window → deed if unredeemed",
+   "statute": "IA Code §447.9",
+   "deedDeadline": "Deed application within 90 days of expiration — or certificate CANCELLED",
+   "note": "Cannot file before 21 months — county may bar investor from future sales"
+  },
+  "deedPath": {
+   "name": "Treasurer's Deed / Tax Sale Deed",
+   "process": "File Notice of Expiration → 90-day window → pay deed fee → deed issued",
+   "deedFee": "$25 typical + recording fee (variable)",
+   "absoluteDeadline": "3 years from sale date — certificate cancelled if deed not obtained",
+   "statute": "IA Code §448.1 et seq.",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true,
+   "note": "Iowa deed clears most but not all claims. Quiet title recommended for marketable title."
+  },
+  "surplus": {
+   "available": false,
+   "name": "No surplus process — redemption funds paid directly to certificate holder",
+   "statute": "IA Code §447 (redemption chapter)",
+   "note": "Iowa deed process does not generate auction overbid surplus. Redemption = investor gets taxes+interest+fees directly from county treasurer."
+  }
+ },
+ "es": {
+  "type": "lien",
+  "rate": "24%",
+  "redemption": "2 años",
+  "summary": "Iowa realiza su venta anual en junio. Tasa es un 24% fijo anual. Después de 2 años, debe enviar notificación de 90 días al propietario — no hacerlo en el mes 21 anula el certificado. Estatuto: Iowa Code §446.",
+  "typeWhy": "Iowa es un estado de gravamen porque los condados venden certificados de gravamen fiscal en su venta anual de junio (Iowa Code §446).",
+  "rateWhy": "La tasa fija del 24% anual es la más alta de todos los estados de gravamen del país. Esta tasa no se puja a la baja (Iowa Code §446).",
+  "notBeginnerReason": "",
+  "beginnerTip": "La tasa del 24% de Iowa es la mejor del país. La regla crítica: configure un recordatorio para enviar su notificación de 90 días exactamente en el mes 21. No cumplir este plazo anula su certificado permanentemente. Ese es el error #1.",
+  "risks": [
+   "Debe enviar notificación de 90 días en el mes 21 — perderse esto anula el certificado permanentemente",
+   "La tierra agrícola domina el inventario en muchos condados",
+   "Las compras OTC requieren contacto directo con el condado después de la venta de junio"
+  ],
+  "ddExtra": [
+   "Configure un recordatorio fijo para el mes 21 — envíe notificación por correo certificado",
+   "Suscríbase a la lista de correo del tesorero del condado para la fecha de subasta de junio",
+   "Revise gravámenes del distrito de drenaje agrícola — pueden ser superiores a su gravamen"
+  ],
+  "auctionSignup": {
+   "platform": "Tesorero del condado (varía — algunos en línea, algunos en persona)",
+   "steps": [
+    "Encuentre al tesorero de su condado en iowa.gov/counties",
+    "Contacte al tesorero para confirmar la fecha de venta de junio y requisitos de registro",
+    "Regístrese con anticipación — participación en línea disponible en algunos condados",
+    "Financie mediante transferencia o cheque de caja según instrucciones del condado"
+   ],
+   "depositInfo": "Varía por condado.",
+   "directLink": "https://revenue.iowa.gov/topics/property-tax"
+  },
+  "otc": {
+   "available": false,
+   "note": "Los gravámenes no vendidos deben comprarse directamente del condado — contacte al tesorero después de la venta de junio."
+  }
+ },
+ "counties": [
+  {
+   "name": "Adair",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.adaircountyiowa.org/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Adams",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.adamscountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Allamakee",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.allamakeecounty.com/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Appanoose",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.appanoosecounty.org/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Audubon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.auduboncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Benton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.bentoncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Black Hawk",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.blackhawkcounty.iowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Boone",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.boonecountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Bremer",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.bremercountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Buchanan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.buchanancounty.iowa.gov/departments/treasurer/tax_sales.php",
+   "notes": [
+    "Sub-tax dates: May 15 + Nov 15"
+   ],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Buena Vista",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.bvcounty.org/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Butler",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.butlercountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Calhoun",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.calhouncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Carroll",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.carrollcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Cass",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.casscountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Cedar",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://cedarcounty.iowa.gov/treasurer/tax_sale/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Cerro Gordo",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.cerrogordo.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Cherokee",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.cherokeecountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Chickasaw",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.chickasawcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Clarke",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.clarkecountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Clay",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.claycountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Clayton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.claytoncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Clinton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.clintoncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Crawford",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.crawfordcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Dallas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.dallascountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Davis",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.daviscountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Decatur",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.decaturcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Delaware",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.delawarecountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Des Moines",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.co.des-moines.ia.us/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Dickinson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.dickinsoncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Dubuque",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.dubuquecounty.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Emmet",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.emmetcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Fayette",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.fayettecountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Floyd",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.floydcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.franklincountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Fremont",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.fremontcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Greene",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.greenecountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Grundy",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.grundycountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Guthrie",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.guthriecountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Hamilton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.hamiltoncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Hancock",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.hancockcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Hardin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.hardincountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Harrison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.harrisoncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Henry",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.henrycountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Howard",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.howardcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Humboldt",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.humboldtcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Ida",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.idacountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Iowa",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.iowacountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.jacksoncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Jasper",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.jaspercountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.jeffersoncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Johnson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.johnsoncountyiowa.gov/treasurer/tax-sale-information",
+   "notes": [
+    "In-person at 913 S Dubuque St, Iowa City. Reg fee $58. Pre-register by June 5."
+   ],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Jones",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.jonescountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Keokuk",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.keokukcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Kossuth",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.kossuthcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lee",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.leecountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Linn",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.linncountyiowa.gov/1842/Tax-Sale",
+   "notes": [
+    "Reg fee $37. No batches. W-9 required. 935 2nd St SW Cedar Rapids."
+   ],
+   "extra": {
+    "saleDate2026": "June 16, 2025→ June 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Louisa",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.louisacountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lucas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.lucascountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lyon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.lyoncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Madison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.madisoncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Mahaska",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.mahaskacountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Marion",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.marioncountyiowa.gov/treasurer/tax_sale/",
+   "notes": [
+    "21 months before deed process; 3-year absolute deadline"
+   ],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Marshall",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.marshallcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Mills",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.millscountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Mitchell",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.mitchellcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Monona",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.mononacountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Monroe",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.monroecountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Montgomery",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.montgomerycountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Muscatine",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.muscatinecountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "O'Brien",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.obriencountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Osceola",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.osceolacount.iowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Page",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.pagecountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Palo Alto",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.paloaltocountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Plymouth",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.plymouthcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Pocahontas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.pocahontascountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Polk",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "GovEase",
+   "url": "https://www.polkcountyiowa.gov/treasurer/information-for-tax-sale-buyers/",
+   "notes": [
+    "⚡ Polk uses GovEase not iowataxauction.com. Monthly adjourned sales year-round."
+   ],
+   "extra": {
+    "saleDate2026": "June 16, 2025 (monthly adjourned thru May 2026)"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Pottawattamie",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.pottcounty.com/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Poweshiek",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.poweshiekcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Ringgold",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.ringgoldcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Sac",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.saccountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Scott",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.scottcountyiowa.gov/treasurer/tax-sale",
+   "notes": [
+    "OTC certs forwarded to Planning & Development Tax Deed Program after 2 unsold years"
+   ],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Shelby",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.shelbycountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Sioux",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.siouxcountyiowa.org/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Story",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.storycountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Tama",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.tamacountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Taylor",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.taylorcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Union",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.unioncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Van Buren",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.vanburen.iowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Wapello",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.wapellocountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Warren",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.warrencountyia.gov/departments/treasurer/",
+   "notes": [
+    "Reg fee $36. Cannot file 90-day notice before 21 months — enforced."
+   ],
+   "extra": {
+    "saleDate2026": "June 14, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.washingtoncountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Wayne",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.waynecountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Webster",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.webstercountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Winnebago",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.winnebagocountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Winneshiek",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.winneshiekcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Woodbury",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.woodburycountyiowa.gov/treasurer/tax_sale/",
+   "notes": [
+    "Public Bidder parcels — call Board of Supervisors 712-279-6525"
+   ],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Worth",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.worthcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Wright",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "21 months (1 year 9 months) before investor can initiate 90-day notice",
+   "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+   "platform": "iowataxauction.com",
+   "url": "https://www.wrightcountyiowa.gov/departments/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "June 15, 2026"
+   },
+   "verifiedDate": ""
+  }
+ ]
+}

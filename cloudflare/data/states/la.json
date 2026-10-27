@@ -1,0 +1,1079 @@
+{
+ "code": "LA",
+ "name": "Louisiana",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+ "rateNote": "Bid-down interest rate — NEW 2026 SYSTEM replacing ownership bid-down",
+ "redemption": "3 years",
+ "bidMethod": "Bid-down interest rate",
+ "statute": "La. Rev. Stat. §47:2154",
+ "officialLink": "https://www.legis.la.gov/legis/Law.aspx?d=99775",
+ "auctionPlatform": "Varies by parish",
+ "auctionTiming": "Varies by parish",
+ "keyNotes": [
+  "NEW SYSTEM effective January 1 2026 — old ownership bid-down system eliminated",
+  "Bid-down interest rate: investor accepts lowest monthly rate willing to take",
+  "3-year redemption period — judicial foreclosure required after",
+  "7-year statute of limitations on challenges to tax sale title",
+  "Mandatory certified mail notices to owner and lienholders required"
+ ],
+ "investorAlert": "⚠️ MAJOR 2026 LAW CHANGE: Louisiana converted from ownership bid-down to interest rate bid-down effective January 1, 2026 (Acts 2024, No. 409). ALL pre-2026 research on Louisiana tax sales is outdated. Do not apply old system rules.",
+ "pendingLegislation": [
+  {
+   "bill": "Acts 2024, No. 409",
+   "summary": "Complete overhaul of Louisiana tax sale system — replaced ownership percentage bid-down with interest rate bid-down model. Effective January 1, 2026.",
+   "status": "passed",
+   "effectiveDate": "January 1, 2026"
+  }
+ ],
+ "summary": "Louisiana launched a new tax lien system January 1, 2026, replacing property bidding with a downward interest rate auction (starts at 1%/month = 12%/yr, floor 0.7%/month = 8.4%/yr). After 3-year redemption, investor executes judicial sale. Statute: LA RS §47:2153 (amended 2025).",
+ "typeWhy": "Louisiana sells tax lien certificates under a system overhauled in 2025. Investors purchase the lien at a downward interest rate auction, and the owner retains title during a 3-year redemption period. LA RS §47:2153.",
+ "rateWhy": "Louisiana's 2025 reform replaced property bidding with a downward interest rate auction starting at 1%/month (12%/yr) with a floor of 0.7%/month (8.4%/yr), plus a 5% flat penalty on redemption. LA RS §47:2153.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "New system launched January 1, 2026 — procedures still developing, no established case law, unique civil law jurisdiction.",
+ "beginnerTip": "Wait until late 2026 when the new system has more procedures in place. If you move early, contact parishes directly and document everything — case law doesn't exist yet for this system.",
+ "risks": [
+  "2026 is year one — no established procedures or case law",
+  "Do not confuse pre-2026 property bidding sales with the new lien system",
+  "Judicial sale process after 3 years is untested under the new statute",
+  "Louisiana is a civil law state — legal processes differ from common law states"
+ ],
+ "ddExtra": [
+  "Verify which system the target parish is using before registering",
+  "Contact the parish sheriff directly to confirm the auction format",
+  "Monitor NTLA and Louisiana DOR for updated guidance throughout 2026"
+ ],
+ "auctionSignup": {
+  "platform": "Parish Sheriff (varies by parish — new system being implemented)",
+  "steps": [
+   "Contact the target parish sheriff's office directly — louisiana.gov/government/parishes",
+   "Ask explicitly: 'Are you conducting auctions under the new 2026 lien system?'",
+   "Request registration instructions — the new system is still being rolled out parish by parish",
+   "Monitor the Louisiana Department of Revenue for updated guidance at revenue.louisiana.gov"
+  ],
+  "depositInfo": "Varies by parish. New system is still being implemented.",
+  "directLink": "https://revenue.louisiana.gov"
+ },
+ "otc": {
+  "available": false,
+  "note": "OTC availability under new 2026 system not yet confirmed. Contact parish directly."
+ },
+ "platforms": [
+  "Parish sheriff offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "criticalAlert": "⚡ LOUISIANA MAJOR 2026 REFORM — Act 774 (2024) effective Jan 1 2026. All rules below apply to sales on/after Jan 1 2026. Pre-2026 tax sale certificates remain governed by prior law.",
+  "newSystem2026": {
+   "whatChanged": "Eliminated fractional ownership bid-down. Now a true tax lien certificate state.",
+   "whatSold": "Tax Lien Certificate (100% collateral interest in property) — NOT fractional ownership",
+   "bidMethod": "Bid-down INTEREST RATE from 1.0%/month (12%/yr) down to minimum 0.7%/month (8.4%/yr) in 0.1% increments",
+   "winner": "Lowest interest rate bid wins. Ties go to first bidder.",
+   "maxRate": "1.0% per month (12% annualized) — opening bid",
+   "minRate": "0.7% per month (8.4% annualized) — floor",
+   "certName": "Tax Lien Certificate",
+   "certExpiry": "7 years from recordation — prescribes if no enforcement action filed",
+   "statute": "LA RS §47:2154 (eff. Jan 1 2026)"
+  },
+  "auction": {
+   "frequency": "Annual — typically May or June",
+   "platform": "Online (many parishes via CivicSource / parish portal) + in-person",
+   "timing": "Sheriff or municipal tax collector conducts",
+   "notice": "Enhanced notice requirements — tax collectors must provide detailed written notice before sale per §47:2206"
+  },
+  "adjudicatedProperty": {
+   "note": "Property with no bidder: adjudicated to parish/political subdivision. Parishes may sell non-warranty deeds OR convert adjudicated title to Tax Lien Certificate under Act 557.",
+   "oldAdjudicated": "Properties adjudicated prior to Jan 1 2026 remain under old system. Parishes may still sell non-warranty deeds.",
+   "fastTrack": "If property adjudicated ≥3 years — parish may count that time toward 3-year redemption period, enabling faster path to foreclosure",
+   "noMinBid": "New 2026: Governing authorities may sell adjudicated property to highest bidder with no minimum bid (facilitates blighted property transfer)"
+  },
+  "otc": {
+   "available": true,
+   "name": "Tax Liens Held by Political Subdivision (OTC)",
+   "trigger": "No bidder at auction — political subdivision holds lien",
+   "statute": "LA RS §47:2246",
+   "note": "Political subdivision-held liens do NOT prescribe after 7 years (unlike private investor certs). Contact parish/city directly."
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payments",
+   "statute": "LA RS §47:2154",
+   "note": "2026 law: subsequent taxes assessed to and paid by tax lien certificate holder until redeemed. Primary risk: non-payment may expose property to later tax sale."
+  },
+  "redemption": {
+   "period": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "blightedAbandoned": "18 months for blighted or abandoned properties",
+   "termination": "Now called 'extinguishment of lien' or 'termination payment'",
+   "terminationPrice": "Full delinquent amount + interest at certificate rate + 5% penalty + accrued costs + notice reimbursement (up to $500/property)",
+   "statute": "LA RS §47:2153, §47:2243",
+   "notice": "Investor must send formal redemption notices during period. Affidavit of notice required or investor risks extinguishment without reimbursement.",
+   "noticeReimbursement": "Up to $500 per property reimbursed to investor for notice costs upon redemption"
+  },
+  "deedPath": {
+   "name": "Judicial Foreclosure (Sheriff's Sale)",
+   "eligibleAfter": "3 years from recordation of Tax Lien Certificate",
+   "noticeRequired": "Must send post-redemption-period notice 180–365 days before filing foreclosure",
+   "process": "Court-supervised foreclosure similar to mortgage foreclosure. Proper notice to all parties required. If completed — investor receives property via sheriff's sale.",
+   "surplusAfterForeclosure": "Any surplus from sheriff's sale returned to former owner per Tyler v. Hennepin compliance",
+   "statute": "LA RS §47:2243 et seq. (new 2026)",
+   "quietTitleRequired": false,
+   "note": "Old process (quiet title only) replaced by new judicial foreclosure path for post-2026 certificates"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Proceeds",
+   "statute": "LA RS §47:2243 (new 2026)",
+   "process": "Any excess from sheriff's sale foreclosure returned to former property owner",
+   "note": "Tyler v. Hennepin compliance — Louisiana 2026 reform explicitly addresses surplus return to former owners"
+  },
+  "oldCertificates": {
+   "note": "CRITICAL: Pre-2026 tax sale certificates remain governed by OLD law. Fractional ownership, quiet title process, 1%/month fixed rate. Old adjudicated properties may still be sold under old system."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "Hasta 12%/año pujado a la baja (mín. 8.4%); + 5% penalización",
+  "redemption": "3 años",
+  "summary": "Luisiana lanzó un nuevo sistema de gravamen fiscal el 1 de enero de 2026, reemplazando la puja de propiedad con subasta de tasa descendente (comienza al 1%/mes = 12%/año, piso 0.7%/mes = 8.4%/año). Estatuto: LA RS §47:2153 (modificado 2025).",
+  "typeWhy": "Luisiana es un estado de gravamen bajo su nuevo sistema de 2025, que reemplazó la puja de propiedad con una subasta de tasa descendente con período de redención de 3 años (LA RS §47:2153).",
+  "rateWhy": "La tasa comienza al 1% mensual (12% anual) y se puja a la baja con un piso del 0.7% mensual (8.4% anual), más una penalización del 5% (LA RS §47:2153, modificado 2025).",
+  "notBeginnerReason": "Nuevo sistema lanzado el 1 de enero de 2026 — procedimientos aún en desarrollo, sin jurisprudencia establecida.",
+  "beginnerTip": "Espere hasta finales de 2026 cuando el nuevo sistema tenga más procedimientos establecidos. Si avanza temprano, contacte parroquias directamente y documente todo.",
+  "risks": [
+   "2026 es el primer año — sin procedimientos establecidos ni jurisprudencia",
+   "No confunda ventas pre-2026 con el nuevo sistema de gravamen",
+   "El proceso de venta judicial después de 3 años no está probado",
+   "Luisiana es un estado de derecho civil — los procesos legales difieren"
+  ],
+  "ddExtra": [
+   "Verifique qué sistema está usando la parroquia objetivo antes de registrarse",
+   "Contacte al sheriff directamente para confirmar el formato de subasta",
+   "Monitoree NTLA y el DOR de Luisiana para orientación actualizada"
+  ],
+  "auctionSignup": {
+   "platform": "Sheriff de la parroquia (varía — nuevo sistema siendo implementado)",
+   "steps": [
+    "Contacte la oficina del sheriff de la parroquia objetivo — louisiana.gov/government/parishes",
+    "Pregunte explícitamente si están realizando subastas bajo el nuevo sistema de 2026",
+    "Solicite instrucciones de registro — el nuevo sistema aún se está implementando parroquia por parroquia",
+    "Monitoree revenue.louisiana.gov para orientación actualizada"
+   ],
+   "depositInfo": "Varía por parroquia. El nuevo sistema aún se está implementando.",
+   "directLink": "https://revenue.louisiana.gov"
+  },
+  "otc": {
+   "available": false,
+   "note": "Disponibilidad de OTC bajo el nuevo sistema de 2026 aún no confirmada. Contacte a la parroquia directamente."
+  }
+ },
+ "counties": [
+  {
+   "name": "Acadia",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.acadiaparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Allen",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.allenparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ascension",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.ascensionla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Assumption",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.assumptionla.com/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Avoyelles",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.avoyellescountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Beauregard",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.beauregarddla.com/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bienville",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.bienvilleparish.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bossier",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.bossiergov.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Caddo",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.caddoparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Calcasieu",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.calcasieutax.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Caldwell",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.caldwellparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cameron",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.cameronparishla.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Catahoula",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.catahoulaparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Claiborne",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.claiborneparish.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Concordia",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.concordiaparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "De Soto",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.desotoparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "East Baton Rouge",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.ebrso.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "East Carroll",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.eastcarrollparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "East Feliciana",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.eastfelicianaparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Evangeline",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.evangelineparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.franklinparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grant",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.grantparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Iberia",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.iberiaparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Iberville",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.iberville.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jackson",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.jacksonparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.jeffparish.net/departments/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson Davis",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.jeffdavisparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lafayette",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.lafayettela.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lafourche",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.lafourchegov.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "LaSalle",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.lasalleparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.lincolnparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Livingston",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.livingstonparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Madison",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.madisonparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Morehouse",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.morehouseparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Natchitoches",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.natchitochesparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Orleans",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.stc.nola.gov",
+   "notes": [
+    "New Orleans — high volume urban market"
+   ],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ouachita",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.ouachitaparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Plaquemines",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.plaqueminesparish.com/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pointe Coupee",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.pointecoupereparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rapides",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.rapidsparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Red River",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.redriverparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Richland",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.richlandparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sabine",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.sabineparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Bernard",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.stbernardparish.net/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Charles",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.stcharlesla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Helena",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.sthelenaprishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. James",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.stjamesla.com/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. John the Baptist",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.stjohnla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Landry",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.stlandryparish.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Martin",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.stmartinparish.net/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Mary",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.stmaryparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Tammany",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.stpso.com/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tangipahoa",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.tangipahoa.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tensas",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.tensasparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Terrebonne",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.tpcg.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Union",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.unionparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Vermilion",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.vermilionparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Vernon",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.vernonparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.washingtonparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Webster",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.websterparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "West Baton Rouge",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "CivicSource/Online",
+   "url": "https://www.westbatonrouge.net/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "West Carroll",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.westcarrollparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "West Feliciana",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.westfelicianaparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Winn",
+   "kind": "parish",
+   "saleType": "lien",
+   "redemption": "3 years from date of Tax Lien Certificate recordation (standard)",
+   "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+   "platform": "Online/Sheriff",
+   "url": "https://www.winnparishla.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

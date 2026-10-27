@@ -1,0 +1,891 @@
+{
+ "code": "NJ",
+ "name": "New Jersey",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "18% per year + premium bids",
+ "rateNote": "Premium bid below 1% of lien; 18% on amounts over $200",
+ "redemption": "2 years (private holders); 6 months (municipality-held)",
+ "bidMethod": "Premium bid (dollar overbid for liens under threshold)",
+ "statute": "NJSA §54:5-32",
+ "officialLink": "https://www.njleg.state.nj.us/Bills/Bills/2024/S2052_I1.PDF",
+ "auctionPlatform": "Varies by municipality — online and in-person",
+ "auctionTiming": "Year-round, varies by municipality",
+ "keyNotes": [
+  "Premium bid system — you bid a dollar amount over lien, not an interest rate",
+  "18% statutory rate applies on amounts over $200",
+  "S2052 pending 2026 — monitor for reform"
+ ],
+ "investorAlert": "⚠️ S2052 pending in 2026 NJ legislature — proposed changes to tax sale law. Verify current status before transacting.",
+ "pendingLegislation": null,
+ "summary": "New Jersey has 565 municipalities, 98%+ conducting annual tax sales. UNIQUE PREMIUM BID STRUCTURE: Bidding starts at 18% and goes DOWN in 0.25% increments. Once bidding reaches 0%, bidders switch to PREMIUM BIDS — cash amounts paid ABOVE the lien amount. Premium held in escrow by municipality. If owner redeems within 5 years, premium refunded. If NOT redeemed within 5 years, municipality KEEPS the premium. Urban NJ premiums routinely $10K-$50K+. Separate redemption penalty: 2% ($200-$5K), 4% ($5K-$10K), 6% (over $10K) on original certificate only. NJ uses STRICT FORECLOSURE — no public sale, title vests directly in lien holder upon final court judgment (NJSA §54:5-104.64). Owner can redeem until final judgment. Subsequent municipal liens survive per §54:5-87, all others extinguished. Statute: NJSA §54:5-1 et seq.; §54:5-32 (sale/premium); §54:5-86 (foreclosure timing); §54:5-104.64 (judgment effect).",
+ "typeWhy": "New Jersey sells tax lien certificates at municipal-level auctions across 565 municipalities. The investor holds the lien while the owner retains title during a 2-year redemption period (6 months for municipality-held). NJSA §54:5-1.",
+ "rateWhy": "New Jersey caps the interest rate at 18% and uses a bid-down auction, then switches to PREMIUM BIDS once rate reaches 0%. Premium is NOT refundable if owner doesn't redeem within 5 years — this is a material risk. NJSA §54:5-32.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "565 municipalities with varying competition. North NJ rates bid to 0% then premium bids of $10K-$50K+. Bankruptcy risk within 90 days can void certificate.",
+ "beginnerTip": "Start with South Jersey municipalities (Salem, Cumberland, Cape May counties) — lower competition and better rates than North Jersey. Avoid Bergen, Essex, and Hudson counties where rates go to 0% and premiums exceed $10K. Remember: premium is forfeited after 5 years if not redeemed.",
+ "risks": [
+  "PREMIUM RISK: Premium dollars NOT refundable if owner does not redeem within 5 years — material investor risk. Urban premiums routinely $10K-$50K+.",
+  "Bankruptcy within 90 days can void your certificate — check PACER after purchase",
+  "North NJ rates go to 0% with massive premiums — not viable for individual investors",
+  "565 municipalities mean 565 different registration processes and schedules",
+  "Subsequent taxes ('sub liens') create NEW certificates with priority over prior ones"
+ ],
+ "ddExtra": [
+  "Check PACER for bankruptcy filings after purchase — critical in NJ",
+  "Confirm municipality-specific registration deadlines before the sale",
+  "Research prior year sale results to gauge competition level and premium amounts",
+  "NJ uses strict foreclosure — title vests directly in lien holder, no public sale (NJSA §54:5-104.64)"
+ ],
+ "auctionSignup": {
+  "platform": "GovEase (many municipalities) + municipal-specific portals",
+  "steps": [
+   "Go to govease.com and search for New Jersey municipalities, or check your target municipality's website",
+   "Create an account and register for your target municipality's annual sale",
+   "Fund your account per municipality instructions",
+   "Bid online — interest rate DOWN from 18% in 0.25% increments, then switch to PREMIUM bidding (highest premium wins)"
+  ],
+  "depositInfo": "Varies by municipality. Check individual municipality sale notices.",
+  "directLink": "https://www.govease.com"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "GovEase",
+  "Municipal tax collector offices"
+ ],
+ "tylerCompliance": {
+  "status": "compliant",
+  "summary": "New Jersey already provided surplus protections, further strengthened post-Tyler.",
+  "details": "New Jersey tax lien sale structure under N.J.S.A. 54:5-1 et seq. already required surplus tracking. Post-Tyler, the state legislature clarified that any surplus from tax sale foreclosure must be remitted to the former owner, with enhanced notice requirements effective 2024.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": "N.J.S.A. 54:5-86; A.B. 4706 (2024)"
+ },
+ "featuredCounties": [
+  {
+   "name": "Salem",
+   "link": "https://www.salemcountynj.gov/departments/treasury/",
+   "notes": "Low competition. Good rates."
+  },
+  {
+   "name": "Cumberland",
+   "link": "https://www.co.cumberland.nj.us/264/Tax-Board",
+   "notes": "Low competition. Good rates."
+  },
+  {
+   "name": "Bergen",
+   "link": "https://www.bergencountynj.gov/",
+   "notes": "High competition. Rates often 0%. Avoid for beginners."
+  }
+ ],
+ "rules": {
+  "type": "lien",
+  "auction": {
+   "frequency": "At least annual per municipality (566 municipalities)",
+   "saleMonth": "Varies by municipality — year-round",
+   "bidMethod": "Public auction — bid DOWN from 18%; after 0% → premium bid",
+   "startRate": "18%",
+   "zeroBid": "Accepted; after 0% bidders offer premium (dollar amount above lien)",
+   "premiumEscheat": "Premium escheats to municipality after 5 years",
+   "increments": "Even % or 0.25% fractional (per 2026 A3968 reform)",
+   "tieBreaker": "Random number generator (per 2026 A3968)",
+   "certificateName": "Tax Sale Certificate (TSC)",
+   "recordingDeadline": "90 days — County Clerk Deed Room",
+   "includes": "Taxes + water/sewer + all municipal charges",
+   "statute": "NJSA 54:5-19, 54:5-32",
+   "saleBoardUrl": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+  },
+  "otc": {
+   "available": true,
+   "name": "Municipal Certificate Assignment",
+   "rate": "18% (struck to municipality at 18%)",
+   "availableWhen": "After annual sale — varies by municipality",
+   "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+   "statute": "NJSA 54:5-113, 54:5-114.2",
+   "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk."
+  },
+  "delinquencyPenalties": {
+   "rate1": "8% on first $1,500 delinquency",
+   "rate2": "18% on amounts over $1,500",
+   "yearEndPenalty": "6% additional on delinquencies >$10,000 at fiscal year end",
+   "statute": "NJSA 54:4-67"
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payment",
+   "rate": "Interest set by municipality (not certificate rate)",
+   "statute": "NJSA 54:5 (general)",
+   "warning": "CRITICAL: Unpaid subsequent taxes generate NEW certificate paramount to yours. Always pay to protect position."
+  },
+  "redemption": {
+   "period": "Anytime before foreclosure judgment",
+   "statute": "NJSA 54:5-54",
+   "whoMayRedeem": "Owner, heirs, prior lien holder, mortgage holder, legal occupant ONLY",
+   "penalties": {
+    "over200": "+2% redemption penalty",
+    "over5000": "+4% redemption penalty",
+    "over10000": "+6% redemption penalty",
+    "note": "Penalties IN ADDITION to interest rate bid"
+   },
+   "homesteadDifferent": false,
+   "agDifferent": false
+  },
+  "deedPath": {
+   "name": "Foreclosure of Right of Redemption",
+   "eligibleAfter": "2 years from sale date",
+   "abandonedProperty": "Accelerated timeline available for abandoned properties",
+   "process": "File action in Superior Court, Chancery Division",
+   "result": "Court grants absolute fee simple title — no separate quiet title needed",
+   "inRem": "In Rem available for municipalities per NJSA 54:5-104.29",
+   "statute": "NJSA 54:5-86",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": false,
+   "note": "Court order IS title — strongest title outcome of any lien state"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Equity / Surplus Protection",
+   "statute": "NJSA 54:5-1 et seq. + 2024 Tyler v. Hennepin reform",
+   "alert": "⚡ MAJOR 2026 CHANGE: Post Tyler v. Hennepin (2023), NJ enacted July 2024 law requiring excess equity above taxes+interest be returned to owner. Pending S1425/S2052 additional reforms.",
+   "process": "Owner requests judicial sale or online auction before foreclosure judgment. Surplus returned via Sheriff/court.",
+   "note": "Lien holders can NO LONGER capture full equity. Consult attorney on current exposure."
+  }
+ },
+ "es": {
+  "type": "lien",
+  "rate": "18% + penalizaciones",
+  "redemption": "2 años",
+  "summary": "Nueva Jersey tiene 567 municipios, 98%+ realizando ventas fiscales anuales. Tasa pujada a la baja desde 18%. Frecuentemente se requieren primas. La quiebra dentro de 90 días de la compra puede anular el certificado. Estatuto: NJSA §54:5-1.",
+  "typeWhy": "Nueva Jersey es un estado de gravamen porque sus 567 municipios realizan ventas anuales de certificados donde los inversores pujan la tasa a la baja desde el 18% (NJSA §54:5-1).",
+  "rateWhy": "La tasa máxima del 18% se puja a la baja. En el norte de NJ la competencia reduce las tasas al 0%, mientras que en el sur se mantienen más altas. Las primas adicionales reducen el rendimiento (NJSA §54:5-1).",
+  "notBeginnerReason": "567 municipios con competencia variable. Tasas del norte de NJ se pujan al 0%. Se requieren pujas de prima. El riesgo de quiebra dentro de 90 días puede anular el certificado.",
+  "beginnerTip": "Comience con municipios del sur de Jersey (condados Salem, Cumberland, Cape May) — menor competencia y mejores tasas que el norte de Jersey. Evite Bergen, Essex y Hudson donde las tasas van al 0%.",
+  "risks": [
+   "La quiebra dentro de 90 días puede anular su certificado — revise PACER después de la compra",
+   "Las tasas del norte de NJ van al 0% — no viable para inversores individuales",
+   "Las pujas de prima reducen significativamente el rendimiento efectivo",
+   "567 municipios significan 567 procesos de registro diferentes"
+  ],
+  "ddExtra": [
+   "Revise PACER para presentaciones de quiebra después de la compra — crítico en NJ",
+   "Confirme los plazos de registro específicos del municipio antes de la venta",
+   "Investigue resultados de venta del año anterior para evaluar el nivel de competencia"
+  ],
+  "auctionSignup": {
+   "platform": "RealAuction.com (mayoría de municipios) + específicos por municipio",
+   "steps": [
+    "Vaya a reauction.com y busque municipios de Nueva Jersey",
+    "Cree una cuenta y regístrese para la venta anual de su municipio objetivo",
+    "Financie su cuenta mediante ACH o transferencia antes de la fecha de subasta",
+    "Puje en línea — está pujando la tasa A LA BAJA desde 18%, luego hacia arriba en prima"
+   ],
+   "depositInfo": "Varía por municipio. La mayoría requieren fondos anticipados a través de RealAuction.",
+   "directLink": "https://reauction.com"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Atlantic",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Varies by municipality — online auction common (Granicus, SRI, municipal platforms)",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Varies by municipality — online auction common (Granicus, SRI, municipal platforms)",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Includes Atlantic City, Egg Harbor, Galloway, Hamilton, Pleasantville and 20+ other municipalities"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.atlantic-county.org/clerk/default.asp",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Bergen",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Online auction common — Granicus, municipal platforms",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Online auction common — Granicus, municipal platforms",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "70 municipalities including Teaneck (Jan 2026), Fort Lee, Hackensack, Paramus"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.co.bergen.nj.us/county-clerk",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Burlington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Online auction common — Willingboro uses online platform",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Online auction common — Willingboro uses online platform",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Includes Burlington City, Evesham, Moorestown, Mt. Holly, Stafford (Ocean County border)"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.co.burlington.nj.us/192/County-Clerk",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Camden",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Online auction — Camden City uses online platform (Apr 6 2026 confirmed)",
+   "url": "",
+   "notes": [
+    "⚡ Camden City online sale April 6 2026 confirmed"
+   ],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Online auction — Camden City uses online platform (Apr 6 2026 confirmed)",
+     "saleDate2026": "Camden City: April 6, 2026 online. Others check TCTANJ board.",
+     "note": "⚡ Camden City sale April 6 2026 — 2025 and prior delinquencies"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.camdencounty.com/service/county-clerk/",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Cape May",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "In-person or online per municipality",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "In-person or online per municipality",
+     "saleDate2026": "Cape May City: fall 2026 (date TBD). Others check TCTANJ board.",
+     "note": "Cape May City 2026 fall sale TBD — posted on capemaycity.com"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.capemaycountynj.gov/180/County-Clerk",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Cumberland",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Millville uses standard public auction; others vary",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Millville uses standard public auction; others vary",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Includes Bridgeton, Millville, Vineland (largest cities)"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.co.cumberland.nj.us/county_clerk",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Essex",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Online auction common — Newark, Irvington, East Orange use online platforms",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Online auction common — Newark, Irvington, East Orange use online platforms",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Includes Newark (largest city in NJ), Irvington, East Orange, Montclair"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.essexcountynj.org/county-clerk/",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Gloucester",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Varies by municipality",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Varies by municipality",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Includes Deptford, Washington, Monroe, Woodbury"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.gloucestercountynj.gov/county-clerk",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Hudson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Online auction common — Jersey City, Bayonne use online platforms",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Online auction common — Jersey City, Bayonne use online platforms",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Includes Jersey City (2nd largest NJ city), Bayonne, Hoboken, Union City, Kearny"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.hudsoncountynj.gov/government/offices/county-clerk",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Hunterdon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "In-person for most smaller municipalities",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "In-person for most smaller municipalities",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Mostly small rural townships"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.co.hunterdon.nj.us/clerk.htm",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Mercer",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Online auction common — Trenton uses online platform",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Online auction common — Trenton uses online platform",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Includes Trenton (state capital), Princeton, Hamilton, Lawrence"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.mercercounty.org/government/county-clerk",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Middlesex",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Online auction common — New Brunswick, Woodbridge use online",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Online auction common — New Brunswick, Woodbridge use online",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Includes New Brunswick, Edison, Woodbridge, Piscataway, Sayreville"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.middlesexcountynj.gov/government/departments/county-clerk",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Monmouth",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Online auction common — many municipalities use Granicus",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Online auction common — many municipalities use Granicus",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Includes Asbury Park, Long Branch, Freehold, Middletown, Brick (border)"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.co.monmouth.nj.us/county_clerk.aspx",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Morris",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Varies by municipality",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Varies by municipality",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Includes Morristown, Parsippany, Rockaway, Dover"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.morriscountynj.gov/Departments/County-Clerk",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Ocean",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Online auction common — Stafford (Feb 13 2026 confirmed)",
+   "url": "",
+   "notes": [
+    "⚡ Stafford Twp electronic sale Feb 13 2026 confirmed"
+   ],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Online auction common — Stafford (Feb 13 2026 confirmed)",
+     "saleDate2026": "Stafford Twp: February 13, 2026 electronic. Others check TCTANJ.",
+     "note": "⚡ Stafford Township confirmed Feb 13 2026 electronic sale. Includes Toms River, Brick, Stafford, Lakewood."
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.co.ocean.nj.us/OC/Clerk/Pages/default.aspx",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Passaic",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Online auction common — Paterson, Clifton use online",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Online auction common — Paterson, Clifton use online",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Includes Paterson, Clifton, Passaic, Wayne, West Milford"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.passaiccountynj.org/government/offices/county_clerk",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Salem",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "In-person or online — smaller county",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "In-person or online — smaller county",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Small rural county — lower competition, higher chance of unsold certs"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.salemcountynj.gov/county-clerk/",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Somerset",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Varies by municipality",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Varies by municipality",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Includes Bridgewater, Franklin, Warren, Bound Brook"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.co.somerset.nj.us/government/county-offices/county-clerk",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Sussex",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "In-person for most — smaller rural county",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "In-person for most — smaller rural county",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Rural county — lower competition generally"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.sussexcountynj.gov/government/offices/county-clerk",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Union",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "Online auction common — Elizabeth, Linden, Union use online",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "Online auction common — Elizabeth, Linden, Union use online",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Includes Elizabeth (4th largest NJ city), Linden, Union, Plainfield, Cranford"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.ucnj.org/county-clerk/",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Warren",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Anytime before foreclosure judgment",
+   "rate": "18% per year + premium bids",
+   "platform": "In-person for most — rural county",
+   "url": "",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659",
+     "platform": "In-person for most — rural county",
+     "saleDate2026": "Multiple municipalities — check TCTANJ board",
+     "note": "Rural county — lower competition generally"
+    },
+    "otc": {
+     "available": true,
+     "name": "Municipal Certificate Assignment",
+     "rate": "18% (struck to municipality at 18%)",
+     "availableWhen": "After annual sale — varies by municipality",
+     "process": "Public sale (highest bidder) or private sale (governing body resolution)",
+     "statute": "NJSA 54:5-113, 54:5-114.2",
+     "note": "Availability varies. Contact individual municipal tax collector. All assignments must be recorded with County Clerk.",
+     "url": "https://www.tctanj.org/cn/webpage.cfm?tpid=14659"
+    },
+    "countyClerk": {
+     "url": "https://www.co.warren.nj.us/county-clerk.html",
+     "note": "Record TSC here within 90 days"
+    }
+   },
+   "verifiedDate": ""
+  }
+ ]
+}

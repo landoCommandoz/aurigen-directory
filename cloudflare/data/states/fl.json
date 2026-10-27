@@ -1,0 +1,1606 @@
+{
+ "code": "FL",
+ "name": "Florida",
+ "type": "hybrid",
+ "typeLabel": "Hybrid (lien then deed)",
+ "rate": "18% per year (reverse bid from ceiling)",
+ "rateNote": "Bid-down interest",
+ "redemption": "2 years from April 1 of issuance year",
+ "bidMethod": "Bid-down interest",
+ "statute": "FL Stat §197.172",
+ "officialLink": "https://leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0100-0199/0197/Sections/0197.172.html",
+ "auctionPlatform": "RealAuction / GovEase (varies by county)",
+ "auctionTiming": "May annual lien sale; monthly deed auctions",
+ "keyNotes": [
+  "Largest tax lien state by volume",
+  "Bid down the interest rate you're willing to accept",
+  "Deeds sold monthly — no post-sale redemption period"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "Florida is a hybrid state with two parallel auction tracks. (1) Annual tax certificate sale online before June 1 — reverse bid auction starting at 18% in 0.25% increments. Ties resolved by RNG. County takes unsold at 18%. Min 5% face value guarantee on all certificates (§197.432). (2) After 2-year redemption (from April 1 of issuance year), certificate holder applies for tax deed (§197.502) — must pay off all other outstanding certificates. Clerk conducts title search, publishes notice, holds public auction. 3-6 months from application to deed sale. 67 counties each run their own sale. County-held certificates accrue at 18%. OTC available year-round via LienHub. Statutes: FL Stat §197.172 (rate), §197.432 (certificate sale), §197.4725 (OTC), §197.472 (redemption), §197.502 (deed application), §197.552 (deed issuance/lien survival).",
+ "typeWhy": "Florida is a hybrid state operating two parallel systems: tax lien certificates are sold at an annual reverse-bid auction, and after the 2-year redemption period expires, the certificate holder applies for a separate tax deed auction. FL Stat §197.432, §197.502.",
+ "rateWhy": "Florida caps the lien interest rate at 18% and uses a reverse-bid auction where investors bid the rate down in 0.25% increments. A statutory minimum 5% penalty applies on any redemption regardless of the winning bid rate. No interest accrues during the 60-day post-delinquency window (§197.172). FL Stat §197.172, §197.472.",
+ "beginnerFriendly": true,
+ "notBeginnerReason": "",
+ "beginnerTip": "Your best first move in Florida is LienHub OTC — buy unsold certificates year-round at the full 18% statutory rate with zero competition and no auction schedule to wait for. Skip the live auctions entirely until you're comfortable. When you're ready to shop inventory, start with smaller counties like Citrus, Hernando, or Levy for less saturated supply.",
+ "risks": [
+  "Miami-Dade and Broward: institutional buyers push rates to 0–1% — avoid for beginners",
+  "Tax deed title is generally not insurable without quiet title action — FL Stat §95.192 provides 4-year safe harbor",
+  "Municipal/county/special district liens and community development district liens survive per §197.552",
+  "Federal tax liens survive 120 days (IRS redemption right)",
+  "5% mandatory minimum interest applies on all redemptions except 0% bids (§197.472). No interest accrues during 60-day post-delinquency window (§197.172)",
+  "Homestead-exempt properties with <$250 delinquency auto-struck to county at 18%"
+ ],
+ "ddExtra": [
+  "Verify OTC inventory on LienHub for direct purchase certificates",
+  "Confirm no government code compliance liens — contact the municipality directly",
+  "Validate the 2-year redemption timeline (from April 1 of issuance year) before applying for tax deed",
+  "Tax collector earns 5% commission on delinquent taxes — factor into cost analysis"
+ ],
+ "auctionSignup": {
+  "platform": "LienHub.com (primary) + RealAuction.com (deed sales)",
+  "steps": [
+   "Go to LienHub.com and create a free account",
+   "Fund your account via ACH or wire transfer (minimum varies by county, typically $500–$2,000)",
+   "Register for the specific county's annual tax certificate sale (before June 1 each year)",
+   "Bid online — you're bidding the interest rate DOWN from 18%. Lowest bid wins.",
+   "For OTC purchases: log into LienHub year-round and browse unsold certificates by county"
+  ],
+  "depositInfo": "Deposit required per county. Most counties require pre-funding before auction day.",
+  "directLink": "https://lienhub.com"
+ },
+ "otc": {
+  "available": true,
+  "note": "Unsold tax certificates available year-round on LienHub.com. Start here — statutory 18% rate, no competition, no bidding."
+ },
+ "platforms": [
+  "LienHub.com",
+  "RealAuction.com"
+ ],
+ "tylerCompliance": {
+  "status": "compliant",
+  "summary": "Florida updated its tax deed surplus statute post-Tyler. Surplus funds are now tracked and returned to former owners.",
+  "details": "In 2023, Florida passed HB 1439 amending F.S. §197.582 to require that surplus proceeds from tax deed sales be returned to former property owners. Counties must now publish notice and hold surplus funds for 120 days before escheating. This aligns Florida with Tyler v. Hennepin requirements.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": "HB 1439 (2023); F.S. §197.582"
+ },
+ "featuredCounties": [
+  {
+   "name": "Miami-Dade",
+   "link": "https://www.miamidade.gov/taxcollector/",
+   "notes": "Largest in FL. Rates bid to 0–1%. Not for beginners."
+  },
+  {
+   "name": "Broward",
+   "link": "https://www.broward.org/TaxCollector/",
+   "notes": "High competition. Same as Miami-Dade."
+  },
+  {
+   "name": "Citrus",
+   "link": "https://www.citrusclerk.org",
+   "notes": "Lower competition. Good for beginners."
+  },
+  {
+   "name": "Hernando",
+   "link": "https://hernandoclerk.com/",
+   "notes": "Lower competition. Beginner-friendly."
+  },
+  {
+   "name": "Orange",
+   "link": "https://www.occompt.com",
+   "notes": "Moderate competition. Good inventory."
+  }
+ ],
+ "rules": {
+  "type": "hybrid",
+  "auction": {
+   "frequency": "Annual",
+   "saleMonth": "May-June",
+   "saleDate2026": "On or before June 1, 2026",
+   "bidMethod": "Reverse auction — interest rate bid DOWN from 18%",
+   "startRate": "18%",
+   "minInterest": "5% (unless 0% bid)",
+   "zeroBid": "0% bid earns zero interest, no minimum",
+   "deposit": "10% minimum per LienHub registration",
+   "statute": "FL Stat §197.432"
+  },
+  "otc": {
+   "available": true,
+   "name": "County-Held Certificate",
+   "rate": "18%",
+   "availableWhen": "Available Sept 1 onward after annual sale",
+   "fee": "Face value + accrued interest + $6.25",
+   "statute": "FL Stat §197.4725",
+   "note": "Purchased through same platform as main auction"
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Purchase (Sub-Tax)",
+   "fee": "$6.25 per parcel",
+   "statute": "FL Stat §197.202",
+   "note": "Earns same rate as original certificate"
+  },
+  "transfer": {
+   "available": true,
+   "name": "Certificate Transfer / Endorsement",
+   "fee": "$2.25 per certificate",
+   "statute": "FL Stat §197.462",
+   "note": "Submit Endorsement Form to Tax Collector"
+  },
+  "redemption": {
+   "period": "Anytime after issuance until tax deed issued",
+   "statute": "FL Stat §197.472",
+   "homesteadDifferent": false,
+   "agDifferent": false,
+   "note": "Owner may redeem on auction day before winning bidder final payment"
+  },
+  "deedPath": {
+   "name": "Tax Deed Application",
+   "eligibleAfter": "2 years from April 1 of delinquent year",
+   "deadline": "7 years from certificate issuance",
+   "process": "Certificate holder applies through Tax Collector → Clerk conducts deed auction",
+   "statute": "FL Stat §197.502",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true,
+   "note": "Quiet title not required but strongly recommended for insurable title"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Tax Deed Surplus Funds",
+   "claimPeriod": "120 days from mailed Notice of Surplus",
+   "statute": "FL Stat §197.582",
+   "process": "File written claim with Clerk of Circuit Court",
+   "warning": "Non-gov lienholders barred after 120 days — permanently",
+   "note": "Surplus held 1 year by Clerk, then escheats to state"
+  }
+ },
+ "es": {
+  "type": "hybrid",
+  "rate": "Hasta 18% (5% mínimo en redención)",
+  "redemption": "2 años",
+  "summary": "Florida es un estado híbrido con dos pistas paralelas. (1) Venta anual de certificados fiscales antes del 1 de junio — subasta de puja inversa al 18%. (2) Después de 2 años, el titular solicita escritura fiscal y la propiedad va a subasta pública en RealAuction. OTC disponible todo el año vía LienHub. Estatutos: FL Stat §197.172 (tasa), §197.432 (venta), §197.4725 (OTC), §197.472 (redención), §197.502 (solicitud de escritura).",
+  "typeWhy": "Florida es un estado híbrido porque opera dos pistas paralelas: primero vende certificados de gravamen fiscal en subasta de puja inversa, y después de 2 años sin redención, la propiedad va a una segunda subasta pública como escritura fiscal (FL Stat §197.432, §197.502).",
+  "rateWhy": "La tasa máxima del 18% se establece por estatuto con un mínimo obligatorio del 5% en la redención. Las subastas de puja inversa permiten que la competencia reduzca la tasa, pero las compras OTC mantienen el 18% completo (FL Stat §197.172, §197.472).",
+  "notBeginnerReason": "",
+  "beginnerTip": "Su mejor primer paso en Florida es LienHub OTC — compre certificados no vendidos durante todo el año a la tasa estatutaria completa del 18% sin ninguna competencia y sin necesidad de esperar un calendario de subastas. Omita las subastas en vivo por completo hasta que se sienta seguro. Cuando esté listo para explorar inventario, comience con condados más pequeños como Citrus, Hernando o Levy, donde la oferta está menos saturada.",
+  "risks": [
+   "Miami-Dade y Broward: institucionales reducen tasas al 0–1% — evite para principiantes",
+   "El título de escritura fiscal generalmente no es asegurable sin título silencioso",
+   "Los gravámenes gubernamentales pueden sobrevivir a la venta de escritura fiscal",
+   "El 5% de interés mínimo obligatorio aplica en todas las redenciones excepto pujas al 0% (§197.472). Regla separada: no se acumula interés durante los 60 días posteriores a la morosidad (§197.172)"
+  ],
+  "ddExtra": [
+   "Verifique inventario OTC en LienHub para certificados de compra directa",
+   "Confirme que no haya gravámenes de cumplimiento de código — contacte al municipio",
+   "Valide el cronograma de redención de 2 años antes de solicitar escritura fiscal"
+  ],
+  "auctionSignup": {
+   "platform": "LienHub.com (principal) + RealAuction.com (ventas de escritura)",
+   "steps": [
+    "Vaya a LienHub.com y cree una cuenta gratuita",
+    "Financie su cuenta mediante ACH o transferencia (mínimo varía por condado, normalmente $500–$2,000)",
+    "Regístrese para la venta anual de certificados del condado específico (antes del 1 de junio)",
+    "Puje en línea — está pujando la tasa A LA BAJA desde 18%. La puja más baja gana.",
+    "Para OTC: inicie sesión en LienHub todo el año y explore certificados no vendidos por condado"
+   ],
+   "depositInfo": "Depósito requerido por condado. La mayoría requieren fondos anticipados.",
+   "directLink": "https://lienhub.com"
+  },
+  "otc": {
+   "available": true,
+   "note": "Certificados fiscales no vendidos disponibles todo el año en LienHub.com. Comience aquí — tasa garantizada del 18%, sin competencia, sin pujas."
+  }
+ },
+ "counties": [
+  {
+   "name": "Alachua",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "LienHub",
+   "url": "https://lienhub.com/county/alachua",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/alachua",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://lienhub.com/county/alachua",
+     "platform": "LienHub"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Baker",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://baker.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/bakertaxsale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://baker.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Bay",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://bay.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/bay",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://bay.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Bradford",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://bradford.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.bradfordtaxcollector.com/Property/TaxCertificates",
+     "platform": "Bradford TC"
+    },
+    "deedAuction": {
+     "url": "https://bradford.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Brevard",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://brevard.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/brevard",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://brevard.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Broward",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://broward.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/broward",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://broward.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Calhoun",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://calhoun.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/CalhounTaxSale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://calhoun.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Charlotte",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://charlotte.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/charlotte",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://charlotte.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Citrus",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://citrus.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/citrus",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://citrus.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Clay",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://clay.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/clay",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://clay.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Collier",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://collier.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/collier",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://collier.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Columbia",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://columbia.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://columbiafl.realtaxlien.com/",
+     "platform": "RealTaxLien"
+    },
+    "deedAuction": {
+     "url": "https://columbia.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "DeSoto",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://desoto.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/desototaxsale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://desoto.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Dixie",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://dixie.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://dixiefl.realtaxlien.com/",
+     "platform": "RealTaxLien"
+    },
+    "deedAuction": {
+     "url": "https://dixie.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Duval",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://duval.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/duval",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://duval.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Escambia",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://escambia.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/escambia",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://escambia.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Flagler",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://flagler.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/flagler",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://flagler.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://franklin.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/franklintaxsale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://franklin.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Gadsden",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://gadsden.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://gadsdenfl.realtaxlien.com/",
+     "platform": "RealTaxLien"
+    },
+    "deedAuction": {
+     "url": "https://gadsden.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Gilchrist",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://gilchrist.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://gilchristfl.realtaxlien.com/",
+     "platform": "RealTaxLien"
+    },
+    "deedAuction": {
+     "url": "https://gilchrist.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Glades",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://glades.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/gladestaxsale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://glades.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Gulf",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://gulf.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/gulftaxsale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://gulf.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Hamilton",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://hamilton.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/hamiltontaxsale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://hamilton.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Hardee",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://hardee.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/hardeetaxsale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://hardee.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Hendry",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://hendry.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://auction.hendry.tax",
+     "platform": "Hendry TC"
+    },
+    "deedAuction": {
+     "url": "https://hendry.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Hernando",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://hernando.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/hernando",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://hernando.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Highlands",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://highlands.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://auction.highlands.tax/",
+     "platform": "Highlands TC"
+    },
+    "deedAuction": {
+     "url": "https://highlands.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Hillsborough",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://hillsborough.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/hillsborough",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://hillsborough.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Holmes",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://holmes.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/holmestaxsale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://holmes.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Indian River",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://indianriver.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/indianriver",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://indianriver.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://jackson.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/jacksontaxsale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://jackson.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://jefferson.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/jeffersontaxsale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://jefferson.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lafayette",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://lafayette.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lafayettefl.realtaxlien.com",
+     "platform": "RealTaxLien"
+    },
+    "deedAuction": {
+     "url": "https://lafayette.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lake",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://lake.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/lake",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://lake.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Lee",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://lee.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/lee",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://lee.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Leon",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://leon.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://leontaxsale.wfbsusa.com/default.aspx",
+     "platform": "WFBS"
+    },
+    "deedAuction": {
+     "url": "https://leon.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Levy",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://levy.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://levytaxsale.wfbsusa.com/default.aspx",
+     "platform": "WFBS"
+    },
+    "deedAuction": {
+     "url": "https://levy.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Liberty",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://liberty.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/LibertyTaxSale",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://liberty.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Madison",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://madison.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/madisontaxsale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://madison.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Manatee",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://manatee.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.pacificblueauction.com",
+     "platform": "Pacific Blue"
+    },
+    "deedAuction": {
+     "url": "https://manatee.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Marion",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://marion.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://mariontaxsale.wfbsusa.com/Default.aspx",
+     "platform": "WFBS"
+    },
+    "deedAuction": {
+     "url": "https://marion.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Martin",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://martin.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/martin",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://martin.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Miami-Dade",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://miamidade.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/miamidade",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://miamidade.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Monroe",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://monroe.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/monroe",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://monroe.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Nassau",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://nassau.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/nassau",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://nassau.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Okaloosa",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://okaloosa.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/okaloosa/certsale/main",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://okaloosa.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Okeechobee",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://okeechobee.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/okeechobeetaxsale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://okeechobee.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Orange",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealAuction",
+   "url": "https://www.occompt.com/191/Tax-Deed-Sales",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/orange",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://www.occompt.com/191/Tax-Deed-Sales",
+     "platform": "RealAuction"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Osceola",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://osceola.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/osceola/certsale/main",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://osceola.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Palm Beach",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://palmbeach.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://palmbeachfl.realtaxlien.com/",
+     "platform": "RealTaxLien"
+    },
+    "deedAuction": {
+     "url": "https://palmbeach.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Pasco",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://pasco.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/pasco",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://pasco.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Pinellas",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://pinellas.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/pinellas",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://pinellas.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Polk",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://polk.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://polkfl.realtaxlien.com/",
+     "platform": "RealTaxLien"
+    },
+    "deedAuction": {
+     "url": "https://polk.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Putnam",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://putnam.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://putnamfl.realtaxlien.com",
+     "platform": "RealTaxLien"
+    },
+    "deedAuction": {
+     "url": "https://putnam.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Santa Rosa",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://santarosa.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/santarosa",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://santarosa.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Sarasota",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://sarasota.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://sarasotafl.realtaxlien.com/",
+     "platform": "RealTaxLien"
+    },
+    "deedAuction": {
+     "url": "https://sarasota.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Seminole",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://seminole.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/seminole",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://seminole.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "St. Johns",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://stjohns.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://sjctax.us/tax-certificate-sales/",
+     "platform": "St. Johns TC"
+    },
+    "deedAuction": {
+     "url": "https://stjohns.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "St. Lucie",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://stlucie.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/stlucie",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://stlucie.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Sumter",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://sumter.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/sumter/certsale/main",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://sumter.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Suwannee",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://suwannee.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://suwanneefl.realtaxlien.com/",
+     "platform": "RealTaxLien"
+    },
+    "deedAuction": {
+     "url": "https://suwannee.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Taylor",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://taylor.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://taylorfl.realtaxlien.com/",
+     "platform": "RealTaxLien"
+    },
+    "deedAuction": {
+     "url": "https://taylor.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Union",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://union.realtaxdeed.com",
+   "notes": [
+    "In-person only — 55 W Main St, Lake Butler FL 32054"
+   ],
+   "extra": {
+    "auction": {
+     "url": "https://floridarevenue.com/property/Pages/Taxpayers_TaxCertificateSales.aspx",
+     "platform": "In-Person"
+    },
+    "deedAuction": {
+     "url": "https://union.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Volusia",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://volusia.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/county/volusia",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://volusia.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Wakulla",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://wakulla.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/wakullataxsale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://wakulla.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Walton",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://walton.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://lienhub.com/walton",
+     "platform": "LienHub"
+    },
+    "deedAuction": {
+     "url": "https://walton.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "Anytime after issuance until tax deed issued",
+   "rate": "18% per year (reverse bid from ceiling)",
+   "platform": "RealTaxDeed",
+   "url": "https://washington.realtaxdeed.com",
+   "notes": [],
+   "extra": {
+    "auction": {
+     "url": "https://www.taxcertsale.com/WashingtonTaxSale/Default.aspx",
+     "platform": "TaxCertSale"
+    },
+    "deedAuction": {
+     "url": "https://washington.realtaxdeed.com",
+     "platform": "RealTaxDeed"
+    }
+   },
+   "verifiedDate": ""
+  }
+ ]
+}

@@ -1,0 +1,381 @@
+{
+ "code": "NV",
+ "name": "Nevada",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "N/A",
+ "rateNote": "County holds in trust 2 years before retail auction — investor takes clean title at sale",
+ "redemption": "None post-sale",
+ "bidMethod": "Highest bidder — county treasurer runs auction",
+ "statute": "NRS §361.595; NRS §361.600",
+ "officialLink": "https://www.leg.state.nv.us/nrs/nrs-361.html",
+ "auctionPlatform": "County treasurer — online and in-person (year-round)",
+ "auctionTiming": "Year-round",
+ "keyNotes": [
+  "The 2-year period is BEFORE the investor buys — county holds deed in trust, owner can redeem during that window",
+  "Once investor purchases at auction: NO redemption period — immediate clean title",
+  "2-year challenge period per NRS §361.600 — title companies will not insure during this window",
+  "Clark County (Las Vegas) has highest volume — competitive market",
+  "Quitclaim deed issued — not warranty deed"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "Nevada counties hold tax-delinquent properties for 3 years before public auction. Auction uses sealed bids followed by oral bids. Clark County (Las Vegas) has strongest inventory. Statute: NRS §361.585.",
+ "typeWhy": "Nevada sells the property deed outright at auction after 3 years of tax delinquency. There is no post-sale redemption period. NRS §361.585.",
+ "rateWhy": "Nevada is a pure deed state with no statutory interest rate. Auction prices are market-driven through sealed bids followed by oral bidding. NRS §361.585.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "3-year county hold period before auction, sealed bid followed by oral bid, and strong institutional competition in Las Vegas area.",
+ "beginnerTip": "Focus on rural Nevada counties (Churchill, Lander, Esmeralda) for lower competition. Las Vegas-area properties in Clark County face significant institutional competition.",
+ "risks": [
+  "3-year wait before auction — long capital cycle",
+  "Clark County: institutional competition is significant in metro areas",
+  "Sealed bid format — difficult to gauge market interest"
+ ],
+ "ddExtra": [
+  "Verify the 3-year hold period has been met before attending",
+  "Check for active water rights or mining claims on rural parcels",
+  "Confirm the sealed bid deadline — missing it disqualifies you from the oral auction"
+ ],
+ "auctionSignup": {
+  "platform": "County treasurer or assessor (varies)",
+  "steps": [
+   "Find your target county at Nevada County government sites — clarkcountynv.gov for Clark",
+   "Request the delinquent property list and auction schedule",
+   "Submit sealed bid by the deadline — then attend oral bid follow-up",
+   "Bring cashier's check or confirm wire requirements"
+  ],
+  "depositInfo": "Varies by county.",
+  "directLink": "https://www.clarkcountynv.gov/government/assessor/"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "County treasurer offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [
+  {
+   "name": "Clark",
+   "link": "https://www.clarkcountynv.gov/government/assessor/",
+   "notes": "Las Vegas. Best inventory. Competitive."
+  }
+ ],
+ "rules": {
+  "type": "deed",
+  "process": {
+   "delinquencyTrigger": "3 consecutive fiscal years of delinquent taxes",
+   "deedToCounty": "Tax receiver executes deed to County Treasurer as trustee per NRS 361.585",
+   "trusteeHolds": "County Treasurer holds property in trust until auctioned or otherwise disposed",
+   "abandonedExpedited": "Abandoned property may be deeded to county after 2 consecutive delinquent years (NRS 361.570.3b)"
+  },
+  "auction": {
+   "frequency": "At least once per year. Clark County: typically spring + fall. Others: annual.",
+   "platform": "GovEase / Bid4Assets / county-run online — varies by county",
+   "bidMethod": "Highest bidder above minimum",
+   "minimumBid": "All taxes + interest + penalties + costs",
+   "statute": "NRS 361.595"
+  },
+  "reconveyance": {
+   "available": true,
+   "name": "Reconveyance (Pre-Sale Redemption)",
+   "deadline": "Until 5pm on 3rd business day before day of sale (NOT after). Strictly enforced.",
+   "process": "Pay all accrued taxes + costs + penalties + interest to county treasurer",
+   "whoMay": "Former owner, heirs/successors, mortgage holder, lien holder, contract purchaser, Medicaid/DHHS if applicable",
+   "statute": "NRS 361.585(3)",
+   "note": "After reconveyance deadline or after sale commences — NO redemption possible"
+  },
+  "otc": {
+   "available": false,
+   "name": "N/A — Nevada counties do not offer OTC before sale. After failed auction: contact county.",
+   "note": "If property fails to sell at auction — county retains as trustee. May reoffer at next auction."
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — Nevada is deed state"
+  },
+  "redemption": {
+   "available": false,
+   "period": "NO post-sale redemption in Nevada",
+   "note": "Once auctioned and deed recorded — former owner's only recourse is claiming excess proceeds within 1 year"
+  },
+  "deedPath": {
+   "name": "County Treasurer's Deed",
+   "process": "Winning bidder receives deed from County Treasurer",
+   "titleQuality": "No warranty. Proceeds of NRS Chapter 361 auction — title presumed valid per NRS 361.590.",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true,
+   "statute": "NRS 361.590"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Excess Proceeds",
+   "statute": "NRS 361.610",
+   "trigger": "Sale price exceeds all taxes + costs paid from proceeds",
+   "claimPeriod": "1 year from date treasurer's deed is RECORDED",
+   "claimProcess": "Written claim filed with county treasurer. Treasurer approves/denies within 30 days after claim period expires. If disputed — mediation, then hearing or interpleader.",
+   "claimPriority": "NRS 444.520 lienholder → specified encumbrancers → HOA with recorded default → former owner/heirs/assigns",
+   "lapse": "After 1 year — unclaimed excess deposited in county general fund. NOT refundable thereafter.",
+   "note": "Tyler v. Hennepin applies — NV already provides 1-year claim window, consistent with constitutional requirement."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "deed",
+  "rate": "N/A",
+  "redemption": "Ninguna post-venta",
+  "summary": "Los condados de Nevada retienen propiedades en mora durante 2 años antes de la subasta pública. La subasta usa pujas selladas seguidas de pujas orales. Estatuto: NRS §361.585.",
+  "typeWhy": "Nevada es un estado de escritura porque los condados venden propiedades embargadas directamente, sin derecho de redención posterior a la venta (NRS §361.585).",
+  "rateWhy": "No se aplica tasa de interés ya que es un estado de escritura. El retorno depende del diferencial entre precio de adquisición y valor de mercado (NRS §361.585).",
+  "notBeginnerReason": "Período de retención del condado de 2 años antes de la subasta, puja sellada seguida de puja oral y fuerte competencia institucional en Las Vegas.",
+  "beginnerTip": "Enfóquese en condados rurales de Nevada (Churchill, Lander, Esmeralda) para menor competencia. Las propiedades de Las Vegas en Clark County enfrentan competencia institucional significativa.",
+  "risks": [
+   "Espera de 2 años antes de la subasta — largo ciclo de capital",
+   "Clark County: competencia institucional significativa en áreas metropolitanas",
+   "El formato de puja sellada dificulta evaluar el interés del mercado"
+  ],
+  "ddExtra": [
+   "Verifique que se haya cumplido el período de retención de 2 años antes de asistir",
+   "Revise derechos de agua activos o concesiones mineras en parcelas rurales",
+   "Confirme el plazo de puja sellada — perderse lo descalifica de la subasta oral"
+  ],
+  "auctionSignup": {
+   "platform": "Tesorero o tasador del condado (varía)",
+   "steps": [
+    "Encuentre su condado objetivo — clarkcountynv.gov para Clark",
+    "Solicite la lista de propiedades en mora y el calendario de subasta",
+    "Envíe puja sellada antes del plazo — luego asista a la continuación oral",
+    "Traiga cheque de caja o confirme requisitos de transferencia"
+   ],
+   "depositInfo": "Varía por condado.",
+   "directLink": "https://www.clarkcountynv.gov/government/assessor/"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Carson City",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "GovEase/Online",
+   "url": "https://www.carson.org/government/departments-a-f/assessor/tax-sale",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Churchill",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "GovEase/Online",
+   "url": "https://www.churchillcounty.org/219/Tax-Auction",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clark",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "Online",
+   "url": "https://www.clarkcountynv.gov/government/elected_officials/county_treasurer/faqs",
+   "notes": [
+    "⚡ Clark: Spring auction confirmed. Reconveyance cutoff 3pm 3 business days before sale.",
+    "⚡ Clark County: Spring + Fall auctions — see clarkcountynv.gov/treasurer"
+   ],
+   "extra": {
+    "saleFrequency": "Spring (primary) + possible Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Douglas",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.douglas.nv.gov/government/departments/treasurer/tax-sale",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Elko",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "GovEase/Online",
+   "url": "https://www.elkocountynv.net/departments/treasurer/tax_sale.php",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Esmeralda",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.esmeraldacountynv.org/treasurer/tax-sale",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Eureka",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.eurekacounty.net/treasurer/tax-sale",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Humboldt",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "GovEase/Online",
+   "url": "https://www.hcnv.us/departments/treasurer/tax-sale",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lander",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.landercounty.org/departments/treasurer/tax-sale",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "County/Online",
+   "url": "https://lincolncountynv.org/departments/treasurers-office/tax-auction/",
+   "notes": [
+    "3 consecutive fiscal years delinquent → trustee deed → auction per NRS 361.585, 361.590"
+   ],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lyon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.lyoncountyonline.org/treasurer/tax-sale",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mineral",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.mineralcountynv.org/treasurer/tax-sale",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nye",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "GovEase/Online",
+   "url": "https://www.nyecounty.net/departments/treasurer/tax-sale",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pershing",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.pershingcounty.net/departments/treasurer/tax-sale",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Storey",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "County",
+   "url": "https://www.storeycounty.org/departments/treasurer/tax-sale",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washoe",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "GovEase/Online",
+   "url": "https://www.washoecounty.gov/treas/TaxSale.php",
+   "notes": [
+    "⚡ Reconveyance until 3pm 3 business days before sale. NRS 361.585 confirmed.",
+    "⚡ Washoe County: NRS 361.585 reconveyance deadline confirmed"
+   ],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "White Pine",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO post-sale redemption in Nevada",
+   "rate": "N/A",
+   "platform": "County/GovEase",
+   "url": "https://www.whitepinecounty.net/departments/treasurer/tax-sale",
+   "notes": [],
+   "extra": {},
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

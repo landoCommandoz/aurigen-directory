@@ -1,0 +1,227 @@
+{
+ "code": "HI",
+ "name": "Hawaii",
+ "type": "redeemable",
+ "typeLabel": "Redeemable deed",
+ "rate": "Varies",
+ "rateNote": "Annual rate — 1-year post-sale redemption window",
+ "redemption": "1 year",
+ "bidMethod": "Highest bidder",
+ "statute": "HRS §246-60",
+ "officialLink": "https://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm",
+ "auctionPlatform": "County tax collector — in-person",
+ "auctionTiming": "Varies by county",
+ "keyNotes": [
+  "Redeemable deed state — deed conveyed at sale but owner has 1 year to redeem",
+  "4 counties only (Honolulu, Maui, Hawaii, Kauai) — very limited inventory",
+  "High property values mean high minimum bids — capital intensive",
+  "12% on purchase price during redemption period"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "Hawaii has 4 counties. Many parcels are leasehold (not fee simple). Hawaiian Home Lands and other restricted designations eliminate large portions of the market. Statute: HRS §246-60.",
+ "typeWhy": "Hawaii sells tax-delinquent properties at auction but grants the former owner a 1-year right of redemption, making it a redeemable deed state. Many parcels are leasehold rather than fee simple. HRS §246-60.",
+ "rateWhy": "Hawaii has no fixed statutory interest rate for tax sales. Auction prices are market-driven, and returns depend on the bid price relative to property value. HRS §246-60.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Extremely limited inventory, leasehold land complexity, and Hawaiian Home Lands restrictions make this impractical.",
+ "beginnerTip": "Hawaii is not a viable tax lien strategy for most investors. The leasehold complexity alone makes most parcels impractical.",
+ "risks": [
+  "Many parcels are leasehold — you'd own the improvements but not the land",
+  "Hawaiian Home Lands parcels are completely restricted",
+  "Extremely high property values require significant capital",
+  "Very low inventory"
+ ],
+ "ddExtra": [
+  "Confirm fee simple vs. leasehold status before any due diligence",
+  "Verify parcel is not in Hawaiian Home Lands designation (DHHL)",
+  "Check DLNR for any state land or conservation restrictions"
+ ],
+ "auctionSignup": {
+  "platform": "County-specific",
+  "steps": [
+   "Contact the County of Hawaii Real Property Tax Division, Maui County, Honolulu DPP, or Kauai Finance Division",
+   "Request the delinquent property list — availability is sporadic",
+   "Confirm whether the parcel is fee simple or leasehold before proceeding",
+   "Register per county instructions"
+  ],
+  "depositInfo": "Varies by county.",
+  "directLink": "https://www.realpropertyhonolulu.com"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "County tax offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "redeemable",
+  "statute": "HRS Chapter 246 (Real Property Tax Law), §246-56 through §246-63",
+  "process": {
+   "trigger": "Tax lien exists for 3+ years — mandatory sale",
+   "law": "HRS §246-56: all property with lien for 3+ years SHALL be sold at public auction to highest bidder for cash",
+   "deed": "Title transfers to purchaser at time of sale. Deed recorded within 60 days of auction.",
+   "lateRecording": "If deed not recorded within 60 days, redemption period extends to 1 year from date of recordation"
+  },
+  "auction": {
+   "frequency": "As scheduled by each county — typically annual",
+   "bidMethod": "Premium bid — highest bidder above upset price",
+   "upsetPrice": "All taxes owed + penalties + interest + costs",
+   "payment": "Cash at sale — 100% due day of auction",
+   "absenteeBidding": "Maui: no absentee bidding. Attendee or authorized representative required.",
+   "statute": "HRS §246-56"
+  },
+  "otc": {
+   "available": false,
+   "name": "N/A — Hawaii does not have a standard OTC/unsold program",
+   "note": "Unsold properties may be re-offered at subsequent auctions. Contact county directly."
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — Hawaii redeemable deed state; no sub-tax mechanism for investors"
+  },
+  "redemption": {
+   "period": "1 year from date of Tax Sale (or 1 year from date of deed recordation if deed recorded late)",
+   "interestRate": "12% per annum on full purchase price paid by investor",
+   "redemptionAmount": "Full purchase price + all costs/expenses investor paid + 12%/yr interest",
+   "extendedRedemption": "If deed not recorded within 60 days of sale — extended to 1 year from recording date (no interest for extended period)",
+   "process": "Former owner pays redemption amount to purchaser",
+   "statute": "HRS §246-60 (Maui: MCC §3.48.450)",
+   "homesteadDifferent": false,
+   "note": "Investors strongly advised NOT to develop/build during redemption period"
+  },
+  "deedPath": {
+   "name": "Tax Deed (County-issued)",
+   "process": "Deed issued by county at time of sale. Recorded within 60 days by county at Bureau of Conveyances or Land Court.",
+   "titleQuality": "Fee simple with reservation for redemption period. After redemption expires — clear.",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true,
+   "statute": "HRS §246-56, §246-57"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Proceeds",
+   "statute": "HRS §246-63",
+   "process": "Officer distributes surplus after paying all taxes, interest, penalties. If doubt as to entitled party — may refuse distribution pending circuit court determination.",
+   "note": "Tyler v. Hennepin applies — HRS §246-63 routes surplus to entitled parties"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "redeemable deed",
+  "rate": "Varía",
+  "redemption": "1 año",
+  "summary": "Hawái tiene 4 condados. Muchas parcelas son en arrendamiento (no en dominio absoluto). Las Hawaiian Home Lands eliminan grandes porciones del mercado. Estatuto: HRS §246-60.",
+  "typeWhy": "Hawái es un estado de escritura redimible porque los condados venden la propiedad embargada en subasta, pero el propietario original retiene un derecho de redención de 1 año (HRS §246-60).",
+  "rateWhy": "La tasa varía por condado ya que no existe una tasa estatutaria fija estatal. El retorno depende del precio de adquisición y de si el propietario ejerce su derecho de redención (HRS §246-60).",
+  "notBeginnerReason": "Inventario extremadamente limitado, complejidad de tierra en arrendamiento y restricciones de Hawaiian Home Lands hacen esto impracticable.",
+  "beginnerTip": "Hawái no es una estrategia viable para la mayoría de los inversores. La complejidad del arrendamiento por sí sola hace que la mayoría de las parcelas sean impracticables.",
+  "risks": [
+   "Muchas parcelas son en arrendamiento — posee mejoras pero no la tierra",
+   "Las parcelas de Hawaiian Home Lands están completamente restringidas",
+   "Valores de propiedad extremadamente altos",
+   "Inventario muy bajo"
+  ],
+  "ddExtra": [
+   "Confirme dominio absoluto vs. arrendamiento antes de cualquier diligencia debida",
+   "Verifique que la parcela no esté en Hawaiian Home Lands (DHHL)",
+   "Revise DLNR para restricciones de tierra estatal o de conservación"
+  ],
+  "auctionSignup": {
+   "platform": "Específico por condado",
+   "steps": [
+    "Contacte la División de Impuesto a la Propiedad Real del condado correspondiente",
+    "Solicite la lista de propiedades en mora — disponibilidad esporádica",
+    "Confirme si la parcela es dominio absoluto o arrendamiento antes de continuar",
+    "Regístrese según las instrucciones del condado"
+   ],
+   "depositInfo": "Varía por condado.",
+   "directLink": "https://www.realpropertyhonolulu.com"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Honolulu",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "1 year from date of Tax Sale (or 1 year from date of deed recordation if deed recorded late)",
+   "rate": "Varies",
+   "platform": "In-person (city/county-run)",
+   "url": "https://realproperty.honolulu.gov",
+   "notes": [
+    "City and County of Honolulu — covers entire island of Oahu (~70% of HI population)",
+    "⚡ Largest HI market. Contact city treasury for current sale dates."
+   ],
+   "extra": {
+    "saleFrequency": "Annual — contact Real Property Assessment Division for scheduled dates"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Maui",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "1 year from date of Tax Sale (or 1 year from date of deed recordation if deed recorded late)",
+   "rate": "Varies",
+   "platform": "In-person — Treasury Division, 110 Ala'ihi St Suite 108, Kahului",
+   "url": "https://www.mauicounty.gov/faq.aspx?TID=115",
+   "notes": [
+    "County of Maui — includes Maui, Molokai, Lanai islands. Lowest effective property tax rate in US."
+   ],
+   "extra": {
+    "saleFrequency": "Annual — posted at least 4 weeks prior; advertised in Honolulu Star-Advertiser, Maui News, Molokai Dispatch",
+    "taxCodeAuth": "Maui County Code Chapter 3.48",
+    "surplusMCC": "Surplus disposed per MCC §3.48.285 + HRS §246-63",
+    "titleRecording": "County records deed with Bureau of Conveyances or Land Court within 60 days"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hawaii",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "1 year from date of Tax Sale (or 1 year from date of deed recordation if deed recorded late)",
+   "rate": "Varies",
+   "platform": "In-person — County of Hawaii Real Property Tax Office",
+   "url": "https://hawaiipropertytax.com/tax-sale/",
+   "notes": [
+    "County of Hawaii — Big Island. Deed transfers at purchase; 1-year redemption recognized by RPT.",
+    "⚡ RPT advises purchasers: do NOT develop property until 1-year redemption period expires"
+   ],
+   "extra": {
+    "saleFrequency": "Annual — contact RPT for current dates",
+    "taxCodeAuth": "Hawaii County Code Chapter 19",
+    "otcNote": "Chapter 19 does NOT include provisions to convey unsold properties to county"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kauai",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "1 year from date of Tax Sale (or 1 year from date of deed recordation if deed recorded late)",
+   "rate": "Varies",
+   "platform": "In-person — County Finance Dept",
+   "url": "https://www.kauai.gov/Government/Departments-Agencies/Finance/Real-Property-Tax",
+   "notes": [
+    "County of Kauai — includes Kauai, Niihau, Lehua, Kaula islands."
+   ],
+   "extra": {
+    "saleFrequency": "Annual — contact Finance Dept for scheduled dates"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

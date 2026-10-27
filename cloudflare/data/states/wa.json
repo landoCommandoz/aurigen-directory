@@ -1,0 +1,739 @@
+{
+ "code": "WA",
+ "name": "Washington",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "N/A",
+ "rateNote": "County auctions property — clean title conveyed",
+ "redemption": "3 years delinquency + county hold",
+ "bidMethod": "Highest bidder",
+ "statute": "RCW Ch. 84.64",
+ "officialLink": "https://app.leg.wa.gov/RCW/default.aspx?cite=84.64",
+ "auctionPlatform": "County treasurer — online and in-person varies",
+ "auctionTiming": "Winter (most counties)",
+ "keyNotes": [
+  "Clean title conveyed at sale — no post-sale redemption",
+  "Minimum bid includes all taxes, fees, penalties",
+  "Seattle-area properties attract institutional competition"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "Washington counties hold deed auctions in April and November. King, Pierce, and Snohomish use Bid4Assets. Tax title properties available for direct purchase. 3-year delinquency required before auction. Statute: RCW §84.64.",
+ "typeWhy": "Washington sells the property deed outright at county-level auctions after a 3-year delinquency period. There is no post-sale redemption. RCW §84.64.",
+ "rateWhy": "Washington is a deed state with no statutory interest rate. Returns are market-driven through competitive bidding. RCW §84.64.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "3-year delinquency plus county hold period. Auction windows in April and November. Tenant-friendly state.",
+ "beginnerTip": "Tax title properties (available from the county assessor after the regular auction cycle) are your best beginner entry in Washington. Less competition than the regular auction, and often available at discounted prices.",
+ "risks": [
+  "Strong tenant protections — eviction can take 12+ months in King County",
+  "Long cycle before auctions",
+  "King County: strong competition from institutional buyers"
+ ],
+ "ddExtra": [
+  "Verify the county's judicial foreclosure schedule and deed sale timing",
+  "Check King County GIS for zoning designation before bidding",
+  "Verify no IRS liens — federal liens survive Washington tax sales"
+ ],
+ "auctionSignup": {
+  "platform": "Bid4Assets.com (King, Pierce, Snohomish) + county-specific others",
+  "steps": [
+   "For King, Pierce, Snohomish: go to bid4assets.com and search Washington state",
+   "Create a Bid4Assets account and verify identity",
+   "Submit deposit and register for the April or November auction",
+   "For tax title properties: contact the county assessor directly for direct purchase list"
+  ],
+  "depositInfo": "Bid4Assets deposit: $500–$2,000. Varies by county.",
+  "directLink": "https://www.bid4assets.com/taxsales/washington"
+ },
+ "otc": {
+  "available": true,
+  "note": "Tax title properties available for direct purchase from county assessor. Contact King County Assessor's office for current list."
+ },
+ "platforms": [
+  "Bid4Assets.com",
+  "County assessor offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [
+  {
+   "name": "King",
+   "link": "https://kingcounty.gov/depts/assessor.aspx",
+   "notes": "Seattle. Best inventory. Institutional competition."
+  },
+  {
+   "name": "Pierce",
+   "link": "https://www.piercecountywa.gov/399/Assessor-Treasurer",
+   "notes": "Tacoma. Good inventory."
+  }
+ ],
+ "rules": {
+  "type": "deed",
+  "process": {
+   "year1": "Taxes delinquent — 1% interest/month accrues",
+   "year3eligible": "3 full years delinquent = eligible for foreclosure. County Treasurer files Certificate of Delinquency.",
+   "filing": "Certificate of Delinquency filed with Superior Court (around May each year for most counties)",
+   "notice": "All parties with recorded interest served by certified mail + newspaper publication (RCW 84.64.050)",
+   "redemption": "Owner may redeem ANY TIME up to close of business day BEFORE sale by paying all taxes, interest, penalties, costs",
+   "judgment": "Superior Court enters judgment foreclosing tax liens and ordering sale",
+   "sale": "Annual public auction — online (GovEase/Bid4Assets/Public Surplus) or in person"
+  },
+  "auction": {
+   "frequency": "Annual — timing varies by county (most: September–December)",
+   "platform": "GovEase / Bid4Assets / Public Surplus / county-run — varies by county",
+   "bidMethod": "Highest bid above minimum",
+   "minimumBid": "All taxes, interest, penalties, and foreclosure costs",
+   "deposit": "Typically $500–$1,000 deposit required to register",
+   "deed": "Treasurer's Deed — NO warranties of any kind. As-is, where-is.",
+   "statute": "RCW 84.64.060, RCW 84.64.080"
+  },
+  "otc": {
+   "available": true,
+   "name": "Tax Title Property Sale",
+   "trigger": "No bidder at foreclosure auction — county holds as Tax Title property",
+   "process": "File Tax-Title Application with County Treasurer. If buildable — public auction required. If not buildable — private negotiation possible.",
+   "statute": "RCW 36.35",
+   "note": "Tax title deeds have same title issues as foreclosure deeds. Quiet title needed for insurance."
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — Washington is deed foreclosure state",
+   "note": "Investor has no role before sale. No sub-tax mechanism."
+  },
+  "redemption": {
+   "period": "NO redemption after sale — title transfers immediately upon deed recording",
+   "exception": "Minors and legally incompetent persons: 3 years from sale date. Must pay sale price + interest on tax amount + improvements made by new owner.",
+   "irsLiens": "IRS liens: 120-day redemption period after sale",
+   "statute": "RCW 84.64.070",
+   "homesteadDifferent": false,
+   "agDifferent": false,
+   "note": "WA is one of the cleanest deed states — no post-sale redemption for normal sellers"
+  },
+  "deedPath": {
+   "name": "Treasurer's Deed / Treasurer's Tax Deed",
+   "process": "Win at auction → deed issued within 30–60 days → forwarded to County Auditor for recording → mailed to buyer",
+   "titleQuality": "No warranty. As-is. Most title companies will NOT insure without quiet title action.",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true,
+   "statute": "RCW 84.64.080",
+   "note": "King County: deed issued within 60 days. Most liens extinguished — but county makes NO guarantees. Defend against surviving liens yourself."
+  },
+  "surplus": {
+   "available": true,
+   "name": "Excess Proceeds",
+   "statute": "RCW 84.64.080(10); RCW 63.29.350",
+   "trigger": "Sale price exceeds minimum bid (all taxes + costs)",
+   "claimant": "Record title holder on day Certificate of Delinquency was filed",
+   "claimPeriod": "3 years from date of sale",
+   "process": "County Treasurer holds proceeds. Contact treasurer directly. Snohomish: notified ~120 days post-sale. Whatcom: requires signed public records form.",
+   "note": "Tyler v. Hennepin applies — Washington already provided excess to prior owners. Confirmed consistent."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "deed",
+  "rate": "N/A",
+  "redemption": "3 años de morosidad + retención del condado",
+  "summary": "Los condados de Washington realizan subastas de escrituras en abril y noviembre. King, Pierce y Snohomish usan Bid4Assets. Las propiedades de título fiscal están disponibles para compra directa. Se requieren 3 años de morosidad antes de la subasta. Estatuto: RCW §84.64.",
+  "typeWhy": "Washington es un estado de escritura porque los condados venden propiedades directamente en subastas de abril y noviembre, sin derecho de redención. Se requieren 3 años de morosidad (RCW §84.64).",
+  "rateWhy": "No se aplica tasa de interés ya que es un estado de escritura. El retorno depende del precio comparado con el valor de mercado (RCW §84.64).",
+  "notBeginnerReason": "3 años de morosidad más período de retención del condado. Ventanas de subasta en abril y noviembre. Estado favorable a inquilinos.",
+  "beginnerTip": "Las propiedades de título fiscal (disponibles del tasador del condado después del ciclo regular de subasta) son su mejor punto de entrada para principiantes en Washington. Menos competencia que la subasta regular y frecuentemente disponibles a precios con descuento.",
+  "risks": [
+   "Fuertes protecciones de inquilinos — el desalojo puede tomar más de 12 meses en King County",
+   "Ciclo largo antes de las subastas",
+   "King County: fuerte competencia de compradores institucionales"
+  ],
+  "ddExtra": [
+   "Verifique el calendario de ejecución hipotecaria judicial del condado y el tiempo de venta de escritura",
+   "Revise el GIS del Condado King para la designación de zonificación antes de pujar",
+   "Verifique que no haya gravámenes del IRS — los gravámenes federales sobreviven a las ventas fiscales de Washington"
+  ],
+  "auctionSignup": {
+   "platform": "Bid4Assets.com (King, Pierce, Snohomish) + específico por condado para otros",
+   "steps": [
+    "Para King, Pierce, Snohomish: bid4assets.com y busque Washington state",
+    "Cree una cuenta en Bid4Assets y verifique su identidad",
+    "Envíe depósito y regístrese para la subasta de abril o noviembre",
+    "Para propiedades de título fiscal: contacte al tasador del condado directamente para la lista de compra directa"
+   ],
+   "depositInfo": "Depósito de Bid4Assets: $500–$2,000. Varía por condado.",
+   "directLink": "https://www.bid4assets.com/taxsales/washington"
+  },
+  "otc": {
+   "available": true,
+   "note": "Propiedades de título fiscal disponibles para compra directa del tasador del condado. Contacte la oficina del Tasador del Condado King para la lista actual."
+  }
+ },
+ "counties": [
+  {
+   "name": "Adams",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.adamscountywa.gov/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Asotin",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.asotin.wa.us/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Benton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.benton.wa.us/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chelan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.chelanpud.org/about-us/county-government/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clallam",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase/Bid4Assets",
+   "url": "https://www.clallam.net/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clark",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "Bid4Assets",
+   "url": "https://clark.wa.gov/treasurer/tax-lien-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Columbia",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.columbiaco.com/531/Foreclosure",
+   "notes": [
+    "⚡ 2024 cycle sale Jan 28 2026 — GovEase online",
+    "⚡ Columbia County: Jan 28 2026 sale date confirmed"
+   ],
+   "extra": {
+    "saleDate2026": "January 28, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cowlitz",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.cowlitz.wa.us/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Douglas",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.douglascountywa.net/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ferry",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.ferry.wa.gov/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.franklincountywa.gov/411/Tax-Foreclosure-Sales",
+   "notes": [
+    "⚡ Franklin: annual Dec sale; GovEase online"
+   ],
+   "extra": {
+    "saleDate2026": "December 12, 2025 (2025 cycle)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Garfield",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.garfield.wa.us/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grant",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.grantcountywa.gov/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grays Harbor",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.grays-harbor.wa.us/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Island",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "Bid4Assets",
+   "url": "https://www.islandcounty.net/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "Bid4Assets",
+   "url": "https://www.jeffersoncountywa.gov/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "King",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "Online",
+   "url": "https://kingcounty.gov/en/dept/executive-services/buildings-property/treasury-operations/tax-foreclosures/auctions",
+   "notes": [
+    "⚡ King County: Sept 9 2026 confirmed. Parcels delinquent 2022+ eligible.",
+    "⚡ King County: Sept 9 2026 sale date confirmed"
+   ],
+   "extra": {
+    "saleDate2026": "September 9, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kitsap",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "Bid4Assets",
+   "url": "https://www.kitsapgov.com/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kittitas",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.kittitas.wa.us/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Klickitat",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.klickitatcounty.org/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lewis",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.lewiscountywa.gov/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.lincoln.wa.us/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mason",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "Bid4Assets",
+   "url": "https://www.masoncountywa.gov/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Okanogan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "Public Surplus",
+   "url": "https://www.okanogancounty.org/government/treasurer/foreclosure___surplus/index.php",
+   "notes": [
+    "⚡ Okanogan: Jan 26-27 2026 confirmed — PublicSurplus.com. 5% buyer premium.",
+    "⚡ Okanogan County: Jan 26-27 2026 confirmed — PublicSurplus.com"
+   ],
+   "extra": {
+    "saleDate2026": "January 26-27, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pacific",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.pacific.wa.us/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pend Oreille",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.pendoreilleco.org/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pierce",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "Bid4Assets",
+   "url": "https://www.piercecountywa.gov/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "San Juan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.sanjuanco.com/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Skagit",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.skagitcounty.net/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Skamania",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.skamaniacounty.org/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Snohomish",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "Bid4Assets",
+   "url": "https://snohomishcountywa.gov/220/Tax-Foreclosures",
+   "notes": [
+    "⚡ 2025 auction Dec 2025–Jan 2026. 2026 sale: Dec 2026. Eligible: 2023+ delinquent as of June 1 2026.",
+    "⚡ Snohomish: Annual Dec sale. 2026 eligibility: 2023 taxes unpaid as of June 1 2026"
+   ],
+   "extra": {
+    "saleMonth": "December/January"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Spokane",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.spokanecounty.org/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stevens",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.stevenscountywa.gov/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Thurston",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "Bid4Assets",
+   "url": "https://www.thurstoncountywa.gov/departments/treasurer/real-property-foreclosure-tax-sale-information",
+   "notes": [
+    "Bid4Assets for foreclosure; tax-title sales also via Bid4Assets"
+   ],
+   "extra": {
+    "saleMonth": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wahkiakum",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.wahkiakum.wa.us/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Walla Walla",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.walla-walla.wa.us/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Whatcom",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "Bid4Assets",
+   "url": "https://www.whatcomcounty.us/373/Tax-Foreclosure-Sales",
+   "notes": [
+    "Surplus: Record title holder as of Cert of Delinquency filing. 3-year claim window."
+   ],
+   "extra": {
+    "saleMonth": "Annual"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Whitman",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.whitmancounty.org/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Yakima",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption after sale — title transfers immediately upon deed recording",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.yakimacounty.us/treasurer/tax-foreclosure",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November/December"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

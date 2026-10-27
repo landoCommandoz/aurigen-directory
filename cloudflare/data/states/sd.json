@@ -1,0 +1,1096 @@
+{
+ "code": "SD",
+ "name": "South Dakota",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "12%",
+ "rateNote": "Bid-down system — investor accepts lowest rate willing to take",
+ "redemption": "3–4 years",
+ "bidMethod": "Bid-down interest rate",
+ "statute": "SDCL §10-23",
+ "officialLink": "https://sdlegislature.gov/Statutes/10/23",
+ "auctionPlatform": "County treasurer — in-person",
+ "auctionTiming": "December",
+ "keyNotes": [
+  "December auction — one annual sale per county",
+  "3-year redemption plus mandatory 60-day notice before deed",
+  "Low population, rural land heavy — limited inventory"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "South Dakota holds limited annual lien sales, mostly in December. Certificates are transferable. 3–4 year redemption before deed. Statute: SDCL §10-25.",
+ "typeWhy": "South Dakota sells tax lien certificates at limited annual sales. The owner retains title during the 3-4 year redemption period. SDCL §10-25.",
+ "rateWhy": "South Dakota sets a fixed statutory rate of 12% per annum on tax lien certificates. This is a flat, non-auction-determined rate. SDCL §10-25.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Long 3–4 year redemption, limited inventory, December-only auctions.",
+ "beginnerTip": "Minnehaha (Sioux Falls) and Pennington (Rapid City) counties have the best SD inventory. Note that certificates are transferable — you can sell your certificate position to another investor.",
+ "risks": [
+  "3–4 year redemption is very long",
+  "December-only auctions limit timing",
+  "Limited inventory outside Sioux Falls and Rapid City"
+ ],
+ "ddExtra": [
+  "Calculate opportunity cost over the 3–4 year holding period",
+  "Verify the exact redemption period for the county",
+  "Confirm certificates are transferable if you need liquidity before redemption"
+ ],
+ "auctionSignup": {
+  "platform": "County treasurer (in-person)",
+  "steps": [
+   "Find your target county treasurer at sd.gov/government/counties",
+   "Contact the treasurer in October to confirm a December sale is scheduled",
+   "Request the delinquent property list",
+   "Register in person"
+  ],
+  "depositInfo": "Varies by county.",
+  "directLink": "https://dor.sd.gov/businesses/taxes/property-tax/"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "County treasurer offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "statute": "SDCL Title 10, Ch. 22 (Delinquent Collection) + Ch. 23 (Sale) + Ch. 24 (Redemption) + Ch. 25 (Tax Deeds)",
+  "process": {
+   "taxes": "Taxes paid 1 year in arrears (e.g., 2024 taxes payable in 2025). Due Jan 1; 1st half delinquent May 1, 2nd half delinquent Nov 1.",
+   "certificate": "Tax certificate issued on any property with delinquent taxes. Annual sale.",
+   "bidMethod": "Bid-down INTEREST RATE — treasurer offers tract; bidder states lowest interest rate accepted per year. Lowest bid wins certificate. Treasurer issues Certificate of Sale.",
+   "countyBid": "If no private bidder — county bids for the property (county holds certificate)"
+  },
+  "auction": {
+   "frequency": "Annual — typically December (contact county treasurer for exact date)",
+   "platform": "County treasurer — in-person (each of 66 counties independently)",
+   "bidMethod": "Bid-down interest rate on full amount of taxes, interest, and costs",
+   "payment": "Certificate holder pays taxes owed immediately; earns bid-rate interest upon redemption",
+   "statute": "SDCL §10-23-2 through §10-23-27"
+  },
+  "otc": {
+   "available": true,
+   "name": "County-Held Tax Certificates",
+   "process": "Contact county treasurer directly. County may assign certificates it holds.",
+   "note": "SDCL §10-23-25 — county bids off property when no private bidder. Resulting certificate assignable.",
+   "statute": "SDCL §10-23-27 — all taxes must be paid before county assigns certificate"
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payments",
+   "statute": "SDCL §10-24 (redemption provisions)",
+   "note": "Certificate holder may pay subsequent taxes. Keeps lien position."
+  },
+  "redemption": {
+   "period": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "amounts": "All taxes + interest + penalties + costs accrued. Must include current taxes if requested by county (SDCL §10-24-7).",
+   "disability": "Persons under disability: extended redemption period (SDCL §10-24-3)",
+   "notice": "Before applying for tax deed — certificate holder sends formal notice. 60 days from filing affidavit of service = last chance to redeem.",
+   "statute": "SDCL §10-24-1, §10-25-1, §10-25-3, §10-25-5, §10-25-8",
+   "homesteadDifferent": false,
+   "agDifferent": false
+  },
+  "deedPath": {
+   "name": "Quit Claim Deed (Tax Deed) — county issues post-proceedings",
+   "eligibleAfter": "No sooner than 3 years, no later than 6 years from date of tax certificate sale (town and county equally — SDCL §10-25-1)",
+   "titleEffect": "Releases all liens EXCEPT: municipal special assessments (delinquent/current/future), state liens, federal liens. County/mechanic liens, judgments, mortgages, other specials: ABATED.",
+   "statute": "SDCL §10-25-12",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true,
+   "note": "Pennington County example: QC deed to purchaser. Any info on IRS/state liens — direct to those governments."
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Proceeds",
+   "statute": "SDCL §10-25-12 (implied); SD Dept of Revenue county treasurer guidance",
+   "claimPeriod": "180 days from tax deed sale for prior owner to claim",
+   "afterExpiry": "Transferred to Unclaimed Property Division per SDCL ch. 43-41B",
+   "process": "Treasurer returns surplus to prior owner of record. If prior owner not found within 180 days — Unclaimed Property.",
+   "note": "Tyler v. Hennepin compliant — SD DOR guidance explicitly states surplus returned to prior owner"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "12%",
+  "redemption": "3–4 años",
+  "summary": "Dakota del Sur realiza ventas de gravámenes anuales limitadas, mayormente en diciembre. Los certificados son transferibles. Redención de 3–4 años antes de escritura. Estatuto: SDCL §10-25.",
+  "typeWhy": "Dakota del Sur es un estado de gravamen porque los condados venden certificados de gravamen fiscal en diciembre con período de redención de 3-4 años. Los certificados son transferibles (SDCL §10-25).",
+  "rateWhy": "La tasa del 12% anual es moderada pero la redención de 3-4 años es una de las más largas del país (SDCL §10-25).",
+  "notBeginnerReason": "Larga redención de 3–4 años, inventario limitado, subastas solo en diciembre.",
+  "beginnerTip": "Los condados Minnehaha (Sioux Falls) y Pennington (Rapid City) tienen el mejor inventario en SD. Tenga en cuenta que los certificados son transferibles — puede vender su posición de certificado a otro inversor.",
+  "risks": [
+   "Redención de 3–4 años es muy larga",
+   "Las subastas solo en diciembre limitan el tiempo",
+   "Inventario limitado fuera de Sioux Falls y Rapid City"
+  ],
+  "ddExtra": [
+   "Calcule el costo de oportunidad durante el período de retención de 3–4 años",
+   "Verifique el período de redención exacto para el condado",
+   "Confirme que los certificados son transferibles si necesita liquidez antes de la redención"
+  ],
+  "auctionSignup": {
+   "platform": "Tesorero del condado (en persona)",
+   "steps": [
+    "Encuentre al tesorero de su condado en sd.gov/government/counties",
+    "Contacte al tesorero en octubre para confirmar que una venta de diciembre está programada",
+    "Solicite la lista de propiedades en mora",
+    "Regístrese en persona"
+   ],
+   "depositInfo": "Varía por condado.",
+   "directLink": "https://dor.sd.gov/businesses/taxes/property-tax/"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Aurora",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://aurora.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Beadle",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://beadle.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bennett",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://bennett.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bon Homme",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://bonhomme.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Brookings",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://brookings.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Brown",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://brown.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Brule",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://brule.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Buffalo",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://buffalo.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Butte",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://butte.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Campbell",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://campbell.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Charles Mix",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://charlesmix.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clark",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://clark.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clay",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://clay.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Codington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://codington.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Corson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://corson.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Custer",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://custer.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Davison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://davison.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Day",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://day.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Deuel",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://deuel.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dewey",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://dewey.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Douglas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://douglas.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Edmunds",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://edmunds.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fall River",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://fallriver.sdcounties.org/treasurer/real-estate-taxes/",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Faulk",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://faulk.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grant",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://grant.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gregory",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://gregory.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Haakon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://haakon.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hamlin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://hamlin.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hand",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://hand.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hanson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://hanson.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harding",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://harding.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hughes",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://hughes.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hutchinson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://hutchinson.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hyde",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://hyde.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://jackson.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jerauld",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://jerauld.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jones",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://jones.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kingsbury",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://kingsbury.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lake",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://lake.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lawrence",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://lawrence.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://lincoln.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lyman",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://lyman.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marshall",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://marshall.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McCook",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://mccook.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McPherson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://mcpherson.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Meade",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://meade.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mellette",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://mellette.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Miner",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://miner.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Minnehaha",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://minnehaha.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Moody",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://moody.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Oglala Lakota",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://oglalalakota.sdcounties.org/treasurer/real-estate-taxes/",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pennington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://pennco.org/?SEC=00961D41-46CB-456F-B4C4-DD8811C80A00",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Perkins",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://perkins.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Potter",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://potter.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Roberts",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://roberts.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sanborn",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://sanborn.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Shannon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://shannon.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Spink",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://spink.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stanley",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://stanley.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sully",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://sully.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Todd",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://todd.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tripp",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://tripp.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Turner",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://turner.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Union",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://union.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Walworth",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://walworth.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Yankton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://yankton.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ziebach",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Any time before tax deed is issued — minimum 3 years from date of tax certificate sale (town: 3–6 years; rural: 3–6 years)",
+   "rate": "12%",
+   "platform": "County Treasurer — in-person",
+   "url": "https://ziebach.sdcounties.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual — typically December"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

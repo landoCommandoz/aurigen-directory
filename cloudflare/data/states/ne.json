@@ -1,0 +1,1462 @@
+{
+ "code": "NE",
+ "name": "Nebraska",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "14%",
+ "rateNote": "Fixed rate — no bidding",
+ "redemption": "3 years",
+ "bidMethod": "Highest bidder (premium bid)",
+ "statute": "NRS §77-1824",
+ "officialLink": "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1824",
+ "auctionPlatform": "County treasurer — in-person and online (varies)",
+ "auctionTiming": "March (most counties)",
+ "keyNotes": [
+  "14% fixed is above average for lien states",
+  "3-year redemption standard",
+  "After 3 years, apply for treasurer's deed"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "Nebraska holds annual tax lien sales in March. Rotational bidding format (unusual — counties rotate through available properties giving each registered bidder equal turns). 3-year redemption. OTC available after the sale. Statute: NRS §77-1801.",
+ "typeWhy": "Nebraska sells tax lien certificates at annual March sales using a rotational bidding format. The investor holds the lien while the owner retains title during a 3-year redemption period. NRS §77-1801.",
+ "rateWhy": "Nebraska sets a fixed statutory rate of 14% per annum on tax lien certificates. This rate is uniform and not bid down. NRS §77-1801.",
+ "beginnerFriendly": true,
+ "notBeginnerReason": "",
+ "beginnerTip": "The rotational format is unusual but actually helps beginners — every registered bidder gets equal turns, so large investors can't dominate. Attend one auction to observe before bidding.",
+ "risks": [
+  "Rotational format is confusing on first visit — observe before bidding",
+  "3-year redemption ties up capital",
+  "Limited urban inventory outside Omaha and Lincoln"
+ ],
+ "ddExtra": [
+  "Attend one auction as an observer before committing capital",
+  "Verify road access and utilities on rural parcels",
+  "Contact county after March sale for OTC list"
+ ],
+ "auctionSignup": {
+  "platform": "County treasurer (in-person or online for some counties)",
+  "steps": [
+   "Find your target county treasurer at nebraska.gov/government/county",
+   "Contact the treasurer 30 days before the March sale",
+   "Register for the rotational auction — understand the rotational bidding format before attending",
+   "OTC: contact the county after the March sale for unsold liens"
+  ],
+  "depositInfo": "Varies by county.",
+  "directLink": "https://revenue.nebraska.gov/PAD"
+ },
+ "otc": {
+  "available": true,
+  "note": "Unsold liens available for direct purchase after the March auction. Contact county treasurer."
+ },
+ "platforms": [
+  "County treasurer offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "statute": "NRS §77-1801 through §77-1941 (Tax Sale Certificates) + §77-1901 through §77-1941 (Foreclosure)",
+  "criticalBidMethod": "⚡ Nebraska uses RANDOM LOTTERY ORDER — not bid-down rate, not premium bid. Random number drawing determines order. Each bidder picks one parcel per round; may pass.",
+  "process": {
+   "advertising": "County advertises delinquent taxes in local newspaper 3 consecutive weeks in February + online at Nebraska Taxes Online (nebraskataxes.com)",
+   "registration": "Register with county treasurer by Thursday before first Monday in March. $25 registration fee. One bidder per company. Must be present.",
+   "sale": "Public sale opens first Monday in March at 9:00 AM. Random lottery drawing determines bidding order. Each round: one parcel per bidder. Pass or purchase. After public auction: private sale of remaining unsold taxes.",
+   "certificate": "Winning bidder pays all delinquent taxes + interest + advertising + costs. County issues Certificate of Purchase. $22 issuance fee.",
+   "subTax": "During 3-year redemption period: investor must pay subsequent taxes as they become delinquent",
+   "maturity": "After 3 years: certificate matures. Investor must apply for tax deed (if eligible) within 9 months OR foreclose within 9 months. Investor responsible for own collection process.",
+   "stat": "NRS §77-1807, §77-1818, §77-1824, §77-1837"
+  },
+  "auction": {
+   "date2026": "March 2, 2026 (confirmed — Gage/Dawes/Saline/Frontier/Nance and majority of NE counties)",
+   "frequency": "Annual — first Monday in March",
+   "platform": "In-person county treasurer office. No major statewide platform.",
+   "privateSale": "Unsold taxes after public auction available via private sale — contact county treasurer directly",
+   "statute": "NRS §77-1801, §77-1807, §77-1814"
+  },
+  "otc": {
+   "available": true,
+   "name": "Private Tax Sale",
+   "trigger": "Taxes remaining unsold after public auction",
+   "process": "Contact county treasurer directly. Available year-round.",
+   "statute": "NRS §77-1814",
+   "note": "Private and county certificates may also be assigned for $20 fee"
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payments",
+   "statute": "NRS §77-1824",
+   "note": "MUST be paid as they become delinquent to protect certificate position"
+  },
+  "redemption": {
+   "period": "3 years from date of tax sale certificate",
+   "interestRate": "14% per annum (per NRS §45-104.01 — set by Legislature, verify annually)",
+   "amounts": "Certificate amount + 14%/yr interest + all subsequent taxes paid by investor + 14% interest on those payments",
+   "deadline": "Redemption must be received PRIOR TO CLOSE OF BUSINESS on day application for tax deed is received by county treasurer",
+   "statute": "NRS §77-1824",
+   "homesteadDifferent": false,
+   "agDifferent": false
+  },
+  "deedPath": {
+   "name": "Tax Deed (county treasurer issues) OR Court Foreclosure (sheriff's sale)",
+   "eligibleWindow": "Application must be made within 9 months after 3-year redemption period expires (2 years for vacant/abandoned)",
+   "taxDeedEligibility": "Investor may apply for tax deed ONLY if: 110% of assessed value minus redemption amount is ≤ $25,000. Otherwise must foreclose.",
+   "foreclosure": "If threshold not met — investor must file suit in District Court to foreclose lien (NRS §77-1901). Court enters judgment, sheriff's sale held.",
+   "statute": "NRS §77-1837 (tax deed), §77-1901 (foreclosure)",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus / Excess Proceeds",
+   "process": "Any excess above taxes/costs at foreclosure sale: court-supervised distribution. Tyler v. Hennepin applies — former owner entitled to surplus.",
+   "note": "At public auction — no overbid mechanism (investors pay exact taxes). Surplus arises only at court-supervised foreclosure sheriff's sale."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "14%",
+  "redemption": "3 años",
+  "summary": "Nebraska realiza ventas anuales en marzo. Formato de puja rotacional (los condados rotan las propiedades disponibles dando a cada postor registrado turnos iguales). Redención de 3 años. OTC disponible después de la venta. Estatuto: NRS §77-1801.",
+  "typeWhy": "Nebraska es un estado de gravamen porque los condados venden certificados de gravamen fiscal en marzo con formato de puja rotacional (NRS §77-1801).",
+  "rateWhy": "La tasa fija del 14% no se puja a la baja. El formato rotacional asegura competencia equilibrada (NRS §77-1801).",
+  "notBeginnerReason": "",
+  "beginnerTip": "El formato rotacional ayuda a los principiantes — cada postor registrado obtiene turnos iguales, los grandes inversores no pueden dominar. Asista a una subasta como observador antes de pujar.",
+  "risks": [
+   "El formato rotacional es confuso en la primera visita — observe antes de pujar",
+   "La redención de 3 años inmoviliza el capital",
+   "Inventario urbano limitado fuera de Omaha y Lincoln"
+  ],
+  "ddExtra": [
+   "Asista a una subasta como observador antes de comprometer capital",
+   "Verifique acceso vial y servicios en parcelas rurales",
+   "Contacte al condado después de la venta de marzo para la lista OTC"
+  ],
+  "auctionSignup": {
+   "platform": "Tesorero del condado (en persona o en línea para algunos condados)",
+   "steps": [
+    "Encuentre al tesorero de su condado en nebraska.gov/government/county",
+    "Contacte al tesorero 30 días antes de la venta de marzo",
+    "Regístrese para la subasta rotacional — comprenda el formato antes de asistir",
+    "OTC: contacte al condado después de la venta de marzo para gravámenes no vendidos"
+   ],
+   "depositInfo": "Varía por condado.",
+   "directLink": "https://revenue.nebraska.gov/PAD"
+  },
+  "otc": {
+   "available": true,
+   "note": "Gravámenes no vendidos disponibles para compra directa después de la subasta de marzo. Contacte al tesorero del condado."
+  }
+ },
+ "counties": [
+  {
+   "name": "Adams",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://adamscounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Antelope",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://antelopecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Arthur",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://arthurcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Banner",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://bannercounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Blaine",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://blainecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Boone",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://boonecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Box Butte",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://boxbuttecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Boyd",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://boydcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Brown",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://browncounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Buffalo",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://buffalocounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Burt",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://burtcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Butler",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://butlercounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cass",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://casscounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cedar",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://cedarcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chase",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://chasecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cherry",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://cherrycounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cheyenne",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://cheyennecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clay",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://claycounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Colfax",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://colfaxcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cuming",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://cumingcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Custer",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://custercounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dakota",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://dakotacounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dawes",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://dawescounty.ne.gov/what-we-do/county-offices/treasurer.html",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dawson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://dawsoncounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Deuel",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://deuelcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dixon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://dixoncounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dodge",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://dodgecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Douglas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://douglascounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dundy",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://dundycounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fillmore",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://fillmorecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://franklincounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Frontier",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://frontiercounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Furnas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://furnascounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gage",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://gagecountyne.gov/treasurer/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Garden",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://gardencounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Garfield",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://garfieldcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gosper",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://gospercounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grant",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://grantcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Greeley",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://greeleycounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hall",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://hallcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hamilton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://hamiltoncounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harlan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://harlancounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hayes",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://hayescounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hitchcock",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://hitchcockcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Holt",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://holtcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hooker",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://hookercounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Howard",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://howardcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://jeffersoncounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Johnson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://johnsoncounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kearney",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://kearneycounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Keith",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://keithcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Keya Paha",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://keyapahacounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kimball",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://kimballcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Knox",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://knoxcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lancaster",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://www.lancaster.ne.gov/treasury",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://lincolncounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Logan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://logancounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Loup",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://loupcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Madison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://madisoncounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McPherson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://mcphersoncounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Merrick",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://merrickcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Morrill",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://morrillcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nance",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://nancecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nemaha",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://nemahacounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nuckolls",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://nuckollscounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Otoe",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://otoecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pawnee",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://pawneecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Perkins",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://perkinscounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Phelps",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://phelpscounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pierce",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://piercecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Platte",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://plattecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Polk",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://polkcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Red Willow",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://redwillowcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Richardson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://richardsoncounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rock",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://rockcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Saline",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://salinecountyne.gov/treasurer-office/public-tax-sale-information/",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sarpy",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://sarpycounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Saunders",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://saunderscounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Scotts Bluff",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://scottsbluffcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Seward",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://sewardcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sheridan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://sheridancounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sherman",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://shermancounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sioux",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://siouxcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stanton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://stantoncounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Thayer",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://thayercounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Thomas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://thomascounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Thurston",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://thurstoncounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Valley",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://valleycounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://washingtoncounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wayne",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://waynecounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Webster",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://webstercounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wheeler",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://wheelercounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "York",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "3 years from date of tax sale certificate",
+   "rate": "14%",
+   "platform": "In-person county treasurer",
+   "url": "https://yorkcounty.ne.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "March 2, 2026"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

@@ -1,0 +1,191 @@
+{
+ "code": "DC",
+ "name": "Washington D.C.",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "18%",
+ "rateNote": "Certificate of sale purchased at auction — NOT a deed. Court-supervised foreclosure required.",
+ "redemption": "6–12 months",
+ "bidMethod": "Highest bidder — 20% deposit required",
+ "statute": "DC Code §47-1330 et seq.; §47-1360; §47-1370; §47-1382",
+ "officialLink": "https://otr.cfo.dc.gov/page/real-property-tax-sale",
+ "auctionPlatform": "DC Office of Tax and Revenue — in-person (Marion S. Barry Jr. Building)",
+ "auctionTiming": "Annual July sale — 2025 sale confirmed July 16, 2025. Discount sale December 2025.",
+ "keyNotes": [
+  "Investor buys certificate of sale — NOT a deed. Title requires court foreclosure.",
+  "6-month wait before foreclosure can be filed — minimum 18-month total timeline to deed",
+  "Overbid earns ZERO interest — bid only up to tax amount",
+  "~98% of liens redeem — DC is an interest income market, not a deed acquisition market",
+  "Owner-occupied residential with 5 or fewer units: surplus returned to former owner after subsequent sale",
+  "20% deposit required at time of bid"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "DC conducts annual tax lien sales starting July 1, running daily until inventory is exhausted. Minimum 20% deposit required upfront. Statute: DC Official Code §47-1301.",
+ "typeWhy": "Washington D.C. sells tax lien certificates at its annual July sale. The investor purchases the lien and the property owner retains title during a 6-12 month redemption period. DC Official Code §47-1301.",
+ "rateWhy": "D.C. sets a fixed statutory interest rate of 18% per annum on tax lien certificates. This rate is not bid-down — all certificates earn the same flat 18%. DC Official Code §47-1301.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Very high property values require substantial capital. 20% deposit required. Competitive institutional market.",
+ "beginnerTip": "DC is for experienced investors with significant capital. The 20% deposit and high property values mean you need $10,000+ just to participate meaningfully.",
+ "risks": [
+  "20% upfront deposit is a major capital barrier",
+  "Government-owned properties and historic properties are excluded",
+  "Redemption period varies 6–12 months based on property type",
+  "Environmental and code compliance issues are common in older DC properties"
+ ],
+ "ddExtra": [
+  "Verify property is not government-owned or under historic preservation",
+  "Check for active DC code violations — these become your responsibility",
+  "Confirm exact redemption period: 6 months standard, 12 months for owner-occupied"
+ ],
+ "auctionSignup": {
+  "platform": "dc.gov tax sale portal",
+  "steps": [
+   "Go to mytax.dc.gov and create an account",
+   "Register for the annual tax sale (usually begins July 1)",
+   "Fund your account with a minimum 20% deposit of your intended bid amount via wire transfer",
+   "Bid online during the sale window"
+  ],
+  "depositInfo": "20% of intended bid required upfront. This is one of the highest deposit requirements in the country.",
+  "directLink": "https://mytax.dc.gov"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "mytax.dc.gov"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "statute": "DC Code §47-1301 through §47-1320 (Chapter 13) + §47-1330 through §47-1395 (Chapter 13A)",
+  "administrator": "DC Office of Tax and Revenue (OTR) — otr.cfo.dc.gov",
+  "adminUrl": "https://otr.cfo.dc.gov/page/real-property-tax-sale",
+  "structure": "Single jurisdiction — Washington, DC. OTR administers all tax lien sales. Annual July auction. OTC available year-round.",
+  "thresholds": {
+   "standard": "$2,500 or more delinquent in property taxes",
+   "vacantBlighted": "ANY delinquent amount if property classified as Vacant or Blighted",
+   "forbearance": "Owner-occupied homeowners may apply for tax sale forbearance through mytax.dc.gov"
+  },
+  "process": {
+   "step1": "Taxes delinquent. OTR publishes delinquent property list in DC newspapers (Washington Times, Washington Informer) around June.",
+   "step2": "Annual tax sale — online auction, typically 3rd week of July. Lien cert sold to highest bidder.",
+   "step3": "Purchaser receives Certificate of Sale. Interest at 1.5%/month accrues.",
+   "step4": "Owner has 6 months from sale to redeem (pay OTR directly — NOT investor). After 6 months: investor may file foreclosure.",
+   "step5": "If cert holder fails to file foreclosure within 1 year from cert date — cert becomes VOID. All money paid forfeited to District.",
+   "step6": "Foreclosure action filed in DC Superior Court. Owner still has time to redeem but now owes investor's attorney fees.",
+   "stat": "DC Code §47-1303, §47-1307, §47-1348, §47-1361"
+  },
+  "auction": {
+   "frequency": "Annual — typically 3rd week of July",
+   "date2026": "Expected July 2026 — OTR publishes exact date. Check otr.cfo.dc.gov",
+   "platform": "Online auction via OTR (mytax.dc.gov / OTR online portal)",
+   "registration": "Required in advance. Check otr.cfo.dc.gov for registration requirements.",
+   "payment": "Wire or ACH via OTR platform. Cash/certified check/cashier's check/postal money order at OTR Cashier's Office.",
+   "statute": "DC Code §47-1303, §47-1348"
+  },
+  "otc": {
+   "available": true,
+   "name": "Over-the-Counter (OTC) Tax Lien Sale",
+   "statute": "DC Code §47-1353(a)",
+   "process": "Purchase specific tax liens on properties presented but NOT sold at annual auction. Available online Mon–Fri 8AM–3PM (excluding holidays). Payment in full same day.",
+   "payment": "At OTR Cashier's Office: cash, certified check, cashier's check, postal money order (8:30AM–4:30PM). Electronic wire also accepted.",
+   "blockoutPeriods": "OTC blocked during annual, First-Come-First-Serve, and Discount sale events at OTR's discretion.",
+   "url": "https://otr.cfo.dc.gov/page/real-property-tax-sale"
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payments",
+   "note": "Cert holder may pay subsequent taxes. Added to redemption amount.",
+   "statute": "DC Code §47-1361"
+  },
+  "redemption": {
+   "period": "6 months from date of tax sale (for standard residential) — owner may redeem anytime in this window without owing investor attorney fees",
+   "afterSixMonths": "Owner can still redeem UNTIL foreclosure judgment — but must pay investor's attorney fees (can exceed $3,000–$5,000 in DC)",
+   "paymentTo": "⚡ Owner MUST pay OTR directly — NOT the investor — for redemption",
+   "amounts": "All delinquent taxes + penalties + interest + costs (including investor's permitted expenses per Chapter 13A)",
+   "certVoid": "⚡ Cert becomes VOID if investor fails to file foreclosure within 1 year of cert date. All money paid forfeited to District.",
+   "statute": "DC Code §47-1307, §47-1361, §47-1348",
+   "vacantBlighted": "Vacant/blighted properties: 6-month redemption per §47-1307(b)",
+   "homesteadDifferent": false
+  },
+  "deedPath": {
+   "name": "Deed in Fee Simple Absolute — DC Superior Court",
+   "process": "After foreclosure judgment — court orders sale at fair market value (§47-1303.04(3)) or issues deed. Deed is prima facie evidence of good title.",
+   "titleEffect": "Fee simple absolute. OTR or transferee (private investor) gets same priority as District had.",
+   "challenge": "90-day window to contest after deed recorded (§47-1303.04(f)(2))",
+   "statute": "DC Code §47-1303.03, §47-1303.04",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Proceeds",
+   "statute": "DC Code §47-1307, §47-1315",
+   "process": "Surplus above taxes + penalties + costs deposited to Surplus Fund. Paid to former owner. If redeemed within 6 months of sale — surplus paid to cert holder.",
+   "note": "Tyler v. Hennepin applies — DC §47-1307 already provides for surplus return to owner."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "18%",
+  "redemption": "6–12 meses",
+  "summary": "DC realiza ventas anuales de gravámenes fiscales a partir del 1 de julio. Depósito mínimo del 20% requerido por adelantado. Estatuto: DC Official Code §47-1301.",
+  "typeWhy": "Washington D.C. es un sistema de gravamen porque el distrito vende certificados de gravamen fiscal en su venta anual de julio (DC Official Code §47-1301).",
+  "rateWhy": "La tasa fija del 18% es una de las más altas del país para un mercado de gravamen. No se puja a la baja — todos los certificados ganan el mismo 18% (DC Official Code §47-1301).",
+  "notBeginnerReason": "Los valores de propiedad muy altos requieren capital sustancial. Se requiere depósito del 20%. Mercado institucional competitivo.",
+  "beginnerTip": "DC es para inversores experimentados con capital significativo. El depósito del 20% y altos valores significa que necesita $10,000+ solo para participar.",
+  "risks": [
+   "El depósito del 20% es una barrera de capital importante",
+   "Las propiedades gubernamentales e históricas están excluidas",
+   "El período de redención varía 6–12 meses según el tipo de propiedad",
+   "Problemas ambientales y de código son comunes en propiedades antiguas de DC"
+  ],
+  "ddExtra": [
+   "Verifique que la propiedad no sea gubernamental ni esté bajo preservación histórica",
+   "Revise violaciones activas del código de DC",
+   "Confirme el período de redención exacto: 6 meses estándar, 12 meses para propietario ocupante"
+  ],
+  "auctionSignup": {
+   "platform": "Portal de venta fiscal de dc.gov",
+   "steps": [
+    "Vaya a mytax.dc.gov y cree una cuenta",
+    "Regístrese para la venta fiscal anual (generalmente comienza el 1 de julio)",
+    "Financie su cuenta con mínimo 20% del monto de puja previsto",
+    "Puje en línea durante la ventana de venta"
+   ],
+   "depositInfo": "20% de la puja prevista requerido por adelantado. Uno de los requisitos más altos del país.",
+   "directLink": "https://mytax.dc.gov"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "District of Columbia",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "6 months from date of tax sale (for standard residential) — owner may redeem anytime in this window without owing investor attorney fees",
+   "rate": "18%",
+   "platform": "OTR Online Auction (annual July) + OTC year-round",
+   "url": "https://otr.cfo.dc.gov/page/real-property-tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Expected July 2026 (3rd week typical) — check otr.cfo.dc.gov",
+    "otcUrl": "https://otr.cfo.dc.gov/page/real-property-tax-sale"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

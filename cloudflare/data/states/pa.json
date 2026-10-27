@@ -1,0 +1,1162 @@
+{
+ "code": "PA",
+ "name": "Pennsylvania",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "N/A",
+ "rateNote": "TWO-SALE SYSTEM: Upset sale (dangerous) vs Judicial/Repository sale (clean title)",
+ "redemption": "None post-sale",
+ "bidMethod": "Highest bidder",
+ "statute": "72 P.S. §5860.601",
+ "officialLink": "https://www.legis.state.pa.us/cfdocs/legis/LI/uconsCheck.cfm?txtType=HTM&yr=1947&sessInd=0&smthLwInd=0&act=542&chpt=6&sctn=1&subsctn=0",
+ "auctionPlatform": "County-run — in-person",
+ "auctionTiming": "Year-round",
+ "keyNotes": [
+  "CRITICAL: Upset sale = surviving liens (mortgages may remain) — dangerous for investors",
+  "Judicial sale and Repository sale = clean title, all liens wiped",
+  "Always confirm which type of sale before bidding — upset vs judicial is the difference between clean and clouded title",
+  "Philadelphia and Pittsburgh have high volume — mostly judicial sales"
+ ],
+ "investorAlert": "⚠️ Pennsylvania has TWO sale types. Upset Sale: surviving liens remain on title — buying here can mean inheriting a mortgage. Judicial/Repository Sale: clean title. ALWAYS confirm sale type before bidding.",
+ "pendingLegislation": [],
+ "summary": "Pennsylvania's Real Estate Tax Sale Law creates multiple pathways: Upset Sale (September, min = all back taxes), Private Sale (unsold properties), and Judicial Sale (lower minimums, wipes most liens). Title clearance frequently required for insurable deed. Statute: PA Act 542 (72 PS §5860.101).",
+ "typeWhy": "Pennsylvania sells the property deed outright through multiple pathways (Upset Sale, Private Sale, Judicial Sale) with no post-sale redemption. PA Act 542 (72 PS §5860.101).",
+ "rateWhy": "Pennsylvania is a deed state with no statutory interest rate. Upset Sale minimums equal all back taxes; Judicial Sale minimums are lower and wipe most liens. PA Act 542 (72 PS §5860.101).",
+ "beginnerFriendly": true,
+ "notBeginnerReason": "",
+ "beginnerTip": "Start with the private sale list — properties that didn't sell at Upset Sale are available for direct purchase from the county tax claim office at reduced prices. No auction competition. Call the county tax claim office and ask for their private sale inventory.",
+ "risks": [
+  "Title clearance required for insurable deed — budget $2,500–$7,500",
+  "Mortgage liens may survive Upset Sale (but not Judicial Sale) — know which type you're buying",
+  "Some liens survive both sale types — IRS liens are the primary concern"
+ ],
+ "ddExtra": [
+  "Verify which sale type applies — Upset vs. Private vs. Judicial have different lien survivability",
+  "Check the county tax claim office private sale list for underutilized buying opportunities",
+  "Budget for title clearance before planning any resale"
+ ],
+ "auctionSignup": {
+  "platform": "County tax claim office (in-person) + Bid4Assets (Philadelphia, some others)",
+  "steps": [
+   "Find your target county tax claim office — pa.gov/guides/pa-courts for county directory",
+   "Request the September Upset Sale property list (usually available August)",
+   "Register with the county tax claim office — in-person registration required in most counties",
+   "For Philadelphia: go to bid4assets.com and register for the Sheriff's Sale"
+  ],
+  "depositInfo": "Typically $500–$1,000 deposit. Confirm with county.",
+  "directLink": "https://www.bid4assets.com/taxsales/pennsylvania"
+ },
+ "otc": {
+  "available": true,
+  "note": "Private sale list available from county tax claim offices for properties unsold at Upset Sale. Call the county directly."
+ },
+ "platforms": [
+  "Bid4Assets.com",
+  "County tax claim offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [
+  {
+   "name": "Philadelphia",
+   "link": "https://www.bid4assets.com/taxsales/pennsylvania",
+   "notes": "Sheriff's Sale via Bid4Assets. High inventory."
+  },
+  {
+   "name": "Allegheny",
+   "link": "https://alleghenycountytreasurer.us/real-estate-tax/",
+   "notes": "Pittsburgh area. Good inventory."
+  },
+  {
+   "name": "Dauphin",
+   "link": "https://www.dauphincounty.org/government/departments/treasury",
+   "notes": "Harrisburg area. Moderate competition."
+  }
+ ],
+ "rules": {
+  "type": "deed",
+  "process": {
+   "stage1": {
+    "name": "Upset Sale",
+    "description": "First opportunity to sell delinquent properties. Properties sold SUBJECT TO all liens, mortgages, and judgments.",
+    "eligibility": "2+ years delinquent taxes",
+    "timing": "Annual — September (most counties)",
+    "minimumBid": "Upset Price = all delinquent taxes (2 yrs) + current year taxes + interest + municipal claims + costs",
+    "liens": "BUYER TAKES SUBJECT TO existing liens, mortgages, judgments — NOT cleared.",
+    "noRedemption": "CRITICAL: No right of redemption after Upset Sale. Owner must pay before gavel falls.",
+    "installmentRight": "If owner pays 25% of delinquent taxes before sale, bureau MUST offer installment plan (72 P.S. §5860.603)",
+    "ownerOccupied": "Owner-occupied properties require personal service by Sheriff at least 10 days prior to sale",
+    "platform": "GovEase (many counties) / in-person courthouse / SRI",
+    "statute": "72 P.S. §5860.601–609"
+   },
+   "stage2": {
+    "name": "Judicial Sale (Free and Clear Sale)",
+    "description": "Properties not sold at Upset Sale or removed. Sold FREE AND CLEAR of all liens — title insurable.",
+    "timing": "Varies — typically spring/fall of following year",
+    "process": "Tax Claim Bureau petitions Court of Common Pleas. Title search required. All lienholders served.",
+    "result": "Buyer gets marketable, insurable title — all prior liens wiped",
+    "platform": "GovEase or in-person",
+    "statute": "72 P.S. §5860.611–618"
+   },
+   "stage3": {
+    "name": "Repository Sale",
+    "description": "Properties that failed to sell at Judicial Sale. Available for purchase anytime.",
+    "process": "Any person may make offer. All taxing districts (county, borough/township, school) must approve bid.",
+    "timing": "Ongoing — contact Tax Claim Bureau",
+    "note": "Repository properties can be purchased for as little as $1 if approved by all taxing authorities"
+   }
+  },
+  "auction": {
+   "platform": "GovEase (majority, growing) / county courthouse / SRI Tax Sale",
+   "bidMethod": "Premium bid — highest bidder above Upset Price",
+   "payment": "Full payment day of sale — certified funds",
+   "statute": "72 P.S. §5860.601"
+  },
+  "otc": {
+   "available": true,
+   "name": "Repository List",
+   "trigger": "Unsold after Judicial Sale — held by Tax Claim Bureau",
+   "process": "Make offer to Tax Claim Bureau. Requires approval of all taxing districts.",
+   "note": "No set minimum. All taxing districts must consent."
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — Pennsylvania is deed state with no lien cert sub-tax mechanism"
+  },
+  "redemption": {
+   "available": false,
+   "period": "NO redemption period after Upset Sale",
+   "preUpsetsale": "Owner may pay in full at any time before gavel falls at Upset Sale",
+   "statute": "72 P.S. §5860.618",
+   "note": "Owner may challenge sale within 30 days of court confirmation by filing exceptions — but only for notice failures or procedural defects."
+  },
+  "deedPath": {
+   "upsetSale": {
+    "name": "Deed from Tax Claim Bureau",
+    "titleQuality": "NOT clear — subject to all prior liens",
+    "quietTitleRequired": false,
+    "titleInsurable": false,
+    "note": "Most title companies will NOT insure Upset Sale deeds without Judicial Sale or quiet title"
+   },
+   "judicialSale": {
+    "name": "Deed from Tax Claim Bureau (Free and Clear)",
+    "titleQuality": "Clean — all liens cleared by judicial order",
+    "quietTitleRequired": false,
+    "titleInsurable": true,
+    "statute": "72 P.S. §5860.618"
+   }
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Funds",
+   "statute": "72 P.S. §5860.205",
+   "trigger": "Sale price exceeds upset price",
+   "process": "Held by Tax Claim Bureau. Distributed to prior lienholders by priority, then to prior owner.",
+   "note": "Tyler v. Hennepin applies — PA must return surplus to former owner"
+  },
+  "alleghenyPhiladelphia": {
+   "note": "CRITICAL: Allegheny County and Philadelphia County do NOT use RETSL Upset Sale process. Each has its own tax sale method. Verify separately.",
+   "allegheny": "Uses judicial process / Sheriff's Sale — contact Allegheny County Tax Claim Bureau",
+   "philadelphia": "Land Bank / Sheriff's Sale — separate statutory framework"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "deed",
+  "rate": "N/A",
+  "redemption": "Ninguna post-venta",
+  "summary": "La Ley de Venta de Bienes Raíces por Impuestos de Pensilvania crea múltiples caminos: Venta de Protesta (septiembre, mín = todos los impuestos atrasados), Venta Privada (propiedades no vendidas) y Venta Judicial (mínimos más bajos, elimina la mayoría de los gravámenes). La aclaración de título frecuentemente es requerida para escritura asegurable. Estatuto: PA Act 542 (72 PS §5860.101).",
+  "typeWhy": "Pensilvania es un estado de escritura con múltiples vías: Venta de Protesta, Venta Privada y Venta Judicial, sin derecho de redención (PA Act 542, 72 PS §5860.101).",
+  "rateWhy": "No se aplica tasa de interés. El retorno depende de la vía de compra — la Venta Judicial ofrece mínimos más bajos y limpia más gravámenes (PA Act 542).",
+  "notBeginnerReason": "",
+  "beginnerTip": "Comience con la lista de venta privada — propiedades que no se vendieron en la Venta de Protesta están disponibles para compra directa de la oficina de reclamación fiscal del condado a precios reducidos. Sin competencia en subasta. Llame a la oficina y pida su inventario de venta privada.",
+  "risks": [
+   "Se requiere aclaración de título para escritura asegurable — presupueste $2,500–$7,500",
+   "Los gravámenes hipotecarios pueden sobrevivir a la Venta de Protesta (pero no a la Venta Judicial) — sepa cuál tipo está comprando",
+   "Algunos gravámenes sobreviven ambos tipos de venta — los gravámenes del IRS son la principal preocupación"
+  ],
+  "ddExtra": [
+   "Verifique qué tipo de venta aplica — Protesta vs. Privada vs. Judicial tienen diferente supervivencia de gravámenes",
+   "Revise la lista de venta privada de la oficina de reclamación fiscal para oportunidades de compra subutilizadas",
+   "Presupueste para aclaración de título antes de planear cualquier reventa"
+  ],
+  "auctionSignup": {
+   "platform": "Oficina de reclamación fiscal del condado (en persona) + Bid4Assets (Filadelfia, algunos otros)",
+   "steps": [
+    "Encuentre la oficina de reclamación fiscal de su condado — pa.gov/guides/pa-courts para directorio del condado",
+    "Solicite la lista de Venta de Protesta de septiembre (generalmente disponible en agosto)",
+    "Regístrese con la oficina de reclamación fiscal del condado — registro en persona requerido en la mayoría de los condados",
+    "Para Filadelfia: bid4assets.com y regístrese para la Venta del Alguacil"
+   ],
+   "depositInfo": "Normalmente depósito de $500–$1,000. Confirme con el condado.",
+   "directLink": "https://www.bid4assets.com/taxsales/pennsylvania"
+  },
+  "otc": {
+   "available": true,
+   "note": "Lista de venta privada disponible de las oficinas de reclamación fiscal del condado para propiedades no vendidas en la Venta de Protesta. Llame al condado directamente."
+  }
+ },
+ "counties": [
+  {
+   "name": "Adams",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase/In-person",
+   "url": "https://adamscountypa.gov/departments/tax-claim-bureau/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Allegheny",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "Bid4Assets",
+   "url": "https://www.alleghenycounty.us/government/departments-offices/law/tax-assessment/real-estate-tax-sales",
+   "notes": [
+    "⚡ CRITICAL: NOT RETSL. Separate process — contact bureau.",
+    "⚡ Allegheny County: NOT standard RETSL — separate process"
+   ],
+   "extra": {
+    "saleMonth": "Varies"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Armstrong",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase/In-person",
+   "url": "https://www.co.armstrong.pa.us/departments/tax-claim-bureau/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Beaver",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.beaver.pa.us/departments/taxclaim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bedford",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.bedfordcounty.net/departments/tax-claim-bureau/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Berks",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.countyofberks.com/departments/tax-claims/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Blair",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.blaircountypa.gov/departments/tax-claim-bureau/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bradford",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.bradfordcountypa.gov/departments/tax-claim-bureau/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bucks",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.buckscounty.gov/government/departments/TaxClaimBureau",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Butler",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.butler.pa.us/215/Tax-Claim",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cambria",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.cambria.pa.us/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cameron",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.cameroncountypa.com/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carbon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.carboncounty.com/index.php/departments/tax-claim",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Centre",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.centrecountypa.gov/260/Tax-Claim-Bureau",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chester",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.chescopa.gov/tax-claim",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clarion",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.co.clarion.pa.us/departments/tax_claim/index.php",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clearfield",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.clearfieldco.org/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clinton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.clintoncountypa.com/departments/tax_claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Columbia",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.columbiapa.org/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Crawford",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.crawfordcountypa.net/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cumberland",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.cumberlandcountypa.gov/1498/Tax-Claim",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dauphin",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.dauphincounty.gov/government/departments/tax_claim_bureau/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Delaware",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://delcopa.gov/treasurer/upsetsales",
+   "notes": [
+    "⚡ Confirmed Sept 24 2026 — registration Aug 24-26 (120 bidder cap)",
+    "⚡ Delaware County: Sept 24 2026 confirmed — 120-bidder cap"
+   ],
+   "extra": {
+    "saleDate2026": "September 24, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Elk",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.elkcountypa.gov/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Erie",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://eriecountypa.gov/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fayette",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.fayettecountypa.gov/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Forest",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.forestcountypa.com/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.franklincountypa.gov/departments/tax_claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fulton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.fultoncountypa.gov/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Greene",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.co.greene.pa.us/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Huntingdon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.huntingdoncounty.net/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Indiana",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.indianacountypa.gov/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.jeffersoncountypa.com/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Juniata",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.juniataco.org/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lackawanna",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.lackawannacounty.org/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lancaster",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.lancaster.pa.us/741/Tax-Claim-Bureau",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lawrence",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.lawrence.pa.us/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lebanon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.lebcnty.org/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lehigh",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.lehighcounty.org/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Luzerne",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.luzernecounty.org/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lycoming",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.lyco.org/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McKean",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.co.mckean.pa.us/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mercer",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.mercercountypa.gov/tax/Sales.htm",
+   "notes": [
+    "⚡ Confirmed Sept 15 2026 (Penn State Extension), Oct 20 2026 (courthouse)",
+    "⚡ Mercer County: Sept 15 + Oct 20 2026 confirmed"
+   ],
+   "extra": {
+    "saleDate2026": "September 15, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mifflin",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.mifflincountypa.gov/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Monroe",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.monroecountypa.gov/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Montgomery",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.montcopa.org/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Montour",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.montourco.org/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Northampton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.northamptoncounty.org/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Northumberland",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.norrycopa.net/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Perry",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.perrycountypa.gov/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Philadelphia",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "Bid4Assets/Sheriff",
+   "url": "https://www.phila.gov/departments/sheriff/sheriff-sales/",
+   "notes": [
+    "⚡ CRITICAL: Philadelphia Sheriff's Sale — NOT standard RETSL. Monthly sales.",
+    "⚡ Philadelphia: Monthly Sheriff's Sale — NOT standard RETSL"
+   ],
+   "extra": {
+    "saleMonth": "Monthly"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pike",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.pikepa.org/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Potter",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.pottercountypa.gov/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Schuylkill",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.schuylkill.pa.us/offices/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Snyder",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.snydercounty.org/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Somerset",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.somerset.pa.us/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sullivan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.sullivancountypa.gov/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Susquehanna",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.susqco.com/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tioga",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.tiogacountypa.us/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Union",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.unionco.org/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Venango",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.co.venango.pa.us/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Warren",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.co.warren.pa.us/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.washington.pa.us/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wayne",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.waynecountypa.gov/172/Upset-Tax-Sales",
+   "notes": [
+    "⚡ Wayne: reg Aug 3–Sept 4 2026 confirmed",
+    "⚡ Wayne County: 2026 reg Aug 3–Sept 4 confirmed"
+   ],
+   "extra": {
+    "saleDate2026": "September (reg Aug 3–Sept 4 2026)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Westmoreland",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://www.co.westmoreland.pa.us/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wyoming",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "In-person",
+   "url": "https://www.wyomingcountypa.gov/departments/tax-claim/",
+   "notes": [],
+   "extra": {
+    "saleMonth": "September"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "York",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "NO redemption period after Upset Sale",
+   "rate": "N/A",
+   "platform": "GovEase",
+   "url": "https://yorkcountypa.gov/528/Tax-Sale-Information",
+   "notes": [
+    "⚡ York: Upset Sept 17 2026 / Judicial June 4 2026 — both GovEase",
+    "⚡ York County: Upset Sept 17 / Judicial June 4 2026 both confirmed"
+   ],
+   "extra": {
+    "saleDate2026": "September 17, 2026 (Upset) / June 4, 2026 (Judicial)"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

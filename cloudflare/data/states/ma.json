@@ -1,0 +1,387 @@
+{
+ "code": "MA",
+ "name": "Massachusetts",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "16%",
+ "rateNote": "Municipal tax taking — Land Court required for clean title",
+ "redemption": "6 months to 3 years (Land Court process)",
+ "bidMethod": "Municipal-controlled process",
+ "statute": "MGL Ch. 60",
+ "officialLink": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60",
+ "auctionPlatform": "Municipal — varies by city/town",
+ "auctionTiming": "Year-round",
+ "keyNotes": [
+  "Municipality initiates tax taking — not a traditional auction",
+  "Land Court action required to obtain clean, insurable title",
+  "14% statutory rate on the taking amount",
+  "Bulk sales used in some municipalities — individual retail access limited",
+  "Boston and Cambridge have essentially no retail investor access"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "Massachusetts municipalities sell tax liens. After purchase, full title requires Land Court quiet title. No statewide platform. Statute: MGL c.60 §62.",
+ "typeWhy": "Massachusetts municipalities sell tax lien certificates. The investor holds the lien while the owner has 6 months to 3 years to redeem. Full title requires a quiet title action in Land Court. MGL c.60 §62.",
+ "rateWhy": "Massachusetts sets a statutory interest rate of 16% per annum on tax lien certificates. This fixed rate is uniform across all municipalities. MGL c.60 §62.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Municipal auctions only, Land Court process required for title, expensive in metro areas.",
+ "beginnerTip": "Worcester, Springfield, and Fall River have the most consistent municipal sale activity. Budget for Land Court quiet title costs ($3,000–$8,000) before bidding on anything you'd want to resell.",
+ "risks": [
+  "Land Court process is required for insurable title — adds $3,000–$8,000 in costs",
+  "Many municipalities auction every 2–3 years — limited auction activity",
+  "Metro areas (Boston, Cambridge) require significant capital for any meaningful position"
+ ],
+ "ddExtra": [
+  "Confirm the municipal sale schedule — many towns only sell every 2–3 years",
+  "Budget for Land Court quiet title action before planning any resale",
+  "Check for municipal improvement liens that could be superior to your lien"
+ ],
+ "auctionSignup": {
+  "platform": "Municipal tax collector (town-specific)",
+  "steps": [
+   "Identify your target municipality at mass.gov/info-details/mass-interactive-property-tax-data",
+   "Contact the town tax collector 60 days before their scheduled sale",
+   "Request the delinquent property list and registration instructions",
+   "Most sales are in-person at the town hall or courthouse"
+  ],
+  "depositInfo": "Varies by municipality.",
+  "directLink": "https://www.mass.gov/orgs/massachusetts-department-of-revenue"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "Municipal tax collector offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "statute": "MGL Chapter 60 §§43–85 (Collection of Local Taxes, Tax Titles, Foreclosure)",
+  "structure": "351 municipalities run independent tax processes. Foreclosure ONLY via Massachusetts Land Court (exclusive jurisdiction).",
+  "criticalAmendment": "⚡ St. 2024, c.140 §§80-99 (eff. Nov 1 2024): Municipalities must return excess equity to former owner upon foreclosure + sale. Interest rate amended.",
+  "process": {
+   "collectorsAuction": "Collector's Deed Auction (MGL c.60 §43): City/town treasurer offers unpaid tax lien at public auction. Purchaser gets Collector's Deed — initial step only, NOT foreclosure. Owner retains right of redemption.",
+   "taxTaking": "Tax Taking (MGL c.60 §53-54): Municipality takes property by Instrument of Taking. Creates tax title account. Municipality OR private assignee holds.",
+   "landCourt": "Foreclosure of Right of Redemption: ONLY Land Court may enter judgment foreclosing owner's right to redeem. Can be filed 6 or 12 months after taking/sale (depending on date).",
+   "privateAssignment": "MGL c.60 §52: Municipality may sell/assign tax titles to private investors. Private investor stands in municipality's shoes."
+  },
+  "auction": {
+   "frequency": "As scheduled by each municipality",
+   "platform": "Municipality-run / bulk sale assignments to investors",
+   "interest_preTaking": "8% per year",
+   "interest_postSale": "8% per year (amended from 16% by St. 2024, c.140 eff. Nov 1 2024)",
+   "payment": "Purchaser pays municipality within 2 weeks of auction. Instrument of Assignment filed in Registry of Deeds within 60 days.",
+   "statute": "MGL c.60 §43, §45, §62"
+  },
+  "otc": {
+   "available": true,
+   "name": "Tax Title Assignment",
+   "statute": "MGL c.60 §52",
+   "process": "Municipalities may sell receivables, liens, or tax titles to private investors to raise immediate revenue. Private investor stands in municipality's shoes for collection and foreclosure proceedings.",
+   "note": "Contact municipal treasurers directly. Boston and large cities have active tax title programs."
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Certifications",
+   "statute": "MGL c.60 §§50, 61",
+   "note": "Municipality may add/certify later unpaid taxes to existing tax title account. Important: §45 Collector's Deed purchasers may include later tax payments in redemption amount; §52 assignees generally may not."
+  },
+  "redemption": {
+   "period": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "interestRate": "8%/yr from sale/taking date (post Nov 1 2024 amendment). Pre-Nov 1 2024 existing titles: 16%/yr (verify per date of original taking)",
+   "paymentTo": "Former owner pays purchaser OR municipal treasurer per MGL c.60 §63",
+   "treasurerAcceptance": "City/town treasurer may accept payment from former owner and pass to purchaser (§63). Treasurer may extend foreclosure prohibition for up to 2 years.",
+   "installmentPlan": "Municipality may enter payment plan if it (not private party) holds tax title",
+   "statute": "MGL c.60 §62, §63, §65, §68",
+   "homesteadDifferent": false
+  },
+  "deedPath": {
+   "name": "Land Court Judgment of Foreclosure / Absolute Title (MGL c.60 §64)",
+   "process": "Petition filed in Land Court → court hearing → judgment enters decree barring right of redemption → absolute title to petitioner",
+   "titleEffect": "Absolute title — free from all claims and encumbrances after Land Court decree (§64)",
+   "postDecreeChallenge": "Decree may be vacated within 1 year if entered by municipality/assignee who is not petitioner (§69A)",
+   "statute": "MGL c.60 §64, §65, §69",
+   "quietTitleRequired": false,
+   "note": "Private party holding Collector's Deed has NO right to possession until Land Court enters Judgment of Foreclosure"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Excess Equity",
+   "statute": "MGL c.60 §64A (eff. Nov 1 2024, per St.2024, c.140 §§80-99)",
+   "definition": "Property value minus redemption amount and other liens",
+   "process": "If municipality forecloses and sells — former owner entitled to excess equity. Land Court judgment holder must make election regarding sale or retention. Former owner may file claim for excess equity.",
+   "retroactive": "⚡ Retroactive application to past foreclosures may be possible — statute of limitations typically ~3 years",
+   "note": "Tyler v. Hennepin directly drove St. 2024, c.140. Prior to Nov 1 2024 — municipalities/private parties could retain ALL proceeds. Now excess must be returned."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "16%",
+  "redemption": "6 meses a 3 años (proceso del Tribunal de Tierras)",
+  "summary": "Los municipios de Massachusetts venden gravámenes fiscales. Después de la compra, el título completo requiere título silencioso del Tribunal de Tierras. Sin plataforma estatal. Estatuto: MGL c.60 §62.",
+  "typeWhy": "Massachusetts es un estado de gravamen porque los municipios venden certificados de gravamen fiscal. Para título completo, se requiere proceso de título silencioso ante el Tribunal de Tierras (MGL c.60 §62).",
+  "rateWhy": "La tasa fija del 16% es sólida pero los costos del Tribunal de Tierras ($3,000-$8,000) reducen significativamente el retorno neto (MGL c.60 §62).",
+  "notBeginnerReason": "Solo subastas municipales, proceso del Tribunal de Tierras requerido para el título, caro en áreas metropolitanas.",
+  "beginnerTip": "Worcester, Springfield y Fall River tienen la actividad más consistente. Presupueste los costos del Tribunal de Tierras ($3,000–$8,000) antes de pujar en cualquier cosa que quiera revender.",
+  "risks": [
+   "El proceso del Tribunal de Tierras agrega $3,000–$8,000 en costos",
+   "Muchos municipios subastan cada 2–3 años — flujo limitado",
+   "Las áreas metropolitanas requieren capital significativo"
+  ],
+  "ddExtra": [
+   "Confirme el calendario de venta municipal — muchos pueblos solo venden cada 2–3 años",
+   "Presupueste para título silencioso del Tribunal de Tierras antes de planear cualquier reventa",
+   "Revise gravámenes de mejoras municipales que podrían ser superiores"
+  ],
+  "auctionSignup": {
+   "platform": "Recaudador de impuestos municipal (específico por ciudad)",
+   "steps": [
+    "Identifique su municipio en mass.gov/info-details/mass-interactive-property-tax-data",
+    "Contacte al recaudador de impuestos de la ciudad 60 días antes de su venta programada",
+    "Solicite la lista de propiedades en mora e instrucciones de registro",
+    "La mayoría de las ventas son en persona en el ayuntamiento o tribunal"
+   ],
+   "depositInfo": "Varía por municipio.",
+   "directLink": "https://www.mass.gov/orgs/massachusetts-department-of-revenue"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Barnstable",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://www.barnstabledeeds.org",
+   "notes": [
+    "15 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 15
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Berkshire",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://www.berkshiredeeds.com",
+   "notes": [
+    "32 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 32
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bristol",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://www.bristoldeeds.com",
+   "notes": [
+    "20 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 20
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dukes",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://www.dukescounty.org/registry-of-deeds",
+   "notes": [
+    "7 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 7
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Essex",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://www.salemdeeds.com",
+   "notes": [
+    "34 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 34
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://www.franklindeeds.net",
+   "notes": [
+    "26 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 26
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hampden",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://www.hampdenmass.com/registry",
+   "notes": [
+    "23 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 23
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hampshire",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://www.hampshiredeeds.com",
+   "notes": [
+    "23 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 23
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Middlesex",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://www.middlesexdeeds.com",
+   "notes": [
+    "54 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 54
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nantucket",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://www.nantucketdeeds.com",
+   "notes": [
+    "1 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 1
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Norfolk",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://www.norfolkdeeds.org",
+   "notes": [
+    "28 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 28
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Plymouth",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://www.plymouthdeeds.org",
+   "notes": [
+    "27 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 27
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Suffolk",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://suffolkdeeds.com",
+   "notes": [
+    "4 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 4
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Worcester",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "Until filing of petition for foreclosure in Land Court (no fixed date — owner may redeem anytime before foreclosure petition filed)",
+   "rate": "16%",
+   "platform": "Municipal Treasurer / Land Court",
+   "url": "https://www.worcesterdeeds.com",
+   "notes": [
+    "60 municipalities. Foreclosure ONLY via MA Land Court. ⚡ St. 2024 c.140 eff. Nov 1 2024: surplus must be returned to former owners; interest rate amended to 8%."
+   ],
+   "extra": {
+    "municipalities": 60
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

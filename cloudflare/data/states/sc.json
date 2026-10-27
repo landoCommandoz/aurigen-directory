@@ -1,0 +1,822 @@
+{
+ "code": "SC",
+ "name": "South Carolina",
+ "type": "redeemable",
+ "typeLabel": "Redeemable deed",
+ "rate": "3–12% (varies by redemption month)",
+ "rateNote": "Penalty increases by month held: 3% months 0–3, up to 12% by month 12",
+ "redemption": "1 year",
+ "bidMethod": "Premium bid",
+ "statute": "SC Code §12-51-90",
+ "officialLink": "https://www.scstatehouse.gov/code/t12c051.php",
+ "auctionPlatform": "Varies by county — online and in-person",
+ "auctionTiming": "October–November (most counties)",
+ "keyNotes": [
+  "Sliding penalty scale — earlier redemption earns less; later earns more up to 12%",
+  "Strict compliance doctrine — procedural errors can void the lien",
+  "Rural counties offer strong rural land opportunities"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "South Carolina holds annual lien sales October–December. Penalty varies by redemption month (3% if redeemed month 1, scaling to 12% if redeemed at month 12). No statewide platform. Statute: SC Code §12-51-90.",
+ "typeWhy": "South Carolina sells tax lien certificates at annual county-level sales held October through December. The investor holds the lien during the 1-year redemption period. SC Code §12-51-90.",
+ "rateWhy": "South Carolina uses a graduated monthly penalty scale: 3% if redeemed in month 1, scaling up to 12% if redeemed at month 12. SC Code §12-51-90.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Variable penalty structure tied to redemption month creates unpredictable returns. Limited online infrastructure.",
+ "beginnerTip": "Greenville, Richland (Columbia), and Charleston counties have the best inventory. Calculate your worst-case return if the owner redeems in month 1 (3%) before committing capital.",
+ "risks": [
+  "Penalty varies 3–12% depending on redemption month — your return is uncertain",
+  "Calculate worst-case (month 1 redemption at 3%) before bidding",
+  "Limited online infrastructure"
+ ],
+ "ddExtra": [
+  "Calculate worst-case return if property redeems in month 1",
+  "Verify homestead exemption status — affects redemption process",
+  "Check for prior lien holders who may have superior claims"
+ ],
+ "auctionSignup": {
+  "platform": "County delinquent tax collector (in-person)",
+  "steps": [
+   "Find your target county delinquent tax collector at scdor.sc.gov",
+   "Request the upcoming sale list (typically available October)",
+   "Register in person with the county",
+   "Bring cashier's check — most SC counties do not accept wire on sale day"
+  ],
+  "depositInfo": "Cashier's check required in most counties.",
+  "directLink": "https://dor.sc.gov/tax/property"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "County delinquent tax collector offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [
+  {
+   "name": "Greenville",
+   "link": "https://www.greenvillecounty.org/treasurer/",
+   "notes": "Best inventory in SC."
+  },
+  {
+   "name": "Richland",
+   "link": "https://www.richlandcountysc.gov/Government/Elected-Offices/Treasurer",
+   "notes": "Columbia area. Good inventory."
+  }
+ ],
+ "rules": {
+  "type": "redeemable",
+  "auction": {
+   "frequency": "Annual — October/November (county sets date)",
+   "method": "Public auction at courthouse or designated location — highest bidder",
+   "bidMethod": "Premium bid — highest bidder",
+   "minimumBid": "All delinquent taxes + penalties + costs (FLC submits opening bid at this amount)",
+   "flcBid": "CRITICAL: Forfeited Land Commission always submits opening bid = delinquent taxes + penalties + costs + current year taxes. If no higher bid, FLC acquires.",
+   "deed": "Tax Sale Receipt issued. NO deed or possession until redemption period expires.",
+   "payment": "Legal tender (cash, cashier's check, certified check, money order) full payment day of sale",
+   "statute": "SC Code §12-51-40, §12-51-50, §12-51-55, §12-51-60"
+  },
+  "otc": {
+   "available": true,
+   "name": "Forfeited Land Commission (FLC) Sale",
+   "trigger": "No bidder at delinquent tax sale — FLC acquires as opening bidder",
+   "process": "After redemption period — FLC holds title. Contact county Delinquent Tax Collector or FLC directly.",
+   "statute": "SC Code §12-51-55, §12-51-135",
+   "note": "CRITICAL: Purchasing from FLC does NOT extinguish prior delinquent taxes — buyer may still owe original back taxes separately. Verify with county."
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — SC is redeemable deed, no sub-tax concept",
+   "note": "Buyer pays full bid day-of. Subsequent taxes buyer's responsibility. At redemption, owner pays bid + interest (not sub-taxes separately)."
+  },
+  "redemption": {
+   "period": "12 months from date of delinquent tax sale",
+   "schedule": {
+    "Months 1-3": "3% of full bid amount",
+    "Months 4-6": "6% of full bid amount",
+    "Months 7-9": "9% of full bid amount",
+    "Months 10-12": "12% of full bid amount"
+   },
+   "cap": "Interest cannot exceed FLC opening bid amount (= all delinquent taxes + penalties + costs + current year taxes)",
+   "whoMayRedeem": "Defaulting taxpayer, any grantee from owner, mortgage or judgment creditor",
+   "statute": "SC Code §12-51-90",
+   "homesteadDifferent": false,
+   "agDifferent": false,
+   "assignable": "Purchaser may assign interest during redemption — witnessed and notarized conveyance required",
+   "note": "CRITICAL: Interest is LUMP SUM based on which QUARTER redemption occurs — it relates back to day 1. Months 10-12 = 12% of entire bid from day 1."
+  },
+  "deedPath": {
+   "name": "Tax Sale Deed (Title 12 Deed)",
+   "eligibleAfter": "Immediately after 12-month redemption period expires",
+   "process": "Tax Collector issues deed within 30 days of redemption expiration. Buyer pays deed prep + doc stamps ($3.70/$1,000) + recording fees.",
+   "titleQuality": "NOT a warranty deed. No guarantees of title, condition, or legal description.",
+   "incontestable": "After 24 months from sale date (12 months redemption + 12 months additional) — deed incontestable on procedural grounds per §12-51-90(C)",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true,
+   "statute": "SC Code §12-51-130"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Overage / Excess Funds",
+   "statute": "SC Code §12-51-130",
+   "trigger": "Sale price exceeds all delinquent taxes + assessments + penalties + costs",
+   "process": "Overage first applied to outstanding municipal tax liens. Any remaining overage belongs to owner of record immediately before end of redemption period.",
+   "claimProcess": "Owner notified in writing by Tax Collector after deed issued. Claim or assign per law.",
+   "note": "Tyler v. Hennepin applies — SC law already provided overage to owner; confirmed consistent with US Supreme Court ruling"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "3–12% (varía según el mes de redención)",
+  "redemption": "1 año",
+  "summary": "Carolina del Sur realiza ventas anuales de gravámenes de octubre a diciembre. La penalización varía según el mes de redención (3% si se redime en el mes 1, escalando al 12% en el mes 12). Sin plataforma estatal. Estatuto: SC Code §12-51-90.",
+  "typeWhy": "Carolina del Sur es un estado de gravamen porque los condados venden certificados de gravamen fiscal anuales de octubre a diciembre con período de redención de 1 año (SC Code §12-51-90).",
+  "rateWhy": "La penalización variable del 3% al 12% depende del mes en que el propietario redima (SC Code §12-51-90).",
+  "notBeginnerReason": "La estructura de penalización variable vinculada al mes de redención crea retornos impredecibles. Infraestructura en línea limitada.",
+  "beginnerTip": "Greenville, Richland (Columbia) y Charleston tienen el mejor inventario. Calcule su retorno en el peor caso si el propietario redime en el mes 1 (3%) antes de comprometer capital.",
+  "risks": [
+   "La penalización varía 3–12% según el mes de redención — su retorno es incierto",
+   "Calcule el peor caso (redención en el mes 1 al 3%) antes de pujar",
+   "Infraestructura en línea limitada"
+  ],
+  "ddExtra": [
+   "Calcule el retorno en el peor caso si la propiedad se redime en el mes 1",
+   "Verifique el estado de exención de vivienda — afecta el proceso de redención",
+   "Revise titulares de gravámenes anteriores que puedan tener reclamaciones superiores"
+  ],
+  "auctionSignup": {
+   "platform": "Recaudador de impuestos morosos del condado (en persona)",
+   "steps": [
+    "Encuentre al recaudador de impuestos morosos de su condado en scdor.sc.gov",
+    "Solicite la próxima lista de venta (disponible normalmente en octubre)",
+    "Regístrese en persona con el condado",
+    "Traiga cheque de caja — la mayoría de los condados de SC no aceptan transferencia el día de venta"
+   ],
+   "depositInfo": "Se requiere cheque de caja en la mayoría de los condados.",
+   "directLink": "https://dor.sc.gov/tax/property"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Abbeville",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.abbevillecountysc.com/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Aiken",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse/Online",
+   "url": "https://www.aikencountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Allendale",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.allendalecountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Anderson",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.andersoncountysc.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bamberg",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.bambergcountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Barnwell",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.barnwellcountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Beaufort",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.beaufortcountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Berkeley",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.berkeleycountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Calhoun",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.calhouncountysc.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Charleston",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.charlestoncounty.org/departments/treasurer/tax-sale.php",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cherokee",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.cherokeecountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chester",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.chestercountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chesterfield",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.chesterfieldcountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clarendon",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.clarendoncountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Colleton",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.colletoncounty.org/delinquent-tax/tax-sale",
+   "notes": [
+    "⚡ Colleton: Feb 20 2026 confirmed — Colleton Civic Center",
+    "⚡ Colleton County: Feb 20 2026 confirmed"
+   ],
+   "extra": {
+    "saleDate2026": "February 20, 2026"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Darlington",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse/Online",
+   "url": "https://www.darlingtoncountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dillon",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.dilloncountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dorchester",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.dorchestercounty.net/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Edgefield",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.edgefieldcountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fairfield",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.fairfieldsc.com/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Florence",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.florenceco.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Georgetown",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.georgetowncountysc.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Greenville",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.greenvillecounty.org/tax/taxsale.aspx",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Greenwood",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.greenwoodsc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hampton",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.hamptoncountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Horry",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.horrycounty.org/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jasper",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.jaspercountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kershaw",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.kershaw.sc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lancaster",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse/Online",
+   "url": "https://www.lancastercountysc.gov/198/Tax-Sale-Procedures",
+   "notes": [
+    "⚡ 2025 sale Nov 3 2025 — 2026 cycle similar"
+   ],
+   "extra": {
+    "saleDate2026": "November 3 (annual cycle)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Laurens",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.laurenscountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lee",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.leecountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lexington",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.lexingtoncounty.net/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marion",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.marionsc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marlboro",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.marlborocountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McCormick",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.mccormickcountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Newberry",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse/Online",
+   "url": "https://www.newberrycounty.net/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Oconee",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://oconeesc.com/delinquent-tax/tax-sale-information",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Orangeburg",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.orangeburgcounty.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pickens",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse/Online",
+   "url": "https://www.pickens.sc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Richland",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.richlandonline.com/Government/Departments/Finance/Tax-Sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Saluda",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.saludacountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Spartanburg",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.spartanburgcounty.gov/408/Tax-Procedures",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sumter",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.sumtercountysc.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Union",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.unioncountysc.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Williamsburg",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Courthouse",
+   "url": "https://www.williamsburgcounty.sc.gov/326/Tax-Sale-Procedures",
+   "notes": [],
+   "extra": {
+    "saleMonth": "October/November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "York",
+   "kind": "county",
+   "saleType": "redeemable",
+   "redemption": "12 months from date of delinquent tax sale",
+   "rate": "3–12% (varies by redemption month)",
+   "platform": "Online",
+   "url": "https://www.yorkcountygov.com/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleMonth": "November"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

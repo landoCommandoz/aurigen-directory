@@ -1,0 +1,451 @@
+{
+ "code": "ME",
+ "name": "Maine",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "8%",
+ "rateNote": "18-month redemption via tax lien mortgage — municipal process",
+ "redemption": "18 months",
+ "bidMethod": "Municipal-controlled",
+ "statute": "Me. Rev. Stat. tit. 36 §943",
+ "officialLink": "https://legislature.maine.gov/statutes/36/title36sec943.html",
+ "auctionPlatform": "Municipal — varies by town",
+ "auctionTiming": "Year-round",
+ "keyNotes": [
+  "Tax lien mortgage system — municipality holds lien, not sold directly to investors in most cases",
+  "After 18 months unredeemed, municipality forecloses and may sell property",
+  "PL 2025, c. 351 update — verify current municipal procedures",
+  "Retail investor access is limited — primarily municipal sales of foreclosed properties"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [
+  {
+   "bill": "PL 2025, c. 351",
+   "summary": "2025 update to Maine tax lien mortgage procedures. Verify current municipal requirements before transacting.",
+   "status": "passed",
+   "effectiveDate": "2025"
+  }
+ ],
+ "summary": "Maine municipalities hold tax liens. After 18 months, municipality takes title and can auction. No centralized state system. Statute: MRSA Title 36 §942.",
+ "typeWhy": "Maine municipalities hold tax liens — the municipality itself purchases the lien, and after 18 months of non-redemption, the municipality takes title and can auction the property. MRSA Title 36 §942.",
+ "rateWhy": "Maine sets the interest rate on municipal tax liens at 8% per annum by statute. This is a fixed rate applied uniformly. MRSA Title 36 §942.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Municipal-level only, sporadic auctions, very low volume. Not a viable primary market.",
+ "beginnerTip": "Portland and Bangor have the most consistent municipal auction activity. For rural towns, call the town office directly — many don't advertise sales publicly.",
+ "risks": [
+  "Municipalities conduct sales infrequently and irregularly",
+  "No centralized platform — requires monitoring individual town tax collectors",
+  "Very low volume"
+ ],
+ "ddExtra": [
+  "Contact the municipal tax collector at least 6 months before any expected sale",
+  "Confirm the municipality plans to auction rather than negotiate or hold the property",
+  "Check for conservation easements or deed restrictions before bidding"
+ ],
+ "auctionSignup": {
+  "platform": "Municipal tax collector (varies)",
+  "steps": [
+   "Identify your target municipality at maine.gov/revenue/propertytax",
+   "Contact the municipal tax collector at least 6 months before any expected auction",
+   "Request the delinquent property list and auction schedule",
+   "Register per municipality instructions — most are in-person"
+  ],
+  "depositInfo": "Varies by municipality.",
+  "directLink": "https://www.maine.gov/revenue/taxes/property-tax"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "Municipal tax collector offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "statute": "MRS Title 36, §942 (Lien Certificate) + §943 (Tax Lien Mortgage) + §943-C (Sale of Foreclosed Property)",
+  "structure": "493+ municipalities run independent tax lien processes. No county-level auction. Each town/city manages its own tax-acquired property.",
+  "process": {
+   "step1": "Taxes delinquent → tax collector makes demand for payment + notice",
+   "step2": "Tax collector files tax lien certificate in county Registry of Deeds — creates 'tax lien mortgage' on property",
+   "step3": "Municipality sends certified mail copy to record owner and all mortgage holders",
+   "step4": "30–45 days before 18-month deadline: treasurer sends certified mail notice of impending foreclosure with exact date",
+   "step5": "18 months from lien filing: AUTOMATIC FORECLOSURE — municipality owns property without court order",
+   "step6": "Municipality sells under §943-C: must list with licensed RE broker at highest reasonable price. At least 12 months to sell.",
+   "stat": "MRS §942, §943, §943-C"
+  },
+  "auction": {
+   "frequency": "As scheduled by each municipality",
+   "platform": "Municipality-run — listed with licensed ME real estate broker (§943-C requirement)",
+   "bidMethod": "Broker-listed sale at market price",
+   "notice": "Former owner must receive advance notice of intent to sell. May require former owner to execute QC deed conveying interest before receiving excess proceeds.",
+   "statute": "MRS §943-C (as amended by PL 2024, enacted per PL 2023, c.640 + St.2024)"
+  },
+  "otc": {
+   "available": false,
+   "name": "N/A — Maine tax-acquired property sold via RE broker under §943-C",
+   "note": "Contact individual municipalities directly for tax-acquired property listings"
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — Maine lien stays with municipality unless assigned (bulk sale option)"
+  },
+  "taxTitleAssignment": {
+   "available": true,
+   "name": "Tax Title Assignment (MGL c.60 §52 equivalent)",
+   "statute": "MRS §943 — municipality may assign tax lien mortgage to private party",
+   "note": "Bulk sale option: municipality may assign right to collect tax obligation to private investor per §943. Less common than municipal retention."
+  },
+  "redemption": {
+   "period": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "lateNoticeException": "If required notices not sent timely — mortgagee/owner may redeem within 3 months of receiving actual knowledge of lien recording",
+   "probateExtension": "Probate court may extend up to 60 days following final allowance/disallowance of will",
+   "interestRate": "Municipality-set. Maximum: prime rate (WSJ first business day of year) + 3 percentage points, rounded up to nearest whole number. No statewide fixed rate.",
+   "costToRedeem": "All taxes + interest + recording fees + $13 + certified mail fees",
+   "statute": "MRS §943, §942",
+   "homesteadDifferent": false
+  },
+  "deedPath": {
+   "name": "Automatic Foreclosure — Municipality Owns (no court required)",
+   "effect": "At 18 months from lien recording — municipality automatically owns property. Tax lien mortgage is prima facie evidence of title regularity.",
+   "postForeclosure": "Municipality must sell via licensed RE broker per §943-C. Must send former owner pre-sale notice.",
+   "formerOwnerPostDeed": "Former owner may execute QC deed and waive §946-B challenge right to receive excess proceeds. This enables marketable title.",
+   "statute": "MRS §943",
+   "quietTitleRequired": false,
+   "note": "⚡ PL 2024 amendment: post-sale notice of intent to distribute must be sent to former owners and all parties with recorded interests. Itemized accounting available on request. Within 10 days of distributing proceeds — municipality records notice at Registry."
+  },
+  "surplus": {
+   "available": true,
+   "name": "Excess Sale Proceeds",
+   "statute": "MRS §943-C (2024 amendments, eff. Aug 9 2024)",
+   "definition": "Sale proceeds minus: all delinquent taxes that would have accrued during municipal ownership + fees (advertising, mailing, recording, RE broker fees) + admin costs + attorney fees + utility charges",
+   "process": "Notice mailed to former owner at last known address. If not located → published in local newspaper. If former owner fails to claim within 30 days of final published notice → transferred to state unclaimed property fund.",
+   "formerOwnerRequest": "Former owner may request written accounting and itemization of deductions",
+   "waiver": "Former owner who receives excess proceeds waives right to contest foreclosure under §946-B",
+   "note": "Tyler v. Hennepin directly influenced ME §943-C overhaul in 2023/2024. Municipalities now MUST return surplus to former owners."
+  },
+  "confirmed2026": {
+   "fortFairfield_foreclosure": "Feb 17, 2026 — 16 properties foreclosed for non-payment of 2023 taxes. Listed with Dobb's Realty on/after April 21, 2026.",
+   "fortFairfield_prior": "Sept 15, 2025 foreclosure parcels — Purchase/Sale Agreements approved Feb 18, 2026 Town Council.",
+   "stateTaxAcquired": "Maine Revenue Services (unorganized territory) now uses On Point Realty for all state tax-acquired property listings (no longer sealed bid process).",
+   "stateUrl": "https://www.maine.gov/revenue/taxes/property-tax/unorganized-territory/tax-acquired-property"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "8%",
+  "redemption": "18 meses",
+  "summary": "Los municipios de Maine realizan gravámenes fiscales. Después de 18 meses, el municipio toma el título y puede subastar. Sin sistema estatal centralizado. Estatuto: MRSA Título 36 §942.",
+  "typeWhy": "Maine es un estado de gravamen porque los municipios retienen gravámenes fiscales. Después de 18 meses sin redención, el municipio toma el título (MRSA Título 36 §942).",
+  "rateWhy": "La tasa del 8% es relativamente baja entre los estados de gravamen. Refleja el volumen limitado y la naturaleza esporádica de las ventas municipales (MRSA Título 36 §942).",
+  "notBeginnerReason": "Solo a nivel municipal, subastas esporádicas, volumen muy bajo. No es un mercado primario viable.",
+  "beginnerTip": "Portland y Bangor tienen la actividad más consistente en ME. Para pueblos rurales, llame directamente a la oficina municipal — muchos no anuncian ventas públicamente.",
+  "risks": [
+   "Los municipios realizan ventas con poca frecuencia e irregularmente",
+   "Sin plataforma centralizada",
+   "Volumen muy bajo"
+  ],
+  "ddExtra": [
+   "Contacte al recaudador municipal al menos 6 meses antes de cualquier venta esperada",
+   "Confirme que el municipio planea subastar en lugar de negociar o retener",
+   "Revise servidumbres de conservación o restricciones antes de pujar"
+  ],
+  "auctionSignup": {
+   "platform": "Recaudador de impuestos municipal (varía)",
+   "steps": [
+    "Identifique su municipio objetivo en maine.gov/revenue/propertytax",
+    "Contacte al recaudador de impuestos municipal al menos 6 meses antes",
+    "Solicite la lista de propiedades en mora y el calendario de subasta",
+    "Regístrese según instrucciones del municipio — la mayoría son en persona"
+   ],
+   "depositInfo": "Varía por municipio.",
+   "directLink": "https://www.maine.gov/revenue/taxes/property-tax"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Androscoggin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.androscoggincounty.net/registry",
+   "notes": [
+    "57 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 57,
+    "registryUrl": "https://www.androscoggincounty.net/registry"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Aroostook",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.aroostookcounty.org/registry",
+   "notes": [
+    "118 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 118,
+    "registryUrl": "https://www.aroostookcounty.org/registry"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cumberland",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.cumberlandcounty.org/registry-of-deeds",
+   "notes": [
+    "28 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 28,
+    "registryUrl": "https://www.cumberlandcounty.org/registry-of-deeds"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.franklincounty.us/registry-of-deeds",
+   "notes": [
+    "33 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 33,
+    "registryUrl": "https://www.franklincounty.us/registry-of-deeds"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hancock",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.hancockcounteregistry.com",
+   "notes": [
+    "28 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 28,
+    "registryUrl": "https://www.hancockcounteregistry.com"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kennebec",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.kennebeccounty.org/registry",
+   "notes": [
+    "32 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 32,
+    "registryUrl": "https://www.kennebeccounty.org/registry"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Knox",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.knox-county.net/registry",
+   "notes": [
+    "16 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 16,
+    "registryUrl": "https://www.knox-county.net/registry"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.lincolncounty.org/registry",
+   "notes": [
+    "15 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 15,
+    "registryUrl": "https://www.lincolncounty.org/registry"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Oxford",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.oxfordcounty.org/registry",
+   "notes": [
+    "27 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 27,
+    "registryUrl": "https://www.oxfordcounty.org/registry"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Penobscot",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.penobscotcounty.net/registry",
+   "notes": [
+    "60 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 60,
+    "registryUrl": "https://www.penobscotcounty.net/registry"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Piscataquis",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.piscataquiscounty.net/registry",
+   "notes": [
+    "32 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 32,
+    "registryUrl": "https://www.piscataquiscounty.net/registry"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sagadahoc",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.sagadahoccounty.net/registry",
+   "notes": [
+    "11 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 11,
+    "registryUrl": "https://www.sagadahoccounty.net/registry"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Somerset",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.somersetcounty.net/registry",
+   "notes": [
+    "31 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 31,
+    "registryUrl": "https://www.somersetcounty.net/registry"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Waldo",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.waldocounty.net/registry",
+   "notes": [
+    "26 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 26,
+    "registryUrl": "https://www.waldocounty.net/registry"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.washingtoncountyregistry.com",
+   "notes": [
+    "48 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 48,
+    "registryUrl": "https://www.washingtoncountyregistry.com"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "York",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months from date tax lien certificate filed in Registry of Deeds",
+   "rate": "8%",
+   "platform": "Municipal treasurer / RE broker (§943-C)",
+   "url": "https://www.yorkdeeds.com",
+   "notes": [
+    "32 municipalities in county — each runs independent lien process. Tax-acquired property listed via licensed RE broker per MRS §943-C."
+   ],
+   "extra": {
+    "municipalities": 32,
+    "registryUrl": "https://www.yorkdeeds.com"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

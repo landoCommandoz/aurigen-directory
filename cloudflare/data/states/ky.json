@@ -1,0 +1,1847 @@
+{
+ "code": "KY",
+ "name": "Kentucky",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "12% + penalties",
+ "rateNote": "No fixed statewide rate — purchaser sets rate per certificate within statutory bounds",
+ "redemption": "1 year",
+ "bidMethod": "Highest bidder — sheriff sells Certificates of Delinquency",
+ "statute": "KRS §134.420 et seq.",
+ "officialLink": "https://revenue.ky.gov/ClerkNetwork/Documents/DelinquentCollectionManual20062.pdf",
+ "auctionPlatform": "County sheriff — in-person",
+ "auctionTiming": "April–June (most counties)",
+ "keyNotes": [
+  "Sheriff sells Certificates of Delinquency — investors purchase tax bills directly",
+  "50-day notice requirement after purchase to notify owner",
+  "Circuit court foreclosure required to obtain deed — no automatic conversion",
+  "Owner can redeem at any time before foreclosure sale is complete",
+  "High redemption rate — most certificates pay out as interest income"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "Kentucky conducts in-person sealed bid sales at the county level. No online bidding. 1-year redemption before foreclosure can proceed. Statute: KRS §134.420.",
+ "typeWhy": "Kentucky sells tax lien certificates through in-person sealed bid sales at the county level. The investor purchases the lien while the owner retains title during the 1-year redemption window. KRS §134.420.",
+ "rateWhy": "Kentucky imposes a 12% annual interest rate on tax lien certificates plus additional statutory penalties on redemption. KRS §134.420.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "In-person only, no online bidding, sealed bid format makes it hard to gauge competition.",
+ "beginnerTip": "Jefferson (Louisville) and Fayette (Lexington) counties have the best inventory. The sealed bid format works in your favor in rural counties — less competition means your opening bid often wins.",
+ "risks": [
+  "In-person only — cannot participate remotely",
+  "Sealed bid format makes it impossible to know competitor bids",
+  "Limited online infrastructure"
+ ],
+ "ddExtra": [
+  "Visit the property in person before submitting a bid — no online verification is sufficient",
+  "Verify lien priority in the county records office",
+  "Confirm the redemption period has not been extended for any reason"
+ ],
+ "auctionSignup": {
+  "platform": "County Sheriff or County Clerk (in-person, sealed bid)",
+  "steps": [
+   "Find your target county's sheriff or clerk at kycourts.net",
+   "Contact the office to confirm the upcoming sale date and request the property list",
+   "Obtain and complete the sealed bid form — submit in person by the deadline",
+   "Attend the opening — winners are announced publicly"
+  ],
+  "depositInfo": "Typically cashier's check at time of bid submission.",
+  "directLink": "https://revenue.ky.gov/Property/Pages/default.aspx"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "County sheriff offices",
+  "County clerk offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "auction": {
+   "frequency": "Annual — mid-July (90–135 days after bills filed with county clerk on April 15)",
+   "platform": "County Clerk's office — each county independently. No statewide platform.",
+   "bidMethod": "Premium bid — certificates sold to first purchaser offering to pay full amount",
+   "note": "KY uses premium bid per KRS 134.450 — if total offers exceed 10% of total dollar amount or $200K, special lot allocation process applies",
+   "depositSelection": "Random drawing determines selection order at start of sale",
+   "statute": "KRS §134.128, §134.450, §134.470"
+  },
+  "registration": {
+   "stateLevel": "Register with KY Dept of Revenue (Form 62A370A). $250 fee. Required if: >3 certs in a county, >5 statewide, or >$10,000 invested. Application deadline: May 15, 2026 for 2026 sales.",
+   "countyLevel": "Separate registration required at each county clerk's office. Deadlines set by county.",
+   "registrationUrl": "https://revenue.ky.gov/Property/pages/third-party-purchaser.aspx",
+   "saleDatesUrl": "https://revenue.ky.gov/Property/pages/third-party-purchaser.aspx (County Clerk Delinquent Tax Sale Dates — updated 3/16/26)"
+  },
+  "otc": {
+   "available": true,
+   "name": "Prior-Year Certificate Purchase (OTC)",
+   "description": "Certificates from prior years not yet foreclosed — available year-round from county clerk",
+   "statute": "KRS §134.128",
+   "process": "Contact county clerk directly. Prior-year certs available anytime from clerk.",
+   "note": "Kenton County confirmed: prior-year certs available year-round at kentondeeds.com"
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payment",
+   "rate": "12% per annum on subsequent payments",
+   "process": "Certificate holder may pay subsequent delinquent taxes — added to certificate balance",
+   "statute": "KRS §134.490"
+  },
+  "redemption": {
+   "period": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "noForeclosureBefore": "Cannot commence foreclosure action until 1 year after delinquency date (KRS §134.546)",
+   "absoluteDeadline": "11 years after delinquency — action barred",
+   "statute": "KRS §134.480, §134.490, §134.546",
+   "homesteadDifferent": false,
+   "agDifferent": false,
+   "note50DayNotice": "Within 50 days of cert delivery, purchaser must mail notice to property owner (KRS §134.490). Annual notice required thereafter."
+  },
+  "deedPath": {
+   "name": "Master Commissioner's Deed (via Circuit Court foreclosure)",
+   "process": "Certificate holder files foreclosure lawsuit in Circuit Court after 1-year redemption. Master Commissioner conducts foreclosure sale. Court confirms.",
+   "belowAppraisedValue": "If property sells for less than 2/3 of appraised value at foreclosure — owner gets additional 6-month redemption at 10% interest (KRS §426.530)",
+   "statute": "KRS §134.546; §426.530",
+   "quietTitleRequired": false,
+   "note": "Louisville (Jefferson County): city uses KRS Chapter 91 mass foreclosure process — separate procedure via City petitioner"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Proceeds",
+   "statute": "KRS Chapter 134",
+   "process": "Distributed by court in priority order after foreclosure sale — former owner receives any remaining surplus",
+   "note": "Tyler v. Hennepin applies — KY court process distributes surplus to former owners"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "12% + penalidades",
+  "redemption": "1 año",
+  "summary": "Kentucky realiza ventas selladas en persona a nivel de condado. Sin pujas en línea. Redención de 1 año antes de que pueda proceder la ejecución. Estatuto: KRS §134.420.",
+  "typeWhy": "Kentucky es un estado de gravamen porque los condados venden certificados de gravamen fiscal en formato de puja sellada con un período de redención de 1 año (KRS §134.420).",
+  "rateWhy": "La tasa del 12% más penalidades adicionales proporciona un retorno moderado. El formato de puja sellada significa que la tasa efectiva no se reduce por competencia visible (KRS §134.420).",
+  "notBeginnerReason": "Solo en persona, sin pujas en línea, el formato de puja sellada dificulta evaluar la competencia.",
+  "beginnerTip": "Jefferson (Louisville) y Fayette (Lexington) tienen el mejor inventario. El formato sellado funciona a su favor en condados rurales — menos competencia.",
+  "risks": [
+   "Solo en persona — no puede participar remotamente",
+   "El formato sellado hace imposible conocer pujas de competidores",
+   "Infraestructura en línea limitada"
+  ],
+  "ddExtra": [
+   "Visite la propiedad en persona antes de enviar una puja",
+   "Verifique la prioridad del gravamen en la oficina de registros del condado",
+   "Confirme que el período de redención no haya sido extendido"
+  ],
+  "auctionSignup": {
+   "platform": "Sheriff del condado o Secretario del condado (en persona, puja sellada)",
+   "steps": [
+    "Encuentre el sheriff o secretario de su condado en kycourts.net",
+    "Contacte la oficina para confirmar la próxima fecha y solicitar la lista de propiedades",
+    "Obtenga y complete el formulario de puja sellada — envíe en persona antes del plazo",
+    "Asista a la apertura — los ganadores se anuncian públicamente"
+   ],
+   "depositInfo": "Normalmente cheque de caja al momento de envío.",
+   "directLink": "https://revenue.ky.gov/Property/Pages/default.aspx"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Adair",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://adaircountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Allen",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.allencountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Anderson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.andersoncountykyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ballard",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.ballardcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Barren",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.barrencountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bath",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.bathcountykyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bell",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.bellcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Boone",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.boonecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bourbon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.bourboncountykyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Boyd",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.boydcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Boyle",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.boylecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bracken",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.brackencountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Breathitt",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.breathittcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Breckinridge",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.breckinridgecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bullitt",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.bullittcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Butler",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.butlercountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Caldwell",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.caldwellcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Calloway",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.callowaycountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Campbell",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.campbellcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carlisle",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.carlislecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carroll",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.carrollcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carter",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.cartercountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Casey",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.caseycountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Christian",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.christiancountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clark",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.clarkcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clay",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.claycountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clinton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.clintoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Crittenden",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.crittendencountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cumberland",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.cumberlandcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Daviess",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.daviesscountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Edmonson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.edmonsoicountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Elliott",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.elliottcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Estill",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.estillcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fayette",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.fayettecountyclerk.com",
+   "notes": [
+    "Lexington-Fayette — large urban market"
+   ],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fleming",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.flemingcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Floyd",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.floydcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.franklincountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fulton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.fultoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gallatin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.gallatincountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Garrard",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.garrardcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grant",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.grantcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Graves",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.gravescountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grayson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.graysoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Green",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.greencountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Greenup",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.greenupco.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hancock",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.hancockcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hardin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.hardincountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harlan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.harlancountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harrison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.harrisoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hart",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.hartcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Henderson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.hendersoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Henry",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.henrycountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hickman",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.hickmancountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hopkins",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.hopkinscountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.jacksoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://jeffersoncountyclerk.org/del_tax_faq/",
+   "notes": [
+    "Louisville — also uses KRS Ch.91 city process. Certs advertised ~30 days prior in Courier Journal."
+   ],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jessamine",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.jessamineClerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Johnson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.johnsoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kenton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://kentoncountykyclerk.com/delinquent-property-tax/",
+   "notes": [
+    "⚡ 2025: Published June 16 Courier Journal; listed June 23 on website; prior-year certs year-round at kentondeeds.com",
+    "⚡ Kenton County: confirmed process — kentondeeds.com for prior-year certs"
+   ],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Knott",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.knottcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Knox",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.knoxcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "LaRue",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.laruecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Laurel",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.laurelcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lawrence",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.lawrencecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lee",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.leecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Leslie",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.lesliecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Letcher",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.letchercountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lewis",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.lewiscountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.lincolncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Livingston",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.livingstoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Logan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.logancountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lyon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.lyoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Madison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.madisoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Magoffin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.magoffincountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marion",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.marioncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marshall",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.marshallcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Martin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.martincountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mason",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.masoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McCracken",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.mccrackencountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McCreary",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.mccrearycountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McLean",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.mcleancountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Meade",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.meadecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Menifee",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.menifeecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mercer",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.mercercountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Metcalfe",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.metcalfecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Monroe",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.monroecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Montgomery",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.montgomerycountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Morgan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.morgancountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Muhlenberg",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.muhlenbergcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nelson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.nelsoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nicholas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.nicholascountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ohio",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.ohiocountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Oldham",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.oldhamcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Owen",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.owencountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Owsley",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.owsleycountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pendleton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.pendletoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Perry",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.perrycountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pike",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.pikecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Powell",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.powellcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pulaski",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.pulaskicountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Robertson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.robertsoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rockcastle",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.rockcastlecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rowan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.rowancountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Russell",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.russellcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Scott",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.scottcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Shelby",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.shelbycountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Simpson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.simpsoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Spencer",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.spencercountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Taylor",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.taylorcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Todd",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.toddcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Trigg",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.triggcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Trimble",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.trimblecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Union",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.unioncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Warren",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.warrencountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.washingtoncountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wayne",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.waynecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Webster",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.webstercountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Whitley",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.whitleycountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wolfe",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.wolfecountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Woodford",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year from date taxes became delinquent (i.e., Jan 1 of year following assessment)",
+   "rate": "12% + penalties",
+   "platform": "County Clerk",
+   "url": "https://www.woodfordcountyclerk.com",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Mid-July"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

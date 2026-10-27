@@ -1,0 +1,1313 @@
+{
+ "code": "MS",
+ "name": "Mississippi",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "18%",
+ "rateNote": "Fixed rate — overbid earns NO interest",
+ "redemption": "2 years",
+ "bidMethod": "Premium bid (highest dollar)",
+ "statute": "Miss. Code §27-45-3",
+ "officialLink": "https://law.justia.com/codes/mississippi/chapter-45/",
+ "auctionPlatform": "County-run, in-person",
+ "auctionTiming": "August–September (most counties)",
+ "keyNotes": [
+  "1.5% per month fixed — strong predictable return",
+  "Overbid amount earns zero interest — bid only up to tax amount",
+  "2-year redemption gives owner two full years"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "Mississippi holds annual tax lien sales at the county level. 18% rate. After 2-year redemption, lienholder can file for chancery court decree. State land available for direct purchase via GovEase. Statute: MS Code §27-41-1.",
+ "typeWhy": "Mississippi sells tax lien certificates at annual county-level sales. The investor purchases the lien while the property owner retains title during the 2-year redemption period. MS Code §27-41-1.",
+ "rateWhy": "Mississippi sets a fixed statutory rate of 18% per annum on tax lien certificates — a flat rate that applies uniformly and is not bid down at auction. MS Code §27-41-1.",
+ "beginnerFriendly": true,
+ "notBeginnerReason": "",
+ "beginnerTip": "Start with GovEase for direct purchase of state-owned land. No auction competition — you pick the property, pay the price, and get your certificate. Best beginner entry point in Mississippi.",
+ "risks": [
+  "2-year redemption before chancery court decree — long capital cycle",
+  "Overbid premium is NOT returned if owner redeems",
+  "Title research is critical — many rural properties have complex ownership histories"
+ ],
+ "ddExtra": [
+  "Check GovEase for direct purchase inventory before attending county auctions",
+  "Confirm pre-bid registration deadlines with county chancery clerk",
+  "Verify property is not in a FEMA flood zone — Mississippi has significant flood risk"
+ ],
+ "auctionSignup": {
+  "platform": "GovEase.com (state land) + county chancery clerk (county sales)",
+  "steps": [
+   "For state-owned land: go to govease.com and search Mississippi",
+   "For county sales: contact the county chancery clerk — find them at mdah.ms.gov/county-list",
+   "Register per county instructions — some counties use GovEase, others are in-person",
+   "Fund your account or bring cashier's check per county requirements"
+  ],
+  "depositInfo": "Varies. GovEase requires pre-funding.",
+  "directLink": "https://govease.com"
+ },
+ "otc": {
+  "available": true,
+  "note": "State-owned tax land available for direct purchase on GovEase.com year-round."
+ },
+ "platforms": [
+  "GovEase.com",
+  "County chancery clerk offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "auction": {
+   "frequency": "Annual — 1st Monday in April OR last Monday in August (county sets)",
+   "majority": "Last Monday in August (most counties)",
+   "platform": "GovEase (growing) / in-person courthouse",
+   "bidMethod": "Premium bid — highest bidder above face value",
+   "minimumBid": "All delinquent taxes + penalties",
+   "startTime": "8:30 AM — continues until all parcels offered",
+   "overbidRule": "CRITICAL: Overbid earns NO interest and is NOT returned upon redemption. Goes to county general fund per MCA §27-41-77.",
+   "statute": "MCA §27-41-49 through §27-41-89"
+  },
+  "struckToState": {
+   "name": "Struck Off to State",
+   "trigger": "No bidder at tax sale — property certified to state",
+   "note": "Rarely happens due to investor demand at MS tax sales. Property remains redeemable for 2 years.",
+   "statute": "MCA §27-41-55"
+  },
+  "otc": {
+   "available": true,
+   "name": "Assignment of Tax Lien / State Land Purchase",
+   "statute": "MCA §27-47 (Assignment); MCA §29-1 (State Lands)",
+   "process": "Tax liens are freely assignable by endorsement. Struck-to-state parcels may be purchased from Land Commissioner after 2-year redemption period.",
+   "note": "Contact Mississippi Secretary of State / Land Commissioner for state-held parcels"
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payment",
+   "note": "Certificate holder may pay subsequent taxes. Added to certificate. Earns 18%/yr + 5% penalty.",
+   "statute": "MCA §27-45"
+  },
+  "redemption": {
+   "period": "2 years from date of sale",
+   "interestRate": "18% per annum on face value (taxes + penalty)",
+   "penalty": "5% on delinquent taxes",
+   "interestOnOverbid": "NONE — overbid earns zero interest",
+   "process": "Owner (or mortgage holder, interested party) pays Chancery Clerk: face amount + 18%/yr interest + 5% penalty",
+   "statute": "MCA §27-45-3",
+   "homesteadDifferent": false,
+   "agDifferent": false,
+   "note": "Chancery Clerk handles all redemptions and paybacks to purchasers"
+  },
+  "deedPath": {
+   "name": "Tax Deed from Chancery Clerk",
+   "eligibleAfter": "2 years from sale (if not redeemed)",
+   "process": "Purchaser applies to Chancery Clerk. Clerk sends required notices (registered mail to owner and lienholders during redemption period). Clerk issues deed.",
+   "titleQuality": "No warranty. As-is.",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true,
+   "statute": "MCA §27-45-29"
+  },
+  "surplus": {
+   "available": false,
+   "name": "No surplus — overbid goes to county general fund",
+   "statute": "MCA §27-41-77",
+   "note": "CRITICAL: Unlike most states, MS overbid is NOT returned and NOT available to former owner. Goes permanently to county general fund. Only face amount + 18%/yr returned to purchaser upon redemption."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "18%",
+  "redemption": "2 años",
+  "summary": "Mississippi realiza ventas anuales de gravámenes a nivel de condado. Tasa del 18%. Después de 2 años, el titular puede presentar para decreto del tribunal de equidad. Tierra estatal disponible vía GovEase. Estatuto: MS Code §27-41-1.",
+  "typeWhy": "Mississippi es un estado de gravamen porque los condados venden certificados de gravamen fiscal anuales con período de redención de 2 años (MS Code §27-41-1).",
+  "rateWhy": "La tasa fija del 18% es una de las más altas entre los estados de gravamen. No se puja a la baja (MS Code §27-41-1).",
+  "notBeginnerReason": "",
+  "beginnerTip": "Comience con GovEase para compra directa de tierra estatal. Sin competencia en subasta — usted elige la propiedad, paga y recibe su certificado. El mejor punto de entrada para principiantes en Mississippi.",
+  "risks": [
+   "Redención de 2 años antes del decreto — largo ciclo de capital",
+   "La prima de exceso de puja NO se devuelve si el propietario redime",
+   "La investigación de título es crítica — muchas propiedades rurales tienen historiales complejos"
+  ],
+  "ddExtra": [
+   "Revise GovEase para inventario de compra directa antes de asistir a subastas",
+   "Confirme los plazos de registro previo con el secretario de equidad del condado",
+   "Verifique que la propiedad no esté en zona de inundación FEMA"
+  ],
+  "auctionSignup": {
+   "platform": "GovEase.com (tierra estatal) + secretario de equidad del condado (ventas del condado)",
+   "steps": [
+    "Para tierra estatal: govease.com y busque Mississippi",
+    "Para ventas del condado: contacte al secretario de equidad — mdah.ms.gov/county-list",
+    "Regístrese según instrucciones del condado — algunos usan GovEase, otros son en persona",
+    "Financie su cuenta o traiga cheque de caja según requisitos del condado"
+   ],
+   "depositInfo": "Varía. GovEase requiere fondos anticipados.",
+   "directLink": "https://govease.com"
+  },
+  "otc": {
+   "available": true,
+   "note": "Tierra fiscal estatal disponible para compra directa en GovEase.com durante todo el año."
+  }
+ },
+ "counties": [
+  {
+   "name": "Adams",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person/GovEase",
+   "url": "https://www.adamscountyms.net/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Alcorn",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.alcorncounty.org/tax-collector/the-tax-sale/",
+   "notes": [
+    "Sale ends ~12:30pm; City of Corinth holds separate sale at 1pm"
+   ],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Amite",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.amitecountyms.com/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Attala",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.attalacountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Benton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.bentoncountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bolivar",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person/GovEase",
+   "url": "https://www.bolivarcountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Calhoun",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.calhouncountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carroll",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.carrollcountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chickasaw",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.chickasawcountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Choctaw",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.choctawcountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Claiborne",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.claibornecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clarke",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.clarkecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clay",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.claycountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Coahoma",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person/GovEase",
+   "url": "https://www.coahomacountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Copiah",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.copiahcountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Covington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.covingtoncountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "DeSoto",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.desotocountyms.gov/508/Tax-Sale",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Forrest",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person/GovEase",
+   "url": "https://www.forrestcountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.franklincountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "George",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.georgecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Greene",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.greenecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grenada",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.grenadacountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hancock",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.hancockcountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harrison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.co.harrison.ms.us/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hinds",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person/GovEase",
+   "url": "https://www.hindscountyms.com/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Holmes",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.holmescountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Humphreys",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.humphreyscountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Issaquena",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.issaquenacountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Itawamba",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.itawambacountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.co.jackson.ms.us/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jasper",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.jaspercountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.jeffersoncountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson Davis",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.jeffersondaviscountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jones",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.jonescountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kemper",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.kempercountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lafayette",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.lafayettecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lamar",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.lamarcountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lauderdale",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.lauderdalecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lawrence",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.lawrencecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Leake",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.leakecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lee",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://leecotaxcollector.com/tax-sale",
+   "notes": [
+    "⚡ ~3,000 parcels. GovEase online. Reg Aug 1.",
+    "⚡ Lee County: GovEase confirmed, ~3,000 parcels, reg opens Aug 1"
+   ],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Leflore",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.leflorecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.lincolncountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lowndes",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.lowndescountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Madison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.madison-co.com/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marion",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.marioncountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marshall",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.marshallcountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Monroe",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.monroecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Montgomery",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.montgomerycountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Neshoba",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.neshobacountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Newton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.newtoncountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Noxubee",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.noxubeecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Oktibbeha",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.oktibbeha.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Panola",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.panolacountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pearl River",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.pearlrivercountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Perry",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.perrycountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pike",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.pikecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pontotoc",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.pontotoccountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Prentiss",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.prentisscountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Quitman",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.quitmancountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rankin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.rankincounty.org/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Scott",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.scottcountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sharkey",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.sharkeycountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Simpson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.simpsoncountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Smith",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.smithcountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stone",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.stonecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sunflower",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.sunflowercountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tallahatchie",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.tallahatchiecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tate",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.tatecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tippah",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.tippahcountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tishomingo",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.tishomingocountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tunica",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.tunicacountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Union",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.unioncountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Walthall",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.walthallcountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Warren",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.warrencountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.washingtoncountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wayne",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.waynecountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Webster",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.webstercountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wilkinson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.wilkinsoncountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Winston",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.winstoncountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Yalobusha",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "In-person",
+   "url": "https://www.yalobushacountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Yazoo",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years from date of sale",
+   "rate": "18%",
+   "platform": "GovEase",
+   "url": "https://www.yazoocountyms.gov/tax-collector",
+   "notes": [],
+   "extra": {
+    "saleDate": "Last Monday August"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}
