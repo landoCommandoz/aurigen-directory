@@ -1,0 +1,635 @@
+{
+ "code": "NM",
+ "name": "New Mexico",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "N/A",
+ "rateNote": "NM Taxation & Revenue Dept. runs state-level auction — not county-based",
+ "redemption": "None post-sale",
+ "bidMethod": "Highest bidder (competitive)",
+ "statute": "NMSA 1978 §7-38-67; §7-38-70",
+ "officialLink": "https://www.tax.newmexico.gov/businesses/wp-content/uploads/sites/4/2023/11/New-TERMS-OF-THE-PROPERTY-TAX-DIVISION-PUBLIC-AUCTION-SALES-online-11-16-2023.pdf",
+ "auctionPlatform": "NM Taxation & Revenue Department — state-run",
+ "auctionTiming": "Year-round",
+ "keyNotes": [
+  "State-run auction — NM Taxation & Revenue Dept. conducts sales, not counties",
+  "3 years delinquent before state schedules auction",
+  "Deed grants fee simple absolute — wipes prior interests per §7-38-70",
+  "Buyer CANNOT enter property until deed is recorded",
+  "2-year window for former owner to challenge in District Court",
+  "120-day federal IRS redemption may apply — always check for federal liens"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "New Mexico's Property Tax Division (PTD) manages all tax deed sales statewide through a centralized online system. Single registration covers all NM counties. Statute: NMSA §7-38-65.",
+ "typeWhy": "New Mexico sells the property deed outright through the state's centralized Property Tax Division, with no post-sale redemption. NMSA §7-38-65.",
+ "rateWhy": "New Mexico is a pure deed state with no statutory interest rate. Returns are market-driven based on competitive auction bidding. NMSA §7-38-65.",
+ "beginnerFriendly": true,
+ "notBeginnerReason": "",
+ "beginnerTip": "New Mexico's single-registration system is the simplest in the country. Register once, access all county sales. Good starting point for deed-state investing.",
+ "risks": [
+  "Many parcels are rural desert with limited development potential",
+  "Title issues common on older properties",
+  "Some parcels have Native American land claim complications"
+ ],
+ "ddExtra": [
+  "Check BLM and BIA records for any Native American land complications",
+  "Verify road access — many NM parcels are landlocked desert",
+  "Run title search before bidding on any property with structures"
+ ],
+ "auctionSignup": {
+  "platform": "New Mexico PTD online portal",
+  "steps": [
+   "Go to tax.newmexico.gov/property-taxes and find the tax sale section",
+   "Create an account — single registration covers all New Mexico counties",
+   "Browse available properties and register for upcoming sales",
+   "Bid online per PTD instructions"
+  ],
+  "depositInfo": "Varies by sale. Confirm with PTD.",
+  "directLink": "https://www.tax.newmexico.gov/about-us/property-tax-division/"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "tax.newmexico.gov"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "deed",
+  "statute": "NMSA §7-38-65 (Sale Authority), §7-38-66 (Notice), §7-38-67 (Publication), §7-38-70 (Deed + 2-yr Challenge)",
+  "administrator": "New Mexico Taxation and Revenue Department, Property Tax Division (PTD) — NOT county treasurers",
+  "adminUrl": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+  "process": {
+   "step1": "Taxes delinquent → 2-year delinquency → added to county tax delinquency list",
+   "step2": "3 years after first delinquent date on list → PTD schedules auction",
+   "step3": "PTD mails certified mail notice 20–30 days before sale to record owner",
+   "step4": "Publication in local newspaper for 3 consecutive weeks before sale",
+   "step5": "Public auction at county courthouse or designated location. 10 AM start. Registration 8 AM, closes at auction start.",
+   "step6": "Highest bid wins. Tax Deed issued. New owner immediately.",
+   "stat": "NMSA §7-38-65, §7-38-66, §7-38-67, §7-38-70"
+  },
+  "auction": {
+   "frequency": "As scheduled by PTD — multiple rounds per year (March, August, September, October, December confirmed in 2025/2026)",
+   "platform": "In-person at county courthouse or designated location — PTD-administered",
+   "bidMethod": "Premium bid — highest bidder",
+   "minimumBid": "All delinquent taxes + penalties + interest + costs. No bid below this accepted.",
+   "payment": "In full before auction closes — money order, certified/cashier's check, or personal/business check with bank letter of credit",
+   "registration": "In-person day of sale. 8 AM open, closes at auction start (10 AM). Must be registered to bid.",
+   "statute": "NMSA §7-38-68, §7-38-70"
+  },
+  "confirmed2026": {
+   "march": [
+    "Harding County — March 2, 1 PM — 35 Pine St., Mosquero, NM 87733",
+    "Union County — March 3, 10 AM — 200 Court St., Clayton, NM 88415",
+    "Colfax County — March 4-5, 10 AM — 230 North 3rd St., Raton, NM 87740",
+    "Santa Fe County — March 13, 10 AM — 102 Grant Ave Floor #2, Santa Fe, NM 87501",
+    "Eddy County — March 17, 10 AM — 101 W. Greene St. Ste 211, Carlsbad, NM 88220",
+    "Lea County — March 18, 10 AM — 100 N Main Ste 3-C, Lovington, NM 88260",
+    "Otero County — March 24, 10 AM — 401 [location TBC per PTD notice], Alamogordo, NM"
+   ],
+   "source": "NM Taxation & Revenue Department Press Release 02/23/26 + KRQE News 13",
+   "note": "PTD announces additional rounds throughout year. Check tax.newmexico.gov for updated schedule."
+  },
+  "otc": {
+   "available": false,
+   "name": "N/A — NM does NOT conduct tax deed, tax certificate, or tax lien sales outside PTD auctions",
+   "note": "Per Sandoval County official site: 'The State of New Mexico, including all counties, does not conduct tax deed, tax certificate and tax lien sales. The only property sales conducted by the State are public auctions.'"
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — NM is deed state, PTD-administered"
+  },
+  "redemption": {
+   "preAuction": "Owner may redeem (pay all delinquent taxes + penalties + interest + costs) by 5:00 PM day prior to sale",
+   "postSale": "⚡ NO standard redemption period post-sale. New owner takes title immediately.",
+   "federalLien": "120-day IRS redemption right if federal lien exists on property",
+   "challengePeriod": "2-year window post-sale — former owner may challenge sale in court ONLY on 4 specific grounds: (1) taxes not delinquent, (2) PTD failed to mail required notice/return receipt, (3) taxes paid before sale, (4) installment agreement in effect and payments current",
+   "statute": "NMSA §7-38-65, §7-38-70",
+   "homesteadDifferent": false
+  },
+  "deedPath": {
+   "name": "Tax Deed (State of New Mexico)",
+   "effect": "Conveys all former owner's interest as of date state's tax lien arose. Fee simple absolute. Strikes down all previous titles and interests.",
+   "exceptions": "Federal tax liens if IRS exercises 120-day redemption right. Betterment statute liens (§42-4-18 NMSA).",
+   "statute": "NMSA §7-38-70",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus / Excess Proceeds",
+   "statute": "NMSA §7-38-70 (implied) — PTD auction proceeds first applied to taxes + costs",
+   "process": "Any proceeds above taxes + costs should be available to former owner. Tyler v. Hennepin applies.",
+   "note": "[VERIFY] — NM PTD official FAQ does not explicitly detail surplus claim process. Contact PTD at 505-827-0883 for excess proceeds claims."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "deed",
+  "rate": "N/A",
+  "redemption": "Ninguna post-venta",
+  "summary": "La División de Impuesto a la Propiedad (PTD) de Nuevo México gestiona todas las ventas de escrituras fiscales a través de un sistema en línea centralizado. Un solo registro cubre todos los condados de NM. Estatuto: NMSA §7-38-65.",
+  "typeWhy": "Nuevo México es un estado de escritura porque la División de Impuesto a la Propiedad vende propiedades directamente al comprador sin derecho de redención (NMSA §7-38-65).",
+  "rateWhy": "No se aplica tasa de interés ya que es un estado de escritura. El retorno depende del precio de adquisición comparado con el valor de mercado (NMSA §7-38-65).",
+  "notBeginnerReason": "",
+  "beginnerTip": "El sistema de registro único es el más simple del país. Regístrese una vez, acceda a todas las ventas del condado. Buen punto de partida para invertir en estados de escritura.",
+  "risks": [
+   "Muchas parcelas son desierto rural con potencial de desarrollo limitado",
+   "Los problemas de título son comunes en propiedades más antiguas",
+   "Algunas parcelas tienen complicaciones de reclamaciones de tierras nativas americanas"
+  ],
+  "ddExtra": [
+   "Revise los registros de BLM y BIA para complicaciones de tierras nativas americanas",
+   "Verifique acceso vial — muchas parcelas de NM son desierto encerrado",
+   "Ejecute búsqueda de título antes de pujar en cualquier propiedad con estructuras"
+  ],
+  "auctionSignup": {
+   "platform": "Portal en línea de la PTD de Nuevo México",
+   "steps": [
+    "Vaya a tax.newmexico.gov/property-taxes y encuentre la sección de venta fiscal",
+    "Cree una cuenta — un solo registro cubre todos los condados de Nuevo México",
+    "Explore las propiedades disponibles y regístrese para las próximas ventas",
+    "Puje en línea según las instrucciones de la PTD"
+   ],
+   "depositInfo": "Varía por venta. Confirme con la PTD.",
+   "directLink": "https://www.tax.newmexico.gov/about-us/property-tax-division/"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Bernalillo",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Catron",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chaves",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cibola",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Colfax",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Curry",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "De Baca",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Doña Ana",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Eddy",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grant",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Guadalupe",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harding",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hidalgo",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lea",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Los Alamos",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Luna",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McKinley",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mora",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Otero",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Quay",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rio Arriba",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Roosevelt",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sandoval",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "San Juan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "San Miguel",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Santa Fe",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sierra",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Socorro",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Taos",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Torrance",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Union",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Valencia",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "None post-sale",
+   "rate": "N/A",
+   "platform": "NM Taxation & Revenue Dept (PTD) — in-person county courthouse",
+   "url": "https://www.tax.newmexico.gov/businesses/property-tax-overview/delinquent-property-tax-auctions/",
+   "notes": [],
+   "extra": {
+    "saleAdministrator": "State of New Mexico PTD — not county treasurer"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

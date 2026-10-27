@@ -1,0 +1,32 @@
+// Aurigen on the Cloudflare Workers FREE plan. Static assets are free and don't count
+// toward the Worker request limit; the script only runs for /extras* and /api/*.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "aurigen",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/extras", "/extras/*", "/api/*"]
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "aurigen-db", "database_id": "2df92d4f-383a-4005-84e3-8fe774f45182" }
+  ],
+  // Daily clean-up of the license cache (free plan allows cron triggers).
+  "triggers": { "crons": ["17 4 * * *"] },
+  "vars": {
+    // Launch switch. "off" hides everything about paid extras; /extras/?preview=1 still works.
+    "PAID_EXTRAS": "off",
+    "POLAR_ORG_ID": "bdbc4d3b-3520-432e-b8b2-b3bcc545b96c",
+    "POLAR_BENEFIT_PACK": "29728b31-0471-4c46-a208-16a31c987693",
+    "POLAR_BENEFIT_CAL": "059c8dd0-5186-4f76-b9dc-dd889a70567b",
+    "POLAR_CHECKOUT_PACK": "https://buy.polar.sh/polar_cl_LhHnrgRKq0pezBy91bZg22lcK4pHCR0QFsjDM3V4RPl",
+    "POLAR_CHECKOUT_CAL_MONTHLY": "https://buy.polar.sh/polar_cl_Aky58EZhCcUTm7s1fgIsohd5gy74hsxWdYamW0N8jkz",
+    "POLAR_CHECKOUT_CAL_YEARLY": "https://buy.polar.sh/polar_cl_ZZxtCf7qgOkPYOOcmVVgbwFlnx1vBX1TEFZR84KtJBX"
+  },
+  "observability": { "enabled": false }
+}

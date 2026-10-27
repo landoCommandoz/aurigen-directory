@@ -1,0 +1,556 @@
+{
+ "code": "MD",
+ "name": "Maryland",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "6%–24% (EXTREME county variation)",
+ "rateNote": "Rate set by each county — NEVER a flat statewide rate",
+ "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+ "bidMethod": "Bid-down interest rate (most counties)",
+ "statute": "MD Tax-Property §14-808",
+ "officialLink": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-808",
+ "auctionPlatform": "Online and in-person — varies by county",
+ "auctionTiming": "May–June (most counties)",
+ "keyNotes": [
+  "Rate varies by county — Baltimore City 18%, Montgomery County 6%, always verify county-specific rate",
+  "Redemption period also varies — residential shorter than commercial",
+  "One of the more complex states — county variation is significant"
+ ],
+ "investorAlert": "⚠️ Do NOT apply a single rate to Maryland. Every county sets its own rate between 6%–24%. Always verify with the specific county tax collector before investing.",
+ "pendingLegislation": null,
+ "summary": "Maryland conducts annual tax lien sales, typically May–August. CRITICAL: Rate varies DRAMATICALLY by county — statutory default 6% (§14-820(a)), but counties may set own rate (§14-820(b)). Montgomery/PG County: 20%. Anne Arundel: 18%. Baltimore County: 12%. Rural: 6%. ALWAYS verify county rate before bidding. Bidding is bid-UP (highest bidder wins total delinquent + overbid). No fixed redemption period — owner may redeem until right foreclosed by court order. Foreclosure filing allowed after 6 months (non-owner-occupied) or 9 months (owner-occupied residential). Certificate void if no foreclosure filed within 2 years (§14-833). Baltimore City: $750 minimum threshold. 23 counties + Baltimore City. Statute: MD Tax-Property Code §14-808 through §14-854; §14-820 (rate); §14-828 (redemption amount); §14-836 (foreclosure parties).",
+ "typeWhy": "Maryland sells tax lien certificates at annual county-level sales. The investor purchases the lien and the property owner retains title until foreclosed by court order. Foreclosure filing allowed after 6 months (9 months for owner-occupied in Baltimore City). MD Tax-Property Code §14-820.",
+ "rateWhy": "Maryland allows each county to set its own interest rate — statutory default 6% (§14-820(a)) but counties set rates up to 24% (§14-820(b)). Montgomery/PG: 20%. Anne Arundel: 18%. Baltimore County: 12%. Rural: 6%. ALWAYS verify the specific county rate before registering.",
+ "beginnerFriendly": true,
+ "notBeginnerReason": "",
+ "beginnerTip": "Start with Baltimore City (18%), Anne Arundel (18%), or PG County (20%) for the best rates. Foreclosure filing after just 6 months means faster capital cycle than most lien states. ALWAYS verify the specific county rate — rural counties may only pay 6%.",
+ "risks": [
+  "EXTREME county variation: rates range 6%–24% — ALWAYS verify specific county rate before bidding",
+  "Certificate expires if no foreclosure filed within 2 years (§14-833) — set calendar reminder",
+  "Baltimore City: owner-occupied properties have 9-month extended protection, $750 minimum threshold",
+  "Water and sewer liens from municipalities can be substantial — verify before bidding",
+  "Must comply within 90 days of judgment or court may strike it (§14-847)"
+ ],
+ "ddExtra": [
+  "Verify the specific county rate before registering — ranges from 6% to 24%",
+  "Check for water, sewer, and municipal utility liens — these can exceed the tax lien value",
+  "Confirm owner-occupied vs. vacant status — affects foreclosure waiting period",
+  "Certificate holder files foreclosure complaint in Circuit Court — judicial foreclosure IS the title clearance mechanism"
+ ],
+ "auctionSignup": {
+  "platform": "Bid4Assets (multiple counties) + direct county sales",
+  "steps": [
+   "Go to bid4assets.com and search for Maryland counties",
+   "Create an account and register for your target county's annual tax sale (May–August)",
+   "Fund your account — full payment shortly after winning. Varies by county.",
+   "Bid online during the auction window — you're bidding UP (highest bid wins)"
+  ],
+  "depositInfo": "Full payment shortly after winning. Varies by county.",
+  "directLink": "https://www.bid4assets.com"
+ },
+ "otc": {
+  "available": false,
+  "note": "No statewide OTC. Check county treasurer for any unsold certificates after annual sale."
+ },
+ "platforms": [
+  "Bid4Assets.com",
+  "County treasurer portals"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [
+  {
+   "name": "Baltimore City",
+   "link": "https://sdat.dat.maryland.gov/RealProperty/Pages/default.aspx",
+   "notes": "18% rate. Best in MD. Online via RealAuction."
+  },
+  {
+   "name": "Anne Arundel",
+   "link": "https://www.aacounty.org/finance",
+   "notes": "18% rate. Good inventory."
+  },
+  {
+   "name": "Prince George's",
+   "link": "https://www.princegeorgescountymd.gov/government/departments/finance",
+   "notes": "Moderate rate. Good suburban inventory."
+  }
+ ],
+ "rules": {
+  "type": "lien",
+  "auction": {
+   "frequency": "Annual — May or June (county sets exact date)",
+   "method": "Public auction — highest bidder, bid premium method common",
+   "bidMethod": "Highest bid — often uses High Bid Premium system per TP §14-817(b)(2)(i)",
+   "highBidPremium": "If bid exceeds 40% FCV: 20% premium on excess. Premium refunded if redeemed or foreclosure within 2 years.",
+   "minimumBid": "All delinquent taxes + interest + penalties + costs (mandatory per TP §14-808)",
+   "platform": "RealAuction (majority) / Bid4Assets / county-run online portals",
+   "payment": "Wire transfer required — must be received by county next day by 3pm",
+   "statute": "MD Code TP §14-808, §14-817"
+  },
+  "otc": {
+   "available": true,
+   "name": "Post-Sale County-Held Certificates",
+   "trigger": "Property not sold at annual tax sale — purchased by county by default",
+   "process": "Contact county Finance/Treasurer office directly. No uniform list.",
+   "statute": "MD Code TP §14-817",
+   "note": "Cecil County confirmed: contact tax@cecilcountymd.org for OTC list"
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payments",
+   "statute": "MD Code TP §14-828",
+   "rate": "Earns same rate as cert — reimbursed upon redemption or judgment",
+   "note": "Cert holder entitled to reimbursement of subsequent taxes + interest upon redemption"
+  },
+  "redemption": {
+   "rateByCounty": {
+    "Anne Arundel": "18% per annum (1.5%/month)",
+    "Baltimore City": "24% per annum (2%/month)",
+    "Baltimore County": "VERIFY — approx 18%",
+    "Cecil": "12% per annum",
+    "Montgomery": "VERIFY — varies",
+    "Prince George's": "VERIFY",
+    "All Others": "6–18% — set by county ordinance (VERIFY with specific county)"
+   },
+   "period": "Until foreclosure judgment entered (no fixed end date — cert holder must file)",
+   "foreclosureEligibleAfter": "6 months from sale date (non-owner-occupied) / 9 months (owner-occupied / Baltimore City)",
+   "foreclosureDeadline": "Must file within 2 years of certificate date",
+   "statute": "MD Code TP §14-828, §14-833",
+   "note": "CRITICAL: Rate is NOT uniform. Always verify exact rate with specific county before bidding."
+  },
+  "deedPath": {
+   "name": "Judgment Foreclosing Right of Redemption",
+   "process": "File complaint in Circuit Court → serve all defendants → court enters judgment → deed executed",
+   "defendants": "Record owner(s), ground rent owner, mortgage holders, State of Maryland, County",
+   "titleAfterJudgment": "Absolute and indefeasible fee simple title per TP §14-844",
+   "statute": "MD Code TP §14-833 through §14-847",
+   "quietTitleRequired": false,
+   "note": "After judgment — writ of possession available. Best title in any lien state once judgment entered."
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Bid",
+   "statute": "MD Code TP §14-844(d)",
+   "trigger": "Bid exceeds full tax/lien amount",
+   "process": "After judgment, plaintiff pays surplus to court. Former owner can claim.",
+   "note": "Plaintiff liable for surplus bid amount at time of judgment, not at time of sale."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "6–24% (varía por condado)",
+  "redemption": "6 meses (9 meses propietario ocupante en Baltimore City)",
+  "summary": "Maryland realiza ventas anuales de gravámenes, normalmente en mayo–junio. Tasas varían: mayoría de condados 6%, Anne Arundel y Baltimore City hasta 18%. Redención: 6 meses estándar, 9 meses para propietario ocupante en Baltimore City. Estatuto: MD Tax-Property Code §14-820.",
+  "typeWhy": "Maryland es un estado de gravamen porque los condados venden certificados de gravamen fiscal en subastas anuales con uno de los períodos de redención más cortos del país: 6 meses estándar (MD Tax-Property Code §14-820).",
+  "rateWhy": "La tasa varía del 6% al 24% según el condado. Baltimore City y Anne Arundel ofrecen hasta el 18-24%, mientras que la mayoría opera al 6% (MD Tax-Property Code §14-820).",
+  "notBeginnerReason": "",
+  "beginnerTip": "Comience con Baltimore City o Anne Arundel para la tasa del 18%. La ventana de redención de 6 meses es la más corta del país — ciclo de capital más rápido que cualquier otro estado de gravamen.",
+  "risks": [
+   "La tasa varía significativamente por condado — confirme antes de pujar",
+   "Baltimore City: propietario ocupante tiene redención extendida de 9 meses",
+   "Los gravámenes de agua y alcantarillado pueden ser sustanciales",
+   "La corta ventana de 6 meses significa que debe moverse rápidamente"
+  ],
+  "ddExtra": [
+   "Verifique la tasa específica del condado antes de registrarse",
+   "Revise gravámenes de agua, alcantarillado y servicios municipales",
+   "Confirme estado de propietario ocupante vs. vacante — afecta cronograma en Baltimore City"
+  ],
+  "auctionSignup": {
+   "platform": "RealAuction.com (mayoría de condados) + específicos para otros",
+   "steps": [
+    "Vaya a reauction.com y busque condados de Maryland",
+    "Cree una cuenta y regístrese para la venta fiscal anual de su condado objetivo",
+    "Financie su cuenta mediante ACH o transferencia antes de la fecha de subasta",
+    "Puje en línea durante la ventana de subasta"
+   ],
+   "depositInfo": "Depósito requerido. Varía por condado. La mayoría requieren fondos anticipados a través de RealAuction.",
+   "directLink": "https://reauction.com"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin OTC estatal. Consulte al tesorero del condado para certificados no vendidos después de la venta anual."
+  }
+ },
+ "counties": [
+  {
+   "name": "Allegany",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.allconet.org/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Anne Arundel",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "18% (1.5%/month)",
+   "platform": "RealAuction",
+   "url": "https://www.aacounty.org/finance/tax-sale",
+   "notes": [
+    "Confirmed: 18% per annum"
+   ],
+   "extra": {
+    "saleMonth": "June",
+    "rate": "18% (1.5%/month)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Baltimore City",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "24% (2%/month)",
+   "platform": "RealAuction",
+   "url": "https://sdat.dat.maryland.gov/RealProperty/Pages/default.aspx",
+   "notes": [
+    "Highest rate in MD. Foreclosure eligible 9 months. State Tax Sale Ombudsman resource.",
+    "⚡ Baltimore City: 24% rate, 9-month hold"
+   ],
+   "extra": {
+    "saleMonth": "June",
+    "rate": "24% (2%/month)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Baltimore County",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "Online",
+   "url": "https://www.baltimorecountymd.gov/departments/budfin/taxpayer-services/tax-sale",
+   "notes": [
+    "⚡ 2025 sale Aug 28; first foreclosure filing date May 28 2026 for owner-occupied"
+   ],
+   "extra": {
+    "saleMonth": "August",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Calvert",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.calvertcountymd.gov/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Caroline",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.carolinemd.org/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carroll",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.carrollcountymd.gov/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cecil",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "12% per annum",
+   "platform": "RealAuction",
+   "url": "https://www.ccgov.org/government/finance/property-tax/tax-sale",
+   "notes": [
+    "⚡ Confirmed 12%; bid premium system; OTC unsold available — email tax@cecilcountymd.org"
+   ],
+   "extra": {
+    "saleMonth": "June",
+    "rate": "12% per annum"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Charles",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.charlescountymd.gov/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dorchester",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.docogonet.com/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Frederick",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.frederickcountymd.gov/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Garrett",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.garrettcounty.org/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harford",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.harfordcountymd.gov/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Howard",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.howardcountymd.gov/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kent",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.kentcounty.com/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Montgomery",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "Online",
+   "url": "https://www.montgomerycountymd.gov/Finance/TaxSale-general.html",
+   "notes": [
+    "Annual — 2nd Monday of June"
+   ],
+   "extra": {
+    "saleMonth": "June (2nd Monday)",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Prince George's",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.princegeorgescountymd.gov/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Queen Anne's",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.qac.org/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Somerset",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.somersetcountymd.gov/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Mary's",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.stmarysmd.com/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Talbot",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.talbotcountymd.gov/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "Online",
+   "url": "https://www.washco-md.net/treasurers-office/tax-sale-information/",
+   "notes": [
+    "Rate set in certificate; High Bid Premium system used"
+   ],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wicomico",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.wicomicocounty.org/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Worcester",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+   "rate": "VERIFY",
+   "platform": "RealAuction",
+   "url": "https://www.co.worcester.md.us/finance/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleMonth": "May/June",
+    "rate": "VERIFY"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

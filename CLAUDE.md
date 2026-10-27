@@ -40,6 +40,12 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - HANDOFF.md must be updated after every session
 - CLAUDE.md SESSION MEMORY updated after every session
 
+## SESSION 17 (2026-10-27) — FREE SITE LIVE (Foundry run, branch foundry/aurigen-free)
+- LIVE NOW: https://aurigen.landonbrewington12.workers.dev (Cloudflare Workers free plan, static assets). The Netlify/Supabase notes below are history.
+- Code: cloudflare/ (build-data.mjs, build-site.mjs, src/worker.js, wrangler.jsonc, SOURCES.md). Everything public is free; no paywall.
+- Paid extras behind PAID_EXTRAS=off: Spreadsheet Pack $19, Sale Calendar $3/mo or $29/yr (Polar; IDs in foundry/out/polar.md).
+- Open: merge to main (activates vercel.json redirect), move aurigendirectory.com nameservers to Cloudflare, Polar payouts, refresh workflow, unconfirmed states.
+
 ## SESSION 16 (2026-10-27) — MOVE TO FREE CLOUDFLARE
 - Old hosting is gone: Netlify site 404, Supabase/scrapers/Sage dead. Static copy still on Vercel (main).
 - aurigendirectory.com: Name.com, paid through 2027-03-24, parked, no MX records.

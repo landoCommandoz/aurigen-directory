@@ -1,0 +1,1788 @@
+{
+ "code": "MO",
+ "name": "Missouri",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "10%",
+ "rateNote": "Multiple offering system — 3rd+ offering is fastest path to deed",
+ "redemption": "1 year",
+ "bidMethod": "Highest bidder",
+ "statute": "RSMo Ch. 140",
+ "officialLink": "https://revisor.mo.gov/main/OneChapter.aspx?chapter=140",
+ "auctionPlatform": "County collector — in-person",
+ "auctionTiming": "Varies by county",
+ "keyNotes": [
+  "Multi-offering system: 1st offering minimum bid = taxes+fees; 3rd+ offering = any bid accepted",
+  "3rd offering properties are fastest path to deed acquisition",
+  "No post-sale redemption"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "Missouri non-residents cannot bid directly — must designate a resident county agent to bid and hold the certificate, then transfer by quitclaim deed. Annual sale: 4th Monday in August. St. Louis City and Jackson County conduct tax deed sales with the unusual rule that older liens are subordinate to newer ones per RSMo Cap.140.",
+ "typeWhy": "Missouri sells tax lien certificates at annual county-level sales. The investor holds the lien while the owner retains title during the 1-year redemption period. RSMo Cap.140.",
+ "rateWhy": "Missouri sets a statutory rate of 10% per annum on tax lien certificates. An unusual provision in St. Louis City and Jackson County makes older liens subordinate to newer ones. RSMo Cap.140.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Non-residents cannot bid directly — must designate a Missouri resident agent. St. Louis and Jackson County operate as deed states with unique junior-lien rules.",
+ "beginnerTip": "Missouri is not recommended for out-of-state beginners due to the agent requirement. If you have a Missouri contact, start with rural counties where the 10% rate faces no competition.",
+ "risks": [
+  "Non-residents must use a Missouri resident agent — adds complexity and cost",
+  "St. Louis City and Jackson County use deed system with unique lien priority rules",
+  "10% rate is relatively low compared to other lien states"
+ ],
+ "ddExtra": [
+  "Confirm your agent's registration status and understand the quitclaim transfer process",
+  "For St. Louis/Jackson County: understand the inverted lien priority rules before bidding",
+  "Check for IRS liens — these survive Missouri tax lien sales"
+ ],
+ "auctionSignup": {
+  "platform": "County collector (in-person, 4th Monday in August)",
+  "steps": [
+   "If not a Missouri resident: find a local agent willing to bid and hold the certificate on your behalf",
+   "Contact the county collector — sos.mo.gov/elections/countyofficials",
+   "Register through your agent or in person if you are a MO resident",
+   "Bring cashier's check — most Missouri counties do not accept wire on auction day"
+  ],
+  "depositInfo": "Cashier's check. Confirm amount with county collector.",
+  "directLink": "https://dor.mo.gov/how-do-i/learn-about-personal-property-taxes.html"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "County collector offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "statute": "RSMo Chapter 140 (Tax Sales, Redemption, Deeds)",
+  "multiOffering": {
+   "first": "1st Offering: Property taxes delinquent >1 year (as of last business day in April) and unpaid by day of sale. Purchaser gets Certificate of Purchase.",
+   "second": "2nd Offering: Same property offered second year without prior sale.",
+   "third": "3rd Offering: Property offered 3rd time — sold to highest bidder ≥ delinquent taxes + costs. Certificate issued. 90-day redemption only.",
+   "postThird": "Post-3rd Offering: Collector's Deed issued IMMEDIATELY. NO redemption period. County trustee (if applicable) attempts resale.",
+   "note": "St. Louis City and large charter counties may have different fee structures"
+  },
+  "process": {
+   "advertising": "Delinquent list published in local newspaper 3 consecutive weeks prior to sale. Delinquent list also published online at county website.",
+   "registration": "Pre-registration typically opens August. Day-of: sign affidavit of no delinquent taxes. Must present MO driver's license or ID. Bidding in business name requires additional Bidder Affidavit-Business form.",
+   "sale": "Public auction. Minimum bid = all taxes + interest + sale expenses. No upper limit. Highest bidder gets Certificate of Purchase.",
+   "certificate": "Certificate = lien on property. NOT ownership. Certificate does NOT entitle holder to possession during redemption.",
+   "stat": "RSMo §140.150, §140.160, §140.170, §140.190, §140.250, §140.290"
+  },
+  "auction": {
+   "frequency": "Annual — 4th Monday in August (most counties). Some counties vary.",
+   "date2026": "4th Monday August 2026 = August 24, 2026",
+   "platform": "CivicSource online (KC-area and growing), in-person courthouse (most counties)",
+   "payment": "Full payment IMMEDIATELY at sale. Penalty of 25% of bid to school fund if winning bidder defaults.",
+   "nonResident": "Non-MO residents must appoint citizen of county as agent + consent in writing to Circuit Court jurisdiction (RSMo §140.190)",
+   "registrationNote": "Must affirm no delinquent taxes in county. Bidding on own property or relatives' property prohibited.",
+   "statute": "RSMo §140.170, §140.190, §140.280"
+  },
+  "otc": {
+   "available": true,
+   "name": "Post-Tax-Sale / 2nd/3rd Offering / County Land Trust",
+   "process": "Properties unsold from prior years available. Contact county collector directly. Some counties maintain surplus property lists.",
+   "landTrust": "RSMo §140.260: County may establish land trust for unsold tax-delinquent parcels. Trustee sells for benefit of taxing entities."
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payments",
+   "statute": "RSMo §140.280, §140.290",
+   "rate": "8% per annum (vs 10% on original cert amount)",
+   "obligation": "Purchaser IS responsible for all subsequent taxes (different from WY/CA). Must pay to protect lien position.",
+   "note": "⚡ MO certificate holder MUST pay subsequent taxes. Failure to pay subsequent taxes may compromise ability to obtain deed."
+  },
+  "redemption": {
+   "firstSecondOffering": "1 year absolute right to redeem. Continues as defeasible right until deed issued.",
+   "thirdOffering": "90 days only (RSMo §140.250)",
+   "postThird": "⚡ NO redemption period. Collector's Deed issued immediately.",
+   "amounts": {
+    "original": "Purchase price + 10%/yr simple interest (on original cert amount MINUS any surplus)",
+    "subTax": "Subsequent taxes paid by cert holder + 8%/yr interest",
+    "costs": "Title search costs + notice costs (after March 1 of year following sale for 1st/2nd; immediately for 3rd offering)"
+   },
+   "statute": "RSMo §140.340, §140.250",
+   "infants": "Infants/incapacitated/disabled: may redeem 1 year after disability expiration",
+   "homesteadDifferent": false
+  },
+  "deedPath": {
+   "name": "Collector's Deed",
+   "process": "After 90-day notice requirement met (RSMo §140.405): certified mail to owner + all recorded lienholders. After redemption period + proper notice → cert holder applies for deed.",
+   "notice": "⚡ At least 90 days before deed application: certified mail to owner of record AND all recorded deed of trust/mortgage/lease/lien holders at last known address. If certified mail returned unsigned and first-class also returned — attempt additional notice (door posting, alternative method).",
+   "deedDeadline": "Cert holder must cause deed to be executed and RECORDED within 18 months of sale date. Miss this → assignment of deed prohibited (RSMo §140.410)",
+   "noInterest": "If 90-day notice not sent until after 1-year redemption period → no further interest charged from that date",
+   "titleInsurance": "⚡ Many title companies restrict property for 30 YEARS from tax sale date — severely limits ability to sell or finance",
+   "quietTitle": "Quiet title action in Circuit Court recommended. Must commence within 3 years from when deed was recorded.",
+   "statute": "RSMo §140.405, §140.410, §140.460",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Funds",
+   "statute": "RSMo §140.230",
+   "distribution": "First to former lienholders of record (by priority), then to former owner",
+   "timing": "Not distributed until 90 days after redemption period expires",
+   "claimPeriod": "3 years from sale date — unclaimed surplus becomes county school fund",
+   "noInterest": "⚡ No interest paid on surplus receipts",
+   "process": "Collector submits sworn statement to county commission. Commission approves. Treasurer holds in trust. Former owners/lienholders must make satisfactory proof of claim.",
+   "note": "Tyler v. Hennepin applies — former owner entitled to surplus. MO statute §140.230 already provided this mechanism."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "10%",
+  "redemption": "1 año",
+  "summary": "Los no residentes de Misuri deben designar un agente residente del condado para pujar y mantener el certificado. Venta anual: 4to lunes de agosto. La ciudad de St. Louis y el Condado Jackson usan sistema de escritura con la inusual regla de que los gravámenes más antiguos están subordinados a los más nuevos. Estatuto: RSMo Cap.140.",
+  "typeWhy": "Misuri es un estado de gravamen porque los condados venden certificados de gravamen fiscal en la venta anual (RSMo Cap.140).",
+  "rateWhy": "La tasa del 10% es relativamente baja entre los estados de gravamen. St. Louis City y Jackson County operan con reglas únicas de prioridad de gravamen (RSMo Cap.140).",
+  "notBeginnerReason": "Los no residentes no pueden pujar directamente — deben designar un agente residente de Misuri.",
+  "beginnerTip": "Misuri no se recomienda para principiantes fuera del estado debido al requisito del agente. Si tiene un contacto en MO, comience con condados rurales donde la tasa del 10% no enfrenta competencia.",
+  "risks": [
+   "Los no residentes deben usar agente residente — agrega complejidad y costo",
+   "St. Louis y el Condado Jackson usan sistema de escritura con reglas únicas de prioridad",
+   "La tasa del 10% es relativamente baja"
+  ],
+  "ddExtra": [
+   "Confirme el estado de registro de su agente y comprenda el proceso de transferencia de quitclaim",
+   "Para St. Louis/Condado Jackson: comprenda las reglas de prioridad de gravamen invertida",
+   "Revise gravámenes del IRS — estos sobreviven a las ventas de Misuri"
+  ],
+  "auctionSignup": {
+   "platform": "Recaudador del condado (en persona, 4to lunes de agosto)",
+   "steps": [
+    "Si no es residente de MO: encuentre un agente local dispuesto a pujar en su nombre",
+    "Contacte al recaudador del condado — sos.mo.gov/elections/countyofficials",
+    "Regístrese a través de su agente o en persona si es residente de MO",
+    "Traiga cheque de caja — la mayoría de los condados no aceptan transferencia el día de subasta"
+   ],
+   "depositInfo": "Cheque de caja. Confirme el monto con el recaudador del condado.",
+   "directLink": "https://dor.mo.gov/how-do-i/learn-about-personal-property-taxes.html"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Adair",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.adair.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Andrew",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.andrew.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Atchison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.atchison.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Audrain",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.audrain.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Barry",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.barry.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Barton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.barton.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bates",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.bates.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Benton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.benton.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bollinger",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.bollinger.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Boone",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.showmeboone.com/collector/real-estate-tax/delinquent.asp",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Buchanan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.buchanan.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Butler",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.butler.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Caldwell",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.caldwell.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Callaway",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.callaway.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Camden",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.camden.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cape Girardeau",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.capegirardeau.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carroll",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.carroll.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carter",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.carter.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cass",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.cass.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cedar",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.cedar.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chariton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.chariton.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Christian",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.christian.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clark",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.clark.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clay",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.clay.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clinton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.clinton.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cole",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.cole.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cooper",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.cooper.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Crawford",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.crawford.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dade",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.dade.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dallas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.dallas.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Daviess",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.daviess.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "DeKalb",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.dekalb.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dent",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.dent.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Douglas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.douglas.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dunklin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.dunklin.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.franklin.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gasconade",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.gasconade.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gentry",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.gentry.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Greene",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "CivicSource (online) + in-person",
+   "url": "https://greenecountymo.gov/collector/faq/tax_sale.php",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grundy",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.grundy.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harrison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.harrison.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Henry",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.henry.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hickory",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.hickory.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Holt",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.holt.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Howard",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.howard.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Howell",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.howell.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Iron",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.iron.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "CivicSource (online) + in-person",
+   "url": "https://www.jacksongov.org/collector/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jasper",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.jasper.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.jefferson.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Johnson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.jcmtax.com/tax-sale-information",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Knox",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.knox.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Laclede",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.laclede.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lafayette",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.lafayette.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lawrence",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.lawrence.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lewis",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.lewis.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.lincoln.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Linn",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.linn.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Livingston",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.livingston.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McDonald",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.mcdonald.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Macon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.macon.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Madison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.madison.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Maries",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.maries.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marion",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.marion.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mercer",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.mercer.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Miller",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.miller.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mississippi",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.mississippi.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Moniteau",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.moniteau.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Monroe",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.monroe.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Montgomery",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.montgomery.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Morgan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.morgan.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "New Madrid",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.newmadrid.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Newton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.newton.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nodaway",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.nodaway.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Oregon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.oregon.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Osage",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.osage.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ozark",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.ozark.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pemiscot",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.pemiscot.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Perry",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.perry.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pettis",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.pettis.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Phelps",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.phelps.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pike",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.pike.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Platte",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.platte.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Polk",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.polk.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pulaski",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.pulaski.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Putnam",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.putnam.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ralls",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.ralls.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Randolph",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.randolph.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ray",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.ray.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Reynolds",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.reynolds.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ripley",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.ripley.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Charles",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.st.charles.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Clair",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.st.clair.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Francois",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.st.francois.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "St. Louis",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "CivicSource (online) + in-person",
+   "url": "https://www.st.louis.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ste. Genevieve",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.ste.genevieve.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Saline",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.saline.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Schuyler",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.schuyler.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Scotland",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.scotland.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Scott",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.scott.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Shannon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.shannon.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Shelby",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.shelby.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stoddard",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.stoddard.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stone",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.stone.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sullivan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.sullivan.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Taney",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.taney.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Texas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.texas.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Vernon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.vernon.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Warren",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.warren.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.washington.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wayne",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.wayne.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Webster",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.webster.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Worth",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.worth.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wright",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.wright.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "City of St. Louis",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "1 year",
+   "rate": "10%",
+   "platform": "In-person courthouse",
+   "url": "https://www.cityofst.louis.mo.us/collector",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 24, 2026 (4th Monday August)"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

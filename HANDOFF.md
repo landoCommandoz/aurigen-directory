@@ -1,6 +1,17 @@
 # AURIGEN HANDOFF DOCUMENT
 ## Updated after every session. Read before every session.
 
+### SESSION 17 (2026-10-27): FREE SITE LIVE ON CLOUDFLARE (Foundry run)
+- Live: https://aurigen.landonbrewington12.workers.dev (Worker `aurigen`, free plan). aurigendirectory.com NOT attached (no Cloudflare zone).
+- New site lives in `cloudflare/`: `npm ci && npm run build && npx wrangler deploy`. Old app files untouched.
+  - `scripts/build-data.mjs` turns the legacy JS data into `data/states/xx.json` (51 states, 3,291 county/town records) + coverage report.
+  - `scripts/build-site.mjs` makes static pages with pre-rendered Census (us-atlas) SVG maps. No paywall, no gate, no Sage/DNA/Pulse/scores.
+  - `data/freshness.json`: per-state official-source check (see foundry/out/freshness.md). Changes are applied at build time.
+  - `src/worker.js` runs only for /extras* and /api/*. Paid extras sit behind `PAID_EXTRAS=off` (wrangler.jsonc). Polar keys are checked via the public validate endpoint, cached in D1 `aurigen-db`.
+- Paid extras (Polar, see foundry/out/polar.md): Spreadsheet Pack $19 one-time; Sale Calendar .ics $3/mo or $29/yr. Preview at /extras/?preview=1.
+- vercel.json on this branch redirects the old Vercel copy (307) once merged to main.
+- Open: Lando merges branch, sets up Polar payouts, then flips PAID_EXTRAS; domain needs nameservers moved to Cloudflare; weekly refresh workflow is in foundry/out/proposed-refresh-workflow.yml (needs copying into .github/workflows); 30-ish states still unconfirmed.
+
 ### SESSION 16 (2026-10-27): FREE CLOUDFLARE MOVE, SETUP ONLY
 - Built: Foundry workflow (.github/workflows/foundry.yml) and its first spec (foundry/aurigen-free.md).
 - Removed: dead scraper schedule (.github/workflows/scrape.yml).

@@ -1,0 +1,1640 @@
+{
+ "code": "KS",
+ "name": "Kansas",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "Up to 15%",
+ "rateNote": "Lien phase earns 12% — court action required to convert to deed",
+ "redemption": "2–3 years",
+ "bidMethod": "Highest bidder",
+ "statute": "K.S.A. §79-2803",
+ "officialLink": "https://kslegislature.org/li_2024/b2023_24/statute/079_000_0000_chapter/079_028_0000_article/079_028_0003_section/079_028_0003_k/",
+ "auctionPlatform": "County treasurer — in-person",
+ "auctionTiming": "September (most counties)",
+ "keyNotes": [
+  "12% fixed rate on lien phase",
+  "3-year redemption before deed eligible",
+  "Court action required to obtain deed — no automatic conversion",
+  "Rural ag land heavy — Wichita metro has more competition"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "Kansas holds tax lien sales at the county level. After 2-year redemption, county files for judicial sale. County can reduce minimum bid on properties that didn't sell. Statute: KSA §79-2801.",
+ "typeWhy": "Kansas sells tax lien certificates at the county level. The investor purchases the lien and the owner retains title during a 2-3 year redemption period. KSA §79-2801.",
+ "rateWhy": "Kansas caps the tax lien interest rate at 15% per annum. This is a statutory ceiling, though some counties may set lower effective rates. KSA §79-2801.",
+ "beginnerFriendly": true,
+ "notBeginnerReason": "",
+ "beginnerTip": "Look at Sedgwick (Wichita) and Johnson (Kansas City suburb) counties for the best inventory. Rural counties often have reduced minimums on unsold properties — ask the county clerk directly.",
+ "risks": [
+  "Judicial sale process adds time and legal costs",
+  "Rural inventory often has limited development or resale value",
+  "Check for concurrent partition actions on shared-ownership properties"
+ ],
+ "ddExtra": [
+  "Verify the full tax balance including special assessments and improvement district fees",
+  "Check for active partition actions if property has multiple owners",
+  "Confirm road access on rural parcels before bidding"
+ ],
+ "auctionSignup": {
+  "platform": "County clerk or district court (varies)",
+  "steps": [
+   "Contact your target county clerk — find them at ksrevisor.org/municipalities",
+   "Ask about the upcoming tax lien sale schedule",
+   "Register per county instructions — most are in-person",
+   "Bring cashier's check or confirm wire requirements"
+  ],
+  "depositInfo": "Varies by county.",
+  "directLink": "https://www.ksrevisor.org/statutes/chapters/ch79/079_028_0001.html"
+ },
+ "otc": {
+  "available": true,
+  "note": "Unsold properties available at reduced minimums from county. Contact county clerk directly."
+ },
+ "platforms": [
+  "County clerk offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [
+  {
+   "name": "Sedgwick",
+   "link": "https://www.sedgwickcounty.org/treasurer/",
+   "notes": "Wichita area. Best inventory in KS."
+  },
+  {
+   "name": "Johnson",
+   "link": "https://www.jocogov.org/department/treasury-taxation-and-vehicles",
+   "notes": "Kansas City suburb. Good properties."
+  }
+ ],
+ "rules": {
+  "type": "deed",
+  "statute": "KSA §79-2801 et seq. (Judicial Tax Foreclosure), §79-2401a (Redemption), §79-2803 (Surplus)",
+  "process": {
+   "step1": "County counselor files petition in District Court in name of Board of County Commissioners against all owners/interested parties",
+   "step2": "Court determines tax lien amounts and orders sale",
+   "step3": "Public auction (open bid — no sealed bids per KSA)",
+   "step4": "Court confirms sale",
+   "step5": "Sheriff records deed with Register of Deeds",
+   "delinquencyThreshold": "3 years: homestead properties. 2 years: commercial properties. 1 year: vacant and abandoned properties."
+  },
+  "auction": {
+   "frequency": "As scheduled — typically annual or bi-annual by county",
+   "platforms": "CivicSource (Sedgwick, Shawnee, others) + county-run in-person auctions",
+   "bidMethod": "Open public auction — highest bidder. No sealed bids per statute.",
+   "payment": "Cash — typically via CivicSource checkout same day or cashier's check",
+   "minimumBid": "Set by court judgment (taxes + charges + interest + penalties + court costs)",
+   "statute": "KSA §79-2804"
+  },
+  "otc": {
+   "available": false,
+   "name": "N/A — Kansas requires judicial process. No direct OTC purchases.",
+   "note": "Properties not sold at auction may be re-offered at subsequent foreclosure sales. Contact county counselor."
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — Kansas judicial deed state; no private lien cert sub-tax mechanism"
+  },
+  "redemption": {
+   "preAuction": "Owner may redeem until close of business DAY BEFORE the sale by paying all delinquent taxes + interest + court costs",
+   "postSale": "⚡ NO redemption rights after sale is confirmed. Right of redemption ends day prior to sale.",
+   "federalLien": "IRS: 120-day redemption right post-sale. Federal judgment liens: 1 year post-sale. Deed for these properties withheld until federal period expires.",
+   "postSaleChallenge": "12-month challenge period post-confirmation: owner or lienholder may contest foreclosure procedures only. If successful: sale voided, purchase price refunded. Not a redemption — procedural challenge only.",
+   "statute": "KSA §79-2401a (pre-sale redemption), §79-2804b (12-month challenge)",
+   "homesteadDifferent": true,
+   "homesteadNote": "Homestead: 3-year delinquency required vs 2-year commercial and 1-year vacant/abandoned"
+  },
+  "deedPath": {
+   "name": "Sheriff's Deed (after court confirmation)",
+   "process": "After court confirms sale — Sheriff prepares and records deed with Register of Deeds. May take up to 90 days post-auction.",
+   "titleEffect": "All other liens of record extinguished upon confirmation. EXCEPT: covenants, restrictions, easements of record survive. Buyer responsible for current-year taxes.",
+   "federalLienDelay": "If property has federal tax or judgment lien — deed withheld until federal redemption period expires (120 days–1 year)",
+   "antiFlip": "⚡ If property transferred to former owner/related party within 10 years of auction — personal judgment liability for full original lien + interest",
+   "statute": "KSA §79-2804",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": true,
+   "name": "Excess Proceeds",
+   "statute": "KSA §79-2803",
+   "process": "Surplus distributed upon further order of the Court. Former owners and lienholders of record may petition court for excess proceeds.",
+   "note": "Tyler v. Hennepin applies — court-supervised distribution protects former owner equity"
+  },
+  "bidderRestrictions": "⚡ Cannot bid if you owe delinquent property taxes or special assessments in that county (KSA §79-2812). Cannot bid for/on behalf of owner/relatives/mortgage holders. Cannot acquire property and transfer to former owner within 10 years.",
+  "alert2026": "⚡ CRITICAL — Sedgwick County KS: CivicSource contract CANCELLED December 2025 after alleged $1.28M theft from October 2025 tax sale. 2026 Sedgwick auction platform TBD. Properties already queued for 2026 foreclosure — sign up for Sedgwick auction alerts at sedgwickcounty.org/treasurer/tax-foreclosure-auction-alerts/ for new platform announcement. All other KS counties unaffected.",
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "Hasta 15%",
+  "redemption": "2–3 años",
+  "summary": "Kansas realiza ventas de gravámenes a nivel de condado. Después de 2 años, el condado presenta para venta judicial. El condado puede reducir la puja mínima en propiedades no vendidas. Estatuto: KSA §79-2801.",
+  "typeWhy": "Kansas es un estado de gravamen porque los condados venden certificados de gravamen fiscal con un período de redención de 2-3 años (KSA §79-2801).",
+  "rateWhy": "La tasa de hasta el 15% se establece por estatuto. Los condados pueden reducir los mínimos de puja en propiedades no vendidas (KSA §79-2801).",
+  "notBeginnerReason": "",
+  "beginnerTip": "Busque Sedgwick (Wichita) y Johnson (suburbio de Kansas City) para el mejor inventario. Los condados rurales frecuentemente tienen mínimos reducidos en propiedades no vendidas.",
+  "risks": [
+   "El proceso de venta judicial agrega tiempo y costos legales",
+   "El inventario rural frecuentemente tiene valor limitado",
+   "Revise acciones de partición en propiedades de propiedad compartida"
+  ],
+  "ddExtra": [
+   "Verifique el saldo fiscal total incluyendo evaluaciones especiales",
+   "Revise acciones de partición activas si la propiedad tiene múltiples propietarios",
+   "Confirme acceso vial en parcelas rurales antes de pujar"
+  ],
+  "auctionSignup": {
+   "platform": "Secretario del condado o tribunal de distrito (varía)",
+   "steps": [
+    "Contacte al secretario de su condado objetivo — ksrevisor.org/municipalities",
+    "Pregunte sobre el próximo calendario de venta",
+    "Regístrese según instrucciones del condado — la mayoría son en persona",
+    "Traiga cheque de caja o confirme requisitos de transferencia"
+   ],
+   "depositInfo": "Varía por condado.",
+   "directLink": "https://www.ksrevisor.org/statutes/chapters/ch79/079_028_0001.html"
+  },
+  "otc": {
+   "available": true,
+   "note": "Propiedades no vendidas disponibles con mínimos reducidos del condado. Contacte al secretario directamente."
+  }
+ },
+ "counties": [
+  {
+   "name": "Allen",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.allencounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Anderson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.andersoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Atchison",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.atchisoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Barber",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.barbercounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Barton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.bartoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bourbon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.bourboncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Brown",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.browncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Butler",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.bucoks.gov/502/Tax-Foreclosure-Sale-Information",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chase",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.chasecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chautauqua",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.chautauquacounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cherokee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.cherokeecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cheyenne",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.cheyennecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clark",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.clarkcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clay",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.claycounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cloud",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.cloudcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Coffey",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.coffeycounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Comanche",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.comanchecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cowley",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.cowleycounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Crawford",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.crawfordcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Decatur",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.decaturcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dickinson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.dickinsoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Doniphan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.doniphancounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Douglas",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.douglascounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Edwards",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.edwardscounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Elk",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.elkcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ellis",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.elliscounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ellsworth",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.ellsworthcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Finney",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.finneycounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ford",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.fordcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.franklincoks.org/495/Tax-Foreclosures",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Geary",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.gearycounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gove",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.govecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Graham",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.grahamcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grant",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.grantcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gray",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.graycounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Greeley",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.greeleycounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Greenwood",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.greenwoodcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hamilton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.hamiltoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harper",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.harpercounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harvey",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.harveycounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Haskell",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.haskellcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hodgeman",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.hodgemancounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.jacksoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.jeffersoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jewell",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.jewellcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Johnson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.johnsoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kearny",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.kearnycounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kingman",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.kingmancounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kiowa",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.kiowacounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Labette",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.labettecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lane",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.lanecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Leavenworth",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.leavenworthcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.lincolncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Linn",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.linncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Logan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.logancounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lyon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.lyoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marion",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.marioncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marshall",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.marshallcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McPherson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.mcphersoncountyks.us/250/Tax-Foreclosure-Sale",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Meade",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.meadecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Miami",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.miamicounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mitchell",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.mitchellcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Montgomery",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.montgomerycounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Morris",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.morriscounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Morton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.mortoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nemaha",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.nemahacounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Neosho",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.neoshocounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ness",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.nesscounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Norton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.nortoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Osage",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.osagecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Osborne",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.osbornecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ottawa",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.ottawacounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pawnee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.pawneecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Phillips",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.phillipscounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pottawatomie",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.pottawatomiecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pratt",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.prattcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rawlins",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.rawlinscounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Reno",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.renocounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Republic",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.republiccounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rice",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.ricecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Riley",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.rileycounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rooks",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.rookscounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rush",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.rushcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Russell",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.russellcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Saline",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.salinecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Scott",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.scottcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sedgwick",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "CivicSource (online)",
+   "url": "https://www.sedgwickcounty.org/treasurer/tax-foreclosure-auctions/",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Seward",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.sewardcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Shawnee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "CivicSource (online)",
+   "url": "https://www.snco.gov/counselor/tax_sale.php",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sheridan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.sheridancounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sherman",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.shermancounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Smith",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.smithcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stafford",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.staffordcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stanton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.stantoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stevens",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.stevenscounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sumner",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.sumnercounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Thomas",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.thomascounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Trego",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.tregocounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wabaunsee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.wabaunseecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wallace",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.wallacecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.washingtoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wichita",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.wichitacounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wilson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.wilsoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Woodson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.woodsoncounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wyandotte",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "2–3 years",
+   "rate": "Up to 15%",
+   "platform": "In-person / CivicSource",
+   "url": "https://www.wyandottecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleFrequency": "Annual or as scheduled — contact county counselor"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

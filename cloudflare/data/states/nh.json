@@ -1,0 +1,326 @@
+{
+ "code": "NH",
+ "name": "New Hampshire",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "18%",
+ "rateNote": "Municipal lien system — investor buys at tax sale, municipality takes deed after 2 years",
+ "redemption": "2 years",
+ "bidMethod": "Highest bidder (premium bid)",
+ "statute": "RSA Ch. 80 — esp. §80:19, §80:32, §80:76, §80:89",
+ "officialLink": "https://gc.nh.gov/rsa/html/V/80/80-mrg.htm",
+ "auctionPlatform": "Town/municipality-run — in-person",
+ "auctionTiming": "Varies by municipality",
+ "keyNotes": [
+  "18% on unpaid balance during 2-year redemption — strong rate",
+  "After 2 years unredeemed: municipality takes deed via collector's deed",
+  "Former owner then has 3 MORE years to redeem from municipality (15% assessed value penalty)",
+  "Clean title per First NH Bank v. Town of Windham (1994) — deed wipes encumbrances",
+  "Surplus proceeds must be returned to former owner (Polonsky v. Bedford, 2020)"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "New Hampshire municipalities conduct sporadic tax lien sales. 2-year redemption. 2020 NH Supreme Court ruling requires municipalities to return surplus beyond what's owed. Statute: NHRS §80:19.",
+ "typeWhy": "New Hampshire municipalities sell tax lien certificates. The investor holds the lien while the owner retains title during the 2-year redemption period. NHRS §80:19.",
+ "rateWhy": "New Hampshire sets a fixed statutory rate of 18% per annum on tax lien certificates. This rate applies uniformly and is not auction-determined. NHRS §80:19.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Municipal auctions only, sporadic sales, and 2020 NH Supreme Court ruling prevents municipalities from retaining surplus bids.",
+ "beginnerTip": "Manchester and Nashua have the most active municipal tax sales in NH. Monitor town meeting agendas — sales are often listed months in advance.",
+ "risks": [
+  "Surplus return requirement reduces maximum profitable bid",
+  "No centralized system — must monitor individual municipalities",
+  "Very low volume"
+ ],
+ "ddExtra": [
+  "Calculate your maximum bid with the surplus return ruling in mind",
+  "Monitor municipal meeting agendas — sales are often announced here first",
+  "Verify the 2-year redemption period has been met"
+ ],
+ "auctionSignup": {
+  "platform": "Municipal tax collector (town-specific)",
+  "steps": [
+   "Monitor municipal annual reports and town meeting minutes for upcoming sales",
+   "Contact the town tax collector directly — nh.gov/nhes for municipal directory",
+   "Register per the town's specific instructions — most are in-person",
+   "Understand the surplus return ruling before setting your maximum bid"
+  ],
+  "depositInfo": "Varies by municipality.",
+  "directLink": "https://www.revenue.nh.gov/property-appraisal/index.htm"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "Municipal tax collector offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "statute": "RSA 80:58–80:91 (Optional Tax Lien Procedure) + RSA 80:76 (Tax Deed) + RSA 80:88-80:90 (Excess Proceeds)",
+  "structure": "221 municipalities run independent lien processes. No county-level auction. Each town/city manages its own tax-acquired property sales.",
+  "process": {
+   "step1": "Taxes delinquent after December 1 (assessment year). Tax collector sends notice of sums due + date lien will be executed.",
+   "step2": "If not paid by execution date — lien is 'executed' (transferred to municipality). Clock starts on 2-year redemption.",
+   "step3": "Interest at 18%/yr accrues on unpaid balance (RSA 80:69) + substantial costs and penalties for notices/recording",
+   "step4": "2 years from lien execution without redemption: tax collector MUST tender tax deed to municipality (RSA 80:76). Exceptions: environmental liability, tenant obligations, or contrary to public interest.",
+   "step5": "Municipality may sell tax-deeded property by sealed bid or public auction (RSA 80:80). May also authorize alternative methods by warrant article.",
+   "step6": "If selling within 3 years of deed: must send 90-day notice to former owners + mortgage holders before sale date.",
+   "stat": "RSA 80:69, §76, §80, §88, §89"
+  },
+  "auction": {
+   "frequency": "As scheduled by each municipality",
+   "platform": "Municipal auction / sealed bid / NHTaxDeedAuctions.com (private auctioneer frequently used)",
+   "methods": "RSA 80:80: sealed bid OR public auction. By warrant article/ordinance: alternative methods (abutters, direct sale). Perpetual authorization possible with 'indefinitely, until rescinded' language.",
+   "statute": "RSA 80:80"
+  },
+  "otc": {
+   "available": false,
+   "name": "N/A — NH tax-acquired property sold via municipal auction/sealed bid per RSA 80:80",
+   "note": "Contact individual municipalities directly. NHTaxDeedAuctions.com aggregates many NH tax deed auctions."
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — NH lien stays with municipality"
+  },
+  "lienTransfer": {
+   "available": true,
+   "name": "Tax Lien Transfer to Private Investor",
+   "statute": "RSA 80:42 (Transfer of Tax Lien)",
+   "note": "Municipality may transfer tax lien to private party by vote at town meeting or city council action. Requires annual or perpetual authorization. Less common than municipal retention."
+  },
+  "redemption": {
+   "preExecutionDeadline": "Taxes may be paid before execution date to stop the process entirely",
+   "duringLienPeriod": "2 years from lien execution — owner may redeem by paying all taxes + 18%/yr interest + costs",
+   "interestRate": "18% per annum on unpaid lien balance (RSA 80:69). Plus substantial costs and penalties.",
+   "postTaxDeed": "Former owner has 3 years from recording of tax deed to redeem by paying all back taxes + penalties to municipality (RSA 80:89). Municipality may sell property during this period.",
+   "statute": "RSA 80:19, §69, §76, §89",
+   "homesteadDifferent": false
+  },
+  "deedPath": {
+   "name": "Tax Collector's Deed to Municipality",
+   "process": "After 2-year lien period without redemption — tax collector tenders deed to municipality. Title passes to municipality.",
+   "selling": "Municipality may sell via auction/sealed bid per RSA 80:80 as soon as deed is recorded.",
+   "previewSale3yr": "If municipality sells within 3 years of deed: 90-day advance notice to former owners + mortgage holders required. Former owner retains right to repurchase.",
+   "postSale3yr": "If municipality sells after 3 years from deed: redemption notice no longer required per RSA 80:89 VII (but excess proceeds still due per Polonsky + Tyler).",
+   "statute": "RSA 80:76, §80, §88, §89",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": true,
+   "name": "Excess Proceeds",
+   "statute": "RSA 80:88, §80:89, §80:90",
+   "trigger": "Sale proceeds exceed back taxes + interest + costs + penalty + reasonable legal fees",
+   "process": "Within 60 days of settlement: municipality files Bill of Interpleader with Superior Court (county where property located), naming former owners and all recorded interest holders as defendants, paying all excess proceeds into court.",
+   "municipalRetention": "Municipality retains only: back taxes + interest + costs + penalty + court filing costs/attorney fees for interpleader",
+   "defaultIfNoClaim": "In default of valid claims by others — municipality has continuing interest in unclaimed funds",
+   "legal": "⚡ Polonsky v. Town of Bedford, 173 N.H. 226 (2020) — NH Supreme Court: 3-year limitation in RSA 80:89 VII is unconstitutional. Municipalities may NOT keep excess proceeds even after 3 years. Tyler v. Hennepin (2023) affirms at federal level."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "18%",
+  "redemption": "2 años",
+  "summary": "Los municipios de New Hampshire realizan ventas de gravámenes esporádicas. Redención de 2 años. El fallo de la Corte Suprema de NH de 2020 requiere que los municipios devuelvan el excedente más allá de lo adeudado. Estatuto: NHRS §80:19.",
+  "typeWhy": "New Hampshire es un estado de gravamen donde los municipios realizan ventas esporádicas con período de redención de 2 años (NHRS §80:19).",
+  "rateWhy": "La tasa del 18% es sólida pero el volumen extremadamente bajo y las ventas infrecuentes limitan las oportunidades reales (NHRS §80:19).",
+  "notBeginnerReason": "Solo subastas municipales, ventas esporádicas y el fallo de la Corte Suprema de NH de 2020 impide que los municipios retengan pujas de excedente.",
+  "beginnerTip": "Manchester y Nashua tienen las ventas municipales más activas en NH. Monitoree las agendas de reuniones del pueblo — las ventas se listan con meses de anticipación.",
+  "risks": [
+   "El requisito de devolución de excedente reduce la puja máxima rentable",
+   "Sin sistema centralizado — debe monitorear municipios individuales",
+   "Volumen muy bajo"
+  ],
+  "ddExtra": [
+   "Calcule su puja máxima teniendo en cuenta el fallo de devolución de excedente",
+   "Monitoree agendas de reuniones municipales — las ventas frecuentemente se anuncian aquí primero",
+   "Verifique que se haya cumplido el período de redención de 2 años"
+  ],
+  "auctionSignup": {
+   "platform": "Recaudador de impuestos municipal (específico por ciudad)",
+   "steps": [
+    "Monitoree los informes anuales municipales y actas de reuniones del pueblo para próximas ventas",
+    "Contacte al recaudador de impuestos directamente — nh.gov/nhes para directorio municipal",
+    "Regístrese según instrucciones específicas de la ciudad — la mayoría son en persona",
+    "Comprenda el fallo de devolución de excedente antes de establecer su puja máxima"
+   ],
+   "depositInfo": "Varía por municipio.",
+   "directLink": "https://www.revenue.nh.gov/property-appraisal/index.htm"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Belknap",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years",
+   "rate": "18%",
+   "platform": "Municipal auction / NHTaxDeedAuctions.com (statewide aggregator)",
+   "url": "https://www.belnap.nh.gov/registry",
+   "notes": [
+    "9 municipalities. Each runs independent lien + deed process. Excess proceeds via Superior Court interpleader per RSA 80:88 (Polonsky + Tyler compliant)."
+   ],
+   "extra": {
+    "municipalities": 9
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carroll",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years",
+   "rate": "18%",
+   "platform": "Municipal auction / NHTaxDeedAuctions.com (statewide aggregator)",
+   "url": "https://www.carrollcountynh.net/registry",
+   "notes": [
+    "12 municipalities. Each runs independent lien + deed process. Excess proceeds via Superior Court interpleader per RSA 80:88 (Polonsky + Tyler compliant)."
+   ],
+   "extra": {
+    "municipalities": 12
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cheshire",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years",
+   "rate": "18%",
+   "platform": "Municipal auction / NHTaxDeedAuctions.com (statewide aggregator)",
+   "url": "https://www.co.cheshire.nh.us/registry",
+   "notes": [
+    "23 municipalities. Each runs independent lien + deed process. Excess proceeds via Superior Court interpleader per RSA 80:88 (Polonsky + Tyler compliant)."
+   ],
+   "extra": {
+    "municipalities": 23
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Coos",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years",
+   "rate": "18%",
+   "platform": "Municipal auction / NHTaxDeedAuctions.com (statewide aggregator)",
+   "url": "https://www.cooscountynh.us/registry",
+   "notes": [
+    "17 municipalities. Each runs independent lien + deed process. Excess proceeds via Superior Court interpleader per RSA 80:88 (Polonsky + Tyler compliant)."
+   ],
+   "extra": {
+    "municipalities": 17
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grafton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years",
+   "rate": "18%",
+   "platform": "Municipal auction / NHTaxDeedAuctions.com (statewide aggregator)",
+   "url": "https://www.co.grafton.nh.us/registry",
+   "notes": [
+    "28 municipalities. Each runs independent lien + deed process. Excess proceeds via Superior Court interpleader per RSA 80:88 (Polonsky + Tyler compliant)."
+   ],
+   "extra": {
+    "municipalities": 28
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hillsborough",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years",
+   "rate": "18%",
+   "platform": "Municipal auction / NHTaxDeedAuctions.com (statewide aggregator)",
+   "url": "https://www.hcnh.org/registry",
+   "notes": [
+    "31 municipalities. Each runs independent lien + deed process. Excess proceeds via Superior Court interpleader per RSA 80:88 (Polonsky + Tyler compliant)."
+   ],
+   "extra": {
+    "municipalities": 31
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Merrimack",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years",
+   "rate": "18%",
+   "platform": "Municipal auction / NHTaxDeedAuctions.com (statewide aggregator)",
+   "url": "https://www.merrimackcounty.net/registry",
+   "notes": [
+    "27 municipalities. Each runs independent lien + deed process. Excess proceeds via Superior Court interpleader per RSA 80:88 (Polonsky + Tyler compliant)."
+   ],
+   "extra": {
+    "municipalities": 27
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rockingham",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years",
+   "rate": "18%",
+   "platform": "Municipal auction / NHTaxDeedAuctions.com (statewide aggregator)",
+   "url": "https://www.nhdeeds.com",
+   "notes": [
+    "33 municipalities. Each runs independent lien + deed process. Excess proceeds via Superior Court interpleader per RSA 80:88 (Polonsky + Tyler compliant)."
+   ],
+   "extra": {
+    "municipalities": 33
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Strafford",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years",
+   "rate": "18%",
+   "platform": "Municipal auction / NHTaxDeedAuctions.com (statewide aggregator)",
+   "url": "https://www.co.strafford.nh.us/registry",
+   "notes": [
+    "16 municipalities. Each runs independent lien + deed process. Excess proceeds via Superior Court interpleader per RSA 80:88 (Polonsky + Tyler compliant)."
+   ],
+   "extra": {
+    "municipalities": 16
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sullivan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "2 years",
+   "rate": "18%",
+   "platform": "Municipal auction / NHTaxDeedAuctions.com (statewide aggregator)",
+   "url": "https://www.sullivancountynh.gov/registry",
+   "notes": [
+    "15 municipalities. Each runs independent lien + deed process. Excess proceeds via Superior Court interpleader per RSA 80:88 (Polonsky + Tyler compliant)."
+   ],
+   "extra": {
+    "municipalities": 15
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

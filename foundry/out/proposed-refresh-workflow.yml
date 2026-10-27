@@ -1,0 +1,43 @@
+# Proposed: .github/workflows/aurigen-refresh.yml  (this run cannot add workflow files)
+# Rebuilds the static site and the paid-extras files once a week and redeploys the Worker.
+# Why: the Sale Calendar expands schedules like "1st Tuesday of every month" into dates for the
+# next 12 months at build time, so a weekly rebuild keeps the window rolling. It also picks up
+# any data edits merged to main. Uses only the free Workers plan and free GitHub Actions minutes.
+#
+# Setup (Lando): add repo secrets CLOUDFLARE_API_TOKEN (Workers Scripts:Edit, D1:Edit) and
+# CLOUDFLARE_ACCOUNT_ID, then copy this file to .github/workflows/aurigen-refresh.yml on main.
+#
+# Heavier sources (county PDF/Excel sale lists) would be parsed in a step here, never in the
+# Worker. Add a source only after recording its robots.txt/terms in cloudflare/SOURCES.md, and
+# never store owner names.
+name: aurigen-refresh
+on:
+  schedule:
+    - cron: '23 9 * * 1'   # Mondays 09:23 UTC
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: aurigen-refresh
+  cancel-in-progress: false
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: cloudflare
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: cloudflare/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - run: npm run check
+      - run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

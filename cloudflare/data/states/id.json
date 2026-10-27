@@ -1,0 +1,790 @@
+{
+ "code": "ID",
+ "name": "Idaho",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "Varies",
+ "rateNote": "No post-sale redemption — buyer takes clean title",
+ "redemption": "14 months",
+ "bidMethod": "Highest bidder (oral auction)",
+ "statute": "Idaho Code §63-1001",
+ "officialLink": "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1001/",
+ "auctionPlatform": "County commissioner — in-person",
+ "auctionTiming": "Varies by county",
+ "keyNotes": [
+  "No post-sale redemption — immediate clean title",
+  "Housing shortage driving strong demand statewide",
+  "Boise-area properties attract heavy competition — best value in rural eastern and northern Idaho"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": [],
+ "summary": "Idaho counties have the authority but not the obligation to sell tax-delinquent properties. Some counties haven't held sales in years. Contact county treasurer directly for any real opportunity. Statute: IC §63-1003.",
+ "typeWhy": "Idaho counties sell tax-delinquent properties by deed but grant the former owner a 14-month right of redemption, making it a redeemable deed state. Counties have discretion on whether to hold sales at all. IC §63-1003.",
+ "rateWhy": "Idaho has no fixed statutory interest rate on tax deed sales. Returns are market-driven based on auction competition. IC §63-1003.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Counties have discretion on whether to sell — many never do. No central calendar or system.",
+ "beginnerTip": "Call Ada (Boise) and Canyon counties first — they have the most consistent sale activity in Idaho.",
+ "risks": [
+  "Many counties simply retain properties indefinitely — no guaranteed auction schedule",
+  "Rural parcels often have road access, title, or environmental issues",
+  "No statewide calendar or registration system"
+ ],
+ "ddExtra": [
+  "Call the county treasurer to confirm a sale is actually scheduled before investing any research time",
+  "Request the full property list in advance — do not bid sight unseen",
+  "Verify road access and utilities on all rural parcels"
+ ],
+ "auctionSignup": {
+  "platform": "County treasurer (varies — many counties do not hold sales)",
+  "steps": [
+   "Call the county treasurer directly — find them at tax.idaho.gov/county",
+   "Ask explicitly: 'Do you hold tax deed sales? When is the next one scheduled?'",
+   "If a sale is confirmed, request the property list and registration instructions",
+   "Most sales are in-person at the courthouse"
+  ],
+  "depositInfo": "Varies by county.",
+  "directLink": "https://tax.idaho.gov/contact-us/contact-property-tax/"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "County treasurer offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "deed",
+  "statute": "Idaho Code §63-1005 through §63-1011 (Tax Deed), §31-808 (Commissioner Sale Authority)",
+  "critical": "Idaho does NOT sell tax lien certificates. The county takes title directly via tax deed after 3-year delinquency.",
+  "process": {
+   "step1": "Early warning letter sent to owners with 3-year delinquency pending (typically May/August prior year)",
+   "step2": "Title search / Litigation Guarantee ordered on delinquent parcels",
+   "step3": "Certified mail Notice of Pending Issue of Tax Deed sent to all parties of interest — no less than 2 months nor more than 5 months before hearing date",
+   "step4": "Affidavit of Compliance filed at least 5 days before tax deed issuance",
+   "step5": "Tax Deed Hearing (typically May). County takes title.",
+   "step6": "Board of County Commissioners schedules public auction (typically summer/fall following hearing)",
+   "statute": "IC §63-1005"
+  },
+  "auction": {
+   "frequency": "Annual (timing varies by county — typically June–October after May hearing)",
+   "bidMethod": "Highest bid — minimum bid set by commissioners (typically all taxes + penalties + interest + costs)",
+   "payment": "Cash or certified check — 100% due by close of business day of sale (typically 3:00–5:00 PM)",
+   "platforms": "Mix: RealAuction (Kootenai), Public Surplus (Bonner), Bid4Assets (some), in-person courthouse (most)",
+   "commissionerRight": "Commissioners may reject all bids",
+   "statute": "IC §31-808"
+  },
+  "otc": {
+   "available": true,
+   "name": "Surplus / Unsold County Property",
+   "trigger": "Parcels not sold at public auction",
+   "process": "Commissioners may sell without further notice by public or private sale. Submit written bids directly to county Board of Commissioners.",
+   "statute": "IC §31-808(6)",
+   "note": "No additional advertising required for post-auction private/public sale"
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — Idaho is deed state; no sub-tax mechanism"
+  },
+  "redemption": {
+   "preAuction": "Property may be redeemed at any time prior to start of sale for that parcel. Redemption rights only.",
+   "postDeed": "14 months from tax deed issuance OR until sold at public auction, whichever comes first (Elmore, Shoshone confirmed). Some counties: 1 year from deed issuance.",
+   "postSale": "After auction sale — 1 additional year if tax deed PROCESS proven irregular (not standard redemption)",
+   "amounts": "All delinquency including late charges, accrued interest, costs including title search and professional fees",
+   "statute": "IC §63-1007 (14-month post-deed window), §63-1011 (1-year post-sale irregularity period)",
+   "note": "⚡ CRITICAL: Once property sells at auction — no standard right of redemption. Post-sale only for proven procedural irregularity."
+  },
+  "deedPath": {
+   "name": "Quit Claim Deed from County (Commissioner's Deed / Deed of County Property)",
+   "process": "Commissioner issues QC deed after auction sale. Deed recorded. Original mailed to purchaser.",
+   "titleQuality": "Quit claim — no warranty. Free and clear of most encumbrances EXCEPT: mortgages where notice not sent, subsequent tax liens, special assessment liens (IC §63-1009).",
+   "titleInsurance": "Generally not available for 1–3 years post-purchase. Quiet title action may be pursued.",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true,
+   "statute": "IC §63-1009"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Excess Proceeds",
+   "trigger": "Sale price exceeds minimum bid / taxes owed",
+   "process": "County holds excess. Parties of interest file claims. Unclaimed excess funds transferred to Idaho State Treasurer Unclaimed Property.",
+   "statute": "IC §63-1009 (implied); county treasurer administers",
+   "note": "Tyler v. Hennepin applies — ID excess proceeds available to parties of interest"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "redeemable deed",
+  "rate": "Varía",
+  "redemption": "14 meses",
+  "summary": "Los condados de Idaho tienen la autoridad pero no la obligación de vender propiedades en mora. Algunos condados no han realizado ventas en años. Estatuto: IC §63-1003.",
+  "typeWhy": "Idaho es un estado de escritura redimible porque los condados que optan por vender emiten una escritura fiscal al comprador, pero el propietario original retiene un derecho de redención de 14 meses (IC §63-1003).",
+  "rateWhy": "La tasa varía porque no existe una tasa estatutaria fija. Los condados tienen discreción sobre los términos de venta (IC §63-1003).",
+  "notBeginnerReason": "Los condados tienen discreción sobre si vender — muchos nunca lo hacen. Sin calendario ni sistema central.",
+  "beginnerTip": "Llame primero a Ada (Boise) y Canyon — tienen la actividad más consistente en Idaho.",
+  "risks": [
+   "Muchos condados retienen propiedades indefinidamente — sin calendario garantizado",
+   "Parcelas rurales con problemas de acceso, título o ambientales",
+   "Sin calendario ni sistema de registro estatal"
+  ],
+  "ddExtra": [
+   "Llame al tesorero del condado para confirmar que una venta está programada antes de invertir tiempo",
+   "Solicite la lista completa de propiedades — no puje sin ver",
+   "Verifique acceso vial y servicios en todas las parcelas rurales"
+  ],
+  "auctionSignup": {
+   "platform": "Tesorero del condado (varía — muchos condados no realizan ventas)",
+   "steps": [
+    "Llame al tesorero del condado directamente — tax.idaho.gov/county",
+    "Pregunte explícitamente: '¿Realizan ventas de escrituras fiscales? ¿Cuándo es la próxima?'",
+    "Si se confirma una venta, solicite la lista de propiedades e instrucciones de registro",
+    "La mayoría de las ventas son en persona en el tribunal"
+   ],
+   "depositInfo": "Varía por condado.",
+   "directLink": "https://tax.idaho.gov/contact-us/contact-property-tax/"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Ada",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "Online/In-person",
+   "url": "https://adacountyid.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Adams",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://adamscountyid.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bannock",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.bannockcounty.us/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bear Lake",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.bearlakecounty.net/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Benewah",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.benewahcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bingham",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://web.binghamid.gov/treasurer/treasurer_tax_deed.html",
+   "notes": [
+    "Full timeline documented at official site"
+   ],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Blaine",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.co.blaine.id.us/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Boise",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.boisecounty.us/services/treasurer/",
+   "notes": [
+    "Tax deed notice Jan 2026 for 2022 taxes"
+   ],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bonner",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "Public Surplus (online)",
+   "url": "https://www.bonnercountyid.gov/departments/Treasurer/FAQTaxDeeding",
+   "notes": [
+    "⚡ Uses Public Surplus online. Full timeline at official site."
+   ],
+   "extra": {
+    "saleMonth": "July (after May hearing)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bonneville",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person (sealed bids accepted)",
+   "url": "https://www.bonnevillecountyidaho.gov/page/tax-deed-and-estate-sales",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Boundary",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.boundarycountyid.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Butte",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.buttecountyid.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Camas",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.camascounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Canyon",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "Online/In-person",
+   "url": "https://canyoncounty.id.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Caribou",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.co.caribou.id.us/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cassia",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.cassiacounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clark",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.clarkcountyidaho.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clearwater",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://clearwatercounty.id.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Custer",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.custercountyid.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Elmore",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://elmorecounty.org/treasurer-tax-collector/tax-deed-sales/",
+   "notes": [
+    "⚡ 14-month post-deed redemption confirmed. Full process at official site."
+   ],
+   "extra": {
+    "saleMonth": "May hearing; summer auction"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Franklin",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.franklincountyidaho.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fremont",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.co.fremont.id.us/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gem",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.gemcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gooding",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.goodingcounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Idaho",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.idahocounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.co.jefferson.id.us/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jerome",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.co.jerome.id.us/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kootenai",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "RealAuction (online)",
+   "url": "https://www.kcgov.us/528/Property-Tax-Sale",
+   "notes": [
+    "⚡ Uses RealAuction. Title free/clear of most encumbrances per IC §63-1009."
+   ],
+   "extra": {
+    "saleMonth": "Annual — fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Latah",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.latahcountyid.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lemhi",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.lemhicountyidaho.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lewis",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.lewiscountyid.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.lincolncountyid.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Madison",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.madisoncountyid.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Minidoka",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.minidokacounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nez Perce",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.co.nezperce.id.us/Elected-Officials/Treasurer/Tax-Deed-Process",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Oneida",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.oneidacountyid.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Owyhee",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person (Murphy, ID courthouse)",
+   "url": "https://owyheecounty.net/departments/treasurer/tax-deed/",
+   "notes": [
+    "1-year post-deed redemption confirmed"
+   ],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Payette",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.payettecounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Power",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.co.power.id.us/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Shoshone",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://shoshonecounty.id.gov/tax-deed-auction/",
+   "notes": [
+    "⚡ 14-month post-deed redemption confirmed. Unsold surplus bids to BOCC."
+   ],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Teton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.co.teton.id.us/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Twin Falls",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "Online/In-person",
+   "url": "https://www.twinfallscounty.org/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Valley",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.co.valley.id.us/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washington",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "14 months",
+   "rate": "Varies",
+   "platform": "In-person",
+   "url": "https://www.co.washington.id.us/treasurer",
+   "notes": [],
+   "extra": {
+    "saleMonth": "Summer/Fall"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

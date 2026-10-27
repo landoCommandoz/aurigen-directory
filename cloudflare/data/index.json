@@ -1,0 +1,461 @@
+[
+ {
+  "code": "AK",
+  "name": "Alaska",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "Varies",
+  "redemption": "1 year",
+  "counties": 19
+ },
+ {
+  "code": "AL",
+  "name": "Alabama",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "12% per annum",
+  "redemption": "3 years",
+  "counties": 67
+ },
+ {
+  "code": "AR",
+  "name": "Arkansas",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "Penalty only",
+  "redemption": "2 years",
+  "counties": 75
+ },
+ {
+  "code": "AZ",
+  "name": "Arizona",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "16% per year simple interest",
+  "redemption": "3 years",
+  "counties": 15
+ },
+ {
+  "code": "CA",
+  "name": "California",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "Varies (market value bids)",
+  "redemption": "None post-sale",
+  "counties": 58
+ },
+ {
+  "code": "CO",
+  "name": "Colorado",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+  "redemption": "3 years",
+  "counties": 64
+ },
+ {
+  "code": "CT",
+  "name": "Connecticut",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "18% penalty",
+  "redemption": "1 year",
+  "counties": 167
+ },
+ {
+  "code": "DC",
+  "name": "Washington D.C.",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "18%",
+  "redemption": "6–12 months",
+  "counties": 1
+ },
+ {
+  "code": "DE",
+  "name": "Delaware",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "15-20% penalty (varies by county)",
+  "redemption": "60 days to 1 year",
+  "counties": 3
+ },
+ {
+  "code": "FL",
+  "name": "Florida",
+  "type": "hybrid",
+  "typeLabel": "Hybrid (lien then deed)",
+  "rate": "18% per year (reverse bid from ceiling)",
+  "redemption": "2 years from April 1 of issuance year",
+  "counties": 67
+ },
+ {
+  "code": "GA",
+  "name": "Georgia",
+  "type": "redeemable",
+  "typeLabel": "Redeemable deed",
+  "rate": "20% yr1 + 10%/yr after",
+  "redemption": "1 year",
+  "counties": 159
+ },
+ {
+  "code": "HI",
+  "name": "Hawaii",
+  "type": "redeemable",
+  "typeLabel": "Redeemable deed",
+  "rate": "Varies",
+  "redemption": "1 year",
+  "counties": 4
+ },
+ {
+  "code": "IA",
+  "name": "Iowa",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "24% per year (2% per month) — highest fixed rate in the U.S.",
+  "redemption": "1 year 9 months (21 months) + 90-day notice",
+  "counties": 99
+ },
+ {
+  "code": "ID",
+  "name": "Idaho",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "Varies",
+  "redemption": "14 months",
+  "counties": 44
+ },
+ {
+  "code": "IL",
+  "name": "Illinois",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "9% per 6-month period (18% annualized)",
+  "redemption": "2–2.5 years",
+  "counties": 102
+ },
+ {
+  "code": "IN",
+  "name": "Indiana",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "10% (0–6mo) / 15% (6–12mo) flat penalties",
+  "redemption": "1 year (120 days Commissioner's Sale)",
+  "counties": 92
+ },
+ {
+  "code": "KS",
+  "name": "Kansas",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "Up to 15%",
+  "redemption": "2–3 years",
+  "counties": 105
+ },
+ {
+  "code": "KY",
+  "name": "Kentucky",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "12% + penalties",
+  "redemption": "1 year",
+  "counties": 120
+ },
+ {
+  "code": "LA",
+  "name": "Louisiana",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "Up to 12%/yr bid-down (min 8.4%); + 5% penalty",
+  "redemption": "3 years",
+  "counties": 64
+ },
+ {
+  "code": "MA",
+  "name": "Massachusetts",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "16%",
+  "redemption": "6 months to 3 years (Land Court process)",
+  "counties": 14
+ },
+ {
+  "code": "MD",
+  "name": "Maryland",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "6%–24% (EXTREME county variation)",
+  "redemption": "No fixed period — owner may redeem until foreclosed by court order",
+  "counties": 24
+ },
+ {
+  "code": "ME",
+  "name": "Maine",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "8%",
+  "redemption": "18 months",
+  "counties": 16
+ },
+ {
+  "code": "MI",
+  "name": "Michigan",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "N/A (deed state)",
+  "redemption": "None post-sale",
+  "counties": 83
+ },
+ {
+  "code": "MN",
+  "name": "Minnesota",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "N/A",
+  "redemption": "None post-sale",
+  "counties": 87
+ },
+ {
+  "code": "MO",
+  "name": "Missouri",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "10%",
+  "redemption": "1 year",
+  "counties": 115
+ },
+ {
+  "code": "MS",
+  "name": "Mississippi",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "18%",
+  "redemption": "2 years",
+  "counties": 82
+ },
+ {
+  "code": "MT",
+  "name": "Montana",
+  "type": "hybrid",
+  "typeLabel": "Hybrid (lien then deed)",
+  "rate": "10% + 2%/mo penalty after year 1",
+  "redemption": "3 years",
+  "counties": 56
+ },
+ {
+  "code": "NC",
+  "name": "North Carolina",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "N/A",
+  "redemption": "10-day upset bid period post-auction",
+  "counties": 100
+ },
+ {
+  "code": "ND",
+  "name": "North Dakota",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "12%",
+  "redemption": "3 years",
+  "counties": 53
+ },
+ {
+  "code": "NE",
+  "name": "Nebraska",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "14%",
+  "redemption": "3 years",
+  "counties": 93
+ },
+ {
+  "code": "NH",
+  "name": "New Hampshire",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "18%",
+  "redemption": "2 years",
+  "counties": 10
+ },
+ {
+  "code": "NJ",
+  "name": "New Jersey",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "18% per year + premium bids",
+  "redemption": "2 years (private holders); 6 months (municipality-held)",
+  "counties": 21
+ },
+ {
+  "code": "NM",
+  "name": "New Mexico",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "N/A",
+  "redemption": "None post-sale",
+  "counties": 33
+ },
+ {
+  "code": "NV",
+  "name": "Nevada",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "N/A",
+  "redemption": "None post-sale",
+  "counties": 17
+ },
+ {
+  "code": "NY",
+  "name": "New York",
+  "type": "hybrid",
+  "typeLabel": "Hybrid (lien then deed)",
+  "rate": "Varies (NYC lien: 18%; upstate deed: varies)",
+  "redemption": "Varies",
+  "counties": 62
+ },
+ {
+  "code": "OH",
+  "name": "Ohio",
+  "type": "hybrid",
+  "typeLabel": "Hybrid (lien then deed)",
+  "rate": "18% (lien counties) / Market value (deed counties)",
+  "redemption": "1 year",
+  "counties": 88
+ },
+ {
+  "code": "OK",
+  "name": "Oklahoma",
+  "type": "hybrid",
+  "typeLabel": "Hybrid (lien then deed)",
+  "rate": "8%",
+  "redemption": "2 years",
+  "counties": 77
+ },
+ {
+  "code": "OR",
+  "name": "Oregon",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "N/A",
+  "redemption": "None post-sale",
+  "counties": 36
+ },
+ {
+  "code": "PA",
+  "name": "Pennsylvania",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "N/A",
+  "redemption": "None post-sale",
+  "counties": 67
+ },
+ {
+  "code": "RI",
+  "name": "Rhode Island",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "16% penalty (6 months); 1%/mo thereafter",
+  "redemption": "1 year",
+  "counties": 5
+ },
+ {
+  "code": "SC",
+  "name": "South Carolina",
+  "type": "redeemable",
+  "typeLabel": "Redeemable deed",
+  "rate": "3–12% (varies by redemption month)",
+  "redemption": "1 year",
+  "counties": 46
+ },
+ {
+  "code": "SD",
+  "name": "South Dakota",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "12%",
+  "redemption": "3–4 years",
+  "counties": 67
+ },
+ {
+  "code": "TN",
+  "name": "Tennessee",
+  "type": "redeemable",
+  "typeLabel": "Redeemable deed",
+  "rate": "10% penalty on redemption",
+  "redemption": "1 year (after 2-year delinquency required for sale)",
+  "counties": 95
+ },
+ {
+  "code": "TX",
+  "name": "Texas",
+  "type": "redeemable",
+  "typeLabel": "Redeemable deed",
+  "rate": "25% yr1 / 50% yr2 (penalty on redemption)",
+  "redemption": "180 days (non-homestead/non-ag) / 2 years (homestead/ag)",
+  "counties": 254
+ },
+ {
+  "code": "UT",
+  "name": "Utah",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "N/A",
+  "redemption": "None post-sale (5-year delinquency required before sale)",
+  "counties": 29
+ },
+ {
+  "code": "VA",
+  "name": "Virginia",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "N/A",
+  "redemption": "None (3-year delinquency required before sale)",
+  "counties": 133
+ },
+ {
+  "code": "VT",
+  "name": "Vermont",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "12%",
+  "redemption": "1 year",
+  "counties": 14
+ },
+ {
+  "code": "WA",
+  "name": "Washington",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "N/A",
+  "redemption": "3 years delinquency + county hold",
+  "counties": 39
+ },
+ {
+  "code": "WI",
+  "name": "Wisconsin",
+  "type": "deed",
+  "typeLabel": "Tax deed",
+  "rate": "N/A",
+  "redemption": "None post-sale (2-year delinquency before county takes deed)",
+  "counties": 72
+ },
+ {
+  "code": "WV",
+  "name": "West Virginia",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "12%",
+  "redemption": "18 months",
+  "counties": 55
+ },
+ {
+  "code": "WY",
+  "name": "Wyoming",
+  "type": "lien",
+  "typeLabel": "Tax lien",
+  "rate": "15%",
+  "redemption": "4 years",
+  "counties": 23
+ }
+]

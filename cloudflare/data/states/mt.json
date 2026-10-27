@@ -1,0 +1,951 @@
+{
+ "code": "MT",
+ "name": "Montana",
+ "type": "hybrid",
+ "typeLabel": "Hybrid (lien then deed)",
+ "rate": "10% + 2%/mo penalty after year 1",
+ "rateNote": "Fixed rate — no bidding",
+ "redemption": "3 years",
+ "bidMethod": "Highest bidder (premium bid)",
+ "statute": "MCA §15-18-111",
+ "officialLink": "https://leg.mt.gov/bills/mca/title_0150/chapter_0180/part_0010/section_0110/0150-0180-0010-0110.html",
+ "auctionPlatform": "County treasurer — in-person",
+ "auctionTiming": "July (most counties)",
+ "keyNotes": [
+  "10% fixed rate — predictable",
+  "3-year residential redemption is standard for lien states",
+  "Low inventory state — rural land heavy"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "Montana assigns tax liens annually in July to the county. Unsold liens transfer to county for private assignment. No centralized platform or online system. 3-year redemption before deed. Statute: MCA §15-17-112.",
+ "typeWhy": "Montana assigns tax lien certificates annually in July. The investor holds the lien while the owner retains title during the 3-year redemption period. MCA §15-17-112.",
+ "rateWhy": "Montana starts at a 10% annual interest rate for year 1, then adds a 2% per month penalty after the first year. This escalating penalty structure incentivizes faster redemption. MCA §15-17-112.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Annual July assignment, no online platform, no direct purchase, and predominantly rural agricultural inventory.",
+ "beginnerTip": "Montana works best for investors who are physically in the state. Remote participation is very difficult without a local contact.",
+ "risks": [
+  "Assignment system operates on first-come, first-served basis — not competitive auction",
+  "Limited urban inventory — primarily rural agricultural land",
+  "No online infrastructure"
+ ],
+ "ddExtra": [
+  "Verify road access on all rural parcels before assignment",
+  "Confirm no conflicting water rights or grazing easements",
+  "Check for prior failed assignments on the parcel"
+ ],
+ "auctionSignup": {
+  "platform": "County treasurer (in-person)",
+  "steps": [
+   "Contact the county treasurer — mt.gov/govt/counties",
+   "Ask about the July lien assignment schedule",
+   "Request the delinquent property list",
+   "Register in person with the county"
+  ],
+  "depositInfo": "Varies by county.",
+  "directLink": "https://mtrevenue.gov/property/"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC. Unassigned liens go to county — contact treasurer for private assignment."
+ },
+ "platforms": [
+  "County treasurer offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "hybrid",
+  "statute": "MCA Title 15, Ch. 17 (§15-17-125, §15-17-323) + Ch. 18 (§15-18-111 through §15-18-221)",
+  "criticalRate": "5/6 of 1% per month (≈10%/yr) + 2% penalty. Interest calculated DAILY.",
+  "process": {
+   "step1": "Taxes due: Nov 30 (1st half) and May 31 (2nd half). Delinquency triggers 2% penalty immediately.",
+   "step2": "August 1: Tax lien attaches to all delinquent property. County files lien with Clerk & Recorder. Lien list made public.",
+   "step3": "August 15+: Anyone may purchase (assign) the tax lien by: (a) mailing Notice of Pending Assignment to owner at least 2 weeks prior, (b) paying county all delinquent taxes + penalties + interest + costs.",
+   "step4": "County issues Assignment Certificate to buyer. County also notifies owner.",
+   "step5": "3-year redemption period runs from lien attachment date.",
+   "step6": "May 1–30 of final redemption year: Assignee (or county if unassigned) sends notice that tax deed may/will be issued unless redeemed.",
+   "step7": "Residential owner-occupied: Sheriff personally delivers additional notice.",
+   "step8": "After redemption period expires: Assignee applies for tax deed. County treasurer schedules AUCTION within 60 days.",
+   "stat": "MCA §15-17-125, §15-17-323, §15-18-112, §15-18-211, §15-18-212"
+  },
+  "auction": {
+   "platform": "County treasurer's office — during regular office hours. May be conducted electronically.",
+   "openingBid": "CRITICAL: Opening bid = (all redemption amount: delinquent taxes + penalties + interest + costs) + (assignee's application costs) + (tax deed fees + recording fees) + (50% of most recent assessed value of land + dwelling)",
+   "halfAssessedValue": "The 50% assessed value component is AUTOMATICALLY surplus — distributed to titleholder even if no overbid",
+   "payment": "Full payment within 24 hours (excluding weekends/holidays). Wire/cashier's check.",
+   "assigneePayment": "If assignee is high bidder — must pay auction costs + any unpaid opening bid components within 24 hours",
+   "failedPayment": "24-hr payment failure: assignment cancelled, next highest bidder offered at bid amount",
+   "statute": "MCA §15-18-219, §15-18-220"
+  },
+  "lienAssignment": {
+   "available": true,
+   "name": "Tax Lien Assignment (OTC-equivalent)",
+   "timing": "Aug 15 through approximately 60 days before end of redemption year",
+   "process": "Mail Notice of Pending Assignment to owner (certified, ≥2 weeks before but not before Aug 15, not more than 60 days before payment). Pay county treasurer. Receive Assignment Certificate.",
+   "subTaxWindow": "Subsequent taxes: pay June 1 – July 30 (or June 21 – July 30 for PTAP properties)",
+   "statute": "MCA §15-17-323",
+   "note": "⚡ Must file Proof of Notice with Clerk & Recorder within 30 days of mailing/publishing. Liens in final redemption year without filed Proof of Notice CANCELLED."
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payments",
+   "window": "June 1 – July 30 annually",
+   "statute": "MCA §15-18-112",
+   "note": "Assignee pays subsequent taxes once delinquent. Earns 5/6%/month + 2% penalty same as original lien"
+  },
+  "redemption": {
+   "period": "3 years from date tax lien attached (August 1)",
+   "undevelopedLot": "2 years if undeveloped lot with special improvement district assessments",
+   "amounts": "All delinquent taxes + penalties + interest + costs + subsequent taxes with penalty and interest",
+   "statute": "MCA §15-18-111, §15-18-112",
+   "homesteadDifferent": false,
+   "agDifferent": false
+  },
+  "deedPath": {
+   "name": "Tax Deed via Public Auction (county treasurer issues)",
+   "effect": "Absolute title as of expiration of redemption period, free and clear of all liens and encumbrances",
+   "exceptions": "Subsequent tax liens, special/rural/local improvement district assessments levied after",
+   "challengePeriod": "30 days after deed notice to challenge. After 30 days — title valid/binding regardless of irregularities EXCEPT if taxes were not delinquent or had been paid.",
+   "statute": "MCA §15-18-214, §15-18-411 through §15-18-413",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Auction Proceeds",
+   "statute": "MCA §15-18-221",
+   "process": "County treasurer distributes surplus to legal titleholder of record within 30 DAYS of receiving payment from purchaser. County processes regardless of whether titleholder is in-state or out-of-state.",
+   "guaranteed": "The 50% assessed value component of opening bid is ALWAYS surplus to titleholder — even if no one bids above opening.",
+   "note": "Tyler v. Hennepin compliant — MCA §15-18-221 (amended by Ch. 317, L.2019) codifies automatic 30-day surplus distribution"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "10% + 2%/mes penalización después del año 1",
+  "redemption": "3 años",
+  "summary": "Montana asigna gravámenes fiscales anualmente en julio al condado. Los gravámenes no vendidos se transfieren al condado para asignación privada. Sin plataforma centralizada ni sistema en línea. Estatuto: MCA §15-17-112.",
+  "typeWhy": "Montana es un estado de gravamen porque el condado asigna gravámenes fiscales anualmente en julio por orden de llegada (MCA §15-17-112).",
+  "rateWhy": "La tasa base del 10% más la penalización del 2% mensual después del primer año crea un retorno que se acelera con el tiempo (MCA §15-17-112).",
+  "notBeginnerReason": "Asignación anual en julio, sin plataforma en línea, sin compra directa e inventario predominantemente agrícola rural.",
+  "beginnerTip": "Montana funciona mejor para inversores que están físicamente en el estado. La participación remota es muy difícil sin un contacto local.",
+  "risks": [
+   "Sistema de asignación opera por orden de llegada — no es subasta competitiva",
+   "Inventario urbano limitado — principalmente tierra agrícola rural",
+   "Sin infraestructura en línea"
+  ],
+  "ddExtra": [
+   "Verifique acceso vial en todas las parcelas rurales antes de la asignación",
+   "Confirme que no haya derechos de agua conflictivos ni servidumbres de pastoreo",
+   "Revise asignaciones previas fallidas en la parcela"
+  ],
+  "auctionSignup": {
+   "platform": "Tesorero del condado (en persona)",
+   "steps": [
+    "Contacte al tesorero del condado — mt.gov/govt/counties",
+    "Pregunte sobre el calendario de asignación de gravámenes de julio",
+    "Solicite la lista de propiedades en mora",
+    "Regístrese en persona con el condado"
+   ],
+   "depositInfo": "Varía por condado.",
+   "directLink": "https://mtrevenue.gov/property/"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin OTC. Los gravámenes no asignados van al condado — contacte al tesorero para asignación privada."
+  }
+ },
+ "counties": [
+  {
+   "name": "Beaverhead",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://beaverheadcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Big Horn",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://bighorncountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Blaine",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://blainecountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Broadwater",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://broadwatercountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carbon",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://carboncountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carter",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://cartercountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cascade",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://cascadecountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Chouteau",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://chouteaucountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Custer",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://custercountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Daniels",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://danielscountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dawson",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://dawsoncountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Deer Lodge",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://deerlodgecountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fallon",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://falloncountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fergus",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://ferguscountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Flathead",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://flatheadcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gallatin",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://www.gallatinmt.gov/treasurer-property-tax-division/files/delinquent-taxes-tax-liens-and-assignments",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Garfield",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://garfieldcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Glacier",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://glaciercountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Golden Valley",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://goldenvalleycountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Granite",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://granitecountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hill",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://hillcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://jeffersoncountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Judith Basin",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://judithbasincountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lake",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://lakecountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lewis and Clark",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://lewisandclarkcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Liberty",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://libertycountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://lincolncountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Madison",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://madisoncountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McCone",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://mcconecountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Meagher",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://meaghercountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mineral",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://mineralcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Missoula",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://missoulacountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Musselshell",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://musselshellcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Park",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://parkcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Petroleum",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://petroleumcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Phillips",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://phillipscountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pondera",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://ponderacountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Powder River",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://powderrivercountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Powell",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://powellcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Prairie",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://prairiecountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ravalli",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://ravallicountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Richland",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://richlandcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Roosevelt",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://rooseveltcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rosebud",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://rosebudcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sanders",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://sanderscountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sheridan",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://sheridancountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Silver Bow",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://silverbowcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stillwater",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://stillwatercountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sweet Grass",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://sweetgrasscountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Teton",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://tetoncountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Toole",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://toolecountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Treasure",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://treasurecountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Valley",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://valleycountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wheatland",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://wheatlandcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wibaux",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://wibauxcountymt.gov/treasurer",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Yellowstone",
+   "kind": "county",
+   "saleType": "hybrid",
+   "redemption": "3 years",
+   "rate": "10% + 2%/mo penalty after year 1",
+   "platform": "County Treasurer (in-person or electronic per MCA §15-18-220)",
+   "url": "https://www.yellowstonecountymt.gov/treasurer/TaxSales.asp",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Within 60 days of tax deed application (after 3-yr redemption expires)"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

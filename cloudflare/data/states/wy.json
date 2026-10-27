@@ -1,0 +1,488 @@
+{
+ "code": "WY",
+ "name": "Wyoming",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "15%",
+ "rateNote": "Fixed rate — no bidding",
+ "redemption": "4 years",
+ "bidMethod": "Highest bidder (premium bid)",
+ "statute": "WY Statute §39-13-108",
+ "officialLink": "https://wyoleg.gov/statutes/compress/title39.pdf",
+ "auctionPlatform": "County treasurer — in-person",
+ "auctionTiming": "September–November (varies by county)",
+ "keyNotes": [
+  "4-year redemption is the LONGEST in the US — capital is tied up",
+  "15% fixed rate compensates for long hold",
+  "Low population state — limited inventory but less competition"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "Wyoming holds annual tax lien sales in November. 4-year redemption. Inventory dominated by energy sector and agricultural land. Statute: WS §39-13-108.",
+ "typeWhy": "Wyoming sells tax lien certificates at annual November sales. The investor holds the lien while the owner retains title during the 4-year redemption period — one of the longest in the country. WS §39-13-108.",
+ "rateWhy": "Wyoming sets a fixed statutory rate of 15% per annum on tax lien certificates. This higher-than-average rate compensates for the exceptionally long 4-year redemption period. WS §39-13-108.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "4-year redemption, limited inventory, November-only auctions, and primarily rural energy/agricultural land.",
+ "beginnerTip": "Laramie and Natrona counties have the best WY inventory. The 4-year redemption makes Wyoming a very long-term play — not recommended unless you understand the energy land market.",
+ "risks": [
+  "4-year redemption — among the longest in lien states",
+  "Energy sector land has specialized valuation considerations",
+  "November-only auctions limit timing"
+ ],
+ "ddExtra": [
+  "Verify mineral rights status — commonly separated from surface rights in Wyoming",
+  "Calculate opportunity cost over 4-year holding period",
+  "Confirm the November sale date with the county treasurer by October"
+ ],
+ "auctionSignup": {
+  "platform": "County treasurer (in-person, November)",
+  "steps": [
+   "Find your target county treasurer at wyoming.gov/government/counties",
+   "Contact the treasurer in September to confirm the November sale schedule",
+   "Request the property list",
+   "Register in person — most WY counties do not have online bidding"
+  ],
+  "depositInfo": "Varies by county.",
+  "directLink": "https://wyo-prop-div.wyo.gov/"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "County treasurer offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "statute": "WS §39-13-108 (Enforcement — Tax Lien Sale, Redemption, Deed)",
+  "process": {
+   "step1": "Taxes delinquent. County treasurer publishes notice in local newspaper 3 consecutive weeks prior to sale.",
+   "step2": "Annual public auction. Purchaser pays all taxes + interest + costs. County issues Certificate of Purchase.",
+   "step3": "County retains physical custody of Certificate. Sends copy to purchaser within reasonable time.",
+   "step4": "During 4-year redemption: original owner may redeem. Purchaser may pay subsequent taxes (also earn 15%/yr).",
+   "step5": "4 years post-sale: cert holder may apply for tax deed (providing statutory notice). County treasurer issues deed.",
+   "step6": "6-year limit: tax deed CANNOT be issued after 6 years from original sale date. Certificate void.",
+   "stat": "WS §39-13-108"
+  },
+  "auction": {
+   "frequency": "Annual — last Thursday in July OR first Thursday in August",
+   "platform": "In-person county courthouse/designated location. Each of 23 counties independently.",
+   "bidMethod": "Premium bid — purchaser bids and pays full amount of taxes + interest + costs",
+   "registration": "Pre-registration varies by county. Some: day of sale 8 AM. Teton: must pre-register. W-9 required at many counties.",
+   "payment": "Cash, bank checks, credit/debit cards (county-dependent). No personal checks at most counties.",
+   "limitation": "Some counties cap attendance (Teton: pre-registered only, Lincoln: 100 max)",
+   "confirmed2026": {
+    "teton": "August 5, 2026 — Teton County Fairgrounds Community Building, 305 W. Snow King, Jackson, WY 83001. Pre-registration Aug 3–4, 9AM–4:30PM, County Admin Building 200 S. Willow St. — CONFIRMED OFFICIAL",
+    "laramie": "Late July/early August — check county website (historically after Frontier Days™)",
+    "general": "Most counties: last Thursday July or first Thursday August 2026"
+   },
+   "statute": "WS §39-13-108"
+  },
+  "otc": {
+   "available": true,
+   "name": "County-Held Certificates (OTC)",
+   "process": "If no bidder at tax sale — county holds certificate. Contact county treasurer to purchase county-held liens.",
+   "note": "County-held certs earn same 15%/yr rate upon redemption"
+  },
+  "subTax": {
+   "available": true,
+   "name": "Subsequent Tax Payments",
+   "statute": "WS §39-13-108",
+   "rate": "15% per annum on subsequent taxes paid",
+   "obligation": "Certificate holder is under NO obligation to pay subsequent taxes. Optional.",
+   "note": "If paid — subsequent taxes attach to original lien and earn 15%/yr"
+  },
+  "redemption": {
+   "period": "4 years from date of tax lien sale",
+   "window": "Can redeem anytime until county treasurer accepts tax deed application (between 4–6 years)",
+   "amounts": "Amount of tax sold at sale + 3% penalty + 15% simple interest + any subsequent taxes paid by cert holder with 15% interest + redemption fee + purchaser's actual expenses (not to exceed $250 if redeeming after pre-deed notice)",
+   "statute": "WS §39-13-108, §39-13-109",
+   "homesteadDifferent": false
+  },
+  "deedPath": {
+   "name": "Treasurer's Deed",
+   "eligibleWindow": "4 years to 6 years from date of sale",
+   "noticeRequired": "Cert holder must comply with statutory notice requirements BEFORE applying. 60-day notice to record owner + mortgage holders by personal service or certified mail.",
+   "taxDeedAfter6yr": "⚡ Tax deed CANNOT be issued after 6 years from sale. Certificate expires. All money invested is potentially lost.",
+   "titleEffect": "Deed conveys title free and clear. 6-year SOL on actions to recover property (WS §39-13-108(c)(D))",
+   "statute": "WS §39-13-108",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Proceeds",
+   "statute": "WS §39-13-108 — surplus of personal property sale returned to owner. Tyler v. Hennepin applies to real property.",
+   "process": "Surplus from sale above taxes + costs returned to former owner. Tyler v. Hennepin constitutional requirement.",
+   "note": "WY statute §39-13-108(A)(V) explicitly requires surplus return on personal property distraint — Tyler applies to real property surplus."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "15%",
+  "redemption": "4 años",
+  "summary": "Wyoming realiza ventas anuales de gravámenes fiscales en noviembre. Redención de 4 años. El inventario está dominado por tierra del sector energético y agrícola. Estatuto: WS §39-13-108.",
+  "typeWhy": "Wyoming es un estado de gravamen porque los condados venden certificados de gravamen fiscal en noviembre con período de redención de 4 años — uno de los más largos del país (WS §39-13-108).",
+  "rateWhy": "La tasa del 15% es atractiva pero la redención de 4 años es una de las más largas del país, inmovilizando capital en un mercado dominado por tierra del sector energético y agrícola (WS §39-13-108).",
+  "notBeginnerReason": "Redención de 4 años, inventario limitado, subastas solo en noviembre y tierra predominantemente de sector energético/agrícola.",
+  "beginnerTip": "Los condados Laramie y Natrona tienen el mejor inventario de WY. La redención de 4 años hace que Wyoming sea una estrategia a muy largo plazo — no se recomienda a menos que entienda el mercado de tierra energética.",
+  "risks": [
+   "Redención de 4 años — entre las más largas en estados de gravamen",
+   "La tierra del sector energético tiene consideraciones de valoración especializadas",
+   "Las subastas solo en noviembre limitan el tiempo"
+  ],
+  "ddExtra": [
+   "Verifique el estado de los derechos minerales — comúnmente separados de los derechos de superficie en Wyoming",
+   "Calcule el costo de oportunidad durante el período de retención de 4 años",
+   "Confirme la fecha de venta de noviembre con el tesorero del condado para octubre"
+  ],
+  "auctionSignup": {
+   "platform": "Tesorero del condado (en persona, noviembre)",
+   "steps": [
+    "Encuentre al tesorero de su condado en wyoming.gov/government/counties",
+    "Contacte al tesorero en septiembre para confirmar el calendario de venta de noviembre",
+    "Solicite la lista de propiedades en mora",
+    "Regístrese en persona — la mayoría de los condados de WY no tienen pujas en línea"
+   ],
+   "depositInfo": "Varía por condado.",
+   "directLink": "https://wyo-prop-div.wyo.gov/"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Albany",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.albanycountywy.gov/299/Tax-Lien-Sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Big Horn",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.bighorncountywy.gov/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Campbell",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.campbellcountywy.gov/2267/Tax-Sale-Info",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Carbon",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.carbonwy.com/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Converse",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.conversecounty.org/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Crook",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.crookcounty.wy.gov/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fremont",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.fremontcountywy.gov/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Goshen",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://goshencounty.org/236/Tax-Sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hot Springs",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.hotspringswy.gov/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Johnson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.johnsoncountywy.net/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Laramie",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.laramiecountywy.gov/County-Government/Elected-Officials/County-Treasurer/Tax-Sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.lincolncountywy.gov/government/treasurer/tax_sale.php",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Natrona",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.natrona.net/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Niobrara",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.niobraracountywy.gov/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Park",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.parkcounty.us/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Platte",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.plattecountywyoming.com/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sheridan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.sheridancountywy.gov/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sublette",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.sublettewyo.com/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sweetwater",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.sweetwatercountywy.gov/departments/treasurer/tax_sales_and_redemptions.php",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Teton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.tetoncountywy.gov/439/Delinquent-Tax-Sale-Information-Provisio",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "August 5, 2026 — CONFIRMED (pre-reg Aug 3–4)"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Uinta",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.uintacounty.com/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Washakie",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.washakiecountywy.gov/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Weston",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "4 years",
+   "rate": "15%",
+   "platform": "In-person county courthouse/fairgrounds",
+   "url": "https://www.westoncountywy.gov/treasurer/tax-sale",
+   "notes": [],
+   "extra": {
+    "saleDate2026": "Late July or early August 2026 — check county treasurer site"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

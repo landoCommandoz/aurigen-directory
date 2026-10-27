@@ -1,0 +1,937 @@
+{
+ "code": "WV",
+ "name": "West Virginia",
+ "type": "lien",
+ "typeLabel": "Tax lien",
+ "rate": "12%",
+ "rateNote": "Interest on bid amount — not on tax amount. Sheriff-run process",
+ "redemption": "18 months",
+ "bidMethod": "Highest bidder (premium bid)",
+ "statute": "WV Code §11A-3-9",
+ "officialLink": "https://code.wvlegislature.gov/11A-3-9/",
+ "auctionPlatform": "Sheriff-run — in-person",
+ "auctionTiming": "October–November",
+ "keyNotes": [
+  "12% is on the BID amount — not just the tax amount",
+  "High redemption rate (~70–80%) — most liens pay out, rarely reach deed",
+  "Sheriff conducts sales — not county treasurer"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "West Virginia State Auditor manages delinquent land sales. Annual lien sales October 14–November 23 by county sheriff. Unredeemed liens after 18 months → deed sales as needed. Certificate is assignable. Statute: WV Code 11A Art.3.",
+ "typeWhy": "West Virginia is a hybrid state — the county sheriff sells tax lien certificates annually, and if unredeemed after 18 months, the properties go to a separate deed sale managed by the State Auditor. WV Code 11A Art.3.",
+ "rateWhy": "West Virginia sets a statutory interest rate of 12% per annum on tax lien certificates during the 18-month redemption period. Certificates are assignable. WV Code 11A Art.3.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "Often misquoted as 12-month redemption — it's actually 18 months. Mineral rights commonly separated. Complex title history.",
+ "beginnerTip": "Confirm the 18-month redemption period before planning your deed execution. Many investors incorrectly plan for 12 months and are caught off guard. Also check for separated mineral rights on any rural WV parcel — they're extremely common.",
+ "risks": [
+  "Redemption period is 18 months — commonly misquoted as 12 months",
+  "Separated mineral rights are common on rural WV parcels — affects land value significantly",
+  "Title issues on deed sale properties are common — quiet title may be required"
+ ],
+ "ddExtra": [
+  "Confirm the exact redemption expiration date — 18 months, not 12",
+  "Check the WV State Auditor's delinquent land list for additional inventory",
+  "Verify mineral rights status — separated rights are very common in WV"
+ ],
+ "auctionSignup": {
+  "platform": "County sheriff (in-person, October–November)",
+  "steps": [
+   "Find your target county sheriff at wv.gov/government/counties.aspx",
+   "Contact the sheriff's office in September to confirm the sale schedule and property list",
+   "Register in person for the October–November auction window",
+   "Note: the lien certificate you receive is assignable — you can transfer it"
+  ],
+  "depositInfo": "Varies by county. Confirm with county sheriff.",
+  "directLink": "https://www.wvsao.gov/CountyCollections/Default"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC. Check WV State Auditor's delinquent land list for additional opportunities."
+ },
+ "platforms": [
+  "County sheriff offices",
+  "WV State Auditor"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "lien",
+  "process": {
+   "stage1": "Sheriff's Tax Lien Sale: Held annually Oct 14 – Nov 23 at courthouse. Premium bid. Highest bidder gets Certificate of Sale.",
+   "stage2": "If property unsold at sheriff's sale — sheriff certifies to State Auditor. Auditor holds 18 months.",
+   "stage3": "Auditor certifies to Deputy Land Commissioner for second public auction (state sale).",
+   "stage4": "If still unsold after state sale — Deputy Commissioner holds. May sell without additional advertising to anyone making offer.",
+   "stateNotOwner": "State never owns the property — only the lien. Former owner retains title throughout."
+  },
+  "auction": {
+   "frequency": "Annual — Oct 14 through Nov 23 (courthouse steps)",
+   "platform": "In-person courthouse / Sheriff's office — each county independently",
+   "bidMethod": "Premium bid — highest bidder above minimum",
+   "minimumBid": "All delinquent taxes + interest + charges",
+   "payment": "Check or money order payable to county sheriff — due by close of business day of sale",
+   "statute": "WV Code §11A-3-5, §11A-3-5a"
+  },
+  "otc": {
+   "available": true,
+   "name": "State Auditor / Deputy Commissioner OTC Sale",
+   "trigger": "Unsold at sheriff's sale OR unsold at state sale (deputy commissioner holds)",
+   "process": "Contact WV State Auditor's Land Division. Deputy Commissioner may sell without additional advertising.",
+   "statute": "WV Code §11A-3-48",
+   "auditorUrl": "https://www.wvsao.gov/LandDivision",
+   "note": "Properties sold within previous 5 years for which no deed was secured are also available via Auditor"
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — WV lien cert does not have sub-tax mechanism for individual investors",
+   "note": "Subsequent taxes create separate delinquencies — tracked independently"
+  },
+  "redemption": {
+   "period": "Until close of business day before the deed is issued by State Auditor (broadly — until April 1 of year 2 following sale)",
+   "interestRate": "1% per month on taxes + charges from date of sale to date of redemption",
+   "minimum": "If no notice proof from purchaser — minimum $500 + 1%/month interest",
+   "process": "Pay State Auditor or county clerk: all taxes + interest + charges + costs",
+   "statute": "WV Code §11A-3-56, §11A-3-57",
+   "hardshipPlan": "Owner may petition Auditor for installment redemption plan for primary residence",
+   "homesteadDifferent": false,
+   "agDifferent": false
+  },
+  "deedPath": {
+   "name": "Quitclaim Deed from State Auditor",
+   "eligibleWindow": "Between April 1 of year 2 following sale AND 18 months after original sale",
+   "noticeProcess": "State Auditor sends notice May 1 – Sept 1 of year following sale. Purchaser must provide notice to owner + lienholders. Purchaser submits proof of expenses.",
+   "process": "Purchaser requests deed from State Auditor. Auditor approves and executes quitclaim deed within 120 days of request.",
+   "statute": "WV Code §11A-3-27",
+   "titleQuality": "Quitclaim — no warranty. Quiet title strongly recommended.",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true,
+   "note": "Certificate expires after 18 months — must request deed within window or lien becomes void"
+  },
+  "surplus": {
+   "available": true,
+   "name": "Surplus Proceeds",
+   "statute": "WV Code §11A-3-65 (former owner right to surplus), §11A-3-64 (sheriff disposition)",
+   "trigger": "Overbid above taxes + costs at sheriff's sale or state sale",
+   "claimPeriod": "2 years for purchaser surplus; if no claim within 2 years — paid to Auditor for general school fund",
+   "process": "Former owner may claim surplus. Former creditors also have claims (§11A-4-7).",
+   "note": "Tyler v. Hennepin applies — WV §11A-3-65 already provides right of former owner to surplus proceeds"
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "hybrid",
+  "rate": "12%",
+  "redemption": "18 meses",
+  "summary": "El Auditor del Estado de Virginia Occidental gestiona las ventas de tierra en mora. Ventas anuales de gravámenes del 14 de octubre al 23 de noviembre por el sheriff del condado. Los gravámenes no redimidos después de 18 meses → ventas de escritura según sea necesario. El certificado es asignable. Estatuto: WV Code 11A Art.3.",
+  "typeWhy": "Virginia Occidental es un estado híbrido porque el sistema comienza con venta de certificados de gravamen fiscal (octubre-noviembre), y si no se redimen en 18 meses, se convierten en ventas de escritura gestionadas por el Auditor del Estado (WV Code 11A Art.3).",
+  "rateWhy": "La tasa fija del 12% se aplica durante el período de gravamen de 18 meses. Los certificados son asignables (WV Code 11A Art.3).",
+  "notBeginnerReason": "A menudo se cita incorrectamente como redención de 12 meses — en realidad son 18 meses. Los derechos minerales están comúnmente separados. Historial de título complejo.",
+  "beginnerTip": "Confirme el período de redención de 18 meses antes de planificar su ejecución de escritura. Muchos inversores planifican incorrectamente para 12 meses y son tomados por sorpresa. También revise los derechos minerales separados en cualquier parcela rural de WV — son extremadamente comunes.",
+  "risks": [
+   "El período de redención es de 18 meses — comúnmente citado incorrectamente como 12 meses",
+   "Los derechos minerales separados son comunes en parcelas rurales de WV — afecta significativamente el valor de la tierra",
+   "Los problemas de título en propiedades de venta de escritura son comunes — puede requerirse título silencioso"
+  ],
+  "ddExtra": [
+   "Confirme la fecha exacta de vencimiento de la redención — 18 meses, no 12",
+   "Revise la lista de tierra en mora del Auditor del Estado de WV para inventario adicional",
+   "Verifique el estado de los derechos minerales — los derechos separados son muy comunes en WV"
+  ],
+  "auctionSignup": {
+   "platform": "Sheriff del condado (en persona, octubre–noviembre)",
+   "steps": [
+    "Encuentre al sheriff de su condado objetivo en wv.gov/government/counties.aspx",
+    "Contacte la oficina del sheriff en septiembre para confirmar el calendario de venta y lista de propiedades",
+    "Regístrese en persona para la ventana de subasta de octubre–noviembre",
+    "Tenga en cuenta: el certificado de gravamen que recibe es asignable — puede transferirlo"
+   ],
+   "depositInfo": "Varía por condado. Confirme con el sheriff del condado.",
+   "directLink": "https://www.wvsao.gov/CountyCollections/Default"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin OTC. Revise la lista de tierra en mora del Auditor del Estado de WV para oportunidades adicionales."
+  }
+ },
+ "counties": [
+  {
+   "name": "Barbour",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.barbourcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Berkeley",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.berkeleywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Boone",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.boonecountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Braxton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.braxtonco.com/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Brooke",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.brookecountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cabell",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.cabellcounty.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Calhoun",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.calhouncountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Clay",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.claycountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Doddridge",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.doddridgecountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Fayette",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.fayettecountycommission.com/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Gilmer",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.gilmercountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grant",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.grantcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Greenbrier",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.greenbrierco.com/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hampshire",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.hampshirecountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hancock",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.hancockcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hardy",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.hardycountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Harrison",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.harrisoncountywv.com/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jackson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.jacksoncountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Jefferson",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.jeffersoncountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kanawha",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.kanawha.us/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lewis",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.lewiscountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Lincoln",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.lincolncountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Logan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.logancountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marion",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.marioncountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Marshall",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.marshallcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mason",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.masoncountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McDowell",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.mcdowellcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mercer",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.mercercountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mineral",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.mineralcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mingo",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.mingocountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Monongalia",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.monongaliacounty.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Monroe",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.monroecountywv.gov/tax-office/delinquent-land-sale/83",
+   "notes": [
+    "⚡ Full process documented: Nov 2026 sale for 2025 taxes",
+    "⚡ Monroe County: Full sheriff sale timeline documented"
+   ],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Morgan",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.morgancountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nicholas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.nicholascountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ohio",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.ohiocountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pendleton",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.pendletoncountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pleasants",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.pleasantscountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pocahontas",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.pocahontascountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Preston",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.prestoncountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Putnam",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.putnamcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Raleigh",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.raleighcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Randolph",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.randolphcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ritchie",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.ritchiecountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Roane",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.roanecountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Summers",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.summerscountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Taylor",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.taylorcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tucker",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.tuckercountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Tyler",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.tylercountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Upshur",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.upshurcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wayne",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.waynecountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Webster",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.webstercountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wetzel",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.wetzelcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wirt",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.wirtcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wood",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.woodcountywv.com/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wyoming",
+   "kind": "county",
+   "saleType": "lien",
+   "redemption": "18 months",
+   "rate": "12%",
+   "platform": "Courthouse",
+   "url": "https://www.wyomingcountywv.org/sheriff/tax-sales",
+   "notes": [],
+   "extra": {
+    "saleWindow": "Oct 14–Nov 23"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}

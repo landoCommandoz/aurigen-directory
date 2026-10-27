@@ -1,0 +1,899 @@
+{
+ "code": "ND",
+ "name": "North Dakota",
+ "type": "deed",
+ "typeLabel": "Tax deed",
+ "rate": "12%",
+ "rateNote": "County holds liens — retail investors buy deed sales only",
+ "redemption": "3 years",
+ "bidMethod": "Highest bidder",
+ "statute": "NDCC §57-28-04",
+ "officialLink": "https://www.legis.nd.gov/cencode/t57c28.pdf",
+ "auctionPlatform": "County commissioner — in-person",
+ "auctionTiming": "Varies by county",
+ "keyNotes": [
+  "Hybrid: county holds the lien — retail investors cannot buy liens directly",
+  "Investors access market through post-redemption deed sales only",
+  "Low inventory, rural, agricultural land heavy"
+ ],
+ "investorAlert": null,
+ "pendingLegislation": null,
+ "summary": "North Dakota holds tax lien auctions in December only. 3-year redemption period at 12% annual interest. Inventory dominated by rural agricultural land. Statute: NDCC §57-28.",
+ "typeWhy": "North Dakota sells tax lien certificates at December auctions. The investor holds the lien while the owner retains title during the 3-year redemption period. NDCC §57-28.",
+ "rateWhy": "North Dakota sets a fixed statutory rate of 12% per annum on tax lien certificates. This is a flat, non-auction-determined rate. NDCC §57-28.",
+ "beginnerFriendly": false,
+ "notBeginnerReason": "3-year redemption period, December-only auctions, and predominantly rural agricultural inventory.",
+ "beginnerTip": "North Dakota is not recommended for beginners or most investors. If you're here specifically for agricultural land, focus on Cass County (Fargo area) where there's more demand.",
+ "risks": [
+  "3-year redemption ties up capital",
+  "December-only auctions limit timing flexibility",
+  "Agricultural land dominates — limited development potential"
+ ],
+ "ddExtra": [
+  "Calculate your opportunity cost over the 3-year holding period before bidding",
+  "Verify water rights and mineral rights status on agricultural parcels",
+  "Confirm drainage district liens on any farmland"
+ ],
+ "auctionSignup": {
+  "platform": "County auditor (in-person, December)",
+  "steps": [
+   "Find your target county auditor at nd.gov/counties",
+   "Request the delinquent property list in October",
+   "Register in person for the December auction",
+   "Bring cashier's check"
+  ],
+  "depositInfo": "Cashier's check required.",
+  "directLink": "https://www.nd.gov/tax/"
+ },
+ "otc": {
+  "available": false,
+  "note": "No OTC program."
+ },
+ "platforms": [
+  "County auditor offices"
+ ],
+ "tylerCompliance": {
+  "status": "pending",
+  "summary": "Status pending — monitoring for legislative action.",
+  "details": "This state compliance with Tyler v. Hennepin County (2023) is currently being monitored. Aurigen tracks legislative updates, pending bills, and court decisions that affect tax sale surplus requirements. Check back for updates.",
+  "lastUpdated": "2026-03-01",
+  "legislationRef": ""
+ },
+ "featuredCounties": [],
+ "rules": {
+  "type": "deed",
+  "statute": "NDCC §57-24 (Annual Tax Sale) + §57-28 (Foreclosure and Sale of Tax-Title Land)",
+  "critical": "⚡ North Dakota has NOT permitted private tax lien certificate purchases since 1999 (SL 1999 ch. 503 §47). All delinquent tax sales result in county ownership. Investors buy from county at annual November sale.",
+  "process": {
+   "step1": "Taxes delinquent → Nov 1–15: County treasurer mails notice to owners of delinquency with 12%/yr interest accruing from Jan 1",
+   "step2": "Annual auction: offered in December at county auditor (NDCC §57-24-12). If no private bid — county acquires at bid of total taxes due.",
+   "step3": "County holds for 3 years after county acquisition.",
+   "step4": "June 1: County auditor gives foreclosure notice for all property 4+ years past due since tax became due (NDCC §57-28-01)",
+   "step5": "Oct 1: Redemption period expires. County auditor issues tax deed TO THE COUNTY (NDCC §57-28-09).",
+   "step6": "Annual sale: 3rd Tuesday of November — county auditor's office or usual place of holding district court (NDCC §57-28-13)",
+   "stat": "NDCC §57-28-01, §57-28-09, §57-28-13"
+  },
+  "auction": {
+   "frequency": "Annual — 3rd Tuesday of November",
+   "platform": "County auditor's office or courthouse — each of 53 counties independently",
+   "bidMethod": "Highest bid — commissioners may set minimum at market value or amount owed for back taxes",
+   "notice": "Posted at county auditor's office ≥15 days before sale + published in official county newspaper ≥10 days before (NDCC §57-28-14)",
+   "irsRedemption": "⚡ IRS has statutory right to redeem up to 120 days after sale. Affects title strategy.",
+   "titleNote": "No guarantees of marketability. AS-IS.",
+   "statute": "NDCC §57-28-13, §57-28-14"
+  },
+  "otc": {
+   "available": true,
+   "name": "Post-Sale County Properties",
+   "process": "Properties not sold at November auction remain county-owned. Contact county auditor directly. Commissioners have discretion on pricing.",
+   "note": "No uniform statewide OTC program. Each county auditor manages independently."
+  },
+  "subTax": {
+   "available": false,
+   "name": "N/A — No private lien holders since 1999"
+  },
+  "redemption": {
+   "preDecemberAuction": "Owner may redeem before December auction by paying all delinquent taxes + interest + penalties + costs",
+   "duringCountyHold": "Owner may redeem from county at any time during 3-year county hold period by paying all amounts owed",
+   "preNovemberSale": "Owners of county-foreclosed property: may redeem until sale date (NDCC §57-28)",
+   "interestRate": "12% per annum simple interest from January 1 following year taxes become due",
+   "statute": "NDCC §57-20-26, §57-26-02, §57-26-03",
+   "homesteadDifferent": false,
+   "agDifferent": false
+  },
+  "deedPath": {
+   "name": "Tax Deed from County",
+   "effect": "Prima facie evidence of truth and regularity of all proceedings (NDCC §57-28-09)",
+   "titleQuality": "AS-IS. No guarantee of marketability. IRS lien survives 120 days post-sale.",
+   "postSaleChallenge": "Failure to redeem before redemption expiration waives all errors/irregularities EXCEPT jurisdictional defects (NDCC §57-28-08(3))",
+   "statute": "NDCC §57-28-09",
+   "quietTitleRequired": false,
+   "quietTitleRecommended": true
+  },
+  "surplus": {
+   "available": false,
+   "name": "N/A — County acquires at tax sale bid; no overbid mechanism in county-acquisition context",
+   "note": "When county sells at November auction, proceeds go to county taxing units. Tyler v. Hennepin impact minimal as county-acquisition model predates private lien sale."
+  },
+  "verifiedDate": "March 2026"
+ },
+ "es": {
+  "type": "lien",
+  "rate": "12%",
+  "redemption": "3 años",
+  "summary": "Dakota del Norte realiza subastas de gravámenes fiscales solo en diciembre. Período de redención de 4 años. El inventario está dominado por tierra agrícola rural. Estatuto: NDCC §57-28.",
+  "typeWhy": "Dakota del Norte es un estado de gravamen porque los condados venden certificados de gravamen fiscal en subastas de diciembre con período de redención de 3 años (NDCC §57-28).",
+  "rateWhy": "La tasa fija del 12% anual es moderada. La redención de 3 años inmoviliza el capital durante un período significativo (NDCC §57-28).",
+  "notBeginnerReason": "Período de redención de 3 años, subastas solo en diciembre e inventario predominantemente agrícola rural.",
+  "beginnerTip": "Dakota del Norte no se recomienda para principiantes ni para la mayoría de los inversores. Si está aquí específicamente por tierra agrícola, enfóquese en el Condado Cass (área de Fargo).",
+  "risks": [
+   "Redención de 4 años — la más larga del país",
+   "Las subastas solo en diciembre limitan la flexibilidad",
+   "La tierra agrícola domina — potencial de desarrollo limitado"
+  ],
+  "ddExtra": [
+   "Calcule el costo de oportunidad durante el período de retención de 4 años",
+   "Verifique el estado de derechos de agua y minerales en parcelas agrícolas",
+   "Confirme gravámenes de distritos de drenaje en cualquier tierra de cultivo"
+  ],
+  "auctionSignup": {
+   "platform": "Auditor del condado (en persona, diciembre)",
+   "steps": [
+    "Encuentre al auditor de su condado en nd.gov/counties",
+    "Solicite la lista de propiedades en mora en octubre",
+    "Regístrese en persona para la subasta de diciembre",
+    "Traiga cheque de caja"
+   ],
+   "depositInfo": "Se requiere cheque de caja.",
+   "directLink": "https://www.nd.gov/tax/"
+  },
+  "otc": {
+   "available": false,
+   "note": "Sin programa OTC."
+  }
+ },
+ "counties": [
+  {
+   "name": "Adams",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.adamscountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Barnes",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.barnescountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Benson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.bensoncountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Billings",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.billingscountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bottineau",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.bottineaucountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Bowman",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.bowmancountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Burke",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.burkecountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Burleigh",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.burleighcountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cass",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.casscountynd.gov/county/depts/auditor/Pages/TaxForeclosure.aspx",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Cavalier",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.cavaliercountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dickey",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.dickeycountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Divide",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.dividecountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Dunn",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.dunncountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Eddy",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.eddycountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Emmons",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.emmonscountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Foster",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.fostercountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Golden Valley",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.goldenvalleycountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grand Forks",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.grandforkscountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Grant",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.grantcountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Griggs",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.griggscountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Hettinger",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.hettingercountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Kidder",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.kiddercountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "LaMoure",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.lamourecountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Logan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.logancountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McHenry",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.mchenrycountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McIntosh",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.mcintoshcountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McKenzie",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.mckenziecountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "McLean",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.mcleancountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mercer",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.mercercountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Morton",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.mortoncountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Mountrail",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.mountrailcountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Nelson",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.nelsoncountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Oliver",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.olivercountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pembina",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.pembinacountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Pierce",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.piercecountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ramsey",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.ramseycountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ransom",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.ransomcountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Renville",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.renvillecountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Richland",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.richlandcountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Rolette",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.rolettecountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sargent",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.sargentcountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sheridan",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.sheridancountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Sioux",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.siouxcountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Slope",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.slopecountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stark",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.starkcountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Steele",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.steelecountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Stutsman",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.stutsmancountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Towner",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.townercountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Traill",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.traillcountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Walsh",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.walshcountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Ward",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.wardcountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Wells",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.wellscountynd.gov/auditor",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  },
+  {
+   "name": "Williams",
+   "kind": "county",
+   "saleType": "deed",
+   "redemption": "3 years",
+   "rate": "12%",
+   "platform": "County Auditor Office — in-person",
+   "url": "https://www.williamsnd.com/tax-foreclosure-properties/",
+   "notes": [],
+   "extra": {
+    "saleDate": "3rd Tuesday of November"
+   },
+   "verifiedDate": "March 2026"
+  }
+ ]
+}
