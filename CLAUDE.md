@@ -56,6 +56,7 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - Added foundry/aurigen-law-audit.md (multi-run official-source audit of all 51 states, EN+ES; live site untouched). PRIORITY before going public.
 - Live site switch: .github/workflows/aurigen-site.yml (under-review 503 page from under-review/, or restore from a branch). vercel.json redirects the old Vercel copy.
 - Foundry now chains runs (foundry/out/chain/<spec>.json, max 20) and updates one issue per title. Law audit snapshots only via foundry/tools/fetch-source.mjs (curl + pdftotext, hashed).
+- Foundry runs Claude through the Agent SDK (foundry/tools/run-agent.mjs, SDK pinned in foundry/tools/package.json), not claude-code-action: the API promo credit covers the SDK and plain API but Claude Code was refused with "Credit balance is too low". Tested 2026-10-27: 3 turns, $0.17.
 
 ## LAW AUDIT (2026-10-27, run 1 of chain)
 - foundry/aurigen-law-audit.md: AK, AL, CA, DC done; HI in progress. Gate cloudflare/scripts/check-law.mjs; ledgers cloudflare/data/law/.
