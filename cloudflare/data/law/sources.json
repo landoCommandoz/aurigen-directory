@@ -58,6 +58,33 @@
    "text_sha256": "3ca28841a3d32855aece2438f5f8da68c435db20e97abf1cc579d3bbdaeb0aaf",
    "fetched_at": "2026-10-27T05:51:11.776Z",
    "snapshot": "foundry/out/law-audit/sources/al/dor-property-tax.json"
+  },
+  "https://sco.ca.gov/Files-ARD-Tax-Info/Tax-Collector-Ref-Man/SCO_ExcessProceedsGuide.pdf": {
+   "state": "CA",
+   "statutes": [
+    "Cal. Rev. & Tax. Code § 4675",
+    "Cal. Rev. & Tax. Code § 3698.5",
+    "Cal. Rev. & Tax. Code § 3691 et seq."
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "28f142f990d66af505b3948fc544f09df0cb015b7aa8b919ac2a3848bf9ff73b",
+   "fetched_at": "2026-10-27T05:54:00.238Z",
+   "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json"
+  },
+  "https://sco.ca.gov/Files-ARD-Tax-Info/Tax-Collector-Ref-Man/ctcrm_chapter8.pdf": {
+   "state": "CA",
+   "statutes": [
+    "Cal. Rev. & Tax. Code §§ 3692, 3706",
+    "Cal. Rev. & Tax. Code § 3707",
+    "Cal. Rev. & Tax. Code § 3692",
+    "Cal. Rev. & Tax. Code § 3691",
+    "Cal. Rev. & Tax. Code § 3712(g); 26 U.S.C. § 7425(d)",
+    "Cal. Rev. & Tax. Code § 3698.5(c)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "b8fb957b3d8d772b5b83cc1c6a275957b0cd40da8a69c8cbd06f59d9cd9d3cd4",
+   "fetched_at": "2026-10-27T05:54:41.643Z",
+   "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json"
   }
  }
 }

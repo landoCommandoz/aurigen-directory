@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ca",
+ "slug": "sco-tcrm-ch8000",
+ "url": "https://www.sco.ca.gov/Files-ARD-Tax-Info/Tax-Collector-Ref-Man/ctcrm_chapter8000.pdf",
+ "final_url": "https://www.sco.ca.gov/Files-ARD-Tax-Info/Tax-Collector-Ref-Man/ctcrm_chapter8000.pdf",
+ "fetched_at": "2026-10-27T05:54:24.034Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "56041f97e028c08d0d52bd733e17c5482a1314d640601bdee37cf3b4d8a9638d",
+ "raw_bytes": 11561,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "c6eec799c15ec35f10aa4ee44a080925981d114ad4451c41234390952827396e",
+ "text_chars": 1680
+}

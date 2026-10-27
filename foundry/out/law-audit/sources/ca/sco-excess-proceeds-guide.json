@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ca",
+ "slug": "sco-excess-proceeds-guide",
+ "url": "https://sco.ca.gov/Files-ARD-Tax-Info/Tax-Collector-Ref-Man/SCO_ExcessProceedsGuide.pdf",
+ "final_url": "https://sco.ca.gov/Files-ARD-Tax-Info/Tax-Collector-Ref-Man/SCO_ExcessProceedsGuide.pdf",
+ "fetched_at": "2026-10-27T05:54:00.238Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "66fd85e96a116ad4e54a51d314a95d21ff3af2745d77db33e5f850ad7e04f7b5",
+ "raw_bytes": 1202928,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "28f142f990d66af505b3948fc544f09df0cb015b7aa8b919ac2a3848bf9ff73b",
+ "text_chars": 56351
+}
