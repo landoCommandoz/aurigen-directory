@@ -188,3 +188,4 @@ main { padding: 0 clamp(1rem, 4vw, 2.5rem); max-width: 1320px; margin: 0 auto; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+.claim-flag{color:var(--warn);font-style:normal;font-size:.9em}

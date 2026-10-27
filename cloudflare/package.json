@@ -4,9 +4,10 @@
   "type": "module",
   "scripts": {
     "data": "node scripts/build-data.mjs",
-    "build": "node scripts/build-data.mjs > data/coverage.txt && node scripts/build-site.mjs",
-    "check": "node --check scripts/build-data.mjs && node --check scripts/build-site.mjs && node --check src/worker.js && node --check src/app.js",
-    "deploy": "npm run build && wrangler deploy"
+    "build": "node scripts/build-data.mjs > data/coverage.txt && node scripts/check-law.mjs && node scripts/build-site.mjs",
+    "check": "node --check scripts/build-data.mjs && node --check scripts/build-site.mjs && node --check src/worker.js && node --check src/app.js && node --check scripts/check-law.mjs && node --check scripts/law-pieces.mjs && node --check scripts/watch-statutes.mjs",
+    "deploy": "npm run build && wrangler deploy",
+    "check-law": "node scripts/check-law.mjs"
   },
   "devDependencies": {
     "d3-geo": "^3.1.1",

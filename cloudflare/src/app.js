@@ -84,7 +84,9 @@
       var c = C[i]; if (!c) return;
       lastFocus = document.activeElement;
       var facts = { 'Sale type': c.tl, 'Redemption': c.r, 'Interest / penalty': c.x, 'Auction platform': c.p };
-      var html = '<p class="eyebrow">' + esc(c.k) + '</p><h2 id="dTitle">' + esc(c.n) + '</h2>' + renderVal(facts, 0);
+      var html = '<p class="eyebrow">' + esc(c.k) + '</p><h2 id="dTitle">' + esc(c.n) + '</h2>';
+      html += c.cs && c.cs.u ? '<p class="fresh ok">County source: <a href="' + esc(c.cs.u) + '" target="_blank" rel="noopener nofollow">' + esc(c.cs.t || c.cs.u.replace(/^https?:\/\//, '')) + '</a>, checked ' + esc(c.cs.d) + '.</p>' : '<p class="fresh flag" role="note">Confirm with the county.</p>';
+      html += renderVal(facts, 0);
       if (c.u) html += '<p><a class="btn" href="' + esc(c.u) + '" target="_blank" rel="noopener nofollow">Official / auction site ↗</a></p>';
       if (c.no && c.no.length) html += '<h3>Notes</h3><ul>' + c.no.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul>';
       var extra = renderVal(c.e, 0);

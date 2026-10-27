@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import { geoPath, geoAlbersUsa, geoMercator, geoCentroid } from 'd3-geo';
 import { feature } from 'topojson-client';
+import { FIELD_ORDER, loadLedger, claimNote } from './law-pieces.mjs';
 
 const require = createRequire(import.meta.url);
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -63,6 +64,89 @@ for (const s of states) {
       }
     }
   }
+}
+
+// Audited states render only ledger text (cloudflare/data/law/<st>.json, see check-law.mjs).
+for (const s of states) {
+  const L = loadLedger(s.code);
+  if (!L) continue;
+  s.ledger = L;
+  s.fresh = { status: 'audited', lastChecked: L.auditedAt || '' };
+  const one = (id) => { const c = L.claims.find((x) => x.id === id); return c ? c.shown : null; };
+  if (one('rate') != null) s.rate = one('rate');
+  if (one('redemption') != null) s.redemption = one('redemption');
+  if (one('type') != null) s.typeLabel = one('type');
+}
+
+// ---------- ledger rendering ----------
+const shownClaims = (L, field, lang) => L.claims.filter((c) => c.field === field && c.lang === lang && c.shown !== '');
+function claimHtml(c) {
+  const note = claimNote(c);
+  if (!note) return esc(c.shown);
+  if (c.effective && c.status !== 'flagged' && c.status !== 'unreachable') return `<b>${esc(note)}</b> ${esc(c.shown)}`;
+  return `${esc(c.shown)} <em class="claim-flag">(${esc(note)})</em>`;
+}
+const joinClaims = (cs) => cs.map(claimHtml).join(' ');
+// List fields: items are numbered field.N or field.N.M; sentences of one item share a bullet.
+function listClaims(cs) {
+  const items = new Map();
+  for (const c of cs) {
+    const key = c.id.replace(/^es\./, '').split('.').slice(0, c.field.split('.').length + 1).join('.');
+    if (!items.has(key)) items.set(key, []);
+    items.get(key).push(c);
+  }
+  return items.size ? `<ul>${[...items.values()].map((g) => `<li>${joinClaims(g)}</li>`).join('')}</ul>` : '';
+}
+function auditedFacts(st, L) {
+  const f = (field) => joinClaims(shownClaims(L, field, 'en'));
+  const statuteUrl = (L.claims.find((c) => c.field === 'statute' && c.lang === 'en') || {}).url;
+  return [
+    ['Sale type', `<span class="pill t-${st.type}">${f('type')}</span>`],
+    ['Interest / penalty', f('rate') + (f('rateNote') ? `<small>${f('rateNote')}</small>` : '')],
+    ['Redemption', f('redemption') || '—'],
+    ['Bid method', f('bidMethod') || '—'],
+    ['Statute', statuteUrl && f('statute') ? `<a href="${esc(statuteUrl)}" rel="noopener nofollow" target="_blank">${f('statute')}</a>` : (f('statute') || '—')],
+    ['Auction platform', f('auctionPlatform') || '—'],
+    ['Auction timing', f('auctionTiming') || '—'],
+  ];
+}
+function auditedProse(st, L) {
+  const hasEs = L.claims.some((c) => c.lang === 'es');
+  const bi = (fn) => hasEs ? `<div data-lang="en">${fn('en')}</div><div data-lang="es" lang="es">${fn('es')}</div>` : fn('en');
+  const para = (field, lang, label = '') => { const h = joinClaims(shownClaims(L, field, lang)); return h ? `<p>${label}${h}</p>` : ''; };
+  const list = (field, lang) => listClaims(shownClaims(L, field, lang));
+  const sec = (title, fields, renderer) => {
+    const any = fields.some((fl) => shownClaims(L, fl, 'en').length || shownClaims(L, fl, 'es').length);
+    return any ? `<h3>${title}</h3>${bi(renderer)}` : '';
+  };
+  return `<section class="prose">
+  <h2>Summary</h2>
+  ${bi((l) => para('summary', l) + para('typeWhy', l) + para('rateWhy', l))}
+  ${sec('Key points', ['keyNotes'], (l) => list('keyNotes', l))}
+  ${sec('For beginners', ['notBeginnerReason', 'beginnerTip'], (l) => para('notBeginnerReason', l, l === 'es' ? '<b>Más difícil para principiantes:</b> ' : '<b>Harder for beginners:</b> ') + para('beginnerTip', l))}
+  ${sec('Risks', ['risks'], (l) => list('risks', l))}
+  ${sec('Extra due diligence', ['ddExtra'], (l) => list('ddExtra', l))}
+  ${sec('How to sign up for the auction', ['signup.platform', 'signup.steps', 'signup.deposit'], (l) => para('signup.platform', l, '<b>Platform:</b> ') + list('signup.steps', l) + para('signup.deposit', l, l === 'es' ? '<b>Depósito:</b> ' : '<b>Deposit:</b> '))}
+  ${sec('Over the counter (OTC)', ['otc.available', 'otc.note'], (l) => para('otc.available', l) + para('otc.note', l))}
+  ${sec('Platforms', ['platforms'], (l) => list('platforms', l))}
+  ${sec('Surplus proceeds', ['surplus'], (l) => para('surplus', l))}
+  ${hasEs ? '<p class="muted" data-lang="es" lang="es">La lista de condados y las fuentes están en inglés.</p>' : ''}
+</section>`;
+}
+function ledgerSources(L) {
+  const seen = new Map();
+  for (const c of L.claims) {
+    if (c.lang !== 'en' || !c.url || !c.statute) continue;
+    const key = `${c.statute}|${c.url}`;
+    if (!seen.has(key)) seen.set(key, `${link(c.url, c.statute.startsWith('none:') ? c.url.replace(/^https?:\/\//, '') : c.statute)} — checked ${esc(String(c.checked).slice(0, 10))}`);
+  }
+  for (const c of L.claims) if (c.lang === 'en' && c.status === 'unreachable') seen.set(`u|${c.id}`, `${esc(c.statute || c.field)}: Couldn't reach source on ${esc(String(c.checked || c.attemptedAt || '').slice(0, 10))}. Confirm with the county.`);
+  return [...seen.values()];
+}
+// County details carry a source only when the ledger cites the county's own official page.
+function countySource(st, c) {
+  const s = st.ledger?.countySources?.[c.name];
+  return s && isUrl(s.url) ? { u: s.url, t: s.title || '', d: String(s.checked).slice(0, 10) } : null;
 }
 
 // ---------- geography ----------
@@ -211,7 +295,9 @@ function statePage(st) {
   const m = matchCounties(st);
   if (m.unmatched.length) unmatchedAll[st.code] = m.unmatched;
   const f = st.fresh;
-  const freshLine = f.status === 'unconfirmed'
+  const freshLine = f.status === 'audited'
+    ? `<p class="fresh ok">Checked against official sources on ${esc(f.lastChecked)}. Each statement is tied to the statute or agency page listed under Sources.</p>`
+    : f.status === 'unconfirmed'
     ? `<p class="fresh flag" role="note">⚠ Not re-checked yet. Confirm with the county.</p>`
     : `<p class="fresh ok">Last checked: ${esc(f.lastChecked)} against ${link(f.sourceUrl, f.sourceTitle || f.sourceUrl)}${f.status === 'changed' ? ' — <strong>updated</strong> from the official source' : ''}.</p>`;
   const changes = f.status === 'changed' && f.changes?.length
@@ -222,26 +308,28 @@ function statePage(st) {
   const signup = (a) => a ? `<p><b>Platform:</b> ${esc(a.platform)}</p>${a.steps?.length ? `<ol>${a.steps.map((x) => `<li>${esc(x)}</li>`).join('')}</ol>` : ''}${a.depositInfo ? `<p><b>Deposit:</b> ${esc(a.depositInfo)}</p>` : ''}${a.directLink ? `<p>${link(a.directLink, 'Official / platform link')}</p>` : ''}` : '';
   const otc = (o) => o ? `<p><b>${o.available ? 'Available' : 'Not generally available'}.</b> ${esc(o.note || '')}</p>` : '';
 
-  const facts = [
+  const L = st.ledger;
+  const facts = (L ? auditedFacts(st, L) : [
     ['Sale type', `<span class="pill t-${st.type}">${esc(st.typeLabel)}</span>`],
     ['Interest / penalty', esc(st.rate) + (st.rateNote ? `<small>${esc(st.rateNote)}</small>` : '')],
     ['Redemption', esc(st.redemption)],
     ['Bid method', esc(st.bidMethod || '—')],
     ['Statute', st.officialLink ? link(st.officialLink, st.statute || 'Statute') : esc(st.statute || '—')],
     ['Auction timing', esc(st.auctionTiming || '—')],
-  ].map(([k, v]) => `<div class="fact"><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+  ]).map(([k, v]) => `<div class="fact"><dt>${k}</dt><dd>${v}</dd></div>`).join('');
 
   const countyLabel = st.code === 'CT' ? 'Towns' : st.code === 'LA' ? 'Parishes' : st.code === 'AK' ? 'Boroughs' : 'Counties';
   const rows = st.counties.map((c, i) => `<li class="county" id="c-${slug(c.name)}" data-i="${i}" data-type="${c.saleType}" data-name="${esc(c.name.toLowerCase())}">
   <button type="button" data-i="${i}"><span class="cn">${esc(c.name)}</span><span class="cp">${esc(c.platform || '—')}</span><span class="pill t-${c.saleType}">${esc(typeName(c.saleType))}</span></button></li>`).join('');
-  const countyJson = JSON.stringify(st.counties.map((c) => ({ n: c.name, k: c.kind, t: c.saleType, tl: typeName(c.saleType), r: c.redemption, x: c.rate, p: c.platform, u: isUrl(c.url) ? c.url : '', no: c.notes, v: c.verifiedDate, e: c.extra })))
+  const countyJson = JSON.stringify(st.counties.map((c) => ({ n: c.name, k: c.kind, t: c.saleType, tl: typeName(c.saleType), r: c.redemption, x: c.rate, p: c.platform, u: isUrl(c.url) ? c.url : '', no: c.notes, v: c.verifiedDate, e: c.extra, cs: countySource(st, c) })))
     .replace(/</g, '\\u003c');
 
   const sources = [];
-  if (st.officialLink) sources.push(link(st.officialLink, `${st.statute || 'State statute'} (official)`));
-  if (f.sourceUrl) sources.push(link(f.sourceUrl, f.sourceTitle || f.sourceUrl) + ` — checked ${esc(f.lastChecked)}`);
-  if (st.auctionSignup?.directLink) sources.push(link(st.auctionSignup.directLink, 'Auction platform'));
-  for (const fc of st.featuredCounties) if (isUrl(fc.link)) sources.push(link(fc.link, `${fc.name} County office`));
+  if (L) sources.push(...ledgerSources(L));
+  else if (st.officialLink) sources.push(link(st.officialLink, `${st.statute || 'State statute'} (official)`));
+  if (!L && f.sourceUrl) sources.push(link(f.sourceUrl, f.sourceTitle || f.sourceUrl) + ` — checked ${esc(f.lastChecked)}`);
+  if (!L && st.auctionSignup?.directLink) sources.push(link(st.auctionSignup.directLink, 'Auction platform'));
+  if (!L) for (const fc of st.featuredCounties) if (isUrl(fc.link)) sources.push(link(fc.link, `${fc.name} County office`));
 
   const body = `
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">All states</a> / ${esc(st.name)}</nav>
@@ -251,7 +339,7 @@ function statePage(st) {
   <p class="disclaimer-line">${DISCLAIMER}</p>
   <dl class="facts">${facts}</dl>
   ${changes}
-  ${st.investorAlert ? `<div class="callout">${renderValue(st.investorAlert)}</div>` : ''}
+  ${!L && st.investorAlert ? `<div class="callout">${renderValue(st.investorAlert)}</div>` : ''}
 </section>
 
 <section class="counties-sec" id="counties">
@@ -268,7 +356,7 @@ function statePage(st) {
   <button type="button" class="map-pill" id="mapPill" aria-controls="mapPane" aria-pressed="false">Map</button>
 </section>
 
-<section class="prose">
+${L ? auditedProse(st, L) : `<section class="prose">
   <h2>Summary</h2>
   ${bi(`<p>${esc(st.summary)}</p>${st.typeWhy ? `<p>${esc(st.typeWhy)}</p>` : ''}${st.rateWhy ? `<p>${esc(st.rateWhy)}</p>` : ''}`,
     es && `<p>${esc(es.summary)}</p>${es.typeWhy ? `<p>${esc(es.typeWhy)}</p>` : ''}${es.rateWhy ? `<p>${esc(es.rateWhy)}</p>` : ''}`)}
@@ -286,7 +374,7 @@ function statePage(st) {
   ${es ? '<p class="muted" data-lang="es" lang="es">Las reglas detalladas y la lista de condados están en inglés.</p>' : ''}
 </section>
 
-${st.rules ? `<section class="prose rules"><h2>Detailed state rules</h2>${renderValue(Object.fromEntries(Object.entries(st.rules).filter(([k]) => k !== 'type')))}</section>` : ''}
+${st.rules ? `<section class="prose rules"><h2>Detailed state rules</h2>${renderValue(Object.fromEntries(Object.entries(st.rules).filter(([k]) => k !== 'type')))}</section>` : ''}`}
 
 <section class="prose">
   <h2>Sources</h2>
