@@ -1,466 +1,473 @@
 {
-  "AK": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "AL": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "AR": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "AZ": {
-    "status": "confirmed",
-    "sourceUrl": "https://www.azleg.gov/ars/42/18114.htm",
-    "sourceTitle": "ARS 42-18114, 42-18053, 42-18152 (azleg.gov)",
-    "note": "Lowest interest bid, capped at 16%/yr simple (42-18053); redeemable within 3 years and until treasurer deed delivered (42-18152).",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "CA": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "CO": {
-    "status": "changed",
-    "sourceUrl": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Department-of-Finance/Our-Divisions/Treasury/Property-Taxes/Real-Estate-Delinquent-Taxes-and-Tax-Lien-Sale",
-    "sourceTitle": "Denver Treasury - Tax Lien Sale; Larimer County Treasurer - Tax Lien Sale (C.R.S. 39-12-103)",
-    "note": "Formula (Sept 1 federal discount rate + 9, rounded) confirmed; 2026 sale rate is 13%. Highest bidder/premium (premium not refunded); deed application after 3 years unredeemed (Denver).",
-    "changes": [
-      {
-        "field": "rate",
-        "old": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
-        "new": "Federal Discount Rate + 9% (13% for 2026, floor 8%)",
-        "note": "Denver and Larimer County treasurers list 13% for the 2026 sale (Sept 1, 2026 discount rate 3.75% + 9, rounded). The 8% floor was not re-read."
-      }
-    ],
-    "lastChecked": "2026-10-27"
-  },
-  "CT": {
-    "status": "changed",
-    "sourceUrl": "https://www.cga.ct.gov/current/pub/chap_204.htm#sec_12-157",
-    "sourceTitle": "Conn. Gen. Stat. \u00a712-157 (cga.ct.gov)",
-    "note": "\u00a712-157: public auction to highest bidder; redemption with 18%/yr interest within six months of sale (60 days if abandoned). Note: \u00a712-157 sells the property itself (deed held unrecorded during redemption); CT municipalities may also assign liens (\u00a712-195h).",
-    "changes": [
-      {
-        "field": "redemption",
-        "old": "1 year",
-        "new": "6 months (60 days if abandoned)",
-        "note": "\u00a712-157(f): redemption not later than six months after sale, or 60 days for abandoned property."
-      }
-    ],
-    "lastChecked": "2026-10-27"
-  },
-  "DC": {
-    "status": "unconfirmed",
-    "sourceUrl": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1360",
-    "sourceTitle": "D.C. Code \u00a747-1360 (code.dccouncil.gov)",
-    "note": "Read \u00a747-1360 (redeem any time until foreclosure is final) and \u00a747-1361, but the interest rate and foreclosure-filing timing were not found in the text read; not confirmed.",
-    "changes": [],
-    "lastChecked": null
-  },
-  "DE": {
-    "status": "confirmed",
-    "sourceUrl": "https://delcode.delaware.gov/title9/c087/sc04/index.html",
-    "sourceTitle": "9 Del. C. ch. 87 subch. IV (Kent and Sussex) (delcode.delaware.gov)",
-    "note": "Kent/Sussex: 1-year redemption with 20% interest (\u00a78776). New Castle 60-day/15% provisions and sheriff role not re-read this run.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "FL": {
-    "status": "confirmed",
-    "sourceUrl": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0100-0199/0197/Sections/0197.172.html",
-    "sourceTitle": "Florida Statutes 197.172 / 197.432 / 197.502 (Online Sunshine)",
-    "note": "197.172: certificate max 18%/yr; 197.432: lowest interest rate bid in 1/4% steps; 197.502: deed application 2 years after April 1 of issuance year.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "GA": {
-    "status": "confirmed",
-    "sourceUrl": "https://dekalbtax.org/property-tax/tax-sales/",
-    "sourceTitle": "DeKalb County Tax Commissioner - Tax Sales",
-    "note": "Redeem within 12 months; 20% first year then 10% each added year; sold to highest bidder. County source, not statute text.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "HI": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "IA": {
-    "status": "changed",
-    "sourceUrl": "https://www.legis.iowa.gov/docs/code/446.16.pdf",
-    "sourceTitle": "Iowa Code 2026 \u00a7446.16, \u00a7447.1, \u00a7447.9 (legis.iowa.gov)",
-    "note": "447.1: 2% per month redemption interest confirmed. 447.9: expiration notice may be served after 1 year 9 months from sale - confirmed. 446.16: winner is bidder accepting the smallest percentage of the parcel, not a dollar premium.",
-    "changes": [
-      {
-        "field": "bidMethod",
-        "old": "Premium bid (highest dollar wins)",
-        "new": "Bid-down ownership (smallest % of parcel wins)",
-        "note": "Iowa Code \u00a7446.16(1): purchaser is the person who pays the total due for the smallest percentage of the parcel; minimum 1%."
-      }
-    ],
-    "lastChecked": "2026-10-27"
-  },
-  "ID": {
-    "status": "confirmed",
-    "sourceUrl": "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1007/",
-    "sourceTitle": "Idaho Code 63-1007 (legislature.idaho.gov)",
-    "note": "Redemption rights expire 14 months from issuance of the tax deed to the county (earlier if county sells/transfers). Sale method not re-read.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "IL": {
-    "status": "changed",
-    "sourceUrl": "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-350.htm",
-    "sourceTitle": "35 ILCS 200/21-350, 21-215, 21-355 (ilga.gov)",
-    "note": "Penalty bid max 9%, multiplied per 6-month period (21-215/21-355). Redemption period amended by P.A. 104-553 (eff. 7-10-26) to 3 years (1 year for vacant non-farm, 7+ unit, commercial/industrial) for certificates issued on/after that date.",
-    "changes": [
-      {
-        "field": "redemption",
-        "old": "2\u20132.5 years",
-        "new": "3 years (1 year for vacant, commercial, or 7+ unit property)",
-        "note": "35 ILCS 200/21-350 as amended by P.A. 104-553, eff. 7-10-26; applies to certificates issued on or after that date."
-      }
-    ],
-    "lastChecked": "2026-10-27"
-  },
-  "IN": {
-    "status": "confirmed",
-    "sourceUrl": "https://www.in.gov/counties/monroe/Departments/auditor/tax-sale/",
-    "sourceTitle": "Monroe County (IN) Auditor - Tax Sale (cites IC 6-1.1-25-4)",
-    "note": "1-year redemption (120 days for commissioner certificates); redemption at 110%/115% of minimum bid (0-6 / 6-12 months); highest bidder.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "KS": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "KY": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "LA": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "MA": {
-    "status": "changed",
-    "sourceUrl": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section62",
-    "sourceTitle": "M.G.L. c.60 \u00a762 (malegislature.gov)",
-    "note": "Current \u00a762 sets redemption interest at 8 per cent on the original sum (applied also to purchaser-held titles).",
-    "changes": [
-      {
-        "field": "rate",
-        "old": "16%",
-        "new": "8%",
-        "note": "M.G.L. c.60 \u00a762 now reads interest at 8 per cent upon the original sum for which the land was taken or sold."
-      }
-    ],
-    "lastChecked": "2026-10-27"
-  },
-  "MD": {
-    "status": "changed",
-    "sourceUrl": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-817",
-    "sourceTitle": "Md. Tax-Property \u00a714-817 and \u00a714-820 (mgaleg.maryland.gov)",
-    "note": "\u00a714-820: default redemption rate 6% (10% Calvert/Caroline/Dorchester/Garrett, 14% Carroll; many counties may set their own; owner-occupied capped at 10%); no fixed redemption deadline, foreclosure within 2 years. \u00a714-817: sale goes to highest bid, high-bid premium may apply.",
-    "changes": [
-      {
-        "field": "bidMethod",
-        "old": "Bid-down interest rate (most counties)",
-        "new": "Highest bidder (high-bid premium may apply)",
-        "note": "Md. Tax-Prop. \u00a714-817(a)(2), (b)(2): highest good faith bid; collector may require a high-bid premium."
-      }
-    ],
-    "lastChecked": "2026-10-27"
-  },
-  "ME": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "MI": {
-    "status": "confirmed",
-    "sourceUrl": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78m",
-    "sourceTitle": "MCL 211.78m (legislature.mi.gov)",
-    "note": "Foreclosed property sold at auction subject to minimum bid; conveyed to highest bidder. No post-sale redemption described.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "MN": {
-    "status": "confirmed",
-    "sourceUrl": "https://www.revisor.mn.gov/statutes/cite/281.17",
-    "sourceTitle": "Minn. Stat. 281.17 (revisor.mn.gov)",
-    "note": "3-year redemption runs from the tax judgment sale to the state, before forfeiture; forfeited land is later sold by the county with no post-sale redemption.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "MO": {
-    "status": "confirmed",
-    "sourceUrl": "https://revisor.mo.gov/main/OneSection.aspx?section=140.340",
-    "sourceTitle": "RSMo 140.340 and 140.250 (revisor.mo.gov)",
-    "note": "Absolute right to redeem during 1 year after sale; interest not to exceed 10% annually; sold to highest bidder (140.250).",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "MS": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "MT": {
-    "status": "confirmed",
-    "sourceUrl": "https://archive.legmt.gov/bills/mca/title_0150/chapter_0180/part_0010/section_0110/0150-0180-0010-0110.html",
-    "sourceTitle": "MCA 15-18-111 (2025) (legmt.gov)",
-    "note": "Redemption deadline: first working day in August, 3 years after lien attaches (2 years for certain subdivided lots). Rate and bid method not re-read this run.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "NC": {
-    "status": "confirmed",
-    "sourceUrl": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-374.html",
-    "sourceTitle": "N.C.G.S. 105-374 (ncleg.gov)",
-    "note": "Foreclosure sale by public auction to highest bidder; 10-day period after report for exceptions/increased (upset) bids.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "ND": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "NE": {
-    "status": "confirmed",
-    "sourceUrl": "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1824",
-    "sourceTitle": "Neb. Rev. Stat. 77-1824, 45-104.01, 77-1837, 77-1807 (nebraskalegislature.gov)",
-    "note": "Redemption interest at 45-104.01 rate = 14%; tax deed application after 3 years from sale; buyer pays taxes, interest and costs, county sets bidding rules (round-robin allowed). Premium bidding not specified in statute.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "NH": {
-    "status": "changed",
-    "sourceUrl": "https://gc.nh.gov/rsa/html/V/80/80-mrg.htm",
-    "sourceTitle": "RSA 80:32, 80:69, 80:76 (gc.nh.gov)",
-    "note": "Redemption interest is 14% per annum under both tax sale (80:32) and tax lien (80:69) procedures; tax deed after 2 years (80:76). Bid method not re-read.",
-    "changes": [
-      {
-        "field": "rate",
-        "old": "18%",
-        "new": "14%",
-        "note": "RSA 80:32 and 80:69: interest at 14 percent per annum (amended 2018, 282, eff. April 1, 2019)."
-      }
-    ],
-    "lastChecked": "2026-10-27"
-  },
-  "NJ": {
-    "status": "confirmed",
-    "sourceUrl": "https://pub.njleg.gov/Bills/2024/PL24/39_.HTM",
-    "sourceTitle": "P.L.2024, c.39 amending N.J.S.A. 54:5-86 (njleg.gov); NJ DLGS Elements of Tax Sales",
-    "note": "54:5-86 (as amended 2024): private holders may foreclose after 2 years, municipality after 6 months. DLGS: max 18%, bid down interest to 1% then bid premium; 2/4/6% redemption penalty. DLGS page dated 2011. Bid method is bid-down first, premium only after rate reaches 1%.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "NM": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "NV": {
-    "status": "confirmed",
-    "sourceUrl": "https://www.leg.state.nv.us/nrs/nrs-361.html",
-    "sourceTitle": "NRS 361.585, 361.595 (leg.state.nv.us)",
-    "note": "After redemption period expires, deed goes to county treasurer in trust; commissioners order treasurer to sell for not less than taxes, costs, penalties and interest. No post-sale redemption.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "NY": {
-    "status": "confirmed",
-    "sourceUrl": "https://www.nysenate.gov/legislation/laws/RPT/1110",
-    "sourceTitle": "NY RPTL 1110 (nysenate.gov)",
-    "note": "Default redemption expires 2 years after lien date; districts may extend (residential/farm) or shorten to 1 year for vacant/abandoned, so Varies is accurate. Rate and bid method not re-read.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "OH": {
-    "status": "confirmed",
-    "sourceUrl": "https://codes.ohio.gov/ohio-revised-code/section-5721.32",
-    "sourceTitle": "Ohio Revised Code 5721.32 / 5721.37 (codes.ohio.gov)",
-    "note": "Certificate auction starts at 18% simple and bids down in 1/4% steps; holder may request foreclosure after 1 year from sale. Deed-county practice not checked.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "OK": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "OR": {
-    "status": "confirmed",
-    "sourceUrl": "https://www.oregonlegislature.gov/bills_laws/ors/ors312.html",
-    "sourceTitle": "ORS 312.120 (oregonlegislature.gov)",
-    "note": "County holds foreclosed property 2 years from judgment for redemption, then may sell it; no redemption after county sale.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "PA": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "RI": {
-    "status": "confirmed",
-    "sourceUrl": "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-19.htm",
-    "sourceTitle": "R.I. Gen. Laws 44-9-19, 44-9-21 (rilegislature.gov)",
-    "note": "Penalty 10% of purchase price if redeemed within 6 months, plus 1% per month after; purchaser also earns 1%/month interest on sums paid (44-9-21). 1-year period and bid method not re-read.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "SC": {
-    "status": "confirmed",
-    "sourceUrl": "https://www.scstatehouse.gov/code/t12c051.php",
-    "sourceTitle": "S.C. Code 12-51-50, 12-51-90 (scstatehouse.gov)",
-    "note": "Public auction; redeem within 12 months; interest 3%/6%/9%/12% of bid by quarter of redemption period (capped at bid amount).",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "SD": {
-    "status": "changed",
-    "sourceUrl": "https://sdlegislature.gov/api/Statutes/10-23-8.html",
-    "sourceTitle": "SDCL 10-23-8 and 10-25-1 (sdlegislature.gov)",
-    "note": "Lowest interest rate bid wins; no bid above 10% per year is valid. Tax deed proceeding may start after 3 years from certificate sale (within 6 years).",
-    "changes": [
-      {
-        "field": "rate",
-        "old": "12%",
-        "new": "10% max (bid down)",
-        "note": "SDCL 10-23-8: no rate of interest higher than ten percent per year is a valid bid."
-      }
-    ],
-    "lastChecked": "2026-10-27"
-  },
-  "TN": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "TX": {
-    "status": "unconfirmed",
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "note": "statutes.capitol.texas.gov refused connections during this run; no official text read.",
-    "changes": [],
-    "lastChecked": null
-  },
-  "UT": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "VA": {
-    "status": "confirmed",
-    "sourceUrl": "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3965/",
-    "sourceTitle": "Code of Virginia 58.1-3965 (law.lis.virginia.gov)",
-    "note": "Sale allowed when taxes delinquent on Dec 31 after the 2nd anniversary of due date (1st for blighted/derelict); owner may redeem any time before the sale. Bid method not re-read.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "VT": {
-    "status": "confirmed",
-    "sourceUrl": "https://legislature.vermont.gov/statutes/section/32/133/05260",
-    "sourceTitle": "32 V.S.A. 5260 (legislature.vermont.gov)",
-    "note": "Redeem within 1 year of sale with 1% per month interest (12%/yr). Note: Vermont sells the property (deed held during redemption) rather than a lien certificate. Bid method not re-read.",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "WA": {
-    "status": "confirmed",
-    "sourceUrl": "https://app.leg.wa.gov/RCW/default.aspx?cite=84.64.080",
-    "sourceTitle": "RCW 84.64.080 (app.leg.wa.gov)",
-    "note": "Treasurer sells to highest and best bidder, minimum bid = taxes, interest, costs; tax deed vests title (no post-sale redemption stated).",
-    "changes": [],
-    "lastChecked": "2026-10-27"
-  },
-  "WI": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "WV": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  },
-  "WY": {
-    "lastChecked": null,
-    "sourceUrl": "",
-    "sourceTitle": "",
-    "status": "unconfirmed",
-    "note": "Not reached this run.",
-    "changes": []
-  }
+ "AK": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "Not reached this run.",
+  "changes": []
+ },
+ "AL": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "Alabama DOR page returned 404; legislature code site is script-only. Not confirmed.",
+  "changes": []
+ },
+ "AR": {
+  "status": "changed",
+  "sourceUrl": "https://www.cosl.org/Home/Contents/1",
+  "sourceTitle": "Arkansas Commissioner of State Lands - tax-delinquent land sales",
+  "note": "Owners may redeem until 4 p.m. on the last business day before the sale; effective July 1, 2023 parcels sold by the Commissioner cannot be redeemed. Live auction plus online sale of unsold parcels; all sales final.",
+  "changes": [
+   {
+    "field": "redemption",
+    "old": "2 years",
+    "new": "None post-sale (redeem until day before sale)",
+    "note": "COSL: Effective July 1, 2023, parcels sold through the Commissioner of State Lands office cannot be redeemed."
+   }
+  ],
+  "lastChecked": "2026-10-27"
+ },
+ "AZ": {
+  "status": "confirmed",
+  "sourceUrl": "https://www.azleg.gov/ars/42/18114.htm",
+  "sourceTitle": "ARS 42-18114, 42-18053, 42-18152 (azleg.gov)",
+  "note": "Lowest interest bid, capped at 16%/yr simple (42-18053); redeemable within 3 years and until treasurer deed delivered (42-18152).",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "CA": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "leginfo.legislature.ca.gov returned 403 to the checker. Not confirmed.",
+  "changes": []
+ },
+ "CO": {
+  "status": "changed",
+  "sourceUrl": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Department-of-Finance/Our-Divisions/Treasury/Property-Taxes/Real-Estate-Delinquent-Taxes-and-Tax-Lien-Sale",
+  "sourceTitle": "Denver Treasury - Tax Lien Sale; Larimer County Treasurer - Tax Lien Sale (C.R.S. 39-12-103)",
+  "note": "Formula (Sept 1 federal discount rate + 9, rounded) confirmed; 2026 sale rate is 13%. Highest bidder/premium (premium not refunded); deed application after 3 years unredeemed (Denver).",
+  "changes": [
+   {
+    "field": "rate",
+    "old": "Federal Discount Rate + 9% (14% for 2025, floor 8%)",
+    "new": "Federal Discount Rate + 9% (13% for 2026, floor 8%)",
+    "note": "Denver and Larimer County treasurers list 13% for the 2026 sale (Sept 1, 2026 discount rate 3.75% + 9, rounded). The 8% floor was not re-read."
+   }
+  ],
+  "lastChecked": "2026-10-27"
+ },
+ "CT": {
+  "status": "changed",
+  "sourceUrl": "https://www.cga.ct.gov/current/pub/chap_204.htm#sec_12-157",
+  "sourceTitle": "Conn. Gen. Stat. §12-157 (cga.ct.gov)",
+  "note": "§12-157: public auction to highest bidder; redemption with 18%/yr interest within six months of sale (60 days if abandoned). Note: §12-157 sells the property itself (deed held unrecorded during redemption); CT municipalities may also assign liens (§12-195h).",
+  "changes": [
+   {
+    "field": "redemption",
+    "old": "1 year",
+    "new": "6 months (60 days if abandoned)",
+    "note": "§12-157(f): redemption not later than six months after sale, or 60 days for abandoned property."
+   }
+  ],
+  "lastChecked": "2026-10-27"
+ },
+ "DC": {
+  "status": "unconfirmed",
+  "sourceUrl": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1360",
+  "sourceTitle": "D.C. Code §47-1360 (code.dccouncil.gov)",
+  "note": "Read §47-1360 (redeem any time until foreclosure is final) and §47-1361, but the interest rate and foreclosure-filing timing were not found in the text read; not confirmed.",
+  "changes": [],
+  "lastChecked": null
+ },
+ "DE": {
+  "status": "confirmed",
+  "sourceUrl": "https://delcode.delaware.gov/title9/c087/sc04/index.html",
+  "sourceTitle": "9 Del. C. ch. 87 subch. IV (Kent and Sussex) (delcode.delaware.gov)",
+  "note": "Kent/Sussex: 1-year redemption with 20% interest (§8776). New Castle 60-day/15% provisions and sheriff role not re-read this run.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "FL": {
+  "status": "confirmed",
+  "sourceUrl": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0100-0199/0197/Sections/0197.172.html",
+  "sourceTitle": "Florida Statutes 197.172 / 197.432 / 197.502 (Online Sunshine)",
+  "note": "197.172: certificate max 18%/yr; 197.432: lowest interest rate bid in 1/4% steps; 197.502: deed application 2 years after April 1 of issuance year.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "GA": {
+  "status": "confirmed",
+  "sourceUrl": "https://dekalbtax.org/property-tax/tax-sales/",
+  "sourceTitle": "DeKalb County Tax Commissioner - Tax Sales",
+  "note": "Redeem within 12 months; 20% first year then 10% each added year; sold to highest bidder. County source, not statute text.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "HI": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "capitol.hawaii.gov blocked the checker (Cloudflare). Not confirmed.",
+  "changes": []
+ },
+ "IA": {
+  "status": "changed",
+  "sourceUrl": "https://www.legis.iowa.gov/docs/code/446.16.pdf",
+  "sourceTitle": "Iowa Code 2026 §446.16, §447.1, §447.9 (legis.iowa.gov)",
+  "note": "447.1: 2% per month redemption interest confirmed. 447.9: expiration notice may be served after 1 year 9 months from sale - confirmed. 446.16: winner is bidder accepting the smallest percentage of the parcel, not a dollar premium.",
+  "changes": [
+   {
+    "field": "bidMethod",
+    "old": "Premium bid (highest dollar wins)",
+    "new": "Bid-down ownership (smallest % of parcel wins)",
+    "note": "Iowa Code §446.16(1): purchaser is the person who pays the total due for the smallest percentage of the parcel; minimum 1%."
+   }
+  ],
+  "lastChecked": "2026-10-27"
+ },
+ "ID": {
+  "status": "confirmed",
+  "sourceUrl": "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1007/",
+  "sourceTitle": "Idaho Code 63-1007 (legislature.idaho.gov)",
+  "note": "Redemption rights expire 14 months from issuance of the tax deed to the county (earlier if county sells/transfers). Sale method not re-read.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "IL": {
+  "status": "changed",
+  "sourceUrl": "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-350.htm",
+  "sourceTitle": "35 ILCS 200/21-350, 21-215, 21-355 (ilga.gov)",
+  "note": "Penalty bid max 9%, multiplied per 6-month period (21-215/21-355). Redemption period amended by P.A. 104-553 (eff. 7-10-26) to 3 years (1 year for vacant non-farm, 7+ unit, commercial/industrial) for certificates issued on/after that date.",
+  "changes": [
+   {
+    "field": "redemption",
+    "old": "2–2.5 years",
+    "new": "2–2.5 years for older certificates; 3 years (1 year for vacant, commercial or 7+ unit property) for certificates from sales on or after July 10, 2026",
+    "note": "35 ILCS 200/21-350 as amended by P.A. 104-553, eff. 7-10-26; applies to certificates issued on or after that date. Wording narrowed by the build step: the new periods apply only to certificates issued on or after the effective date."
+   }
+  ],
+  "lastChecked": "2026-10-27"
+ },
+ "IN": {
+  "status": "confirmed",
+  "sourceUrl": "https://www.in.gov/counties/monroe/Departments/auditor/tax-sale/",
+  "sourceTitle": "Monroe County (IN) Auditor - Tax Sale (cites IC 6-1.1-25-4)",
+  "note": "1-year redemption (120 days for commissioner certificates); redemption at 110%/115% of minimum bid (0-6 / 6-12 months); highest bidder.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "KS": {
+  "status": "confirmed",
+  "sourceUrl": "https://www.ksrevisor.gov/statutes/chapters/ch79/079_024_0001a.html",
+  "sourceTitle": "K.S.A. 79-2401a (ksrevisor.gov)",
+  "note": "County holds bid-off property 2 years (1 year abandoned; 3 years homestead and other real estate) before foreclosure sale. Rate cap and bid method not re-read.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "KY": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "No current official KRS 134.125 text read (only a 2006 DOR manual found, not readable). Not confirmed.",
+  "changes": []
+ },
+ "LA": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "Could not find the La. R.S. 47:2183 / 47:2154 page on legis.la.gov this run. Not confirmed.",
+  "changes": []
+ },
+ "MA": {
+  "status": "changed",
+  "sourceUrl": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section62",
+  "sourceTitle": "M.G.L. c.60 §62 (malegislature.gov)",
+  "note": "Current §62 sets redemption interest at 8 per cent on the original sum (applied also to purchaser-held titles).",
+  "changes": [
+   {
+    "field": "rate",
+    "old": "16%",
+    "new": "8%",
+    "note": "M.G.L. c.60 §62 now reads interest at 8 per cent upon the original sum for which the land was taken or sold."
+   }
+  ],
+  "lastChecked": "2026-10-27"
+ },
+ "MD": {
+  "status": "changed",
+  "sourceUrl": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-817",
+  "sourceTitle": "Md. Tax-Property §14-817 and §14-820 (mgaleg.maryland.gov)",
+  "note": "§14-820: default redemption rate 6% (10% Calvert/Caroline/Dorchester/Garrett, 14% Carroll; many counties may set their own; owner-occupied capped at 10%); no fixed redemption deadline, foreclosure within 2 years. §14-817: sale goes to highest bid, high-bid premium may apply.",
+  "changes": [
+   {
+    "field": "bidMethod",
+    "old": "Bid-down interest rate (most counties)",
+    "new": "Highest bidder (high-bid premium may apply)",
+    "note": "Md. Tax-Prop. §14-817(a)(2), (b)(2): highest good faith bid; collector may require a high-bid premium."
+   }
+  ],
+  "lastChecked": "2026-10-27"
+ },
+ "ME": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "legislature.maine.gov reset the connection during this run. Not confirmed.",
+  "changes": []
+ },
+ "MI": {
+  "status": "confirmed",
+  "sourceUrl": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78m",
+  "sourceTitle": "MCL 211.78m (legislature.mi.gov)",
+  "note": "Foreclosed property sold at auction subject to minimum bid; conveyed to highest bidder. No post-sale redemption described.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "MN": {
+  "status": "confirmed",
+  "sourceUrl": "https://www.revisor.mn.gov/statutes/cite/281.17",
+  "sourceTitle": "Minn. Stat. 281.17 (revisor.mn.gov)",
+  "note": "3-year redemption runs from the tax judgment sale to the state, before forfeiture; forfeited land is later sold by the county with no post-sale redemption.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "MO": {
+  "status": "confirmed",
+  "sourceUrl": "https://revisor.mo.gov/main/OneSection.aspx?section=140.340",
+  "sourceTitle": "RSMo 140.340 and 140.250 (revisor.mo.gov)",
+  "note": "Absolute right to redeem during 1 year after sale; interest not to exceed 10% annually; sold to highest bidder (140.250).",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "MS": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "Only third-party/court summaries found; no official county or state page read. Not confirmed.",
+  "changes": []
+ },
+ "MT": {
+  "status": "confirmed",
+  "sourceUrl": "https://archive.legmt.gov/bills/mca/title_0150/chapter_0180/part_0010/section_0110/0150-0180-0010-0110.html",
+  "sourceTitle": "MCA 15-18-111 (2025) (legmt.gov)",
+  "note": "Redemption deadline: first working day in August, 3 years after lien attaches (2 years for certain subdivided lots). Rate and bid method not re-read this run.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "NC": {
+  "status": "confirmed",
+  "sourceUrl": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-374.html",
+  "sourceTitle": "N.C.G.S. 105-374 (ncleg.gov)",
+  "note": "Foreclosure sale by public auction to highest bidder; 10-day period after report for exceptions/increased (upset) bids.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "ND": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "NDCC 57-28 PDF reached but its text could not be extracted. Not confirmed.",
+  "changes": []
+ },
+ "NE": {
+  "status": "confirmed",
+  "sourceUrl": "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1824",
+  "sourceTitle": "Neb. Rev. Stat. 77-1824, 45-104.01, 77-1837, 77-1807 (nebraskalegislature.gov)",
+  "note": "Redemption interest at 45-104.01 rate = 14%; tax deed application after 3 years from sale; buyer pays taxes, interest and costs, county sets bidding rules (round-robin allowed). Premium bidding not specified in statute.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "NH": {
+  "status": "changed",
+  "sourceUrl": "https://gc.nh.gov/rsa/html/V/80/80-mrg.htm",
+  "sourceTitle": "RSA 80:32, 80:69, 80:76 (gc.nh.gov)",
+  "note": "Redemption interest is 14% per annum under both tax sale (80:32) and tax lien (80:69) procedures; tax deed after 2 years (80:76). Bid method not re-read.",
+  "changes": [
+   {
+    "field": "rate",
+    "old": "18%",
+    "new": "14%",
+    "note": "RSA 80:32 and 80:69: interest at 14 percent per annum (amended 2018, 282, eff. April 1, 2019)."
+   }
+  ],
+  "lastChecked": "2026-10-27"
+ },
+ "NJ": {
+  "status": "confirmed",
+  "sourceUrl": "https://pub.njleg.gov/Bills/2024/PL24/39_.HTM",
+  "sourceTitle": "P.L.2024, c.39 amending N.J.S.A. 54:5-86 (njleg.gov); NJ DLGS Elements of Tax Sales",
+  "note": "54:5-86 (as amended 2024): private holders may foreclose after 2 years, municipality after 6 months. DLGS: max 18%, bid down interest to 1% then bid premium; 2/4/6% redemption penalty. DLGS page dated 2011. Bid method is bid-down first, premium only after rate reaches 1%.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "NM": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "NM TRD auction terms PDF reached but its text could not be extracted. Not confirmed.",
+  "changes": []
+ },
+ "NV": {
+  "status": "confirmed",
+  "sourceUrl": "https://www.leg.state.nv.us/nrs/nrs-361.html",
+  "sourceTitle": "NRS 361.585, 361.595 (leg.state.nv.us)",
+  "note": "After redemption period expires, deed goes to county treasurer in trust; commissioners order treasurer to sell for not less than taxes, costs, penalties and interest. No post-sale redemption.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "NY": {
+  "status": "confirmed",
+  "sourceUrl": "https://www.nysenate.gov/legislation/laws/RPT/1110",
+  "sourceTitle": "NY RPTL 1110 (nysenate.gov)",
+  "note": "Default redemption expires 2 years after lien date; districts may extend (residential/farm) or shorten to 1 year for vacant/abandoned, so Varies is accurate. Rate and bid method not re-read.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "OH": {
+  "status": "confirmed",
+  "sourceUrl": "https://codes.ohio.gov/ohio-revised-code/section-5721.32",
+  "sourceTitle": "Ohio Revised Code 5721.32 / 5721.37 (codes.ohio.gov)",
+  "note": "Certificate auction starts at 18% simple and bids down in 1/4% steps; holder may request foreclosure after 1 year from sale. Deed-county practice not checked.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "OK": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "OSCN citation for 68 O.S. 3101+ not located this run. Not confirmed.",
+  "changes": []
+ },
+ "OR": {
+  "status": "confirmed",
+  "sourceUrl": "https://www.oregonlegislature.gov/bills_laws/ors/ors312.html",
+  "sourceTitle": "ORS 312.120 (oregonlegislature.gov)",
+  "note": "County holds foreclosed property 2 years from judgment for redemption, then may sell it; no redemption after county sale.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "PA": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "palegis.us pages returned navigation only, no section text. Not confirmed.",
+  "changes": []
+ },
+ "RI": {
+  "status": "confirmed",
+  "sourceUrl": "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-19.htm",
+  "sourceTitle": "R.I. Gen. Laws 44-9-19, 44-9-21 (rilegislature.gov)",
+  "note": "Penalty 10% of purchase price if redeemed within 6 months, plus 1% per month after; purchaser also earns 1%/month interest on sums paid (44-9-21). 1-year period and bid method not re-read.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "SC": {
+  "status": "confirmed",
+  "sourceUrl": "https://www.scstatehouse.gov/code/t12c051.php",
+  "sourceTitle": "S.C. Code 12-51-50, 12-51-90 (scstatehouse.gov)",
+  "note": "Public auction; redeem within 12 months; interest 3%/6%/9%/12% of bid by quarter of redemption period (capped at bid amount).",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "SD": {
+  "status": "changed",
+  "sourceUrl": "https://sdlegislature.gov/api/Statutes/10-23-8.html",
+  "sourceTitle": "SDCL 10-23-8 and 10-25-1 (sdlegislature.gov)",
+  "note": "Lowest interest rate bid wins; no bid above 10% per year is valid. Tax deed proceeding may start after 3 years from certificate sale (within 6 years).",
+  "changes": [
+   {
+    "field": "rate",
+    "old": "12%",
+    "new": "10% max (bid down)",
+    "note": "SDCL 10-23-8: no rate of interest higher than ten percent per year is a valid bid."
+   }
+  ],
+  "lastChecked": "2026-10-27"
+ },
+ "TN": {
+  "status": "confirmed",
+  "sourceUrl": "https://www.nashville.gov/departments/trustee/general-property-tax-questions",
+  "sourceTitle": "Metro Nashville Trustee - Property Tax Questions",
+  "note": "1-year redemption; purchaser earns 10% annual interest on purchase price during redemption (Davidson County; some counties such as Shelby/Knox state 12%, and Shelby uses shorter periods for longer delinquency). County source, not statute.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "TX": {
+  "status": "unconfirmed",
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "note": "statutes.capitol.texas.gov refused connections during this run; no official text read.",
+  "changes": [],
+  "lastChecked": null
+ },
+ "UT": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "le.utah.gov section text loads by script; county pages 404. Not confirmed.",
+  "changes": []
+ },
+ "VA": {
+  "status": "confirmed",
+  "sourceUrl": "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3965/",
+  "sourceTitle": "Code of Virginia 58.1-3965 (law.lis.virginia.gov)",
+  "note": "Sale allowed when taxes delinquent on Dec 31 after the 2nd anniversary of due date (1st for blighted/derelict); owner may redeem any time before the sale. Bid method not re-read.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "VT": {
+  "status": "confirmed",
+  "sourceUrl": "https://legislature.vermont.gov/statutes/section/32/133/05260",
+  "sourceTitle": "32 V.S.A. 5260 (legislature.vermont.gov)",
+  "note": "Redeem within 1 year of sale with 1% per month interest (12%/yr). Note: Vermont sells the property (deed held during redemption) rather than a lien certificate. Bid method not re-read.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "WA": {
+  "status": "confirmed",
+  "sourceUrl": "https://app.leg.wa.gov/RCW/default.aspx?cite=84.64.080",
+  "sourceTitle": "RCW 84.64.080 (app.leg.wa.gov)",
+  "note": "Treasurer sells to highest and best bidder, minimum bid = taxes, interest, costs; tax deed vests title (no post-sale redemption stated).",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ },
+ "WI": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "Reached ch. 75 pages but did not read the 74.53/75 deed timing text. Not confirmed.",
+  "changes": []
+ },
+ "WV": {
+  "lastChecked": null,
+  "sourceUrl": "",
+  "sourceTitle": "",
+  "status": "unconfirmed",
+  "note": "Statute sections read were repealed/empty; WV State Auditor page confirms highest-bidder sale only, not the rate or redemption period. Not confirmed.",
+  "changes": []
+ },
+ "WY": {
+  "status": "confirmed",
+  "sourceUrl": "https://wyoleg.gov/statutes/compress/title39.pdf",
+  "sourceTitle": "Wyo. Stat. 39-13-108 (wyoleg.gov Title 39)",
+  "note": "Redemption = sale amount + 3% + 15% per annum interest (sales since 1982); tax deed after 4 years from sale. Bid method not confirmed in text read.",
+  "changes": [],
+  "lastChecked": "2026-10-27"
+ }
 }
