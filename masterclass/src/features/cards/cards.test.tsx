@@ -7,11 +7,13 @@ import { startFresh } from '../../core/deviceRole';
 import { __resetSpeechForTests } from '../../core/speech';
 import type { QuickCardItem } from '../../schemas';
 import { afterAllReset, currentPath, loadSeedBundle, renderScreen, resetAll } from '../settings/__tests__/harness';
+import { relatedItems } from '../shared/RelatedList';
+import { isPendingText } from '../shared/speechText';
 import { cardSpeechText, groupCards, KIND_LABELS, speakable } from './cardModel';
 import { CardsList } from './CardsList';
 import { CardView } from './CardView';
 
-const ROUTES = { '/cards': <CardsList />, '/cards/:id': <CardView />, '/': <p>Home</p> };
+const ROUTES = { '/cards': <CardsList />, '/cards/:id': <CardView />, '/items/:id': <p>Item page</p>, '/': <p>Home</p> };
 
 let cards: QuickCardItem[] = [];
 
@@ -126,14 +128,36 @@ describe('CardsList', () => {
 });
 
 describe('CardView', () => {
-  it('shows each row, and the unverified badge only on the verify row', async () => {
+  it('shows each row, and the unverified badge only on the verify rows', async () => {
+    const card = cards.find((c) => c.id === 'card-pad-ladder');
+    if (card === undefined) throw new Error('the seed has no card-pad-ladder');
     renderScreen('/cards/card-pad-ladder', ROUTES);
-    expect(await screen.findByRole('heading', { name: 'Pad ladder for the test spot' })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: card.title })).toBeInTheDocument();
     expect(screen.getByText('Rung 1')).toBeInTheDocument();
     expect(screen.getByText(/Yellow \+ M210. Wipe, IPA, light./)).toBeInTheDocument();
-    const badges = screen.getAllByText('unverified');
-    expect(badges).toHaveLength(1);
-    expect(badges[0]?.closest('dt')?.textContent).toMatch(/HF finishing pads/);
+
+    // The card's own rows: the list labelled with the card title. Expected badges come from the
+    // card data, so a content edit to another item cannot break this test (DEF-18).
+    const rows = screen.getByLabelText(card.title);
+    expect(rows.tagName).toBe('DL');
+    const shown = card.rows.filter((row) => row.status !== 'superseded');
+    const expected = shown
+      .filter((row) => (row.status ?? card.status) === 'verify' && card.status !== 'verify' && !isPendingText(`${row.label} ${row.value}`))
+      .map((row) => row.label);
+    const badged = within(rows)
+      .queryAllByText('unverified')
+      .map((badge) => badge.closest('dt')?.firstChild?.textContent ?? '');
+    expect(badged).toEqual(expected);
+    expect(badged).toContain('HF finishing pads');
+    expect(within(rows).getAllByRole('term')).toHaveLength(shown.length);
+
+    // The Related list badges each related item that is itself verify, and nothing else.
+    const related = screen.getByRole('list', { name: 'Related' });
+    const verifyRelated = relatedItems(card.related, card.id, false).filter((item) => item.status === 'verify');
+    expect(within(related).queryAllByText('unverified')).toHaveLength(verifyRelated.length);
+    for (const item of verifyRelated) {
+      expect(within(related).getByText(item.title).closest('li')?.textContent).toMatch(/unverified/);
+    }
   });
 
   it('reads the card aloud from the tap, then offers Pause, Repeat, and Stop reading', async () => {
@@ -157,16 +181,17 @@ describe('CardView', () => {
     expect(screen.getByRole('button', { name: 'Read aloud' })).toBeDisabled();
   });
 
-  it('opens a related card on its page and a related tool in a sheet', async () => {
+  it('opens a related card on its page and a related tool on its item page', async () => {
     renderScreen('/cards/card-pad-ladder', ROUTES);
     const related = await screen.findByRole('list', { name: 'Related' });
     fireEvent.click(within(related).getByText('Paint thickness bands'));
     expect(currentPath()).toBe('/cards/card-thickness-bands');
     const again = await screen.findByRole('list', { name: 'Related' });
-    const tool = within(again).getAllByText('Equipment')[0];
-    if (tool === undefined) throw new Error('no related equipment');
+    const tool = within(again).getAllByText('Tool')[0];
+    if (tool === undefined) throw new Error('no related tool');
     fireEvent.click(tool);
-    expect(await screen.findByRole('dialog')).toBeInTheDocument();
+    expect(currentPath()).toMatch(/^\/items\/equipment-/);
+    expect(screen.queryByRole('dialog')).toBeNull();
   });
 
   it('an unknown card id says so and offers the way back', async () => {

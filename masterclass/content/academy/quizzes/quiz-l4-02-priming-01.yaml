@@ -1,0 +1,32 @@
+id: quiz-l4-02-priming-01
+type: quizquestion
+title: Priming a new yellow pad
+quizId: quiz-l4-02-priming
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.2"
+tags:
+  - priming
+  - polish
+  - quiz
+  - level 4
+synonyms:
+  - priming quiz
+  - how much polish questions
+  - pad priming test
+  - drops per section quiz
+prompt: You have a brand-new yellow pad. How do you prime it?
+choices:
+  - 3 drops worked in, then 3 to 4 pea-size.
+  - A full dose spread over the face.
+  - Soak it in water, then a full dose.
+  - No priming. The first square primes it.
+correctIndex: 0
+explanation: 3 drops worked into the face with a finger until damp all over, then 3 to 4 pea-size drops. Prime once; after that the pad is charged.
+scenario: true
+related:
+  - lesson-l4-02-prime-and-product
+  - card-pad-priming

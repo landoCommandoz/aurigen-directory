@@ -1,0 +1,64 @@
+/*
+ * Academy pages (Phase 2, read-only): the outline, the lesson reading view, the procedures.
+ * Reading text holds the density's measure (68 characters a line in Academy, under 80).
+ * Colors from src/design/tokens.css only. Lists never cap their height; nothing hides overflow.
+ */
+
+/* The "why" section carries the accent rule on its left (Direction A, wireframe 6.4). */
+.ac-why .md {
+  padding-inline-start: var(--space-4);
+  border-inline-start: var(--rule-width) solid var(--indicator);
+}
+
+.ac-part .sr-lines,
+.ac-part .sr-rows,
+.ac-phase,
+.ac-steps {
+  max-inline-size: var(--measure);
+}
+
+.ac-part .sr-lines {
+  gap: var(--space-3);
+  line-height: var(--lh-body);
+}
+
+.ac-phase {
+  padding: var(--space-3) var(--space-4);
+  border: var(--rule-width) dashed var(--line-strong);
+  border-radius: var(--radius);
+  color: var(--text-2);
+}
+
+.ac-steps {
+  margin: 0;
+  padding-inline-start: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.ac-steps > li::marker {
+  font-weight: var(--weight-bold);
+}
+
+.ac-step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ac-step__text {
+  margin: 0;
+  font-weight: var(--weight-medium);
+  overflow-wrap: break-word;
+}
+
+.ac-step__meta {
+  margin: 0;
+  font-size: var(--fs-small);
+}
+
+.ac-step .sr-lines {
+  font-size: var(--fs-small);
+  color: var(--text);
+}

@@ -1,0 +1,32 @@
+id: quiz-l4-06-pads-plate-03
+type: quizquestion
+title: When to wash pads
+quizId: quiz-l4-06-pads-plate
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "13.1"
+tags:
+  - pads
+  - backing plate
+  - quiz
+  - level 4
+synonyms:
+  - pad care quiz
+  - backing plate questions
+  - pad wash test
+  - which plate fits quiz
+prompt: End of the day. The pads have M210 in them. When do you wash them?
+choices:
+  - The same night.
+  - Next weekend.
+  - Before the next job.
+  - Never. Buy new ones.
+correctIndex: 0
+explanation: Wash them the same night, before the polish dries in. Dried compound in a pad is a dead pad.
+scenario: true
+related:
+  - lesson-l4-06-pad-care-backing-plate
+  - equipment-backing-plate

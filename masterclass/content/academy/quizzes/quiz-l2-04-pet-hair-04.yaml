@@ -1,0 +1,32 @@
+id: quiz-l2-04-pet-hair-04
+type: quizquestion
+title: The family car
+quizId: quiz-l2-04-pet-hair
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - pet hair
+  - quiz
+  - level 2
+synonyms:
+  - pet hair quiz
+  - dog hair questions
+  - wet carpet test
+  - pet hair add on quiz
+prompt: A family car comes in with pet hair, crumbs, and stains. About how long does the interior take?
+choices:
+  - About 30 min.
+  - About 1 hr 5 min.
+  - About 4 hrs, every time.
+  - 2 hrs or more.
+correctIndex: 3
+explanation: A clean daily driver is about 1 hr 5 min. A family car with pet hair, crumbs, and stains is 2 hrs or more. Look in the back seat before you quote.
+scenario: true
+related:
+  - lesson-l2-04-pet-hair-spots
+  - equipment-analan-rubber-tool

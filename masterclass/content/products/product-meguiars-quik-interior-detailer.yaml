@@ -4,9 +4,10 @@ title: Meguiar's Quik Interior Detailer
 brand: Meguiar's
 audience: [owner, crew]
 visibility: internal
-status: house
+status: verify
+version: 3
 kbRef: "3.3"
-tags: [interior, wipe, detailer]
+tags: [interior, wipe, detailer, tesla]
 synonyms:
   - interior detailer
   - quik interior
@@ -14,10 +15,36 @@ synonyms:
   - interior spray
   - dash spray
   - interior wipe
+sources:
+  - label: Knowledge base 10, interior wipe
+    date: 2026-10-07
+    note: Hard surfaces get Quik Interior Detailer sprayed on the towel. Screens get a dry microfiber or a screen-safe cleaner only.
+  - label: Verification log FC-75
+    date: 2026-10-11
+    note: Meguiar's own page could not be read. Retail copies of the label say mist one section at a time and wipe, and claim it is safe on screens. Not confirmed. Spraying the towel is house and stricter than the label.
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: No solvents (including alcohol), hand sanitizer, bleach, citrus, naphtha, or silicone-based products on interior parts. Seats get warm water and mild soap only. Touchscreen gets a display cloth only, no cleaners. Read directly. Fact-checker FC-36 and FC-37.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 jobs:
   - Interior wipe, sprayed on the towel
 neverFor:
   - Spraying straight on a panel. Overspray lands on glass and screens.
+notes:
+  - text: "House: spray it on the towel, never on the panel, then wipe."
+    status: house
+  - text: Meguiar's has not confirmed it is screen-safe, so do not treat it as a screen cleaner.
+    status: verify
+  - text: On a Tesla, Tesla's manual disagrees with the house wipe. It says no solvents (including alcohol), hand sanitizer, bleach, citrus, naphtha, or silicone-based products on interior parts. It says seats get warm water and mild soap on a microfiber, nothing more. It says the touchscreen gets no cleaners at all.
+    status: sourced
+  - text: Whether this detailer contains any of the listed ingredients was not checked.
+    status: verify
+  - text: Lando decides how this applies to Teslas (pending).
+    status: verify
 related:
   - equipment-microfiber-towels
   - equipment-shop-vac
+  - sop-interior
+  - card-tesla-wash-mode-tape

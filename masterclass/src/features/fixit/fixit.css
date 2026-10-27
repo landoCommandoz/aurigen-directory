@@ -1,11 +1,41 @@
 /*
- * Fix It entry. Tiles come from the base Tile component (96 px tall in Shop density).
- * Colors from src/design/tokens.css only.
+ * Fix It: the symptom grid and the fix page. Tiles come from the base Tile component (96 px tall,
+ * 64 px minimum in Shop density); the STOP symptom is the base StopBand. Colors from
+ * src/design/tokens.css only. Lists never cap their height; nothing hides overflow.
  */
-.fx-phase {
+.fx-empty {
   padding: var(--space-3) var(--space-4);
   border: var(--rule-width) dashed var(--line-strong);
   border-radius: var(--radius);
   color: var(--text-2);
   max-inline-size: var(--measure);
+}
+
+/* A Fix It tile never drops under the Shop target, whatever the density sets for tiles. */
+.fx-group .ui-tile {
+  min-height: max(var(--tile-min), 64px);
+}
+
+.fx-group .ui-tile__icon {
+  font-size: 30px;
+}
+
+.fx-stops {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.fx-top {
+  gap: var(--space-4);
+}
+
+/* The steps are what a person reads at arm's length: numbers bold, lines apart. */
+.fx-part .sr-lines {
+  gap: var(--space-3);
+  max-inline-size: var(--measure);
+}
+
+.fx-part ol.sr-lines > li::marker {
+  font-weight: var(--weight-bold);
 }

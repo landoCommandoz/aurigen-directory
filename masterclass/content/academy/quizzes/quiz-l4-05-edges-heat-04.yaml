@@ -1,0 +1,32 @@
+id: quiz-l4-05-edges-heat-04
+type: quizquestion
+title: New roll of beige tape
+quizId: quiz-l4-05-edges-heat
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.1"
+tags:
+  - edges
+  - heat
+  - quiz
+  - level 4
+synonyms:
+  - edges quiz
+  - heat questions
+  - tape test
+  - body line quiz
+prompt: You have a new roll of cheap beige tape. What first?
+choices:
+  - Use it. Tape is tape.
+  - Test it on scrap first.
+  - Double it up.
+  - Skip the tape.
+correctIndex: 1
+explanation: Test cheap tape on scrap first. Beige tape can leave residue when hot.
+scenario: true
+related:
+  - lesson-l4-05-edges-curves-heat
+  - equipment-painters-tape

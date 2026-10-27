@@ -1,0 +1,33 @@
+id: quiz-l1-wash-decon-05
+type: quizquestion
+title: Water out of the jamb
+quizId: quiz-l1-wash-decon
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.1"
+tags:
+  - wash
+  - decon
+  - sign-off quiz
+  - level 1
+synonyms:
+  - level 1 quiz
+  - wash and decon quiz
+  - full wash test
+  - level 1 sign off quiz
+prompt: At pickup, the customer opens a door and water runs out of the jamb. Which step was skipped?
+choices:
+  - The sheeting rinse.
+  - Drying the jambs.
+  - The bag test.
+  - The pre-rinse.
+correctIndex: 1
+explanation: Open every door and dry the jambs.
+scenario: true
+related:
+  - lesson-l1-06-full-wash
+  - card-tesla-wash-mode-tape
+  - card-bucket-mix

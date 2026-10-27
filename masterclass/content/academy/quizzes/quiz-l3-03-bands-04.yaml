@@ -1,0 +1,32 @@
+id: quiz-l3-03-bands-04
+type: quizquestion
+title: 71 on the quarter
+quizId: quiz-l3-03-bands
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.3"
+tags:
+  - bands
+  - gauge
+  - quiz
+  - level 3
+synonyms:
+  - bands quiz
+  - thickness bands questions
+  - what is allowed test
+  - gauge reading quiz
+prompt: The right rear quarter reads 71 µm at its lowest. What is allowed?
+choices:
+  - Polish lightly, fewest passes.
+  - Finishing polish only.
+  - Compound to level it.
+  - No machine. Hand protection only.
+correctIndex: 3
+explanation: "Under 75 µm: no machine."
+scenario: true
+related:
+  - lesson-l3-03-thickness-bands
+  - card-thickness-bands

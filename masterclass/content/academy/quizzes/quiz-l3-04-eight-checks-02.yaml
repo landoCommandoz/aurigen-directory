@@ -1,0 +1,31 @@
+id: quiz-l3-04-eight-checks-02
+type: quizquestion
+title: Flat finish, wants wax
+quizId: quiz-l3-04-eight-checks
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.4"
+tags:
+  - kills the buff
+  - quiz
+  - level 3
+synonyms:
+  - eight checks quiz
+  - kills the buff questions
+  - walk away test
+  - paint check quiz
+prompt: The car has a flat finish with no reflection. The customer wants it waxed. What is the call?
+choices:
+  - Matte or satin. No wax, ever.
+  - Wax it. Wax brings the shine back.
+  - Polish it lightly, then wax.
+  - Compound it once, then wax.
+correctIndex: 0
+explanation: "Matte or satin: no compound, polish, or wax. Matte-safe cleaner only."
+scenario: true
+related:
+  - lesson-l3-04-kills-the-buff
+  - card-kills-the-buff

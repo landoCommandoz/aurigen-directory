@@ -1,0 +1,33 @@
+id: quiz-l0-04-paint-02
+type: quizquestion
+title: Mils to microns
+quizId: quiz-l0-04-paint
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "0"
+tags:
+  - paint
+  - clear coat
+  - quiz
+  - level 0
+synonyms:
+  - paint quiz
+  - clear coat test
+  - how paint works questions
+  - microns quiz
+prompt: Your gauge reads in µm. A forum post talks about paint in mils. How many microns is 1 mil?
+choices:
+  - 10 µm
+  - 100 µm
+  - 25.4 µm
+  - 1,000 µm
+correctIndex: 2
+explanation: 1 mil = 25.4 µm. Leave the gauge on µm.
+scenario: true
+related:
+  - lesson-l0-04-how-paint-works
+  - term-clear-coat
+  - term-micron-mil

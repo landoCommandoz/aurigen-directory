@@ -1,0 +1,32 @@
+id: quiz-l2-02-vacuum-01
+type: quizquestion
+title: Dust on clean carpet
+quizId: quiz-l2-02-vacuum
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - vacuum
+  - quiz
+  - level 2
+synonyms:
+  - vacuum quiz
+  - knock it down questions
+  - vacuum order test
+  - seats forward and back quiz
+prompt: You vacuum the carpet, then knock dust out of the vents onto it. What went wrong?
+choices:
+  - Nothing. Vacuum the carpet twice.
+  - Knock it down first, then vacuum.
+  - Wipe the vents wet next time.
+  - Vacuum the vents, then the carpet.
+correctIndex: 1
+explanation: "Knock it down from the top: headliner, vents, seams, seat rails. Then vacuum top down, so nothing falls on clean carpet."
+scenario: true
+related:
+  - lesson-l2-02-knock-down-vacuum
+  - equipment-shop-vac

@@ -1,0 +1,32 @@
+id: quiz-l3-inspect-measure-08
+type: quizquestion
+title: When to quote the tier
+quizId: quiz-l3-inspect-measure
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "16"
+tags:
+  - walkaround
+  - sign-off quiz
+  - level 3
+synonyms:
+  - level 3 quiz
+  - inspect and measure quiz
+  - walkaround test
+  - level 3 sign off quiz
+prompt: When do you quote the tier for a polish?
+choices:
+  - On the phone, before they come.
+  - Before the walkaround starts.
+  - After the test spot proves it.
+  - After the polish is done.
+correctIndex: 2
+explanation: Test spot, split in half, then quote the tier the test spot proved.
+scenario: true
+related:
+  - lesson-l3-05-walkaround-script
+  - card-kills-the-buff
+  - card-thickness-bands

@@ -1,0 +1,32 @@
+id: quiz-l2-04-pet-hair-03
+type: quizquestion
+title: Damp carpet at pickup
+quizId: quiz-l2-04-pet-hair
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - pet hair
+  - quiz
+  - level 2
+synonyms:
+  - pet hair quiz
+  - dog hair questions
+  - wet carpet test
+  - pet hair add on quiz
+prompt: The carpet is still damp, and the customer is due in 20 minutes. What do you do?
+choices:
+  - "Get air on it: windows or fan."
+  - Hand it back. It will dry.
+  - Cover it with the mats.
+  - Spray some freshener on it.
+correctIndex: 0
+explanation: Wet carpet needs air before handoff.
+scenario: true
+related:
+  - lesson-l2-04-pet-hair-spots
+  - equipment-analan-rubber-tool

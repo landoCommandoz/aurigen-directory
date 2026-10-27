@@ -1,0 +1,31 @@
+id: quiz-l2-05-glass-01
+type: quizquestion
+title: How many towels
+quizId: quiz-l2-05-glass
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "9.3"
+tags:
+  - glass
+  - quiz
+  - level 2
+synonyms:
+  - glass quiz
+  - streak questions
+  - window cleaning test
+  - two towel glass quiz
+prompt: How many towels do you take for the glass?
+choices:
+  - One, folded to a fresh face.
+  - Three, one for each pass.
+  - Whatever is clean.
+  - "Two: one wet, one dry."
+correctIndex: 3
+explanation: A one-towel wipe streaks.
+scenario: true
+related:
+  - lesson-l2-05-glass
+  - equipment-microfiber-towels

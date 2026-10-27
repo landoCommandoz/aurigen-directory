@@ -1,0 +1,31 @@
+id: quiz-l4-03-pressure-01
+type: quizquestion
+title: The last set
+quizId: quiz-l4-03-pressure
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.3"
+tags:
+  - pressure
+  - quiz
+  - level 4
+synonyms:
+  - pressure quiz
+  - how hard do I press questions
+  - float test
+  - grip quiz
+prompt: You are on the last set of the square. What do you do with pressure?
+choices:
+  - Press harder to finish strong.
+  - Lift the pad a little off the paint.
+  - Let it float on its own weight.
+  - Tilt it onto the edge.
+correctIndex: 2
+explanation: "Last set: let the machine float on its own weight."
+scenario: true
+related:
+  - lesson-l4-03-pressure
+  - card-machine-settings

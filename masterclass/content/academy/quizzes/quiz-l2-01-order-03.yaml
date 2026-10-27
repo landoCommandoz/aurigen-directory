@@ -1,0 +1,31 @@
+id: quiz-l2-01-order-03
+type: quizquestion
+title: Personal items
+quizId: quiz-l2-01-order
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - quiz
+  - level 2
+synonyms:
+  - interior order quiz
+  - customer items questions
+  - interior steps test
+  - what goes first inside quiz
+prompt: Sunglasses, a kid's toy, and some papers are loose in the car. Where do they go?
+choices:
+  - In the trash, unless they look new.
+  - Loose in the trunk.
+  - On your cart until pickup.
+  - In one bag the customer can see.
+correctIndex: 3
+explanation: Personal items go in one bag the customer can see.
+scenario: true
+related:
+  - lesson-l2-01-interior-order
+  - lesson-l2-06-full-interior

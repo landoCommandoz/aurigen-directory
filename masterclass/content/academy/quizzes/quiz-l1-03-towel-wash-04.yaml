@@ -1,0 +1,32 @@
+id: quiz-l1-03-towel-wash-04
+type: quizquestion
+title: Two lower panels, one towel
+quizId: quiz-l1-03-towel-wash
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.2"
+tags:
+  - wash
+  - towels
+  - quiz
+  - level 1
+synonyms:
+  - towel wash quiz
+  - 16 towels questions
+  - contact wash test
+  - bucket mix quiz
+prompt: You are on the lower doors. Can two lower panels share one towel if you flip it to a fresh face?
+choices:
+  - Yes, on a fresh face.
+  - No. Lower panels never share.
+  - Yes, if the towel is still wet.
+  - Only on light-colored cars.
+correctIndex: 1
+explanation: Upper panels may share a towel on a fresh face. Lower panels never share.
+scenario: true
+related:
+  - lesson-l1-03-towel-wash
+  - card-bucket-mix

@@ -43,6 +43,10 @@ const SETUP_COPY = {
 export const SETTINGS_NOTICE_TEXT =
   "This phone's saved settings could not be read, so nothing was changed. They may come from a newer version of the app. Your jobs are still on this phone: tap Open Backup and save a backup now. Fix It, Quick Cards, and Search still work.";
 
+/** Offline, with the copy saved but not serving this page (QA DEF-29): what is true, then what works. */
+export const OFFLINE_SAVED_TEXT =
+  'The offline copy of the app is saved on this phone. If a page does not open, tap Try again and it opens from the saved copy. Closing the app and opening it again also works.';
+
 const BACKUP_PATH = '/settings/backup';
 
 /** The Backup and restore screen, where the settings notice never shows (DEF-13). */
@@ -73,6 +77,7 @@ export function BannerStack({ path }: { path: string }) {
     storageProblem: snapshot.status === 'unavailable' ? snapshot.error.message : null,
     online,
     offlineReady: pwa.offlineReady,
+    offlineCopy: pwa.offlineCopy,
     offlineCopyExpected: pwa.supported && import.meta.env.PROD,
     versionState: pwa.state,
     updateAllowedHere: updateBannerVisible({ state: pwa.state, customerViewOn: customerView.on, jobRunnerOpen: false, jobRunning }),
@@ -128,6 +133,13 @@ export function BannerStack({ path }: { path: string }) {
         return (
           <Banner key={key} tone="warning" title="Offline, and not saved yet">
             This phone has no offline copy of the app yet. Open it once with a signal and wait for Ready offline at the top.
+          </Banner>
+        );
+      case 'offlineSaved':
+        // The copy is saved, but this page opened without it (QA DEF-29): Try again reloads into it.
+        return (
+          <Banner key={key} tone="info" title="Offline copy saved">
+            {OFFLINE_SAVED_TEXT}
           </Banner>
         );
       case 'update':

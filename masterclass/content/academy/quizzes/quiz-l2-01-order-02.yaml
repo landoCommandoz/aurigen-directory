@@ -1,0 +1,31 @@
+id: quiz-l2-01-order-02
+type: quizquestion
+title: Money in the console
+quizId: quiz-l2-01-order
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - quiz
+  - level 2
+synonyms:
+  - interior order quiz
+  - customer items questions
+  - interior steps test
+  - what goes first inside quiz
+prompt: You find a $20 bill and a watch in the console. What do you do?
+choices:
+  - Pocket them so they stay safe.
+  - Put them in the trunk out of sight.
+  - Put them on the dash and say something.
+  - Leave them in the console.
+correctIndex: 2
+explanation: Money or valuables go on the dash, and you say something.
+scenario: true
+related:
+  - lesson-l2-01-interior-order
+  - lesson-l2-06-full-interior

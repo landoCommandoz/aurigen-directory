@@ -1,0 +1,38 @@
+id: term-backing-plate
+type: glossaryterm
+title: Backing plate
+term: Backing plate
+definition: The 6 in. hook-and-loop plate that bolts onto the polisher through a center hole. The pad sticks to it, and you pull the pad off it to wash the pad. On the BAUER 56367 it mounts with an M8 x 1.25 thread. Replace it with a 6 in. plate made for a long-throw. Never downsize it.
+alsoCalled: [backing pad, plate]
+audience: [owner, ops, crew]
+visibility: internal
+status: sourced
+kbRef: "14"
+tags: [polisher, parts, pad]
+synonyms:
+  - what is a backing plate
+  - the plate the pad sticks to
+  - velcro plate
+  - pad holder
+  - polisher plate
+  - bauer plate
+sources:
+  - label: HF product page, item 56367, spec table
+    url: https://www.harborfreight.com/75-amp-6-in-20-mm-long-throw-random-orbit-da-polisher-56367.html
+    date: 2026-10-10
+    note: "Thread Size M8-1.25, and a 6 in. BAUER hook-and-loop backing pad included. Read through the search index. Fact-checker FC-17 and FC-18."
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: BAUER 56367 owner's manual, 2021
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-10
+    note: Page 10, Replacing Backing Pad, with the Spindle Bolt through the center. Fact-checker FC-21.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+related:
+  - equipment-backing-plate
+  - equipment-bauer-56367
+  - term-m8
+  - term-hook-and-loop
+  - term-long-throw
+  - lesson-l4-06-pad-care-backing-plate

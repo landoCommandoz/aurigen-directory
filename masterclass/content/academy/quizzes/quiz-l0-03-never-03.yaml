@@ -1,0 +1,31 @@
+id: quiz-l0-03-never-03
+type: quizquestion
+title: Two polishers on the shelf
+quizId: quiz-l0-03-never
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "3.4"
+tags:
+  - never list
+  - quiz
+  - level 0
+synonyms:
+  - never list quiz
+  - what can not I use quiz
+  - garage only test
+  - never in the bucket questions
+prompt: Lando asks for the polisher. The BAUER and the Black & Decker rotary are both on the shelf. Which one goes to the car?
+choices:
+  - The Black & Decker rotary. It cuts faster.
+  - Either one. Both are polishers.
+  - The rotary for compound, the BAUER for polish.
+  - The BAUER.
+correctIndex: 3
+explanation: The BAUER is a dual action machine. The rotary only spins and stays in the garage.
+scenario: true
+related:
+  - lesson-l0-03-never-list
+  - card-never-on-paint

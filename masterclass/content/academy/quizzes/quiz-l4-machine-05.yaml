@@ -1,0 +1,32 @@
+id: quiz-l4-machine-05
+type: quizquestion
+title: Spreading the polish
+quizId: quiz-l4-machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.3"
+tags:
+  - polish
+  - machine
+  - sign-off quiz
+  - level 4
+synonyms:
+  - level 4 quiz
+  - machine polishing quiz
+  - full square test
+  - level 4 sign off quiz
+prompt: What speed do you spread the polish at, before you work the square?
+choices:
+  - The highest speed.
+  - Speed 1 to 2.
+  - Speed 6.
+  - Speed 5.
+correctIndex: 1
+explanation: Spread at speed 1 to 2 across the whole square. Spreading at a high speed slings product.
+scenario: true
+related:
+  - lesson-l4-07-full-square
+  - card-machine-settings

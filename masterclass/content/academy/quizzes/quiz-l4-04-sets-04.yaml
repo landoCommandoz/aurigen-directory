@@ -1,0 +1,33 @@
+id: quiz-l4-04-sets-04
+type: quizquestion
+title: Polish goes clear
+quizId: quiz-l4-04-sets
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.3"
+tags:
+  - sets
+  - marker line
+  - quiz
+  - level 4
+synonyms:
+  - sets quiz
+  - crosshatch questions
+  - marker line test
+  - arm speed quiz
+prompt: The polish went creamy, then see-through, then almost gone. Now it is clear. What do you do?
+choices:
+  - Two more sets.
+  - Add product and keep going.
+  - Stop. It is spent.
+  - Speed up.
+correctIndex: 2
+explanation: When it goes clear, it is spent. Working past it is one cause of dusting.
+scenario: true
+related:
+  - lesson-l4-04-speed-sets-marker
+  - term-set
+  - term-crosshatch

@@ -1,0 +1,33 @@
+id: quiz-l1-05-clay-05
+type: quizquestion
+title: Clay on the windshield
+quizId: quiz-l1-05-clay
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+version: 2
+kbRef: "6"
+tags:
+  - clay
+  - quiz
+  - level 1
+synonyms:
+  - clay quiz
+  - bag test questions
+  - clay bar test
+  - decon quiz
+prompt: The windshield feels rough. Do you clay it with the bar?
+choices:
+  - Yes, with extra lube.
+  - Yes, with light pressure.
+  - No. Paint only.
+  - Only the inside.
+correctIndex: 2
+explanation: The bar is for paint only. Skip the glass with the bar.
+scenario: true
+related:
+  - lesson-l1-05-clay
+  - card-clay-tub
+  - term-bag-test

@@ -1,0 +1,23 @@
+skillId: skill-l3-inspect-measure
+title: Inspect and measure
+lessonId: lesson-l3-05-walkaround-script
+quizId: quiz-l3-inspect-measure
+quizPassScore: 90
+drillMinimum: 7
+prerequisites:
+  - skill-l1-wash-decon
+gates: []
+ownerChecks:
+  - Zeroes the gauge only on its bare plate, never on the car.
+  - Takes the door jamb baseline first, then writes down 3 readings on each of the 11 panels, an inch off edges and body lines.
+  - On a Tesla, skips the glass roof.
+  - Calls the band and what it allows for any reading, without the card.
+  - Runs the 8 checks and names the five walk-away cars.
+  - Holds the light low, fingernail tests each scratch, and photographs every flaw before anything touches the car.
+  - Does the bag test with the customer's own hand.
+  - Reads the script word for word.
+  - Asks about photo consent and treats no answer as no.
+  - Tells the customer about any reading under 90, under 75, or way above the rest before the pad touches paint.
+  - text: "Walk-away car five, any car worth more than your insurance covers: the insurance status is not confirmed (pending)."
+    status: verify
+status: verify

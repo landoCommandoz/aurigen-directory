@@ -1,30 +1,37 @@
 /**
- * Opens a content item that has no page of its own yet (products, equipment, glossary terms, Fix It
- * entries until Phase 3) in a bottom sheet. Quick Cards open their own page instead.
+ * Opens a content item. From Phase 2 every type search returns has its own page
+ * (shared/contentRoutes.ts), so open() navigates there. The bottom sheet is the fallback for a type
+ * with no page yet (drills, quizzes, flashcards, prices, policies, scripts: Phase 4 and 5), so a
+ * stray id still shows its title and a way out instead of nothing.
  *
  *   const opener = useItemOpener();
- *   opener.open(hit);           // a card navigates; anything else opens the sheet
+ *   opener.open(hit);           // a page navigates; a type with no page opens the sheet
  *   return <>{...}{opener.sheet}</>;
  */
 import { useCallback, useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router';
 import { Button, Drawer } from '../../components/ui';
-import { getItem } from '../../core/content';
+import { getItem, useContent } from '../../core/content';
+import { typeOfId } from '../../core/contentShards';
 import { useCustomerView } from '../../core/customerView';
 import type { ContentTypeName } from '../../schemas';
+import { ContentWaitBody, OPENING_LINE } from '../shared/ContentWait';
 import { ItemDetail } from './ItemDetail';
 import { hitRoute, TYPE_SINGULAR } from './searchModel';
 
 export function ItemSheet({ id, onClose }: { id: string | null; onClose: () => void }) {
   const navigate = useNavigate();
   const cv = useCustomerView();
+  const type = id === null ? undefined : typeOfId(id);
+  const content = useContent(type === undefined ? [] : [type], cv.ready);
   const item = id === null ? undefined : getItem(id, { customerView: cv.on || !cv.ready });
   const route = item === undefined ? null : hitRoute(item);
+  const opening = item === undefined && (!content.ready || !cv.ready);
   return (
     <Drawer
       open={id !== null}
       onClose={onClose}
-      title={item?.title ?? 'Not found'}
+      title={item?.title ?? (opening ? OPENING_LINE : 'Not found')}
       eyebrow={item === undefined ? undefined : TYPE_SINGULAR[item.type]}
       footer={
         route !== null ? (
@@ -35,12 +42,18 @@ export function ItemSheet({ id, onClose }: { id: string | null; onClose: () => v
               navigate(route);
             }}
           >
-            Open the full card
+            Open its page
           </Button>
         ) : undefined
       }
     >
-      {item === undefined ? <p>This item is not in the content on this phone.</p> : <ItemDetail item={item} />}
+      {item !== undefined ? (
+        <ItemDetail item={item} headingLevel={3} />
+      ) : opening ? (
+        <ContentWaitBody content={content} />
+      ) : (
+        <p>This item is not in the content on this phone.</p>
+      )}
     </Drawer>
   );
 }

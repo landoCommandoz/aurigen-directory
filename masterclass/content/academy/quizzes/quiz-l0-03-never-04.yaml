@@ -1,0 +1,31 @@
+id: quiz-l0-03-never-04
+type: quizquestion
+title: Tire shine while you wait
+quizId: quiz-l0-03-never
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - never list
+  - quiz
+  - level 0
+synonyms:
+  - never list quiz
+  - what can not I use quiz
+  - garage only test
+  - never in the bucket questions
+prompt: It is a polish day. The customer asks you to shine the tires while Lando finishes the test spot. What do you say?
+choices:
+  - Sure. It saves time at the end.
+  - Only the sidewalls, away from the paint.
+  - Not yet. Nothing slick before the polish.
+  - Only a water-based shine.
+correctIndex: 2
+explanation: Rule 5. No tire shine, no trim dressing, and no wax before correction.
+scenario: true
+related:
+  - lesson-l0-03-never-list
+  - card-never-on-paint

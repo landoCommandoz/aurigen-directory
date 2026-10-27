@@ -5,6 +5,7 @@ kind: list
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "12.1"
 tags: [bike, motorcycle, rules, chain, chrome]
 synonyms:
@@ -18,30 +19,83 @@ synonyms:
   - chrome
   - motorcycle detail
   - what can't I use on a bike
+sources:
+  - label: Armor All product pages, Extreme Tire Shine trigger and aerosol
+    url: https://armorall.com/product/extreme-tire-shine-spray
+    date: 2026-10-11
+    note: Not for vehicle controls (pedals, grips, steering wheels), bench or cycle seats, cycle tires, brake drums, or other parts where slipperiness may be hazardous. Fact-checker FC-30.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Armor All product page, Extreme Wheel & Tire Cleaner
+    url: https://armorall.com/product/extreme-wheel-tire-cleaner
+    date: 2026-10-11
+    note: Before use on motorcycles or uncoated polished aluminum, check with the manufacturer. Fact-checker FC-27.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: National Cycle windshield instruction sheet, 2016
+    url: https://www.nationalcycle.com/media/wysiwyg/pdf/ispl/10-118601-000.pdf
+    date: 2026-10-11
+    note: Do not clean polycarbonate in hot sun or high temperatures. No household glass cleaners. Keep brake fluid, alcohol, and strong solvents off the windshield. Wash with a soft cloth and warm water and, if needed, a non-abrasive soap such as dishwashing liquid. Fact-checker FC-82 and FC-83.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Harley-Davidson service information, windshield care
+    url: https://serviceinfo.harley-davidson.com/sip/service/procedure/1952428810735561133/BLAISE/393859/en_US?nid=6372
+    date: 2026-10-11
+    note: Ammonia-based window cleaners yellow windshields for good. Powdered, abrasive, or alkaline cleansers can damage them. Read through the search index. Fact-checker FC-82.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: D.I.D chain maintenance, Dec 1, 2022
+    url: https://didchain.com/blogs/news/d-i-d-chain-maintenance
+    date: 2026-10-11
+    note: Clean with an O-ring safe cleaner and lube with an O-ring safe lubricant. Never steam, thinner, gasoline, benzene, or a wire brush. Kerosene deforms the seal rings. Fact-checker FC-84.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Verification log FC-86 and FC-87
+    date: 2026-10-11
+    note: Matte and Harley Denim care stays house; supporting evidence agrees. Ceramic wax on chrome is not confirmed by Meguiar's.
 rows:
   - label: Tire shine
     value: Never on a motorcycle. Not the sidewall, not near it.
+  - label: Tire shine, the label
+    value: Armor All's tire shine label says not for cycle tires, cycle seats, pedals, grips, or steering wheels.
+    status: sourced
   - label: Nothing slick
     value: Not on brake rotors, grips, pegs, or the seat.
   - label: Temperature
     value: Stone cold before you start. Water on hot pipes stains chrome. Bug remover on a hot exhaust bakes on.
   - label: Water
     value: Hose on low. No pressure at the chain, wheel bearings, electrics, under the seat, or the air intake.
+  - label: Wheels, the cleaner label
+    value: The Armor All wheel cleaner label says check with the maker before you use it on motorcycles or uncoated polished aluminum.
+    status: sourced
+  - label: Bike wheels (pending)
+    value: What to use on bike wheels is for Lando to decide.
+    status: verify
   - label: Drying
     value: Air compressor, every crevice.
   - label: Matte paint, including Harley Denim
     value: No compound, polish, or wax. Matte-safe cleaner only.
   - label: Windshield
-    value: It is plastic. No alcohol, no glass cleaner, no compound, no clay.
-  - label: Windshield cleaner
-    value: The approved plastic cleaner is not confirmed yet.
+    value: It is plastic. No alcohol, no glass cleaner, no compound.
+    status: sourced
+  - label: Windshield, house
+    value: No clay.
+  - label: Windshield, sun
+    value: Do not clean it in hot sun. National Cycle says so.
+    status: sourced
+  - label: Windshield cleaner (pending)
+    value: The approved plastic cleaner is not chosen. National Cycle says warm water and a soft cloth, plus a non-abrasive soap such as dishwashing liquid if needed. Dish soap is on the house never-on-paint list. Lando decides.
     status: verify
   - label: Tanks and fenders
     value: Hand-polish them. The 6 in. pad does not fit a tank. A 3 in. machine comes later, from bike revenue.
   - label: Chrome
-    value: Chrome polish, then a coat of ceramic wax.
+    value: Chrome polish, then a coat of ceramic wax. Ceramic wax on chrome is not confirmed by Meguiar's.
+    status: verify
   - label: Chain
-    value: Chain-specific cleaner and chain lube only. Household degreaser strips the O-rings.
+    value: Use an O-ring safe chain cleaner and an O-ring safe chain lube only. Never gasoline, thinner, steam, a pressure washer, or a wire brush. The wrong solvent can ruin the chain's seals.
+    status: sourced
+  - label: Chain, house example
+    value: Household degreaser strips the O-rings.
   - label: Tell every rider
     value: Brakes are wet. The first stop is soft. Ride easy for a block.
   - label: Drop-off only
@@ -51,6 +105,10 @@ related:
   - card-stop-rules
   - card-ipa-wipe
   - product-armor-all-extreme-tire-shine
+  - product-armor-all-extreme-wheel-tire
   - product-meguiars-hybrid-ceramic-wax
   - equipment-air-compressor
   - card-kills-the-buff
+  - sop-wash-bike
+  - sop-chain-bike
+  - sop-glass-bike

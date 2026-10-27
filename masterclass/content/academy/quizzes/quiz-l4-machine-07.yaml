@@ -1,0 +1,32 @@
+id: quiz-l4-machine-07
+type: quizquestion
+title: Polish slinging
+quizId: quiz-l4-machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "21"
+tags:
+  - polish
+  - machine
+  - sign-off quiz
+  - level 4
+synonyms:
+  - level 4 quiz
+  - machine polishing quiz
+  - full square test
+  - level 4 sign off quiz
+prompt: Polish is slinging all over the panel. What is one likely cause?
+choices:
+  - Too little product.
+  - Too much product.
+  - A cold panel.
+  - The wrong towel.
+correctIndex: 1
+explanation: "Causes: too much product, starting or stopping off the paint, or spreading at a high speed. Fix: pad on the paint before the trigger, off before the lift, spread at 1 to 2."
+scenario: true
+related:
+  - lesson-l4-07-full-square
+  - card-machine-settings

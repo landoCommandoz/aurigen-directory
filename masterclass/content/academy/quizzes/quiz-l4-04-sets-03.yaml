@@ -1,0 +1,33 @@
+id: quiz-l4-04-sets-03
+type: quizquestion
+title: The Oct 7 habit
+quizId: quiz-l4-04-sets
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.3"
+tags:
+  - sets
+  - marker line
+  - quiz
+  - level 4
+synonyms:
+  - sets quiz
+  - crosshatch questions
+  - marker line test
+  - arm speed quiz
+prompt: On Oct 7, Lando ran 3 passes, wiped, and re-applied a full dose every time. What is the fix?
+choices:
+  - Run 6 passes, then wipe and re-apply.
+  - Wipe after every set to check the paint.
+  - 4 to 6 sets, wipe once, 1 to 2 drops.
+  - Use a bigger square for each full dose.
+correctIndex: 2
+explanation: Wipe once at the end of the square. Never wipe and re-apply between passes.
+scenario: true
+related:
+  - lesson-l4-04-speed-sets-marker
+  - term-set
+  - term-crosshatch

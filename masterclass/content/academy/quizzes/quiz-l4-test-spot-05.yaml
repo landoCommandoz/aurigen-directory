@@ -1,0 +1,33 @@
+id: quiz-l4-test-spot-05
+type: quizquestion
+title: Still there after compound
+quizId: quiz-l4-test-spot
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.5"
+tags:
+  - test spot
+  - ladder
+  - sign-off quiz
+  - level 4
+synonyms:
+  - test spot quiz
+  - pad ladder questions
+  - which combo test
+  - test spot sign off quiz
+prompt: After compound and the yellow + M210 pass, the scratch is still there. What now?
+choices:
+  - One more compound pass.
+  - Switch to the black pad.
+  - Sand it down by hand.
+  - Too deep. Note it, show them.
+correctIndex: 3
+explanation: "Rung 4: note it, show the customer, and do not chase it. One compound pass per section, max."
+scenario: true
+related:
+  - lesson-l4-08-test-spot-ladder
+  - card-pad-ladder
+  - term-test-spot

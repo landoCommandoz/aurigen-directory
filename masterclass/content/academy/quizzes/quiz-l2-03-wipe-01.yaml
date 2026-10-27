@@ -1,0 +1,37 @@
+id: quiz-l2-03-wipe-01
+type: quizquestion
+title: Where to spray
+quizId: quiz-l2-03-wipe
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+version: 2
+kbRef: "10"
+tags:
+  - interior
+  - dash
+  - quiz
+  - level 2
+synonyms:
+  - wipe and dress quiz
+  - dash questions
+  - shiny dash test
+  - headliner quiz
+sources:
+  - label: Verification log FC-75
+    date: 2026-10-11
+    note: Retail copies of the label say mist it on one section at a time and wipe. Spraying the towel is house and stricter than the label. On a Tesla, interior products are pending (FC-37), so this question is set on a car that is not a Tesla.
+prompt: You are wiping the dash of a car that is not a Tesla with Meguiar's Quik Interior Detailer. Where do you spray it?
+choices:
+  - Straight on the dash.
+  - On the windshield, then wipe down.
+  - On the towel.
+  - On the towel and the dash.
+correctIndex: 2
+explanation: Overspray lands on the glass and the screens.
+scenario: true
+related:
+  - lesson-l2-03-wipe-dress
+  - product-meguiars-quik-interior-detailer

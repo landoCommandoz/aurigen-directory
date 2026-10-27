@@ -1,0 +1,32 @@
+id: quiz-l4-machine-09
+type: quizquestion
+title: When to swap pads
+quizId: quiz-l4-machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.4"
+tags:
+  - polish
+  - machine
+  - sign-off quiz
+  - level 4
+synonyms:
+  - level 4 quiz
+  - machine polishing quiz
+  - full square test
+  - level 4 sign off quiz
+prompt: When do you swap pads during a car?
+choices:
+  - Once per car, at the end.
+  - When it is loaded or hot.
+  - After every single square.
+  - Only if it falls off.
+correctIndex: 1
+explanation: When loaded or hot, roughly every two panels, and at minimum a fresh yellow at the halfway point of the car.
+scenario: true
+related:
+  - lesson-l4-07-full-square
+  - card-machine-settings

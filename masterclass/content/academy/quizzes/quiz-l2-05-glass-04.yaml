@@ -1,0 +1,31 @@
+id: quiz-l2-05-glass-04
+type: quizquestion
+title: The top edge
+quizId: quiz-l2-05-glass
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "9.3"
+tags:
+  - glass
+  - quiz
+  - level 2
+synonyms:
+  - glass quiz
+  - streak questions
+  - window cleaning test
+  - two towel glass quiz
+prompt: How do you get the top edge of the side windows?
+choices:
+  - Skip it. Nobody sees it.
+  - Wipe the rubber seal instead.
+  - Drop the window 1 to 2 inches.
+  - Reach over it with the window up.
+correctIndex: 2
+explanation: Drop the windows 1 to 2 inches.
+scenario: true
+related:
+  - lesson-l2-05-glass
+  - equipment-microfiber-towels

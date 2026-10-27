@@ -1,0 +1,32 @@
+id: quiz-l2-04-pet-hair-01
+type: quizquestion
+title: Mostly gone after two passes
+quizId: quiz-l2-04-pet-hair
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - pet hair
+  - quiz
+  - level 2
+synonyms:
+  - pet hair quiz
+  - dog hair questions
+  - wet carpet test
+  - pet hair add on quiz
+prompt: Two passes of the rubber tool and the vacuum, and the pet hair is mostly gone. Are you done?
+choices:
+  - Yes. Mostly is fine.
+  - One more vacuum only.
+  - Yes, and tell the customer.
+  - No. Three passes minimum.
+correctIndex: 3
+explanation: Pet hair takes three passes minimum.
+scenario: true
+related:
+  - lesson-l2-04-pet-hair-spots
+  - equipment-analan-rubber-tool

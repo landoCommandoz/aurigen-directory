@@ -5,6 +5,7 @@ kind: table
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "7.4"
 tags: [walkaround, quote, wrap, ppf, matte, walk away]
 synonyms:
@@ -17,6 +18,16 @@ synonyms:
   - matte paint
   - walk away
   - should I buff this
+sources:
+  - label: State Auto risk-control bulletin TB-F41, garage operations and care, custody, and control (2012)
+    url: https://sacom-l3.stateauto.com/uploadedfiles/Content/pdfs/TB-F41-1112-NW%20Garage%20Operations%20and%20Care-Custody-Control.pdf
+    date: 2026-10-11
+    note: Garagekeepers insurance does not protect you if you damage a vehicle through your own work on it. One insurer, 2012. Lando's own policy wording governs. Fact-checker FC-104.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Verification log FC-86
+    date: 2026-10-11
+    note: Matte paint and Harley Denim care stays house. Harley's care chart and a licensed vendor agree that gloss polish or wax does not belong on matte. Exact do-not-wax wording was not found.
 rows:
   - label: Vinyl wrap
     value: "Sign: seams at the edges, no clear shine inside the jamb. Do: no compound, no polish. Wrap-safe wash and sealant only."
@@ -39,6 +50,12 @@ rows:
   - label: Also walk away from
     value: Any car worth more than your insurance covers.
     status: verify
+  - label: Insurance and your own work
+    value: One insurer says garagekeepers coverage does not pay when you damage a car through your own work on it. Polishing through the clear coat may not be covered.
+    status: sourced
+  - label: Is polishing damage covered (pending)
+    value: Not known. Ask the agent in writing whether polishing damage is covered and what would cover it. Lando decides after the answer.
+    status: verify
 related:
   - card-thickness-bands
   - card-stop-rules
@@ -46,3 +63,8 @@ related:
   - term-single-stage
   - term-strip-wash
   - term-clear-coat
+  - term-wrap
+  - term-ppf
+  - term-matte-satin
+  - term-ceramic-wax-sealant-coating
+  - term-repaint

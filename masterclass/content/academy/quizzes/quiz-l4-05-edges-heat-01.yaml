@@ -1,0 +1,32 @@
+id: quiz-l4-05-edges-heat-01
+type: quizquestion
+title: Body line in the square
+quizId: quiz-l4-05-edges-heat
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - edges
+  - heat
+  - quiz
+  - level 4
+synonyms:
+  - edges quiz
+  - heat questions
+  - tape test
+  - body line quiz
+prompt: A sharp body line runs through the square you are taping. What do you do?
+choices:
+  - Polish right over it carefully.
+  - Polish it first while the pad is fresh.
+  - Tape it and stay an inch off.
+  - Compound it.
+correctIndex: 2
+explanation: Rule 9. Edges and body lines always read low.
+scenario: true
+related:
+  - lesson-l4-05-edges-curves-heat
+  - equipment-painters-tape

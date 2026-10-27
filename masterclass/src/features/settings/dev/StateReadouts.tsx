@@ -5,16 +5,17 @@
 import { useEffect, useState } from 'react';
 import { config } from '../../../app/config';
 import { connectivityLabel, useConnectivity } from '../../../core/connectivity';
-import { contentStatus } from '../../../core/content';
+import { contentStatus, contentStore, type ContentState } from '../../../core/content';
 import { useCustomerView } from '../../../core/customerView';
 import { useDbStatus, type DbStatus } from '../../../core/db';
 import { RecordInvalid } from '../../../core/errors';
 import { ownerPassRemainingMs, usePinStatus } from '../../../core/pin';
 import { readPinGuard } from '../../../core/pinGuard';
 import { isStandalone } from '../../../core/platform';
-import { usePwaStatus } from '../../../core/pwa';
-import { useSearchStatus } from '../../../core/search';
+import { usePwaStatus, type OfflineCopyState } from '../../../core/pwa';
+import { useSearchStatus, type SearchStatus } from '../../../core/search';
 import { useSettings } from '../../../core/settingsStore';
+import { useStore } from '../../../core/store';
 import { SETUP_STEP_WORDS, useSetupState } from '../hooks';
 import { formatRemaining, formatWhen, roleWords, yesNo } from '../ui/format';
 import { Readouts } from '../ui/Readouts';
@@ -34,6 +35,7 @@ export const STATE_LABELS = {
   network: 'Online or offline',
   sw: 'Service worker',
   offlineReady: 'Ready offline',
+  offlineCopy: 'Offline copy for this page',
   update: 'Update available',
   reload: 'Reload waiting for a quiet moment',
   swCheck: 'Last update check',
@@ -48,9 +50,54 @@ export const STATE_LABELS = {
   version: 'App version',
   build: 'Build',
   content: 'Content bundle',
+  contentShards: 'Content shards in memory',
   search: 'Search index',
   job: 'Job state',
 } as const;
+
+/** Which content shards are in memory, loading, or failed (DEF-17: loaded when a screen draws them). */
+function shardWords(state: ContentState, total: number): string {
+  if (!state.built) return 'None: no content build';
+  const parts = [`${state.loaded.length} of ${total}${state.loaded.length > 0 ? ` (${state.loaded.join(', ')})` : ''}`];
+  if (state.loading.length > 0) parts.push(`loading ${state.loading.join(', ')}`);
+  const failed = Object.entries(state.failed)
+    .filter(([, reason]) => reason !== undefined)
+    .map(([name]) => `${name} (${state.failedDetail[name as keyof ContentState['failedDetail']] ?? 'no detail'})`);
+  if (failed.length > 0) parts.push(`failed ${failed.join(', ')}`);
+  const fresh = Object.entries(state.attempts).filter(([, n]) => (n ?? 0) > 0);
+  if (fresh.length > 0) parts.push(`next load asks for a fresh copy: ${fresh.map(([name, n]) => `${name} after ${n ?? 0} failed`).join(', ')}`);
+  return parts.join('; ');
+}
+
+/** The search index readout: loaded, loading, failed (with why), or not loaded yet. */
+function searchWords(search: SearchStatus): string {
+  switch (search.state) {
+    case 'ready':
+      return `${search.docs} documents (${search.source}), loaded in ${Math.round(search.loadMs ?? 0)} ms${search.lastQueryMs !== null ? `, last query ${search.lastQueryMs.toFixed(1)} ms` : ''}`;
+    case 'loading':
+      return search.indexFailures > 0 ? `Loading, a fresh copy after ${search.indexFailures} failed` : 'Loading';
+    case 'failed':
+      return `Did not load; the next search tries again. ${search.lastError ?? ''}`.trim();
+    default:
+      return 'Not loaded yet (loads on first search)';
+  }
+}
+
+/** The offline copy table (src/core/pwa.ts, QA DEF-27): Ready offline only once the copy serves this page. */
+function offlineCopyWords(state: OfflineCopyState): string {
+  switch (state) {
+    case 'ready':
+      return 'Saved, and serving this page';
+    case 'savedNotServing':
+      return 'Saved, not serving this page yet (Try again reloads into it)';
+    case 'notSaved':
+      return 'Not saved yet';
+    default: {
+      const never: never = state;
+      return String(never);
+    }
+  }
+}
 
 const HINT_WORDS = { on: 'On (top bar held)', off: 'Off', unknown: 'Not known (top bar held until settings are read)' } as const;
 
@@ -92,6 +139,7 @@ export function StateReadouts() {
   const passLeft = ownerPassRemainingMs();
   useSecondTick(passLeft > 0);
   const { ua, touch } = userAgent();
+  const shards = useStore(contentStore);
   const content = contentStatus();
   const s = snapshot.settings;
 
@@ -126,6 +174,7 @@ export function StateReadouts() {
             { label: STATE_LABELS.network, value: connectivityLabel(network, pwa.offlineReady) },
             { label: STATE_LABELS.sw, value: pwa.supported ? `${pwa.registered ? 'Registered' : 'Not registered'}, state ${pwa.state}` : 'Not supported here' },
             { label: STATE_LABELS.offlineReady, value: yesNo(pwa.offlineReady) },
+            { label: STATE_LABELS.offlineCopy, value: offlineCopyWords(pwa.offlineCopy) },
             { label: STATE_LABELS.update, value: yesNo(pwa.state === 'updateAvailable') },
             { label: STATE_LABELS.reload, value: yesNo(pwa.reloadPending) },
             { label: STATE_LABELS.swCheck, value: formatWhen(pwa.lastCheckAt) },
@@ -142,15 +191,8 @@ export function StateReadouts() {
             { label: STATE_LABELS.version, value: config.version },
             { label: STATE_LABELS.build, value: import.meta.env.DEV ? 'Development' : 'Production' },
             { label: STATE_LABELS.content, value: content.built ? `${content.items} items, ${content.signOffs} sign-off files` : (content.problem ?? 'Not built') },
-            {
-              label: STATE_LABELS.search,
-              value:
-                search.state === 'ready'
-                  ? `${search.docs} documents (${search.source}), loaded in ${Math.round(search.loadMs ?? 0)} ms${search.lastQueryMs !== null ? `, last query ${search.lastQueryMs.toFixed(1)} ms` : ''}`
-                  : search.state === 'loading'
-                    ? 'Loading'
-                    : 'Not loaded yet (loads on first search)',
-            },
+            { label: STATE_LABELS.contentShards, value: shardWords(shards, content.shards) },
+            { label: STATE_LABELS.search, value: searchWords(search) },
           ]}
         />
       </Section>

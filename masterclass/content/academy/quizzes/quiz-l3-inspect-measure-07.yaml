@@ -1,0 +1,32 @@
+id: quiz-l3-inspect-measure-07
+type: quizquestion
+title: Readings on the job sheet
+quizId: quiz-l3-inspect-measure
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "16"
+tags:
+  - walkaround
+  - sign-off quiz
+  - level 3
+synonyms:
+  - level 3 quiz
+  - inspect and measure quiz
+  - walkaround test
+  - level 3 sign off quiz
+prompt: What paint readings go on the job sheet?
+choices:
+  - Jamb, then 11 panels x 3.
+  - One reading per panel.
+  - Three readings for the car.
+  - Five readings on the hood.
+correctIndex: 0
+explanation: "The door jamb baseline, then 3 readings on each of 11 panels: hood, roof, trunk, LF fender, LF door, LR door, LR quarter, RF fender, RF door, RR door, RR quarter."
+scenario: true
+related:
+  - lesson-l3-05-walkaround-script
+  - card-kills-the-buff
+  - card-thickness-bands

@@ -1,0 +1,33 @@
+id: quiz-l4-test-spot-03
+type: quizquestion
+title: Rung 2 left swirls at 96
+quizId: quiz-l4-test-spot
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.3"
+tags:
+  - test spot
+  - ladder
+  - sign-off quiz
+  - level 4
+synonyms:
+  - test spot quiz
+  - pad ladder questions
+  - which combo test
+  - test spot sign off quiz
+prompt: On a car that is not a Tesla, rung 2 (maroon + M210) still leaves swirls. The panel reads 96 µm. Can you go to compound?
+choices:
+  - No. Rung 3 needs 100 µm or more.
+  - Yes. One compound pass is the max.
+  - Yes, but by hand, not the machine.
+  - Yes, on the black pad, lightly.
+correctIndex: 0
+explanation: Compound is allowed only at 100 µm or more.
+scenario: true
+related:
+  - lesson-l4-08-test-spot-ladder
+  - card-pad-ladder
+  - term-test-spot

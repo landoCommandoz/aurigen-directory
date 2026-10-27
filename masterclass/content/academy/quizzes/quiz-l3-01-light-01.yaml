@@ -1,0 +1,32 @@
+id: quiz-l3-01-light-01
+type: quizquestion
+title: Holding the light
+quizId: quiz-l3-01-light
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.1"
+tags:
+  - inspect
+  - light
+  - quiz
+  - level 3
+synonyms:
+  - light quiz
+  - inspection questions
+  - swirls test
+  - read the paint quiz
+prompt: How do you hold the light to find swirls?
+choices:
+  - Straight down from above.
+  - Low across the paint.
+  - Behind you.
+  - From inside the car.
+correctIndex: 1
+explanation: A light held low across the paint shows swirls.
+scenario: true
+related:
+  - lesson-l3-01-light-and-eyes
+  - equipment-inspection-light

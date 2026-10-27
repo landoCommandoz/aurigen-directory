@@ -1,0 +1,32 @@
+id: quiz-l1-03-towel-wash-01
+type: quizquestion
+title: The dirty towel
+quizId: quiz-l1-03-towel-wash
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "5.2"
+tags:
+  - wash
+  - towels
+  - quiz
+  - level 1
+synonyms:
+  - towel wash quiz
+  - 16 towels questions
+  - contact wash test
+  - bucket mix quiz
+prompt: You just wiped the hood. The towel is dirty and the bucket is right there. What do you do with the towel?
+choices:
+  - Set it aside. Never back in the bucket.
+  - Rinse it in the bucket and keep going.
+  - Wring it out over the bucket.
+  - Flip it and use it on a rocker.
+correctIndex: 0
+explanation: A used towel never goes back in the bucket. A rocker is a lower panel, and lower panels never share a towel.
+scenario: true
+related:
+  - lesson-l1-03-towel-wash
+  - card-bucket-mix

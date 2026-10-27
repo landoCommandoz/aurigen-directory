@@ -1,0 +1,35 @@
+id: term-etching
+type: glossaryterm
+title: Etching
+term: Etching
+definition: Damage to the clear coat itself from something left on the paint. Fresh water spots wipe off, mineral spots need a water-spot remover, and etched spots need polish. Some water-spot removers are strong acids. One sold by Chemical Guys is labeled Danger, causes severe skin burns and eye damage. No remover is chosen yet. Read the label first, and wear gloves and eye protection. On a Tesla, Tesla's manual says do not use acidic products. Lando decides how this applies to Teslas (pending). A bike stored dirty can come out in April with etched paint.
+alsoCalled: [etched, etched spots]
+audience: [owner, ops, crew]
+visibility: internal
+status: verify
+version: 2
+kbRef: "5.4"
+tags: [paint, defects, water spots, hard water]
+synonyms:
+  - etched paint
+  - etched spots
+  - spots that won't wipe off
+  - burned into the paint
+  - etched water spots
+  - permanent spots
+sources:
+  - label: Chemical Guys safety data sheet, Heavy Duty Water Spot Remover SPI108
+    url: https://chemicalguys.com/cdn/shop/files/SDS_SPI108_-_Heavy_Duty_Water_Spot_Remover.pdf
+    date: 2026-10-11
+    note: Causes severe skin burns and eye damage. Wear gloves and eye protection. Contains sulphuric acid and ammonium bifluoride. Not a product Lando owns. Verification log FC-47.
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Do not use acidic products either. Read directly. Verification log FC-47.
+  - label: Verification log FC-48
+    date: 2026-10-11
+    note: Etched spots need polish is backed only by a Meguiar's how-to on its forum. Not confirmed on a Meguiar's page.
+related:
+  - term-water-spots
+  - sop-dry
+  - lesson-l1-04-hard-water-drying

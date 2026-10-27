@@ -1,0 +1,36 @@
+id: flash-machine-thread
+type: flashcard
+title: Backing plate thread
+deck: machine
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "14"
+tags:
+  - machine
+  - flashcard
+synonyms:
+  - m8 thread
+  - plate that does not fit
+  - polisher flashcard
+  - machine numbers card
+sources:
+  - label: HF product page, item 56367, spec table
+    url: https://www.harborfreight.com/75-amp-6-in-20-mm-long-throw-random-orbit-da-polisher-56367.html
+    date: 2026-10-10
+    note: Thread Size M8-1.25. Read through the search index. Fact-checker FC-17 and FC-18.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: HF product page, item 64913
+    url: https://www.harborfreight.com/6-in-hook-and-loop-backing-pad-for-dual-action-and-random-orbit-polishers-64913.html
+    date: 2026-10-10
+    note: Arbor Size 5/16 in.-24. It does not fit the M8-1.25 thread of the 56367. Read through the search index. Fact-checker FC-19.
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+front: What thread is the 56367 backing plate, and which HF plate never fits?
+back: M8 x 1.25. HF item 64913 is 5/16 in.-24 and does not fit the 56367.
+related:
+  - equipment-backing-plate
+  - lesson-l4-06-pad-care-backing-plate

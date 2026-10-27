@@ -1,0 +1,40 @@
+id: quiz-l0-02-safety-04
+type: quizquestion
+title: The aerosol and the heat gun
+quizId: quiz-l0-02-safety
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+version: 2
+kbRef: "3.3"
+tags:
+  - safety
+  - quiz
+  - level 0
+synonyms:
+  - safety quiz
+  - stay safe test
+  - shop safety questions
+  - flammable can quiz
+sources:
+  - label: Meguiar's safety data sheet, Hot Shine Tire Coating (High Gloss) G13815
+    url: https://cdmsweb.3m.com/ingredientcommunication/file/Media/3D-RC8t5LUQ
+    date: 2026-10-11
+    note: Flammable aerosol. Pressurized container, may burst if heated. Keep away from heat, hot surfaces, sparks, open flames, and other ignition sources. Use only outdoors or in a well-ventilated area. Applies if Lando's Hot Shine is an aerosol; which one he owns is not recorded. Fact-checker FC-31 and FC-32.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+prompt: The Hot Shine aerosol can is sitting on the cart next to the heat gun, and the garage door is shut. What do you do?
+choices:
+  - Leave it. The can is sealed shut.
+  - Move it from the heat. Open the door.
+  - Warm it with the heat gun so it sprays.
+  - Set it on the hot hood to save room.
+correctIndex: 1
+explanation: Meguiar's safety sheet says the aerosol is flammable and may burst if heated. Keep it away from heat, hot surfaces, and sparks, and use it outdoors or where the air moves.
+scenario: true
+related:
+  - lesson-l0-02-stay-safe
+  - product-meguiars-hot-shine
+  - card-setup-kit

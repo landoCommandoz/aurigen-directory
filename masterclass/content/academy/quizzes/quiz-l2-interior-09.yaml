@@ -1,0 +1,31 @@
+id: quiz-l2-interior-09
+type: quizquestion
+title: Counting interior towels
+quizId: quiz-l2-interior
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "18.4"
+tags:
+  - interior
+  - sign-off quiz
+  - level 2
+synonyms:
+  - level 2 quiz
+  - interior quiz
+  - full interior test
+  - level 2 sign off quiz
+prompt: You are counting towels for tomorrow's full detail. How many for the interior, and how many for the glass?
+choices:
+  - Interior 2, glass 2.
+  - Interior 16, glass 16.
+  - Interior 6, glass 4.
+  - 10 total for both.
+correctIndex: 2
+explanation: "Per full detail: drying 2, polish removal 6 to 8, wax 4, interior 6, glass 4, wheels and jambs 4."
+scenario: true
+related:
+  - lesson-l2-06-full-interior
+  - lesson-l2-01-interior-order

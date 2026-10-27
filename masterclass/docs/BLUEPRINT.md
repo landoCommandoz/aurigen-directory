@@ -2,7 +2,7 @@
 
 This is the plan for the app. The decisions in it were taken on 2026-10-10, and Lando typed `build it` the same day. Phase 1 (Foundation) is underway.
 
-Phase 0, step 5. Written 2026-10-08 by the architect role and revised the same day after three reviews. Updated 2026-10-10 with Lando's gate decisions (section 12 and `docs/DECISIONS.md`), then with his Phase 1 decisions (`docs/DECISIONS.md` D12 and D13: the first run, the device role, the first backup, the thin panel outline). Updated 2026-10-11 in the Phase 1 defect wave: the jobs can always leave the phone even when its role or PIN record cannot be read (DEF-13, D12 amendment), "Hand over to another phone," and bike hand polishing (both `[HOUSE default]`, D12 and D11 amendments), in 2.1, 3.2, 3.8, and 3.9. From Phase 1 the zod schemas in `src/schemas/` are the contract for sections 6 and 7; where they differ from the sketches here, the schema files win.
+Phase 0, step 5. Written 2026-10-08 by the architect role and revised the same day after three reviews. Updated 2026-10-10 with Lando's gate decisions (section 12 and `docs/DECISIONS.md`), then with his Phase 1 decisions (`docs/DECISIONS.md` D12 and D13: the first run, the device role, the first backup, the thin panel outline). Updated 2026-10-11 in the Phase 1 defect wave: the jobs can always leave the phone even when its role or PIN record cannot be read (DEF-13, D12 amendment), "Hand over to another phone," and bike hand polishing (both `[HOUSE default]`, D12 and D11 amendments), in 2.1, 3.2, 3.8, and 3.9. Updated 2026-10-12 (DEF-27, `docs/DECISIONS.md` D1 amendment): the first install serves the page already open, one line each in 3.5 and 3.8. From Phase 1 the zod schemas in `src/schemas/` are the contract for sections 6 and 7; where they differ from the sketches here, the schema files win.
 
 ## Read this first (Lando, on your phone)
 
@@ -270,6 +270,8 @@ How a leak is prevented: internal items are not on the page at all, so even a sc
 
 Guard, an update never interrupts a running job: a new version waits until you tap "Update now," and never while a job is open. The technical setup behind that (the PWA plugin's prompt mode and the app's reload hook) is in `docs/DECISIONS.md` D1. If a second tab triggers the update (only possible in a Safari tab, not in the Home Screen app), the same deferral runs in every tab.
 
+The first install (2026-10-12, DEF-27, `docs/DECISIONS.md` D1 amendment): there is no older version to wait behind, so the saved copy takes over the page already open at once (`clientsClaim` true, `skipWaiting` still false), and "Ready offline" shows only once it serves that page; updates still wait in Update available until "Update now" is tapped, so this table and its guard are unchanged, and Try again reloads into the saved copy whenever one is installed.
+
 ### 3.6 Connectivity
 
 | State | Enters when | Leaves when | On refresh mid-transition | Risk |
@@ -307,6 +309,7 @@ Unit tests (state tables, counters, bands, prices):
 Persistence tests (quality bar item 7):
 
 - Refresh, kill, and lock mid-stage: same step, timer right. Refresh mid-pause: still paused, same `pausedMs`.
+- First session offline (DEF-27, D1 amendment 2026-10-12): a fresh profile opens the app with signal, waits for "Ready offline," then goes offline with no reload; by taps only, the Academy, "One full square," Fix It, fix-01, its Related procedure ("Machine polishing, one-step") and word ("Long-throw") all open, and "did not load" never shows. "Ready offline" never shows while the page has no controller. With a new version waiting, nothing reloads or swaps until "Update now" is tapped.
 - Fake clock moved back 10 minutes mid-stage: the timer holds at its last value, shows "Clock changed, timer held," never shows a negative or shrinking time, and resumes from the held value on the next tap. Fake clock moved forward 10 minutes: elapsed grows by 10 minutes, a countdown that ended reads "Ended while the screen was off. Check the panel," and no step advanced.
 - Export on one origin (the Pages path), import on another (the root path): cars logged, founder's slots used, every job state, and the PIN hash are equal.
 - Refresh during the device role flow: on the choice screen, on the Start fresh warning, or during PIN entry, nothing has been written and the app reopens as before; after the role write and before the first backup, the app reopens as the shop phone with the banner on "Save your first backup."
@@ -629,7 +632,7 @@ export const Base = z.strictObject({
 });
 ```
 
-Per-type fields (the shape that matters). Superseded in Phase 1 by `src/schemas/content*.ts`, and the writer's guide is `src/schemas/README.md`. The differences: every id carries its type's prefix (`fix-`, `lesson-`, `card-`); a source is `{ label, url?, date, note?, confirmedOn?, confirmedBy? }`; FixNode gains `notes` and an optional Markdown `body`; SOP `stage` is one of a fixed stage list (with `hand-polish` for bikes); Product gains `neverOnPaint`; Drill's `minimumReps` became `repsPerSession`, because the sign-off drill minimum lives only in the criteria file; PriceItem's `vehicle` became `vehicleType` plus `size`, and it gains `quoteText` and `mobileUnlockAtCars`, with the founder's rate and the unlock count written in content, not fixed in code; Script `when` adds `paint-report` and `aftercare`; SignOffCriteria gains `title` and `gates` (exactly one skill gates the polish stage):
+Per-type fields (the shape that matters). Superseded in Phase 1 by `src/schemas/content*.ts`, and the writer's guide is `src/schemas/README.md`. The differences: every id carries its type's prefix (`fix-`, `lesson-`, `card-`); a source is `{ label, url?, date, note?, confirmedOn?, confirmedBy? }`; FixNode gains `notes` and an optional Markdown `body`; SOP `stage` is one of a fixed stage list (with `hand-polish` for bikes); Product gains `neverOnPaint`; Drill's `minimumReps` became `repsPerSession`, because the sign-off drill minimum lives only in the criteria file; PriceItem's `vehicle` became `vehicleType` plus `size`, and it gains `quoteText` and `mobileUnlockAtCars`, with the founder's rate and the unlock count written in content, not fixed in code; Script `when` adds `paint-report` and `aftercare`; SignOffCriteria gains `title` and `gates` (exactly one skill gates the polish stage). Phase 2, 2026-10-11, four optional fields with defaults (`docs/DECISIONS.md` D2 amendment): an SOP step gains `notes` (rows under a step that are not actions), Drill gains `passMark`, and SignOffCriteria gains `ownerChecks` (what Lando watches) and `status` (`house` or `verify`, default `verify`). 2026-10-12 (DEF-20, the same D2 amendment): Product gains `notes` (lines with their own status, for a house line, a maker's line beside it, and a pending decision; `labelNotes` keeps the label's words only):
 
 ```ts
 export const FixNode = Base.extend({
@@ -697,7 +700,8 @@ export const Product = Base.extend({
   jobs: z.array(z.string()).min(1),
   dilutions: z.array(z.strictObject({ use: z.string(), ratio: z.string(), status: Status })).default([]),
   neverFor: z.array(z.string()).default([]),
-  labelNotes: z.string().optional(),
+  notes: z.array(Line).default([]),             // 2026-10-12: house line, maker's line, pending row, each with its own status
+  labelNotes: z.string().optional(),            // the label's own words only
 });
 
 export const Equipment = Base.extend({

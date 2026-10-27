@@ -1,0 +1,32 @@
+id: quiz-l4-05-edges-heat-02
+type: quizquestion
+title: A curved fender
+quizId: quiz-l4-05-edges-heat
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.3"
+tags:
+  - edges
+  - heat
+  - quiz
+  - level 4
+synonyms:
+  - edges quiz
+  - heat questions
+  - tape test
+  - body line quiz
+prompt: You are on a curved fender. How do you hold the pad?
+choices:
+  - Tilt onto the edge to reach.
+  - Lift it off the paint a little.
+  - Press harder into the curve.
+  - The middle of the pad.
+correctIndex: 3
+explanation: "Curves: use the middle of the pad. Never tilt onto an edge."
+scenario: true
+related:
+  - lesson-l4-05-edges-curves-heat
+  - equipment-painters-tape

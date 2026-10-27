@@ -1,0 +1,41 @@
+id: quiz-l1-wash-decon-10
+type: quizquestion
+title: Dropped mitt
+quizId: quiz-l1-wash-decon
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+version: 2
+kbRef: "5.2"
+tags:
+  - wash
+  - decon
+  - sign-off quiz
+  - level 1
+synonyms:
+  - level 1 quiz
+  - wash and decon quiz
+  - full wash test
+  - level 1 sign off quiz
+sources:
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Avoid using tight-napped or rough cloths, such as washing mitts. A high-quality microfiber cleaning cloth is recommended. Read directly. Fact-checker FC-34, conflicting with the two-bucket mitt method on Teslas; Lando decides. This question is set on a car that is not a Tesla.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+prompt: On a two-bucket wash of a car that is not a Tesla, you drop the mitt on the driveway. What happens to it?
+choices:
+  - Rinse it and keep going.
+  - Rinse it in the wash bucket.
+  - It is done for the day.
+  - Use it on the wheels.
+correctIndex: 2
+explanation: A dropped mitt is done for the day.
+scenario: true
+related:
+  - lesson-l1-06-full-wash
+  - card-tesla-wash-mode-tape
+  - card-bucket-mix

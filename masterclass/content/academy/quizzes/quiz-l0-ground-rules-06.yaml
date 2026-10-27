@@ -1,0 +1,42 @@
+id: quiz-l0-ground-rules-06
+type: quizquestion
+title: The dryer setting
+quizId: quiz-l0-ground-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+version: 2
+kbRef: "13.3"
+tags:
+  - setup
+  - ground rules
+  - sign-off quiz
+  - level 0
+synonyms:
+  - level 0 quiz
+  - ground rules quiz
+  - setup quiz
+  - shop setup test
+  - level 0 sign off quiz
+sources:
+  - label: The Rag Company, use and care tips
+    url: https://www.theragcompany.com/use-and-care-tips
+    date: 2026-10-11
+    note: Tumble dry on low, delicate, or air-fluff, or hang them to air dry. Keep microfiber away from cotton towels. Fact-checker FC-89. Fact-checker FC-88 drops the old "not the washer" line.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+prompt: The microfiber is washed. The dryer is set to high. What setting do you use?
+choices:
+  - High, to dry them fast.
+  - Medium, with a few cotton towels.
+  - High, with a dryer sheet.
+  - Low, or air dry.
+correctIndex: 3
+explanation: Dry microfiber on low, or air dry. Dryer heat melts it. Never dry it with cotton.
+scenario: true
+related:
+  - lesson-l0-06-shop-setup
+  - card-setup-kit
+  - card-stop-rules

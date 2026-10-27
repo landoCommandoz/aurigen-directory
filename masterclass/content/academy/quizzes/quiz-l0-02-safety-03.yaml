@@ -1,0 +1,41 @@
+id: quiz-l0-02-safety-03
+type: quizquestion
+title: Shaking during the test run
+quizId: quiz-l0-02-safety
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "3.1"
+tags:
+  - safety
+  - quiz
+  - level 0
+synonyms:
+  - safety quiz
+  - stay safe test
+  - shop safety questions
+  - polisher safety quiz
+sources:
+  - label: BAUER 56367 owner's manual, 2021
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-10
+    note: "Page 3 and page 10: if abnormal vibration occurs, stop use; have the problem corrected before further use. Page 7: test run at the highest speed for at least 30 seconds. Page 10: checks before each use. Fact-checker FC-24."
+    confirmedOn: 2026-10-10
+    confirmedBy: fact-checker
+  - label: Backing plate research (knowledge base 14)
+    date: 2026-10-07
+    note: Unplugged checks of the bolt, pad, hooks, and plate. Long-throw machines are counterweighted for 5 or 6 in. plates.
+prompt: During the test run off the car, the polisher shakes hard and makes a noise it did not make last week. What do you do?
+choices:
+  - Keep going. New pads shake until they break in.
+  - Put a smaller backing plate on to calm it.
+  - Turn the speed up so it smooths out.
+  - Stop. It gets fixed before anyone uses it.
+correctIndex: 3
+explanation: The manual says to stop on abnormal vibration and get it fixed before further use. A smaller plate on a long-throw causes violent vibration.
+scenario: true
+related:
+  - lesson-l0-02-stay-safe
+  - equipment-bauer-56367

@@ -1,0 +1,32 @@
+id: quiz-l3-inspect-measure-02
+type: quizquestion
+title: Photos after the wash
+quizId: quiz-l3-inspect-measure
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - walkaround
+  - sign-off quiz
+  - level 3
+synonyms:
+  - level 3 quiz
+  - inspect and measure quiz
+  - walkaround test
+  - level 3 sign off quiz
+prompt: The customer wants to get going. Can you skip the before photos and take them after the wash?
+choices:
+  - Yes. Flaws show better when it is clean.
+  - Yes, if the customer signs for it.
+  - No. Photos before anything touches the car.
+  - Yes, on a maintenance wash.
+correctIndex: 2
+explanation: Rule 13.
+scenario: true
+related:
+  - lesson-l3-05-walkaround-script
+  - card-kills-the-buff
+  - card-thickness-bands

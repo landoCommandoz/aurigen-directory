@@ -1,0 +1,32 @@
+id: quiz-l4-02-priming-02
+type: quizquestion
+title: The third square
+quizId: quiz-l4-02-priming
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "8.2"
+tags:
+  - priming
+  - polish
+  - quiz
+  - level 4
+synonyms:
+  - priming quiz
+  - how much polish questions
+  - pad priming test
+  - drops per section quiz
+prompt: You are on the third square with the same pad. How much polish goes on?
+choices:
+  - 3 to 4 pea-size drops.
+  - A full dose.
+  - 1 to 2 drops.
+  - None at all.
+correctIndex: 2
+explanation: 1 to 2 drops, not a full dose. The pad is already charged. A full dose every section was one of the Oct 7 mistakes.
+scenario: true
+related:
+  - lesson-l4-02-prime-and-product
+  - card-pad-priming

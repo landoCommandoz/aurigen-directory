@@ -1,0 +1,32 @@
+id: quiz-l2-02-vacuum-02
+type: quizquestion
+title: Under the front seats
+quizId: quiz-l2-02-vacuum
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - vacuum
+  - quiz
+  - level 2
+synonyms:
+  - vacuum quiz
+  - knock it down questions
+  - vacuum order test
+  - seats forward and back quiz
+prompt: How do you get under and behind the front seats?
+choices:
+  - Reach in with the crevice tool.
+  - Take the seats out.
+  - Skip it. Nobody looks there.
+  - Slide them forward, then back.
+correctIndex: 3
+explanation: Slide the seats forward, then back.
+scenario: true
+related:
+  - lesson-l2-02-knock-down-vacuum
+  - equipment-shop-vac

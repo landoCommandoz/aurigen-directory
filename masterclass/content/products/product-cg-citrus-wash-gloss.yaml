@@ -5,7 +5,7 @@ brand: Chemical Guys
 audience: [owner, crew]
 visibility: internal
 status: sourced
-version: 2
+version: 3
 kbRef: "3.3"
 tags: [wash, soap, strip wash, clay lube]
 synonyms:
@@ -30,6 +30,12 @@ sources:
     note: No bucket ratio, no pump sprayer, no pre-soak, and no dwell time on the page. Fact-checker FC-01 and FC-03.
     confirmedOn: 2026-10-10
     confirmedBy: fact-checker
+  - label: Tesla Model Y 2020 to 2024 owner's manual, China edition, software 2026.26
+    url: https://www.tesla.cn/ownersmanual/2020_2024_modely/en_cn/Owners_Manual.pdf
+    date: 2026-10-11
+    note: Do not use chemical-based wheel cleaners or pre-wash products. This is in the manual for a 2022 Model Y. Read directly. Fact-checker FC-16 and FC-38.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 jobs:
   - Pre-polish strip wash
   - Clay lube base
@@ -47,7 +53,7 @@ dilutions:
     ratio: 1 oz in 1 gal water
     status: house
   - use: Pump-sprayer pre-soak
-    ratio: No Chemical Guys direction found. Not part of any wash until a label or Chemical Guys answer covers it. On a Tesla, see the Tesla card.
+    ratio: No Chemical Guys direction found. Not part of any wash until a label or Chemical Guys answer covers it. On a Tesla, Tesla's manual says do not use pre-wash products. Lando decides how this applies to Teslas (pending).
     status: verify
 related:
   - card-bucket-mix

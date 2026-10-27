@@ -1,0 +1,32 @@
+id: quiz-l2-03-wipe-03
+type: quizquestion
+title: Smudge on the headliner
+quizId: quiz-l2-03-wipe
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "10"
+tags:
+  - interior
+  - dash
+  - quiz
+  - level 2
+synonyms:
+  - wipe and dress quiz
+  - dash questions
+  - shiny dash test
+  - headliner quiz
+prompt: The headliner has a smudge. How do you clean it?
+choices:
+  - Spray it and scrub the spot.
+  - Soak it and let it air dry.
+  - Steam it until it lifts.
+  - A barely damp towel. Blot only.
+correctIndex: 3
+explanation: Soak the headliner and the glue lets go.
+scenario: true
+related:
+  - lesson-l2-03-wipe-dress
+  - product-meguiars-quik-interior-detailer

@@ -1,0 +1,27 @@
+id: flash-gauge-per-panel
+type: flashcard
+title: Readings per panel
+deck: gauge
+audience:
+  - owner
+  - crew
+visibility: internal
+status: sourced
+kbRef: "7.2"
+tags:
+  - gauge
+  - flashcard
+synonyms:
+  - readings per panel
+  - how many readings
+  - paint gauge flashcard
+  - tc100 card
+sources:
+  - label: R&D TC100 gauge notes (knowledge base 7.2)
+    date: 2026-10-06
+    note: Zero only on the bare plate (not reconfirmed, no TC100 manual was found, FC-74); door jamb baseline; 3 to 5 readings per panel; 20 µm swings within a foot are normal; Model Y owners report about 100 to 150 µm, an owner report and not a Tesla spec (FC-73).
+front: How many readings per panel, and where?
+back: 3 to 5. The middle first, then toward each corner. Write them down.
+related:
+  - equipment-rd-tc100
+  - lesson-l3-02-tc100-gauge

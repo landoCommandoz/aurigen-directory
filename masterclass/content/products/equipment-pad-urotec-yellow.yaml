@@ -4,6 +4,7 @@ title: Buff and Shine Uro-Tec yellow pad, 6 in.
 audience: [owner, crew]
 visibility: internal
 status: house
+version: 2
 kbRef: "3.2"
 tags: [pad, polishing pad, yellow, uro-tec]
 synonyms:
@@ -15,9 +16,30 @@ synonyms:
   - first pad
   - the yellow
 sources:
-  - label: Detailed Image Uro-Tec listing
-    date: 2026-10-02
-    note: Yellow listed as a polishing pad; beveled design makes the working face about 1 in. larger than the backing
+  - label: Buff and Shine product page, 634CR 6 in. yellow Uro-Tec
+    url: https://buffandshine.com/products/634cr-6-yellow-uro-tec-foam-pad-polishing
+    date: 2026-10-11
+    note: The standard polishing pad in the line. Pad size 6 in., loop 6 in., face 7 in., foam 1 in. thick. Orbits 8, 15, and 21 mm. Pairs with the 600Y plate. Fact-checker FC-54, FC-65, FC-67, FC-68.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Buff and Shine product page, 534CR 5 in. yellow Uro-Tec
+    url: https://buffandshine.com/products/534cr-5-yellow-uro-tec-foam-pad-polishing
+    date: 2026-10-11
+    note: Pad size 5 in., loop 5 in., face 6 in. Pairs with the 500Y plate. Fact-checker FC-54 and FC-68.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: BAUER 56367 owner's manual, 2021
+    url: https://manuals.harborfreight.com/manuals/56000-56999/56367-193175448170.pdf
+    date: 2026-10-11
+    note: Max accessory diameter 6 in. (150 mm). Fact-checker FC-54.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
+  - label: Buff and Shine FAQ and buffing tips
+    url: https://buffandshine.com/pages/faqs
+    date: 2026-10-11
+    note: Warm or cold water, never hot. Air-dry flat. Never put pads in the dryer. Never place a pad face down on any surface. Fact-checker FC-70.
+    confirmedOn: 2026-10-11
+    confirmedBy: fact-checker
 specs:
   - label: On hand
     value: x3
@@ -26,15 +48,33 @@ specs:
     value: Polishing. Rung 1 of the ladder, and the pass after every compounded square.
     status: house
     kbRef: "8.5"
-  - label: Detailed Image listing
-    value: Listed as a polishing pad
-    status: sourced
-  - label: Working face
-    value: The beveled design makes it about 1 in. larger than the backing.
+  - label: Buff and Shine
+    value: The standard polishing pad in the Uro-Tec line.
     status: sourced
   - label: Thickness
-    value: Not confirmed. One note said about 5/8 in.; a Detailed Image listing says 1 in. Measure the pads.
+    value: The foam is 1 in. thick. That is Buff and Shine's spec.
+    status: sourced
+  - label: Face and back
+    value: The face is 1 in. wider than the back. The 6 in. pad has a 6 in. back and a 7 in. face. The 5 in. pad has a 5 in. back and a 6 in. face.
+    status: sourced
+  - label: Size names
+    value: Buff and Shine names Uro-Tec pads by the size of the back. Some stores sell the 5 in.-back pad, which has a 6 in. face, as a 6 in. pad.
+    status: sourced
+  - label: Largest pad, the 56367 manual
+    value: The Bauer manual says the largest accessory is 6 in. (150 mm).
+    status: sourced
+  - label: Orbit
+    value: Rated for orbits up to 21 mm. That covers the polisher's 20 mm throw.
+    status: sourced
+  - label: Your pads
+    value: Measure the hook-and-loop back and the face. A model number of 534 or 572 means a 5 in. back. 634 or 672 means a 6 in. back.
     status: verify
+  - label: Which size goes on the 56367 (pending)
+    value: Lando decides which Uro-Tec size goes on the 56367.
+    status: verify
+  - label: Plate warning
+    value: Do not buy Buff and Shine's 600Y plate for the 56367. It has 5/16 in.-24 threads. The 56367 uses M8.
+    status: sourced
 checks:
   - text: Blow out or brush it after every square.
     status: house
@@ -42,10 +82,19 @@ checks:
     status: house
   - text: One pad per liquid. A compound pad never touches polish.
     status: house
-  - text: Same night, wash it in warm water, not hot, with a drop of laundry detergent. Press the water out, never wring. Dry face down on a rack.
+  - text: Same night, wash it with a drop of laundry detergent. Press the water out, never wring.
     status: house
+  - text: Warm water, never hot. Never put it in the dryer. Buff and Shine says so.
+    status: sourced
+  - text: House rule. Dry it face down on a rack.
+    status: house
+  - text: Buff and Shine says air-dry it flat, and never place a pad face down on any surface.
+    status: sourced
+  - text: Lando decides how pads dry (pending).
+    status: verify
 related:
   - card-pad-ladder
   - card-pad-priming
   - equipment-pad-urotec-maroon
+  - equipment-backing-plate
   - product-meguiars-m210

@@ -215,11 +215,40 @@ test.describe('URL tricks', () => {
     }
   });
 
+  // Phase 2 added /academy/:lessonId, so an address under /academy now lands on "Lesson not found"
+  // (with All lessons and Search) instead of the shell's Not found. Either way: no sign-off screen,
+  // no PIN pad, no sign-off button, no quiz answer, and a way out.
   test('a sign-off address typed by hand finds no sign-off screen (none exists before Phase 5)', async ({ page }) => {
-    for (const path of ['/academy/signoff', '/signoff', '/settings/signoff', '/academy/skill-l4-machine-polishing/signoff']) {
+    const paths = [
+      '/academy/signoff',
+      '/signoff',
+      '/settings/signoff',
+      '/academy/skill-l4-machine-polishing/signoff',
+      '/academy/skill-l4-machine-polishing',
+      '/academy/quiz-l4-machine',
+      '/academy/drill-l4-timed-square',
+      '/academy/lesson-l4-07-full-square/signoff',
+      '/items/skill-l4-machine-polishing',
+    ];
+    for (const path of paths) {
       await openApp(page, path);
-      await expect(page.getByRole('heading', { level: 1, name: 'No screen here' })).toBeVisible();
-      await expect(page.locator('main').getByRole('link', { name: 'Home' })).toBeVisible();
+      await expect(page.getByRole('heading', { level: 1, name: /^(No screen here|Lesson not found|Not found)$/ }), path).toBeVisible();
+      await expect(page.locator('fieldset.ui-pinpad'), path).toHaveCount(0);
+      await expect(page.getByRole('button', { name: /sign off|signed off/i }), path).toHaveCount(0);
+      const ways = page.locator('main').getByRole('link', { name: 'Home' }).or(page.locator('main').getByRole('button', { name: /^(All lessons|Search|Home)$/ }));
+      await expect(ways.first(), path).toBeVisible();
+    }
+  });
+
+  test('a quiz question, flashcard, or drill opened by hand shows no answer and keeps a way out', async ({ page }) => {
+    for (const [path, answer] of [
+      ['/items/quiz-l4-03-pressure-01', 'Let it float on its own weight.'],
+      ['/items/flash-machine-last-set', 'Let the machine float on its own weight.'],
+      ['/items/quiz-l3-03-bands-02', 'No. 90 to 99 is polish only.'],
+    ] as const) {
+      await openApp(page, path);
+      await expect(page.locator('main').getByText(answer, { exact: true }), path).toHaveCount(0);
+      await expect(page.locator('main').getByRole('button', { name: /^(Back to Search|Search|Home)$/ }).first(), path).toBeVisible();
     }
   });
 

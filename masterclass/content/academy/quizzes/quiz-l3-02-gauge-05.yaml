@@ -1,0 +1,36 @@
+id: quiz-l3-02-gauge-05
+type: quizquestion
+title: Measuring a Model Y
+quizId: quiz-l3-02-gauge
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "11"
+tags:
+  - gauge
+  - quiz
+  - level 3
+  - tesla
+synonyms:
+  - gauge quiz
+  - tc100 questions
+  - paint gauge test
+  - zero the gauge quiz
+sources:
+  - label: R&D TC100 gauge notes (knowledge base 7.2)
+    date: 2026-10-06
+    note: Zero only on the bare plate (not reconfirmed, no TC100 manual was found, FC-74); door jamb baseline; 3 to 5 readings per panel; 20 µm swings within a foot are normal; Model Y owners report about 100 to 150 µm, an owner report and not a Tesla spec (FC-73).
+prompt: You are measuring a Tesla Model Y. Which panel do you skip?
+choices:
+  - The hood. It reads highest.
+  - The front doors.
+  - The rear bumper.
+  - The roof. It is glass.
+correctIndex: 3
+explanation: The Model Y roof is glass. It gets washed, not measured or polished.
+scenario: true
+related:
+  - lesson-l3-02-tc100-gauge
+  - equipment-rd-tc100

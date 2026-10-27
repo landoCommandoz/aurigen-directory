@@ -1,0 +1,31 @@
+id: quiz-l3-04-eight-checks-04
+type: quizquestion
+title: Painted two weeks ago
+quizId: quiz-l3-04-eight-checks
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.4"
+tags:
+  - kills the buff
+  - quiz
+  - level 3
+synonyms:
+  - eight checks quiz
+  - kills the buff questions
+  - walk away test
+  - paint check quiz
+prompt: The car was repainted two weeks ago, and the owner wants it polished. What do you do?
+choices:
+  - Polish it lightly, fewest passes.
+  - Compound it once, then polish.
+  - Walk away. Fresh paint under 30 days.
+  - Wax it only, by hand.
+correctIndex: 2
+explanation: Fresh paint under 30 days is on the walk-away list.
+scenario: true
+related:
+  - lesson-l3-04-kills-the-buff
+  - card-kills-the-buff

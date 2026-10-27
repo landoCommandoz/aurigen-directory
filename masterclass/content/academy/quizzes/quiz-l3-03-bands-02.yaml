@@ -1,0 +1,32 @@
+id: quiz-l3-03-bands-02
+type: quizquestion
+title: 94 on the hood
+quizId: quiz-l3-03-bands
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.3"
+tags:
+  - bands
+  - gauge
+  - quiz
+  - level 3
+synonyms:
+  - bands quiz
+  - thickness bands questions
+  - what is allowed test
+  - gauge reading quiz
+prompt: The hood's lowest reading is 94 µm. Maroon + M210 left swirls behind. Can you compound it?
+choices:
+  - Yes, one pass max.
+  - Yes, by hand only.
+  - Yes. Swirls mean compound.
+  - No. 90 to 99 is polish only.
+correctIndex: 3
+explanation: Compound needs the panel to read 100 µm or more. 90 to 99 is polish only, yellow or maroon + M210.
+scenario: true
+related:
+  - lesson-l3-03-thickness-bands
+  - card-thickness-bands

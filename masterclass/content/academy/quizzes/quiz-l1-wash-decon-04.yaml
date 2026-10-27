@@ -1,0 +1,34 @@
+id: quiz-l1-wash-decon-04
+type: quizquestion
+title: Logging the contact wash
+quizId: quiz-l1-wash-decon
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+version: 2
+kbRef: "17.2"
+tags:
+  - wash
+  - decon
+  - sign-off quiz
+  - level 1
+synonyms:
+  - level 1 quiz
+  - wash and decon quiz
+  - full wash test
+  - level 1 sign off quiz
+prompt: You log your times. The contact wash took you 45 minutes. What does the full-detail plan give it?
+choices:
+  - 10 minutes.
+  - 30 minutes.
+  - 1 hour.
+  - 15 minutes.
+correctIndex: 1
+explanation: "The plan: wheels 25, pre-rinse and bugs 10, contact wash 30, rinse, dry, and jambs 20. Log the real time so you can see where the day goes."
+scenario: true
+related:
+  - lesson-l1-06-full-wash
+  - card-tesla-wash-mode-tape
+  - card-bucket-mix

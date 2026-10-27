@@ -1,7 +1,8 @@
 /**
  * The small offline marker under the app title: "Ready offline", "Saving for offline",
- * "Online", "Offline, ready", or "Offline". Held in Customer View (D10 lists the "Ready offline"
- * marker among the things that wait until Customer View is off).
+ * "Saved, reopen app", "Online", "Offline, ready", "Offline, saved", or "Offline"
+ * (src/app/status.ts). Held in Customer View (D10 lists the "Ready offline" marker among the
+ * things that wait until Customer View is off).
  */
 import { CheckGlyph, InfoGlyph, WarningGlyph } from '../components/ui';
 import { useConnectivity } from '../core/connectivity';
@@ -14,7 +15,7 @@ export function StatusChip() {
   const connectivity = useConnectivity();
   const pwa = usePwaStatus();
   if (!ready || on) return null;
-  const words = statusWords({ connectivity, offlineReady: pwa.offlineReady, registered: pwa.registered, supported: pwa.supported });
+  const words = statusWords({ connectivity, offlineCopy: pwa.offlineCopy, registered: pwa.registered, supported: pwa.supported });
   const glyph = words.tone === 'ready' ? <CheckGlyph /> : words.tone === 'warning' ? <WarningGlyph /> : <InfoGlyph />;
   return (
     <output className="app-status" data-tone={words.tone} aria-live="polite">

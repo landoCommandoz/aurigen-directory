@@ -11,7 +11,7 @@ import {
   snoozeInstallCard,
 } from '../installCard';
 import { MODE_STORAGE_KEY, applyDocumentAttributes, densityFor, modeStore, setMode } from '../mode';
-import { statusWords } from '../status';
+import { OFFLINE_SAVED_LABEL, SAVED_NOT_SERVING_LABEL, statusWords } from '../status';
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -97,11 +97,38 @@ describe('install card', () => {
 
 describe('offline marker words (3.6)', () => {
   it('reads Ready offline, Saving for offline, Online, Offline ready, Offline', () => {
-    expect(statusWords({ connectivity: 'online', offlineReady: true, registered: true, supported: true })).toEqual({ label: 'Ready offline', tone: 'ready' });
-    expect(statusWords({ connectivity: 'online', offlineReady: false, registered: true, supported: true }).label).toBe('Saving for offline');
-    expect(statusWords({ connectivity: 'online', offlineReady: false, registered: false, supported: true }).label).toBe('Online');
-    expect(statusWords({ connectivity: 'offline', offlineReady: true, registered: true, supported: true })).toEqual({ label: 'Offline, ready', tone: 'ready' });
-    expect(statusWords({ connectivity: 'offline', offlineReady: false, registered: false, supported: false })).toEqual({ label: 'Offline', tone: 'warning' });
+    expect(statusWords({ connectivity: 'online', offlineCopy: 'ready', registered: true, supported: true })).toEqual({ label: 'Ready offline', tone: 'ready' });
+    expect(statusWords({ connectivity: 'online', offlineCopy: 'notSaved', registered: true, supported: true }).label).toBe('Saving for offline');
+    expect(statusWords({ connectivity: 'online', offlineCopy: 'notSaved', registered: false, supported: true }).label).toBe('Online');
+    expect(statusWords({ connectivity: 'offline', offlineCopy: 'ready', registered: true, supported: true })).toEqual({ label: 'Offline, ready', tone: 'ready' });
+    expect(statusWords({ connectivity: 'offline', offlineCopy: 'notSaved', registered: false, supported: false })).toEqual({ label: 'Offline', tone: 'warning' });
+    expect(statusWords({ connectivity: 'offline', offlineCopy: 'notSaved', registered: true, supported: true })).toEqual({ label: 'Offline', tone: 'warning' });
+  });
+
+  it('saved but not serving this page (QA DEF-29): says the copy is saved, never still saving, missing, or ready', () => {
+    const online = statusWords({ connectivity: 'online', offlineCopy: 'savedNotServing', registered: true, supported: true });
+    const offline = statusWords({ connectivity: 'offline', offlineCopy: 'savedNotServing', registered: true, supported: true });
+    expect(online).toEqual({ label: SAVED_NOT_SERVING_LABEL, tone: 'neutral' });
+    expect(offline).toEqual({ label: OFFLINE_SAVED_LABEL, tone: 'neutral' });
+    for (const words of [online, offline]) {
+      expect(words.label).toMatch(/saved/i);
+      expect(words.label).not.toMatch(/Saving|Ready offline|Offline, ready/);
+    }
+    // The marker shares the top bar with Home and Settings: no longer than today's longest label,
+    // or the bar wraps at 375 px in Shop density (measured in Chromium, Phase 2 DEF-29 fix).
+    for (const words of [online, offline]) expect(words.label.length).toBeLessThanOrEqual('Saving for offline'.length);
+    // Before registration is known, a saved copy still reads as saved.
+    expect(statusWords({ connectivity: 'online', offlineCopy: 'savedNotServing', registered: false, supported: true }).label).toBe(SAVED_NOT_SERVING_LABEL);
+  });
+
+  it('every copy state and connection has words, and only a served page says ready', () => {
+    for (const connectivity of ['online', 'offline'] as const)
+      for (const offlineCopy of ['notSaved', 'savedNotServing', 'ready'] as const)
+        for (const registered of [true, false]) {
+          const words = statusWords({ connectivity, offlineCopy, registered, supported: true });
+          expect(words.label.length).toBeGreaterThan(0);
+          expect(words.tone === 'ready').toBe(offlineCopy === 'ready');
+        }
   });
 });
 

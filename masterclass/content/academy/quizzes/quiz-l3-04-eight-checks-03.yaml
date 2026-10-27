@@ -1,0 +1,31 @@
+id: quiz-l3-04-eight-checks-03
+type: quizquestion
+title: Swirls came back
+quizId: quiz-l3-04-eight-checks
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "7.4"
+tags:
+  - kills the buff
+  - quiz
+  - level 3
+synonyms:
+  - eight checks quiz
+  - kills the buff questions
+  - walk away test
+  - paint check quiz
+prompt: The swirls came back a week after a cheap detail somewhere else. What is it, and what goes first?
+choices:
+  - Clear coat failure. Do not polish.
+  - A glaze or filler job. Strip wash first.
+  - A repaint. Go gentle or skip.
+  - Paint protection film. No compound.
+correctIndex: 1
+explanation: Swirls that come back a week after a cheap detail point to a glaze or filler job. Strip wash first.
+scenario: true
+related:
+  - lesson-l3-04-kills-the-buff
+  - card-kills-the-buff

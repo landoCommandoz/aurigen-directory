@@ -71,6 +71,15 @@
   color: var(--text-2);
 }
 
+/* Search did not load (QA DEF-26): the line, then Try again under it. */
+.sr-results__problem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  animation: ui-fade-in var(--dur-fast) var(--ease-out) both;
+}
+
 /* ---- Content renderers ---- */
 .sr-rows {
   margin: 0;

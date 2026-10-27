@@ -1,0 +1,31 @@
+id: quiz-l0-01-rules-03
+type: quizquestion
+title: Color on the pad
+quizId: quiz-l0-01-rules
+audience:
+  - owner
+  - crew
+visibility: internal
+status: house
+kbRef: "2"
+tags:
+  - rules
+  - quiz
+  - level 0
+synonyms:
+  - rules quiz
+  - house rules test
+  - quiz on the 13 rules
+  - level 0 rules questions
+prompt: Lando is polishing a 2021 SUV. You look at the pad and see the car's blue color on the yellow foam. What does it mean?
+choices:
+  - Normal on dark paint. Keep going with less pressure.
+  - The pad is loaded. Blow it out and keep going.
+  - The polish is spent. Add 1 to 2 drops.
+  - Stop. The pad is through the clear coat.
+correctIndex: 3
+explanation: Rule 10. Paint color on the pad means you are through the clear. Old single-stage paint is the only exception, and a 2021 SUV is not that.
+scenario: true
+related:
+  - lesson-l0-01-rules-that-never-bend
+  - card-stop-rules
