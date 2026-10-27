@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ky",
+ "slug": "krs-134-128",
+ "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56172",
+ "final_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56172",
+ "fetched_at": "2026-10-27T06:25:53.157Z",
+ "http_status": 200,
+ "content_type": "application/PDF",
+ "raw_sha256": "e63dc9a97acc7fc555b69f187d2ffc9fb51aa9c88aa59a64e7720bcc868d6346",
+ "raw_bytes": 24445,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "36567e7263e164c3b1d963c3887b0b300c71b3f6fbe0b0ea70337e4e77809041",
+ "text_chars": 11195
+}

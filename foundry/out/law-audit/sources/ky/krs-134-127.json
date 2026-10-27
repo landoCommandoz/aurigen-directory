@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ky",
+ "slug": "krs-134-127",
+ "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=52932",
+ "final_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=52932",
+ "fetched_at": "2026-10-27T06:26:11.623Z",
+ "http_status": 200,
+ "content_type": "application/PDF",
+ "raw_sha256": "b7e04e9320fb6b024595060adbf59ffa60ed6bc524589d57356d1b6f1cbf15ab",
+ "raw_bytes": 15911,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "86387b5ce36083fe80b76dde1ed88c9c41d60d0e7a236d43ad5ca12b4bc9dce0",
+ "text_chars": 9095
+}

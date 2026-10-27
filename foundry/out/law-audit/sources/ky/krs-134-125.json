@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ky",
+ "slug": "krs-134-125",
+ "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=28383",
+ "final_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=28383",
+ "fetched_at": "2026-10-27T06:25:49.401Z",
+ "http_status": 200,
+ "content_type": "application/PDF",
+ "raw_sha256": "6d36b174a2247ee35abb31ba61d198b5cfa0f2ae5aa930fb0228edda8d9dc71d",
+ "raw_bytes": 4932,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "d2ec481507a81a9bc0313b0dc118cd47cb6c5dcc98308d4d10f4c79fcdc1f449",
+ "text_chars": 928
+}

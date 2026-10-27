@@ -177,6 +177,56 @@
    "text_sha256": "c11ddefdb0a72992ad96684c82aa4f15231a74399650a370cff6dd80425e7d8d",
    "fetched_at": "2026-10-27T06:22:35.537Z",
    "snapshot": "foundry/out/law-audit/sources/hi/kauai-tax-sale-inst-2018.json"
+  },
+  "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=28449": {
+   "state": "KY",
+   "statutes": [
+    "KRS § 134.546"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "735ae9dd2df4f8f17687b26ab369d9fb9e378ceb26e74477f31a2a2f73a8883d",
+   "fetched_at": "2026-10-27T06:26:05.426Z",
+   "snapshot": "foundry/out/law-audit/sources/ky/krs-134-546.json"
+  },
+  "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=28383": {
+   "state": "KY",
+   "statutes": [
+    "KRS § 134.125"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "d2ec481507a81a9bc0313b0dc118cd47cb6c5dcc98308d4d10f4c79fcdc1f449",
+   "fetched_at": "2026-10-27T06:25:49.401Z",
+   "snapshot": "foundry/out/law-audit/sources/ky/krs-134-125.json"
+  },
+  "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56172": {
+   "state": "KY",
+   "statutes": [
+    "KRS § 134.128"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "36567e7263e164c3b1d963c3887b0b300c71b3f6fbe0b0ea70337e4e77809041",
+   "fetched_at": "2026-10-27T06:25:53.157Z",
+   "snapshot": "foundry/out/law-audit/sources/ky/krs-134-128.json"
+  },
+  "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=43802": {
+   "state": "KY",
+   "statutes": [
+    "KRS § 134.420"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "acda26de1702f24d88c7dfea1b90fa7a28c1684b6ac3f8d209bd70f3a01c4bc9",
+   "fetched_at": "2026-10-27T06:25:56.339Z",
+   "snapshot": "foundry/out/law-audit/sources/ky/krs-134-420.json"
+  },
+  "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=57927": {
+   "state": "KY",
+   "statutes": [
+    "KRS § 134.490"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "c77c505e252980c4b568d87ab28db2a729f5b2e847b10c9f82c0ce223f4a8437",
+   "fetched_at": "2026-10-27T06:26:02.762Z",
+   "snapshot": "foundry/out/law-audit/sources/ky/krs-134-490.json"
   }
  }
 }

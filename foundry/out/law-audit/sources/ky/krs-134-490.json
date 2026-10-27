@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ky",
+ "slug": "krs-134-490",
+ "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=57927",
+ "final_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=57927",
+ "fetched_at": "2026-10-27T06:26:02.762Z",
+ "http_status": 200,
+ "content_type": "application/PDF",
+ "raw_sha256": "73054509991af6b0b77111d6acebed1b3016e40ce0d95db79c7b280ea0703a06",
+ "raw_bytes": 29108,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "c77c505e252980c4b568d87ab28db2a729f5b2e847b10c9f82c0ce223f4a8437",
+ "text_chars": 14022
+}
