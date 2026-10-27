@@ -1,0 +1,17 @@
+{
+  "name": "aurigen-cloudflare",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "data": "node scripts/build-data.mjs",
+    "build": "node scripts/build-data.mjs > data/coverage.txt && node scripts/build-site.mjs",
+    "check": "node --check scripts/build-data.mjs && node --check scripts/build-site.mjs && node --check src/worker.js && node --check public/assets/app.js",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "d3-geo": "^3.1.1",
+    "topojson-client": "^3.1.0",
+    "us-atlas": "^3.0.1",
+    "wrangler": "^4.45.0"
+  }
+}

@@ -56,10 +56,14 @@ function findText(o, keys) {
   if (o == null) return '';
   if (typeof o === 'string') return o;
   if (typeof o !== 'object') return String(o);
-  for (const k of keys) if (typeof o[k] === 'string' && o[k]) return o[k];
-  for (const v of Object.values(o)) {
-    if (v && typeof v === 'object') { const t = findText(v, keys); if (t && typeof v !== 'string') return t; }
-  }
+  // Prefer earlier keys anywhere in the tree over later keys at the top level.
+  for (const k of keys) { const t = deepKey(o, k); if (t) return t; }
+  return '';
+}
+function deepKey(o, k) {
+  if (!o || typeof o !== 'object') return '';
+  if (typeof o[k] === 'string' && o[k]) return o[k];
+  for (const v of Object.values(o)) { const t = deepKey(v, k); if (t) return t; }
   return '';
 }
 
@@ -92,9 +96,10 @@ for (const code of codes) {
     const saleType = normType(r.saleType || r.type || type);
     const platform = r.platform || r.deedAuction?.platform || r.auction?.platform || '';
     const url = r.url || r.deedAuction?.url || r.link || '';
-    const redemption = findText(r.redemption, ['period', 'standard', 'general', 'note']) || en.redemption || v2.redemption || '';
+    // Inherited rules use the hand-written state summary; county overrides use their own text.
+    const redemption = (own.redemption ? findText(r.redemption, ['period', 'standard', 'general', 'note']) : '') || en.redemption || v2.redemption || '';
     const rate = (typeof r.rate === 'string' && r.rate) ||
-      findText(r.auction, ['rate', 'interestRate', 'maxRate', 'penalty']) || en.rate || v2.rate || '';
+      (own.auction ? findText(r.auction, ['rate', 'interestRate', 'maxRate', 'penalty']) : '') || en.rate || v2.rate || '';
     const notes = [r.note, r.notes, r.alert].filter((x) => typeof x === 'string' && x);
     for (const k of ['note', 'notes', 'alert', 'platform', 'url', 'type', 'saleType', 'verifiedDate']) delete own[k];
     return {
