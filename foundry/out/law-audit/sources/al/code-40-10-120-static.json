@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "al",
+ "slug": "code-40-10-120-static",
+ "url": "https://alison.legislature.state.al.us/codeofalabama/1975/40-10-120.htm",
+ "final_url": "https://alison.legislature.state.al.us/codeofalabama/1975/40-10-120.htm",
+ "fetched_at": "2026-10-27T05:49:44.270Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "fa7226aa16ac17f71924efacc406e3994360798b1d46abe7c2448357c61a7152",
+ "raw_bytes": 58354,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "571e96e1dd5f7c28c70a636a1e779562391e2daabd9fb3b175ee0b8423c06027",
+ "text_chars": 1822
+}

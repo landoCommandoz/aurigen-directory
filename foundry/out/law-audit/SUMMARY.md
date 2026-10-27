@@ -1,12 +1,12 @@
 # Law audit summary
 
 Spec: `foundry/aurigen-law-audit.md`. Gate: `cloudflare/scripts/check-law.mjs`. Ledgers: `cloudflare/data/law/<st>.json`.
-States done: 1 of 51 (AK).
+States done: 2 of 51 (AK, AL).
 
 | State | Status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |
 |---|---|---|---|---|---|---|---|---|---|
 | AK | done | 2026-10-27 | 69 | 1 | 60 | 6 | 2 | 50 | [ak.md](ak.md) |
-| AL | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| AL | done | 2026-10-27 | 70 | 2 | 66 | 2 | 0 | 62 | [al.md](al.md) |
 | CA | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | DC | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | HI | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
@@ -63,6 +63,7 @@ States done: 1 of 51 (AK).
 - AK `signup.deposit.1`: Deposits are not set in AS 29.45; local rules not audited
 - AK `otc.available`: No state OTC rule in AS 29.45; municipalities may sell unsold property by ordinance
 - AK `otc.note.1`: Same as otc.available
+- AL `rate`: Ala. Admin. Code r. 810-4-6-.02 says 8% for tax sales after Jan 1, 2020; the DOR Land Sales FAQ still says 12% per annum; the Code text could not be read (script-only site)
 
 ## Unreachable sources ("Couldn't reach source")
 

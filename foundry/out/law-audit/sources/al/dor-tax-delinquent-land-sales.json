@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "al",
+ "slug": "dor-tax-delinquent-land-sales",
+ "url": "https://www.revenue.alabama.gov/property-tax/tax-delinquent-property-and-land-sales/",
+ "final_url": "https://www.revenue.alabama.gov/property-tax/tax-delinquent-property-and-land-sales/",
+ "fetched_at": "2026-10-27T05:51:31.151Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "18c61abe6384145b57b932c1bc24d702f8d2f772d9ce0dae2663b563dee318fb",
+ "raw_bytes": 399011,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "ad0598471f7b4c28bcea1c924a38dd7f32f5ee52f9b7a51b16174ebfe24c1ef0",
+ "text_chars": 3684
+}

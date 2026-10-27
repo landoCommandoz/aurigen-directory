@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "al",
+ "slug": "dor-faq-redeem",
+ "url": "https://www.revenue.alabama.gov/faqs/do-i-have-the-option-to-redeem-my-tax-delinquent-property",
+ "final_url": "https://www.revenue.alabama.gov/faqs/do-i-have-the-option-to-redeem-my-tax-delinquent-property/",
+ "fetched_at": "2026-10-27T05:49:34.444Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "e75d9043242c30ab8d7cfdda856d946c3527d04ceeaa3d5e1b4a32922ae656a7",
+ "raw_bytes": 298261,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "3b03ab5ee3b5f9e4e270132ddd210a76e92d802f220f340973b05a0f1f082547",
+ "text_chars": 6575
+}
