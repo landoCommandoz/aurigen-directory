@@ -357,6 +357,25 @@
    "text_sha256": "e5381f54b389dec0ae5ec6b1167b05688ad2d92dce5aaf071b310d06b934cef9",
    "fetched_at": "2026-10-27T06:42:01.435Z",
    "snapshot": "foundry/out/law-audit/sources/ok/okcounty-important-dates.json"
+  },
+  "https://www.palegis.us/statutes/unconsolidated/law-information/view-statute?txtType=PDF&SessYr=1947&ActNum=0542.&SessInd=0": {
+   "state": "PA",
+   "statutes": [
+    "72 P.S. § 5860.501(c) (Act 542 § 501)",
+    "72 P.S. § 5860.609 (Act 542 § 609)",
+    "72 P.S. § 5860.612 (Act 542 § 612)",
+    "72 P.S. § 5860.601 (Act 542 § 601)",
+    "Real Estate Tax Sale Law, Act of July 7, 1947, P.L. 1368, No. 542 (title)",
+    "72 P.S. § 5860.605 (Act 542 § 605)",
+    "72 P.S. § 5860.613 (Act 542 § 613)",
+    "72 P.S. § 5860.626 (Act 542 § 626)",
+    "72 P.S. § 5860.627 (Act 542 § 627)",
+    "72 P.S. § 5860.205(d) (Act 542 § 205)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "c1b832e2f50bf7017319cbf87063ee185fbf751038cada95376bbbc9b875a337",
+   "fetched_at": "2026-10-27T06:44:05.354Z",
+   "snapshot": "foundry/out/law-audit/sources/pa/act-542-pdf.json"
   }
  }
 }

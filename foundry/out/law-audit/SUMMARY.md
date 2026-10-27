@@ -1,7 +1,7 @@
 # Law audit summary
 
 Spec: `foundry/aurigen-law-audit.md`. Gate: `cloudflare/scripts/check-law.mjs`. Ledgers: `cloudflare/data/law/<st>.json`.
-States done: 12 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK).
+States done: 13 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA).
 
 | State | Status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |
 |---|---|---|---|---|---|---|---|---|---|
@@ -17,7 +17,7 @@ States done: 12 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK).
 | ND | done | 2026-10-27 | 64 | 6 | 58 | 0 | 0 | 57 | [nd.md](nd.md) |
 | NM | done | 2026-10-27 | 67 | 4 | 60 | 3 | 0 | 61 | [nm.md](nm.md) |
 | OK | done | 2026-10-27 | 61 | 3 | 21 | 22 | 15 | 58 | [ok.md](ok.md) |
-| PA | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| PA | done | 2026-10-27 | 68 | 16 | 52 | 0 | 0 | 54 | [pa.md](pa.md) |
 | TX | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | UT | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | WI | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |

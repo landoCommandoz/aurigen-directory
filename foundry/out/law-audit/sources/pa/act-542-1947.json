@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "pa",
+ "slug": "act-542-1947",
+ "url": "https://www.legis.state.pa.us/cfdocs/legis/LI/uconsCheck.cfm?txtType=HTM&yr=1947&sessInd=0&smthLwInd=0&act=542&chpt=0&sctn=0&subsctn=0",
+ "final_url": "https://www.palegis.us/statutes/unconsolidated/law-information?sessYr=1947&sessInd=0&actNum=542",
+ "fetched_at": "2026-10-27T06:43:50.493Z",
+ "http_status": 200,
+ "content_type": "text/html;charset=UTF-8",
+ "raw_sha256": "8fba99870f6a2f35d9c17960b37ec2131609b48759fccc6b4dcdfec983b72e0e",
+ "raw_bytes": 45136,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "022c9ac3660ea24a51a56a1a7553bcfbad85eb6774a9d7fe93417565d58e70a1",
+ "text_chars": 2574
+}
