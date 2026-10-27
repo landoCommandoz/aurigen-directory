@@ -1,0 +1,3 @@
+# The repo-wide .gitignore hides package-lock.json. The pinned Agent SDK install needs this one.
+!package-lock.json
+node_modules/
