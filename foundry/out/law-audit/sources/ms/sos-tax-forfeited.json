@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ms",
+ "slug": "sos-tax-forfeited",
+ "url": "https://sos.ms.gov/node/30",
+ "final_url": "https://www.sos.ms.gov/node/30",
+ "fetched_at": "2026-10-27T06:33:49.917Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "850c61ce435d5288f946ab8505b763fbfba84ddbe97e8169cad009c199290f49",
+ "raw_bytes": 105671,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "3a81cb918aaadf10f28deb3c221707fe481ac5e5d789e7655342c6698e15fb94",
+ "text_chars": 4401
+}

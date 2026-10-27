@@ -1,7 +1,7 @@
 # Law audit summary
 
 Spec: `foundry/aurigen-law-audit.md`. Gate: `cloudflare/scripts/check-law.mjs`. Ledgers: `cloudflare/data/law/<st>.json`.
-States done: 8 of 51 (AK, AL, CA, DC, HI, KY, LA, ME).
+States done: 9 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS).
 
 | State | Status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |
 |---|---|---|---|---|---|---|---|---|---|
@@ -13,7 +13,7 @@ States done: 8 of 51 (AK, AL, CA, DC, HI, KY, LA, ME).
 | KY | done | 2026-10-27 | 66 | 5 | 61 | 0 | 0 | 60 | [ky.md](ky.md) |
 | LA | done | 2026-10-27 | 68 | 2 | 65 | 1 | 0 | 62 | [la.md](la.md) |
 | ME | done | 2026-10-27 | 68 | 5 | 57 | 1 | 5 | 58 | [me.md](me.md) |
-| MS | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| MS | done | 2026-10-27 | 68 | 2 | 51 | 1 | 14 | 67 | [ms.md](ms.md) |
 | ND | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | NM | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | OK | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
@@ -69,6 +69,7 @@ States done: 8 of 51 (AK, AL, CA, DC, HI, KY, LA, ME).
 - HI `otc.available`: No official source fetched on over-the-counter sales in any Hawaii county
 - LA `otc.available`: Unsold liens go to the political subdivision (R.S. 47:2154(E)); no section read on later purchase from the subdivision
 - ME `otc.available`: No official text on over-the-counter sales; § 943-C requires broker listing of tax-acquired property
+- MS `type`: SOS rules say land is "sold at public sale" with a two-year redemption; the code (not reachable) was not read to confirm the lien label
 
 ## Unreachable sources ("Couldn't reach source")
 
@@ -80,3 +81,12 @@ States done: 8 of 51 (AK, AL, CA, DC, HI, KY, LA, ME).
 - ME `rate`: https://legislature.maine.gov/statutes/36/title36sec505.html, https://legislature.maine.gov/statutes/36/title36sec505.pdf
 - ME `rateWhy.1`: https://legislature.maine.gov/statutes/36/title36sec505.html, https://legislature.maine.gov/statutes/36/title36sec505.pdf
 - ME `rateWhy.3`: https://legislature.maine.gov/statutes/36/title36sec505.html, https://legislature.maine.gov/statutes/36/title36sec505.pdf
+- MS `rate`: https://www.legislature.ms.gov/legislation/mississippi-code/
+- MS `rateNote`: https://www.legislature.ms.gov/legislation/mississippi-code/
+- MS `statute`: https://www.legislature.ms.gov/legislation/mississippi-code/
+- MS `summary.4`: https://www.legislature.ms.gov/legislation/mississippi-code/
+- MS `typeWhy.3`: https://www.legislature.ms.gov/legislation/mississippi-code/
+- MS `rateWhy.1`: https://www.legislature.ms.gov/legislation/mississippi-code/
+- MS `rateWhy.2`: https://www.legislature.ms.gov/legislation/mississippi-code/
+- MS `keyNotes.2`: https://www.legislature.ms.gov/legislation/mississippi-code/
+- MS `risks.2`: https://www.legislature.ms.gov/legislation/mississippi-code/

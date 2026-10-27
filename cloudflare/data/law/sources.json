@@ -287,6 +287,16 @@
    "text_sha256": "75b70ec3c94122edb5e223d91596f29480dbccb5f2cb4b1c9b093ce54a14495c",
    "fetched_at": "2026-10-27T06:31:40.548Z",
    "snapshot": "foundry/out/law-audit/sources/me/mrs-36-943-c-pdf.json"
+  },
+  "https://www.sos.ms.gov/content/documents/lands/00000176c.pdf": {
+   "state": "MS",
+   "statutes": [
+    "Miss. Admin. Code tit. 1, pt. 11, ch. 1 (Secretary of State, Tax Forfeited Lands rules)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "db62f8cc39051dff10d9fe7a09a30fa92f3adaf735df521ec30ea69b4e3fb314",
+   "fetched_at": "2026-10-27T06:33:47.427Z",
+   "snapshot": "foundry/out/law-audit/sources/ms/sos-lands-rules.json"
   }
  }
 }
