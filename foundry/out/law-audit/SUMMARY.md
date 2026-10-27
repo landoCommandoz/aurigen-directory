@@ -1,11 +1,11 @@
 # Law audit summary
 
 Spec: `foundry/aurigen-law-audit.md`. Gate: `cloudflare/scripts/check-law.mjs`. Ledgers: `cloudflare/data/law/<st>.json`.
-States done: 0 of 51.
+States done: 1 of 51 (AK).
 
 | State | Status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |
 |---|---|---|---|---|---|---|---|---|---|
-| AK | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| AK | done | 2026-10-27 | 69 | 1 | 60 | 6 | 2 | 50 | [ak.md](ak.md) |
 | AL | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | CA | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | DC | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
@@ -59,8 +59,11 @@ States done: 0 of 51.
 
 ## Conflicts (flagged claims)
 
-None yet.
+- AK `bidMethod`: AS 29.45.460 sets no bid method; method comes from municipal ordinances not yet audited
+- AK `signup.deposit.1`: Deposits are not set in AS 29.45; local rules not audited
+- AK `otc.available`: No state OTC rule in AS 29.45; municipalities may sell unsold property by ordinance
+- AK `otc.note.1`: Same as otc.available
 
 ## Unreachable sources ("Couldn't reach source")
 
-None yet.
+- AK `signup.steps.1`: https://www.commerce.alaska.gov/web/dcra/, https://www.commerce.alaska.gov/web/dcra/OfficeoftheStateAssessor.aspx

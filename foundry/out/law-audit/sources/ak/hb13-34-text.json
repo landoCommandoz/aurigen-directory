@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ak",
+ "slug": "hb13-34-text",
+ "url": "https://www.akleg.gov/basis/Bill/Text/34?Hsid=HB0013Z",
+ "final_url": "https://www.akleg.gov/basis/Bill/Text/34?Hsid=HB0013Z",
+ "fetched_at": "2026-10-27T05:46:08.051Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "59baca2fab90bb6a8beb1cc1fbaffa1f853374e9d381f681564b8f40a88f889c",
+ "raw_bytes": 49841,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "cfe478b2b85fb9d5b36cbf8a9e175cc0bdc941d20aad59a0ffcb3a59bd5e7f47",
+ "text_chars": 7351
+}

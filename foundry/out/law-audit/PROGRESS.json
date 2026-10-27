@@ -54,12 +54,14 @@
  ],
  "states": {
   "AK": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
+   "status": "done",
+   "date": "2026-10-27",
+   "claims": 69,
+   "supported": 1,
+   "corrected": 60,
+   "flagged": 6,
+   "unreachable": 2,
+   "trimmed": 50
   },
   "AL": {
    "status": "todo",
