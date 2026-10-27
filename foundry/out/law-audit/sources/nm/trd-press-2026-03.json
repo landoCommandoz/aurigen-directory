@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nm",
+ "slug": "trd-press-2026-03",
+ "url": "https://biz.nm.gov/newsroom/updated-press-release-delinquent-property-tax-auctions-scheduled-in-ma-100002756",
+ "final_url": "https://biz.nm.gov/newsroom/updated-press-release-delinquent-property-tax-auctions-scheduled-in-ma-100002756",
+ "fetched_at": "2026-10-27T06:37:17.352Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "83cc12a560f70a76657b886090b2b993c8a7eb51d1041462d96846378dccb925",
+ "raw_bytes": 23250,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "0dad7525c45c70e4c3e31bff693a828c2e4ff028ef309f633dd9c016c756f07c",
+ "text_chars": 2833
+}

@@ -1,7 +1,7 @@
 # Law audit summary
 
 Spec: `foundry/aurigen-law-audit.md`. Gate: `cloudflare/scripts/check-law.mjs`. Ledgers: `cloudflare/data/law/<st>.json`.
-States done: 10 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND).
+States done: 11 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM).
 
 | State | Status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |
 |---|---|---|---|---|---|---|---|---|---|
@@ -15,7 +15,7 @@ States done: 10 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND).
 | ME | done | 2026-10-27 | 68 | 5 | 57 | 1 | 5 | 58 | [me.md](me.md) |
 | MS | done | 2026-10-27 | 68 | 2 | 51 | 1 | 14 | 67 | [ms.md](ms.md) |
 | ND | done | 2026-10-27 | 64 | 6 | 58 | 0 | 0 | 57 | [nd.md](nd.md) |
-| NM | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| NM | done | 2026-10-27 | 67 | 4 | 60 | 3 | 0 | 61 | [nm.md](nm.md) |
 | OK | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | PA | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | TX | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
@@ -70,6 +70,8 @@ States done: 10 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND).
 - LA `otc.available`: Unsold liens go to the political subdivision (R.S. 47:2154(E)); no section read on later purchase from the subdivision
 - ME `otc.available`: No official text on over-the-counter sales; § 943-C requires broker listing of tax-acquired property
 - MS `type`: SOS rules say land is "sold at public sale" with a two-year redemption; the code (not reachable) was not read to confirm the lien label
+- NM `redemption`: TRD FAQ says "all sales are final"; the statute on redemption after sale was not read
+- NM `otc.available`: TRD pages read do not mention over-the-counter sales
 
 ## Unreachable sources ("Couldn't reach source")
 

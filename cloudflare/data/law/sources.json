@@ -313,6 +313,28 @@
    "text_sha256": "c851ee812e992cc1a195d5c32c88c8e456b2d5fe2b7f63a1f44dd9bd8c547d2f",
    "fetched_at": "2026-10-27T06:35:49.367Z",
    "snapshot": "foundry/out/law-audit/sources/nd/ndcc-57-28.json"
+  },
+  "https://www.tax.newmexico.gov/businesses/delinquent-property-tax-auctions/": {
+   "state": "NM",
+   "statutes": [
+    "§ 7-38-70(B) NMSA 1978 (as quoted by TRD)",
+    "none: administrative practice (NM Taxation and Revenue Department, Property Tax Division)",
+    "§ 7-38-67 NMSA 1978 (as stated by TRD)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1e703473ad5422017136be590417af6ee94eac68aad47043cef8cc6e98a59e0d",
+   "fetched_at": "2026-10-27T06:37:19.843Z",
+   "snapshot": "foundry/out/law-audit/sources/nm/trd-auctions-page.json"
+  },
+  "https://biz.nm.gov/newsroom/updated-press-release-delinquent-property-tax-auctions-scheduled-in-ma-100002756": {
+   "state": "NM",
+   "statutes": [
+    "none: administrative practice (NM Taxation and Revenue Department press release, Feb. 23, 2026)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0dad7525c45c70e4c3e31bff693a828c2e4ff028ef309f633dd9c016c756f07c",
+   "fetched_at": "2026-10-27T06:37:17.352Z",
+   "snapshot": "foundry/out/law-audit/sources/nm/trd-press-2026-03.json"
   }
  }
 }
