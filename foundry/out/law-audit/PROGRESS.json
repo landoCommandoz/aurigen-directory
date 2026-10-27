@@ -94,12 +94,15 @@
    "trimmed": 56
   },
   "HI": {
-   "status": "todo",
-   "date": null,
+   "status": "in_progress",
+   "date": "2026-10-27",
    "claims": 0,
+   "supported": 0,
    "corrected": 0,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 0,
+   "note": "HRS site HTTP 403; county ordinance sources identified; see hi.md"
   },
   "KY": {
    "status": "todo",

@@ -1,6 +1,14 @@
 # AURIGEN HANDOFF DOCUMENT
 ## Updated after every session. Read before every session.
 
+### LAW AUDIT RUN 1 (2026-10-27, Foundry chain, branch foundry/aurigen-law-audit)
+- Spec: foundry/aurigen-law-audit.md. Done: AK, AL, CA, DC (4 of 51). HI in progress (see foundry/out/law-audit/hi.md).
+- Gate: cloudflare/scripts/check-law.mjs (now in `npm run build`; fails until all 51 states have ledgers, by design).
+- Ledgers: cloudflare/data/law/<st>.json. Site renders audited states from the ledger (build-site.mjs + law-pieces.mjs).
+- Statute watch: cloudflare/scripts/watch-statutes.mjs; workflow to copy: foundry/out/law-audit/proposed-statute-watch.yml.
+- Authoring helpers used this run: foundry/out/law-audit/authoring/ (lib.mjs, report.mjs, one script per state).
+- Live site untouched (under-review page). Nothing deployed.
+
 ### SESSION 17 (2026-10-27): FREE SITE LIVE ON CLOUDFLARE (Foundry run)
 - Live: https://aurigen.landonbrewington12.workers.dev (Worker `aurigen`, free plan). aurigendirectory.com NOT attached (no Cloudflare zone).
 - New site lives in `cloudflare/`: `npm ci && npm run build && npx wrangler deploy`. Old app files untouched.

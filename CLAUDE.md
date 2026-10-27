@@ -57,6 +57,10 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - Live site switch: .github/workflows/aurigen-site.yml (under-review 503 page from under-review/, or restore from a branch). vercel.json redirects the old Vercel copy.
 - Foundry now chains runs (foundry/out/chain/<spec>.json, max 20) and updates one issue per title. Law audit snapshots only via foundry/tools/fetch-source.mjs (curl + pdftotext, hashed).
 
+## LAW AUDIT (2026-10-27, run 1 of chain)
+- foundry/aurigen-law-audit.md: AK, AL, CA, DC done; HI in progress. Gate cloudflare/scripts/check-law.mjs; ledgers cloudflare/data/law/.
+- Progress: foundry/out/law-audit/PROGRESS.json and SUMMARY.md. Live site untouched.
+
 ## OPEN CRITICAL ITEMS
 1. FTC: Founding member 500-cap claim — needs Lando confirmation
 2. C2: states-en.js serverless gating (get-states.js built, needs C2 JWT session validation)

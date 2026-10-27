@@ -9,7 +9,7 @@ States done: 4 of 51 (AK, AL, CA, DC).
 | AL | done | 2026-10-27 | 70 | 2 | 66 | 2 | 0 | 62 | [al.md](al.md) |
 | CA | done | 2026-10-27 | 70 | 7 | 62 | 1 | 0 | 55 | [ca.md](ca.md) |
 | DC | done | 2026-10-27 | 74 | 1 | 71 | 2 | 0 | 56 | [dc.md](dc.md) |
-| HI | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| HI | in_progress | 2026-10-27 | 0 | 0 | 0 | 0 | 0 | 0 | [hi.md](hi.md) |
 | KY | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | LA | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | ME | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
