@@ -85,6 +85,87 @@
    "text_sha256": "b8fb957b3d8d772b5b83cc1c6a275957b0cd40da8a69c8cbd06f59d9cd9d3cd4",
    "fetched_at": "2026-10-27T05:54:41.643Z",
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json"
+  },
+  "https://otr.cfo.dc.gov/page/real-property-tax-sale": {
+   "state": "DC",
+   "statutes": [
+    "D.C. Code § 47-1353(a) (OTR page)",
+    "none: administrative practice (OTR)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b13bbe58f146aff0931e2dafadd5b499a8029a9d2855b83dc1aa14134c6f8fe9",
+   "fetched_at": "2026-10-27T05:56:22.765Z",
+   "snapshot": "foundry/out/law-audit/sources/dc/otr-tax-sale.json"
+  },
+  "https://code.dccouncil.gov/us/dc/council/code/sections/47-1361": {
+   "state": "DC",
+   "statutes": [
+    "D.C. Code § 47-1361"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d8bdb2d94ba4a25bb0a94bb748f6133a382caef2051a7a9308ee0b3307603d71",
+   "fetched_at": "2026-10-27T05:56:27.828Z",
+   "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1361.json"
+  },
+  "https://code.dccouncil.gov/us/dc/council/code/sections/47-1382": {
+   "state": "DC",
+   "statutes": [
+    "D.C. Code § 47-1382"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "78da4d1eeed40db00133c8d536e6bd01188eec140617a356557db24793218a10",
+   "fetched_at": "2026-10-27T05:56:36.682Z",
+   "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1382.json"
+  },
+  "https://code.dccouncil.gov/us/dc/council/code/sections/47-1360": {
+   "state": "DC",
+   "statutes": [
+    "D.C. Code § 47-1360"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1a4bc7edea512aec8adc310c610d2a7ea17baa43317a873015e0a795c9d070a4",
+   "fetched_at": "2026-10-27T05:57:18.573Z",
+   "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1360.json"
+  },
+  "https://code.dccouncil.gov/us/dc/council/code/sections/47-1346": {
+   "state": "DC",
+   "statutes": [
+    "D.C. Code § 47-1346"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "aed2f5c356591e8da84a94e6dda24c70a892330d7a24ed7b2bf2d77f9a0695a4",
+   "fetched_at": "2026-10-27T05:56:34.495Z",
+   "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1346.json"
+  },
+  "https://code.dccouncil.gov/us/dc/council/code/sections/47-1332": {
+   "state": "DC",
+   "statutes": [
+    "D.C. Code § 47-1332"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0532cb14517a8047181d4647cfa819f2c16c82d1f658659acee5edce45a976d2",
+   "fetched_at": "2026-10-27T05:56:25.350Z",
+   "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1332.json"
+  },
+  "https://code.dccouncil.gov/us/dc/council/code/sections/47-1370": {
+   "state": "DC",
+   "statutes": [
+    "D.C. Code § 47-1370"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d8858374f149fa55807688e6b3235021f2a0009b008e74282f5b5755c5c1acc1",
+   "fetched_at": "2026-10-27T05:56:30.013Z",
+   "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1370.json"
+  },
+  "https://code.dccouncil.gov/us/dc/council/code/sections/47-1382.01": {
+   "state": "DC",
+   "statutes": [
+    "D.C. Code § 47-1382.01"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f6acb7eb00b8567dcfb9aa6d7e780dbe864bbb43c9e77e1d572c4979e7d28877",
+   "fetched_at": "2026-10-27T05:57:03.836Z",
+   "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1382-01.json"
   }
  }
 }

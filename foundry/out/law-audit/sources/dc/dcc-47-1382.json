@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "dc",
+ "slug": "dcc-47-1382",
+ "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1382",
+ "final_url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1382",
+ "fetched_at": "2026-10-27T05:56:36.682Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "38b41130e3e591cf0a018ec01cf24f97a04f0683f4c3a6402dd345d1ddb12d12",
+ "raw_bytes": 29740,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "78da4d1eeed40db00133c8d536e6bd01188eec140617a356557db24793218a10",
+ "text_chars": 11049
+}
