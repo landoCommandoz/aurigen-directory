@@ -67,6 +67,37 @@ and the next run picks up where the last one stopped.
     `netlify.toml`, root `package.json`, root `vercel.json`, `cloudflare/wrangler.jsonc`, and the old data
     files in the repo root. Corrections go into the new ledger, never into the old files.
 
+13. **Certificate errors (CT, IL, or any state).** Never turn certificate checking off: no `curl -k`,
+    no `--insecure`, no `NODE_TLS_REJECT_UNAUTHORIZED=0`, no adding a CA you did not get from the
+    system or an official source. If a legislature host fails the certificate check (curl error 60,
+    often because the server leaves out its intermediate certificate), do this in order:
+    1. Look for the state's other official copy of the same statute: the legislature's own second host
+       or older address, an official PDF of the code or of the public acts, the revisor's or legislative
+       counsel's mirror, or an official session-law page for each section. Each must still pass
+       full certificate checking and rule 2.
+    2. Try every candidate through `fetch-source.mjs` so each attempt is logged in `attempts/<st>.jsonl`
+       (https and http variants of the same host count as one candidate only when robots.txt allows).
+    3. If none can be reached with full verification, mark the state `Couldn't reach source` in
+       `cloudflare/data/law/gaps.json`, mark it `blocked` in PROGRESS.json, and write the attempts and the
+       exact error into its report. Retry the blocked states once at the start of every run, because
+       servers get fixed. Whether a CA intermediate may be added is Lando's call, never yours.
+
+## Check status: what the ledger and the showcase may say
+
+Each state in `cloudflare/data/law/gaps.json` has exactly one status:
+- **checked:** every claim was checked against the official code text, and the 2023 to 2026
+  enacted-law search was run. No gaps.
+- **checked with gaps:** claims were checked, but at least one gap remains. A gap is any of: the code or
+  session-law source was not read, the 2023 to 2026 search was not run for part of the period, a claim is
+  flagged or unreachable, or the state rests on an agency or county page instead of the code. List every
+  gap as `{id, text, close}` where `close` says exactly how to close it.
+- **Couldn't reach source:** no official source could be reached with full certificate verification.
+
+You may not mark a state `done` until it has an entry in `gaps.json`, and `law-progress.mjs` refuses
+to. The status is copied into the ledger (`checkStatus`, `gapIds`) and PROGRESS.json. The showcase and
+the public state pages must show "checked with gaps" differently from "checked", and may never present a
+state without the status as audited.
+
 ## Start of every run (about 3 minutes)
 
 1. Run `date -u +%s` and save the result as the run's start time in `foundry/out/law-audit/RUN_START`.
@@ -86,6 +117,15 @@ and the next run picks up where the last one stopped.
 2. **The 9 states the first run changed,** so its changes get re-verified: AR, CO, CT, IA, IL, MA, MD, NH, SD.
 3. **The other 25, alphabetically:** AZ, DE, FL, GA, ID, IN, KS, MI, MN, MO, MT, NC, NE, NJ, NV, NY, OH, OR,
    RI, SC, TN, VA, VT, WA, WY.
+4. **The gap queue,** after the 51 states, one item per state, in the order `queueOrder` gives in
+   `cloudflare/data/law/gaps.json`: CO, AR, OK, HI, MS, NM, AL, CA, ME, AK, DC, IA, KY, LA, MA, ND, TX, UT,
+   WV. For each, work through that state's gaps in order. The first two items are fixed: search Colorado's
+   2025 and 2026 session laws (and look for the 2025 edition of title 39), then look for an official copy of
+   the Arkansas Code and the 2023 act behind its July 1, 2023 change. Download with `fetch-source.mjs`,
+   re-check the affected claims, and set each gap's `closed` to the ISO date only when its source was read.
+   Then run `node cloudflare/scripts/law-progress.mjs --gaps-closed <ST>`. A gap that cannot be closed stays
+   open with the attempts logged; the state stays "checked with gaps" and the queue moves on. Correct any
+   claim whose source now says otherwise, and keep `correctionKind` on each correction.
 
 **Known conflict to resolve in AZ:** the Arizona summary says lien holders must use judicial foreclosure,
 "not a treasurer's deed". The first run's freshness note cites redemption "until treasurer deed
@@ -112,6 +152,8 @@ Each claim records:
 | `checked` | The ISO date checked. It must equal the date in the snapshot's `fetched_at`. |
 | `effective` | Only for enacted changes not yet in effect: the start date. |
 | `status` | One of `supported`, `corrected`, `flagged` or `unreachable`. |
+| `correctionKind` | Only for `corrected`: `substantive` (a rule, number, rate, date, process, who runs the sale or whether something is available changed, or a claim stating one was removed), `wording` (same rule, plainer or more exact words, or only the citation changed) or `removed-opinion` (advice, comparison or prediction no official source states, taken out). Borderline cases count as substantive. |
+| `correctionBasis` | Only for `corrected`: one line saying how the kind was decided. |
 | `pass2` | `ok`, or a note on what was trimmed or flagged. |
 | `attempts` | Only for `unreachable`: every official URL tried. Each one must appear in `foundry/out/law-audit/attempts/<st>.jsonl`, which the download script writes. |
 
@@ -187,10 +229,18 @@ A warning about very little text usually means the page needs JavaScript. Look f
   `blocked`), the date, and its counts.
 - **`foundry/out/law-audit/SUMMARY.md`:** a running table for all 51 states, plus the list of conflicts
   and the list of unreachable sources.
-- **`foundry/out/chain/aurigen-law-audit.json`:** exactly `{"total": 51, "done": <n>}`. Here `<n>` counts
-  only states marked `done`, meaning both passes are finished and `check-law.mjs --state xx` passes.
-  The workflow reads this file to decide whether to start the next run. Update it in the same commit as
-  each finished state, and never count a state that is still `in_progress`.
+- **`foundry/out/chain/aurigen-law-audit.json`:** exactly `{"total": <t>, "done": <n>}`, written by
+  `node cloudflare/scripts/law-progress.mjs` (never by hand). `<t>` is 51 plus one queue item per state
+  that has gaps in `cloudflare/data/law/gaps.json`. `<n>` counts states marked `done` or `blocked`
+  (a blocked state has been tried and logged), plus gap-queue items that were worked. A state counts as
+  `done` only when both passes are finished and `check-law.mjs --state xx` passes. The workflow reads this
+  file to decide whether to start the next run. Update it in the same commit as each finished state, and
+  never count a state that is still `in_progress`.
+- **`foundry/out/law-audit/corrections-summary.md`:** corrected claims per state split into substantive,
+  wording or citation only, and removed opinion, with one example of each. Rebuild it after every state
+  from the ledgers (the `correctionKind` fields).
+- **`foundry/out/law-audit/decisions-needed.md`:** flagged claims that need Lando's decision, grouped, one
+  plain line each, with a recommended choice.
 
 ## For each state (work one state at a time)
 
@@ -298,7 +348,7 @@ Do this in the first run, after the tooling and before starting state work, so i
 
 The workflow reads `foundry/out/chain/aurigen-law-audit.json` after each run and starts the next run by
 itself. It stops when any of these happens:
-- all 51 states are done
+- all 51 states are done or blocked, and the gap queue has been worked
 - a run fails
 - a run finishes zero states
 - 20 runs have run (a retry counts as a run)
@@ -316,7 +366,7 @@ new issue if none is open.
 
 - `foundry/out/ISSUE_TITLE.txt` holds exactly `NEEDS LANDO: Law audit`.
 - `foundry/out/ISSUE.md` is **exactly five lines**, in plain English:
-  1. States done: <n> of 51, listed by code, with a link to SUMMARY.md.
+  1. States done: <n> of 51, listed by code, how many are "checked" versus "checked with gaps", and a link to SUMMARY.md.
   2. Changed: how many claims were corrected or trimmed, and in which states, plus any enacted law
      from 2023 to 2026 that changes what the site says, with start dates.
   3. Conflicts: the flagged claims by state, in a few words each.
@@ -326,7 +376,9 @@ new issue if none is open.
 
 ## Done means (after however many runs it takes)
 
-- All 51 states are `done` in PROGRESS.json, with a report each.
+- All 51 states are `done` (or `blocked` as "Couldn't reach source") in PROGRESS.json, with a report each,
+  and each has a status in `gaps.json`.
+- The gap queue was worked and every open gap is listed on the site as "checked with gaps".
 - `npm run build` in `cloudflare/` passes `check-law.mjs`.
 - Every state page in the source shows its statute links, and every county detail shows a source or
   "Confirm with the county".
