@@ -404,6 +404,66 @@
    "text_sha256": "aa4a1ecd1ed4bb0fae573518177b35110b71480a0e3e944e2a1990e9d5b5492a",
    "fetched_at": "2026-10-29T05:43:02.536Z",
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json"
+  },
+  "https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1351.1_2018050820180508.html": {
+   "state": "UT",
+   "statutes": [
+    "Utah Code § 59-2-1351.1(9)(a)",
+    "Utah Code § 59-2-1351.1(2)(b)",
+    "Utah Code § 59-2-1351.1",
+    "Utah Code § 59-2-1351.1(7)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9cc31117a536afeb9090ff62b2d893082491bebeb11981bb92857b1c38b178d4",
+   "fetched_at": "2026-10-29T05:46:59.920Z",
+   "snapshot": "foundry/out/law-audit/sources/ut/ucode-59-2-1351-1.json"
+  },
+  "https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1351_2023031320230313.html": {
+   "state": "UT",
+   "statutes": [
+    "Utah Code § 59-2-1351(1)(b)",
+    "Utah Code § 59-2-1351(4) (notice form)",
+    "Utah Code § 59-2-1351",
+    "Utah Code § 59-2-1351(1)(c)",
+    "Utah Code § 59-2-1351(1)(a)",
+    "Utah Code § 59-2-1351(3)",
+    "Utah Code § 59-2-1351(5)(b)",
+    "Utah Code § 59-2-1351(1)(c)(ii)(C)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "59515b71c4909916306006eafdccab619b1ecdb1ac1e7af4caa32f1d3b0237f7",
+   "fetched_at": "2026-10-29T05:46:52.722Z",
+   "snapshot": "foundry/out/law-audit/sources/ut/ucode-59-2-1351.json"
+  },
+  "https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1346_2022050420220504.html": {
+   "state": "UT",
+   "statutes": [
+    "Utah Code § 59-2-1346(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b926197541ded6e571dceb09534238d49eaed373c3b218420ddfde2f8d955554",
+   "fetched_at": "2026-10-29T05:46:50.412Z",
+   "snapshot": "foundry/out/law-audit/sources/ut/ucode-59-2-1346.json"
+  },
+  "https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1343_2026010120250507.html": {
+   "state": "UT",
+   "statutes": [
+    "Utah Code § 59-2-1343(1)(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e9fb63d4a156b36d5d7a3a6433249209acc072f7f6a5f35fbab5d4fb83237c2b",
+   "fetched_at": "2026-10-29T05:46:48.057Z",
+   "snapshot": "foundry/out/law-audit/sources/ut/ucode-59-2-1343.json"
+  },
+  "https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1351.5_2018050820180508.html": {
+   "state": "UT",
+   "statutes": [
+    "Utah Code § 59-2-1351.5(1)(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "41384b379a2e982eb9087a56e0ed737eb7eb5baac1931d9a58d5a5abdf054cac",
+   "fetched_at": "2026-10-29T05:47:04.573Z",
+   "snapshot": "foundry/out/law-audit/sources/ut/ucode-59-2-1351-5.json"
   }
  }
 }
