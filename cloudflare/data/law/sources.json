@@ -518,6 +518,111 @@
    "text_sha256": "3f20889d14f933925977aace5f438397e486500212e7781ea716fcd46667f0c2",
    "fetched_at": "2026-10-29T05:49:48.874Z",
    "snapshot": "foundry/out/law-audit/sources/wi/stats-75-35.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-42/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-42"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f5170784c605a43377bb75e43d64851e9ce64b9bc34a05b7fee092884a1e4e65",
+   "fetched_at": "2026-10-29T05:53:18.635Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-42.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-56/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-56(a)(1)",
+    "W. Va. Code § 11A-3-56(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d9ee475dd7d9508ee0bc6367bcceff52ed28507ad86ae7dff84bb5d7762c2cad",
+   "fetched_at": "2026-10-29T05:53:32.185Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-56.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-45/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-45(a)",
+    "W. Va. Code § 11A-3-45(c)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ce8759354695ced95c429e5b691d01509f0e39fc2f48dd849fae67642266f6cc",
+   "fetched_at": "2026-10-29T05:52:56.501Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-45.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-59/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-59"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1f4f8030f0422a65d6acbadd224669ceaa0dd05501195841454a5959b078905f",
+   "fetched_at": "2026-10-29T05:53:35.148Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-59.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-52/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-52(d)",
+    "W. Va. Code § 11A-3-52(a)",
+    "W. Va. Code § 11A-3-52(b)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "35a9174278c7b7bbedc6ad6188a5cdfb09fdda4e96790ce39cd92523cae33404",
+   "fetched_at": "2026-10-29T05:53:26.670Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-52.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-5/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-5 (repealed, 2022 SB 552)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ecf0782fdf4c7531d468a1d9e69d05cc5287570235050ae2e4800afccf38411d",
+   "fetched_at": "2026-10-29T05:52:37.313Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-5.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-54/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-54"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "5bfd3084a9801df75282c3cd9bd5084550820c046b1b4e51bdcc6da106d8b0c8",
+   "fetched_at": "2026-10-29T05:53:29.450Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-54.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-48/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-48(a)",
+    "W. Va. Code § 11A-3-48(b)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "7c641059fabba40bb78d186df09eda6b5e621a88fb2960f3c4beb1c3efd6132f",
+   "fetched_at": "2026-10-29T05:52:59.150Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-48.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-44/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-44"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "6d536f8551a7a4e821a73110d0d10a5fd2dcd45e3da6fb6d8f35d420433bffe1",
+   "fetched_at": "2026-10-29T05:53:21.403Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-44.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-65/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-65"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "77288a3ef18245320bd9de503258d8a260e29f5005cb7dbfa0792b403b6bf160",
+   "fetched_at": "2026-10-29T05:53:01.936Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-65.json"
   }
  }
 }

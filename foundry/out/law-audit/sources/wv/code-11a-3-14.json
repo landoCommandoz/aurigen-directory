@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "wv",
+ "slug": "code-11a-3-14",
+ "url": "https://code.wvlegislature.gov/11A-3-14/",
+ "final_url": "https://code.wvlegislature.gov/11A-3-14/",
+ "fetched_at": "2026-10-29T05:52:42.916Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "12a47bd0ff867fef26356f19ef40d6f7a7bcbaaaf816c2f8e5b7644b2f5fcb9b",
+ "raw_bytes": 42619,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "a392c6c23186d4e4ecbf4aef6461f843976de8f99c5237b74df157c01f9008ec",
+ "text_chars": 11124
+}
