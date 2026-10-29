@@ -464,6 +464,60 @@
    "text_sha256": "41384b379a2e982eb9087a56e0ed737eb7eb5baac1931d9a58d5a5abdf054cac",
    "fetched_at": "2026-10-29T05:47:04.573Z",
    "snapshot": "foundry/out/law-audit/sources/ut/ucode-59-2-1351-5.json"
+  },
+  "https://docs.legis.wisconsin.gov/document/statutes/75.14": {
+   "state": "WI",
+   "statutes": [
+    "Wis. Stat. § 75.14(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0227a1d807885ca1a300d11537b263951898f99b99d1c6c5fb0b5c006a6b12d3",
+   "fetched_at": "2026-10-29T05:49:46.480Z",
+   "snapshot": "foundry/out/law-audit/sources/wi/stats-75-14.json"
+  },
+  "https://docs.legis.wisconsin.gov/document/statutes/75.69": {
+   "state": "WI",
+   "statutes": [
+    "Wis. Stat. § 75.69(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "50156159d98795b10a1569940b77c8ecf614afc0688adacfa013886a4172ec48",
+   "fetched_at": "2026-10-29T05:50:16.677Z",
+   "snapshot": "foundry/out/law-audit/sources/wi/stats-75-69.json"
+  },
+  "https://docs.legis.wisconsin.gov/document/statutes/75.01": {
+   "state": "WI",
+   "statutes": [
+    "Wis. Stat. § 75.01(1)(b)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "068965204845619c2c9d21370098ca2071e29f87067b77cb5f88ebf152264b16",
+   "fetched_at": "2026-10-29T05:49:21.120Z",
+   "snapshot": "foundry/out/law-audit/sources/wi/stats-75-01.json"
+  },
+  "https://docs.legis.wisconsin.gov/document/statutes/74.57": {
+   "state": "WI",
+   "statutes": [
+    "Wis. Stat. § 74.57(2)(b)",
+    "Wis. Stat. § 74.57"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "bfb6a866329248af71875fbf869b7fb70e9a9d7a8cf449fe22be4f3a78b249c9",
+   "fetched_at": "2026-10-29T05:50:39.432Z",
+   "snapshot": "foundry/out/law-audit/sources/wi/stats-74-57.json"
+  },
+  "https://docs.legis.wisconsin.gov/document/statutes/75.35": {
+   "state": "WI",
+   "statutes": [
+    "Wis. Stat. § 75.35(2)(am)",
+    "Wis. Stat. § 75.35(3)",
+    "Wis. Stat. § 75.35(2)(d)",
+    "Wis. Stat. § 75.36(3)(c)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "3f20889d14f933925977aace5f438397e486500212e7781ea716fcd46667f0c2",
+   "fetched_at": "2026-10-29T05:49:48.874Z",
+   "snapshot": "foundry/out/law-audit/sources/wi/stats-75-35.json"
   }
  }
 }

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "wi",
+ "slug": "act-2025-129",
+ "url": "https://docs.legis.wisconsin.gov/2025/related/acts/129.pdf",
+ "final_url": "https://docs.legis.wisconsin.gov/2025/related/acts/129.pdf",
+ "fetched_at": "2026-10-29T05:51:18.336Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "063dcbc2151589e7eabf372c4c09515bf2ba2a740e67d8ee091d6716005fbf58",
+ "raw_bytes": 83898,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "0596295344887f87a3969c73b86a7e860e629029d4bbc2560256caef90b219db",
+ "text_chars": 25600
+}
