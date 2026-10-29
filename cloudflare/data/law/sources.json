@@ -376,6 +376,34 @@
    "text_sha256": "c1b832e2f50bf7017319cbf87063ee185fbf751038cada95376bbbc9b875a337",
    "fetched_at": "2026-10-27T06:44:05.354Z",
    "snapshot": "foundry/out/law-audit/sources/pa/act-542-pdf.json"
+  },
+  "https://tcss.legis.texas.gov/resources/TX/htm/TX.34.htm": {
+   "state": "TX",
+   "statutes": [
+    "Tex. Tax Code § 34.01(n)",
+    "Tex. Tax Code § 34.21(a)",
+    "Tex. Tax Code § 34.01(j)",
+    "Tex. Tax Code § 34.21",
+    "Tex. Tax Code § 34.01(r)",
+    "Tex. Tax Code § 34.01(r-1)",
+    "Tex. Tax Code § 34.21(e)(1)",
+    "Tex. Tax Code § 34.05(a)",
+    "Tex. Tax Code § 34.21(e)(2)",
+    "Tex. Tax Code § 34.21(h)",
+    "Tex. Tax Code § 34.01(r-2)",
+    "Tex. Tax Code § 34.03 (history note)",
+    "Tex. Tax Code § 34.21(e)",
+    "Tex. Tax Code § 34.015(b)",
+    "Tex. Tax Code § 34.01(a-1)",
+    "Tex. Tax Code § 34.01(e)(2)",
+    "Tex. Tax Code § 34.011(b)",
+    "Tex. Tax Code § 34.01(a)",
+    "Tex. Tax Code § 34.04(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "aa4a1ecd1ed4bb0fae573518177b35110b71480a0e3e944e2a1990e9d5b5492a",
+   "fetched_at": "2026-10-29T05:43:02.536Z",
+   "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json"
   }
  }
 }
