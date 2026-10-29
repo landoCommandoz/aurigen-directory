@@ -57,6 +57,9 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - Live site switch: .github/workflows/aurigen-site.yml (under-review 503 page from under-review/, or restore from a branch). vercel.json redirects the old Vercel copy.
 - Foundry now chains runs (foundry/out/chain/<spec>.json, max 20) and updates one issue per title. Law audit snapshots only via foundry/tools/fetch-source.mjs (curl + pdftotext, hashed).
 
+## LAW AUDIT (2026-10-29, run 3 of chain)
+- Run 3: TX, UT, WI, WV, AR, CO, IA done (20 of 51). CT blocked (cga.ct.gov TLS). Next CT, IL, MA, MD, NH, SD. See HANDOFF.md.
+
 ## LAW AUDIT (2026-10-27, runs 1-2 of chain)
 - Run 2: HI, KY, LA, ME, MS, ND, NM done (11 of 51). Next OK, PA, TX, UT, WI, WV. See HANDOFF.md.
 - foundry/aurigen-law-audit.md: AK, AL, CA, DC done; HI in progress. Gate cloudflare/scripts/check-law.mjs; ledgers cloudflare/data/law/.

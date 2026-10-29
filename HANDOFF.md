@@ -1,6 +1,15 @@
 # AURIGEN HANDOFF DOCUMENT
 ## Updated after every session. Read before every session.
 
+### LAW AUDIT RUN 3 (2026-10-29, Foundry chain, branch foundry/aurigen-law-audit)
+- Done this run: TX, UT, WI, WV, AR, CO, IA. Total 20 of 51. CT marked blocked (cga.ct.gov TLS certificate error from runner; retry first). Next: CT, IL, MA, MD, NH, SD, then AZ...
+- Texas statutes: statutes.capitol.texas.gov is a JS app; use https://tcss.legis.texas.gov/resources/TX/htm/TX.<ch>.htm.
+- Utah: le.utah.gov section pages load versioned files (C59-2-S1351_<version>.html; versionDefault in the page).
+- Wisconsin: use docs.legis.wisconsin.gov/document/statutes/<sec> (single column); chapter PDF is two-column.
+- Colorado: CRS PDFs at leg.colorado.gov/sites/default/files/images/olls/crs2024-title-39.pdf (2025 edition 404).
+- Arkansas: code is LexisNexis (JS); cited COSL agency pages and Rules PDF. Find the 2023 act ending post-sale redemption.
+- Gaps: CO 2025-26 acts not searched; AR act numbers; WV 2026 SB 651 (not in signed list, treat as not enacted).
+
 ### LAW AUDIT RUN 2 (2026-10-27, Foundry chain, branch foundry/aurigen-law-audit)
 - Done this run: HI, KY, LA, ME, MS, ND, NM. Total 11 of 51. Next: OK, PA, TX, UT, WI, WV.
 - Per-state authoring scripts: foundry/out/law-audit/authoring/<st>.mjs (lib.mjs build(), report.mjs). After a state: check-law --state, law-sources.mjs, law-progress.mjs <st> done.
