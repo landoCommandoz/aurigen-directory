@@ -62,6 +62,13 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - foundry/aurigen-law-audit.md: AK, AL, CA, DC done; HI in progress. Gate cloudflare/scripts/check-law.mjs; ledgers cloudflare/data/law/.
 - Progress: foundry/out/law-audit/PROGRESS.json and SUMMARY.md. Live site untouched.
 
+## LAW AUDIT UPDATE (2026-10-29)
+- Foundry #13: 21 of 51 states done (EN+ES). Audit branch foundry/aurigen-law-audit; live site still on the under-review page.
+- Check status per state in cloudflare/data/law/gaps.json: checked (PA, WI), checked with gaps (19 states), Couldn't reach source (CT, IL: TLS chain incomplete, verification stays on). Gap queue adds 19 items; chain total is now 70.
+- 1,262 corrected claims: 866 substantive, 166 wording or citation only, 230 removed opinion (foundry/out/law-audit/corrections-summary.md).
+- 40 flagged claims: 33 need Lando's decision (11 "not available/varies" wording, 22 Oklahoma), 7 are research gaps (foundry/out/law-audit/decisions-needed.md).
+- Fixed: chain crashed on "1.0" inputs from manual dispatch (foundry.yml now takes strings).
+
 ## OPEN CRITICAL ITEMS
 1. FTC: Founding member 500-cap claim — needs Lando confirmation
 2. C2: states-en.js serverless gating (get-states.js built, needs C2 JWT session validation)
