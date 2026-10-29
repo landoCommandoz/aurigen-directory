@@ -2,7 +2,7 @@
 ## Updated after every session. Read before every session.
 
 ### LAW AUDIT RUN 3 (2026-10-29, Foundry chain, branch foundry/aurigen-law-audit)
-- Done this run: TX, UT, WI, WV, AR, CO, IA. Total 20 of 51. CT marked blocked (cga.ct.gov TLS certificate error from runner; retry first). Next: CT, IL, MA, MD, NH, SD, then AZ...
+- Done this run: TX, UT, WI, WV, AR, CO, IA, MA. Total 21 of 51. CT and IL marked blocked (cga.ct.gov and ilga.gov TLS certificate errors from runner; retry or find other official copies). Next: CT, IL, MD, NH, SD, then AZ...
 - Texas statutes: statutes.capitol.texas.gov is a JS app; use https://tcss.legis.texas.gov/resources/TX/htm/TX.<ch>.htm.
 - Utah: le.utah.gov section pages load versioned files (C59-2-S1351_<version>.html; versionDefault in the page).
 - Wisconsin: use docs.legis.wisconsin.gov/document/statutes/<sec> (single column); chapter PDF is two-column.
