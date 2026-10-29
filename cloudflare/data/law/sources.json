@@ -243,6 +243,34 @@
    "fetched_at": "2026-10-27T06:22:35.537Z",
    "snapshot": "foundry/out/law-audit/sources/hi/kauai-tax-sale-inst-2018.json"
   },
+  "https://www.legis.iowa.gov/docs/code/446.pdf": {
+   "state": "IA",
+   "statutes": [
+    "Iowa Code § 446.16(3)",
+    "Iowa Code § 446.16(1)",
+    "Iowa Code § 446.7(1)",
+    "Iowa Code § 446.37",
+    "Iowa Code § 446.16(2)",
+    "Iowa Code § 446.16(4)",
+    "Iowa Code § 446.15",
+    "Iowa Code § 446.18"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "3781f6c6443dcc32ef58b7bc577b6c67391843e41ec9a83a463095b86c416be1",
+   "fetched_at": "2026-10-29T06:01:59.301Z",
+   "snapshot": "foundry/out/law-audit/sources/ia/code-446.json"
+  },
+  "https://www.legis.iowa.gov/docs/code/447.pdf": {
+   "state": "IA",
+   "statutes": [
+    "Iowa Code § 447.1(1)",
+    "Iowa Code § 447.9(1)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "a795f9498ae6d8559addaa9c5857a88335f79e7ef158ab92fd84b33a454bb985",
+   "fetched_at": "2026-10-29T06:02:01.740Z",
+   "snapshot": "foundry/out/law-audit/sources/ia/code-447.json"
+  },
   "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=28449": {
    "state": "KY",
    "statutes": [

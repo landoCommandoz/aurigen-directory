@@ -244,20 +244,24 @@
    "trimmed": 76
   },
   "CT": {
-   "status": "todo",
-   "date": null,
+   "status": "blocked",
+   "date": "2026-10-29",
    "claims": 0,
+   "supported": 0,
    "corrected": 0,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 0
   },
   "IA": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-10-29",
+   "claims": 79,
+   "supported": 13,
+   "corrected": 66,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 70
   },
   "IL": {
    "status": "todo",
