@@ -33,7 +33,9 @@
    "statute": "Cal. Rev. & Tax. Code §§ 3692, 3706",
    "quote": "to the highest bidder at the time and place fixed for sale (§3706)",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "rateNote",
@@ -48,7 +50,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3698.5",
    "quote": "The minimum bid may not be less than the amount necessary to redeem the property (Rev. & Tax. Code, §3698.5)",
    "status": "corrected",
-   "pass2": "was \"1-year challenge period after sale\" (not in any fetched source)"
+   "pass2": "was \"1-year challenge period after sale\" (not in any fetched source)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "redemption",
@@ -63,7 +67,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3707",
    "quote": "must be received in the tax collector's office prior to the close of business on the last business day prior to the commencement date of the tax sale. If the payment is not received by that time, the right of redemption terminates (§3707).",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "bidMethod",
@@ -93,7 +99,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "auctionPlatform",
@@ -108,7 +116,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3692",
    "quote": "encompasses tax sales by public auction (in person and internet) or sealed bid.",
    "status": "corrected",
-   "pass2": "removed vendor names (GovEase): county detail without a county source"
+   "pass2": "removed vendor names (GovEase): county detail without a county source",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "auctionTiming",
@@ -123,7 +133,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3692",
    "quote": "encompasses tax sales by public auction (in person and internet) or sealed bid.",
    "status": "corrected",
-   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)"
+   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "summary.1",
@@ -138,7 +150,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691",
    "quote": "Property that has been tax-defaulted for five years or more or three years or more in the case of nonresidential commercial property, and is subject to the tax collector's power to sell, may be sold.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.2",
@@ -153,7 +167,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3698.5",
    "quote": "The minimum bid may not be less than the amount necessary to redeem the property (Rev. & Tax. Code, §3698.5)",
    "status": "corrected",
-   "pass2": "was \"near assessed value\""
+   "pass2": "was \"near assessed value\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.3",
@@ -198,7 +214,9 @@
    "statute": "Cal. Rev. & Tax. Code § 4675",
    "quote": "Excess proceeds are retained for a period of at least one year following the date of recordation of the tax deed to the purchaser of the property.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "typeWhy.2",
@@ -213,7 +231,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3707",
    "quote": "must be received in the tax collector's office prior to the close of business on the last business day prior to the commencement date of the tax sale. If the payment is not received by that time, the right of redemption terminates (§3707).",
    "status": "corrected",
-   "pass2": "trimmed: removed \"buyer receives full title\" (IRS can still redeem; deed effects in § 3712 not read)"
+   "pass2": "trimmed: removed \"buyer receives full title\" (IRS can still redeem; deed effects in § 3712 not read)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "typeWhy.3",
@@ -243,7 +263,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3698.5",
    "quote": "The minimum bid may not be less than the amount necessary to redeem the property (Rev. & Tax. Code, §3698.5)",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "rateWhy.2",
@@ -258,7 +280,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "ok (pass 2): the county sells the property itself"
+   "pass2": "ok (pass 2): the county sells the property itself",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "rateWhy.3",
@@ -288,7 +312,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "removed: one-year challenge period (§ 3725) and title insurance claims not in any fetched source"
+   "pass2": "removed: one-year challenge period (§ 3725) and title insurance claims not in any fetched source",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "keyNotes.2",
@@ -303,7 +329,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3712(g); 26 U.S.C. § 7425(d)",
    "quote": "the United States has the right of redemption for 120 days from the date of such sale or for the period allowable for redemption under local law, whichever is longer",
    "status": "corrected",
-   "pass2": "trimmed: \"IRS liens survive\" replaced with the redemption right the quote states"
+   "pass2": "trimmed: \"IRS liens survive\" replaced with the redemption right the quote states",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "keyNotes.3",
@@ -318,7 +346,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)"
+   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "keyNotes.4",
@@ -333,7 +363,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)"
+   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "notBeginnerReason.1",
@@ -348,7 +380,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691",
    "quote": "Property that has been tax-defaulted for five years or more or three years or more in the case of nonresidential commercial property, and is subject to the tax collector's power to sell, may be sold.",
    "status": "corrected",
-   "pass2": "trimmed: removed market value, competition and \"no direct purchase\" claims"
+   "pass2": "trimmed: removed market value, competition and \"no direct purchase\" claims",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "beginnerTip.1",
@@ -363,7 +397,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)"
+   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "beginnerTip.2",
@@ -378,7 +414,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)"
+   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "risks.1",
@@ -393,7 +431,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3698.5",
    "quote": "The minimum bid may not be less than the amount necessary to redeem the property (Rev. & Tax. Code, §3698.5)",
    "status": "corrected",
-   "pass2": "was \"near market value\""
+   "pass2": "was \"near market value\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "risks.2",
@@ -408,7 +448,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)"
+   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "risks.3",
@@ -423,7 +465,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)"
+   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "risks.4",
@@ -438,7 +482,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)"
+   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "ddExtra.1",
@@ -453,7 +499,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691",
    "quote": "Property that has been tax-defaulted for five years or more or three years or more in the case of nonresidential commercial property, and is subject to the tax collector's power to sell, may be sold.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "ddExtra.2",
@@ -468,7 +516,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)"
+   "pass2": "removed: no official source (county or vendor detail without a county source, or opinion)",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "ddExtra.3",
@@ -483,7 +533,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3712(g); 26 U.S.C. § 7425(d)",
    "quote": "the United States has the right of redemption for 120 days from the date of such sale or for the period allowable for redemption under local law, whichever is longer",
    "status": "corrected",
-   "pass2": "trimmed: removed HOA and Mello-Roos (not in quote)"
+   "pass2": "trimmed: removed HOA and Mello-Roos (not in quote)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.platform",
@@ -498,7 +550,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3692",
    "quote": "encompasses tax sales by public auction (in person and internet) or sealed bid.",
    "status": "corrected",
-   "pass2": "removed vendor name (Bid4Assets)"
+   "pass2": "removed vendor name (Bid4Assets)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.1",
@@ -513,7 +567,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.2",
@@ -528,7 +584,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3692",
    "quote": "encompasses tax sales by public auction (in person and internet) or sealed bid.",
    "status": "corrected",
-   "pass2": "removed vendor name"
+   "pass2": "removed vendor name",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.3",
@@ -543,7 +601,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "removed: \"$500–$5,000\" deposit has no source"
+   "pass2": "removed: \"$500–$5,000\" deposit has no source",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "signup.steps.4",
@@ -558,7 +618,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3692",
    "quote": "encompasses tax sales by public auction (in person and internet) or sealed bid.",
    "status": "corrected",
-   "pass2": "trimmed: removed \"opening bids are near market value\""
+   "pass2": "trimmed: removed \"opening bids are near market value\"",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.deposit.1",
@@ -573,7 +635,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "removed: deposits not in fetched sources"
+   "pass2": "removed: deposits not in fetched sources",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "signup.deposit.2",
@@ -588,7 +652,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "removed: \"$500–$5,000\" has no source"
+   "pass2": "removed: \"$500–$5,000\" has no source",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "otc.available",
@@ -619,7 +685,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3698.5(c)",
    "quote": "may re-offer the property at the same sale or the next sale with a reduced minimum bid amount",
    "status": "corrected",
-   "pass2": "was \"No direct purchase option\""
+   "pass2": "was \"No direct purchase option\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "platforms.1",
@@ -634,7 +702,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3691 et seq.",
    "quote": "The county tax collector is responsible for the sale of eligible tax-defaulted property, pursuant to Revenue and Taxation Code section 3691 et seq.",
    "status": "corrected",
-   "pass2": "removed vendor name (Bid4Assets) without a county source"
+   "pass2": "removed vendor name (Bid4Assets) without a county source",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "platforms.2",
@@ -649,7 +719,9 @@
    "statute": "Cal. Rev. & Tax. Code § 3692",
    "quote": "encompasses tax sales by public auction (in person and internet) or sealed bid.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "surplus.1",
@@ -664,7 +736,9 @@
    "statute": "Cal. Rev. & Tax. Code § 4675",
    "quote": "During the one-year period, the excess proceeds may be claimed by any party of interest in the property at the time of the sale (Rev. & Tax. Code, §4675).",
    "status": "corrected",
-   "pass2": "was \"Status pending\""
+   "pass2": "was \"Status pending\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "es.rate",
@@ -680,7 +754,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.redemption",
@@ -696,7 +772,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.1",
@@ -712,7 +790,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.2",
@@ -728,7 +808,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.3",
@@ -760,7 +842,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.rateWhy.1",
@@ -776,7 +860,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.rateWhy.2",
@@ -792,7 +878,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.notBeginnerReason.1",
@@ -808,7 +896,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.beginnerTip.1",
@@ -824,7 +914,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.beginnerTip.2",
@@ -840,7 +932,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.risks.1",
@@ -856,7 +950,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.risks.2",
@@ -872,7 +968,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.risks.3",
@@ -888,7 +986,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.risks.4",
@@ -904,7 +1004,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.ddExtra.1",
@@ -920,7 +1022,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.ddExtra.2",
@@ -936,7 +1040,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.ddExtra.3",
@@ -952,7 +1058,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.platform",
@@ -968,7 +1076,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.1",
@@ -984,7 +1094,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.2",
@@ -1000,7 +1112,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.3",
@@ -1016,7 +1130,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.signup.steps.4",
@@ -1032,7 +1148,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.deposit.1",
@@ -1048,7 +1166,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.signup.deposit.2",
@@ -1064,7 +1184,9 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-excess-proceeds-guide.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.otc.note.1",
@@ -1080,7 +1202,13 @@
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   }
+ ],
+ "checkStatus": "checked with gaps",
+ "gapIds": [
+  "CA-1"
  ]
 }

@@ -33,7 +33,9 @@
    "statute": "Tex. Tax Code § 34.21(a)",
    "quote": "plus a redemption premium of 25 percent of the aggregate total if the property is redeemed during the first year of the redemption period or 50 percent of the aggregate total if the property is redeemed during the second year of the redemption period",
    "status": "corrected",
-   "pass2": "was \"25% yr1 / 50% yr2 (penalty on redemption)\"; statute calls it a redemption premium. pass 2: the 25% cap for other property rests on § 34.21(e)(2) (summary.5 note)"
+   "pass2": "was \"25% yr1 / 50% yr2 (penalty on redemption)\"; statute calls it a redemption premium. pass 2: the 25% cap for other property rests on § 34.21(e)(2) (summary.5 note)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "rateNote",
@@ -48,7 +50,9 @@
    "statute": "Tex. Tax Code § 34.21(a)",
    "quote": "by paying the purchaser the amount the purchaser bid for the property, the amount of the deed recording fee, and the amount paid by the purchaser as taxes, penalties, interest, and costs on the property, plus a redemption premium of 25 percent of the aggregate total if the property is redeemed during the first year of the redemption period",
    "status": "corrected",
-   "pass2": "was \"Penalty on purchase price. Homestead/ag = 2-year window. Commercial = 180 days.\"; windows moved to redemption field"
+   "pass2": "was \"Penalty on purchase price. Homestead/ag = 2-year window. Commercial = 180 days.\"; windows moved to redemption field",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "redemption",
@@ -63,7 +67,9 @@
    "statute": "Tex. Tax Code § 34.21(a)",
    "quote": "that was used as the residence homestead of the owner or that was land designated for agricultural use when the suit or the application for the warrant was filed, or the owner of a mineral interest sold at a tax sale to a purchaser other than a taxing unit, may redeem the property on or before the second anniversary",
    "status": "corrected",
-   "pass2": "added mineral interests and the start point. pass 2: 180-day part rests on § 34.21(e)(1) (summary.5)"
+   "pass2": "added mineral interests and the start point. pass 2: 180-day part rests on § 34.21(e)(1) (summary.5)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "bidMethod",
@@ -78,7 +84,9 @@
    "statute": "Tex. Tax Code § 34.01(j)",
    "quote": "If a bid sufficient to pay the lesser of the amount calculated under Subsection (b) or the adjudged value is not received, the taxing unit that requested the order of sale may terminate the sale.",
    "status": "corrected",
-   "pass2": "was \"Premium bid (highest dollar)\""
+   "pass2": "was \"Premium bid (highest dollar)\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "statute",
@@ -108,7 +116,9 @@
    "statute": "Tex. Tax Code § 34.01(r)",
    "quote": "a sale of real property under this section must take place at the county courthouse in the county in which the land is located",
    "status": "corrected",
-   "pass2": "was \"County courthouse steps — in-person (254 counties)\". pass 2: online part rests on § 34.01(a-1) (signup.platform); dropped county count"
+   "pass2": "was \"County courthouse steps — in-person (254 counties)\". pass 2: online part rests on § 34.01(a-1) (signup.platform); dropped county count",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "auctionTiming",
@@ -123,7 +133,9 @@
    "statute": "Tex. Tax Code § 34.01(r-1)",
    "quote": "must take place between 10 a.m. and 4 p.m. on the first Tuesday of a month or, if the first Tuesday of a month occurs on January 1 or July 4, between 10 a.m. and 4 p.m. on the first Wednesday of the month",
    "status": "corrected",
-   "pass2": "was \"Monthly (first Tuesday of every month, all 254 counties)\""
+   "pass2": "was \"Monthly (first Tuesday of every month, all 254 counties)\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.1",
@@ -153,7 +165,9 @@
    "statute": "Tex. Tax Code § 34.01(r-1)",
    "quote": "must take place between 10 a.m. and 4 p.m. on the first Tuesday of a month or, if the first Tuesday of a month occurs on January 1 or July 4, between 10 a.m. and 4 p.m. on the first Wednesday of the month",
    "status": "corrected",
-   "pass2": "pass 2: dropped \"statewide\" and \"auctions\""
+   "pass2": "pass 2: dropped \"statewide\" and \"auctions\"",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.3",
@@ -168,7 +182,9 @@
    "statute": "Tex. Tax Code § 34.01(n)",
    "quote": "The deed vests good and perfect title in the purchaser or the purchaser's assigns to the interest owned by the defendant in the property subject to the foreclosure, including the defendant's right to the use and possession of the property, subject only to the defendant's right of redemption",
    "status": "corrected",
-   "pass2": "was \"Investor gets deed at auction but owner can redeem.\""
+   "pass2": "was \"Investor gets deed at auction but owner can redeem.\"",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.4",
@@ -183,7 +199,9 @@
    "statute": "Tex. Tax Code § 34.21(a)",
    "quote": "plus a redemption premium of 25 percent of the aggregate total if the property is redeemed during the first year of the redemption period or 50 percent of the aggregate total if the property is redeemed during the second year of the redemption period",
    "status": "corrected",
-   "pass2": "was \"calculated on full auction price\"; statute adds recording fee, taxes and costs to the bid. pass 2: what is added rests on the rateNote quote"
+   "pass2": "was \"calculated on full auction price\"; statute adds recording fee, taxes and costs to the bid. pass 2: what is added rests on the rateNote quote",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.5",
@@ -198,7 +216,9 @@
    "statute": "Tex. Tax Code § 34.21(e)(1)",
    "quote": "the owner's right of redemption may be exercised not later than the 180th day following the date on which the purchaser's or taxing unit's deed is filed for record",
    "status": "corrected",
-   "pass2": "was \"Commercial: 180-day redemption.\" Statute covers all property other than homestead, agricultural and mineral. pass 2: scope rests on § 34.21(e) (risks.3)"
+   "pass2": "was \"Commercial: 180-day redemption.\" Statute covers all property other than homestead, agricultural and mineral. pass 2: scope rests on § 34.21(e) (risks.3)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.6",
@@ -213,7 +233,9 @@
    "statute": "Tex. Tax Code § 34.21(a)",
    "quote": "that was used as the residence homestead of the owner or that was land designated for agricultural use when the suit or the application for the warrant was filed, or the owner of a mineral interest sold at a tax sale to a purchaser other than a taxing unit, may redeem the property on or before the second anniversary",
    "status": "corrected",
-   "pass2": "added mineral interests"
+   "pass2": "added mineral interests",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.7",
@@ -228,7 +250,9 @@
    "statute": "Tex. Tax Code § 34.05(a)",
    "quote": "The sale is subject to any right of redemption of the former owner. The redemption period begins on the date the deed to the taxing unit is filed for record.",
    "status": "corrected",
-   "pass2": "was \"Struck-off properties often skip redemption entirely.\" (contradicted by § 34.05(a))"
+   "pass2": "was \"Struck-off properties often skip redemption entirely.\" (contradicted by § 34.05(a))",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.8",
@@ -258,7 +282,9 @@
    "statute": "Tex. Tax Code § 34.01(n)",
    "quote": "The deed vests good and perfect title in the purchaser or the purchaser's assigns to the interest owned by the defendant in the property subject to the foreclosure, including the defendant's right to the use and possession of the property, subject only to the defendant's right of redemption",
    "status": "corrected",
-   "pass2": "periods removed here (shown in redemption field); added use and possession from § 34.01(n)"
+   "pass2": "periods removed here (shown in redemption field); added use and possession from § 34.01(n)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "typeWhy.2",
@@ -288,7 +314,9 @@
    "statute": "Tex. Tax Code § 34.21(a)",
    "quote": "plus a redemption premium of 25 percent of the aggregate total if the property is redeemed during the first year of the redemption period or 50 percent of the aggregate total if the property is redeemed during the second year of the redemption period",
    "status": "corrected",
-   "pass2": "was \"penalty ... on the full auction purchase price\""
+   "pass2": "was \"penalty ... on the full auction purchase price\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "rateWhy.2",
@@ -318,7 +346,9 @@
    "statute": "Tex. Tax Code § 34.21(a)",
    "quote": "plus a redemption premium of 25 percent of the aggregate total if the property is redeemed during the first year of the redemption period or 50 percent of the aggregate total if the property is redeemed during the second year of the redemption period",
    "status": "corrected",
-   "pass2": "removed \"Highest redeemable penalty in the US\" (comparison, no official source). pass 2: scope rests on hs quote"
+   "pass2": "removed \"Highest redeemable penalty in the US\" (comparison, no official source). pass 2: scope rests on hs quote",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "keyNotes.2",
@@ -333,7 +363,9 @@
    "statute": "Tex. Tax Code § 34.21(e)(2)",
    "quote": "the redemption premium payable by the owner to a purchaser other than a taxing unit may not exceed 25 percent",
    "status": "corrected",
-   "pass2": "was \"Commercial properties: 180-day redemption only — faster resolution\"; removed opinion. pass 2: 180 days rests on § 34.21(e)(1)"
+   "pass2": "was \"Commercial properties: 180-day redemption only — faster resolution\"; removed opinion. pass 2: 180 days rests on § 34.21(e)(1)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "keyNotes.3",
@@ -348,7 +380,9 @@
    "statute": "Tex. Tax Code § 34.21(h)",
    "quote": "The right of redemption does not grant or reserve in the former owner of the real property the right to the use or possession of the property, or to receive rents, income, or other benefits from the property while the right of redemption exists.",
    "status": "corrected",
-   "pass2": "was \"Investor CAN take possession and collect rent during redemption period\"; restated as the statute says it"
+   "pass2": "was \"Investor CAN take possession and collect rent during redemption period\"; restated as the statute says it",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "keyNotes.4",
@@ -363,7 +397,9 @@
    "statute": "Tex. Tax Code § 34.01(r-2)",
    "quote": "may begin at any time and must conclude at 4 p.m. on the first Tuesday of a month or, if the first Tuesday of a month occurs on January 1 or July 4, at 4 p.m. on the first Wednesday of the month",
    "status": "corrected",
-   "pass2": "was \"254 counties all auction same day — first Tuesday monthly\""
+   "pass2": "was \"254 counties all auction same day — first Tuesday monthly\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "keyNotes.5",
@@ -378,7 +414,9 @@
    "statute": "Tex. Tax Code § 34.03 (history note)",
    "quote": "Acts 2025, 89th Leg., 2nd C.S., Ch. 7 (H.B. 16), Sec. 9.18, eff. December 4, 2025.",
    "status": "corrected",
-   "pass2": "was \"Acts 2025, 89th Legislature update confirmed December 4, 2025\""
+   "pass2": "was \"Acts 2025, 89th Legislature update confirmed December 4, 2025\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "beginnerTip.1",
@@ -393,7 +431,9 @@
    "statute": "Tex. Tax Code § 34.05(a)",
    "quote": "If property is sold to a taxing unit that is a party to the judgment, the taxing unit may sell the property at any time by public or private sale.",
    "status": "corrected",
-   "pass2": "removed \"no redemption period in many cases\" (contradicted by § 34.05(a)). pass 2: \"bid off\" step rests on § 34.01(j)"
+   "pass2": "removed \"no redemption period in many cases\" (contradicted by § 34.05(a)). pass 2: \"bid off\" step rests on § 34.01(j)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "beginnerTip.2",
@@ -408,7 +448,9 @@
    "statute": "Tex. Tax Code § 34.05(a)",
    "quote": "If property is sold to a taxing unit that is a party to the judgment, the taxing unit may sell the property at any time by public or private sale.",
    "status": "corrected",
-   "pass2": "was \"Contact the county tax assessor-collector and ask for the struck-off list.\""
+   "pass2": "was \"Contact the county tax assessor-collector and ask for the struck-off list.\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "beginnerTip.3",
@@ -423,7 +465,9 @@
    "statute": "Tex. Tax Code § 34.05(a)",
    "quote": "If property is sold to a taxing unit that is a party to the judgment, the taxing unit may sell the property at any time by public or private sale.",
    "status": "corrected",
-   "pass2": "removed: no official source (opinion, comparison, vendor or county practice claim)"
+   "pass2": "removed: no official source (opinion, comparison, vendor or county practice claim)",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "risks.1",
@@ -438,7 +482,9 @@
    "statute": "Tex. Tax Code § 34.21(a)",
    "quote": "by paying the purchaser the amount the purchaser bid for the property, the amount of the deed recording fee, and the amount paid by the purchaser as taxes, penalties, interest, and costs on the property, plus a redemption premium of 25 percent of the aggregate total if the property is redeemed during the first year of the redemption period",
    "status": "corrected",
-   "pass2": "was \"Redemption penalty calculated on FULL auction price — overbidding is extremely expensive if redeemed\"; removed opinion"
+   "pass2": "was \"Redemption penalty calculated on FULL auction price — overbidding is extremely expensive if redeemed\"; removed opinion",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "risks.2",
@@ -468,7 +514,9 @@
    "statute": "Tex. Tax Code § 34.21(e)",
    "quote": "The owner of real property sold at a tax sale other than property that was used as the residence homestead of the owner or that was land designated for agricultural use when the suit or the application for the warrant was filed, or that is a mineral interest, may redeem the property",
    "status": "corrected",
-   "pass2": "removed \"dramatically\""
+   "pass2": "removed \"dramatically\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "ddExtra.1",
@@ -483,7 +531,9 @@
    "statute": "Tex. Tax Code § 34.21(e)",
    "quote": "The owner of real property sold at a tax sale other than property that was used as the residence homestead of the owner or that was land designated for agricultural use when the suit or the application for the warrant was filed, or that is a mineral interest, may redeem the property",
    "status": "corrected",
-   "pass2": "added mineral interest; \"commercial\" replaced by \"other\""
+   "pass2": "added mineral interest; \"commercial\" replaced by \"other\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "ddExtra.2",
@@ -498,7 +548,9 @@
    "statute": "Tex. Tax Code § 34.015(b)",
    "quote": "The officer may not execute or deliver a deed to the purchaser of the property unless the purchaser exhibits to the officer an unexpired written statement issued under this section to the person by the county assessor-collector",
    "status": "corrected",
-   "pass2": "was \"Contact county tax assessor-collector for struck-off list before attending auction\""
+   "pass2": "was \"Contact county tax assessor-collector for struck-off list before attending auction\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "ddExtra.3",
@@ -513,7 +565,9 @@
    "statute": "Tex. Tax Code § 34.01(n)",
    "quote": "The deed vests good and perfect title in the purchaser or the purchaser's assigns to the interest owned by the defendant in the property subject to the foreclosure, including the defendant's right to the use and possession of the property, subject only to the defendant's right of redemption",
    "status": "corrected",
-   "pass2": "removed: IRS lien survival is federal law, not in the Texas Tax Code text fetched"
+   "pass2": "removed: IRS lien survival is federal law, not in the Texas Tax Code text fetched",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "signup.platform",
@@ -528,7 +582,9 @@
    "statute": "Tex. Tax Code § 34.01(a-1)",
    "quote": "The commissioners court of a county by official action may authorize the officer charged with selling property under this section to conduct a public auction using online bidding and sale.",
    "status": "corrected",
-   "pass2": "removed RealAuction.com and GovEase.com (vendors, not in statute)"
+   "pass2": "removed RealAuction.com and GovEase.com (vendors, not in statute)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.1",
@@ -543,7 +599,9 @@
    "statute": "Tex. Tax Code § 34.01(e)(2)",
    "quote": "(2) the date, time, and location of the sale;",
    "status": "corrected",
-   "pass2": "removed txdmv.gov (motor vehicles agency, not a tax sale directory)"
+   "pass2": "removed txdmv.gov (motor vehicles agency, not a tax sale directory)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.2",
@@ -558,7 +616,9 @@
    "statute": "Tex. Tax Code § 34.01(a-1)",
    "quote": "The commissioners court of a county by official action may authorize the officer charged with selling property under this section to conduct a public auction using online bidding and sale.",
    "status": "corrected",
-   "pass2": "removed vendor names"
+   "pass2": "removed vendor names",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.3",
@@ -573,7 +633,9 @@
    "statute": "Tex. Tax Code § 34.011(b)",
    "quote": "A commissioners court may require that, to be eligible to bid at a sale of real property under this chapter, a person must be registered as a bidder with the county assessor-collector before the sale begins.",
    "status": "corrected",
-   "pass2": "was \"Register on the platform and verify your identity (government ID + entity docs if LLC)\""
+   "pass2": "was \"Register on the platform and verify your identity (government ID + entity docs if LLC)\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.4",
@@ -588,7 +650,9 @@
    "statute": "Tex. Tax Code § 34.01(r-1)",
    "quote": "must take place between 10 a.m. and 4 p.m. on the first Tuesday of a month or, if the first Tuesday of a month occurs on January 1 or July 4, between 10 a.m. and 4 p.m. on the first Wednesday of the month",
    "status": "corrected",
-   "pass2": "was \"Fund your account before the first Tuesday auction\""
+   "pass2": "was \"Fund your account before the first Tuesday auction\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.5",
@@ -603,7 +667,9 @@
    "statute": "Tex. Tax Code § 34.05(a)",
    "quote": "If property is sold to a taxing unit that is a party to the judgment, the taxing unit may sell the property at any time by public or private sale.",
    "status": "corrected",
-   "pass2": "was \"contact the county tax assessor-collector directly for OTC list\""
+   "pass2": "was \"contact the county tax assessor-collector directly for OTC list\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.deposit.1",
@@ -618,7 +684,9 @@
    "statute": "Tex. Tax Code § 34.01(a)",
    "quote": "shall be sold by the officer charged with selling the property, unless otherwise directed by the taxing unit that requested the warrant or order of sale",
    "status": "corrected",
-   "pass2": "was \"Varies by county.\""
+   "pass2": "was \"Varies by county.\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.deposit.2",
@@ -633,7 +701,9 @@
    "statute": "Tex. Tax Code § 34.01(a)",
    "quote": "shall be sold by the officer charged with selling the property, unless otherwise directed by the taxing unit that requested the warrant or order of sale",
    "status": "corrected",
-   "pass2": "removed \"Most require wire or cashier's check.\" (no official source)"
+   "pass2": "removed \"Most require wire or cashier's check.\" (no official source)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "otc.available",
@@ -648,7 +718,9 @@
    "statute": "Tex. Tax Code § 34.05(a)",
    "quote": "If property is sold to a taxing unit that is a party to the judgment, the taxing unit may sell the property at any time by public or private sale.",
    "status": "corrected",
-   "pass2": "was \"Available\""
+   "pass2": "was \"Available\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "otc.note.1",
@@ -663,7 +735,9 @@
    "statute": "Tex. Tax Code § 34.05(a)",
    "quote": "If property is sold to a taxing unit that is a party to the judgment, the taxing unit may sell the property at any time by public or private sale.",
    "status": "corrected",
-   "pass2": "was \"Struck-off properties available directly from county tax assessor-collector.\""
+   "pass2": "was \"Struck-off properties available directly from county tax assessor-collector.\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "otc.note.2",
@@ -678,7 +752,9 @@
    "statute": "Tex. Tax Code § 34.05(a)",
    "quote": "The sale is subject to any right of redemption of the former owner. The redemption period begins on the date the deed to the taxing unit is filed for record.",
    "status": "corrected",
-   "pass2": "was \"Often no redemption period.\" (contradicted by § 34.05(a))"
+   "pass2": "was \"Often no redemption period.\" (contradicted by § 34.05(a))",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "otc.note.3",
@@ -693,7 +769,9 @@
    "statute": "Tex. Tax Code § 34.05(a)",
    "quote": "If property is sold to a taxing unit that is a party to the judgment, the taxing unit may sell the property at any time by public or private sale.",
    "status": "corrected",
-   "pass2": "was \"Call the county and ask for the struck-off inventory list.\""
+   "pass2": "was \"Call the county and ask for the struck-off inventory list.\"",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "platforms.1",
@@ -708,7 +786,9 @@
    "statute": "Tex. Tax Code § 34.01(a-1)",
    "quote": "The commissioners court of a county by official action may authorize the officer charged with selling property under this section to conduct a public auction using online bidding and sale.",
    "status": "corrected",
-   "pass2": "removed: RealAuction.com is a vendor, not in statute"
+   "pass2": "removed: RealAuction.com is a vendor, not in statute",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "platforms.2",
@@ -723,7 +803,9 @@
    "statute": "Tex. Tax Code § 34.01(a-1)",
    "quote": "The commissioners court of a county by official action may authorize the officer charged with selling property under this section to conduct a public auction using online bidding and sale.",
    "status": "corrected",
-   "pass2": "removed: GovEase.com is a vendor, not in statute"
+   "pass2": "removed: GovEase.com is a vendor, not in statute",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "platforms.3",
@@ -738,7 +820,9 @@
    "statute": "Tex. Tax Code § 34.01(a)",
    "quote": "shall be sold by the officer charged with selling the property, unless otherwise directed by the taxing unit that requested the warrant or order of sale",
    "status": "corrected",
-   "pass2": "was \"County tax assessor-collector offices\""
+   "pass2": "was \"County tax assessor-collector offices\"",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "surplus.1",
@@ -753,7 +837,9 @@
    "statute": "Tex. Tax Code § 34.04(a)",
    "quote": "may file a petition in the court that ordered the seizure or sale setting forth a claim to the excess proceeds. The petition must be filed before the second anniversary of the date of the sale of the property.",
    "status": "corrected",
-   "pass2": "was \"Texas revised its Tax Code to require surplus return after tax foreclosure sales.\""
+   "pass2": "was \"Texas revised its Tax Code to require surplus return after tax foreclosure sales.\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "es.rate",
@@ -769,7 +855,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.redemption",
@@ -785,7 +873,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.1",
@@ -817,7 +907,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.3",
@@ -833,7 +925,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.4",
@@ -849,7 +943,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.5",
@@ -865,7 +961,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.6",
@@ -881,7 +979,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.7",
@@ -897,7 +997,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.8",
@@ -929,7 +1031,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.rateWhy.1",
@@ -945,7 +1049,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.rateWhy.2",
@@ -961,7 +1067,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "no English twin; set by figure comparison"
   },
   {
    "id": "es.beginnerTip.1",
@@ -977,7 +1085,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.beginnerTip.2",
@@ -993,7 +1103,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.beginnerTip.3",
@@ -1009,7 +1121,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.risks.1",
@@ -1025,7 +1139,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.risks.2",
@@ -1057,7 +1173,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.ddExtra.1",
@@ -1073,7 +1191,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.ddExtra.2",
@@ -1089,7 +1209,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.ddExtra.3",
@@ -1105,7 +1227,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.signup.platform",
@@ -1121,7 +1245,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.1",
@@ -1137,7 +1263,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.2",
@@ -1153,7 +1281,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.3",
@@ -1169,7 +1299,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.4",
@@ -1185,7 +1317,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.5",
@@ -1201,7 +1335,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.deposit.1",
@@ -1217,7 +1353,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.deposit.2",
@@ -1233,7 +1371,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.otc.note.1",
@@ -1249,7 +1389,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.otc.note.2",
@@ -1265,7 +1407,9 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.otc.note.3",
@@ -1281,7 +1425,13 @@
    "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   }
+ ],
+ "checkStatus": "checked with gaps",
+ "gapIds": [
+  "TX-1"
  ]
 }

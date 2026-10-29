@@ -53,12 +53,12 @@ on:
         default: true
       chain_run:
         description: "Leave as 1. Set by the chain itself."
-        type: number
-        default: 1
+        type: string
+        default: "1"
       chain_minutes:
         description: "Leave as 0. Actions minutes used so far by this chain."
-        type: number
-        default: 0
+        type: string
+        default: "0"
       chain_cost:
         description: "Leave as 0. API dollars used so far by this chain."
         type: string
@@ -369,6 +369,9 @@ jobs:
           PUSHED: ${{ steps.save.outputs.pushed }}
         run: |
           set -uo pipefail
+          # Keep whole numbers only: a value like "1.0" would break the arithmetic below.
+          RUN_NO="${RUN_NO%%.*}"; RUN_NO="${RUN_NO:-1}"
+          PREV_MINUTES="${PREV_MINUTES%%.*}"; PREV_MINUTES="${PREV_MINUTES:-0}"
           now=$(date -u +%s)
           # Billed minutes round up; add 3 for checkout and setup before the start mark.
           used=$(( PREV_MINUTES + (now - START + 59) / 60 + 3 ))
@@ -472,6 +475,7 @@ jobs:
           STARTED: ${{ steps.dispatch.outputs.started }}
         run: |
           set -euo pipefail
+          RUN_NO="${RUN_NO%%.*}"; RUN_NO="${RUN_NO:-1}"
           run_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
           branch_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${BRANCH}"
           title="NEEDS LANDO: Foundry ${SLUG} result"

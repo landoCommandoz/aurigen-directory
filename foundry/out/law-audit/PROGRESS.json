@@ -61,7 +61,8 @@
    "corrected": 60,
    "flagged": 6,
    "unreachable": 2,
-   "trimmed": 50
+   "trimmed": 50,
+   "checkStatus": "checked with gaps"
   },
   "AL": {
    "status": "done",
@@ -71,7 +72,8 @@
    "corrected": 66,
    "flagged": 2,
    "unreachable": 0,
-   "trimmed": 62
+   "trimmed": 62,
+   "checkStatus": "checked with gaps"
   },
   "CA": {
    "status": "done",
@@ -81,7 +83,8 @@
    "corrected": 62,
    "flagged": 1,
    "unreachable": 0,
-   "trimmed": 55
+   "trimmed": 55,
+   "checkStatus": "checked with gaps"
   },
   "DC": {
    "status": "done",
@@ -91,7 +94,8 @@
    "corrected": 71,
    "flagged": 2,
    "unreachable": 0,
-   "trimmed": 56
+   "trimmed": 56,
+   "checkStatus": "checked with gaps"
   },
   "HI": {
    "status": "done",
@@ -101,7 +105,8 @@
    "corrected": 56,
    "flagged": 1,
    "unreachable": 5,
-   "trimmed": 62
+   "trimmed": 62,
+   "checkStatus": "checked with gaps"
   },
   "KY": {
    "status": "done",
@@ -111,7 +116,8 @@
    "corrected": 61,
    "flagged": 0,
    "unreachable": 0,
-   "trimmed": 60
+   "trimmed": 60,
+   "checkStatus": "checked with gaps"
   },
   "LA": {
    "status": "done",
@@ -121,7 +127,8 @@
    "corrected": 65,
    "flagged": 1,
    "unreachable": 0,
-   "trimmed": 62
+   "trimmed": 62,
+   "checkStatus": "checked with gaps"
   },
   "ME": {
    "status": "done",
@@ -131,7 +138,8 @@
    "corrected": 57,
    "flagged": 1,
    "unreachable": 5,
-   "trimmed": 58
+   "trimmed": 58,
+   "checkStatus": "checked with gaps"
   },
   "MS": {
    "status": "done",
@@ -141,7 +149,8 @@
    "corrected": 51,
    "flagged": 1,
    "unreachable": 14,
-   "trimmed": 67
+   "trimmed": 67,
+   "checkStatus": "checked with gaps"
   },
   "ND": {
    "status": "done",
@@ -151,7 +160,8 @@
    "corrected": 58,
    "flagged": 0,
    "unreachable": 0,
-   "trimmed": 57
+   "trimmed": 57,
+   "checkStatus": "checked with gaps"
   },
   "NM": {
    "status": "done",
@@ -161,7 +171,8 @@
    "corrected": 60,
    "flagged": 3,
    "unreachable": 0,
-   "trimmed": 61
+   "trimmed": 61,
+   "checkStatus": "checked with gaps"
   },
   "OK": {
    "status": "done",
@@ -171,7 +182,8 @@
    "corrected": 21,
    "flagged": 22,
    "unreachable": 15,
-   "trimmed": 58
+   "trimmed": 58,
+   "checkStatus": "checked with gaps"
   },
   "PA": {
    "status": "done",
@@ -181,7 +193,8 @@
    "corrected": 52,
    "flagged": 0,
    "unreachable": 0,
-   "trimmed": 54
+   "trimmed": 54,
+   "checkStatus": "checked"
   },
   "TX": {
    "status": "done",
@@ -191,7 +204,8 @@
    "corrected": 73,
    "flagged": 0,
    "unreachable": 0,
-   "trimmed": 76
+   "trimmed": 76,
+   "checkStatus": "checked with gaps"
   },
   "UT": {
    "status": "done",
@@ -201,7 +215,8 @@
    "corrected": 61,
    "flagged": 0,
    "unreachable": 0,
-   "trimmed": 64
+   "trimmed": 64,
+   "checkStatus": "checked with gaps"
   },
   "WI": {
    "status": "done",
@@ -211,7 +226,8 @@
    "corrected": 58,
    "flagged": 0,
    "unreachable": 0,
-   "trimmed": 61
+   "trimmed": 61,
+   "checkStatus": "checked"
   },
   "WV": {
    "status": "done",
@@ -221,7 +237,8 @@
    "corrected": 69,
    "flagged": 0,
    "unreachable": 0,
-   "trimmed": 71
+   "trimmed": 71,
+   "checkStatus": "checked with gaps"
   },
   "AR": {
    "status": "done",
@@ -231,7 +248,8 @@
    "corrected": 57,
    "flagged": 0,
    "unreachable": 0,
-   "trimmed": 61
+   "trimmed": 61,
+   "checkStatus": "checked with gaps"
   },
   "CO": {
    "status": "done",
@@ -241,7 +259,8 @@
    "corrected": 75,
    "flagged": 0,
    "unreachable": 0,
-   "trimmed": 76
+   "trimmed": 76,
+   "checkStatus": "checked with gaps"
   },
   "CT": {
    "status": "blocked",
@@ -251,7 +270,8 @@
    "corrected": 0,
    "flagged": 0,
    "unreachable": 0,
-   "trimmed": 0
+   "trimmed": 0,
+   "checkStatus": "Couldn't reach source"
   },
   "IA": {
    "status": "done",
@@ -261,7 +281,8 @@
    "corrected": 66,
    "flagged": 0,
    "unreachable": 0,
-   "trimmed": 70
+   "trimmed": 70,
+   "checkStatus": "checked with gaps"
   },
   "IL": {
    "status": "blocked",
@@ -271,7 +292,8 @@
    "corrected": 0,
    "flagged": 0,
    "unreachable": 0,
-   "trimmed": 0
+   "trimmed": 0,
+   "checkStatus": "Couldn't reach source"
   },
   "MA": {
    "status": "done",
@@ -281,7 +303,8 @@
    "corrected": 63,
    "flagged": 0,
    "unreachable": 0,
-   "trimmed": 64
+   "trimmed": 64,
+   "checkStatus": "checked with gaps"
   },
   "MD": {
    "status": "todo",
@@ -507,5 +530,29 @@
    "flagged": 0,
    "unreachable": 0
   }
+ },
+ "gapQueue": {
+  "items": 19,
+  "order": [
+   "CO",
+   "AR",
+   "OK",
+   "HI",
+   "MS",
+   "NM",
+   "AL",
+   "CA",
+   "ME",
+   "AK",
+   "DC",
+   "IA",
+   "KY",
+   "LA",
+   "MA",
+   "ND",
+   "TX",
+   "UT",
+   "WV"
+  ]
  }
 }

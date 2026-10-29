@@ -39,7 +39,9 @@
    "statute": "AS 29.45.390",
    "quote": "Foreclosed properties are transferred to the municipality for the lien amount.",
    "status": "corrected",
-   "pass2": "ok (pass 2): no lien is sold to buyers; foreclosed property goes to the municipality, so no buyer rate exists"
+   "pass2": "ok (pass 2): no lien is sold to buyers; foreclosed property goes to the municipality, so no buyer rate exists",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "rateNote",
@@ -54,7 +56,9 @@
    "statute": "AS 29.45.450",
    "quote": "Unredeemed property in the area of the borough outside all cities is deeded to the borough by the clerk of the court. Unredeemed property in a city is deeded to the city",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "redemption",
@@ -69,7 +73,9 @@
    "statute": "AS 29.45.400",
    "quote": "Properties transferred to the municipality are held by the municipality for at least one year.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "bidMethod",
@@ -100,7 +106,9 @@
    "statute": "AS 29.45.320",
    "quote": "The municipality shall enforce delinquent real property tax liens by annual foreclosure, unless otherwise provided by ordinance.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "auctionPlatform",
@@ -115,7 +123,9 @@
    "statute": "AS 29.45.460",
    "quote": "Tax-foreclosed property conveyed to a municipality by tax foreclosure and not required for a public purpose may be sold.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "auctionTiming",
@@ -130,7 +140,9 @@
    "statute": "AS 29.45.440",
    "quote": "all properties ordered sold under the judgment, unless redeemed, shall be deeded to the municipality immediately on expiration of the period of redemption",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.1",
@@ -145,7 +157,9 @@
    "statute": "AS 29.45.320",
    "quote": "The municipality shall enforce delinquent real property tax liens by annual foreclosure, unless otherwise provided by ordinance.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.2",
@@ -160,7 +174,9 @@
    "statute": "none: administrative practice (Municipality of Anchorage)",
    "quote": "A Second 2026 Tax-Foreclosed Property Sale took place September 16, 2026",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.3",
@@ -175,7 +191,9 @@
    "statute": "AS 29.45.320",
    "quote": "The municipality shall enforce delinquent real property tax liens by annual foreclosure, unless otherwise provided by ordinance.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "typeWhy.1",
@@ -190,7 +208,9 @@
    "statute": "AS 29.45.460",
    "quote": "Tax-foreclosed property conveyed to a municipality by tax foreclosure and not required for a public purpose may be sold.",
    "status": "corrected",
-   "pass2": "trimmed: dropped \"auctions\" and \"buyer receives a deed\" (no quote on sale method or buyer deed)"
+   "pass2": "trimmed: dropped \"auctions\" and \"buyer receives a deed\" (no quote on sale method or buyer deed)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "typeWhy.2",
@@ -205,7 +225,9 @@
    "statute": "AS 29.45.400",
    "quote": "Properties transferred to the municipality are held by the municipality for at least one year. During the redemption period a party having an interest in the property may redeem it",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "typeWhy.3",
@@ -220,7 +242,9 @@
    "statute": "AS 29.45.400",
    "quote": "Properties transferred to the municipality are held by the municipality for at least one year.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "rateWhy.1",
@@ -235,7 +259,9 @@
    "statute": "AS 29.45.390",
    "quote": "Foreclosed properties are transferred to the municipality for the lien amount.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "rateWhy.2",
@@ -250,7 +276,9 @@
    "statute": "AS 29.45.460",
    "quote": "Tax-foreclosed property conveyed to a municipality by tax foreclosure and not required for a public purpose may be sold.",
    "status": "corrected",
-   "pass2": "removed: no official source says bidding is competitive or market-driven"
+   "pass2": "removed: no official source says bidding is competitive or market-driven",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "rateWhy.3",
@@ -265,7 +293,9 @@
    "statute": "AS 29.45.390",
    "quote": "Foreclosed properties are transferred to the municipality for the lien amount.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "keyNotes.1",
@@ -280,7 +310,9 @@
    "statute": "AS 29.45.450",
    "quote": "Unredeemed property in the area of the borough outside all cities is deeded to the borough by the clerk of the court. Unredeemed property in a city is deeded to the city",
    "status": "corrected",
-   "pass2": "trimmed: removed \"19 organized boroughs plus unorganized areas\" (DCRA source blocked, HTTP 403)"
+   "pass2": "trimmed: removed \"19 organized boroughs plus unorganized areas\" (DCRA source blocked, HTTP 403)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "keyNotes.2",
@@ -295,7 +327,9 @@
    "statute": "AS 29.45.360",
    "quote": "A municipality shall bring one general foreclosure proceeding in rem against the properties included in the foreclosure list.",
    "status": "corrected",
-   "pass2": "removed: inventory and parcel-type claims have no official source"
+   "pass2": "removed: inventory and parcel-type claims have no official source",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "keyNotes.3",
@@ -310,7 +344,9 @@
    "statute": "AS 29.45.460",
    "quote": "The municipality shall determine by ordinance whether foreclosed property deeded to the municipality shall be retained for a public purpose.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "notBeginnerReason.1",
@@ -325,7 +361,9 @@
    "statute": "AS 29.45.320",
    "quote": "The municipality shall enforce delinquent real property tax liens by annual foreclosure, unless otherwise provided by ordinance.",
    "status": "corrected",
-   "pass2": "trimmed: removed \"limited inventory\" and \"federal land restricts most parcels\" (no official source)"
+   "pass2": "trimmed: removed \"limited inventory\" and \"federal land restricts most parcels\" (no official source)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "notBeginnerReason.2",
@@ -340,7 +378,9 @@
    "statute": "AS 29.45.320",
    "quote": "The municipality shall enforce delinquent real property tax liens by annual foreclosure, unless otherwise provided by ordinance.",
    "status": "corrected",
-   "pass2": "removed: opinion, no source"
+   "pass2": "removed: opinion, no source",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "beginnerTip.1",
@@ -355,7 +395,9 @@
    "statute": "AS 29.45.320",
    "quote": "The municipality shall enforce delinquent real property tax liens by annual foreclosure, unless otherwise provided by ordinance.",
    "status": "corrected",
-   "pass2": "removed: opinion, no source"
+   "pass2": "removed: opinion, no source",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "beginnerTip.2",
@@ -370,7 +412,9 @@
    "statute": "none: administrative practice (Municipality of Anchorage)",
    "quote": "All information regarding the tax foreclosure auction can be found on this webpage.",
    "status": "corrected",
-   "pass2": "replaced Mat-Su claim (\"most consistent auction activity\") which has no official source"
+   "pass2": "replaced Mat-Su claim (\"most consistent auction activity\") which has no official source",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "risks.1",
@@ -385,7 +429,9 @@
    "statute": "none: administrative practice (Municipality of Anchorage)",
    "quote": "All properties are offered for sale on a \"where is\" and \"as is\" basis without any representation or warranty, expressed or implied.",
    "status": "corrected",
-   "pass2": "replaced federal-land percentage claim (no official source)"
+   "pass2": "replaced federal-land percentage claim (no official source)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "risks.2",
@@ -400,7 +446,9 @@
    "statute": "AS 29.45.360",
    "quote": "A municipality shall bring one general foreclosure proceeding in rem against the properties included in the foreclosure list.",
    "status": "corrected",
-   "pass2": "removed: no source"
+   "pass2": "removed: no source",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "risks.3",
@@ -415,7 +463,9 @@
    "statute": "AS 29.45.360",
    "quote": "A municipality shall bring one general foreclosure proceeding in rem against the properties included in the foreclosure list.",
    "status": "corrected",
-   "pass2": "removed: no source"
+   "pass2": "removed: no source",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "risks.4",
@@ -430,7 +480,9 @@
    "statute": "AS 29.45.460",
    "quote": "The municipality shall determine by ordinance whether foreclosed property deeded to the municipality shall be retained for a public purpose.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "ddExtra.1",
@@ -445,7 +497,9 @@
    "statute": "AS 29.45.450",
    "quote": "Conveyance gives the municipality clear title, except for prior recorded tax liens of the United States and the state.",
    "status": "corrected",
-   "pass2": "replaced federal/Native land check (no official source)"
+   "pass2": "replaced federal/Native land check (no official source)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "ddExtra.2",
@@ -460,7 +514,9 @@
    "statute": "AS 29.45.360",
    "quote": "A municipality shall bring one general foreclosure proceeding in rem against the properties included in the foreclosure list.",
    "status": "corrected",
-   "pass2": "removed: BLM atlas tip has no official Alaska source fetched"
+   "pass2": "removed: BLM atlas tip has no official Alaska source fetched",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "ddExtra.3",
@@ -475,7 +531,9 @@
    "statute": "none: administrative practice (Municipality of Anchorage)",
    "quote": "It is the responsibility of the purchaser to do their own research as to whether the property may be subject to liens, encumbrances, or restrictions",
    "status": "corrected",
-   "pass2": "replaced road-access claim (no source)"
+   "pass2": "replaced road-access claim (no source)",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.platform",
@@ -490,7 +548,9 @@
    "statute": "AS 29.45.450",
    "quote": "Unredeemed property in the area of the borough outside all cities is deeded to the borough by the clerk of the court. Unredeemed property in a city is deeded to the city",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.1",
@@ -521,7 +581,9 @@
    "statute": "AS 29.45.330",
    "quote": "a statement that the list is available for public inspection at the clerk's office",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.3",
@@ -536,7 +598,9 @@
    "statute": "AS 29.45.460",
    "quote": "Tax-foreclosed property conveyed to a municipality by tax foreclosure and not required for a public purpose may be sold.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.4",
@@ -551,7 +615,9 @@
    "statute": "none: administrative practice (Municipality of Anchorage)",
    "quote": "The properties that are available for the second sealed bid sale",
    "status": "corrected",
-   "pass2": "trimmed: removed \"most require in-person attendance\" (no source)"
+   "pass2": "trimmed: removed \"most require in-person attendance\" (no source)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.deposit.1",
@@ -582,7 +648,9 @@
    "statute": "AS 29.45.460",
    "quote": "The municipality shall determine by ordinance whether foreclosed property deeded to the municipality shall be retained for a public purpose.",
    "status": "corrected",
-   "pass2": "removed: the flag note already says to confirm with the county"
+   "pass2": "removed: the flag note already says to confirm with the county",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "otc.available",
@@ -629,7 +697,9 @@
    "statute": "none: administrative practice (Municipality of Anchorage)",
    "quote": "The Real Estate Department makes no guarantee or warrantee",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "surplus.1",
@@ -644,7 +714,9 @@
    "statute": "AS 29.45.480",
    "quote": "If tax-foreclosed real property that has been held by a municipality for less than 10 years after the close of the redemption period and never designated for a public purpose is sold at a tax-foreclosure sale, the former record owner is entitled to the portion of the proceeds of the sale that exceeds the amount of unpaid taxes",
    "status": "corrected",
-   "pass2": "pass 2 trim: was \"...claim sale proceeds above taxes, interest and costs\" (quote names unpaid taxes only)"
+   "pass2": "pass 2 trim: was \"...claim sale proceeds above taxes, interest and costs\" (quote names unpaid taxes only)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "surplus.2",
@@ -660,7 +732,9 @@
    "statute": "AS 29.45.480",
    "quote": "On presentation of a proper claim, the municipality shall remit the excess to the former record owner. A claim for the excess filed after six months of the date of sale is forever barred.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "es.rate",
@@ -676,7 +750,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.redemption",
@@ -692,7 +768,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.1",
@@ -708,7 +786,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.2",
@@ -724,7 +804,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/muni-anchorage-foreclosed.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.3",
@@ -740,7 +822,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.typeWhy.1",
@@ -756,7 +840,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.rateWhy.1",
@@ -772,7 +858,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.rateWhy.2",
@@ -788,7 +876,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.notBeginnerReason.1",
@@ -804,7 +894,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.beginnerTip.1",
@@ -820,7 +912,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.beginnerTip.2",
@@ -836,7 +930,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/muni-anchorage-foreclosed.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.risks.1",
@@ -852,7 +948,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/muni-anchorage-foreclosed.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.risks.2",
@@ -868,7 +966,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.risks.3",
@@ -884,7 +984,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.risks.4",
@@ -900,7 +1002,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.ddExtra.1",
@@ -916,7 +1020,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.ddExtra.2",
@@ -932,7 +1038,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.ddExtra.3",
@@ -948,7 +1056,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/muni-anchorage-foreclosed.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.platform",
@@ -964,7 +1074,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.1",
@@ -997,7 +1109,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.3",
@@ -1013,7 +1127,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.4",
@@ -1029,7 +1145,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/muni-anchorage-foreclosed.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.deposit.1",
@@ -1062,7 +1180,9 @@
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.otc.note.1",
@@ -1081,5 +1201,9 @@
    "flagReason": "Same as otc.available",
    "pass2": "ok: matches English claim"
   }
+ ],
+ "checkStatus": "checked with gaps",
+ "gapIds": [
+  "AK-1"
  ]
 }

@@ -3,59 +3,59 @@
 Spec: `foundry/aurigen-law-audit.md`. Gate: `cloudflare/scripts/check-law.mjs`. Ledgers: `cloudflare/data/law/<st>.json`.
 States done: 21 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, UT, WI, WV, AR, CO, IA, MA).
 
-| State | Status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |
-|---|---|---|---|---|---|---|---|---|---|
-| AK | done | 2026-10-27 | 69 | 1 | 60 | 6 | 2 | 50 | [ak.md](ak.md) |
-| AL | done | 2026-10-27 | 70 | 2 | 66 | 2 | 0 | 62 | [al.md](al.md) |
-| CA | done | 2026-10-27 | 70 | 7 | 62 | 1 | 0 | 55 | [ca.md](ca.md) |
-| DC | done | 2026-10-27 | 74 | 1 | 71 | 2 | 0 | 56 | [dc.md](dc.md) |
-| HI | done | 2026-10-27 | 68 | 6 | 56 | 1 | 5 | 62 | [hi.md](hi.md) |
-| KY | done | 2026-10-27 | 66 | 5 | 61 | 0 | 0 | 60 | [ky.md](ky.md) |
-| LA | done | 2026-10-27 | 68 | 2 | 65 | 1 | 0 | 62 | [la.md](la.md) |
-| ME | done | 2026-10-27 | 68 | 5 | 57 | 1 | 5 | 58 | [me.md](me.md) |
-| MS | done | 2026-10-27 | 68 | 2 | 51 | 1 | 14 | 67 | [ms.md](ms.md) |
-| ND | done | 2026-10-27 | 64 | 6 | 58 | 0 | 0 | 57 | [nd.md](nd.md) |
-| NM | done | 2026-10-27 | 67 | 4 | 60 | 3 | 0 | 61 | [nm.md](nm.md) |
-| OK | done | 2026-10-27 | 61 | 3 | 21 | 22 | 15 | 58 | [ok.md](ok.md) |
-| PA | done | 2026-10-27 | 68 | 16 | 52 | 0 | 0 | 54 | [pa.md](pa.md) |
-| TX | done | 2026-10-29 | 83 | 10 | 73 | 0 | 0 | 76 | [tx.md](tx.md) |
-| UT | done | 2026-10-29 | 73 | 12 | 61 | 0 | 0 | 64 | [ut.md](ut.md) |
-| WI | done | 2026-10-29 | 68 | 10 | 58 | 0 | 0 | 61 | [wi.md](wi.md) |
-| WV | done | 2026-10-29 | 77 | 8 | 69 | 0 | 0 | 71 | [wv.md](wv.md) |
-| AR | done | 2026-10-29 | 69 | 12 | 57 | 0 | 0 | 61 | [ar.md](ar.md) |
-| CO | done | 2026-10-29 | 80 | 5 | 75 | 0 | 0 | 76 | [co.md](co.md) |
-| CT | blocked | 2026-10-29 | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| IA | done | 2026-10-29 | 79 | 13 | 66 | 0 | 0 | 70 | [ia.md](ia.md) |
-| IL | blocked | 2026-10-29 | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| MA | done | 2026-10-29 | 68 | 5 | 63 | 0 | 0 | 64 | [ma.md](ma.md) |
-| MD | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| NH | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| SD | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| AZ | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| DE | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| FL | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| GA | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| ID | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| IN | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| KS | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| MI | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| MN | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| MO | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| MT | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| NC | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| NE | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| NJ | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| NV | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| NY | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| OH | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| OR | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| RI | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| SC | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| TN | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| VA | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| VT | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| WA | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
-| WY | todo |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| State | Status | Check status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |
+|---|---|---|---|---|---|---|---|---|---|---|
+| AK | done | checked with gaps | 2026-10-27 | 69 | 1 | 60 | 6 | 2 | 50 | [ak.md](ak.md) |
+| AL | done | checked with gaps | 2026-10-27 | 70 | 2 | 66 | 2 | 0 | 62 | [al.md](al.md) |
+| CA | done | checked with gaps | 2026-10-27 | 70 | 7 | 62 | 1 | 0 | 55 | [ca.md](ca.md) |
+| DC | done | checked with gaps | 2026-10-27 | 74 | 1 | 71 | 2 | 0 | 56 | [dc.md](dc.md) |
+| HI | done | checked with gaps | 2026-10-27 | 68 | 6 | 56 | 1 | 5 | 62 | [hi.md](hi.md) |
+| KY | done | checked with gaps | 2026-10-27 | 66 | 5 | 61 | 0 | 0 | 60 | [ky.md](ky.md) |
+| LA | done | checked with gaps | 2026-10-27 | 68 | 2 | 65 | 1 | 0 | 62 | [la.md](la.md) |
+| ME | done | checked with gaps | 2026-10-27 | 68 | 5 | 57 | 1 | 5 | 58 | [me.md](me.md) |
+| MS | done | checked with gaps | 2026-10-27 | 68 | 2 | 51 | 1 | 14 | 67 | [ms.md](ms.md) |
+| ND | done | checked with gaps | 2026-10-27 | 64 | 6 | 58 | 0 | 0 | 57 | [nd.md](nd.md) |
+| NM | done | checked with gaps | 2026-10-27 | 67 | 4 | 60 | 3 | 0 | 61 | [nm.md](nm.md) |
+| OK | done | checked with gaps | 2026-10-27 | 61 | 3 | 21 | 22 | 15 | 58 | [ok.md](ok.md) |
+| PA | done | checked | 2026-10-27 | 68 | 16 | 52 | 0 | 0 | 54 | [pa.md](pa.md) |
+| TX | done | checked with gaps | 2026-10-29 | 83 | 10 | 73 | 0 | 0 | 76 | [tx.md](tx.md) |
+| UT | done | checked with gaps | 2026-10-29 | 73 | 12 | 61 | 0 | 0 | 64 | [ut.md](ut.md) |
+| WI | done | checked | 2026-10-29 | 68 | 10 | 58 | 0 | 0 | 61 | [wi.md](wi.md) |
+| WV | done | checked with gaps | 2026-10-29 | 77 | 8 | 69 | 0 | 0 | 71 | [wv.md](wv.md) |
+| AR | done | checked with gaps | 2026-10-29 | 69 | 12 | 57 | 0 | 0 | 61 | [ar.md](ar.md) |
+| CO | done | checked with gaps | 2026-10-29 | 80 | 5 | 75 | 0 | 0 | 76 | [co.md](co.md) |
+| CT | blocked | Couldn't reach source | 2026-10-29 | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| IA | done | checked with gaps | 2026-10-29 | 79 | 13 | 66 | 0 | 0 | 70 | [ia.md](ia.md) |
+| IL | blocked | Couldn't reach source | 2026-10-29 | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| MA | done | checked with gaps | 2026-10-29 | 68 | 5 | 63 | 0 | 0 | 64 | [ma.md](ma.md) |
+| MD | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| NH | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| SD | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| AZ | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| DE | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| FL | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| GA | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| ID | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| IN | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| KS | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| MI | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| MN | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| MO | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| MT | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| NC | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| NE | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| NJ | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| NV | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| NY | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| OH | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| OR | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| RI | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| SC | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| TN | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| VA | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| VT | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| WA | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| WY | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 
 ## Conflicts (flagged claims)
 

@@ -1,0 +1,254 @@
+{
+ "definitions": {
+  "checked": "Every claim was checked against the official code text, and the 2023 to 2026 enacted-law search was run. No open gaps.",
+  "checked with gaps": "Claims were checked, but at least one listed gap remains: a code or session-law source was not read, or a claim is flagged or unreachable. The showcase must show this state differently from \"checked\".",
+  "Couldn't reach source": "No official source could be reached with full certificate verification. Nothing on the site for this state is presented as audited."
+ },
+ "queue": "After all 51 states are first-pass done, work the gap queue one state per item, in the order listed in \"queueOrder\".",
+ "queueOrder": [
+  "CO",
+  "AR",
+  "OK",
+  "HI",
+  "MS",
+  "NM",
+  "AL",
+  "CA",
+  "ME",
+  "AK",
+  "DC",
+  "IA",
+  "KY",
+  "LA",
+  "MA",
+  "ND",
+  "TX",
+  "UT",
+  "WV"
+ ],
+ "states": {
+  "AK": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "AK-1",
+     "text": "Municipal ordinances (bid method, deposits, over-the-counter sales) were not audited; AS 29.45 is silent on them. 6 claims flagged, 2 unreachable.",
+     "close": "Read the official municipal codes of Anchorage, Fairbanks North Star and Mat-Su; otherwise keep \"Confirm with the municipality\"."
+    }
+   ]
+  },
+  "AL": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "AL-1",
+     "text": "Code of Alabama text not read (ALISON is script-only); claims rest on the Department of Revenue rule and pages. Rate conflict: rule says 8%, DOR FAQ still says 12%.",
+     "close": "Find an official static copy of the Code of Alabama (Legislature or Legislative Services Agency) and read the redemption rate and § 40-10-28 (excess funds, after Tyler v. Hennepin)."
+    }
+   ]
+  },
+  "AR": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "AR-1",
+     "text": "Arkansas Code not read (LexisNexis-hosted); claims rest on Commissioner of State Lands pages and Rules (2023 ed.).",
+     "close": "Look for an official copy of the tax-sale sections on arkleg.state.ar.us or another Arkansas state host."
+    },
+    {
+     "id": "AR-2",
+     "text": "The act behind the July 1, 2023 change was not identified.",
+     "close": "Search arkleg.state.ar.us for the 2023 act."
+    }
+   ]
+  },
+  "CA": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "CA-1",
+     "text": "Revenue and Taxation Code and bill search on leginfo returned HTTP 403; claims rest on the State Controller manual (01/2026) and Excess Proceeds Guide (2025). Over-the-counter claim flagged.",
+     "close": "Retry leginfo and look for another official copy of the Revenue and Taxation Code; read the OTC rule."
+    }
+   ]
+  },
+  "CO": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "CO-1",
+     "text": "2025 and 2026 session laws were not searched; the 2024 code PDF (uncertified printout) was used and the 2025 edition PDF was not found.",
+     "close": "Search leg.colorado.gov for 2025 and 2026 acts amending title 39 (tax sales, redemption, surplus) and look for the 2025 edition PDF."
+    }
+   ]
+  },
+  "DC": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "DC-1",
+     "text": "The 18% redemption rate was not found in the sections read (2 claims flagged).",
+     "close": "Locate the D.C. Code section that sets redemption interest on code.dccouncil.gov and read it."
+    }
+   ]
+  },
+  "HI": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "HI-1",
+     "text": "Hawaii Revised Statutes and Maui and Hawaii County pages returned HTTP 403; claims rest on the Kauai County instructions (2018) for Kauai only; statewide claims unreachable (5), over-the-counter flagged.",
+     "close": "Find another official host for HRS and the Honolulu, Maui and Hawaii County tax-sale pages; look for the newer Kauai document on kauai.gov; check post-Tyler surplus rules."
+    }
+   ]
+  },
+  "IA": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "IA-1",
+     "text": "The 2026 session and Iowa Legislature bill search were not searched (code PDFs dated December 9, 2025); \"SF 569\" from the old site not verified.",
+     "close": "Search legis.iowa.gov for 2025 and 2026 acts touching chapters 446 to 448 and for SF 569."
+    }
+   ]
+  },
+  "KY": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "KY-1",
+     "text": "Legislature bill search not run; surplus-proceeds sections not read.",
+     "close": "Run the apps.legislature.ky.gov bill search for 2023 to 2026 and read the surplus sections."
+    }
+   ]
+  },
+  "LA": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "LA-1",
+     "text": "Bill search not run; R.S. 47:2127, 47:2243 and 47:2267 (surplus at judicial sales) not read.",
+     "close": "Look up the 2026 acts on legis.la.gov and read those sections."
+    }
+   ]
+  },
+  "MA": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "MA-1",
+     "text": "The act that created § 64A and set the 8% rate in § 62 was not identified.",
+     "close": "Find the act on malegislature.gov."
+    }
+   ]
+  },
+  "ME": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "ME-1",
+     "text": "36 M.R.S. § 505 could not be fetched (connection reset); 5 claims unreachable; over-the-counter flagged; LD search not run.",
+     "close": "Retry § 505 (HTML and PDF) and run the LD search for 2023 to 2026."
+    }
+   ]
+  },
+  "MS": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "MS-1",
+     "text": "Mississippi Code not read (LexisNexis-hosted; legislature.ms.gov failed TLS); 14 claims unreachable; lien label flagged; bill status not checked.",
+     "close": "Look for an official copy of Miss. Code §§ 27-41 and 29-1 on another Mississippi state host; retry legislature.ms.gov with full verification only."
+    }
+   ]
+  },
+  "ND": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "ND-1",
+     "text": "Session-law search for the 2023 and 2025 sessions was not run.",
+     "close": "Search ndlegis.gov session laws for chapter 57-28."
+    }
+   ]
+  },
+  "NM": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "NM-1",
+     "text": "NMSA 1978 not fetched; claims rest on Taxation and Revenue Department pages. Redemption and over-the-counter claims flagged.",
+     "close": "Read §§ 7-38-65 to 7-38-70 on nmonesource.com (NM Compilation Commission) and the 2023 to 2026 acts."
+    }
+   ]
+  },
+  "OK": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "OK-1",
+     "text": "Oklahoma Statutes on OSCN serve a CAPTCHA and enacted-bill PDFs are disallowed by robots.txt; 15 claims unreachable and 22 flagged on the amendment to 68 O.S. § 3105. Bill search not run.",
+     "close": "Look for another official copy (Legislature bill pages that robots.txt allows, Oklahoma Tax Commission). Never bypass the CAPTCHA."
+    }
+   ]
+  },
+  "TX": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "TX-1",
+     "text": "Enacted bill text (2025 H.B. 16) not fetched; § 34.21 last amended in 2019.",
+     "close": "Fetch the enrolled text from Texas Legislature Online if robots.txt allows."
+    }
+   ]
+  },
+  "UT": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "UT-1",
+     "text": "Section files read are the 2023 versions; bill-history pages returned empty so no 2024 to 2026 act search was done.",
+     "close": "Find the current section versions on le.utah.gov and search 2024 to 2026 session laws."
+    }
+   ]
+  },
+  "WV": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "WV-1",
+     "text": "2026 SB 651 (touches the surplus section) appears in bill history but not in signed-bill lists; treated as not enacted.",
+     "close": "Confirm its final status on code.wvlegislature.gov."
+    }
+   ]
+  },
+  "PA": {
+   "checkStatus": "checked",
+   "gaps": []
+  },
+  "WI": {
+   "checkStatus": "checked",
+   "gaps": []
+  },
+  "CT": {
+   "checkStatus": "Couldn't reach source",
+   "gaps": [
+    {
+     "id": "CT-1",
+     "text": "cga.ct.gov fails the TLS check from the runner (certificate chain incomplete, curl error 60). Verification stays on.",
+     "close": "Try other official copies: the official CGS PDF, a second legislature host, or Public Act pages. If none reaches with full verification, keep this status and log every attempt."
+    }
+   ]
+  },
+  "IL": {
+   "checkStatus": "Couldn't reach source",
+   "gaps": [
+    {
+     "id": "IL-1",
+     "text": "ilga.gov fails the TLS check from the runner (certificate chain incomplete, curl error 60). Verification stays on.",
+     "close": "Try other official copies: the official ILCS PDF, a second legislature host, or Public Act pages. If none reaches with full verification, keep this status and log every attempt."
+    }
+   ]
+  }
+ }
+}
