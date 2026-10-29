@@ -59,6 +59,50 @@
    "fetched_at": "2026-10-27T05:51:11.776Z",
    "snapshot": "foundry/out/law-audit/sources/al/dor-property-tax.json"
   },
+  "https://www.cosl.org/Home/Faq": {
+   "state": "AR",
+   "statutes": [
+    "none: administrative practice (Commissioner of State Lands), FAQ"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "bd832ea104bbbdd182cbb5518c284d426591728d7e60629080fc8edfc706dc9f",
+   "fetched_at": "2026-10-29T05:56:26.072Z",
+   "snapshot": "foundry/out/law-audit/sources/ar/cosl-faq.json"
+  },
+  "https://www.cosl.org/Home/Contents/1": {
+   "state": "AR",
+   "statutes": [
+    "none: administrative practice (Commissioner of State Lands), notice for bidders"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9fd3d8132061fd285dde86021c7dcf4d97e659d26914bc26a4dd4b195d7f38f0",
+   "fetched_at": "2026-10-29T05:56:01.848Z",
+   "snapshot": "foundry/out/law-audit/sources/ar/cosl-tax-sales.json"
+  },
+  "https://coslstorage.blob.core.windows.net/web-resources/rules-and-regs.pdf": {
+   "state": "AR",
+   "statutes": [
+    "Commissioner of State Lands Rules (2023 ed.), Title 2",
+    "Ark. Code Ann. §§ 26-37-101 to -105 (as cited in Commissioner of State Lands Rules (2023 ed.))",
+    "Commissioner of State Lands Rules (2023 ed.), Title 1",
+    "Commissioner of State Lands Rules (2023 ed.), Definitions",
+    "Commissioner of State Lands Rules (2023 ed.), Title 4"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "66d434e7036ec58a41ae742314ccd4d706bb1a32ae8f6f828b3ca838a8fb27aa",
+   "fetched_at": "2026-10-29T05:56:30.822Z",
+   "snapshot": "foundry/out/law-audit/sources/ar/cosl-rules.json"
+  },
+  "https://coslstorage.blob.core.windows.net/web-resources/purchasing.pdf": {
+   "state": "AR",
+   "statutes": [
+    "none: administrative practice (Commissioner of State Lands), buyer's guide"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "cdb3264f661883d6a71e0b20f599f431c2fcb6df11a59be4b7182f99f56f025e",
+   "fetched_at": "2026-10-29T05:56:28.497Z",
+   "snapshot": "foundry/out/law-audit/sources/ar/cosl-purchasing.json"
+  },
   "https://sco.ca.gov/Files-ARD-Tax-Info/Tax-Collector-Ref-Man/SCO_ExcessProceedsGuide.pdf": {
    "state": "CA",
    "statutes": [

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ar",
+ "slug": "cosl-purchasing",
+ "url": "https://coslstorage.blob.core.windows.net/web-resources/purchasing.pdf",
+ "final_url": "https://coslstorage.blob.core.windows.net/web-resources/purchasing.pdf",
+ "fetched_at": "2026-10-29T05:56:28.497Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "59b0d94a8b21c6e59d7db6544b54a727eb1608a9059868848aa68504e1b82ce7",
+ "raw_bytes": 612368,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "cdb3264f661883d6a71e0b20f599f431c2fcb6df11a59be4b7182f99f56f025e",
+ "text_chars": 8479
+}
