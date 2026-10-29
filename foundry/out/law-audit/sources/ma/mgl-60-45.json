@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ma",
+ "slug": "mgl-60-45",
+ "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section45",
+ "final_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section45",
+ "fetched_at": "2026-10-29T06:04:53.613Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "6b619122355f709f83121616d41ab25c0e30162edcf2117351b4dbe902e9d3dc",
+ "raw_bytes": 74913,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "1b0a2e8d2a3fd3546daa47524feb55aff70ed62de01964e2009374590d7802c7",
+ "text_chars": 6243
+}

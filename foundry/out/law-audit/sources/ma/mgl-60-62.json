@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ma",
+ "slug": "mgl-60-62",
+ "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section62",
+ "final_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section62",
+ "fetched_at": "2026-10-29T06:05:06.558Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "e0f7b76b572a357e21f3ecd314f312ffd70895a6010f934c2d6ab8b52f31aa6d",
+ "raw_bytes": 79234,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "1b71d57811f0a1ea767ee37c320b3229c2d7ab53a5a448c8532083edc8b5b3f6",
+ "text_chars": 10534
+}

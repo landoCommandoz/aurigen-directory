@@ -264,20 +264,24 @@
    "trimmed": 70
   },
   "IL": {
-   "status": "todo",
-   "date": null,
+   "status": "blocked",
+   "date": "2026-10-29",
    "claims": 0,
+   "supported": 0,
    "corrected": 0,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 0
   },
   "MA": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-10-29",
+   "claims": 68,
+   "supported": 5,
+   "corrected": 63,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 64
   },
   "MD": {
    "status": "todo",

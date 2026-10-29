@@ -351,6 +351,46 @@
    "fetched_at": "2026-10-27T06:29:16.582Z",
    "snapshot": "foundry/out/law-audit/sources/la/rs-47-2266-1.json"
   },
+  "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section52": {
+   "state": "MA",
+   "statutes": [
+    "M.G.L. c. 60, § 52"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "bd9f0d5cf7d7f897e6611f6279dc308eddac48bdc4a0bf8c1a73e943f2d289e8",
+   "fetched_at": "2026-10-29T06:05:04.012Z",
+   "snapshot": "foundry/out/law-audit/sources/ma/mgl-60-52.json"
+  },
+  "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section62": {
+   "state": "MA",
+   "statutes": [
+    "M.G.L. c. 60, § 62"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1b71d57811f0a1ea767ee37c320b3229c2d7ab53a5a448c8532083edc8b5b3f6",
+   "fetched_at": "2026-10-29T06:05:06.558Z",
+   "snapshot": "foundry/out/law-audit/sources/ma/mgl-60-62.json"
+  },
+  "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section65": {
+   "state": "MA",
+   "statutes": [
+    "M.G.L. c. 60, § 65"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "5417c2e847f75d7df3474e0c3084704998ba20a12fb68a09373c9101d8baae25",
+   "fetched_at": "2026-10-29T06:05:09.131Z",
+   "snapshot": "foundry/out/law-audit/sources/ma/mgl-60-65.json"
+  },
+  "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section64A": {
+   "state": "MA",
+   "statutes": [
+    "M.G.L. c. 60, § 64A(b)(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "5cb80304a3ccec91fba0ae5e3515969278df3fd1d6d12908beb88798a2fe18e7",
+   "fetched_at": "2026-10-29T06:05:11.622Z",
+   "snapshot": "foundry/out/law-audit/sources/ma/mgl-60-64a.json"
+  },
   "https://legislature.maine.gov/statutes/36/title36sec942.html": {
    "state": "ME",
    "statutes": [

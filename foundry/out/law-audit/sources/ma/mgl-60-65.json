@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ma",
+ "slug": "mgl-60-65",
+ "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section65",
+ "final_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section65",
+ "fetched_at": "2026-10-29T06:05:09.131Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "e325b3c3ba02742063bd1791556775f4e93bf2d866043bbd8db2f8979d49bb8c",
+ "raw_bytes": 75005,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "5417c2e847f75d7df3474e0c3084704998ba20a12fb68a09373c9101d8baae25",
+ "text_chars": 6338
+}
