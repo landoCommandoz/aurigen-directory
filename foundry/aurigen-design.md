@@ -1,4 +1,5 @@
 # Foundry spec: aurigen-design
+<!-- issue-title: NEEDS LANDO: Aurigen concepts -->
 
 Owner: Lando. Written 2026-10-27. Run by `.github/workflows/foundry.yml` with task `aurigen-design.md`.
 This spec wins over CLAUDE.md, HANDOFF.md and `foundry/aurigen-free.md` where they conflict. That includes

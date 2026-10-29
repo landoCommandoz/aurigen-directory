@@ -1,4 +1,5 @@
 # Foundry spec: aurigen-law-audit
+<!-- issue-title: NEEDS LANDO: Law audit -->
 
 Owner: Lando. Written 2026-10-27. Run by `.github/workflows/foundry.yml` with task `aurigen-law-audit.md`.
 This spec wins over CLAUDE.md, HANDOFF.md and every earlier spec where they conflict.

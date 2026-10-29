@@ -1,4 +1,5 @@
 # Foundry spec: aurigen-free
+<!-- issue-title: NEEDS LANDO: Aurigen result -->
 
 Owner: Lando. Written 2026-10-27. Run by `.github/workflows/foundry.yml` with task `aurigen-free.md`.
 This spec wins over CLAUDE.md, HANDOFF.md and every older plan where they conflict.

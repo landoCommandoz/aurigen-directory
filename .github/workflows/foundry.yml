@@ -475,6 +475,10 @@ jobs:
           run_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
           branch_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${BRANCH}"
           title="NEEDS LANDO: Foundry ${SLUG} result"
+          # A spec fixes its own issue title with a line like: <!-- issue-title: NEEDS LANDO: Law audit -->
+          # so runs that write no report (failures, no-ops) still update the same issue instead of opening another.
+          spec_title="$(sed -n 's/^<!-- issue-title: \(.*\) -->$/\1/p' "foundry/${SLUG}.md" 2>/dev/null | head -n 1 | cut -c1-200)"
+          [ -n "$spec_title" ] && title="$spec_title"
           if [ -s foundry/out/ISSUE_TITLE.txt ]; then
             title="$(head -n 1 foundry/out/ISSUE_TITLE.txt | cut -c1-200)"
           fi
