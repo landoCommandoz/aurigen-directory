@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "co",
+ "slug": "crs2024-title-39",
+ "url": "https://leg.colorado.gov/sites/default/files/images/olls/crs2024-title-39.pdf",
+ "final_url": "https://content.leg.colorado.gov/sites/default/files/images/olls/crs2024-title-39.pdf",
+ "fetched_at": "2026-10-29T05:59:07.567Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "4a7c73c83e82f237cb94a39826d380466d1fc8b9ecb62d52cc36323f7c775a34",
+ "raw_bytes": 9577213,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "2c15ec10c19b4c78170c8559c9715befed19be125326777daf9b26eee35f325f",
+ "text_chars": 3998543
+}

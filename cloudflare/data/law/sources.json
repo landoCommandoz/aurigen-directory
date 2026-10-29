@@ -130,6 +130,27 @@
    "fetched_at": "2026-10-27T05:54:41.643Z",
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json"
   },
+  "https://leg.colorado.gov/sites/default/files/images/olls/crs2024-title-39.pdf": {
+   "state": "CO",
+   "statutes": [
+    "C.R.S. § 39-11-115(1)",
+    "C.R.S. § 39-12-103(3)",
+    "C.R.S. art. 11.5 of title 39 (HB 24-1056)",
+    "C.R.S. § 39-11-108(1)",
+    "C.R.S. § 39-11-109",
+    "C.R.S. § 39-11.5-102(1) (HB 24-1056)",
+    "C.R.S. § 39-11.5-111(1)(a)",
+    "C.R.S. § 39-11-148(1)",
+    "C.R.S. § 39-11-101",
+    "C.R.S. § 39-11-120(1)",
+    "C.R.S. § 39-11-115(2)",
+    "C.R.S. § 39-11.5-109(1)(a)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "2c15ec10c19b4c78170c8559c9715befed19be125326777daf9b26eee35f325f",
+   "fetched_at": "2026-10-29T05:59:07.567Z",
+   "snapshot": "foundry/out/law-audit/sources/co/crs2024-title-39.json"
+  },
   "https://otr.cfo.dc.gov/page/real-property-tax-sale": {
    "state": "DC",
    "statutes": [
