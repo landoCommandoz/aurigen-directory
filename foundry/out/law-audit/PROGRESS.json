@@ -501,12 +501,15 @@
    "unreachable": 0
   },
   "OH": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 68,
+   "supported": 2,
+   "corrected": 66,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 66,
+   "checkStatus": "checked with gaps"
   },
   "OR": {
    "status": "done",

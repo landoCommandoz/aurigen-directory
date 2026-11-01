@@ -499,6 +499,21 @@
      "close": "Read each county's own official tax foreclosure sale page and cite it."
     }
    ]
+  },
+  "OH": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "OH-1",
+     "text": "ORC chapter 323 (county prosecutor foreclosure, alternative redemption period, §323.65 to §323.79) and the text of H.B. 315 and H.B. 496 were not read; the 2023 to 2026 act search was limited to the effective-date lines of chapter 5721.",
+     "close": "Download ORC 323.65 to 323.79 from codes.ohio.gov and the enacted H.B. 315 and H.B. 496, and search 2023 to 2026 acts for tax foreclosure changes."
+    },
+    {
+     "id": "OH-2",
+     "text": "Which counties run certificate auctions, platforms, dates and county foreclosure sale rules were not read from county sites; they show as \"Confirm with the county\".",
+     "close": "Read each county treasurer's official page and cite it."
+    }
+   ]
   }
  }
 }

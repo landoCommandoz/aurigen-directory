@@ -1,4 +1,4 @@
-# Corrections summary, law audit (39 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (40 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1534 | 62% |
-| Wording or citation only | 422 | 17% |
-| Removed opinion | 528 | 21% |
-| **All corrected** | **2484** | |
+| Substantive | 1572 | 62% |
+| Wording or citation only | 439 | 17% |
+| Removed opinion | 539 | 21% |
+| **All corrected** | **2550** | |
 
 ## By state
 
@@ -60,6 +60,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | NC | 36 | 17 | 14 | 67 |
 | NE | 28 | 10 | 23 | 61 |
 | NV | 34 | 13 | 18 | 65 |
+| OH | 38 | 17 | 11 | 66 |
 | OR | 35 | 11 | 16 | 62 |
 | SC | 35 | 8 | 19 | 62 |
 
@@ -286,6 +287,12 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`rateNote`): County holds in trust 2 years before retail auction — investor takes clean title at sale → The county treasurer holds the property in trust for 2 years after the first Monday in June of the year the certificate is dated, unless sooner redeemed (NRS §361.570(1)).
 - Wording or citation only (`type`): Tax deed → Sale of property held in trust by the county treasurer (NRS §361.595)
 - Removed opinion (`summary.3`): Clark County (Las Vegas) has strongest inventory. → (removed)
+
+### OH
+
+- Substantive (`type`): Hybrid (lien then deed) → Tax certificate sale (a lien) at public auction (ORC §5721.32); foreclosure sale of parcels (ORC §5721.19)
+- Wording or citation only (`statute`): ORC §5721.30 → ORC §5721.19, §5721.30, §5721.32 and §5721.38
+- Removed opinion (`beginnerTip.1`): Cuyahoga (Cleveland) and Franklin (Columbus) counties have the best lien inventory. → (removed)
 
 ### OR
 

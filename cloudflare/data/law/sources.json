@@ -1389,6 +1389,26 @@
    "fetched_at": "2026-11-01T09:56:01.852Z",
    "snapshot": "foundry/out/law-audit/sources/nv/nrs361.json"
   },
+  "https://codes.ohio.gov/ohio-revised-code/chapter-5721": {
+   "state": "OH",
+   "statutes": [
+    "Ohio Rev. Code § 5721.32(B)(1)",
+    "Ohio Rev. Code § 5721.32(C)",
+    "Ohio Rev. Code § 5721.38(A)",
+    "Ohio Rev. Code § 5721.32(A)",
+    "Ohio Rev. Code § 5721.19(A)",
+    "Ohio Rev. Code § 5721.30(E)(1)",
+    "Ohio Rev. Code § 5721.32(B)(2)",
+    "Ohio Rev. Code § 5721.32(B)(3)",
+    "Ohio Rev. Code § 5721.32(D)(1)",
+    "Ohio Rev. Code § 5721.33(A)",
+    "Ohio Rev. Code § 5721.20(A)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "7af1248115a8f007848328c73c240adbf8861cc9f0486c978cfdfca5291b2424",
+   "fetched_at": "2026-11-01T10:00:05.920Z",
+   "snapshot": "foundry/out/law-audit/sources/oh/orc5721.json"
+  },
   "https://oktaxrolls.com/county/Delaware": {
    "state": "OK",
    "statutes": [
