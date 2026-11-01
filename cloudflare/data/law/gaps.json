@@ -439,6 +439,21 @@
      "close": "Read sections 77-1802 to 77-1816 and 77-1837.01 onward, and the named county treasurer pages, or keep the Confirm with the county label."
     }
    ]
+  },
+  "NC": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "NC-1",
+     "text": "The legislature's bill and session-law search for 2023 to 2026 was not run beyond the history lines of Article 26; S.L. 2022-55 and 2025-25 were not opened.",
+     "close": "Search ncleg.gov enacted legislation 2023 to 2026 for acts amending G.S. 105-374, 105-375, 105-376, 1-339.64 and the surplus rules, and open S.L. 2022-55 and 2025-25."
+    },
+    {
+     "id": "NC-2",
+     "text": "County details (online platforms, sale dates, deposits, over-the-counter sales, how a county chooses §105-374 or §105-375) were not read from county sites; they show as \"Confirm with the county\".",
+     "close": "Read each county's own official tax collector or sheriff page and cite it."
+    }
+   ]
   }
  }
 }

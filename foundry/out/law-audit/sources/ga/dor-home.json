@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ga",
+ "slug": "dor-home",
+ "url": "https://dor.georgia.gov/",
+ "final_url": "https://dor.georgia.gov/",
+ "fetched_at": "2026-11-01T09:55:20.398Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "6bb8b0cb8a01eeb7e8b36a287af76d3d5037c27de1bfecc54578b3698ca7dea5",
+ "raw_bytes": 157609,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "677eb7bbf70873679c243252a871fc78e0c0ad46530b1437008dc2f82756e12f",
+ "text_chars": 4163
+}

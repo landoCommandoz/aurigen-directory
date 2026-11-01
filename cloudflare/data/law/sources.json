@@ -1232,6 +1232,36 @@
    "fetched_at": "2026-10-27T06:33:47.427Z",
    "snapshot": "foundry/out/law-audit/sources/ms/sos-lands-rules.json"
   },
+  "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/ByArticle/Chapter_105/Article_26.pdf": {
+   "state": "NC",
+   "statutes": [
+    "N.C. Gen. Stat. § 105-374(p)",
+    "N.C. Gen. Stat. § 105-374(m)",
+    "N.C. Gen. Stat. § 105-374(o)",
+    "N.C. Gen. Stat. § 105-374(e)",
+    "N.C. Gen. Stat. § 105-375(a)",
+    "N.C. Gen. Stat. § 105-374(a)",
+    "N.C. Gen. Stat. § 105-374(q)",
+    "N.C. Gen. Stat. § 105-375(i)",
+    "N.C. Gen. Stat. § 105-375(b)",
+    "N.C. Gen. Stat. § 105-374(m1)",
+    "N.C. Gen. Stat. § 105-374(q)(6)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "292e38966b589387379d5b2c3892884adf56d787e2bb568fd8d3ebd21106a825",
+   "fetched_at": "2026-11-01T09:55:56.754Z",
+   "snapshot": "foundry/out/law-audit/sources/nc/g105-374.json"
+  },
+  "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_1/GS_1-339.64.pdf": {
+   "state": "NC",
+   "statutes": [
+    "N.C. Gen. Stat. § 1-339.64(a)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "4046b68886601d38c2cbc74b368cbd85657aab95354ff845e8939a5b3368cecd",
+   "fetched_at": "2026-11-01T09:56:23.374Z",
+   "snapshot": "foundry/out/law-audit/sources/nc/g1-339-64.json"
+  },
   "https://ndlegis.gov/cencode/t57c28.pdf": {
    "state": "ND",
    "statutes": [

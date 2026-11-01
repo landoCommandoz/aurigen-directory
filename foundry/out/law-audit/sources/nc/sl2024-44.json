@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nc",
+ "slug": "sl2024-44",
+ "url": "https://www.ncleg.gov/EnactedLegislation/SessionLaws/PDF/2023-2024/SL2024-44.pdf",
+ "final_url": "https://www.ncleg.gov/EnactedLegislation/SessionLaws/PDF/2023-2024/SL2024-44.pdf",
+ "fetched_at": "2026-11-01T09:56:35.986Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "01036fad26d5d435dd7285367919fb2b791cfefd6085de492bc9571a17c80ec7",
+ "raw_bytes": 304236,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "437485c8c654522864fc6597a372756084a9f65790e1872d1c4c06508110236e",
+ "text_chars": 41027
+}

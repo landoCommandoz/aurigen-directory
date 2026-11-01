@@ -1,4 +1,4 @@
-# Corrections summary, law audit (35 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (36 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1394 | 63% |
-| Wording or citation only | 373 | 17% |
-| Removed opinion | 461 | 21% |
-| **All corrected** | **2228** | |
+| Substantive | 1430 | 62% |
+| Wording or citation only | 390 | 17% |
+| Removed opinion | 475 | 21% |
+| **All corrected** | **2295** | |
 
 ## By state
 
@@ -57,6 +57,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | MI | 30 | 6 | 25 | 61 |
 | MN | 21 | 12 | 28 | 61 |
 | MO | 34 | 11 | 18 | 63 |
+| NC | 36 | 17 | 14 | 67 |
 | NE | 28 | 10 | 23 | 61 |
 
 ## One example of each kind, per state
@@ -264,6 +265,12 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`type`): Tax lien → Tax sale with a certificate of purchase
 - Wording or citation only (`summary.2`): Annual sale: 4th Monday in August. → Delinquent property is subject to sale on the fourth Monday in August of each year (§140.150.1).
 - Removed opinion (`summary.3`): St. Louis City and Jackson County conduct tax deed sales with the unusual rule that older liens are subordinate to newer ones per RSMo Cap.140. → (removed)
+
+### NC
+
+- Substantive (`rateNote`): Unique upset bid process — sale not final until 10-day window closes → In a §105-374 action, upset bids may follow the sale (§105-374(o), G.S. 1-339.64)
+- Wording or citation only (`type`): Tax deed → Tax foreclosure sale; a confirmed sale ends with a commissioner's deed (§105-374(p))
+- Removed opinion (`summary.3`): Good inventory in Charlotte and Raleigh metro areas. → (removed)
 
 ### NE
 

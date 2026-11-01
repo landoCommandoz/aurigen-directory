@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nc",
+ "slug": "g1-339-64",
+ "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_1/GS_1-339.64.pdf",
+ "final_url": "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_1/GS_1-339.64.pdf",
+ "fetched_at": "2026-11-01T09:56:23.374Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "9d15dac3ab2bc2f7b3e5af3b4ef6bc9c922db3f176b45e945d5f538e5eb27a9f",
+ "raw_bytes": 106791,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "4046b68886601d38c2cbc74b368cbd85657aab95354ff845e8939a5b3368cecd",
+ "text_chars": 4545
+}

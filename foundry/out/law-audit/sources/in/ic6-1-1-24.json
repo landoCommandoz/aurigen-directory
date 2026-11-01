@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "in",
+ "slug": "ic6-1-1-24",
+ "url": "https://iga.in.gov/pdf-documents/124/2025/ic/titles/6",
+ "final_url": "https://iga.in.gov/pdf-documents/124/2025/ic/titles/6",
+ "fetched_at": "2026-11-01T09:55:51.382Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "61d9d1265c828684df265d5139ee43f21d5325cb19aa861c7da7816dd28ac732",
+ "raw_bytes": 691,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+ "text_chars": 1
+}
