@@ -659,14 +659,36 @@ jobs:
         run: |
           set -euo pipefail
           # STATUS.md (10 lines at most) is rewritten after every run and published at /status.json by status-publish.yml.
-          node foundry/tools/write-status.mjs > "${RUNNER_TEMP}/STATUS.md"
           git fetch --depth 1 origin main
           git worktree add --detach "${RUNNER_TEMP}/main-tree" FETCH_HEAD
+          # The Rules Sheet data is rebuilt from the audited ledgers. It goes to main only if the Worker's tests pass with it;
+          # otherwise the old sheet.json stays (a bad sheet must never block the status file or reach customers).
+          if node foundry/tools/build-sheet.mjs --out "${RUNNER_TEMP}/sheet.json"; then
+            cp "${RUNNER_TEMP}/sheet.json" "${RUNNER_TEMP}/main-tree/under-review/sheet.json"
+            if ! (cd "${RUNNER_TEMP}/main-tree" && node --test under-review/test/*.test.mjs > "${RUNNER_TEMP}/sheet-tests.log" 2>&1); then
+              echo "::warning::the new sheet.json failed the Worker tests, so the old one stays"
+              (cd "${RUNNER_TEMP}/main-tree" && git checkout -- under-review/sheet.json)
+            fi
+          else
+            echo "::warning::the sheet could not be built, so the old one stays"
+          fi
+          STATUS_PRODUCT=$(cd "${RUNNER_TEMP}/main-tree/under-review" && node -e '
+            const r = (f) => JSON.parse(require("fs").readFileSync(f, "utf8"));
+            const s = r("sheet.json"), c = r("sheet-config.json"), l = r("sheet-listing.json");
+            console.log(`Rules Sheet, ${s.stateCount} states, $${c.priceUsd}: checkout ${c.checkoutUrl ? "connected" : "not connected"}; ${l.listed ? "listed" : "unlisted until you say publish"}.`);
+          ' 2>/dev/null || true)
+          export STATUS_PRODUCT
+          STATUS_HUMAN=$(cd "${RUNNER_TEMP}/main-tree/under-review" && node -e '
+            const l = JSON.parse(require("fs").readFileSync("sheet-listing.json", "utf8"));
+            console.log(l.listed ? "nothing." : "finish Polar payout setup, read 10 rows of the Rules Sheet against their official links, then say publish.");
+          ' 2>/dev/null || true)
+          export STATUS_HUMAN
+          node foundry/tools/write-status.mjs > "${RUNNER_TEMP}/STATUS.md"
           cp "${RUNNER_TEMP}/STATUS.md" "${RUNNER_TEMP}/main-tree/STATUS.md"
           cd "${RUNNER_TEMP}/main-tree"
-          git add STATUS.md
+          git add STATUS.md under-review/sheet.json
           if git diff --cached --quiet; then echo "STATUS.md unchanged."; exit 0; fi
-          git commit -q -m "STATUS.md: Foundry ${STATUS_SPEC} run ${STATUS_RUN_NO}"
+          git commit -q -m "STATUS.md and sheet data: Foundry ${STATUS_SPEC} run ${STATUS_RUN_NO}"
           for i in 1 2 3 4; do
             if git push origin HEAD:refs/heads/main; then echo "STATUS.md pushed to main."; exit 0; fi
             git fetch --depth 1 origin main && git rebase FETCH_HEAD || git rebase --abort || true
