@@ -1,0 +1,8 @@
+{
+ "name": "Rules Sheet test (single use)",
+ "ttlHours": 48,
+ "maxRedemptions": 1,
+ "basisPoints": 10000,
+ "note": "Push a change to this file (for example bump 'run') to ask for a new code. An unexpired, unused code with this name is reused instead of making a second one.",
+ "run": 1
+}

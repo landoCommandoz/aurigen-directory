@@ -4,13 +4,24 @@ Domain: aurigendirectory.com. Registrar: Name.com (paid through 2027-03-24). Tod
 (ns1kpv.name.com, ns2kry.name.com, ns3jmt.name.com, ns4dmx.name.com) and shows a parking page. It has no email (no MX
 records), so changing the nameservers cannot break any mail.
 
-The two Cloudflare nameservers for this domain are in `domain/NAMESERVERS.md` (written by the "Domain zone" workflow
-after it added the domain to the free Cloudflare plan).
+## Step 0: add the domain to Cloudflare (1 minute, free plan)
+The Cloudflare token stored for this repo can read zones but is not allowed to create one (Cloudflare answered: it needs the
+permission "com.cloudflare.api.account.zone.create"), so the "Domain zone" workflow could not do this step. Do it in the
+dashboard: https://dash.cloudflare.com, Add a domain, type aurigendirectory.com, choose the Free plan, continue. Cloudflare then
+shows the two nameservers for this domain (names like something.ns.cloudflare.com). Cloudflare assigns them when the domain is
+added, so they cannot be known before this step. Use exactly those two.
+(Alternative: give the stored token the permission to create zones, then run "Domain zone" in GitHub Actions; it reads the two
+nameservers back and saves them to `domain/NAMESERVERS.md`. After the domain exists in the account the workflow can always do
+that read, so you can also run it after the dashboard step to get the file.)
+
+The "Domain attach" step also needs the stored token to be allowed to edit Workers custom domains and DNS for this zone
+(zone permissions "Workers Routes: Edit" and "DNS: Edit", plus "Zone: Read"). If it is not, the attach run stops and the log
+names the missing permission; nothing is changed.
 
 ## At the registrar (Name.com), about 5 minutes
 1. Sign in at https://www.name.com and open My Account, then Domains, then aurigendirectory.com.
 2. If DNSSEC is switched on for the domain, switch it off first (DNSSEC tab, remove the DS record). Cloudflare turns its own on later if you want it.
-3. Open Nameservers (Manage). Replace the four Name.com nameservers with exactly the two listed in `domain/NAMESERVERS.md`. Save.
+3. Open Nameservers (Manage). Replace the four Name.com nameservers with exactly the two Cloudflare showed you in step 0. Save.
 4. Wait. Cloudflare emails when the domain is active; it is usually minutes to a few hours, at most about a day.
    You can also watch it at https://dash.cloudflare.com (Websites, aurigendirectory.com: "Active").
 
