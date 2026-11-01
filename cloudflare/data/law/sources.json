@@ -1126,6 +1126,46 @@
    "fetched_at": "2026-11-01T09:46:16.983Z",
    "snapshot": "foundry/out/law-audit/sources/mi/m21178t.json"
   },
+  "https://www.revisor.mn.gov/statutes/cite/280.01": {
+   "state": "MN",
+   "statutes": [
+    "Minn. Stat. § 280.01"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "72a77f2ea2ef65cc5bcb1fc155bd84f5cad5bdc6fcdaa45844cde1e7b0237eee",
+   "fetched_at": "2026-11-01T09:48:56.760Z",
+   "snapshot": "foundry/out/law-audit/sources/mn/s28001.json"
+  },
+  "https://www.revisor.mn.gov/statutes/cite/282.01": {
+   "state": "MN",
+   "statutes": [
+    "Minn. Stat. § 282.01"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "5bd69691068a6a5057f27051b8fbc93963e15fddb48e8fdd6f59907b5e18e777",
+   "fetched_at": "2026-11-01T09:48:45.481Z",
+   "snapshot": "foundry/out/law-audit/sources/mn/s28201.json"
+  },
+  "https://www.revisor.mn.gov/statutes/cite/282.241": {
+   "state": "MN",
+   "statutes": [
+    "Minn. Stat. § 282.241 subd. 1"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "c86932079d2eb72144e10f011224d9473cb23308c30c880fd621119a35012c93",
+   "fetched_at": "2026-11-01T09:48:47.770Z",
+   "snapshot": "foundry/out/law-audit/sources/mn/s282241.json"
+  },
+  "https://www.revisor.mn.gov/statutes/cite/282.08": {
+   "state": "MN",
+   "statutes": [
+    "Minn. Stat. § 282.08 (Revisor's note)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "fc0fdaedf0fec65dc51501a06313e8527199fcd637adb578c4ee89f52a63f11b",
+   "fetched_at": "2026-11-01T09:49:03.442Z",
+   "snapshot": "foundry/out/law-audit/sources/mn/s28208.json"
+  },
   "https://www.sos.ms.gov/content/documents/lands/00000176c.pdf": {
    "state": "MS",
    "statutes": [

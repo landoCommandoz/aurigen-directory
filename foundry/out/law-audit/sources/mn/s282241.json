@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "mn",
+ "slug": "s282241",
+ "url": "https://www.revisor.mn.gov/statutes/cite/282.241",
+ "final_url": "https://www.revisor.mn.gov/statutes/cite/282.241",
+ "fetched_at": "2026-11-01T09:48:47.770Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "02fa49a01c4f39b74b9e1f1af0c8fd0496379069d64f74a9bf7e280872b62196",
+ "raw_bytes": 67708,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "c86932079d2eb72144e10f011224d9473cb23308c30c880fd621119a35012c93",
+ "text_chars": 9380
+}

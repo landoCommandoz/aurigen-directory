@@ -37,5 +37,6 @@ These close when the gap queue reads the missing source. A decision comes up onl
 - D.C. redemption rate (2 claims): the 18% figure was not found in the sections read.
 - Mississippi sale type (1 claim): "Tax lien" label not confirmed; the Secretary of State rules say land is sold at public sale with a two-year redemption.
 - New Mexico redemption (2 claims): "None after sale"; the department FAQ says "all sales are final" but the statute was not read.
+- Minnesota surplus after a forfeited-land sale (1 claim): the Revisor's note to §282.08 says the excess apportionment was found a taking (Tyler), but the section text is unchanged and the 2024 act was not read. Recommended: keep the site's "Confirm with the county" wording until gap MN-1 is closed.
 
-Total: 11 + 22 + 7 = 40.
+Total: 11 + 22 + 7 + 1 = 41.

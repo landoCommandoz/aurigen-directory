@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "mn",
+ "slug": "s282016",
+ "url": "https://www.revisor.mn.gov/statutes/cite/282.016",
+ "final_url": "https://www.revisor.mn.gov/statutes/cite/282.016",
+ "fetched_at": "2026-11-01T09:48:52.307Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "44e828d398d1e8e498c30ab1c178e9829c39f0ef25abb632faddb46a9cd628bb",
+ "raw_bytes": 64376,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "c8edd1561bf411c3f022d01b7a40ec29100fda2f6bb10acfba7f0c5b94d7ab28",
+ "text_chars": 7515
+}

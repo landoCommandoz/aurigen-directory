@@ -394,6 +394,21 @@
      "close": "Read the named county treasurer pages, or keep the Confirm with the county label."
     }
    ]
+  },
+  "MN": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "MN-1",
+     "text": "2024 c 127 art 70 and any other 2023 to 2026 session laws were not read as acts; no session-law search was run. Chapter 281 (redemption, interest) and 282.08 surplus handling after Tyler are not resolved: claim surplus.1 is flagged.",
+     "close": "Read 2024 c 127 art 70 on revisor.mn.gov/laws, run the 2023 to 2026 session-law search for chapters 279 to 282, and re-check surplus.1 against the current text of 282.08 and any new surplus section."
+    },
+    {
+     "id": "MN-2",
+     "text": "County auditor sale details (dates, registration, deposits, method) were not read from county sites; the 3-year forfeiture timeline and 2026 interest rate were not confirmed from chapters 279 and 281.",
+     "close": "Read chapters 279 and 281 and the named county auditor pages, or keep the Confirm with the county label."
+    }
+   ]
   }
  }
 }

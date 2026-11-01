@@ -1,4 +1,4 @@
-# Corrections summary, law audit (32 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (33 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1311 | 64% |
-| Wording or citation only | 340 | 17% |
-| Removed opinion | 392 | 19% |
-| **All corrected** | **2043** | |
+| Substantive | 1332 | 63% |
+| Wording or citation only | 352 | 17% |
+| Removed opinion | 420 | 20% |
+| **All corrected** | **2104** | |
 
 ## By state
 
@@ -55,6 +55,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | ID | 27 | 13 | 24 | 64 |
 | KS | 32 | 15 | 16 | 63 |
 | MI | 30 | 6 | 25 | 61 |
+| MN | 21 | 12 | 28 | 61 |
 
 ## One example of each kind, per state
 
@@ -249,3 +250,9 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`type`): Tax deed → Tax foreclosure, then sale by the foreclosing governmental unit
 - Wording or citation only (`bidMethod`): Highest bidder → The minimum bid, or the highest amount above the minimum bid (§211.78m(2))
 - Removed opinion (`summary.2`): Wayne County (Detroit) uses Bid4Assets with significant urban inventory. → (removed)
+
+### MN
+
+- Substantive (`type`): Tax deed → Sale of tax-delinquent parcels, with the state bidding in; then county sale of forfeited land
+- Wording or citation only (`statute`): MN Statutes Ch. 279–282 → MN Stat. §280.01; §282.01; §282.241
+- Removed opinion (`summary.3`): Many counties retain properties via county land bank rather than auctioning. → (removed)

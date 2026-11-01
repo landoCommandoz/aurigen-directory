@@ -1,7 +1,7 @@
 # Law audit summary
 
 Spec: `foundry/aurigen-law-audit.md`. Gate: `cloudflare/scripts/check-law.mjs`. Ledgers: `cloudflare/data/law/<st>.json`.
-States done: 32 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, UT, WI, WV, AR, CO, CT, IA, IL, MA, MD, NH, SD, AZ, DE, FL, ID, KS, MI).
+States done: 33 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, UT, WI, WV, AR, CO, CT, IA, IL, MA, MD, NH, SD, AZ, DE, FL, ID, KS, MI, MN).
 
 | State | Status | Check status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -39,7 +39,7 @@ States done: 32 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, U
 | IN | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | KS | done | checked with gaps | 2026-11-01 | 66 | 3 | 63 | 0 | 0 | 64 | [ks.md](ks.md) |
 | MI | done | checked with gaps | 2026-11-01 | 66 | 5 | 61 | 0 | 0 | 62 | [mi.md](mi.md) |
-| MN | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| MN | done | checked with gaps | 2026-11-01 | 64 | 2 | 61 | 1 | 0 | 62 | [mn.md](mn.md) |
 | MO | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | MT | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | NC | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
@@ -77,6 +77,7 @@ States done: 32 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, U
 - OK `signup.steps.4`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
 - OK `otc.available`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
 - OK `otc.note.1`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+- MN `surplus.1`: The Revisor's note to §282.08 says the excess apportionment under clause (4) was found a taking (Tyler, 2023), yet the section text still reads as before (last history entry 2012). 2024 c 127 art 70 amended §282.241 and may have changed surplus handling; that act was not read, so the current rule is unconfirmed.
 
 ## Unreachable sources ("Couldn't reach source")
 
