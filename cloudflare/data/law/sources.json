@@ -404,6 +404,33 @@
    "fetched_at": "2026-10-27T05:57:03.836Z",
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1382-01.json"
   },
+  "https://delcode.delaware.gov/title9/c087/sc02/index.html": {
+   "state": "DE",
+   "statutes": [
+    "9 Del. C. § 8728",
+    "9 Del. C. § 8729",
+    "9 Del. C. § 8725(a)",
+    "9 Del. C. § 8722(a)",
+    "9 Del. C. § 8721",
+    "9 Del. C. § 8726(a)",
+    "9 Del. C. § 8726(b)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "16074922f4a60d264cab228b044221b5195d12d1e4bba09f9eb9b50dd87e2a7d",
+   "fetched_at": "2026-11-01T09:31:35.615Z",
+   "snapshot": "foundry/out/law-audit/sources/de/t9-87-sc02.json"
+  },
+  "https://delcode.delaware.gov/title9/c087/sc04/index.html": {
+   "state": "DE",
+   "statutes": [
+    "9 Del. C. § 8776",
+    "9 Del. C. § 8779"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "fede4ebff38522183f2ba7dea111e1a3aaab016399be7dd4b0b2d8d593d4aac1",
+   "fetched_at": "2026-11-01T09:31:40.216Z",
+   "snapshot": "foundry/out/law-audit/sources/de/t9-87-sc04.json"
+  },
   "https://www.kauai.gov/files/assets/public/finance/documents/tax-sale-inst_rev-27sept2018.pdf": {
    "state": "HI",
    "statutes": [

@@ -319,6 +319,21 @@
      "close": "Read the Maricopa, Pima and other named county treasurer pages, or keep the Confirm with the county treasurer label."
     }
    ]
+  },
+  "DE": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "DE-1",
+     "text": "The legislature's bill and session-law search for 2023 to 2026 was not run; only the section history lines were read. Subchapter III (New Castle County attachment) and sections 8772 to 8778 were not read.",
+     "close": "Read subchapter III and sections 8772 to 8778 on delcode.delaware.gov and search legis.delaware.gov for 2023 to 2026 acts amending chapter 87."
+    },
+    {
+     "id": "DE-2",
+     "text": "Which county uses which procedure, and county sale details (dates, registration, deposits) were not read from county or sheriff sites.",
+     "close": "Read the New Castle, Kent and Sussex sheriff pages, or keep the Confirm with the county label."
+    }
+   ]
   }
  }
 }
