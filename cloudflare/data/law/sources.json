@@ -1411,6 +1411,29 @@
    "fetched_at": "2026-10-27T06:42:01.435Z",
    "snapshot": "foundry/out/law-audit/sources/ok/okcounty-important-dates.json"
   },
+  "https://www.oregonlegislature.gov/bills_laws/ors/ors312.html": {
+   "state": "OR",
+   "statutes": [
+    "ORS 312.200",
+    "ORS 312.520(3)(b)",
+    "ORS 312.010(1)",
+    "ORS 312.120(1)",
+    "ORS 312.520(3)(a)",
+    "ORS 312.520(3)(e)",
+    "ORS 312.520(1)(a)",
+    "ORS 312.520(3)(c)(C)",
+    "ORS 312.120(2)",
+    "ORS 312.270",
+    "ORS 312.500 to 312.560 (2025 c.475 §13)",
+    "ORS 312.520(3)(d)",
+    "ORS 312.520(3)(c)(A)",
+    "ORS 312.540(1)-(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ff84e9e29bb8a6df737a88e64b8f5e4fd32fad6954b29081ef109949a2bca7e8",
+   "fetched_at": "2026-11-01T10:00:08.572Z",
+   "snapshot": "foundry/out/law-audit/sources/or/ors312.json"
+  },
   "https://www.palegis.us/statutes/unconsolidated/law-information/view-statute?txtType=PDF&SessYr=1947&ActNum=0542.&SessInd=0": {
    "state": "PA",
    "statutes": [

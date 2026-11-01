@@ -484,6 +484,21 @@
      "close": "Read each county delinquent tax collector's official page and cite it."
     }
    ]
+  },
+  "OR": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "OR-1",
+     "text": "2025 c.475 was read only as codified in ORS chapter 312; the session law itself and 2023 and 2024 acts were not searched. ORS 98.352 and 98.392 to 98.396 (State Treasurer claim process) were not read.",
+     "close": "Download the enacted 2025 c.475 text and search Oregon Laws 2023 and 2024 for tax foreclosure changes; read ORS 98.392 and 98.396."
+    },
+    {
+     "id": "OR-2",
+     "text": "County auction dates, online platforms, registration and deposits were not read from county sites; they show as \"Confirm with the county\".",
+     "close": "Read each county's own official tax foreclosure sale page and cite it."
+    }
+   ]
   }
  }
 }

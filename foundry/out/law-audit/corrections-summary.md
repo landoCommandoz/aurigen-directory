@@ -1,4 +1,4 @@
-# Corrections summary, law audit (38 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (39 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1499 | 62% |
-| Wording or citation only | 411 | 17% |
-| Removed opinion | 512 | 21% |
-| **All corrected** | **2422** | |
+| Substantive | 1534 | 62% |
+| Wording or citation only | 422 | 17% |
+| Removed opinion | 528 | 21% |
+| **All corrected** | **2484** | |
 
 ## By state
 
@@ -60,6 +60,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | NC | 36 | 17 | 14 | 67 |
 | NE | 28 | 10 | 23 | 61 |
 | NV | 34 | 13 | 18 | 65 |
+| OR | 35 | 11 | 16 | 62 |
 | SC | 35 | 8 | 19 | 62 |
 
 ## One example of each kind, per state
@@ -285,6 +286,12 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`rateNote`): County holds in trust 2 years before retail auction — investor takes clean title at sale → The county treasurer holds the property in trust for 2 years after the first Monday in June of the year the certificate is dated, unless sooner redeemed (NRS §361.570(1)).
 - Wording or citation only (`type`): Tax deed → Sale of property held in trust by the county treasurer (NRS §361.595)
 - Removed opinion (`summary.3`): Clark County (Las Vegas) has strongest inventory. → (removed)
+
+### OR
+
+- Substantive (`type`): Tax deed → County foreclosure: property not redeemed is deeded to the county, which then keeps, transfers or sells it (ORS §312.200, §312.520)
+- Wording or citation only (`rate`): N/A → Not applicable: the county sells foreclosed property by auction or listing (ORS §312.520)
+- Removed opinion (`notBeginnerReason.1`): 80% of assessed value minimum bid, 3 years delinquency + 2 years county hold, virtually no below-market opportunity. → (removed)
 
 ### SC
 
