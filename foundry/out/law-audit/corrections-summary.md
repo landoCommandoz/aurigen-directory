@@ -1,4 +1,4 @@
-# Corrections summary, law audit (31 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (32 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1281 | 65% |
-| Wording or citation only | 334 | 17% |
-| Removed opinion | 367 | 19% |
-| **All corrected** | **1982** | |
+| Substantive | 1311 | 64% |
+| Wording or citation only | 340 | 17% |
+| Removed opinion | 392 | 19% |
+| **All corrected** | **2043** | |
 
 ## By state
 
@@ -54,6 +54,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | FL | 52 | 24 | 10 | 86 |
 | ID | 27 | 13 | 24 | 64 |
 | KS | 32 | 15 | 16 | 63 |
+| MI | 30 | 6 | 25 | 61 |
 
 ## One example of each kind, per state
 
@@ -242,3 +243,9 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`type`): Tax deed → County tax sale, then court foreclosure and sheriff's sale
 - Wording or citation only (`bidMethod`): Highest bidder → Sheriff's public auction for the highest and best bid obtainable (§79-2804)
 - Removed opinion (`rateWhy.2`): This is a statutory ceiling, though some counties may set lower effective rates. → (removed)
+
+### MI
+
+- Substantive (`type`): Tax deed → Tax foreclosure, then sale by the foreclosing governmental unit
+- Wording or citation only (`bidMethod`): Highest bidder → The minimum bid, or the highest amount above the minimum bid (§211.78m(2))
+- Removed opinion (`summary.2`): Wayne County (Detroit) uses Bid4Assets with significant urban inventory. → (removed)

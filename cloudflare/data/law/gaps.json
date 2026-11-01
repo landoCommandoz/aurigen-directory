@@ -379,6 +379,21 @@
      "close": "Read the rest of 79-2803 and the sheriff pages for named counties, or keep the Confirm with the county label."
     }
    ]
+  },
+  "MI": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "MI-1",
+     "text": "The public-act search for 2023 to 2026 was not run and section history lines were not recorded. 211.78m(7) to (8) (property not previously sold) and 211.78g, 211.78i were not turned into site statements. The 2020 act behind the July 17, 2020 date was not read as an act.",
+     "close": "Search legislature.mi.gov public acts 2023 to 2026 for acts amending 211.78 to 211.78t, record the act numbers and effective dates, and read 211.78m(7)."
+    },
+    {
+     "id": "MI-2",
+     "text": "County and foreclosing-unit sale details (platform, registration, deposit, dates) were not read from county treasurer sites.",
+     "close": "Read the named county treasurer pages, or keep the Confirm with the county label."
+    }
+   ]
   }
  }
 }

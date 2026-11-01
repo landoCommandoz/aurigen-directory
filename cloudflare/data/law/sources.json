@@ -1083,6 +1083,49 @@
    "fetched_at": "2026-10-27T06:31:40.548Z",
    "snapshot": "foundry/out/law-audit/sources/me/mrs-36-943-c-pdf.json"
   },
+  "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78k": {
+   "state": "MI",
+   "statutes": [
+    "MCL § 211.78k(6)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d37236384b3e86e3101599511437fced2eec0416f551c341d3b138d74c0623d1",
+   "fetched_at": "2026-11-01T09:46:11.158Z",
+   "snapshot": "foundry/out/law-audit/sources/mi/m21178k.json"
+  },
+  "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78m": {
+   "state": "MI",
+   "statutes": [
+    "MCL § 211.78m (definition of minimum bid)",
+    "MCL § 211.78m(2)",
+    "MCL § 211.78m(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e35b3423d66d719593967a2b6016454665557dbf4441c955bd3f42870fa4e05f",
+   "fetched_at": "2026-11-01T09:46:13.854Z",
+   "snapshot": "foundry/out/law-audit/sources/mi/m21178m.json"
+  },
+  "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78": {
+   "state": "MI",
+   "statutes": [
+    "MCL § 211.78(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1bf82f20bb21661775fa94078981e71f6bd5d12cd65c691c3ce1c1c10d0bf927",
+   "fetched_at": "2026-11-01T09:46:02.145Z",
+   "snapshot": "foundry/out/law-audit/sources/mi/m21178.json"
+  },
+  "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78t": {
+   "state": "MI",
+   "statutes": [
+    "MCL § 211.78t(2)",
+    "MCL § 211.78t(4)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f6654e29822d5a018ac563c8540d527b77e25e6f91e38e10b9ea207f461be0ef",
+   "fetched_at": "2026-11-01T09:46:16.983Z",
+   "snapshot": "foundry/out/law-audit/sources/mi/m21178t.json"
+  },
   "https://www.sos.ms.gov/content/documents/lands/00000176c.pdf": {
    "state": "MS",
    "statutes": [

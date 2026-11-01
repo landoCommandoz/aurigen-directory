@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "mi",
+ "slug": "m21178m",
+ "url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78m",
+ "final_url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78m",
+ "fetched_at": "2026-11-01T09:46:13.854Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "0bab679745d0d4f72765286d51bf15878148784bfa845e296d1390037485cfd6",
+ "raw_bytes": 53278,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "e35b3423d66d719593967a2b6016454665557dbf4441c955bd3f42870fa4e05f",
+ "text_chars": 30749
+}
