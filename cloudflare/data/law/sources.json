@@ -1248,6 +1248,56 @@
    "fetched_at": "2026-10-27T06:35:49.367Z",
    "snapshot": "foundry/out/law-audit/sources/nd/ndcc-57-28.json"
   },
+  "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1818": {
+   "state": "NE",
+   "statutes": [
+    "Neb. Rev. Stat. § 77-1818(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "96d722c2d79f15c3183748bb648da9389b16b837bd73fb365591cddc7e1f078d",
+   "fetched_at": "2026-11-01T09:52:29.457Z",
+   "snapshot": "foundry/out/law-audit/sources/ne/s771818.json"
+  },
+  "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1824": {
+   "state": "NE",
+   "statutes": [
+    "Neb. Rev. Stat. § 77-1824"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0f67d1ff3fac08569e9f4f071e9db19863bd014597de6302865da56ba84433d2",
+   "fetched_at": "2026-11-01T09:52:09.920Z",
+   "snapshot": "foundry/out/law-audit/sources/ne/s771824.json"
+  },
+  "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1801": {
+   "state": "NE",
+   "statutes": [
+    "Neb. Rev. Stat. § 77-1801"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ac8f09f5bc13e886c59f866154e3c9ac9a715f56efc147a2509b0c8dbc86c5ec",
+   "fetched_at": "2026-11-01T09:51:55.428Z",
+   "snapshot": "foundry/out/law-audit/sources/ne/s771801.json"
+  },
+  "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1837": {
+   "state": "NE",
+   "statutes": [
+    "Neb. Rev. Stat. § 77-1837"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "bbb38671ba23e4a4fbcd15b167dec37152391290d07ffa70a58331ed32d63150",
+   "fetched_at": "2026-11-01T09:52:00.300Z",
+   "snapshot": "foundry/out/law-audit/sources/ne/s771837.json"
+  },
+  "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1831": {
+   "state": "NE",
+   "statutes": [
+    "Neb. Rev. Stat. § 77-1831"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "92dae394a98c38453c6a8a8364345c24b837601c69e6b0888c3cd3235c84d114",
+   "fetched_at": "2026-11-01T09:52:14.800Z",
+   "snapshot": "foundry/out/law-audit/sources/ne/s771831.json"
+  },
   "https://gencourt.state.nh.us/rsa/html/V/80/80-mrg.htm": {
    "state": "NH",
    "statutes": [

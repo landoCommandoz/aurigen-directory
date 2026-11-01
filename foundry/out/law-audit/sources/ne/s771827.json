@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ne",
+ "slug": "s771827",
+ "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1827",
+ "final_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1827",
+ "fetched_at": "2026-11-01T09:52:12.318Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "77e4477c4a3225143c0cfe162bc39d77e3f4ad25d25eb410d1c1e528d16fe2b2",
+ "raw_bytes": 24837,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "de3c0d4e5f6dc456489dfcd99c3878d27214cd05bb57d3b9719c4786001bca79",
+ "text_chars": 4198
+}

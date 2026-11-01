@@ -424,6 +424,21 @@
      "close": "Read the Jackson County and St. Louis City collector pages and the relevant statute sections, or keep the Confirm with the county label."
     }
    ]
+  },
+  "NE": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "NE-1",
+     "text": "The text of §45-104.01 (the interest rate) was not read (page showed navigation only), so the current rate is not stated. The 2023 to 2026 bill and session-law search was not run and section source lines were not read for recent acts.",
+     "close": "Find the interest rate text on nebraskalegislature.gov (45-104.01 or the section it points to), and search the legislature's laws for 2023 to 2026 acts amending chapter 77 article 18."
+    },
+    {
+     "id": "NE-2",
+     "text": "Sale method (rotational bidding, deposits, registration), unsold-certificate sales and excess proceeds were not found in the sections read; county treasurer details were not read from county sites.",
+     "close": "Read sections 77-1802 to 77-1816 and 77-1837.01 onward, and the named county treasurer pages, or keep the Confirm with the county label."
+    }
+   ]
   }
  }
 }

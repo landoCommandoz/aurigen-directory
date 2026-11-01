@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ne",
+ "slug": "s4510401",
+ "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=45-104.01",
+ "final_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=45-104.01",
+ "fetched_at": "2026-11-01T09:52:27.099Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "2f9ce07491aaf822c62b8d9b364239f4c26015b07479e95314ae736fa74b6d7c",
+ "raw_bytes": 22616,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "357d3898061c7b32ce05144f74dc94057d4e81ad69c591b8a006b5e9b60bb138",
+ "text_chars": 2701
+}
