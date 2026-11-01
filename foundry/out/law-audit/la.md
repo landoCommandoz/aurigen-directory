@@ -189,3 +189,8 @@ None.
 ## Conflicts (flagged)
 
 - `otc.available`: Unsold liens go to the political subdivision (R.S. 47:2154(E)); no section read on later purchase from the subdivision
+
+## Gap queue, run 6 (2026-11-01)
+- Read R.S. 47:2267 (official LawPrint d=1388661; history: Acts 2024 No. 774 and Acts 2025 No. 411, both eff. Jan 1, 2026). Added `surplus.1` (distribution order) and `surplus.2` (unclaimed after one year, Uniform Unclaimed Property Act). English only; the site has no Spanish surplus field.
+- Read R.S. 47:2243 (sources/la/r6-probe-631610, "Termination payments"; price includes penalty under 47:2127). Not cited by a claim.
+- LA-1 stays open: R.S. 47:2127 not read; 2026 acts search not run.
