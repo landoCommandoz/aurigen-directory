@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nd",
+ "slug": "r6-sl2025-taxes",
+ "url": "https://ndlegis.gov/assembly/69-2025/session-laws/documents/TAXES.pdf",
+ "final_url": "https://ndlegis.gov/assembly/69-2025/session-laws/documents/TAXES.pdf",
+ "fetched_at": "2026-11-01T10:33:09.463Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "10be948c69d9ee72f3136dcffc4519c16a3c38209372dfda844b0811bb564cb6",
+ "raw_bytes": 698044,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "05329df2f8bb6c7b2d38042c799c1634a94dfc5e5d5f902b076bb1bf6a1dfcff",
+ "text_chars": 269194
+}

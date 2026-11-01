@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nd",
+ "slug": "r6-sl2023-taxes",
+ "url": "https://ndlegis.gov/assembly/68-2023/session-laws/documents/TAXES.pdf",
+ "final_url": "https://ndlegis.gov/assembly/68-2023/session-laws/documents/TAXES.pdf",
+ "fetched_at": "2026-11-01T10:33:12.042Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "6ee5307c7e990b8d844ef4426f6e982e10cf1c8bf0f0c274293dc2cd8c88c31c",
+ "raw_bytes": 338928,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "1fd4c87e27c149db92e07b44d88d3e1f85a97ef47415f432292b146997ecd3d3",
+ "text_chars": 166164
+}

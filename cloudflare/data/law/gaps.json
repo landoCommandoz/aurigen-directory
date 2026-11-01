@@ -192,14 +192,18 @@
    "attemptedAt": "2026-11-01"
   },
   "ND": {
-   "checkStatus": "checked with gaps",
+   "checkStatus": "checked",
    "gaps": [
     {
      "id": "ND-1",
      "text": "Session-law search for the 2023 and 2025 sessions was not run.",
-     "close": "Search ndlegis.gov session laws for chapter 57-28."
+     "close": "Search ndlegis.gov session laws for chapter 57-28.",
+     "closed": "2026-11-01",
+     "note": "Run 6: 2023 and 2025 session-law taxation PDFs read (sources/nd/r6-sl2023-taxes, r6-sl2025-taxes). Only enacted acts touching ch. 57-28: S.L. 2023 ch. 536 (HB 1267, § 57-28-20, 90-day hold on excess proceeds) and S.L. 2025 ch. 557 (HB 1115, § 57-28-15(3), forms by the tax commissioner). Ledger already matches the current code.",
+     "closedAt": "2026-11-01"
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "NM": {
    "checkStatus": "checked with gaps",

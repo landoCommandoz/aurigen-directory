@@ -174,3 +174,6 @@ None.
 ## Conflicts (flagged)
 
 None.
+
+## Gap queue, run 6 (2026-11-01)
+- ND-1 closed. Read the legislature's session-law Taxation PDFs for 2023 and 2025 (sources/nd/r6-sl2023-taxes, r6-sl2025-taxes), searching for "57-28". Enacted: S.L. 2023 ch. 536 (HB 1267) amended § 57-28-20, adding the 90-day retention of excess proceeds and who receives them; S.L. 2025 ch. 557 (HB 1115, approved March 18, 2025) amended § 57-28-15(3) only to say the installment contract form is prescribed by the state tax commissioner. The ledger already reflects the current code, so no claim changed. Not enacted-in-PDF: HB 1586 and HB 1343 (2025) do not appear in the session-law Taxation PDF with chapter 57-28 text; treat as not enacted (Watch).
