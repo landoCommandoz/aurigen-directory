@@ -154,14 +154,18 @@
    "attemptedAt": "2026-11-01"
   },
   "MA": {
-   "checkStatus": "checked with gaps",
+   "checkStatus": "checked",
    "gaps": [
     {
      "id": "MA-1",
      "text": "The act that created § 64A and set the 8% rate in § 62 was not identified.",
-     "close": "Find the act on malegislature.gov."
+     "close": "Find the act on malegislature.gov.",
+     "closed": "2026-11-01",
+     "note": "Run 6: St. 2024, c. 140 read from malegislature.gov (sources/ma/r6-acts-2024-c140): § 88 changed § 62 from sixteen to 8 per cent, § 93 inserted § 64A; § 250: sections 80 to 99 take effect November 1, 2024.",
+     "closedAt": "2026-11-01"
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "ME": {
    "checkStatus": "checked with gaps",

@@ -191,3 +191,6 @@ None.
 ## Conflicts (flagged)
 
 None.
+
+## Gap queue, run 6 (2026-11-01)
+- MA-1 closed. Session law found: St. 2024, c. 140 (https://malegislature.gov/Laws/SessionLaws/Acts/2024/Chapter140, sources/ma/r6-acts-2024-c140). Section 88: § 62 of c. 60 amended "sixteen" to 8 (per cent). Section 93 inserted § 64A (excess equity). Section 250: "Sections 80 to 99, inclusive, shall take effect on November 1, 2024." (Section 264's general July 1, 2024 date does not apply to them.) So §§ 88 and 93 took effect November 1, 2024. St. 2025, c. 14 later changed the "14" days in § 64A(a) to 30. Ledger claims unchanged (they already match current § 62 and § 64A).
