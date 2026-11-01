@@ -90,7 +90,7 @@
      "id": "CO-1",
      "text": "2025 and 2026 session laws were not searched; the 2024 code PDF (uncertified printout) was used and the 2025 edition PDF was not found.",
      "close": "Search leg.colorado.gov for 2025 and 2026 acts amending title 39 (tax sales, redemption, surplus) and look for the 2025 edition PDF.",
-     "attempts": "Run 4 and 5: CRS 2025 title 39 PDF 404; bill pages HTTP 406 to curl; bill_files downloads disallowed by robots.txt; guessed signed-act PDF paths 404. Official bill page (leg.colorado.gov/bills/SB26-144, seen in search only) lists SB26-144 signed May 19, 2026, chapter 135, effective June 1, 2026, applies to treasurer deeds issued on or after that date; text not read."
+     "attempts": "Run 4 and 5: CRS 2025 title 39 PDF 404; bill pages HTTP 406 to curl; bill_files downloads disallowed by robots.txt; guessed signed-act PDF paths 404. Official bill page (leg.colorado.gov/bills/SB26-144, seen in search only) lists SB26-144 signed May 19, 2026, chapter 135, effective June 1, 2026, applies to treasurer deeds issued on or after that date; text not read. Run 7: signed-act PDF paths for SB26-144 (six variants on leg.colorado.gov and content.leg.colorado.gov) HTTP 404; web search confirms bill page lists chapter 135, effective June 1, 2026, text still not read. Not closed."
     }
    ],
    "attemptedAt": "2026-11-01"
@@ -638,7 +638,8 @@
     {
      "id": "GA-1",
      "text": "Georgia's official code (O.C.G.A. title 48 chapter 4) is only served to browsers by script: legis.ga.gov and the LexisNexis public code link returned pages with no statute text (68 and 1 characters). dor.georgia.gov/tax-sales returned HTTP 404. No audit was possible; the state's ledger is missing.",
-     "close": "Find a print or PDF copy of O.C.G.A. 48-4-40 to 48-4-48 on legis.ga.gov or a Georgia state body, or the enacted acts (HB 581 and others) as PDFs."
+     "close": "Find a print or PDF copy of O.C.G.A. 48-4-40 to 48-4-48 on legis.ga.gov or a Georgia state body, or the enacted acts (HB 581 and others) as PDFs.",
+     "attempts": "Run 7: legis.ga.gov document API gives bill PDFs only by internal ID (guessed ID returned an unrelated resolution; another HTTP 500). Still blocked."
     }
    ]
   },
@@ -648,7 +649,8 @@
     {
      "id": "IN-1",
      "text": "Indiana Code (title 6 article 1.1 chapter 24) on iga.in.gov is served by script: both the laws page and the pdf-documents path returned no text (1 character). No audit was possible; the state's ledger is missing.",
-     "close": "Find a PDF of IC 6-1.1-24 to 6-1.1-25 on iga.in.gov or the Indiana Department of Local Government Finance."
+     "close": "Find a PDF of IC 6-1.1-24 to 6-1.1-25 on iga.in.gov or the Indiana Department of Local Government Finance.",
+     "attempts": "Run 7: iga.in.gov, legacy in.gov/legislative/ic pages return no text (script); SBOA appendix PDF is an auditor guide, not code text. Still blocked."
     }
    ]
   },
@@ -678,7 +680,8 @@
     {
      "id": "NY-1",
      "text": "New York Real Property Tax Law article 11 on nysenate.gov returned HTTP 403 to the audit's download tool. No audit was possible; the state's ledger is missing.",
-     "close": "Find another official copy of RPTL article 11 (e.g. legislation.nysenate.gov or the Department of Taxation and Finance) that allows the download tool."
+     "close": "Find another official copy of RPTL article 11 (e.g. legislation.nysenate.gov or the Department of Taxation and Finance) that allows the download tool.",
+     "attempts": "Run 7: nysenate.gov law pages HTTP 403; legislation.nysenate.gov/pdf/laws 404; API HTTP 401; only bill PDFs (not enacted law) reachable. Still blocked."
     }
    ]
   },
@@ -688,7 +691,8 @@
     {
      "id": "TN-1",
      "text": "Tennessee Code Annotated title 67 chapter 5 is served by script through LexisNexis; the download returned 1 character, and tn.gov/revenue returned only navigation text. No audit was possible; the state's ledger is missing.",
-     "close": "Find a PDF of T.C.A. 67-5-2501 to 67-5-2504 and 67-5-2701 to 67-5-2706 on a Tennessee legislature or comptroller site."
+     "close": "Find a PDF of T.C.A. 67-5-2501 to 67-5-2504 and 67-5-2701 to 67-5-2706 on a Tennessee legislature or comptroller site.",
+     "attempts": "Run 7: tncourts.gov handout is script-only; publications.tnsosfiles.com HTTP 403. Still blocked."
     }
    ]
   },
