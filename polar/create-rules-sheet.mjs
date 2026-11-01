@@ -1,7 +1,8 @@
 // Creates (or finds) the Polar product, license-key benefit and checkout link for the Aurigen Rules Sheet and writes
 // their ids to under-review/sheet-config.json. Safe to run again: it looks for each thing by name before creating it.
 //   POLAR_ACCESS_TOKEN=... node polar/create-rules-sheet.mjs
-// Never prints the token. POLAR_API can point at another base URL (the tests use a local stand-in server).
+// The token is an organization token, so organization_id is never sent in a request body (Polar refuses it); the
+// organization is implied by the token. Never prints the token. POLAR_API can point at another base URL (the tests use a local stand-in server).
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -34,7 +35,7 @@ let benefit = items(await call('GET', `/v1/benefits/?${q({ organization_id: org,
   .find((b) => b.description === req.benefit.description && b.type === 'license_keys');
 if (!benefit) {
   benefit = await call('POST', '/v1/benefits/', {
-    type: 'license_keys', description: req.benefit.description, organization_id: org,
+    type: 'license_keys', description: req.benefit.description,
     properties: { prefix: req.benefit.prefix, expires: { ttl: req.benefit.ttlMonths, timeframe: 'month' }, activations: null, limit_usage: null },
   });
   console.log('created benefit');
@@ -45,7 +46,7 @@ let product = items(await call('GET', `/v1/products/?${q({ organization_id: org,
   .find((p) => p.name === req.productName && !p.is_archived);
 if (!product) {
   product = await call('POST', '/v1/products/', {
-    name: req.productName, description: req.description, organization_id: org, visibility: req.visibility,
+    name: req.productName, description: req.description, visibility: req.visibility,
     prices: [{ amount_type: 'fixed', price_amount: req.priceCents, price_currency: 'usd' }],
   });
   console.log('created product');
