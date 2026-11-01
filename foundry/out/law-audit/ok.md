@@ -172,3 +172,7 @@ October-sale, OTC and type claim is **flagged**, and the rate, redemption and st
 - `signup.steps.4`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
 - `otc.available`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
 - `otc.note.1`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
+
+## Run 4 gap queue (2026-11-01)
+
+No official text could be read, gap stays open. See the attempts note for ok in cloudflare/data/law/gaps.json; each fetch is in attempts/ok.jsonl.

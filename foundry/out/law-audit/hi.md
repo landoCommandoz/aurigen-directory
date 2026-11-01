@@ -184,3 +184,7 @@ one-year redemption; Maui County FAQ and Ordinance 2404 (1995, MCC § 3.48.270) 
 ## Conflicts (flagged)
 
 - `otc.available`: No official source fetched on over-the-counter sales in any Hawaii county
+
+## Run 4 gap queue (2026-11-01)
+
+No official text could be read, gap stays open. See the attempts note for hi in cloudflare/data/law/gaps.json; each fetch is in attempts/hi.jsonl.

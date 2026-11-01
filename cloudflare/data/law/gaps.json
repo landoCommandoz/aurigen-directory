@@ -105,9 +105,11 @@
     {
      "id": "HI-1",
      "text": "Hawaii Revised Statutes and Maui and Hawaii County pages returned HTTP 403; claims rest on the Kauai County instructions (2018) for Kauai only; statewide claims unreachable (5), over-the-counter flagged.",
-     "close": "Find another official host for HRS and the Honolulu, Maui and Hawaii County tax-sale pages; look for the newer Kauai document on kauai.gov; check post-Tyler surplus rules."
+     "close": "Find another official host for HRS and the Honolulu, Maui and Hawaii County tax-sale pages; look for the newer Kauai document on kauai.gov; check post-Tyler surplus rules.",
+     "attempts": "Run 4 (2026-11-01): capitol.hawaii.gov HRS pages HTTP 403 (two paths), data.capitol.hawaii.gov 404, mauicounty.gov 403, kauai.gov tax-sale path 404, honolulupropertytax.com no connection."
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "IA": {
    "checkStatus": "checked with gaps",
@@ -195,9 +197,11 @@
     {
      "id": "OK-1",
      "text": "Oklahoma Statutes on OSCN serve a CAPTCHA and enacted-bill PDFs are disallowed by robots.txt; 15 claims unreachable and 22 flagged on the amendment to 68 O.S. § 3105. Bill search not run. 22 claims are held (decision B, 2026-11-01): they publish nothing until an official copy of the amendment is read.",
-     "close": "Look for another official copy (Legislature bill pages that robots.txt allows, Oklahoma Tax Commission). Never bypass the CAPTCHA."
+     "close": "Look for another official copy (Legislature bill pages that robots.txt allows, Oklahoma Tax Commission). Never bypass the CAPTCHA.",
+     "attempts": "Run 4 (2026-11-01): oklegislature.gov bill pages, enrolled PDFs and OK_Statutes files and oscn.net DeliverDocument are all disallowed by robots.txt; no other official copy found. Claims stay held."
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "TX": {
    "checkStatus": "checked with gaps",

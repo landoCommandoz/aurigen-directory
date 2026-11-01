@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ok",
+ "slug": "r4-5",
+ "url": "https://oklahoma.gov/tax.html",
+ "final_url": "https://oklahoma.gov/tax.html",
+ "fetched_at": "2026-11-01T10:19:00.639Z",
+ "http_status": 200,
+ "content_type": "text/html;charset=utf-8",
+ "raw_sha256": "04a5bdf86962a90214d2a8b87381a958df2d36e8ba494e2febf300d15c355e65",
+ "raw_bytes": 33640,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "7c6c517b4c7a5aba237cf56bbc1f0c3259ad580a21d8f7caf70043a833762d3b",
+ "text_chars": 1024
+}
