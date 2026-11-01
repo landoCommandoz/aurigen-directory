@@ -340,12 +340,15 @@
    "checkStatus": "checked with gaps"
   },
   "AZ": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 84,
+   "supported": 4,
+   "corrected": 80,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 80,
+   "checkStatus": "checked with gaps"
   },
   "DE": {
    "status": "todo",

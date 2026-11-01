@@ -103,6 +103,149 @@
    "fetched_at": "2026-10-29T05:56:28.497Z",
    "snapshot": "foundry/out/law-audit/sources/ar/cosl-purchasing.json"
   },
+  "https://www.azleg.gov/ars/42/18101.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18101"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "7fc0a74b3f606a4493bf0b7fa45cd771856f6994d4778bbac1dbd3cd3d305010",
+   "fetched_at": "2026-11-01T09:26:17.195Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18101.json"
+  },
+  "https://www.azleg.gov/ars/42/18053.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18053"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "139169d358490d0c6cbd28f6abde4aea1903c180ee22f0e81d7a75e3d7991335",
+   "fetched_at": "2026-11-01T09:26:14.619Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18053.json"
+  },
+  "https://www.azleg.gov/ars/42/18114.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18114"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "75bcdda460229a01da6a0df0c8aac0e56b22674b6da3fce64bc2bc28e2a31bdc",
+   "fetched_at": "2026-11-01T09:26:47.771Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18114.json"
+  },
+  "https://www.azleg.gov/ars/42/18152.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18152"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "7d670b2a548da22c28802a44f207dcf190a9678d0e8d21f35950e19cf7ed55ea",
+   "fetched_at": "2026-11-01T09:28:31.090Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18152.json"
+  },
+  "https://www.azleg.gov/ars/42/18112.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18112"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "2b3210e4f6abc1ff5263a5d58281222ff1d6797eb6b7321090cef0ed33772b08",
+   "fetched_at": "2026-11-01T09:26:43.110Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18112.json"
+  },
+  "https://www.azleg.gov/ars/42/18106.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18106"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1f9443e64afe29359c15353edd7eaaadcbf43d37988e5d0e22873cedfa84668a",
+   "fetched_at": "2026-11-01T09:26:29.115Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18106.json"
+  },
+  "https://www.azleg.gov/ars/42/18122.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18122"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b4a1952bdeddffdfc772bed48e6dd9d576f26f36324209f11df082bd41584c60",
+   "fetched_at": "2026-11-01T09:27:06.359Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18122.json"
+  },
+  "https://www.azleg.gov/ars/42/18201.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18201"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0365d56f73767db84005f70c299866881a61f93ca988f337a900e327f885e95e",
+   "fetched_at": "2026-11-01T09:28:38.060Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18201.json"
+  },
+  "https://www.azleg.gov/ars/42/18127.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18127"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9101f2f58d716f284e1161473e2f040444e102346a70d3a2f43247ca2113d91c",
+   "fetched_at": "2026-11-01T09:27:17.945Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18127.json"
+  },
+  "https://www.azleg.gov/ars/42/18204.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18204(A)(1)",
+    "A.R.S. § 42-18204(D)",
+    "A.R.S. § 42-18204(B)",
+    "A.R.S. § 42-18204(D)(3)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "57e2c77b3a1d6cdd4c6c259bbec619bd360a7c093b42a4497e41f1acef828a8d",
+   "fetched_at": "2026-11-01T09:28:45.019Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18204.json"
+  },
+  "https://www.azleg.gov/ars/42/18113.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18113"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "92ab120fd9896680a8896bf14bb7bb4197ca84832bd2ec6c25653e6cf3d1c4d6",
+   "fetched_at": "2026-11-01T09:26:45.428Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18113.json"
+  },
+  "https://www.azleg.gov/ars/42/18202.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18202"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "5d0a77f8cc2462afae60e7c6c9659653f7f7aea2225eb02dfa32a0b6a9b29ad3",
+   "fetched_at": "2026-11-01T09:28:40.376Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18202.json"
+  },
+  "https://www.azleg.gov/ars/42/18109.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18109"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "439b2693e5b82f2fb79088544dee9815c270fee014df0e748cd4c82eba5db189",
+   "fetched_at": "2026-11-01T09:26:36.148Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18109.json"
+  },
+  "https://www.azleg.gov/ars/42/18116.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18116"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f1ff54ae0cf6c979fd5bf24f35c9d332414fa2511fa2aa30e2c08f0dfd7f4de1",
+   "fetched_at": "2026-11-01T09:26:52.434Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18116.json"
+  },
   "https://sco.ca.gov/Files-ARD-Tax-Info/Tax-Collector-Ref-Man/SCO_ExcessProceedsGuide.pdf": {
    "state": "CA",
    "statutes": [

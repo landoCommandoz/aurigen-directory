@@ -304,6 +304,21 @@
      "close": "Read the treasurer page for the counties the site names, or keep the Confirm with the county treasurer label."
     }
    ]
+  },
+  "AZ": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "AZ-1",
+     "text": "Laws 2026 ch. 66 and ch. 256 (amending 42-18115 and 42-18204, marked 'Eff. until 10/1/28') and any 2023 to 2025 acts were not read as acts; no bill-number or effective-date quote was recorded, and no bill search was run.",
+     "close": "Read the chaptered acts on azleg.gov, record bill numbers and effective dates with quotes, and check what replaces the sections on 10/1/28."
+    },
+    {
+     "id": "AZ-2",
+     "text": "County details (platform, registration, deposits, county sale practice) were not read from county treasurer sites.",
+     "close": "Read the Maricopa, Pima and other named county treasurer pages, or keep the Confirm with the county treasurer label."
+    }
+   ]
   }
  }
 }

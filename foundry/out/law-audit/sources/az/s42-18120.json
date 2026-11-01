@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "az",
+ "slug": "s42-18120",
+ "url": "https://www.azleg.gov/ars/42/18120.htm",
+ "final_url": "https://www.azleg.gov/ars/42/18120.htm",
+ "fetched_at": "2026-11-01T09:27:01.702Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "836a7cd24fee074fd2c8ab2d3fb2e6dc6878836f547dcf878c734ab72f11d212",
+ "raw_bytes": 897,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "045925570645435dfaedd805c622b1597e900459f602f9ec5fef20865af2061e",
+ "text_chars": 528
+}

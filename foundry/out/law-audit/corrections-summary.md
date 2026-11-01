@@ -1,4 +1,4 @@
-# Corrections summary, law audit (26 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (27 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1101 | 67% |
-| Wording or citation only | 249 | 15% |
-| Removed opinion | 283 | 17% |
-| **All corrected** | **1633** | |
+| Substantive | 1142 | 67% |
+| Wording or citation only | 269 | 16% |
+| Removed opinion | 302 | 18% |
+| **All corrected** | **1713** | |
 
 ## By state
 
@@ -49,6 +49,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | MD | 60 | 15 | 12 | 87 |
 | NH | 39 | 15 | 11 | 65 |
 | SD | 38 | 17 | 9 | 64 |
+| AZ | 41 | 20 | 19 | 80 |
 
 ## One example of each kind, per state
 
@@ -207,3 +208,9 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`rate`): 12% → Maximum rate set by law: 10% a year (the lowest rate bid wins)
 - Wording or citation only (`type`): Tax lien → Tax certificate sale
 - Removed opinion (`keyNotes.3`): Low population, rural land heavy — limited inventory → (removed)
+
+### AZ
+
+- Substantive (`redemption`): 3 years → Within three years of the sale, and after that until the treasurer's deed is delivered
+- Wording or citation only (`rate`): 16% per year simple interest → Maximum rate set by law: 16% per year simple interest on delinquent taxes; a lien bid may not exceed it (§ 42-18114)
+- Removed opinion (`summary.4`): Only 1-2% of liens reach foreclosure. 15 counties, Maricopa (Phoenix) is the largest market. → (removed)
