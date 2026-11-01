@@ -1,7 +1,7 @@
 # Law audit summary
 
 Spec: `foundry/aurigen-law-audit.md`. Gate: `cloudflare/scripts/check-law.mjs`. Ledgers: `cloudflare/data/law/<st>.json`.
-States done: 21 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, UT, WI, WV, AR, CO, IA, MA).
+States done: 22 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, UT, WI, WV, AR, CO, CT, IA, MA).
 
 | State | Status | Check status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -24,7 +24,7 @@ States done: 21 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, U
 | WV | done | checked with gaps | 2026-11-01 | 77 | 8 | 69 | 0 | 0 | 71 | [wv.md](wv.md) |
 | AR | done | checked with gaps | 2026-11-01 | 69 | 12 | 57 | 0 | 0 | 61 | [ar.md](ar.md) |
 | CO | done | checked with gaps | 2026-11-01 | 80 | 5 | 75 | 0 | 0 | 76 | [co.md](co.md) |
-| CT | blocked | Couldn't reach source | 2026-10-29 | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| CT | done | checked with gaps | 2026-11-01 | 66 | 4 | 62 | 0 | 0 | 62 | [ct.md](ct.md) |
 | IA | done | checked with gaps | 2026-11-01 | 79 | 13 | 66 | 0 | 0 | 70 | [ia.md](ia.md) |
 | IL | blocked | Couldn't reach source | 2026-10-29 | 0 | 0 | 0 | 0 | 0 | 0 |  |
 | MA | done | checked with gaps | 2026-11-01 | 68 | 5 | 63 | 0 | 0 | 64 | [ma.md](ma.md) |

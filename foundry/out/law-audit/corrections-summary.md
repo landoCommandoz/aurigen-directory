@@ -1,25 +1,23 @@
-# Corrections summary, law audit (21 states checked so far; updated 2026-11-01 for decision A)
+# Corrections summary, law audit (22 states checked so far; rebuilt 2026-11-01)
 
-Generated from the ledgers in `cloudflare/data/law/`. Each corrected claim carries `correctionKind` and `correctionBasis`.
+Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
 ## What the three kinds mean
 
 - **Substantive**: a rule, number, rate, date, deadline, process, who runs the sale, or whether something is available changed. Also counts a claim removed because it stated a rule or figure the official source does not support.
-- **Wording or citation only**: the same rule restated in plainer or more exact words, or the statute citation or link swapped, with no change to what a reader would do or expect.
-- **Removed opinion**: a claim taken out because it was advice, a comparison, a prediction or a "tip" that no official source states (for example "one of the lowest"). No rule changed; the sentence is gone.
+- **Wording or citation only**: the same rule restated in plainer or more exact words, or the citation or link swapped.
+- **Removed opinion**: a claim taken out because it was advice, a comparison, a prediction or a "tip" that no official source states.
 
-How labels were set: I read the old and new text of every rewritten English claim and labeled it. Spanish claims inherit the label of the English claim they mirror (328 of 344); the other 16 have no English twin and were labeled by comparing figures (a changed figure, date or process word means substantive). Removed claims were labeled by reading. This is an editorial sort for planning, not a legal determination. Borderline cases (for example "treasurer" replacing "tax collector") were counted as substantive.
+Spanish claims inherit the label of the English claim they mirror. English and Spanish are counted separately.
 
 ## Totals
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 877 | 68% |
-| Wording or citation only | 166 | 13% |
-| Removed opinion | 230 | 18% |
-| **All corrected** | **1273** | |
-
-Of the 1,273 corrected claims, English and Spanish are counted separately (each Spanish line is its own claim).
+| Substantive | 917 | 69% |
+| Wording or citation only | 181 | 14% |
+| Removed opinion | 237 | 18% |
+| **All corrected** | **1335** | |
 
 ## By state
 
@@ -27,15 +25,11 @@ Of the 1,273 corrected claims, English and Spanish are counted separately (each 
 |---|---:|---:|---:|---:|
 | AK | 41 | 13 | 12 | 66 |
 | AL | 43 | 9 | 14 | 66 |
-| AR | 41 | 7 | 9 | 57 |
 | CA | 49 | 5 | 9 | 63 |
-| CO | 52 | 18 | 5 | 75 |
 | DC | 44 | 18 | 9 | 71 |
 | HI | 33 | 2 | 22 | 57 |
-| IA | 47 | 14 | 5 | 66 |
 | KY | 47 | 4 | 10 | 61 |
 | LA | 35 | 10 | 21 | 66 |
-| MA | 46 | 12 | 5 | 63 |
 | ME | 35 | 5 | 18 | 58 |
 | MS | 38 | 2 | 11 | 51 |
 | ND | 41 | 3 | 14 | 58 |
@@ -46,11 +40,13 @@ Of the 1,273 corrected claims, English and Spanish are counted separately (each 
 | UT | 49 | 4 | 8 | 61 |
 | WI | 39 | 5 | 14 | 58 |
 | WV | 52 | 3 | 14 | 69 |
-| **All** | **877** | **166** | **230** | **1273** |
+| AR | 41 | 7 | 9 | 57 |
+| CO | 52 | 18 | 5 | 75 |
+| CT | 40 | 15 | 7 | 62 |
+| IA | 47 | 14 | 5 | 66 |
+| MA | 46 | 12 | 5 | 63 |
 
 ## One example of each kind, per state
-
-Shown as old text, then the text now on the site. "(removed)" means the claim no longer appears.
 
 ### AK
 
@@ -64,23 +60,11 @@ Shown as old text, then the text now on the site. "(removed)" means the claim no
 - Wording or citation only (`statute`): AL Code §40-10-180 → Code of Ala. 1975 §§ 40-10-121, 40-10-122
 - Removed opinion (`keyNotes.5`): 67 counties — strong rural land inventory → (removed)
 
-### AR
-
-- Substantive (`rate`): Penalty only → N/A (no redemption after the sale)
-- Wording or citation only (`beginnerTip.3`): Filter by property type and stick to properties with structures — raw land quality varies wildly. → Research the property with the county assessor before you bid.
-- Removed opinion (`keyNotes.2`): Strong rural land state — Ozarks and Delta regions offer volume → (removed)
-
 ### CA
 
 - Substantive (`rate`): Varies (market value bids) → No interest rate: property is sold to the highest bidder
 - Wording or citation only (`statute`): CA Revenue & Tax Code §3712 → Cal. Rev. & Tax. Code § 3691 et seq.
 - Removed opinion (`keyNotes.4`): High competition in coastal counties — best value in Central Valley and inland → (removed)
-
-### CO
-
-- Substantive (`rate`): Federal Discount Rate + 9% (14% for 2025, floor 8%) → Maximum rate set by law: federal discount rate + 9 points, rounded (set each September 1)
-- Wording or citation only (`bidMethod`): Highest bidder (premium bid) → Highest amount paid over the taxes, interest and fees
-- Removed opinion (`ddExtra.2`): Check for HOA liens and special improvement district assessments → (removed)
 
 ### DC
 
@@ -94,12 +78,6 @@ Shown as old text, then the text now on the site. "(removed)" means the claim no
 - Wording or citation only (`signup.steps.1`): Contact the County of Hawaii Real Property Tax Division, Maui County, Honolulu DPP, or Kauai Finance Division → Contact the county's real property tax office; each county runs its own tax sale
 - Removed opinion (`summary.2`): Many parcels are leasehold (not fee simple). → (removed)
 
-### IA
-
-- Substantive (`rateNote`): Highest fixed rate in the US — flat rate, no bidding → Fixed by law, not bid; interest on the amount the parcel sold for
-- Wording or citation only (`rate`): 24% per year (2% per month) — highest fixed rate in the U.S. → Maximum rate set by law: 2% per month (24% per year)
-- Removed opinion (`beginnerTip.1`): Iowa's 24% rate is the best in the country. → (removed)
-
 ### KY
 
 - Substantive (`rate`): 12% + penalties → Interest set by law: 12% simple per year
@@ -111,12 +89,6 @@ Shown as old text, then the text now on the site. "(removed)" means the claim no
 - Substantive (`rate`): Up to 12%/yr bid-down (min 8.4%); + 5% penalty → Maximum rate set by law: 1% per month, bid down in 0.1% steps
 - Wording or citation only (`bidMethod`): Bid-down interest rate → Bid-down monthly interest rate; lowest rate wins
 - Removed opinion (`beginnerTip.1`): Wait until late 2026 when the new system has more procedures in place. → (removed)
-
-### MA
-
-- Substantive (`type`): Tax lien → Tax title (municipal taking; titles may be assigned at auction)
-- Wording or citation only (`auctionPlatform`): Municipal — varies by city/town → City or town treasurer, public auction
-- Removed opinion (`keyNotes.5`): Boston and Cambridge have essentially no retail investor access → (removed)
 
 ### ME
 
@@ -177,3 +149,33 @@ Shown as old text, then the text now on the site. "(removed)" means the claim no
 - Substantive (`rate`): 12% → Maximum rate set by law: 1% per month on the taxes, interest and charges due at the sale
 - Wording or citation only (`statute`): WV Code §11A-3-9 → WV Code §11A-3-45
 - Removed opinion (`notBeginnerReason.2`): Mineral rights commonly separated. → (removed)
+
+### AR
+
+- Substantive (`rate`): Penalty only → N/A (no redemption after the sale)
+- Wording or citation only (`beginnerTip.3`): Filter by property type and stick to properties with structures — raw land quality varies wildly. → Research the property with the county assessor before you bid.
+- Removed opinion (`keyNotes.2`): Strong rural land state — Ozarks and Delta regions offer volume → (removed)
+
+### CO
+
+- Substantive (`rate`): Federal Discount Rate + 9% (14% for 2025, floor 8%) → Maximum rate set by law: federal discount rate + 9 points, rounded (set each September 1)
+- Wording or citation only (`bidMethod`): Highest bidder (premium bid) → Highest amount paid over the taxes, interest and fees
+- Removed opinion (`ddExtra.2`): Check for HOA liens and special improvement district assessments → (removed)
+
+### CT
+
+- Substantive (`type`): Tax lien → Tax sale of the real property at public auction
+- Wording or citation only (`rate`): 18% penalty → Maximum rate set by law: 18% per year on the total purchase price, from the date of sale
+- Removed opinion (`keyNotes.4`): 18% annualized but effective return is ~9% if redeemed at 6-month mark → (removed)
+
+### IA
+
+- Substantive (`rateNote`): Highest fixed rate in the US — flat rate, no bidding → Fixed by law, not bid; interest on the amount the parcel sold for
+- Wording or citation only (`rate`): 24% per year (2% per month) — highest fixed rate in the U.S. → Maximum rate set by law: 2% per month (24% per year)
+- Removed opinion (`beginnerTip.1`): Iowa's 24% rate is the best in the country. → (removed)
+
+### MA
+
+- Substantive (`type`): Tax lien → Tax title (municipal taking; titles may be assigned at auction)
+- Wording or citation only (`auctionPlatform`): Municipal — varies by city/town → City or town treasurer, public auction
+- Removed opinion (`keyNotes.5`): Boston and Cambridge have essentially no retail investor access → (removed)

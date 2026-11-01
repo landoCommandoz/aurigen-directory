@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ct",
+ "slug": "ch-205-sec-12-157",
+ "url": "https://www.cga.ct.gov/current/pub/chap_205.htm",
+ "final_url": "https://www.cga.ct.gov/current/pub/chap_205.htm",
+ "fetched_at": "2026-11-01T09:07:51.234Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "9aa22318cb925d0f1b120ff786975b6f54ddb5f1ebdd99829bdb89d9d47a5cda",
+ "raw_bytes": 96060,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "e380d4fa2b9e5228aa07f5e54b99f6b98c939f1d4b5601c4e62a7947b35e36f8",
+ "text_chars": 73653
+}

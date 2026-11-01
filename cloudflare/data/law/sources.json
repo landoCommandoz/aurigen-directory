@@ -151,6 +151,35 @@
    "fetched_at": "2026-10-29T05:59:07.567Z",
    "snapshot": "foundry/out/law-audit/sources/co/crs2024-title-39.json"
   },
+  "https://www.cga.ct.gov/current/pub/chap_204.htm": {
+   "state": "CT",
+   "statutes": [
+    "Conn. Gen. Stat. § 12-157(c)",
+    "Conn. Gen. Stat. § 12-157(f)",
+    "Conn. Gen. Stat. § 12-157",
+    "Conn. Gen. Stat. § 12-157(a)",
+    "Conn. Gen. Stat. § 12-157(e)",
+    "Conn. Gen. Stat. § 12-157(d)",
+    "Conn. Gen. Stat. § 12-159",
+    "Conn. Gen. Stat. § 12-157(c)(2)",
+    "Conn. Gen. Stat. § 12-157(i)(1)",
+    "Conn. Gen. Stat. § 12-157(i)(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b6f4d207f3fcf53fc4381cfd6186c072ef89dd56ef0637fb20e4c92e8595a1d7",
+   "fetched_at": "2026-11-01T09:08:05.671Z",
+   "snapshot": "foundry/out/law-audit/sources/ct/cgs-chap-204.json"
+  },
+  "https://www.cga.ct.gov/current/pub/chap_205.htm": {
+   "state": "CT",
+   "statutes": [
+    "Conn. Gen. Stat. § 12-195h(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e380d4fa2b9e5228aa07f5e54b99f6b98c939f1d4b5601c4e62a7947b35e36f8",
+   "fetched_at": "2026-11-01T09:07:51.234Z",
+   "snapshot": "foundry/out/law-audit/sources/ct/ch-205-sec-12-157.json"
+  },
   "https://otr.cfo.dc.gov/page/real-property-tax-sale": {
    "state": "DC",
    "statutes": [
