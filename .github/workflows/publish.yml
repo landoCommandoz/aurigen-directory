@@ -1,0 +1,131 @@
+# PUBLISH, in one command. Press "Run workflow" (mode: publish). It
+#   1. lists the Rules Sheet (sheet-listing.json listed: true): the page loses noindex, the home page footer links to it;
+#   2. redeploys the Worker (by starting the Status publish workflow, which runs the tests first);
+#   3. redeploys the showcase with a footer link to the sheet, if the showcase branch exists;
+#   4. checks the live addresses.
+# mode "unpublish" puts everything back. Never changes the sheet's content or price. Costs nothing: no Claude, no API.
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "publish (list the Rules Sheet) or unpublish (hide it again)"
+        type: choice
+        options:
+          - publish
+          - unpublish
+        default: publish
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+env:
+  CLOUDFLARE_ACCOUNT_ID: 8b3ad3f477589843fe0d802015b25dea
+
+jobs:
+  list:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      base: ${{ steps.base.outputs.base }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          ref: main
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: "22"
+      - name: Which address does the sheet live at?
+        id: base
+        run: |
+          if [ -f under-review/domain.enabled ]; then echo "base=https://aurigendirectory.com" >> "$GITHUB_OUTPUT"; else echo "base=https://aurigen.landonbrewington12.workers.dev" >> "$GITHUB_OUTPUT"; fi
+      - name: Run the tests
+        run: node --test under-review/test/*.test.mjs
+      - name: Flip the listing
+        env:
+          MODE: ${{ inputs.mode }}
+        run: |
+          set -euo pipefail
+          if [ "$MODE" = "unpublish" ]; then node launch/publish.mjs --undo; else node launch/publish.mjs; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add under-review/sheet-listing.json
+          if git diff --cached --quiet; then echo "Listing unchanged."; exit 0; fi
+          git commit -q -m "Rules Sheet: ${MODE}"
+          for i in 1 2 3 4; do
+            if git push origin HEAD:refs/heads/main; then exit 0; fi
+            git pull -q --rebase origin main || true
+            sleep $((2 ** i))
+          done
+          echo "::error::could not push the listing change"; exit 1
+      - name: Redeploy the Worker (Status publish runs the tests again, then deploys)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run status-publish.yml --repo "$GITHUB_REPOSITORY" --ref main
+
+  showcase:
+    needs: list
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Is there a showcase?
+        id: has
+        run: |
+          if git ls-remote --exit-code --heads "https://github.com/${GITHUB_REPOSITORY}.git" foundry/aurigen-showcase >/dev/null 2>&1; then echo "yes=true" >> "$GITHUB_OUTPUT"; else echo "yes=false" >> "$GITHUB_OUTPUT"; echo "No showcase branch; nothing to link."; fi
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        if: steps.has.outputs.yes == 'true'
+        with:
+          ref: foundry/aurigen-showcase
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        if: steps.has.outputs.yes == 'true'
+        with:
+          node-version: "22"
+      - name: Build and test the showcase with the link
+        if: steps.has.outputs.yes == 'true'
+        working-directory: cloudflare/showcase
+        env:
+          MODE: ${{ inputs.mode }}
+          BASE: ${{ needs.list.outputs.base }}
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts --no-audit --no-fund
+          if [ "$MODE" = "publish" ]; then export SHEET_URL="${BASE}/rules-sheet/"; else unset SHEET_URL; fi
+          node build.mjs
+          node test.mjs
+      - name: Deploy the showcase
+        if: steps.has.outputs.yes == 'true'
+        working-directory: cloudflare/showcase
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx wrangler deploy
+
+  check:
+    needs: [list, showcase]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Check the live addresses
+        env:
+          MODE: ${{ inputs.mode }}
+          BASE: ${{ needs.list.outputs.base }}
+        run: |
+          set -uo pipefail
+          ok=0
+          for i in $(seq 1 30); do
+            home=$(curl -sS -m 20 "${BASE}/" 2>/dev/null || true)
+            hdr=$(curl -sS -m 20 -D - -o /dev/null "${BASE}/rules-sheet/" 2>/dev/null || true)
+            linked=false; echo "$home" | grep -q 'href="/rules-sheet/"' && linked=true
+            noindex=false; echo "$hdr" | grep -qi '^x-robots-tag:.*noindex' && noindex=true
+            echo "try ${i}: home links to the sheet=${linked}, sheet noindex=${noindex}"
+            if [ "$MODE" = "publish" ] && [ "$linked" = true ] && [ "$noindex" = false ]; then ok=1; break; fi
+            if [ "$MODE" = "unpublish" ] && [ "$linked" = false ] && [ "$noindex" = true ]; then ok=1; break; fi
+            sleep 20
+          done
+          [ "$ok" = 1 ] || { echo "::error::The live site did not reach the ${MODE}ed state in time. Check the Status publish run."; exit 1; }
+          echo "Done: ${MODE}ed."

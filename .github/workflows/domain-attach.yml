@@ -1,0 +1,87 @@
+# ONE COMMAND: put aurigendirectory.com (and www) on the Worker. Press "Run workflow" once, after the nameservers
+# have been changed at the registrar and Cloudflare says the domain is active. It checks that the zone is active,
+# runs the tests, deploys the Worker with the custom domain (the home page, /status.json and /rules-sheet/ then answer on
+# both aurigendirectory.com and the workers.dev address), checks all of them, and records under-review/domain.enabled so
+# every later deploy keeps the domain. If the zone is not active yet it stops with a plain message and changes nothing.
+# Costs nothing: Workers Free plan, no Claude, no API.
+name: Domain attach
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aurigen-site
+  cancel-in-progress: false
+
+env:
+  CLOUDFLARE_ACCOUNT_ID: 8b3ad3f477589843fe0d802015b25dea
+  SITE_URL: https://aurigen.landonbrewington12.workers.dev
+  DOMAIN: aurigendirectory.com
+
+jobs:
+  attach:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          ref: main
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: "22"
+      - name: Is the zone active?
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node domain/attach-domain.mjs
+      - name: Is the live site the under-review Worker? (a restored full site is never overwritten)
+        run: |
+          set -euo pipefail
+          code=$(curl -sS -m 30 -o page.html -w "%{http_code}" "${SITE_URL}/")
+          if [ "$code" != 503 ] || ! grep -q "re-checked against current law" page.html; then
+            echo "::error::The live site is not the under-review page (HTTP ${code}). Not touching it."; exit 1
+          fi
+      - name: Run the tests (nothing is deployed unless they pass)
+        run: node --test under-review/test/*.test.mjs
+      - name: Build status.json from STATUS.md
+        run: node under-review/make-status.mjs
+      - name: Deploy the Worker with the custom domain
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx --yes wrangler@4.148.0 deploy --config under-review/wrangler.domain.jsonc
+      - name: Check every address
+        run: |
+          set -uo pipefail
+          fail=0
+          for i in $(seq 1 30); do
+            fail=0
+            for host in "https://${DOMAIN}" "https://www.${DOMAIN}" "${SITE_URL}"; do
+              home=$(curl -sS -m 20 -o home.html -w "%{http_code}" "${host}/" 2>/dev/null || echo 000)
+              st=$(curl -sS -m 20 -o /dev/null -w "%{http_code}" "${host}/status.json" 2>/dev/null || echo 000)
+              sheet=$(curl -sS -m 20 -o /dev/null -w "%{http_code}" "${host}/rules-sheet/" 2>/dev/null || echo 000)
+              echo "try ${i}: ${host} home=${home} status=${st} sheet=${sheet}"
+              if [ "$st" != 200 ] || [ "$sheet" != 200 ]; then fail=1; fi
+              # while unlisted the home page is the 503 under-review page; once published it is the same page with a link
+              if [ "$home" != 503 ]; then fail=1; fi
+            done
+            [ "$fail" = 0 ] && break
+            sleep 20
+          done
+          if [ "$fail" != 0 ]; then echo "::error::An address did not answer as expected (the certificate can take a few minutes; run this again if so)."; exit 1; fi
+          echo "All three addresses answer."
+      - name: Remember the domain so later deploys keep it
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          date -u +%F > under-review/domain.enabled
+          git add under-review/domain.enabled
+          git commit -q -m "domain: ${DOMAIN} is attached to the Worker"
+          for i in 1 2 3 4; do
+            if git push origin HEAD:refs/heads/main; then exit 0; fi
+            git pull -q --rebase origin main || true
+            sleep $((2 ** i))
+          done
+          echo "::error::could not record domain.enabled"; exit 1
