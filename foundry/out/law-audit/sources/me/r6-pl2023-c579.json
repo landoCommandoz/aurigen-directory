@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "me",
+ "slug": "r6-pl2023-c579",
+ "url": "https://lldc.mainelegislature.org/Open/Laws/2023/2023_PL_c579.pdf",
+ "final_url": "https://lldc.mainelegislature.org/Open/Laws/2023/2023_PL_c579.pdf",
+ "fetched_at": "2026-11-01T10:36:49.823Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "71cceea5d72c022d279c58ef0bd24d9dad685ee7e34f5633b166195df53ad011",
+ "raw_bytes": 140346,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "877fbdc89aebf7af6b1f6498e97634b52b359b98b2f9356eadb58234efff9977",
+ "text_chars": 11000
+}
