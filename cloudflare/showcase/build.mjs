@@ -131,7 +131,7 @@ td a.btn,a.btn{display:inline-flex;align-items:center;min-height:44px;min-width:
 .facts{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));margin:1rem 0;padding:0;list-style:none}
 .facts li{border:1px solid var(--line);background:var(--card);padding:.5rem .7rem}
 .facts strong{display:block;font-size:1.5rem;font-family:Georgia,serif}
-ul.cites{padding-left:1.2rem}ul.cites li{margin:.2rem 0}
+ul.cites{padding-left:1.2rem}ul.cites li{margin:0}ul.cites a,p.small a{display:inline-flex;align-items:center;min-height:44px}
 .gap{border-left:5px solid var(--gap);background:var(--card);padding:.5rem 1rem;margin:.8rem 0}
 footer.site{margin-top:3rem;border-top:2px solid var(--fg);background:var(--card);padding:1rem 0 2rem}
 p.crumb{margin:.5rem 0 0}
