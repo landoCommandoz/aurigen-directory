@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nh",
+ "slug": "rsa-80",
+ "url": "https://gencourt.state.nh.us/rsa/html/V/80/80-mrg.htm",
+ "final_url": "https://gc.nh.gov/rsa/html/V/80/80-mrg.htm",
+ "fetched_at": "2026-11-01T09:20:58.395Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "6a440d17131d8e8695816e66c2b1a392f418eccff47ca4889431de469bb70bac",
+ "raw_bytes": 113842,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "ee00071b3ca0918e003f3698f97f3b576c0a6b85e99b42dd94d3c27fe135c8ad",
+ "text_chars": 100574
+}

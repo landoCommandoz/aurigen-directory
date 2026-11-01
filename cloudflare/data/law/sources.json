@@ -716,6 +716,27 @@
    "fetched_at": "2026-10-27T06:35:49.367Z",
    "snapshot": "foundry/out/law-audit/sources/nd/ndcc-57-28.json"
   },
+  "https://gencourt.state.nh.us/rsa/html/V/80/80-mrg.htm": {
+   "state": "NH",
+   "statutes": [
+    "RSA 80:38(I)",
+    "RSA 80:32",
+    "RSA 80:24",
+    "RSA 80:21",
+    "RSA 80:20",
+    "RSA 80:19",
+    "RSA 80:89(II)",
+    "RSA 80:90(I)(f)",
+    "RSA 80:20-a",
+    "RSA 80:88(II)",
+    "RSA 80:42(II)",
+    "RSA 80:88(I)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ee00071b3ca0918e003f3698f97f3b576c0a6b85e99b42dd94d3c27fe135c8ad",
+   "fetched_at": "2026-11-01T09:20:58.395Z",
+   "snapshot": "foundry/out/law-audit/sources/nh/rsa-80.json"
+  },
   "https://www.tax.newmexico.gov/businesses/delinquent-property-tax-auctions/": {
    "state": "NM",
    "statutes": [

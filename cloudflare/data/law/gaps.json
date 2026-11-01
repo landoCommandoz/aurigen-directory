@@ -274,6 +274,21 @@
      "close": "Read each named county's collector or council page for its fixed rate and sale details, or keep the Confirm with the county label."
     }
    ]
+  },
+  "NH": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "NH-1",
+     "text": "The legislature's bill and session-law search for 2023 to 2026 acts was not run; only the section source lines in RSA 80 were read.",
+     "close": "Search gencourt.state.nh.us bill status for 2023 to 2026 chapters amending RSA 80 and record bill number, chapter, effective date and a quote."
+    },
+    {
+     "id": "NH-2",
+     "text": "Town-level details (sale dates, whether a town uses the lien procedure under RSA 80:58-86, deposit rules) were not read from town sites.",
+     "close": "Read the tax collector page of each town named on the site, or keep the Confirm with the town tax collector label."
+    }
+   ]
   }
  }
 }
