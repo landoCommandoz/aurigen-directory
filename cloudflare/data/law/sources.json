@@ -300,6 +300,131 @@
    "fetched_at": "2026-10-29T06:02:01.740Z",
    "snapshot": "foundry/out/law-audit/sources/ia/code-447.json"
   },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-225.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-225"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b3c23148f17add2d46ea8a2e20b04c927ef67404bd7c65d177d4a98285e460fe",
+   "fetched_at": "2026-11-01T09:13:18.459Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-225.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-215.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-215(a)",
+    "35 ILCS 200/21-215"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b7414d061c8ea6cd0d9d02770969514572ec2204c9cd5865dc594e7a7d031752",
+   "fetched_at": "2026-11-01T09:12:33.394Z",
+   "snapshot": "foundry/out/law-audit/sources/il/t-215.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-355.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-355(b)(2)",
+    "35 ILCS 200/21-355(c)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "08b7fdb28512379739a055dc1932dedeb4fed4e9b0440defecf624e3de9fb1c5",
+   "fetched_at": "2026-11-01T09:13:44.499Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-355.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-350.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-350",
+    "35 ILCS 200/21-350(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9cd9412de10c1f6960ff268cacfe8ea82ab505c59f68027a1f4e50cfc1f70fd1",
+   "fetched_at": "2026-11-01T09:13:42.332Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-350.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-205.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-205(b)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "59aa30c1cb056ca47566273b85af106fa9a1140ac689ed0b6c9e267eab851f3a",
+   "fetched_at": "2026-11-01T09:13:14.126Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-205.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-115.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-115"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9f2b0b64b5e5b9c8b7dda1ed52aba5586ae4fd17be401cc9cd5466294df6b0a8",
+   "fetched_at": "2026-11-01T09:12:48.016Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-115.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-190.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-190(a)",
+    "35 ILCS 200/21-190(c) (P.A. 104-553, eff. 7-10-26)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "85bc3e8b8461501322831408cae9980148766e9315e2f60e3148e1acaf3cd815",
+   "fetched_at": "2026-11-01T09:13:09.792Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-190.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-145.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-145"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d362ec1d3218cdebceff2f132aaa1e565f0ac928e4fbe2d2a0d2c33f8d6c64eb",
+   "fetched_at": "2026-11-01T09:14:35.307Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-145.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K22-30.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/22-30"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "442ed0ce5159a2383a4cbbc126e0d9cdc797bef17a949ca6478bae5148d65fd4",
+   "fetched_at": "2026-11-01T09:13:53.199Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s22-30.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-260.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-260"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ee0d052415727ed644b50726a8d7b3317d2f89207dab66d040694806f9661a44",
+   "fetched_at": "2026-11-01T09:13:24.965Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-260.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-240.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-240"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b6778e7ec26fd97142bb1bff2eceade1512734d80198d5603cd56d95dab0e304",
+   "fetched_at": "2026-11-01T09:13:20.632Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-240.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K22-42.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/22-42(h)",
+    "35 ILCS 200/22-42(f)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "babcd2876e867164497bdff218c3a78696a11f77a881a399263d44e958e17ab5",
+   "fetched_at": "2026-11-01T09:14:28.774Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s22-42.json"
+  },
   "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=28449": {
    "state": "KY",
    "statutes": [

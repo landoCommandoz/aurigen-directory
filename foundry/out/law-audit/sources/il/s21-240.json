@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "il",
+ "slug": "s21-240",
+ "url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-240.htm",
+ "final_url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-240.htm",
+ "fetched_at": "2026-11-01T09:13:20.632Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "1e9396008164f0dee2aaf50182ab5b934e6aa00558a3c3955b48f0cc5d22de76",
+ "raw_bytes": 4958,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "b6778e7ec26fd97142bb1bff2eceade1512734d80198d5603cd56d95dab0e304",
+ "text_chars": 3725
+}

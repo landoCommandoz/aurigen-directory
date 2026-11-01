@@ -246,12 +246,17 @@
    ]
   },
   "IL": {
-   "checkStatus": "Couldn't reach source",
+   "checkStatus": "checked with gaps",
    "gaps": [
     {
      "id": "IL-1",
-     "text": "ilga.gov fails the TLS check from the runner (certificate chain incomplete, curl error 60). Verification stays on.",
-     "close": "Each audit run first runs foundry/tools/cert-chain.mjs: it downloads the missing intermediate from the address inside the server's own certificate, keeps it only if it chains to a system root, logs its SHA-256 fingerprint, and fetch-source.mjs trusts it for cga.ct.gov and ilga.gov only (decision C, 2026-11-01). If that fails, look for another official copy; otherwise the state stays \"Couldn't reach source\" with every attempt logged."
+     "text": "Bill numbers and act text for P.A. 103-555, 103-592 and 104-553 were not read; their effects are taken from the current section text and its source lines. No other 2023 to 2026 act search was run.",
+     "close": "Read the public acts on ilga.gov (Public Acts by number) and record bill numbers, effective dates and quotes; search for other acts changing Articles 21 and 22."
+    },
+    {
+     "id": "IL-2",
+     "text": "County details (Cook and other counties' platforms, registration, deposit rules, sale dates) were not read from county sites, and the date of the seventh Cook County sale after 7-10-26 is not known.",
+     "close": "Read the Cook County Treasurer and Clerk pages and one or two other county collector pages; or keep the Confirm with the county label."
     }
    ]
   }

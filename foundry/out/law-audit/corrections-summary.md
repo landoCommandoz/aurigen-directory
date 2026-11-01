@@ -1,4 +1,4 @@
-# Corrections summary, law audit (22 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (23 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 917 | 69% |
-| Wording or citation only | 181 | 14% |
-| Removed opinion | 237 | 18% |
-| **All corrected** | **1335** | |
+| Substantive | 964 | 68% |
+| Wording or citation only | 202 | 14% |
+| Removed opinion | 251 | 18% |
+| **All corrected** | **1417** | |
 
 ## By state
 
@@ -44,6 +44,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | CO | 52 | 18 | 5 | 75 |
 | CT | 40 | 15 | 7 | 62 |
 | IA | 47 | 14 | 5 | 66 |
+| IL | 47 | 21 | 14 | 82 |
 | MA | 46 | 12 | 5 | 63 |
 
 ## One example of each kind, per state
@@ -173,6 +174,12 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`rateNote`): Highest fixed rate in the US — flat rate, no bidding → Fixed by law, not bid; interest on the amount the parcel sold for
 - Wording or citation only (`rate`): 24% per year (2% per month) — highest fixed rate in the U.S. → Maximum rate set by law: 2% per month (24% per year)
 - Removed opinion (`beginnerTip.1`): Iowa's 24% rate is the best in the country. → (removed)
+
+### IL
+
+- Substantive (`rate`): 9% per 6-month period (18% annualized) → Maximum rate set by law: a penalty bid of up to 9% of the amount of the tax or special assessment
+- Wording or citation only (`bidMethod`): Bid-down interest rate → Lowest penalty percentage bid (no bid over 9%)
+- Removed opinion (`notBeginnerReason.1`): Cook County (Chicago) is dominated by institutional buyers pushing rates to 0%. → (removed)
 
 ### MA
 
