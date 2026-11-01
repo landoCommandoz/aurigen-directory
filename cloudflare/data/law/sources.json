@@ -431,6 +431,115 @@
    "fetched_at": "2026-11-01T09:31:40.216Z",
    "snapshot": "foundry/out/law-audit/sources/de/t9-87-sc04.json"
   },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.502": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.502(1)",
+    "Fla. Stat. § 197.502(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "6c53d384f93f085768c72fbd5f15ddbb308ab0b116df78915329d0030ca48ab5",
+   "fetched_at": "2026-11-01T09:36:33.254Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1975022026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.172": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.172(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "3213d219246ac0a065155d50d8281912d121cae58ee7964d91597bee553468b6",
+   "fetched_at": "2026-11-01T09:36:22.168Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1971722026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.432": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.432(6)",
+    "Fla. Stat. § 197.432(1)",
+    "Fla. Stat. § 197.432(4)",
+    "Fla. Stat. § 197.432(12)",
+    "Fla. Stat. § 197.432(7)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "52a55166889e1e87a6023847a2a0abdd18789e2b49d2c1ede5c0a0ea165c4253",
+   "fetched_at": "2026-11-01T09:36:24.549Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1974322026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.472": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.472(1)",
+    "Fla. Stat. § 197.472(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "41b39b1c04c9c7c9a64e05b82ef1bbabad859c2713e3680bb8c76fd7245c47ab",
+   "fetched_at": "2026-11-01T09:36:30.843Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1974722026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.402": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.402(3)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f62f129bbf689de60364601837416c7c18caa75b5a3142160de151ac3f363442",
+   "fetched_at": "2026-11-01T09:36:38.666Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1974022026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.542": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.542(1)",
+    "Fla. Stat. § 197.542(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "78fbf8a22404f647a413ae3aca66b8e5e0f5689749a77a754631ea93b717e081",
+   "fetched_at": "2026-11-01T09:36:41.204Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1975422026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.4725": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.4725(2)",
+    "Fla. Stat. § 197.4725(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "6ff78ac46193fcbbce71d6ebec68233bd2ffc4a39a7971d5baf86ac286b3a25f",
+   "fetched_at": "2026-11-01T09:36:28.518Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u19747252026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2025/95.192": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 95.192(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "8f28eab9abdfd63da53a87b0a3b16042b85592da64d555361545b4db88d6e3b1",
+   "fetched_at": "2026-11-01T09:35:39.637Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/t95192.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.552": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.552"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0a9606dd452722a0637bf104fc35008177592c6529ec9a95d64719d5f85f7c4f",
+   "fetched_at": "2026-11-01T09:36:35.689Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1975522026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.582": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.582(2)(a)",
+    "Fla. Stat. § 197.582(3)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e44048739a07b67ec0d6d149678c0fe6aff19259904e1a7cd618e13f69e94668",
+   "fetched_at": "2026-11-01T09:36:07.786Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1975822026.json"
+  },
   "https://www.kauai.gov/files/assets/public/finance/documents/tax-sale-inst_rev-27sept2018.pdf": {
    "state": "HI",
    "statutes": [

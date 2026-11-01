@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "fl",
+ "slug": "t197582",
+ "url": "https://www.flsenate.gov/Laws/Statutes/2025/197.582",
+ "final_url": "https://www.flsenate.gov/Laws/Statutes/2025/197.582",
+ "fetched_at": "2026-11-01T09:35:37.089Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "9c4a2f2bbf425bba7f8c25feb3e25b82448ec14137d65e31f4fa028876960188",
+ "raw_bytes": 63217,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "98f922454bef144b424ec38ea2dc0ce8e8323b194cf26023bdff9edd18fbdc97",
+ "text_chars": 13626
+}

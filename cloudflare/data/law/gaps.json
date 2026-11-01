@@ -43,7 +43,7 @@
     {
      "id": "AL-1",
      "text": "Code of Alabama text not read (ALISON is script-only); claims rest on the Department of Revenue rule and pages. Rate conflict: rule says 8%, DOR FAQ still says 12%.",
-     "close": "Find an official static copy of the Code of Alabama (Legislature or Legislative Services Agency) and read the redemption rate and \u00a7 40-10-28 (excess funds, after Tyler v. Hennepin)."
+     "close": "Find an official static copy of the Code of Alabama (Legislature or Legislative Services Agency) and read the redemption rate and § 40-10-28 (excess funds, after Tyler v. Hennepin)."
     }
    ]
   },
@@ -137,7 +137,7 @@
    "gaps": [
     {
      "id": "MA-1",
-     "text": "The act that created \u00a7 64A and set the 8% rate in \u00a7 62 was not identified.",
+     "text": "The act that created § 64A and set the 8% rate in § 62 was not identified.",
      "close": "Find the act on malegislature.gov."
     }
    ]
@@ -147,8 +147,8 @@
    "gaps": [
     {
      "id": "ME-1",
-     "text": "36 M.R.S. \u00a7 505 could not be fetched (connection reset); 5 claims unreachable; over-the-counter flagged; LD search not run.",
-     "close": "Retry \u00a7 505 (HTML and PDF) and run the LD search for 2023 to 2026."
+     "text": "36 M.R.S. § 505 could not be fetched (connection reset); 5 claims unreachable; over-the-counter flagged; LD search not run.",
+     "close": "Retry § 505 (HTML and PDF) and run the LD search for 2023 to 2026."
     }
    ]
   },
@@ -158,7 +158,7 @@
     {
      "id": "MS-1",
      "text": "Mississippi Code not read (LexisNexis-hosted; legislature.ms.gov failed TLS); 14 claims unreachable; lien label flagged; bill status not checked.",
-     "close": "Look for an official copy of Miss. Code \u00a7\u00a7 27-41 and 29-1 on another Mississippi state host; retry legislature.ms.gov with full verification only."
+     "close": "Look for an official copy of Miss. Code §§ 27-41 and 29-1 on another Mississippi state host; retry legislature.ms.gov with full verification only."
     }
    ]
   },
@@ -178,7 +178,7 @@
     {
      "id": "NM-1",
      "text": "NMSA 1978 not fetched; claims rest on Taxation and Revenue Department pages. Redemption and over-the-counter claims flagged.",
-     "close": "Read \u00a7\u00a7 7-38-65 to 7-38-70 on nmonesource.com (NM Compilation Commission) and the 2023 to 2026 acts."
+     "close": "Read §§ 7-38-65 to 7-38-70 on nmonesource.com (NM Compilation Commission) and the 2023 to 2026 acts."
     }
    ]
   },
@@ -187,7 +187,7 @@
    "gaps": [
     {
      "id": "OK-1",
-     "text": "Oklahoma Statutes on OSCN serve a CAPTCHA and enacted-bill PDFs are disallowed by robots.txt; 15 claims unreachable and 22 flagged on the amendment to 68 O.S. \u00a7 3105. Bill search not run. 22 claims are held (decision B, 2026-11-01): they publish nothing until an official copy of the amendment is read.",
+     "text": "Oklahoma Statutes on OSCN serve a CAPTCHA and enacted-bill PDFs are disallowed by robots.txt; 15 claims unreachable and 22 flagged on the amendment to 68 O.S. § 3105. Bill search not run. 22 claims are held (decision B, 2026-11-01): they publish nothing until an official copy of the amendment is read.",
      "close": "Look for another official copy (Legislature bill pages that robots.txt allows, Oklahoma Tax Commission). Never bypass the CAPTCHA."
     }
    ]
@@ -197,7 +197,7 @@
    "gaps": [
     {
      "id": "TX-1",
-     "text": "Enacted bill text (2025 H.B. 16) not fetched; \u00a7 34.21 last amended in 2019.",
+     "text": "Enacted bill text (2025 H.B. 16) not fetched; § 34.21 last amended in 2019.",
      "close": "Fetch the enrolled text from Texas Legislature Online if robots.txt allows."
     }
    ]
@@ -332,6 +332,21 @@
      "id": "DE-2",
      "text": "Which county uses which procedure, and county sale details (dates, registration, deposits) were not read from county or sheriff sites.",
      "close": "Read the New Castle, Kent and Sussex sheriff pages, or keep the Confirm with the county label."
+    }
+   ]
+  },
+  "FL": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "FL-1",
+     "text": "The legislature's bill and session-law search for 2023 to 2026 was not run. Only the 2023, 2025 and 2026 statute editions were compared. The acts ch. 2024-91 (197.502), ch. 2024-140 and ch. 2026-174 (197.582) were not read as acts.",
+     "close": "Read those chaptered laws on flsenate.gov or laws.flrules.org, record bill numbers and effective dates with quotes, and run the bill search for chapter 197 for 2023 to 2026."
+    },
+    {
+     "id": "FL-2",
+     "text": "Sections 197.502(6) (homestead assessment in the opening bid) and 197.522 to 197.532 (notice requirements) were not read; auction platforms, registration, deposits and sale dates were not read from county tax collector or clerk sites.",
+     "close": "Read those sections, and the county tax collector and clerk pages for the counties the site names, or keep the Confirm with the county label."
     }
    ]
   }

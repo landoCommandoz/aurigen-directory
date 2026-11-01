@@ -1,4 +1,4 @@
-# Corrections summary, law audit (28 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (29 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1170 | 66% |
-| Wording or citation only | 282 | 16% |
-| Removed opinion | 317 | 18% |
-| **All corrected** | **1769** | |
+| Substantive | 1222 | 66% |
+| Wording or citation only | 306 | 16% |
+| Removed opinion | 327 | 18% |
+| **All corrected** | **1855** | |
 
 ## By state
 
@@ -51,6 +51,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | SD | 38 | 17 | 9 | 64 |
 | AZ | 41 | 20 | 19 | 80 |
 | DE | 28 | 13 | 15 | 56 |
+| FL | 52 | 24 | 10 | 86 |
 
 ## One example of each kind, per state
 
@@ -221,3 +222,9 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`type`): Tax deed → Tax sale by the sheriff (deed by court order if not redeemed)
 - Wording or citation only (`rateWhy.3`): Del. Code Title 9 §8721. → Del. Code Title 9 §8729; §8776.
 - Removed opinion (`summary.2`): Inventory is very limited. → (removed)
+
+### FL
+
+- Substantive (`redemption`): 2 years from April 1 of issuance year → Until a tax deed is issued, unless full payment for the deed has been made to the clerk (§197.472(1))
+- Wording or citation only (`type`): Hybrid (lien then deed) → Tax certificate sale, then tax deed sale
+- Removed opinion (`keyNotes.1`): Largest tax lien state by volume → (removed)
