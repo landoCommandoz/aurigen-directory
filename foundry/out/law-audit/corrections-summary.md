@@ -1,4 +1,4 @@
-# Corrections summary, law audit (43 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (44 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1668 | 61% |
-| Wording or citation only | 471 | 17% |
-| Removed opinion | 607 | 22% |
-| **All corrected** | **2746** | |
+| Substantive | 1703 | 61% |
+| Wording or citation only | 483 | 17% |
+| Removed opinion | 625 | 22% |
+| **All corrected** | **2811** | |
 
 ## By state
 
@@ -57,6 +57,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | MI | 30 | 6 | 25 | 61 |
 | MN | 21 | 12 | 28 | 61 |
 | MO | 34 | 11 | 18 | 63 |
+| MT | 35 | 12 | 18 | 65 |
 | NC | 36 | 17 | 14 | 67 |
 | NE | 28 | 10 | 23 | 61 |
 | NV | 34 | 13 | 18 | 65 |
@@ -272,6 +273,12 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`type`): Tax lien → Tax sale with a certificate of purchase
 - Wording or citation only (`summary.2`): Annual sale: 4th Monday in August. → Delinquent property is subject to sale on the fourth Monday in August of each year (§140.150.1).
 - Removed opinion (`summary.3`): St. Louis City and Jackson County conduct tax deed sales with the unusual rule that older liens are subordinate to newer ones per RSMo Cap.140. → (removed)
+
+### MT
+
+- Substantive (`rate`): 10% + 2%/mo penalty after year 1 → Maximum rate set by law: interest of 5/6 of 1% a month on delinquent taxes, plus a 2% penalty (MCA §15-16-102(3))
+- Wording or citation only (`type`): Hybrid (lien then deed) → Tax lien attached by the county treasurer, which may lead to a tax deed (MCA §15-17-125(2)(f))
+- Removed opinion (`rateWhy.2`): This escalating penalty structure incentivizes faster redemption. → (removed)
 
 ### NC
 

@@ -1232,6 +1232,60 @@
    "fetched_at": "2026-10-27T06:33:47.427Z",
    "snapshot": "foundry/out/law-audit/sources/ms/sos-lands-rules.json"
   },
+  "https://mca.legmt.gov/bills/mca/title_0150/chapter_0170/part_0010/section_0250/0150-0170-0010-0250.html": {
+   "state": "MT",
+   "statutes": [
+    "MCA 15-17-125(2)(f)",
+    "MCA 15-17-125(1)(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9cd32dee12c9ab388bc26526fd4261e1617375b7d52563a5f054a9be097174ee",
+   "fetched_at": "2026-11-01T10:10:24.174Z",
+   "snapshot": "foundry/out/law-audit/sources/mt/s15-17-125.json"
+  },
+  "https://mca.legmt.gov/bills/mca/title_0150/chapter_0160/part_0010/section_0020/0150-0160-0010-0020.html": {
+   "state": "MT",
+   "statutes": [
+    "MCA 15-16-102(3)(a)(i)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b496151bac116e7cb4a4f4de1489eea19f206b25adb73ae28a117cd568747c73",
+   "fetched_at": "2026-11-01T10:11:04.556Z",
+   "snapshot": "foundry/out/law-audit/sources/mt/s15-16-102.json"
+  },
+  "https://mca.legmt.gov/bills/mca/title_0150/chapter_0180/part_0010/section_0140/0150-0180-0010-0140.html": {
+   "state": "MT",
+   "statutes": [
+    "MCA 15-18-114(2)(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "2d1069e54c7d654968c99f37308fd49b454a1819146bbccd7e58b895c5be2888",
+   "fetched_at": "2026-11-01T10:10:57.018Z",
+   "snapshot": "foundry/out/law-audit/sources/mt/s15-18-114.json"
+  },
+  "https://mca.legmt.gov/bills/mca/title_0150/chapter_0180/part_0010/section_0110/0150-0180-0010-0110.html": {
+   "state": "MT",
+   "statutes": [
+    "MCA 15-18-111(1)",
+    "MCA 15-18-111(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f02250d3de6f21b791b2e5157f7f7a82b10996209243ee8f97e58fc92985f459",
+   "fetched_at": "2026-11-01T10:10:45.322Z",
+   "snapshot": "foundry/out/law-audit/sources/mt/s15-18-111.json"
+  },
+  "https://mca.legmt.gov/bills/mca/title_0150/chapter_0170/part_0030/section_0230/0150-0170-0030-0230.html": {
+   "state": "MT",
+   "statutes": [
+    "MCA 15-17-323(1)(a)",
+    "MCA 15-17-323(1)(b)",
+    "MCA 15-17-323(5)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "2994efc8bae26a9546a39c8e1b1245c2978d93d2d900e7d41fb4afa577413687",
+   "fetched_at": "2026-11-01T10:10:48.222Z",
+   "snapshot": "foundry/out/law-audit/sources/mt/s15-17-323.json"
+  },
   "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/ByArticle/Chapter_105/Article_26.pdf": {
    "state": "NC",
    "statutes": [

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "mt",
+ "slug": "idx-p2",
+ "url": "https://mca.legmt.gov/bills/mca/title_0150/chapter_0170/part_0020/sections_index.html",
+ "final_url": "https://mca.legmt.gov/bills/mca/title_0150/chapter_0170/part_0020/sections_index.html",
+ "fetched_at": "2026-11-01T10:10:08.735Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "a8740e5b31953ef5a67f79b1c4193732ee0d8bea5a3b3b6c723aef3aa7082123",
+ "raw_bytes": 11713,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "4a7b5cfa83e900a963fe798d084cc3895209b776e53efc1abe8723f8bb59e9c4",
+ "text_chars": 717
+}

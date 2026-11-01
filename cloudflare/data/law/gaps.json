@@ -564,6 +564,21 @@
      "close": "Read each locality's official tax sale notice or circuit court page and cite it."
     }
    ]
+  },
+  "MT": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "MT-1",
+     "text": "2025 Ch. 767 and Ch. 775 (amending §15-17-125) were not opened, so their effective dates and any parts not yet in effect are not recorded; the 2023 to 2026 search was not run.",
+     "close": "Open both acts on legmt.gov and record their start dates; search 2023 to 2025 session laws for Title 15 chapters 16 to 18."
+    },
+    {
+     "id": "MT-2",
+     "text": "Tax deed procedure and excess proceeds after a tax deed (MCA 15-18-2xx) were not read; assignment dates and county details were not read from county sites; they show as \"Confirm with the county\".",
+     "close": "Read MCA 15-18-201 to 15-18-2xx and each county treasurer's official page."
+    }
+   ]
   }
  }
 }
