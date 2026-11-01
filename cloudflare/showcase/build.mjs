@@ -22,6 +22,8 @@ const STATUS = {
 };
 const byKey = (k) => Object.values(STATUS).find((s) => s.key === k) || STATUS.none;
 const FOOTER = 'Not legal or financial advice. Rules change. Confirm with the county before you bid.';
+// Set by the Publish workflow once the Rules Sheet is listed: a plain link in every page footer. Empty until then.
+const SHEET_URL = /^https:\/\/[a-z0-9.-]+\/rules-sheet\/$/.test(process.env.SHEET_URL || '') ? process.env.SHEET_URL : '';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 // Plain-words pass over data text: no em dashes, no banned money words.
@@ -154,7 +156,7 @@ const page = (title, body) => `<!doctype html>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap"><a href="/">Law audit showcase</a><a href="/#states">All states</a><a href="/method/">Method</a></div></header>
 <main id="main" class="wrap">${body}${legend()}</main>
-<footer class="site"><div class="wrap"><p>${esc(FOOTER)}</p></div></footer>
+<footer class="site"><div class="wrap"><p>${esc(FOOTER)}</p>${SHEET_URL ? `<p><a href="${esc(SHEET_URL)}">Aurigen Rules Sheet</a>, the audited rules for sale, with sources.</p>` : ''}</div></footer>
 </body></html>
 `;
 

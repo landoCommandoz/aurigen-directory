@@ -1,0 +1,50 @@
+# Adds aurigendirectory.com to the free Cloudflare plan and prints the two nameservers to set at the registrar
+# (in the run log and summary, and saved to domain/NAMESERVERS.md). Changes nothing for visitors: the domain keeps
+# using its current nameservers until someone changes them at the registrar. Safe to run again.
+# Runs when domain/zone.json changes on main, or by hand. No Claude, no API cost, no money.
+name: Domain zone
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - domain/zone.json
+      - domain/create-zone.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: domain-zone
+  cancel-in-progress: false
+
+jobs:
+  zone:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          ref: main
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: "22"
+      - name: Add the domain to Cloudflare and read the nameservers
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node domain/create-zone.mjs
+      - name: Save the nameservers to main
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add domain/NAMESERVERS.md
+          if git diff --cached --quiet; then echo "Unchanged."; exit 0; fi
+          git commit -q -m "domain: nameservers for aurigendirectory.com"
+          for i in 1 2 3 4; do
+            if git push origin HEAD:refs/heads/main; then exit 0; fi
+            git pull -q --rebase origin main || true
+            sleep $((2 ** i))
+          done
+          echo "::warning::could not push NAMESERVERS.md"

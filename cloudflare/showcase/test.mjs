@@ -45,6 +45,7 @@ for (const [k, v] of Object.entries(gaps.definitions)) ok(home.includes(v.replac
 let links = 0;
 for (const f of htmlFiles) {
   for (const m of fs.readFileSync(f, 'utf8').matchAll(/href="(https?:[^"]+)"/g)) {
+    if (process.env.SHEET_URL && m[1] === process.env.SHEET_URL) continue; // our own Rules Sheet link, added by the Publish workflow
     const u = new URL(m[1].replace(/&amp;/g, '&'));
     ok(domains.some((d) => u.hostname === d || u.hostname.endsWith('.' + d)), 'off-list domain ' + u.hostname + ' in ' + f);
     links++;
@@ -74,4 +75,11 @@ for (const f of htmlFiles) {
   ok(!/(src|href)="https?:\/\/(fonts|cdn)/.test(h), 'external asset in ' + f);
 }
 ok(fs.readFileSync(path.join(pub, '_headers'), 'utf8').includes('X-Robots-Tag: noindex'), 'noindex header file');
+// When the Publish workflow passes SHEET_URL, every page links to the Rules Sheet; otherwise none does.
+const SHEET_URL = process.env.SHEET_URL || '';
+for (const f of htmlFiles) {
+  const h = fs.readFileSync(f, 'utf8');
+  if (SHEET_URL) ok(h.includes(`href="${SHEET_URL}"`), 'sheet link missing in ' + f);
+  else ok(!h.includes('/rules-sheet/'), 'sheet link present before publish in ' + f);
+}
 console.log(`PASS: ${n} assertions; ${statePages.length} state pages; ${htmlFiles.length} html files; ${links} official links; ${heldN} held claims excluded; status tally ${JSON.stringify(tally)}`);
