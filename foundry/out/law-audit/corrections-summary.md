@@ -1,4 +1,4 @@
-# Corrections summary, law audit (44 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (45 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1703 | 61% |
-| Wording or citation only | 483 | 17% |
-| Removed opinion | 625 | 22% |
-| **All corrected** | **2811** | |
+| Substantive | 1731 | 60% |
+| Wording or citation only | 491 | 17% |
+| Removed opinion | 647 | 23% |
+| **All corrected** | **2869** | |
 
 ## By state
 
@@ -67,6 +67,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | SC | 35 | 8 | 19 | 62 |
 | VA | 30 | 13 | 24 | 67 |
 | VT | 34 | 8 | 22 | 64 |
+| WY | 28 | 8 | 22 | 58 |
 
 ## One example of each kind, per state
 
@@ -333,3 +334,9 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`type`): Tax lien → Tax sale of real property; a collector's deed follows if not redeemed (32 V.S.A. §5254, §5261)
 - Wording or citation only (`redemption`): 1 year → Within one year from the day of sale (32 V.S.A. §5260(a))
 - Removed opinion (`summary.2`): Sales are extremely rare. → (removed)
+
+### WY
+
+- Substantive (`rate`): 15% → Maximum rate set by law: 18% per year interest on delinquent taxes (W.S. §39-13-108(b)(ii)). Rate on a certificate of purchase: Confirm with the county.
+- Wording or citation only (`type`): Tax lien → Lien held under a certificate of purchase or tax deed for delinquent taxes (W.S. §39-13-108(d)(ii))
+- Removed opinion (`summary.2`): Inventory dominated by energy sector and agricultural land. → (removed)

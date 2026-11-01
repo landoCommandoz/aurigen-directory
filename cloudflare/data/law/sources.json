@@ -2024,6 +2024,19 @@
    "text_sha256": "77288a3ef18245320bd9de503258d8a260e29f5005cb7dbfa0792b403b6bf160",
    "fetched_at": "2026-10-29T05:53:01.936Z",
    "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-65.json"
+  },
+  "https://wyoleg.gov/statutes/compress/title39.pdf": {
+   "state": "WY",
+   "statutes": [
+    "W.S. 39-13-108(d)(ii)",
+    "W.S. 39-13-108(b)(ii)",
+    "W.S. 39-13-108(d)(iii)",
+    "W.S. 39-13-108(d)(iv)(C)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "0e620fe0b1b96f4d67ede871356f07dc19b64daad788ec3f0ed424bee54fd704",
+   "fetched_at": "2026-11-01T10:12:37.434Z",
+   "snapshot": "foundry/out/law-audit/sources/wy/wy39-13-108.json"
   }
  }
 }

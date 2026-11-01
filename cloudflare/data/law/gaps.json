@@ -639,6 +639,21 @@
      "close": "Find another official copy of RCW 84.56 and 84.64 (for example the legislature's PDF per-title files) that robots.txt allows."
     }
    ]
+  },
+  "WY": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "WY-1",
+     "text": "The statutes that set the county treasurer's tax sale, certificate of purchase, its interest rate and its redemption period were not found in the text read; only W.S. 39-13-108(b) and (d) were used.",
+     "close": "Search the Title 39 text for the sale and certificate provisions (for example W.S. 39-13-108(e) onward and related sections) and re-check the rate and redemption claims."
+    },
+    {
+     "id": "WY-2",
+     "text": "The 2023 to 2026 enrolled-act search was not run; county sale dates, registration and deposits were not read from county sites and show as \"Confirm with the county\".",
+     "close": "Search wyoleg.gov enrolled acts for Title 39 changes and read each county treasurer's official page."
+    }
+   ]
   }
  }
 }
