@@ -60,6 +60,12 @@ for (const code of codes) {
     if (c.lang === 'es' && !byId.has(c.enId)) err(`${where}: Spanish claim needs enId of an English claim`);
     if (typeof c.shown !== 'string') err(`${where}: shown must be a string ("" removes the statement)`);
     if (!c.pass2) err(`${where}: pass 2 not recorded`);
+    if (c.hold) {
+      // A held claim is kept in the ledger for the record but must publish nothing (Lando's decision B).
+      if (c.shown !== '') err(`${where}: held claim must have shown "" (nothing published)`);
+      if (!c.holdReason || typeof c.heldText !== 'string') err(`${where}: held claim needs holdReason and heldText`);
+    }
+    if (c.heldText && !c.hold) err(`${where}: heldText without hold`);
     const bw = bannedWord(c.shown, c.lang) || bannedWord(claimText(c), c.lang);
     if (bw) err(`${where}: banned money word "${bw}" in shown text`);
     if (c.status === 'unreachable') {

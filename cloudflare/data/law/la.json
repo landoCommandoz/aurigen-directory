@@ -651,7 +651,7 @@
    "id": "otc.available",
    "lang": "en",
    "field": "otc.available",
-   "shown": "Not generally available",
+   "shown": "Confirm with the parish tax collector.",
    "original": "Not generally available",
    "url": "https://legis.la.gov/legis/LawPrint.aspx?d=631549",
    "snapshot": "foundry/out/law-audit/sources/la/rs-47-2154.json",
@@ -659,9 +659,15 @@
    "sourceKind": "code",
    "statute": "La. R.S. § 47:2154",
    "quote": "If there is no bidder, the tax collector shall issue and record the tax lien certificate in favor of the political subdivision.",
-   "status": "flagged",
-   "pass2": "flagged: no official text read on buying unsold certificates",
-   "flagReason": "Unsold liens go to the political subdivision (R.S. 47:2154(E)); no section read on later purchase from the subdivision"
+   "status": "corrected",
+   "pass2": "ok: decision A (Lando, 2026-11-01): softened to a referral; no rule is stated, so nothing unsupported is shown",
+   "correctionKind": "substantive",
+   "correctionBasis": "decision A: unsupported \"not available / varies\" wording replaced by a referral",
+   "decision": {
+    "id": "A",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "otc.note.1",

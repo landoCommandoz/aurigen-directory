@@ -648,7 +648,7 @@
    "id": "otc.available",
    "lang": "en",
    "field": "otc.available",
-   "shown": "Not generally available",
+   "shown": "Confirm with the Taxation and Revenue Department.",
    "original": "Not generally available",
    "url": "https://www.tax.newmexico.gov/businesses/delinquent-property-tax-auctions/",
    "snapshot": "foundry/out/law-audit/sources/nm/trd-auctions-page.json",
@@ -656,9 +656,15 @@
    "sourceKind": "agency",
    "statute": "none: administrative practice (NM Taxation and Revenue Department, Property Tax Division)",
    "quote": "PTD does not hold sales in all 33 counties each year.",
-   "status": "flagged",
-   "pass2": "flagged: no official text read on over-the-counter sales",
-   "flagReason": "TRD pages read do not mention over-the-counter sales"
+   "status": "corrected",
+   "pass2": "ok: decision A (Lando, 2026-11-01): softened to a referral; no rule is stated, so nothing unsupported is shown",
+   "correctionKind": "substantive",
+   "correctionBasis": "decision A: unsupported \"not available / varies\" wording replaced by a referral",
+   "decision": {
+    "id": "A",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "otc.note.1",

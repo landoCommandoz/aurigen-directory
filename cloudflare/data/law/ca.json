@@ -660,7 +660,7 @@
    "id": "otc.available",
    "lang": "en",
    "field": "otc.available",
-   "shown": "Not generally available",
+   "shown": "Confirm with the county tax collector.",
    "original": "Not generally available",
    "url": "https://sco.ca.gov/Files-ARD-Tax-Info/Tax-Collector-Ref-Man/ctcrm_chapter8.pdf",
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json",
@@ -668,9 +668,15 @@
    "sourceKind": "agency",
    "statute": "Cal. Rev. & Tax. Code § 3698.5(c)",
    "quote": "may re-offer the property at the same sale or the next sale with a reduced minimum bid amount",
-   "status": "flagged",
-   "pass2": "flagged: no source on over-the-counter sales; unsold property may be re-offered",
-   "flagReason": "No official text fetched on OTC; SCO manual says unsold property may be re-offered at a reduced minimum bid"
+   "status": "corrected",
+   "pass2": "ok: decision A (Lando, 2026-11-01): softened to a referral; no rule is stated, so nothing unsupported is shown",
+   "correctionKind": "substantive",
+   "correctionBasis": "decision A: unsupported \"not available / varies\" wording replaced by a referral",
+   "decision": {
+    "id": "A",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "otc.note.1",

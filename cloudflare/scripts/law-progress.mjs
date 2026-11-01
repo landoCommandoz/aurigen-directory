@@ -52,7 +52,12 @@ fs.mkdirSync(path.join(ROOT, 'foundry', 'out', 'chain'), { recursive: true });
 const queue = Object.values(gaps.states).filter((g) => g.gaps.length && (g.checkStatus === 'checked with gaps' || g.attemptedAt));
 const queueDone = queue.filter((g) => g.attemptedAt).length;
 const finished = prog.order.filter((s) => ['done', 'blocked'].includes(prog.states[s].status)).length;
-fs.writeFileSync(path.join(ROOT, 'foundry', 'out', 'chain', 'aurigen-law-audit.json'), JSON.stringify({ total: 51 + queue.length, done: finished + queueDone }) + '\n');
+// spent, cap, runs and lastRunCost belong to the workflow (it adds each run's API cost); keep them as they are.
+const chainFile = path.join(ROOT, 'foundry', 'out', 'chain', 'aurigen-law-audit.json');
+let kept = {};
+try { kept = JSON.parse(fs.readFileSync(chainFile, 'utf8')); } catch { /* first write */ }
+const money = { spent: kept.spent ?? 0, cap: kept.cap ?? 40, runs: kept.runs ?? 0, ...(kept.lastRunCost != null ? { lastRunCost: kept.lastRunCost } : {}) };
+fs.writeFileSync(chainFile, JSON.stringify({ total: 51 + queue.length, done: finished + queueDone, ...money }) + '\n');
 
 const conflicts = [], unreachable = [];
 const lines = ['| State | Status | Check status | Date | Claims | Supported | Corrected | Flagged | Unreachable | Pass 2 trims | Report |', '|---|---|---|---|---|---|---|---|---|---|---|'];

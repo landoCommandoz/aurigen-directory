@@ -187,7 +187,7 @@
    "gaps": [
     {
      "id": "OK-1",
-     "text": "Oklahoma Statutes on OSCN serve a CAPTCHA and enacted-bill PDFs are disallowed by robots.txt; 15 claims unreachable and 22 flagged on the amendment to 68 O.S. § 3105. Bill search not run.",
+     "text": "Oklahoma Statutes on OSCN serve a CAPTCHA and enacted-bill PDFs are disallowed by robots.txt; 15 claims unreachable and 22 flagged on the amendment to 68 O.S. § 3105. Bill search not run. 22 claims are held (decision B, 2026-11-01): they publish nothing until an official copy of the amendment is read.",
      "close": "Look for another official copy (Legislature bill pages that robots.txt allows, Oklahoma Tax Commission). Never bypass the CAPTCHA."
     }
    ]
@@ -236,7 +236,7 @@
     {
      "id": "CT-1",
      "text": "cga.ct.gov fails the TLS check from the runner (certificate chain incomplete, curl error 60). Verification stays on.",
-     "close": "Try other official copies: the official CGS PDF, a second legislature host, or Public Act pages. If none reaches with full verification, keep this status and log every attempt."
+     "close": "Each audit run first runs foundry/tools/cert-chain.mjs: it downloads the missing intermediate from the address inside the server's own certificate, keeps it only if it chains to a system root, logs its SHA-256 fingerprint, and fetch-source.mjs trusts it for cga.ct.gov and ilga.gov only (decision C, 2026-11-01). If that fails, look for another official copy; otherwise the state stays \"Couldn't reach source\" with every attempt logged."
     }
    ]
   },
@@ -246,7 +246,7 @@
     {
      "id": "IL-1",
      "text": "ilga.gov fails the TLS check from the runner (certificate chain incomplete, curl error 60). Verification stays on.",
-     "close": "Try other official copies: the official ILCS PDF, a second legislature host, or Public Act pages. If none reaches with full verification, keep this status and log every attempt."
+     "close": "Each audit run first runs foundry/tools/cert-chain.mjs: it downloads the missing intermediate from the address inside the server's own certificate, keeps it only if it chains to a system root, logs its SHA-256 fingerprint, and fetch-source.mjs trusts it for cga.ct.gov and ilga.gov only (decision C, 2026-11-01). If that fails, look for another official copy; otherwise the state stays \"Couldn't reach source\" with every attempt logged."
     }
    ]
   }

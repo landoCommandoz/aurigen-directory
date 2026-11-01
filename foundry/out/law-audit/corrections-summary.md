@@ -1,4 +1,4 @@
-# Corrections summary, law audit (21 states checked so far)
+# Corrections summary, law audit (21 states checked so far; updated 2026-11-01 for decision A)
 
 Generated from the ledgers in `cloudflare/data/law/`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,39 +14,39 @@ How labels were set: I read the old and new text of every rewritten English clai
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 866 | 68% |
+| Substantive | 877 | 68% |
 | Wording or citation only | 166 | 13% |
 | Removed opinion | 230 | 18% |
-| **All corrected** | **1262** | |
+| **All corrected** | **1273** | |
 
-Of the 1,262 corrected claims, English and Spanish are counted separately (each Spanish line is its own claim).
+Of the 1,273 corrected claims, English and Spanish are counted separately (each Spanish line is its own claim).
 
 ## By state
 
 | State | Substantive | Wording or citation only | Removed opinion | Total |
 |---|---:|---:|---:|---:|
-| AK | 35 | 13 | 12 | 60 |
+| AK | 41 | 13 | 12 | 66 |
 | AL | 43 | 9 | 14 | 66 |
 | AR | 41 | 7 | 9 | 57 |
-| CA | 48 | 5 | 9 | 62 |
+| CA | 49 | 5 | 9 | 63 |
 | CO | 52 | 18 | 5 | 75 |
 | DC | 44 | 18 | 9 | 71 |
-| HI | 32 | 2 | 22 | 56 |
+| HI | 33 | 2 | 22 | 57 |
 | IA | 47 | 14 | 5 | 66 |
 | KY | 47 | 4 | 10 | 61 |
-| LA | 34 | 10 | 21 | 65 |
+| LA | 35 | 10 | 21 | 66 |
 | MA | 46 | 12 | 5 | 63 |
-| ME | 34 | 5 | 18 | 57 |
+| ME | 35 | 5 | 18 | 58 |
 | MS | 38 | 2 | 11 | 51 |
 | ND | 41 | 3 | 14 | 58 |
-| NM | 36 | 11 | 13 | 60 |
+| NM | 37 | 11 | 13 | 61 |
 | OK | 6 | 4 | 11 | 21 |
 | PA | 38 | 10 | 4 | 52 |
 | TX | 64 | 7 | 2 | 73 |
 | UT | 49 | 4 | 8 | 61 |
 | WI | 39 | 5 | 14 | 58 |
 | WV | 52 | 3 | 14 | 69 |
-| **All** | **866** | **166** | **230** | **1262** |
+| **All** | **877** | **166** | **230** | **1273** |
 
 ## One example of each kind, per state
 

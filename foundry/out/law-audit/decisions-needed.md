@@ -1,4 +1,7 @@
-# Flagged claims: what needs a decision
+# Flagged claims: decisions
+
+**Decided by Lando on 2026-11-01 (standing orders).** A: the 11 claims were softened to a referral ("Confirm with the borough or city" and the like). B: the 22 Oklahoma claims are held and publish nothing. C: CT and IL get the missing intermediate certificate only from the address inside the server's own certificate, verified to a system root, fingerprint logged, trusted for those two hosts only. The text below is the original question, kept for the record.
+
 
 40 claims are flagged across 21 states (English and Spanish counted separately). 33 need a decision from Lando. 7 are research gaps that the gap queue closes with no decision needed.
 

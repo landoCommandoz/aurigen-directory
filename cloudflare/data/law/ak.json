@@ -81,7 +81,7 @@
    "id": "bidMethod",
    "lang": "en",
    "field": "bidMethod",
-   "shown": "Set by each borough or city",
+   "shown": "Confirm the bid method with the borough or city.",
    "original": "Varies by borough municipality",
    "url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=29.45.290&secEnd=29.45.500",
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
@@ -89,9 +89,15 @@
    "sourceKind": "code",
    "statute": "AS 29.45.460",
    "quote": "Tax-foreclosed property conveyed to a municipality by tax foreclosure and not required for a public purpose may be sold.",
-   "status": "flagged",
-   "pass2": "flagged: AS 29.45 says unneeded property \"may be sold\" but sets no bid method; local ordinances not audited",
-   "flagReason": "AS 29.45.460 sets no bid method; method comes from municipal ordinances not yet audited"
+   "status": "corrected",
+   "pass2": "ok: decision A (Lando, 2026-11-01): softened to a referral; no rule is stated, so nothing unsupported is shown",
+   "correctionKind": "substantive",
+   "correctionBasis": "decision A: unsupported \"not available / varies\" wording replaced by a referral",
+   "decision": {
+    "id": "A",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "statute",
@@ -623,7 +629,7 @@
    "id": "signup.deposit.1",
    "lang": "en",
    "field": "signup.deposit",
-   "shown": "Varies by borough or city.",
+   "shown": "Confirm the deposit with the borough or city.",
    "original": "Varies by borough.",
    "url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=29.45.290&secEnd=29.45.500",
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
@@ -631,9 +637,15 @@
    "sourceKind": "code",
    "statute": "AS 29.45.460",
    "quote": "The municipality shall determine by ordinance whether foreclosed property deeded to the municipality shall be retained for a public purpose.",
-   "status": "flagged",
-   "pass2": "flagged: deposits are not in AS 29.45",
-   "flagReason": "Deposits are not set in AS 29.45; local rules not audited"
+   "status": "corrected",
+   "pass2": "ok: decision A (Lando, 2026-11-01): softened to a referral; no rule is stated, so nothing unsupported is shown",
+   "correctionKind": "substantive",
+   "correctionBasis": "decision A: unsupported \"not available / varies\" wording replaced by a referral",
+   "decision": {
+    "id": "A",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "signup.deposit.2",
@@ -656,7 +668,7 @@
    "id": "otc.available",
    "lang": "en",
    "field": "otc.available",
-   "shown": "Not generally available",
+   "shown": "Confirm with the borough or city.",
    "original": "Not generally available",
    "url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=29.45.290&secEnd=29.45.500",
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
@@ -664,15 +676,21 @@
    "sourceKind": "code",
    "statute": "AS 29.45.460",
    "quote": "Tax-foreclosed property conveyed to a municipality by tax foreclosure and not required for a public purpose may be sold.",
-   "status": "flagged",
-   "pass2": "flagged: AS 29.45 does not address over-the-counter sales",
-   "flagReason": "No state OTC rule in AS 29.45; municipalities may sell unsold property by ordinance"
+   "status": "corrected",
+   "pass2": "ok: decision A (Lando, 2026-11-01): softened to a referral; no rule is stated, so nothing unsupported is shown",
+   "correctionKind": "substantive",
+   "correctionBasis": "decision A: unsupported \"not available / varies\" wording replaced by a referral",
+   "decision": {
+    "id": "A",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "otc.note.1",
    "lang": "en",
    "field": "otc.note",
-   "shown": "No statewide OTC program.",
+   "shown": "Confirm with the borough or city whether unsold property is sold directly.",
    "original": "No statewide OTC program.",
    "url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=29.45.290&secEnd=29.45.500",
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
@@ -680,9 +698,15 @@
    "sourceKind": "code",
    "statute": "AS 29.45.460",
    "quote": "Tax-foreclosed property conveyed to a municipality by tax foreclosure and not required for a public purpose may be sold.",
-   "status": "flagged",
-   "pass2": "flagged: see otc.available",
-   "flagReason": "Same as otc.available"
+   "status": "corrected",
+   "pass2": "ok: decision A (Lando, 2026-11-01): softened to a referral; no rule is stated, so nothing unsupported is shown",
+   "correctionKind": "substantive",
+   "correctionBasis": "decision A: unsupported \"not available / varies\" wording replaced by a referral",
+   "decision": {
+    "id": "A",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "platforms.1",
@@ -1154,7 +1178,7 @@
    "lang": "es",
    "enId": "signup.deposit.1",
    "field": "signup.deposit",
-   "shown": "Varía por borough o ciudad.",
+   "shown": "Confirme el depósito con el municipio (borough o ciudad).",
    "original": "Varía por borough.",
    "statute": "AS 29.45.460",
    "url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=29.45.290&secEnd=29.45.500",
@@ -1162,9 +1186,15 @@
    "quote": "The municipality shall determine by ordinance whether foreclosed property deeded to the municipality shall be retained for a public purpose.",
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
-   "status": "flagged",
-   "flagReason": "Deposits are not set in AS 29.45; local rules not audited",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "status": "corrected",
+   "pass2": "ok: decision A (Lando, 2026-11-01): softened to a referral; no rule is stated, so nothing unsupported is shown",
+   "correctionKind": "substantive",
+   "correctionBasis": "decision A: unsupported \"not available / varies\" wording replaced by a referral",
+   "decision": {
+    "id": "A",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "es.signup.deposit.2",
@@ -1189,7 +1219,7 @@
    "lang": "es",
    "enId": "otc.note.1",
    "field": "otc.note",
-   "shown": "No hay programa OTC estatal.",
+   "shown": "Confirme con el municipio (borough o ciudad) si la propiedad no vendida se vende directamente.",
    "original": "No hay programa OTC estatal.",
    "statute": "AS 29.45.460",
    "url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=29.45.290&secEnd=29.45.500",
@@ -1197,9 +1227,15 @@
    "quote": "Tax-foreclosed property conveyed to a municipality by tax foreclosure and not required for a public purpose may be sold.",
    "snapshot": "foundry/out/law-audit/sources/ak/as-29-45-290-500.json",
    "checked": "2026-10-27",
-   "status": "flagged",
-   "flagReason": "Same as otc.available",
-   "pass2": "ok: matches English claim"
+   "status": "corrected",
+   "pass2": "ok: decision A (Lando, 2026-11-01): softened to a referral; no rule is stated, so nothing unsupported is shown",
+   "correctionKind": "substantive",
+   "correctionBasis": "decision A: unsupported \"not available / varies\" wording replaced by a referral",
+   "decision": {
+    "id": "A",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   }
  ],
  "checkStatus": "checked with gaps",

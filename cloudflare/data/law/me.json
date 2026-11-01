@@ -627,7 +627,7 @@
    "id": "otc.available",
    "lang": "en",
    "field": "otc.available",
-   "shown": "Not generally available",
+   "shown": "Confirm with the municipality.",
    "original": "Not generally available",
    "url": "https://legislature.maine.gov/statutes/36/title36sec943-C.pdf",
    "snapshot": "foundry/out/law-audit/sources/me/mrs-36-943-c-pdf.json",
@@ -635,9 +635,15 @@
    "sourceKind": "code",
    "statute": "36 M.R.S. § 943-C",
    "quote": "List the property for sale at the highest reasonable price at which the property is anticipated to sell with a real estate broker or agent licensed under Title 32, chapter 114",
-   "status": "flagged",
-   "pass2": "flagged: statutes describe broker listings, not an OTC program",
-   "flagReason": "No official text on over-the-counter sales; § 943-C requires broker listing of tax-acquired property"
+   "status": "corrected",
+   "pass2": "ok: decision A (Lando, 2026-11-01): softened to a referral; no rule is stated, so nothing unsupported is shown",
+   "correctionKind": "substantive",
+   "correctionBasis": "decision A: unsupported \"not available / varies\" wording replaced by a referral",
+   "decision": {
+    "id": "A",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "otc.note.1",

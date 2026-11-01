@@ -653,7 +653,7 @@
    "id": "otc.available",
    "lang": "en",
    "field": "otc.available",
-   "shown": "Not generally available",
+   "shown": "Confirm with the county.",
    "original": "Not generally available",
    "url": "https://www.kauai.gov/files/assets/public/finance/documents/tax-sale-inst_rev-27sept2018.pdf",
    "snapshot": "foundry/out/law-audit/sources/hi/kauai-tax-sale-inst-2018.json",
@@ -661,9 +661,15 @@
    "sourceKind": "county",
    "statute": "none: administrative practice (County of Kauai)",
    "quote": "Each County is responsible for their own tax sale and inquiries:",
-   "status": "flagged",
-   "pass2": "flagged: no official text on over-the-counter sales",
-   "flagReason": "No official source fetched on over-the-counter sales in any Hawaii county"
+   "status": "corrected",
+   "pass2": "ok: decision A (Lando, 2026-11-01): softened to a referral; no rule is stated, so nothing unsupported is shown",
+   "correctionKind": "substantive",
+   "correctionBasis": "decision A: unsupported \"not available / varies\" wording replaced by a referral",
+   "decision": {
+    "id": "A",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "otc.note.1",

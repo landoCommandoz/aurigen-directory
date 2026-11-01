@@ -1,0 +1,81 @@
+# Publishes STATUS.md (repo root, 10 lines) as https://aurigen.landonbrewington12.workers.dev/status.json.
+# Runs after every Foundry run, when STATUS.md or the under-review page changes on main, or by hand.
+# It only redeploys the "under review" Worker, and only while the live site is the under-review page right now
+# (HTTP 503 with the page text). If the full site has been restored it does nothing and leaves it alone: the
+# restore job in aurigen-site.yml puts status.json into the full site itself.
+# Costs nothing: Workers Free plan, no Claude, no API.
+name: Status publish
+
+on:
+  workflow_run:
+    workflows: ["Foundry"]
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - STATUS.md
+      - under-review/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aurigen-site
+  cancel-in-progress: false
+
+env:
+  CLOUDFLARE_ACCOUNT_ID: 8b3ad3f477589843fe0d802015b25dea
+  SITE_URL: https://aurigen.landonbrewington12.workers.dev
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          ref: main
+      - name: Is the live site the under-review page?
+        id: live
+        run: |
+          set -uo pipefail
+          code=$(curl -sS -m 30 -o page.html -w "%{http_code}" "${SITE_URL}/" || echo 000)
+          if [ "$code" = 503 ] && grep -q "re-checked against current law" page.html; then
+            echo "under_review=true" >> "$GITHUB_OUTPUT"
+            echo "The live site is the under-review page; publishing the status."
+          else
+            echo "under_review=false" >> "$GITHUB_OUTPUT"
+            echo "Live site answered HTTP ${code} and is not the under-review page; leaving it alone."
+          fi
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        if: steps.live.outputs.under_review == 'true'
+        with:
+          node-version: "22"
+      - name: Build status.json from STATUS.md
+        if: steps.live.outputs.under_review == 'true'
+        run: node under-review/make-status.mjs
+      - name: Skip the deploy if the live status is already this one
+        id: same
+        if: steps.live.outputs.under_review == 'true'
+        run: |
+          new=$(jq -r '.updated' under-review/status.json)
+          live=$(curl -sS -m 30 "${SITE_URL}/status.json" 2>/dev/null | jq -r '.updated // empty' 2>/dev/null || true)
+          if [ "$new" = "$live" ] && [ -n "$new" ]; then echo "same=true" >> "$GITHUB_OUTPUT"; echo "Live status is already '${new}'."; else echo "same=false" >> "$GITHUB_OUTPUT"; fi
+      - name: Deploy the under-review Worker with the new status
+        if: steps.live.outputs.under_review == 'true' && steps.same.outputs.same != 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx --yes wrangler@4.148.0 deploy --config under-review/wrangler.jsonc
+      - name: Check the live address
+        if: steps.live.outputs.under_review == 'true' && steps.same.outputs.same != 'true'
+        run: |
+          set -euo pipefail
+          sleep 10
+          code=$(curl -sS -o status.out -w "%{http_code}" "${SITE_URL}/status.json")
+          [ "$code" = 200 ] || { echo "::error::/status.json answered HTTP ${code}"; exit 1; }
+          jq -e '.lines | length > 0' status.out >/dev/null
+          page=$(curl -sS -o page.html -w "%{http_code}" "${SITE_URL}/")
+          [ "$page" = 503 ] && grep -q "re-checked against current law" page.html || { echo "::error::under-review page changed"; exit 1; }
+          grep -q 'href="/status.json"' page.html || { echo "::error::footer link missing"; exit 1; }
+          echo "Status is live at ${SITE_URL}/status.json"

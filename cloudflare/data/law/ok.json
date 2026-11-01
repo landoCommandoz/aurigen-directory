@@ -20,7 +20,7 @@
    "id": "type",
    "lang": "en",
    "field": "type",
-   "shown": "Tax resale (deed) after county-held lien",
+   "shown": "",
    "original": "Hybrid (lien then deed)",
    "url": "https://oktaxrolls.com/county/Delaware",
    "snapshot": "foundry/out/law-audit/sources/ok/oktaxrolls-delaware.json",
@@ -29,8 +29,16 @@
    "statute": "68 O.S. § 3105 (as described by Delaware County Treasurer)",
    "quote": "Properties which remain delinquent and unpaid for 3 years or more will now be governed by resale statutes.",
    "status": "flagged",
-   "pass2": "flagged: was \"Hybrid (lien then deed)\"; county page says liens are now held by the county",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "Tax resale (deed) after county-held lien",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "rate",
@@ -51,7 +59,7 @@
    "id": "rateNote",
    "lang": "en",
    "field": "rateNote",
-   "shown": "Certificates issued before the amendment stay under the old law",
+   "shown": "",
    "original": "County auctions property — no post-sale redemption",
    "url": "https://oktaxrolls.com/county/Delaware",
    "snapshot": "foundry/out/law-audit/sources/ok/oktaxrolls-delaware.json",
@@ -60,8 +68,16 @@
    "statute": "68 O.S. § 3105 (as described by Delaware County Treasurer)",
    "quote": "Tax certificates issued prior to this legislation will remain active and are subject to the law that was in effect at the time the certificate was purchased.",
    "status": "flagged",
-   "pass2": "flagged: was \"County auctions property — no post-sale redemption\"",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "Certificates issued before the amendment stay under the old law",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "redemption",
@@ -82,7 +98,7 @@
    "id": "bidMethod",
    "lang": "en",
    "field": "bidMethod",
-   "shown": "Highest bidder at the June resale",
+   "shown": "",
    "original": "Highest bidder",
    "url": "https://oktaxrolls.com/county/Delaware",
    "snapshot": "foundry/out/law-audit/sources/ok/oktaxrolls-delaware.json",
@@ -91,8 +107,16 @@
    "statute": "68 O.S. §§ 3125-3131 (as described by Delaware County Treasurer)",
    "quote": "The tax resale is held each year on the second Monday of June in the County Treasurer's office between 9 a.m. and 4 p.m. This property is auctioned off to the highest bidder. Bid begins with the amount of all delinquent taxes, penalties, fees and costs.",
    "status": "flagged",
-   "pass2": "flagged: trimmed to resale",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "Highest bidder at the June resale",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "statute",
@@ -113,7 +137,7 @@
    "id": "auctionPlatform",
    "lang": "en",
    "field": "auctionPlatform",
-   "shown": "County treasurer's office",
+   "shown": "",
    "original": "County-run — in-person",
    "url": "https://oktaxrolls.com/county/Delaware",
    "snapshot": "foundry/out/law-audit/sources/ok/oktaxrolls-delaware.json",
@@ -122,14 +146,22 @@
    "statute": "68 O.S. §§ 3125-3131 (as described by Delaware County Treasurer)",
    "quote": "The tax resale is held each year on the second Monday of June in the County Treasurer's office between 9 a.m. and 4 p.m. This property is auctioned off to the highest bidder. Bid begins with the amount of all delinquent taxes, penalties, fees and costs.",
    "status": "flagged",
-   "pass2": "flagged: was \"County-run — in-person\"",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "County treasurer's office",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "auctionTiming",
    "lang": "en",
    "field": "auctionTiming",
-   "shown": "Second Monday of June (resale)",
+   "shown": "",
    "original": "June (most counties)",
    "url": "https://oktaxrolls.com/county/Delaware",
    "snapshot": "foundry/out/law-audit/sources/ok/oktaxrolls-delaware.json",
@@ -138,14 +170,22 @@
    "statute": "68 O.S. §§ 3125-3131 (as described by Delaware County Treasurer)",
    "quote": "The tax resale is held each year on the second Monday of June in the County Treasurer's office between 9 a.m. and 4 p.m. This property is auctioned off to the highest bidder. Bid begins with the amount of all delinquent taxes, penalties, fees and costs.",
    "status": "flagged",
-   "pass2": "flagged: was \"June (most counties)\"",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "Second Monday of June (resale)",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "summary.1",
    "lang": "en",
    "field": "summary",
-   "shown": "Delaware County reports that an amendment to 68 O.S. § 3105 ended the October certificate sale; the county now holds the liens.",
+   "shown": "",
    "original": "Oklahoma holds October tax lien auction followed by June resale and Commissioner's sale.",
    "url": "https://oktaxrolls.com/county/Delaware",
    "snapshot": "foundry/out/law-audit/sources/ok/oktaxrolls-delaware.json",
@@ -154,8 +194,16 @@
    "statute": "68 O.S. § 3105 (as described by Delaware County Treasurer)",
    "quote": "New legislation has been passed amending 68 O.S. Section 3105. The amendment eliminated the October Certificate Lien Sale (Certificate Sale). All liens for delinquent properties will be held by the county.",
    "status": "flagged",
-   "pass2": "flagged: was \"Oklahoma holds October tax lien auction followed by June resale and Commissioner's sale.\"",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "Delaware County reports that an amendment to 68 O.S. § 3105 ended the October certificate sale; the county now holds the liens.",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "summary.2",
@@ -170,8 +218,16 @@
    "statute": "68 O.S. § 3105 (as described by Delaware County Treasurer)",
    "quote": "New legislation has been passed amending 68 O.S. Section 3105. The amendment eliminated the October Certificate Lien Sale (Certificate Sale). All liens for delinquent properties will be held by the county.",
    "status": "flagged",
-   "pass2": "flagged: removed: OTC on the first Monday of October conflicts with the reported end of the certificate sale",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "summary.3",
@@ -209,7 +265,7 @@
    "id": "typeWhy.1",
    "lang": "en",
    "field": "typeWhy",
-   "shown": "Property delinquent 3 years or more now goes to the June tax resale, per the Delaware County Treasurer.",
+   "shown": "",
    "original": "Oklahoma sells tax lien certificates at its annual October auction, followed by resale for unsold inventory.",
    "url": "https://oktaxrolls.com/county/Delaware",
    "snapshot": "foundry/out/law-audit/sources/ok/oktaxrolls-delaware.json",
@@ -218,8 +274,16 @@
    "statute": "68 O.S. § 3105 (as described by Delaware County Treasurer)",
    "quote": "Properties which remain delinquent and unpaid for 3 years or more will now be governed by resale statutes.",
    "status": "flagged",
-   "pass2": "flagged: was October certificate auction",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "Property delinquent 3 years or more now goes to the June tax resale, per the Delaware County Treasurer.",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "typeWhy.2",
@@ -362,8 +426,16 @@
    "statute": "68 O.S. § 3105 (as described by Delaware County Treasurer)",
    "quote": "New legislation has been passed amending 68 O.S. Section 3105. The amendment eliminated the October Certificate Lien Sale (Certificate Sale). All liens for delinquent properties will be held by the county.",
    "status": "flagged",
-   "pass2": "flagged: removed: OTC October purchase conflicts with reported end of the certificate sale; money opinion",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "risks.1",
@@ -452,7 +524,7 @@
    "id": "ddExtra.3",
    "lang": "en",
    "field": "ddExtra",
-   "shown": "Confirm with the county treasurer whether any certificate sale is still held",
+   "shown": "",
    "original": "Confirm OTC availability date with county treasurer — it's the first Monday of October",
    "url": "https://oktaxrolls.com/county/Delaware",
    "snapshot": "foundry/out/law-audit/sources/ok/oktaxrolls-delaware.json",
@@ -461,8 +533,16 @@
    "statute": "68 O.S. § 3105 (as described by Delaware County Treasurer)",
    "quote": "New legislation has been passed amending 68 O.S. Section 3105. The amendment eliminated the October Certificate Lien Sale (Certificate Sale). All liens for delinquent properties will be held by the county.",
    "status": "flagged",
-   "pass2": "flagged: was \"it's the first Monday of October\"",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "Confirm with the county treasurer whether any certificate sale is still held",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "signup.platform",
@@ -528,8 +608,16 @@
    "statute": "68 O.S. § 3105 (as described by Delaware County Treasurer)",
    "quote": "New legislation has been passed amending 68 O.S. Section 3105. The amendment eliminated the October Certificate Lien Sale (Certificate Sale). All liens for delinquent properties will be held by the county.",
    "status": "flagged",
-   "pass2": "flagged: removed: October auction registration",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "signup.steps.4",
@@ -544,8 +632,16 @@
    "statute": "68 O.S. § 3105 (as described by Delaware County Treasurer)",
    "quote": "New legislation has been passed amending 68 O.S. Section 3105. The amendment eliminated the October Certificate Lien Sale (Certificate Sale). All liens for delinquent properties will be held by the county.",
    "status": "flagged",
-   "pass2": "flagged: removed: October OTC purchase",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "signup.deposit.1",
@@ -566,7 +662,7 @@
    "id": "otc.available",
    "lang": "en",
    "field": "otc.available",
-   "shown": "Unconfirmed",
+   "shown": "",
    "original": "Available",
    "url": "https://oktaxrolls.com/county/Delaware",
    "snapshot": "foundry/out/law-audit/sources/ok/oktaxrolls-delaware.json",
@@ -575,14 +671,22 @@
    "statute": "68 O.S. § 3105 (as described by Delaware County Treasurer)",
    "quote": "New legislation has been passed amending 68 O.S. Section 3105. The amendment eliminated the October Certificate Lien Sale (Certificate Sale). All liens for delinquent properties will be held by the county.",
    "status": "flagged",
-   "pass2": "flagged: was \"Available\"",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "Unconfirmed",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "otc.note.1",
    "lang": "en",
    "field": "otc.note",
-   "shown": "After a resale, the treasurer may sell county-deeded property on a bid, subject to the county commissioners' approval (Delaware County).",
+   "shown": "",
    "original": "OTC available first Monday of October each year — direct purchase from county treasurer at 8% rate.",
    "url": "https://oktaxrolls.com/county/Delaware",
    "snapshot": "foundry/out/law-audit/sources/ok/oktaxrolls-delaware.json",
@@ -591,8 +695,16 @@
    "statute": "68 O.S. § 3135 (as described by Delaware County Treasurer)",
    "quote": "The County Treasurer may sell property deeded to the county after a Tax Resale upon receiving a bid on that property. The sale is subject to approval by the Board of County Commissioners",
    "status": "flagged",
-   "pass2": "flagged: was October OTC at 8%",
-   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed"
+   "pass2": "held: not published (decision B)",
+   "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
+   "heldText": "After a resale, the treasurer may sell county-deeded property on a bid, subject to the county commissioners' approval (Delaware County).",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "platforms.1",
@@ -661,7 +773,7 @@
    "lang": "es",
    "enId": "summary.1",
    "field": "summary",
-   "shown": "El condado de Delaware informa que una enmienda a 68 O.S. § 3105 eliminó la venta de certificados de octubre; el condado ahora conserva los gravámenes.",
+   "shown": "",
    "original": "Oklahoma realiza subasta de gravamen fiscal en octubre seguida de reventa en junio y venta del Comisionado.",
    "statute": "68 O.S. § 3105 (as described by Delaware County Treasurer)",
    "url": "https://oktaxrolls.com/county/Delaware",
@@ -671,7 +783,15 @@
    "checked": "2026-10-27",
    "status": "flagged",
    "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "held: not published (decision B)",
+   "heldText": "El condado de Delaware informa que una enmienda a 68 O.S. § 3105 eliminó la venta de certificados de octubre; el condado ahora conserva los gravámenes.",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "es.summary.2",
@@ -688,7 +808,15 @@
    "checked": "2026-10-27",
    "status": "flagged",
    "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
-   "pass2": "removed with English claim"
+   "pass2": "held: not published (decision B)",
+   "heldText": "",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "es.summary.3",
@@ -729,7 +857,7 @@
    "lang": "es",
    "enId": "typeWhy.1",
    "field": "typeWhy",
-   "shown": "La propiedad con 3 años o más de mora ahora va a la reventa fiscal de junio, según el Tesorero del condado de Delaware.",
+   "shown": "",
    "original": "Oklahoma es un estado de gravamen porque los condados venden certificados de gravamen fiscal en la subasta anual de octubre con período de redención de 2 años (OS Título 68 §3101).",
    "statute": "68 O.S. § 3105 (as described by Delaware County Treasurer)",
    "url": "https://oktaxrolls.com/county/Delaware",
@@ -739,7 +867,15 @@
    "checked": "2026-10-27",
    "status": "flagged",
    "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "held: not published (decision B)",
+   "heldText": "La propiedad con 3 años o más de mora ahora va a la reventa fiscal de junio, según el Tesorero del condado de Delaware.",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "es.rateWhy.1",
@@ -790,7 +926,15 @@
    "checked": "2026-10-27",
    "status": "flagged",
    "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
-   "pass2": "removed with English claim"
+   "pass2": "held: not published (decision B)",
+   "heldText": "",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "es.risks.1",
@@ -885,7 +1029,7 @@
    "lang": "es",
    "enId": "ddExtra.3",
    "field": "ddExtra",
-   "shown": "Confirme con el tesorero del condado si aún se realiza alguna venta de certificados",
+   "shown": "",
    "original": "Confirme la fecha de disponibilidad OTC — es el primer lunes de octubre",
    "statute": "68 O.S. § 3105 (as described by Delaware County Treasurer)",
    "url": "https://oktaxrolls.com/county/Delaware",
@@ -895,7 +1039,15 @@
    "checked": "2026-10-27",
    "status": "flagged",
    "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "held: not published (decision B)",
+   "heldText": "Confirme con el tesorero del condado si aún se realiza alguna venta de certificados",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "es.signup.platform",
@@ -966,7 +1118,15 @@
    "checked": "2026-10-27",
    "status": "flagged",
    "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
-   "pass2": "removed with English claim"
+   "pass2": "held: not published (decision B)",
+   "heldText": "",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "es.signup.steps.4",
@@ -983,7 +1143,15 @@
    "checked": "2026-10-27",
    "status": "flagged",
    "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
-   "pass2": "removed with English claim"
+   "pass2": "held: not published (decision B)",
+   "heldText": "",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   },
   {
    "id": "es.signup.deposit.1",
@@ -1006,7 +1174,7 @@
    "lang": "es",
    "enId": "otc.note.1",
    "field": "otc.note",
-   "shown": "Tras una reventa, el tesorero puede vender propiedad escriturada al condado ante una oferta, sujeto a aprobación de los comisionados del condado (condado de Delaware).",
+   "shown": "",
    "original": "OTC disponible el primer lunes de octubre cada año — compra directa del tesorero al 8%.",
    "statute": "68 O.S. § 3135 (as described by Delaware County Treasurer)",
    "url": "https://oktaxrolls.com/county/Delaware",
@@ -1016,7 +1184,15 @@
    "checked": "2026-10-27",
    "status": "flagged",
    "flagReason": "Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "held: not published (decision B)",
+   "heldText": "Tras una reventa, el tesorero puede vender propiedad escriturada al condado ante una oferta, sujeto a aprobación de los comisionados del condado (condado de Delaware).",
+   "hold": true,
+   "holdReason": "Decision B (Lando, 2026-11-01): held out of anything published until the amendment to 68 O.S. 3105 is read from an official copy",
+   "decision": {
+    "id": "B",
+    "by": "Lando",
+    "date": "2026-11-01"
+   }
   }
  ],
  "checkStatus": "checked with gaps",
