@@ -1,4 +1,4 @@
-# Corrections summary, law audit (25 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (26 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1063 | 68% |
-| Wording or citation only | 232 | 15% |
-| Removed opinion | 274 | 17% |
-| **All corrected** | **1569** | |
+| Substantive | 1101 | 67% |
+| Wording or citation only | 249 | 15% |
+| Removed opinion | 283 | 17% |
+| **All corrected** | **1633** | |
 
 ## By state
 
@@ -48,6 +48,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | MA | 46 | 12 | 5 | 63 |
 | MD | 60 | 15 | 12 | 87 |
 | NH | 39 | 15 | 11 | 65 |
+| SD | 38 | 17 | 9 | 64 |
 
 ## One example of each kind, per state
 
@@ -200,3 +201,9 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`type`): Tax lien → Tax sale (collector's deed after 2 years if not redeemed)
 - Wording or citation only (`statute`): RSA Ch. 80 — esp. §80:19, §80:32, §80:76, §80:89 → RSA Ch. 80 — esp. §80:24, §80:32, §80:38, §80:88
 - Removed opinion (`keyNotes.4`): Clean title per First NH Bank v. Town of Windham (1994) — deed wipes encumbrances → (removed)
+
+### SD
+
+- Substantive (`rate`): 12% → Maximum rate set by law: 10% a year (the lowest rate bid wins)
+- Wording or citation only (`type`): Tax lien → Tax certificate sale
+- Removed opinion (`keyNotes.3`): Low population, rural land heavy — limited inventory → (removed)

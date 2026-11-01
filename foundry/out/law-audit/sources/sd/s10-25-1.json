@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "sd",
+ "slug": "s10-25-1",
+ "url": "https://sdlegislature.gov/api/Statutes/10-25-1.html",
+ "final_url": "https://sdlegislature.gov/api/Statutes/10-25-1.html",
+ "fetched_at": "2026-11-01T09:24:19.377Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "064c587fba96969aca64354608c7e85525db874cb873976fa16ec239761204b6",
+ "raw_bytes": 4752,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "f1f72521989d5eabdfd052bc1d7ad6a71c83380a9e0979cd80d39f2336bdc57d",
+ "text_chars": 1116
+}

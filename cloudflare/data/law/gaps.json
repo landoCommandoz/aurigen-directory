@@ -289,6 +289,21 @@
      "close": "Read the tax collector page of each town named on the site, or keep the Confirm with the town tax collector label."
     }
    ]
+  },
+  "SD": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "SD-1",
+     "text": "Bill numbers and act text for SL 2024 ch. 38 and SL 2025 ch. 49 were not read, and the legislature's bill search for other 2023 to 2026 acts was not run; only section source lines were read.",
+     "close": "Read the session laws on sdlegislature.gov for 2023 to 2026 and record bill number, effective date and a quote for each act amending chapters 10-23 to 10-25."
+    },
+    {
+     "id": "SD-2",
+     "text": "County details (treasurer sale practice, payment terms, registration) were not read from county sites.",
+     "close": "Read the treasurer page for the counties the site names, or keep the Confirm with the county treasurer label."
+    }
+   ]
   }
  }
 }

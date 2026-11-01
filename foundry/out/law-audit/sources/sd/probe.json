@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "sd",
+ "slug": "probe",
+ "url": "https://sdlegislature.gov/Statutes/Codified_Laws/DisplayStatute.aspx?Type=Statute&Statute=10-22-1",
+ "final_url": "https://sdlegislature.gov/Statutes/10-22-1",
+ "fetched_at": "2026-11-01T09:22:52.383Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "603d94196c4231431bfae66a818425b9dc03fcb690187f6e7bf7f441a354195c",
+ "raw_bytes": 5982,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "2fe5a637d64773ce3c088f873834cf37047874f1c5d3007423b99b86172f4852",
+ "text_chars": 124
+}

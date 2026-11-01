@@ -800,6 +800,116 @@
    "fetched_at": "2026-10-27T06:44:05.354Z",
    "snapshot": "foundry/out/law-audit/sources/pa/act-542-pdf.json"
   },
+  "https://sdlegislature.gov/api/Statutes/10-23-7.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-23-7"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "6cd5c46795692d209ea5c81833d7c1bc78ea1e520d63ff81fac9f6b5446e8e87",
+   "fetched_at": "2026-11-01T09:23:36.051Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-23-7.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-23-8.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-23-8"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "7b98a5ba70f8e0fd7b934bd4679470d92f8ff3a338bb8599ced9cdb6e360d978",
+   "fetched_at": "2026-11-01T09:23:38.570Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-23-8.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-25-8.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-25-8"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "95fe3c2232b4744ed3110152f9e7f487959c29e5e933e5132d184e6b4896ef56",
+   "fetched_at": "2026-11-01T09:24:21.886Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-25-8.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-25-1.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-25-1"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f1f72521989d5eabdfd052bc1d7ad6a71c83380a9e0979cd80d39f2336bdc57d",
+   "fetched_at": "2026-11-01T09:24:19.377Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-25-1.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-25-16.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-25-16"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "c2d022fe72381e841f20264b0b4bc8fd10c3f8df21a77c8b9fff4c1b96fa78d0",
+   "fetched_at": "2026-11-01T09:24:29.582Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-25-16.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-25-10.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-25-10"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "439ec5dee33850108eee849e742e1f31f9fd0b6c218b9ff79d3e9159711787c6",
+   "fetched_at": "2026-11-01T09:24:34.698Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-25-10.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-23-2.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-23-2"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0edfa599b43701d20c847856fa54548966f240ba61e40bbd020d8604580e237e",
+   "fetched_at": "2026-11-01T09:23:23.202Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-23-2.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-23-3.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-23-3"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "919cceb5c84f88a08e7f4bf2a39446c25ee405bc9f4473aad1c4942d02311cfc",
+   "fetched_at": "2026-11-01T09:23:25.756Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-23-3.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-23-9.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-23-9"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "5159d33adf7fffaac7683bb4b37e73e7fb52629ba36da268b61fb68bd55768ef",
+   "fetched_at": "2026-11-01T09:23:41.107Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-23-9.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-23-12.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-23-12"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "674ef6e9f8f7548257e9fc734f2f5e47066cf1786b307826d0b744dfd5a1964b",
+   "fetched_at": "2026-11-01T09:23:48.796Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-23-12.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-25-39.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-25-39"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f7be142fd7409c1f9446263f48a7a17d08b493b6c26dc9673925e4f1b3afaae5",
+   "fetched_at": "2026-11-01T09:24:27.046Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-25-39.json"
+  },
   "https://tcss.legis.texas.gov/resources/TX/htm/TX.34.htm": {
    "state": "TX",
    "statutes": [

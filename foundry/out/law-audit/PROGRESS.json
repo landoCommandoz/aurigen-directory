@@ -329,12 +329,15 @@
    "checkStatus": "checked with gaps"
   },
   "SD": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 64,
+   "supported": 0,
+   "corrected": 64,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 64,
+   "checkStatus": "checked with gaps"
   },
   "AZ": {
    "status": "todo",
