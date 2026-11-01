@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "wa",
+ "slug": "sl2024",
+ "url": "https://lawfilesext.leg.wa.gov/biennium/2023-24/Pdf/Reports/Reports/RCW%20SL%20SECTIONS%20AFFECTED%202024.pdf",
+ "final_url": "https://lawfilesext.leg.wa.gov/biennium/2023-24/Pdf/Reports/Reports/RCW%20SL%20SECTIONS%20AFFECTED%202024.pdf",
+ "fetched_at": "2026-11-01T10:40:10.936Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "ce33fd1c6acc9cb30918181b813991bd540bd58f4fac06e66894efbec2bb8608",
+ "raw_bytes": 1363272,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "2b03432da3f9260936d5525809749e194c71f5837376ae63f1dfb24771a24400",
+ "text_chars": 43298
+}

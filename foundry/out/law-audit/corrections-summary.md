@@ -1,4 +1,4 @@
-# Corrections summary, law audit (45 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (46 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1731 | 60% |
-| Wording or citation only | 491 | 17% |
-| Removed opinion | 647 | 23% |
-| **All corrected** | **2869** | |
+| Substantive | 1783 | 60% |
+| Wording or citation only | 498 | 17% |
+| Removed opinion | 670 | 23% |
+| **All corrected** | **2951** | |
 
 ## By state
 
@@ -26,11 +26,11 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | AK | 41 | 13 | 12 | 66 |
 | AL | 43 | 9 | 14 | 66 |
 | CA | 49 | 5 | 9 | 63 |
-| DC | 44 | 18 | 9 | 71 |
+| DC | 46 | 18 | 9 | 73 |
 | HI | 33 | 2 | 22 | 57 |
 | KY | 47 | 4 | 10 | 61 |
-| LA | 35 | 10 | 21 | 66 |
-| ME | 35 | 5 | 18 | 58 |
+| LA | 37 | 10 | 20 | 67 |
+| ME | 40 | 5 | 18 | 63 |
 | MS | 38 | 2 | 11 | 51 |
 | ND | 41 | 3 | 14 | 58 |
 | NM | 37 | 11 | 13 | 61 |
@@ -67,6 +67,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | SC | 35 | 8 | 19 | 62 |
 | VA | 30 | 13 | 24 | 67 |
 | VT | 34 | 8 | 22 | 64 |
+| WA | 43 | 7 | 24 | 74 |
 | WY | 28 | 8 | 22 | 58 |
 
 ## One example of each kind, per state
@@ -91,7 +92,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 ### DC
 
-- Substantive (`redemption`): 6–12 months → Until foreclosure of the right of redemption is final
+- Substantive (`rate`): 18% → Rate set by law: 1.5% per month or part of a month, simple interest, on the amount paid (excluding surplus)
 - Wording or citation only (`rateNote`): Certificate of sale purchased at auction — NOT a deed. Court-supervised foreclosure required. → Buyer gets a certificate of sale; a deed requires a court judgment foreclosing redemption
 - Removed opinion (`notBeginnerReason.2`): Competitive institutional market. → (removed)
 
@@ -115,7 +116,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 ### ME
 
-- Substantive (`bidMethod`): Municipal-controlled → Town lists tax-acquired property with a licensed real estate broker
+- Substantive (`rate`): 8% → Maximum rate set by law: yearly cap set by the Treasurer of State (36 M.R.S. § 505)
 - Wording or citation only (`rateNote`): 18-month redemption via tax lien mortgage — municipal process → Redemption ends 18 months after the tax lien certificate is recorded
 - Removed opinion (`notBeginnerReason.2`): Not a viable primary market. → (removed)
 
@@ -334,6 +335,12 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`type`): Tax lien → Tax sale of real property; a collector's deed follows if not redeemed (32 V.S.A. §5254, §5261)
 - Wording or citation only (`redemption`): 1 year → Within one year from the day of sale (32 V.S.A. §5260(a))
 - Removed opinion (`summary.2`): Sales are extremely rare. → (removed)
+
+### WA
+
+- Substantive (`rate`): N/A → No lien-purchase rate. Interest on delinquent taxes set by law: 9% per year for residential property of four or fewer units, 12% per year for other property (RCW 84.56.020(5))
+- Wording or citation only (`type`): Tax deed → Tax deed sale after court foreclosure (RCW 84.64.050, 84.64.080)
+- Removed opinion (`rateWhy.2`): Returns are market-driven through competitive bidding. → (removed)
 
 ### WY
 

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nj",
+ "slug": "elements",
+ "url": "https://www.nj.gov/dca/dlgs/programs/tax_collector_docs/elements_of_tax_sales_nj.pdf",
+ "final_url": "https://www.nj.gov/dca/dlgs/programs/tax_collector_docs/elements_of_tax_sales_nj.pdf",
+ "fetched_at": "2026-11-01T10:39:50.966Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "765200fe4e6ce72ed66541dda2f94392dd8b7e4143a347f5d67ec10d00b1059c",
+ "raw_bytes": 32653,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "09aaeda39226b4d3b30d6d1e18444fb990c846fbc530eaa06d3c94e71ce827b6",
+ "text_chars": 5466
+}

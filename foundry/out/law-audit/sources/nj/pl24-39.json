@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nj",
+ "slug": "pl24-39",
+ "url": "https://pub.njleg.gov/Bills/2024/PL24/39_.HTM",
+ "final_url": "https://pub.njleg.gov/Bills/2024/PL24/39_.HTM",
+ "fetched_at": "2026-11-01T10:39:48.200Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "e7004cb3fd5898ae6e8639786b76a4d14ed1cd72864913c4c1450fc2da1942de",
+ "raw_bytes": 44520,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "a7e21df659593feef81bac2910aa765b91cb2c8c0a26c5e95f4a24e025d3dddb",
+ "text_chars": 28119
+}

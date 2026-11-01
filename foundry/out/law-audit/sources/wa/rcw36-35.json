@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "wa",
+ "slug": "rcw36-35",
+ "url": "https://lawfilesext.leg.wa.gov/Law/RCWPDF/RCW%20%2036%20%20TITLE/RCW%20%2036%20.%2035%20%20CHAPTER/RCW%20%2036%20.%2035%20.150.pdf",
+ "final_url": "https://lawfilesext.leg.wa.gov/Law/RCWPDF/RCW%20%2036%20%20TITLE/RCW%20%2036%20.%2035%20%20CHAPTER/RCW%20%2036%20.%2035%20.150.pdf",
+ "fetched_at": "2026-11-01T10:40:29.927Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "8372814449c0f1dca0dfb82ebbc542d634d184766189b67d7c6d62e2de6da5fb",
+ "raw_bytes": 112543,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "604abdb1fe2a9efdf7c0c6c9e257c00c24a4b1d7291a0723e3038eb075a24110",
+ "text_chars": 3027
+}

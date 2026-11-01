@@ -683,12 +683,17 @@
    ]
   },
   "WA": {
-   "checkStatus": "Couldn't reach source",
+   "checkStatus": "checked with gaps",
    "gaps": [
     {
      "id": "WA-1",
-     "text": "Washington RCW 84.64 on app.leg.wa.gov is disallowed by that site's robots.txt for the audit tool, which respects it. No audit was possible; the state's ledger is missing.",
-     "close": "Find another official copy of RCW 84.56 and 84.64 (for example the legislature's PDF per-title files) that robots.txt allows."
+     "text": "The 2026 session's enacted acts were not searched; the 2023-2025 searches used the Code Reviser's sections-affected lists only (act text of 2023 c 376 not downloaded).",
+     "close": "Find the Code Reviser's 2026 sections-affected list and the text of 2023 c 376 on lawfilesext.leg.wa.gov."
+    },
+    {
+     "id": "WA-2",
+     "text": "County details (auction platform, dates, deposits, tax title lists) have no county source and show Confirm with the county.",
+     "close": "Read King, Pierce and Snohomish treasurer pages on their own .gov sites."
     }
    ]
   },
