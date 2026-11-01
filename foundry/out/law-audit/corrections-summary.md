@@ -1,4 +1,4 @@
-# Corrections summary, law audit (46 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (47 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1783 | 60% |
-| Wording or citation only | 498 | 17% |
-| Removed opinion | 670 | 23% |
-| **All corrected** | **2951** | |
+| Substantive | 1818 | 60% |
+| Wording or citation only | 528 | 17% |
+| Removed opinion | 694 | 23% |
+| **All corrected** | **3040** | |
 
 ## By state
 
@@ -60,6 +60,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | MT | 35 | 12 | 18 | 65 |
 | NC | 36 | 17 | 14 | 67 |
 | NE | 28 | 10 | 23 | 61 |
+| NJ | 35 | 30 | 24 | 89 |
 | NV | 34 | 13 | 18 | 65 |
 | OH | 38 | 17 | 11 | 66 |
 | OR | 35 | 11 | 16 | 62 |
@@ -293,6 +294,12 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`rate`): 14% → Interest at the rate in §45-104.01 as adjusted by the Legislature (§77-1824). Current rate: Confirm with the county.
 - Wording or citation only (`type`): Tax lien → Tax sale certificate; the purchaser acquires a lien (§77-1818)
 - Removed opinion (`summary.2`): Rotational bidding format (unusual — counties rotate through available properties giving each registered bidder equal turns). 3-year redemption. → (removed)
+
+### NJ
+
+- Substantive (`rateNote`): Premium bid below 1% of lien; 18% on amounts over $200 → Bidders bid the interest rate down; the winner bids the lowest rate or the highest premium (NJ Division of Local Government Services guide, copy dated 2011)
+- Wording or citation only (`type`): Tax lien → Tax sale certificate, a lien on the property (NJ Division of Local Government Services guide, copy dated 2011)
+- Removed opinion (`summary.7`): Urban NJ premiums routinely $10K-$50K+. → (removed)
 
 ### NV
 

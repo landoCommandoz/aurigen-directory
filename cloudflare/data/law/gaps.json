@@ -653,12 +653,22 @@
    ]
   },
   "NJ": {
-   "checkStatus": "Couldn't reach source",
+   "checkStatus": "checked with gaps",
    "gaps": [
     {
      "id": "NJ-1",
-     "text": "New Jersey's tax sale law (N.J.S.A. 54:5) was not reachable as text: pub.njleg.gov and pub.njleg.state.nj.us returned HTTP 404 for the statute PDF, and the legislature's database page returned no text. No audit was possible; the state's ledger is missing.",
-     "close": "Find the correct official PDF path for N.J.S.A. 54:5 and 54:5-19 and related sections, or the Division of Taxation's tax sale guidance."
+     "text": "N.J.S.A. 54:5-32 and 54:5-58 (bidding, 18% rate, redemption penalty) were not read; those claims rest on the Division of Local Government Services guide, whose saved copy is dated 2011.",
+     "close": "Find the current official text of R.S. 54:5-32 and 54:5-58 (or the acts that last amended them) on pub.njleg.gov."
+    },
+    {
+     "id": "NJ-2",
+     "text": "The 2023 to 2026 enacted-law search used web leads, not the legislature's own session-law list.",
+     "close": "Search the NJ Legislature's chapter laws for 2023 to 2026 for 54:5 and 54:5-104.29 et seq. amendments."
+    },
+    {
+     "id": "NJ-3",
+     "text": "County and municipal details (platform, dates, deposits) have no municipal source and show Confirm with the municipality.",
+     "close": "Read the tax collector pages of target municipalities."
     }
    ]
   },
