@@ -183,3 +183,7 @@ Effective dates and LD numbers were not looked up this run (legislature's LD sea
 - Not tied by the text read: §§ 942 and 943 do not mention § 505, so the site does not say this cap applies to the tax lien mortgage specifically.
 - Enacted-law search (partial): section histories read from the saved §§ 942 and 943. § 943 was last amended by PL 2023, c. 579, § 1; § 942 by PL 2019, c. 501. The act text was not read, so the 2023 to 2026 search stays an open gap (ME-1). The § 943 quotes still match the current text.
 - Failed: https://legislature.maine.gov/statutes/36/title36sec949.html and title36sec943.pdf (connection reset, logged in attempts/me.jsonl).
+
+## Gap queue, run 6 (2026-11-01)
+- ME-1 stays open. Read the current § 942 PDF (sources/me/r6-mrs-942-pdf): its history ends "PL 2023, c. 579, §1 (AMD)", so c. 579 (LD 2048, notice content) changed § 942, not § 943 as the earlier note said. Leads from search only (not citations): PL 2023, c. 640 and c. 523 amended § 943 in 2024. § 943 downloads (html, pdf, docx) all failed with a connection reset (attempts/me.jsonl). Close by reading § 943 and chapters 640 and 523 once the host answers.
+- Watch/check: the ledger's § 943 claims were checked against the text read in earlier runs; if c. 640 changed the sale procedure after that text, they need a recheck.
