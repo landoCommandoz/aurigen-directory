@@ -1,0 +1,16 @@
+{
+  "name": "aurigen-showcase",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node test.mjs",
+    "check": "node --check build.mjs && node --check test.mjs && node --check browser-test.mjs",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "playwright": "^1.50.0",
+    "wrangler": "^4.45.0"
+  }
+}
