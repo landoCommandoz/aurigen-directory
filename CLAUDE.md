@@ -69,6 +69,13 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - 40 flagged claims: 33 need Lando's decision (11 "not available/varies" wording, 22 Oklahoma), 7 are research gaps (foundry/out/law-audit/decisions-needed.md).
 - Fixed: chain crashed on "1.0" inputs from manual dispatch (foundry.yml now takes strings).
 
+## STANDING ORDERS APPLIED (2026-11-01)
+- Nightly law audit: foundry.yml schedule at 2 am Mountain (gate job; 08:00 or 09:00 UTC by DST), chain on, Sonnet 5.5. $10 a run, $40 total (spent/cap kept in foundry/out/chain/aurigen-law-audit.json), stops at the cap or 51 of 51 states. Manual Run still works.
+- Decisions: A softened 11 claims to referrals; B 22 Oklahoma claims held (hold:true, shown ""); C CT/IL get the missing intermediate only via foundry/tools/cert-chain.mjs (server's own AIA address, verified to a system root, fingerprint logged, those two hosts only). Untested against the real hosts until the first run (tested on a local test PKI).
+- STATUS.md (10 lines) is rewritten by every Foundry run and published at /status.json by status-publish.yml; the under-review page footer links it. statute-watch.yml runs monthly. Showcase (foundry/aurigen-showcase.md) starts once when 40 states are done, own $10 cap.
+- Open question with default: after 51 of 51 the schedule stops and the 19-item gap queue is only worked if budget remains in that night's chain. Default if no answer in 7 days: leave it.
+- Keep the audit branch's .github/workflows identical to main's whenever a workflow changes (a run's token cannot push them).
+
 ## OPEN CRITICAL ITEMS
 1. FTC: Founding member 500-cap claim — needs Lando confirmation
 2. C2: states-en.js serverless gating (get-states.js built, needs C2 JWT session validation)
