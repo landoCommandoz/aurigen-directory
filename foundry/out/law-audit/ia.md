@@ -212,3 +212,6 @@ None.
 ## Conflicts (flagged)
 
 None.
+
+## Gap queue, run 6 (2026-11-01)
+- IA-1 stays open. Read: sources/ia/code-446, 447, 448 (Iowa Code 2026, dated Dec 9, 2025): newest history entry is 2021 Acts ch 55, so no 2023-2025 act amended these chapters. Not read: 2026 session acts and SF 569 (BillBook page r6-sf569-* is script-only and lists no text; Iowa Acts index URLs returned 404 in attempts/ia.jsonl).

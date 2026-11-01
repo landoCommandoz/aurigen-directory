@@ -123,9 +123,11 @@
     {
      "id": "IA-1",
      "text": "The 2026 session and Iowa Legislature bill search were not searched (code PDFs dated December 9, 2025); \"SF 569\" from the old site not verified.",
-     "close": "Search legis.iowa.gov for 2025 and 2026 acts touching chapters 446 to 448 and for SF 569."
+     "close": "Search legis.iowa.gov for 2025 and 2026 acts touching chapters 446 to 448 and for SF 569.",
+     "note": "Run 6 (2026-11-01): Iowa Code 2026 chapters 446-448 (PDFs dated Dec 9, 2025) show no amendment history after 2021 Acts ch 55, so no 2023-2025 act changed them. The BillBook page needs scripts and the Iowa Acts 2026 index URLs returned 404, so the 2026 session and SF 569 stay unchecked."
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "KY": {
    "checkStatus": "checked with gaps",
