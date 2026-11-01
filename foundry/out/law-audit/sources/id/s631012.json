@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "id",
+ "slug": "s631012",
+ "url": "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1012/",
+ "final_url": "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1012/",
+ "fetched_at": "2026-11-01T09:41:18.756Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "630b32529e838dc0643e242d166026e524febc016f82400d3bbf3e4cd3459fb5",
+ "raw_bytes": 92880,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "6ac8100695c04a5a10ba82f4eca1d7cd3b1c4445f55c3a1f6f7101ea697458f2",
+ "text_chars": 5452
+}

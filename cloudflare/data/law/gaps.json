@@ -349,6 +349,21 @@
      "close": "Read those sections, and the county tax collector and clerk pages for the counties the site names, or keep the Confirm with the county label."
     }
    ]
+  },
+  "ID": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "ID-1",
+     "text": "The session-law and bill search for 2023 to 2026 was not run; only statute history lines were read, and the history line of 31-808 was not read to the end.",
+     "close": "Search legislature.idaho.gov session laws 2023 to 2026 for acts amending title 63 chapter 10 and section 31-808, and record bill numbers and effective dates."
+    },
+    {
+     "id": "ID-2",
+     "text": "Sections 63-1005 subsections (4) onward, 63-1006(6) onward and 31-808(2)(c) to (d) (60-day claim period, transfer to the state treasurer) are not used on the site; county auction place, registration, deposits and dates were not read from county pages.",
+     "close": "Add the 31-808(2)(c) claim period as a site statement with its quote, and read the county commissioner pages for named counties, or keep the Confirm with the county label."
+    }
+   ]
   }
  }
 }

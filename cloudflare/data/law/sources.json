@@ -579,6 +579,59 @@
    "fetched_at": "2026-10-29T06:02:01.740Z",
    "snapshot": "foundry/out/law-audit/sources/ia/code-447.json"
   },
+  "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1005/": {
+   "state": "ID",
+   "statutes": [
+    "Idaho Code § 63-1005(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "30a94988e771de5230748f80d60e2ec856382938630adfddd9d12c05d1454378",
+   "fetched_at": "2026-11-01T09:40:57.363Z",
+   "snapshot": "foundry/out/law-audit/sources/id/s631005.json"
+  },
+  "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1001/": {
+   "state": "ID",
+   "statutes": [
+    "Idaho Code § 63-1001"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d22a943b05f7b66632bde643f9c67ce66c65b199cb0115630fd0edb07722adf1",
+   "fetched_at": "2026-11-01T09:40:50.731Z",
+   "snapshot": "foundry/out/law-audit/sources/id/s631001.json"
+  },
+  "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1007/": {
+   "state": "ID",
+   "statutes": [
+    "Idaho Code § 63-1007(2)",
+    "Idaho Code § 63-1007(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "59e991daada3429de62a8e61e73b8316b314a6b496df881c93019e0f224852b8",
+   "fetched_at": "2026-11-01T09:41:03.621Z",
+   "snapshot": "foundry/out/law-audit/sources/id/s631007.json"
+  },
+  "https://legislature.idaho.gov/statutesrules/idstat/Title31/T31CH8/SECT31-808/": {
+   "state": "ID",
+   "statutes": [
+    "Idaho Code § 31-808(1)",
+    "Idaho Code § 31-808(6)",
+    "Idaho Code § 31-808(2)(b)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "fd2166927898182265304d2b664e251c0241137cd549812198d3581f5c251ec9",
+   "fetched_at": "2026-11-01T09:41:34.008Z",
+   "snapshot": "foundry/out/law-audit/sources/id/s31808.json"
+  },
+  "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1003/": {
+   "state": "ID",
+   "statutes": [
+    "Idaho Code § 63-1003(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "92086104762a515b399994c8576a667240f2fb7c3ba1f43eff4c78eb676331e1",
+   "fetched_at": "2026-11-01T09:40:54.183Z",
+   "snapshot": "foundry/out/law-audit/sources/id/s631003.json"
+  },
   "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-225.htm": {
    "state": "IL",
    "statutes": [

@@ -1,4 +1,4 @@
-# Corrections summary, law audit (29 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (30 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1222 | 66% |
-| Wording or citation only | 306 | 16% |
-| Removed opinion | 327 | 18% |
-| **All corrected** | **1855** | |
+| Substantive | 1249 | 65% |
+| Wording or citation only | 319 | 17% |
+| Removed opinion | 351 | 18% |
+| **All corrected** | **1919** | |
 
 ## By state
 
@@ -52,6 +52,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | AZ | 41 | 20 | 19 | 80 |
 | DE | 28 | 13 | 15 | 56 |
 | FL | 52 | 24 | 10 | 86 |
+| ID | 27 | 13 | 24 | 64 |
 
 ## One example of each kind, per state
 
@@ -228,3 +229,9 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`redemption`): 2 years from April 1 of issuance year → Until a tax deed is issued, unless full payment for the deed has been made to the clerk (§197.472(1))
 - Wording or citation only (`type`): Hybrid (lien then deed) → Tax certificate sale, then tax deed sale
 - Removed opinion (`keyNotes.1`): Largest tax lien state by volume → (removed)
+
+### ID
+
+- Substantive (`type`): Tax deed → Tax deed to the county, then county auction
+- Wording or citation only (`redemption`): 14 months → 14 months from the tax deed to the county (§63-1007(2))
+- Removed opinion (`summary.2`): Some counties haven't held sales in years. → (removed)
