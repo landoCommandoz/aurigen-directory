@@ -3,7 +3,8 @@
 // Deployed and removed by .github/workflows/aurigen-site.yml. Runs on the Workers Free plan.
 // /status.json serves the repo's STATUS.md (built by make-status.mjs at deploy time; see status-publish.yml).
 
-import STATUS from "./status.json";
+import STATUS from "./status.json" with { type: "json" };
+import { handleSheet, listed } from "./sheet.js";
 
 const PAGE = `<!doctype html>
 <html lang="en">
@@ -28,12 +29,14 @@ const PAGE = `<!doctype html>
   <h1>Aurigen is under review.</h1>
   <p>Every state's rules are being re-checked against current law.</p>
 </main>
-<footer><a href="/status.json">Status</a></footer>
+<footer><a href="/status.json">Status</a>__SHEET_LINK__</footer>
 </body>
 </html>`;
 
 export default {
-  async fetch(request) {
+  async fetch(request, env) {
+    const sheet = await handleSheet(request, env || {});
+    if (sheet) return sheet;
     if (new URL(request.url).pathname === "/status.json") {
       return new Response(JSON.stringify(STATUS, null, 1) + "\n", {
         status: 200,
@@ -45,7 +48,7 @@ export default {
         },
       });
     }
-    return new Response(PAGE, {
+    return new Response(PAGE.replace("__SHEET_LINK__", listed() ? ' &middot; <a href="/rules-sheet/">Rules Sheet</a>' : ""), {
       status: 503,
       headers: {
         "content-type": "text/html; charset=utf-8",

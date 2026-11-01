@@ -1,0 +1,51 @@
+# Creates the Polar product, license-key benefit and checkout link for the Aurigen Rules Sheet (once; safe to rerun),
+# then records their ids in under-review/sheet-config.json on main. status-publish.yml then deploys the Worker.
+# Runs when polar/rules-sheet.json changes on main, or by hand. No Claude, no API cost, no money spent: it creates a
+# private (not on the storefront) $19 product in the Polar organization from polar/rules-sheet.json.
+# Needs the repository secret POLAR_ACCESS_TOKEN (already used by Foundry). It is never printed.
+name: Polar sheet
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - polar/rules-sheet.json
+      - polar/create-rules-sheet.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: polar-sheet
+  cancel-in-progress: false
+
+jobs:
+  create:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          ref: main
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: "22"
+      - name: Create or find the Polar product, benefit and checkout link
+        env:
+          POLAR_ACCESS_TOKEN: ${{ secrets.POLAR_ACCESS_TOKEN }}
+        run: node polar/create-rules-sheet.mjs
+      - name: Save the ids to main
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add under-review/sheet-config.json
+          if git diff --cached --quiet; then echo "Config unchanged."; exit 0; fi
+          git commit -q -m "Polar rules sheet: product, benefit and checkout ids"
+          for i in 1 2 3 4; do
+            if git push origin HEAD:refs/heads/main; then echo "Saved."; exit 0; fi
+            git pull -q --rebase origin main || true
+            sleep $((2 ** i))
+          done
+          echo "::error::could not push the config to main"; exit 1

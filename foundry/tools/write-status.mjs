@@ -32,7 +32,8 @@ if (prog) {
   const st = Object.values(prog.states || {});
   const done = st.filter((s) => s.status === 'done').length;
   const blocked = st.filter((s) => s.status === 'blocked').length;
-  const cs = (v) => st.filter((s) => s.checkStatus === v).length;
+  // The status of record is gaps.json (the audit updates it as gaps close); PROGRESS.json can lag behind it.
+  const cs = (v) => st.filter((s, i) => ((gaps && gaps.states && gaps.states[Object.keys(prog.states)[i]]) || s).checkStatus === v).length;
   const sum = (k) => st.reduce((a, s) => a + (s[k] || 0), 0);
   out.push(`Changed: ${done} of ${(prog.order || []).length} states audited (${cs('checked')} checked, ${cs('checked with gaps')} checked with gaps), ${blocked} could not be reached (blocked, retried each run). ${sum('corrected')} claims corrected, ${sum('flagged')} flagged, ${sum('unreachable')} unreachable.`);
 }
@@ -40,6 +41,7 @@ if (chain) {
   const cap = chain.cap;
   out.push(`Money: ${env('STATUS_RUN_URL') ? 'this run ' + money(env('STATUS_COST')) : 'no API spend in this update'}; audit total ${money(chain.spent)}${cap ? ' of the ' + money(cap) + ' cap' : ''} over ${chain.runs ?? 0} runs. Model: ${model}. Nothing else was bought.`);
 }
+if (env('STATUS_PRODUCT')) out.push(`Product: ${clean(env('STATUS_PRODUCT'), 260)}`);
 const held = [];
 if (prog && read('cloudflare/data/law/ok.json')) {
   const n = (read('cloudflare/data/law/ok.json').claims || []).filter((c) => c.hold).length;
@@ -55,5 +57,5 @@ out.push(`Held: ${held.length ? held.join('; ') : 'nothing'}. The live site stay
 const stop = env('STATUS_REASON');
 out.push(`Schedule: every night at 2 am Mountain, $10 a run, stops at the cap or at 51 of 51 states.${stop ? ' Chain note: ' + clean(stop, 200) : ''}`);
 const trouble = /refused|credit|spend limit|key/i.test(env('STATUS_ERROR') + ' ' + stop);
-out.push(`Human: ${trouble ? 'check the Anthropic key, credit balance and spend limit (see the chain note above).' : 'nothing.'}`);
+out.push(`Human: ${trouble ? 'check the Anthropic key, credit balance and spend limit (see the chain note above).' : env('STATUS_HUMAN') || 'nothing.'}`);
 process.stdout.write(out.slice(0, 10).join('\n') + '\n');
