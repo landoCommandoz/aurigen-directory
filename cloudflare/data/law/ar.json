@@ -205,7 +205,7 @@
    "id": "typeWhy.1",
    "lang": "en",
    "field": "typeWhy",
-   "shown": "Arkansas sells tax-delinquent land by deed; since July 1, 2023, parcels sold by the Commissioner cannot be redeemed.",
+   "shown": "Arkansas sells tax-delinquent land by deed; since 2023, parcels sold by the Commissioner cannot be redeemed.",
    "original": "Arkansas transfers the deed at sale but grants the original owner a 2-year right of redemption, making it a redeemable deed state.",
    "url": "https://www.cosl.org/Home/Contents/1",
    "snapshot": "foundry/out/law-audit/sources/ar/cosl-tax-sales.json",
@@ -214,9 +214,9 @@
    "statute": "none: administrative practice (Commissioner of State Lands), notice for bidders",
    "quote": "Effective July 1, 2023, parcels sold through the Commissioner of State Lands office cannot be redeemed. All sales are final, both at live auctions and through the online auction of unsold properties.",
    "status": "corrected",
-   "pass2": "was \"grants the original owner a 2-year right of redemption, making it a redeemable deed state\"",
+   "pass2": "was \"grants the original owner a 2-year right of redemption, making it a redeemable deed state\" | Run 4: Act 241 of 2023 (HB 1263), approved Mar 9, 2023 with emergency clause, amended Ark. Code 26-37-202 (redeem before 4 p.m. last business day before the sale); COSL says July 1, 2023, so the shown text now says \"since 2023\" (true under both)",
    "correctionKind": "substantive",
-   "correctionBasis": "reviewed by reading the old and new text"
+   "correctionBasis": "a date was removed because the act and the agency notice give different start dates"
   },
   {
    "id": "typeWhy.2",
@@ -286,7 +286,7 @@
    "id": "keyNotes.1",
    "lang": "en",
    "field": "keyNotes",
-   "shown": "No redemption after the sale since July 1, 2023",
+   "shown": "No redemption after the sale since 2023",
    "original": "30-day redemption is one of the shortest in the US — fast resolution for investors",
    "url": "https://www.cosl.org/Home/Contents/1",
    "snapshot": "foundry/out/law-audit/sources/ar/cosl-tax-sales.json",
@@ -295,9 +295,9 @@
    "statute": "none: administrative practice (Commissioner of State Lands), notice for bidders",
    "quote": "Effective July 1, 2023, parcels sold through the Commissioner of State Lands office cannot be redeemed. All sales are final, both at live auctions and through the online auction of unsold properties.",
    "status": "corrected",
-   "pass2": "was \"30-day redemption is one of the shortest in the US\"",
+   "pass2": "was \"30-day redemption is one of the shortest in the US\" | Run 4: Act 241 of 2023 (HB 1263), approved Mar 9, 2023 with emergency clause, amended Ark. Code 26-37-202 (redeem before 4 p.m. last business day before the sale); COSL says July 1, 2023, so the shown text now says \"since 2023\" (true under both)",
    "correctionKind": "substantive",
-   "correctionBasis": "reviewed by reading the old and new text"
+   "correctionBasis": "a date was removed because the act and the agency notice give different start dates"
   },
   {
    "id": "keyNotes.2",
@@ -812,7 +812,7 @@
    "lang": "es",
    "enId": "typeWhy.1",
    "field": "typeWhy",
-   "shown": "Arkansas vende tierras con impuestos morosos por escritura; desde el 1 de julio de 2023, las parcelas vendidas por el Comisionado no pueden redimirse (ACA §26-37-101).",
+   "shown": "Arkansas vende tierras con impuestos morosos por escritura; desde 2023, las parcelas vendidas por el Comisionado no pueden redimirse (ACA §26-37-101).",
    "original": "Arkansas es un estado de escritura redimible porque el Comisionado de Tierras del Estado (COSL) emite una escritura tipo quitclaim al comprador, pero el propietario original retiene un derecho de redención de 2 años (ACA §26-37-101).",
    "statute": "none: administrative practice (Commissioner of State Lands), notice for bidders",
    "url": "https://www.cosl.org/Home/Contents/1",
@@ -821,9 +821,9 @@
    "snapshot": "foundry/out/law-audit/sources/ar/cosl-tax-sales.json",
    "checked": "2026-10-29",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "pass2": "ok: rewritten to match English claim, adds nothing | Run 4: Act 241 of 2023 (HB 1263), approved Mar 9, 2023 with emergency clause, amended Ark. Code 26-37-202 (redeem before 4 p.m. last business day before the sale); COSL says July 1, 2023, so the shown text now says \"since 2023\" (true under both)",
    "correctionKind": "substantive",
-   "correctionBasis": "inherited from the English claim it mirrors"
+   "correctionBasis": "a date was removed because the act and the agency notice give different start dates"
   },
   {
    "id": "es.rateWhy.1",

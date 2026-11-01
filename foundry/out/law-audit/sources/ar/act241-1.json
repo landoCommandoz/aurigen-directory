@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ar",
+ "slug": "act241-1",
+ "url": "https://www.arkleg.state.ar.us/Acts/FTPDocument?path=%2FACTS%2F2023R%2FPublic%2F&file=241.pdf&ddBienniumSession=2023%2F2023R",
+ "final_url": "https://www.arkleg.state.ar.us/Home/FTPDocument?path=%2FACTS%2F2023R%2FPublic%2FACT241.pdf",
+ "fetched_at": "2026-11-01T10:17:51.773Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "e29fad444666a8d39ab9e3e78c1fbd79d544ec20158f09603ac4d721e330eee5",
+ "raw_bytes": 268620,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "3040747bdbfd6ac54fe20b60ebb8813d402bfb40bfa09b1bdf73141c9720620e",
+ "text_chars": 14710
+}

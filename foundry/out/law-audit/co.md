@@ -232,3 +232,10 @@ None marked. crs2025-title-39.pdf returned 404 (not an attempt by the download s
 ## Conflicts (flagged)
 
 None.
+
+## Run 4 gap queue (2026-11-01): CO-1 stays open
+
+Tried: crs2025-title-39.pdf on leg.colorado.gov and content.leg.colorado.gov (HTTP 404); the bill search page (JavaScript, no results text); bill pages leg.colorado.gov/bills/... (HTTP 406 to curl); bill_files and session-laws downloads (robots.txt disallows, so not fetched). All logged in `attempts/co.jsonl` where the tool wrote them. `sources/co/try1`, `try5` are failed lookups; `try5` is an unofficial lead page and is not cited.
+Lead found by search only (nothing on the site changes from it): **SB26-144**, "Modify Property Tax Lien Sales Treasurer Deeds & Fees", Chapter 135, effective June 1, 2026, applies to treasurer's deeds issued on or after June 1, 2026 (art. 11.5 of title 39, fees). The official text was not read, so no claim was changed. Close it by finding an official PDF (OLLS session laws or signed bill) and reading the act. No 2025 act was identified.
+## Watch
+- SB26-144 (enacted per the legislature's bill page, text unread).

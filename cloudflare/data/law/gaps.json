@@ -53,14 +53,19 @@
     {
      "id": "AR-1",
      "text": "Arkansas Code not read (LexisNexis-hosted); claims rest on Commissioner of State Lands pages and Rules (2023 ed.).",
-     "close": "Look for an official copy of the tax-sale sections on arkleg.state.ar.us or another Arkansas state host."
+     "close": "Look for an official copy of the tax-sale sections on arkleg.state.ar.us or another Arkansas state host.",
+     "attempts": "Run 4: arkleg act PDF read; Arkansas Code itself still LexisNexis/JS, not read."
     },
     {
      "id": "AR-2",
      "text": "The act behind the July 1, 2023 change was not identified.",
-     "close": "Search arkleg.state.ar.us for the 2023 act."
+     "close": "Search arkleg.state.ar.us for the 2023 act.",
+     "closed": "2026-11-01",
+     "note": "Act 241 of 2023 (HB 1263), approved March 9, 2023, emergency clause; text read at arkleg.state.ar.us (sources/ar/act241-1). COSL says July 1, 2023: the two dates differ.",
+     "closedAt": "2026-11-01"
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "CA": {
    "checkStatus": "checked with gaps",
@@ -78,9 +83,11 @@
     {
      "id": "CO-1",
      "text": "2025 and 2026 session laws were not searched; the 2024 code PDF (uncertified printout) was used and the 2025 edition PDF was not found.",
-     "close": "Search leg.colorado.gov for 2025 and 2026 acts amending title 39 (tax sales, redemption, surplus) and look for the 2025 edition PDF."
+     "close": "Search leg.colorado.gov for 2025 and 2026 acts amending title 39 (tax sales, redemption, surplus) and look for the 2025 edition PDF.",
+     "attempts": "Run 4: CRS 2025 title 39 PDF 404 at leg.colorado.gov and content.leg.colorado.gov; bill pages return HTTP 406 to curl and bill_files/session-laws downloads are disallowed by robots.txt. Lead (not on site): SB26-144 (ch. 135, effective June 1, 2026, treasurer deeds and fees, art. 11.5) seen only in search results, official text not read."
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "DC": {
    "checkStatus": "checked with gaps",

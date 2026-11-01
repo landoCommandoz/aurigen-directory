@@ -186,3 +186,8 @@ None marked. Arkansas Code (LexisNexis-hosted) not attempted with the download s
 ## Conflicts (flagged)
 
 None.
+
+## Run 4 gap queue (2026-11-01)
+
+AR-2 closed: the act is **Act 241 of 2023 (HB 1263)**, approved March 9, 2023, with an emergency clause (effective on approval), amending Ark. Code §§ 26-37-202, -302 and -310. Read from arkleg.state.ar.us (`sources/ar/act241-1`): the notice must say owners may redeem "before 4:00 p.m. central standard time (CST) on the last business day before the date of the sale", and the post-sale redemption language is struck. COSL's notice says "Effective July 1, 2023", which differs from the act's own date, so the three claims that said "since July 1, 2023" now say "since 2023" (typeWhy.1, keyNotes.1, es.typeWhy.1). The same act sets 10% simple interest and a 10% penalty per year of delinquency to redeem or buy (§ 26-37-302); not shown on the site.
+AR-1 stays open: the Arkansas Code itself is still only on a JavaScript LexisNexis site.
