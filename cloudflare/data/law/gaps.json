@@ -454,6 +454,21 @@
      "close": "Read each county's own official tax collector or sheriff page and cite it."
     }
    ]
+  },
+  "NV": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "NV-1",
+     "text": "The 2023 to 2026 session-law search was not run. §361.595 cites 2025 amendments (Statutes of Nevada 2025, pp. 1424 and 3189) that were not opened, so any change they make is not reflected.",
+     "close": "Open the 2025 acts amending NRS 361.595 and 361.610 on leg.state.nv.us and search 2023 to 2025 Statutes of Nevada for tax-sale, redemption and excess-proceeds changes."
+    },
+    {
+     "id": "NV-2",
+     "text": "Bid method, deposit, registration and sale dates are not in the statutes; county sites were not read. They show as \"Confirm with the county\".",
+     "close": "Read the official treasurer pages of Clark, Washoe and other counties and cite them."
+    }
+   ]
   }
  }
 }

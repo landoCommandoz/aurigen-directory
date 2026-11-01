@@ -1,4 +1,4 @@
-# Corrections summary, law audit (36 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (37 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1430 | 62% |
-| Wording or citation only | 390 | 17% |
-| Removed opinion | 475 | 21% |
-| **All corrected** | **2295** | |
+| Substantive | 1464 | 62% |
+| Wording or citation only | 403 | 17% |
+| Removed opinion | 493 | 21% |
+| **All corrected** | **2360** | |
 
 ## By state
 
@@ -59,6 +59,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | MO | 34 | 11 | 18 | 63 |
 | NC | 36 | 17 | 14 | 67 |
 | NE | 28 | 10 | 23 | 61 |
+| NV | 34 | 13 | 18 | 65 |
 
 ## One example of each kind, per state
 
@@ -277,3 +278,9 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`rate`): 14% → Interest at the rate in §45-104.01 as adjusted by the Legislature (§77-1824). Current rate: Confirm with the county.
 - Wording or citation only (`type`): Tax lien → Tax sale certificate; the purchaser acquires a lien (§77-1818)
 - Removed opinion (`summary.2`): Rotational bidding format (unusual — counties rotate through available properties giving each registered bidder equal turns). 3-year redemption. → (removed)
+
+### NV
+
+- Substantive (`rateNote`): County holds in trust 2 years before retail auction — investor takes clean title at sale → The county treasurer holds the property in trust for 2 years after the first Monday in June of the year the certificate is dated, unless sooner redeemed (NRS §361.570(1)).
+- Wording or citation only (`type`): Tax deed → Sale of property held in trust by the county treasurer (NRS §361.595)
+- Removed opinion (`summary.3`): Clark County (Las Vegas) has strongest inventory. → (removed)

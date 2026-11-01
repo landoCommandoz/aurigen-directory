@@ -482,12 +482,15 @@
    "unreachable": 0
   },
   "NV": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 66,
+   "supported": 1,
+   "corrected": 65,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 65,
+   "checkStatus": "checked with gaps"
   },
   "NY": {
    "status": "todo",

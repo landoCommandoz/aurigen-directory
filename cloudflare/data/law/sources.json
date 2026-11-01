@@ -1371,6 +1371,24 @@
    "fetched_at": "2026-10-27T06:37:17.352Z",
    "snapshot": "foundry/out/law-audit/sources/nm/trd-press-2026-03.json"
   },
+  "https://www.leg.state.nv.us/NRS/NRS-361.html": {
+   "state": "NV",
+   "statutes": [
+    "NRS 361.595(1)",
+    "NRS 361.570(1)",
+    "NRS 361.585(3)",
+    "NRS 361.595(2)",
+    "NRS 361.595(3)",
+    "NRS 361.600",
+    "NRS 361.570(2)",
+    "NRS 361.595(5)",
+    "NRS 361.610(5)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "c27a25d17afb425abf5bfe50554ea21b958d275affac6c55ce54ce10bf394116",
+   "fetched_at": "2026-11-01T09:56:01.852Z",
+   "snapshot": "foundry/out/law-audit/sources/nv/nrs361.json"
+  },
   "https://oktaxrolls.com/county/Delaware": {
    "state": "OK",
    "statutes": [
