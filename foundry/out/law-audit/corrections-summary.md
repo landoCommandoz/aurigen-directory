@@ -1,4 +1,4 @@
-# Corrections summary, law audit (41 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (42 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1606 | 61% |
-| Wording or citation only | 447 | 17% |
-| Removed opinion | 561 | 21% |
-| **All corrected** | **2614** | |
+| Substantive | 1638 | 61% |
+| Wording or citation only | 458 | 17% |
+| Removed opinion | 583 | 22% |
+| **All corrected** | **2679** | |
 
 ## By state
 
@@ -62,6 +62,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | NV | 34 | 13 | 18 | 65 |
 | OH | 38 | 17 | 11 | 66 |
 | OR | 35 | 11 | 16 | 62 |
+| RI | 32 | 11 | 22 | 65 |
 | SC | 35 | 8 | 19 | 62 |
 | VT | 34 | 8 | 22 | 64 |
 
@@ -300,6 +301,12 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`type`): Tax deed → County foreclosure: property not redeemed is deeded to the county, which then keeps, transfers or sells it (ORS §312.200, §312.520)
 - Wording or citation only (`rate`): N/A → Not applicable: the county sells foreclosed property by auction or listing (ORS §312.520)
 - Removed opinion (`notBeginnerReason.1`): 80% of assessed value minimum bid, 3 years delinquency + 2 years county hold, virtually no below-market opportunity. → (removed)
+
+### RI
+
+- Substantive (`type`): Tax lien → Tax sale by the collector; the deed is subject to the right of redemption and held as security (§44-9-12)
+- Wording or citation only (`statute`): RIGL §44-9 → RIGL §44-9-9, §44-9-12, §44-9-19 and §44-9-25
+- Removed opinion (`summary.2`): Very low volume. → (removed)
 
 ### SC
 

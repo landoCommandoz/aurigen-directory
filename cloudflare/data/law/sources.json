@@ -1473,6 +1473,76 @@
    "fetched_at": "2026-10-27T06:44:05.354Z",
    "snapshot": "foundry/out/law-audit/sources/pa/act-542-pdf.json"
   },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-12.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-12(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "dcf1fd8be11642b87b8f50669c3c883064bbff3dbb277d7618fb1c81f6b7e134",
+   "fetched_at": "2026-11-01T10:06:27.466Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-12.json"
+  },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-19.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-19(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "7fbf086ae0e87455c3dba7fe02aefd40d4d8c401cff66c305456ed9f89b94476",
+   "fetched_at": "2026-11-01T10:06:58.172Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-19.json"
+  },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-25.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-25(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "8a0a4f8a674631e2687f3e2f7609e8b8b93f6d525c78811938c2fff21370cd54",
+   "fetched_at": "2026-11-01T10:06:42.766Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-25.json"
+  },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-9.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-9"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "31c62485e9700a919ac73e56efc8bf907987ca2e049e9ce681e76f3d63e379be",
+   "fetched_at": "2026-11-01T10:06:25.277Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-9.json"
+  },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-1.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-1(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "702ac40e24050c2778b99073a0ad3c54aa61e3eb9b25554aa86b8ca8c73a79d7",
+   "fetched_at": "2026-11-01T10:06:20.910Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-1.json"
+  },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-30.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-30"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ba37ae8dc20d140ce8081282212e4f1c3c6fff002362022a02057b9ca675a54d",
+   "fetched_at": "2026-11-01T10:07:00.362Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-30.json"
+  },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-37.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-37"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "c25ab2cd326c5ebee3ecce1e2c374f59d67762e7c8ffe3d15ddb11e618665de8",
+   "fetched_at": "2026-11-01T10:07:02.534Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-37.json"
+  },
   "https://www.scstatehouse.gov/code/t12c051.php": {
    "state": "SC",
    "statutes": [

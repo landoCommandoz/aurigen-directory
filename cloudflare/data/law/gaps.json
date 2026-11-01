@@ -534,6 +534,21 @@
      "close": "Read each town's own tax sale notice and cite it."
     }
    ]
+  },
+  "RI": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "RI-1",
+     "text": "The 2023 to 2026 public-law search was not run; only history lines of the sections read were checked. Sections 44-9-7, 44-9-8.1, 44-9-8.2 and 44-9-25.1 to 44-9-25.3 (abandonment and vacancy foreclosure) were not read.",
+     "close": "Find a readable copy of 44-9-7 and the other sections on webserver.rilegislature.gov and search public laws 2023 to 2026 for chapter 44-9 changes."
+    },
+    {
+     "id": "RI-2",
+     "text": "Excess proceeds from a collector's sale are not covered in the sections read (44-9-37 covers treasurer sales without foreclosure); sale dates, registration and deposits were not read from city or town sites.",
+     "close": "Read the remaining chapter 44-9 sections for surplus after a collector's sale and the official city or town tax sale notices."
+    }
+   ]
   }
  }
 }
