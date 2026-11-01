@@ -96,14 +96,18 @@
    "attemptedAt": "2026-11-01"
   },
   "DC": {
-   "checkStatus": "checked with gaps",
+   "checkStatus": "checked",
    "gaps": [
     {
      "id": "DC-1",
      "text": "The 18% redemption rate was not found in the sections read (2 claims flagged).",
-     "close": "Locate the D.C. Code section that sets redemption interest on code.dccouncil.gov and read it."
+     "close": "Locate the D.C. Code section that sets redemption interest on code.dccouncil.gov and read it.",
+     "closed": "2026-11-01",
+     "note": "Run 6: rate found in D.C. Code § 47-1334 (1.5% per month or portion thereof, simple interest; the 2003 act changed it from '18% per month'). Claims rate and es.rate corrected.",
+     "closedAt": "2026-11-01"
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "HI": {
    "checkStatus": "checked with gaps",

@@ -8,7 +8,7 @@ States done: 45 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, U
 | AK | done | checked with gaps | 2026-11-01 | 69 | 1 | 66 | 0 | 2 | 50 | [ak.md](ak.md) |
 | AL | done | checked with gaps | 2026-11-01 | 70 | 2 | 66 | 2 | 0 | 62 | [al.md](al.md) |
 | CA | done | checked with gaps | 2026-11-01 | 70 | 7 | 63 | 0 | 0 | 55 | [ca.md](ca.md) |
-| DC | done | checked with gaps | 2026-11-01 | 74 | 1 | 71 | 2 | 0 | 56 | [dc.md](dc.md) |
+| DC | done | checked | 2026-11-01 | 74 | 1 | 73 | 0 | 0 | 56 | [dc.md](dc.md) |
 | HI | done | checked with gaps | 2026-11-01 | 68 | 6 | 57 | 0 | 5 | 62 | [hi.md](hi.md) |
 | KY | done | checked with gaps | 2026-11-01 | 66 | 5 | 61 | 0 | 0 | 60 | [ky.md](ky.md) |
 | LA | done | checked with gaps | 2026-11-01 | 68 | 2 | 66 | 0 | 0 | 62 | [la.md](la.md) |
@@ -60,7 +60,6 @@ States done: 45 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, U
 ## Conflicts (flagged claims)
 
 - AL `rate`: Ala. Admin. Code r. 810-4-6-.02 says 8% for tax sales after Jan 1, 2020; the DOR Land Sales FAQ still says 12% per annum; the Code text could not be read (script-only site)
-- DC `rate`: Fetched D.C. Code §§ 47-1330 to 47-1382.01 say redemption includes "interest thereon" but the 18% figure was not found in the sections read; confirm the rate section
 - MS `type`: SOS rules say land is "sold at public sale" with a two-year redemption; the code (not reachable) was not read to confirm the lien label
 - NM `redemption`: TRD FAQ says "all sales are final"; the statute on redemption after sale was not read
 - OK `type`: Delaware County Treasurer says an amendment to 68 O.S. § 3105 ended the October certificate sale; the statute text and act could not be reached (OSCN CAPTCHA, oklegislature.gov robots.txt), so statewide scope and start date are unconfirmed
