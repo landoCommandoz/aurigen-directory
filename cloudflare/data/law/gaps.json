@@ -364,6 +364,21 @@
      "close": "Add the 31-808(2)(c) claim period as a site statement with its quote, and read the county commissioner pages for named counties, or keep the Confirm with the county label."
     }
    ]
+  },
+  "KS": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "KS-1",
+     "text": "The bill and session-law search for 2023 to 2026 was not run. Other Kansas provisions on county sale of foreclosed property (79-2804f and later, 79-2301 to 79-2302 tax sale procedure, 79-2811) and any tax-lien certificate sales were not read.",
+     "close": "Search kslegislature.gov session laws 2023 to 2026 for acts amending 79-2004, 79-2401a, 79-2801 to 79-2811, and read 79-2302, 79-2804f and 79-2811."
+    },
+    {
+     "id": "KS-2",
+     "text": "Owner claims to excess proceeds after a foreclosure sale (79-2803 apportionment text beyond the quoted clause) were not fully read; county and sheriff sale details were not read from county sites.",
+     "close": "Read the rest of 79-2803 and the sheriff pages for named counties, or keep the Confirm with the county label."
+    }
+   ]
   }
  }
 }

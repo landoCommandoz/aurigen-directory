@@ -757,6 +757,67 @@
    "fetched_at": "2026-11-01T09:14:28.774Z",
    "snapshot": "foundry/out/law-audit/sources/il/s22-42.json"
   },
+  "https://www.ksrevisor.gov/statutes/chapters/ch79/079_028_0001.html": {
+   "state": "KS",
+   "statutes": [
+    "K.S.A. § 79-2801(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d6c0895a0b295e929c2c5ce06457ae42dc7959b4f27e310f54ba54f7421ee34e",
+   "fetched_at": "2026-11-01T09:43:53.839Z",
+   "snapshot": "foundry/out/law-audit/sources/ks/s7928000001.json"
+  },
+  "https://www.ksrevisor.gov/statutes/chapters/ch79/079_020_0004.html": {
+   "state": "KS",
+   "statutes": [
+    "K.S.A. § 79-2004(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "4dbd7260a0a2278946072b8bfaae5c2e58b0d3b9ceee2692033b293d61d74c60",
+   "fetched_at": "2026-11-01T09:44:34.576Z",
+   "snapshot": "foundry/out/law-audit/sources/ks/s792004.json"
+  },
+  "https://www.ksrevisor.gov/statutes/chapters/ch79/079_024_0001a.html": {
+   "state": "KS",
+   "statutes": [
+    "K.S.A. § 79-2401a(a)(1)",
+    "K.S.A. § 79-2401a(b)(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f492c94bdead158435497aeffe21713d03924d8342c199b88b77db69e83c46cc",
+   "fetched_at": "2026-11-01T09:44:37.182Z",
+   "snapshot": "foundry/out/law-audit/sources/ks/s792401a.json"
+  },
+  "https://www.ksrevisor.gov/statutes/chapters/ch79/079_028_0004.html": {
+   "state": "KS",
+   "statutes": [
+    "K.S.A. § 79-2804"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9ecbdf7e4044381aba1867584ebee2b6610268b02bfdf3daadf85b2a6734eafb",
+   "fetched_at": "2026-11-01T09:44:02.046Z",
+   "snapshot": "foundry/out/law-audit/sources/ks/s7928000004.json"
+  },
+  "https://www.ksrevisor.gov/statutes/chapters/ch79/079_028_0004b.html": {
+   "state": "KS",
+   "statutes": [
+    "K.S.A. § 79-2804b"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "45d94ddf8f5718c2ee988b77e5e497bc01ad6e49053e7c5bab49348d98c4fa30",
+   "fetched_at": "2026-11-01T09:44:40.065Z",
+   "snapshot": "foundry/out/law-audit/sources/ks/s792804b.json"
+  },
+  "https://www.ksrevisor.gov/statutes/chapters/ch79/079_028_0005.html": {
+   "state": "KS",
+   "statutes": [
+    "K.S.A. § 79-2805"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "213ba86096538f53272185c87d7a0eff6805e48881e5fe7473b7c36efef7a423",
+   "fetched_at": "2026-11-01T09:44:04.641Z",
+   "snapshot": "foundry/out/law-audit/sources/ks/s7928000005.json"
+  },
   "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=28449": {
    "state": "KY",
    "statutes": [
