@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "me",
+ "slug": "mrs-36-505-pdf",
+ "url": "https://legislature.maine.gov/statutes/36/title36sec505.pdf",
+ "final_url": "https://legislature.maine.gov/statutes/36/title36sec505.pdf",
+ "fetched_at": "2026-11-01T10:23:09.623Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "23e3cf18bdf216d5ae3a453eab5236c767454157b8f7a1b8b0ad63d3a4b9b7b0",
+ "raw_bytes": 112723,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "f0d9924189aa2c6b6efcf1f53d4ba9f5183c75e83728b878fdf4e6ccfa43b59b",
+ "text_chars": 3799
+}

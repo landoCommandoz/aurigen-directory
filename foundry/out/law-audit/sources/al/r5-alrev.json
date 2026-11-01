@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "al",
+ "slug": "r5-alrev",
+ "url": "https://www.revenue.alabama.gov/property-tax/",
+ "final_url": "https://www.revenue.alabama.gov/division/property-tax/",
+ "fetched_at": "2026-11-01T10:22:56.476Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "49db028429076e14cd89a5e2a6229732fef3df259f7b248493761d2d2b2e0af3",
+ "raw_bytes": 322718,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "3ca28841a3d32855aece2438f5f8da68c435db20e97abf1cc579d3bbdaeb0aaf",
+ "text_chars": 4468
+}

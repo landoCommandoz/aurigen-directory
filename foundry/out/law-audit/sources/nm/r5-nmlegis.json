@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nm",
+ "slug": "r5-nmlegis",
+ "url": "https://www.nmlegis.gov/Legislation/Legislation_List",
+ "final_url": "https://www.nmlegis.gov/Legislation/Legislation_List",
+ "fetched_at": "2026-11-01T10:22:56.538Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "5d58c8936799312c97117c39d6ac095de1fc09e881d32e3bd0a3f2c349a0cf98",
+ "raw_bytes": 49040,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "c8d60935a821a57e9310d01e1360a31165e53881004d3d8ef4b28879b5050624",
+ "text_chars": 6009
+}

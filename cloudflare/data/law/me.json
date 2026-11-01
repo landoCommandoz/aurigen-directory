@@ -24,17 +24,18 @@
    "id": "rate",
    "lang": "en",
    "field": "rate",
-   "shown": "Interest rate set under 36 M.R.S. § 505",
+   "shown": "Maximum rate set by law: yearly cap set by the Treasurer of State (36 M.R.S. § 505)",
    "original": "8%",
-   "status": "unreachable",
-   "pass2": "unreachable: legislature.maine.gov reset the connection for § 505 (HTML and PDF); 8% not verified",
-   "attempts": [
-    "https://legislature.maine.gov/statutes/36/title36sec505.html",
-    "https://legislature.maine.gov/statutes/36/title36sec505.pdf"
-   ],
+   "status": "corrected",
+   "pass2": "ok: run 5 read § 505 PDF; shown limited to municipal vote and Treasurer yearly maximum; was unreachable (Interest rate set under 36 M.R.S. § 505)",
    "statute": "36 M.R.S. § 505(4)",
-   "attemptedAt": "2026-10-27",
-   "checked": "2026-10-27"
+   "checked": "2026-11-01",
+   "url": "https://legislature.maine.gov/statutes/36/title36sec505.pdf",
+   "snapshot": "foundry/out/law-audit/sources/me/mrs-36-505-pdf.json",
+   "sourceKind": "code",
+   "quote": "the maximum rate of interest must be established by the Treasurer of State and may not exceed the prime rate as published in the Wall Street Journal on the first business day of the calendar year, rounded up to the next whole percent plus 3 percentage points",
+   "correctionKind": "substantive",
+   "correctionBasis": "rate claim now states only the Treasurer of State yearly cap read in § 505(4); unverified 8% stays removed"
   },
   {
    "id": "rateNote",
@@ -238,17 +239,18 @@
    "id": "rateWhy.1",
    "lang": "en",
    "field": "rateWhy",
-   "shown": "Interest is set under 36 M.R.S. § 505.",
+   "shown": "Maine municipalities set interest on delinquent taxes by vote, up to a yearly maximum set by the Treasurer of State under 36 M.R.S. § 505.",
    "original": "Maine sets the interest rate on municipal tax liens at 8% per annum by statute.",
-   "status": "unreachable",
-   "pass2": "unreachable: legislature.maine.gov reset the connection for § 505 (HTML and PDF); 8% not verified",
-   "attempts": [
-    "https://legislature.maine.gov/statutes/36/title36sec505.html",
-    "https://legislature.maine.gov/statutes/36/title36sec505.pdf"
-   ],
+   "status": "corrected",
+   "pass2": "ok: run 5 read § 505 PDF; shown limited to municipal vote and Treasurer yearly maximum; was unreachable (Interest is set under 36 M.R.S. § 505.)",
    "statute": "36 M.R.S. § 505(4)",
-   "attemptedAt": "2026-10-27",
-   "checked": "2026-10-27"
+   "checked": "2026-11-01",
+   "url": "https://legislature.maine.gov/statutes/36/title36sec505.pdf",
+   "snapshot": "foundry/out/law-audit/sources/me/mrs-36-505-pdf.json",
+   "sourceKind": "code",
+   "quote": "the maximum rate of interest must be established by the Treasurer of State and may not exceed the prime rate as published in the Wall Street Journal on the first business day of the calendar year, rounded up to the next whole percent plus 3 percentage points",
+   "correctionKind": "substantive",
+   "correctionBasis": "rate claim now states only the Treasurer of State yearly cap read in § 505(4); unverified 8% stays removed"
   },
   {
    "id": "rateWhy.2",
@@ -273,15 +275,16 @@
    "field": "rateWhy",
    "shown": "36 M.R.S. § 505.",
    "original": "MRSA Title 36 §942.",
-   "status": "unreachable",
-   "pass2": "unreachable: legislature.maine.gov reset the connection for § 505 (HTML and PDF); 8% not verified",
-   "attempts": [
-    "https://legislature.maine.gov/statutes/36/title36sec505.html",
-    "https://legislature.maine.gov/statutes/36/title36sec505.pdf"
-   ],
+   "status": "corrected",
+   "pass2": "ok: run 5 read § 505 PDF; shown limited to municipal vote and Treasurer yearly maximum; was unreachable (36 M.R.S. § 505.)",
    "statute": "36 M.R.S. § 505(4)",
-   "attemptedAt": "2026-10-27",
-   "checked": "2026-10-27"
+   "checked": "2026-11-01",
+   "url": "https://legislature.maine.gov/statutes/36/title36sec505.pdf",
+   "snapshot": "foundry/out/law-audit/sources/me/mrs-36-505-pdf.json",
+   "sourceKind": "code",
+   "quote": "the maximum rate of interest must be established by the Treasurer of State and may not exceed the prime rate as published in the Wall Street Journal on the first business day of the calendar year, rounded up to the next whole percent plus 3 percentage points",
+   "correctionKind": "substantive",
+   "correctionBasis": "rate claim now states only the Treasurer of State yearly cap read in § 505(4); unverified 8% stays removed"
   },
   {
    "id": "keyNotes.1",
@@ -701,17 +704,18 @@
    "lang": "es",
    "enId": "rate",
    "field": "rate",
-   "shown": "Tasa de interés fijada según 36 M.R.S. § 505",
+   "shown": "Tasa máxima fijada por la ley: tope anual fijado por el Tesorero del Estado (36 M.R.S. § 505)",
    "original": "8%",
    "statute": "36 M.R.S. § 505(4)",
-   "checked": "2026-10-27",
-   "status": "unreachable",
-   "attempts": [
-    "https://legislature.maine.gov/statutes/36/title36sec505.html",
-    "https://legislature.maine.gov/statutes/36/title36sec505.pdf"
-   ],
-   "attemptedAt": "2026-10-27",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "checked": "2026-11-01",
+   "status": "corrected",
+   "pass2": "ok: matches English claim, adds nothing",
+   "url": "https://legislature.maine.gov/statutes/36/title36sec505.pdf",
+   "snapshot": "foundry/out/law-audit/sources/me/mrs-36-505-pdf.json",
+   "sourceKind": "code",
+   "quote": "the maximum rate of interest must be established by the Treasurer of State and may not exceed the prime rate as published in the Wall Street Journal on the first business day of the calendar year, rounded up to the next whole percent plus 3 percentage points",
+   "correctionBasis": "rate claim now states only the Treasurer of State yearly cap read in § 505(4); unverified 8% stays removed",
+   "correctionKind": "substantive"
   },
   {
    "id": "es.redemption",
@@ -842,17 +846,18 @@
    "lang": "es",
    "enId": "rateWhy.1",
    "field": "rateWhy",
-   "shown": "El interés se fija según 36 M.R.S. § 505.",
+   "shown": "Los municipios de Maine fijan por voto el interés sobre impuestos atrasados, hasta un máximo anual que fija el Tesorero del Estado según 36 M.R.S. § 505.",
    "original": "La tasa del 8% es relativamente baja entre los estados de gravamen.",
    "statute": "36 M.R.S. § 505(4)",
-   "checked": "2026-10-27",
-   "status": "unreachable",
-   "attempts": [
-    "https://legislature.maine.gov/statutes/36/title36sec505.html",
-    "https://legislature.maine.gov/statutes/36/title36sec505.pdf"
-   ],
-   "attemptedAt": "2026-10-27",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "checked": "2026-11-01",
+   "status": "corrected",
+   "pass2": "ok: matches English claim, adds nothing",
+   "url": "https://legislature.maine.gov/statutes/36/title36sec505.pdf",
+   "snapshot": "foundry/out/law-audit/sources/me/mrs-36-505-pdf.json",
+   "sourceKind": "code",
+   "quote": "the maximum rate of interest must be established by the Treasurer of State and may not exceed the prime rate as published in the Wall Street Journal on the first business day of the calendar year, rounded up to the next whole percent plus 3 percentage points",
+   "correctionBasis": "rate claim now states only the Treasurer of State yearly cap read in § 505(4); unverified 8% stays removed",
+   "correctionKind": "substantive"
   },
   {
    "id": "es.rateWhy.2",

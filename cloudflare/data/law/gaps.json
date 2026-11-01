@@ -156,10 +156,12 @@
    "gaps": [
     {
      "id": "ME-1",
-     "text": "36 M.R.S. § 505 could not be fetched (connection reset); 5 claims unreachable; over-the-counter flagged; LD search not run.",
-     "close": "Retry § 505 (HTML and PDF) and run the LD search for 2023 to 2026."
+     "text": "Over-the-counter claim flagged earlier; the 2023 to 2026 enacted-law search is not complete: only the section histories were read (36 M.R.S. § 943 last amended PL 2023, c. 579, § 1; § 942 last amended PL 2019, c. 501).",
+     "close": "Read PL 2023, c. 579 on legislature.maine.gov (act text or LD number) and search the 131st to 132nd Legislature chaptered laws for tax lien, redemption and surplus changes.",
+     "attempts": "Run 5: § 505 PDF read (HTML resets the connection); rate claims corrected. § 949 and § 943 PDF resets."
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "MS": {
    "checkStatus": "checked with gaps",

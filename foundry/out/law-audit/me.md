@@ -176,3 +176,10 @@ Effective dates and LD numbers were not looked up this run (legislature's LD sea
 ## Conflicts (flagged)
 
 - `otc.available`: No official text on over-the-counter sales; § 943-C requires broker listing of tax-acquired property
+
+## Run 5 update (2026-11-01)
+
+- 36 M.R.S. § 505 read from the PDF copy (`sources/me/mrs-36-505-pdf`; the HTML copy still resets the connection). The 5 claims that were `unreachable` (rate, rateWhy.1, rateWhy.3, es.rate, es.rateWhy.1) are now `corrected` (substantive): the unverified 8% stays removed, and the text says only that the municipality sets the rate by vote up to a yearly maximum set by the Treasurer of State (prime rate rounded up plus 3 points).
+- Not tied by the text read: §§ 942 and 943 do not mention § 505, so the site does not say this cap applies to the tax lien mortgage specifically.
+- Enacted-law search (partial): section histories read from the saved §§ 942 and 943. § 943 was last amended by PL 2023, c. 579, § 1; § 942 by PL 2019, c. 501. The act text was not read, so the 2023 to 2026 search stays an open gap (ME-1). The § 943 quotes still match the current text.
+- Failed: https://legislature.maine.gov/statutes/36/title36sec949.html and title36sec943.pdf (connection reset, logged in attempts/me.jsonl).

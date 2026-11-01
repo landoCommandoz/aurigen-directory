@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "me",
+ "slug": "r5-mainelaw",
+ "url": "https://legislature.maine.gov/statutes/36/title36ch0sec0.html",
+ "final_url": "https://legislature.maine.gov/statutes/36/title36ch0sec0.html",
+ "fetched_at": "2026-11-01T10:22:56.534Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "36ecbe83d86624b2bbd0612537c4c5e0cf1ecfd7e941bed4f3431790f484e48b",
+ "raw_bytes": 34388,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "0f9137e08049d09459e6c1d9ebe189851514db2327a5d15a7714a9f89b538da6",
+ "text_chars": 9657
+}

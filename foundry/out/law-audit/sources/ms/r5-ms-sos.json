@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ms",
+ "slug": "r5-ms-sos",
+ "url": "https://www.sos.ms.gov/",
+ "final_url": "https://www.sos.ms.gov/",
+ "fetched_at": "2026-11-01T10:22:40.338Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "c6eaf159e1338bdd7469e86b2769ee661b70552e0c7239d02a262f3a8a74e031",
+ "raw_bytes": 142099,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "1c877ea60ed46e49b2973b2e5db6627c2b980a2d8ab968ad90cc2c45766891c6",
+ "text_chars": 6803
+}

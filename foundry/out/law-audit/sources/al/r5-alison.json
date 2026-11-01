@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "al",
+ "slug": "r5-alison",
+ "url": "https://alison.legislature.state.al.us/code-of-alabama",
+ "final_url": "https://alison.legislature.state.al.us/code-of-alabama",
+ "fetched_at": "2026-11-01T10:22:56.537Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "f7a7c9c45980149060871ade827c7c63adeff950c352ee3c54df36a0ef171927",
+ "raw_bytes": 59579,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "6947fc033e93d03e5a11159eaeb2d4c69b6745880da2fdb3e6dcf14827dfa804",
+ "text_chars": 1821
+}

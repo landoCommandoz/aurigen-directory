@@ -86,9 +86,6 @@ States done: 45 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, U
 - HI `summary.4`: https://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, http://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, https://data.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm
 - HI `typeWhy.3`: https://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, http://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, https://data.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm
 - HI `rateWhy.3`: https://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, http://www.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm, https://data.capitol.hawaii.gov/hrscurrent/Vol05_Ch0261-0319/HRS0246/HRS_0246-0060.htm
-- ME `rate`: https://legislature.maine.gov/statutes/36/title36sec505.html, https://legislature.maine.gov/statutes/36/title36sec505.pdf
-- ME `rateWhy.1`: https://legislature.maine.gov/statutes/36/title36sec505.html, https://legislature.maine.gov/statutes/36/title36sec505.pdf
-- ME `rateWhy.3`: https://legislature.maine.gov/statutes/36/title36sec505.html, https://legislature.maine.gov/statutes/36/title36sec505.pdf
 - MS `rate`: https://www.legislature.ms.gov/legislation/mississippi-code/
 - MS `rateNote`: https://www.legislature.ms.gov/legislation/mississippi-code/
 - MS `statute`: https://www.legislature.ms.gov/legislation/mississippi-code/
@@ -108,7 +105,3 @@ States done: 45 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, U
 - OK `rateWhy.2`: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/SB/SB181%20ENR.PDF
 - OK `risks.2`: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/SB/SB181%20ENR.PDF
 - OK `surplus.1`: https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/SB/SB181%20ENR.PDF
-
-## Run 4 retry of blocked states
-
-GA (legis.ga.gov page needs JavaScript), NJ (pub.njleg.gov 404), NY (nysenate.gov 403), TN (tnsosfiles 403), WA (RCW pages disallowed by robots.txt, lawfilesext 404) retried 2026-11-01; still blocked. IN not retried.
