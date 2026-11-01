@@ -307,12 +307,15 @@
    "checkStatus": "checked with gaps"
   },
   "MD": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 89,
+   "supported": 2,
+   "corrected": 87,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 86,
+   "checkStatus": "checked with gaps"
   },
   "NH": {
    "status": "todo",

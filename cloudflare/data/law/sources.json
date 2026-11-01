@@ -545,6 +545,121 @@
    "fetched_at": "2026-10-29T06:05:11.622Z",
    "snapshot": "foundry/out/law-audit/sources/ma/mgl-60-64a.json"
   },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-817&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-817(b)(1)",
+    "Md. Code, Tax-Prop. § 14-817(a)(2)",
+    "Md. Code, Tax-Prop. § 14-817(a)(1)",
+    "Md. Code, Tax-Prop. § 14-817(a)(4)",
+    "Md. Code, Tax-Prop. § 14-817(b)(2)(v)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e272204664a2c121e89e0778c508e7c7e0c04496258a8f78d6a7bb9518bd3bdf",
+   "fetched_at": "2026-11-01T09:17:25.533Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-817.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-820&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-820(b)",
+    "Md. Code, Tax-Prop. § 14-820(c)",
+    "Md. Code, Tax-Prop. § 14-820(b)(15)-(16)",
+    "Md. Code, Tax-Prop. § 14-820(b)(2)",
+    "Md. Code, Tax-Prop. § 14-820(b)(4)",
+    "Md. Code, Tax-Prop. § 14-820(b)(8)",
+    "Md. Code, Tax-Prop. § 14-820(a)(6)",
+    "Md. Code, Tax-Prop. § 14-820(b)(3)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "3add36c185f23a57fc3e3deae3719350b840340f80072c10b27d70609eb67497",
+   "fetched_at": "2026-11-01T09:17:32.583Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-820.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-827&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-827"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "112879da7bac757ae9bbbded45dc2da1be1a174f8288c3da4089701cb20082d3",
+   "fetched_at": "2026-11-01T09:17:46.674Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-827.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-808&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-808(a)(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1fc7b70b4d7a59072935e92481441eb02292be54f50fb39308f53da12e531a1c",
+   "fetched_at": "2026-11-01T09:17:05.057Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-808.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-833&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-833(a)(1)",
+    "Md. Code, Tax-Prop. § 14-833(c)(1)",
+    "Md. Code, Tax-Prop. § 14-833(b)",
+    "Md. Code, Tax-Prop. § 14-833(a)(2)",
+    "Md. Code, Tax-Prop. § 14-833(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "2f4b934a16361b8ba72084ecbadee39fbe2847606daaedb8e430c391aa6293ec",
+   "fetched_at": "2026-11-01T09:18:00.721Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-833.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-836&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-836(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "34a25e0b4de5075c6bfca572ac2e07a196e407988e23461d51fdcfd231416130",
+   "fetched_at": "2026-11-01T09:18:05.408Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-836.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-847&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-847(d)(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0bedf6d1c42eb0edc5ab4e86a2bd2e643e574b6efbbdb5320465e0a5921566ad",
+   "fetched_at": "2026-11-01T09:18:19.374Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-847.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-818&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-818(a)(1)(i)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "33da05832c932f00274cb2644c2c6bd4005502edb2aa8dba3e4fc94cef9ca8c6",
+   "fetched_at": "2026-11-01T09:17:27.882Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-818.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-825&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-825"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "3d009380b9219b31c0d97a46bc2d255c6221eb4d67e114a379eef795b403cd80",
+   "fetched_at": "2026-11-01T09:17:41.985Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-825.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-844&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-844(d)(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d8019845b3ee0c16c6402227b8a351ca6587af985e1c2df90ff0131cd7a85806",
+   "fetched_at": "2026-11-01T09:18:14.716Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-844.json"
+  },
   "https://legislature.maine.gov/statutes/36/title36sec942.html": {
    "state": "ME",
    "statutes": [

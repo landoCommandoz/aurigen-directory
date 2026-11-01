@@ -259,6 +259,21 @@
      "close": "Read the Cook County Treasurer and Clerk pages and one or two other county collector pages; or keep the Confirm with the county label."
     }
    ]
+  },
+  "MD": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "MD-1",
+     "text": "The 2023 to 2026 enacted-act search was not run on mgaleg.maryland.gov (bill and session-law search); only the current code text was read.",
+     "close": "Search mgaleg.maryland.gov legislation for 2023 to 2026 chapters amending Tax-Property Title 14 Subtitle 8 and record bill number, chapter, effective date and a quote."
+    },
+    {
+     "id": "MD-2",
+     "text": "County rate ordinances and county sale details (platform, dates, deposits) were not read; the site shows the statutory 6% base and county-fixed exceptions only.",
+     "close": "Read each named county's collector or council page for its fixed rate and sale details, or keep the Confirm with the county label."
+    }
+   ]
   }
  }
 }

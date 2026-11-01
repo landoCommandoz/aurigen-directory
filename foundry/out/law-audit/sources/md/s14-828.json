@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "md",
+ "slug": "s14-828",
+ "url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-828&enactments=false",
+ "final_url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-828&enactments=false",
+ "fetched_at": "2026-11-01T09:17:49.010Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "86bb31069ebe80765cb7727cc69d811e4ea51240eb353f96efd1087a13d93f5c",
+ "raw_bytes": 64163,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "4c4209b1945daf86ba66e946e0750ff1e4dd701652f7ab1a1b98a3985863fc1a",
+ "text_chars": 5365
+}

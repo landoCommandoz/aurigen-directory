@@ -1,4 +1,4 @@
-# Corrections summary, law audit (23 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (24 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 964 | 68% |
-| Wording or citation only | 202 | 14% |
-| Removed opinion | 251 | 18% |
-| **All corrected** | **1417** | |
+| Substantive | 1024 | 68% |
+| Wording or citation only | 217 | 14% |
+| Removed opinion | 263 | 17% |
+| **All corrected** | **1504** | |
 
 ## By state
 
@@ -46,6 +46,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | IA | 47 | 14 | 5 | 66 |
 | IL | 47 | 21 | 14 | 82 |
 | MA | 46 | 12 | 5 | 63 |
+| MD | 60 | 15 | 12 | 87 |
 
 ## One example of each kind, per state
 
@@ -186,3 +187,9 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`type`): Tax lien → Tax title (municipal taking; titles may be assigned at auction)
 - Wording or citation only (`auctionPlatform`): Municipal — varies by city/town → City or town treasurer, public auction
 - Removed opinion (`keyNotes.5`): Boston and Cambridge have essentially no retail investor access → (removed)
+
+### MD
+
+- Substantive (`rate`): 6%–24% (EXTREME county variation) → Rate set by law: 6% a year, or the rate a listed county fixes
+- Wording or citation only (`redemption`): No fixed period — owner may redeem until foreclosed by court order → The owner may redeem at any time until the right of redemption is finally foreclosed
+- Removed opinion (`summary.12`): Baltimore City: $750 minimum threshold. 23 counties + Baltimore City. → (removed)
