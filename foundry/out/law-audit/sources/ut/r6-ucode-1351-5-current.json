@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ut",
+ "slug": "r6-ucode-1351-5-current",
+ "url": "https://le.utah.gov/xcode/Title59/Chapter2/59-2-S1351.5.html",
+ "final_url": "https://le.utah.gov/xcode/Title59/Chapter2/59-2-S1351.5.html",
+ "fetched_at": "2026-11-01T10:34:00.388Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "e8b69567d3087b4b90b118fdb98327e47d3b4425ea64187c9cf90955ff1aa0ea",
+ "raw_bytes": 26618,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "7c03d60d8cc7f477d3f83ef338edfc665f5a87a3c46a890a5e986185394cb0e2",
+ "text_chars": 2307
+}

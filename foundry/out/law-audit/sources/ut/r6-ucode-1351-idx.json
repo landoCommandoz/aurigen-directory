@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ut",
+ "slug": "r6-ucode-1351-idx",
+ "url": "https://le.utah.gov/xcode/Title59/Chapter2/59-2-P13.html",
+ "final_url": "https://le.utah.gov/xcode/Title59/Chapter2/59-2-P13.html",
+ "fetched_at": "2026-11-01T10:33:43.624Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "ca7916902885c0f50109fa603ad9074b31694bcf48437891911c5ce65962c517",
+ "raw_bytes": 26622,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "7c03d60d8cc7f477d3f83ef338edfc665f5a87a3c46a890a5e986185394cb0e2",
+ "text_chars": 2307
+}

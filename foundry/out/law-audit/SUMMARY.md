@@ -19,7 +19,7 @@ States done: 45 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, U
 | OK | done | checked with gaps | 2026-11-01 | 61 | 3 | 21 | 22 | 15 | 58 | [ok.md](ok.md) |
 | PA | done | checked | 2026-11-01 | 68 | 16 | 52 | 0 | 0 | 54 | [pa.md](pa.md) |
 | TX | done | checked | 2026-11-01 | 83 | 10 | 73 | 0 | 0 | 76 | [tx.md](tx.md) |
-| UT | done | checked with gaps | 2026-11-01 | 73 | 12 | 61 | 0 | 0 | 64 | [ut.md](ut.md) |
+| UT | done | checked | 2026-11-01 | 73 | 12 | 61 | 0 | 0 | 64 | [ut.md](ut.md) |
 | WI | done | checked | 2026-11-01 | 68 | 10 | 58 | 0 | 0 | 61 | [wi.md](wi.md) |
 | WV | done | checked with gaps | 2026-11-01 | 77 | 8 | 69 | 0 | 0 | 71 | [wv.md](wv.md) |
 | AR | done | checked with gaps | 2026-11-01 | 69 | 12 | 57 | 0 | 0 | 61 | [ar.md](ar.md) |

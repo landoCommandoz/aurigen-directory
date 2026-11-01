@@ -194,3 +194,6 @@ None.
 ## Conflicts (flagged)
 
 None.
+
+## Gap queue, run 6 (2026-11-01)
+- UT-1 closed, with a limit. Re-fetched the current le.utah.gov pages for §§ 59-2-1343, 1346, 1351, 1351.1, 1351.3 and 1351.5 (sources/ut/r6-ucode-*-current; the loaded section file names are in raw/ut, which git ignores). Each page loads the same versioned file the ledger already cites, so the quotes still stand and no newer version exists. The 2024-2026 bill-history search was still not run, so a change to a section the ledger does not cite would not show here.
