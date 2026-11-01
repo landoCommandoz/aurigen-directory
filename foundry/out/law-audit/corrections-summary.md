@@ -1,4 +1,4 @@
-# Corrections summary, law audit (33 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (34 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1332 | 63% |
-| Wording or citation only | 352 | 17% |
-| Removed opinion | 420 | 20% |
-| **All corrected** | **2104** | |
+| Substantive | 1366 | 63% |
+| Wording or citation only | 363 | 17% |
+| Removed opinion | 438 | 20% |
+| **All corrected** | **2167** | |
 
 ## By state
 
@@ -56,6 +56,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | KS | 32 | 15 | 16 | 63 |
 | MI | 30 | 6 | 25 | 61 |
 | MN | 21 | 12 | 28 | 61 |
+| MO | 34 | 11 | 18 | 63 |
 
 ## One example of each kind, per state
 
@@ -256,3 +257,9 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`type`): Tax deed → Sale of tax-delinquent parcels, with the state bidding in; then county sale of forfeited land
 - Wording or citation only (`statute`): MN Statutes Ch. 279–282 → MN Stat. §280.01; §282.01; §282.241
 - Removed opinion (`summary.3`): Many counties retain properties via county land bank rather than auctioning. → (removed)
+
+### MO
+
+- Substantive (`type`): Tax lien → Tax sale with a certificate of purchase
+- Wording or citation only (`summary.2`): Annual sale: 4th Monday in August. → Delinquent property is subject to sale on the fourth Monday in August of each year (§140.150.1).
+- Removed opinion (`summary.3`): St. Louis City and Jackson County conduct tax deed sales with the unusual rule that older liens are subordinate to newer ones per RSMo Cap.140. → (removed)

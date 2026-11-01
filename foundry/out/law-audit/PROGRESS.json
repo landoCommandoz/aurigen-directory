@@ -433,12 +433,15 @@
    "checkStatus": "checked with gaps"
   },
   "MO": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 67,
+   "supported": 4,
+   "corrected": 63,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 64,
+   "checkStatus": "checked with gaps"
   },
   "MT": {
    "status": "todo",

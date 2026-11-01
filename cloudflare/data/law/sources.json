@@ -1166,6 +1166,62 @@
    "fetched_at": "2026-11-01T09:49:03.442Z",
    "snapshot": "foundry/out/law-audit/sources/mn/s28208.json"
   },
+  "https://revisor.mo.gov/main/OneSection.aspx?section=140.250": {
+   "state": "MO",
+   "statutes": [
+    "RSMo § 140.250.2",
+    "RSMo § 140.250.1",
+    "RSMo § 140.250.4",
+    "RSMo § 140.250.3"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0b0a42ce666cd43fdfe78498040bcdfcf1f5a3878b4d0d8b517f199f50a25e09",
+   "fetched_at": "2026-11-01T09:50:53.298Z",
+   "snapshot": "foundry/out/law-audit/sources/mo/s140250.json"
+  },
+  "https://revisor.mo.gov/main/OneSection.aspx?section=140.340": {
+   "state": "MO",
+   "statutes": [
+    "RSMo § 140.340.2",
+    "RSMo § 140.340.1"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e553b7617937ed7914be9e957e39fb19519452381f09f2cab5a26eeb4b7ca2eb",
+   "fetched_at": "2026-11-01T09:50:33.229Z",
+   "snapshot": "foundry/out/law-audit/sources/mo/s140340.json"
+  },
+  "https://revisor.mo.gov/main/OneSection.aspx?section=140.150": {
+   "state": "MO",
+   "statutes": [
+    "RSMo § 140.150.1"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0806a2382025fb360e7fcf8471f84cb4853160077ce713d2b532739e79d36d20",
+   "fetched_at": "2026-11-01T09:50:25.365Z",
+   "snapshot": "foundry/out/law-audit/sources/mo/s140150.json"
+  },
+  "https://revisor.mo.gov/main/OneSection.aspx?section=140.190": {
+   "state": "MO",
+   "statutes": [
+    "RSMo § 140.190.1",
+    "RSMo § 140.190.2",
+    "RSMo § 140.190"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "854745b8f9933b3649c85fd3a920facfc5f29826a958821cb85da5f598b9a1e9",
+   "fetched_at": "2026-11-01T09:50:28.167Z",
+   "snapshot": "foundry/out/law-audit/sources/mo/s140190.json"
+  },
+  "https://revisor.mo.gov/main/OneSection.aspx?section=140.230": {
+   "state": "MO",
+   "statutes": [
+    "RSMo § 140.230.2"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "87b5d0ec417b351ee5419defda778a7455cb13bae0925c2d56f5498e9bdca53c",
+   "fetched_at": "2026-11-01T09:50:35.805Z",
+   "snapshot": "foundry/out/law-audit/sources/mo/s140230.json"
+  },
   "https://www.sos.ms.gov/content/documents/lands/00000176c.pdf": {
    "state": "MS",
    "statutes": [

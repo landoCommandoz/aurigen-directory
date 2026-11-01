@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "mo",
+ "slug": "s140340",
+ "url": "https://revisor.mo.gov/main/OneSection.aspx?section=140.340",
+ "final_url": "https://revisor.mo.gov/main/OneSection.aspx?section=140.340",
+ "fetched_at": "2026-11-01T09:50:33.229Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "84f7799a7e2a180c580e7211d17e6b182b73bae863c3a76888c9af50b96a1b35",
+ "raw_bytes": 34334,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "e553b7617937ed7914be9e957e39fb19519452381f09f2cab5a26eeb4b7ca2eb",
+ "text_chars": 4327
+}

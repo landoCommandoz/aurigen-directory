@@ -409,6 +409,21 @@
      "close": "Read chapters 279 and 281 and the named county auditor pages, or keep the Confirm with the county label."
     }
    ]
+  },
+  "MO": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "MO-1",
+     "text": "The bill and session-law search for 2023 to 2026 was not run; only history lines were read. 140.405 (deed and title-search action), 140.260, 140.420 and the first and second offering rules were not turned into site statements.",
+     "close": "Search revisor.mo.gov and senate.mo.gov for 2023 to 2026 acts amending chapter 140 and read 140.405 and the earlier-offering sections."
+    },
+    {
+     "id": "MO-2",
+     "text": "Special rules for St. Louis City and Jackson County (chapters 140 and 141 land bank / charter provisions) were not read; county collector sale details were not read from county sites.",
+     "close": "Read the Jackson County and St. Louis City collector pages and the relevant statute sections, or keep the Confirm with the county label."
+    }
+   ]
   }
  }
 }
