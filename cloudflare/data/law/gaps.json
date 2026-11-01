@@ -249,15 +249,13 @@
    "attemptedAt": "2026-11-01"
   },
   "UT": {
-   "checkStatus": "checked",
+   "checkStatus": "checked with gaps",
    "gaps": [
     {
      "id": "UT-1",
-     "text": "Section files read are the 2023 versions; bill-history pages returned empty so no 2024 to 2026 act search was done.",
-     "close": "Find the current section versions on le.utah.gov and search 2024 to 2026 session laws.",
-     "closed": "2026-11-01",
-     "note": "Run 6: re-fetched the live le.utah.gov page of each cited section (sources/ut/r6-ucode-*-current). Each page loads the same versioned file already cited (1351: 2023-03-13; 1343: effective 2026-01-01; 1346, 1351.1, 1351.3, 1351.5 unchanged), so no later amendment is in force or scheduled for these sections. The bill-history pages were not searched; the check covers only the cited sections.",
-     "closedAt": "2026-11-01"
+     "text": "Section files re-fetched on 2026-11-01 match the cited versions, but no 2024 to 2026 bill-history or act search was done (bill-history pages returned empty).",
+     "close": "Search le.utah.gov passed-bills lists for 2024 to 2026 for acts touching Title 59 chapter 2 part 13 (tax sales, redemption, surplus).",
+     "note": "Run 6: re-fetched the live le.utah.gov page of each cited section (sources/ut/r6-ucode-*-current). Each page loads the same versioned file already cited (1351: 2023-03-13; 1343: effective 2026-01-01; 1346, 1351.1, 1351.3, 1351.5 unchanged), so no later amendment is in force or scheduled for these sections. The bill-history pages were not searched; the check covers only the cited sections."
     }
    ],
    "attemptedAt": "2026-11-01"
