@@ -579,6 +579,66 @@
      "close": "Read MCA 15-18-201 to 15-18-2xx and each county treasurer's official page."
     }
    ]
+  },
+  "GA": {
+   "checkStatus": "Couldn't reach source",
+   "gaps": [
+    {
+     "id": "GA-1",
+     "text": "Georgia's official code (O.C.G.A. title 48 chapter 4) is only served to browsers by script: legis.ga.gov and the LexisNexis public code link returned pages with no statute text (68 and 1 characters). dor.georgia.gov/tax-sales returned HTTP 404. No audit was possible; the state's ledger is missing.",
+     "close": "Find a print or PDF copy of O.C.G.A. 48-4-40 to 48-4-48 on legis.ga.gov or a Georgia state body, or the enacted acts (HB 581 and others) as PDFs."
+    }
+   ]
+  },
+  "IN": {
+   "checkStatus": "Couldn't reach source",
+   "gaps": [
+    {
+     "id": "IN-1",
+     "text": "Indiana Code (title 6 article 1.1 chapter 24) on iga.in.gov is served by script: both the laws page and the pdf-documents path returned no text (1 character). No audit was possible; the state's ledger is missing.",
+     "close": "Find a PDF of IC 6-1.1-24 to 6-1.1-25 on iga.in.gov or the Indiana Department of Local Government Finance."
+    }
+   ]
+  },
+  "NJ": {
+   "checkStatus": "Couldn't reach source",
+   "gaps": [
+    {
+     "id": "NJ-1",
+     "text": "New Jersey's tax sale law (N.J.S.A. 54:5) was not reachable as text: pub.njleg.gov and pub.njleg.state.nj.us returned HTTP 404 for the statute PDF, and the legislature's database page returned no text. No audit was possible; the state's ledger is missing.",
+     "close": "Find the correct official PDF path for N.J.S.A. 54:5 and 54:5-19 and related sections, or the Division of Taxation's tax sale guidance."
+    }
+   ]
+  },
+  "NY": {
+   "checkStatus": "Couldn't reach source",
+   "gaps": [
+    {
+     "id": "NY-1",
+     "text": "New York Real Property Tax Law article 11 on nysenate.gov returned HTTP 403 to the audit's download tool. No audit was possible; the state's ledger is missing.",
+     "close": "Find another official copy of RPTL article 11 (e.g. legislation.nysenate.gov or the Department of Taxation and Finance) that allows the download tool."
+    }
+   ]
+  },
+  "TN": {
+   "checkStatus": "Couldn't reach source",
+   "gaps": [
+    {
+     "id": "TN-1",
+     "text": "Tennessee Code Annotated title 67 chapter 5 is served by script through LexisNexis; the download returned 1 character, and tn.gov/revenue returned only navigation text. No audit was possible; the state's ledger is missing.",
+     "close": "Find a PDF of T.C.A. 67-5-2501 to 67-5-2504 and 67-5-2701 to 67-5-2706 on a Tennessee legislature or comptroller site."
+    }
+   ]
+  },
+  "WA": {
+   "checkStatus": "Couldn't reach source",
+   "gaps": [
+    {
+     "id": "WA-1",
+     "text": "Washington RCW 84.64 on app.leg.wa.gov is disallowed by that site's robots.txt for the audit tool, which respects it. No audit was possible; the state's ledger is missing.",
+     "close": "Find another official copy of RCW 84.56 and 84.64 (for example the legislature's PDF per-title files) that robots.txt allows."
+    }
+   ]
   }
  }
 }

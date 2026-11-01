@@ -373,12 +373,15 @@
    "checkStatus": "checked with gaps"
   },
   "GA": {
-   "status": "todo",
-   "date": null,
+   "status": "blocked",
+   "date": "2026-11-01",
    "claims": 0,
+   "supported": 0,
    "corrected": 0,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 0,
+   "checkStatus": "Couldn't reach source"
   },
   "ID": {
    "status": "done",
@@ -392,12 +395,15 @@
    "checkStatus": "checked with gaps"
   },
   "IN": {
-   "status": "todo",
-   "date": null,
+   "status": "blocked",
+   "date": "2026-11-01",
    "claims": 0,
+   "supported": 0,
    "corrected": 0,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 0,
+   "checkStatus": "Couldn't reach source"
   },
   "KS": {
    "status": "done",
@@ -477,12 +483,15 @@
    "checkStatus": "checked with gaps"
   },
   "NJ": {
-   "status": "todo",
-   "date": null,
+   "status": "blocked",
+   "date": "2026-11-01",
    "claims": 0,
+   "supported": 0,
    "corrected": 0,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 0,
+   "checkStatus": "Couldn't reach source"
   },
   "NV": {
    "status": "done",
@@ -496,12 +505,15 @@
    "checkStatus": "checked with gaps"
   },
   "NY": {
-   "status": "todo",
-   "date": null,
+   "status": "blocked",
+   "date": "2026-11-01",
    "claims": 0,
+   "supported": 0,
    "corrected": 0,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 0,
+   "checkStatus": "Couldn't reach source"
   },
   "OH": {
    "status": "done",
@@ -548,12 +560,15 @@
    "checkStatus": "checked with gaps"
   },
   "TN": {
-   "status": "todo",
-   "date": null,
+   "status": "blocked",
+   "date": "2026-11-01",
    "claims": 0,
+   "supported": 0,
    "corrected": 0,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 0,
+   "checkStatus": "Couldn't reach source"
   },
   "VA": {
    "status": "done",
@@ -578,12 +593,15 @@
    "checkStatus": "checked with gaps"
   },
   "WA": {
-   "status": "todo",
-   "date": null,
+   "status": "blocked",
+   "date": "2026-11-01",
    "claims": 0,
+   "supported": 0,
    "corrected": 0,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 0,
+   "checkStatus": "Couldn't reach source"
   },
   "WY": {
    "status": "todo",

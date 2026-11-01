@@ -34,9 +34,9 @@ States done: 44 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, U
 | AZ | done | checked with gaps | 2026-11-01 | 84 | 4 | 80 | 0 | 0 | 80 | [az.md](az.md) |
 | DE | done | checked with gaps | 2026-11-01 | 60 | 4 | 56 | 0 | 0 | 57 | [de.md](de.md) |
 | FL | done | checked with gaps | 2026-11-01 | 89 | 3 | 86 | 0 | 0 | 86 | [fl.md](fl.md) |
-| GA | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| GA | blocked | Couldn't reach source | 2026-11-01 | 0 | 0 | 0 | 0 | 0 | 0 | [ga.md](ga.md) |
 | ID | done | checked with gaps | 2026-11-01 | 66 | 2 | 64 | 0 | 0 | 64 | [id.md](id.md) |
-| IN | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| IN | blocked | Couldn't reach source | 2026-11-01 | 0 | 0 | 0 | 0 | 0 | 0 | [in.md](in.md) |
 | KS | done | checked with gaps | 2026-11-01 | 66 | 3 | 63 | 0 | 0 | 64 | [ks.md](ks.md) |
 | MI | done | checked with gaps | 2026-11-01 | 66 | 5 | 61 | 0 | 0 | 62 | [mi.md](mi.md) |
 | MN | done | checked with gaps | 2026-11-01 | 64 | 2 | 61 | 1 | 0 | 62 | [mn.md](mn.md) |
@@ -44,17 +44,17 @@ States done: 44 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, U
 | MT | done | checked with gaps | 2026-11-01 | 66 | 1 | 65 | 0 | 0 | 65 | [mt.md](mt.md) |
 | NC | done | checked with gaps | 2026-11-01 | 69 | 2 | 67 | 0 | 0 | 67 | [nc.md](nc.md) |
 | NE | done | checked with gaps | 2026-11-01 | 66 | 5 | 61 | 0 | 0 | 62 | [ne.md](ne.md) |
-| NJ | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| NJ | blocked | Couldn't reach source | 2026-11-01 | 0 | 0 | 0 | 0 | 0 | 0 | [nj.md](nj.md) |
 | NV | done | checked with gaps | 2026-11-01 | 66 | 1 | 65 | 0 | 0 | 65 | [nv.md](nv.md) |
-| NY | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| NY | blocked | Couldn't reach source | 2026-11-01 | 0 | 0 | 0 | 0 | 0 | 0 | [ny.md](ny.md) |
 | OH | done | checked with gaps | 2026-11-01 | 68 | 2 | 66 | 0 | 0 | 66 | [oh.md](oh.md) |
 | OR | done | checked with gaps | 2026-11-01 | 63 | 1 | 62 | 0 | 0 | 62 | [or.md](or.md) |
 | RI | done | checked with gaps | 2026-11-01 | 66 | 1 | 65 | 0 | 0 | 65 | [ri.md](ri.md) |
 | SC | done | checked with gaps | 2026-11-01 | 65 | 3 | 62 | 0 | 0 | 62 | [sc.md](sc.md) |
-| TN | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| TN | blocked | Couldn't reach source | 2026-11-01 | 0 | 0 | 0 | 0 | 0 | 0 | [tn.md](tn.md) |
 | VA | done | checked with gaps | 2026-11-01 | 70 | 3 | 67 | 0 | 0 | 67 | [va.md](va.md) |
 | VT | done | checked with gaps | 2026-11-01 | 66 | 2 | 64 | 0 | 0 | 64 | [vt.md](vt.md) |
-| WA | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
+| WA | blocked | Couldn't reach source | 2026-11-01 | 0 | 0 | 0 | 0 | 0 | 0 | [wa.md](wa.md) |
 | WY | todo |  |  | 0 | 0 | 0 | 0 | 0 | 0 |  |
 
 ## Conflicts (flagged claims)
