@@ -135,9 +135,11 @@
     {
      "id": "KY-1",
      "text": "Legislature bill search not run; surplus-proceeds sections not read.",
-     "close": "Run the apps.legislature.ky.gov bill search for 2023 to 2026 and read the surplus sections."
+     "close": "Run the apps.legislature.ky.gov bill search for 2023 to 2026 and read the surplus sections.",
+     "note": "Run 6: surplus section of KRS ch. 134 not found by search; 2026 RS HB 294 (KRS 134.490 notice) enactment unconfirmed."
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "LA": {
    "checkStatus": "checked with gaps",
@@ -220,14 +222,18 @@
    "attemptedAt": "2026-11-01"
   },
   "TX": {
-   "checkStatus": "checked with gaps",
+   "checkStatus": "checked",
    "gaps": [
     {
      "id": "TX-1",
      "text": "Enacted bill text (2025 H.B. 16) not fetched; § 34.21 last amended in 2019.",
-     "close": "Fetch the enrolled text from Texas Legislature Online if robots.txt allows."
+     "close": "Fetch the enrolled text from Texas Legislature Online if robots.txt allows.",
+     "closed": "2026-11-01",
+     "note": "Run 6: enrolled H.B. 16 (89th 2nd C.S.) read from capitol.texas.gov (sources/tx/r6-hb16-2cs-f); § 34.03(a) only changed the notice delivery method (Rule 21a instead of certified mail). No site claim changed.",
+     "closedAt": "2026-11-01"
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "UT": {
    "checkStatus": "checked with gaps",

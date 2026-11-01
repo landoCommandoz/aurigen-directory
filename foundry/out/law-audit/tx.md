@@ -228,3 +228,6 @@ tax-code-ch34 for the record, not cited).
 ## Conflicts (flagged)
 
 None.
+
+## Gap queue, run 6 (2026-11-01)
+- TX-1 closed. Enrolled H.B. 16 (2025, 89th Leg., 2nd C.S.) fetched: sources/tx/r6-hb16-2cs-f. Sec. 9.18 amends Tax Code § 34.03(a): the clerk's notice to the former owner goes "by a delivery method described by Rule 21a" instead of certified mail; the two-year hold on excess proceeds is unchanged. No shown claim mentions the delivery method, so the ledger needed no change.

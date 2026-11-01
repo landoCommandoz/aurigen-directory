@@ -181,3 +181,6 @@ None.
 ## Conflicts (flagged)
 
 None.
+
+## Gap queue, run 6 (2026-11-01)
+- KY-1 stays open. Searched for the surplus-proceeds section of KRS ch. 134; the only hits were KRS 426.695 (personal property, irrelevant, not saved) and KRS 91.504/91.517 (city master-commissioner sales, not read). 2026 RS HB 294 (changes KRS 134.490 notice timing) seen only as a bill draft; enactment unconfirmed. Close by finding the chapter 134 section ids on apps.legislature.ky.gov and the 2026 record page for HB 294.
