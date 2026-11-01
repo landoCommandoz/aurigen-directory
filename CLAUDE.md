@@ -76,6 +76,12 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - Open question with default: after 51 of 51 the schedule stops and the 19-item gap queue is only worked if budget remains in that night's chain. Default if no answer in 7 days: leave it.
 - Keep the audit branch's .github/workflows identical to main's whenever a workflow changes (a run's token cannot push them).
 
+## RULES SHEET (2026-11-01)
+- Product: Aurigen Rules Sheet, $19 once, 44 audited states side by side, every row with statute, official link, date and quote; Polar license key (benefit AURSHEET, 12 months). Live and UNLISTED at /rules-sheet/ on the aurigen Worker (no link, noindex). Lando says "publish" to list it: set listed:true in under-review/sheet-listing.json and push.
+- Code: under-review/sheet.js (+ worker.js, tests in under-review/test), data under-review/sheet.json built by foundry/tools/build-sheet.mjs (only supported/corrected, unheld claims whose quote is found in the saved official copy; states with too few confirmed rows are left out). Polar product made by .github/workflows/polar-sheet.yml from polar/rules-sheet.json (organization token: never send organization_id in a body).
+- Options memo: foundry/out/product-options.md. Foundry's end step rebuilds sheet.json and STATUS.md after tests pass.
+- Untested until a real purchase: a genuine key unlocking the sheet (stand-in Polar used in tests; a made-up key against the real Polar endpoint is rejected, tested live).
+
 ## OPEN CRITICAL ITEMS
 1. FTC: Founding member 500-cap claim — needs Lando confirmation
 2. C2: states-en.js serverless gating (get-states.js built, needs C2 JWT session validation)
