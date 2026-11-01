@@ -1,6 +1,9 @@
 // Aurigen "under review" page. Replaces the live `aurigen` Worker while the law audit runs.
 // Every path gets the same page with HTTP 503 so search engines treat it as temporary.
 // Deployed and removed by .github/workflows/aurigen-site.yml. Runs on the Workers Free plan.
+// /status.json serves the repo's STATUS.md (built by make-status.mjs at deploy time; see status-publish.yml).
+
+import STATUS from "./status.json";
 
 const PAGE = `<!doctype html>
 <html lang="en">
@@ -16,6 +19,8 @@ const PAGE = `<!doctype html>
   main { max-width: 34rem; padding: 18vh 16px 16px; margin: 0 auto; }
   h1 { font-size: 1.6rem; font-weight: normal; margin: 0 0 .75rem; }
   p { margin: 0; color: var(--muted); }
+  footer { max-width: 34rem; padding: 2rem 16px; margin: 0 auto; font-size: .9rem; }
+  footer a { color: var(--muted); }
 </style>
 </head>
 <body>
@@ -23,11 +28,23 @@ const PAGE = `<!doctype html>
   <h1>Aurigen is under review.</h1>
   <p>Every state's rules are being re-checked against current law.</p>
 </main>
+<footer><a href="/status.json">Status</a></footer>
 </body>
 </html>`;
 
 export default {
-  async fetch() {
+  async fetch(request) {
+    if (new URL(request.url).pathname === "/status.json") {
+      return new Response(JSON.stringify(STATUS, null, 1) + "\n", {
+        status: 200,
+        headers: {
+          "content-type": "application/json; charset=utf-8",
+          "cache-control": "no-store",
+          "access-control-allow-origin": "*",
+          "x-robots-tag": "noindex",
+        },
+      });
+    }
     return new Response(PAGE, {
       status: 503,
       headers: {

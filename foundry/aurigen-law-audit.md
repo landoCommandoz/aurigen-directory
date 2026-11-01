@@ -80,7 +80,24 @@ and the next run picks up where the last one stopped.
     3. If none can be reached with full verification, mark the state `Couldn't reach source` in
        `cloudflare/data/law/gaps.json`, mark it `blocked` in PROGRESS.json, and write the attempts and the
        exact error into its report. Retry the blocked states once at the start of every run, because
-       servers get fixed. Whether a CA intermediate may be added is Lando's call, never yours.
+       servers get fixed.
+    4. **Approved by Lando on 2026-11-01, and done by the workflow, not by you:** before each run,
+       `foundry/tools/cert-chain.mjs` downloads the missing intermediate certificate from the address inside
+       the server's own certificate, keeps it only if `openssl verify` chains it to a root already in the
+       system store, and logs its SHA-256 fingerprint in `foundry/out/law-audit/certs/log.jsonl`.
+       `fetch-source.mjs` then trusts it for `cga.ct.gov` and `ilga.gov` only; TLS checking stays on for every
+       other host. Use `fetch-source.mjs` for CT and IL as for any state. If it still fails with curl error 60,
+       the certificate step failed: read `certs/log.jsonl`, record it in the report, and keep the state
+       "Couldn't reach source". Never add any other certificate and never change those tools.
+
+14. **Held claims.** A claim with `hold: true` (see `cloudflare/data/law/ok.json`: 22 Oklahoma claims, Lando's
+    decision B of 2026-11-01) keeps its text in `heldText`, has `shown: ""` and publishes nothing, anywhere:
+    not on the site, not in a showcase, not in STATUS.md. Do not unhold a claim until its official source has
+    been fetched and read; then set the claim back to `corrected` or `supported` with a real quote and drop
+    `hold`. `check-law.mjs` enforces this.
+15. **Unsupported "not available / varies" wording.** If the statutes read say nothing about a practice (over-the-
+    counter sales, deposits, bid method set locally), do not state it as fact. Show a referral such as
+    "Confirm with the county" (Lando's decision A), cite the governing section, and list the gap.
 
 ## Check status: what the ledger and the showcase may say
 
@@ -229,8 +246,10 @@ A warning about very little text usually means the page needs JavaScript. Look f
   `blocked`), the date, and its counts.
 - **`foundry/out/law-audit/SUMMARY.md`:** a running table for all 51 states, plus the list of conflicts
   and the list of unreachable sources.
-- **`foundry/out/chain/aurigen-law-audit.json`:** exactly `{"total": <t>, "done": <n>}`, written by
-  `node cloudflare/scripts/law-progress.mjs` (never by hand). `<t>` is 51 plus one queue item per state
+- **`foundry/out/chain/aurigen-law-audit.json`:** `{"total": <t>, "done": <n>, "spent": <usd>, "cap": 40, "runs": <r>}`.
+  `total` and `done` are written by `node cloudflare/scripts/law-progress.mjs` (never by hand); the workflow adds each
+  run's API cost to `spent` and `runs`, and `law-progress.mjs` keeps `spent`, `cap` and `runs` as they are. Never edit
+  `spent` or `cap`: the nightly schedule stops for good when `spent` reaches `cap` ($40) or all 51 states are finished. `<t>` is 51 plus one queue item per state
   that has gaps in `cloudflare/data/law/gaps.json`. `<n>` counts states marked `done` or `blocked`
   (a blocked state has been tried and logged), plus gap-queue items that were worked. A state counts as
   `done` only when both passes are finished and `check-law.mjs --state xx` passes. The workflow reads this
@@ -343,6 +362,13 @@ Do this in the first run, after the tooling and before starting state work, so i
     "Statute watch: <n> cited sources changed" using `gh` and `GITHUB_TOKEN`, listing each state,
     statute, URL and change
   - no other secrets, and it never edits or deploys anything
+
+## Schedule
+
+The audit runs by itself every night at 2 am Mountain (`foundry.yml` `schedule`), with chain on and the model
+`claude-sonnet-5-5`; nobody presses Run. A run is limited to $10 or what is left of the $40 total. When the
+audit reaches 40 states done, the workflow starts the showcase (`foundry/aurigen-showcase.md`) once. After every
+run the workflow rewrites `STATUS.md` (10 lines) and `status-publish.yml` publishes it at `/status.json`.
 
 ## Chain
 

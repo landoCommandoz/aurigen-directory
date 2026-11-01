@@ -1,6 +1,14 @@
 # Foundry: a walk-away Claude run on one spec in foundry/, using the Claude Agent SDK (foundry/tools/run-agent.mjs).
-# Starts ONLY when a person taps "Run workflow", or when a chained run starts the next one.
-# Never on push or on a schedule.
+# Starts when a person taps "Run workflow", when a chained run starts the next one, or (law audit only, by
+# default) every night at 2 am Mountain by the schedule below. Never on push.
+#
+# Nightly schedule: two cron lines (08:00 and 09:00 UTC) because GitHub cron is UTC only. The gate job keeps only
+# the one that is 2 am in America/Denver (08:00 UTC in summer, 09:00 UTC in winter). A scheduled run uses the
+# spec aurigen-law-audit.md, chain on, default inputs and the model claude-sonnet-5-5.
+# Caps (law audit): each run is limited to $10 or what is left of the $40 total, whichever is less. The running
+# total is kept in foundry/out/chain/<spec>.json as "spent" (the workflow adds each run's cost; the spec's own
+# tools keep it). The schedule stops for good when spent reaches the cap, or when all 51 states are finished
+# (done, or blocked after a logged attempt). A manual run still works until the cap is used up.
 #
 # What it costs: Anthropic API usage on ANTHROPIC_API_KEY. The real cap is the spend limit on the
 # Anthropic Console workspace that owns the key. Turns (150) and time (75 min) cap each run, and a
@@ -40,6 +48,9 @@
 name: Foundry
 
 on:
+  schedule:
+    - cron: "0 8 * * *"
+    - cron: "0 9 * * *"
   workflow_dispatch:
     inputs:
       task:
@@ -82,7 +93,7 @@ permissions:
   actions: write
 
 concurrency:
-  group: foundry-${{ inputs.task }}
+  group: foundry-${{ inputs.task || 'aurigen-law-audit.md' }}
   cancel-in-progress: false
 
 env:
@@ -93,7 +104,63 @@ env:
   PRIVATE_MINUTES_BUDGET: 600
 
 jobs:
+  gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      go: ${{ steps.g.outputs.go }}
+      budget: ${{ steps.g.outputs.budget }}
+      reason: ${{ steps.g.outputs.reason }}
+    steps:
+      - name: Decide whether this run should start
+        id: g
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          TASK: ${{ inputs.task || 'aurigen-law-audit.md' }}
+        run: |
+          set -uo pipefail
+          slug="${TASK%.md}"
+          go=true; reason=""; budget=10
+          if [ "$EVENT" = "schedule" ]; then
+            offset=$(TZ=America/Denver date +%z)
+            if [ "$offset" = "-0600" ] && [ "$SCHEDULE" != "0 8 * * *" ]; then go=false; reason="not 2 am Mountain (summer time, the 08:00 UTC line runs)"; fi
+            if [ "$offset" = "-0700" ] && [ "$SCHEDULE" != "0 9 * * *" ]; then go=false; reason="not 2 am Mountain (winter time, the 09:00 UTC line runs)"; fi
+          fi
+          # Read the spec's chain file from its work branch (or main) without checking anything out.
+          git init -q . && git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          chain=""; progress=""
+          for ref in "foundry/${slug}" main; do
+            if git fetch -q --depth 1 origin "$ref" 2>/dev/null; then
+              chain=$(git show FETCH_HEAD:"foundry/out/chain/${slug}.json" 2>/dev/null || true)
+              progress=$(git show FETCH_HEAD:"foundry/out/law-audit/PROGRESS.json" 2>/dev/null || true)
+              [ -n "$chain" ] && break
+            fi
+          done
+          if [ -n "$chain" ]; then
+            spent=$(printf '%s' "$chain" | jq -r '.spent // 0')
+            cap=$(printf '%s' "$chain" | jq -r '.cap // empty')
+            if [ -n "$cap" ]; then
+              budget=$(awk -v c="$cap" -v s="$spent" 'BEGIN { r = c - s; if (r > 10) r = 10; if (r < 0) r = 0; printf "%.2f", r }')
+              if awk -v b="$budget" 'BEGIN { exit !(b < 1) }'; then
+                go=false; reason="the audit cap is used up: \$${spent} spent of \$${cap}. Recorded; nothing started"
+              fi
+            fi
+            if [ "$EVENT" = "schedule" ] && [ -n "$progress" ]; then
+              finished=$(printf '%s' "$progress" | jq -r '[.states[] | select(.status == "done" or .status == "blocked")] | length')
+              order=$(printf '%s' "$progress" | jq -r '.order | length')
+              if [ "${order:-0}" -gt 0 ] && [ "${finished:-0}" -ge "$order" ]; then
+                go=false; reason="all ${order} states are finished (${finished}); the schedule stops for good"
+              fi
+            fi
+          fi
+          echo "go=${go} budget=${budget} reason=${reason}"
+          { echo "go=${go}"; echo "budget=${budget}"; echo "reason=${reason}"; } >> "$GITHUB_OUTPUT"
+
   foundry:
+    needs: gate
+    if: needs.gate.outputs.go == 'true'
     runs-on: ubuntu-24.04
     # 75 minutes for Claude plus room for the save, issue and chain steps to always run.
     timeout-minutes: 90
@@ -106,7 +173,7 @@ jobs:
       - name: Check the spec and pick the work branch
         id: prep
         env:
-          TASK: ${{ inputs.task }}
+          TASK: ${{ inputs.task || 'aurigen-law-audit.md' }}
         run: |
           set -euo pipefail
           echo "start=$(date -u +%s)" >> "$GITHUB_OUTPUT"
@@ -205,6 +272,16 @@ jobs:
             done
           fi
 
+      - name: Complete the certificate chain for cga.ct.gov and ilga.gov only
+        if: steps.api.outputs.ok == 'true' && steps.prep.outputs.slug == 'aurigen-law-audit'
+        continue-on-error: true
+        run: |
+          # These two legislature servers leave out their intermediate certificate. This downloads it from the
+          # address inside their own certificate, keeps it only if it chains to a root already in the system store,
+          # and logs its SHA-256 fingerprint. TLS checking stays on; fetch-source.mjs uses it for these hosts only.
+          # If anything fails the states stay "Couldn't reach source".
+          node foundry/tools/cert-chain.mjs www.cga.ct.gov www.ilga.gov
+
       - name: Install the Agent SDK (pinned)
         if: steps.api.outputs.ok == 'true'
         run: npm ci --prefix foundry/tools --no-audit --no-fund
@@ -214,8 +291,8 @@ jobs:
         env:
           SPEC: ${{ steps.prep.outputs.spec }}
           BRANCH: ${{ steps.prep.outputs.branch }}
-          RUN_NO: ${{ inputs.chain_run }}
-          MAXT: ${{ inputs.max_turns }}
+          RUN_NO: ${{ inputs.chain_run || '1' }}
+          MAXT: ${{ inputs.max_turns || '150' }}
         run: |
           cat > "${RUNNER_TEMP}/foundry-prompt.txt" <<EOF
           You are running unattended in GitHub Actions. Nobody can answer questions, so never stop to ask.
@@ -253,12 +330,12 @@ jobs:
           POLAR_ACCESS_TOKEN: ${{ secrets.POLAR_ACCESS_TOKEN }}
           FOUNDRY_BRANCH: ${{ steps.prep.outputs.branch }}
           FOUNDRY_SPEC: ${{ steps.prep.outputs.spec }}
-          FOUNDRY_CHAIN_RUN: ${{ inputs.chain_run }}
+          FOUNDRY_CHAIN_RUN: ${{ inputs.chain_run || '1' }}
           FOUNDRY_PROMPT_FILE: ${{ runner.temp }}/foundry-prompt.txt
-          FOUNDRY_MAX_TURNS: ${{ inputs.max_turns }}
-          FOUNDRY_MODEL: ${{ inputs.model }}
+          FOUNDRY_MAX_TURNS: ${{ inputs.max_turns || '150' }}
+          FOUNDRY_MODEL: ${{ inputs.model || (github.event_name == 'schedule' && 'claude-sonnet-5-5' || '') }}
           # Hard cap for one run, so a stuck run cannot burn credit. The chain also tracks the total.
-          FOUNDRY_MAX_BUDGET_USD: "10"
+          FOUNDRY_MAX_BUDGET_USD: ${{ needs.gate.outputs.budget }}
         run: node foundry/tools/run-agent.mjs
 
       - name: Read how the Claude run ended
@@ -303,8 +380,15 @@ jobs:
           SECRET_A: ${{ secrets.ANTHROPIC_API_KEY }}
           SECRET_C: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           SECRET_P: ${{ secrets.POLAR_ACCESS_TOKEN }}
+          SLUG: ${{ steps.prep.outputs.slug }}
+          RUN_COST: ${{ steps.result.outputs.cost }}
         run: |
           set -euo pipefail
+          # Running API total for the spec, kept in its chain file: spent, cap (set by the spec), runs.
+          chainf="foundry/out/chain/${SLUG}.json"
+          if [ -f "$chainf" ]; then
+            jq --argjson c "${RUN_COST:-0}" '.spent = (((.spent // 0) + $c) * 100 | round / 100) | .runs = ((.runs // 0) + 1) | .lastRunCost = $c' "$chainf" > "${RUNNER_TEMP}/chain.json" && mv "${RUNNER_TEMP}/chain.json" "$chainf"
+          fi
           git add -A
           if ! git diff --cached --quiet; then
             git commit -m "Foundry: save work at end of run ${GITHUB_RUN_ID}"
@@ -353,18 +437,18 @@ jobs:
         if: always() && steps.prep.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
-          CHAIN: ${{ inputs.chain }}
+          CHAIN: ${{ github.event_name == 'schedule' && 'true' || inputs.chain }}
           SLUG: ${{ steps.prep.outputs.slug }}
-          RUN_NO: ${{ inputs.chain_run }}
-          PREV_MINUTES: ${{ inputs.chain_minutes }}
-          PREV_COST: ${{ inputs.chain_cost }}
+          RUN_NO: ${{ inputs.chain_run || '1' }}
+          PREV_MINUTES: ${{ inputs.chain_minutes || '0' }}
+          PREV_COST: ${{ inputs.chain_cost || '0' }}
           START: ${{ steps.prep.outputs.start }}
           DONE_BEFORE: ${{ steps.prep.outputs.done_before }}
           SUBTYPE: ${{ steps.result.outputs.subtype }}
           RUN_COST: ${{ steps.result.outputs.cost }}
           TURNS: ${{ steps.result.outputs.turns }}
           ERROR: ${{ steps.result.outputs.error }}
-          RETRY: ${{ inputs.chain_retry }}
+          RETRY: ${{ inputs.chain_retry || '0' }}
           PREFLIGHT_FATAL: ${{ steps.api.outputs.fatal }}
           PUSHED: ${{ steps.save.outputs.pushed }}
         run: |
@@ -377,10 +461,12 @@ jobs:
           used=$(( PREV_MINUTES + (now - START + 59) / 60 + 3 ))
           cost=$(awk -v a="${PREV_COST:-0}" -v b="${RUN_COST:-0}" 'BEGIN { printf "%.2f", a + b }')
           file="foundry/out/chain/${SLUG}.json"
-          total=0; done_after=0
+          total=0; done_after=0; spent=0; cap=""
           if [ -f "$file" ]; then
             total=$(jq -r '.total // 0' "$file" 2>/dev/null || echo 0)
             done_after=$(jq -r '.done // 0' "$file" 2>/dev/null || echo 0)
+            spent=$(jq -r '.spent // 0' "$file" 2>/dev/null || echo 0)
+            cap=$(jq -r '.cap // empty' "$file" 2>/dev/null || true)
           fi
           private=$(gh api "repos/${GITHUB_REPOSITORY}" --jq .private 2>/dev/null || echo true)
           cont=false; quiet=false; reason=""; kind=none; retry=0
@@ -396,6 +482,8 @@ jobs:
             reason="chaining was switched off for this run"
           elif [ "$total" -gt 0 ] && [ "$done_after" -ge "$total" ]; then
             reason="all ${total} are done"
+          elif [ -n "$cap" ] && awk -v s="$spent" -v c="$cap" 'BEGIN { exit !(c - s < 1) }'; then
+            reason="the audit cap is used up: \$${spent} spent of \$${cap}. Recorded; no further run is started"
           elif [ "${PREFLIGHT_FATAL:-false}" = "true" ]; then
             reason="the Anthropic API refused the request before the run started (${ERROR:-no message}). Waiting will not fix it: check the key, the credit balance and the workspace spend limit, then press Run workflow"
           elif [ "$noop" = "true" ] && [ "${RETRY:-0}" -ge 1 ]; then
@@ -434,14 +522,40 @@ jobs:
             echo "cost=${cost}"
             echo "done=${done_after}"
             echo "total=${total}"
+            echo "spent=${spent}"
+            echo "cap=${cap}"
           } >> "$GITHUB_OUTPUT"
+
+      - name: Start the showcase once, when 40 states are done
+        if: always() && steps.prep.outcome == 'success' && steps.prep.outputs.slug == 'aurigen-law-audit' && steps.save.outputs.pushed == 'yes'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -uo pipefail
+          states_done=$(jq '[.states[] | select(.status == "done")] | length' foundry/out/law-audit/PROGRESS.json 2>/dev/null || echo 0)
+          echo "States done: ${states_done}"
+          [ "${states_done:-0}" -ge 40 ] || exit 0
+          # The showcase branch doubles as the "already started" marker: it is created from this branch (the ledgers
+          # are on it) and the push fails if it already exists, so the showcase starts at most once.
+          if ! git ls-remote --exit-code --heads origin foundry/aurigen-showcase >/dev/null 2>&1 \
+             && git cat-file -e "${GITHUB_SHA}:foundry/aurigen-showcase.md" 2>/dev/null \
+             && git push origin HEAD:refs/heads/foundry/aurigen-showcase 2>/dev/null; then
+            gh workflow run foundry.yml --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" \
+              -f task=aurigen-showcase.md -f chain=false -f model=claude-sonnet-5-5
+            echo "Started the showcase run (its own $10 cap)."
+          else
+            echo "Showcase already started, or its spec is missing on ${GITHUB_REF_NAME}."
+          fi
 
       - name: Start the next run
         id: dispatch
         if: always() && steps.chain.outputs.continue == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          TASK: ${{ inputs.task }}
+          TASK: ${{ inputs.task || 'aurigen-law-audit.md' }}
+          MODEL: ${{ inputs.model || (github.event_name == 'schedule' && 'claude-sonnet-5-5' || '') }}
+          MAXT: ${{ inputs.max_turns || '150' }}
           NEXT: ${{ steps.chain.outputs.next_run }}
           MINUTES: ${{ steps.chain.outputs.minutes }}
           COST: ${{ steps.chain.outputs.cost }}
@@ -451,7 +565,8 @@ jobs:
           # The one automatic retry waits 2 minutes, so a short rate limit or outage can clear first.
           if [ "${RETRY_NEXT:-0}" = "1" ]; then sleep 120; fi
           gh workflow run foundry.yml --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" \
-            -f task="$TASK" -f chain=true -f chain_run="$NEXT" -f chain_minutes="$MINUTES" -f chain_cost="$COST" -f chain_retry="${RETRY_NEXT:-0}"
+            -f task="$TASK" -f chain=true -f chain_run="$NEXT" -f chain_minutes="$MINUTES" -f chain_cost="$COST" -f chain_retry="${RETRY_NEXT:-0}" \
+            -f max_turns="$MAXT" -f model="$MODEL"
           echo "started=yes" >> "$GITHUB_OUTPUT"
           echo "Started run ${NEXT}. It waits until this run finishes."
 
@@ -461,7 +576,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           SLUG: ${{ steps.prep.outputs.slug }}
           BRANCH: ${{ steps.prep.outputs.branch }}
-          RUN_NO: ${{ inputs.chain_run }}
+          RUN_NO: ${{ inputs.chain_run || '1' }}
           SUBTYPE: ${{ steps.result.outputs.subtype }}
           TURNS: ${{ steps.result.outputs.turns }}
           RUN_COST: ${{ steps.result.outputs.cost }}
@@ -525,6 +640,39 @@ jobs:
           if [ -n "$num" ] && [ "${QUIET:-true}" != "true" ] && [ "${STARTED:-}" != "yes" ]; then
             gh issue comment "$num" --repo "$GITHUB_REPOSITORY" --body "$chain_line"
           fi
+
+      - name: Write STATUS.md and put it on main
+        if: always() && steps.prep.outcome == 'success'
+        continue-on-error: true
+        env:
+          STATUS_SPEC: ${{ steps.prep.outputs.slug }}
+          STATUS_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          STATUS_RUN_NO: ${{ inputs.chain_run || '1' }}
+          STATUS_TURNS: ${{ steps.result.outputs.turns }}
+          STATUS_COST: ${{ steps.result.outputs.cost }}
+          STATUS_SUBTYPE: ${{ steps.result.outputs.subtype }}
+          STATUS_PUSHED: ${{ steps.save.outputs.pushed }}
+          STATUS_MODEL: ${{ inputs.model || (github.event_name == 'schedule' && 'claude-sonnet-5-5' || '') }}
+          STATUS_REASON: ${{ steps.chain.outputs.reason }}
+          STATUS_ERROR: ${{ steps.result.outputs.error }}
+          STATUS_EVENT: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          # STATUS.md (10 lines at most) is rewritten after every run and published at /status.json by status-publish.yml.
+          node foundry/tools/write-status.mjs > "${RUNNER_TEMP}/STATUS.md"
+          git fetch --depth 1 origin main
+          git worktree add --detach "${RUNNER_TEMP}/main-tree" FETCH_HEAD
+          cp "${RUNNER_TEMP}/STATUS.md" "${RUNNER_TEMP}/main-tree/STATUS.md"
+          cd "${RUNNER_TEMP}/main-tree"
+          git add STATUS.md
+          if git diff --cached --quiet; then echo "STATUS.md unchanged."; exit 0; fi
+          git commit -q -m "STATUS.md: Foundry ${STATUS_SPEC} run ${STATUS_RUN_NO}"
+          for i in 1 2 3 4; do
+            if git push origin HEAD:refs/heads/main; then echo "STATUS.md pushed to main."; exit 0; fi
+            git fetch --depth 1 origin main && git rebase FETCH_HEAD || git rebase --abort || true
+            sleep $((2 ** i))
+          done
+          echo "::warning::could not push STATUS.md to main"
 
       - name: Fail the run if Claude itself failed
         if: always() && steps.prep.outcome == 'success'

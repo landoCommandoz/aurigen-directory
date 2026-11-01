@@ -1,0 +1,69 @@
+# Statute watch: monthly re-download of every statute page the law ledgers cite.
+# Opens (or updates) one issue if a cited quote is gone, a page's text changed, or a page could not be fetched.
+# Never edits or deploys anything. Costs nothing: no Claude, no API; Actions minutes are free on this public repo.
+# The ledgers live on the audit branch until it is merged, so this job reads them from there when main has none.
+name: Statute watch
+
+on:
+  schedule:
+    - cron: "17 9 3 * *"   # 09:17 UTC on the 3rd of each month
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: "22"
+      - name: Use the ledgers from the audit branch if main does not have them yet
+        run: |
+          set -euo pipefail
+          if [ ! -f cloudflare/scripts/watch-statutes.mjs ] || [ ! -d cloudflare/data/law ]; then
+            git fetch --depth 1 origin foundry/aurigen-law-audit
+            git checkout FETCH_HEAD -- cloudflare foundry/out/law-audit foundry/out/chain
+          fi
+          ls cloudflare/data/law | head -3
+      - name: Install pdftotext
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - name: Complete the certificate chain for cga.ct.gov and ilga.gov only (TLS stays on everywhere)
+        continue-on-error: true
+        run: node foundry/tools/cert-chain.mjs www.cga.ct.gov www.ilga.gov
+      - name: Re-check cited statutes
+        id: watch
+        working-directory: cloudflare
+        run: |
+          set +e
+          node scripts/watch-statutes.mjs --out "$RUNNER_TEMP/statute-watch.md"
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" != "0" ] && [ "$code" != "10" ]; then
+            printf 'Statute watch script failed with exit code %s. See the workflow run log.\n' "$code" > "$RUNNER_TEMP/statute-watch.md"
+          fi
+      - name: Open or update the issue if anything changed or failed
+        if: steps.watch.outputs.code != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          n=$(grep -c '^- ' "$RUNNER_TEMP/statute-watch.md" || true)
+          [ "$n" = "0" ] && n=1
+          title="Statute watch: ${n} cited sources changed"
+          {
+            cat "$RUNNER_TEMP/statute-watch.md"
+            echo
+            echo "Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          } > "$RUNNER_TEMP/body.md"
+          num=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 100 --json number,title | jq -r '[.[] | select(.title | startswith("Statute watch:"))][0].number // empty')
+          if [ -n "$num" ]; then
+            gh issue edit "$num" --repo "$GITHUB_REPOSITORY" --title "$title" --body-file "$RUNNER_TEMP/body.md"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body-file "$RUNNER_TEMP/body.md"
+          fi

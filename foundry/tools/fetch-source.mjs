@@ -18,6 +18,7 @@ import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { sha256, htmlToText, normalizeText } from './law-text.mjs';
+import { extraCurlArgs } from './cert-chain.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = path.join(ROOT, 'foundry', 'out', 'law-audit');
@@ -38,9 +39,11 @@ function logAttempt(result, extra = {}) {
 }
 const sleep = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 
-function curl(args) {
+// TLS checking is always on. For the hosts in cert-chain.mjs only (cga.ct.gov, ilga.gov), extraCurlArgs adds
+// the system roots plus the verified intermediate certificate that those servers leave out.
+function curl(args, forUrl) {
   return execFileSync('curl', ['-sS', '-L', '--max-redirs', '8', '--retry', '2', '--retry-delay', '3',
-    '--connect-timeout', '20', '--max-time', '90', '--max-filesize', '40000000', '-A', UA, ...args],
+    '--connect-timeout', '20', '--max-time', '90', '--max-filesize', '40000000', '-A', UA, ...extraCurlArgs(forUrl || ''), ...args],
     { encoding: 'utf8', maxBuffer: 1 << 20 });
 }
 
@@ -51,7 +54,7 @@ function robotsAllows(target) {
   try {
     const tmp = path.join(OUT, 'raw', '.robots.tmp');
     fs.mkdirSync(path.dirname(tmp), { recursive: true });
-    const code = curl(['-o', tmp, '-w', '%{http_code}', `${u.origin}/robots.txt`]).trim();
+    const code = curl(['-o', tmp, '-w', '%{http_code}', `${u.origin}/robots.txt`], u.origin).trim();
     if (!/^2/.test(code)) return true;           // no robots.txt: allowed
     body = fs.readFileSync(tmp, 'utf8');
   } catch { return true; }                        // unreachable robots.txt: the page fetch decides
@@ -94,7 +97,7 @@ const tmpRaw = path.join(rawDir, `${slug}.download`);
 const hdr = path.join(rawDir, `${slug}.headers`);
 let status = 0, ctype = '', finalUrl = url;
 try {
-  const w = curl(['-D', hdr, '-o', tmpRaw, '-w', '%{http_code}\t%{content_type}\t%{url_effective}', url]);
+  const w = curl(['-D', hdr, '-o', tmpRaw, '-w', '%{http_code}\t%{content_type}\t%{url_effective}', url], url);
   [status, ctype, finalUrl] = w.split('\t');
   status = Number(status);
 } catch (e) {
