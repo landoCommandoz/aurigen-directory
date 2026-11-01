@@ -82,6 +82,11 @@ BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5
 - Options memo: foundry/out/product-options.md. Foundry's end step rebuilds sheet.json and STATUS.md after tests pass.
 - Untested until a real purchase: a genuine key unlocking the sheet (stand-in Polar used in tests; a made-up key against the real Polar endpoint is rejected, tested live).
 
+## LAUNCH PREP (2026-11-01, later)
+- Sheet shows the two plain lines (not legal advice; confirm dates and rules with the county) plus the 14-day refund line. Publish = Actions "Publish" (mode publish) or `node launch/publish.mjs` + push: removes noindex, links the sheet from the home page footer, redeploys the showcase with a link (showcase noindex stays).
+- Domain: domain/README.md. Stored Cloudflare token cannot create zones (add aurigendirectory.com in the dashboard first), then Actions "Domain attach" does the rest (needs zone Workers Routes + DNS edit). Polar token lacks discounts scopes, so the test discount code is made by hand in Polar (settings in the report) or after adding the scopes.
+- Launch messages in launch/ (post after publish). When a workflow file changes, sync it to foundry/aurigen-law-audit and foundry/aurigen-showcase too.
+
 ## OPEN CRITICAL ITEMS
 1. FTC: Founding member 500-cap claim — needs Lando confirmation
 2. C2: states-en.js serverless gating (get-states.js built, needs C2 JWT session validation)

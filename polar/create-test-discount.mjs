@@ -19,7 +19,12 @@ if (!cfg.productId) { console.error('the Rules Sheet product does not exist yet 
 async function call(method, p, body) {
   const res = await fetch(API + p, { method, headers: { authorization: `Bearer ${TOKEN}`, 'content-type': 'application/json', accept: 'application/json' }, body: body ? JSON.stringify(body) : undefined });
   const text = await res.text();
-  if (!res.ok) throw new Error(`${method} ${p} answered HTTP ${res.status}: ${text.replace(/Bearer\s+\S+/g, 'Bearer [x]').slice(0, 500)}`);
+  if (!res.ok) {
+    if (res.status === 403 && /insufficient_scope/.test(text)) {
+      throw new Error(`${method} ${p}: the stored Polar token is not allowed to use discounts. In Polar, edit the organization access token (or make a new one) and tick the scopes discounts:read and discounts:write, update the POLAR_ACCESS_TOKEN repository secret, then push a change to polar/test-discount.json (for example bump "run"). Or create the code by hand in Polar: Products, Discounts, New (100%, applies to Aurigen Rules Sheet only, one redemption, an end date).`);
+    }
+    throw new Error(`${method} ${p} answered HTTP ${res.status}: ${text.replace(/Bearer\s+\S+/g, 'Bearer [x]').slice(0, 500)}`);
+  }
   return JSON.parse(text);
 }
 
