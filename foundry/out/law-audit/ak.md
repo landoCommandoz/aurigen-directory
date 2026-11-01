@@ -186,3 +186,6 @@ boroughs and inventory. Those were corrected or removed.
 
 All borough details show "Confirm with the county", except the Municipality of Anchorage, which links its own Foreclosed
 Properties page (checked 2026-10-27; sealed bid sales, September 16, 2026 sale).
+
+## Run 5 retry (2026-11-01)
+Gap not closed; see gaps.json attempts. A non-official page (onecle.com home) was fetched by mistake into sources/ca/r5-rtc-3691; it is not cited and was only a lead attempt.

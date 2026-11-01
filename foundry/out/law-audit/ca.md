@@ -181,3 +181,6 @@ because they are county details with no county source in this audit.
 ## Conflicts (flagged)
 
 - `otc.available`: No official text fetched on OTC; SCO manual says unsold property may be re-offered at a reduced minimum bid
+
+## Run 5 retry (2026-11-01)
+Gap not closed; see gaps.json attempts. A non-official page (onecle.com home) was fetched by mistake into sources/ca/r5-rtc-3691; it is not cited and was only a lead attempt.

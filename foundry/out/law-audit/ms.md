@@ -181,3 +181,6 @@ enacted law and is not a claim. Recheck in a later run.
 ## Conflicts (flagged)
 
 - `type`: SOS rules say land is "sold at public sale" with a two-year redemption; the code (not reachable) was not read to confirm the lien label
+
+## Run 5 retry (2026-11-01)
+legislature.ms.gov still fails curl error 60 (not one of the two hosts the cert step covers); sos.ms.gov and dor.ms.gov home pages read but hold no tax-sale statute text. Gap MS-1 stays open.

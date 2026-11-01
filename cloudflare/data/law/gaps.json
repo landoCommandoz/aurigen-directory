@@ -33,9 +33,11 @@
     {
      "id": "AK-1",
      "text": "Municipal ordinances (bid method, deposits, over-the-counter sales) were not audited; AS 29.45 is silent on them. 6 claims flagged, 2 unreachable.",
-     "close": "Read the official municipal codes of Anchorage, Fairbanks North Star and Mat-Su; otherwise keep \"Confirm with the municipality\"."
+     "close": "Read the official municipal codes of Anchorage, Fairbanks North Star and Mat-Su; otherwise keep \"Confirm with the municipality\".",
+     "attempts": "Run 5: akleg.gov statute index reachable but no municipal code; muni.org foreclosure page HTTP 404. Not closed."
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "AL": {
    "checkStatus": "checked with gaps",
@@ -43,9 +45,11 @@
     {
      "id": "AL-1",
      "text": "Code of Alabama text not read (ALISON is script-only); claims rest on the Department of Revenue rule and pages. Rate conflict: rule says 8%, DOR FAQ still says 12%.",
-     "close": "Find an official static copy of the Code of Alabama (Legislature or Legislative Services Agency) and read the redemption rate and § 40-10-28 (excess funds, after Tyler v. Hennepin)."
+     "close": "Find an official static copy of the Code of Alabama (Legislature or Legislative Services Agency) and read the redemption rate and § 40-10-28 (excess funds, after Tyler v. Hennepin).",
+     "attempts": "Run 5: alison.legislature.state.al.us/code-of-alabama is script-only (1,821 chars, no statute text); alisondb host does not resolve. Not closed."
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "AR": {
    "checkStatus": "checked with gaps",
@@ -73,9 +77,11 @@
     {
      "id": "CA-1",
      "text": "Revenue and Taxation Code and bill search on leginfo returned HTTP 403; claims rest on the State Controller manual (01/2026) and Excess Proceeds Guide (2025). Over-the-counter claim flagged.",
-     "close": "Retry leginfo and look for another official copy of the Revenue and Taxation Code; read the OTC rule."
+     "close": "Retry leginfo and look for another official copy of the Revenue and Taxation Code; read the OTC rule.",
+     "attempts": "Run 5: leginfo section page HTTP 403 again; SCO tax-sale page read, no statute text. Not closed."
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "CO": {
    "checkStatus": "checked with gaps",
@@ -84,7 +90,7 @@
      "id": "CO-1",
      "text": "2025 and 2026 session laws were not searched; the 2024 code PDF (uncertified printout) was used and the 2025 edition PDF was not found.",
      "close": "Search leg.colorado.gov for 2025 and 2026 acts amending title 39 (tax sales, redemption, surplus) and look for the 2025 edition PDF.",
-     "attempts": "Run 4: CRS 2025 title 39 PDF 404 at leg.colorado.gov and content.leg.colorado.gov; bill pages return HTTP 406 to curl and bill_files/session-laws downloads are disallowed by robots.txt. Lead (not on site): SB26-144 (ch. 135, effective June 1, 2026, treasurer deeds and fees, art. 11.5) seen only in search results, official text not read."
+     "attempts": "Run 4 and 5: CRS 2025 title 39 PDF 404; bill pages HTTP 406 to curl; bill_files downloads disallowed by robots.txt; guessed signed-act PDF paths 404. Official bill page (leg.colorado.gov/bills/SB26-144, seen in search only) lists SB26-144 signed May 19, 2026, chapter 135, effective June 1, 2026, applies to treasurer deeds issued on or after that date; text not read."
     }
    ],
    "attemptedAt": "2026-11-01"
@@ -169,9 +175,11 @@
     {
      "id": "MS-1",
      "text": "Mississippi Code not read (LexisNexis-hosted; legislature.ms.gov failed TLS); 14 claims unreachable; lien label flagged; bill status not checked.",
-     "close": "Look for an official copy of Miss. Code §§ 27-41 and 29-1 on another Mississippi state host; retry legislature.ms.gov with full verification only."
+     "close": "Look for an official copy of Miss. Code §§ 27-41 and 29-1 on another Mississippi state host; retry legislature.ms.gov with full verification only.",
+     "attempts": "Run 5: legislature.ms.gov curl error 60; sos.ms.gov and dor.ms.gov hold no tax-sale statute text. Not closed."
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "ND": {
    "checkStatus": "checked with gaps",
@@ -189,9 +197,11 @@
     {
      "id": "NM-1",
      "text": "NMSA 1978 not fetched; claims rest on Taxation and Revenue Department pages. Redemption and over-the-counter claims flagged.",
-     "close": "Read §§ 7-38-65 to 7-38-70 on nmonesource.com (NM Compilation Commission) and the 2023 to 2026 acts."
+     "close": "Read §§ 7-38-65 to 7-38-70 on nmonesource.com (NM Compilation Commission) and the 2023 to 2026 acts.",
+     "attempts": "Run 5: nmonesource.com returns no text without script (199 chars); nmlegis.gov bill list read but no NMSA text. Not closed."
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "OK": {
    "checkStatus": "checked with gaps",

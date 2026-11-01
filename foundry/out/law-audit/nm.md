@@ -184,3 +184,6 @@ None.
 
 - `redemption`: TRD FAQ says "all sales are final"; the statute on redemption after sale was not read
 - `otc.available`: TRD pages read do not mention over-the-counter sales
+
+## Run 5 retry (2026-11-01)
+Gap not closed; see gaps.json attempts. A non-official page (onecle.com home) was fetched by mistake into sources/ca/r5-rtc-3691; it is not cited and was only a lead attempt.

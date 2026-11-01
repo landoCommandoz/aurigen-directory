@@ -239,3 +239,6 @@ Tried: crs2025-title-39.pdf on leg.colorado.gov and content.leg.colorado.gov (HT
 Lead found by search only (nothing on the site changes from it): **SB26-144**, "Modify Property Tax Lien Sales Treasurer Deeds & Fees", Chapter 135, effective June 1, 2026, applies to treasurer's deeds issued on or after June 1, 2026 (art. 11.5 of title 39, fees). The official text was not read, so no claim was changed. Close it by finding an official PDF (OLLS session laws or signed bill) and reading the act. No 2025 act was identified.
 ## Watch
 - SB26-144 (enacted per the legislature's bill page, text unread).
+
+## Run 5 retry (2026-11-01)
+SB26-144 (treasurer deeds and fees, effective June 1, 2026) still not readable: signed-act PDF guesses returned 404 and bill_files downloads are blocked by robots.txt. Site unchanged; gap CO-1 stays open. Watch: SB26-144.
