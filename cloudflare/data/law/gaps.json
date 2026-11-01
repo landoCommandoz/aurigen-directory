@@ -258,14 +258,18 @@
    "attemptedAt": "2026-11-01"
   },
   "WV": {
-   "checkStatus": "checked with gaps",
+   "checkStatus": "checked",
    "gaps": [
     {
      "id": "WV-1",
      "text": "2026 SB 651 (touches the surplus section) appears in bill history but not in signed-bill lists; treated as not enacted.",
-     "close": "Confirm its final status on code.wvlegislature.gov."
+     "close": "Confirm its final status on code.wvlegislature.gov.",
+     "closed": "2026-11-01",
+     "note": "Run 6: official bill-history page for 2026 RS SB 651 read (sources/wv/r6-sb651-hist): passed the Senate, last action 'To House Judiciary 03/02/26'; no House passage recorded. Not enacted as of this check; stays on the Watch list.",
+     "closedAt": "2026-11-01"
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-01"
   },
   "PA": {
    "checkStatus": "checked",

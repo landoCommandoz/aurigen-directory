@@ -209,3 +209,6 @@ None.
 ## Conflicts (flagged)
 
 None.
+
+## Gap queue, run 6 (2026-11-01)
+- WV-1 closed. The legislature's bill-history page for 2026 RS Senate Bill 651 (sources/wv/r6-sb651-hist) lists it as passed by the Senate, with last action "H To House Judiciary 03/02/26" and no House vote. It amends §§ 11A-2-14, 11A-3-2, -39, -44, -45, -46, -48, -55, -65 and -66. Not enacted; Watch only. No claim changed.
