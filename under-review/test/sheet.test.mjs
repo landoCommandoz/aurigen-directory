@@ -7,7 +7,7 @@ import worker from '../worker.js';
 import SHEET from '../sheet.json' with { type: 'json' };
 import CONFIG from '../sheet-config.json' with { type: 'json' };
 import LISTING from '../sheet-listing.json' with { type: 'json' };
-import { checkKey, csv, csvCell, stateHtml, handleSheet } from '../sheet.js';
+import { checkKey, csv, csvCell, stateHtml, handleSheet, homeFooterLink } from '../sheet.js';
 
 const ORIGIN = 'https://aurigen.example';
 const get = (p) => worker.fetch(new Request(ORIGIN + p), {});
@@ -169,4 +169,30 @@ test('the checkout button points at Polar when configured, and the thank-you not
   assert.doesNotMatch(off, /Polar emails your license key/);
   const bad = await (await handleSheet(new Request(ORIGIN + '/rules-sheet/'), {}, polarNo, { ...CFG, checkoutUrl: 'http://evil.example/x' })).text();
   assert.doesNotMatch(bad, /evil\.example/);
+});
+
+test('the two plain lines and the 14-day refund line are on the landing page and the full sheet', async () => {
+  const lines = ['This is information about state rules, not legal advice.', 'Confirm dates and rules with the county before you bid.'];
+  const landing = await (await get('/rules-sheet/')).text();
+  for (const l of lines) assert.ok(landing.includes(l), 'landing: ' + l);
+  assert.match(landing, /Refunds are given within 14 days of purchase/);
+  const fullPage = await (await post('/rules-sheet/unlock', 'AURSHEET-1234-5678', polarOk)).text();
+  for (const l of lines) assert.ok(fullPage.includes(l), 'full sheet: ' + l);
+  assert.match(fullPage, /Refunds are given within 14 days of purchase/);
+});
+
+test('publish: listing the sheet removes noindex and adds the home page link; unlisting puts both back', async () => {
+  const on = { ...LISTING, listed: true };
+  const off = { ...LISTING, listed: false };
+  const pub = await handleSheet(new Request(ORIGIN + '/rules-sheet/'), {}, polarNo, CFG, on);
+  assert.equal(pub.headers.get('x-robots-tag'), null);
+  assert.doesNotMatch(await pub.text(), /name="robots"/);
+  const hid = await handleSheet(new Request(ORIGIN + '/rules-sheet/'), {}, polarNo, CFG, off);
+  assert.match(hid.headers.get('x-robots-tag'), /noindex/);
+  assert.match(await hid.text(), /name="robots" content="noindex"/);
+  assert.match(homeFooterLink(on), /href="\/rules-sheet\/"/);
+  assert.equal(homeFooterLink(off), '');
+  // the full sheet and the CSV stay noindex either way
+  const full = await handleSheet(new Request(ORIGIN + '/rules-sheet/unlock', { method: 'POST', body: new URLSearchParams({ key: 'AURSHEET-1234-5678' }) }), {}, polarOk, CFG, on);
+  assert.match(full.headers.get('x-robots-tag'), /noindex/);
 });

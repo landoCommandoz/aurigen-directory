@@ -26,7 +26,7 @@ main{max-width:46rem;margin:0 auto;padding:6vh 16px 2rem}
 h1{font-size:clamp(1.5rem,5vw,2rem);font-weight:normal;line-height:1.2;margin:0 0 .75rem}
 h2{font-size:1.2rem;font-weight:normal;margin:2.2rem 0 .6rem;border-top:1px solid var(--line);padding-top:1.2rem}
 p,li{color:var(--muted)}ul{padding-left:1.2rem}a{color:var(--accent)}
-.price{font-size:1.4rem;color:var(--ink)}
+.price{font-size:1.4rem;color:var(--ink)}.plain{border-left:3px solid var(--ink);padding:.3rem .8rem;margin:1rem 0;background:#efe9dc;color:var(--ink)}
 .btn{display:inline-block;min-height:44px;padding:.65rem 1.1rem;border:1px solid var(--ink);background:var(--ink);color:var(--bg);text-decoration:none;font:inherit;cursor:pointer;border-radius:2px}
 .btn.off{background:transparent;color:var(--muted);border-style:dashed;cursor:default}
 input[type=text]{width:100%;min-height:44px;padding:.5rem;font:inherit;border:1px solid var(--ink);background:#fff;color:var(--ink)}
@@ -73,8 +73,10 @@ export function stateHtml(st, open = false) {
 }
 
 const DISCLAIMER = 'Not legal or financial advice. Rules change. Confirm with the county before you bid.';
+// Two plain lines, shown near the top of the landing page and the full sheet (Lando's wording).
+const PLAIN = '<p class="plain"><b>This is information about state rules, not legal advice.</b><br><b>Confirm dates and rules with the county before you bid.</b></p>';
 
-function shell(title, inner, { noindex, listed }) {
+function shell(title, inner, { noindex }) {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 ${noindex ? '<meta name="robots" content="noindex">' : ''}<title>${esc(title)}</title><style>${CSS}</style></head><body><main>${inner}</main>
 <footer><p>${esc(DISCLAIMER)}</p><p>Payments are handled by Polar, the seller of record. Questions or a refund request: reply to your Polar receipt email, or open an issue at <a href="https://github.com/landoCommandoz/aurigen-directory/issues" rel="noopener">github.com/landoCommandoz/aurigen-directory</a>. Refunds are given within 14 days of purchase if the sheet does not match this page.</p><p><a href="/status.json">Status</a></p></footer></body></html>`;
@@ -86,7 +88,7 @@ function intro() {
 <p>How tax sales work in ${n} states, side by side, and for every line, the statute, the official link, the date it was checked and the exact words it rests on.</p>`;
 }
 
-function landing(state, cfg = CONFIG) {
+function landing(state, cfg = CONFIG, listing = LISTING) {
   // Two clean states as the free sample: the preferred ones if they are in the sheet, else any two "checked" states.
   const clean = SHEET.states.filter((s) => s.status === 'checked');
   const sample = [...clean.filter((s) => SAMPLE_CODES.includes(s.code)), ...clean.filter((s) => !SAMPLE_CODES.includes(s.code))].slice(0, 2);
@@ -94,8 +96,9 @@ function landing(state, cfg = CONFIG) {
     ? `<a class="btn" href="${esc(cfg.checkoutUrl)}" rel="noopener">Buy the sheet: ${money(cfg.priceUsd)} once</a>`
     : '<span class="btn off" role="note">Checkout is not connected yet</span>';
   const inner = `${intro()}
+${PLAIN}
 <p class="price">${money(cfg.priceUsd)}, paid once.</p>
-<p>Your license key works for 12 months. States are added to the sheet as they finish the audit; no dates are promised.</p>
+<p>Your license key works for 12 months. States are added to the sheet as they finish the audit; no dates are promised. Refunds are given within 14 days of purchase if the sheet does not match this page.</p>
 <p>${buy}</p>
 <h2>What is in it</h2>
 <ul>
@@ -121,11 +124,11 @@ ${state && state.error ? `<p role="alert"><b>${esc(state.error)}</b></p>` : ''}
 <h2>The ${SHEET.stateCount} states</h2>
 <table><tr><th>State</th><th>Audit flag</th><th>Rows</th></tr>${SHEET.states.map((s) => `<tr><td>${esc(s.name)}</td><td>${chip(s.status)}</td><td>${s.rows}</td></tr>`).join('')}</table>
 <p class="note">Sheet built ${esc(SHEET.built)}. States not listed are not in this sheet yet.</p>`;
-  return shell('Aurigen Rules Sheet', inner, { noindex: !LISTING.listed });
+  return shell('Aurigen Rules Sheet', inner, { noindex: !listing.listed });
 }
 
 function full(key) {
-  const inner = `${intro()}<p><b>Key accepted.</b> Every state is below. Open a state to read its rows.</p>
+  const inner = `${intro()}${PLAIN}<p><b>Key accepted.</b> Every state is below. Open a state to read its rows.</p>
 <form method="post" action="${PATH}sheet.csv"><input type="hidden" name="key" value="${esc(key)}"><button class="btn" type="submit">Download the CSV</button></form>
 <h2>The ${SHEET.stateCount} states</h2>
 ${SHEET.states.map((s) => stateHtml(s)).join('')}`;
@@ -181,13 +184,13 @@ async function formKey(request) {
 }
 
 // Returns a Response for the sheet routes, or null when the path is not one of them.
-export async function handleSheet(request, env = {}, fetchFn = fetch, cfg = CONFIG) {
+export async function handleSheet(request, env = {}, fetchFn = fetch, cfg = CONFIG, listing = LISTING) {
   const url = new URL(request.url);
   const p = url.pathname;
   if (p !== PATH.slice(0, -1) && !p.startsWith(PATH)) return null;
   if (p === PATH.slice(0, -1)) return Response.redirect(url.origin + PATH, 301);
   const sub = p.slice(PATH.length);
-  if (sub === '' && request.method === 'GET') return html(landing({ thanks: url.searchParams.get('thanks') === '1' }, cfg), 200, !LISTING.listed);
+  if (sub === '' && request.method === 'GET') return html(landing({ thanks: url.searchParams.get('thanks') === '1' }, cfg, listing), 200, !listing.listed);
   if ((sub === 'unlock' || sub === 'sheet.csv') && request.method === 'POST') {
     const key = await formKey(request);
     const r = await checkKey(key, env, fetchFn, cfg);
@@ -195,9 +198,11 @@ export async function handleSheet(request, env = {}, fetchFn = fetch, cfg = CONF
       return sub === 'unlock' ? html(full(key.trim())) : new Response(csv(), { headers: headers({ 'content-type': 'text/csv; charset=utf-8', 'content-disposition': 'attachment; filename="aurigen-rules-sheet.csv"' }) });
     }
     const msg = { invalid: 'That key was not accepted. Check it and try again.', unavailable: 'The license service did not answer. Try again in a minute.', not_configured: 'Checkout and keys are not connected yet.' }[r];
-    return html(landing({ error: msg }, cfg), r === 'invalid' ? 403 : 503);
+    return html(landing({ error: msg }, cfg, listing), r === 'invalid' ? 403 : 503);
   }
   return new Response('Not found', { status: 404, headers: headers({ 'content-type': 'text/plain; charset=utf-8' }) });
 }
 
-export const listed = () => !!LISTING.listed;
+export const listed = (listing = LISTING) => !!listing.listed;
+// The link added to the under-review page footer, only once the sheet is published.
+export const homeFooterLink = (listing = LISTING) => (listing.listed ? ' &middot; <a href="/rules-sheet/">Rules Sheet</a>' : '');

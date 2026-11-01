@@ -4,7 +4,7 @@
 // /status.json serves the repo's STATUS.md (built by make-status.mjs at deploy time; see status-publish.yml).
 
 import STATUS from "./status.json" with { type: "json" };
-import { handleSheet, listed } from "./sheet.js";
+import { handleSheet, homeFooterLink } from "./sheet.js";
 
 const PAGE = `<!doctype html>
 <html lang="en">
@@ -48,7 +48,7 @@ export default {
         },
       });
     }
-    return new Response(PAGE.replace("__SHEET_LINK__", listed() ? ' &middot; <a href="/rules-sheet/">Rules Sheet</a>' : ""), {
+    return new Response(PAGE.replace("__SHEET_LINK__", homeFooterLink()), {
       status: 503,
       headers: {
         "content-type": "text/html; charset=utf-8",
