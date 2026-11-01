@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "oh",
+ "slug": "orc5721",
+ "url": "https://codes.ohio.gov/ohio-revised-code/chapter-5721",
+ "final_url": "https://codes.ohio.gov/ohio-revised-code/chapter-5721",
+ "fetched_at": "2026-11-01T10:00:05.920Z",
+ "http_status": 200,
+ "content_type": "text/html;charset=UTF-8",
+ "raw_sha256": "ea083742382497c9e868eacfd6faf06f0de409a1cd3ad997ba86be06f0bdb854",
+ "raw_bytes": 322693,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "7af1248115a8f007848328c73c240adbf8861cc9f0486c978cfdfca5291b2424",
+ "text_chars": 224194
+}

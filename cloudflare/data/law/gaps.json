@@ -469,6 +469,21 @@
      "close": "Read the official treasurer pages of Clark, Washoe and other counties and cite them."
     }
    ]
+  },
+  "SC": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "SC-1",
+     "text": "The 2023 to 2026 enacted-law search on scstatehouse.gov was not run; only the history lines of Title 12 Chapter 51 were read.",
+     "close": "Search scstatehouse.gov acts for 2023 to 2026 for amendments to Title 12 Chapter 51 and the surplus (overage) rules, and read any found."
+    },
+    {
+     "id": "SC-2",
+     "text": "Sale dates, online bidding, registration and deposit rules are set by each county and were not read from county sites; they show as \"Confirm with the county\".",
+     "close": "Read each county delinquent tax collector's official page and cite it."
+    }
+   ]
   }
  }
 }

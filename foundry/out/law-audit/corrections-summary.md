@@ -1,4 +1,4 @@
-# Corrections summary, law audit (37 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (38 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1464 | 62% |
-| Wording or citation only | 403 | 17% |
-| Removed opinion | 493 | 21% |
-| **All corrected** | **2360** | |
+| Substantive | 1499 | 62% |
+| Wording or citation only | 411 | 17% |
+| Removed opinion | 512 | 21% |
+| **All corrected** | **2422** | |
 
 ## By state
 
@@ -60,6 +60,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | NC | 36 | 17 | 14 | 67 |
 | NE | 28 | 10 | 23 | 61 |
 | NV | 34 | 13 | 18 | 65 |
+| SC | 35 | 8 | 19 | 62 |
 
 ## One example of each kind, per state
 
@@ -284,3 +285,9 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`rateNote`): County holds in trust 2 years before retail auction — investor takes clean title at sale → The county treasurer holds the property in trust for 2 years after the first Monday in June of the year the certificate is dated, unless sooner redeemed (NRS §361.570(1)).
 - Wording or citation only (`type`): Tax deed → Sale of property held in trust by the county treasurer (NRS §361.595)
 - Removed opinion (`summary.3`): Clark County (Las Vegas) has strongest inventory. → (removed)
+
+### SC
+
+- Substantive (`rate`): 3–12% (varies by redemption month) → Maximum rate set by law: 12% of the bid amount (3%, 6%, 9% or 12% by quarter of the redemption period)
+- Wording or citation only (`type`): Redeemable deed → Real property sold at a delinquent tax sale; if not redeemed, a tax title is made to the purchaser (§12-51-130)
+- Removed opinion (`keyNotes.3`): Rural counties offer strong rural land opportunities → (removed)

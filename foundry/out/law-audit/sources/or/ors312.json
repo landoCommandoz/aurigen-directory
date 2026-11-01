@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "or",
+ "slug": "ors312",
+ "url": "https://www.oregonlegislature.gov/bills_laws/ors/ors312.html",
+ "final_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors312.html",
+ "fetched_at": "2026-11-01T10:00:08.572Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "f5980b188415070d0b60164d2e563ce4dbd39da21b470f790a5df731a8a5cb25",
+ "raw_bytes": 171049,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "ff84e9e29bb8a6df737a88e64b8f5e4fd32fad6954b29081ef109949a2bca7e8",
+ "text_chars": 80433
+}

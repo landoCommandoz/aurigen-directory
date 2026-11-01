@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "vt",
+ "slug": "vt32-51",
+ "url": "https://legislature.vermont.gov/statutes/chapter/32/133",
+ "final_url": "https://legislature.vermont.gov/statutes/chapter/32/133",
+ "fetched_at": "2026-11-01T10:00:20.968Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "8506785513760918f7e9297249a5b230065ee6ec6bac754bdf925f0f7ead863a",
+ "raw_bytes": 83642,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "722cc12cc4a22583b6217ed76da32b56c332bb35ea66944fffad2fa559255191",
+ "text_chars": 12671
+}

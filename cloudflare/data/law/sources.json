@@ -1430,6 +1430,22 @@
    "fetched_at": "2026-10-27T06:44:05.354Z",
    "snapshot": "foundry/out/law-audit/sources/pa/act-542-pdf.json"
   },
+  "https://www.scstatehouse.gov/code/t12c051.php": {
+   "state": "SC",
+   "statutes": [
+    "S.C. Code Ann. § 12-51-130",
+    "S.C. Code Ann. § 12-51-90(B)",
+    "S.C. Code Ann. § 12-51-90(A)",
+    "S.C. Code Ann. § 12-51-50",
+    "S.C. Code Ann. § 12-51-40(d)",
+    "S.C. Code Ann. § 12-51-90(C)",
+    "S.C. Code Ann. § 12-51-60"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "87e6b88e8420b78c23ee7d56f5c8dd8dacf341dd0f70dd6aabcb019de0c5f428",
+   "fetched_at": "2026-11-01T10:00:14.123Z",
+   "snapshot": "foundry/out/law-audit/sources/sc/code12-51.json"
+  },
   "https://sdlegislature.gov/api/Statutes/10-23-7.html": {
    "state": "SD",
    "statutes": [
