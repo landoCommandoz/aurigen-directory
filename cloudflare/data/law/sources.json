@@ -1687,6 +1687,21 @@
    "fetched_at": "2026-10-29T05:47:04.573Z",
    "snapshot": "foundry/out/law-audit/sources/ut/ucode-59-2-1351-5.json"
   },
+  "https://legislature.vermont.gov/statutes/fullchapter/32/133": {
+   "state": "VT",
+   "statutes": [
+    "32 V.S.A. § 5261",
+    "32 V.S.A. § 5260(a)",
+    "32 V.S.A. § 5252(a)(2)",
+    "32 V.S.A. § 5254(a)",
+    "32 V.S.A. § 5252(a)",
+    "32 V.S.A. § 5255"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1d356cbcd6e602ccd444fac59cbe0a2b693ed4be33358fd293f3102feb6ad801",
+   "fetched_at": "2026-11-01T10:05:02.291Z",
+   "snapshot": "foundry/out/law-audit/sources/vt/ch133.json"
+  },
   "https://docs.legis.wisconsin.gov/document/statutes/75.14": {
    "state": "WI",
    "statutes": [

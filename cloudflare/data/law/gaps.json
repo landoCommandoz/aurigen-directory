@@ -514,6 +514,26 @@
      "close": "Read each county treasurer's official page and cite it."
     }
    ]
+  },
+  "VT": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "VT-1",
+     "text": "The chapter sections read do not say who receives an overbid or excess sale proceeds; the claim shows as \"not stated, confirm\".",
+     "close": "Search 32 V.S.A. chapter 133 and Title 12 for the rule on excess proceeds after a tax sale, or read a town's official tax sale notice."
+    },
+    {
+     "id": "VT-2",
+     "text": "The 2023 to 2026 act search was not run beyond the history lines of chapter 133; 2023 No. 106 and 2025 No. 164 were not opened.",
+     "close": "Open both acts on legislature.vermont.gov and search Acts Affecting VSA Sections for chapter 133."
+    },
+    {
+     "id": "VT-3",
+     "text": "Town sale dates, registration and deposit rules were not read from town sites; they show as \"Confirm with the county or town\".",
+     "close": "Read each town's own tax sale notice and cite it."
+    }
+   ]
   }
  }
 }

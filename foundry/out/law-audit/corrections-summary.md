@@ -1,4 +1,4 @@
-# Corrections summary, law audit (40 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (41 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1572 | 62% |
-| Wording or citation only | 439 | 17% |
-| Removed opinion | 539 | 21% |
-| **All corrected** | **2550** | |
+| Substantive | 1606 | 61% |
+| Wording or citation only | 447 | 17% |
+| Removed opinion | 561 | 21% |
+| **All corrected** | **2614** | |
 
 ## By state
 
@@ -63,6 +63,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | OH | 38 | 17 | 11 | 66 |
 | OR | 35 | 11 | 16 | 62 |
 | SC | 35 | 8 | 19 | 62 |
+| VT | 34 | 8 | 22 | 64 |
 
 ## One example of each kind, per state
 
@@ -305,3 +306,9 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`rate`): 3–12% (varies by redemption month) → Maximum rate set by law: 12% of the bid amount (3%, 6%, 9% or 12% by quarter of the redemption period)
 - Wording or citation only (`type`): Redeemable deed → Real property sold at a delinquent tax sale; if not redeemed, a tax title is made to the purchaser (§12-51-130)
 - Removed opinion (`keyNotes.3`): Rural counties offer strong rural land opportunities → (removed)
+
+### VT
+
+- Substantive (`type`): Tax lien → Tax sale of real property; a collector's deed follows if not redeemed (32 V.S.A. §5254, §5261)
+- Wording or citation only (`redemption`): 1 year → Within one year from the day of sale (32 V.S.A. §5260(a))
+- Removed opinion (`summary.2`): Sales are extremely rare. → (removed)

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "vt",
+ "slug": "ch133",
+ "url": "https://legislature.vermont.gov/statutes/fullchapter/32/133",
+ "final_url": "https://legislature.vermont.gov/statutes/fullchapter/32/133",
+ "fetched_at": "2026-11-01T10:05:02.291Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "13b48c19ba07d33d29a89ca5bd251fbebe49dff7f6f140a9b3898c2916ff057a",
+ "raw_bytes": 204164,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "1d356cbcd6e602ccd444fac59cbe0a2b693ed4be33358fd293f3102feb6ad801",
+ "text_chars": 110338
+}
