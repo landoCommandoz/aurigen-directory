@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "va",
+ "slug": "s58-1-3972",
+ "url": "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3972/",
+ "final_url": "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3972/",
+ "fetched_at": "2026-11-01T10:08:45.918Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "d461abedaeb321b0210489770254fd09d60eb90e7f4a0c373a8b35e3ef8c0b98",
+ "raw_bytes": 27430,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "2454eab35defb220bff883a70ea3835a1da05a013f9f677f8e4b5a333342c467",
+ "text_chars": 1683
+}

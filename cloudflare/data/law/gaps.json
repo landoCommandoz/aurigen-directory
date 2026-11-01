@@ -549,6 +549,21 @@
      "close": "Read the remaining chapter 44-9 sections for surplus after a collector's sale and the official city or town tax sale notices."
     }
    ]
+  },
+  "VA": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "VA-1",
+     "text": "The enacted acts 2023 c. 292 and 2025 c. 267 (amending §58.1-3965, -3967, -3968, -3974) were not opened, so their effective dates and any provisions not yet in effect are not recorded; the 2023 to 2026 search was not run.",
+     "close": "Open both chapters on law.lis.virginia.gov and record their effective dates; search 2023 to 2026 acts for article 4 changes."
+    },
+    {
+     "id": "VA-2",
+     "text": "Bid method, deposits, registration and sale dates are set by the court and locality and were not read from court or treasurer sites; they show as \"Confirm with the county\".",
+     "close": "Read each locality's official tax sale notice or circuit court page and cite it."
+    }
+   ]
   }
  }
 }

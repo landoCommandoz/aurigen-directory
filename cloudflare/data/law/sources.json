@@ -1757,6 +1757,46 @@
    "fetched_at": "2026-10-29T05:47:04.573Z",
    "snapshot": "foundry/out/law-audit/sources/ut/ucode-59-2-1351-5.json"
   },
+  "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3967/": {
+   "state": "VA",
+   "statutes": [
+    "Va. Code Ann. § 58.1-3967"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "a07ad0ec1c8a5df6b2e63fb94fbb7966a0f18fbe445ff28a5fb63aa4b62b44d0",
+   "fetched_at": "2026-11-01T10:08:33.653Z",
+   "snapshot": "foundry/out/law-audit/sources/va/s58-1-3967.json"
+  },
+  "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3974/": {
+   "state": "VA",
+   "statutes": [
+    "Va. Code Ann. § 58.1-3974"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0567cf77bcb81a2ce94cfeb769694f4d4f6382764e9fa19741edaad0ab8b6116",
+   "fetched_at": "2026-11-01T10:08:48.360Z",
+   "snapshot": "foundry/out/law-audit/sources/va/s58-1-3974.json"
+  },
+  "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3969/": {
+   "state": "VA",
+   "statutes": [
+    "Va. Code Ann. § 58.1-3969"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "66036037af04ad9eb6d50883f685962618a64f9a119b0bf88eefbefb53b80cc8",
+   "fetched_at": "2026-11-01T10:08:38.766Z",
+   "snapshot": "foundry/out/law-audit/sources/va/s58-1-3969.json"
+  },
+  "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3965/": {
+   "state": "VA",
+   "statutes": [
+    "Va. Code Ann. § 58.1-3965(A)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "8fc9a04492c0f2975af32eb88e7a0a6c81054b16e04a83d90ba0c6cc1df69bbb",
+   "fetched_at": "2026-11-01T10:08:31.236Z",
+   "snapshot": "foundry/out/law-audit/sources/va/s58-1-3965.json"
+  },
   "https://legislature.vermont.gov/statutes/fullchapter/32/133": {
    "state": "VT",
    "statutes": [

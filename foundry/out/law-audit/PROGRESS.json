@@ -553,12 +553,15 @@
    "unreachable": 0
   },
   "VA": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 70,
+   "supported": 3,
+   "corrected": 67,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 67,
+   "checkStatus": "checked with gaps"
   },
   "VT": {
    "status": "done",

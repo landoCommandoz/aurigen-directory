@@ -1,4 +1,4 @@
-# Corrections summary, law audit (42 states checked so far; rebuilt 2026-11-01)
+# Corrections summary, law audit (43 states checked so far; rebuilt 2026-11-01)
 
 Generated from the ledgers in `cloudflare/data/law/` by `foundry/out/law-audit/authoring/corrections.mjs`. Each corrected claim carries `correctionKind` and `correctionBasis`.
 
@@ -14,10 +14,10 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 
 | Kind | Claims | Share |
 |---|---:|---:|
-| Substantive | 1638 | 61% |
-| Wording or citation only | 458 | 17% |
-| Removed opinion | 583 | 22% |
-| **All corrected** | **2679** | |
+| Substantive | 1668 | 61% |
+| Wording or citation only | 471 | 17% |
+| Removed opinion | 607 | 22% |
+| **All corrected** | **2746** | |
 
 ## By state
 
@@ -64,6 +64,7 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 | OR | 35 | 11 | 16 | 62 |
 | RI | 32 | 11 | 22 | 65 |
 | SC | 35 | 8 | 19 | 62 |
+| VA | 30 | 13 | 24 | 67 |
 | VT | 34 | 8 | 22 | 64 |
 
 ## One example of each kind, per state
@@ -313,6 +314,12 @@ Spanish claims inherit the label of the English claim they mirror. English and S
 - Substantive (`rate`): 3–12% (varies by redemption month) → Maximum rate set by law: 12% of the bid amount (3%, 6%, 9% or 12% by quarter of the redemption period)
 - Wording or citation only (`type`): Redeemable deed → Real property sold at a delinquent tax sale; if not redeemed, a tax title is made to the purchaser (§12-51-130)
 - Removed opinion (`keyNotes.3`): Rural counties offer strong rural land opportunities → (removed)
+
+### VA
+
+- Substantive (`type`): Tax deed → Judicial sale of real estate in circuit court to collect delinquent taxes (§58.1-3967)
+- Wording or citation only (`rate`): N/A → Not applicable: court-ordered sale of the real estate (§58.1-3967)
+- Removed opinion (`summary.3`): Northern Virginia has strong high-value inventory. → (removed)
 
 ### VT
 
