@@ -13,3 +13,15 @@ pipeline/local-biz/email-errors.log
 
 # Law audit raw downloads (hashes are kept in the .json records)
 foundry/out/law-audit/raw/
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
+.beads/proxieddb/
+*.gate.lock*
+
+# Other agents' integrations (added by bd init; not used here)
+.codex/
+.cursor/
+.agents/

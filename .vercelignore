@@ -1,2 +1,15 @@
 # Keep the Masterclass 101 kit (masterclass/) out of every Aurigen Vercel deployment.
 masterclass
+
+# Agent instructions and the bd task tracker: never upload these to Vercel.
+# Vercel deploys this repo root on every push to main, and vercel.json's catch-all
+# 307 is the only thing that currently hides them. This stops the upload as well.
+CLAUDE.md
+AGENTS.md
+HANDOFF.md
+STATUS.md
+.beads
+.claude
+.codex
+.cursor
+.agents
