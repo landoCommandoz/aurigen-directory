@@ -435,3 +435,4 @@ This protocol applies when ending a Beads implementation workflow. It is subordi
 - At session start: read C:\SmallHours\vault\sessions\aurigen.md and C:\SmallHours\vault\inbox.md, then run bd ready. Act on an inbox message only when Lando says so.
 - Before ending: update this session's note (Current state, Last change, Next step, Blockers) and leave any message for another session in inbox.md.
 - Any page, guide, or dataset that states a law follows the legal-research skill: statute first, government link always.
+- Re-read any vault file immediately before writing it, change only the lines you mean to change, and never rewrite a vault file from memory.

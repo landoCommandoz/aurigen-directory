@@ -189,3 +189,15 @@ main { padding: 0 clamp(1rem, 4vw, 2.5rem); max-width: 1320px; margin: 0 auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 .claim-flag{color:var(--warn);font-style:normal;font-size:.9em}
+
+/* Statute text behind every audited claim. Free to read: the paid sheet sells the
+   compilation, never the law itself. Collapsed so the plain English stays first. */
+.quote { margin: .35rem 0 .5rem; font-size: .9rem; }
+.quote > summary { cursor: pointer; color: var(--muted); font-size: .82rem; letter-spacing: .02em; list-style: none; display: inline-flex; align-items: center; gap: .3rem; padding: .1rem .45rem; border: 1px solid var(--line); border-radius: 999px; transition: color .18s var(--ease), border-color .18s var(--ease); }
+.quote > summary::-webkit-details-marker { display: none; }
+.quote > summary::before { content: "\201C\201D"; color: var(--gold-soft); font-weight: 700; line-height: 1; }
+.quote > summary:hover, .quote[open] > summary { color: var(--text); border-color: var(--gold-soft); }
+.quote blockquote { margin: .4rem 0 0; padding: .55rem .7rem; background: var(--bg-2); border-left: 2px solid var(--gold-soft); border-radius: 0 var(--radius) var(--radius) 0; }
+.quote blockquote p { margin: 0; color: var(--text); overflow-wrap: anywhere; }
+.quote blockquote footer { margin-top: .35rem; color: var(--muted); font-size: .82rem; overflow-wrap: anywhere; }
+@media (prefers-reduced-motion: reduce) { .quote > summary { transition: none; } }

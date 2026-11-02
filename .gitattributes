@@ -1,0 +1,18 @@
+# Saved copies of official law sources are hash-verified, so they must stay
+# byte-for-byte identical on every machine.
+#
+# foundry/tools/fetch-source.mjs writes <slug>.txt next to <slug>.json and records
+# sha256(<slug>.txt) as meta.text_sha256. loadSnapshot() in foundry/tools/law-text.mjs
+# re-hashes the file and refuses the snapshot if it differs, which is what makes a
+# quoted statute checkable. With core.autocrlf=true a Windows checkout rewrites those
+# files to CRLF, the hash no longer matches, and cloudflare/scripts/check-law.mjs fails
+# every claim in the state. Marking them -text stops git converting line endings in
+# either direction; `diff` keeps them readable in diffs rather than treated as binary.
+#
+# Do not change this to `text eol=lf`: that normalises on commit, so a source that
+# genuinely contains CRLF would be rewritten and its recorded hash broken for good.
+foundry/out/law-audit/sources/** -text diff
+
+# Server certificates fetched by foundry/tools/cert-chain.mjs: fingerprints are logged,
+# so these must not be rewritten either.
+foundry/out/law-audit/certs/** -text diff

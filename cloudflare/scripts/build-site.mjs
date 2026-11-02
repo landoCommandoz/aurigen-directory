@@ -87,6 +87,24 @@ function claimHtml(c) {
   return `${esc(c.shown)} <em class="claim-flag">(${esc(note)})</em>`;
 }
 const joinClaims = (cs) => cs.map(claimHtml).join(' ');
+// Every claim's own words from the statute, with the official link it was read from.
+// Free to read: no public fact sits behind a paywall, so the Rules Sheet sells the
+// compilation, never the law. Same shape the sheet uses, so the two can be compared.
+function claimQuotes(cs) {
+  const seen = new Map();
+  for (const c of cs) {
+    const q = String(c.quote || '').trim();
+    if (!q) continue;
+    const st = String(c.statute || '');
+    const key = `${st}|${c.url || ''}|${q}`;
+    if (seen.has(key)) continue;
+    const label = st && !st.startsWith('none:') ? st : String(c.url || '').replace(/^https?:\/\//, '');
+    const cite = isUrl(c.url) ? link(c.url, label) : esc(label);
+    const checked = c.checked ? ` — checked ${esc(String(c.checked).slice(0, 10))}` : '';
+    seen.set(key, `<details class="quote"><summary>Statute text</summary><blockquote><p>${esc(q)}</p><footer>${cite}${checked}</footer></blockquote></details>`);
+  }
+  return [...seen.values()].join('');
+}
 // List fields: items are numbered field.N or field.N.M; sentences of one item share a bullet.
 function listClaims(cs) {
   const items = new Map();
@@ -95,25 +113,26 @@ function listClaims(cs) {
     if (!items.has(key)) items.set(key, []);
     items.get(key).push(c);
   }
-  return items.size ? `<ul>${[...items.values()].map((g) => `<li>${joinClaims(g)}</li>`).join('')}</ul>` : '';
+  return items.size ? `<ul>${[...items.values()].map((g) => `<li>${joinClaims(g)}${claimQuotes(g)}</li>`).join('')}</ul>` : '';
 }
 function auditedFacts(st, L) {
   const f = (field) => joinClaims(shownClaims(L, field, 'en'));
+  const q = (field) => claimQuotes(shownClaims(L, field, 'en'));
   const statuteUrl = (L.claims.find((c) => c.field === 'statute' && c.lang === 'en') || {}).url;
   return [
-    ['Sale type', `<span class="pill t-${st.type}">${f('type')}</span>`],
-    ['Interest / penalty', f('rate') + (f('rateNote') ? `<small>${f('rateNote')}</small>` : '')],
-    ['Redemption', f('redemption') || '—'],
-    ['Bid method', f('bidMethod') || '—'],
-    ['Statute', statuteUrl && f('statute') ? `<a href="${esc(statuteUrl)}" rel="noopener nofollow" target="_blank">${f('statute')}</a>` : (f('statute') || '—')],
-    ['Auction platform', f('auctionPlatform') || '—'],
-    ['Auction timing', f('auctionTiming') || '—'],
+    ['Sale type', `<span class="pill t-${st.type}">${f('type')}</span>` + q('type')],
+    ['Interest / penalty', f('rate') + (f('rateNote') ? `<small>${f('rateNote')}</small>` : '') + q('rate') + q('rateNote')],
+    ['Redemption', (f('redemption') || '—') + q('redemption')],
+    ['Bid method', (f('bidMethod') || '—') + q('bidMethod')],
+    ['Statute', (statuteUrl && f('statute') ? `<a href="${esc(statuteUrl)}" rel="noopener nofollow" target="_blank">${f('statute')}</a>` : (f('statute') || '—')) + q('statute')],
+    ['Auction platform', (f('auctionPlatform') || '—') + q('auctionPlatform')],
+    ['Auction timing', (f('auctionTiming') || '—') + q('auctionTiming')],
   ];
 }
 function auditedProse(st, L) {
   const hasEs = L.claims.some((c) => c.lang === 'es');
   const bi = (fn) => hasEs ? `<div data-lang="en">${fn('en')}</div><div data-lang="es" lang="es">${fn('es')}</div>` : fn('en');
-  const para = (field, lang, label = '') => { const h = joinClaims(shownClaims(L, field, lang)); return h ? `<p>${label}${h}</p>` : ''; };
+  const para = (field, lang, label = '') => { const cs = shownClaims(L, field, lang); const h = joinClaims(cs); return h ? `<p>${label}${h}</p>${claimQuotes(cs)}` : ''; };
   const list = (field, lang) => listClaims(shownClaims(L, field, lang));
   const sec = (title, fields, renderer) => {
     const any = fields.some((fl) => shownClaims(L, fl, 'en').length || shownClaims(L, fl, 'es').length);
