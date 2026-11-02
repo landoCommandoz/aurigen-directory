@@ -1,0 +1,41 @@
+{
+  "note": "States whose law Aurigen has NOT been able to read from an official source. A state listed here asserts nothing: the site shows no sale type, no rate, no redemption, no bid method and no prose for it, only the statute citation, the official link and the date of the last attempt. cloudflare/scripts/check-law.mjs allows a missing ledger ONLY for the codes listed here, and cloudflare/scripts/build-site.mjs asserts that nothing in a pending state's page states its law. A state leaves this file by being audited, not by an edit anywhere else. Reasons are recorded in gaps.json and in bd aurigen-directory-rkk.1.",
+  "states": {
+    "GA": {
+      "statute": "O.C.G.A. §§ 48-4-40 to 48-4-48",
+      "url": "https://www.lexisnexis.com/hottopics/gacode/",
+      "urlTitle": "Official Code of Georgia Annotated (free public access)",
+      "govUrl": "https://dbf.georgia.gov/laws-regulations-rulings-publications/georgia-laws-title-7",
+      "govNote": "Georgia Department of Banking and Finance: \"Access to the entire Code is provided by LexisNexis from the Georgia General Assembly's website... The Code is provided by the State of Georgia from the Georgia General Assembly's website.\" The link above resolves to the same LexisNexis container (config 00JAAzZDgzNzU2ZC05MDA0...) that this Georgia .gov page links to, so it is the state-designated copy rather than a commercial reprint.",
+      "lastAttempt": "2026-11-02",
+      "why": "The Official Code of Georgia is served to browsers only by script. The audit's download tool (curl plus pdftotext) retrieved 68 characters from legis.ga.gov and 1 character from the LexisNexis code link, and dor.georgia.gov/tax-sales returns HTTP 404. No statute text could be read, so no claim about Georgia law can be supported."
+    },
+    "TN": {
+      "statute": "T.C.A. §§ 67-5-2501 to 67-5-2504 and 67-5-2701 to 67-5-2706",
+      "url": "https://www.lexisnexis.com/hottopics/tncode",
+      "urlTitle": "Tennessee Code, unannotated (free public access)",
+      "govUrl": "https://www.capitol.tn.gov/legislation/",
+      "govNote": "The Tennessee General Assembly links this exact address from its own site as \"Tennessee Code\", and free public access is a contractual requirement of the state, not a courtesy: the Code Commission's 2024 Sunset hearing questions on capitol.tn.gov record that the 2019 Restated Agreement for Publication \"Clarified the Publisher's requirement to provide a free public access version of the unannotated version of Tennessee Code Annotated on the internet (which is accessible through a link on the General Assembly's website)\". State-designated, not commercial.",
+      "lastAttempt": "2026-11-02",
+      "why": "Tennessee Code Annotated title 67 chapter 5 is served only by script through LexisNexis; the download returned 1 character, and tn.gov/revenue returned navigation text only. No statute text could be read."
+    },
+    "IN": {
+      "statute": "IC 6-1.1-24 and 6-1.1-25",
+      "url": "https://iga.in.gov/legislative/laws/2024/ic/titles/006/#6-1.1-24",
+      "urlTitle": "Indiana Code, Indiana General Assembly",
+      "govUrl": "https://iga.in.gov/legislative/laws/2024/ic/titles/006/#6-1.1-24",
+      "govNote": "Already a state government address; no intermediary. An official key-gated API also exists at https://api.iga.in.gov (docs: https://docs.api.iga.in.gov), which is the most likely route to unblocking this state.",
+      "lastAttempt": "2026-11-02",
+      "why": "The Indiana Code on iga.in.gov is served by script: both the laws page and the pdf-documents path returned 1 character to the audit's download tool. The official API answers HTTP 403 \"x-api-key not found\" without a key."
+    },
+    "NY": {
+      "statute": "N.Y. Real Property Tax Law article 11 (RPTL § 1110 and following)",
+      "url": "https://www.nysenate.gov/legislation/laws/RPT/1110",
+      "urlTitle": "New York Real Property Tax Law, NY Senate",
+      "govUrl": "https://www.nysenate.gov/legislation/laws/RPT/1110",
+      "govNote": "Already a state government address; no intermediary. The NY Senate Open Legislation API at https://legislation.nysenate.gov/api/3/laws/RPT/1110 answers HTTP 401 \"A valid API key is needed to fulfill this request\" (errorCode 701); a free key is the most likely route to unblocking this state.",
+      "lastAttempt": "2026-11-02",
+      "why": "nysenate.gov law pages return HTTP 403 to the audit's download tool, legislation.nysenate.gov/pdf/laws returns 404, and the API requires a key. Only bill PDFs, which are not enacted law, were reachable."
+    }
+  }
+}

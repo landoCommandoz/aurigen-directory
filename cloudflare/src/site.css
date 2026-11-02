@@ -201,3 +201,12 @@ main { padding: 0 clamp(1rem, 4vw, 2.5rem); max-width: 1320px; margin: 0 auto; }
 .quote blockquote p { margin: 0; color: var(--text); overflow-wrap: anywhere; }
 .quote blockquote footer { margin-top: .35rem; color: var(--muted); font-size: .82rem; overflow-wrap: anywhere; }
 @media (prefers-reduced-motion: reduce) { .quote > summary { transition: none; } }
+
+/* Verification pending: a state whose official source Aurigen has not been able to
+   read. The page states no law for it, so the notice has to say that plainly. */
+.pending { margin: .6rem 0 .8rem; padding: .7rem .85rem; background: var(--bg-2); border: 1px solid var(--warn); border-left-width: 3px; border-radius: var(--radius); }
+.pending p { margin: 0; }
+.pending p + p { margin-top: .4rem; }
+.pending b { color: var(--warn); }
+/* An audited field whose claim the audit removed and could not replace. Never a blank cell. */
+.unverified { color: var(--muted); font-style: normal; }

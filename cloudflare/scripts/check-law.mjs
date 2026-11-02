@@ -31,6 +31,36 @@ function readAttempts(st) {
 
 const rows = [];
 const errors = [];
+
+// A missing ledger is allowed for exactly one reason: the state is declared pending in
+// data/law/pending.json, which means the site asserts nothing about its law at all.
+// build-site.mjs proves that half on the built HTML. Here we only police the declaration.
+const PENDING = (() => {
+  const p = path.join(LAW, 'pending.json');
+  if (!fs.existsSync(p)) return {};
+  const j = JSON.parse(fs.readFileSync(p, 'utf8'));
+  return j.states || {};
+})();
+const isPending = (code) => Object.prototype.hasOwnProperty.call(PENDING, String(code).toUpperCase());
+for (const [code, p] of Object.entries(PENDING)) {
+  const where = `pending.json ${code}`;
+  for (const field of ['statute', 'url', 'lastAttempt', 'why']) {
+    if (!String(p[field] || '').trim()) errors.push(`${where}: missing ${field}`);
+  }
+  if (p.url && !/^https?:\/\//.test(String(p.url))) errors.push(`${where}: url is not an http(s) address`);
+  if (!/^\d{4}-\d{2}-\d{2}/.test(String(p.lastAttempt || ''))) errors.push(`${where}: lastAttempt is not a yyyy-mm-dd date`);
+  // Statute text on a commercial host is only acceptable when a government page designates
+  // it as the official copy. Say which page that is, or the claim is unsupported.
+  const host = (() => { try { return new URL(String(p.url)).hostname; } catch { return ''; } })();
+  const isGov = /\.gov$/i.test(host) || /\.gov\./i.test(host) || /\.us$/i.test(host);
+  if (!isGov) {
+    if (!String(p.govUrl || '').trim()) errors.push(`${where}: url host ${host || '(unparseable)'} is not a government address and no govUrl designates it`);
+    if (!String(p.govNote || '').trim()) errors.push(`${where}: url host ${host || '(unparseable)'} is not a government address and no govNote records what designates it`);
+  }
+  if (fs.existsSync(path.join(LAW, `${code.toLowerCase()}.json`))) {
+    errors.push(`${where}: a ledger now exists, so this state should be removed from pending.json`);
+  }
+}
 for (const code of codes) {
   const err = (m) => errors.push(`${code.toUpperCase()}: ${m}`);
   const st = JSON.parse(fs.readFileSync(path.join(BASE, 'data', 'states', `${code}.json`), 'utf8'));
@@ -38,7 +68,12 @@ for (const code of codes) {
   const ledger = loadLedger(code);
   const row = { st: code.toUpperCase(), claims: 0, supported: 0, corrected: 0, flagged: 0, unreachable: 0, missing: 0 };
   rows.push(row);
-  if (!ledger) { row.missing = pieces.length; err(`no ledger (cloudflare/data/law/${code}.json); ${pieces.length} shown pieces unaudited`); continue; }
+  if (!ledger) {
+    row.missing = pieces.length;
+    if (isPending(code)) { row.pending = true; continue; }
+    err(`no ledger (cloudflare/data/law/${code}.json); ${pieces.length} shown pieces unaudited and the state is not declared in pending.json`);
+    continue;
+  }
   const claims = ledger.claims || [];
   row.claims = claims.length;
   const byId = new Map();

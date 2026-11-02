@@ -16,6 +16,18 @@ const PUB = path.join(BASE, 'public');
 const SITE_URL = process.env.SITE_URL || 'https://aurigen.landonbrewington12.workers.dev';
 const DISCLAIMER = 'Not legal or financial advice. Rules change. Confirm with the county before you bid.';
 
+// States Aurigen has not been able to read from an official source. A pending state
+// asserts nothing: see cloudflare/data/law/pending.json. Nothing below may state its law.
+const PENDING = (() => {
+  const p = path.join(DATA, 'law', 'pending.json');
+  if (!fs.existsSync(p)) return {};
+  return JSON.parse(fs.readFileSync(p, 'utf8')).states || {};
+})();
+const pendingOf = (code) => PENDING[String(code || '').toUpperCase()] || null;
+const isPending = (code) => !!pendingOf(code);
+const PENDING_LABEL = 'Verification pending';
+const UNVERIFIED = '<em class="unverified">Not yet verified</em>';
+
 const FIPS = { AL: '01', AK: '02', AZ: '04', AR: '05', CA: '06', CO: '08', CT: '09', DE: '10', DC: '11', FL: '12', GA: '13', HI: '15', ID: '16', IL: '17', IN: '18', IA: '19', KS: '20', KY: '21', LA: '22', ME: '23', MD: '24', MA: '25', MI: '26', MN: '27', MS: '28', MO: '29', MT: '30', NE: '31', NV: '32', NH: '33', NJ: '34', NM: '35', NY: '36', NC: '37', ND: '38', OH: '39', OK: '40', OR: '41', PA: '42', RI: '44', SC: '45', SD: '46', TN: '47', TX: '48', UT: '49', VT: '50', VA: '51', WA: '53', WV: '54', WI: '55', WY: '56' };
 const TYPES = [
   ['lien', 'Tax lien'], ['deed', 'Tax deed'], ['hybrid', 'Hybrid'], ['redeemable', 'Redeemable deed'], ['other', 'Other'],
@@ -26,6 +38,9 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '
 const isUrl = (s) => typeof s === 'string' && /^https?:\/\/[^\s"'<>]+$/.test(s.trim());
 const link = (u, text) => isUrl(u) ? `<a href="${esc(u.trim())}" rel="noopener nofollow" target="_blank">${esc(text || u.replace(/^https?:\/\//, '').replace(/\/$/, ''))}</a>` : esc(text || u);
 const human = (k) => String(k).replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase());
+// First sentence, ending in a single full stop: for meta descriptions, where a long
+// explanatory field would otherwise crowd out everything after it.
+const firstSentence = (v) => { const t = String(v ?? '').trim(); if (!t) return ''; const m = t.match(/^[^.!?]*[.!?]/); return (m ? m[0] : t + '.').trim(); };
 const slug = (s) => String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const write = (rel, html) => { const p = path.join(PUB, rel); fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, html); };
 const typeName = (t) => (TYPES.find(([k]) => k === t) || [t, 'Other'])[1];
@@ -119,14 +134,15 @@ function auditedFacts(st, L) {
   const f = (field) => joinClaims(shownClaims(L, field, 'en'));
   const q = (field) => claimQuotes(shownClaims(L, field, 'en'));
   const statuteUrl = (L.claims.find((c) => c.field === 'statute' && c.lang === 'en') || {}).url;
+  const cell = (field, html) => (f(field) ? html + q(field) : UNVERIFIED);
   return [
-    ['Sale type', `<span class="pill t-${st.type}">${f('type')}</span>` + q('type')],
-    ['Interest / penalty', f('rate') + (f('rateNote') ? `<small>${f('rateNote')}</small>` : '') + q('rate') + q('rateNote')],
-    ['Redemption', (f('redemption') || '—') + q('redemption')],
-    ['Bid method', (f('bidMethod') || '—') + q('bidMethod')],
-    ['Statute', (statuteUrl && f('statute') ? `<a href="${esc(statuteUrl)}" rel="noopener nofollow" target="_blank">${f('statute')}</a>` : (f('statute') || '—')) + q('statute')],
-    ['Auction platform', (f('auctionPlatform') || '—') + q('auctionPlatform')],
-    ['Auction timing', (f('auctionTiming') || '—') + q('auctionTiming')],
+    ['Sale type', cell('type', `<span class="pill t-${st.type}">${f('type')}</span>`)],
+    ['Interest / penalty', f('rate') ? f('rate') + (f('rateNote') ? `<small>${f('rateNote')}</small>` : '') + q('rate') + q('rateNote') : UNVERIFIED],
+    ['Redemption', cell('redemption', f('redemption'))],
+    ['Bid method', cell('bidMethod', f('bidMethod'))],
+    ['Statute', cell('statute', statuteUrl ? `<a href="${esc(statuteUrl)}" rel="noopener nofollow" target="_blank">${f('statute')}</a>` : f('statute'))],
+    ['Auction platform', cell('auctionPlatform', f('auctionPlatform'))],
+    ['Auction timing', cell('auctionTiming', f('auctionTiming'))],
   ];
 }
 function auditedProse(st, L) {
@@ -205,7 +221,11 @@ function nationalMap() {
   const paths = stateFeatures.map((f) => {
     const code = byFips[f.id]; const s = typeOf[code];
     const d = p(f); if (!d || !s) return '';
-    return `<a href="/state/${code.toLowerCase()}/" data-type="${s.type}" aria-label="${esc(s.name)}: ${esc(s.typeLabel)}"><path class="t-${s.type}" d="${d}"><title>${esc(s.name)} — ${esc(s.typeLabel)}</title></path></a>`;
+    // A sale-type colour is itself a claim about the law, so a pending state takes the neutral tone.
+    const pend = isPending(code);
+    const ty = pend ? 'none' : s.type;
+    const lab = pend ? PENDING_LABEL : s.typeLabel;
+    return `<a href="/state/${code.toLowerCase()}/" data-type="${ty}" aria-label="${esc(s.name)}: ${esc(lab)}"><path class="t-${ty}" d="${d}"><title>${esc(s.name)} — ${esc(lab)}</title></path></a>`;
   }).join('');
   return `<svg class="map" viewBox="0 0 960 600" role="img" aria-label="United States map shaded by tax sale type">${paths}</svg>`;
 }
@@ -216,15 +236,17 @@ function countyMap(st, m) {
   const [lon] = geoCentroid(fc);
   const proj = geoMercator().rotate([-lon, 0]).fitSize([600, 460], fc);
   const p = geoPath(proj).digits(1);
+  // Shading a county by sale type is a claim about the law, so a pending state is drawn flat.
+  const pend = isPending(st.code);
   const paths = m.feats.map((f) => {
     const d = p(f); if (!d) return '';
     const i = m.byFeat.get(f.id);
-    if (st.code === 'CT') return `<path class="t-${st.type} ct" d="${d}" data-ct="1"><title>${esc(f.properties.name)} County (towns listed below)</title></path>`;
+    if (st.code === 'CT') return `<path class="t-${pend ? 'none' : st.type} ct" d="${d}" data-ct="1"><title>${esc(f.properties.name)} County (towns listed below)</title></path>`;
     if (i == null) return `<path class="t-none" d="${d}"><title>${esc(f.properties.name)} (no record)</title></path>`;
     const c = st.counties[i];
-    return `<path class="t-${c.saleType}" d="${d}" data-i="${i}" tabindex="0" role="button" aria-label="${esc(c.name)}"><title>${esc(c.name)}</title></path>`;
+    return `<path class="t-${pend ? 'none' : c.saleType}" d="${d}" data-i="${i}" tabindex="0" role="button" aria-label="${esc(c.name)}"><title>${esc(c.name)}</title></path>`;
   }).join('');
-  return `<svg class="map county-map" viewBox="0 0 600 460" role="img" aria-label="${esc(st.name)} county map shaded by sale type">${paths}</svg>`;
+  return `<svg class="map county-map" viewBox="0 0 600 460" role="img" aria-label="${esc(st.name)} county map${pend ? '' : ' shaded by sale type'}">${paths}</svg>`;
 }
 
 // ---------- layout ----------
@@ -280,7 +302,13 @@ function homePage() {
   const counts = Object.fromEntries(TYPES.map(([k]) => [k, states.filter((s) => s.type === k).length]));
   const total = states.reduce((n, s) => n + s.counties.length, 0);
   const chips = [['all', 'All'], ...TYPES.filter(([k]) => counts[k])].map(([k, l]) => `<button class="chip${k === 'all' ? ' on' : ''}" data-filter="${k}" aria-pressed="${k === 'all'}">${esc(l)}${k !== 'all' ? ` <span>${counts[k]}</span>` : ''}</button>`).join('');
-  const cards = states.map((s) => `<li class="card" data-type="${s.type}" data-name="${esc(s.name.toLowerCase())} ${s.code.toLowerCase()}">
+  const cards = states.map((s) => isPending(s.code) ? `<li class="card" data-type="none" data-name="${esc(s.name.toLowerCase())} ${s.code.toLowerCase()}">
+  <a href="/state/${s.code.toLowerCase()}/">
+    <span class="card-top"><span class="code">${s.code}</span><span class="pill t-none">${PENDING_LABEL}</span></span>
+    <span class="card-name">${esc(s.name)}</span>
+    <span class="card-facts"><span>${PENDING_LABEL}</span></span>
+    <span class="card-foot">${s.counties.length} ${s.code === 'CT' ? 'towns' : s.code === 'LA' ? 'parishes' : 'records'}</span>
+  </a></li>` : `<li class="card" data-type="${s.type}" data-name="${esc(s.name.toLowerCase())} ${s.code.toLowerCase()}">
   <a href="/state/${s.code.toLowerCase()}/">
     <span class="card-top"><span class="code">${s.code}</span><span class="pill t-${s.type}">${esc(s.typeLabel)}</span></span>
     <span class="card-name">${esc(s.name)}</span>
@@ -310,11 +338,17 @@ function homePage() {
 
 // ---------- state ----------
 const unmatchedAll = {};
+const builtStatePages = new Map();
 function statePage(st) {
   const m = matchCounties(st);
   if (m.unmatched.length) unmatchedAll[st.code] = m.unmatched;
   const f = st.fresh;
-  const freshLine = f.status === 'audited'
+  const PEND = pendingOf(st.code);
+  const PENDING_PANEL = (p) => `<div class="pending" role="note">
+  <p><b>${PENDING_LABEL}.</b> Aurigen has not been able to read ${esc(st.name)}'s official source yet, so <b>nothing on this page states ${esc(st.name)} law</b>. The county offices, platforms and links below are still accurate; the legal detail is deliberately blank rather than guessed.</p>
+  <p class="muted">Statute: ${p.url ? link(p.url, p.statute || 'Statute') : esc(p.statute || '—')}${p.govUrl && p.govUrl !== p.url ? ` · ${link(p.govUrl, 'state page designating it')}` : ''} · last attempt ${esc(String(p.lastAttempt || '').slice(0, 10))}</p>
+</div>`;
+  const freshLine = PEND ? PENDING_PANEL(PEND) : f.status === 'audited'
     ? `<p class="fresh ok">Checked against official sources on ${esc(f.lastChecked)}. Each statement is tied to the statute or agency page listed under Sources.</p>`
     : f.status === 'unconfirmed'
     ? `<p class="fresh flag" role="note">⚠ Not re-checked yet. Confirm with the county.</p>`
@@ -328,7 +362,14 @@ function statePage(st) {
   const otc = (o) => o ? `<p><b>${o.available ? 'Available' : 'Not generally available'}.</b> ${esc(o.note || '')}</p>` : '';
 
   const L = st.ledger;
-  const facts = (L ? auditedFacts(st, L) : [
+  const facts = (PEND ? [
+    ['Sale type', PENDING_LABEL],
+    ['Interest / penalty', PENDING_LABEL],
+    ['Redemption', PENDING_LABEL],
+    ['Bid method', PENDING_LABEL],
+    ['Statute', PEND.url ? link(PEND.url, PEND.statute || 'Statute') : esc(PEND.statute || '—')],
+    ['Auction timing', PENDING_LABEL],
+  ] : L ? auditedFacts(st, L) : [
     ['Sale type', `<span class="pill t-${st.type}">${esc(st.typeLabel)}</span>`],
     ['Interest / penalty', esc(st.rate) + (st.rateNote ? `<small>${esc(st.rateNote)}</small>` : '')],
     ['Redemption', esc(st.redemption)],
@@ -338,17 +379,27 @@ function statePage(st) {
   ]).map(([k, v]) => `<div class="fact"><dt>${k}</dt><dd>${v}</dd></div>`).join('');
 
   const countyLabel = st.code === 'CT' ? 'Towns' : st.code === 'LA' ? 'Parishes' : st.code === 'AK' ? 'Boroughs' : 'Counties';
-  const rows = st.counties.map((c, i) => `<li class="county" id="c-${slug(c.name)}" data-i="${i}" data-type="${c.saleType}" data-name="${esc(c.name.toLowerCase())}">
+  // Per-county sale type, redemption and interest are claims about the law, so a pending
+  // state ships the office, the platform, the link and the date only.
+  const rows = st.counties.map((c, i) => PEND
+    ? `<li class="county" id="c-${slug(c.name)}" data-i="${i}" data-type="none" data-name="${esc(c.name.toLowerCase())}">
+  <button type="button" data-i="${i}"><span class="cn">${esc(c.name)}</span><span class="cp">${esc(c.platform || '—')}</span></button></li>`
+    : `<li class="county" id="c-${slug(c.name)}" data-i="${i}" data-type="${c.saleType}" data-name="${esc(c.name.toLowerCase())}">
   <button type="button" data-i="${i}"><span class="cn">${esc(c.name)}</span><span class="cp">${esc(c.platform || '—')}</span><span class="pill t-${c.saleType}">${esc(typeName(c.saleType))}</span></button></li>`).join('');
-  const countyJson = JSON.stringify(st.counties.map((c) => ({ n: c.name, k: c.kind, t: c.saleType, tl: typeName(c.saleType), r: c.redemption, x: c.rate, p: c.platform, u: isUrl(c.url) ? c.url : '', no: c.notes, v: c.verifiedDate, e: c.extra, cs: countySource(st, c) })))
+  const countyJson = JSON.stringify(st.counties.map((c) => PEND
+    ? { n: c.name, k: c.kind, p: c.platform, u: isUrl(c.url) ? c.url : '', no: c.notes, v: c.verifiedDate, e: c.extra, cs: countySource(st, c) }
+    : { n: c.name, k: c.kind, t: c.saleType, tl: typeName(c.saleType), r: c.redemption, x: c.rate, p: c.platform, u: isUrl(c.url) ? c.url : '', no: c.notes, v: c.verifiedDate, e: c.extra, cs: countySource(st, c) }))
     .replace(/</g, '\\u003c');
 
   const sources = [];
-  if (L) sources.push(...ledgerSources(L));
+  if (PEND) {
+    if (PEND.url) sources.push(link(PEND.url, `${PEND.statute || 'Statute'} — ${PEND.urlTitle || 'official'}`) + ` (not yet read by Aurigen)`);
+    if (PEND.govUrl && PEND.govUrl !== PEND.url) sources.push(link(PEND.govUrl, 'State page designating that copy as official'));
+  } else if (L) sources.push(...ledgerSources(L));
   else if (st.officialLink) sources.push(link(st.officialLink, `${st.statute || 'State statute'} (official)`));
-  if (!L && f.sourceUrl) sources.push(link(f.sourceUrl, f.sourceTitle || f.sourceUrl) + ` — checked ${esc(f.lastChecked)}`);
-  if (!L && st.auctionSignup?.directLink) sources.push(link(st.auctionSignup.directLink, 'Auction platform'));
-  if (!L) for (const fc of st.featuredCounties) if (isUrl(fc.link)) sources.push(link(fc.link, `${fc.name} County office`));
+  if (!PEND && !L && f.sourceUrl) sources.push(link(f.sourceUrl, f.sourceTitle || f.sourceUrl) + ` — checked ${esc(f.lastChecked)}`);
+  if (!PEND && !L && st.auctionSignup?.directLink) sources.push(link(st.auctionSignup.directLink, 'Auction platform'));
+  if (!PEND && !L) for (const fc of st.featuredCounties) if (isUrl(fc.link)) sources.push(link(fc.link, `${fc.name} County office`));
 
   const body = `
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">All states</a> / ${esc(st.name)}</nav>
@@ -358,11 +409,11 @@ function statePage(st) {
   <p class="disclaimer-line">${DISCLAIMER}</p>
   <dl class="facts">${facts}</dl>
   ${changes}
-  ${!L && st.investorAlert ? `<div class="callout">${renderValue(st.investorAlert)}</div>` : ''}
+  ${!PEND && !L && st.investorAlert ? `<div class="callout">${renderValue(st.investorAlert)}</div>` : ''}
 </section>
 
 <section class="counties-sec" id="counties">
-  <div class="sec-head"><h2>${countyLabel} <span class="count">${st.counties.length}</span></h2>${legend}</div>
+  <div class="sec-head"><h2>${countyLabel} <span class="count">${st.counties.length}</span></h2>${PEND ? '' : legend}</div>
   ${st.code === 'CT' ? '<p class="muted">Connecticut sells tax liens town by town. The map shows its eight counties for orientation; pick a town from the list.</p>' : ''}
   <div class="split">
     <div class="map-pane" id="mapPane">${countyMap(st, m)}</div>
@@ -375,7 +426,7 @@ function statePage(st) {
   <button type="button" class="map-pill" id="mapPill" aria-controls="mapPane" aria-pressed="false">Map</button>
 </section>
 
-${L ? auditedProse(st, L) : `<section class="prose">
+${PEND ? '' : L ? auditedProse(st, L) : `<section class="prose">
   <h2>Summary</h2>
   ${bi(`<p>${esc(st.summary)}</p>${st.typeWhy ? `<p>${esc(st.typeWhy)}</p>` : ''}${st.rateWhy ? `<p>${esc(st.rateWhy)}</p>` : ''}`,
     es && `<p>${esc(es.summary)}</p>${es.typeWhy ? `<p>${esc(es.typeWhy)}</p>` : ''}${es.rateWhy ? `<p>${esc(es.rateWhy)}</p>` : ''}`)}
@@ -410,7 +461,13 @@ ${st.rules ? `<section class="prose rules"><h2>Detailed state rules</h2>${render
   </div>
 </div>
 <script type="application/json" id="countyData">${countyJson}</script>`;
-  return page({ title: `${st.name} tax ${st.type === 'lien' ? 'lien' : st.type === 'hybrid' ? 'lien & deed' : 'deed'} rules by county — Aurigen`, desc: `${st.name}: ${st.typeLabel}. Interest/penalty ${st.rate}. Redemption ${st.redemption}. ${st.counties.length} ${countyLabel.toLowerCase()} with auction platforms.`, canonical: `/state/${st.code.toLowerCase()}/`, body });
+  const title = PEND
+    ? `${st.name} tax sale rules by county — verification pending — Aurigen`
+    : `${st.name} tax ${st.type === 'lien' ? 'lien' : st.type === 'hybrid' ? 'lien & deed' : 'deed'} rules by county — Aurigen`;
+  const desc = PEND
+    ? `${st.name}: Aurigen has not yet read the official source, so no legal detail is stated. ${st.counties.length} ${countyLabel.toLowerCase()} with offices, platforms and official links.`
+    : `${st.name}: ${st.typeLabel}. Interest/penalty ${firstSentence(st.rate)} Redemption ${firstSentence(st.redemption)} ${st.counties.length} ${countyLabel.toLowerCase()} with auction platforms.`;
+  return page({ title, desc, canonical: `/state/${st.code.toLowerCase()}/`, body });
 }
 
 // ---------- simple pages ----------
@@ -457,7 +514,7 @@ fs.rmSync(PUB, { recursive: true, force: true });
 write('assets/site.css', css);
 write('assets/app.js', js);
 write('index.html', homePage());
-for (const st of states) write(`state/${st.code.toLowerCase()}/index.html`, statePage(st));
+for (const st of states) { const _sp = statePage(st); builtStatePages.set(st.code, _sp); write(`state/${st.code.toLowerCase()}/index.html`, _sp); }
 write('about/index.html', aboutPage());
 write('legal/index.html', legalPage());
 write('404.html', notFound());
@@ -524,11 +581,56 @@ const csvCell = (v) => { const s = Array.isArray(v) ? v.join(' | ') : String(v ?
 const csv = (rows) => '﻿' + rows.map((r) => r.map(csvCell).join(',')).join('\r\n') + '\r\n';
 write('extras/files/aurigen-counties.csv', csv([
   ['state', 'state_name', 'county_or_town', 'kind', 'sale_type', 'redemption', 'interest_or_penalty', 'auction_platform', 'official_link', 'sale_timing', 'notes', 'research_dated'],
-  ...states.flatMap((st) => st.counties.map((c) => [st.code, st.name, c.name, c.kind, typeName(c.saleType), c.redemption, c.rate, c.platform, isUrl(c.url) ? c.url : '',
+  ...states.flatMap((st) => st.counties.map((c) => [st.code, st.name, c.name, c.kind,
+    ...(isPending(st.code) ? [PENDING_LABEL, PENDING_LABEL, PENDING_LABEL] : [typeName(c.saleType), c.redemption, c.rate]), c.platform, isUrl(c.url) ? c.url : '',
     Object.entries(c.extra).filter(([k, v]) => /date|sale(month|window|frequency)/i.test(k) && typeof v === 'string').map(([, v]) => v).join(' | '), c.notes, c.verifiedDate])),
 ]));
 write('extras/files/aurigen-states.csv', csv([
   ['state', 'state_name', 'sale_type', 'interest_or_penalty', 'redemption', 'bid_method', 'statute', 'statute_link', 'auction_timing', 'otc_available', 'last_checked', 'check_status', 'check_source'],
-  ...states.map((s) => [s.code, s.name, s.typeLabel, s.rate, s.redemption, s.bidMethod, s.statute, s.officialLink, s.auctionTiming, s.otc ? (s.otc.available ? 'yes' : 'no') : '', s.fresh.lastChecked || '', s.fresh.status, s.fresh.sourceUrl || '']),
+  ...states.map((s) => {
+    const p = pendingOf(s.code);
+    if (p) return [s.code, s.name, PENDING_LABEL, PENDING_LABEL, PENDING_LABEL, PENDING_LABEL, p.statute || '', p.url || '', PENDING_LABEL, '', '', 'verification pending', p.govUrl || p.url || ''];
+    return [s.code, s.name, s.typeLabel, s.rate, s.redemption, s.bidMethod, s.statute, s.officialLink, s.auctionTiming, s.otc ? (s.otc.available ? 'yes' : 'no') : '', s.fresh.lastChecked || '', s.fresh.status, s.fresh.sourceUrl || ''];
+  }),
 ]));
 console.log(`Extras: ${sales.length} upcoming sale dates in the next 12 months across ${new Set(sales.map((x) => x.s + x.c)).size} counties`);
+
+// ---------- pending states assert nothing ----------
+// check-law.mjs proves the ledgers are sound. This proves the other half: that a state
+// declared pending in data/law/pending.json states no law on its own page. It reads the
+// real built HTML, so a renderer that merely looks right cannot satisfy it. Any failure
+// stops the build, which is what the restore workflow runs, so nothing can be deployed.
+{
+  const problems = [];
+  const pend = [...builtStatePages.keys()].filter((c) => isPending(c));
+  for (const code of pend) {
+    const html = builtStatePages.get(code);
+    const st = states.find((x) => x.code === code) || {};
+    const where = `/state/${code.toLowerCase()}/`;
+    if (!html.includes('class="pending"')) problems.push(`${where}: the verification-pending panel is missing`);
+    for (const key of ['"t":', '"tl":', '"r":', '"x":']) {
+      if (html.includes(key)) problems.push(`${where}: countyData still ships the legal key ${key}`);
+    }
+    for (const [label, value] of [['sale type', st.typeLabel], ['interest or penalty', st.rate], ['redemption', st.redemption], ['bid method', st.bidMethod]]) {
+      const v = String(value || '').trim();
+      if (v.length > 3 && html.includes(esc(v))) problems.push(`${where}: unaudited ${label} "${v}" is still on the page`);
+    }
+    for (const cls of ['t-lien', 't-deed', 't-hybrid', 't-redeemable']) {
+      if (html.includes(cls)) problems.push(`${where}: sale-type styling ${cls} still shades this state`);
+    }
+    for (const row of html.match(/<div class="fact"><dt>[^<]*<\/dt><dd>[\s\S]*?<\/dd><\/div>/g) || []) {
+      const mm = row.match(/<dt>([^<]*)<\/dt><dd>([\s\S]*?)<\/dd>/);
+      if (!mm) continue;
+      if (['Sale type', 'Interest / penalty', 'Redemption', 'Bid method', 'Auction timing'].includes(mm[1]) && mm[2] !== PENDING_LABEL) {
+        problems.push(`${where}: the "${mm[1]}" row reads "${mm[2].slice(0, 40)}" instead of ${PENDING_LABEL}`);
+      }
+    }
+  }
+  const missing = Object.keys(PENDING).filter((c) => !builtStatePages.has(c));
+  for (const c of missing) problems.push(`pending.json lists ${c}, which is not a state this site builds`);
+  if (problems.length) {
+    console.error('\nbuild-site: FAIL - a pending state is stating law (' + problems.length + ' problems)\n' + problems.map((x) => '  - ' + x).join('\n') + '\n');
+    process.exit(1);
+  }
+  console.log(`Pending states asserting nothing: ${pend.length}${pend.length ? ' (' + pend.join(', ') + ')' : ''}`);
+}
