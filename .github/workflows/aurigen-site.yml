@@ -18,7 +18,7 @@ on:
       restore_branch:
         description: "restore only: branch whose cloudflare/ folder to deploy"
         type: string
-        default: foundry/aurigen-free
+        default: foundry/aurigen-law-audit
       confirm_restore:
         description: "restore only: I know this republishes the full site, including any text not yet audited"
         type: boolean
