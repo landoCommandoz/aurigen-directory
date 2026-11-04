@@ -116,7 +116,12 @@ function claimQuotes(cs) {
     const label = st && !st.startsWith('none:') ? st : String(c.url || '').replace(/^https?:\/\//, '');
     const cite = isUrl(c.url) ? link(c.url, label) : esc(label);
     const checked = c.checked ? ` — checked ${esc(String(c.checked).slice(0, 10))}` : '';
-    seen.set(key, `<details class="quote"><summary>Statute text</summary><blockquote><p>${esc(q)}</p><footer>${cite}${checked}</footer></blockquote></details>`);
+    // This state serves its code only to a browser, so a person opened the official page and
+    // pasted the text. Never hide that: say who, and when, right under the words it supports.
+    const byHand = c.readBy
+      ? `<br><span class="byhand">Read by hand from the official page by ${esc(c.readBy)}${c.readAt ? ` on ${esc(String(c.readAt).slice(0, 10))}` : ''}, because this state serves its code only to a browser. A screenshot of the page is kept on file.</span>`
+      : '';
+    seen.set(key, `<details class="quote"><summary>Statute text</summary><blockquote><p>${esc(q)}</p><footer>${cite}${checked}${byHand}</footer></blockquote></details>`);
   }
   return [...seen.values()].join('');
 }
@@ -499,6 +504,7 @@ const legalPage = () => page({ title: 'Legal disclaimer — Aurigen County Resou
   <p>We do not collect or publish personal information about property owners.</p>
   <p>Tax sale investing carries real risk, including loss of your money. No result is promised or implied.</p>
   <p>Questions or corrections: see <a href="/about/#report">Report an error</a>.</p>
+  <p>Operated by Small Hours (Landon Brewington).</p>
 </section>` });
 
 const notFound = () => page({ title: 'Page not found — Aurigen', desc: 'Page not found.', canonical: '/404', body: `
@@ -626,6 +632,21 @@ console.log(`Extras: ${sales.length} upcoming sale dates in the next 12 months a
       }
     }
   }
+  // Every claim read by hand must print its line on the page it supports. The ledger carries
+  // readBy, check-law.mjs refuses a hand snapshot without it, and this is the last check: that the
+  // words actually reached the HTML.
+  let handCount = 0;
+  for (const st of states) {
+    const hand = ((st.ledger && st.ledger.claims) || []).filter((c) => c.readBy && c.shown !== '' && c.lang === 'en');
+    if (!hand.length) continue;
+    const page = builtStatePages.get(st.code) || '';
+    for (const c of hand) {
+      handCount++;
+      if (!page.includes(`Read by hand from the official page by ${esc(c.readBy)}`)) {
+        problems.push(`/state/${st.code.toLowerCase()}/: claim ${c.id} was read by hand by ${c.readBy}, and the page does not say so`);
+      }
+    }
+  }
   const missing = Object.keys(PENDING).filter((c) => !builtStatePages.has(c));
   for (const c of missing) problems.push(`pending.json lists ${c}, which is not a state this site builds`);
   if (problems.length) {
@@ -633,4 +654,5 @@ console.log(`Extras: ${sales.length} upcoming sale dates in the next 12 months a
     process.exit(1);
   }
   console.log(`Pending states asserting nothing: ${pend.length}${pend.length ? ' (' + pend.join(', ') + ')' : ''}`);
+  console.log(`Claims read by hand, each saying so on its page: ${handCount}`);
 }

@@ -2,7 +2,9 @@
 // The only sanctioned way to turn a downloaded statute page into text, normalize it, and check
 // that a quote appears in it word for word. check-law.mjs and watch-statutes.mjs must import these.
 import fs from 'node:fs';
+import path from 'node:path';
 import crypto from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 
 export const sha256 = (buf) => crypto.createHash('sha256').update(buf).digest('hex');
 
@@ -68,15 +70,35 @@ export function quoteFound(quote, text) {
   return flat(text).includes(q) || dehyphen(text).includes(q);
 }
 
-// Confirms a snapshot is exactly what fetch-source.mjs wrote: the text file's hash must match its
-// .json record. Returns { ok, reason, meta, text }.
+// The two tools allowed to write a snapshot. A downloaded copy is what every state should have; a
+// hand-read copy exists only for a state that serves its code to a browser and nothing else, and it
+// has to carry who read the page, when, and a screenshot of it.
+const SNAPSHOT_TOOLS = {
+  'foundry/tools/fetch-source.mjs': 'download',
+  'foundry/tools/hand-capture.mjs': 'hand',
+};
+
+// Confirms a snapshot is exactly what one of those tools wrote: the text file's hash must match its
+// .json record, and a hand-read copy must still have its provenance and a screenshot that hashes to
+// what the record claims. Returns { ok, reason, meta, text, kind }.
 export function loadSnapshot(jsonPath) {
   let meta;
   try { meta = JSON.parse(fs.readFileSync(jsonPath, 'utf8')); } catch (e) { return { ok: false, reason: `no snapshot record: ${e.message}` }; }
   const txtPath = jsonPath.replace(/\.json$/, '.txt');
   let text;
   try { text = fs.readFileSync(txtPath, 'utf8'); } catch { return { ok: false, reason: 'snapshot text file missing', meta }; }
-  if (meta.tool !== 'foundry/tools/fetch-source.mjs') return { ok: false, reason: 'snapshot not written by fetch-source.mjs', meta };
+  const kind = SNAPSHOT_TOOLS[meta.tool];
+  if (!kind) return { ok: false, reason: 'snapshot not written by fetch-source.mjs or hand-capture.mjs', meta };
   if (sha256(text) !== meta.text_sha256) return { ok: false, reason: 'snapshot text was changed after download (hash mismatch)', meta };
-  return { ok: true, meta, text };
+  if (kind === 'hand') {
+    if (meta.method !== 'hand') return { ok: false, reason: 'hand snapshot does not say method \"hand\"', meta };
+    if (!String(meta.captured_by || '').trim()) return { ok: false, reason: 'hand snapshot does not name who read the page (captured_by)', meta };
+    if (!String(meta.captured_at || '').trim()) return { ok: false, reason: 'hand snapshot does not say when it was read (captured_at)', meta };
+    if (!String(meta.screenshot || '').trim()) return { ok: false, reason: 'hand snapshot has no screenshot of the page', meta };
+    const shot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', meta.screenshot);
+    let bytes;
+    try { bytes = fs.readFileSync(shot); } catch { return { ok: false, reason: `screenshot missing: ${meta.screenshot}`, meta }; }
+    if (sha256(bytes) !== meta.screenshot_sha256) return { ok: false, reason: `screenshot was changed after capture (hash mismatch): ${meta.screenshot}`, meta };
+  }
+  return { ok: true, meta, text, kind };
 }

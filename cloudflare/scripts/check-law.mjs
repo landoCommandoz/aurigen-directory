@@ -3,6 +3,8 @@
 //   node scripts/check-law.mjs --state ak   check one state
 // Fails (exit 1) on any missing claim, missing citation field, bad snapshot, quote not found, URL or date
 // mismatch, unofficial domain, banned money word, or an unreachable claim without logged failed attempts.
+// A snapshot read by hand (foundry/tools/hand-capture.mjs, for a state that serves its code only to a
+// browser) is accepted, but only if the claim names the reader and the day, so the page can say so.
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadSnapshot, quoteFound } from '../../foundry/tools/law-text.mjs';
@@ -124,6 +126,17 @@ for (const code of codes) {
     if (c.url !== snap.meta.url && c.url !== snap.meta.final_url) err(`${where}: url differs from snapshot url/final_url`);
     if (day(c.checked) !== day(snap.meta.fetched_at)) err(`${where}: checked ${c.checked} differs from snapshot date ${day(snap.meta.fetched_at)}`);
     if (c.quote && !quoteFound(c.quote, snap.text)) err(`${where}: quote not found in snapshot ${c.snapshot}`);
+    // A page nobody here could download was read by a person. That is allowed, and it is never silent:
+    // the claim has to name the reader and the day in the ledger, which is what build-site.mjs prints
+    // under the quote. A hand-read snapshot with no readBy on the claim would show as an ordinary
+    // citation, so refuse it.
+    if (snap.kind === 'hand') {
+      if (c.readBy !== snap.meta.captured_by) err(`${where}: snapshot was read by hand, so the claim must carry readBy ${JSON.stringify(snap.meta.captured_by)}`);
+      if (day(c.readAt) !== day(snap.meta.captured_at)) err(`${where}: snapshot was read by hand on ${day(snap.meta.captured_at)}, so the claim must carry that readAt`);
+      if (!snap.meta.screenshot) err(`${where}: snapshot was read by hand with no screenshot on file`);
+    } else if (c.readBy || c.readAt) {
+      err(`${where}: claim says it was read by hand, but snapshot ${c.snapshot} was downloaded`);
+    }
   }
 }
 
