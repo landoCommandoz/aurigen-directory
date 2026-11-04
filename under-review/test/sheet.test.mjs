@@ -165,20 +165,23 @@ test('the checkout button points at Polar when configured, and the thank-you not
   assert.match(body, /href="https:\/\/buy\.polar\.sh\/polar_cl_TEST"/);
   assert.match(body, /Polar emails your license key/);
   const off = await (await handleSheet(new Request(ORIGIN + '/rules-sheet/'), {}, polarNo, { ...CFG, checkoutUrl: null })).text();
-  assert.match(off, /Checkout is not connected yet/);
+  assert.match(off, /The free checkout is not connected yet/);
   assert.doesNotMatch(off, /Polar emails your license key/);
   const bad = await (await handleSheet(new Request(ORIGIN + '/rules-sheet/'), {}, polarNo, { ...CFG, checkoutUrl: 'http://evil.example/x' })).text();
   assert.doesNotMatch(bad, /evil\.example/);
 });
 
-test('the two plain lines and the 14-day refund line are on the landing page and the full sheet', async () => {
+test('the two plain lines are on the landing page and the full sheet, and nothing promises a refund', async () => {
   const lines = ['This is information about state rules, not legal advice.', 'Confirm dates and rules with the county before you bid.'];
   const landing = await (await get('/rules-sheet/')).text();
   for (const l of lines) assert.ok(landing.includes(l), 'landing: ' + l);
-  assert.match(landing, /Refunds are given within 14 days of purchase/);
+  assert.match(landing, /Free, in exchange for an email address/);
+  assert.match(landing, /nothing is charged, so there is nothing to refund/);
+  assert.doesNotMatch(landing, /Refunds are given|paid once|$19/);
   const fullPage = await (await post('/rules-sheet/unlock', 'AURSHEET-1234-5678', polarOk)).text();
   for (const l of lines) assert.ok(fullPage.includes(l), 'full sheet: ' + l);
-  assert.match(fullPage, /Refunds are given within 14 days of purchase/);
+  assert.match(fullPage, /nothing is charged, so there is nothing to refund/);
+  assert.doesNotMatch(fullPage, /Refunds are given|paid once|$19/);
 });
 
 test('publish: listing the sheet removes noindex and adds the home page link; unlisting puts both back', async () => {

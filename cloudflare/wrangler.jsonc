@@ -11,7 +11,7 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash",
-    "run_worker_first": ["/extras", "/extras/*", "/api/*"]
+    "run_worker_first": ["/extras", "/extras/*", "/api/*", "/rules-sheet", "/rules-sheet/*"]
   },
   "d1_databases": [
     { "binding": "DB", "database_name": "aurigen-db", "database_id": "2df92d4f-383a-4005-84e3-8fe774f45182" }

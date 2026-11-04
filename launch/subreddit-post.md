@@ -4,7 +4,7 @@ Title: I checked tax sale rules for 44 states against the official statutes and 
 
 Body:
 
-I made this, it costs $19, and there is a free sample of two full states so you can judge it first.
+I made this. It is free in exchange for an email address, and there is a sample of two full states on the page so you can judge it before you hand over the address.
 
 For each state it lists how the sale works: sale type, the interest or penalty rate set by law, redemption, bid method, where and when the sale is held, how to register and pay, buying after the sale, money left after the sale, and what to check before bidding. Every line has the statute, a link to the official page, the date I checked it, and the exact words it rests on, so you can verify it yourself in a minute.
 

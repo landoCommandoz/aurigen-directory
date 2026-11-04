@@ -5,6 +5,10 @@
 // unless the URL has ?preview=1. License keys are checked with Polar's PUBLIC endpoint;
 // no Polar token is stored here.
 
+// The free Rules Sheet lives in one module shared with the under-review page, so there is only
+// one copy of the sheet text and one copy of its data. wrangler.jsonc routes /rules-sheet* here.
+import { handleSheet } from '../../under-review/sheet.js';
+
 const POLAR_VALIDATE = 'https://api.polar.sh/v1/customer-portal/license-keys/validate';
 const CACHE_SECONDS = 600;
 
@@ -13,6 +17,8 @@ export default {
     const url = new URL(request.url);
     const p = url.pathname;
     try {
+      const sheet = await handleSheet(request, env);
+      if (sheet) return sheet;
       if (p === '/extras' || p.startsWith('/extras/')) return await extras(request, env, url);
       if (p === '/api/license' && request.method === 'POST') return await apiLicense(request, env);
       if (p === '/api/follow' && request.method === 'POST') return await apiFollow(request, env);

@@ -1,5 +1,6 @@
-// "Aurigen Rules Sheet": a paid, source-by-source reading of the audited tax sale rules, served by the live Worker.
-// /rules-sheet/            the page: what it is, the price, a free sample, the key form (no JavaScript needed)
+// "Aurigen Rules Sheet": a free, source-by-source reading of the audited tax sale rules, served by the live Worker.
+// Free in exchange for an email address: the Polar checkout is $0, takes the email and sends the key.
+// /rules-sheet/            the page: what it is, a free sample, the key form (no JavaScript needed)
 // /rules-sheet/unlock      POST key=...  checks the key with Polar, then shows every state
 // /rules-sheet/sheet.csv   POST key=...  the same rows as a CSV file
 // Data comes from sheet.json (built by foundry/tools/build-sheet.mjs from claims that passed the audit gate;
@@ -15,7 +16,6 @@ const SAMPLE_CODES = ['PA', 'TX'];
 
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const safeUrl = (u) => (/^https?:\/\/[^\s"'<>]+$/.test(String(u)) ? String(u) : '#');
-const money = (n) => '$' + Number(n || 0).toFixed(0);
 const STATUS_LABEL = { 'checked': 'Checked', 'checked with gaps': 'Checked with gaps' };
 
 const CSS = `
@@ -79,7 +79,7 @@ const PLAIN = '<p class="plain"><b>This is information about state rules, not le
 function shell(title, inner, { noindex }) {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 ${noindex ? '<meta name="robots" content="noindex">' : ''}<title>${esc(title)}</title><style>${CSS}</style></head><body><main>${inner}</main>
-<footer><p>${esc(DISCLAIMER)}</p><p>Payments are handled by Polar, the seller of record. Questions or a refund request: reply to your Polar receipt email, or open an issue at <a href="https://github.com/landoCommandoz/aurigen-directory/issues" rel="noopener">github.com/landoCommandoz/aurigen-directory</a>. Refunds are given within 14 days of purchase if the sheet does not match this page.</p><p><a href="/status.json">Status</a></p></footer></body></html>`;
+<footer><p>${esc(DISCLAIMER)}</p><p>The sheet is free. Polar runs the $0 checkout that takes your email address and sends your key; nothing is charged, so there is nothing to refund. Questions: email <a href="mailto:landonbrewington12+smallhours@gmail.com">landonbrewington12+smallhours@gmail.com</a> or open an issue at <a href="https://github.com/landoCommandoz/aurigen-directory/issues" rel="noopener">github.com/landoCommandoz/aurigen-directory</a>.</p><p><a href="/status.json">Status</a></p></footer></body></html>`;
 }
 
 function intro() {
@@ -93,12 +93,12 @@ function landing(state, cfg = CONFIG, listing = LISTING) {
   const clean = SHEET.states.filter((s) => s.status === 'checked');
   const sample = [...clean.filter((s) => SAMPLE_CODES.includes(s.code)), ...clean.filter((s) => !SAMPLE_CODES.includes(s.code))].slice(0, 2);
   const buy = cfg.checkoutUrl && /^https:\/\//.test(cfg.checkoutUrl)
-    ? `<a class="btn" href="${esc(cfg.checkoutUrl)}" rel="noopener">Buy the sheet: ${money(cfg.priceUsd)} once</a>`
-    : '<span class="btn off" role="note">Checkout is not connected yet</span>';
+    ? `<a class="btn" href="${esc(cfg.checkoutUrl)}" rel="noopener">Get the sheet free: give an email address</a>`
+    : '<span class="btn off" role="note">The free checkout is not connected yet</span>';
   const inner = `${intro()}
 ${PLAIN}
-<p class="price">${money(cfg.priceUsd)}, paid once.</p>
-<p>Your license key works for 12 months. States are added to the sheet as they finish the audit; no dates are promised. Refunds are given within 14 days of purchase if the sheet does not match this page.</p>
+<p class="price">Free, in exchange for an email address.</p>
+<p>Polar takes the email address and sends your key; nothing is charged. The key works for 12 months, and states are added to the sheet as they finish the audit, with no dates promised.</p>
 <p>${buy}</p>
 <h2>What is in it</h2>
 <ul>
@@ -117,7 +117,7 @@ ${PLAIN}
 <p>Two full states, exactly as a buyer sees them.</p>
 ${sample.map((s) => stateHtml(s)).join('')}
 ${state && state.thanks ? '<p role="status"><b>Thank you.</b> Polar emails your license key. Paste it below to open the full sheet.</p>' : ''}
-<h2>Already bought?</h2>
+<h2>Already have a key?</h2>
 <form method="post" action="${PATH}unlock"><label for="key">License key from your Polar email</label>
 <input type="text" id="key" name="key" autocomplete="off" spellcheck="false" maxlength="120" required><p><button class="btn" type="submit">Open the full sheet</button></p></form>
 ${state && state.error ? `<p role="alert"><b>${esc(state.error)}</b></p>` : ''}

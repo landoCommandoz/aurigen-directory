@@ -10,7 +10,7 @@ How honest I can be about its limits: 7 states are marked "checked". 37 are mark
 
 Where the sources come from: state legislature code sites and enacted acts, state revenue and land office pages, and a county treasurer's own page when a detail only exists at county level.
 
-It costs $19, one time, and the key works for 12 months while more states are added. There is a free sample with two full states, so you can judge it before you pay. Refunds are given within 14 days if it does not match the page.
+It is free in exchange for an email address, and the key works for 12 months while more states are added. There is a sample with two full states on the page, so you can judge it before you hand over the address. Nothing is charged, so there is nothing to refund.
 
 Sheet and free sample: https://aurigen.landonbrewington12.workers.dev/rules-sheet/
 What was checked, state by state: https://aurigen-showcase.landonbrewington12.workers.dev
