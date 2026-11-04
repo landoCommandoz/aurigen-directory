@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ok",
+ "slug": "okcounty-important-dates",
+ "url": "https://docs.oklahomacounty.org/treasurer/ImportantDates.asp",
+ "final_url": "https://docs.oklahomacounty.org/treasurer/ImportantDates.asp",
+ "fetched_at": "2026-10-27T06:42:01.435Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "db10d854bdca7d7aa3828fa5894110d4a8f0fff0462e6852362cf844c2f02267",
+ "raw_bytes": 7402,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "e5381f54b389dec0ae5ec6b1167b05688ad2d92dce5aaf071b310d06b934cef9",
+ "text_chars": 1402
+}

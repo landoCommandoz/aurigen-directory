@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ia",
+ "slug": "r6-sf569-6920",
+ "url": "https://www.legis.iowa.gov/legislation/BillBook?ga=91&ba=SF569",
+ "final_url": "https://www.legis.iowa.gov/legislation/BillBook?ga=91&ba=SF569",
+ "fetched_at": "2026-11-01T10:27:27.668Z",
+ "http_status": 200,
+ "content_type": "text/html;charset=utf-8",
+ "raw_sha256": "5dd7cc61a88e521747d8e952907a1d36cdb51ea4a59c4dedf1fa8ed5d81413b8",
+ "raw_bytes": 445604,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "3bb7334d57c4770e4c02dbe7a90c676ea179a400fa196bdfc58261a996783fa2",
+ "text_chars": 35418
+}

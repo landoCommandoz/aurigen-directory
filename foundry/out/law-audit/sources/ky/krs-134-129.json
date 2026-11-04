@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ky",
+ "slug": "krs-134-129",
+ "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=40088",
+ "final_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=40088",
+ "fetched_at": "2026-10-27T06:26:08.493Z",
+ "http_status": 200,
+ "content_type": "application/PDF",
+ "raw_sha256": "91995e97e6ff360692953eb6d21370449184e9217cd9c01c7a09297e674baf5d",
+ "raw_bytes": 10752,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "5c77bf6b423a5f9910902888da39bdf8ce82ad27028a4bb51e2bba2ced504761",
+ "text_chars": 5456
+}

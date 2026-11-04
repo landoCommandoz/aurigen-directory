@@ -24,17 +24,18 @@
    "id": "rate",
    "lang": "en",
    "field": "rate",
-   "shown": "18%",
+   "shown": "Rate set by law: 1.5% per month or part of a month, simple interest, on the amount paid (excluding surplus)",
    "original": "18%",
-   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1361",
-   "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1361.json",
-   "checked": "2026-10-27",
+   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1334",
+   "snapshot": "foundry/out/law-audit/sources/dc/r6-dcc-47-1334.json",
+   "checked": "2026-11-01",
    "sourceKind": "code",
-   "statute": "D.C. Code § 47-1361",
-   "quote": "the amount paid by the purchaser for the real property exclusive of surplus, with interest thereon",
-   "status": "flagged",
-   "pass2": "flagged: rate figure not found in fetched text",
-   "flagReason": "Fetched D.C. Code §§ 47-1330 to 47-1382.01 say redemption includes \"interest thereon\" but the 18% figure was not found in the sections read; confirm the rate section"
+   "statute": "D.C. Code § 47-1334(b)",
+   "quote": "The purchaser shall receive simple interest of 1.5% per month or portion thereof on the amount paid for the real property, excluding surplus",
+   "status": "corrected",
+   "pass2": "run 6: rate section found; 18% was the annualised figure, the statute says 1.5% per month simple interest",
+   "correctionKind": "substantive",
+   "correctionBasis": "figure replaced: the statute states 1.5% per month, not 18%"
   },
   {
    "id": "rateNote",
@@ -49,7 +50,9 @@
    "statute": "D.C. Code § 47-1382",
    "quote": "a final judgment foreclosing the right of redemption shall direct the Mayor to execute and deliver a deed to the purchaser in fee simple",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "redemption",
@@ -64,7 +67,9 @@
    "statute": "D.C. Code § 47-1360",
    "quote": "may redeem the real property at any time until the foreclosure of the right of redemption is final.",
    "status": "corrected",
-   "pass2": "was \"6–12 months\""
+   "pass2": "was \"6–12 months\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "bidMethod",
@@ -79,7 +84,9 @@
    "statute": "D.C. Code § 47-1346",
    "quote": "Before making any bid, a potential purchaser shall have on deposit 20% of the purchase price.",
    "status": "corrected",
-   "pass2": "trimmed: \"highest bidder\" not in fetched text"
+   "pass2": "trimmed: \"highest bidder\" not in fetched text",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "statute",
@@ -94,7 +101,9 @@
    "statute": "D.C. Code § 47-1332",
    "quote": "the Mayor shall sell all real property on which the tax is in arrears.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "auctionPlatform",
@@ -109,7 +118,9 @@
    "statute": "D.C. Code § 47-1332",
    "quote": "The Mayor shall designate a single agency to conduct tax sales.",
    "status": "corrected",
-   "pass2": "removed in-person building claim (no source)"
+   "pass2": "removed in-person building claim (no source)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "auctionTiming",
@@ -124,7 +135,9 @@
    "statute": "none: administrative practice (OTR)",
    "quote": "Block-out periods apply to purchase OTC tax liens around the scheduled annual, First-Come-First-Serve, and Discount tax sale events, at OTR's discretion.",
    "status": "corrected",
-   "pass2": "removed 2025 dates (past, no source fetched)"
+   "pass2": "removed 2025 dates (past, no source fetched)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.1",
@@ -139,7 +152,9 @@
    "statute": "D.C. Code § 47-1353(a) (OTR page)",
    "quote": "an Over-the-Counter (OTC) Sale allows purchasers an opportunity to buy specific tax liens to properties that were presented but not sold to third-party purchasers at the annual real property tax sale.",
    "status": "corrected",
-   "pass2": "removed \"starting July 1, running daily\" (no source)"
+   "pass2": "removed \"starting July 1, running daily\" (no source)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.2",
@@ -154,7 +169,9 @@
    "statute": "D.C. Code § 47-1346",
    "quote": "Before making any bid, a potential purchaser shall have on deposit 20% of the purchase price.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "summary.3",
@@ -169,7 +186,9 @@
    "statute": "D.C. Code § 47-1332",
    "quote": "the Mayor shall sell all real property on which the tax is in arrears.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "typeWhy.1",
@@ -184,7 +203,9 @@
    "statute": "none: administrative practice (OTR)",
    "quote": "Certificates of Sale will be mailed to the respective purchasers.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "typeWhy.2",
@@ -199,7 +220,9 @@
    "statute": "D.C. Code § 47-1360",
    "quote": "may redeem the real property at any time until the foreclosure of the right of redemption is final.",
    "status": "corrected",
-   "pass2": "was \"6-12 month redemption period\""
+   "pass2": "was \"6-12 month redemption period\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "typeWhy.3",
@@ -214,7 +237,9 @@
    "statute": "D.C. Code § 47-1360",
    "quote": "may redeem the real property at any time until the foreclosure of the right of redemption is final.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "rateWhy.1",
@@ -229,7 +254,9 @@
    "statute": "D.C. Code § 47-1361",
    "quote": "the amount paid by the purchaser for the real property exclusive of surplus, with interest thereon",
    "status": "corrected",
-   "pass2": "trimmed: removed the 18% figure (see rate, flagged)"
+   "pass2": "trimmed: removed the 18% figure (see rate, flagged)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "rateWhy.2",
@@ -244,7 +271,9 @@
    "statute": "D.C. Code § 47-1361",
    "quote": "the amount paid by the purchaser for the real property exclusive of surplus, with interest thereon",
    "status": "corrected",
-   "pass2": "removed: banned word and unconfirmed rate claim"
+   "pass2": "removed: banned word and unconfirmed rate claim",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "rateWhy.3",
@@ -259,7 +288,9 @@
    "statute": "D.C. Code § 47-1361",
    "quote": "the amount paid by the purchaser for the real property exclusive of surplus, with interest thereon",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "keyNotes.1.1",
@@ -274,7 +305,9 @@
    "statute": "none: administrative practice (OTR)",
    "quote": "Certificates of Sale will be mailed to the respective purchasers.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "keyNotes.1.2",
@@ -289,7 +322,9 @@
    "statute": "D.C. Code § 47-1382",
    "quote": "a final judgment foreclosing the right of redemption shall direct the Mayor to execute and deliver a deed to the purchaser in fee simple",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "keyNotes.2",
@@ -304,7 +339,9 @@
    "statute": "D.C. Code § 47-1370",
    "quote": "At any time after the expiration of a 6-month waiting period following the date of the tax sale, a purchaser may file a complaint to foreclose the right of redemption",
    "status": "corrected",
-   "pass2": "trimmed: removed \"minimum 18-month total timeline\" (not in quote)"
+   "pass2": "trimmed: removed \"minimum 18-month total timeline\" (not in quote)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "keyNotes.3",
@@ -319,7 +356,9 @@
    "statute": "D.C. Code § 47-1361",
    "quote": "the amount paid by the purchaser for the real property exclusive of surplus, with interest thereon",
    "status": "corrected",
-   "pass2": "rewritten: old text used a banned word"
+   "pass2": "rewritten: old text used a banned word",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "keyNotes.4",
@@ -334,7 +373,9 @@
    "statute": "D.C. Code § 47-1361",
    "quote": "the amount paid by the purchaser for the real property exclusive of surplus, with interest thereon",
    "status": "corrected",
-   "pass2": "removed: \"~98% redeem\" has no source"
+   "pass2": "removed: \"~98% redeem\" has no source",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "keyNotes.5",
@@ -349,7 +390,9 @@
    "statute": "D.C. Code § 47-1382.01",
    "quote": "Upon issuing a final judgment foreclosing the right of redemption, the Superior Court of the District of Columbia shall appoint a trustee and shall order that the trustee sell the property",
    "status": "corrected",
-   "pass2": "trimmed: \"surplus returned\" replaced by the trustee sale the quote states"
+   "pass2": "trimmed: \"surplus returned\" replaced by the trustee sale the quote states",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "keyNotes.6",
@@ -364,7 +407,9 @@
    "statute": "D.C. Code § 47-1346",
    "quote": "Before making any bid, a potential purchaser shall have on deposit 20% of the purchase price.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "notBeginnerReason.1",
@@ -379,7 +424,9 @@
    "statute": "D.C. Code § 47-1346",
    "quote": "Before making any bid, a potential purchaser shall have on deposit 20% of the purchase price.",
    "status": "corrected",
-   "pass2": "trimmed: removed \"very high property values\" (no source)"
+   "pass2": "trimmed: removed \"very high property values\" (no source)",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "notBeginnerReason.2",
@@ -394,7 +441,9 @@
    "statute": "D.C. Code § 47-1346",
    "quote": "Before making any bid, a potential purchaser shall have on deposit 20% of the purchase price.",
    "status": "corrected",
-   "pass2": "removed: no official source"
+   "pass2": "removed: no official source",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "beginnerTip.1",
@@ -409,7 +458,9 @@
    "statute": "D.C. Code § 47-1346",
    "quote": "Before making any bid, a potential purchaser shall have on deposit 20% of the purchase price.",
    "status": "corrected",
-   "pass2": "removed: no official source"
+   "pass2": "removed: no official source",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "beginnerTip.2",
@@ -424,7 +475,9 @@
    "statute": "D.C. Code § 47-1346",
    "quote": "Before making any bid, a potential purchaser shall have on deposit 20% of the purchase price.",
    "status": "corrected",
-   "pass2": "removed: no official source"
+   "pass2": "removed: no official source",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "risks.1",
@@ -439,7 +492,9 @@
    "statute": "D.C. Code § 47-1346",
    "quote": "Before making any bid, a potential purchaser shall have on deposit 20% of the purchase price.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "risks.2",
@@ -454,7 +509,9 @@
    "statute": "D.C. Code § 47-1332",
    "quote": "For improved Class 1A or 1B Property, the tax amount to be sold is less than $2,500",
    "status": "corrected",
-   "pass2": "was \"government-owned and historic properties are excluded\" (not in fetched text)"
+   "pass2": "was \"government-owned and historic properties are excluded\" (not in fetched text)",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "risks.3",
@@ -469,7 +526,9 @@
    "statute": "D.C. Code § 47-1360",
    "quote": "may redeem the real property at any time until the foreclosure of the right of redemption is final.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "risks.4",
@@ -484,7 +543,9 @@
    "statute": "D.C. Code § 47-1360",
    "quote": "may redeem the real property at any time until the foreclosure of the right of redemption is final.",
    "status": "corrected",
-   "pass2": "removed: no official source"
+   "pass2": "removed: no official source",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "ddExtra.1",
@@ -499,7 +560,9 @@
    "statute": "none: administrative practice (OTR)",
    "quote": "A tax lien purchaser acts at their own risk and must exercise due diligence in selecting real properties upon which to purchase in good faith.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "ddExtra.2",
@@ -514,7 +577,9 @@
    "statute": "none: administrative practice (OTR)",
    "quote": "A tax lien purchaser acts at their own risk and must exercise due diligence in selecting real properties upon which to purchase in good faith.",
    "status": "corrected",
-   "pass2": "removed: no official source"
+   "pass2": "removed: no official source",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "ddExtra.3",
@@ -529,7 +594,9 @@
    "statute": "D.C. Code § 47-1370",
    "quote": "At any time after the expiration of a 6-month waiting period following the date of the tax sale, a purchaser may file a complaint to foreclose the right of redemption",
    "status": "corrected",
-   "pass2": "was \"6 months standard, 12 months owner-occupied\""
+   "pass2": "was \"6 months standard, 12 months owner-occupied\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.platform",
@@ -544,7 +611,9 @@
    "statute": "none: administrative practice (OTR)",
    "quote": "OTC tax liens may be purchased online Monday through Friday (excluding holidays), from 8 am to 3 pm.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.1",
@@ -559,7 +628,9 @@
    "statute": "none: administrative practice (OTR)",
    "quote": "OTC tax liens may be purchased online Monday through Friday (excluding holidays), from 8 am to 3 pm.",
    "status": "corrected",
-   "pass2": "removed: mytax.dc.gov account step not in fetched source"
+   "pass2": "removed: mytax.dc.gov account step not in fetched source",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "signup.steps.2",
@@ -574,7 +645,9 @@
    "statute": "none: administrative practice (OTR)",
    "quote": "Block-out periods apply to purchase OTC tax liens around the scheduled annual, First-Come-First-Serve, and Discount tax sale events, at OTR's discretion.",
    "status": "corrected",
-   "pass2": "removed \"usually begins July 1\""
+   "pass2": "removed \"usually begins July 1\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.3",
@@ -589,7 +662,9 @@
    "statute": "D.C. Code § 47-1346",
    "quote": "Before making any bid, a potential purchaser shall have on deposit 20% of the purchase price.",
    "status": "corrected",
-   "pass2": "removed wire transfer detail"
+   "pass2": "removed wire transfer detail",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.steps.4",
@@ -604,7 +679,9 @@
    "statute": "D.C. Code § 47-1346",
    "quote": "The sale shall be held by the Mayor on the date and at the place stated in the public notice.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.deposit.1",
@@ -619,7 +696,9 @@
    "statute": "D.C. Code § 47-1346",
    "quote": "Before making any bid, a potential purchaser shall have on deposit 20% of the purchase price.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "wording",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "signup.deposit.2",
@@ -634,7 +713,9 @@
    "statute": "D.C. Code § 47-1346",
    "quote": "Before making any bid, a potential purchaser shall have on deposit 20% of the purchase price.",
    "status": "corrected",
-   "pass2": "removed: no official source"
+   "pass2": "removed: no official source",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "otc.available",
@@ -649,7 +730,9 @@
    "statute": "D.C. Code § 47-1353(a) (OTR page)",
    "quote": "an Over-the-Counter (OTC) Sale allows purchasers an opportunity to buy specific tax liens to properties that were presented but not sold to third-party purchasers at the annual real property tax sale.",
    "status": "corrected",
-   "pass2": "was \"Not generally available\""
+   "pass2": "was \"Not generally available\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "otc.note.1",
@@ -664,7 +747,9 @@
    "statute": "D.C. Code § 47-1353(a) (OTR page)",
    "quote": "Such tax liens can now be purchased for the amount for which the real property was bid-off to the District, plus accrued interest.",
    "status": "corrected",
-   "pass2": "was \"No OTC program\""
+   "pass2": "was \"No OTC program\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "platforms.1",
@@ -679,7 +764,9 @@
    "statute": "none: administrative practice (OTR)",
    "quote": "OTC tax liens may be purchased online Monday through Friday (excluding holidays), from 8 am to 3 pm.",
    "status": "corrected",
-   "pass2": "ok"
+   "pass2": "ok",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "surplus.1",
@@ -694,24 +781,27 @@
    "statute": "D.C. Code § 47-1382.01",
    "quote": "Upon issuing a final judgment foreclosing the right of redemption, the Superior Court of the District of Columbia shall appoint a trustee and shall order that the trustee sell the property",
    "status": "corrected",
-   "pass2": "was \"Status pending\""
+   "pass2": "was \"Status pending\"",
+   "correctionKind": "substantive",
+   "correctionBasis": "reviewed by reading the old and new text"
   },
   {
    "id": "es.rate",
    "lang": "es",
    "enId": "rate",
    "field": "rate",
-   "shown": "18%",
+   "shown": "Tasa fijada por la ley: 1,5% por mes o parte de un mes, interés simple, sobre el monto pagado (sin incluir el excedente)",
    "original": "18%",
-   "statute": "D.C. Code § 47-1361",
-   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1361",
+   "statute": "D.C. Code § 47-1334(b)",
+   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1334",
    "sourceKind": "code",
-   "quote": "the amount paid by the purchaser for the real property exclusive of surplus, with interest thereon",
-   "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1361.json",
-   "checked": "2026-10-27",
-   "status": "flagged",
-   "flagReason": "Fetched D.C. Code §§ 47-1330 to 47-1382.01 say redemption includes \"interest thereon\" but the 18% figure was not found in the sections read; confirm the rate section",
-   "pass2": "ok: matches English claim"
+   "quote": "The purchaser shall receive simple interest of 1.5% per month or portion thereof on the amount paid for the real property, excluding surplus",
+   "snapshot": "foundry/out/law-audit/sources/dc/r6-dcc-47-1334.json",
+   "checked": "2026-11-01",
+   "status": "corrected",
+   "pass2": "matches English claim",
+   "correctionKind": "substantive",
+   "correctionBasis": "figure replaced: the statute states 1.5% per month, not 18%"
   },
   {
    "id": "es.redemption",
@@ -727,7 +817,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1360.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.1",
@@ -743,7 +835,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/otr-tax-sale.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.2",
@@ -759,7 +853,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1346.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.summary.3",
@@ -775,7 +871,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1332.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.typeWhy.1",
@@ -791,7 +889,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/otr-tax-sale.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.rateWhy.1",
@@ -807,7 +907,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1361.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.rateWhy.2",
@@ -823,7 +925,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1361.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.notBeginnerReason.1",
@@ -839,7 +943,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1346.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.notBeginnerReason.2",
@@ -855,7 +961,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1346.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "no English twin; set by figure comparison"
   },
   {
    "id": "es.notBeginnerReason.3",
@@ -871,7 +979,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1346.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.beginnerTip.1",
@@ -887,7 +997,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1346.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.beginnerTip.2",
@@ -903,7 +1015,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1346.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.risks.1",
@@ -919,7 +1033,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1346.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.risks.2",
@@ -935,7 +1051,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1332.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.risks.3",
@@ -951,7 +1069,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1360.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.risks.4",
@@ -967,7 +1087,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1360.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.ddExtra.1",
@@ -983,7 +1105,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/otr-tax-sale.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.ddExtra.2",
@@ -999,7 +1123,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/otr-tax-sale.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.ddExtra.3",
@@ -1015,7 +1141,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1370.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.platform",
@@ -1031,7 +1159,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/otr-tax-sale.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.1",
@@ -1047,7 +1177,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/otr-tax-sale.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "substantive",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.signup.steps.2",
@@ -1063,7 +1195,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/otr-tax-sale.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.3",
@@ -1079,7 +1213,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1346.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.steps.4",
@@ -1095,7 +1231,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1346.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.deposit.1",
@@ -1111,7 +1249,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1346.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "wording",
+   "correctionBasis": "inherited from the English claim it mirrors"
   },
   {
    "id": "es.signup.deposit.2",
@@ -1127,7 +1267,9 @@
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1346.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "removed with English claim"
+   "pass2": "removed with English claim",
+   "correctionKind": "removed-opinion",
+   "correctionBasis": "claim removed; labelled by reading"
   },
   {
    "id": "es.otc.note.1",
@@ -1143,7 +1285,13 @@
    "snapshot": "foundry/out/law-audit/sources/dc/otr-tax-sale.json",
    "checked": "2026-10-27",
    "status": "corrected",
-   "pass2": "ok: rewritten to match English claim, adds nothing"
+   "pass2": "ok: rewritten to match English claim, adds nothing",
+   "correctionKind": "substantive",
+   "correctionBasis": "inherited from the English claim it mirrors"
   }
+ ],
+ "checkStatus": "checked with gaps",
+ "gapIds": [
+  "DC-1"
  ]
 }

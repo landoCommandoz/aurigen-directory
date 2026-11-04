@@ -15,18 +15,19 @@ for (const p of statePieces(st)) {
     if (status !== 'unreachable') Object.assign(cl, Q[cite]);
     Object.assign(cl, { status, pass2 }, extra);
     if (status === 'unreachable') cl.checked = extra.attemptedAt;
+    if (status === 'corrected') { cl.correctionKind = cl.correctionKind || (shown === '' ? 'removed-opinion' : 'substantive'); cl.correctionBasis = cl.correctionBasis || (cl.correctionKind === 'wording' ? 'same rule, plainer or more exact words or citation' : cl.correctionKind === 'removed-opinion' ? 'advice or claim no official source states, taken out' : 'rule, number, date, process or who runs the sale changed or removed'); }
     if (status === 'supported' && shown !== p.text) throw new Error('supported but changed ' + p.id);
   } else {
     const e = ES[p.id]; if (!e) throw new Error('no ES decision for ' + p.id);
     const en = byId[e[0]];
     cl = { id: p.id, lang: 'es', enId: e[0], field: p.field, shown: e[1], original: p.text };
-    for (const k of ['statute', 'url', 'sourceKind', 'quote', 'snapshot', 'checked', 'status', 'attempts', 'attemptedAt', 'flagReason']) if (en[k] !== undefined) cl[k] = en[k];
-    if (cl.status === 'supported' && cl.shown !== p.text) cl.status = 'corrected';
+    for (const k of ['statute', 'url', 'sourceKind', 'quote', 'snapshot', 'checked', 'status', 'attempts', 'attemptedAt', 'flagReason', 'correctionKind', 'correctionBasis']) if (en[k] !== undefined) cl[k] = en[k];
+    if (cl.status === 'supported' && cl.shown !== p.text) { cl.status = 'corrected'; cl.correctionKind = 'wording'; cl.correctionBasis = 'inherited from the English claim it mirrors'; }
     cl.pass2 = cl.shown === '' ? 'removed with English claim' : (p.text === cl.shown ? 'ok: matches English claim' : 'ok: rewritten to match English claim, adds nothing');
   }
   byId[p.id] = cl; claims.push(cl);
 }
-  for (const [after, a] of added) { const cl = { lang: 'en', original: null, added: true, ...Q[a.cite], ...a, status: a.status || 'corrected', pass2: a.pass2 || 'ok' }; delete cl.cite; claims.splice(claims.findIndex((x) => x.id === after) + 1, 0, cl); }
+  for (const [after, a] of added) { const cl = { lang: 'en', original: null, added: true, ...Q[a.cite], ...a, status: a.status || 'corrected', pass2: a.pass2 || 'ok', correctionKind: a.correctionKind || 'substantive', correctionBasis: 'new statement added with an official quote' }; delete cl.cite; claims.splice(claims.findIndex((x) => x.id === after) + 1, 0, cl); }
   const ledger = { state: code.toUpperCase(), auditedAt: new Date().toISOString().slice(0,10), spec: 'foundry/aurigen-law-audit.md', ...meta, claims };
   fs.writeFileSync(`${R}/cloudflare/data/law/${code}.json`, JSON.stringify(ledger, null, 1) + '\n');
   console.log(code, 'claims', claims.length);

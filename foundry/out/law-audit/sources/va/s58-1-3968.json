@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "va",
+ "slug": "s58-1-3968",
+ "url": "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3968/",
+ "final_url": "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3968/",
+ "fetched_at": "2026-11-01T10:08:36.194Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "6f35d08632b6886a8d586525bd71def6d00ed68297e093425960c65d6e0d4440",
+ "raw_bytes": 30213,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "1ca045e9ef5762fbf8c25159a4c8ccd390fa29cfa735ba534043b95c2144fbe9",
+ "text_chars": 2511
+}

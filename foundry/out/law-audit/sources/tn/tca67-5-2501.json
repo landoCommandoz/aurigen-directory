@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "tn",
+ "slug": "tca67-5-2501",
+ "url": "https://advance.lexis.com/container?config=00JAA1MDBlYzczZi1mYjUwLTQ3OTYtYmNiMC1mMmM4YTVkNzdkOTAKAFBvZENhdGFsb2cDvPdd0S5VdSYLwL6IMEZ9&crid=0",
+ "final_url": "https://advance.lexis.com/container?config=00JAA1MDBlYzczZi1mYjUwLTQ3OTYtYmNiMC1mMmM4YTVkNzdkOTAKAFBvZENhdGFsb2cDvPdd0S5VdSYLwL6IMEZ9&crid=0",
+ "fetched_at": "2026-11-01T10:08:11.371Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "abc389e43f0fb0cd71969aea69583d3459d7bd3371bedf63f4b6e0f30a4680c7",
+ "raw_bytes": 3637,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+ "text_chars": 1
+}

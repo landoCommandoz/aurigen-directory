@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "wa",
+ "slug": "sl2025",
+ "url": "https://lawfilesext.leg.wa.gov/Law/CRO/SectionsAffected/2025%20RCW%20Session%20Law%20Chapters.pdf",
+ "final_url": "https://lawfilesext.leg.wa.gov/Law/CRO/SectionsAffected/2025%20RCW%20Session%20Law%20Chapters.pdf",
+ "fetched_at": "2026-11-01T10:40:07.354Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "fda7d11629b9d585a9572a42ccae0463cfc24c70e7ca28b8d098f3d9151f8066",
+ "raw_bytes": 1474461,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "bc2b8b4090ba6a0087f12f3cedc902689fe8fd52ee4ba7009859391fa8879af0",
+ "text_chars": 48982
+}

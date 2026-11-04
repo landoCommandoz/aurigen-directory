@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "wi",
+ "slug": "act-2023-207",
+ "url": "https://docs.legis.wisconsin.gov/2023/related/acts/207.pdf",
+ "final_url": "https://docs.legis.wisconsin.gov/2023/related/acts/207.pdf",
+ "fetched_at": "2026-10-29T05:51:16.086Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "87ff1f4a397950f2bc7efb3bf8c5b75e73c01d4294b436a4abd9ef1197f59f74",
+ "raw_bytes": 54137,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "0b0e69594354aee454020b74f0c7a910da3d8e443213eca5c3dbbd9c2ca528c4",
+ "text_chars": 15212
+}

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "la",
+ "slug": "r6-probe-631610",
+ "url": "https://legis.la.gov/legis/LawPrint.aspx?d=631610",
+ "final_url": "https://legis.la.gov/legis/LawPrint.aspx?d=631610",
+ "fetched_at": "2026-11-01T10:29:04.234Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "525bcc79f122f9469cfec1efdcf2eb4ab5d59f07e451315c33784d65a77ecedb",
+ "raw_bytes": 8831,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "06d6a281af566047b4370c197af862327f01c50d1f3cf58fba87940d05c1099c",
+ "text_chars": 3381
+}

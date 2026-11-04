@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ri",
+ "slug": "s44-9-21",
+ "url": "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-21.htm",
+ "final_url": "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-21.htm",
+ "fetched_at": "2026-11-01T10:06:38.385Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "6914760ba6f436999565f5e373db255842303cab0aa1cfa95ed3116ceddb5856",
+ "raw_bytes": 5380,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "5c987e3d44002cc8ec09f047ecf040f484db3c333bcd731e7c9c46cffcc9773d",
+ "text_chars": 1563
+}

@@ -12,6 +12,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { sha256, htmlToText, normalizeText, quoteFound } from '../../foundry/tools/law-text.mjs';
 import { LAW } from './law-pieces.mjs';
+import { extraCurlArgs } from '../../foundry/tools/cert-chain.mjs';
 
 const UA = 'AurigenLawAudit/1.0 (+https://aurigen.landonbrewington12.workers.dev)';
 const args = process.argv.slice(2);
@@ -40,7 +41,7 @@ function fetchText(url, i) {
   const raw = path.join(tmp, `${i}.raw`);
   sleep(2000);
   const w = execFileSync('curl', ['-sS', '-L', '--max-redirs', '8', '--retry', '2', '--retry-delay', '3', '--connect-timeout', '20',
-    '--max-time', '90', '--max-filesize', '40000000', '-A', UA, '-o', raw, '-w', '%{http_code}\t%{content_type}', url], { encoding: 'utf8' });
+    '--max-time', '90', '--max-filesize', '40000000', '-A', UA, ...extraCurlArgs(url), '-o', raw, '-w', '%{http_code}\t%{content_type}', url], { encoding: 'utf8' });
   const [status, ctype] = w.split('\t');
   if (!/^2/.test(status)) throw new Error(`HTTP ${status}`);
   const buf = fs.readFileSync(raw);

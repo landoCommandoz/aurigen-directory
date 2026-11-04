@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "me",
+ "slug": "r6-mrs-942-pdf",
+ "url": "https://legislature.maine.gov/statutes/36/title36sec942.pdf",
+ "final_url": "https://legislature.maine.gov/statutes/36/title36sec942.pdf",
+ "fetched_at": "2026-11-01T10:35:57.834Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "eeb27a7b959f29ec75bf4048f71c8b26f8ca9a8a487ac84830a6b9b6b97e9675",
+ "raw_bytes": 114964,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "e25c12fd87f96599354a39c29a8ad07057e1540fe4706a070a7f908808e83c44",
+ "text_chars": 7545
+}

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "wi",
+ "slug": "stats-74-57",
+ "url": "https://docs.legis.wisconsin.gov/document/statutes/74.57",
+ "final_url": "https://docs.legis.wisconsin.gov/statutes/statutes/74/vii/57",
+ "fetched_at": "2026-10-29T05:50:39.432Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "4e5d7fc103d8945b84b0fbd96c241eddcdb6336952e11a066d8aec7d332e5317",
+ "raw_bytes": 101191,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "bfb6a866329248af71875fbf869b7fb70e9a9d7a8cf449fe22be4f3a78b249c9",
+ "text_chars": 20256
+}

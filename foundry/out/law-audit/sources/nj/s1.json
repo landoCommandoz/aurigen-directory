@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nj",
+ "slug": "s1",
+ "url": "https://lis.njleg.state.nj.us/nxt/gateway.dll?f=templates&fn=default.htm&vid=Publish:10.1048/Enu",
+ "final_url": "https://lis.njleg.state.nj.us/nxt/gateway.dll?f=templates&fn=default.htm&vid=Publish:10.1048/Enu",
+ "fetched_at": "2026-11-01T10:39:10.976Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "167cb4af1cff5db866b8fb48b3e400383040216880e432d21c16010593f7a6ee",
+ "raw_bytes": 38089,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "c40aa6b909c982b6c69f0924fae7c952ca648d276ed19ccb0c64b4fd0012bd84",
+ "text_chars": 112
+}

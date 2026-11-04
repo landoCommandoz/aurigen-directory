@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "tx",
+ "slug": "r6-hb16-2cs-i",
+ "url": "https://capitol.texas.gov/tlodocs/892/billtext/html/HB00016I.htm",
+ "final_url": "https://capitol.texas.gov/tlodocs/892/billtext/html/HB00016I.htm",
+ "fetched_at": "2026-11-01T10:31:58.865Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "29ac209b81d02a021af49db39528fbd5977d96dffc4c39f65c59ff77a4d82c57",
+ "raw_bytes": 852678,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "34b98384090d64aa9951f0c7a99a8a7d73d8a0c13a6ba7693627549f39f94b80",
+ "text_chars": 161592
+}

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "mn",
+ "slug": "s28117",
+ "url": "https://www.revisor.mn.gov/statutes/cite/281.17",
+ "final_url": "https://www.revisor.mn.gov/statutes/cite/281.17",
+ "fetched_at": "2026-11-01T09:48:50.043Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "a1698fe79103b0ee90e5f008608f9ca572a275114b3fcf5fdb47aa348560f792",
+ "raw_bytes": 66028,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "1422a07fec9e861e222a4706042a9051e39b5582530ef9b890ff0725586a0086",
+ "text_chars": 7352
+}

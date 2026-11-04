@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ks",
+ "slug": "s7928000002",
+ "url": "https://www.ksrevisor.gov/statutes/chapters/ch79/079_028_0002.html",
+ "final_url": "https://www.ksrevisor.gov/statutes/chapters/ch79/079_028_0002.html",
+ "fetched_at": "2026-11-01T09:43:56.675Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "68f8d0c5c8f613b18f7e50f5e6f4540a260683e8179a127dfadd7c2a8c648f9a",
+ "raw_bytes": 16173,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "7f7802ed4f700b45590be66ee3a4abd68095fc179a047b1a3afc1acd40281ded",
+ "text_chars": 4320
+}

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "de",
+ "slug": "t9-87-sc03",
+ "url": "https://delcode.delaware.gov/title9/c087/sc03/index.html",
+ "final_url": "https://delcode.delaware.gov/title9/c087/sc03/index.html",
+ "fetched_at": "2026-11-01T09:31:37.888Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "1ad73727cb7400ae9722235d763017d59d7980b22fa9661683de9fa0a0dd439d",
+ "raw_bytes": 41366,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "bcb432b6311faa85617ec51247c14f7a7e1b431d87726ed51abc1668249ccd37",
+ "text_chars": 21216
+}

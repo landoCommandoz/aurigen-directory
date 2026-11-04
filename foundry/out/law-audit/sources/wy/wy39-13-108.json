@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "wy",
+ "slug": "wy39-13-108",
+ "url": "https://wyoleg.gov/statutes/compress/title39.pdf",
+ "final_url": "https://wyoleg.gov/statutes/compress/title39.pdf",
+ "fetched_at": "2026-11-01T10:12:37.434Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "f5d0b10433ddd2e7b135e3f53a87496f0bd705dcd1981807a70478a6ce338ede",
+ "raw_bytes": 994252,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "0e620fe0b1b96f4d67ede871356f07dc19b64daad788ec3f0ed424bee54fd704",
+ "text_chars": 1058321
+}

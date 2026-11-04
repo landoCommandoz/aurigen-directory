@@ -59,6 +59,193 @@
    "fetched_at": "2026-10-27T05:51:11.776Z",
    "snapshot": "foundry/out/law-audit/sources/al/dor-property-tax.json"
   },
+  "https://www.cosl.org/Home/Faq": {
+   "state": "AR",
+   "statutes": [
+    "none: administrative practice (Commissioner of State Lands), FAQ"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "bd832ea104bbbdd182cbb5518c284d426591728d7e60629080fc8edfc706dc9f",
+   "fetched_at": "2026-10-29T05:56:26.072Z",
+   "snapshot": "foundry/out/law-audit/sources/ar/cosl-faq.json"
+  },
+  "https://www.cosl.org/Home/Contents/1": {
+   "state": "AR",
+   "statutes": [
+    "none: administrative practice (Commissioner of State Lands), notice for bidders"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9fd3d8132061fd285dde86021c7dcf4d97e659d26914bc26a4dd4b195d7f38f0",
+   "fetched_at": "2026-10-29T05:56:01.848Z",
+   "snapshot": "foundry/out/law-audit/sources/ar/cosl-tax-sales.json"
+  },
+  "https://coslstorage.blob.core.windows.net/web-resources/rules-and-regs.pdf": {
+   "state": "AR",
+   "statutes": [
+    "Commissioner of State Lands Rules (2023 ed.), Title 2",
+    "Ark. Code Ann. §§ 26-37-101 to -105 (as cited in Commissioner of State Lands Rules (2023 ed.))",
+    "Commissioner of State Lands Rules (2023 ed.), Title 1",
+    "Commissioner of State Lands Rules (2023 ed.), Definitions",
+    "Commissioner of State Lands Rules (2023 ed.), Title 4"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "66d434e7036ec58a41ae742314ccd4d706bb1a32ae8f6f828b3ca838a8fb27aa",
+   "fetched_at": "2026-10-29T05:56:30.822Z",
+   "snapshot": "foundry/out/law-audit/sources/ar/cosl-rules.json"
+  },
+  "https://coslstorage.blob.core.windows.net/web-resources/purchasing.pdf": {
+   "state": "AR",
+   "statutes": [
+    "none: administrative practice (Commissioner of State Lands), buyer's guide"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "cdb3264f661883d6a71e0b20f599f431c2fcb6df11a59be4b7182f99f56f025e",
+   "fetched_at": "2026-10-29T05:56:28.497Z",
+   "snapshot": "foundry/out/law-audit/sources/ar/cosl-purchasing.json"
+  },
+  "https://www.azleg.gov/ars/42/18101.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18101"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "7fc0a74b3f606a4493bf0b7fa45cd771856f6994d4778bbac1dbd3cd3d305010",
+   "fetched_at": "2026-11-01T09:26:17.195Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18101.json"
+  },
+  "https://www.azleg.gov/ars/42/18053.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18053"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "139169d358490d0c6cbd28f6abde4aea1903c180ee22f0e81d7a75e3d7991335",
+   "fetched_at": "2026-11-01T09:26:14.619Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18053.json"
+  },
+  "https://www.azleg.gov/ars/42/18114.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18114"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "75bcdda460229a01da6a0df0c8aac0e56b22674b6da3fce64bc2bc28e2a31bdc",
+   "fetched_at": "2026-11-01T09:26:47.771Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18114.json"
+  },
+  "https://www.azleg.gov/ars/42/18152.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18152"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "7d670b2a548da22c28802a44f207dcf190a9678d0e8d21f35950e19cf7ed55ea",
+   "fetched_at": "2026-11-01T09:28:31.090Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18152.json"
+  },
+  "https://www.azleg.gov/ars/42/18112.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18112"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "2b3210e4f6abc1ff5263a5d58281222ff1d6797eb6b7321090cef0ed33772b08",
+   "fetched_at": "2026-11-01T09:26:43.110Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18112.json"
+  },
+  "https://www.azleg.gov/ars/42/18106.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18106"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1f9443e64afe29359c15353edd7eaaadcbf43d37988e5d0e22873cedfa84668a",
+   "fetched_at": "2026-11-01T09:26:29.115Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18106.json"
+  },
+  "https://www.azleg.gov/ars/42/18122.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18122"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b4a1952bdeddffdfc772bed48e6dd9d576f26f36324209f11df082bd41584c60",
+   "fetched_at": "2026-11-01T09:27:06.359Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18122.json"
+  },
+  "https://www.azleg.gov/ars/42/18201.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18201"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0365d56f73767db84005f70c299866881a61f93ca988f337a900e327f885e95e",
+   "fetched_at": "2026-11-01T09:28:38.060Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18201.json"
+  },
+  "https://www.azleg.gov/ars/42/18127.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18127"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9101f2f58d716f284e1161473e2f040444e102346a70d3a2f43247ca2113d91c",
+   "fetched_at": "2026-11-01T09:27:17.945Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18127.json"
+  },
+  "https://www.azleg.gov/ars/42/18204.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18204(A)(1)",
+    "A.R.S. § 42-18204(D)",
+    "A.R.S. § 42-18204(B)",
+    "A.R.S. § 42-18204(D)(3)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "57e2c77b3a1d6cdd4c6c259bbec619bd360a7c093b42a4497e41f1acef828a8d",
+   "fetched_at": "2026-11-01T09:28:45.019Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18204.json"
+  },
+  "https://www.azleg.gov/ars/42/18113.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18113"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "92ab120fd9896680a8896bf14bb7bb4197ca84832bd2ec6c25653e6cf3d1c4d6",
+   "fetched_at": "2026-11-01T09:26:45.428Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18113.json"
+  },
+  "https://www.azleg.gov/ars/42/18202.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18202"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "5d0a77f8cc2462afae60e7c6c9659653f7f7aea2225eb02dfa32a0b6a9b29ad3",
+   "fetched_at": "2026-11-01T09:28:40.376Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18202.json"
+  },
+  "https://www.azleg.gov/ars/42/18109.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18109"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "439b2693e5b82f2fb79088544dee9815c270fee014df0e748cd4c82eba5db189",
+   "fetched_at": "2026-11-01T09:26:36.148Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18109.json"
+  },
+  "https://www.azleg.gov/ars/42/18116.htm": {
+   "state": "AZ",
+   "statutes": [
+    "A.R.S. § 42-18116"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f1ff54ae0cf6c979fd5bf24f35c9d332414fa2511fa2aa30e2c08f0dfd7f4de1",
+   "fetched_at": "2026-11-01T09:26:52.434Z",
+   "snapshot": "foundry/out/law-audit/sources/az/s42-18116.json"
+  },
   "https://sco.ca.gov/Files-ARD-Tax-Info/Tax-Collector-Ref-Man/SCO_ExcessProceedsGuide.pdf": {
    "state": "CA",
    "statutes": [
@@ -86,6 +273,56 @@
    "fetched_at": "2026-10-27T05:54:41.643Z",
    "snapshot": "foundry/out/law-audit/sources/ca/sco-tcrm-ch8.json"
   },
+  "https://leg.colorado.gov/sites/default/files/images/olls/crs2024-title-39.pdf": {
+   "state": "CO",
+   "statutes": [
+    "C.R.S. § 39-11-115(1)",
+    "C.R.S. § 39-12-103(3)",
+    "C.R.S. art. 11.5 of title 39 (HB 24-1056)",
+    "C.R.S. § 39-11-108(1)",
+    "C.R.S. § 39-11-109",
+    "C.R.S. § 39-11.5-102(1) (HB 24-1056)",
+    "C.R.S. § 39-11.5-111(1)(a)",
+    "C.R.S. § 39-11-148(1)",
+    "C.R.S. § 39-11-101",
+    "C.R.S. § 39-11-120(1)",
+    "C.R.S. § 39-11-115(2)",
+    "C.R.S. § 39-11.5-109(1)(a)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "2c15ec10c19b4c78170c8559c9715befed19be125326777daf9b26eee35f325f",
+   "fetched_at": "2026-10-29T05:59:07.567Z",
+   "snapshot": "foundry/out/law-audit/sources/co/crs2024-title-39.json"
+  },
+  "https://www.cga.ct.gov/current/pub/chap_204.htm": {
+   "state": "CT",
+   "statutes": [
+    "Conn. Gen. Stat. § 12-157(c)",
+    "Conn. Gen. Stat. § 12-157(f)",
+    "Conn. Gen. Stat. § 12-157",
+    "Conn. Gen. Stat. § 12-157(a)",
+    "Conn. Gen. Stat. § 12-157(e)",
+    "Conn. Gen. Stat. § 12-157(d)",
+    "Conn. Gen. Stat. § 12-159",
+    "Conn. Gen. Stat. § 12-157(c)(2)",
+    "Conn. Gen. Stat. § 12-157(i)(1)",
+    "Conn. Gen. Stat. § 12-157(i)(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b6f4d207f3fcf53fc4381cfd6186c072ef89dd56ef0637fb20e4c92e8595a1d7",
+   "fetched_at": "2026-11-01T09:08:05.671Z",
+   "snapshot": "foundry/out/law-audit/sources/ct/cgs-chap-204.json"
+  },
+  "https://www.cga.ct.gov/current/pub/chap_205.htm": {
+   "state": "CT",
+   "statutes": [
+    "Conn. Gen. Stat. § 12-195h(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e380d4fa2b9e5228aa07f5e54b99f6b98c939f1d4b5601c4e62a7947b35e36f8",
+   "fetched_at": "2026-11-01T09:07:51.234Z",
+   "snapshot": "foundry/out/law-audit/sources/ct/ch-205-sec-12-157.json"
+  },
   "https://otr.cfo.dc.gov/page/real-property-tax-sale": {
    "state": "DC",
    "statutes": [
@@ -97,15 +334,15 @@
    "fetched_at": "2026-10-27T05:56:22.765Z",
    "snapshot": "foundry/out/law-audit/sources/dc/otr-tax-sale.json"
   },
-  "https://code.dccouncil.gov/us/dc/council/code/sections/47-1361": {
+  "https://code.dccouncil.gov/us/dc/council/code/sections/47-1334": {
    "state": "DC",
    "statutes": [
-    "D.C. Code § 47-1361"
+    "D.C. Code § 47-1334(b)"
    ],
    "extractor": "foundry/tools/law-text.mjs htmlToText",
-   "text_sha256": "d8bdb2d94ba4a25bb0a94bb748f6133a382caef2051a7a9308ee0b3307603d71",
-   "fetched_at": "2026-10-27T05:56:27.828Z",
-   "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1361.json"
+   "text_sha256": "fcfa0da008afc4a57e2f1955afd916dec8b0e81cc548fdd36e1f0b0eea2a8853",
+   "fetched_at": "2026-11-01T10:35:15.019Z",
+   "snapshot": "foundry/out/law-audit/sources/dc/r6-dcc-47-1334.json"
   },
   "https://code.dccouncil.gov/us/dc/council/code/sections/47-1382": {
    "state": "DC",
@@ -147,6 +384,16 @@
    "fetched_at": "2026-10-27T05:56:25.350Z",
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1332.json"
   },
+  "https://code.dccouncil.gov/us/dc/council/code/sections/47-1361": {
+   "state": "DC",
+   "statutes": [
+    "D.C. Code § 47-1361"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d8bdb2d94ba4a25bb0a94bb748f6133a382caef2051a7a9308ee0b3307603d71",
+   "fetched_at": "2026-10-27T05:56:27.828Z",
+   "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1361.json"
+  },
   "https://code.dccouncil.gov/us/dc/council/code/sections/47-1370": {
    "state": "DC",
    "statutes": [
@@ -166,6 +413,1711 @@
    "text_sha256": "f6acb7eb00b8567dcfb9aa6d7e780dbe864bbb43c9e77e1d572c4979e7d28877",
    "fetched_at": "2026-10-27T05:57:03.836Z",
    "snapshot": "foundry/out/law-audit/sources/dc/dcc-47-1382-01.json"
+  },
+  "https://delcode.delaware.gov/title9/c087/sc02/index.html": {
+   "state": "DE",
+   "statutes": [
+    "9 Del. C. § 8728",
+    "9 Del. C. § 8729",
+    "9 Del. C. § 8725(a)",
+    "9 Del. C. § 8722(a)",
+    "9 Del. C. § 8721",
+    "9 Del. C. § 8726(a)",
+    "9 Del. C. § 8726(b)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "16074922f4a60d264cab228b044221b5195d12d1e4bba09f9eb9b50dd87e2a7d",
+   "fetched_at": "2026-11-01T09:31:35.615Z",
+   "snapshot": "foundry/out/law-audit/sources/de/t9-87-sc02.json"
+  },
+  "https://delcode.delaware.gov/title9/c087/sc04/index.html": {
+   "state": "DE",
+   "statutes": [
+    "9 Del. C. § 8776",
+    "9 Del. C. § 8779"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "fede4ebff38522183f2ba7dea111e1a3aaab016399be7dd4b0b2d8d593d4aac1",
+   "fetched_at": "2026-11-01T09:31:40.216Z",
+   "snapshot": "foundry/out/law-audit/sources/de/t9-87-sc04.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.502": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.502(1)",
+    "Fla. Stat. § 197.502(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "6c53d384f93f085768c72fbd5f15ddbb308ab0b116df78915329d0030ca48ab5",
+   "fetched_at": "2026-11-01T09:36:33.254Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1975022026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.172": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.172(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "3213d219246ac0a065155d50d8281912d121cae58ee7964d91597bee553468b6",
+   "fetched_at": "2026-11-01T09:36:22.168Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1971722026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.432": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.432(6)",
+    "Fla. Stat. § 197.432(1)",
+    "Fla. Stat. § 197.432(4)",
+    "Fla. Stat. § 197.432(12)",
+    "Fla. Stat. § 197.432(7)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "52a55166889e1e87a6023847a2a0abdd18789e2b49d2c1ede5c0a0ea165c4253",
+   "fetched_at": "2026-11-01T09:36:24.549Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1974322026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.472": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.472(1)",
+    "Fla. Stat. § 197.472(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "41b39b1c04c9c7c9a64e05b82ef1bbabad859c2713e3680bb8c76fd7245c47ab",
+   "fetched_at": "2026-11-01T09:36:30.843Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1974722026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.402": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.402(3)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f62f129bbf689de60364601837416c7c18caa75b5a3142160de151ac3f363442",
+   "fetched_at": "2026-11-01T09:36:38.666Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1974022026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.542": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.542(1)",
+    "Fla. Stat. § 197.542(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "78fbf8a22404f647a413ae3aca66b8e5e0f5689749a77a754631ea93b717e081",
+   "fetched_at": "2026-11-01T09:36:41.204Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1975422026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.4725": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.4725(2)",
+    "Fla. Stat. § 197.4725(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "6ff78ac46193fcbbce71d6ebec68233bd2ffc4a39a7971d5baf86ac286b3a25f",
+   "fetched_at": "2026-11-01T09:36:28.518Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u19747252026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2025/95.192": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 95.192(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "8f28eab9abdfd63da53a87b0a3b16042b85592da64d555361545b4db88d6e3b1",
+   "fetched_at": "2026-11-01T09:35:39.637Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/t95192.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.552": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.552"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0a9606dd452722a0637bf104fc35008177592c6529ec9a95d64719d5f85f7c4f",
+   "fetched_at": "2026-11-01T09:36:35.689Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1975522026.json"
+  },
+  "https://www.flsenate.gov/Laws/Statutes/2026/197.582": {
+   "state": "FL",
+   "statutes": [
+    "Fla. Stat. § 197.582(2)(a)",
+    "Fla. Stat. § 197.582(3)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e44048739a07b67ec0d6d149678c0fe6aff19259904e1a7cd618e13f69e94668",
+   "fetched_at": "2026-11-01T09:36:07.786Z",
+   "snapshot": "foundry/out/law-audit/sources/fl/u1975822026.json"
+  },
+  "https://www.kauai.gov/files/assets/public/finance/documents/tax-sale-inst_rev-27sept2018.pdf": {
+   "state": "HI",
+   "statutes": [
+    "HRS § 246-60 (as cited by County of Kauai)",
+    "none: administrative practice (County of Kauai)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "c11ddefdb0a72992ad96684c82aa4f15231a74399650a370cff6dd80425e7d8d",
+   "fetched_at": "2026-10-27T06:22:35.537Z",
+   "snapshot": "foundry/out/law-audit/sources/hi/kauai-tax-sale-inst-2018.json"
+  },
+  "https://www.legis.iowa.gov/docs/code/446.pdf": {
+   "state": "IA",
+   "statutes": [
+    "Iowa Code § 446.16(3)",
+    "Iowa Code § 446.16(1)",
+    "Iowa Code § 446.7(1)",
+    "Iowa Code § 446.37",
+    "Iowa Code § 446.16(2)",
+    "Iowa Code § 446.16(4)",
+    "Iowa Code § 446.15",
+    "Iowa Code § 446.18"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "3781f6c6443dcc32ef58b7bc577b6c67391843e41ec9a83a463095b86c416be1",
+   "fetched_at": "2026-10-29T06:01:59.301Z",
+   "snapshot": "foundry/out/law-audit/sources/ia/code-446.json"
+  },
+  "https://www.legis.iowa.gov/docs/code/447.pdf": {
+   "state": "IA",
+   "statutes": [
+    "Iowa Code § 447.1(1)",
+    "Iowa Code § 447.9(1)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "a795f9498ae6d8559addaa9c5857a88335f79e7ef158ab92fd84b33a454bb985",
+   "fetched_at": "2026-10-29T06:02:01.740Z",
+   "snapshot": "foundry/out/law-audit/sources/ia/code-447.json"
+  },
+  "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1005/": {
+   "state": "ID",
+   "statutes": [
+    "Idaho Code § 63-1005(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "30a94988e771de5230748f80d60e2ec856382938630adfddd9d12c05d1454378",
+   "fetched_at": "2026-11-01T09:40:57.363Z",
+   "snapshot": "foundry/out/law-audit/sources/id/s631005.json"
+  },
+  "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1001/": {
+   "state": "ID",
+   "statutes": [
+    "Idaho Code § 63-1001"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d22a943b05f7b66632bde643f9c67ce66c65b199cb0115630fd0edb07722adf1",
+   "fetched_at": "2026-11-01T09:40:50.731Z",
+   "snapshot": "foundry/out/law-audit/sources/id/s631001.json"
+  },
+  "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1007/": {
+   "state": "ID",
+   "statutes": [
+    "Idaho Code § 63-1007(2)",
+    "Idaho Code § 63-1007(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "59e991daada3429de62a8e61e73b8316b314a6b496df881c93019e0f224852b8",
+   "fetched_at": "2026-11-01T09:41:03.621Z",
+   "snapshot": "foundry/out/law-audit/sources/id/s631007.json"
+  },
+  "https://legislature.idaho.gov/statutesrules/idstat/Title31/T31CH8/SECT31-808/": {
+   "state": "ID",
+   "statutes": [
+    "Idaho Code § 31-808(1)",
+    "Idaho Code § 31-808(6)",
+    "Idaho Code § 31-808(2)(b)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "fd2166927898182265304d2b664e251c0241137cd549812198d3581f5c251ec9",
+   "fetched_at": "2026-11-01T09:41:34.008Z",
+   "snapshot": "foundry/out/law-audit/sources/id/s31808.json"
+  },
+  "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH10/SECT63-1003/": {
+   "state": "ID",
+   "statutes": [
+    "Idaho Code § 63-1003(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "92086104762a515b399994c8576a667240f2fb7c3ba1f43eff4c78eb676331e1",
+   "fetched_at": "2026-11-01T09:40:54.183Z",
+   "snapshot": "foundry/out/law-audit/sources/id/s631003.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-225.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-225"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b3c23148f17add2d46ea8a2e20b04c927ef67404bd7c65d177d4a98285e460fe",
+   "fetched_at": "2026-11-01T09:13:18.459Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-225.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-215.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-215(a)",
+    "35 ILCS 200/21-215"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b7414d061c8ea6cd0d9d02770969514572ec2204c9cd5865dc594e7a7d031752",
+   "fetched_at": "2026-11-01T09:12:33.394Z",
+   "snapshot": "foundry/out/law-audit/sources/il/t-215.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-355.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-355(b)(2)",
+    "35 ILCS 200/21-355(c)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "08b7fdb28512379739a055dc1932dedeb4fed4e9b0440defecf624e3de9fb1c5",
+   "fetched_at": "2026-11-01T09:13:44.499Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-355.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-350.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-350",
+    "35 ILCS 200/21-350(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9cd9412de10c1f6960ff268cacfe8ea82ab505c59f68027a1f4e50cfc1f70fd1",
+   "fetched_at": "2026-11-01T09:13:42.332Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-350.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-205.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-205(b)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "59aa30c1cb056ca47566273b85af106fa9a1140ac689ed0b6c9e267eab851f3a",
+   "fetched_at": "2026-11-01T09:13:14.126Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-205.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-115.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-115"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9f2b0b64b5e5b9c8b7dda1ed52aba5586ae4fd17be401cc9cd5466294df6b0a8",
+   "fetched_at": "2026-11-01T09:12:48.016Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-115.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-190.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-190(a)",
+    "35 ILCS 200/21-190(c) (P.A. 104-553, eff. 7-10-26)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "85bc3e8b8461501322831408cae9980148766e9315e2f60e3148e1acaf3cd815",
+   "fetched_at": "2026-11-01T09:13:09.792Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-190.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-145.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-145"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d362ec1d3218cdebceff2f132aaa1e565f0ac928e4fbe2d2a0d2c33f8d6c64eb",
+   "fetched_at": "2026-11-01T09:14:35.307Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-145.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K22-30.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/22-30"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "442ed0ce5159a2383a4cbbc126e0d9cdc797bef17a949ca6478bae5148d65fd4",
+   "fetched_at": "2026-11-01T09:13:53.199Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s22-30.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-260.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-260"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ee0d052415727ed644b50726a8d7b3317d2f89207dab66d040694806f9661a44",
+   "fetched_at": "2026-11-01T09:13:24.965Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-260.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K21-240.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/21-240"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b6778e7ec26fd97142bb1bff2eceade1512734d80198d5603cd56d95dab0e304",
+   "fetched_at": "2026-11-01T09:13:20.632Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s21-240.json"
+  },
+  "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K22-42.htm": {
+   "state": "IL",
+   "statutes": [
+    "35 ILCS 200/22-42(h)",
+    "35 ILCS 200/22-42(f)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "babcd2876e867164497bdff218c3a78696a11f77a881a399263d44e958e17ab5",
+   "fetched_at": "2026-11-01T09:14:28.774Z",
+   "snapshot": "foundry/out/law-audit/sources/il/s22-42.json"
+  },
+  "https://www.ksrevisor.gov/statutes/chapters/ch79/079_028_0001.html": {
+   "state": "KS",
+   "statutes": [
+    "K.S.A. § 79-2801(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d6c0895a0b295e929c2c5ce06457ae42dc7959b4f27e310f54ba54f7421ee34e",
+   "fetched_at": "2026-11-01T09:43:53.839Z",
+   "snapshot": "foundry/out/law-audit/sources/ks/s7928000001.json"
+  },
+  "https://www.ksrevisor.gov/statutes/chapters/ch79/079_020_0004.html": {
+   "state": "KS",
+   "statutes": [
+    "K.S.A. § 79-2004(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "4dbd7260a0a2278946072b8bfaae5c2e58b0d3b9ceee2692033b293d61d74c60",
+   "fetched_at": "2026-11-01T09:44:34.576Z",
+   "snapshot": "foundry/out/law-audit/sources/ks/s792004.json"
+  },
+  "https://www.ksrevisor.gov/statutes/chapters/ch79/079_024_0001a.html": {
+   "state": "KS",
+   "statutes": [
+    "K.S.A. § 79-2401a(a)(1)",
+    "K.S.A. § 79-2401a(b)(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f492c94bdead158435497aeffe21713d03924d8342c199b88b77db69e83c46cc",
+   "fetched_at": "2026-11-01T09:44:37.182Z",
+   "snapshot": "foundry/out/law-audit/sources/ks/s792401a.json"
+  },
+  "https://www.ksrevisor.gov/statutes/chapters/ch79/079_028_0004.html": {
+   "state": "KS",
+   "statutes": [
+    "K.S.A. § 79-2804"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9ecbdf7e4044381aba1867584ebee2b6610268b02bfdf3daadf85b2a6734eafb",
+   "fetched_at": "2026-11-01T09:44:02.046Z",
+   "snapshot": "foundry/out/law-audit/sources/ks/s7928000004.json"
+  },
+  "https://www.ksrevisor.gov/statutes/chapters/ch79/079_028_0004b.html": {
+   "state": "KS",
+   "statutes": [
+    "K.S.A. § 79-2804b"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "45d94ddf8f5718c2ee988b77e5e497bc01ad6e49053e7c5bab49348d98c4fa30",
+   "fetched_at": "2026-11-01T09:44:40.065Z",
+   "snapshot": "foundry/out/law-audit/sources/ks/s792804b.json"
+  },
+  "https://www.ksrevisor.gov/statutes/chapters/ch79/079_028_0005.html": {
+   "state": "KS",
+   "statutes": [
+    "K.S.A. § 79-2805"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "213ba86096538f53272185c87d7a0eff6805e48881e5fe7473b7c36efef7a423",
+   "fetched_at": "2026-11-01T09:44:04.641Z",
+   "snapshot": "foundry/out/law-audit/sources/ks/s7928000005.json"
+  },
+  "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=28449": {
+   "state": "KY",
+   "statutes": [
+    "KRS § 134.546"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "735ae9dd2df4f8f17687b26ab369d9fb9e378ceb26e74477f31a2a2f73a8883d",
+   "fetched_at": "2026-10-27T06:26:05.426Z",
+   "snapshot": "foundry/out/law-audit/sources/ky/krs-134-546.json"
+  },
+  "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=28383": {
+   "state": "KY",
+   "statutes": [
+    "KRS § 134.125"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "d2ec481507a81a9bc0313b0dc118cd47cb6c5dcc98308d4d10f4c79fcdc1f449",
+   "fetched_at": "2026-10-27T06:25:49.401Z",
+   "snapshot": "foundry/out/law-audit/sources/ky/krs-134-125.json"
+  },
+  "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56172": {
+   "state": "KY",
+   "statutes": [
+    "KRS § 134.128"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "36567e7263e164c3b1d963c3887b0b300c71b3f6fbe0b0ea70337e4e77809041",
+   "fetched_at": "2026-10-27T06:25:53.157Z",
+   "snapshot": "foundry/out/law-audit/sources/ky/krs-134-128.json"
+  },
+  "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=43802": {
+   "state": "KY",
+   "statutes": [
+    "KRS § 134.420"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "acda26de1702f24d88c7dfea1b90fa7a28c1684b6ac3f8d209bd70f3a01c4bc9",
+   "fetched_at": "2026-10-27T06:25:56.339Z",
+   "snapshot": "foundry/out/law-audit/sources/ky/krs-134-420.json"
+  },
+  "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=57927": {
+   "state": "KY",
+   "statutes": [
+    "KRS § 134.490"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "c77c505e252980c4b568d87ab28db2a729f5b2e847b10c9f82c0ce223f4a8437",
+   "fetched_at": "2026-10-27T06:26:02.762Z",
+   "snapshot": "foundry/out/law-audit/sources/ky/krs-134-490.json"
+  },
+  "https://legis.la.gov/legis/LawPrint.aspx?d=631549": {
+   "state": "LA",
+   "statutes": [
+    "La. R.S. § 47:2154"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "53e48e60377d2e179474371a2e156ca6a7242f797111f2dfb9ca139b16fa7a71",
+   "fetched_at": "2026-10-27T06:28:38.489Z",
+   "snapshot": "foundry/out/law-audit/sources/la/rs-47-2154.json"
+  },
+  "https://legis.la.gov/legis/LawPrint.aspx?d=631551": {
+   "state": "LA",
+   "statutes": [
+    "La. R.S. § 47:2155"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "345cbedc5b9eca845e430cfa9cc229a5c555110a23b6d93e19c9d478bf576d18",
+   "fetched_at": "2026-10-27T06:28:56.342Z",
+   "snapshot": "foundry/out/law-audit/sources/la/rs-47-2155.json"
+  },
+  "https://legis.la.gov/legis/LawPrint.aspx?d=1388659": {
+   "state": "LA",
+   "statutes": [
+    "La. R.S. § 47:2266.1"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "5e397e7f5c40103dc997107da1d6d607b8df8470349236717d9f830c73e4cb7c",
+   "fetched_at": "2026-10-27T06:29:16.582Z",
+   "snapshot": "foundry/out/law-audit/sources/la/rs-47-2266-1.json"
+  },
+  "https://legis.la.gov/legis/LawPrint.aspx?d=1388661": {
+   "state": "LA",
+   "statutes": [
+    "La. R.S. § 47:2267"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "718c969d1c4238e9d6102a7bb9ce3867699561a69f32b7d577aede91e01d3d00",
+   "fetched_at": "2026-11-01T10:29:44.002Z",
+   "snapshot": "foundry/out/law-audit/sources/la/r6-rs-47-2267.json"
+  },
+  "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section52": {
+   "state": "MA",
+   "statutes": [
+    "M.G.L. c. 60, § 52"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "bd9f0d5cf7d7f897e6611f6279dc308eddac48bdc4a0bf8c1a73e943f2d289e8",
+   "fetched_at": "2026-10-29T06:05:04.012Z",
+   "snapshot": "foundry/out/law-audit/sources/ma/mgl-60-52.json"
+  },
+  "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section62": {
+   "state": "MA",
+   "statutes": [
+    "M.G.L. c. 60, § 62"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1b71d57811f0a1ea767ee37c320b3229c2d7ab53a5a448c8532083edc8b5b3f6",
+   "fetched_at": "2026-10-29T06:05:06.558Z",
+   "snapshot": "foundry/out/law-audit/sources/ma/mgl-60-62.json"
+  },
+  "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section65": {
+   "state": "MA",
+   "statutes": [
+    "M.G.L. c. 60, § 65"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "5417c2e847f75d7df3474e0c3084704998ba20a12fb68a09373c9101d8baae25",
+   "fetched_at": "2026-10-29T06:05:09.131Z",
+   "snapshot": "foundry/out/law-audit/sources/ma/mgl-60-65.json"
+  },
+  "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section64A": {
+   "state": "MA",
+   "statutes": [
+    "M.G.L. c. 60, § 64A(b)(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "5cb80304a3ccec91fba0ae5e3515969278df3fd1d6d12908beb88798a2fe18e7",
+   "fetched_at": "2026-10-29T06:05:11.622Z",
+   "snapshot": "foundry/out/law-audit/sources/ma/mgl-60-64a.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-817&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-817(b)(1)",
+    "Md. Code, Tax-Prop. § 14-817(a)(2)",
+    "Md. Code, Tax-Prop. § 14-817(a)(1)",
+    "Md. Code, Tax-Prop. § 14-817(a)(4)",
+    "Md. Code, Tax-Prop. § 14-817(b)(2)(v)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e272204664a2c121e89e0778c508e7c7e0c04496258a8f78d6a7bb9518bd3bdf",
+   "fetched_at": "2026-11-01T09:17:25.533Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-817.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-820&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-820(b)",
+    "Md. Code, Tax-Prop. § 14-820(c)",
+    "Md. Code, Tax-Prop. § 14-820(b)(15)-(16)",
+    "Md. Code, Tax-Prop. § 14-820(b)(2)",
+    "Md. Code, Tax-Prop. § 14-820(b)(4)",
+    "Md. Code, Tax-Prop. § 14-820(b)(8)",
+    "Md. Code, Tax-Prop. § 14-820(a)(6)",
+    "Md. Code, Tax-Prop. § 14-820(b)(3)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "3add36c185f23a57fc3e3deae3719350b840340f80072c10b27d70609eb67497",
+   "fetched_at": "2026-11-01T09:17:32.583Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-820.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-827&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-827"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "112879da7bac757ae9bbbded45dc2da1be1a174f8288c3da4089701cb20082d3",
+   "fetched_at": "2026-11-01T09:17:46.674Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-827.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-808&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-808(a)(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1fc7b70b4d7a59072935e92481441eb02292be54f50fb39308f53da12e531a1c",
+   "fetched_at": "2026-11-01T09:17:05.057Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-808.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-833&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-833(a)(1)",
+    "Md. Code, Tax-Prop. § 14-833(c)(1)",
+    "Md. Code, Tax-Prop. § 14-833(b)",
+    "Md. Code, Tax-Prop. § 14-833(a)(2)",
+    "Md. Code, Tax-Prop. § 14-833(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "2f4b934a16361b8ba72084ecbadee39fbe2847606daaedb8e430c391aa6293ec",
+   "fetched_at": "2026-11-01T09:18:00.721Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-833.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-836&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-836(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "34a25e0b4de5075c6bfca572ac2e07a196e407988e23461d51fdcfd231416130",
+   "fetched_at": "2026-11-01T09:18:05.408Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-836.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-847&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-847(d)(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0bedf6d1c42eb0edc5ab4e86a2bd2e643e574b6efbbdb5320465e0a5921566ad",
+   "fetched_at": "2026-11-01T09:18:19.374Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-847.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-818&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-818(a)(1)(i)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "33da05832c932f00274cb2644c2c6bd4005502edb2aa8dba3e4fc94cef9ca8c6",
+   "fetched_at": "2026-11-01T09:17:27.882Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-818.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-825&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-825"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "3d009380b9219b31c0d97a46bc2d255c6221eb4d67e114a379eef795b403cd80",
+   "fetched_at": "2026-11-01T09:17:41.985Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-825.json"
+  },
+  "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-844&enactments=false": {
+   "state": "MD",
+   "statutes": [
+    "Md. Code, Tax-Prop. § 14-844(d)(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d8019845b3ee0c16c6402227b8a351ca6587af985e1c2df90ff0131cd7a85806",
+   "fetched_at": "2026-11-01T09:18:14.716Z",
+   "snapshot": "foundry/out/law-audit/sources/md/s14-844.json"
+  },
+  "https://legislature.maine.gov/statutes/36/title36sec942.html": {
+   "state": "ME",
+   "statutes": [
+    "36 M.R.S. § 942"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "95eb2d891b8c41cb0f660dc51796e1e5e3dcf4d33e9a3b898e7ee8510c02eab5",
+   "fetched_at": "2026-10-27T06:30:53.317Z",
+   "snapshot": "foundry/out/law-audit/sources/me/mrs-36-942.json"
+  },
+  "https://legislature.maine.gov/statutes/36/title36sec505.pdf": {
+   "state": "ME",
+   "statutes": [
+    "36 M.R.S. § 505(4)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "f0d9924189aa2c6b6efcf1f53d4ba9f5183c75e83728b878fdf4e6ccfa43b59b",
+   "fetched_at": "2026-11-01T10:23:09.623Z",
+   "snapshot": "foundry/out/law-audit/sources/me/mrs-36-505-pdf.json"
+  },
+  "https://legislature.maine.gov/statutes/36/title36sec943.html": {
+   "state": "ME",
+   "statutes": [
+    "36 M.R.S. § 943"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "623e5a839cf14375dd0ea1db65b007aa6b0ab85633212af39ee35a0de0c32282",
+   "fetched_at": "2026-10-27T06:32:01.162Z",
+   "snapshot": "foundry/out/law-audit/sources/me/mrs-36-943.json"
+  },
+  "https://legislature.maine.gov/statutes/36/title36sec943-C.pdf": {
+   "state": "ME",
+   "statutes": [
+    "36 M.R.S. § 943-C"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "75b70ec3c94122edb5e223d91596f29480dbccb5f2cb4b1c9b093ce54a14495c",
+   "fetched_at": "2026-10-27T06:31:40.548Z",
+   "snapshot": "foundry/out/law-audit/sources/me/mrs-36-943-c-pdf.json"
+  },
+  "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78k": {
+   "state": "MI",
+   "statutes": [
+    "MCL § 211.78k(6)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d37236384b3e86e3101599511437fced2eec0416f551c341d3b138d74c0623d1",
+   "fetched_at": "2026-11-01T09:46:11.158Z",
+   "snapshot": "foundry/out/law-audit/sources/mi/m21178k.json"
+  },
+  "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78m": {
+   "state": "MI",
+   "statutes": [
+    "MCL § 211.78m (definition of minimum bid)",
+    "MCL § 211.78m(2)",
+    "MCL § 211.78m(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e35b3423d66d719593967a2b6016454665557dbf4441c955bd3f42870fa4e05f",
+   "fetched_at": "2026-11-01T09:46:13.854Z",
+   "snapshot": "foundry/out/law-audit/sources/mi/m21178m.json"
+  },
+  "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78": {
+   "state": "MI",
+   "statutes": [
+    "MCL § 211.78(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1bf82f20bb21661775fa94078981e71f6bd5d12cd65c691c3ce1c1c10d0bf927",
+   "fetched_at": "2026-11-01T09:46:02.145Z",
+   "snapshot": "foundry/out/law-audit/sources/mi/m21178.json"
+  },
+  "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-211-78t": {
+   "state": "MI",
+   "statutes": [
+    "MCL § 211.78t(2)",
+    "MCL § 211.78t(4)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f6654e29822d5a018ac563c8540d527b77e25e6f91e38e10b9ea207f461be0ef",
+   "fetched_at": "2026-11-01T09:46:16.983Z",
+   "snapshot": "foundry/out/law-audit/sources/mi/m21178t.json"
+  },
+  "https://www.revisor.mn.gov/statutes/cite/280.01": {
+   "state": "MN",
+   "statutes": [
+    "Minn. Stat. § 280.01"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "72a77f2ea2ef65cc5bcb1fc155bd84f5cad5bdc6fcdaa45844cde1e7b0237eee",
+   "fetched_at": "2026-11-01T09:48:56.760Z",
+   "snapshot": "foundry/out/law-audit/sources/mn/s28001.json"
+  },
+  "https://www.revisor.mn.gov/statutes/cite/282.01": {
+   "state": "MN",
+   "statutes": [
+    "Minn. Stat. § 282.01"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "5bd69691068a6a5057f27051b8fbc93963e15fddb48e8fdd6f59907b5e18e777",
+   "fetched_at": "2026-11-01T09:48:45.481Z",
+   "snapshot": "foundry/out/law-audit/sources/mn/s28201.json"
+  },
+  "https://www.revisor.mn.gov/statutes/cite/282.241": {
+   "state": "MN",
+   "statutes": [
+    "Minn. Stat. § 282.241 subd. 1"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "c86932079d2eb72144e10f011224d9473cb23308c30c880fd621119a35012c93",
+   "fetched_at": "2026-11-01T09:48:47.770Z",
+   "snapshot": "foundry/out/law-audit/sources/mn/s282241.json"
+  },
+  "https://www.revisor.mn.gov/statutes/cite/282.08": {
+   "state": "MN",
+   "statutes": [
+    "Minn. Stat. § 282.08 (Revisor's note)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "fc0fdaedf0fec65dc51501a06313e8527199fcd637adb578c4ee89f52a63f11b",
+   "fetched_at": "2026-11-01T09:49:03.442Z",
+   "snapshot": "foundry/out/law-audit/sources/mn/s28208.json"
+  },
+  "https://revisor.mo.gov/main/OneSection.aspx?section=140.250": {
+   "state": "MO",
+   "statutes": [
+    "RSMo § 140.250.2",
+    "RSMo § 140.250.1",
+    "RSMo § 140.250.4",
+    "RSMo § 140.250.3"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0b0a42ce666cd43fdfe78498040bcdfcf1f5a3878b4d0d8b517f199f50a25e09",
+   "fetched_at": "2026-11-01T09:50:53.298Z",
+   "snapshot": "foundry/out/law-audit/sources/mo/s140250.json"
+  },
+  "https://revisor.mo.gov/main/OneSection.aspx?section=140.340": {
+   "state": "MO",
+   "statutes": [
+    "RSMo § 140.340.2",
+    "RSMo § 140.340.1"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e553b7617937ed7914be9e957e39fb19519452381f09f2cab5a26eeb4b7ca2eb",
+   "fetched_at": "2026-11-01T09:50:33.229Z",
+   "snapshot": "foundry/out/law-audit/sources/mo/s140340.json"
+  },
+  "https://revisor.mo.gov/main/OneSection.aspx?section=140.150": {
+   "state": "MO",
+   "statutes": [
+    "RSMo § 140.150.1"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0806a2382025fb360e7fcf8471f84cb4853160077ce713d2b532739e79d36d20",
+   "fetched_at": "2026-11-01T09:50:25.365Z",
+   "snapshot": "foundry/out/law-audit/sources/mo/s140150.json"
+  },
+  "https://revisor.mo.gov/main/OneSection.aspx?section=140.190": {
+   "state": "MO",
+   "statutes": [
+    "RSMo § 140.190.1",
+    "RSMo § 140.190.2",
+    "RSMo § 140.190"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "854745b8f9933b3649c85fd3a920facfc5f29826a958821cb85da5f598b9a1e9",
+   "fetched_at": "2026-11-01T09:50:28.167Z",
+   "snapshot": "foundry/out/law-audit/sources/mo/s140190.json"
+  },
+  "https://revisor.mo.gov/main/OneSection.aspx?section=140.230": {
+   "state": "MO",
+   "statutes": [
+    "RSMo § 140.230.2"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "87b5d0ec417b351ee5419defda778a7455cb13bae0925c2d56f5498e9bdca53c",
+   "fetched_at": "2026-11-01T09:50:35.805Z",
+   "snapshot": "foundry/out/law-audit/sources/mo/s140230.json"
+  },
+  "https://www.sos.ms.gov/content/documents/lands/00000176c.pdf": {
+   "state": "MS",
+   "statutes": [
+    "Miss. Admin. Code tit. 1, pt. 11, ch. 1 (Secretary of State, Tax Forfeited Lands rules)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "db62f8cc39051dff10d9fe7a09a30fa92f3adaf735df521ec30ea69b4e3fb314",
+   "fetched_at": "2026-10-27T06:33:47.427Z",
+   "snapshot": "foundry/out/law-audit/sources/ms/sos-lands-rules.json"
+  },
+  "https://mca.legmt.gov/bills/mca/title_0150/chapter_0170/part_0010/section_0250/0150-0170-0010-0250.html": {
+   "state": "MT",
+   "statutes": [
+    "MCA 15-17-125(2)(f)",
+    "MCA 15-17-125(1)(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9cd32dee12c9ab388bc26526fd4261e1617375b7d52563a5f054a9be097174ee",
+   "fetched_at": "2026-11-01T10:10:24.174Z",
+   "snapshot": "foundry/out/law-audit/sources/mt/s15-17-125.json"
+  },
+  "https://mca.legmt.gov/bills/mca/title_0150/chapter_0160/part_0010/section_0020/0150-0160-0010-0020.html": {
+   "state": "MT",
+   "statutes": [
+    "MCA 15-16-102(3)(a)(i)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b496151bac116e7cb4a4f4de1489eea19f206b25adb73ae28a117cd568747c73",
+   "fetched_at": "2026-11-01T10:11:04.556Z",
+   "snapshot": "foundry/out/law-audit/sources/mt/s15-16-102.json"
+  },
+  "https://mca.legmt.gov/bills/mca/title_0150/chapter_0180/part_0010/section_0140/0150-0180-0010-0140.html": {
+   "state": "MT",
+   "statutes": [
+    "MCA 15-18-114(2)(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "2d1069e54c7d654968c99f37308fd49b454a1819146bbccd7e58b895c5be2888",
+   "fetched_at": "2026-11-01T10:10:57.018Z",
+   "snapshot": "foundry/out/law-audit/sources/mt/s15-18-114.json"
+  },
+  "https://mca.legmt.gov/bills/mca/title_0150/chapter_0180/part_0010/section_0110/0150-0180-0010-0110.html": {
+   "state": "MT",
+   "statutes": [
+    "MCA 15-18-111(1)",
+    "MCA 15-18-111(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f02250d3de6f21b791b2e5157f7f7a82b10996209243ee8f97e58fc92985f459",
+   "fetched_at": "2026-11-01T10:10:45.322Z",
+   "snapshot": "foundry/out/law-audit/sources/mt/s15-18-111.json"
+  },
+  "https://mca.legmt.gov/bills/mca/title_0150/chapter_0170/part_0030/section_0230/0150-0170-0030-0230.html": {
+   "state": "MT",
+   "statutes": [
+    "MCA 15-17-323(1)(a)",
+    "MCA 15-17-323(1)(b)",
+    "MCA 15-17-323(5)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "2994efc8bae26a9546a39c8e1b1245c2978d93d2d900e7d41fb4afa577413687",
+   "fetched_at": "2026-11-01T10:10:48.222Z",
+   "snapshot": "foundry/out/law-audit/sources/mt/s15-17-323.json"
+  },
+  "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/ByArticle/Chapter_105/Article_26.pdf": {
+   "state": "NC",
+   "statutes": [
+    "N.C. Gen. Stat. § 105-374(p)",
+    "N.C. Gen. Stat. § 105-374(m)",
+    "N.C. Gen. Stat. § 105-374(o)",
+    "N.C. Gen. Stat. § 105-374(e)",
+    "N.C. Gen. Stat. § 105-375(a)",
+    "N.C. Gen. Stat. § 105-374(a)",
+    "N.C. Gen. Stat. § 105-374(q)",
+    "N.C. Gen. Stat. § 105-375(i)",
+    "N.C. Gen. Stat. § 105-375(b)",
+    "N.C. Gen. Stat. § 105-374(m1)",
+    "N.C. Gen. Stat. § 105-374(q)(6)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "292e38966b589387379d5b2c3892884adf56d787e2bb568fd8d3ebd21106a825",
+   "fetched_at": "2026-11-01T09:55:56.754Z",
+   "snapshot": "foundry/out/law-audit/sources/nc/g105-374.json"
+  },
+  "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_1/GS_1-339.64.pdf": {
+   "state": "NC",
+   "statutes": [
+    "N.C. Gen. Stat. § 1-339.64(a)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "4046b68886601d38c2cbc74b368cbd85657aab95354ff845e8939a5b3368cecd",
+   "fetched_at": "2026-11-01T09:56:23.374Z",
+   "snapshot": "foundry/out/law-audit/sources/nc/g1-339-64.json"
+  },
+  "https://ndlegis.gov/cencode/t57c28.pdf": {
+   "state": "ND",
+   "statutes": [
+    "N.D.C.C. § 57-28-09",
+    "N.D.C.C. § 57-28-15",
+    "N.D.C.C. §§ 57-28-01, 57-28-02",
+    "N.D.C.C. § 57-28-13",
+    "N.D.C.C. § 57-28-10",
+    "N.D.C.C. § 57-28-17",
+    "N.D.C.C. § 57-28-20"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "c851ee812e992cc1a195d5c32c88c8e456b2d5fe2b7f63a1f44dd9bd8c547d2f",
+   "fetched_at": "2026-10-27T06:35:49.367Z",
+   "snapshot": "foundry/out/law-audit/sources/nd/ndcc-57-28.json"
+  },
+  "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1818": {
+   "state": "NE",
+   "statutes": [
+    "Neb. Rev. Stat. § 77-1818(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "96d722c2d79f15c3183748bb648da9389b16b837bd73fb365591cddc7e1f078d",
+   "fetched_at": "2026-11-01T09:52:29.457Z",
+   "snapshot": "foundry/out/law-audit/sources/ne/s771818.json"
+  },
+  "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1824": {
+   "state": "NE",
+   "statutes": [
+    "Neb. Rev. Stat. § 77-1824"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0f67d1ff3fac08569e9f4f071e9db19863bd014597de6302865da56ba84433d2",
+   "fetched_at": "2026-11-01T09:52:09.920Z",
+   "snapshot": "foundry/out/law-audit/sources/ne/s771824.json"
+  },
+  "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1801": {
+   "state": "NE",
+   "statutes": [
+    "Neb. Rev. Stat. § 77-1801"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ac8f09f5bc13e886c59f866154e3c9ac9a715f56efc147a2509b0c8dbc86c5ec",
+   "fetched_at": "2026-11-01T09:51:55.428Z",
+   "snapshot": "foundry/out/law-audit/sources/ne/s771801.json"
+  },
+  "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1837": {
+   "state": "NE",
+   "statutes": [
+    "Neb. Rev. Stat. § 77-1837"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "bbb38671ba23e4a4fbcd15b167dec37152391290d07ffa70a58331ed32d63150",
+   "fetched_at": "2026-11-01T09:52:00.300Z",
+   "snapshot": "foundry/out/law-audit/sources/ne/s771837.json"
+  },
+  "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1831": {
+   "state": "NE",
+   "statutes": [
+    "Neb. Rev. Stat. § 77-1831"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "92dae394a98c38453c6a8a8364345c24b837601c69e6b0888c3cd3235c84d114",
+   "fetched_at": "2026-11-01T09:52:14.800Z",
+   "snapshot": "foundry/out/law-audit/sources/ne/s771831.json"
+  },
+  "https://gencourt.state.nh.us/rsa/html/V/80/80-mrg.htm": {
+   "state": "NH",
+   "statutes": [
+    "RSA 80:38(I)",
+    "RSA 80:32",
+    "RSA 80:24",
+    "RSA 80:21",
+    "RSA 80:20",
+    "RSA 80:19",
+    "RSA 80:89(II)",
+    "RSA 80:90(I)(f)",
+    "RSA 80:20-a",
+    "RSA 80:88(II)",
+    "RSA 80:42(II)",
+    "RSA 80:88(I)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ee00071b3ca0918e003f3698f97f3b576c0a6b85e99b42dd94d3c27fe135c8ad",
+   "fetched_at": "2026-11-01T09:20:58.395Z",
+   "snapshot": "foundry/out/law-audit/sources/nh/rsa-80.json"
+  },
+  "https://www.nj.gov/dca/dlgs/programs/tax_collector_docs/elements_of_tax_sales_nj.pdf": {
+   "state": "NJ",
+   "statutes": [
+    "none: administrative practice (DLGS guide, copy dated 2011)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "09aaeda39226b4d3b30d6d1e18444fb990c846fbc530eaa06d3c94e71ce827b6",
+   "fetched_at": "2026-11-01T10:39:50.966Z",
+   "snapshot": "foundry/out/law-audit/sources/nj/elements.json"
+  },
+  "https://pub.njleg.gov/Bills/2024/PL24/39_.HTM": {
+   "state": "NJ",
+   "statutes": [
+    "P.L.2024, c.39 § 2 (R.S. 54:5-86(a))",
+    "P.L.2024, c.39 § 1 (R.S. 54:5-33(a))",
+    "P.L.2024, c.39 § 3 (R.S. 54:5-87(b))",
+    "P.L.2024, c.39 § 3 (R.S. 54:5-87(a))"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "a7e21df659593feef81bac2910aa765b91cb2c8c0a26c5e95f4a24e025d3dddb",
+   "fetched_at": "2026-11-01T10:39:48.200Z",
+   "snapshot": "foundry/out/law-audit/sources/nj/pl24-39.json"
+  },
+  "https://www.tax.newmexico.gov/businesses/delinquent-property-tax-auctions/": {
+   "state": "NM",
+   "statutes": [
+    "§ 7-38-70(B) NMSA 1978 (as quoted by TRD)",
+    "none: administrative practice (NM Taxation and Revenue Department, Property Tax Division)",
+    "§ 7-38-67 NMSA 1978 (as stated by TRD)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1e703473ad5422017136be590417af6ee94eac68aad47043cef8cc6e98a59e0d",
+   "fetched_at": "2026-10-27T06:37:19.843Z",
+   "snapshot": "foundry/out/law-audit/sources/nm/trd-auctions-page.json"
+  },
+  "https://biz.nm.gov/newsroom/updated-press-release-delinquent-property-tax-auctions-scheduled-in-ma-100002756": {
+   "state": "NM",
+   "statutes": [
+    "none: administrative practice (NM Taxation and Revenue Department press release, Feb. 23, 2026)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0dad7525c45c70e4c3e31bff693a828c2e4ff028ef309f633dd9c016c756f07c",
+   "fetched_at": "2026-10-27T06:37:17.352Z",
+   "snapshot": "foundry/out/law-audit/sources/nm/trd-press-2026-03.json"
+  },
+  "https://www.leg.state.nv.us/NRS/NRS-361.html": {
+   "state": "NV",
+   "statutes": [
+    "NRS 361.595(1)",
+    "NRS 361.570(1)",
+    "NRS 361.585(3)",
+    "NRS 361.595(2)",
+    "NRS 361.595(3)",
+    "NRS 361.600",
+    "NRS 361.570(2)",
+    "NRS 361.595(5)",
+    "NRS 361.610(5)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "c27a25d17afb425abf5bfe50554ea21b958d275affac6c55ce54ce10bf394116",
+   "fetched_at": "2026-11-01T09:56:01.852Z",
+   "snapshot": "foundry/out/law-audit/sources/nv/nrs361.json"
+  },
+  "https://codes.ohio.gov/ohio-revised-code/chapter-5721": {
+   "state": "OH",
+   "statutes": [
+    "Ohio Rev. Code § 5721.32(B)(1)",
+    "Ohio Rev. Code § 5721.32(C)",
+    "Ohio Rev. Code § 5721.38(A)",
+    "Ohio Rev. Code § 5721.32(A)",
+    "Ohio Rev. Code § 5721.19(A)",
+    "Ohio Rev. Code § 5721.30(E)(1)",
+    "Ohio Rev. Code § 5721.32(B)(2)",
+    "Ohio Rev. Code § 5721.32(B)(3)",
+    "Ohio Rev. Code § 5721.32(D)(1)",
+    "Ohio Rev. Code § 5721.33(A)",
+    "Ohio Rev. Code § 5721.20(A)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "7af1248115a8f007848328c73c240adbf8861cc9f0486c978cfdfca5291b2424",
+   "fetched_at": "2026-11-01T10:00:05.920Z",
+   "snapshot": "foundry/out/law-audit/sources/oh/orc5721.json"
+  },
+  "https://oktaxrolls.com/county/Delaware": {
+   "state": "OK",
+   "statutes": [
+    "68 O.S. § 3105 (as described by Delaware County Treasurer)",
+    "68 O.S. §§ 3125-3131 (as described by Delaware County Treasurer)",
+    "68 O.S. § 3135 (as described by Delaware County Treasurer)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "dbd81473b3b393a6b2cf329e5f01c661bcdd719e482ab7c0d128ceb71c3d5ba6",
+   "fetched_at": "2026-10-27T06:42:04.459Z",
+   "snapshot": "foundry/out/law-audit/sources/ok/oktaxrolls-delaware.json"
+  },
+  "https://docs.oklahomacounty.org/treasurer/ImportantDates.asp": {
+   "state": "OK",
+   "statutes": [
+    "none: administrative practice (Oklahoma County Treasurer calendar)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e5381f54b389dec0ae5ec6b1167b05688ad2d92dce5aaf071b310d06b934cef9",
+   "fetched_at": "2026-10-27T06:42:01.435Z",
+   "snapshot": "foundry/out/law-audit/sources/ok/okcounty-important-dates.json"
+  },
+  "https://www.oregonlegislature.gov/bills_laws/ors/ors312.html": {
+   "state": "OR",
+   "statutes": [
+    "ORS 312.200",
+    "ORS 312.520(3)(b)",
+    "ORS 312.010(1)",
+    "ORS 312.120(1)",
+    "ORS 312.520(3)(a)",
+    "ORS 312.520(3)(e)",
+    "ORS 312.520(1)(a)",
+    "ORS 312.520(3)(c)(C)",
+    "ORS 312.120(2)",
+    "ORS 312.270",
+    "ORS 312.500 to 312.560 (2025 c.475 §13)",
+    "ORS 312.520(3)(d)",
+    "ORS 312.520(3)(c)(A)",
+    "ORS 312.540(1)-(2)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ff84e9e29bb8a6df737a88e64b8f5e4fd32fad6954b29081ef109949a2bca7e8",
+   "fetched_at": "2026-11-01T10:00:08.572Z",
+   "snapshot": "foundry/out/law-audit/sources/or/ors312.json"
+  },
+  "https://www.palegis.us/statutes/unconsolidated/law-information/view-statute?txtType=PDF&SessYr=1947&ActNum=0542.&SessInd=0": {
+   "state": "PA",
+   "statutes": [
+    "72 P.S. § 5860.501(c) (Act 542 § 501)",
+    "72 P.S. § 5860.609 (Act 542 § 609)",
+    "72 P.S. § 5860.612 (Act 542 § 612)",
+    "72 P.S. § 5860.601 (Act 542 § 601)",
+    "Real Estate Tax Sale Law, Act of July 7, 1947, P.L. 1368, No. 542 (title)",
+    "72 P.S. § 5860.605 (Act 542 § 605)",
+    "72 P.S. § 5860.613 (Act 542 § 613)",
+    "72 P.S. § 5860.626 (Act 542 § 626)",
+    "72 P.S. § 5860.627 (Act 542 § 627)",
+    "72 P.S. § 5860.205(d) (Act 542 § 205)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "c1b832e2f50bf7017319cbf87063ee185fbf751038cada95376bbbc9b875a337",
+   "fetched_at": "2026-10-27T06:44:05.354Z",
+   "snapshot": "foundry/out/law-audit/sources/pa/act-542-pdf.json"
+  },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-12.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-12(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "dcf1fd8be11642b87b8f50669c3c883064bbff3dbb277d7618fb1c81f6b7e134",
+   "fetched_at": "2026-11-01T10:06:27.466Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-12.json"
+  },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-19.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-19(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "7fbf086ae0e87455c3dba7fe02aefd40d4d8c401cff66c305456ed9f89b94476",
+   "fetched_at": "2026-11-01T10:06:58.172Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-19.json"
+  },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-25.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-25(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "8a0a4f8a674631e2687f3e2f7609e8b8b93f6d525c78811938c2fff21370cd54",
+   "fetched_at": "2026-11-01T10:06:42.766Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-25.json"
+  },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-9.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-9"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "31c62485e9700a919ac73e56efc8bf907987ca2e049e9ce681e76f3d63e379be",
+   "fetched_at": "2026-11-01T10:06:25.277Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-9.json"
+  },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-1.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-1(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "702ac40e24050c2778b99073a0ad3c54aa61e3eb9b25554aa86b8ca8c73a79d7",
+   "fetched_at": "2026-11-01T10:06:20.910Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-1.json"
+  },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-30.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-30"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ba37ae8dc20d140ce8081282212e4f1c3c6fff002362022a02057b9ca675a54d",
+   "fetched_at": "2026-11-01T10:07:00.362Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-30.json"
+  },
+  "https://webserver.rilegislature.gov/Statutes/TITLE44/44-9/44-9-37.htm": {
+   "state": "RI",
+   "statutes": [
+    "R.I. Gen. Laws § 44-9-37"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "c25ab2cd326c5ebee3ecce1e2c374f59d67762e7c8ffe3d15ddb11e618665de8",
+   "fetched_at": "2026-11-01T10:07:02.534Z",
+   "snapshot": "foundry/out/law-audit/sources/ri/s44-9-37.json"
+  },
+  "https://www.scstatehouse.gov/code/t12c051.php": {
+   "state": "SC",
+   "statutes": [
+    "S.C. Code Ann. § 12-51-130",
+    "S.C. Code Ann. § 12-51-90(B)",
+    "S.C. Code Ann. § 12-51-90(A)",
+    "S.C. Code Ann. § 12-51-50",
+    "S.C. Code Ann. § 12-51-40(d)",
+    "S.C. Code Ann. § 12-51-90(C)",
+    "S.C. Code Ann. § 12-51-60"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "87e6b88e8420b78c23ee7d56f5c8dd8dacf341dd0f70dd6aabcb019de0c5f428",
+   "fetched_at": "2026-11-01T10:00:14.123Z",
+   "snapshot": "foundry/out/law-audit/sources/sc/code12-51.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-23-7.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-23-7"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "6cd5c46795692d209ea5c81833d7c1bc78ea1e520d63ff81fac9f6b5446e8e87",
+   "fetched_at": "2026-11-01T09:23:36.051Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-23-7.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-23-8.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-23-8"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "7b98a5ba70f8e0fd7b934bd4679470d92f8ff3a338bb8599ced9cdb6e360d978",
+   "fetched_at": "2026-11-01T09:23:38.570Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-23-8.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-25-8.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-25-8"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "95fe3c2232b4744ed3110152f9e7f487959c29e5e933e5132d184e6b4896ef56",
+   "fetched_at": "2026-11-01T09:24:21.886Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-25-8.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-25-1.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-25-1"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f1f72521989d5eabdfd052bc1d7ad6a71c83380a9e0979cd80d39f2336bdc57d",
+   "fetched_at": "2026-11-01T09:24:19.377Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-25-1.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-25-16.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-25-16"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "c2d022fe72381e841f20264b0b4bc8fd10c3f8df21a77c8b9fff4c1b96fa78d0",
+   "fetched_at": "2026-11-01T09:24:29.582Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-25-16.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-25-10.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-25-10"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "439ec5dee33850108eee849e742e1f31f9fd0b6c218b9ff79d3e9159711787c6",
+   "fetched_at": "2026-11-01T09:24:34.698Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-25-10.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-23-2.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-23-2"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0edfa599b43701d20c847856fa54548966f240ba61e40bbd020d8604580e237e",
+   "fetched_at": "2026-11-01T09:23:23.202Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-23-2.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-23-3.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-23-3"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "919cceb5c84f88a08e7f4bf2a39446c25ee405bc9f4473aad1c4942d02311cfc",
+   "fetched_at": "2026-11-01T09:23:25.756Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-23-3.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-23-9.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-23-9"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "5159d33adf7fffaac7683bb4b37e73e7fb52629ba36da268b61fb68bd55768ef",
+   "fetched_at": "2026-11-01T09:23:41.107Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-23-9.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-23-12.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-23-12"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "674ef6e9f8f7548257e9fc734f2f5e47066cf1786b307826d0b744dfd5a1964b",
+   "fetched_at": "2026-11-01T09:23:48.796Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-23-12.json"
+  },
+  "https://sdlegislature.gov/api/Statutes/10-25-39.html": {
+   "state": "SD",
+   "statutes": [
+    "SDCL § 10-25-39"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f7be142fd7409c1f9446263f48a7a17d08b493b6c26dc9673925e4f1b3afaae5",
+   "fetched_at": "2026-11-01T09:24:27.046Z",
+   "snapshot": "foundry/out/law-audit/sources/sd/s10-25-39.json"
+  },
+  "https://tcss.legis.texas.gov/resources/TX/htm/TX.34.htm": {
+   "state": "TX",
+   "statutes": [
+    "Tex. Tax Code § 34.01(n)",
+    "Tex. Tax Code § 34.21(a)",
+    "Tex. Tax Code § 34.01(j)",
+    "Tex. Tax Code § 34.21",
+    "Tex. Tax Code § 34.01(r)",
+    "Tex. Tax Code § 34.01(r-1)",
+    "Tex. Tax Code § 34.21(e)(1)",
+    "Tex. Tax Code § 34.05(a)",
+    "Tex. Tax Code § 34.21(e)(2)",
+    "Tex. Tax Code § 34.21(h)",
+    "Tex. Tax Code § 34.01(r-2)",
+    "Tex. Tax Code § 34.03 (history note)",
+    "Tex. Tax Code § 34.21(e)",
+    "Tex. Tax Code § 34.015(b)",
+    "Tex. Tax Code § 34.01(a-1)",
+    "Tex. Tax Code § 34.01(e)(2)",
+    "Tex. Tax Code § 34.011(b)",
+    "Tex. Tax Code § 34.01(a)",
+    "Tex. Tax Code § 34.04(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "aa4a1ecd1ed4bb0fae573518177b35110b71480a0e3e944e2a1990e9d5b5492a",
+   "fetched_at": "2026-10-29T05:43:02.536Z",
+   "snapshot": "foundry/out/law-audit/sources/tx/tax-code-ch34-tcss.json"
+  },
+  "https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1351.1_2018050820180508.html": {
+   "state": "UT",
+   "statutes": [
+    "Utah Code § 59-2-1351.1(9)(a)",
+    "Utah Code § 59-2-1351.1(2)(b)",
+    "Utah Code § 59-2-1351.1",
+    "Utah Code § 59-2-1351.1(7)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "9cc31117a536afeb9090ff62b2d893082491bebeb11981bb92857b1c38b178d4",
+   "fetched_at": "2026-10-29T05:46:59.920Z",
+   "snapshot": "foundry/out/law-audit/sources/ut/ucode-59-2-1351-1.json"
+  },
+  "https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1351_2023031320230313.html": {
+   "state": "UT",
+   "statutes": [
+    "Utah Code § 59-2-1351(1)(b)",
+    "Utah Code § 59-2-1351(4) (notice form)",
+    "Utah Code § 59-2-1351",
+    "Utah Code § 59-2-1351(1)(c)",
+    "Utah Code § 59-2-1351(1)(a)",
+    "Utah Code § 59-2-1351(3)",
+    "Utah Code § 59-2-1351(5)(b)",
+    "Utah Code § 59-2-1351(1)(c)(ii)(C)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "59515b71c4909916306006eafdccab619b1ecdb1ac1e7af4caa32f1d3b0237f7",
+   "fetched_at": "2026-10-29T05:46:52.722Z",
+   "snapshot": "foundry/out/law-audit/sources/ut/ucode-59-2-1351.json"
+  },
+  "https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1346_2022050420220504.html": {
+   "state": "UT",
+   "statutes": [
+    "Utah Code § 59-2-1346(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "b926197541ded6e571dceb09534238d49eaed373c3b218420ddfde2f8d955554",
+   "fetched_at": "2026-10-29T05:46:50.412Z",
+   "snapshot": "foundry/out/law-audit/sources/ut/ucode-59-2-1346.json"
+  },
+  "https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1343_2026010120250507.html": {
+   "state": "UT",
+   "statutes": [
+    "Utah Code § 59-2-1343(1)(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "e9fb63d4a156b36d5d7a3a6433249209acc072f7f6a5f35fbab5d4fb83237c2b",
+   "fetched_at": "2026-10-29T05:46:48.057Z",
+   "snapshot": "foundry/out/law-audit/sources/ut/ucode-59-2-1343.json"
+  },
+  "https://le.utah.gov/xcode/Title59/Chapter2/C59-2-S1351.5_2018050820180508.html": {
+   "state": "UT",
+   "statutes": [
+    "Utah Code § 59-2-1351.5(1)(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "41384b379a2e982eb9087a56e0ed737eb7eb5baac1931d9a58d5a5abdf054cac",
+   "fetched_at": "2026-10-29T05:47:04.573Z",
+   "snapshot": "foundry/out/law-audit/sources/ut/ucode-59-2-1351-5.json"
+  },
+  "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3967/": {
+   "state": "VA",
+   "statutes": [
+    "Va. Code Ann. § 58.1-3967"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "a07ad0ec1c8a5df6b2e63fb94fbb7966a0f18fbe445ff28a5fb63aa4b62b44d0",
+   "fetched_at": "2026-11-01T10:08:33.653Z",
+   "snapshot": "foundry/out/law-audit/sources/va/s58-1-3967.json"
+  },
+  "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3974/": {
+   "state": "VA",
+   "statutes": [
+    "Va. Code Ann. § 58.1-3974"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0567cf77bcb81a2ce94cfeb769694f4d4f6382764e9fa19741edaad0ab8b6116",
+   "fetched_at": "2026-11-01T10:08:48.360Z",
+   "snapshot": "foundry/out/law-audit/sources/va/s58-1-3974.json"
+  },
+  "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3969/": {
+   "state": "VA",
+   "statutes": [
+    "Va. Code Ann. § 58.1-3969"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "66036037af04ad9eb6d50883f685962618a64f9a119b0bf88eefbefb53b80cc8",
+   "fetched_at": "2026-11-01T10:08:38.766Z",
+   "snapshot": "foundry/out/law-audit/sources/va/s58-1-3969.json"
+  },
+  "https://law.lis.virginia.gov/vacode/title58.1/chapter39/section58.1-3965/": {
+   "state": "VA",
+   "statutes": [
+    "Va. Code Ann. § 58.1-3965(A)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "8fc9a04492c0f2975af32eb88e7a0a6c81054b16e04a83d90ba0c6cc1df69bbb",
+   "fetched_at": "2026-11-01T10:08:31.236Z",
+   "snapshot": "foundry/out/law-audit/sources/va/s58-1-3965.json"
+  },
+  "https://legislature.vermont.gov/statutes/fullchapter/32/133": {
+   "state": "VT",
+   "statutes": [
+    "32 V.S.A. § 5261",
+    "32 V.S.A. § 5260(a)",
+    "32 V.S.A. § 5252(a)(2)",
+    "32 V.S.A. § 5254(a)",
+    "32 V.S.A. § 5252(a)",
+    "32 V.S.A. § 5255"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1d356cbcd6e602ccd444fac59cbe0a2b693ed4be33358fd293f3102feb6ad801",
+   "fetched_at": "2026-11-01T10:05:02.291Z",
+   "snapshot": "foundry/out/law-audit/sources/vt/ch133.json"
+  },
+  "https://lawfilesext.leg.wa.gov/Law/RCWPDF/RCW%20%2084%20%20TITLE/RCW%20%2084%20%20%20TITLE/RCW%20%2084%20%20%20COMBINEDTITLE.pdf": {
+   "state": "WA",
+   "statutes": [
+    "RCW 84.64.080(11)",
+    "RCW 84.56.020(5)(a)",
+    "RCW 84.64.070(1)",
+    "RCW 84.64.080(4)",
+    "RCW 84.64.225(1)",
+    "RCW 84.64.080(5)",
+    "RCW 84.64.050(1)",
+    "RCW 84.64.225(2)",
+    "RCW 84.64.080(10)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "9354b0ed9290938420122a3b12cd558d1af6709a43abc491c97514b54532ea0f",
+   "fetched_at": "2026-11-01T10:39:44.488Z",
+   "snapshot": "foundry/out/law-audit/sources/wa/rcw84-title.json"
+  },
+  "https://lawfilesext.leg.wa.gov/Law/RCWPDF/RCW%20%2036%20%20TITLE/RCW%20%2036%20.%2035%20%20CHAPTER/RCW%20%2036%20.%2035%20.150.pdf": {
+   "state": "WA",
+   "statutes": [
+    "RCW 36.35.150(1)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "604abdb1fe2a9efdf7c0c6c9e257c00c24a4b1d7291a0723e3038eb075a24110",
+   "fetched_at": "2026-11-01T10:40:29.927Z",
+   "snapshot": "foundry/out/law-audit/sources/wa/rcw36-35.json"
+  },
+  "https://docs.legis.wisconsin.gov/document/statutes/75.14": {
+   "state": "WI",
+   "statutes": [
+    "Wis. Stat. § 75.14(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "0227a1d807885ca1a300d11537b263951898f99b99d1c6c5fb0b5c006a6b12d3",
+   "fetched_at": "2026-10-29T05:49:46.480Z",
+   "snapshot": "foundry/out/law-audit/sources/wi/stats-75-14.json"
+  },
+  "https://docs.legis.wisconsin.gov/document/statutes/75.69": {
+   "state": "WI",
+   "statutes": [
+    "Wis. Stat. § 75.69(1)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "50156159d98795b10a1569940b77c8ecf614afc0688adacfa013886a4172ec48",
+   "fetched_at": "2026-10-29T05:50:16.677Z",
+   "snapshot": "foundry/out/law-audit/sources/wi/stats-75-69.json"
+  },
+  "https://docs.legis.wisconsin.gov/document/statutes/75.01": {
+   "state": "WI",
+   "statutes": [
+    "Wis. Stat. § 75.01(1)(b)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "068965204845619c2c9d21370098ca2071e29f87067b77cb5f88ebf152264b16",
+   "fetched_at": "2026-10-29T05:49:21.120Z",
+   "snapshot": "foundry/out/law-audit/sources/wi/stats-75-01.json"
+  },
+  "https://docs.legis.wisconsin.gov/document/statutes/74.57": {
+   "state": "WI",
+   "statutes": [
+    "Wis. Stat. § 74.57(2)(b)",
+    "Wis. Stat. § 74.57"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "bfb6a866329248af71875fbf869b7fb70e9a9d7a8cf449fe22be4f3a78b249c9",
+   "fetched_at": "2026-10-29T05:50:39.432Z",
+   "snapshot": "foundry/out/law-audit/sources/wi/stats-74-57.json"
+  },
+  "https://docs.legis.wisconsin.gov/document/statutes/75.35": {
+   "state": "WI",
+   "statutes": [
+    "Wis. Stat. § 75.35(2)(am)",
+    "Wis. Stat. § 75.35(3)",
+    "Wis. Stat. § 75.35(2)(d)",
+    "Wis. Stat. § 75.36(3)(c)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "3f20889d14f933925977aace5f438397e486500212e7781ea716fcd46667f0c2",
+   "fetched_at": "2026-10-29T05:49:48.874Z",
+   "snapshot": "foundry/out/law-audit/sources/wi/stats-75-35.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-42/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-42"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "f5170784c605a43377bb75e43d64851e9ce64b9bc34a05b7fee092884a1e4e65",
+   "fetched_at": "2026-10-29T05:53:18.635Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-42.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-56/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-56(a)(1)",
+    "W. Va. Code § 11A-3-56(a)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "d9ee475dd7d9508ee0bc6367bcceff52ed28507ad86ae7dff84bb5d7762c2cad",
+   "fetched_at": "2026-10-29T05:53:32.185Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-56.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-45/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-45(a)",
+    "W. Va. Code § 11A-3-45(c)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ce8759354695ced95c429e5b691d01509f0e39fc2f48dd849fae67642266f6cc",
+   "fetched_at": "2026-10-29T05:52:56.501Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-45.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-59/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-59"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "1f4f8030f0422a65d6acbadd224669ceaa0dd05501195841454a5959b078905f",
+   "fetched_at": "2026-10-29T05:53:35.148Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-59.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-52/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-52(d)",
+    "W. Va. Code § 11A-3-52(a)",
+    "W. Va. Code § 11A-3-52(b)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "35a9174278c7b7bbedc6ad6188a5cdfb09fdda4e96790ce39cd92523cae33404",
+   "fetched_at": "2026-10-29T05:53:26.670Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-52.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-5/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-5 (repealed, 2022 SB 552)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "ecf0782fdf4c7531d468a1d9e69d05cc5287570235050ae2e4800afccf38411d",
+   "fetched_at": "2026-10-29T05:52:37.313Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-5.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-54/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-54"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "5bfd3084a9801df75282c3cd9bd5084550820c046b1b4e51bdcc6da106d8b0c8",
+   "fetched_at": "2026-10-29T05:53:29.450Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-54.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-48/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-48(a)",
+    "W. Va. Code § 11A-3-48(b)"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "7c641059fabba40bb78d186df09eda6b5e621a88fb2960f3c4beb1c3efd6132f",
+   "fetched_at": "2026-10-29T05:52:59.150Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-48.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-44/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-44"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "6d536f8551a7a4e821a73110d0d10a5fd2dcd45e3da6fb6d8f35d420433bffe1",
+   "fetched_at": "2026-10-29T05:53:21.403Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-44.json"
+  },
+  "https://code.wvlegislature.gov/11A-3-65/": {
+   "state": "WV",
+   "statutes": [
+    "W. Va. Code § 11A-3-65"
+   ],
+   "extractor": "foundry/tools/law-text.mjs htmlToText",
+   "text_sha256": "77288a3ef18245320bd9de503258d8a260e29f5005cb7dbfa0792b403b6bf160",
+   "fetched_at": "2026-10-29T05:53:01.936Z",
+   "snapshot": "foundry/out/law-audit/sources/wv/code-11a-3-65.json"
+  },
+  "https://wyoleg.gov/statutes/compress/title39.pdf": {
+   "state": "WY",
+   "statutes": [
+    "W.S. 39-13-108(d)(ii)",
+    "W.S. 39-13-108(b)(ii)",
+    "W.S. 39-13-108(d)(iii)",
+    "W.S. 39-13-108(d)(iv)(C)"
+   ],
+   "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+   "text_sha256": "0e620fe0b1b96f4d67ede871356f07dc19b64daad788ec3f0ed424bee54fd704",
+   "fetched_at": "2026-11-01T10:12:37.434Z",
+   "snapshot": "foundry/out/law-audit/sources/wy/wy39-13-108.json"
   }
  }
 }

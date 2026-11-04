@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "wa",
+ "slug": "rcw84-56-070",
+ "url": "https://lawfilesext.leg.wa.gov/Law/RCWPDF/RCW%20%2084%20%20TITLE/RCW%20%2084%20.%2056%20%20CHAPTER/RCW%20%2084%20.%2056%20.070.pdf",
+ "final_url": "https://lawfilesext.leg.wa.gov/Law/RCWPDF/RCW%20%2084%20%20TITLE/RCW%20%2084%20.%2056%20%20CHAPTER/RCW%20%2084%20.%2056%20.070.pdf",
+ "fetched_at": "2026-11-01T10:40:32.522Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "b5ec0b071b527231210093375e389178ab16e5e04575628a0447937a44d9acb6",
+ "raw_bytes": 122768,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "71cdaa7cff97a846811c1e4ca8e091cafe3ff48731a54ae8e0687ddde286b6af",
+ "text_chars": 7060
+}

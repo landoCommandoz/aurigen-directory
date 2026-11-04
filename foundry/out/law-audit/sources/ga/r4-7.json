@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ga",
+ "slug": "r4-7",
+ "url": "https://www.legis.ga.gov/legislation/georgia-code",
+ "final_url": "https://www.legis.ga.gov/legislation/georgia-code",
+ "fetched_at": "2026-11-01T10:20:57.639Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "301e217dc5d384b4243ee12b56ae51d5ecf1d0b0becedae1da952a1d361bac65",
+ "raw_bytes": 1492,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "d172221fcd7b5980dd0f35646d44b1cd1526f48b24cec10ec63253ae068aa636",
+ "text_chars": 68
+}

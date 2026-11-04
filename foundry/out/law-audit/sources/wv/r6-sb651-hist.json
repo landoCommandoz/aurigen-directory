@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "wv",
+ "slug": "r6-sb651-hist",
+ "url": "https://www.wvlegislature.gov/Bill_Status/bills_history.cfm?INPUT=651&year=2026&sessiontype=RS",
+ "final_url": "https://www.wvlegislature.gov/Bill_Status/bills_history.cfm?INPUT=651&year=2026&sessiontype=RS",
+ "fetched_at": "2026-11-01T10:34:18.957Z",
+ "http_status": 200,
+ "content_type": "text/html;charset=UTF-8",
+ "raw_sha256": "0e527a45aef1ba633ec0685f9133b8fe0e81dea2911f6f37117e47b0a8dcbfa3",
+ "raw_bytes": 47391,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "0697141476b49475417846e6f4d2d5b8ee871f6b1c5ab22a5372b5bcdaa243d5",
+ "text_chars": 3607
+}

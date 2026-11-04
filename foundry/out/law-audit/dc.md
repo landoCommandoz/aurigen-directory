@@ -192,3 +192,6 @@ None. All D.C. Code sections downloaded from code.dccouncil.gov; the OTR page do
 ## Conflicts (flagged)
 
 - `rate`: Fetched D.C. Code §§ 47-1330 to 47-1382.01 say redemption includes "interest thereon" but the 18% figure was not found in the sections read; confirm the rate section
+
+## Gap queue, run 6 (2026-11-01)
+- DC-1 closed. D.C. Code § 47-1334 (sources/dc/r6-dcc-47-1334) sets the rate: "simple interest of 1.5% per month or portion thereof on the amount paid for the real property, excluding surplus". The site's "18%" was an annualised figure the statute does not state. `rate` and `es.rate` now read "Rate set by law: 1.5% per month or part of a month, simple interest, on the amount paid (excluding surplus)" (substantive correction; no longer flagged). Both former flags are resolved.

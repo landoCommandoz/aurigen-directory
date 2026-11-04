@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "hi",
+ "slug": "kauai-tax-sale-inst-2018",
+ "url": "https://www.kauai.gov/files/assets/public/finance/documents/tax-sale-inst_rev-27sept2018.pdf",
+ "final_url": "https://www.kauai.gov/files/assets/public/v/1/finance/documents/tax-sale-inst_rev-27sept2018.pdf",
+ "fetched_at": "2026-10-27T06:22:35.537Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "8a0d8991e6f22510ce268787e1cdb643a3661c81d3201c1b70ac7f25a17ae58c",
+ "raw_bytes": 17540,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "c11ddefdb0a72992ad96684c82aa4f15231a74399650a370cff6dd80425e7d8d",
+ "text_chars": 3471
+}

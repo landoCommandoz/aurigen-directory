@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ky",
+ "slug": "krs-134-452",
+ "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=47033",
+ "final_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=47033",
+ "fetched_at": "2026-10-27T06:25:59.405Z",
+ "http_status": 200,
+ "content_type": "application/PDF",
+ "raw_sha256": "f1939533260d5a6f7eefe090e5e71d5d42129920599178a1f7c08e4cb3d79acb",
+ "raw_bytes": 16813,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "148b784171cff505ed71f34d49716d0f3045604d306cc683da4d4609160ff55b",
+ "text_chars": 7054
+}

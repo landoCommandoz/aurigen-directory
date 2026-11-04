@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "il",
+ "slug": "ilcs-index",
+ "url": "https://www.ilga.gov/Legislation/ILCS/Articles?ActID=596&ChapterID=8",
+ "final_url": "https://www.ilga.gov/Legislation/ILCS/Articles?ActID=596&ChapterID=8",
+ "fetched_at": "2026-11-01T09:12:35.559Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "3c71254128a1e49b6bddd140451927961ba474297bd75d34a81817f69535deda",
+ "raw_bytes": 111550,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "5c0cea5eb6db6ab76b6b31a2aede423a7e86d12f0890bc54683476a06b05b9e2",
+ "text_chars": 9297
+}

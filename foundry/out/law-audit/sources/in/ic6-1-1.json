@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "in",
+ "slug": "ic6-1-1",
+ "url": "https://iga.in.gov/ic/2025/Title_6/Article_1.1/Chapter_24",
+ "final_url": "https://iga.in.gov/ic/2025/Title_6/Article_1.1/Chapter_24",
+ "fetched_at": "2026-11-01T10:12:30.411Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "61d9d1265c828684df265d5139ee43f21d5325cb19aa861c7da7816dd28ac732",
+ "raw_bytes": 691,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+ "text_chars": 1
+}

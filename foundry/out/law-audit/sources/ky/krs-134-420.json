@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ky",
+ "slug": "krs-134-420",
+ "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=43802",
+ "final_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=43802",
+ "fetched_at": "2026-10-27T06:25:56.339Z",
+ "http_status": 200,
+ "content_type": "application/PDF",
+ "raw_sha256": "1e08fbccc56c55d0f77439d191f1326e372f8b05d3c1cf9c859b0cae90f0b714",
+ "raw_bytes": 7517,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "acda26de1702f24d88c7dfea1b90fa7a28c1684b6ac3f8d209bd70f3a01c4bc9",
+ "text_chars": 2937
+}

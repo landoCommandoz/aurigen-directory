@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "mn",
+ "slug": "s28001",
+ "url": "https://www.revisor.mn.gov/statutes/cite/280.01",
+ "final_url": "https://www.revisor.mn.gov/statutes/cite/280.01",
+ "fetched_at": "2026-11-01T09:48:56.760Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "1f2a9dd3c9b7f74e3dfb2e1f37d05856744ba9dff2cbcbed464f576bf19c2941",
+ "raw_bytes": 61551,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "72a77f2ea2ef65cc5bcb1fc155bd84f5cad5bdc6fcdaa45844cde1e7b0237eee",
+ "text_chars": 5929
+}

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "wi",
+ "slug": "stats-ch75-html",
+ "url": "https://docs.legis.wisconsin.gov/statutes/statutes/75",
+ "final_url": "https://docs.legis.wisconsin.gov/statutes/statutes/75",
+ "fetched_at": "2026-10-29T05:49:15.059Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "91992044b800042beeacc805d918547f0d47bb665e56647912a4ba72bcecd555",
+ "raw_bytes": 51601,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "908db7dd04530b6c4eb138f5e4bfab65ad68532b16d094271783c3cbb741527a",
+ "text_chars": 4792
+}

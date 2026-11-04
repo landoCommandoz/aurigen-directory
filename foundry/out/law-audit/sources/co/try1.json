@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "co",
+ "slug": "try1",
+ "url": "https://leg.colorado.gov/bill-search?search_api_fulltext=tax+lien&field_sessions=11001",
+ "final_url": "https://leg.colorado.gov/bills/bill-search",
+ "fetched_at": "2026-11-01T10:16:02.947Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "f5f3b8030d9fb20c3c208625ebf7789a90e0be3d5a46bde205ed7c11f39ef92f",
+ "raw_bytes": 219898,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "bb858e39597f89aaf0981160c383af0c1ac729d17dca93cfac19ee00751e05e1",
+ "text_chars": 18163
+}

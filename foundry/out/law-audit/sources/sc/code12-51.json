@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "sc",
+ "slug": "code12-51",
+ "url": "https://www.scstatehouse.gov/code/t12c051.php",
+ "final_url": "https://www.scstatehouse.gov/code/t12c051.php",
+ "fetched_at": "2026-11-01T10:00:14.123Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "faebc397696334a211ba980948c150acbe13145622d4b52e651bad61ce6c2621",
+ "raw_bytes": 51598,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "87e6b88e8420b78c23ee7d56f5c8dd8dacf341dd0f70dd6aabcb019de0c5f428",
+ "text_chars": 28017
+}

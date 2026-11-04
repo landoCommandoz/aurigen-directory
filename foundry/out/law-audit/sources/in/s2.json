@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "in",
+ "slug": "s2",
+ "url": "https://secure.in.gov/sboa/files/Appendix-to-Indiana-Codes-County-Treasurer-Manual.pdf",
+ "final_url": "https://secure.in.gov/sboa/files/Appendix-to-Indiana-Codes-County-Treasurer-Manual.pdf",
+ "fetched_at": "2026-11-01T10:43:48.423Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "e3736ad460136c787582cc51244467c7f8a7ab64d099285cd846e188ae43c98c",
+ "raw_bytes": 613009,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "e0b2397ac6cd5dfccd7d07fa4d85198cde0286f16287511ced414df24b1e4b15",
+ "text_chars": 10995
+}

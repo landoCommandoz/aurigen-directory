@@ -55,422 +55,588 @@
  "states": {
   "AK": {
    "status": "done",
-   "date": "2026-10-27",
+   "date": "2026-11-01",
    "claims": 69,
    "supported": 1,
-   "corrected": 60,
-   "flagged": 6,
+   "corrected": 66,
+   "flagged": 0,
    "unreachable": 2,
-   "trimmed": 50
+   "trimmed": 50,
+   "checkStatus": "checked with gaps"
   },
   "AL": {
    "status": "done",
-   "date": "2026-10-27",
+   "date": "2026-11-01",
    "claims": 70,
    "supported": 2,
    "corrected": 66,
    "flagged": 2,
    "unreachable": 0,
-   "trimmed": 62
+   "trimmed": 62,
+   "checkStatus": "checked with gaps"
   },
   "CA": {
    "status": "done",
-   "date": "2026-10-27",
+   "date": "2026-11-01",
    "claims": 70,
    "supported": 7,
-   "corrected": 62,
-   "flagged": 1,
+   "corrected": 63,
+   "flagged": 0,
    "unreachable": 0,
-   "trimmed": 55
+   "trimmed": 55,
+   "checkStatus": "checked with gaps"
   },
   "DC": {
    "status": "done",
-   "date": "2026-10-27",
+   "date": "2026-11-01",
    "claims": 74,
    "supported": 1,
-   "corrected": 71,
-   "flagged": 2,
+   "corrected": 73,
+   "flagged": 0,
    "unreachable": 0,
-   "trimmed": 56
+   "trimmed": 56,
+   "checkStatus": "checked"
   },
   "HI": {
-   "status": "in_progress",
-   "date": "2026-10-27",
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 68,
+   "supported": 6,
+   "corrected": 57,
+   "flagged": 0,
+   "unreachable": 5,
+   "trimmed": 62,
+   "checkStatus": "checked with gaps"
+  },
+  "KY": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 66,
+   "supported": 5,
+   "corrected": 61,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 60,
+   "checkStatus": "checked with gaps"
+  },
+  "LA": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 68,
+   "supported": 2,
+   "corrected": 66,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 62,
+   "checkStatus": "checked with gaps"
+  },
+  "ME": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 68,
+   "supported": 5,
+   "corrected": 58,
+   "flagged": 0,
+   "unreachable": 5,
+   "trimmed": 58,
+   "checkStatus": "checked with gaps"
+  },
+  "MS": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 68,
+   "supported": 2,
+   "corrected": 51,
+   "flagged": 1,
+   "unreachable": 14,
+   "trimmed": 67,
+   "checkStatus": "checked with gaps"
+  },
+  "ND": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 64,
+   "supported": 6,
+   "corrected": 58,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 57,
+   "checkStatus": "checked with gaps"
+  },
+  "NM": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 67,
+   "supported": 4,
+   "corrected": 61,
+   "flagged": 2,
+   "unreachable": 0,
+   "trimmed": 61,
+   "checkStatus": "checked with gaps"
+  },
+  "OK": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 61,
+   "supported": 3,
+   "corrected": 21,
+   "flagged": 22,
+   "unreachable": 15,
+   "trimmed": 58,
+   "checkStatus": "checked with gaps"
+  },
+  "PA": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 68,
+   "supported": 16,
+   "corrected": 52,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 54,
+   "checkStatus": "checked"
+  },
+  "TX": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 83,
+   "supported": 10,
+   "corrected": 73,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 76,
+   "checkStatus": "checked with gaps"
+  },
+  "UT": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 73,
+   "supported": 12,
+   "corrected": 61,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 64,
+   "checkStatus": "checked with gaps"
+  },
+  "WI": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 68,
+   "supported": 10,
+   "corrected": 58,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 61,
+   "checkStatus": "checked"
+  },
+  "WV": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 77,
+   "supported": 8,
+   "corrected": 69,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 71,
+   "checkStatus": "checked with gaps"
+  },
+  "AR": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 69,
+   "supported": 12,
+   "corrected": 57,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 61,
+   "checkStatus": "checked with gaps"
+  },
+  "CO": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 80,
+   "supported": 5,
+   "corrected": 75,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 76,
+   "checkStatus": "checked with gaps"
+  },
+  "CT": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 66,
+   "supported": 4,
+   "corrected": 62,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 62,
+   "checkStatus": "checked with gaps"
+  },
+  "IA": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 79,
+   "supported": 13,
+   "corrected": 66,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 70,
+   "checkStatus": "checked with gaps"
+  },
+  "IL": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 84,
+   "supported": 2,
+   "corrected": 82,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 81,
+   "checkStatus": "checked with gaps"
+  },
+  "MA": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 68,
+   "supported": 5,
+   "corrected": 63,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 64,
+   "checkStatus": "checked with gaps"
+  },
+  "MD": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 89,
+   "supported": 2,
+   "corrected": 87,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 86,
+   "checkStatus": "checked with gaps"
+  },
+  "NH": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 65,
+   "supported": 0,
+   "corrected": 65,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 64,
+   "checkStatus": "checked with gaps"
+  },
+  "SD": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 64,
+   "supported": 0,
+   "corrected": 64,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 64,
+   "checkStatus": "checked with gaps"
+  },
+  "AZ": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 84,
+   "supported": 4,
+   "corrected": 80,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 80,
+   "checkStatus": "checked with gaps"
+  },
+  "DE": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 60,
+   "supported": 4,
+   "corrected": 56,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 57,
+   "checkStatus": "checked with gaps"
+  },
+  "FL": {
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 89,
+   "supported": 3,
+   "corrected": 86,
+   "flagged": 0,
+   "unreachable": 0,
+   "trimmed": 86,
+   "checkStatus": "checked with gaps"
+  },
+  "GA": {
+   "status": "blocked",
+   "date": "2026-11-01",
    "claims": 0,
    "supported": 0,
    "corrected": 0,
    "flagged": 0,
    "unreachable": 0,
    "trimmed": 0,
-   "note": "HRS site HTTP 403; county ordinance sources identified; see hi.md"
-  },
-  "KY": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "LA": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "ME": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "MS": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "ND": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "NM": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "OK": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "PA": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "TX": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "UT": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "WI": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "WV": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "AR": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "CO": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "CT": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "IA": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "IL": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "MA": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "MD": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "NH": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "SD": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "AZ": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "DE": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "FL": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
-  },
-  "GA": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
+   "checkStatus": "Couldn't reach source"
   },
   "ID": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 66,
+   "supported": 2,
+   "corrected": 64,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 64,
+   "checkStatus": "checked with gaps"
   },
   "IN": {
-   "status": "todo",
-   "date": null,
+   "status": "blocked",
+   "date": "2026-11-01",
    "claims": 0,
+   "supported": 0,
    "corrected": 0,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 0,
+   "checkStatus": "Couldn't reach source"
   },
   "KS": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 66,
+   "supported": 3,
+   "corrected": 63,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 64,
+   "checkStatus": "checked with gaps"
   },
   "MI": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 66,
+   "supported": 5,
+   "corrected": 61,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 62,
+   "checkStatus": "checked with gaps"
   },
   "MN": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
-   "flagged": 0,
-   "unreachable": 0
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 64,
+   "supported": 2,
+   "corrected": 61,
+   "flagged": 1,
+   "unreachable": 0,
+   "trimmed": 62,
+   "checkStatus": "checked with gaps"
   },
   "MO": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 67,
+   "supported": 4,
+   "corrected": 63,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 64,
+   "checkStatus": "checked with gaps"
   },
   "MT": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 66,
+   "supported": 1,
+   "corrected": 65,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 65,
+   "checkStatus": "checked with gaps"
   },
   "NC": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 69,
+   "supported": 2,
+   "corrected": 67,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 67,
+   "checkStatus": "checked with gaps"
   },
   "NE": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 66,
+   "supported": 5,
+   "corrected": 61,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 62,
+   "checkStatus": "checked with gaps"
   },
   "NJ": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 89,
+   "supported": 0,
+   "corrected": 89,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 89,
+   "checkStatus": "checked with gaps"
   },
   "NV": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 66,
+   "supported": 1,
+   "corrected": 65,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 65,
+   "checkStatus": "checked with gaps"
   },
   "NY": {
-   "status": "todo",
-   "date": null,
+   "status": "blocked",
+   "date": "2026-11-01",
    "claims": 0,
+   "supported": 0,
    "corrected": 0,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 0,
+   "checkStatus": "Couldn't reach source"
   },
   "OH": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 68,
+   "supported": 2,
+   "corrected": 66,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 66,
+   "checkStatus": "checked with gaps"
   },
   "OR": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 63,
+   "supported": 1,
+   "corrected": 62,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 62,
+   "checkStatus": "checked with gaps"
   },
   "RI": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 66,
+   "supported": 1,
+   "corrected": 65,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 65,
+   "checkStatus": "checked with gaps"
   },
   "SC": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 65,
+   "supported": 3,
+   "corrected": 62,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 62,
+   "checkStatus": "checked with gaps"
   },
   "TN": {
-   "status": "todo",
-   "date": null,
+   "status": "blocked",
+   "date": "2026-11-01",
    "claims": 0,
+   "supported": 0,
    "corrected": 0,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 0,
+   "checkStatus": "Couldn't reach source"
   },
   "VA": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 70,
+   "supported": 3,
+   "corrected": 67,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 67,
+   "checkStatus": "checked with gaps"
   },
   "VT": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 66,
+   "supported": 2,
+   "corrected": 64,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 64,
+   "checkStatus": "checked with gaps"
   },
   "WA": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 76,
+   "supported": 2,
+   "corrected": 74,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 74,
+   "checkStatus": "checked with gaps"
   },
   "WY": {
-   "status": "todo",
-   "date": null,
-   "claims": 0,
-   "corrected": 0,
+   "status": "done",
+   "date": "2026-11-01",
+   "claims": 63,
+   "supported": 5,
+   "corrected": 58,
    "flagged": 0,
-   "unreachable": 0
+   "unreachable": 0,
+   "trimmed": 59,
+   "checkStatus": "checked with gaps"
   }
+ },
+ "gapQueue": {
+  "items": 19,
+  "order": [
+   "CO",
+   "AR",
+   "OK",
+   "HI",
+   "MS",
+   "NM",
+   "AL",
+   "CA",
+   "ME",
+   "AK",
+   "DC",
+   "IA",
+   "KY",
+   "LA",
+   "MA",
+   "ND",
+   "TX",
+   "UT",
+   "WV"
+  ]
  }
 }

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ga",
+ "slug": "s1",
+ "url": "https://www.legis.ga.gov/api/legislation/document/20252026/231000",
+ "final_url": "https://www.legis.ga.gov/api/legislation/document/20252026/231000",
+ "fetched_at": "2026-11-01T10:39:21.435Z",
+ "http_status": 200,
+ "content_type": "",
+ "raw_sha256": "58bb29ebcf271f9cdf09eeb16c877c66d785b66476176efc578bcdb723d100cb",
+ "raw_bytes": 92779,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "fd49f4c556cc59a962d6639a4f5b4de3bb05074210c2d32684fb046ff876c303",
+ "text_chars": 9028
+}

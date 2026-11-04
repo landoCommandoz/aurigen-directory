@@ -192,3 +192,6 @@ https://www.revenue.alabama.gov/property-tax/land-sales/ returned 404 (the worki
 ## Conflicts (flagged)
 
 - `rate`: Ala. Admin. Code r. 810-4-6-.02 says 8% for tax sales after Jan 1, 2020; the DOR Land Sales FAQ still says 12% per annum; the Code text could not be read (script-only site)
+
+## Run 5 retry (2026-11-01)
+Gap not closed; see gaps.json attempts. A non-official page (onecle.com home) was fetched by mistake into sources/ca/r5-rtc-3691; it is not cited and was only a lead attempt.

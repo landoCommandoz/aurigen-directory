@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ar",
+ "slug": "cosl-tax-sales",
+ "url": "https://www.cosl.org/Home/Contents/1",
+ "final_url": "https://cosl.org/Home/Contents/1",
+ "fetched_at": "2026-10-29T05:56:01.848Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "22172f07281f49c5f937bbf676ecb9ceb2d250de2bc263946241ac6b7cf563a4",
+ "raw_bytes": 156086,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "9fd3d8132061fd285dde86021c7dcf4d97e659d26914bc26a4dd4b195d7f38f0",
+ "text_chars": 8558
+}

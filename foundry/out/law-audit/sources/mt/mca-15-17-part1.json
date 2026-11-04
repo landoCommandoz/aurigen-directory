@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "mt",
+ "slug": "mca-15-17-part1",
+ "url": "https://mca.legmt.gov/bills/mca/title_0150/chapter_0170/part_0010/sections_index.html",
+ "final_url": "https://mca.legmt.gov/bills/mca/title_0150/chapter_0170/part_0010/sections_index.html",
+ "fetched_at": "2026-11-01T09:59:58.433Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "476d0507c2b9db9a1e1efd1d1493af857f3c8e067b80e49853c529f58b32702c",
+ "raw_bytes": 12072,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "fb21bdc09bf18503aee5d4e67c2b3d5c73cf6f0cd74fa6830340e2c1e0728bf2",
+ "text_chars": 973
+}

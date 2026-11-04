@@ -72,7 +72,11 @@ NEXT IF YOU SAY NOTHING: one line
 - Foundry now chains runs (foundry/out/chain/<spec>.json, max 20) and updates one issue per title. Law audit snapshots only via foundry/tools/fetch-source.mjs (curl + pdftotext, hashed).
 - Foundry runs Claude through the Agent SDK (foundry/tools/run-agent.mjs, SDK pinned in foundry/tools/package.json), not claude-code-action: the API promo credit covers the SDK and plain API but Claude Code was refused with "Credit balance is too low". Tested 2026-10-27: 3 turns, $0.17.
 
-## LAW AUDIT (2026-10-27, run 1 of chain)
+## LAW AUDIT (2026-10-29, run 3 of chain)
+- Run 3: TX, UT, WI, WV, AR, CO, IA, MA done (21 of 51). CT, IL blocked (TLS errors). Next CT, IL, MD, NH, SD. See HANDOFF.md.
+
+## LAW AUDIT (2026-10-27, runs 1-2 of chain)
+- Run 2: HI, KY, LA, ME, MS, ND, NM done (11 of 51). Next OK, PA, TX, UT, WI, WV. See HANDOFF.md.
 - foundry/aurigen-law-audit.md: AK, AL, CA, DC done; HI in progress. Gate cloudflare/scripts/check-law.mjs; ledgers cloudflare/data/law/.
 - Progress: foundry/out/law-audit/PROGRESS.json and SUMMARY.md. Live site untouched.
 

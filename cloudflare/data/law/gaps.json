@@ -1,0 +1,730 @@
+{
+ "definitions": {
+  "checked": "Every claim was checked against the official code text, and the 2023 to 2026 enacted-law search was run. No open gaps.",
+  "checked with gaps": "Claims were checked, but at least one listed gap remains: a code or session-law source was not read, or a claim is flagged or unreachable. The showcase must show this state differently from \"checked\".",
+  "Couldn't reach source": "No official source could be reached with full certificate verification. Nothing on the site for this state is presented as audited."
+ },
+ "queue": "After all 51 states are first-pass done, work the gap queue one state per item, in the order listed in \"queueOrder\".",
+ "queueOrder": [
+  "CO",
+  "AR",
+  "OK",
+  "HI",
+  "MS",
+  "NM",
+  "AL",
+  "CA",
+  "ME",
+  "AK",
+  "DC",
+  "IA",
+  "KY",
+  "LA",
+  "MA",
+  "ND",
+  "TX",
+  "UT",
+  "WV"
+ ],
+ "states": {
+  "AK": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "AK-1",
+     "text": "Municipal ordinances (bid method, deposits, over-the-counter sales) were not audited; AS 29.45 is silent on them. 6 claims flagged, 2 unreachable.",
+     "close": "Read the official municipal codes of Anchorage, Fairbanks North Star and Mat-Su; otherwise keep \"Confirm with the municipality\".",
+     "attempts": "Run 5: akleg.gov statute index reachable but no municipal code; muni.org foreclosure page HTTP 404. Not closed."
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "AL": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "AL-1",
+     "text": "Code of Alabama text not read (ALISON is script-only); claims rest on the Department of Revenue rule and pages. Rate conflict: rule says 8%, DOR FAQ still says 12%.",
+     "close": "Find an official static copy of the Code of Alabama (Legislature or Legislative Services Agency) and read the redemption rate and § 40-10-28 (excess funds, after Tyler v. Hennepin).",
+     "attempts": "Run 5: alison.legislature.state.al.us/code-of-alabama is script-only (1,821 chars, no statute text); alisondb host does not resolve. Not closed."
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "AR": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "AR-1",
+     "text": "Arkansas Code not read (LexisNexis-hosted); claims rest on Commissioner of State Lands pages and Rules (2023 ed.).",
+     "close": "Look for an official copy of the tax-sale sections on arkleg.state.ar.us or another Arkansas state host.",
+     "attempts": "Run 4: arkleg act PDF read; Arkansas Code itself still LexisNexis/JS, not read."
+    },
+    {
+     "id": "AR-2",
+     "text": "The act behind the July 1, 2023 change was not identified.",
+     "close": "Search arkleg.state.ar.us for the 2023 act.",
+     "closed": "2026-11-01",
+     "note": "Act 241 of 2023 (HB 1263), approved March 9, 2023, emergency clause; text read at arkleg.state.ar.us (sources/ar/act241-1). COSL says July 1, 2023: the two dates differ.",
+     "closedAt": "2026-11-01"
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "CA": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "CA-1",
+     "text": "Revenue and Taxation Code and bill search on leginfo returned HTTP 403; claims rest on the State Controller manual (01/2026) and Excess Proceeds Guide (2025). Over-the-counter claim flagged.",
+     "close": "Retry leginfo and look for another official copy of the Revenue and Taxation Code; read the OTC rule.",
+     "attempts": "Run 5: leginfo section page HTTP 403 again; SCO tax-sale page read, no statute text. Not closed."
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "CO": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "CO-1",
+     "text": "2025 and 2026 session laws were not searched; the 2024 code PDF (uncertified printout) was used and the 2025 edition PDF was not found.",
+     "close": "Search leg.colorado.gov for 2025 and 2026 acts amending title 39 (tax sales, redemption, surplus) and look for the 2025 edition PDF.",
+     "attempts": "Run 4 and 5: CRS 2025 title 39 PDF 404; bill pages HTTP 406 to curl; bill_files downloads disallowed by robots.txt; guessed signed-act PDF paths 404. Official bill page (leg.colorado.gov/bills/SB26-144, seen in search only) lists SB26-144 signed May 19, 2026, chapter 135, effective June 1, 2026, applies to treasurer deeds issued on or after that date; text not read. Run 7: signed-act PDF paths for SB26-144 (six variants on leg.colorado.gov and content.leg.colorado.gov) HTTP 404; web search confirms bill page lists chapter 135, effective June 1, 2026, text still not read. Not closed."
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "DC": {
+   "checkStatus": "checked",
+   "gaps": [
+    {
+     "id": "DC-1",
+     "text": "The 18% redemption rate was not found in the sections read (2 claims flagged).",
+     "close": "Locate the D.C. Code section that sets redemption interest on code.dccouncil.gov and read it.",
+     "closed": "2026-11-01",
+     "note": "Run 6: rate found in D.C. Code § 47-1334 (1.5% per month or portion thereof, simple interest; the 2003 act changed it from '18% per month'). Claims rate and es.rate corrected.",
+     "closedAt": "2026-11-01"
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "HI": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "HI-1",
+     "text": "Hawaii Revised Statutes and Maui and Hawaii County pages returned HTTP 403; claims rest on the Kauai County instructions (2018) for Kauai only; statewide claims unreachable (5), over-the-counter flagged.",
+     "close": "Find another official host for HRS and the Honolulu, Maui and Hawaii County tax-sale pages; look for the newer Kauai document on kauai.gov; check post-Tyler surplus rules.",
+     "attempts": "Run 4 (2026-11-01): capitol.hawaii.gov HRS pages HTTP 403 (two paths), data.capitol.hawaii.gov 404, mauicounty.gov 403, kauai.gov tax-sale path 404, honolulupropertytax.com no connection."
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "IA": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "IA-1",
+     "text": "The 2026 session and Iowa Legislature bill search were not searched (code PDFs dated December 9, 2025); \"SF 569\" from the old site not verified.",
+     "close": "Search legis.iowa.gov for 2025 and 2026 acts touching chapters 446 to 448 and for SF 569.",
+     "note": "Run 6 (2026-11-01): Iowa Code 2026 chapters 446-448 (PDFs dated Dec 9, 2025) show no amendment history after 2021 Acts ch 55, so no 2023-2025 act changed them. The BillBook page needs scripts and the Iowa Acts 2026 index URLs returned 404, so the 2026 session and SF 569 stay unchecked."
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "KY": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "KY-1",
+     "text": "Legislature bill search not run; surplus-proceeds sections not read.",
+     "close": "Run the apps.legislature.ky.gov bill search for 2023 to 2026 and read the surplus sections.",
+     "note": "Run 6: surplus section of KRS ch. 134 not found by search; 2026 RS HB 294 (KRS 134.490 notice) enactment unconfirmed."
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "LA": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "LA-1",
+     "text": "Bill search not run; R.S. 47:2127, 47:2243 and 47:2267 (surplus at judicial sales) not read.",
+     "close": "Look up the 2026 acts on legis.la.gov and read those sections.",
+     "note": "Run 6 (2026-11-01): R.S. 47:2267 read (Acts 2024 No. 774 and Acts 2025 No. 411, eff. Jan 1, 2026) and surplus claims added; R.S. 47:2243 read (now 'termination payments'). R.S. 47:2127 and the 2026 acts search are not read, so the gap stays open."
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "MA": {
+   "checkStatus": "checked",
+   "gaps": [
+    {
+     "id": "MA-1",
+     "text": "The act that created § 64A and set the 8% rate in § 62 was not identified.",
+     "close": "Find the act on malegislature.gov.",
+     "closed": "2026-11-01",
+     "note": "Run 6: St. 2024, c. 140 read from malegislature.gov (sources/ma/r6-acts-2024-c140): § 88 changed § 62 from sixteen to 8 per cent, § 93 inserted § 64A; § 250: sections 80 to 99 take effect November 1, 2024.",
+     "closedAt": "2026-11-01"
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "ME": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "ME-1",
+     "text": "Over-the-counter claim flagged earlier; the 2023 to 2026 enacted-law search is not complete: only the section histories were read (36 M.R.S. § 943 last amended PL 2023, c. 579, § 1; § 942 last amended PL 2019, c. 501).",
+     "close": "Read PL 2023, c. 579 on legislature.maine.gov (act text or LD number) and search the 131st to 132nd Legislature chaptered laws for tax lien, redemption and surplus changes.",
+     "attempts": "Run 5: § 505 PDF read (HTML resets the connection); rate claims corrected. § 949 and § 943 PDF resets.",
+     "note": "Run 6: PL 2023, c. 579 (LD 2048, signed 03/28/24) amended § 942 (notice content), per the § 942 PDF history read from legislature.maine.gov (sources/me/r6-mrs-942-pdf); the earlier note naming § 943 was wrong. Search results (leads only) also name PL 2023, c. 640 and c. 523 as amending § 943 (c. 640 approved April 16, 2024); § 943 PDF/HTML/DOCX still reset the connection, so § 943 and those acts are unread and the gap stays open."
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "MS": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "MS-1",
+     "text": "Mississippi Code not read (LexisNexis-hosted; legislature.ms.gov failed TLS); 14 claims unreachable; lien label flagged; bill status not checked.",
+     "close": "Look for an official copy of Miss. Code §§ 27-41 and 29-1 on another Mississippi state host; retry legislature.ms.gov with full verification only.",
+     "attempts": "Run 5: legislature.ms.gov curl error 60; sos.ms.gov and dor.ms.gov hold no tax-sale statute text. Not closed."
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "ND": {
+   "checkStatus": "checked",
+   "gaps": [
+    {
+     "id": "ND-1",
+     "text": "Session-law search for the 2023 and 2025 sessions was not run.",
+     "close": "Search ndlegis.gov session laws for chapter 57-28.",
+     "closed": "2026-11-01",
+     "note": "Run 6: 2023 and 2025 session-law taxation PDFs read (sources/nd/r6-sl2023-taxes, r6-sl2025-taxes). Only enacted acts touching ch. 57-28: S.L. 2023 ch. 536 (HB 1267, § 57-28-20, 90-day hold on excess proceeds) and S.L. 2025 ch. 557 (HB 1115, § 57-28-15(3), forms by the tax commissioner). Ledger already matches the current code.",
+     "closedAt": "2026-11-01"
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "NM": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "NM-1",
+     "text": "NMSA 1978 not fetched; claims rest on Taxation and Revenue Department pages. Redemption and over-the-counter claims flagged.",
+     "close": "Read §§ 7-38-65 to 7-38-70 on nmonesource.com (NM Compilation Commission) and the 2023 to 2026 acts.",
+     "attempts": "Run 5: nmonesource.com returns no text without script (199 chars); nmlegis.gov bill list read but no NMSA text. Not closed."
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "OK": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "OK-1",
+     "text": "Oklahoma Statutes on OSCN serve a CAPTCHA and enacted-bill PDFs are disallowed by robots.txt; 15 claims unreachable and 22 flagged on the amendment to 68 O.S. § 3105. Bill search not run. 22 claims are held (decision B, 2026-11-01): they publish nothing until an official copy of the amendment is read.",
+     "close": "Look for another official copy (Legislature bill pages that robots.txt allows, Oklahoma Tax Commission). Never bypass the CAPTCHA.",
+     "attempts": "Run 4 (2026-11-01): oklegislature.gov bill pages, enrolled PDFs and OK_Statutes files and oscn.net DeliverDocument are all disallowed by robots.txt; no other official copy found. Claims stay held."
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "TX": {
+   "checkStatus": "checked",
+   "gaps": [
+    {
+     "id": "TX-1",
+     "text": "Enacted bill text (2025 H.B. 16) not fetched; § 34.21 last amended in 2019.",
+     "close": "Fetch the enrolled text from Texas Legislature Online if robots.txt allows.",
+     "closed": "2026-11-01",
+     "note": "Run 6: enrolled H.B. 16 (89th 2nd C.S.) read from capitol.texas.gov (sources/tx/r6-hb16-2cs-f); § 34.03(a) only changed the notice delivery method (Rule 21a instead of certified mail). No site claim changed.",
+     "closedAt": "2026-11-01"
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "UT": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "UT-1",
+     "text": "Section files re-fetched on 2026-11-01 match the cited versions, but no 2024 to 2026 bill-history or act search was done (bill-history pages returned empty).",
+     "close": "Search le.utah.gov passed-bills lists for 2024 to 2026 for acts touching Title 59 chapter 2 part 13 (tax sales, redemption, surplus).",
+     "note": "Run 6: re-fetched the live le.utah.gov page of each cited section (sources/ut/r6-ucode-*-current). Each page loads the same versioned file already cited (1351: 2023-03-13; 1343: effective 2026-01-01; 1346, 1351.1, 1351.3, 1351.5 unchanged), so no later amendment is in force or scheduled for these sections. The bill-history pages were not searched; the check covers only the cited sections."
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "WV": {
+   "checkStatus": "checked",
+   "gaps": [
+    {
+     "id": "WV-1",
+     "text": "2026 SB 651 (touches the surplus section) appears in bill history but not in signed-bill lists; treated as not enacted.",
+     "close": "Confirm its final status on code.wvlegislature.gov.",
+     "closed": "2026-11-01",
+     "note": "Run 6: official bill-history page for 2026 RS SB 651 read (sources/wv/r6-sb651-hist): passed the Senate, last action 'To House Judiciary 03/02/26'; no House passage recorded. Not enacted as of this check; stays on the Watch list.",
+     "closedAt": "2026-11-01"
+    }
+   ],
+   "attemptedAt": "2026-11-01"
+  },
+  "PA": {
+   "checkStatus": "checked",
+   "gaps": []
+  },
+  "WI": {
+   "checkStatus": "checked",
+   "gaps": []
+  },
+  "CT": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "CT-1",
+     "text": "The 2023 to 2026 enacted-act search was not run: the legislature's bill-status pages are disallowed by robots.txt. The current section histories show no amendment to section 12-157 after P.A. 15-156 or to section 12-195h after P.A. 21-143, but 2025 and 2026 session laws were not read.",
+     "close": "Read the 2023 to 2026 public acts on cga.ct.gov (act list or the Office of Legislative Research act summaries) for tax sale, lien assignment, redemption and surplus changes."
+    },
+    {
+     "id": "CT-2",
+     "text": "Town-level details (sale dates, deposit and registration rules) rest on the statute only; no town tax collector site was read.",
+     "close": "Read the tax collector page of each town the site names, or keep the Confirm with the town tax collector label."
+    }
+   ]
+  },
+  "IL": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "IL-1",
+     "text": "Bill numbers and act text for P.A. 103-555, 103-592 and 104-553 were not read; their effects are taken from the current section text and its source lines. No other 2023 to 2026 act search was run.",
+     "close": "Read the public acts on ilga.gov (Public Acts by number) and record bill numbers, effective dates and quotes; search for other acts changing Articles 21 and 22."
+    },
+    {
+     "id": "IL-2",
+     "text": "County details (Cook and other counties' platforms, registration, deposit rules, sale dates) were not read from county sites, and the date of the seventh Cook County sale after 7-10-26 is not known.",
+     "close": "Read the Cook County Treasurer and Clerk pages and one or two other county collector pages; or keep the Confirm with the county label."
+    }
+   ]
+  },
+  "MD": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "MD-1",
+     "text": "The 2023 to 2026 enacted-act search was not run on mgaleg.maryland.gov (bill and session-law search); only the current code text was read.",
+     "close": "Search mgaleg.maryland.gov legislation for 2023 to 2026 chapters amending Tax-Property Title 14 Subtitle 8 and record bill number, chapter, effective date and a quote."
+    },
+    {
+     "id": "MD-2",
+     "text": "County rate ordinances and county sale details (platform, dates, deposits) were not read; the site shows the statutory 6% base and county-fixed exceptions only.",
+     "close": "Read each named county's collector or council page for its fixed rate and sale details, or keep the Confirm with the county label."
+    }
+   ]
+  },
+  "NH": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "NH-1",
+     "text": "The legislature's bill and session-law search for 2023 to 2026 acts was not run; only the section source lines in RSA 80 were read.",
+     "close": "Search gencourt.state.nh.us bill status for 2023 to 2026 chapters amending RSA 80 and record bill number, chapter, effective date and a quote."
+    },
+    {
+     "id": "NH-2",
+     "text": "Town-level details (sale dates, whether a town uses the lien procedure under RSA 80:58-86, deposit rules) were not read from town sites.",
+     "close": "Read the tax collector page of each town named on the site, or keep the Confirm with the town tax collector label."
+    }
+   ]
+  },
+  "SD": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "SD-1",
+     "text": "Bill numbers and act text for SL 2024 ch. 38 and SL 2025 ch. 49 were not read, and the legislature's bill search for other 2023 to 2026 acts was not run; only section source lines were read.",
+     "close": "Read the session laws on sdlegislature.gov for 2023 to 2026 and record bill number, effective date and a quote for each act amending chapters 10-23 to 10-25."
+    },
+    {
+     "id": "SD-2",
+     "text": "County details (treasurer sale practice, payment terms, registration) were not read from county sites.",
+     "close": "Read the treasurer page for the counties the site names, or keep the Confirm with the county treasurer label."
+    }
+   ]
+  },
+  "AZ": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "AZ-1",
+     "text": "Laws 2026 ch. 66 and ch. 256 (amending 42-18115 and 42-18204, marked 'Eff. until 10/1/28') and any 2023 to 2025 acts were not read as acts; no bill-number or effective-date quote was recorded, and no bill search was run.",
+     "close": "Read the chaptered acts on azleg.gov, record bill numbers and effective dates with quotes, and check what replaces the sections on 10/1/28."
+    },
+    {
+     "id": "AZ-2",
+     "text": "County details (platform, registration, deposits, county sale practice) were not read from county treasurer sites.",
+     "close": "Read the Maricopa, Pima and other named county treasurer pages, or keep the Confirm with the county treasurer label."
+    }
+   ]
+  },
+  "DE": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "DE-1",
+     "text": "The legislature's bill and session-law search for 2023 to 2026 was not run; only the section history lines were read. Subchapter III (New Castle County attachment) and sections 8772 to 8778 were not read.",
+     "close": "Read subchapter III and sections 8772 to 8778 on delcode.delaware.gov and search legis.delaware.gov for 2023 to 2026 acts amending chapter 87."
+    },
+    {
+     "id": "DE-2",
+     "text": "Which county uses which procedure, and county sale details (dates, registration, deposits) were not read from county or sheriff sites.",
+     "close": "Read the New Castle, Kent and Sussex sheriff pages, or keep the Confirm with the county label."
+    }
+   ]
+  },
+  "FL": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "FL-1",
+     "text": "The legislature's bill and session-law search for 2023 to 2026 was not run. Only the 2023, 2025 and 2026 statute editions were compared. The acts ch. 2024-91 (197.502), ch. 2024-140 and ch. 2026-174 (197.582) were not read as acts.",
+     "close": "Read those chaptered laws on flsenate.gov or laws.flrules.org, record bill numbers and effective dates with quotes, and run the bill search for chapter 197 for 2023 to 2026."
+    },
+    {
+     "id": "FL-2",
+     "text": "Sections 197.502(6) (homestead assessment in the opening bid) and 197.522 to 197.532 (notice requirements) were not read; auction platforms, registration, deposits and sale dates were not read from county tax collector or clerk sites.",
+     "close": "Read those sections, and the county tax collector and clerk pages for the counties the site names, or keep the Confirm with the county label."
+    }
+   ]
+  },
+  "ID": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "ID-1",
+     "text": "The session-law and bill search for 2023 to 2026 was not run; only statute history lines were read, and the history line of 31-808 was not read to the end.",
+     "close": "Search legislature.idaho.gov session laws 2023 to 2026 for acts amending title 63 chapter 10 and section 31-808, and record bill numbers and effective dates."
+    },
+    {
+     "id": "ID-2",
+     "text": "Sections 63-1005 subsections (4) onward, 63-1006(6) onward and 31-808(2)(c) to (d) (60-day claim period, transfer to the state treasurer) are not used on the site; county auction place, registration, deposits and dates were not read from county pages.",
+     "close": "Add the 31-808(2)(c) claim period as a site statement with its quote, and read the county commissioner pages for named counties, or keep the Confirm with the county label."
+    }
+   ]
+  },
+  "KS": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "KS-1",
+     "text": "The bill and session-law search for 2023 to 2026 was not run. Other Kansas provisions on county sale of foreclosed property (79-2804f and later, 79-2301 to 79-2302 tax sale procedure, 79-2811) and any tax-lien certificate sales were not read.",
+     "close": "Search kslegislature.gov session laws 2023 to 2026 for acts amending 79-2004, 79-2401a, 79-2801 to 79-2811, and read 79-2302, 79-2804f and 79-2811."
+    },
+    {
+     "id": "KS-2",
+     "text": "Owner claims to excess proceeds after a foreclosure sale (79-2803 apportionment text beyond the quoted clause) were not fully read; county and sheriff sale details were not read from county sites.",
+     "close": "Read the rest of 79-2803 and the sheriff pages for named counties, or keep the Confirm with the county label."
+    }
+   ]
+  },
+  "MI": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "MI-1",
+     "text": "The public-act search for 2023 to 2026 was not run and section history lines were not recorded. 211.78m(7) to (8) (property not previously sold) and 211.78g, 211.78i were not turned into site statements. The 2020 act behind the July 17, 2020 date was not read as an act.",
+     "close": "Search legislature.mi.gov public acts 2023 to 2026 for acts amending 211.78 to 211.78t, record the act numbers and effective dates, and read 211.78m(7)."
+    },
+    {
+     "id": "MI-2",
+     "text": "County and foreclosing-unit sale details (platform, registration, deposit, dates) were not read from county treasurer sites.",
+     "close": "Read the named county treasurer pages, or keep the Confirm with the county label."
+    }
+   ]
+  },
+  "MN": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "MN-1",
+     "text": "2024 c 127 art 70 and any other 2023 to 2026 session laws were not read as acts; no session-law search was run. Chapter 281 (redemption, interest) and 282.08 surplus handling after Tyler are not resolved: claim surplus.1 is flagged.",
+     "close": "Read 2024 c 127 art 70 on revisor.mn.gov/laws, run the 2023 to 2026 session-law search for chapters 279 to 282, and re-check surplus.1 against the current text of 282.08 and any new surplus section."
+    },
+    {
+     "id": "MN-2",
+     "text": "County auditor sale details (dates, registration, deposits, method) were not read from county sites; the 3-year forfeiture timeline and 2026 interest rate were not confirmed from chapters 279 and 281.",
+     "close": "Read chapters 279 and 281 and the named county auditor pages, or keep the Confirm with the county label."
+    }
+   ]
+  },
+  "MO": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "MO-1",
+     "text": "The bill and session-law search for 2023 to 2026 was not run; only history lines were read. 140.405 (deed and title-search action), 140.260, 140.420 and the first and second offering rules were not turned into site statements.",
+     "close": "Search revisor.mo.gov and senate.mo.gov for 2023 to 2026 acts amending chapter 140 and read 140.405 and the earlier-offering sections."
+    },
+    {
+     "id": "MO-2",
+     "text": "Special rules for St. Louis City and Jackson County (chapters 140 and 141 land bank / charter provisions) were not read; county collector sale details were not read from county sites.",
+     "close": "Read the Jackson County and St. Louis City collector pages and the relevant statute sections, or keep the Confirm with the county label."
+    }
+   ]
+  },
+  "NE": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "NE-1",
+     "text": "The text of §45-104.01 (the interest rate) was not read (page showed navigation only), so the current rate is not stated. The 2023 to 2026 bill and session-law search was not run and section source lines were not read for recent acts.",
+     "close": "Find the interest rate text on nebraskalegislature.gov (45-104.01 or the section it points to), and search the legislature's laws for 2023 to 2026 acts amending chapter 77 article 18."
+    },
+    {
+     "id": "NE-2",
+     "text": "Sale method (rotational bidding, deposits, registration), unsold-certificate sales and excess proceeds were not found in the sections read; county treasurer details were not read from county sites.",
+     "close": "Read sections 77-1802 to 77-1816 and 77-1837.01 onward, and the named county treasurer pages, or keep the Confirm with the county label."
+    }
+   ]
+  },
+  "NC": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "NC-1",
+     "text": "The legislature's bill and session-law search for 2023 to 2026 was not run beyond the history lines of Article 26; S.L. 2022-55 and 2025-25 were not opened.",
+     "close": "Search ncleg.gov enacted legislation 2023 to 2026 for acts amending G.S. 105-374, 105-375, 105-376, 1-339.64 and the surplus rules, and open S.L. 2022-55 and 2025-25."
+    },
+    {
+     "id": "NC-2",
+     "text": "County details (online platforms, sale dates, deposits, over-the-counter sales, how a county chooses §105-374 or §105-375) were not read from county sites; they show as \"Confirm with the county\".",
+     "close": "Read each county's own official tax collector or sheriff page and cite it."
+    }
+   ]
+  },
+  "NV": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "NV-1",
+     "text": "The 2023 to 2026 session-law search was not run. §361.595 cites 2025 amendments (Statutes of Nevada 2025, pp. 1424 and 3189) that were not opened, so any change they make is not reflected.",
+     "close": "Open the 2025 acts amending NRS 361.595 and 361.610 on leg.state.nv.us and search 2023 to 2025 Statutes of Nevada for tax-sale, redemption and excess-proceeds changes."
+    },
+    {
+     "id": "NV-2",
+     "text": "Bid method, deposit, registration and sale dates are not in the statutes; county sites were not read. They show as \"Confirm with the county\".",
+     "close": "Read the official treasurer pages of Clark, Washoe and other counties and cite them."
+    }
+   ]
+  },
+  "SC": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "SC-1",
+     "text": "The 2023 to 2026 enacted-law search on scstatehouse.gov was not run; only the history lines of Title 12 Chapter 51 were read.",
+     "close": "Search scstatehouse.gov acts for 2023 to 2026 for amendments to Title 12 Chapter 51 and the surplus (overage) rules, and read any found."
+    },
+    {
+     "id": "SC-2",
+     "text": "Sale dates, online bidding, registration and deposit rules are set by each county and were not read from county sites; they show as \"Confirm with the county\".",
+     "close": "Read each county delinquent tax collector's official page and cite it."
+    }
+   ]
+  },
+  "OR": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "OR-1",
+     "text": "2025 c.475 was read only as codified in ORS chapter 312; the session law itself and 2023 and 2024 acts were not searched. ORS 98.352 and 98.392 to 98.396 (State Treasurer claim process) were not read.",
+     "close": "Download the enacted 2025 c.475 text and search Oregon Laws 2023 and 2024 for tax foreclosure changes; read ORS 98.392 and 98.396."
+    },
+    {
+     "id": "OR-2",
+     "text": "County auction dates, online platforms, registration and deposits were not read from county sites; they show as \"Confirm with the county\".",
+     "close": "Read each county's own official tax foreclosure sale page and cite it."
+    }
+   ]
+  },
+  "OH": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "OH-1",
+     "text": "ORC chapter 323 (county prosecutor foreclosure, alternative redemption period, §323.65 to §323.79) and the text of H.B. 315 and H.B. 496 were not read; the 2023 to 2026 act search was limited to the effective-date lines of chapter 5721.",
+     "close": "Download ORC 323.65 to 323.79 from codes.ohio.gov and the enacted H.B. 315 and H.B. 496, and search 2023 to 2026 acts for tax foreclosure changes."
+    },
+    {
+     "id": "OH-2",
+     "text": "Which counties run certificate auctions, platforms, dates and county foreclosure sale rules were not read from county sites; they show as \"Confirm with the county\".",
+     "close": "Read each county treasurer's official page and cite it."
+    }
+   ]
+  },
+  "VT": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "VT-1",
+     "text": "The chapter sections read do not say who receives an overbid or excess sale proceeds; the claim shows as \"not stated, confirm\".",
+     "close": "Search 32 V.S.A. chapter 133 and Title 12 for the rule on excess proceeds after a tax sale, or read a town's official tax sale notice."
+    },
+    {
+     "id": "VT-2",
+     "text": "The 2023 to 2026 act search was not run beyond the history lines of chapter 133; 2023 No. 106 and 2025 No. 164 were not opened.",
+     "close": "Open both acts on legislature.vermont.gov and search Acts Affecting VSA Sections for chapter 133."
+    },
+    {
+     "id": "VT-3",
+     "text": "Town sale dates, registration and deposit rules were not read from town sites; they show as \"Confirm with the county or town\".",
+     "close": "Read each town's own tax sale notice and cite it."
+    }
+   ]
+  },
+  "RI": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "RI-1",
+     "text": "The 2023 to 2026 public-law search was not run; only history lines of the sections read were checked. Sections 44-9-7, 44-9-8.1, 44-9-8.2 and 44-9-25.1 to 44-9-25.3 (abandonment and vacancy foreclosure) were not read.",
+     "close": "Find a readable copy of 44-9-7 and the other sections on webserver.rilegislature.gov and search public laws 2023 to 2026 for chapter 44-9 changes."
+    },
+    {
+     "id": "RI-2",
+     "text": "Excess proceeds from a collector's sale are not covered in the sections read (44-9-37 covers treasurer sales without foreclosure); sale dates, registration and deposits were not read from city or town sites.",
+     "close": "Read the remaining chapter 44-9 sections for surplus after a collector's sale and the official city or town tax sale notices."
+    }
+   ]
+  },
+  "VA": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "VA-1",
+     "text": "The enacted acts 2023 c. 292 and 2025 c. 267 (amending §58.1-3965, -3967, -3968, -3974) were not opened, so their effective dates and any provisions not yet in effect are not recorded; the 2023 to 2026 search was not run.",
+     "close": "Open both chapters on law.lis.virginia.gov and record their effective dates; search 2023 to 2026 acts for article 4 changes."
+    },
+    {
+     "id": "VA-2",
+     "text": "Bid method, deposits, registration and sale dates are set by the court and locality and were not read from court or treasurer sites; they show as \"Confirm with the county\".",
+     "close": "Read each locality's official tax sale notice or circuit court page and cite it."
+    }
+   ]
+  },
+  "MT": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "MT-1",
+     "text": "2025 Ch. 767 and Ch. 775 (amending §15-17-125) were not opened, so their effective dates and any parts not yet in effect are not recorded; the 2023 to 2026 search was not run.",
+     "close": "Open both acts on legmt.gov and record their start dates; search 2023 to 2025 session laws for Title 15 chapters 16 to 18."
+    },
+    {
+     "id": "MT-2",
+     "text": "Tax deed procedure and excess proceeds after a tax deed (MCA 15-18-2xx) were not read; assignment dates and county details were not read from county sites; they show as \"Confirm with the county\".",
+     "close": "Read MCA 15-18-201 to 15-18-2xx and each county treasurer's official page."
+    }
+   ]
+  },
+  "GA": {
+   "checkStatus": "Couldn't reach source",
+   "gaps": [
+    {
+     "id": "GA-1",
+     "text": "Georgia's official code (O.C.G.A. title 48 chapter 4) is only served to browsers by script: legis.ga.gov and the LexisNexis public code link returned pages with no statute text (68 and 1 characters). dor.georgia.gov/tax-sales returned HTTP 404. No audit was possible; the state's ledger is missing.",
+     "close": "Find a print or PDF copy of O.C.G.A. 48-4-40 to 48-4-48 on legis.ga.gov or a Georgia state body, or the enacted acts (HB 581 and others) as PDFs.",
+     "attempts": "Run 7: legis.ga.gov document API gives bill PDFs only by internal ID (guessed ID returned an unrelated resolution; another HTTP 500). Still blocked."
+    }
+   ]
+  },
+  "IN": {
+   "checkStatus": "Couldn't reach source",
+   "gaps": [
+    {
+     "id": "IN-1",
+     "text": "Indiana Code (title 6 article 1.1 chapter 24) on iga.in.gov is served by script: both the laws page and the pdf-documents path returned no text (1 character). No audit was possible; the state's ledger is missing.",
+     "close": "Find a PDF of IC 6-1.1-24 to 6-1.1-25 on iga.in.gov or the Indiana Department of Local Government Finance.",
+     "attempts": "Run 7: iga.in.gov, legacy in.gov/legislative/ic pages return no text (script); SBOA appendix PDF is an auditor guide, not code text. Still blocked."
+    }
+   ]
+  },
+  "NJ": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "NJ-1",
+     "text": "N.J.S.A. 54:5-32 and 54:5-58 (bidding, 18% rate, redemption penalty) were not read; those claims rest on the Division of Local Government Services guide, whose saved copy is dated 2011.",
+     "close": "Find the current official text of R.S. 54:5-32 and 54:5-58 (or the acts that last amended them) on pub.njleg.gov."
+    },
+    {
+     "id": "NJ-2",
+     "text": "The 2023 to 2026 enacted-law search used web leads, not the legislature's own session-law list.",
+     "close": "Search the NJ Legislature's chapter laws for 2023 to 2026 for 54:5 and 54:5-104.29 et seq. amendments."
+    },
+    {
+     "id": "NJ-3",
+     "text": "County and municipal details (platform, dates, deposits) have no municipal source and show Confirm with the municipality.",
+     "close": "Read the tax collector pages of target municipalities."
+    }
+   ]
+  },
+  "NY": {
+   "checkStatus": "Couldn't reach source",
+   "gaps": [
+    {
+     "id": "NY-1",
+     "text": "New York Real Property Tax Law article 11 on nysenate.gov returned HTTP 403 to the audit's download tool. No audit was possible; the state's ledger is missing.",
+     "close": "Find another official copy of RPTL article 11 (e.g. legislation.nysenate.gov or the Department of Taxation and Finance) that allows the download tool.",
+     "attempts": "Run 7: nysenate.gov law pages HTTP 403; legislation.nysenate.gov/pdf/laws 404; API HTTP 401; only bill PDFs (not enacted law) reachable. Still blocked."
+    }
+   ]
+  },
+  "TN": {
+   "checkStatus": "Couldn't reach source",
+   "gaps": [
+    {
+     "id": "TN-1",
+     "text": "Tennessee Code Annotated title 67 chapter 5 is served by script through LexisNexis; the download returned 1 character, and tn.gov/revenue returned only navigation text. No audit was possible; the state's ledger is missing.",
+     "close": "Find a PDF of T.C.A. 67-5-2501 to 67-5-2504 and 67-5-2701 to 67-5-2706 on a Tennessee legislature or comptroller site.",
+     "attempts": "Run 7: tncourts.gov handout is script-only; publications.tnsosfiles.com HTTP 403. Still blocked."
+    }
+   ]
+  },
+  "WA": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "WA-1",
+     "text": "The 2026 session's enacted acts were not searched; the 2023-2025 searches used the Code Reviser's sections-affected lists only (act text of 2023 c 376 not downloaded).",
+     "close": "Find the Code Reviser's 2026 sections-affected list and the text of 2023 c 376 on lawfilesext.leg.wa.gov."
+    },
+    {
+     "id": "WA-2",
+     "text": "County details (auction platform, dates, deposits, tax title lists) have no county source and show Confirm with the county.",
+     "close": "Read King, Pierce and Snohomish treasurer pages on their own .gov sites."
+    }
+   ]
+  },
+  "WY": {
+   "checkStatus": "checked with gaps",
+   "gaps": [
+    {
+     "id": "WY-1",
+     "text": "The statutes that set the county treasurer's tax sale, certificate of purchase, its interest rate and its redemption period were not found in the text read; only W.S. 39-13-108(b) and (d) were used.",
+     "close": "Search the Title 39 text for the sale and certificate provisions (for example W.S. 39-13-108(e) onward and related sections) and re-check the rate and redemption claims."
+    },
+    {
+     "id": "WY-2",
+     "text": "The 2023 to 2026 enrolled-act search was not run; county sale dates, registration and deposits were not read from county sites and show as \"Confirm with the county\".",
+     "close": "Search wyoleg.gov enrolled acts for Title 39 changes and read each county treasurer's official page."
+    }
+   ]
+  }
+ }
+}

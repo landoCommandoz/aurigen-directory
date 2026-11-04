@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ga",
+ "slug": "lexis-link",
+ "url": "https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=&pdocfullpath=%2Fshared%2Fdocument%2Fstatutes-legislation%2Furn%3AcontentItem%3A5YD9-KJC1-FGRY-B4V1-00000-00&pdcontentcomponentid=234186",
+ "final_url": "https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=&pdocfullpath=%2Fshared%2Fdocument%2Fstatutes-legislation%2Furn%3AcontentItem%3A5YD9-KJC1-FGRY-B4V1-00000-00&pdcontentcomponentid=234186",
+ "fetched_at": "2026-11-01T09:55:15.349Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "ec998b404f789b8077c88038038614ee98384bedf2f3ffa8ebbdebea3a6caf10",
+ "raw_bytes": 3899,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+ "text_chars": 1
+}

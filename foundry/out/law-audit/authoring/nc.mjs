@@ -1,0 +1,103 @@
+import { build, snapOf } from './lib.mjs';
+const C = (slug, sec, kind='code') => ({ ...snapOf('nc', slug), sourceKind: kind, statute: sec });
+const G = (sec) => C('g105-374', 'N.C. Gen. Stat. § ' + sec);
+const U = C('g1-339-64', 'N.C. Gen. Stat. § 1-339.64(a)');
+const Q = {
+  alt: { ...G('105-375(a)'), quote: 'Proceedings brought under this section are strictly in rem. This section provides, as an alternative to G.S. 105-374, a simple and inexpensive method of enforcing payment of taxes' },
+  a374: { ...G('105-374(a)'), quote: 'The foreclosure action authorized by this section is in the nature of an action to foreclose a mortgage' },
+  conf: { ...G('105-374(p)'), quote: 'The judgment of confirmation shall direct the commissioner to deliver the deed upon payment of the purchase price.' },
+  redeem: { ...G('105-374(e)'), quote: 'In case of redemption before confirmation of the foreclosure sale, the person redeeming shall be required to pay, before the foreclosure action is discontinued, at least all taxes on the real property that have at the time of discontinuance become due to the plaintiff unit, plus penalties, interest, and costs.' },
+  sale: { ...G('105-374(m)'), quote: 'The sale shall be by public auction to the highest bidder and shall, in accordance with the judgment, be held at the courthouse door on any day of the week except a Sunday or legal holiday when the courthouse is closed for transactions.' },
+  inc: { ...G('105-374(o)'), quote: 'At any time within 10 days after the commissioner files the report of the foreclosure sale, any person having an interest in the real property may file exceptions to the report, and at any time within that 10-day period, an increased bid may be filed' },
+  upset: { ...U, quote: 'An upset bid is an advanced, increased, or raised bid whereby a person offers to purchase real property theretofore sold for an amount exceeding the reported sale price or last upset bid by a minimum of five percent (5%) thereof, but in any event with a minimum increase of seven hundred fifty dollars ($750.00).' },
+  succ: { ...U, quote: 'there may be successive upset bids, each of which shall be followed by a period of 10 days for a further upset bid.' },
+  dep: { ...G('105-374(m1)'), quote: "The commissioner conducting the sale may, in the commissioner's discretion, require from any successful bidder a deposit equal to not more than twenty percent (20%) of the bid." },
+  proceeds: { ...G('105-374(q)'), quote: 'First, to payment of all costs of the action, including the commissioner\'s fee and the attorney\'s fee. The costs shall be paid to the officials or funds entitled to them. (2) Then to the payment of taxes, penalties, and interest for which the real property was ordered to be sold' },
+  sur: { ...G('105-374(q)(6)'), quote: 'any balance then remaining shall be paid in accordance with any directions given by the court and, in the absence of directions, shall be paid into court for the benefit of the persons entitled to it.' },
+  sher: { ...G('105-375(i)'), quote: 'the real property shall be sold by the sheriff in the same manner as other real property is sold under execution' },
+  tc: { ...G('105-375(b)'), quote: 'the governing body of any taxing unit may direct the tax collector to file with the clerk of superior court' },
+};
+const OK = 'ok';
+const RM = 'removed: no official source (opinion, advice, inventory or market claim not in the statute)';
+const W = { correctionKind: 'wording' };
+const CC = 'Confirm with the county.';
+const UP = 'In a §105-374 foreclosure action, an increased bid may be filed within 10 days after the commissioner files the report of sale (§105-374(o)).';
+const UD = 'An upset bid must exceed the reported sale price or last upset bid by at least 5% and at least $750 (G.S. 1-339.64(a)).';
+const METH = 'North Carolina allows two foreclosure methods: an action under §105-374 and, as an alternative, an in rem proceeding under §105-375.';
+const D = {
+  'type': ['corrected', 'Tax foreclosure sale; a confirmed sale ends with a commissioner\'s deed (§105-374(p))', 'conf', 'was "Tax deed"', W],
+  'rate': ['corrected', 'Not applicable: property is sold at a foreclosure sale (§105-374(m))', 'sale', 'was "N/A"', W],
+  'rateNote': ['corrected', 'In a §105-374 action, upset bids may follow the sale (§105-374(o), G.S. 1-339.64)', 'inc', 'was "Unique upset bid process — sale not final until 10-day window closes"; "unique" and finality not in the sections read'],
+  'redemption': ['corrected', 'Before confirmation of the foreclosure sale, by paying at least all taxes due plus penalties, interest and costs (§105-374(e))', 'redeem', 'was "10-day upset bid period post-auction"; the upset bid period is not a redemption period'],
+  'bidMethod': ['corrected', 'Public auction to the highest bidder in a §105-374 sale (§105-374(m)); upset bids may follow', 'sale', 'was "Highest bidder — subject to upset bid period"', W],
+  'statute': ['corrected', 'NC GS §105-374 and §105-375', 'alt', 'was "NC GS §105-374"', W],
+  'auctionPlatform': ['corrected', 'Courthouse door sale under a court judgment (§105-374(m)). Online sales and other details: ' + CC, 'sale', 'was "County-run — in-person and online varies"'],
+  'auctionTiming': ['corrected', 'Set by the judgment: any day except a Sunday or a legal holiday when the courthouse is closed (§105-374(m))', 'sale', 'was "Year-round"'],
+  'summary.1': ['corrected', 'In North Carolina, a tax lien can be foreclosed by an action in the nature of an action to foreclose a mortgage (§105-374).', 'a374', 'was "North Carolina holds tax deed sales."'],
+  'summary.2': ['corrected', UP, 'inc', 'was "...any party can submit a 5% higher bid and win the property."; "any party", "win" and the 5% figure for this period are not in §105-374(o); the 5% is in G.S. 1-339.64'],
+  'summary.3': ['corrected', '', 'a374', RM],
+  'summary.4': ['corrected', 'Statute: NCGS §105-374 and §105-375.', 'alt', 'was "Statute: NCGS §105-374."', W],
+  'typeWhy.1': ['corrected', METH, 'alt', 'was "North Carolina sells the property deed outright at auction."'],
+  'typeWhy.2': ['corrected', UD, 'upset', 'was "...no traditional redemption period, a 10-day upset bid window allows any party to submit a higher bid."'],
+  'typeWhy.3': ['corrected', 'NCGS §105-374 and §105-375.', 'alt', 'was "NCGS §105-374."', W],
+  'rateWhy.1': ['corrected', 'After costs, sale proceeds go to the taxes, penalties and interest for which the property was ordered sold (§105-374(q)).', 'proceeds', 'was "North Carolina is a deed state with no statutory interest rate."'],
+  'rateWhy.2': ['corrected', '', 'proceeds', RM],
+  'rateWhy.3': ['corrected', 'NCGS §105-374(q).', 'proceeds', 'was "NCGS §105-374."', W],
+  'keyNotes.1': ['corrected', UP, 'inc', 'was "UNIQUE: 10-day upset bid window after winning bid — any party can overbid by 5% within 10 days"'],
+  'keyNotes.2': ['corrected', 'Each upset bid is followed by a period of 10 days for a further upset bid (G.S. 1-339.64(a)).', 'succ', 'was "Sale is NOT final until 10-day upset bid period expires with no higher offer"'],
+  'keyNotes.3': ['corrected', 'Redemption before confirmation of the foreclosure sale requires payment of at least all taxes due plus penalties, interest and costs (§105-374(e)).', 'redeem', 'was "No post-sale redemption once upset bid period closes"; the statute does not say that'],
+  'keyNotes.4': ['corrected', '', 'sale', RM],
+  'beginnerTip.1': ['corrected', '', 'sale', RM],
+  'beginnerTip.2': ['corrected', '', 'sale', RM],
+  'risks.1': ['corrected', UD, 'upset', 'was "10-day upset bid period: anyone can outbid you by 5% after you win — you don\'t own it until day 11"'],
+  'risks.2': ['corrected', 'There are two foreclosure methods (§105-374 action or §105-375 in rem). ' + CC, 'alt', 'was "Two execution methods (in rem vs. judicial) — confirm which your county uses"', W],
+  'risks.3': ['corrected', '', 'sale', RM],
+  'ddExtra.1': ['corrected', 'Confirm with the county which foreclosure method it uses (§105-374 or §105-375).', 'alt', 'was "Confirm which execution method the county uses for the sale"', W],
+  'ddExtra.2': ['corrected', '', 'sale', RM],
+  'ddExtra.3': ['corrected', '', 'sale', RM],
+  'signup.platform': ['corrected', 'Under §105-375(i), the sheriff sells the property. Other sales: ' + CC, 'sher', 'was "County tax collector or sheriff (in-person or online)"'],
+  'signup.steps.1': ['corrected', 'Contact the county tax collector or clerk of superior court. ' + CC, 'tc', 'was "Find your target county tax collector at dornc.com or the county government website"'],
+  'signup.steps.2': ['corrected', 'Registration and whether bidding is in person or online: ' + CC, 'sale', 'was "Register for the upcoming sale — some NC counties use online platforms, others are in-person"'],
+  'signup.steps.3': ['corrected', 'Attend the sale and bid. In a §105-374 action, an increased bid may be filed within 10 days after the report of sale (§105-374(o)).', 'inc', 'was "Attend the auction and bid — if you win, be aware of the 10-day upset bid window"'],
+  'signup.steps.4': ['corrected', 'After the sale, watch for increased bids during the 10 days after the report of sale (§105-374(o)).', 'inc', 'was "Monitor for upset bids during the 10-day window before assuming you own the property"'],
+  'signup.deposit.1': ['corrected', 'In a §105-374 sale, the commissioner may require a deposit of not more than 20% of the bid (§105-374(m1)).', 'dep', 'was "Typically 5–10% deposit at auction."'],
+  'signup.deposit.2': ['corrected', CC, 'dep', 'was "Varies by county."', W],
+  'otc.available': ['corrected', 'Not set by statute. ' + CC, 'sale', 'was "Not generally available"'],
+  'otc.note.1': ['corrected', 'Not set by statute. ' + CC, 'sale', 'was "No statewide OTC."'],
+  'otc.note.2': ['corrected', CC, 'sale', 'was "Check county for surplus sale inventory."', W],
+  'platforms.1': ['supported', 'County tax collector offices', 'tc', OK],
+  'platforms.2': ['supported', 'County sheriff offices', 'sher', OK],
+  'surplus.1': ['corrected', 'After a §105-374 sale, any balance after the earlier payments is paid as the court directs, or otherwise into court for the persons entitled to it (§105-374(q)(6)).', 'sur', 'was "Status pending — monitoring for legislative action."'],
+};
+const ES = {
+  'es.rate': ['rate', 'No aplica: la propiedad se vende en una venta de ejecución hipotecaria (§105-374(m))'],
+  'es.redemption': ['redemption', 'Antes de la confirmación de la venta de ejecución, pagando al menos todos los impuestos adeudados más recargos, intereses y costos (§105-374(e))'],
+  'es.summary.1': ['summary.1', 'En Carolina del Norte, un gravamen fiscal puede ejecutarse mediante una acción de la misma naturaleza que una ejecución hipotecaria (§105-374).'],
+  'es.summary.2': ['summary.2', 'En una acción bajo §105-374, puede presentarse una puja mayor dentro de los 10 días posteriores a que el comisionado presente el informe de la venta (§105-374(o)).'],
+  'es.summary.3': ['summary.4', 'Estatuto: NCGS §105-374 y §105-375.'],
+  'es.typeWhy.1': ['typeWhy.1', 'Carolina del Norte permite dos métodos de ejecución: una acción bajo §105-374 y, como alternativa, un procedimiento in rem bajo §105-375.'],
+  'es.typeWhy.2': ['typeWhy.2', 'Una puja mayor debe superar el precio de venta informado o la última puja mayor en al menos un 5% y al menos $750 (G.S. 1-339.64(a)).'],
+  'es.rateWhy.1': ['rateWhy.1', 'Después de los costos, el producto de la venta se destina a los impuestos, recargos e intereses por los cuales se ordenó la venta (§105-374(q)).'],
+  'es.rateWhy.2': ['rateWhy.2', ''],
+  'es.beginnerTip.1': ['beginnerTip.1', ''],
+  'es.beginnerTip.2': ['beginnerTip.2', ''],
+  'es.risks.1': ['risks.1', 'Una puja mayor debe superar el precio de venta informado o la última puja mayor en al menos un 5% y al menos $750 (G.S. 1-339.64(a)).'],
+  'es.risks.2': ['risks.2', 'Hay dos métodos de ejecución (acción bajo §105-374 o in rem bajo §105-375). Confirme con el condado.'],
+  'es.risks.3': ['risks.3', ''],
+  'es.ddExtra.1': ['ddExtra.1', 'Confirme con el condado qué método de ejecución usa (§105-374 o §105-375).'],
+  'es.ddExtra.2': ['ddExtra.2', ''],
+  'es.ddExtra.3': ['ddExtra.3', ''],
+  'es.signup.platform': ['signup.platform', 'Bajo §105-375(i), el sheriff vende la propiedad. Otras ventas: Confirme con el condado.'],
+  'es.signup.steps.1': ['signup.steps.1', 'Contacte al recaudador de impuestos del condado o al secretario del tribunal superior. Confirme con el condado.'],
+  'es.signup.steps.2': ['signup.steps.2', 'Registro y si la puja es en persona o en línea: Confirme con el condado.'],
+  'es.signup.steps.3': ['signup.steps.3', 'Asista a la venta y puje. En una acción bajo §105-374, puede presentarse una puja mayor dentro de los 10 días posteriores al informe de la venta (§105-374(o)).'],
+  'es.signup.steps.4': ['signup.steps.4', 'Después de la venta, esté atento a pujas mayores durante los 10 días posteriores al informe de la venta (§105-374(o)).'],
+  'es.signup.deposit.1': ['signup.deposit.1', 'En una venta bajo §105-374, el comisionado puede exigir un depósito de no más del 20% de la puja (§105-374(m1)).'],
+  'es.signup.deposit.2': ['signup.deposit.2', 'Confirme con el condado.'],
+  'es.otc.note.1': ['otc.note.1', 'No lo fija la ley. Confirme con el condado.'],
+  'es.otc.note.2': ['otc.note.2', 'Confirme con el condado.'],
+};
+build('nc', Q, D, ES, [], {
+  codeAccess: 'North Carolina General Statutes Chapter 105 Article 26 (sections 105-349 to 105-378, including 105-374, 105-375, 105-376) and G.S. 1-339.64, from ncleg.gov (North Carolina General Assembly). Session Law 2024-44 (S.B. 802) was read; it changes §105-375(i), §105-374(k) and §105-376(b) only to add C-PACE assessments as exceptions, effective July 1, 2024.',
+  countySources: {},
+});

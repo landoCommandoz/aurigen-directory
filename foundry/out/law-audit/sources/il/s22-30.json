@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "il",
+ "slug": "s22-30",
+ "url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K22-30.htm",
+ "final_url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/003502000K22-30.htm",
+ "fetched_at": "2026-11-01T09:13:53.199Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "b6fec757e2d60a8127f84441fa645b71cec335e29c19d56081f9f9e560a766e7",
+ "raw_bytes": 2905,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "442ed0ce5159a2383a4cbbc126e0d9cdc797bef17a949ca6478bae5148d65fd4",
+ "text_chars": 1466
+}

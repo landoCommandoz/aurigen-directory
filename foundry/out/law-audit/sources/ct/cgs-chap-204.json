@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ct",
+ "slug": "cgs-chap-204",
+ "url": "https://www.cga.ct.gov/current/pub/chap_204.htm",
+ "final_url": "https://www.cga.ct.gov/current/pub/chap_204.htm",
+ "fetched_at": "2026-11-01T09:08:05.671Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "af883da52cdccbf306529a4a55d880a9906a443804c42970a759641d0584b88b",
+ "raw_bytes": 302524,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "b6f4d207f3fcf53fc4381cfd6186c072ef89dd56ef0637fb20e4c92e8595a1d7",
+ "text_chars": 253316
+}

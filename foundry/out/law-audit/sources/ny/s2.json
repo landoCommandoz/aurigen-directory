@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ny",
+ "slug": "s2",
+ "url": "https://legislation.nysenate.gov/pdf/bills/2023/S7549A",
+ "final_url": "https://legislation.nysenate.gov/pdf/bills/2023/S7549A",
+ "fetched_at": "2026-11-01T10:43:46.022Z",
+ "http_status": 200,
+ "content_type": "application/pdf;charset=UTF-8",
+ "raw_sha256": "90ee10b735f9a497bb8e12584413a570d34bc34dcbefe42b03df39ff6b25cf51",
+ "raw_bytes": 3957,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "0ac9bb20c984219865012ca6e447caac1b96dd7d3cb47b00671342fe1dff3fde",
+ "text_chars": 3606
+}

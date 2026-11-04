@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "mn",
+ "slug": "s28123",
+ "url": "https://www.revisor.mn.gov/statutes/cite/281.23",
+ "final_url": "https://www.revisor.mn.gov/statutes/cite/281.23",
+ "fetched_at": "2026-11-01T09:48:59.003Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "84fd5fc847309d384079b3ba97de6f2e3dd3c30307c809b3cf990f6b07346968",
+ "raw_bytes": 78036,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "4ac0b83e368815a6c9dbc584b6f7acec293488f875a9bde54699c7f1c3adfac4",
+ "text_chars": 14780
+}

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ky",
+ "slug": "krs-134-546",
+ "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=28449",
+ "final_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=28449",
+ "fetched_at": "2026-10-27T06:26:05.426Z",
+ "http_status": 200,
+ "content_type": "application/PDF",
+ "raw_sha256": "9871d7d91ee0c7835ff474b7b7beadb038d87c034cabb8832bc39b4790eceb9e",
+ "raw_bytes": 8502,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "735ae9dd2df4f8f17687b26ab369d9fb9e378ceb26e74477f31a2a2f73a8883d",
+ "text_chars": 3570
+}

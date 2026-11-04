@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "hi",
+ "slug": "honolulu-roh-page",
+ "url": "https://realproperty.honolulu.gov/help-resources/city-laws-and-rules-related-to-real-property-assessment/revised-ordinances-of-honolulu/",
+ "final_url": "https://realproperty.honolulu.gov/help-resources/city-laws-and-rules-related-to-real-property-assessment/revised-ordinances-of-honolulu/",
+ "fetched_at": "2026-10-27T06:23:32.250Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "ba0f35125624c50c4c2befd9450157d2c199631a856ce61286ca5584f98a513a",
+ "raw_bytes": 30009,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "87e4596dd0dd57593eb7fd484af00a5cae095bbb934c7f87e189ac7689e88cee",
+ "text_chars": 3276
+}

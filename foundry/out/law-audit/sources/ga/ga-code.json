@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ga",
+ "slug": "ga-code",
+ "url": "https://advance.lexis.com/container?config=00JAA1MTU5NGY5OC1lYWIyLTQxOTAtYjk5Ny0yNjBkNjA0ZDQyMmMKAFBvZENhdGFsb2fW4ZYLbwjlCkNBEHyz4Wtq&crid=0",
+ "final_url": "https://advance.lexis.com/container?config=00JAA1MTU5NGY5OC1lYWIyLTQxOTAtYjk5Ny0yNjBkNjA0ZDQyMmMKAFBvZENhdGFsb2fW4ZYLbwjlCkNBEHyz4Wtq&crid=0",
+ "fetched_at": "2026-11-01T10:12:40.617Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "b3c64e588716f96166d66d7d13c9311d64164409c3fe0c7002b47d5523c69191",
+ "raw_bytes": 3637,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+ "text_chars": 1
+}

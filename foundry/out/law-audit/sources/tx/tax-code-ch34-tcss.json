@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "tx",
+ "slug": "tax-code-ch34-tcss",
+ "url": "https://tcss.legis.texas.gov/resources/TX/htm/TX.34.htm",
+ "final_url": "https://tcss.legis.texas.gov/resources/TX/htm/TX.34.htm",
+ "fetched_at": "2026-10-29T05:43:02.536Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "92ba12c96aa5ae1ca1837f52650c82148d3371687000962e0d1e1e20882a11f9",
+ "raw_bytes": 101074,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "aa4a1ecd1ed4bb0fae573518177b35110b71480a0e3e944e2a1990e9d5b5492a",
+ "text_chars": 72458
+}

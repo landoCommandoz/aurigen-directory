@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "id",
+ "slug": "s31808",
+ "url": "https://legislature.idaho.gov/statutesrules/idstat/Title31/T31CH8/SECT31-808/",
+ "final_url": "https://legislature.idaho.gov/statutesrules/idstat/Title31/T31CH8/SECT31-808/",
+ "fetched_at": "2026-11-01T09:41:34.008Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "b0e1f6761fc83844e0060c6035aa188702b87cacd663781ae55dee4deb516708",
+ "raw_bytes": 104106,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "fd2166927898182265304d2b664e251c0241137cd549812198d3581f5c251ec9",
+ "text_chars": 14493
+}

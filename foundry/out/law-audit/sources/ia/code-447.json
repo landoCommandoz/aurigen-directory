@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ia",
+ "slug": "code-447",
+ "url": "https://www.legis.iowa.gov/docs/code/447.pdf",
+ "final_url": "https://www.legis.iowa.gov/docs/code/447.pdf",
+ "fetched_at": "2026-10-29T06:02:01.740Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "8855a19aa70cacc06b828f8ced8c5d558f5a8b538ef361b29fded21d5dc05959",
+ "raw_bytes": 84926,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "a795f9498ae6d8559addaa9c5857a88335f79e7ef158ab92fd84b33a454bb985",
+ "text_chars": 26694
+}

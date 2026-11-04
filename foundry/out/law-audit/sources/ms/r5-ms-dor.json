@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ms",
+ "slug": "r5-ms-dor",
+ "url": "https://www.dor.ms.gov/",
+ "final_url": "https://www.dor.ms.gov/",
+ "fetched_at": "2026-11-01T10:22:40.337Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "c37b046144be02cabf025c9261d2fff6b58562c7db9ddb3bf494c52fdbf9b9cf",
+ "raw_bytes": 269244,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "80dbbac9ca34719060c555e29355ecbe5fd180a5b5eefabc7d5f22f0cbf04438",
+ "text_chars": 10679
+}

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "la",
+ "slug": "rs-47-2241",
+ "url": "https://legis.la.gov/legis/LawPrint.aspx?d=631596",
+ "final_url": "https://legis.la.gov/legis/LawPrint.aspx?d=631596",
+ "fetched_at": "2026-10-27T06:28:53.532Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "a5553f79a36417099eefbe27fc0f8027efb63a0d30321c5aa3d8d4d118ea3906",
+ "raw_bytes": 2589,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "47bf0e37f510c68ca791d2ba5ef980c0353fb691b9a56fa99f9ffa964c351d47",
+ "text_chars": 328
+}

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ma",
+ "slug": "mgl-60-64a",
+ "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section64A",
+ "final_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section64A",
+ "fetched_at": "2026-10-29T06:05:11.622Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "02b8d7692f10fcaff70e1b98c30fa08f32361b392a12a0cf9f7cd546b27219c4",
+ "raw_bytes": 82939,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "5cb80304a3ccec91fba0ae5e3515969278df3fd1d6d12908beb88798a2fe18e7",
+ "text_chars": 14010
+}

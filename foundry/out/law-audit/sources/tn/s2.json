@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "tn",
+ "slug": "s2",
+ "url": "https://tncourts.gov/sites/default/files/docs/Chancellors%20Luncheon%20-%20Delinquent%20Taxes%20-%20Handout.pdf",
+ "final_url": "https://tncourts.gov/sites/default/files/docs/Chancellors%20Luncheon%20-%20Delinquent%20Taxes%20-%20Handout.pdf",
+ "fetched_at": "2026-11-01T10:43:50.799Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "bdff96c78ea251eea1faf016897941b5d0cd44e8dd9755c89880fa5a9140be58",
+ "raw_bytes": 2493,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "aa6708f0ac1288f767d71689da47188ce9ed3aca0661b6dd1a2227bb620a6a06",
+ "text_chars": 133
+}

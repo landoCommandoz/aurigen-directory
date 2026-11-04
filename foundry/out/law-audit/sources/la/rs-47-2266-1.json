@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "la",
+ "slug": "rs-47-2266-1",
+ "url": "https://legis.la.gov/legis/LawPrint.aspx?d=1388659",
+ "final_url": "https://legis.la.gov/legis/LawPrint.aspx?d=1388659",
+ "fetched_at": "2026-10-27T06:29:16.582Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "5f8bce20fc8a558b37508a3ea7302cea96f58b0fdc3274218f8fc1168bac6e50",
+ "raw_bytes": 13755,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "5e397e7f5c40103dc997107da1d6d607b8df8470349236717d9f830c73e4cb7c",
+ "text_chars": 6602
+}

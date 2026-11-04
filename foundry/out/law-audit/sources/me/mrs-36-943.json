@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "me",
+ "slug": "mrs-36-943",
+ "url": "https://legislature.maine.gov/statutes/36/title36sec943.html",
+ "final_url": "https://legislature.maine.gov/statutes/36/title36sec943.html",
+ "fetched_at": "2026-10-27T06:32:01.162Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "768ba81365963749e747b829b02799d000b337a3511d6c21b69648329058edd8",
+ "raw_bytes": 21148,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "623e5a839cf14375dd0ea1db65b007aa6b0ab85633212af39ee35a0de0c32282",
+ "text_chars": 9284
+}

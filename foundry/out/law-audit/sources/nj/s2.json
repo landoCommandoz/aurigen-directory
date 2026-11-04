@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nj",
+ "slug": "s2",
+ "url": "https://www.nj.gov/treasury/taxation/lpt/localtax.shtml",
+ "final_url": "https://www.nj.gov/treasury/taxation/lpt/localtax.shtml",
+ "fetched_at": "2026-11-01T10:39:13.671Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "bf8c354339cfa5a62769eed3deb8396fb5f47d1d92e12de6d056c4925612788c",
+ "raw_bytes": 55568,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "a4c2dd5946c71fdc2649ef0b297a93eddd7ed1bcff674a6a207280cb50683380",
+ "text_chars": 5518
+}

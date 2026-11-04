@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "mt",
+ "slug": "s15-18-114",
+ "url": "https://mca.legmt.gov/bills/mca/title_0150/chapter_0180/part_0010/section_0140/0150-0180-0010-0140.html",
+ "final_url": "https://mca.legmt.gov/bills/mca/title_0150/chapter_0180/part_0010/section_0140/0150-0180-0010-0140.html",
+ "fetched_at": "2026-11-01T10:10:57.018Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "af34d91a81cb3ddb59620951e7fd634febdca4a000f23737c2a3cbb6e09c8c60",
+ "raw_bytes": 14022,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "2d1069e54c7d654968c99f37308fd49b454a1819146bbccd7e58b895c5be2888",
+ "text_chars": 2896
+}

@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ak",
+ "slug": "r5-akstat2",
+ "url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=29.45.400&secEnd=29.45.400",
+ "final_url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=29.45.400&secEnd=29.45.400",
+ "fetched_at": "2026-11-01T10:24:35.186Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=ISO-8859-1",
+ "raw_sha256": "1c4554c41cacf2a458385a821961d624a4a85e60d6661cc9435cf609429a84f0",
+ "raw_bytes": 729,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "2c36fa4452022479eac80989563a549246c638a102836196ecc7f3d27887d7ec",
+ "text_chars": 565
+}

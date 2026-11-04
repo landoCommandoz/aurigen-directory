@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "wi",
+ "slug": "stats-75-36",
+ "url": "https://docs.legis.wisconsin.gov/document/statutes/75.36",
+ "final_url": "https://docs.legis.wisconsin.gov/statutes/statutes/75/36",
+ "fetched_at": "2026-10-29T05:49:51.311Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "42d3749c689351f85f29e8a52b70324c2b5374399cf0b32422c9ab9ef04eec1e",
+ "raw_bytes": 109408,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "14b8c0a055ee5ab4f7397bf93e71504e2b995c0a80a2294164e45d8c3ed405c2",
+ "text_chars": 34236
+}

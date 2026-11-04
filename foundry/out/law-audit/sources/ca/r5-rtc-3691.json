@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ca",
+ "slug": "r5-rtc-3691",
+ "url": "https://law.onecle.com/",
+ "final_url": "https://law.onecle.com/",
+ "fetched_at": "2026-11-01T10:24:35.153Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "5c00fe735c3c94ad8bb024c86b75ae30141f93cab4ba1a790230576cd8ddf81a",
+ "raw_bytes": 10585,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "2cdb434d7c752d1648d65b39a17c6e065610cbe2b2b7f30990bbedfe922d39df",
+ "text_chars": 904
+}

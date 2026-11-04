@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ia",
+ "slug": "code-448",
+ "url": "https://www.legis.iowa.gov/docs/code/448.pdf",
+ "final_url": "https://www.legis.iowa.gov/docs/code/448.pdf",
+ "fetched_at": "2026-10-29T06:02:26.293Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "2b1c5904ad88733438189b23362c9dadabf1448a97f0de8b8a7be9acb6c8f494",
+ "raw_bytes": 82122,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "8ed3f49746d110984fb81a858153a01962a5bcd5daa14f06bddf1f81df106e6e",
+ "text_chars": 25690
+}

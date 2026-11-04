@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ma",
+ "slug": "mgl-60-52",
+ "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section52",
+ "final_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter60/Section52",
+ "fetched_at": "2026-10-29T06:05:04.012Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "9467e3e7411504e1dd8a99c32e48415c338c8d801de17743ac3d739bbb1b78d8",
+ "raw_bytes": 76742,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "bd9f0d5cf7d7f897e6611f6279dc308eddac48bdc4a0bf8c1a73e943f2d289e8",
+ "text_chars": 8076
+}

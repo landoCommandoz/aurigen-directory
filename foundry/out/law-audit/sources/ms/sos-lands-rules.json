@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ms",
+ "slug": "sos-lands-rules",
+ "url": "https://www.sos.ms.gov/content/documents/lands/00000176c.pdf",
+ "final_url": "https://www.sos.ms.gov/content/documents/lands/00000176c.pdf",
+ "fetched_at": "2026-10-27T06:33:47.427Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "1fc0b6074949ca85c19f4539eae7d6edff53ee72c8e8caf8a5c4435e8f0124f3",
+ "raw_bytes": 100589,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "db62f8cc39051dff10d9fe7a09a30fa92f3adaf735df521ec30ea69b4e3fb314",
+ "text_chars": 55947
+}

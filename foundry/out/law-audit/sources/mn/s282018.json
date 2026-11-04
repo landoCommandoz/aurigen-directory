@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "mn",
+ "slug": "s282018",
+ "url": "https://www.revisor.mn.gov/statutes/cite/282.018",
+ "final_url": "https://www.revisor.mn.gov/statutes/cite/282.018",
+ "fetched_at": "2026-11-01T09:48:54.502Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "60a3dfe03750fe025a302dc03df3116ea70748a5f7f117cb3ab2c7e3d76523de",
+ "raw_bytes": 67964,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "e7e224cc54d62f41cb95133655df918b98cd1aaa72e01690ebb00597570e94ae",
+ "text_chars": 10259
+}

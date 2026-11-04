@@ -1,0 +1,98 @@
+import { build, snapOf } from './lib.mjs';
+const K = (slug, sec) => ({ ...snapOf('ks', slug), sourceKind: 'code', statute: 'K.S.A. § ' + sec });
+const Q = {
+  int: { ...K('s792004', '79-2004(a)'), quote: 'plus five percentage points per annum from May 10 until paid, or until the real property is sold for taxes by foreclosure as provided by law' },
+  foreclose: { ...K('s7928000001', '79-2801(a)'), quote: 'whenever real estate has been or shall be sold and bid in by the county at any delinquent tax sale and remains unredeemed on September 1 of the second year after the sale' },
+  action: { ...K('s7928000001', '79-2801(a)'), quote: 'the board of county commissioners shall order the county attorney or county counselor and it shall be the duty of the county attorney or county counselor to institute an action in the district court' },
+  red2: { ...K('s792401a', '79-2401a(a)(1)'), quote: 'may redeem the real estate sold in the sale at any time within two years after the sale by paying to the county treasurer the amount for which the real estate was sold plus the interest accrued' },
+  red3: { ...K('s792401a', '79-2401a(b)(1)'), quote: 'real estate which is a homestead under section 9 of article 15 of the Kansas Constitution and all real estate not described in subsection (a) shall be held by the county until the expiration of three years from the date of the sale' },
+  sale: { ...K('s7928000004', '79-2804'), quote: 'the same shall be sold at public auction for the highest and best bid obtainable therefor' },
+  notice: { ...K('s7928000004', '79-2804'), quote: 'cause notice of sale to be published once each week for three consecutive weeks in some newspaper of general circulation in the county' },
+  cbid: { ...K('s7928000004', '79-2804'), quote: 'No bid in behalf of such county shall be accepted in excess of the amount of the judgment lien and interest thereon, as provided by law, plus the costs, charges and expenses of the proceedings and sale' },
+  confirm: { ...K('s7928000004', '79-2804'), quote: 'if found by the court to be regular, it shall be confirmed, and the sheriff ordered to forthwith execute to the purchasers at such sale a good and sufficient deed therefor' },
+  vest: { ...K('s7928000004', '79-2804'), quote: 'a fee simple title thereto, subject only to valid covenants running with the land and valid easement of record in use and subject to taxes and interest which have become a lien thereon, subsequent to the date upon which such judgment was rendered' },
+  twelve: { ...K('s792804b', '79-2804b'), quote: 'must be commenced within twelve months after the date the sale of the real estate, which was affected by such judgment, order of sale or sale, was confirmed by the court' },
+  apport: { ...K('s7928000005', '79-2805'), quote: 'shall be paid by the clerk of the district court to the county treasurer, who shall prorate to each fund, if practicable, its proportionate interest in the entire lien for taxes and interest included in the foreclosure action' },
+};
+const OK = 'ok';
+const RM = 'removed: no official source (opinion, advice, county or market claim, or figure not in the statute)';
+const W = { correctionKind: 'wording' };
+const CC = 'Confirm with the county.';
+const FC = 'Real estate sold and bid in by the county at a delinquent tax sale that remains unredeemed on September 1 of the second year after the sale (§79-2801(a)).';
+const AC = 'The board of county commissioners orders the county attorney or county counselor to bring an action in the district court (§79-2801(a)).';
+const R2 = 'The owner or holder of record title, heirs, assigns or a mortgagee may redeem within 2 years after the sale by paying the county treasurer the amount for which the real estate was sold plus the interest accrued (§79-2401a(a)(1)). Full amount owed: ' + CC;
+const INT = 'Unpaid real property taxes accrue interest at the rate set by K.S.A. 79-2968 plus five percentage points per year, until paid or until the property is sold by foreclosure (§79-2004(a)).';
+const D = {
+  'type': ['corrected', 'County tax sale, then court foreclosure and sheriff\'s sale', 'foreclose', 'was "Tax deed"; the county bids in the property, unredeemed property is foreclosed and sold by the sheriff'],
+  'rate': ['corrected', 'Interest on unpaid real property taxes: the K.S.A. 79-2968 rate plus five percentage points per year (§79-2004)', 'int', 'was "Up to 15%"; the 15% figure is not in the sections read'],
+  'rateNote': ['corrected', 'No private lien certificates are described in these sections: unredeemed property the county bid in goes to a court foreclosure (§79-2801)', 'foreclose', 'was "Lien phase earns 12% — court action required to convert to deed"; "earns 12%" not in the statute'],
+  'redemption': ['corrected', 'Within 2 years after the sale (§79-2401a(a)(1)). Other periods apply: ' + CC, 'red2', 'was "2–3 years"; the 3-year period is for homestead and other property (keyNotes.2). pass 2 trim: scope limited to what the quote states'],
+  'bidMethod': ['corrected', 'Sheriff\'s public auction for the highest and best bid obtainable (§79-2804)', 'sale', 'was "Highest bidder"', W],
+  'statute': ['corrected', 'K.S.A. §79-2801; §79-2804', 'foreclose', 'was "K.S.A. §79-2803"; §79-2803 is the judgment section, sale is §79-2804', W],
+  'auctionPlatform': ['corrected', 'Sheriff, at public auction (§79-2804). Place: ' + CC, 'sale', 'was "County treasurer — in-person"; the sheriff conducts the sale'],
+  'auctionTiming': ['corrected', 'Notice is published once each week for three consecutive weeks before the sale (§79-2804). Dates: ' + CC, 'notice', 'was "September (most counties)"; no month in the statute'],
+  'summary.1': ['corrected', 'Foreclosure under §79-2801(a) covers ' + FC.replace(/ \(§79-2801\(a\)\)\.$/, '.').replace(/^Real/, 'real'), 'foreclose', 'was "Kansas holds tax lien sales at the county level."; the county bids in property, it does not sell lien certificates here'],
+  'summary.2': ['corrected', AC, 'action', 'was "After 2-year redemption, county files for judicial sale."; the action is ordered by the board'],
+  'summary.3': ['corrected', 'The county\'s own bid may not exceed the judgment lien and interest plus the costs, charges and expenses of the proceedings and sale (§79-2804).', 'cbid', 'was "County can reduce minimum bid on properties that didn\'t sell."; not in the statute'],
+  'summary.4': ['supported', 'Statute: KSA §79-2801.', 'foreclose', OK],
+  'typeWhy.1': ['corrected', FC, 'foreclose', 'was "Kansas sells tax lien certificates at the county level."'],
+  'typeWhy.2': ['corrected', R2, 'red2', 'was "The investor purchases the lien and the owner retains title during a 2-3 year redemption period."; no investor lien purchase is described'],
+  'typeWhy.3': ['supported', 'KSA §79-2801.', 'foreclose', OK],
+  'rateWhy.1': ['corrected', INT, 'int', 'was "Kansas caps the tax lien interest rate at 15% per annum."'],
+  'rateWhy.2': ['corrected', '', 'int', RM],
+  'rateWhy.3': ['corrected', 'KSA §79-2004.', 'int', 'citation changed to the section that sets the interest', W],
+  'keyNotes.1': ['corrected', '', 'int', RM],
+  'keyNotes.2': ['corrected', 'Homestead and other real estate not described in §79-2401a(a) is held by the county until 3 years after the sale (§79-2401a(b)(1)).', 'red3', 'was "3-year redemption before deed eligible"'],
+  'keyNotes.3': ['corrected', 'The sheriff executes the deed after the court confirms the sale (§79-2804).', 'confirm', 'was "Court action required to obtain deed — no automatic conversion"', W],
+  'keyNotes.4': ['corrected', '', 'sale', RM],
+  'beginnerTip.1': ['corrected', '', 'sale', RM],
+  'beginnerTip.2': ['corrected', '', 'sale', RM],
+  'risks.1': ['corrected', 'An action to open, vacate, modify or set aside a foreclosure judgment, order of sale or sale must begin within 12 months after the court confirms the sale (§79-2804b).', 'twelve', 'was "Judicial sale process adds time and legal costs"; opinion replaced by the statutory time limit'],
+  'risks.2': ['corrected', '', 'sale', RM],
+  'risks.3': ['corrected', '', 'sale', RM],
+  'ddExtra.1': ['corrected', 'A deed vests fee simple title subject to valid covenants and easements of record and to taxes and interest that became a lien after the judgment (§79-2804).', 'vest', 'was "Verify the full tax balance including special assessments and improvement district fees"'],
+  'ddExtra.2': ['corrected', '', 'sale', RM],
+  'ddExtra.3': ['corrected', '', 'sale', RM],
+  'signup.platform': ['corrected', 'Sheriff (sale under a district court order). ' + CC, 'sale', 'was "County clerk or district court (varies)"'],
+  'signup.steps.1': ['corrected', 'Contact the county. The sheriff publishes notice of sale once each week for three consecutive weeks (§79-2804).', 'notice', 'was "Contact your target county clerk — find them at ksrevisor.org/municipalities"'],
+  'signup.steps.2': ['corrected', 'Sale dates: ' + CC, 'notice', 'was "Ask about the upcoming tax lien sale schedule"', W],
+  'signup.steps.3': ['corrected', 'Registration and bidding details: ' + CC, 'sale', 'was "Register per county instructions — most are in-person"', W],
+  'signup.steps.4': ['corrected', 'Payment method: ' + CC, 'sale', 'was "Bring cashier\'s check or confirm wire requirements"', W],
+  'signup.deposit.1': ['corrected', CC, 'sale', 'was "Varies by county."', W],
+  'otc.available': ['corrected', 'Not set by statute. ' + CC, 'sale', 'was "Available"'],
+  'otc.note.1': ['corrected', 'Not set by statute. ' + CC, 'sale', 'was "Unsold properties available at reduced minimums from county."'],
+  'otc.note.2': ['corrected', CC, 'sale', 'was "Contact county clerk directly."', W],
+  'platforms.1': ['corrected', 'Sheriff', 'sale', 'was "County clerk offices"', W],
+  'surplus.1': ['corrected', 'Under §79-2805, the balance apportioned to each tract after the sale is paid by the clerk of the district court to the county treasurer, who prorates it to each fund. Owner claims to excess proceeds: ' + CC, 'apport', 'was "Status pending — monitoring for legislative action."'],
+};
+const ES = {
+  'es.rate': ['rate', 'Interés sobre impuestos inmobiliarios impagos: la tasa de K.S.A. 79-2968 más cinco puntos porcentuales al año (§79-2004)'],
+  'es.redemption': ['redemption', 'Dentro de 2 años después de la venta (§79-2401a(a)(1)). Aplican otros períodos: Confirme con el condado.'],
+  'es.summary.1': ['summary.1', 'La ejecución hipotecaria bajo §79-2801(a) abarca bienes raíces vendidos y adjudicados al condado en una venta fiscal por morosidad que siguen sin redimir el 1 de septiembre del segundo año después de la venta.'],
+  'es.summary.2': ['summary.2', 'La junta de comisionados del condado ordena al abogado o asesor del condado iniciar una acción en el tribunal de distrito (§79-2801(a)).'],
+  'es.summary.3': ['summary.3', 'La puja del propio condado no puede exceder el gravamen de la sentencia y los intereses más los costos, cargos y gastos del proceso y la venta (§79-2804).'],
+  'es.summary.4': ['summary.4', 'Estatuto: KSA §79-2801.'],
+  'es.typeWhy.1': ['typeWhy.1', 'Bienes raíces vendidos y adjudicados al condado en una venta fiscal por morosidad que siguen sin redimir el 1 de septiembre del segundo año después de la venta (§79-2801(a)).'],
+  'es.rateWhy.1': ['rateWhy.1', 'Los impuestos inmobiliarios impagos devengan interés a la tasa de K.S.A. 79-2968 más cinco puntos porcentuales al año, hasta el pago o hasta que la propiedad se venda por ejecución (§79-2004(a)).'],
+  'es.rateWhy.2': ['rateWhy.2', ''],
+  'es.beginnerTip.1': ['beginnerTip.1', ''],
+  'es.beginnerTip.2': ['beginnerTip.2', ''],
+  'es.risks.1': ['risks.1', 'Una acción para abrir, anular, modificar o dejar sin efecto una sentencia de ejecución, orden de venta o venta debe iniciarse dentro de 12 meses después de que el tribunal confirme la venta (§79-2804b).'],
+  'es.risks.2': ['risks.2', ''],
+  'es.risks.3': ['risks.3', ''],
+  'es.ddExtra.1': ['ddExtra.1', 'Una escritura otorga título de dominio pleno sujeto a convenios y servidumbres válidos registrados y a los impuestos e intereses que se convirtieron en gravamen después de la sentencia (§79-2804).'],
+  'es.ddExtra.2': ['ddExtra.2', ''],
+  'es.ddExtra.3': ['ddExtra.3', ''],
+  'es.signup.platform': ['signup.platform', 'Sheriff (venta bajo orden del tribunal de distrito). Confirme con el condado.'],
+  'es.signup.steps.1': ['signup.steps.1', 'Contacte al condado. El sheriff publica el aviso de venta una vez por semana durante tres semanas consecutivas (§79-2804).'],
+  'es.signup.steps.2': ['signup.steps.2', 'Fechas de venta: Confirme con el condado.'],
+  'es.signup.steps.3': ['signup.steps.3', 'Detalles de registro y de la puja: Confirme con el condado.'],
+  'es.signup.steps.4': ['signup.steps.4', 'Forma de pago: Confirme con el condado.'],
+  'es.signup.deposit.1': ['signup.deposit.1', 'Confirme con el condado.'],
+  'es.otc.note.1': ['otc.note.1', 'No lo fija la ley. Confirme con el condado.'],
+  'es.otc.note.2': ['otc.note.2', 'Confirme con el condado.'],
+};
+build('ks', Q, D, ES, [], {
+  codeAccess: 'Kansas Statutes Annotated 79-2004, 79-2401a, 79-2801, 79-2803, 79-2804, 79-2804b and 79-2805, current text from ksrevisor.gov (Kansas Office of the Revisor of Statutes).',
+  countySources: {},
+});

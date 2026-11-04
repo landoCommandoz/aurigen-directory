@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ne",
+ "slug": "s771844",
+ "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1844",
+ "final_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=77-1844",
+ "fetched_at": "2026-11-01T09:52:02.755Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=UTF-8",
+ "raw_sha256": "8efe173d475ef556dd5a435800a1a552b08d22696ebd1be3a6450b7debaaa0d4",
+ "raw_bytes": 26866,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "8200cfe480fe7e0f4408dd097a393ca8d81b87d37a2fbe38c51aad1552d9e442",
+ "text_chars": 6180
+}

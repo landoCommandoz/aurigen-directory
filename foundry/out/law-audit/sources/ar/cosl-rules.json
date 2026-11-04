@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "ar",
+ "slug": "cosl-rules",
+ "url": "https://coslstorage.blob.core.windows.net/web-resources/rules-and-regs.pdf",
+ "final_url": "https://coslstorage.blob.core.windows.net/web-resources/rules-and-regs.pdf",
+ "fetched_at": "2026-10-29T05:56:30.822Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "e3c1a1797854b3b43486b5067d27343d36b2146ed7754c9c9c289b4bd214b97b",
+ "raw_bytes": 489209,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "66d434e7036ec58a41ae742314ccd4d706bb1a32ae8f6f828b3ca838a8fb27aa",
+ "text_chars": 57658
+}

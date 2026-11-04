@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "wi",
+ "slug": "stats-75-35",
+ "url": "https://docs.legis.wisconsin.gov/document/statutes/75.35",
+ "final_url": "https://docs.legis.wisconsin.gov/statutes/statutes/75/35",
+ "fetched_at": "2026-10-29T05:49:48.874Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "2818206f9df983c3a9dca4fc30b8ecc1772a8be99c20af6b947f6c4bc91664bb",
+ "raw_bytes": 104235,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "3f20889d14f933925977aace5f438397e486500212e7781ea716fcd46667f0c2",
+ "text_chars": 31124
+}

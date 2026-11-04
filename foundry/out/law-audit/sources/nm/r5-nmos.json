@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "nm",
+ "slug": "r5-nmos",
+ "url": "https://nmonesource.com/nmos/nmsa/en/item/4425/index.do",
+ "final_url": "https://nmonesource.com/nmos/nmsa/en/item/4425/index.do",
+ "fetched_at": "2026-11-01T10:22:56.516Z",
+ "http_status": 200,
+ "content_type": "text/html;charset=utf-8",
+ "raw_sha256": "f08b14d01899b1a3ea048b5934feb426e9372a1226f93393012b1eb9f5a0d8c2",
+ "raw_bytes": 13515,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "6f36d269035ec64527b4318fb52fd9efd21023f43b02dfbb7b13f59dc5631152",
+ "text_chars": 199
+}
