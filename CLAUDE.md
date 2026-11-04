@@ -9,6 +9,20 @@ GHL: pit-538dfecf-570a-4f22-aca7-c72cddae8990
 STRIPE: https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02
 BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4
 
+## HUB BLOCK (every report ends with this)
+> Twelve lines maximum, plain text, no tables, no secrets, no code. Every report ends with it and nothing comes after it.
+
+=== HUB BLOCK (copy from here) ===
+SESSION: <name> | <date time>
+DONE: one line
+CHANGED LIVE: one line, or "nothing"
+SPENT: $ amount
+BLOCKED: one line, or "nothing"
+NEEDS LANDO: one line per item, exact action
+NEEDS A DECISION: one line per decision, with the options as 1 / 2 / 3
+NEXT IF YOU SAY NOTHING: one line
+=== END HUB BLOCK ===
+
 ## AGENT ROSTER
 | Codename | Role | Owns |
 |----------|------|------|

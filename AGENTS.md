@@ -2,6 +2,21 @@
 
 This project uses **bd** (beads) for issue tracking. Run `bd prime` for full workflow context.
 
+## Hub block (every report ends with this)
+
+Twelve lines maximum, plain text, no tables, no secrets, no code. Every report ends with it and nothing comes after it.
+
+=== HUB BLOCK (copy from here) ===
+SESSION: <name> | <date time>
+DONE: one line
+CHANGED LIVE: one line, or "nothing"
+SPENT: $ amount
+BLOCKED: one line, or "nothing"
+NEEDS LANDO: one line per item, exact action
+NEEDS A DECISION: one line per decision, with the options as 1 / 2 / 3
+NEXT IF YOU SAY NOTHING: one line
+=== END HUB BLOCK ===
+
 > **Architecture in one line:** Issues live in a local Dolt database
 > (`.beads/dolt/`); cross-machine sync uses `bd dolt push/pull` (a
 > git-compatible protocol), stored under `refs/dolt/data` on your git
