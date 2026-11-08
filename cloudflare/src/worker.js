@@ -9,6 +9,30 @@
 // one copy of the sheet text and one copy of its data. wrangler.jsonc routes /rules-sheet* here.
 import { handleSheet } from '../../under-review/sheet.js';
 
+// The Rules Sheet page is drawn by the Worker, not by scripts/build-site.mjs, so it is the one
+// page the beacon in the page builder cannot reach. Same token, read from the same file, so
+// there is still exactly one place to change it. The under-review Worker does not import this
+// module, so hiding the site stays free of any third-party script.
+import BEACON_CFG from '../data/beacon.json' with { type: 'json' };
+
+const BEACON = /^[A-Za-z0-9]{8,64}$/.test(String(BEACON_CFG.token || '').trim())
+  ? `<!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${String(BEACON_CFG.token).trim()}"}'></script><!-- End Cloudflare Web Analytics -->`
+  : '';
+
+/** Put the beacon on an HTML response from the sheet. Anything else is passed straight back. */
+async function withBeacon(res) {
+  if (!BEACON || !res || !res.ok) return res;
+  if (!String(res.headers.get('content-type') || '').includes('text/html')) return res;
+  const html = await res.text();
+  if (!html.includes('</body>') || html.includes('static.cloudflareinsights.com')) {
+    return new Response(html, res);
+  }
+  const headers = new Headers(res.headers);
+  // The body just changed length, so a copied content-length would be a lie.
+  headers.delete('content-length');
+  return new Response(html.replace('</body>', BEACON + '</body>'), { status: res.status, statusText: res.statusText, headers });
+}
+
 const POLAR_VALIDATE = 'https://api.polar.sh/v1/customer-portal/license-keys/validate';
 const CACHE_SECONDS = 600;
 
@@ -134,7 +158,7 @@ export default {
     }
     try {
       const sheet = await handleSheet(request, env);
-      if (sheet) return sheet;
+      if (sheet) return await withBeacon(sheet);
       if (p === '/extras' || p.startsWith('/extras/')) return await extras(request, env, url);
       if (p === '/api/license' && request.method === 'POST') return await apiLicense(request, env);
       if (p === '/api/follow' && request.method === 'POST') return await apiFollow(request, env);
