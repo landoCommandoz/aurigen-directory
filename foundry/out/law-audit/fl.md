@@ -234,3 +234,13 @@ None found.
 ## Conflicts (flagged)
 
 None.
+
+## Gap queue work (2026-11-08)
+
+- FL-1 closed. Read as chaptered acts (laws.flrules.org, saved under sources/fl/ch2024-91, ch2024-140, ch2026-174):
+  - Ch. 2024-91 (HB 113), approved April 15, 2024, effective July 1, 2024. Section 3 amends 197.502(2): interest on a canceled tax deed application. No shown claim rests on it.
+  - Ch. 2024-140 (CS/CS/CS HB 989), approved May 2, 2024, effective on becoming law (section 101). Section 61 changes only a cross-reference in 197.582(2)(a).
+  - Ch. 2026-174 (CS/CS/CS SB 1452), approved June 26, 2026, effective on becoming law (section 98). Section 92 changes only a cross-reference in 197.582(2)(a).
+  - Search: the 2026 history lines of 197.172, 197.402, 197.432, 197.4725, 197.472, 197.502, 197.522, 197.532, 197.542, 197.552, 197.582 and 95.192 list no other act from 2023 to 2026. The legislature's bill-search page needs JavaScript, so this was a history-line search, not a bill search.
+  - No shown text changed.
+- FL-2 closed under the spec's alternative. Read 197.502(6) (the homestead opening bid adds one-half of the latest assessed value), 197.522 and 197.532 (clerk and sheriff notices). County tax collector and clerk pages were not read, so platforms, registration, deposits and sale dates keep the "Confirm with the county" label.

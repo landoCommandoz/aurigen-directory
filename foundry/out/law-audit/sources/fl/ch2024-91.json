@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "fl",
+ "slug": "ch2024-91",
+ "url": "https://laws.flrules.org/2024/91",
+ "final_url": "https://laws.flrules.org/2024/91",
+ "fetched_at": "2026-11-08T07:16:32.849Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "a036ef1f911ed3a97ff52d99a0a380126911c606147a50802171e13dfc259551",
+ "raw_bytes": 29923,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "54d9cc8ed2295babfee84b7d3c0e82d4b600207358243243d4798b9e60e34f3a",
+ "text_chars": 3480
+}

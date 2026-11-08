@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "fl",
+ "slug": "ch2024-140",
+ "url": "https://laws.flrules.org/2024/140",
+ "final_url": "https://laws.flrules.org/2024/140",
+ "fetched_at": "2026-11-08T07:16:35.888Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "31c319919462f2854dd4e194997f82b07af7d7d2e88c9dc6ca841062d5cf4f6c",
+ "raw_bytes": 402864,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "2499753d92e5af101b064a79aefb8c738cdc8f55a089433d40574e249497bd83",
+ "text_chars": 223802
+}

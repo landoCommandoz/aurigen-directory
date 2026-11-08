@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "fl",
+ "slug": "ch2026-174",
+ "url": "https://laws.flrules.org/2026/174",
+ "final_url": "https://laws.flrules.org/2026/174",
+ "fetched_at": "2026-11-08T07:16:39.200Z",
+ "http_status": 200,
+ "content_type": "application/pdf",
+ "raw_sha256": "78ec74b87ecd92a0e135b563a1d7782f5f56a0fd76e9090410552a9a805a0622",
+ "raw_bytes": 492338,
+ "extractor": "pdftotext -layout (pdftotext version 24.02.0)",
+ "text_sha256": "a1125bcfbfdbb677d29d9c16275fd20d01ede1e47b0bd15948da8795ff85cf6b",
+ "text_chars": 260257
+}
