@@ -1,5 +1,5 @@
-// Platbook Worker. Static pages are served by Workers static assets (free, no Worker
-// invocation). This script only runs for /extras* and /api/* (see wrangler.jsonc).
+// Platbook Worker. Pages run through this script first (see wrangler.jsonc) so a request on the
+// wrong hostname can be sent to the real one; /assets/* still bypasses the Worker entirely.
 //
 // Paid extras are behind PAID_EXTRAS ("off" by default). While off, /extras/ is a 404
 // unless the URL has ?preview=1. License keys are checked with Polar's PUBLIC endpoint;
@@ -12,10 +12,43 @@ import { handleSheet } from '../../under-review/sheet.js';
 const POLAR_VALIDATE = 'https://api.polar.sh/v1/customer-portal/license-keys/validate';
 const CACHE_SECONDS = 600;
 
+// The one address the site answers on. Everything else that reaches this Worker - www, the old
+// workers.dev address, any future preview name - is sent to the matching path here, so a link
+// anyone has already shared keeps working and search engines index one site, not three.
+// Localhost is exempt so `wrangler dev` still works.
+export const CANONICAL_HOST = 'theplatbook.com';
+const LOCAL = /^(localhost|127\.0\.0\.1|\[::1\]|0\.0\.0\.0)$/i;
+
+// Returns where this request should be sent instead, or null if it is already in the right
+// place. Exported and kept pure because `wrangler dev` answers on 127.0.0.1 whatever Host
+// header you send, so this rule cannot be exercised locally through the server - only by
+// calling it directly. See under-review/test/canonical.test.mjs.
+export function canonicalRedirect(urlString) {
+  const url = new URL(urlString);
+  if (url.hostname === CANONICAL_HOST || LOCAL.test(url.hostname)) return null;
+  const to = new URL(urlString);
+  to.protocol = 'https:';
+  to.hostname = CANONICAL_HOST;
+  to.port = '';
+  return to.toString();
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const p = url.pathname;
+    const moved = canonicalRedirect(request.url);
+    if (moved) {
+      return new Response(null, {
+        status: 301,
+        headers: {
+          location: moved,
+          'cache-control': 'public, max-age=3600',
+          // Nothing should ever be indexed under a name that is not the canonical one.
+          'x-robots-tag': 'noindex',
+        },
+      });
+    }
     try {
       const sheet = await handleSheet(request, env);
       if (sheet) return sheet;
@@ -24,7 +57,10 @@ export default {
       if (p === '/api/follow' && request.method === 'POST') return await apiFollow(request, env);
       if (p === '/api/calendar.ics') return await apiCalendar(request, env, url);
       if (p === '/api/export.csv') return await apiExport(request, env, url);
-      return notFound(env, request);
+      // Everything else is a static page. The Worker now sees these requests (it has to, to catch
+      // the wrong hostname above), so it must hand them to the assets itself; `not_found_handling`
+      // in wrangler.jsonc still serves 404.html with a 404 for anything that does not exist.
+      return await env.ASSETS.fetch(request);
     } catch (err) {
       console.error('worker error', err && err.message);
       return json({ error: 'Something went wrong. Please try again.' }, 500);

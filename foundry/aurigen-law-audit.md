@@ -418,7 +418,7 @@ new issue if none is open.
   5. Next: the next states in line, whether the statute-watch workflow is ready to copy, and that the live
      site was not touched, and nothing was paid for outside the API run. Do not say which page the live
      site is showing: this run cannot check that. (The full site has been live since 2026-11-04, at
-     platbook.landonbrewington12.workers.dev since 2026-11-08.)
+     theplatbook.com since 2026-11-08.)
 
 ## Done means (after however many runs it takes)
 

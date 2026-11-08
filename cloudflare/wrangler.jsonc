@@ -1,5 +1,5 @@
-// NOT THE SITE. This branch exists only to deploy the redirect Worker that keeps the old
-// `aurigen` workers.dev address answering after the site was renamed `platbook`.
+// NOT THE SITE. This branch exists only to deploy the redirect Worker that keeps the first
+// workers.dev address, `aurigen`, answering after the site moved to theplatbook.com.
 //
 // Why a branch: deploying a second Worker needs a Cloudflare key, which this machine does not
 // have, and adding an automation file for it needs a GitHub permission this machine does not
@@ -12,8 +12,10 @@
 // checks the old address for a page (200) and gets a redirect (301). The deploy itself happens
 // in the step before, and the log ends with "Uploaded aurigen". Ignore the red cross.
 //
-// No static assets (the Worker answers every path), no database and no cron: the free plan allows
-// only 5 cron triggers per account, and the site Worker needs one of them.
+// WHEN MERGING main INTO THIS BRANCH, KEEP THIS FILE. Taking main's version would hand
+// theplatbook.com and the site's assets to the `aurigen` Worker, which would take the live site
+// down. This file must stay: no routes, no assets, no database, no cron. (No cron also matters
+// on its own: the free plan allows 5 cron triggers per account and the site needs one.)
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "aurigen",

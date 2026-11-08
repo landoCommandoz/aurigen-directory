@@ -2,7 +2,7 @@
 
 Every outside source the site or its refresh uses, with its robots.txt / terms status and the date checked.
 Rule: public data only, no logins, no CAPTCHAs, no paywalls, no rate-limit dodging, User-Agent
-`AurigenDirectory/2.0 (+https://platbook.landonbrewington12.workers.dev)`, never store owner names.
+`AurigenDirectory/2.0 (+https://theplatbook.com)`, never store owner names.
 
 ## Used by the live site and build
 
