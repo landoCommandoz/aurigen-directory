@@ -1,8 +1,8 @@
 {
  "orgId": "bdbc4d3b-3520-432e-b8b2-b3bcc545b96c",
- "productId": "584072b9-c4ba-44a1-95a9-8d5ce27bc9ca",
- "benefitId": "983d13b4-613d-4d77-bdec-0c338ac513b4",
- "checkoutUrl": "https://buy.polar.sh/polar_cl_ZAck2B2gUp0CSMryw48a4xRgLUZetDyX4jWIf319X9S",
+ "productId": "404b2288-4d35-4312-8682-c25f7b2c8982",
+ "benefitId": "b13ef8b5-b65d-4cec-9ffc-b946580da87b",
+ "checkoutUrl": "https://buy.polar.sh/polar_cl_rO3qZlc0nnoNzGGs8HFKjxJ69hKaYRt0shWEz2WQpgg",
  "priceUsd": 0,
  "note": "Free in exchange for an email address (Lando, 2026-11-04). The Polar checkout is what collects the email and sends the key. priceUsd 0 is what the page says; the Polar product itself must also be set to $0 by hand, which is in vault hands-only.md. Ids were filled in by .github/workflows/polar-sheet.yml.",
  "createdAt": "2026-11-01",
