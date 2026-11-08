@@ -22,7 +22,7 @@ import { extraCurlArgs } from './cert-chain.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = path.join(ROOT, 'foundry', 'out', 'law-audit');
-const UA = 'AurigenLawAudit/1.0 (+https://platbook.landonbrewington12.workers.dev)';
+const UA = 'AurigenLawAudit/1.0 (+https://theplatbook.com)';
 const TOOL = 'foundry/tools/fetch-source.mjs';
 
 const [st, slug, url] = process.argv.slice(2);

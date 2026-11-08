@@ -24,7 +24,7 @@ const out = [];
 
 const model = env('STATUS_MODEL') || 'default model';
 const by = env('STATUS_RUN_URL') ? `Foundry run ${env('STATUS_RUN_NO', '?')}${env('STATUS_EVENT') === 'schedule' ? ' (nightly, 2 am Mountain)' : ''}` : 'a Claude Code session';
-out.push(`Updated: ${now}. Written by ${by}. Public file: https://platbook.landonbrewington12.workers.dev/status.json`);
+out.push(`Updated: ${now}. Written by ${by}. Public file: https://theplatbook.com/status.json`);
 if (env('STATUS_RUN_URL')) out.push(`Ran: ${spec}, run ${env('STATUS_RUN_NO', '?')}: ${env('STATUS_TURNS', '?')} turns, ${money(env('STATUS_COST'))}, Claude ended ${env('STATUS_SUBTYPE', 'unknown')}, work saved: ${env('STATUS_PUSHED', 'no')}.${env('STATUS_ERROR') ? ' Error: ' + clean(env('STATUS_ERROR')) : ''} ${clean(env('STATUS_RUN_URL'))}`);
 else out.push(`Ran: nothing since the last update. ${clean(env('STATUS_WHAT', 'No run.'), 220)}`);
 

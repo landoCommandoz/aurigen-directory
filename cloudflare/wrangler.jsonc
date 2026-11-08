@@ -1,17 +1,38 @@
-// Platbook on the Cloudflare Workers FREE plan. Static assets are free and don't count
-// toward the Worker request limit; the script only runs for /extras* and /api/*.
+// Platbook on the Cloudflare Workers FREE plan.
+//
+// The permanent address is https://theplatbook.com. Both custom domains are declared here, not
+// only in the dashboard, so every future publish re-attaches them instead of dropping them.
+// `workers_dev` stays true on purpose: the old workers.dev address must keep answering so the
+// Worker can redirect it (see CANONICAL_HOST in src/worker.js). www is attached for the same
+// reason - it exists only to be redirected to the apex.
+//
+// `run_worker_first` used to be a short list, so static pages never invoked the Worker at all.
+// Redirecting a wrong hostname means the Worker has to see the request, so pages now run it
+// first - but `!/assets/*` keeps the stylesheet, the script and search.json off the meter, which
+// is most of the bytes and roughly three quarters of the requests on a page view. Free plan:
+// 100,000 Worker requests a day, so this leaves room for about that many page views.
+//
+// THE ORDER OF THESE TWO ENTRIES MATTERS. `["/*", "!/assets/*"]` silently stops the Worker
+// running at all - every dynamic route (/rules-sheet, /api/*, the hostname redirect) 404s from
+// the asset server instead, with no error anywhere. Tested both ways in `wrangler dev` on
+// 2026-11-08; the exclusion has to come first. Verify with:
+//   curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8788/rules-sheet/   -> 200, not 404
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "platbook",
   "main": "src/worker.js",
   "compatibility_date": "2026-10-01",
   "workers_dev": true,
+  "routes": [
+    { "pattern": "theplatbook.com", "custom_domain": true },
+    { "pattern": "www.theplatbook.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash",
-    "run_worker_first": ["/extras", "/extras/*", "/api/*", "/rules-sheet", "/rules-sheet/*"]
+    "run_worker_first": ["!/assets/*", "/*"]
   },
   "d1_databases": [
     { "binding": "DB", "database_name": "aurigen-db", "database_id": "2df92d4f-383a-4005-84e3-8fe774f45182" }

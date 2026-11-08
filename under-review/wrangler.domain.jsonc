@@ -1,16 +1,19 @@
-// Same Worker as wrangler.jsonc, plus the custom domain aurigendirectory.com (and www). Used only after the
-// Cloudflare zone is active: the "Domain attach" workflow deploys with this file and then creates
-// under-review/domain.enabled, after which status-publish.yml and aurigen-site.yml use this file too.
-// workers_dev stays true, so https://platbook.landonbrewington12.workers.dev keeps working, and the
-// separate `aurigen` Worker in forward/ keeps answering the old address with a redirect.
+// SUPERSEDED 2026-11-08, kept so the "Domain attach" workflow cannot do harm if it is ever run.
+//
+// This file existed for aurigendirectory.com, which is parked: Lando cannot reach the account
+// that holds it. The real domain, theplatbook.com, was bought and attached on 2026-11-08 and now
+// lives in under-review/wrangler.jsonc and cloudflare/wrangler.jsonc, so nothing needs this file.
+// It names the same domains as those two because a Worker deploy replaces the whole trigger set:
+// if this file still named aurigendirectory.com, deploying it would pull the live domain off the
+// Worker. Delete this file, and domain-attach.yml with it, when a session can edit workflows.
 {
   "name": "platbook",
   "main": "worker.js",
   "compatibility_date": "2026-10-01",
   "workers_dev": true,
   "routes": [
-    { "pattern": "aurigendirectory.com", "custom_domain": true },
-    { "pattern": "www.aurigendirectory.com", "custom_domain": true }
+    { "pattern": "theplatbook.com", "custom_domain": true },
+    { "pattern": "www.theplatbook.com", "custom_domain": true }
   ],
   "triggers": { "crons": [] },
   "observability": { "enabled": false }

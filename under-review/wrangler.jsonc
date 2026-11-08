@@ -1,11 +1,20 @@
 // Under-review version of the live `platbook` Worker (same name, so it replaces the live site).
 // No assets, no D1 binding, no variables. The D1 database itself is not deleted.
 // Restore the full site with the "restore" option in .github/workflows/aurigen-site.yml.
+//
+// The custom domains are repeated here on purpose. A Worker deploy replaces the whole trigger
+// set, so without these lines, hiding the site would also pull theplatbook.com off the Worker:
+// the address would stop answering at all instead of showing this page, which is the opposite of
+// what the hide button is for.
 {
   "name": "platbook",
   "main": "worker.js",
   "compatibility_date": "2026-10-01",
   "workers_dev": true,
+  "routes": [
+    { "pattern": "theplatbook.com", "custom_domain": true },
+    { "pattern": "www.theplatbook.com", "custom_domain": true }
+  ],
   // Clear the live site's daily cron, which this page has no handler for.
   "triggers": { "crons": [] },
   "observability": { "enabled": false }

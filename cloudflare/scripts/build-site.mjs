@@ -14,14 +14,15 @@ const BASE = path.resolve(here, '..');
 const DATA = path.join(BASE, 'data');
 const PUB = path.join(BASE, 'public');
 // The canonical address, the sitemap and the link previews are all built from this.
-// The `aurigen` Worker is a permanent 301 to this site now, so that address can never be the
-// canonical one: a canonical link pointing at a redirect tells search engines the page does not
-// exist where it is served. The deploy workflow still passes the old address in SITE_URL and this
-// machine has no permission to edit workflow files, so the old host is refused here instead.
-const RETIRED = /^https?:\/\/aurigen\.landonbrewington12\.workers\.dev\/?$/i;
+// Both workers.dev addresses are permanent 301s to theplatbook.com now, so neither can ever be
+// the canonical one: a canonical link pointing at a redirect tells search engines the page does
+// not exist where it is served. The deploy workflow still passes an old address in SITE_URL and
+// this machine has no permission to edit workflow files, so those hosts are refused here instead.
+// Any other SITE_URL is obeyed, so a staging address or a future domain needs no change here.
+const RETIRED = /^https?:\/\/(aurigen|platbook)\.landonbrewington12\.workers\.dev\/?$/i;
 const PASSED = (process.env.SITE_URL || '').trim().replace(/\/+$/, '');
-if (PASSED && RETIRED.test(PASSED)) console.warn(`build-site: ignoring SITE_URL=${PASSED} (that address redirects here); using the platbook address.`);
-const SITE_URL = PASSED && !RETIRED.test(PASSED) ? PASSED : 'https://platbook.landonbrewington12.workers.dev';
+if (PASSED && RETIRED.test(PASSED)) console.warn(`build-site: ignoring SITE_URL=${PASSED} (that address redirects here); using https://theplatbook.com.`);
+const SITE_URL = PASSED && !RETIRED.test(PASSED) ? PASSED : 'https://theplatbook.com';
 const DISCLAIMER = 'Not legal or financial advice. Rules change. Confirm with the county before you bid.';
 
 // States Platbook has not been able to read from an official source. A pending state
