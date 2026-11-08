@@ -70,7 +70,7 @@
     {
      "id": "AL-1",
      "text": "Code of Alabama text not read (ALISON is script-only); claims rest on the Department of Revenue rule and pages. Rate conflict: rule says 8%, DOR FAQ still says 12%.",
-     "close": "Find an official static copy of the Code of Alabama (Legislature or Legislative Services Agency) and read the redemption rate and § 40-10-28 (excess funds, after Tyler v. Hennepin).",
+     "close": "Find an official static copy of the Code of Alabama (Legislature or Legislative Services Agency) and read the redemption rate and \u00a7 40-10-28 (excess funds, after Tyler v. Hennepin).",
      "attempts": "Run 5: alison.legislature.state.al.us/code-of-alabama is script-only (1,821 chars, no statute text); alisondb host does not resolve. Not closed."
     }
    ],
@@ -83,7 +83,7 @@
      "id": "AR-1",
      "text": "Arkansas Code not read (LexisNexis-hosted); claims rest on Commissioner of State Lands pages and Rules (2023 ed.).",
      "close": "Look for an official copy of the tax-sale sections on arkleg.state.ar.us or another Arkansas state host.",
-     "attempts": "Run 4: arkleg act PDF read; Arkansas Code itself still LexisNexis/JS, not read."
+     "attempts": "Run 9 (2026-11-08): arkleg.state.ar.us/Home/ArkansasCode answered HTTP 500. No official code copy reached. Stays open."
     },
     {
      "id": "AR-2",
@@ -115,7 +115,7 @@
      "id": "CO-1",
      "text": "2025 and 2026 session laws were not searched; the 2024 code PDF (uncertified printout) was used and the 2025 edition PDF was not found.",
      "close": "Search leg.colorado.gov for 2025 and 2026 acts amending title 39 (tax sales, redemption, surplus) and look for the 2025 edition PDF.",
-     "attempts": "Run 4 and 5: CRS 2025 title 39 PDF 404; bill pages HTTP 406 to curl; bill_files downloads disallowed by robots.txt; guessed signed-act PDF paths 404. Official bill page (leg.colorado.gov/bills/SB26-144, seen in search only) lists SB26-144 signed May 19, 2026, chapter 135, effective June 1, 2026, applies to treasurer deeds issued on or after that date; text not read. Run 7: signed-act PDF paths for SB26-144 (six variants on leg.colorado.gov and content.leg.colorado.gov) HTTP 404; web search confirms bill page lists chapter 135, effective June 1, 2026, text still not read. Not closed."
+     "attempts": "Run 9 (2026-11-08): crs2025-title-39.pdf 404; leg.colorado.gov/bills/sb26-144 406; the session-law (laws/session-laws/4869/download) and bill_files downloads are disallowed by robots.txt, so not read. SB26-144 (Ch. 135, effective June 1, 2026) still unread. Stays open."
     }
    ],
    "attemptedAt": "2026-11-01"
@@ -128,7 +128,7 @@
      "text": "The 18% redemption rate was not found in the sections read (2 claims flagged).",
      "close": "Locate the D.C. Code section that sets redemption interest on code.dccouncil.gov and read it.",
      "closed": "2026-11-01",
-     "note": "Run 6: rate found in D.C. Code § 47-1334 (1.5% per month or portion thereof, simple interest; the 2003 act changed it from '18% per month'). Claims rate and es.rate corrected.",
+     "note": "Run 6: rate found in D.C. Code \u00a7 47-1334 (1.5% per month or portion thereof, simple interest; the 2003 act changed it from '18% per month'). Claims rate and es.rate corrected.",
      "closedAt": "2026-11-01"
     }
    ],
@@ -187,10 +187,10 @@
    "gaps": [
     {
      "id": "MA-1",
-     "text": "The act that created § 64A and set the 8% rate in § 62 was not identified.",
+     "text": "The act that created \u00a7 64A and set the 8% rate in \u00a7 62 was not identified.",
      "close": "Find the act on malegislature.gov.",
      "closed": "2026-11-01",
-     "note": "Run 6: St. 2024, c. 140 read from malegislature.gov (sources/ma/r6-acts-2024-c140): § 88 changed § 62 from sixteen to 8 per cent, § 93 inserted § 64A; § 250: sections 80 to 99 take effect November 1, 2024.",
+     "note": "Run 6: St. 2024, c. 140 read from malegislature.gov (sources/ma/r6-acts-2024-c140): \u00a7 88 changed \u00a7 62 from sixteen to 8 per cent, \u00a7 93 inserted \u00a7 64A; \u00a7 250: sections 80 to 99 take effect November 1, 2024.",
      "closedAt": "2026-11-01"
     }
    ],
@@ -201,10 +201,10 @@
    "gaps": [
     {
      "id": "ME-1",
-     "text": "Over-the-counter claim flagged earlier; the 2023 to 2026 enacted-law search is not complete: only the section histories were read (36 M.R.S. § 943 last amended PL 2023, c. 579, § 1; § 942 last amended PL 2019, c. 501).",
+     "text": "Over-the-counter claim flagged earlier; the 2023 to 2026 enacted-law search is not complete: only the section histories were read (36 M.R.S. \u00a7 943 last amended PL 2023, c. 579, \u00a7 1; \u00a7 942 last amended PL 2019, c. 501).",
      "close": "Read PL 2023, c. 579 on legislature.maine.gov (act text or LD number) and search the 131st to 132nd Legislature chaptered laws for tax lien, redemption and surplus changes.",
-     "attempts": "Run 5: § 505 PDF read (HTML resets the connection); rate claims corrected. § 949 and § 943 PDF resets.",
-     "note": "Run 6: PL 2023, c. 579 (LD 2048, signed 03/28/24) amended § 942 (notice content), per the § 942 PDF history read from legislature.maine.gov (sources/me/r6-mrs-942-pdf); the earlier note naming § 943 was wrong. Search results (leads only) also name PL 2023, c. 640 and c. 523 as amending § 943 (c. 640 approved April 16, 2024); § 943 PDF/HTML/DOCX still reset the connection, so § 943 and those acts are unread and the gap stays open."
+     "attempts": "Run 5: \u00a7 505 PDF read (HTML resets the connection); rate claims corrected. \u00a7 949 and \u00a7 943 PDF resets.",
+     "note": "Run 6: PL 2023, c. 579 (LD 2048, signed 03/28/24) amended \u00a7 942 (notice content), per the \u00a7 942 PDF history read from legislature.maine.gov (sources/me/r6-mrs-942-pdf); the earlier note naming \u00a7 943 was wrong. Search results (leads only) also name PL 2023, c. 640 and c. 523 as amending \u00a7 943 (c. 640 approved April 16, 2024); \u00a7 943 PDF/HTML/DOCX still reset the connection, so \u00a7 943 and those acts are unread and the gap stays open."
     }
    ],
    "attemptedAt": "2026-11-01"
@@ -215,7 +215,7 @@
     {
      "id": "MS-1",
      "text": "Mississippi Code not read (LexisNexis-hosted; legislature.ms.gov failed TLS); 14 claims unreachable; lien label flagged; bill status not checked.",
-     "close": "Look for an official copy of Miss. Code §§ 27-41 and 29-1 on another Mississippi state host; retry legislature.ms.gov with full verification only.",
+     "close": "Look for an official copy of Miss. Code \u00a7\u00a7 27-41 and 29-1 on another Mississippi state host; retry legislature.ms.gov with full verification only.",
      "attempts": "Run 5: legislature.ms.gov curl error 60; sos.ms.gov and dor.ms.gov hold no tax-sale statute text. Not closed."
     }
    ],
@@ -229,7 +229,7 @@
      "text": "Session-law search for the 2023 and 2025 sessions was not run.",
      "close": "Search ndlegis.gov session laws for chapter 57-28.",
      "closed": "2026-11-01",
-     "note": "Run 6: 2023 and 2025 session-law taxation PDFs read (sources/nd/r6-sl2023-taxes, r6-sl2025-taxes). Only enacted acts touching ch. 57-28: S.L. 2023 ch. 536 (HB 1267, § 57-28-20, 90-day hold on excess proceeds) and S.L. 2025 ch. 557 (HB 1115, § 57-28-15(3), forms by the tax commissioner). Ledger already matches the current code.",
+     "note": "Run 6: 2023 and 2025 session-law taxation PDFs read (sources/nd/r6-sl2023-taxes, r6-sl2025-taxes). Only enacted acts touching ch. 57-28: S.L. 2023 ch. 536 (HB 1267, \u00a7 57-28-20, 90-day hold on excess proceeds) and S.L. 2025 ch. 557 (HB 1115, \u00a7 57-28-15(3), forms by the tax commissioner). Ledger already matches the current code.",
      "closedAt": "2026-11-01"
     }
    ],
@@ -241,7 +241,7 @@
     {
      "id": "NM-1",
      "text": "NMSA 1978 not fetched; claims rest on Taxation and Revenue Department pages. Redemption and over-the-counter claims flagged.",
-     "close": "Read §§ 7-38-65 to 7-38-70 on nmonesource.com (NM Compilation Commission) and the 2023 to 2026 acts.",
+     "close": "Read \u00a7\u00a7 7-38-65 to 7-38-70 on nmonesource.com (NM Compilation Commission) and the 2023 to 2026 acts.",
      "attempts": "Run 5: nmonesource.com returns no text without script (199 chars); nmlegis.gov bill list read but no NMSA text. Not closed."
     }
    ],
@@ -252,7 +252,7 @@
    "gaps": [
     {
      "id": "OK-1",
-     "text": "Oklahoma Statutes on OSCN serve a CAPTCHA and enacted-bill PDFs are disallowed by robots.txt; 15 claims unreachable and 22 flagged on the amendment to 68 O.S. § 3105. Bill search not run. 22 claims are held (decision B, 2026-11-01): they publish nothing until an official copy of the amendment is read.",
+     "text": "Oklahoma Statutes on OSCN serve a CAPTCHA and enacted-bill PDFs are disallowed by robots.txt; 15 claims unreachable and 22 flagged on the amendment to 68 O.S. \u00a7 3105. Bill search not run. 22 claims are held (decision B, 2026-11-01): they publish nothing until an official copy of the amendment is read.",
      "close": "Look for another official copy (Legislature bill pages that robots.txt allows, Oklahoma Tax Commission). Never bypass the CAPTCHA.",
      "attempts": "Run 4 (2026-11-01): oklegislature.gov bill pages, enrolled PDFs and OK_Statutes files and oscn.net DeliverDocument are all disallowed by robots.txt; no other official copy found. Claims stay held."
     }
@@ -264,10 +264,10 @@
    "gaps": [
     {
      "id": "TX-1",
-     "text": "Enacted bill text (2025 H.B. 16) not fetched; § 34.21 last amended in 2019.",
+     "text": "Enacted bill text (2025 H.B. 16) not fetched; \u00a7 34.21 last amended in 2019.",
      "close": "Fetch the enrolled text from Texas Legislature Online if robots.txt allows.",
      "closed": "2026-11-01",
-     "note": "Run 6: enrolled H.B. 16 (89th 2nd C.S.) read from capitol.texas.gov (sources/tx/r6-hb16-2cs-f); § 34.03(a) only changed the notice delivery method (Rule 21a instead of certified mail). No site claim changed.",
+     "note": "Run 6: enrolled H.B. 16 (89th 2nd C.S.) read from capitol.texas.gov (sources/tx/r6-hb16-2cs-f); \u00a7 34.03(a) only changed the notice delivery method (Rule 21a instead of certified mail). No site claim changed.",
      "closedAt": "2026-11-01"
     }
    ],
@@ -514,7 +514,7 @@
    "gaps": [
     {
      "id": "NE-1",
-     "text": "The text of §45-104.01 (the interest rate) was not read (page showed navigation only), so the current rate is not stated. The 2023 to 2026 bill and session-law search was not run and section source lines were not read for recent acts.",
+     "text": "The text of \u00a745-104.01 (the interest rate) was not read (page showed navigation only), so the current rate is not stated. The 2023 to 2026 bill and session-law search was not run and section source lines were not read for recent acts.",
      "close": "Find the interest rate text on nebraskalegislature.gov (45-104.01 or the section it points to), and search the legislature's laws for 2023 to 2026 acts amending chapter 77 article 18."
     },
     {
@@ -534,7 +534,7 @@
     },
     {
      "id": "NC-2",
-     "text": "County details (online platforms, sale dates, deposits, over-the-counter sales, how a county chooses §105-374 or §105-375) were not read from county sites; they show as \"Confirm with the county\".",
+     "text": "County details (online platforms, sale dates, deposits, over-the-counter sales, how a county chooses \u00a7105-374 or \u00a7105-375) were not read from county sites; they show as \"Confirm with the county\".",
      "close": "Read each county's own official tax collector or sheriff page and cite it."
     }
    ]
@@ -544,7 +544,7 @@
    "gaps": [
     {
      "id": "NV-1",
-     "text": "The 2023 to 2026 session-law search was not run. §361.595 cites 2025 amendments (Statutes of Nevada 2025, pp. 1424 and 3189) that were not opened, so any change they make is not reflected.",
+     "text": "The 2023 to 2026 session-law search was not run. \u00a7361.595 cites 2025 amendments (Statutes of Nevada 2025, pp. 1424 and 3189) that were not opened, so any change they make is not reflected.",
      "close": "Open the 2025 acts amending NRS 361.595 and 361.610 on leg.state.nv.us and search 2023 to 2025 Statutes of Nevada for tax-sale, redemption and excess-proceeds changes."
     },
     {
@@ -589,7 +589,7 @@
    "gaps": [
     {
      "id": "OH-1",
-     "text": "ORC chapter 323 (county prosecutor foreclosure, alternative redemption period, §323.65 to §323.79) and the text of H.B. 315 and H.B. 496 were not read; the 2023 to 2026 act search was limited to the effective-date lines of chapter 5721.",
+     "text": "ORC chapter 323 (county prosecutor foreclosure, alternative redemption period, \u00a7323.65 to \u00a7323.79) and the text of H.B. 315 and H.B. 496 were not read; the 2023 to 2026 act search was limited to the effective-date lines of chapter 5721.",
      "close": "Download ORC 323.65 to 323.79 from codes.ohio.gov and the enacted H.B. 315 and H.B. 496, and search 2023 to 2026 acts for tax foreclosure changes."
     },
     {
@@ -639,7 +639,7 @@
    "gaps": [
     {
      "id": "VA-1",
-     "text": "The enacted acts 2023 c. 292 and 2025 c. 267 (amending §58.1-3965, -3967, -3968, -3974) were not opened, so their effective dates and any provisions not yet in effect are not recorded; the 2023 to 2026 search was not run.",
+     "text": "The enacted acts 2023 c. 292 and 2025 c. 267 (amending \u00a758.1-3965, -3967, -3968, -3974) were not opened, so their effective dates and any provisions not yet in effect are not recorded; the 2023 to 2026 search was not run.",
      "close": "Open both chapters on law.lis.virginia.gov and record their effective dates; search 2023 to 2026 acts for article 4 changes."
     },
     {
@@ -654,7 +654,7 @@
    "gaps": [
     {
      "id": "MT-1",
-     "text": "2025 Ch. 767 and Ch. 775 (amending §15-17-125) were not opened, so their effective dates and any parts not yet in effect are not recorded; the 2023 to 2026 search was not run.",
+     "text": "2025 Ch. 767 and Ch. 775 (amending \u00a715-17-125) were not opened, so their effective dates and any parts not yet in effect are not recorded; the 2023 to 2026 search was not run.",
      "close": "Open both acts on legmt.gov and record their start dates; search 2023 to 2025 session laws for Title 15 chapters 16 to 18."
     },
     {
