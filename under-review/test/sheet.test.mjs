@@ -199,3 +199,59 @@ test('publish: listing the sheet removes noindex and adds the home page link; un
   const full = await handleSheet(new Request(ORIGIN + '/rules-sheet/unlock', { method: 'POST', body: new URLSearchParams({ key: 'AURSHEET-1234-5678' }) }), {}, polarOk, CFG, on);
   assert.match(full.headers.get('x-robots-tag'), /noindex/);
 });
+
+// ---------- the security policy on the key page ----------
+// Lando, 2026-11-08: leave the visitor counter off this page and keep every outside script
+// blocked there. These tests are what stops that decision being undone by accident: the policy
+// is one string in one place, and a careless edit to it is completely silent at runtime.
+//
+// Before that day the policy also blocked the page's own icon and its Google Fonts stylesheet,
+// so the sheet rendered in fallback fonts with no icon. The fix allows exactly the two origins
+// the rest of the site already uses, and data: for the inline icon.
+
+const cspOf = async (path = '/rules-sheet/') =>
+  (await handleSheet(new Request(ORIGIN + path), {}, polarNo, CFG)).headers.get('content-security-policy');
+
+test('the key page refuses every outside script', async () => {
+  const csp = await cspOf();
+  assert.match(csp, /default-src 'none'/, 'the floor must be none');
+  // No script-src and no connect-src, so both fall back to default-src 'none'. If either is
+  // ever added, this test is the place to stop and think about what it lets in.
+  assert.ok(!/script-src/.test(csp), "script-src must not be set: default-src 'none' is what blocks scripts");
+  assert.ok(!/connect-src/.test(csp), 'connect-src must not be set');
+  assert.ok(!/cloudflareinsights/.test(csp), 'the analytics beacon is deliberately not allowed on this page');
+});
+
+test('the key page is allowed its own fonts and its own icon, and nothing else', async () => {
+  const csp = await cspOf();
+  assert.match(csp, /style-src 'unsafe-inline' https:\/\/fonts\.googleapis\.com/);
+  assert.match(csp, /font-src https:\/\/fonts\.gstatic\.com/);
+  assert.match(csp, /img-src data:/);
+  // No third origin crept in - the same two the rest of the site already uses, and no more.
+  const origins = [...new Set([...csp.matchAll(/https:\/\/([a-z0-9.-]+)/g)].map((m) => m[1]))].sort();
+  assert.deepEqual(origins, ['fonts.googleapis.com', 'fonts.gstatic.com']);
+});
+
+test('the page really asks for what the policy allows', async () => {
+  // A policy that permits something the page never loads is a hole, not a fix.
+  const body = await (await handleSheet(new Request(ORIGIN + '/rules-sheet/'), {}, polarNo, CFG)).text();
+  assert.ok(body.includes('https://fonts.googleapis.com/css2'), 'the page should load the font stylesheet');
+  assert.ok(body.includes('rel="icon" href="data:image/svg+xml'), 'the icon should be an inline data: image');
+  assert.ok(!body.includes('<script'), 'this page carries no script of its own either');
+});
+
+test('the key form may only post back to this site', async () => {
+  const csp = await cspOf();
+  assert.match(csp, /form-action 'self'/);
+  assert.match(csp, /frame-ancestors 'none'/);
+  assert.match(csp, /base-uri 'none'/);
+});
+
+test('the policy is on the unlocked sheet too, not only the landing page', async () => {
+  const res = await post('/rules-sheet/unlock', 'TEST-KEY', polarOk);
+  assert.equal(res.status, 200);
+  const csp = res.headers.get('content-security-policy');
+  assert.match(csp, /default-src 'none'/);
+  assert.ok(!/script-src/.test(csp));
+  assert.match(csp, /font-src https:\/\/fonts\.gstatic\.com/);
+});

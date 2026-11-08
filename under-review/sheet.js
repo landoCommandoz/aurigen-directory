@@ -174,9 +174,32 @@ export async function checkKey(key, env = {}, fetchFn = fetch, cfg = CONFIG) {
   return d.status === 'granted' && !expired && (!d.benefit_id || d.benefit_id === cfg.benefitId) ? 'ok' : 'invalid';
 }
 
+// This is the page people type a licence key into, so the policy starts at "nothing is
+// allowed" and only names what this page itself uses. Written out one line at a time because
+// the shape of it is the point.
+//
+// What it does NOT name is as deliberate as what it does: there is no script-src and no
+// connect-src, so both fall back to default-src 'none' and every script - ours, Cloudflare's
+// analytics beacon, or anything injected - is refused by the browser. Lando's decision,
+// 2026-11-08: the visitor counter stays off this page.
+//
+// Until 2026-11-08 the policy was "default-src 'none'; style-src 'unsafe-inline'; ..." which
+// also blocked the page's own icon and its Google Fonts stylesheet, so the sheet had been
+// rendering in fallback fonts with no icon. The three lines that fix that allow exactly the
+// two origins the rest of the site already uses, and data: for the inline icon. Nothing else.
+const CSP = [
+  "default-src 'none'",                                   // the floor: scripts included
+  "style-src 'unsafe-inline' https://fonts.googleapis.com", // the inline <style> and the font stylesheet
+  'font-src https://fonts.gstatic.com',                   // the font files that stylesheet asks for
+  'img-src data:',                                        // the icon, which is inline in the page
+  "form-action 'self'",                                   // the key form may only post back here
+  "base-uri 'none'",
+  "frame-ancestors 'none'",
+].join('; ');
+
 const headers = (extra = {}, noindex = true) => ({
   'cache-control': 'no-store',
-  'content-security-policy': "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'",
+  'content-security-policy': CSP,
   'referrer-policy': 'no-referrer',
   'x-content-type-options': 'nosniff',
   ...(noindex ? { 'x-robots-tag': 'noindex' } : {}),
