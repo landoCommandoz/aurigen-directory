@@ -106,7 +106,7 @@ states.sort((a, b) => a.name.localeCompare(b.name));
 
 const doc = {
   built: new Date().toISOString().slice(0, 10),
-  title: 'Aurigen Rules Sheet',
+  title: 'Platbook Rules Sheet',
   stateCount: states.length,
   checked: states.filter((s) => s.status === 'checked').length,
   withGaps: states.filter((s) => s.status === 'checked with gaps').length,

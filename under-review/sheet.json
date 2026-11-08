@@ -1,9 +1,9 @@
 {
- "built": "2026-11-01",
+ "built": "2026-11-08",
  "title": "Platbook Rules Sheet",
  "stateCount": 44,
- "checked": 7,
- "withGaps": 37,
+ "checked": 8,
+ "withGaps": 36,
  "rows": 1181,
  "notShown": 7,
  "excluded": [
@@ -12,6 +12,7 @@
   "OK"
  ],
  "sample": [
+  "FL",
   "MA",
   "ND",
   "PA",
@@ -2775,11 +2776,8 @@
   {
    "code": "FL",
    "name": "Florida",
-   "status": "checked with gaps",
-   "gaps": [
-    "The legislature's bill and session-law search for 2023 to 2026 was not run. Only the 2023, 2025 and 2026 statute editions were compared. The acts ch. 2024-91 (197.502), ch. 2024-140 and ch. 2026-174 (197.582) were not read as acts.",
-    "Sections 197.502(6) (homestead assessment in the opening bid) and 197.522 to 197.532 (notice requirements) were not read; auction platforms, registration, deposits and sale dates were not read from county tax collector or clerk sites."
-   ],
+   "status": "checked",
+   "gaps": [],
    "notShown": 0,
    "rows": 43,
    "firstChecked": "2026-11-01",
