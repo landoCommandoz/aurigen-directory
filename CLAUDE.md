@@ -61,8 +61,17 @@ someone who has never coded, rewrite it. This applies to scheduled runs as well 
 - HANDOFF.md must be updated after every session
 - CLAUDE.md SESSION MEMORY updated after every session
 
+## PLATBOOK IS LIVE (2026-11-08) — read this before any older "LIVE NOW" line
+- **LIVE: https://platbook.landonbrewington12.workers.dev** (Worker `platbook`, Cloudflare Workers free plan). Everything below that says the live site is `aurigen.landonbrewington12.workers.dev` or the under-review page is history.
+- The old address is a permanent 301, path for path, served by a second Worker still named `aurigen`. Its code is `forward/worker.js`; it is DEPLOYED from the branch `forward/aurigen-redirect` (whose `cloudflare/wrangler.jsonc` names it) by running "Aurigen site" restore on that branch. **Never merge that branch to main.** Its final step fails on purpose.
+- Vercel (`aurigen-directory.vercel.app`) 307s everything to platbook, including `/` (added 2026-11-08; without that rule the root served the retired `gate.html` paywall).
+- Cron limit: the free plan allows **5 cron triggers per account**. The site Worker needs one. If a deploy logs "only partially updated / 5 cron triggers", a dead Worker is holding a slot.
+- `SITE_URL` in the four workflow files still names the old address (no `workflow` token scope here). Consequences: every "Aurigen site" restore run ends red on its final check although the deploy succeeded, and `build-site.mjs` has a guard refusing that host so the canonical link and sitemap stay correct. Bead `aurigen-directory-6rz`; cure is `gh auth refresh -s workflow`.
+- `write-status.mjs` and `build-sheet.mjs` were fixed the same day: a Foundry run had been rewriting STATUS.md with "the live site stays on the under-review page" and resetting the sheet title to "Aurigen Rules Sheet" after every hand correction.
+- Only "Aurigen" a visitor can still see: the GitHub project link on /about/ and the Rules Sheet. The repository is still called `aurigen-directory`; renaming it is a separate decision.
+
 ## SESSION 17 (2026-10-27) — FREE SITE LIVE (Foundry run, branch foundry/aurigen-free)
-- LIVE NOW: https://aurigen.landonbrewington12.workers.dev (Cloudflare Workers free plan, static assets). The Netlify/Supabase notes below are history.
+- LIVE NOW: https://aurigen.landonbrewington12.workers.dev (Cloudflare Workers free plan, static assets). The Netlify/Supabase notes below are history. **Superseded 2026-11-08: see the Platbook block above.**
 - Code: cloudflare/ (build-data.mjs, build-site.mjs, src/worker.js, wrangler.jsonc, SOURCES.md). Everything public is free; no paywall.
 - Paid extras behind PAID_EXTRAS=off: Spreadsheet Pack $19, Sale Calendar $3/mo or $29/yr (Polar; IDs in foundry/out/polar.md).
 - Open: merge to main (activates vercel.json redirect), move aurigendirectory.com nameservers to Cloudflare, Polar payouts, refresh workflow, unconfirmed states.

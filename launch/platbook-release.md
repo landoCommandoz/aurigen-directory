@@ -1,10 +1,41 @@
-# Platbook release — the exact clicks
+# Platbook release — DONE 2026-11-08
 
-Everything below is prepared on the branch `rebrand/platbook`. Nothing on this list has
-been done. The live site is untouched and still answers as Aurigen.
+Lando said go at 08:50 UTC on 2026-11-08 and the release went out the same hour. The site
+is **https://platbook.landonbrewington12.workers.dev**. The rest of this file is kept as
+the record of how it was done and what is still open.
 
-Three of these steps are blocked for the assistant and need Lando (or a permission
-change). They are marked **LANDO**.
+## What actually happened
+
+| Step | How it went |
+|---|---|
+| Merge both branches to main | Done. A Foundry run landed on main mid-release and had to be merged in too. |
+| Deploy the site | Done, `platbook` Worker. Three runs: the first missed its cron trigger (see below), the second attached it, the third carried the canonical fix. |
+| Forward the old address | Done. Every path 301s, query strings kept. |
+| Vercel | Repointed, plus a new rule so its home page no longer loads the retired `gate.html` first. |
+| Checks | Home, FL, AZ, GA, about, legal, status, robots, sitemap, 404 and the Rules Sheet all answer. 28 of 28 page/width combinations clean at 375 to 1440 px on the live site. |
+
+## Three things that only showed up on the live run
+
+1. **Cron limit.** The free plan allows 5 cron triggers per account and the old `aurigen`
+   Worker still held one, so the first deploy of `platbook` could not attach its daily
+   licence-cache job. Deploying the forwarder (no cron) freed the slot and the next deploy
+   took it. Nothing was lost; the gap was about four minutes.
+2. **Canonical address.** The deploy workflow passes `SITE_URL` as the *old* address, so
+   the first Platbook pages went out with `<link rel="canonical">` and the sitemap pointing
+   at what is now a 301. `build-site.mjs` now refuses that one host and says so in the build
+   log. Fixed and redeployed within minutes.
+3. **Every restore run now ends red.** The workflow's final check asks the old address for a
+   page and gets a redirect. The deploy before it succeeds. See step 1 below for the cure.
+
+## Still open
+
+- The four `SITE_URL` lines (step 1 below) — bead `aurigen-directory-6rz`.
+- The only "Aurigen" a visitor can still see is the GitHub link on `/about/` and the Rules
+  Sheet. It is the real project address, so changing the words would break the link;
+  renaming the project online is a separate decision (GitHub forwards the old name).
+- `forward/aurigen-redirect` is a permanent branch that exists only to deploy the redirect
+  Worker. **Never merge it to main.** Redeploy the forwarder by running "Aurigen site" with
+  that branch; its last step fails on purpose.
 
 ---
 
