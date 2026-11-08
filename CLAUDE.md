@@ -9,19 +9,26 @@ GHL: pit-538dfecf-570a-4f22-aca7-c72cddae8990
 STRIPE: https://buy.stripe.com/14AaEXfcU3aYdCX55E2VG02
 BOOKING: https://api.leadconnectorhq.com/widget/bookings/investor-clarity-call-5oVY4
 
-## HUB BLOCK (every report ends with this)
-> Twelve lines maximum, plain text, no tables, no secrets, no code. Every report ends with it and nothing comes after it.
+## Report for Lando (from Lando, 2026-11-07). This replaces the old hub block entirely.
+Every report ends with this block and nothing comes after it. Write the same block to
+C:\SmallHours\vault\hub\platbook.md every time (the hub files are named products, machine-shop,
+platbook, hunt; this project is platbook). Plain words only, no tables, no secrets, no code.
 
-=== HUB BLOCK (copy from here) ===
-SESSION: <name> | <date time>
-DONE: one line
-CHANGED LIVE: one line, or "nothing"
-SPENT: $ amount
-BLOCKED: one line, or "nothing"
-NEEDS LANDO: one line per item, exact action
-NEEDS A DECISION: one line per decision, with the options as 1 / 2 / 3
-NEXT IF YOU SAY NOTHING: one line
-=== END HUB BLOCK ===
+```
+=== REPORT FOR LANDO ===
+WHAT HAPPENED: one sentence a non-programmer understands.
+MONEY: closer, no change, or further from a paying customer, and why, in one line.
+KIND OF WORK: making money / protecting what exists / fixing something broken / research.
+YOUR MOVE: the exact thing only I can do, in plain words, or "nothing".
+DECISION: a plain question with numbered options, or "none".
+NEXT: what you will do if I say nothing.
+=== END ===
+```
+
+Rules for this block: no technical words. Never write commit, push, merge, branch, repo, deploy, bd,
+bead, workflow, scope, token, API, pipeline, schema, CLAUDE.md or any file path. Say "saved online",
+"put live", "task list", "permission", "key" or "the tool" instead. If a sentence would confuse
+someone who has never coded, rewrite it. This applies to scheduled runs as well as live sessions.
 
 ## AGENT ROSTER
 | Codename | Role | Owns |
