@@ -135,14 +135,32 @@ state without the status as audited.
 3. **The other 25, alphabetically:** AZ, DE, FL, GA, ID, IN, KS, MI, MN, MO, MT, NC, NE, NJ, NV, NY, OH, OR,
    RI, SC, TN, VA, VT, WA, WY.
 4. **The gap queue,** after the 51 states, one item per state, in the order `queueOrder` gives in
-   `cloudflare/data/law/gaps.json`: CO, AR, OK, HI, MS, NM, AL, CA, ME, AK, DC, IA, KY, LA, MA, ND, TX, UT,
-   WV. For each, work through that state's gaps in order. The first two items are fixed: search Colorado's
-   2025 and 2026 session laws (and look for the 2025 edition of title 39), then look for an official copy of
-   the Arkansas Code and the 2023 act behind its July 1, 2023 change. Download with `fetch-source.mjs`,
-   re-check the affected claims, and set each gap's `closed` to the ISO date only when its source was read.
-   Then run `node cloudflare/scripts/law-progress.mjs --gaps-closed <ST>`. A gap that cannot be closed stays
-   open with the attempts logged; the state stays "checked with gaps" and the queue moves on. Correct any
-   claim whose source now says otherwise, and keep `correctionKind` on each correction.
+   `cloudflare/data/law/gaps.json`. **Lando reset that order on 2026-11-08: Florida first, then New York,
+   then Indiana, then the rest.** The list now covers every state with an open gap (44 items), not the
+   original 19. For each state, work through its gaps in order. Download with `fetch-source.mjs`, re-check
+   the affected claims, and set each gap's `closed` to the ISO date only when its source was read. Then run
+   `node cloudflare/scripts/law-progress.mjs --gaps-closed <ST>`. A gap that cannot be closed stays open
+   with the attempts logged; the state stays "checked with gaps" and the queue moves on. Correct any claim
+   whose source now says otherwise, and keep `correctionKind` on each correction.
+
+   **Florida is item 1 and must be finished before any other queue item.** A Florida investor is asking
+   now, so this is the one state where "checked with gaps" is costing something. FL-1: read ch. 2024-91
+   (197.502), ch. 2024-140 and ch. 2026-174 (197.582) as chaptered acts on flsenate.gov or
+   laws.flrules.org, record bill numbers and effective dates with quotes, and run the chapter 197 bill
+   search for 2023 to 2026. FL-2: read 197.502(6) and 197.522 to 197.532, and read registration, deposit
+   and sale-date detail from the county tax collector and clerk pages for the counties the site names, or
+   keep the "Confirm with the county" label.
+
+   **New York and Indiana are items 2 and 3: one honest attempt each, then move on.** Checked by hand on
+   2026-11-08. Indiana (iga.in.gov) answers every path, including its PDF and sitemap paths, with the same
+   691-byte JavaScript shell, and its API answers 403 without a key: there is nothing to read there.
+   New York's official statute text IS published at `www.nysenate.gov/legislation/laws/RPT/<section>` and a
+   plain request returns the full section; robots.txt allows `/legislation/`. But that same URL answers 403
+   to `fetch-source.mjs`, because the site refuses the audit's own named client.
+   **Do not change the user agent, impersonate a browser, or otherwise disguise the tool to get past that
+   403.** Log the attempt, leave the state blocked, and go to the next item. Both states are waiting on
+   something only Lando can supply: the free key the site offers, or text he reads himself through
+   `foundry/tools/hand-capture.mjs`.
 
 **Known conflict to resolve in AZ:** the Arizona summary says lien holders must use judicial foreclosure,
 "not a treasurer's deed". The first run's freshness note cites redemption "until treasurer deed
