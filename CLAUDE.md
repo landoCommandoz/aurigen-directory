@@ -73,6 +73,35 @@ someone who has never coded, rewrite it. This applies to scheduled runs as well 
 - `write-status.mjs` and `build-sheet.mjs` were fixed the same day: a Foundry run had been rewriting STATUS.md with "the live site stays on the under-review page" and resetting the sheet title to "Aurigen Rules Sheet" after every hand correction.
 - Only "Aurigen" a visitor can still see: the GitHub project link on /about/ and the Rules Sheet. The repository is still called `aurigen-directory`; renaming it is a separate decision.
 
+## COUNTY TEXT + TAGGED-LINK COUNTING (2026-11-08) — read with the Platbook block above
+
+- **No county ships a redemption period or an interest rate, in any state.** Those were state
+  values copied down a column by the pre-audit data files. The law audit corrects the LEDGER,
+  which is what a state page's fact rows are built from, so the county copies went stale and the
+  Florida page gave two different answers to the same question, 67 times. Dropped in
+  `cloudflare/scripts/build-site.mjs` (`countyJson`). DE's real county redemption survives in its
+  `extra` block with 9 Del. C. 8758; **MD lost 3 genuine county rates** — open decision.
+- `cleanExtra()` strips placeholder values, and on a **pending** state anything that states the
+  law (NY was publishing 63 `method` claims on the page that promises it states none).
+  `cleanNotes()` strips notes carrying an internal marker (`[VERIFY] …`), keeping prose that
+  merely says "date TBD".
+- **`cloudflare/scripts/county-text.mjs` is the standing county-text check.** It reads every
+  label and value out of a built page. `build-site.mjs` runs it on all 51 pages and FAILS the
+  build; `under-review/test/county-text.test.mjs` runs it and proves it still fails on bad text.
+  Keep its `LABEL`/`human()` in step with `cloudflare/src/app.js`.
+- **Tagged links:** `?from=<source>` (`/^[A-Za-z0-9-]{1,30}$/`) adds 1 to D1 `ref_clicks
+  (day, source, clicks)`, day in **Mountain** time, table created by the Worker. Robots skipped
+  by user agent, absent UA skipped. Write in `ctx.waitUntil`, all errors swallowed, response
+  carries `x-platbook-counted: yes`. Nothing personal is stored. Read it with:
+  `SELECT day, source, clicks FROM ref_clicks ORDER BY day DESC, clicks DESC;`
+- **workerd refuses a non-function named export from the entrypoint.** `export const
+  CANONICAL_HOST` stopped `wrangler dev` starting at all; it is `canonicalHost()` now.
+- **D1 refuses a schema change inside a transaction**, so `CREATE TABLE` must not share a
+  `batch()` with an insert — otherwise the very first click fails silently, forever.
+- **Cloudflare Web Analytics does not auto-inject into pages served by a Worker.** Put the
+  public site token in `cloudflare/data/beacon.json` and the snippet goes on every page. The
+  site sets no CSP, so nothing blocks it.
+
 ## SESSION 17 (2026-10-27) — FREE SITE LIVE (Foundry run, branch foundry/aurigen-free)
 - LIVE NOW: https://aurigen.landonbrewington12.workers.dev (Cloudflare Workers free plan, static assets). The Netlify/Supabase notes below are history. **Superseded 2026-11-08: see the Platbook block above.**
 - Code: cloudflare/ (build-data.mjs, build-site.mjs, src/worker.js, wrangler.jsonc, SOURCES.md). Everything public is free; no paywall.
