@@ -109,7 +109,7 @@ someone who has never coded, rewrite it. This applies to scheduled runs as well 
 
 ## LAUNCH PREP (2026-11-01, later)
 - Sheet shows the two plain lines (not legal advice; confirm dates and rules with the county) plus the 14-day refund line. Publish = Actions "Publish" (mode publish) or `node launch/publish.mjs` + push: removes noindex, links the sheet from the home page footer, redeploys the showcase with a link (showcase noindex stays).
-- Domain: domain/README.md. Stored Cloudflare token cannot create zones (add aurigendirectory.com in the dashboard first), then Actions "Domain attach" does the rest (needs zone Workers Routes + DNS edit). Polar token lacks discounts scopes, so the test discount code is made by hand in Polar (settings in the report) or after adding the scopes.
+- Domain: DO NOT PLAN AROUND aurigendirectory.com. Lando, 2026-11-08: "I can't change aurigendirectory.com right now, because it's locked behind an account I can't reach. Don't plan around it. The platbook address is permanent until we buy a new domain." So platbook.landonbrewington12.workers.dev is the permanent address; domain/README.md and the Domain zone / Domain attach workflows are parked until a new domain is bought. Polar token lacks discounts scopes, so the test discount code is made by hand in Polar (settings in the report) or after adding the scopes.
 - Launch messages in launch/ (post after publish). When a workflow file changes, sync it to foundry/aurigen-law-audit and foundry/aurigen-showcase too.
 
 ## OPEN CRITICAL ITEMS

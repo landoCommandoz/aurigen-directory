@@ -49,11 +49,18 @@ instead of a page (200). The site itself would be live and correct.
 
 **`foundry/aurigen-law-audit` first, then `rebrand/platbook`.**
 
-The audit branch now carries real new work: on 2026-11-08 the checker closed both Florida
-gaps (it read ch. 2024-91, ch. 2024-140 and ch. 2026-174 as chaptered acts, and the notice
-sections), so Florida moved from "checked with gaps" to **checked**. It also tried New York
-and Indiana again and logged both as still blocked. None of that is on main yet, so the
-live Florida page still shows the old wording until it is merged and deployed.
+The audit branch carries the Florida gap closure: on 2026-11-08 the checker read
+ch. 2024-91, ch. 2024-140 and ch. 2026-174 as chaptered acts and read §197.502(6) and
+§197.522 to §197.532, so Florida moved from "checked with gaps" to **checked**. It also
+tried New York and Indiana again and logged both as still blocked.
+
+**Correction to an earlier version of this file:** that work changed no page text. The run
+found that no shown Florida claim needed changing, and it touched only
+`cloudflare/data/law/gaps.json`, which no build script reads. Florida's page text was
+already corrected on 2026-11-01 and has been live since 2026-11-04. Merging the audit
+branch publishes the *record* that the 2024 and 2026 acts do not affect the page — it does
+not change what a visitor reads. Nothing about the Florida page was waiting on this
+release.
 
 The two branches touch different files — the audit branch touches `cloudflare/data/law/`
 and `foundry/out/`, the rebrand touches the site's code and copy — except for
@@ -115,8 +122,11 @@ the old address to a Worker that does not exist yet.
 
 ## 6. Afterwards
 
-- `aurigendirectory.com` still points at nothing; the domain plan in `domain/README.md` is
-  unchanged by the rename, except that the Worker it attaches to is now called `platbook`.
+- `aurigendirectory.com` is parked and out of reach. Lando, 2026-11-08: "I can't change
+  aurigendirectory.com right now, because it's locked behind an account I can't reach.
+  Don't plan around it. The platbook address is permanent until we buy a new domain."
+  So `platbook.landonbrewington12.workers.dev` is the permanent address, and
+  `domain/README.md` plus the Domain zone and Domain attach workflows are parked.
 - The old browser setting `aurigen_lang` is still read once, so anyone who chose Spanish
   before the rename stays in Spanish.
 - The GitHub repository itself is still called `aurigen-directory`. Renaming it is a

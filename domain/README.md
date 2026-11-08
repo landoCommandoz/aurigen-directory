@@ -1,5 +1,12 @@
 # aurigendirectory.com: move it to Cloudflare, then attach it to the Worker
 
+> **PARKED — 2026-11-08. Do not plan around this domain.** Lando: "I can't change
+> aurigendirectory.com right now, because it's locked behind an account I can't reach.
+> Don't plan around it. The platbook address is permanent until we buy a new domain."
+> Everything below is kept for the day a domain is bought. Until then
+> `platbook.landonbrewington12.workers.dev` is the permanent address, and the Worker these
+> steps would attach to is now called `platbook`, not `aurigen`.
+
 Domain: aurigendirectory.com. Registrar: Name.com (paid through 2027-03-24). Today it uses Name.com's own nameservers
 (ns1kpv.name.com, ns2kry.name.com, ns3jmt.name.com, ns4dmx.name.com) and shows a parking page. It has no email (no MX
 records), so changing the nameservers cannot break any mail.
