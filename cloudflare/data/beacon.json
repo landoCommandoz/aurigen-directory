@@ -2,5 +2,6 @@
   "_what": "Cloudflare Web Analytics. Put the site token from the dashboard in \"token\" and the beacon goes on every page. Empty means no beacon and no third-party script at all.",
   "_why_this_is_not_a_secret": "A Web Analytics site token is public by design - it is read straight out of the page source by anyone who views it. It grants no access to the account.",
   "_where": "Cloudflare dashboard > Analytics & Logs > Web Analytics > theplatbook.com > Manage site > the JS snippet, the value of \"token\".",
-  "token": ""
+  "token": "c805231df5ae408a80e8f53e1d9c29d7",
+  "_installed": "Lando switched the site to JS snippet installation (automatic setup OFF) and sent this token on 2026-11-08. If automatic setup is ever switched back on, empty this token in the same change or every visit is counted twice."
 }

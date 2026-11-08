@@ -24,15 +24,27 @@ const RETIRED = /^https?:\/\/(aurigen|platbook)\.landonbrewington12\.workers\.de
 const PASSED = (process.env.SITE_URL || '').trim().replace(/\/+$/, '');
 if (PASSED && RETIRED.test(PASSED)) console.warn(`build-site: ignoring SITE_URL=${PASSED} (that address redirects here); using https://theplatbook.com.`);
 const SITE_URL = PASSED && !RETIRED.test(PASSED) ? PASSED : 'https://theplatbook.com';
-// Cloudflare Web Analytics. Automatic injection does not reach pages served by a Worker, so
-// the beacon is put in here instead. data/beacon.json holds the public site token; while it is
-// empty the site loads no third-party script at all, which is the state to be in if the token
-// is ever withdrawn. Nothing in this site sets a Content-Security-Policy, so nothing blocks it.
+// Cloudflare Web Analytics. Lando switched the site to "JS snippet" installation on
+// 2026-11-08, which turns Cloudflare's automatic injection OFF - and automatic injection does
+// not reach pages served by a Worker anyway. So the beacon is put in here, on every page.
+//
+// Exactly the snippet the dashboard gives, type="module" and all, so the two can be compared
+// by looking rather than by reasoning. A module script defers by default, so it cannot hold
+// up the page.
+//
+// data/beacon.json holds the site token. It is public by design: it sits in the source of
+// every page, where anyone can read it. The only thing it permits is sending made-up visits
+// to our own analytics, which is true of every site using the snippet. While it is empty the
+// site loads no third-party script at all, which is where to return if it is ever withdrawn.
+// Nothing in this site sets a Content-Security-Policy, so nothing blocks it.
+//
+// If Cloudflare's automatic injection is ever switched back on, remove the token from
+// beacon.json in the same change: two beacons on one page counts every visit twice.
 const BEACON = (() => {
   try {
     const t = String(JSON.parse(fs.readFileSync(path.join(DATA, 'beacon.json'), 'utf8')).token || '').trim();
     return /^[A-Za-z0-9]{8,64}$/.test(t)
-      ? `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${t}"}'></script>\n`
+      ? `<!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${t}"}'></script><!-- End Cloudflare Web Analytics -->\n`
       : '';
   } catch { return ''; }
 })();
