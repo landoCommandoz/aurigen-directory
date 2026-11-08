@@ -24,7 +24,7 @@ const out = [];
 
 const model = env('STATUS_MODEL') || 'default model';
 const by = env('STATUS_RUN_URL') ? `Foundry run ${env('STATUS_RUN_NO', '?')}${env('STATUS_EVENT') === 'schedule' ? ' (nightly, 2 am Mountain)' : ''}` : 'a Claude Code session';
-out.push(`Updated: ${now}. Written by ${by}. Public file: https://aurigen.landonbrewington12.workers.dev/status.json`);
+out.push(`Updated: ${now}. Written by ${by}. Public file: https://platbook.landonbrewington12.workers.dev/status.json`);
 if (env('STATUS_RUN_URL')) out.push(`Ran: ${spec}, run ${env('STATUS_RUN_NO', '?')}: ${env('STATUS_TURNS', '?')} turns, ${money(env('STATUS_COST'))}, Claude ended ${env('STATUS_SUBTYPE', 'unknown')}, work saved: ${env('STATUS_PUSHED', 'no')}.${env('STATUS_ERROR') ? ' Error: ' + clean(env('STATUS_ERROR')) : ''} ${clean(env('STATUS_RUN_URL'))}`);
 else out.push(`Ran: nothing since the last update. ${clean(env('STATUS_WHAT', 'No run.'), 220)}`);
 
@@ -53,9 +53,18 @@ if (gaps) {
   const cr = Object.entries(gaps.states || {}).filter(([, v]) => v.checkStatus === "Couldn't reach source").map(([k]) => k);
   if (cr.length) held.push(`${cr.join(' and ')} stay "Couldn't reach source" until the certificate step works`);
 }
-out.push(`Held: ${held.length ? held.join('; ') : 'nothing'}. The live site stays on the under-review page.`);
+// Nothing here claims which page is live. This line used to say "the live site stays on the under-review
+// page", which stayed in the file for four days after the full site was restored and had to be corrected
+// by hand twice. A status file that cannot check a fact should not assert it.
+out.push(`Held: ${held.length ? held.join('; ') : 'nothing'}.`);
 const stop = env('STATUS_REASON');
-out.push(`Schedule: every night at 2 am Mountain, $10 a run, stops at the cap or at 51 of 51 states.${stop ? ' Chain note: ' + clean(stop, 200) : ''}`);
+// The nightly schedule switches itself off once every state has been attempted, so read that from
+// PROGRESS.json rather than promising a run that will not happen.
+const pending = prog ? Object.values(prog.states || {}).filter((s) => s.status !== 'done' && s.status !== 'blocked').length : -1;
+const left = chain && chain.cap ? ` (${money(chain.cap - (chain.spent || 0))} left)` : '';
+out.push(`Schedule: ${pending === 0
+  ? `every state has been attempted, so the nightly run has stopped itself. Gap work now goes by manual run, $10 each, inside the same cap${left}`
+  : `every night at 2 am Mountain, $10 a run, stops at the cap or once every state has been attempted${left}`}.${stop ? ' Chain note: ' + clean(stop, 200) : ''}`);
 const trouble = /refused|credit|spend limit|key/i.test(env('STATUS_ERROR') + ' ' + stop);
 out.push(`Human: ${trouble ? 'check the Anthropic key, credit balance and spend limit (see the chain note above).' : env('STATUS_HUMAN') || 'nothing.'}`);
 process.stdout.write(out.slice(0, 10).join('\n') + '\n');

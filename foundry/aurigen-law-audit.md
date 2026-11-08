@@ -416,7 +416,9 @@ new issue if none is open.
   3. Conflicts: the flagged claims by state, in a few words each.
   4. Unreachable: the states or sources marked "Couldn't reach source".
   5. Next: the next states in line, whether the statute-watch workflow is ready to copy, and that the live
-     site still shows the under-review page, was not touched, and nothing was paid for outside the API run.
+     site was not touched, and nothing was paid for outside the API run. Do not say which page the live
+     site is showing: this run cannot check that. (The full site has been live since 2026-11-04, at
+     platbook.landonbrewington12.workers.dev since 2026-11-08.)
 
 ## Done means (after however many runs it takes)
 
@@ -427,5 +429,5 @@ new issue if none is open.
 - Every state page in the source shows its statute links, and every county detail shows a source or
   "Confirm with the county".
 - The statute-watch workflow is ready to copy.
-- The live site was never deployed or changed by this audit. It stays on the under-review page until
-  Lando merges the audited branch and restores it with the `aurigen-site` workflow.
+- The live site was never deployed or changed by this audit. It changes only when Lando merges the audited
+  branch and runs the `aurigen-site` workflow.
