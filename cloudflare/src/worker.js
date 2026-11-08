@@ -13,6 +13,16 @@ import { handleSheet } from '../../under-review/sheet.js';
 // page the beacon in the page builder cannot reach. Same token, read from the same file, so
 // there is still exactly one place to change it. The under-review Worker does not import this
 // module, so hiding the site stays free of any third-party script.
+//
+// It is also the one page that sets a Content-Security-Policy - "default-src 'none'" - because
+// it is the page that takes a licence key. That policy blocks every third-party script,
+// including this one: tested against the live page on 2026-11-08, and the browser refuses the
+// load outright ("violates ... default-src 'none'"). So the beacon is NOT added to a response
+// that carries a policy, rather than shipping a tag that provably cannot run. Counting visits
+// to that page would mean loosening the policy on the page that handles keys, which is Lando's
+// call, not a side effect of adding analytics. If he says yes, the policy needs
+// "script-src https://static.cloudflareinsights.com" and
+// "connect-src https://cloudflareinsights.com", and this skip can go.
 import BEACON_CFG from '../data/beacon.json' with { type: 'json' };
 
 const BEACON = /^[A-Za-z0-9]{8,64}$/.test(String(BEACON_CFG.token || '').trim())
@@ -23,6 +33,7 @@ const BEACON = /^[A-Za-z0-9]{8,64}$/.test(String(BEACON_CFG.token || '').trim())
 async function withBeacon(res) {
   if (!BEACON || !res || !res.ok) return res;
   if (!String(res.headers.get('content-type') || '').includes('text/html')) return res;
+  if (res.headers.get('content-security-policy')) return res;
   const html = await res.text();
   if (!html.includes('</body>') || html.includes('static.cloudflareinsights.com')) {
     return new Response(html, res);
