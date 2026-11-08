@@ -413,19 +413,26 @@
    ]
   },
   "FL": {
-   "checkStatus": "checked with gaps",
+   "checkStatus": "checked",
    "gaps": [
     {
      "id": "FL-1",
      "text": "The legislature's bill and session-law search for 2023 to 2026 was not run. Only the 2023, 2025 and 2026 statute editions were compared. The acts ch. 2024-91 (197.502), ch. 2024-140 and ch. 2026-174 (197.582) were not read as acts.",
-     "close": "Read those chaptered laws on flsenate.gov or laws.flrules.org, record bill numbers and effective dates with quotes, and run the bill search for chapter 197 for 2023 to 2026."
+     "close": "Read those chaptered laws on flsenate.gov or laws.flrules.org, record bill numbers and effective dates with quotes, and run the bill search for chapter 197 for 2023 to 2026.",
+     "closed": "2026-11-08",
+     "note": "Read as chaptered acts at laws.flrules.org (sources/fl/ch2024-91, ch2024-140, ch2026-174). Ch. 2024-91 (HB 113), approved Apr 15 2024, effective July 1 2024: s.3 amends 197.502(2), interest on a canceled tax deed application; no shown claim rests on it. Ch. 2024-140 (CS/CS/CS HB 989), approved May 2 2024, effective on becoming law: s.61 changes only a cross-reference in 197.582(2)(a). Ch. 2026-174 (CS/CS/CS SB 1452), approved June 26 2026, effective on becoming law: s.92 changes only a cross-reference in 197.582(2)(a). The 2026 history lines of 197.172, .402, .432, .4725, .472, .502, .522, .532, .542, .552, .582 and 95.192 list no other act from 2023 to 2026. The legislature bill-search page needs JavaScript and was not read, so this is a history-line search, not a bill search.",
+     "closedAt": "2026-11-08"
     },
     {
      "id": "FL-2",
      "text": "Sections 197.502(6) (homestead assessment in the opening bid) and 197.522 to 197.532 (notice requirements) were not read; auction platforms, registration, deposits and sale dates were not read from county tax collector or clerk sites.",
-     "close": "Read those sections, and the county tax collector and clerk pages for the counties the site names, or keep the Confirm with the county label."
+     "close": "Read those sections, and the county tax collector and clerk pages for the counties the site names, or keep the Confirm with the county label.",
+     "closed": "2026-11-08",
+     "note": "Read 197.502(6) (opening bid; homestead adds one-half of the latest assessed value) and 197.522 and 197.532 (clerk and sheriff notices) in the 2026 edition. No shown claim needed changing. County tax collector and clerk pages were not read: platforms, registration, deposits and sale dates keep the Confirm with the county label, which the spec allows.",
+     "closedAt": "2026-11-08"
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-08"
   },
   "ID": {
    "checkStatus": "checked with gaps",
@@ -675,9 +682,10 @@
      "id": "IN-1",
      "text": "Indiana Code (title 6 article 1.1 chapter 24) on iga.in.gov is served by script: both the laws page and the pdf-documents path returned no text (1 character). No audit was possible; the state's ledger is missing.",
      "close": "Find a PDF of IC 6-1.1-24 to 6-1.1-25 on iga.in.gov or the Indiana Department of Local Government Finance.",
-     "attempts": "Run 7: iga.in.gov, legacy in.gov/legislative/ic pages return no text (script); SBOA appendix PDF is an auditor guide, not code text. Still blocked."
+     "attempts": "Run 8 (2026-11-08): iga.in.gov/laws/2025/ic/titles/6 saved only a JavaScript shell (1 character of text, attempts/in.jsonl). Nothing to read. Waiting on text read by hand with foundry/tools/hand-capture.mjs."
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-08"
   },
   "NJ": {
    "checkStatus": "checked with gaps",
@@ -706,9 +714,10 @@
      "id": "NY-1",
      "text": "New York Real Property Tax Law article 11 on nysenate.gov returned HTTP 403 to the audit's download tool. No audit was possible; the state's ledger is missing.",
      "close": "Find another official copy of RPTL article 11 (e.g. legislation.nysenate.gov or the Department of Taxation and Finance) that allows the download tool.",
-     "attempts": "Run 7: nysenate.gov law pages HTTP 403; legislation.nysenate.gov/pdf/laws 404; API HTTP 401; only bill PDFs (not enacted law) reachable. Still blocked."
+     "attempts": "Run 8 (2026-11-08): nysenate.gov/legislation/laws/RPT/1010 answered 403 to the audit client again (attempts/ny.jsonl). The user agent was not changed. Waiting on the site key or text read by hand with foundry/tools/hand-capture.mjs."
     }
-   ]
+   ],
+   "attemptedAt": "2026-11-08"
   },
   "TN": {
    "checkStatus": "Couldn't reach source",

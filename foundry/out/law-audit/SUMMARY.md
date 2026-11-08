@@ -33,7 +33,7 @@ States done: 47 of 51 (AK, AL, CA, DC, HI, KY, LA, ME, MS, ND, NM, OK, PA, TX, U
 | SD | done | checked with gaps | 2026-11-01 | 64 | 0 | 64 | 0 | 0 | 64 | [sd.md](sd.md) |
 | AZ | done | checked with gaps | 2026-11-01 | 84 | 4 | 80 | 0 | 0 | 80 | [az.md](az.md) |
 | DE | done | checked with gaps | 2026-11-01 | 60 | 4 | 56 | 0 | 0 | 57 | [de.md](de.md) |
-| FL | done | checked with gaps | 2026-11-01 | 89 | 3 | 86 | 0 | 0 | 86 | [fl.md](fl.md) |
+| FL | done | checked | 2026-11-01 | 89 | 3 | 86 | 0 | 0 | 86 | [fl.md](fl.md) |
 | GA | blocked | Couldn't reach source | 2026-11-01 | 0 | 0 | 0 | 0 | 0 | 0 | [ga.md](ga.md) |
 | ID | done | checked with gaps | 2026-11-01 | 66 | 2 | 64 | 0 | 0 | 64 | [id.md](id.md) |
 | IN | blocked | Couldn't reach source | 2026-11-01 | 0 | 0 | 0 | 0 | 0 | 0 | [in.md](in.md) |
