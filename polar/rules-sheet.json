@@ -1,14 +1,14 @@
 {
  "organizationId": "bdbc4d3b-3520-432e-b8b2-b3bcc545b96c",
- "productName": "Aurigen Rules Sheet",
- "description": "A source-by-source reading of how tax sales work in the states the Aurigen audit has finished. For each state: the sale type, the rate or penalty set by law, redemption, bid method, where and when the sale is held, how to register and pay, buying after the sale, money left after the sale, and what to check before you bid. Every row shows the statute, the official link, the date it was checked and the quote it rests on. Each state carries an audit flag: checked, or checked with gaps, with the gaps listed in plain words. Includes a CSV download of every row. It is free: the checkout takes an email address and nothing is charged. Your license key works for 12 months, and states are added as they finish the audit. Not legal or financial advice. Rules change. Confirm with the county before you bid. This is not a list of properties and it is not county by county.",
+ "productName": "Platbook Rules Sheet",
+ "description": "A source-by-source reading of how tax sales work in the states the Platbook audit has finished. For each state: the sale type, the rate or penalty set by law, redemption, bid method, where and when the sale is held, how to register and pay, buying after the sale, money left after the sale, and what to check before you bid. Every row shows the statute, the official link, the date it was checked and the quote it rests on. Each state carries an audit flag: checked, or checked with gaps, with the gaps listed in plain words. Includes a CSV download of every row. It is free: the checkout takes an email address and nothing is charged. Your license key works for 12 months, and states are added as they finish the audit. Not legal or financial advice. Rules change. Confirm with the county before you bid. This is not a list of properties and it is not county by county.",
  "priceCents": 0,
  "visibility": "private",
  "benefit": {
-  "description": "Aurigen Rules Sheet license key",
+  "description": "Platbook Rules Sheet license key",
   "prefix": "AURSHEET",
   "ttlMonths": 12
  },
- "successUrl": "https://aurigen.landonbrewington12.workers.dev/rules-sheet/?thanks=1",
- "checkoutLabel": "Aurigen Rules Sheet"
+ "successUrl": "https://platbook.landonbrewington12.workers.dev/rules-sheet/?thanks=1",
+ "checkoutLabel": "Platbook Rules Sheet"
 }

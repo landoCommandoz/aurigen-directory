@@ -1,4 +1,4 @@
-// Creates one single-use 100% discount code for the Aurigen Rules Sheet product only, valid for ttlHours.
+// Creates one single-use 100% discount code for the Platbook Rules Sheet product only, valid for ttlHours.
 //   POLAR_ACCESS_TOKEN=... node polar/create-test-discount.mjs
 // Reuses an unexpired code of the same name instead of making a second one. Prints the code and its expiry (the code
 // is meant to be read from the log by the person testing the checkout; the Polar token is never printed).
@@ -21,7 +21,7 @@ async function call(method, p, body) {
   const text = await res.text();
   if (!res.ok) {
     if (res.status === 403 && /insufficient_scope/.test(text)) {
-      throw new Error(`${method} ${p}: the stored Polar token is not allowed to use discounts. In Polar, edit the organization access token (or make a new one) and tick the scopes discounts:read and discounts:write, update the POLAR_ACCESS_TOKEN repository secret, then push a change to polar/test-discount.json (for example bump "run"). Or create the code by hand in Polar: Products, Discounts, New (100%, applies to Aurigen Rules Sheet only, one redemption, an end date).`);
+      throw new Error(`${method} ${p}: the stored Polar token is not allowed to use discounts. In Polar, edit the organization access token (or make a new one) and tick the scopes discounts:read and discounts:write, update the POLAR_ACCESS_TOKEN repository secret, then push a change to polar/test-discount.json (for example bump "run"). Or create the code by hand in Polar: Products, Discounts, New (100%, applies to Platbook Rules Sheet only, one redemption, an end date).`);
     }
     throw new Error(`${method} ${p} answered HTTP ${res.status}: ${text.replace(/Bearer\s+\S+/g, 'Bearer [x]').slice(0, 500)}`);
   }
@@ -46,7 +46,7 @@ const out = [
   `CODE: ${d.code}`,
   `Valid until: ${d.ends_at}`,
   `Uses allowed: ${d.max_redemptions}`,
-  `Applies to: Aurigen Rules Sheet only (product ${cfg.productId})`,
+  `Applies to: Platbook Rules Sheet only (product ${cfg.productId})`,
   `Checkout link: ${cfg.checkoutUrl}`,
 ].join('\n');
 console.log(out);

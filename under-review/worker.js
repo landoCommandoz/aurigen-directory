@@ -1,4 +1,4 @@
-// Aurigen "under review" page. Replaces the live `aurigen` Worker while the law audit runs.
+// Platbook "under review" page. Replaces the live `aurigen` Worker while the law audit runs.
 // Every path gets the same page with HTTP 503 so search engines treat it as temporary.
 // Deployed and removed by .github/workflows/aurigen-site.yml. Runs on the Workers Free plan.
 // /status.json serves the repo's STATUS.md (built by make-status.mjs at deploy time; see status-publish.yml).
@@ -12,13 +12,13 @@ const PAGE = `<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Aurigen: under review</title>
+<title>Platbook: under review</title>
 <style>
-  :root { --bg: #f4f1ea; --ink: #1d232b; --muted: #4a525c; }
+  :root { --bg: #f3ebdc; --ink: #10222f; --muted: #4a5863; --accent: #0b3550; }
   html, body { margin: 0; background: var(--bg); color: var(--ink); }
-  body { font: 18px/1.5 Georgia, "Times New Roman", serif; }
+  body { font: 18px/1.6 "Public Sans", "Segoe UI", "Helvetica Neue", sans-serif; }
   main { max-width: 34rem; padding: 18vh 16px 16px; margin: 0 auto; }
-  h1 { font-size: 1.6rem; font-weight: normal; margin: 0 0 .75rem; }
+  h1 { font-family: Fraunces, "Hoefler Text", Georgia, serif; font-size: 1.7rem; font-weight: 600; margin: 0 0 .75rem; color: var(--accent); }
   p { margin: 0; color: var(--muted); }
   footer { max-width: 34rem; padding: 2rem 16px; margin: 0 auto; font-size: .9rem; }
   footer a { color: var(--muted); }
@@ -26,7 +26,7 @@ const PAGE = `<!doctype html>
 </head>
 <body>
 <main>
-  <h1>Aurigen is under review.</h1>
+  <h1>Platbook is under review.</h1>
   <p>Every state's rules are being re-checked against current law.</p>
 </main>
 <footer><a href="/status.json">Status</a>__SHEET_LINK__</footer>

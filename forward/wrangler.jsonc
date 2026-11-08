@@ -1,0 +1,11 @@
+// Keeps the name `aurigen`, which is what the old workers.dev address is built from.
+// Deploying this replaces the old site with a permanent redirect to the new `platbook`
+// Worker, path for path. Deploy it AFTER the renamed site is live, never before.
+{
+  "name": "aurigen",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "triggers": { "crons": [] },
+  "observability": { "enabled": false }
+}

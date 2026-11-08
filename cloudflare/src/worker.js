@@ -1,4 +1,4 @@
-// Aurigen Worker. Static pages are served by Workers static assets (free, no Worker
+// Platbook Worker. Static pages are served by Workers static assets (free, no Worker
 // invocation). This script only runs for /extras* and /api/* (see wrangler.jsonc).
 //
 // Paid extras are behind PAID_EXTRAS ("off" by default). While off, /extras/ is a 404
@@ -78,7 +78,7 @@ async function validate(env, key) {
   let valid = false; let benefitId = '';
   const res = await fetch(POLAR_VALIDATE, {
     method: 'POST',
-    headers: { 'content-type': 'application/json', 'user-agent': 'AurigenDirectory/2.0' },
+    headers: { 'content-type': 'application/json', 'user-agent': 'PlatbookDirectory/2.0' },
     body: JSON.stringify({ key, organization_id: env.POLAR_ORG_ID }),
   });
   if (res.ok) {
@@ -133,7 +133,7 @@ async function apiExport(request, env, url) {
   if (!gate(env, url)) return notFound(env, request);
   const v = await validate(env, url.searchParams.get('key'));
   if (!can(env, v, 'pack')) return json({ error: 'A valid Spreadsheet Pack key is required.' }, 403);
-  const which = url.searchParams.get('file') === 'states' ? 'aurigen-states.csv' : 'aurigen-counties.csv';
+  const which = url.searchParams.get('file') === 'states' ? 'platbook-states.csv' : 'platbook-counties.csv';
   const r = await loadFile(env, request, which);
   return new Response(r.body, { headers: { 'content-type': 'text/csv; charset=utf-8', 'content-disposition': `attachment; filename="${which}"`, 'cache-control': 'private, no-store' } });
 }
@@ -150,7 +150,7 @@ async function apiCalendar(request, env, url) {
   const events = await (await loadFile(env, request, 'sales.json')).json();
   const want = (e) => follow.some((f) => f === e.s || f === `${e.s}:${e.c}`);
   const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
-  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Aurigen//Sale Calendar//EN', 'CALSCALE:GREGORIAN', 'X-WR-CALNAME:Aurigen tax sale dates', 'X-PUBLISHED-TTL:PT12H'];
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Platbook//Sale Calendar//EN', 'CALSCALE:GREGORIAN', 'X-WR-CALNAME:Platbook tax sale dates', 'X-PUBLISHED-TTL:PT12H'];
   for (const e of events.filter(want)) {
     const d = e.d.replace(/-/g, '');
     const next = new Date(Date.parse(e.d) + 86400000).toISOString().slice(0, 10).replace(/-/g, '');

@@ -1,4 +1,4 @@
-// Creates (or finds) the Polar product, license-key benefit and checkout link for the Aurigen Rules Sheet and writes
+// Creates (or finds) the Polar product, license-key benefit and checkout link for the Platbook Rules Sheet and writes
 // their ids to under-review/sheet-config.json. Safe to run again: it looks for each thing by name before creating it.
 //   POLAR_ACCESS_TOKEN=... node polar/create-rules-sheet.mjs
 // The token is an organization token, so organization_id is never sent in a request body (Polar refuses it); the
