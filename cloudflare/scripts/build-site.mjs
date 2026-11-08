@@ -7,6 +7,7 @@ import { createRequire } from 'node:module';
 import { geoPath, geoAlbersUsa, geoMercator, geoCentroid } from 'd3-geo';
 import { feature } from 'topojson-client';
 import { FIELD_ORDER, loadLedger, claimNote } from './law-pieces.mjs';
+import { countyTextProblems } from './county-text.mjs';
 
 const require = createRequire(import.meta.url);
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -193,6 +194,45 @@ function ledgerSources(L) {
   return [...seen.values()];
 }
 // County details carry a source only when the ledger cites the county's own official page.
+// A county's "extra" block is free-form research and goes straight to the page, so it is
+// cleaned on the way out. Two things never reach a visitor:
+//
+//   * a placeholder left in the data. 21 Maryland counties carried rate:"VERIFY", which the
+//     drawer printed as "Interest / penalty: VERIFY" - a note to ourselves, published.
+//   * on a state whose source Platbook has not read yet, anything that states the law. New
+//     York's 62 counties each carried method:"In-rem deed foreclosure" (and Bronx: "NYC Lien
+//     Sale - NOT public"), so 63 claims about New York law were printed on the one page that
+//     promises in bold that nothing on it states New York law.
+//
+// Removing a value is always allowed here; nothing in this function can change one.
+const PLACEHOLDER = /^(verify|tbd|todo|fixme|n[/]?a|null|unknown|[?]+|x{2,})$/i;
+// A marker we wrote for ourselves, as opposed to prose that happens to say a date is not set
+// yet. Six Illinois counties published notes reading "[VERIFY] domain" and "[VERIFY] - Yahoo
+// email on record"; "fall 2026 (date TBD)" is a real answer and stays.
+const INTERNAL_NOTE = /(^|\s)[[(](verify|tbd|todo|fixme|check|needs? \w+)[\])]|(^|\s)(todo|fixme|xxx)\s*:/i;
+const cleanNotes = (notes) => (Array.isArray(notes) ? notes : [])
+  .filter((n) => typeof n === 'string' && n.trim() && !INTERNAL_NOTE.test(n));
+const LEGAL_KEY = /^(rate|redemption|period|premium|statute|method|bidMethod|minBid|fee|assignmentFee|transferTax|taxCodeAuth)$/;
+function cleanExtra(v, pend) {
+  if (v == null) return undefined;
+  if (typeof v === 'string') {
+    const t = v.trim();
+    return !t || PLACEHOLDER.test(t) ? undefined : v;
+  }
+  if (typeof v !== 'object') return v;
+  if (Array.isArray(v)) {
+    const a = v.map((x) => cleanExtra(x, pend)).filter((x) => x !== undefined);
+    return a.length ? a : undefined;
+  }
+  const o = {};
+  for (const [k, val] of Object.entries(v)) {
+    if (pend && LEGAL_KEY.test(k)) continue;
+    const c = cleanExtra(val, pend);
+    if (c !== undefined) o[k] = c;
+  }
+  return Object.keys(o).length ? o : undefined;
+}
+
 function countySource(st, c) {
   const s = st.ledger?.countySources?.[c.name];
   return s && isUrl(s.url) ? { u: s.url, t: s.title || '', d: String(s.checked).slice(0, 10) } : null;
@@ -400,9 +440,22 @@ function statePage(st) {
   <button type="button" data-i="${i}"><span class="cn">${esc(c.name)}</span><span class="cp">${esc(c.platform || '—')}</span></button></li>`
     : `<li class="county" id="c-${slug(c.name)}" data-i="${i}" data-type="${c.saleType}" data-name="${esc(c.name.toLowerCase())}">
   <button type="button" data-i="${i}"><span class="cn">${esc(c.name)}</span><span class="cp">${esc(c.platform || '—')}</span><span class="pill t-${c.saleType}">${esc(typeName(c.saleType))}</span></button></li>`).join('');
+  // No county ships a redemption period or an interest rate, in any state.
+  //
+  // Those were never county facts. Every state's county rows carried one single value copied
+  // onto all of them from the pre-audit data files - the law audit corrects the ledger, which
+  // is what the fact rows above are built from, and never touched these. The result on a live
+  // page was two different answers to the same question: Florida's fact row read "Until a tax
+  // deed is issued" (Fla. Stat. 197.472(1), audited) while all 67 county drawers still read
+  // "2 years from April 1 of issuance year", the wording the audit had specifically found
+  // wrong. Pending states were already protected from this; audited ones were not.
+  //
+  // Only Delaware (2 values) and Maryland (4 rates) held anything genuinely county-specific
+  // here, and that text is unaudited too, so it goes the same way rather than being the one
+  // unverified legal claim left on the site.
   const countyJson = JSON.stringify(st.counties.map((c) => PEND
-    ? { n: c.name, k: c.kind, p: c.platform, u: isUrl(c.url) ? c.url : '', no: c.notes, v: c.verifiedDate, e: c.extra, cs: countySource(st, c) }
-    : { n: c.name, k: c.kind, t: c.saleType, tl: typeName(c.saleType), r: c.redemption, x: c.rate, p: c.platform, u: isUrl(c.url) ? c.url : '', no: c.notes, v: c.verifiedDate, e: c.extra, cs: countySource(st, c) }))
+    ? { n: c.name, k: c.kind, p: c.platform, u: isUrl(c.url) ? c.url : '', no: cleanNotes(c.notes), v: c.verifiedDate, e: cleanExtra(c.extra, true), cs: countySource(st, c) }
+    : { n: c.name, k: c.kind, t: c.saleType, tl: typeName(c.saleType), p: c.platform, u: isUrl(c.url) ? c.url : '', no: cleanNotes(c.notes), v: c.verifiedDate, e: cleanExtra(c.extra, false), cs: countySource(st, c) }))
     .replace(/</g, '\\u003c');
 
   const sources = [];
@@ -664,4 +717,23 @@ console.log(`Extras: ${sales.length} upcoming sale dates in the next 12 months a
   }
   console.log(`Pending states asserting nothing: ${pend.length}${pend.length ? ' (' + pend.join(', ') + ')' : ''}`);
   console.log(`Claims read by hand, each saying so on its page: ${handCount}`);
+}
+
+// ---------- the county text reads like English ----------
+// scripts/county-text.mjs walks every county label and every county value on every built
+// state page. The note at the top of that file records what went live before it existed.
+// A problem here stops the build, and the build is what the restore workflow runs, so a page
+// with broken county text cannot be deployed.
+{
+  const problems = [];
+  for (const [code, html] of builtStatePages) {
+    problems.push(...countyTextProblems(html, `/state/${code.toLowerCase()}/`, { pending: isPending(code) }));
+  }
+  if (problems.length) {
+    const shown = problems.slice(0, 40).map((x) => '  - ' + x).join('\n');
+    const rest = problems.length > 40 ? `\n  ... and ${problems.length - 40} more` : '';
+    console.error(`\nbuild-site: FAIL - county text a visitor would call broken (${problems.length} problems)\n${shown}${rest}\n`);
+    process.exit(1);
+  }
+  console.log(`County text read on ${builtStatePages.size} state pages: clean`);
 }
