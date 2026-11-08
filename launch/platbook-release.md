@@ -45,9 +45,23 @@ The four files and the single change in each — replace
 at the end:** it would check the old address, which now answers with a redirect (301)
 instead of a page (200). The site itself would be live and correct.
 
-## 2. Merge the branch
+## 2. Merge the branches — both of them
 
-`rebrand/platbook` into `main`. Nothing on main deploys by itself, with two exceptions
+**`foundry/aurigen-law-audit` first, then `rebrand/platbook`.**
+
+The audit branch now carries real new work: on 2026-11-08 the checker closed both Florida
+gaps (it read ch. 2024-91, ch. 2024-140 and ch. 2026-174 as chaptered acts, and the notice
+sections), so Florida moved from "checked with gaps" to **checked**. It also tried New York
+and Indiana again and logged both as still blocked. None of that is on main yet, so the
+live Florida page still shows the old wording until it is merged and deployed.
+
+The two branches touch different files — the audit branch touches `cloudflare/data/law/`
+and `foundry/out/`, the rebrand touches the site's code and copy — except for
+`cloudflare/data/law/gaps.json` and `foundry/out/law-audit/PROGRESS.json`, where the
+rebrand branch only reordered the queue and the audit branch only marked Florida closed.
+Take both changes.
+
+Nothing on main deploys by itself, with two exceptions
 that fire on merge and are both wanted here:
 
 - **Polar sheet** runs because `polar/rules-sheet.json` changed: it renames the live
