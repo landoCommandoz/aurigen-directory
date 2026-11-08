@@ -84,17 +84,18 @@ export function countableSource(request, url) {
 
 async function countClick(env, source, day = mountainDay()) {
   if (!env.DB) return;
-  const statements = [];
+  // One statement at a time, on purpose. D1 wraps a batch in a transaction and refuses to
+  // change the schema inside one, so putting the CREATE in a batch with the insert would fail
+  // on the very first click and never be seen - the write is in the background and silent.
   if (!tableReady) {
-    statements.push(env.DB.prepare(
+    await env.DB.prepare(
       'CREATE TABLE IF NOT EXISTS ref_clicks (day TEXT NOT NULL, source TEXT NOT NULL, clicks INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (day, source))'
-    ));
+    ).run();
+    tableReady = true;
   }
-  statements.push(env.DB.prepare(
+  await env.DB.prepare(
     'INSERT INTO ref_clicks (day, source, clicks) VALUES (?1, ?2, 1) ON CONFLICT (day, source) DO UPDATE SET clicks = clicks + 1'
-  ).bind(day, source));
-  await env.DB.batch(statements);
-  tableReady = true;
+  ).bind(day, source).run();
 }
 
 export default {
