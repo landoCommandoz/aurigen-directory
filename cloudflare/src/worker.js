@@ -55,10 +55,28 @@ export function canonicalRedirect(urlString) {
 // is simply not counted. This is also what keeps the value safe to put in the database.
 const SOURCE_OK = /^[A-Za-z0-9-]{1,30}$/;
 
-// Robots. "bot" alone would catch Slackbot, Discordbot and redditbot, but they are named so
-// that this list reads as what it is to anyone who opens the file later. Reddit fetches a
-// link preview the moment a post goes up; that must not look like a visitor.
-const ROBOT = /bot|crawl|spider|preview|facebookexternalhit|slackbot|discordbot|redditbot/i;
+// Robots. The /i at the end is what makes this ignore upper and lower case, so REDDITBOT,
+// Redditbot and redditbot are all the same thing to it; there are tests for that.
+//
+// "bot", "crawl", "spider" and "preview" do most of the work - "bot" alone already catches
+// Slackbot, Discordbot, redditbot, Twitterbot, LinkedInBot, TelegramBot, Facebot, Applebot,
+// Googlebot and bingbot - but the named ones are spelled out so this list reads as what it is
+// to anyone who opens the file later.
+//
+// The four at the end are the ones no generic word catches:
+//   whatsapp         - sends "WhatsApp/2.19", which contains none of the words above
+//   snapchat         - its fetcher usually says "Snap URL Preview Service", but a second form
+//                      reported in the wild is "Snapchat/1.0", which "preview" would miss
+//   skype            - Skype and Teams unfurl through "SkypeUriPreview Preview/0.5"; the word
+//                      "preview" already catches that exact string, and this catches it if
+//                      Microsoft ever drops the word
+//   meta-external    - Meta's newer agents, "meta-externalagent" and "meta-externalfetcher",
+//                      have no "bot" in them at all
+//
+// Known cost of the whatsapp entry: if a person taps a link inside WhatsApp and it opens in an
+// in-app browser that still says WhatsApp, that real visit is not counted. Under-counting a
+// person is the safer way to be wrong than counting a robot as one.
+const ROBOT = /bot|crawl|spider|preview|facebookexternalhit|slackbot|discordbot|redditbot|whatsapp|snapchat|skype|meta-external/i;
 
 // The day in Mountain time, as YYYY-MM-DD. Mountain time, not UTC, so a click at 7pm in
 // Montana is counted on the day it happened; en-CA gives the date in that order already, and
