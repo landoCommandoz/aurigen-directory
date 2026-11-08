@@ -1,8 +1,25 @@
 # Platbook release — DONE 2026-11-08
 
-Lando said go at 08:50 UTC on 2026-11-08 and the release went out the same hour. The site
-is **https://platbook.landonbrewington12.workers.dev**. The rest of this file is kept as
-the record of how it was done and what is still open.
+Lando said go at 08:50 UTC on 2026-11-08 and the release went out the same hour. Later the
+same morning he bought **theplatbook.com** and attached it in Cloudflare, so the site's
+permanent address is **https://theplatbook.com** and the workers.dev address below is now a
+redirect. The rest of this file is kept as the record of how it was done and what is open.
+
+## The domain, same morning
+
+- Both custom domains (apex and www) are declared in `cloudflare/wrangler.jsonc` **and**
+  `under-review/wrangler.jsonc`. A Worker deploy replaces the whole trigger set, so
+  dashboard-only would have been dropped by the next publish, and the hide-the-site button
+  would have taken the domain down instead of showing the under-review page.
+- `www`, both workers.dev addresses and anything else are 301'd to the apex by
+  `canonicalRedirect()` in `cloudflare/src/worker.js`, tested in
+  `under-review/test/canonical.test.mjs`. Certificate covers apex and www (Google Trust
+  Services, issued 2026-11-08, valid to 2027-02-06).
+- **`run_worker_first` order matters:** `["!/assets/*", "/*"]` works; `["/*", "!/assets/*"]`
+  silently stops the Worker running at all and every dynamic route 404s from the asset server
+  with nothing logged. Found by testing both.
+- `wrangler dev` answers on 127.0.0.1 whatever `Host` you send, so the redirect cannot be
+  tested through the local server — hence the pure function and its tests.
 
 ## What actually happened
 
