@@ -16,13 +16,18 @@ const CACHE_SECONDS = 600;
 // workers.dev address, any future preview name - is sent to the matching path here, so a link
 // anyone has already shared keeps working and search engines index one site, not three.
 // Localhost is exempt so `wrangler dev` still works.
-export const CANONICAL_HOST = 'theplatbook.com';
+// Not exported: the Workers runtime refuses any named export from the entrypoint that is not
+// a function or a handler, and 'wrangler dev' will not start if this is one. Tests read it
+// through canonicalHost().
+const CANONICAL_HOST = 'theplatbook.com';
 const LOCAL = /^(localhost|127\.0\.0\.1|\[::1\]|0\.0\.0\.0)$/i;
 
 // Returns where this request should be sent instead, or null if it is already in the right
 // place. Exported and kept pure because `wrangler dev` answers on 127.0.0.1 whatever Host
 // header you send, so this rule cannot be exercised locally through the server - only by
 // calling it directly. See under-review/test/canonical.test.mjs.
+export const canonicalHost = () => CANONICAL_HOST;
+
 export function canonicalRedirect(urlString) {
   const url = new URL(urlString);
   if (url.hostname === CANONICAL_HOST || LOCAL.test(url.hostname)) return null;
@@ -33,8 +38,67 @@ export function canonicalRedirect(urlString) {
   return to.toString();
 }
 
+// ---------------------------------------------------------------------------------------
+// Counting arrivals from a tagged link, e.g. https://theplatbook.com/?from=reddit
+//
+// What is stored: a day, a source and a number. That is the whole table. No IP address, no
+// user agent, no cookie, no path, no time of day - nothing that could point at a person, so
+// there is nothing to leak and nothing to ask consent for.
+//
+// The page is served exactly as it would be without the tag: same bytes, same headers, same
+// canonical link (which is baked into the HTML at build time and never carries the tag). The
+// count is written after the response has gone, through ctx.waitUntil, and every error is
+// swallowed - a counter must never make a page slow or make it fail.
+// ---------------------------------------------------------------------------------------
+
+// Letters, numbers and dashes, up to 30. Anything else is ignored: the page still loads, it
+// is simply not counted. This is also what keeps the value safe to put in the database.
+const SOURCE_OK = /^[A-Za-z0-9-]{1,30}$/;
+
+// Robots. "bot" alone would catch Slackbot, Discordbot and redditbot, but they are named so
+// that this list reads as what it is to anyone who opens the file later. Reddit fetches a
+// link preview the moment a post goes up; that must not look like a visitor.
+const ROBOT = /bot|crawl|spider|preview|facebookexternalhit|slackbot|discordbot|redditbot/i;
+
+// The day in Mountain time, as YYYY-MM-DD. Mountain time, not UTC, so a click at 7pm in
+// Montana is counted on the day it happened; en-CA gives the date in that order already, and
+// the time zone database handles the switch to and from daylight saving.
+const mountainDay = (at = new Date()) => new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'America/Denver', year: 'numeric', month: '2-digit', day: '2-digit',
+}).format(at);
+
+// The table is created from here because this machine cannot reach the database directly.
+// It is attempted once per isolate, not once per request.
+let tableReady = false;
+
+/** The source to count for this request, or '' for anything that must not be counted. */
+export function countableSource(request, url) {
+  if (request.method !== 'GET') return '';
+  const source = url.searchParams.get('from');
+  if (!source || !SOURCE_OK.test(source)) return '';
+  const ua = request.headers.get('user-agent') || '';
+  // No user agent at all is not a browser, so it is not a visitor either.
+  if (!ua || ROBOT.test(ua)) return '';
+  return source;
+}
+
+async function countClick(env, source, day = mountainDay()) {
+  if (!env.DB) return;
+  const statements = [];
+  if (!tableReady) {
+    statements.push(env.DB.prepare(
+      'CREATE TABLE IF NOT EXISTS ref_clicks (day TEXT NOT NULL, source TEXT NOT NULL, clicks INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (day, source))'
+    ));
+  }
+  statements.push(env.DB.prepare(
+    'INSERT INTO ref_clicks (day, source, clicks) VALUES (?1, ?2, 1) ON CONFLICT (day, source) DO UPDATE SET clicks = clicks + 1'
+  ).bind(day, source));
+  await env.DB.batch(statements);
+  tableReady = true;
+}
+
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const p = url.pathname;
     const moved = canonicalRedirect(request.url);
@@ -60,7 +124,20 @@ export default {
       // Everything else is a static page. The Worker now sees these requests (it has to, to catch
       // the wrong hostname above), so it must hand them to the assets itself; `not_found_handling`
       // in wrangler.jsonc still serves 404.html with a 404 for anything that does not exist.
-      return await env.ASSETS.fetch(request);
+      const page = await env.ASSETS.fetch(request);
+      const source = countableSource(request, url);
+      if (!source) return page;
+      // After this point nothing may throw: the page is already built and has to go out.
+      try {
+        const write = countClick(env, source).catch((err) => console.error('ref_clicks', err && err.message));
+        if (ctx && ctx.waitUntil) ctx.waitUntil(write);
+        const counted = new Response(page.body, page);
+        counted.headers.set('x-platbook-counted', 'yes');
+        return counted;
+      } catch (err) {
+        console.error('ref_clicks', err && err.message);
+        return page;
+      }
     } catch (err) {
       console.error('worker error', err && err.message);
       return json({ error: 'Something went wrong. Please try again.' }, 500);

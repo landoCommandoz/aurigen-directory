@@ -24,6 +24,19 @@ const RETIRED = /^https?:\/\/(aurigen|platbook)\.landonbrewington12\.workers\.de
 const PASSED = (process.env.SITE_URL || '').trim().replace(/\/+$/, '');
 if (PASSED && RETIRED.test(PASSED)) console.warn(`build-site: ignoring SITE_URL=${PASSED} (that address redirects here); using https://theplatbook.com.`);
 const SITE_URL = PASSED && !RETIRED.test(PASSED) ? PASSED : 'https://theplatbook.com';
+// Cloudflare Web Analytics. Automatic injection does not reach pages served by a Worker, so
+// the beacon is put in here instead. data/beacon.json holds the public site token; while it is
+// empty the site loads no third-party script at all, which is the state to be in if the token
+// is ever withdrawn. Nothing in this site sets a Content-Security-Policy, so nothing blocks it.
+const BEACON = (() => {
+  try {
+    const t = String(JSON.parse(fs.readFileSync(path.join(DATA, 'beacon.json'), 'utf8')).token || '').trim();
+    return /^[A-Za-z0-9]{8,64}$/.test(t)
+      ? `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${t}"}'></script>\n`
+      : '';
+  } catch { return ''; }
+})();
+
 const DISCLAIMER = 'Not legal or financial advice. Rules change. Confirm with the county before you bid.';
 
 // States Platbook has not been able to read from an official source. A pending state
@@ -345,7 +358,7 @@ ${body}
   <p class="muted">Map shapes: U.S. Census Bureau cartographic boundaries (via us-atlas).</p>
 </footer>
 <script src="${JS_SRC}" defer></script>
-</body>
+${BEACON}</body>
 </html>`;
 }
 
@@ -564,6 +577,7 @@ const legalPage = () => page({ title: 'Legal disclaimer — Platbook', desc: 'Di
   <p>Tax sale laws, interest rates, redemption periods, auction dates, deposits and platforms change, and they vary by county and by property type. Information here may be incomplete, out of date or wrong. Always read the current statute and confirm every detail with the county office that runs the sale before you register, bid or pay.</p>
   <p>Links to government sites and auction platforms are provided for convenience. We do not control those sites and are not responsible for their content or availability.</p>
   <p>We do not collect or publish personal information about property owners.</p>
+  <p>When a link to this site carries a tag, such as <code>?from=reddit</code>, we add one to a count of visits for that tag. We store only the date, the tag and the number. No cookies, no accounts, no IP addresses, no personal information of any kind.</p>
   <p>Tax sale investing carries real risk, including loss of your money. No result is promised or implied.</p>
   <p>Questions or corrections: see <a href="/about/#report">Report an error</a>.</p>
   <p>Operated by Small Hours (Landon Brewington).</p>

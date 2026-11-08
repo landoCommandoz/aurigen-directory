@@ -6,7 +6,8 @@
 // header is sent, so the rule is tested by calling it directly.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { canonicalRedirect, CANONICAL_HOST } from '../../cloudflare/src/worker.js';
+import { canonicalRedirect, canonicalHost } from '../../cloudflare/src/worker.js';
+const CANONICAL_HOST = canonicalHost();
 
 test('the real address is left alone', () => {
   for (const u of [
