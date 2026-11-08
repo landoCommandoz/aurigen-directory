@@ -1,6 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
+    // "/:path*" does not match the bare root, so without this rule the Vercel home page still
+    // served the old repo index.html, which meta-refreshes to the retired gate.html paywall.
+    { "source": "/", "destination": "https://platbook.landonbrewington12.workers.dev/", "statusCode": 307 },
     { "source": "/state/:code([a-zA-Z]{2})", "destination": "https://platbook.landonbrewington12.workers.dev/state/:code/", "statusCode": 307 },
     { "source": "/state/:code([a-zA-Z]{2})/:rest*", "destination": "https://platbook.landonbrewington12.workers.dev/state/:code/", "statusCode": 307 },
     { "source": "/about", "destination": "https://platbook.landonbrewington12.workers.dev/about/", "statusCode": 307 },
