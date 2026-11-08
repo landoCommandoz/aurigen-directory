@@ -1,9 +1,10 @@
 // Same Worker as wrangler.jsonc, plus the custom domain aurigendirectory.com (and www). Used only after the
 // Cloudflare zone is active: the "Domain attach" workflow deploys with this file and then creates
 // under-review/domain.enabled, after which status-publish.yml and aurigen-site.yml use this file too.
-// workers_dev stays true, so https://aurigen.landonbrewington12.workers.dev keeps working.
+// workers_dev stays true, so https://platbook.landonbrewington12.workers.dev keeps working, and the
+// separate `aurigen` Worker in forward/ keeps answering the old address with a redirect.
 {
-  "name": "aurigen",
+  "name": "platbook",
   "main": "worker.js",
   "compatibility_date": "2026-10-01",
   "workers_dev": true,

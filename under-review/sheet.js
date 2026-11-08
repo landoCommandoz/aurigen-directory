@@ -1,4 +1,4 @@
-// "Aurigen Rules Sheet": a free, source-by-source reading of the audited tax sale rules, served by the live Worker.
+// "Platbook Rules Sheet": a free, source-by-source reading of the audited tax sale rules, served by the live Worker.
 // Free in exchange for an email address: the Polar checkout is $0, takes the email and sends the key.
 // /rules-sheet/            the page: what it is, a free sample, the key form (no JavaScript needed)
 // /rules-sheet/unlock      POST key=...  checks the key with Polar, then shows every state
@@ -19,33 +19,34 @@ const safeUrl = (u) => (/^https?:\/\/[^\s"'<>]+$/.test(String(u)) ? String(u) : 
 const STATUS_LABEL = { 'checked': 'Checked', 'checked with gaps': 'Checked with gaps' };
 
 const CSS = `
-:root{--bg:#f4f1ea;--ink:#1d232b;--muted:#4a525c;--line:#cdc6b8;--card:#fbf9f4;--accent:#1d4a6b}
+/* Platbook: the same cyanotype ink on warm paper as the site. One set of tokens. */
+:root{--bg:#f3ebdc;--ink:#10222f;--muted:#4a5863;--line:#cbb99c;--card:#fbf6ec;--accent:#0b3550;--well:#ece1cd;--mono:'Space Mono','Consolas','Courier New',monospace}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink)}
-body{font:clamp(16px,2.4vw,18px)/1.55 Georgia,"Times New Roman",serif}
+body{font:clamp(16px,2.4vw,18px)/1.6 'Public Sans','Segoe UI','Helvetica Neue',sans-serif}
 main{max-width:46rem;margin:0 auto;padding:6vh 16px 2rem}
-h1{font-size:clamp(1.5rem,5vw,2rem);font-weight:normal;line-height:1.2;margin:0 0 .75rem}
-h2{font-size:1.2rem;font-weight:normal;margin:2.2rem 0 .6rem;border-top:1px solid var(--line);padding-top:1.2rem}
+h1{font-family:'Fraunces','Hoefler Text',Georgia,serif;font-size:clamp(1.5rem,5vw,2rem);font-weight:600;line-height:1.15;margin:0 0 .75rem}
+h2{font-family:'Fraunces','Hoefler Text',Georgia,serif;font-size:1.2rem;font-weight:600;margin:2.2rem 0 .6rem;border-top:1px solid var(--line);padding-top:1.2rem}
 p,li{color:var(--muted)}ul{padding-left:1.2rem}a{color:var(--accent)}
-.price{font-size:1.4rem;color:var(--ink)}.plain{border-left:3px solid var(--ink);padding:.3rem .8rem;margin:1rem 0;background:#efe9dc;color:var(--ink)}
-.btn{display:inline-block;min-height:44px;padding:.65rem 1.1rem;border:1px solid var(--ink);background:var(--ink);color:var(--bg);text-decoration:none;font:inherit;cursor:pointer;border-radius:2px}
+.price{font-size:1.4rem;color:var(--ink)}.plain{border-left:3px solid var(--accent);padding:.3rem .8rem;margin:1rem 0;background:var(--well);color:var(--ink)}
+.btn{display:inline-block;min-height:44px;padding:.65rem 1.1rem;border:1px solid var(--accent);background:var(--accent);color:#f6f1e6;text-decoration:none;font:inherit;cursor:pointer;border-radius:4px}
 .btn.off{background:transparent;color:var(--muted);border-style:dashed;cursor:default}
-input[type=text]{width:100%;min-height:44px;padding:.5rem;font:inherit;border:1px solid var(--ink);background:#fff;color:var(--ink)}
+input[type=text]{width:100%;min-height:44px;padding:.5rem;font:inherit;border:1px solid var(--accent);background:var(--card);color:var(--ink);border-radius:4px}
 label{display:block;margin:.6rem 0 .25rem;color:var(--ink)}
-.chip{display:inline-flex;align-items:center;gap:.35rem;padding:.1rem .55rem;font-size:.85rem;border:2px solid var(--ink);color:var(--ink);background:var(--card)}
+.chip{display:inline-flex;align-items:center;gap:.35rem;padding:.1rem .55rem;font-family:var(--mono);font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;border:2px solid var(--accent);color:var(--accent);background:var(--card)}
 .chip.gaps{border-style:dashed}
 .chip svg{width:.9rem;height:.9rem}
 details.state{border:1px solid var(--line);background:var(--card);margin:.6rem 0}
 details.state>summary .note{display:block}details.state>summary{cursor:pointer;padding:.7rem .8rem;min-height:44px;color:var(--ink);list-style-position:inside}
 .body{padding:0 .8rem .8rem}
-.flags{border-left:3px solid var(--ink);padding:.1rem .8rem;margin:.6rem 0;background:#efe9dc}
+.flags{border-left:3px solid var(--accent);padding:.1rem .8rem;margin:.6rem 0;background:var(--well)}
 .flags.gaps{border-left-style:dashed}
 h3{font-size:1rem;margin:1.2rem 0 .3rem;color:var(--ink)}
 .row{padding:.5rem 0;border-bottom:1px solid var(--line)}
-.row .lab{font-size:.85rem;color:var(--muted);display:block}
+.row .lab{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block}
 .row .val{color:var(--ink)}
 .src{font-size:.82rem;margin:.2rem 0 0;color:var(--muted)}
 .src details{display:inline}.src summary{display:inline-block;min-height:44px;line-height:44px;padding:0 .5rem;cursor:pointer;color:var(--accent);text-decoration:underline}
-.src q{display:block;margin:.3rem 0 0;font-style:italic}
+.src q{display:block;margin:.3rem 0 0;font-family:var(--mono);font-size:.82rem;line-height:1.7;font-style:normal;background:var(--card);border-left:3px solid var(--accent);padding:.5rem .7rem}
 table{border-collapse:collapse;width:100%;font-size:.95rem}td,th{border-bottom:1px solid var(--line);padding:.4rem .3rem;text-align:left;vertical-align:top}
 .note{font-size:.85rem}footer{max-width:46rem;margin:0 auto;padding:1rem 16px 3rem;font-size:.85rem;color:var(--muted)}
 @media(max-width:480px){main{padding-top:3vh}}
@@ -78,13 +79,17 @@ const PLAIN = '<p class="plain"><b>This is information about state rules, not le
 
 function shell(title, inner, { noindex }) {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-${noindex ? '<meta name="robots" content="noindex">' : ''}<title>${esc(title)}</title><style>${CSS}</style></head><body><main>${inner}</main>
+${noindex ? '<meta name="robots" content="noindex">' : ''}<title>${esc(title)}</title><meta name="theme-color" content="#0b3550">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230b3550'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='%23f6f1e6' font-family='monospace' font-weight='700'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Public+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>${CSS}</style></head><body><main>${inner}</main>
 <footer><p>${esc(DISCLAIMER)}</p><p>The sheet is free. Polar runs the $0 checkout that takes your email address and sends your key; nothing is charged, so there is nothing to refund. Questions: email <a href="mailto:landonbrewington12+smallhours@gmail.com">landonbrewington12+smallhours@gmail.com</a> or open an issue at <a href="https://github.com/landoCommandoz/aurigen-directory/issues" rel="noopener">github.com/landoCommandoz/aurigen-directory</a>.</p><p><a href="/status.json">Status</a></p></footer></body></html>`;
 }
 
 function intro() {
   const n = SHEET.stateCount;
-  return `<h1>Aurigen Rules Sheet</h1>
+  return `<h1>Platbook Rules Sheet</h1>
 <p>How tax sales work in ${n} states, side by side, and for every line, the statute, the official link, the date it was checked and the exact words it rests on.</p>`;
 }
 
@@ -124,7 +129,7 @@ ${state && state.error ? `<p role="alert"><b>${esc(state.error)}</b></p>` : ''}
 <h2>The ${SHEET.stateCount} states</h2>
 <table><tr><th>State</th><th>Audit flag</th><th>Rows</th></tr>${SHEET.states.map((s) => `<tr><td>${esc(s.name)}</td><td>${chip(s.status)}</td><td>${s.rows}</td></tr>`).join('')}</table>
 <p class="note">Sheet built ${esc(SHEET.built)}. States not listed are not in this sheet yet.</p>`;
-  return shell('Aurigen Rules Sheet', inner, { noindex: !listing.listed });
+  return shell('Platbook Rules Sheet', inner, { noindex: !listing.listed });
 }
 
 function full(key) {
@@ -132,7 +137,7 @@ function full(key) {
 <form method="post" action="${PATH}sheet.csv"><input type="hidden" name="key" value="${esc(key)}"><button class="btn" type="submit">Download the CSV</button></form>
 <h2>The ${SHEET.stateCount} states</h2>
 ${SHEET.states.map((s) => stateHtml(s)).join('')}`;
-  return shell('Aurigen Rules Sheet (full)', inner, { noindex: true });
+  return shell('Platbook Rules Sheet (full)', inner, { noindex: true });
 }
 
 export const csvCell = (v) => {
@@ -157,7 +162,7 @@ export async function checkKey(key, env = {}, fetchFn = fetch, cfg = CONFIG) {
   try {
     res = await fetchFn(env.POLAR_VALIDATE_URL || POLAR_VALIDATE, {
       method: 'POST',
-      headers: { 'content-type': 'application/json', 'user-agent': 'AurigenRulesSheet/1.0' },
+      headers: { 'content-type': 'application/json', 'user-agent': 'PlatbookRulesSheet/1.0' },
       body: JSON.stringify({ key, organization_id: cfg.orgId, benefit_id: cfg.benefitId }),
     });
   } catch { return 'unavailable'; }

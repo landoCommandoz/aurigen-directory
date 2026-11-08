@@ -24,7 +24,7 @@ const m = text.match(/Updated:\s*([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9:]{5} UTC)/);
 // rev: an opaque fingerprint of everything the Worker bundles, so a redeploy is skipped only when nothing changed.
 const h = crypto.createHash('sha256');
 for (const f of ['sheet.json', 'sheet-config.json', 'sheet-listing.json', 'worker.js', 'sheet.js']) { try { h.update(fs.readFileSync(path.join(here, f))); } catch { /* file not there */ } }
-const doc = { site: 'aurigen', updated: m ? m[1].trim() : new Date().toISOString(), rev: h.digest('hex').slice(0, 10), lines, source: 'STATUS.md in the aurigen-directory repo' };
+const doc = { site: 'platbook', updated: m ? m[1].trim() : new Date().toISOString(), rev: h.digest('hex').slice(0, 10), lines, source: 'STATUS.md in the aurigen-directory repo' };
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, JSON.stringify(doc, null, 1) + '\n');
 console.log(`wrote ${out} (${lines.length} lines)`);

@@ -1,4 +1,4 @@
-// Aurigen site build: turns data/*.json into static pages in public/.
+// Platbook site build: turns data/*.json into static pages in public/.
 // Maps are pre-rendered SVG from the Census-based us-atlas TopoJSON (build-time only).
 import fs from 'node:fs';
 import path from 'node:path';
@@ -13,10 +13,10 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const BASE = path.resolve(here, '..');
 const DATA = path.join(BASE, 'data');
 const PUB = path.join(BASE, 'public');
-const SITE_URL = process.env.SITE_URL || 'https://aurigen.landonbrewington12.workers.dev';
+const SITE_URL = process.env.SITE_URL || 'https://platbook.landonbrewington12.workers.dev';
 const DISCLAIMER = 'Not legal or financial advice. Rules change. Confirm with the county before you bid.';
 
-// States Aurigen has not been able to read from an official source. A pending state
+// States Platbook has not been able to read from an official source. A pending state
 // asserts nothing: see cloudflare/data/law/pending.json. Nothing below may state its law.
 const PENDING = (() => {
   const p = path.join(DATA, 'law', 'pending.json');
@@ -273,18 +273,18 @@ function page({ title, desc, canonical, body, extraHead = '' }) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#0d0d0d">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d0d0d'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23d4af37' font-family='sans-serif' font-weight='700'%3EA%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0b3550">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230b3550'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='%23f6f1e6' font-family='monospace' font-weight='700'%3EP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${CSS_HREF}">
 ${extraHead}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
-  <a class="brand" href="/"><span class="brand-mark">A</span><span>Aurigen <em>County Resource Directory</em></span></a>
+  <a class="brand" href="/"><span class="brand-mark">P</span><span>Platbook <em>County Resource Directory</em></span></a>
   <nav><a href="/">States</a><a href="/about/">About</a><a href="/legal/">Legal</a></nav>
 </header>
 <main id="main">
@@ -315,7 +315,7 @@ function homePage() {
     <span class="card-foot">${s.counties.length} ${s.code === 'CT' ? 'towns' : s.code === 'LA' ? 'parishes' : 'records'}</span>
   </a></li>` : `<li class="card" data-type="${s.type}" data-name="${esc(s.name.toLowerCase())} ${s.code.toLowerCase()}">
   <a href="/state/${s.code.toLowerCase()}/">
-    <span class="card-top"><span class="code">${s.code}</span><span class="pill t-${s.type}">${esc(s.typeLabel)}</span></span>
+    <span class="card-top"><span class="code">${s.code}</span><span class="pill t-${s.type}" title="${esc(s.typeLabel)}">${esc(typeName(s.type))}</span></span>
     <span class="card-name">${esc(s.name)}</span>
     <span class="card-facts"><span><b>Rate</b> ${esc(s.rate)}</span><span><b>Redemption</b> ${esc(s.redemption)}</span></span>
     <span class="card-foot">${s.counties.length} ${s.code === 'CT' ? 'towns' : s.code === 'LA' ? 'parishes' : 'records'}${s.fresh.status !== 'unconfirmed' ? ' · checked ' + esc(s.fresh.lastChecked || '') : ''}</span>
@@ -338,7 +338,7 @@ function homePage() {
     <ul class="cards" id="cards">${cards}</ul>
   </div>
 </section>`;
-  return page({ title: 'Aurigen County Resource Directory — free tax lien & deed rules for all 50 states', desc: 'Free directory of tax lien and tax deed rules for every U.S. state and county: sale type, redemption period, interest rates and auction platforms.', canonical: '/', body });
+  return page({ title: 'Platbook — free tax lien & deed rules for all 50 states, county by county', desc: 'Free directory of tax lien and tax deed rules for every U.S. state and county: sale type, redemption period, interest rates and auction platforms.', canonical: '/', body });
 }
 
 // ---------- state ----------
@@ -350,7 +350,7 @@ function statePage(st) {
   const f = st.fresh;
   const PEND = pendingOf(st.code);
   const PENDING_PANEL = (p) => `<div class="pending" role="note">
-  <p><b>${PENDING_LABEL}.</b> Aurigen has not been able to read ${esc(st.name)}'s official source yet, so <b>nothing on this page states ${esc(st.name)} law</b>. The county offices, platforms and links below are still accurate; the legal detail is deliberately blank rather than guessed.</p>
+  <p><b>${PENDING_LABEL}.</b> Platbook has not been able to read ${esc(st.name)}'s official source yet, so <b>nothing on this page states ${esc(st.name)} law</b>. The county offices, platforms and links below are still accurate; the legal detail is deliberately blank rather than guessed.</p>
   <p class="muted">Statute: ${p.url ? link(p.url, p.statute || 'Statute') : esc(p.statute || '—')}${p.govUrl && p.govUrl !== p.url ? ` · ${link(p.govUrl, 'state page designating it')}` : ''} · last attempt ${esc(String(p.lastAttempt || '').slice(0, 10))}</p>
 </div>`;
   const freshLine = PEND ? PENDING_PANEL(PEND) : f.status === 'audited'
@@ -398,7 +398,7 @@ function statePage(st) {
 
   const sources = [];
   if (PEND) {
-    if (PEND.url) sources.push(link(PEND.url, `${PEND.statute || 'Statute'} — ${PEND.urlTitle || 'official'}`) + ` (not yet read by Aurigen)`);
+    if (PEND.url) sources.push(link(PEND.url, `${PEND.statute || 'Statute'} — ${PEND.urlTitle || 'official'}`) + ` (not yet read by Platbook)`);
     if (PEND.govUrl && PEND.govUrl !== PEND.url) sources.push(link(PEND.govUrl, 'State page designating that copy as official'));
   } else if (L) sources.push(...ledgerSources(L));
   else if (st.officialLink) sources.push(link(st.officialLink, `${st.statute || 'State statute'} (official)`));
@@ -467,19 +467,19 @@ ${st.rules ? `<section class="prose rules"><h2>Detailed state rules</h2>${render
 </div>
 <script type="application/json" id="countyData">${countyJson}</script>`;
   const title = PEND
-    ? `${st.name} tax sale rules by county — verification pending — Aurigen`
-    : `${st.name} tax ${st.type === 'lien' ? 'lien' : st.type === 'hybrid' ? 'lien & deed' : 'deed'} rules by county — Aurigen`;
+    ? `${st.name} tax sale rules by county — verification pending — Platbook`
+    : `${st.name} tax ${st.type === 'lien' ? 'lien' : st.type === 'hybrid' ? 'lien & deed' : 'deed'} rules by county — Platbook`;
   const desc = PEND
-    ? `${st.name}: Aurigen has not yet read the official source, so no legal detail is stated. ${st.counties.length} ${countyLabel.toLowerCase()} with offices, platforms and official links.`
+    ? `${st.name}: Platbook has not yet read the official source, so no legal detail is stated. ${st.counties.length} ${countyLabel.toLowerCase()} with offices, platforms and official links.`
     : `${st.name}: ${st.typeLabel}. Interest/penalty ${firstSentence(st.rate)} Redemption ${firstSentence(st.redemption)} ${st.counties.length} ${countyLabel.toLowerCase()} with auction platforms.`;
   return page({ title, desc, canonical: `/state/${st.code.toLowerCase()}/`, body });
 }
 
 // ---------- simple pages ----------
-const aboutPage = () => page({ title: 'About — Aurigen County Resource Directory', desc: 'What the Aurigen directory is, where the data comes from, and how to report an error.', canonical: '/about/', body: `
+const aboutPage = () => page({ title: 'About — Platbook', desc: 'What Platbook is, where the data comes from, and how to report an error.', canonical: '/about/', body: `
 <section class="prose narrow">
   <h1>About this directory</h1>
-  <p>The Aurigen County Resource Directory is a free reference for people researching tax lien and tax deed sales in the United States. It covers all 50 states and Washington, DC, with ${states.reduce((n, s) => n + s.counties.length, 0).toLocaleString('en-US')} county, parish, borough and town records.</p>
+  <p>Platbook is a free reference for people researching tax lien and tax deed sales in the United States. It covers all 50 states and Washington, DC, with ${states.reduce((n, s) => n + s.counties.length, 0).toLocaleString('en-US')} county, parish, borough and town records.</p>
   <p>Everything here is free. There is no sign-up and nothing is locked.</p>
   <h2>Where the data comes from</h2>
   <ul>
@@ -494,11 +494,11 @@ const aboutPage = () => page({ title: 'About — Aurigen County Resource Directo
   <p>Spotted something wrong or out of date? Open an issue at <a href="https://github.com/landoCommandoz/aurigen-directory/issues" rel="noopener">github.com/landoCommandoz/aurigen-directory/issues</a> with the state, county, what is wrong, and a link to the official source.</p>
 </section>` });
 
-const legalPage = () => page({ title: 'Legal disclaimer — Aurigen County Resource Directory', desc: 'Disclaimer for the Aurigen County Resource Directory.', canonical: '/legal/', body: `
+const legalPage = () => page({ title: 'Legal disclaimer — Platbook', desc: 'Disclaimer for Platbook, the county resource directory.', canonical: '/legal/', body: `
 <section class="prose narrow">
   <h1>Legal disclaimer</h1>
   <p class="disclaimer-line">${DISCLAIMER}</p>
-  <p>The Aurigen County Resource Directory is provided for general information only. It is not legal, tax, investment or financial advice, and using it does not create any professional relationship.</p>
+  <p>Platbook is provided for general information only. It is not legal, tax, investment or financial advice, and using it does not create any professional relationship.</p>
   <p>Tax sale laws, interest rates, redemption periods, auction dates, deposits and platforms change, and they vary by county and by property type. Information here may be incomplete, out of date or wrong. Always read the current statute and confirm every detail with the county office that runs the sale before you register, bid or pay.</p>
   <p>Links to government sites and auction platforms are provided for convenience. We do not control those sites and are not responsible for their content or availability.</p>
   <p>We do not collect or publish personal information about property owners.</p>
@@ -507,7 +507,7 @@ const legalPage = () => page({ title: 'Legal disclaimer — Aurigen County Resou
   <p>Operated by Small Hours (Landon Brewington).</p>
 </section>` });
 
-const notFound = () => page({ title: 'Page not found — Aurigen', desc: 'Page not found.', canonical: '/404', body: `
+const notFound = () => page({ title: 'Page not found — Platbook', desc: 'Page not found.', canonical: '/404', body: `
 <section class="prose narrow center">
   <p class="eyebrow">404</p>
   <h1>Page not found</h1>
@@ -535,7 +535,7 @@ write('assets/search.json', JSON.stringify({
 const extrasPath = path.join(BASE, 'src', 'extras.html');
 if (fs.existsSync(extrasPath)) {
   const inner = fs.readFileSync(extrasPath, 'utf8');
-  write('extras/index.html', page({ title: 'Extras — Aurigen', desc: 'Optional paid extras for the Aurigen directory.', canonical: '/extras/', body: inner, extraHead: '<meta name="robots" content="noindex">' }));
+  write('extras/index.html', page({ title: 'Extras — Platbook', desc: 'Optional paid extras for the Platbook directory.', canonical: '/extras/', body: inner, extraHead: '<meta name="robots" content="noindex">' }));
 }
 fs.writeFileSync(path.join(DATA, 'unmatched.json'), JSON.stringify(unmatchedAll, null, 1));
 const nUn = Object.values(unmatchedAll).reduce((n, a) => n + a.length, 0);
@@ -585,13 +585,13 @@ sales.sort((a, b) => a.d.localeCompare(b.d) || a.s.localeCompare(b.s));
 write('extras/files/sales.json', JSON.stringify(sales));
 const csvCell = (v) => { const s = Array.isArray(v) ? v.join(' | ') : String(v ?? ''); return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
 const csv = (rows) => '﻿' + rows.map((r) => r.map(csvCell).join(',')).join('\r\n') + '\r\n';
-write('extras/files/aurigen-counties.csv', csv([
+write('extras/files/platbook-counties.csv', csv([
   ['state', 'state_name', 'county_or_town', 'kind', 'sale_type', 'redemption', 'interest_or_penalty', 'auction_platform', 'official_link', 'sale_timing', 'notes', 'research_dated'],
   ...states.flatMap((st) => st.counties.map((c) => [st.code, st.name, c.name, c.kind,
     ...(isPending(st.code) ? [PENDING_LABEL, PENDING_LABEL, PENDING_LABEL] : [typeName(c.saleType), c.redemption, c.rate]), c.platform, isUrl(c.url) ? c.url : '',
     Object.entries(c.extra).filter(([k, v]) => /date|sale(month|window|frequency)/i.test(k) && typeof v === 'string').map(([, v]) => v).join(' | '), c.notes, c.verifiedDate])),
 ]));
-write('extras/files/aurigen-states.csv', csv([
+write('extras/files/platbook-states.csv', csv([
   ['state', 'state_name', 'sale_type', 'interest_or_penalty', 'redemption', 'bid_method', 'statute', 'statute_link', 'auction_timing', 'otc_available', 'last_checked', 'check_status', 'check_source'],
   ...states.map((s) => {
     const p = pendingOf(s.code);

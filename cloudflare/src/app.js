@@ -1,4 +1,4 @@
-// Aurigen client script: search, filters, county drawer, language toggle, debug panel.
+// Platbook client script: search, filters, county drawer, language toggle, debug panel.
 (function () {
   'use strict';
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -55,15 +55,17 @@
     q.addEventListener('keydown', function (e) { if (e.key === 'Escape') { q.value = ''; runSearch(); } });
   }
 
-  // ----- state: language toggle (persisted under aurigen_lang) -----
+  // ----- state: language toggle -----
+  // Stored under platbook_lang. The old aurigen_lang is still read once, so a visitor who
+  // chose Spanish before the rename is not dropped back into English.
   function setLang(l) {
     document.documentElement.classList.toggle('lang-es', l === 'es');
     $$('[data-setlang]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-setlang') === l); });
-    store.set('aurigen_lang', l);
+    store.set('platbook_lang', l);
   }
   if ($('[data-setlang]')) {
     $$('[data-setlang]').forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-setlang')); }); });
-    if (store.get('aurigen_lang') === 'es') setLang('es');
+    if ((store.get('platbook_lang') || store.get('aurigen_lang')) === 'es') setLang('es');
   }
 
   // ----- state: counties -----

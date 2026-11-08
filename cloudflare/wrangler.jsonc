@@ -1,8 +1,8 @@
-// Aurigen on the Cloudflare Workers FREE plan. Static assets are free and don't count
+// Platbook on the Cloudflare Workers FREE plan. Static assets are free and don't count
 // toward the Worker request limit; the script only runs for /extras* and /api/*.
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "aurigen",
+  "name": "platbook",
   "main": "src/worker.js",
   "compatibility_date": "2026-10-01",
   "workers_dev": true,

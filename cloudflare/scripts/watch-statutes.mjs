@@ -14,7 +14,7 @@ import { sha256, htmlToText, normalizeText, quoteFound } from '../../foundry/too
 import { LAW } from './law-pieces.mjs';
 import { extraCurlArgs } from '../../foundry/tools/cert-chain.mjs';
 
-const UA = 'AurigenLawAudit/1.0 (+https://aurigen.landonbrewington12.workers.dev)';
+const UA = 'AurigenLawAudit/1.0 (+https://platbook.landonbrewington12.workers.dev)';
 const args = process.argv.slice(2);
 const outPath = args.includes('--out') ? args[args.indexOf('--out') + 1] : null;
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'statute-watch-'));

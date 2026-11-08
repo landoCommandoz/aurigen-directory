@@ -12,7 +12,7 @@ Sources: state legislature code sites and enacted acts, state revenue and land o
 
 Limits, up front: 7 states are marked "checked"; 37 are "checked with gaps" and the gaps are listed on each state; 7 states are not in yet. Lines I could not confirm from an official source are left out. It is not legal advice, not a property list and not county by county. Confirm dates and rules with the county before you bid.
 
-Sample and details: https://aurigen.landonbrewington12.workers.dev/rules-sheet/
+Sample and details: https://platbook.landonbrewington12.workers.dev/rules-sheet/
 What was checked, state by state: https://aurigen-showcase.landonbrewington12.workers.dev
 
 If a line is wrong, tell me which one and I will check it against the source.
