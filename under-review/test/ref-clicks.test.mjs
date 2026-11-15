@@ -124,3 +124,95 @@ test('the day used is the Mountain day, not the UTC day', () => {
   // and the same instant in UTC is the next day, which is the bug this avoids
   assert.equal(new Date('2026-11-09T04:30:00Z').toISOString().slice(0, 10), '2026-11-09');
 });
+
+// ---------------------------------------------------------------------------------------
+// The whole way through fetch(), not just the rule. Added 2026-11-14.
+//
+// Everything above tests countableSource() on its own, which is the rule for whether a visit
+// counts. None of it proved that the counting actually RUNS, and it did not run on the one page
+// Lando asked to be able to see: the Rules Sheet is drawn by handleSheet() and returned before
+// the static-page branch that held the counting, so /rules-sheet/?from=nav loaded perfectly and
+// was counted nowhere. These tests drive the real worker with a stand-in database so that the
+// route is covered rather than assumed.
+// ---------------------------------------------------------------------------------------
+import worker from '../../cloudflare/src/worker.js';
+
+function harness() {
+  const writes = [];
+  const DB = {
+    prepare(sql) {
+      return {
+        bind: (...args) => ({ run: async () => { writes.push({ sql, args }); } }),
+        run: async () => { writes.push({ sql, args: [] }); },
+      };
+    },
+  };
+  const ASSETS = { fetch: async () => new Response('<html><body>page</body></html>', { headers: { 'content-type': 'text/html; charset=utf-8' } }) };
+  const waiting = [];
+  const ctx = { waitUntil: (p) => waiting.push(p) };
+  const env = { DB, ASSETS, POLAR_ORG_ID: 'org' };
+  return {
+    writes,
+    settle: () => Promise.all(waiting),
+    go: (path, ua = BROWSER) => worker.fetch(
+      new Request('https://theplatbook.com' + path, { headers: ua ? { 'user-agent': ua } : {} }),
+      env, ctx,
+    ),
+  };
+}
+
+// Only the INSERT carries the source; the CREATE TABLE runs once per isolate.
+const counted = (writes) => writes.filter((w) => /INSERT INTO ref_clicks/.test(w.sql)).map((w) => w.args[1]);
+
+test('a tagged arrival on the Rules Sheet is counted', async () => {
+  const h = harness();
+  const res = await h.go('/rules-sheet/?from=nav');
+  await h.settle();
+  assert.equal(res.status, 200);
+  assert.equal(res.headers.get('x-platbook-counted'), 'yes');
+  assert.deepEqual(counted(h.writes), ['nav']);
+});
+
+test('each link to the sheet is counted under its own tag', async () => {
+  for (const from of ['nav', 'home', 'about']) {
+    const h = harness();
+    await h.go(`/rules-sheet/?from=${from}`);
+    await h.settle();
+    assert.deepEqual(counted(h.writes), [from]);
+  }
+});
+
+test('the sheet still serves its own page, and its policy, while being counted', async () => {
+  const h = harness();
+  const res = await h.go('/rules-sheet/?from=home');
+  await h.settle();
+  const body = await res.text();
+  assert.match(res.headers.get('content-security-policy'), /default-src 'none'/);
+  assert.match(body, /Platbook Rules Sheet/);
+  assert.match(body, /<link rel="canonical" href="https:\/\/theplatbook\.com\/rules-sheet\/">/);
+});
+
+test('an untagged visit to the sheet is not counted and is not marked', async () => {
+  const h = harness();
+  const res = await h.go('/rules-sheet/');
+  await h.settle();
+  assert.equal(res.headers.get('x-platbook-counted'), null);
+  assert.deepEqual(counted(h.writes), []);
+});
+
+test('a robot following a tagged link to the sheet is not counted', async () => {
+  const h = harness();
+  const res = await h.go('/rules-sheet/?from=nav', 'redditbot/1.0');
+  await h.settle();
+  assert.equal(res.headers.get('x-platbook-counted'), null);
+  assert.deepEqual(counted(h.writes), []);
+});
+
+test('the static pages are still counted after the counting moved into one function', async () => {
+  const h = harness();
+  const res = await h.go('/?from=home');
+  await h.settle();
+  assert.equal(res.headers.get('x-platbook-counted'), 'yes');
+  assert.deepEqual(counted(h.writes), ['home']);
+  assert.match(await res.text(), /page/);
+});

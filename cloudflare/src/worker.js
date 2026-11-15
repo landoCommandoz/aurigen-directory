@@ -135,6 +135,34 @@ export function countableSource(request, url) {
   return source;
 }
 
+/**
+ * Count a tagged arrival, then hand the response back marked.
+ *
+ * Added 2026-11-14. Until then the counting lived inline in the static-page branch at the end
+ * of fetch(), and the Rules Sheet is NOT a static page: it is drawn by handleSheet() and
+ * returned before that branch is ever reached. So /rules-sheet/?from=nav loaded perfectly and
+ * was never counted, which is exactly the thing Lando asked to be able to see. Pulling it into
+ * one function means both routes count the same way, by the same rule, with one copy of it.
+ *
+ * Nothing in here may throw: the page is already built and has to go out. Every failure path
+ * returns the untouched response and leaves a line in the log.
+ */
+function countIfTagged(res, request, env, ctx, url) {
+  const source = countableSource(request, url);
+  if (!source) return res;
+  try {
+    const write = countClick(env, source).catch((err) => console.error('ref_clicks', err && err.message));
+    if (ctx && ctx.waitUntil) ctx.waitUntil(write);
+    // A copy, because a Response handed back by ASSETS.fetch has immutable headers.
+    const counted = new Response(res.body, res);
+    counted.headers.set('x-platbook-counted', 'yes');
+    return counted;
+  } catch (err) {
+    console.error('ref_clicks', err && err.message);
+    return res;
+  }
+}
+
 async function countClick(env, source, day = mountainDay()) {
   if (!env.DB) return;
   // One statement at a time, on purpose. D1 wraps a batch in a transaction and refuses to
@@ -169,7 +197,7 @@ export default {
     }
     try {
       const sheet = await handleSheet(request, env);
-      if (sheet) return await withBeacon(sheet);
+      if (sheet) return countIfTagged(await withBeacon(sheet), request, env, ctx, url);
       if (p === '/extras' || p.startsWith('/extras/')) return await extras(request, env, url);
       if (p === '/api/license' && request.method === 'POST') return await apiLicense(request, env);
       if (p === '/api/follow' && request.method === 'POST') return await apiFollow(request, env);
@@ -179,19 +207,7 @@ export default {
       // the wrong hostname above), so it must hand them to the assets itself; `not_found_handling`
       // in wrangler.jsonc still serves 404.html with a 404 for anything that does not exist.
       const page = await env.ASSETS.fetch(request);
-      const source = countableSource(request, url);
-      if (!source) return page;
-      // After this point nothing may throw: the page is already built and has to go out.
-      try {
-        const write = countClick(env, source).catch((err) => console.error('ref_clicks', err && err.message));
-        if (ctx && ctx.waitUntil) ctx.waitUntil(write);
-        const counted = new Response(page.body, page);
-        counted.headers.set('x-platbook-counted', 'yes');
-        return counted;
-      } catch (err) {
-        console.error('ref_clicks', err && err.message);
-        return page;
-      }
+      return countIfTagged(page, request, env, ctx, url);
     } catch (err) {
       console.error('worker error', err && err.message);
       return json({ error: 'Something went wrong. Please try again.' }, 500);

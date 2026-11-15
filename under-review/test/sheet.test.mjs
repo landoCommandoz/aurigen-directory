@@ -46,15 +46,43 @@ test('no held text, no banned money words, no em dashes in the sheet text', () =
   assert.ok(!SHEET.states.some((s) => s.code === 'OK'), 'Oklahoma (withheld claims) must not be sold');
 });
 
-test('landing page: unlisted means noindex and no link, and only the free sample is on it', async () => {
+// `listed` is a real, reversible switch that launch/publish.mjs flips, so both of its states are
+// tested by injecting a listing. Until 2026-11-14 this asserted LISTING.listed === false, which
+// meant publishing the sheet broke the suite rather than being covered by it.
+const sheetPage = (listing) => handleSheet(new Request(ORIGIN + '/rules-sheet/'), {}, fetch, CONFIG, listing);
+
+test('landing page while UNLISTED: noindex, and nothing links to it', async () => {
+  const r = await sheetPage({ listed: false });
+  assert.equal(r.status, 200);
+  assert.match(r.headers.get('x-robots-tag'), /noindex/);
+  assert.match(await r.text(), /<meta name="robots" content="noindex">/);
+  assert.equal(homeFooterLink({ listed: false }), '', 'nothing may link to a noindex page');
+});
+
+test('landing page while LISTED: no noindex, and it is linked', async () => {
+  const r = await sheetPage({ listed: true });
+  assert.equal(r.status, 200);
+  assert.equal(r.headers.get('x-robots-tag'), null, 'a listed page must not be told to stay out of search');
+  assert.doesNotMatch(await r.text(), /<meta name="robots"/);
+  assert.match(homeFooterLink({ listed: true }), /rules-sheet/);
+});
+
+test('the canonical address is the apex, with no tag on it', async () => {
+  // Every link to this page carries a ?from= tag, so without this one page would be three as
+  // far as indexing is concerned. It must also not echo the hostname it was asked on, because
+  // www and the workers.dev name are both 301'd to the apex.
+  for (const listed of [true, false]) {
+    const body = await (await sheetPage({ listed })).text();
+    assert.match(body, /<link rel="canonical" href="https:\/\/theplatbook\.com\/rules-sheet\/">/);
+    assert.doesNotMatch(body, /rel="canonical"[^>]*from=/);
+    assert.doesNotMatch(body, /rel="canonical"[^>]*aurigen\.example/);
+  }
+});
+
+test('landing page: only the free sample is on it', async () => {
   const r = await get('/rules-sheet/');
   const body = await r.text();
   assert.equal(r.status, 200);
-  assert.equal(LISTING.listed, false);
-  assert.match(r.headers.get('x-robots-tag'), /noindex/);
-  assert.match(body, /<meta name="robots" content="noindex">/);
-  const home = await (await get('/')).text();
-  assert.doesNotMatch(home, /rules-sheet/i, 'the under-review page must not link to the sheet while unlisted');
   const sample = SHEET.states.filter((s) => s.status === 'checked').slice(0, 2).map((s) => s.name);
   const other = SHEET.states.find((s) => s.status === 'checked with gaps');
   const otherRow = other.groups[0].rows[0].text;

@@ -77,9 +77,22 @@ const DISCLAIMER = 'Not legal or financial advice. Rules change. Confirm with th
 // Two plain lines, shown near the top of the landing page and the full sheet (Lando's wording).
 const PLAIN = '<p class="plain"><b>This is information about state rules, not legal advice.</b><br><b>Confirm dates and rules with the county before you bid.</b></p>';
 
+// The one address this page is indexed under, added 2026-11-14 when the sheet was listed.
+//
+// Hardcoded, not built from the request: this module also answers on www and on the old
+// workers.dev name, and canonicalRedirect() in cloudflare/src/worker.js 301s both of those to
+// the apex. A canonical link that echoed whichever hostname it was asked on would therefore
+// point search engines at a redirect, which tells them the page does not exist where it is
+// served. Keep in step with CANONICAL_HOST in that file.
+//
+// It also drops the ?from= tag on purpose. Every link to this page carries one, and without a
+// canonical, /rules-sheet/?from=nav and ?from=home and ?from=about would be three pages as far
+// as indexing is concerned, splitting one page three ways.
+const CANONICAL = 'https://theplatbook.com' + PATH;
+
 function shell(title, inner, { noindex }) {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-${noindex ? '<meta name="robots" content="noindex">' : ''}<title>${esc(title)}</title><meta name="theme-color" content="#0b3550">
+${noindex ? '<meta name="robots" content="noindex">' : ''}<title>${esc(title)}</title><link rel="canonical" href="${CANONICAL}"><meta name="theme-color" content="#0b3550">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230b3550'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='%23f6f1e6' font-family='monospace' font-weight='700'%3EP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Public+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">

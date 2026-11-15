@@ -328,6 +328,27 @@ function countyMap(st, m) {
   return `<svg class="map county-map" viewBox="0 0 600 460" role="img" aria-label="${esc(st.name)} county map${pend ? '' : ' shaded by sale type'}">${paths}</svg>`;
 }
 
+// ---------- the free Rules Sheet ----------
+// The sheet's own page is drawn by the Worker (under-review/sheet.js), not by this build, so the
+// only two things this file needs are its counts, for the home page block, and whether it is
+// listed yet.
+//
+// EVERY LINK BELOW IS GATED ON `listed`. While the sheet is unlisted it carries noindex and a
+// link from here would point search engines at a page that tells them to go away, which is worse
+// than no link at all. `node launch/publish.mjs --undo` has to genuinely undo the publish, so the
+// nav link, the home block, the about link and the sitemap entry all go when it flips back.
+//
+// THE COUNTS ARE READ, NEVER TYPED. Lando, 2026-11-14: "Use the real counts from the data and
+// don't type a number by hand." sheet.json is built by foundry/tools/build-sheet.mjs out of
+// claims that passed the audit gate, so these numbers change on their own and the page follows.
+const SHEET = JSON.parse(fs.readFileSync(path.join(BASE, '..', 'under-review', 'sheet.json'), 'utf8'));
+const SHEET_LISTED = !!JSON.parse(fs.readFileSync(path.join(BASE, '..', 'under-review', 'sheet-listing.json'), 'utf8')).listed;
+const SHEET_PATH = '/rules-sheet/';
+// Each place the sheet is linked from carries its own tag, so the counter that already exists in
+// src/worker.js records them apart. Lando asked for exactly these three names.
+const sheetHref = (from) => `${SHEET_PATH}?from=${from}`;
+const num = (n) => Number(n).toLocaleString('en-US');
+
 // ---------- layout ----------
 const css = fs.readFileSync(path.join(BASE, 'src', 'site.css'), 'utf8');
 const js = fs.readFileSync(path.join(BASE, 'src', 'app.js'), 'utf8');
@@ -359,7 +380,7 @@ ${extraHead}
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <a class="brand" href="/"><span class="brand-mark">P</span><span>Platbook <em>County Resource Directory</em></span></a>
-  <nav><a href="/">States</a><a href="/about/">About</a><a href="/legal/">Legal</a></nav>
+  <nav><a href="/">States</a><a href="/about/">About</a><a href="/legal/">Legal</a>${SHEET_LISTED ? `<a class="nav-sheet" href="${sheetHref('nav')}"><em>Free&nbsp;</em>Rules Sheet</a>` : ''}</nav>
 </header>
 <main id="main">
 ${body}
@@ -404,7 +425,14 @@ function homePage() {
     <input id="q" type="search" placeholder="Search a state or county…" autocomplete="off" enterkeyhint="search">
     <ul id="results" class="results" hidden></ul>
   </div>
-</section>
+</section>${SHEET_LISTED ? `
+<section class="sheet-band callout" aria-labelledby="sheet-band-h">
+  <p class="eyebrow">Free &middot; nothing is charged</p>
+  <h2 id="sheet-band-h">The audited state rules, in one sheet</h2>
+  <p>${SHEET.stateCount} states side by side, ${num(SHEET.rows)} rows, and every row carries its statute, a link to the official page, the date it was checked and the exact words it rests on. ${SHEET.checked} ${SHEET.checked === 1 ? 'state is' : 'states are'} checked; ${SHEET.withGaps} ${SHEET.withGaps === 1 ? 'is' : 'are'} checked with gaps, and the gaps are named in plain words.</p>
+  <p><a class="btn" href="${sheetHref('home')}">Get the Rules Sheet free</a></p>
+  <p class="muted">Free in exchange for an email address. Everything on this site stays free to read either way.</p>
+</section>` : ''}
 <section class="home-grid">
   <div class="map-wrap">${nationalMap()}${legend}</div>
   <div>
@@ -567,7 +595,8 @@ const aboutPage = () => page({ title: 'About — Platbook', desc: 'What Platbook
 <section class="prose narrow">
   <h1>About this directory</h1>
   <p>Platbook is a free reference for people researching tax lien and tax deed sales in the United States. It covers all 50 states and Washington, DC, with ${states.reduce((n, s) => n + s.counties.length, 0).toLocaleString('en-US')} county, parish, borough and town records.</p>
-  <p>Everything here is free. There is no sign-up and nothing is locked.</p>
+  <p>Everything here is free. There is no sign-up and nothing is locked.</p>${SHEET_LISTED ? `
+  <p>There is also the <a href="${sheetHref('about')}">Rules Sheet</a>: the ${SHEET.stateCount} audited states on one page, ${num(SHEET.rows)} rows, each with its statute, the official link, the date checked and the quote it rests on. It is free in exchange for an email address. Nothing on the pages above moves behind it.</p>` : ''}
   <h2>Where the data comes from</h2>
   <ul>
     <li>State statutes and official state revenue or treasurer pages, linked on each state page.</li>
@@ -613,7 +642,12 @@ write('about/index.html', aboutPage());
 write('legal/index.html', legalPage());
 write('404.html', notFound());
 write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /extras/\nSitemap: ${SITE_URL}/sitemap.xml\n`);
-write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['/', '/about/', '/legal/', ...states.map((s) => `/state/${s.code.toLowerCase()}/`)].map((u) => `<url><loc>${SITE_URL}${u}</loc></url>`).join('')}</urlset>\n`);
+// The sheet is in the sitemap only once it is listed, because until then it answers with
+// noindex and a sitemap entry would be asking to be indexed and refusing in the same breath.
+// It carries no ?from= tag here: a sitemap is for search engines, not a visitor arriving from
+// somewhere, and a tagged address in a sitemap would also split the page in two as far as
+// indexing is concerned.
+write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['/', '/about/', '/legal/', ...(SHEET_LISTED ? [SHEET_PATH] : []), ...states.map((s) => `/state/${s.code.toLowerCase()}/`)].map((u) => `<url><loc>${SITE_URL}${u}</loc></url>`).join('')}</urlset>\n`);
 // Search index: states + counties (name, state, type, slug).
 write('assets/search.json', JSON.stringify({
   s: states.map((s) => [s.code, s.name, s.type]),
