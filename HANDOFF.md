@@ -1,6 +1,16 @@
 # AURIGEN HANDOFF DOCUMENT
 ## Updated after every session. Read before every session.
 
+### SESSION (2026-11-14): THE RULES SHEET IS PUBLISHED AND FINDABLE
+- Main `e684443`, live on https://theplatbook.com via the "Aurigen site" workflow (restore, restore_branch main, confirm). The sheet was already written and already free; what it did not have was a single link anywhere on the site.
+- `under-review/sheet-listing.json` listed=true (via `node launch/publish.mjs`). Four additions in `cloudflare/scripts/build-site.mjs`, every one gated on that flag so `--undo` genuinely unlists: nav link on all 56 pages, front-page band, about-page sentence, sitemap entry. Counts in the band come from `under-review/sheet.json`, not typed.
+- `?from=nav|home|about` on each link, and the D1 `ref_clicks` counter now actually sees them: the /rules-sheet route used to return before the counting code ran. `cloudflare/src/worker.js` has one `countIfTagged()` helper for both branches; it sets `x-platbook-counted: yes` so a count is provable with curl.
+- `under-review/sheet.js`: noindex gone when listed, and a `<link rel="canonical">` added (it never had one). Hardcoded to the apex, tag-free on purpose.
+- Tests: `sheet.test.mjs` had hardcoded listed===false, so publishing broke it; rewritten to inject a listing and cover both states. Six new tests in `ref-clicks.test.mjs` for the counter refactor. Full suite green, `node --check` clean, county-text check clean.
+- Live checks at 375/430/768/1024/1440 over CDP (`Emulation.setDeviceMetricsOverride` - `--window-size` is NOT a CSS viewport and gives false clipping): no overflow, no tap target under 44px.
+- Polar is $0 and the signup works end to end: Lando did it on his phone 2026-11-13, key by email, full sheet opened. Hands-only item 1 closed. `polar/rules-sheet.json` still describes the old $19 product and is left as a record; nothing reads it.
+- Still open: no consent wording for emailing signups later; `ref_clicks` cannot be read from this PC (no Cloudflare token here); the Start Here page (tax lien / tax deed / FAQ) does not exist in any form.
+
 ### LAW AUDIT RUN 3 (2026-10-29, Foundry chain, branch foundry/aurigen-law-audit)
 - Done this run: TX, UT, WI, WV, AR, CO, IA, MA. Total 21 of 51. CT and IL marked blocked (cga.ct.gov and ilga.gov TLS certificate errors from runner; retry or find other official copies). Next: CT, IL, MD, NH, SD, then AZ...
 - Texas statutes: statutes.capitol.texas.gov is a JS app; use https://tcss.legis.texas.gov/resources/TX/htm/TX.<ch>.htm.
