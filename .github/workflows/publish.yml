@@ -44,7 +44,7 @@ jobs:
       - name: Which address does the sheet live at?
         id: base
         run: |
-          if [ -f under-review/domain.enabled ]; then echo "base=https://aurigendirectory.com" >> "$GITHUB_OUTPUT"; else echo "base=https://aurigen.landonbrewington12.workers.dev" >> "$GITHUB_OUTPUT"; fi
+          if [ -f under-review/domain.enabled ]; then echo "base=https://aurigendirectory.com" >> "$GITHUB_OUTPUT"; else echo "base=https://theplatbook.com" >> "$GITHUB_OUTPUT"; fi
       - name: Run the tests
         run: node --test under-review/test/*.test.mjs
       - name: Flip the listing

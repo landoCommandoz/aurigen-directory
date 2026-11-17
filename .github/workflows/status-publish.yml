@@ -26,7 +26,7 @@ concurrency:
 
 env:
   CLOUDFLARE_ACCOUNT_ID: 8b3ad3f477589843fe0d802015b25dea
-  SITE_URL: https://aurigen.landonbrewington12.workers.dev
+  SITE_URL: https://theplatbook.com
 
 jobs:
   publish:

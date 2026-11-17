@@ -17,8 +17,12 @@ const PUB = path.join(BASE, 'public');
 // The canonical address, the sitemap and the link previews are all built from this.
 // Both workers.dev addresses are permanent 301s to theplatbook.com now, so neither can ever be
 // the canonical one: a canonical link pointing at a redirect tells search engines the page does
-// not exist where it is served. The deploy workflow still passes an old address in SITE_URL and
-// this machine has no permission to edit workflow files, so those hosts are refused here instead.
+// not exist where it is served. UPDATED 2026-11-17: the deploy workflow now
+// passes https://theplatbook.com, because the permission to edit those files was turned on today
+// and the stale address was corrected at its source. This guard STAYS anyway, deliberately: it
+// costs nothing and it is the only thing between a reverted or mistyped SITE_URL and a canonical
+// link pointing at a redirect. One dead workflow, domain-attach.yml, still names the old address
+// on purpose, because it was written for the retired holding-page world and is not used.
 // Any other SITE_URL is obeyed, so a staging address or a future domain needs no change here.
 const RETIRED = /^https?:\/\/(aurigen|platbook)\.landonbrewington12\.workers\.dev\/?$/i;
 const PASSED = (process.env.SITE_URL || '').trim().replace(/\/+$/, '');

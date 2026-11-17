@@ -33,7 +33,12 @@ concurrency:
 
 env:
   CLOUDFLARE_ACCOUNT_ID: 8b3ad3f477589843fe0d802015b25dea
-  SITE_URL: https://aurigen.landonbrewington12.workers.dev
+  # CHANGED 2026-11-17 from https://aurigen.landonbrewington12.workers.dev, which has been a
+  # permanent redirect to this address since 2026-11-08. Every run of this workflow ended
+  # red on its final "Check the live address" step because that step curled the old host and
+  # got a 301 rather than a 200, while the deploy above it had succeeded. The red was never
+  # real. Editing this file needed a permission Lando turned on today.
+  SITE_URL: https://theplatbook.com
 
 jobs:
   under-review:
