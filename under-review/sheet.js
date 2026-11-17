@@ -117,6 +117,7 @@ function landing(state, cfg = CONFIG, listing = LISTING) {
 ${PLAIN}
 <p class="price">Free, in exchange for an email address.</p>
 <p>Polar takes the email address and sends your key; nothing is charged. The key works for 12 months, and states are added to the sheet as they finish the audit, with no dates promised.</p>
+<p class="permission">Your address is used to send your key and to tell you when states are added to the sheet, nothing else, it is never sold or shared, and every update email has a one-click unsubscribe link.</p>
 <p>${buy}</p>
 <h2>What is in it</h2>
 <ul>

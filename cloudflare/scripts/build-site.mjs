@@ -380,7 +380,7 @@ ${extraHead}
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <a class="brand" href="/"><span class="brand-mark">P</span><span>Platbook <em>County Resource Directory</em></span></a>
-  <nav><a href="/">States</a><a href="/about/">About</a><a href="/legal/">Legal</a>${SHEET_LISTED ? `<a class="nav-sheet" href="${sheetHref('nav')}"><em>Free&nbsp;</em>Rules Sheet</a>` : ''}</nav>
+  <nav><a href="/start-here/">Start here</a><a href="/">States</a><a href="/about/">About</a><a href="/legal/">Legal</a>${SHEET_LISTED ? `<a class="nav-sheet" href="${sheetHref('nav')}"><em>Free&nbsp;</em>Rules Sheet</a>` : ''}</nav>
 </header>
 <main id="main">
 ${body}
@@ -632,6 +632,147 @@ const notFound = () => page({ title: 'Page not found — Platbook', desc: 'Page 
   <ul class="mini-states">${states.map((s) => `<li><a href="/state/${s.code.toLowerCase()}/">${s.code}</a></li>`).join('')}</ul>
 </section>` });
 
+// ---------- Start Here ----------
+// Built 2026-11-17 on Lando's instruction: what a tax lien is, what a tax deed is, the
+// difference, a glossary of the terms the state pages use, and a short FAQ.
+//
+// THE RULE THIS PAGE IS BUILT TO OBEY. Every sentence on this page that states what the law
+// says is rendered from an audited claim in cloudflare/data/law/<st>.json, with its statute,
+// the official link it was read from, and the day it was checked, exactly as a state page does
+// it. Nothing about the law is written from memory or from a summary. The explaining sentences
+// around those claims describe how a tax sale works as a process and assert no law of their own,
+// which is why they carry no citation: they are not making a legal claim to carry one.
+//
+// Florida and Texas are used as the two worked examples because they are audited and clean, and
+// because they are the clearest contrast in the whole country: Florida sells a certificate and
+// the deed comes later, Texas hands over a deed at the sale with the owner's right to buy it
+// back still attached. If either ledger ever loses one of the claims used here, this page throws
+// at build time rather than quietly printing a sentence with no source behind it.
+const sheetLawLedger = (code) => {
+  const L = loadLedger(code);
+  if (!L) throw new Error(`start-here: no law ledger for ${code}`);
+  return L;
+};
+const FL_LAW = sheetLawLedger('fl');
+const TX_LAW = sheetLawLedger('tx');
+
+// One audited claim, by id, as a sentence with its source. Throws if the claim is gone, so a
+// ledger edit can never leave this page asserting law with nothing behind it.
+function lawLine(L, id) {
+  const c = L.claims.find((x) => x.id === id && x.lang === 'en');
+  if (!c) throw new Error(`start-here: ${L.state} has no English claim "${id}"`);
+  if (!c.statute || !c.url) throw new Error(`start-here: ${L.state} claim "${id}" has no statute or url`);
+  const when = String(c.checked || '').slice(0, 10);
+  return `<li>${claimHtml(c)} <span class="src"><a href="${esc(c.url)}" rel="noopener">${esc(c.statute)}</a>${when ? ` <span class="muted">checked ${esc(when)}</span>` : ''}</span></li>`;
+}
+const lawList = (L, ids) => `<ul class="law-list">${ids.map((id) => lawLine(L, id)).join('')}</ul>`;
+
+// The glossary. These are the terms the state pages actually print, taken from the field labels
+// in cloudflare/src/app.js, so the glossary explains the words a reader will really meet rather
+// than a generic word list. Definitions describe what a field means on this site. Where a term
+// only has meaning because a statute defines it, the statute is cited from the ledger instead.
+const GLOSSARY = [
+  ['Tax lien certificate', 'A paper the county sells when the tax bill is not paid. It does not make the buyer the owner of the property. It makes the buyer the person the unpaid tax is owed to, with interest set by law.'],
+  ['Tax deed', 'A deed to the property itself, sold by the county rather than by the owner. In some states it arrives at the end of the lien road; in others the county sells deeds directly.'],
+  ['Redeemable deed', 'A deed handed over at the sale while the former owner still has a set window to pay everything back and undo it. Texas is the clearest example.'],
+  ['Redemption period', 'The window in which the owner, or someone with an interest in the property, can pay what is owed and keep or recover the property. It is counted from a date the statute names, not from the day of the sale, and the two are often different.'],
+  ['Interest / penalty', 'What the law adds to the amount owed while it stays unpaid. An interest rate accrues over time. A penalty is a flat percentage added once, so a penalty paid back quickly costs the person redeeming far more per month than the same number as a rate.'],
+  ['Bidding method', 'How the winner is picked. Bidding down the interest rate, bidding a premium above the taxes owed, or a rotation that assigns liens in turn are all in use, and which one a state uses changes what a bid is worth.'],
+  ['Premium', 'Money bid above the taxes and costs owed. Whether a premium is paid back, and whether it carries interest, is a matter of state law and is one of the easiest ways to lose money without noticing.'],
+  ['Over the counter', 'Buying a lien or a deed from the county after an auction has ended, from what nobody bought, rather than at the sale.'],
+  ['Struck to the county', 'What happens to a lien or property nobody bids on. The county keeps it, often at the maximum rate the law allows, and may sell it later.'],
+  ['Subsequent taxes', 'The next year of tax on a property a lien is already held against. Who may pay it, and what rate it carries, decides whether a lien holder keeps their position.'],
+  ['Surplus funds', 'Money left over when a property sells for more than the taxes and costs owed. Who may claim it, and how long they have, is set by statute.'],
+  ['Quiet title', 'A court case to settle who owns a property, used after some tax deed sales because the deed alone may not be enough to sell or insure the title.'],
+  ['Assignment', 'Transferring a lien the county or another holder owns to a new holder, usually for a fee the county sets.'],
+  ['Adjudged value', 'A value set in the court judgment that leads to a Texas tax sale. It matters because the minimum bid can be set by it.'],
+  ['Delinquency', 'The point at which an unpaid tax bill becomes officially late. Statutes count most deadlines from this date rather than from the billing date.'],
+];
+
+const startHerePage = () => page({
+  title: 'Start here: tax liens and tax deeds explained',
+  desc: 'What a tax lien is, what a tax deed is, how they differ, and the words every state page uses. Each legal statement carries its statute, the official link and the date it was checked.',
+  canonical: '/start-here/',
+  body: `
+<section class="prose narrow">
+  <h1>Start here</h1>
+  <p class="lede">If you have never bought a tax lien or a tax deed, this page is the whole idea in a few minutes. It says what each one is, how they differ, what the words on every state page mean, and where the law behind each statement comes from.</p>
+  <p class="disclaimer-line">${DISCLAIMER}</p>
+
+  <h2 id="unpaid">What happens when a property tax goes unpaid</h2>
+  <p>A county runs on property tax. When a bill is not paid, the county still needs the money on time, so the law gives it a way to raise that money from somebody else and hand the problem to them. That is what a tax sale is. The county is not selling a house to make money. It is collecting a tax bill.</p>
+  <p>From there, states split into two roads. Some sell the debt. Some sell the property. Which road a state takes decides almost everything else, including what you own after you pay, what can go wrong, and how long you wait.</p>
+
+  <h2 id="lien">What a tax lien is</h2>
+  <p>A tax lien sale sells the <strong>debt</strong>, not the property. You pay the county the unpaid tax. In exchange you get a certificate saying that amount is now owed to you, with interest set by statute. You are not the owner. You cannot enter the property, rent it out, or sell it. You are waiting to be paid back.</p>
+  <p>Most of the time you are paid back and that is the end of it. If nobody pays, the statute gives the certificate holder a path to the property itself, and that path has its own deadlines and its own costs.</p>
+  <p>Florida is a lien state, and these are its own rules, each read from the Florida Senate's published statutes:</p>
+  ${lawList(FL_LAW, ['type', 'rate', 'bidMethod', 'redemption', 'summary.1'])}
+  <p>Read the Florida bidding rule again, because it surprises people: the winner is the bidder who will accept the <em>lowest</em> interest rate. Bidding is a race downward, not upward. A crowded Florida sale is won by whoever will take the least.</p>
+
+  <h2 id="deed">What a tax deed is</h2>
+  <p>A tax deed sale sells the <strong>property</strong>. The county conveys the real estate, and if you win you hold a deed. There is no waiting to be paid back, because you were not lending anything. What you take on instead is everything that comes with owning a property you have usually never been inside.</p>
+  <p>Texas shows the version that catches people out, because a Texas deed arrives with a string attached: the former owner can still buy the property back for a set period, and the amount they pay back is a flat percentage on top of what you spent, not a rate that builds up over time.</p>
+  ${lawList(TX_LAW, ['type', 'typeWhy.1', 'redemption', 'rate', 'rateNote', 'bidMethod', 'auctionTiming'])}
+  <p>That flat percentage is worth sitting with. If a Texas homestead is redeemed the week after the sale, the person redeeming pays the same 25 percent they would pay eleven months later. Read as an annual rate that is enormous, and it is also the outcome in which you own the property for eight days. A deed state pays you in one of two very different ways and you do not get to choose which.</p>
+
+  <h2 id="difference">The difference, in one place</h2>
+  <table class="compare">
+    <thead><tr><th>Question</th><th>Tax lien</th><th>Tax deed</th></tr></thead>
+    <tbody>
+      <tr><td>What you buy</td><td>The unpaid debt</td><td>The property</td></tr>
+      <tr><td>Do you own the property</td><td>No</td><td>Yes, subject to whatever the statute leaves attached</td></tr>
+      <tr><td>Normal outcome</td><td>You are paid back with interest</td><td>You keep the property</td></tr>
+      <tr><td>What you are paid</td><td>Interest or a penalty set by statute</td><td>Nothing; the property is the outcome</td></tr>
+      <tr><td>Main risk</td><td>Being paid back sooner than you planned, and the costs of the deed path if nobody pays</td><td>The property itself: condition, access, what survived the sale, and anything you could not inspect</td></tr>
+      <tr><td>Who holds the waiting</td><td>You wait for the owner</td><td>The former owner may have a window to undo it</td></tr>
+      <tr><td>Worked example above</td><td>Florida</td><td>Texas</td></tr>
+    </tbody>
+  </table>
+  <p>Some states do both, and a few do something in between. Each state page on this site says which it is, and why, with the statute it rests on.</p>
+
+  <h2 id="care">Three things that cost people real money</h2>
+  <p><strong>A redemption period is not counted from the sale.</strong> Every state names the date the clock starts, and it is often the date a deed was recorded or a certificate was issued, not the day of the auction. Florida's own words above measure the deed application from April 1 of the year the certificate was issued.</p>
+  <p><strong>A penalty and a rate are not the same number.</strong> A flat 25 percent is not comparable to 25 percent a year, and comparing states by their headline percentage alone tells you very little.</p>
+  <p><strong>Not everything is wiped by a tax sale.</strong> Some claims against a property survive it, and which ones depends on the state and the kind of claim. Before bidding anywhere, ask the county what the sale does and does not clear, and get the answer in writing.</p>
+  <p>Counties also vary inside a single state. A state page here is the baseline the statute sets. The county running the sale is the authority on how that sale actually works, and it is worth one phone call before any money moves.</p>
+
+  <h2 id="glossary">The words every state page uses</h2>
+  <dl class="glossary">
+    ${GLOSSARY.map(([term, def]) => `<dt>${esc(term)}</dt><dd>${esc(def)}</dd>`).join('\n    ')}
+  </dl>
+
+  <h2 id="faq">Short FAQ</h2>
+  <dl class="faq">
+    <dt>Can I lose money doing this?</dt>
+    <dd>Yes. On a deed you can buy a property worth less than you paid, or one you cannot easily sell. On a lien you can spend money chasing a deed that never arrives. Nothing on this site promises any outcome.</dd>
+
+    <dt>Which is better, liens or deeds?</dt>
+    <dd>They are different jobs. A lien is lending with a legal claim behind it and a known rate. A deed is buying property with limited information. Most people should decide which of those two things they actually want before they look at any state.</dd>
+
+    <dt>Do I need to live in the state?</dt>
+    <dd>Usually no, but registration, deposits and identification requirements are set by the county and some are stricter than others. Check the county page for the sale you want.</dd>
+
+    <dt>Do I have to pay cash?</dt>
+    <dd>Nearly always, and quickly. Deposits are commonly required before bidding and the balance is due within days. Counties do not arrange financing.</dd>
+
+    <dt>Can I see the property first?</dt>
+    <dd>Normally not inside. You can look at it from the street and read the public records. Buying without an inspection is the ordinary condition of this market, not a special case.</dd>
+
+    <dt>What happens if the owner pays after I buy a lien?</dt>
+    <dd>You are paid back with whatever the statute provides, and your involvement ends. That is the usual ending and it is a normal one.</dd>
+
+    <dt>Where do the rules on this site come from?</dt>
+    <dd>State statutes and official state and county pages. Every legal statement carries its statute, a link to the official source, and the date it was checked. If we could not read a source, the page says so rather than filling the gap.</dd>
+
+    <dt>Is any of this legal advice?</dt>
+    <dd>No. ${DISCLAIMER}</dd>
+  </dl>
+
+  <h2 id="next">Where to go next</h2>
+  <p>Pick your state from the <a href="/">state list</a>. Each page gives the type of sale, the rate or penalty, the redemption period, the bidding method and the statutes behind them, plus the counties and the offices that run the sales.</p>
+</section>` });
+
 // ---------- write ----------
 fs.rmSync(PUB, { recursive: true, force: true });
 write('assets/site.css', css);
@@ -639,6 +780,7 @@ write('assets/app.js', js);
 write('index.html', homePage());
 for (const st of states) { const _sp = statePage(st); builtStatePages.set(st.code, _sp); write(`state/${st.code.toLowerCase()}/index.html`, _sp); }
 write('about/index.html', aboutPage());
+write('start-here/index.html', startHerePage());
 write('legal/index.html', legalPage());
 write('404.html', notFound());
 write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /extras/\nSitemap: ${SITE_URL}/sitemap.xml\n`);
@@ -647,7 +789,7 @@ write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /extras/\nSitemap: ${SIT
 // It carries no ?from= tag here: a sitemap is for search engines, not a visitor arriving from
 // somewhere, and a tagged address in a sitemap would also split the page in two as far as
 // indexing is concerned.
-write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['/', '/about/', '/legal/', ...(SHEET_LISTED ? [SHEET_PATH] : []), ...states.map((s) => `/state/${s.code.toLowerCase()}/`)].map((u) => `<url><loc>${SITE_URL}${u}</loc></url>`).join('')}</urlset>\n`);
+write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['/', '/start-here/', '/about/', '/legal/', ...(SHEET_LISTED ? [SHEET_PATH] : []), ...states.map((s) => `/state/${s.code.toLowerCase()}/`)].map((u) => `<url><loc>${SITE_URL}${u}</loc></url>`).join('')}</urlset>\n`);
 // Search index: states + counties (name, state, type, slug).
 write('assets/search.json', JSON.stringify({
   s: states.map((s) => [s.code, s.name, s.type]),

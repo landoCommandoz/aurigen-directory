@@ -290,3 +290,49 @@ main { padding: 0 clamp(1rem, 4vw, 2.5rem); max-width: 1320px; margin: 0 auto; }
 .pending b { color: var(--warn); }
 /* An audited field whose claim the audit removed and could not replace. Never a blank cell. */
 .unverified { color: var(--text-secondary); font-style: normal; }
+
+/* ---------- Start Here (added 2026-11-17) ----------
+   The explainer page for someone who has never bought a lien or a deed. It reuses the site's
+   own ink, paper and drafting rule, and adds nothing to the palette. Four shapes it needs that
+   no other page had: a list of statements each carrying its own source, a comparison table,
+   a glossary and an FAQ. All four are plain blocks on paper, not cards: this page is read
+   top to bottom, and boxing every item would make a reference out of something meant to be
+   read once. */
+
+/* A statement with its statute beside it. The source sits on its own line so a long statute
+   name can never squeeze the sentence, and the whole item stays readable at phone width. */
+.law-list { list-style: none; padding-left: 0; margin: 1rem 0; }
+.law-list li {
+  margin: 0; padding: .7rem 0 .7rem .9rem;
+  border-left: 2px solid var(--accent-wash);
+  border-bottom: 1px solid var(--border);
+}
+.law-list li:last-child { border-bottom: 0; }
+.law-list .src { display: block; margin-top: .3rem; font-size: .85rem; }
+.law-list .src a { color: var(--accent-muted); }
+.law-list .src .muted { margin-left: .4rem; }
+
+/* The lien-versus-deed table. On a narrow screen a three-column table of sentences cannot be
+   read, so below 640px each row becomes a small stack with the question as its heading. */
+.compare { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: .95rem; }
+.compare th, .compare td {
+  text-align: left; vertical-align: top;
+  padding: .55rem .6rem; border-bottom: 1px solid var(--border);
+}
+.compare thead th { border-bottom: 1px solid var(--border-strong); font-size: .85rem; letter-spacing: .02em; }
+.compare tbody td:first-child { color: var(--text-secondary); }
+@media (max-width: 640px) {
+  .compare, .compare tbody, .compare tr, .compare td { display: block; width: 100%; }
+  .compare thead { display: none; }
+  .compare tr { margin-bottom: .9rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border-strong); }
+  .compare td { border-bottom: 0; padding: .15rem 0; }
+  .compare tbody td:first-child { font-weight: 600; color: var(--text-primary); }
+  .compare tbody td:nth-child(2)::before { content: 'Lien: '; color: var(--text-secondary); }
+  .compare tbody td:nth-child(3)::before { content: 'Deed: '; color: var(--text-secondary); }
+}
+
+/* Glossary and FAQ. Same shape, different job, so they share everything but their spacing. */
+.glossary, .faq { margin: 1.2rem 0; }
+.glossary dt, .faq dt { font-weight: 600; margin-top: 1rem; }
+.glossary dd, .faq dd { margin: .25rem 0 0; color: var(--text-secondary); }
+.faq dt { color: var(--accent); }
