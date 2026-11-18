@@ -8,6 +8,9 @@ import { geoPath, geoAlbersUsa, geoMercator, geoCentroid } from 'd3-geo';
 import { feature } from 'topojson-client';
 import { FIELD_ORDER, loadLedger, claimNote } from './law-pieces.mjs';
 import { countyTextProblems } from './county-text.mjs';
+// The five beginner lessons. PARKED: LESSONS_APPROVED is false, so nothing below writes them,
+// links them or puts them in the sitemap. See the note at the top of lessons.mjs.
+import { LESSONS_APPROVED, lessons, lessonsIndexBody, LESSONS_BASE } from './lessons.mjs';
 
 const require = createRequire(import.meta.url);
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -786,6 +789,29 @@ const startHerePage = () => page({
   <p>Pick your state from the <a href="/">state list</a>. Each page gives the type of sale, the rate or penalty, the redemption period, the bidding method and the statutes behind them, plus the counties and the offices that run the sales.</p>
 </section>` });
 
+// ---------- the five beginner lessons, PARKED ----------
+// Built out of the Start Here page: same page shell, same prose classes, same lawList() so every
+// state-specific sentence carries its statute, its official link and the date it was checked.
+// The four pending states are named from the live pending list, not typed, so the warning on each
+// lesson cannot go stale. Nothing here is written, linked or listed while LESSONS_APPROVED is
+// false, which is its current value: the pages do not exist on the live site at any address.
+const PENDING_STATES = states.filter((s) => isPending(s.code)).map((s) => ({ code: s.code, name: s.name }));
+const LESSONS = lessons({ esc, lawList, FL_LAW, TX_LAW, DISCLAIMER, pendingStates: PENDING_STATES });
+const lessonPage = (l) => page({
+  title: `${l.title} - Platbook`,
+  desc: l.desc,
+  canonical: `${LESSONS_BASE}${l.slug}/`,
+  body: l.body,
+  extraHead: LESSONS_APPROVED ? '' : '<meta name="robots" content="noindex, nofollow">',
+});
+const lessonsIndexPage = () => page({
+  title: 'The five lessons - Platbook',
+  desc: 'Five short plain-English lessons: what a tax lien is, what a tax deed is, how a tax sale works, what redemption means, and how title gets cleared after a sale.',
+  canonical: LESSONS_BASE,
+  body: lessonsIndexBody({ esc, items: LESSONS, DISCLAIMER }),
+  extraHead: LESSONS_APPROVED ? '' : '<meta name="robots" content="noindex, nofollow">',
+});
+
 // ---------- write ----------
 fs.rmSync(PUB, { recursive: true, force: true });
 write('assets/site.css', css);
@@ -794,6 +820,11 @@ write('index.html', homePage());
 for (const st of states) { const _sp = statePage(st); builtStatePages.set(st.code, _sp); write(`state/${st.code.toLowerCase()}/index.html`, _sp); }
 write('about/index.html', aboutPage());
 write('start-here/index.html', startHerePage());
+// PARKED. These two lines are the whole of what putting the lessons live does.
+if (LESSONS_APPROVED) {
+  write(`${LESSONS_BASE.replace(/^\/|\/$/g, '')}/index.html`, lessonsIndexPage());
+  for (const l of LESSONS) write(`${LESSONS_BASE.replace(/^\/|\/$/g, '')}/${l.slug}/index.html`, lessonPage(l));
+}
 write('legal/index.html', legalPage());
 write('404.html', notFound());
 write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /extras/\nSitemap: ${SITE_URL}/sitemap.xml\n`);
@@ -802,7 +833,39 @@ write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /extras/\nSitemap: ${SIT
 // It carries no ?from= tag here: a sitemap is for search engines, not a visitor arriving from
 // somewhere, and a tagged address in a sitemap would also split the page in two as far as
 // indexing is concerned.
-write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['/', '/start-here/', '/about/', '/legal/', ...(SHEET_LISTED ? [SHEET_PATH] : []), ...states.map((s) => `/state/${s.code.toLowerCase()}/`)].map((u) => `<url><loc>${SITE_URL}${u}</loc></url>`).join('')}</urlset>\n`);
+// The lessons join the sitemap only when they are approved, for the same reason as the sheet:
+// while they are parked they are noindex, and a sitemap entry would be asking to be indexed and
+// refusing in the same breath.
+write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['/', '/start-here/', '/about/', '/legal/', ...(SHEET_LISTED ? [SHEET_PATH] : []), ...(LESSONS_APPROVED ? [LESSONS_BASE, ...LESSONS.map((l) => `${LESSONS_BASE}${l.slug}/`)] : []), ...states.map((s) => `/state/${s.code.toLowerCase()}/`)].map((u) => `<url><loc>${SITE_URL}${u}</loc></url>`).join('')}</urlset>\n`);
+// ---------- the parked lessons, as files Lando can open ----------
+// Run with LESSONS_PREVIEW=1 and the five lessons plus their index are written OUTSIDE public/,
+// into preview/lessons-<date>/, as self-contained files: the stylesheet inlined so they need no
+// server, every site link pointed at the live address so they still work, and the lesson links
+// pointed at each other as plain files. They are not part of the site, not in the sitemap and not
+// reachable from it. A normal build writes nothing here.
+if (process.env.LESSONS_PREVIEW) {
+  const dir = path.join(BASE, '..', 'preview', 'lessons-2026-11-17');
+  fs.mkdirSync(dir, { recursive: true });
+  const standalone = (html) => {
+    let s = html;
+    // the stylesheet, inlined, so the file opens straight off the disk
+    s = s.replace(/<link rel="stylesheet" href="\/assets\/site\.css[^"]*">/, `<style>\n${css}\n</style>`);
+    // lesson links become plain files beside this one
+    s = s.replace(new RegExp(`href="${LESSONS_BASE}(\\d)/"`, 'g'), 'href="$1.html"');
+    s = s.replace(new RegExp(`href="${LESSONS_BASE}"`, 'g'), 'href="index.html"');
+    // every other site link points at the live site, so nothing is a dead end
+    s = s.replace(/href="\/([^"]*)"/g, (m, p) => `href="${SITE_URL}/${p}"`);
+    s = s.replace(/<script src="[^"]*app\.js[^"]*"[^>]*><\/script>/, '');
+    // A preview file is not served at any address, so it claims none. A canonical link pointing
+    // at a page that does not exist yet would be a small lie left lying around.
+    s = s.replace(/<link rel="canonical"[^>]*>\n?/, '');
+    return s.replace('</head>', '<meta name="robots" content="noindex, nofollow">\n</head>');
+  };
+  fs.writeFileSync(path.join(dir, 'index.html'), standalone(lessonsIndexPage()));
+  for (const l of LESSONS) fs.writeFileSync(path.join(dir, `${l.slug}.html`), standalone(lessonPage(l)));
+  console.log(`Lesson preview: ${LESSONS.length + 1} files written to preview/lessons-2026-11-17/ (NOT on the site)`);
+}
+
 // Search index: states + counties (name, state, type, slug).
 write('assets/search.json', JSON.stringify({
   s: states.map((s) => [s.code, s.name, s.type]),
