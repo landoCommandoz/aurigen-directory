@@ -803,9 +803,65 @@ const startHerePage = () => page({
     <dd>No. ${DISCLAIMER}</dd>
   </dl>
 
-  <h2 id="next">Where to go next</h2>
+  ${LESSONS_APPROVED ? `<h2 id="lessons">The five lessons, in order</h2>
+  <p>This page is the whole idea in one sitting. The five lessons below go slower, one idea at a time, for somebody meeting these words for the first time.</p>
+  <ol class="cards">
+    ${LESSONS.map((l) => `<li class="card"><a href="${LESSONS_BASE}${l.slug}/"><span class="card-name">${esc(l.title)}</span><span class="card-facts"><span>${esc(l.desc)}</span></span></a></li>`).join('')}
+  </ol>
+  <p class="muted">They sit under this page, and each one links to the next and back. <a href="${LESSONS_BASE}">Open the five together</a>.</p>
+
+  ` : ''}<h2 id="next">Where to go next</h2>
   <p>Pick your state from the <a href="/">state list</a>. Each page gives the type of sale, the rate or penalty, the redemption period, the bidding method and the statutes behind them, plus the counties and the offices that run the sales.</p>
 </section>` });
+
+// ---------- question-and-answer markup, built only from text visible on the page ----------
+// Lando's rule for this markup, and the only rule it obeys: nothing in it may be text a reader
+// cannot see on the page. So none of it is written by hand. visibleText() strips the tags out of
+// the built body; qaPairs() walks the page's own <h2> sections and takes the heading as the
+// question and the visible text beneath it as the answer, character for character; and
+// faqJsonLd() refuses to emit a pair whose question or answer cannot be found in the page's own
+// visible text, which fails the build. A later hand-edit that invents a question therefore cannot
+// ship. The pending notice and the closing "Now read your own state" block are left out: the
+// first is a warning that belongs to the whole page rather than to one section, and the second is
+// navigation. "The short version" is left out because it summarises the page rather than
+// answering its own heading.
+const decodeEntities = (t) => String(t)
+  .replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+  .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&');
+const visibleText = (html) => decodeEntities(String(html)
+  .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+  .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+  .replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim();
+const QA_SKIP = ['short', 'your-state'];
+function qaPairs(body) {
+  const re = /<h2 id="([^"]+)"[^>]*>([\s\S]*?)<\/h2>/g;
+  const marks = [];
+  for (let m = re.exec(body); m; m = re.exec(body)) marks.push({ id: m[1], heading: m[2], start: m.index, end: re.lastIndex });
+  const out = [];
+  marks.forEach((h, i) => {
+    if (QA_SKIP.includes(h.id)) return;
+    const raw = body.slice(h.end, i + 1 < marks.length ? marks[i + 1].start : body.length);
+    const q = visibleText(h.heading);
+    const a = visibleText(raw.split('<div class="pending"')[0]);
+    if (q && a) out.push([q, a]);
+  });
+  return out;
+}
+function faqJsonLd(body, where) {
+  const pairs = qaPairs(body);
+  if (!pairs.length) throw new Error(`${where}: no question-and-answer pairs on the page, so no markup can be built from it`);
+  const seen = visibleText(body);
+  for (const [q, a] of pairs) {
+    if (!seen.includes(q)) throw new Error(`${where}: question is not visible on the page: ${q}`);
+    if (!seen.includes(a)) throw new Error(`${where}: answer is not visible on the page, under: ${q}`);
+  }
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: pairs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  };
+  return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\u003c')}</script>`;
+}
 
 // ---------- the five beginner lessons, PARKED ----------
 // Built out of the Start Here page: same page shell, same prose classes, same lawList() so every
@@ -820,7 +876,7 @@ const lessonPage = (l) => page({
   desc: l.desc,
   canonical: `${LESSONS_BASE}${l.slug}/`,
   body: l.body,
-  extraHead: LESSONS_APPROVED ? '' : '<meta name="robots" content="noindex, nofollow">',
+  extraHead: (LESSONS_APPROVED ? '' : '<meta name="robots" content="noindex, nofollow">') + faqJsonLd(l.body, `lesson ${l.slug} q-and-a`),
 });
 const lessonsIndexPage = () => page({
   title: 'The five lessons - Platbook',

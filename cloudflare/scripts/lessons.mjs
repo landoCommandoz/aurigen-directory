@@ -41,7 +41,12 @@
 //   4. A BARE FRAGMENT OUT OF A LEDGER GETS A LEAD-IN. "Redeemable deed" means nothing to a
 //      beginner standing on its own. The lead-in is a separate sentence of mine above the list.
 //      The ledger wording itself is never edited to suit a lesson.
-export const LESSONS_APPROVED = false;
+// APPROVED AND LIVE 2026-11-17. Lando approved work item 4 in the room with his PIN
+// (room queue id 5, decided 2026-11-17 22:42), after reading the edited draft. Flipping this
+// to true writes the five pages, puts them and their index in the sitemap, drops the noindex
+// meta and links all five in order from the end of the Start Here page. Setting it back to
+// false removes every one of those in a single build.
+export const LESSONS_APPROVED = true;
 
 const BASE_PATH = '/start-here/lessons/';
 
@@ -66,7 +71,7 @@ const yourState = (n) => `
   <p>Everything above is the shape of the thing. The numbers that decide whether it is worth doing are set state by state, and sometimes county by county inside one state.</p>
   <p><a class="btn" href="/">Open the state list and pick yours</a></p>
   <p class="muted">Your state page gives the type of sale, the interest or the penalty, the redemption period, the bidding method and the statute behind each one, plus the counties and the offices that run the sales.</p>
-  <p class="crumbs">${n < 5 ? `Next: <a href="${BASE_PATH}${n + 1}/">lesson ${n + 1}</a> &nbsp;·&nbsp; ` : ''}Back to <a href="/start-here/">Start here</a></p>`;
+  <p class="crumbs">${n > 1 ? `Previous: <a href="${BASE_PATH}${n - 1}/">lesson ${n - 1}</a> &nbsp;·&nbsp; ` : ''}${n < 5 ? `Next: <a href="${BASE_PATH}${n + 1}/">lesson ${n + 1}</a> &nbsp;·&nbsp; ` : ''}Back to <a href="/start-here/">Start here</a></p>`;
 
 export function lessons({ esc, lawList, FL_LAW, TX_LAW, DISCLAIMER, pendingStates }) {
   const close = (n) => pendingNote(esc, pendingStates) + yourState(n);
