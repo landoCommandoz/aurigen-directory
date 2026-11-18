@@ -360,6 +360,14 @@ const ver = (s) => { let h = 0; for (const ch of s) h = (h * 31 + ch.charCodeAt(
 const CSS_HREF = `/assets/site.css?v=${ver(css)}`;
 const JS_SRC = `/assets/app.js?v=${ver(js)}`;
 
+/* The stylesheet below is linked, NOT inlined, on purpose. Inlining its 8.7KB would save one
+   same-origin round trip on first paint. Tried on 2026-11-17 and reverted: the pending-state
+   guard further down this file reads the built HTML as a plain string, and the stylesheet
+   defines .pill.t-lien and its three siblings, so every inlined page looked like a pending
+   state shading itself and the build failed with 16 problems. That guard is what keeps GA, IN,
+   NY and TN from stating law, so it was left untouched and the round trip was left on the
+   table. Anyone revisiting this strips the style element before those checks, never relaxes
+   them. The font stylesheet beside it IS off the critical path, which was the bigger half. */
 function page({ title, desc, canonical, body, extraHead = '' }) {
   return `<!doctype html>
 <html lang="en">
@@ -376,7 +384,8 @@ function page({ title, desc, canonical, body, extraHead = '' }) {
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230b3550'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='%23f6f1e6' font-family='monospace' font-weight='700'%3EP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"></noscript>
 <link rel="stylesheet" href="${CSS_HREF}">
 ${extraHead}
 </head>

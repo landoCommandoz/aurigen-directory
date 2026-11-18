@@ -36,10 +36,40 @@
   --radius: 4px;                  /* drafted corners, not app bubbles */
   --radius-lg: 6px;
   --ease: cubic-bezier(.2, .7, .2, 1);
-  --head: 'Fraunces', 'Hoefler Text', Georgia, serif;
-  --body: 'Public Sans', 'Segoe UI', 'Helvetica Neue', sans-serif;
-  --mono: 'Space Mono', 'Consolas', 'Courier New', monospace;
+  --head: 'Fraunces', 'Fraunces w Georgia', 'Fraunces w Noto Serif', 'Fraunces w Times', Georgia, serif;
+  --body: 'Public Sans', 'Public Sans w Segoe UI', 'Public Sans w Roboto', 'Public Sans w Helvetica', sans-serif;
+  --mono: 'Space Mono', 'Space Mono w Consolas', 'Space Mono w Courier', 'Consolas', monospace;
 }
+/* ---------------------------------------------------------------------------
+   FALLBACK FACES, MEASURED NOT GUESSED (2026-11-17)
+   Cloudflare reported a 0.11 layout jump on real phones, naming
+   #main > section.state-head > div.pending > p, on five pages. Measured here in Chrome on a
+   throttled mobile profile: nothing on those pages is added by script, nothing is resized by
+   the Cloudflare counting script (it is type="module", so it runs after paint and draws
+   nothing), and the pending panel is already in the first HTML. What moves is the TEXT WRAP.
+   Public Sans is 4.4-4.9% WIDER than every sans this stack can fall back to, and Fraunces 600
+   is about 7% NARROWER than Georgia in the 20-34px band the headings use, so when the real
+   fonts arrive a paragraph or a headline gains or loses a line and everything below it jumps.
+   Measured on the live home page at 390px: the headline grew 36px and the largest block below
+   it moved 89px down, which in an 844px viewport is a shift of about 0.105. That is the 0.11.
+   Each face below wraps a real system font and scales it to the width of the font it stands in
+   for, so the first paint is already at the final height and the arrival moves nothing.
+   Width ratios measured with canvas measureText at the sizes the site really renders; ascent
+   and descent are the webfont's own box divided by the same ratio, so the two places that set
+   line-height normal (.btn, .map-pill) keep their height as well. A browser too old for
+   size-adjust ignores these and behaves exactly as before, so nothing is lost.
+   'Hoefler Text' left the chain on purpose: it is macOS only and cannot be measured on this
+   PC, and Georgia is on macOS too, so macOS now gets a measured face instead of a guess.
+   --------------------------------------------------------------------------- */
+@font-face { font-family: 'Public Sans w Segoe UI'; src: local('Segoe UI'); size-adjust: 104.9%; ascent-override: 90.6%; descent-override: 21.9%; line-gap-override: 0%; }
+@font-face { font-family: 'Public Sans w Roboto'; src: local('Roboto'); size-adjust: 104.5%; ascent-override: 90.9%; descent-override: 22.0%; line-gap-override: 0%; }
+@font-face { font-family: 'Public Sans w Helvetica'; src: local('Helvetica Neue'), local('Helvetica'), local('Arial'); size-adjust: 104.4%; ascent-override: 91.0%; descent-override: 22.0%; line-gap-override: 0%; }
+@font-face { font-family: 'Fraunces w Georgia'; src: local('Georgia'); size-adjust: 92.5%; ascent-override: 105.9%; descent-override: 28.1%; line-gap-override: 0%; }
+@font-face { font-family: 'Fraunces w Noto Serif'; src: local('Noto Serif'); size-adjust: 99.3%; ascent-override: 98.7%; descent-override: 26.2%; line-gap-override: 0%; }
+@font-face { font-family: 'Fraunces w Times'; src: local('Times New Roman'), local('Times'); size-adjust: 110.5%; ascent-override: 88.7%; descent-override: 23.5%; line-gap-override: 0%; }
+@font-face { font-family: 'Space Mono w Consolas'; src: local('Consolas'); size-adjust: 111.3%; ascent-override: 100.6%; descent-override: 32.3%; line-gap-override: 0%; }
+@font-face { font-family: 'Space Mono w Courier'; src: local('Courier New'), local('Courier'); size-adjust: 102.0%; ascent-override: 109.8%; descent-override: 35.3%; line-gap-override: 0%; }
+
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; color-scheme: light; }
 body {
