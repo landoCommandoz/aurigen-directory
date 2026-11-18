@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "md",
+ "slug": "cecil-tax-sale",
+ "url": "https://www.cecilcountymd.gov/376/Tax-Sale",
+ "final_url": "https://www.cecilcountymd.gov/376/Tax-Sale",
+ "fetched_at": "2026-11-18T02:45:44.189Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "e5d414a791f56091cfbba9b078f715c56fbae8a364963afdd4bbafe3e9eee399",
+ "raw_bytes": 111392,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "66f43bd4dd84dbcdd9f25be4c694aa0594309f56afd51ee010adbd615a70b55d",
+ "text_chars": 9609
+}

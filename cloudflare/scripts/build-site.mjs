@@ -372,6 +372,24 @@ const JS_SRC = `/assets/app.js?v=${ver(js)}`;
    table. Anyone revisiting this strips the style element before those checks, never relaxes
    them. The font stylesheet beside it IS off the critical path, which was the bigger half. */
 function page({ title, desc, canonical, body, extraHead = '' }) {
+  // THE HEADING FONT IS PRELOADED ON EVERY PAGE, AND IT COSTS FIRST PAINT. Measured 2026-11-17 on
+  // the Lighthouse mobile profile (412x823, 4x CPU, 1.6Mbps, 150ms RTT), medians of five runs with
+  // the cache off and text served compressed:
+  //     home page    996ms -> 1,148ms at 360px, 960ms -> 1,140ms at 390px
+  //     /state/fl/   724ms ->   804ms,  /state/ga/  648ms -> 736ms
+  // What it buys is every heading and paragraph standing still. The home hero headline needs 3
+  // lines in Fraunces where the fallback needs 2 at 360px, a line break boundary no size-adjust
+  // value can close (swept 86 to 100 percent), so without the font in hand before paint it jumps
+  // 36px. Preloading on the home page alone was tried and rejected: the 35KB same-origin fetch
+  // delays the third-party body font just enough that a paragraph on a state page re-wraps and
+  // moves content 26px, which showed up on 1 run in 10 at 360px where the old build showed 0 in
+  // 20. Preloading everywhere put it back to 0 in 14.
+  // So the trade is roughly 80 to 150ms of first paint against every shift on the site. If Lando
+  // would rather have the milliseconds, change true to canonical === '/' and re-run the state page
+  // shift check before believing it is safe.
+  const preloadHead = true
+    ? '\n<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-600-latin.woff2" crossorigin>'
+    : '';
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -387,9 +405,9 @@ function page({ title, desc, canonical, body, extraHead = '' }) {
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230b3550'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='%23f6f1e6' font-family='monospace' font-weight='700'%3EP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"></noscript>
-<link rel="stylesheet" href="${CSS_HREF}">
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"></noscript>
+<link rel="stylesheet" href="${CSS_HREF}">${preloadHead}
 ${extraHead}
 </head>
 <body>
@@ -816,6 +834,12 @@ const lessonsIndexPage = () => page({
 fs.rmSync(PUB, { recursive: true, force: true });
 write('assets/site.css', css);
 write('assets/app.js', js);
+// The heading font and its licence, copied byte for byte. Binary, so not write().
+for (const f of ['fraunces-600-latin.woff2', 'fraunces-600-latin-ext.woff2', 'OFL.txt']) {
+  const dst = path.join(PUB, 'assets', 'fonts', f);
+  fs.mkdirSync(path.dirname(dst), { recursive: true });
+  fs.copyFileSync(path.join(BASE, 'src', 'fonts', f), dst);
+}
 write('index.html', homePage());
 for (const st of states) { const _sp = statePage(st); builtStatePages.set(st.code, _sp); write(`state/${st.code.toLowerCase()}/index.html`, _sp); }
 write('about/index.html', aboutPage());

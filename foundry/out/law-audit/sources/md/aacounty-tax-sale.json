@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "md",
+ "slug": "aacounty-tax-sale",
+ "url": "https://www.aacounty.org/finance/tax-sale",
+ "final_url": "https://www.aacounty.org/finance/tax-sale",
+ "fetched_at": "2026-11-18T02:44:39.712Z",
+ "http_status": 200,
+ "content_type": "text/html; charset=utf-8",
+ "raw_sha256": "1ea8bf8ca7d8ce243685ea41b961b398b550190a08cf8d696367f79bb4cee124",
+ "raw_bytes": 42317,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "1b20d010ed918cfd167954f3afd0d9f0890a466ca9154c36f3a6626343245eb5",
+ "text_chars": 12807
+}

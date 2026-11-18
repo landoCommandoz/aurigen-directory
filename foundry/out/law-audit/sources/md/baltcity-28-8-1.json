@@ -1,0 +1,15 @@
+{
+ "tool": "foundry/tools/fetch-source.mjs",
+ "state": "md",
+ "slug": "baltcity-28-8-1",
+ "url": "https://codes.baltimorecity.gov/us/md/cities/baltimore/code/28/8-1",
+ "final_url": "https://codes.baltimorecity.gov/us/md/cities/baltimore/code/28/8-1",
+ "fetched_at": "2026-11-18T02:44:42.259Z",
+ "http_status": 200,
+ "content_type": "text/html",
+ "raw_sha256": "e24af7f586f9629e64b98866e4a0ccf48c0a170dbd5bd6ba8dfbba776990e45f",
+ "raw_bytes": 11568,
+ "extractor": "foundry/tools/law-text.mjs htmlToText",
+ "text_sha256": "e8942ba8ecc6f981ef4088c8a8ae5a22d3ef67373b2293d023f6af320bc391b6",
+ "text_chars": 1204
+}

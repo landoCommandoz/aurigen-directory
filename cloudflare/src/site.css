@@ -61,6 +61,22 @@
    'Hoefler Text' left the chain on purpose: it is macOS only and cannot be measured on this
    PC, and Georgia is on macOS too, so macOS now gets a measured face instead of a guess.
    --------------------------------------------------------------------------- */
+/* FRAUNCES IS SERVED FROM THIS SITE, not from a third party. Added 2026-11-17 on Lando's
+   instruction, to close the last shift the metric-matched fallbacks could not reach: the home
+   page headline needs 3 lines in Fraunces where Georgia needs 2 at about 390px, which is a
+   line-break boundary, not a width error, so no size-adjust value can fix it. A font that is
+   already there when the page is first drawn never swaps, so there is nothing to re-wrap.
+   Weight 600 only: h1, h2, h3 and .card-name are the only rules that use var(--head) and all
+   four ask for 600. The opsz axis is kept because font-optical-sizing is auto by default and
+   the headings have been measured with it on. font-display: swap is kept as Lando asked, and
+   it still matters on a cold cache: the file is preloaded in the page head, but swap is what
+   keeps the text readable if it is slow. Licence: SIL Open Font License 1.1, which permits
+   self-hosting; the licence text ships beside the files at /assets/fonts/OFL.txt.
+   The measured fallback faces below stay exactly as they were. They are what the page uses
+   until this file lands, and on any browser that cannot use it. */
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 600; font-display: swap; src: url('/assets/fonts/fraunces-600-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 600; font-display: swap; src: url('/assets/fonts/fraunces-600-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
 @font-face { font-family: 'Public Sans w Segoe UI'; src: local('Segoe UI'); size-adjust: 104.9%; ascent-override: 90.6%; descent-override: 21.9%; line-gap-override: 0%; }
 @font-face { font-family: 'Public Sans w Roboto'; src: local('Roboto'); size-adjust: 104.5%; ascent-override: 90.9%; descent-override: 22.0%; line-gap-override: 0%; }
 @font-face { font-family: 'Public Sans w Helvetica'; src: local('Helvetica Neue'), local('Helvetica'), local('Arial'); size-adjust: 104.4%; ascent-override: 91.0%; descent-override: 22.0%; line-gap-override: 0%; }
@@ -103,7 +119,16 @@ code { font-family: var(--mono); background: var(--bg-secondary); padding: 0 .3e
 .brand { display: flex; align-items: center; gap: .6rem; color: var(--text-primary); text-decoration: none; font-weight: 700; min-height: 44px; min-width: 0; letter-spacing: .01em; }
 .brand em { display: none; font-style: normal; color: var(--text-secondary); font-weight: 400; font-size: .92em; }
 .brand-mark { flex: none; width: 32px; height: 32px; border-radius: var(--radius); display: grid; place-items: center; background: var(--accent); color: var(--on-ink); font-family: var(--mono); font-size: 1rem; font-weight: 700; box-shadow: var(--shadow); }
-.top nav { display: flex; gap: .2rem; flex: none; }
+/* flex-wrap here is the second half of the safety net on .top, and it was missing until
+   2026-11-17. .top wraps the whole nav to its own row when the row is too narrow, which it did
+   correctly; but the nav itself was flex: none with no wrap, so once on that row it still laid
+   out at its natural 427px and ran off the side of every phone. body { overflow-x: hidden }
+   then clipped it silently: the Free Rules Sheet link, the only link to the only paid product,
+   had its right edge at 443px and was invisible on a 360, 375, 390, 412 or 430px screen, on all
+   57 pages, from the day Start Here made the nav five items. Never give this element a fixed
+   width or flex: none again. Measured after the change at all five phone widths and at 768,
+   1024 and 1440. */
+.top nav { display: flex; gap: .2rem; flex-wrap: wrap; justify-content: flex-end; min-width: 0; }
 .top nav a { color: var(--text-secondary); text-decoration: none; padding: .6rem .7rem; min-height: 44px; display: inline-flex; align-items: center; border-bottom: 2px solid transparent; transition: color .2s var(--ease), border-color .2s var(--ease); }
 .top nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 /* "Free Rules Sheet" on a phone is the one nav label with no room for itself, so the word
@@ -117,6 +142,18 @@ code { font-family: var(--mono); background: var(--bg-secondary); padding: 0 .3e
 /* Not :last-child. The sheet link is the last item only while it is listed; unlist it and
    :last-child would quietly start bolding "Legal" instead. */
 .top nav a.nav-sheet { font-weight: 700; color: var(--accent); }
+
+/* Below 640px five links have to share one row with no label shortened, nothing reordered and
+   Start Here still first, so the row is bought with scale rather than with a missing link: a
+   smaller nav type size and tighter side padding on each link. The 44px tap target is set by
+   min-height above and is untouched by either. If a future label is still too long, the
+   flex-wrap above drops the nav to a second row, which is ugly but visible, and visible is the
+   whole point. */
+@media (max-width: 639.98px) {
+  .top { padding-left: .75rem; padding-right: .75rem; }
+  .top nav { gap: 0; width: 100%; justify-content: space-between; }
+  .top nav a { padding: .6rem .2rem; font-size: .85rem; }
+}
 .foot { border-top: 1px solid var(--border-strong); margin-top: 4rem; padding: 2rem clamp(1rem, 4vw, 2.5rem) 5rem; color: var(--text-secondary); font-size: .92rem; background: var(--bg-secondary); }
 .foot p { max-width: 70ch; }
 .disclaimer { color: var(--text-primary); font-weight: 700; }
