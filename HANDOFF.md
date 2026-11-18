@@ -1,6 +1,75 @@
 # AURIGEN HANDOFF DOCUMENT
 ## Updated after every session. Read before every session.
 
+### SESSION (2026-11-17, evening): HEADER FIXED ON PHONES, FRAUNCES SELF-HOSTED, MARYLAND BACK, LESSONS EDITED
+
+Three jobs plus an edit pass on the parked lessons. Everything below is live except the lessons.
+
+- **The header nav no longer clips the Free Rules Sheet link.** `.top` wrapped the nav to its own
+  row correctly; `.top nav` was the half that was missing, `flex: none` with no `flex-wrap`, so it
+  laid out at its natural 427px and ran off every phone while `body { overflow-x: hidden }` hid the
+  evidence. Now: `flex-wrap: wrap` as a real safety net, and below 640px `.top nav a` is `.85rem`
+  with `.2rem` side padding and `.top` has `.75rem` side padding, so five links fit one row with
+  **47px of headroom at 360px even after the webfont swaps** (measure headroom as row width minus
+  the sum of the links' natural widths; `justify-content: space-between` makes the last link's
+  right edge useless as a fit test, which cost an hour). Every link visible and 44px tall at 360,
+  375, 390, 412 and 430; no horizontal scroll at any width; 768, 1024 and 1440 unchanged. Header
+  126px to 123px. Nothing removed, renamed or reordered, Start Here still first.
+- **Fraunces is served from theplatbook.com.** `cloudflare/src/fonts/`, copied to
+  `/assets/fonts/` by `build-site.mjs`. Weight 600 only, which is every rule that uses
+  `var(--head)`. The `opsz` axis is kept because `font-optical-sizing` is auto and the headings
+  were measured with it on; dropping it would halve the file to 18KB but change heading widths by
+  up to 5 percent and therefore the line breaks, which is the thing being fixed. **Licence: SIL
+  Open Font License 1.1**, which permits self-hosting; `OFL.txt` ships beside the files. The
+  Google request keeps Public Sans and Space Mono, still non-blocking, still `display=swap`.
+- **It fixed the last shift.** Home headline at 360px moved 36px, now 0px at 360, 390 and 412, on
+  the live site. Measure the **layout box** (`offsetTop`/`offsetHeight`), not
+  `getBoundingClientRect`: the hero's `rise` animation is a transform and makes a still headline
+  look like it moved 8px.
+- **IT COSTS FIRST PAINT, AND THAT IS A KNOWN, MEASURED REGRESSION.** Medians of five, cache off,
+  text compressed, Lighthouse mobile throttle: home 996 to 1,148ms at 360px, 960 to 1,140ms at
+  390px; `/state/fl/` 724 to 804ms, `/state/ga/` 648 to 736ms. **Preloading on the home page alone
+  was tried and rejected**: the same-origin 35KB fetch delays the third-party body font just
+  enough that a paragraph on a state page re-wraps and drags content 26px, which showed on 1 run
+  in 10 at 360px where the old build showed 0 in 20. Preloading everywhere put it back to 0 in 14.
+  The trade is 80 to 150ms against every shift on the site. One line in `page()` reverses it and
+  the comment there says which.
+- **Maryland's three county rates are back, each through the normal law check.** Anne Arundel
+  1.5% a month / 18% a year (aacounty.org, Office of Finance); Cecil 1% a month / 12% a year
+  (cecilcountymd.gov, Office of Finance); Baltimore City 12% on a principal residence and 18% on
+  all other property (Baltimore City Code, Art. 28, § 8-1, on codes.baltimorecity.gov). Each has a
+  snapshot, a quote found in it, a checked date and a recorded second read. **The pre-audit county
+  fields stay off.** Three county domains were added to `official-domains.json`, each scoped to
+  its own county. None of the three had to stay "varies by county".
+- **UNRESOLVED ON PURPOSE, AND LANDO KNOWS: Baltimore City's codified 12% for a principal
+  residence sits above the 10% state cap** in Tax-Prop. § 14-820(c) for owner-occupied residential
+  property. Both lines are published, both are linked, neither is reconciled on the page. Do not
+  quietly pick one.
+- `check-law` needs `pass2` on every claim. A new supported claim records `"ok"`; ours record what
+  the second read actually checked. `checked` must equal the snapshot's fetch date to the day, and
+  the fetch date is UTC, so an evening fetch is tomorrow's date.
+- Also: `Fla. Stat. § 95.192` cited a 2025 address while every other Florida line cited 2026. The
+  2026 page returns 200, calls itself the 2026 Florida Statutes and carries the same operative
+  sentence, so the claim and its Spanish twin moved. Zero 2025 links left in the Florida ledger.
+
+**THE FIVE LESSONS: EDITED, STILL PARKED.** `LESSONS_APPROVED` is still false, 0 files under
+`public/` mention them, 0 sitemap entries. Lando read the printed draft and sent seven changes;
+all seven are done and the four standing rules that came out of it are at the top of
+`lessons.mjs`. The one that matters most: **the lesson 4 worked example used 25 percent at twenty
+three months, which Tex. Tax Code § 34.21 allows for neither property type** (other property
+redeems within 180 days; a homestead in year two pays 50 percent). It is now one month against
+twelve months on a homestead, with the arithmetic shown. Every other worked number in all five
+lessons was re-checked against the statute cited on its own page. Every frequency claim was cut
+rather than softened, every jab at seminars and courses is gone, every bare ledger fragment has a
+plain-English lead-in above it, and each lesson opens with "The short version", three sentences
+making no claim that is not cited lower on the same page. All 50 citations and the pending notice
+are unchanged.
+
+Suite: **117 pass, 0 fail**. Build clean, check-law PASS 51 states, pending states asserting
+nothing 4 (GA, IN, NY, TN). Publish run 44226233665 success. Live checks after it: header fits at
+all five phone widths, font and OFL.txt serve 200 from our own domain, Maryland reads correctly,
+GA/IN/NY/TN still carry the pending notice and FL/TX do not.
+
 ### SESSION (2026-11-17, later): CORE WEB VITALS FIXED AND PROVED, FIVE LESSONS DRAFTED AND PARKED
 
 Lando brought Cloudflare's real-visitor numbers from the last 21 days: a 0.11 layout shift seen

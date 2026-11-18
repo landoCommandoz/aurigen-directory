@@ -81,15 +81,36 @@ someone who has never coded, rewrite it. This applies to scheduled runs as well 
   `.pill.t-lien` and its siblings, the pending-state guard reads the built HTML as a plain string,
   and every inlined page then failed the build as a pending state shading itself. The comment
   above `page()` carries the full reason.
-- **The five beginner lessons are written and PARKED.** `cloudflare/scripts/lessons.mjs`,
-  `LESSONS_APPROVED = false`. Nothing is written, linked or listed while it is false. Preview
+- **The five beginner lessons are written, EDITED on 2026-11-17 to Lando's seven changes, and
+  still PARKED.** Four rules now stand at the top of `lessons.mjs` and bind every future edit: no
+  claim about how often anything happens (the ledgers hold statutes, not statistics), no jab at
+  seminars or courses, every worked number must be possible under the statute cited on the same
+  page, and every bare ledger fragment gets a plain-English lead-in. The example that forced the
+  first and third of those: lesson 4 showed 25 percent paid back at twenty three months, which
+  Tex. Tax Code § 34.21 allows for neither property type at that point.
+  The file is `cloudflare/scripts/lessons.mjs` and the switch is `LESSONS_APPROVED = false`. Nothing is written, linked or listed while it is false. Preview
   files for Lando: `LESSONS_PREVIEW=1 npm run build` writes `preview/lessons-2026-11-17/`.
   Every state-specific sentence comes from `lawList()`; lesson 5 states no quiet-title rule for
   any state because the ledgers hold none, and says so on the page.
-- **KNOWN LIVE BUG, NOT FIXED, needs Lando: the header nav overflows every phone.** `.top nav` is
-  `flex` with `flex: none` and no `flex-wrap`, natural width 427px, so the `Free Rules Sheet`
-  link's right edge lands at 443px and `body { overflow-x: hidden }` clips it. The only link to
-  the free product is invisible on a phone, on all 57 pages, since 2026-11-14.
+- **FIXED 2026-11-17, was live and broken since 2026-11-14: the header nav overflowed every
+  phone.** `.top` wrapped the nav to its own row; `.top nav` was the half that was missing,
+  `flex: none` with no `flex-wrap`, natural width 427px, so the `Free Rules Sheet` link landed at
+  443px and `body { overflow-x: hidden }` hid the evidence on all 57 pages. Now `.top nav` wraps,
+  and below 640px `.top nav a` is `.85rem` with `.2rem` side padding. Five links, one row, **47px
+  of headroom at 360px even after the webfont swaps.** Measure headroom as row width minus the sum
+  of the links' natural widths: `justify-content: space-between` puts the last right edge at the
+  row edge no matter what, so it cannot tell you whether anything fits.
+- **Fraunces is served from this site now** (`cloudflare/src/fonts/`, copied to `/assets/fonts/`),
+  weight 600 only, licence **SIL Open Font License 1.1** with `OFL.txt` shipped beside it. It
+  closed the last shift: the home headline needs 3 lines in Fraunces where the fallback needs 2 at
+  360px, a line-break boundary no `size-adjust` can reach. 36px of movement, now 0px at 360, 390
+  and 412, live. **It cost first paint and that is deliberate**: home 996 to 1,148ms at 360px,
+  state pages about 80ms. Preloading the home page alone was tried and rejected because it delayed
+  the body font enough to move a state-page paragraph 26px on 1 run in 10. One line in `page()`
+  reverses the whole trade and its comment says which.
+- **Measure movement on the layout box** (`offsetTop`/`offsetHeight`), never
+  `getBoundingClientRect`: the hero's `rise` animation is a transform, so a perfectly still
+  headline measures as 8px of movement and sends you chasing nothing.
 
 ## PLATBOOK IS LIVE (2026-11-08) — read this before any older "LIVE NOW" line
 - **LIVE: https://theplatbook.com** (Worker `platbook`, Cloudflare Workers free plan). Lando bought theplatbook.com on 2026-11-08 in the same Cloudflare account and it is the permanent address. Everything below naming a `.workers.dev` address or the under-review page is history.
@@ -110,7 +131,15 @@ someone who has never coded, rewrite it. This applies to scheduled runs as well 
   which is what a state page's fact rows are built from, so the county copies went stale and the
   Florida page gave two different answers to the same question, 67 times. Dropped in
   `cloudflare/scripts/build-site.mjs` (`countyJson`). DE's real county redemption survives in its
-  `extra` block with 9 Del. C. 8758; **MD lost 3 genuine county rates** — open decision.
+  `extra` block with 9 Del. C. 8758; **MD's 3 county rates were put back 2026-11-17**, not by
+  switching the old county fields on, but as ordinary audited claims: Anne Arundel 18% a year
+  (aacounty.org), Cecil 12% (cecilcountymd.gov), Baltimore City 12% principal residence / 18% other
+  (Baltimore City Code, Art. 28, § 8-1). Each has its own official source, a snapshot, a quote and
+  a date, and three county domains were added to `official-domains.json` scoped to their own county.
+  **Baltimore City's codified 12% sits above the 10% state cap in Tax-Prop. § 14-820(c) for
+  owner-occupied residential. Both are published and linked; it is not reconciled. Do not quietly
+  pick one.** Also: a new claim needs `pass2`, and `checked` must match the snapshot's UTC fetch
+  date to the day.
 - `cleanExtra()` strips placeholder values, and on a **pending** state anything that states the
   law (NY was publishing 63 `method` claims on the page that promises it states none).
   `cleanNotes()` strips notes carrying an internal marker (`[VERIFY] …`), keeping prose that
