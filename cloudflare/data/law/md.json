@@ -315,6 +315,49 @@
       "pass2": "ok: read a second time on 2026-11-18 against the saved copy of the source, quote located in context and the figure matches what the source states"
     },
     {
+      "id": "summary.6ea",
+      "lang": "en",
+      "field": "summary",
+      "status": "supported",
+      "pass2": "ok: both figures re-read against their saved copies on 2026-11-18; the conflict is stated, not resolved",
+      "shown": "State law says 10% on a home the owner lives in.",
+      "statute": "Md. Code, Tax-Prop. § 14-820(c)",
+      "url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-820&enactments=false",
+      "snapshot": "foundry/out/law-audit/sources/md/s14-820.json",
+      "checked": "2026-11-01",
+      "sourceKind": "code",
+      "quote": "For owner-occupied residential property, the rate of redemption may not exceed 10% a year."
+    },
+    {
+      "id": "summary.6eb",
+      "lang": "en",
+      "field": "summary",
+      "status": "supported",
+      "pass2": "ok: both figures re-read against their saved copies on 2026-11-18; the conflict is stated, not resolved",
+      "shown": "Baltimore City's own code says 12%.",
+      "statute": "Baltimore City Code, Art. 28, § 8-1",
+      "url": "https://codes.baltimorecity.gov/us/md/cities/baltimore/code/28/8-1",
+      "snapshot": "foundry/out/law-audit/sources/md/baltcity-28-8-1.json",
+      "checked": "2026-11-18",
+      "sourceKind": "code",
+      "quote": "12% a year for any residential real property that, as of January 1 immediately preceding the tax sale, was designated by the State Department of Assessments and Taxation as the owner's principal residence"
+    },
+    {
+      "id": "summary.6ec",
+      "lang": "en",
+      "field": "summary",
+      "status": "supported",
+      "pass2": "ok: both figures re-read against their saved copies on 2026-11-18; the conflict is stated, not resolved",
+      "shown": "Both are published and they do not agree. Confirm the rate with Baltimore City before you bid.",
+      "statute": "Baltimore City Code, Art. 28, § 8-1",
+      "sourceKind": "code",
+      "conflictNote": "Deliberately does not say which rate controls. The quote is the City Code line showing the City setting its own rate under the state authority, which is the hinge of the conflict. Open item MD-BALTCITY-RATE-1.",
+      "url": "https://codes.baltimorecity.gov/us/md/cities/baltimore/code/28/8-1",
+      "snapshot": "foundry/out/law-audit/sources/md/baltcity-28-8-1.json",
+      "checked": "2026-11-18",
+      "quote": "the interest rate applicable to redemptions of property from tax sales in Baltimore City is"
+    },
+    {
       "id": "summary.7",
       "lang": "en",
       "field": "summary",
@@ -656,6 +699,49 @@
       "sourceKind": "code",
       "quote": "For owner-occupied residential property, the rate of redemption may not exceed 10% a year.",
       "pass2": "ok: read a second time on 2026-11-18 against the saved copy of the source, quote located in context and the figure matches what the source states"
+    },
+    {
+      "id": "rateWhy.5ea",
+      "lang": "en",
+      "field": "rateWhy",
+      "status": "supported",
+      "pass2": "ok: both figures re-read against their saved copies on 2026-11-18; the conflict is stated, not resolved",
+      "shown": "State law says 10% on a home the owner lives in.",
+      "statute": "Md. Code, Tax-Prop. § 14-820(c)",
+      "url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-820&enactments=false",
+      "snapshot": "foundry/out/law-audit/sources/md/s14-820.json",
+      "checked": "2026-11-01",
+      "sourceKind": "code",
+      "quote": "For owner-occupied residential property, the rate of redemption may not exceed 10% a year."
+    },
+    {
+      "id": "rateWhy.5eb",
+      "lang": "en",
+      "field": "rateWhy",
+      "status": "supported",
+      "pass2": "ok: both figures re-read against their saved copies on 2026-11-18; the conflict is stated, not resolved",
+      "shown": "Baltimore City's own code says 12%.",
+      "statute": "Baltimore City Code, Art. 28, § 8-1",
+      "url": "https://codes.baltimorecity.gov/us/md/cities/baltimore/code/28/8-1",
+      "snapshot": "foundry/out/law-audit/sources/md/baltcity-28-8-1.json",
+      "checked": "2026-11-18",
+      "sourceKind": "code",
+      "quote": "12% a year for any residential real property that, as of January 1 immediately preceding the tax sale, was designated by the State Department of Assessments and Taxation as the owner's principal residence"
+    },
+    {
+      "id": "rateWhy.5ec",
+      "lang": "en",
+      "field": "rateWhy",
+      "status": "supported",
+      "pass2": "ok: both figures re-read against their saved copies on 2026-11-18; the conflict is stated, not resolved",
+      "shown": "Both are published and they do not agree. Confirm the rate with Baltimore City before you bid.",
+      "statute": "Baltimore City Code, Art. 28, § 8-1",
+      "sourceKind": "code",
+      "conflictNote": "Deliberately does not say which rate controls. The quote is the City Code line showing the City setting its own rate under the state authority, which is the hinge of the conflict. Open item MD-BALTCITY-RATE-1.",
+      "url": "https://codes.baltimorecity.gov/us/md/cities/baltimore/code/28/8-1",
+      "snapshot": "foundry/out/law-audit/sources/md/baltcity-28-8-1.json",
+      "checked": "2026-11-18",
+      "quote": "the interest rate applicable to redemptions of property from tax sales in Baltimore City is"
     },
     {
       "id": "rateWhy.6",
@@ -1695,5 +1781,19 @@
     "MD-1",
     "MD-2"
   ],
-  "countyRatesNote": "The three county rates (Anne Arundel, Baltimore City, Cecil) were put back 2026-11-17 on Lando's instruction, each from its own official government source with a snapshot, a quote and a date. The pre-audit county fields stay off."
+  "countyRatesNote": "The three county rates (Anne Arundel, Baltimore City, Cecil) were put back 2026-11-17 on Lando's instruction, each from its own official government source with a snapshot, a quote and a date. The pre-audit county fields stay off.",
+  "openItems": [
+    {
+      "id": "MD-BALTCITY-RATE-1",
+      "opened": "2026-11-17",
+      "status": "open",
+      "question": "Baltimore City Code, Art. 28, § 8-1 sets 12% a year on a principal residence, while Md. Code, Tax-Prop. § 14-820(c) says the rate on owner-occupied residential property may not exceed 10% a year. Which controls was NOT decided and must not be decided by a build or a session.",
+      "published": "Both figures are published on the Maryland page with their own official sources, followed by one sentence telling the reader they do not agree and to confirm with Baltimore City before bidding.",
+      "sources": [
+        "https://codes.baltimorecity.gov/us/md/cities/baltimore/code/28/8-1",
+        "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtp&section=14-820&enactments=false"
+      ],
+      "decidedBy": "Lando, 2026-11-17: keep both lines, add the sentence, do not say which controls."
+    }
+  ]
 }
