@@ -78,4 +78,6 @@ alternatives were to give lesson 3 no markup at all, against Lando's "each lesso
 its headings into questions, against his "only text visible on the page".
 
 Still parked and untouched: the three design directions in `preview/redesign-2026-11-17/`.
-Still unanswered: the Baltimore City rate question.
+Baltimore City is settled and live as Lando decided it earlier the same night. The three search
+findings from the previous session are not started: the five lessons are the only pages on the
+site carrying question-and-answer labels today, and the other 56 carry none.

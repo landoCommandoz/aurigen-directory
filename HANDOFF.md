@@ -55,8 +55,12 @@ sentence are not counted as controls (WCAG 2.5.8 exempts them); the footer's "Re
 one of those, 17px tall on every page on the site, and padding it to 44px would break the sentence
 it sits in.
 
-Still parked, untouched: the three design directions in `preview/redesign-2026-11-17/`. Still
-unanswered: the Baltimore City rate question.
+Still parked, untouched: the three design directions in `preview/redesign-2026-11-17/`. Baltimore
+City was settled by Lando earlier the same night and is live as he decided it: both figures stay,
+each linked, with a sentence saying they do not agree. The three search findings from the previous
+session (no question-and-answer or breadcrumb labels on the 56 older pages, 42 of 51 state
+descriptions stitched and over-long, no page showing when it was last checked) are NOT started;
+the five lessons are the only pages on the site carrying question-and-answer labels today.
 
 ### SESSION (2026-11-17, evening): HEADER FIXED ON PHONES, FRAUNCES SELF-HOSTED, MARYLAND BACK, LESSONS EDITED
 
