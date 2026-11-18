@@ -1,6 +1,102 @@
 # AURIGEN HANDOFF DOCUMENT
 ## Updated after every session. Read before every session.
 
+### SESSION (2026-11-17, later): CORE WEB VITALS FIXED AND PROVED, FIVE LESSONS DRAFTED AND PARKED
+
+Lando brought Cloudflare's real-visitor numbers from the last 21 days: a 0.11 layout shift seen
+10 times, named on `#main > section.state-head > div.pending > p`, and LCP P50 256ms / P75 1,212ms
+/ P90 3,856ms with 1,193ms of element render delay. Everything below was measured in real Chrome
+(puppeteer-core driving the installed Chrome) on a Lighthouse mobile profile: 412x823 at DPR
+2.625, 4x CPU throttle, 1.6Mbps down / 150ms RTT. Scripts are in the session scratchpad, not the
+repo.
+
+- **The layout jump was the font swap re-wrapping text, and nothing else.** Ruled out first, with
+  measurements, not reasoning: the pending panel is already in the first HTML; nothing is injected
+  by script; the Cloudflare beacon is `type="module"` so it runs after paint and draws nothing;
+  `.state-head`'s `rise` animation is transform plus opacity, which the layout-instability spec
+  excludes. What moves is the wrap. Public Sans is 4.3-4.9% WIDER than every sans the stack fell
+  back to; Fraunces 600 is 7-10% NARROWER than Georgia. Measured on the live home page at 390px
+  before the fix: the hero headline grew 36px (two lines to three) and the largest block below it
+  moved 89px down. In an 844px viewport that is a shift of ~0.105. That is the reported 0.11.
+- **Fix: eight `@font-face` rules in `src/site.css` that wrap a real system font and scale it.**
+  `local('Segoe UI')`, `local('Roboto')`, `local('Helvetica Neue')/('Helvetica')/('Arial')`,
+  `local('Georgia')`, `local('Noto Serif')`, `local('Times New Roman')`, `local('Consolas')`,
+  `local('Courier New')`, each with `size-adjust` set to the measured width ratio and
+  `ascent-override`/`descent-override` divided by that same ratio so the two rules that set
+  line-height `normal` (`.btn`, `.map-pill`) keep their height. `--head`, `--body` and `--mono` in
+  `:root` now list those faces between the webfont and the bare system names. A browser without
+  `size-adjust` ignores them and behaves exactly as before. **`'Hoefler Text'` left the chain on
+  purpose**: macOS-only, cannot be measured on this PC, and Georgia is on macOS too, so macOS now
+  gets a measured face rather than a guess.
+- **After, same method:** `/state/ga/` and `/about/` move NOTHING at 390px or 412px, on both the
+  Segoe UI and the Helvetica fallback paths. Before, both moved 26px.
+- **STILL OPEN, and it is Lando's call.** The home page hero headline can still gain one line in
+  the swap window at ~390px. Fraunces needs 3 lines there where Georgia needs 2, and sweeping
+  `size-adjust` from 86% to 100% gives 2 lines at every value: it is a line-break boundary, not a
+  width error, so average-width matching cannot reach it. The cures are controlling that
+  headline's wrap in the markup or self-hosting Fraunces (~35KB, one file). Not done.
+- **First paint: the Google Fonts stylesheet is now `media="print" onload="this.media='all'"`,
+  plus a `<noscript>` copy.** Still a link tag, still `display=swap`, which is what Lando asked
+  for. It was one of only two render-blocking requests and the only third-party one. Safe to
+  unblock ONLY because the fallback is now width-matched; doing this without that change would
+  have traded CLS for LCP. **Proof, same page with only that one attribute different, third party
+  stalled 2s:** FCP 2,724 -> 900ms on `/state/ga/` and 2,820 -> 872ms on `/`; LCP 3,092 -> 2,520
+  and 3,232 -> 2,524. On a fast link the gain is small (live FCP 944 -> 900 on `/state/ga/`,
+  1,068 -> 1,004 on `/state/fl/`; LCP 1,044 -> 1,040 and 1,332 -> 1,272) because the third-party
+  round trip overlapped with `site.css`. The win is the P90 tail, which is where his problem was.
+- **The stylesheet is deliberately NOT inlined, and the comment above `page()` says why.**
+  Inlining its 8.7KB saves one same-origin round trip; it was tried and reverted because the
+  pending-state guard reads the built HTML as a plain string and `site.css` defines `.pill.t-lien`
+  and its three siblings, so every inlined page failed the build as a pending state shading
+  itself, 16 problems. That guard is what keeps GA, IN, NY and TN stating no law. Anyone
+  revisiting this strips the style element before those checks and never relaxes them.
+- **FOUND, NOT FIXED, needs a decision: the header nav overflows every phone.** `.top nav` is
+  `display:flex` with `flex: none` and no `flex-wrap`, so it lays out at its natural 427px. On a
+  360px or 390px phone the `Free Rules Sheet` link's right edge is at 443px, off screen, and
+  `body { overflow-x: hidden }` clips it silently instead of letting the visitor scroll to it.
+  **The only link to the free product is invisible on a phone, on every one of the 57 pages**, and
+  has been since the nav link was added on 2026-11-14. Verified live on `/`, `/start-here/` and
+  `/state/ga/`. One declaration fixes it, but it changes the header on every page and was not part
+  of the ask, so it was left alone.
+
+**THE FIVE BEGINNER LESSONS: DRAFTED, PARKED, NOT LIVE.** New file
+`cloudflare/scripts/lessons.mjs`. One switch, `LESSONS_APPROVED`, currently `false`. While it is
+false `build-site.mjs` does not write the pages, does not add them to `sitemap.xml` and links them
+from nowhere: verified after a build that 0 files under `public/` mention `start-here/lessons` and
+the sitemap has 0 lesson entries. Flip it to `true` and they appear at `/start-here/lessons/1..5/`
+with an index at `/start-here/lessons/`.
+
+- Built out of Start Here, not beside it: same `page()` shell, same `.prose.narrow`, same
+  `lawList()`. There is no second beginner section.
+- **50 state-specific sentences, every one rendered from an audited ledger** with its statute, its
+  official link and the date checked: 29 to `www.flsenate.gov`, 21 to `tcss.legis.texas.gov`.
+  Nothing typed by hand. A ledger losing a claim throws at build time.
+- **Lesson 5 (clearing title) states no quiet-title rule for any state, because the ledgers hold
+  none.** The whole claim-id vocabulary is type, rate, rateNote, redemption, bidMethod, statute,
+  auctionPlatform, auctionTiming, summary, typeWhy, rateWhy, keyNotes, beginnerTip, risks,
+  ddExtra, signup, otc, platforms, surplus. Nothing about quiet title. So the lesson says on the
+  page that it is leaving the gap empty on purpose, uses the two Florida claims that genuinely
+  bear on title after a sale (§197.552 government liens survive; §95.192(1) four-year limit), says
+  it varies by state and county, and hands the reader to a real estate attorney. It also carries
+  Lando's own line: he hands title work to an attorney and has never done it himself.
+- Every lesson ends with the four pending states, named from the live pending list so the warning
+  cannot go stale, then a link to the reader's own state page.
+- **Preview for approval:** `LESSONS_PREVIEW=1 npm run build` writes six self-contained files to
+  `preview/lessons-2026-11-17/` (outside `public/`, untracked). Stylesheet inlined so they open
+  off the disk with no server, site links pointed at the live address, lesson links pointed at
+  each other as plain files, canonical stripped (a preview is served nowhere and should claim no
+  address), `noindex, nofollow` on each. Parked as room approval item 5.
+- Checked: 0 em dashes outside the stylesheet, nothing wider than the screen at 360/390/412px,
+  every lesson-navigation tap target 44px after moving the next-and-back line onto `.crumbs`.
+
+Suite after everything: **117 pass, 0 fail** (canonical 8, county-text 71, live 1, ref-clicks 16,
+sheet 21), run file by file because the directory at once still fails on Windows with
+MODULE_NOT_FOUND. Build clean: check-law PASS 51 states, pending states asserting nothing 4 (GA,
+IN, NY, TN), county text clean on 51 pages, 1 pre-existing unmatched county record (SD: Shannon).
+`npm run qa` still cannot run here: `puppeteer` is not installed, pre-existing. Live publish run
+44209579172 ended **success including "Check the live address"**, the first time that step has
+been green. Dated `.bak` copies sit beside every file changed and are deliberately not committed.
+
 ### SESSION (2026-11-17): START HERE PAGE LIVE, EMAIL PERMISSION SENTENCE LIVE, STATUS FILE UNSTUCK
 
 Lando approved room items 4, 2 and 3 with his PIN and said "put each one live". All three went out in one deploy from `main`.

@@ -61,6 +61,36 @@ someone who has never coded, rewrite it. This applies to scheduled runs as well 
 - HANDOFF.md must be updated after every session
 - CLAUDE.md SESSION MEMORY updated after every session
 
+## FONTS, FIRST PAINT AND THE PARKED LESSONS (2026-11-17) — read before touching site.css or the head
+
+- **`SITE_URL` is fixed and the publish is green.** The workflow files now name
+  `https://theplatbook.com`, so "Check the live address" passes. The older bullet below saying
+  every restore run ends red is history; the compensating guard in `build-site.mjs` stays anyway.
+- **Three `@font-face` fallback families per webfont live in `src/site.css`, with `size-adjust`.**
+  They exist to stop text re-wrapping when the real fonts arrive: Public Sans is 4.3-4.9% wider
+  than Segoe UI, Roboto and Arial, and Fraunces 600 is 7-10% narrower than Georgia, which was
+  moving the page 26-89px after first paint and producing Cloudflare's 0.11 shift. **Do not edit
+  the ratios by eye.** They were measured in real Chrome at the sizes the site renders. If a font
+  in `--head`, `--body` or `--mono` ever changes, re-measure or delete the faces; a stale ratio is
+  worse than none.
+- **The Google Fonts stylesheet is deliberately not render-blocking** (`media="print"` with an
+  `onload` swap, plus a `<noscript>` copy). That is safe ONLY while the width-matched fallbacks
+  above exist. Removing them without putting the blocking link back trades a 0.11 shift for a
+  faster paint, which is the wrong trade.
+- **`site.css` must not be inlined into the page head.** Tried 2026-11-17 and reverted: it defines
+  `.pill.t-lien` and its siblings, the pending-state guard reads the built HTML as a plain string,
+  and every inlined page then failed the build as a pending state shading itself. The comment
+  above `page()` carries the full reason.
+- **The five beginner lessons are written and PARKED.** `cloudflare/scripts/lessons.mjs`,
+  `LESSONS_APPROVED = false`. Nothing is written, linked or listed while it is false. Preview
+  files for Lando: `LESSONS_PREVIEW=1 npm run build` writes `preview/lessons-2026-11-17/`.
+  Every state-specific sentence comes from `lawList()`; lesson 5 states no quiet-title rule for
+  any state because the ledgers hold none, and says so on the page.
+- **KNOWN LIVE BUG, NOT FIXED, needs Lando: the header nav overflows every phone.** `.top nav` is
+  `flex` with `flex: none` and no `flex-wrap`, natural width 427px, so the `Free Rules Sheet`
+  link's right edge lands at 443px and `body { overflow-x: hidden }` clips it. The only link to
+  the free product is invisible on a phone, on all 57 pages, since 2026-11-14.
+
 ## PLATBOOK IS LIVE (2026-11-08) — read this before any older "LIVE NOW" line
 - **LIVE: https://theplatbook.com** (Worker `platbook`, Cloudflare Workers free plan). Lando bought theplatbook.com on 2026-11-08 in the same Cloudflare account and it is the permanent address. Everything below naming a `.workers.dev` address or the under-review page is history.
 - **Both custom domains are declared in `cloudflare/wrangler.jsonc` AND `under-review/wrangler.jsonc`**, not only in the dashboard, because a Worker deploy replaces the whole trigger set: a publish without them would pull the domain off the site. `workers_dev` stays `true` so the old address still answers and can be redirected.
