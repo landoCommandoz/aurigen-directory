@@ -1,6 +1,63 @@
 # AURIGEN HANDOFF DOCUMENT
 ## Updated after every session. Read before every session.
 
+### SESSION (2026-11-17, night): THE FIVE LESSONS ARE LIVE UNDER START HERE
+
+Lando approved work item 4 in the room with his PIN (room queue id 5, decided 2026-11-17 22:42,
+work item taken 22:44). The approval line was read out of the room before anything was touched,
+and the four content checks he named were confirmed in the files first: "The short version" heads
+all five lessons, lesson 4 carries the one-month-against-twelve-months homestead example, no
+lesson mentions a seminar or a course, and lesson 5 still reads "Every time. I have never done it
+myself."
+
+- **LIVE: `/start-here/lessons/1/` to `/5/`, plus `/start-here/lessons/`.** All six return 200.
+  `LESSONS_APPROVED = true` is still the whole switch: it writes the pages, puts all six in the
+  sitemap and drops the `noindex` meta. Setting it back to false removes every one of those in a
+  single build.
+- **They live under Start Here, not beside it.** Start Here gained one section, "The five lessons,
+  in order", which cards all five in order and links the index. There is no second beginner
+  section anywhere on the site.
+- **Each lesson links forward, back and home**: Previous, Next and Back to Start here, all three
+  through `.crumbs a`, which carries `min-height: 44px`, so each is a real tap target.
+- **THE APPROVED LESSON TEXT WAS NOT TOUCHED.** The whole diff of `lessons.mjs` is the switch and
+  the previous-lesson link. Diff it against
+  `cloudflare/scripts/lessons.mjs.bak-2026-11-17-before-publish` before believing otherwise.
+- **The question-and-answer markup is generated, never written.** No prepared draft of it existed
+  anywhere in the repo, the vault or the handoff, so it was built fresh to Lando's rule: only text
+  visible on the page. `faqJsonLd()` in `build-site.mjs` walks the page's own `<h2>` sections,
+  takes the heading as the question and the visible text under it as the answer, and **throws at
+  build time if either string cannot be found in the page's own visible text**, so an invented
+  question cannot ship. 26 pairs over the five pages; "The short version", the pending notice and
+  the closing "Now read your own state" block are excluded on purpose.
+- **ONE JUDGMENT CALL, WORTH KNOWING BEFORE EDITING IT.** Lesson 3's sections are numbered steps,
+  so its eight pairs read as steps rather than as literal questions. The alternative was to emit
+  nothing for lesson 3, which would have broken Lando's "each lesson" instruction, or to rephrase
+  its headings into questions, which would have broken his "only text visible on the page" rule.
+  Also worth knowing: since 2023 Google shows FAQ rich results only for government and health
+  sites, so this markup is correctness and machine readability, not a ranking lever. If it is ever
+  removed, remove `faqJsonLd` and the `extraHead` call together.
+- **50 law lines, 8 + 9 + 19 + 11 + 3**, each with its statute, its official link and its checked
+  date, all still rendered by `lawList()` out of the audited ledgers. Lesson 5 still states no
+  quiet-title rule for any state and says so on the page.
+- **The pending notice is on all five, word for word**, naming Georgia, Indiana, New York and
+  Tennessee out of the live pending list, not typed.
+
+Proof: build clean, **check-law PASS 51 states**, county text clean on 51 pages, pending states
+asserting nothing 4 (GA, IN, NY, TN), **117 tests pass, 0 fail**. Publish run 44247977061 success
+(Aurigen site, restore from main). Measured in real Chrome on the **live** pages at 375px, and on
+the built pages at 360, 390 and 412px as well, for all five lessons and both index pages: document
+scroll width equals the viewport, **zero elements past the right edge**, **zero controls under
+44px**, **CLS 0.000**, and **0px of movement of any landmark's layout box after first paint**.
+Measure movement from a snapshot taken at first contentful paint, not at `DOMContentLoaded`: a
+snapshot taken that early reports 27-114px of relayout that no reader can see, which is why the
+earlier runs of the harness disagreed with each other while CLS stayed 0. Inline links inside a
+sentence are not counted as controls (WCAG 2.5.8 exempts them); the footer's "Report an error" is
+one of those, 17px tall on every page on the site, and padding it to 44px would break the sentence
+it sits in.
+
+Still parked, untouched: the three design directions in `preview/redesign-2026-11-17/`. Still
+unanswered: the Baltimore City rate question.
+
 ### SESSION (2026-11-17, evening): HEADER FIXED ON PHONES, FRAUNCES SELF-HOSTED, MARYLAND BACK, LESSONS EDITED
 
 Three jobs plus an edit pass on the parked lessons. Everything below is live except the lessons.

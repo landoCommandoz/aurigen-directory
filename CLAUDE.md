@@ -61,7 +61,7 @@ someone who has never coded, rewrite it. This applies to scheduled runs as well 
 - HANDOFF.md must be updated after every session
 - CLAUDE.md SESSION MEMORY updated after every session
 
-## FONTS, FIRST PAINT AND THE PARKED LESSONS (2026-11-17) — read before touching site.css or the head
+## FONTS, FIRST PAINT AND THE FIVE LESSONS (2026-11-17, lessons live 2026-11-18) — read before touching site.css or the head
 
 - **`SITE_URL` is fixed and the publish is green.** The workflow files now name
   `https://theplatbook.com`, so "Check the live address" passes. The older bullet below saying
@@ -81,15 +81,26 @@ someone who has never coded, rewrite it. This applies to scheduled runs as well 
   `.pill.t-lien` and its siblings, the pending-state guard reads the built HTML as a plain string,
   and every inlined page then failed the build as a pending state shading itself. The comment
   above `page()` carries the full reason.
-- **The five beginner lessons are written, EDITED on 2026-11-17 to Lando's seven changes, and
-  still PARKED.** Four rules now stand at the top of `lessons.mjs` and bind every future edit: no
+- **The five beginner lessons are LIVE since 2026-11-18 under Start Here**, at
+  `/start-here/lessons/1/` to `/5/` plus `/start-here/lessons/`, on Lando's PIN approval of room
+  work item 4. `LESSONS_APPROVED = true` is still the whole switch and false still removes the
+  pages, the sitemap entries and the Start Here links in one build. Start Here links all five in
+  order; each lesson links Previous, Next and Back to Start here through `.crumbs a` (44px).
+  **Each lesson carries question-and-answer markup that is generated, never written**: `faqJsonLd()`
+  in `build-site.mjs` reads the page's own `<h2>` sections and THROWS if a question or an answer is
+  not in the page's visible text, so invented Q&A cannot ship. Lesson 3's pairs are its numbered
+  steps, which was a judgment call: see the handoff. The lesson prose Lando approved was not
+  touched; the whole diff is the switch and the previous-lesson link
+  (`lessons.mjs.bak-2026-11-17-before-publish`).
+- **The four rules from the edit pass still bind every future lesson edit.** They stand at the top of `lessons.mjs`: no
   claim about how often anything happens (the ledgers hold statutes, not statistics), no jab at
   seminars or courses, every worked number must be possible under the statute cited on the same
   page, and every bare ledger fragment gets a plain-English lead-in. The example that forced the
   first and third of those: lesson 4 showed 25 percent paid back at twenty three months, which
   Tex. Tax Code § 34.21 allows for neither property type at that point.
-  The file is `cloudflare/scripts/lessons.mjs` and the switch is `LESSONS_APPROVED = false`. Nothing is written, linked or listed while it is false. Preview
-  files for Lando: `LESSONS_PREVIEW=1 npm run build` writes `preview/lessons-2026-11-17/`.
+  The file is `cloudflare/scripts/lessons.mjs`. Nothing is written, linked or listed while
+  `LESSONS_APPROVED` is false; it is true since 2026-11-18. The preview route still works and still
+  writes outside `public/`: `LESSONS_PREVIEW=1 npm run build` writes `preview/lessons-2026-11-17/`.
   Every state-specific sentence comes from `lawList()`; lesson 5 states no quiet-title rule for
   any state because the ledgers hold none, and says so on the page.
 - **FIXED 2026-11-17, was live and broken since 2026-11-14: the header nav overflowed every
