@@ -1,0 +1,652 @@
+/* ============================================================================
+   DIRECTION 1 - THE PLAT BOOK. A PREVIEW STYLESHEET FOR THE WHOLE SITE.
+   Built 2026-11-19 on Lando's instruction: "the whole site, not three samples."
+   NOTHING HERE IS LIVE. The live site still uses src/site.css, untouched.
+
+   WHY THIS IS A STYLESHEET AND NOT 62 NEW PAGES.
+   The brief says keep every legal statement, citation, link, date, page address, the pending
+   notice and everything from the search fixes. The only way to GUARANTEE that, rather than
+   promise it, is to not touch the HTML at all: the preview is the real built site with this
+   file in place of site.css, so every page's words are byte-for-byte the words that are live.
+   That also means a reader comparing the two is comparing the design and nothing else.
+   The one markup addition is a data-page attribute on <html>, which carries no content and
+   exists so this file can give the lessons more air than a state page, as asked.
+
+   COLOUR, SAMPLED FROM A PHYSICAL OBJECT, NOT FROM A PALETTE TOOL.
+   Carried over from the direction-1 sample of 2026-11-17 and unchanged:
+     --linen   a plat book plate printed on linen-backed map paper: cool grey-green, not cream
+     --ink     iron-gall ink gone brown-black with age
+     --survey  the blue a surveyor's section lines are drawn in
+     --oxide   the oxide red of a recorder's stamp, used ONLY to mark a state that asserts
+               nothing yet. Colour here carries data; it is never decoration.
+   DELIBERATELY NOT cream with rust-orange, no italicised serif headline, and no tracked-out
+   eyebrow above every heading: research on 2026-11-17 found that pairing is the 2026 tell of a
+   machine-built page. No gradient anywhere, including hard-stop two-colour markers. No
+   box-shadow anywhere: things are separated by rules and ground tone, the way print does it.
+   Radius 0 throughout, because a plate has corners.
+
+   WHAT THE BEHAVIOUR DEPENDS ON, AND MUST NOT CHANGE.
+   app.js toggles .chip.on, .dim on map paths, .sel on a county or path, .lang-es on <html>,
+   .show-map on the counties section, and [hidden] on the drawer. Every one of those is styled
+   below with the same meaning it has live. Change a selector here and the map, the filter, the
+   language switch or the county drawer stops working.
+   ============================================================================ */
+
+/* ----------------------------------------------------------------------------
+   THE TWO WEBFONTS, SERVED FROM THIS SITE, AND THEIR MEASURED STAND-INS.
+   Vollkorn and Archivo Narrow, both SIL Open Font License 1.1, both licences shipped beside
+   the files at assets/fonts/. Confirmed from the upstream licence text on 2026-11-19, not
+   assumed: "This Font Software is licensed under the SIL Open Font License, Version 1.1",
+   Copyright 2017 The Vollkorn Project Authors and Copyright 2019 The Archivo Narrow Project
+   Authors. font-display: swap on both, as asked.
+
+   THE STAND-INS ARE MEASURED, NOT GUESSED. Measured in real Chrome on this PC on 2026-11-19
+   with canvas measureText, on the site's own words rather than a pangram, at the exact sizes
+   this file renders. Ascent and descent come from fontBoundingBox at 1000px, so the integer
+   rounding costs 0.1% instead of 2%.
+
+   VOLLKORN'S RATIO AGAINST GEORGIA CHANGES WITH WEIGHT, so there is one stand-in per weight.
+   One family for all three would be wrong at two of them:
+       weight 400, 17px body   Georgia 97.9%   Times 107.0%
+       weight 600, 18px h2     Georgia 88.3%   Times 104.4%
+       weight 700, 28px h1     Georgia 90.7%   Times 107.2%
+   Georgia's bold is much wider than Vollkorn's relative to its regular, which is the whole
+   reason the 400 and 700 numbers differ by seven points.
+   Vollkorn's own box: ascent 95.2%, descent 44.1%. Times New Roman and the generic serif
+   measured identically, which is expected: serif resolves to Times on this PC.
+
+   ARIAL NARROW IS NOT IN THE STACK, ON PURPOSE. It is the obvious stand-in for a narrow
+   grotesque and it was in the sample's font list. It is not here because it could not be
+   measured: on this PC the name resolves but renders as Arial, 881.2px against Arial's
+   881.2px for the same string, so any ratio written for it would be Arial's ratio wearing
+   Arial Narrow's name. A stale ratio is worse than none, so the stand-in is the one that was
+   actually measured and the stack falls through to it.
+   ---------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Vollkorn'; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url('assets/fonts/vollkorn-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Vollkorn'; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url('assets/fonts/vollkorn-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Archivo Narrow'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('assets/fonts/archivo-narrow-600-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Archivo Narrow'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('assets/fonts/archivo-narrow-600-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* body, weight 400 */
+@font-face { font-family: 'VK400 w Georgia'; src: local('Georgia'); size-adjust: 97.9%; ascent-override: 95.2%; descent-override: 44.1%; line-gap-override: 0%; }
+@font-face { font-family: 'VK400 w Times'; src: local('Times New Roman'), local('Times'); size-adjust: 107.0%; ascent-override: 95.2%; descent-override: 44.1%; line-gap-override: 0%; }
+/* section headings, weight 600 */
+@font-face { font-family: 'VK600 w Georgia'; src: local('Georgia'); size-adjust: 88.3%; ascent-override: 95.2%; descent-override: 44.1%; line-gap-override: 0%; }
+@font-face { font-family: 'VK600 w Times'; src: local('Times New Roman'), local('Times'); size-adjust: 104.4%; ascent-override: 95.2%; descent-override: 44.1%; line-gap-override: 0%; }
+/* page titles, weight 700 */
+@font-face { font-family: 'VK700 w Georgia'; src: local('Georgia'); size-adjust: 90.7%; ascent-override: 95.2%; descent-override: 44.1%; line-gap-override: 0%; }
+@font-face { font-family: 'VK700 w Times'; src: local('Times New Roman'), local('Times'); size-adjust: 107.2%; ascent-override: 95.2%; descent-override: 44.1%; line-gap-override: 0%; }
+/* labels, Archivo Narrow 600 against the one narrow-ish face that could be measured here */
+@font-face { font-family: 'AN600 w Arial'; src: local('Arial'); size-adjust: 81.7%; ascent-override: 103.5%; descent-override: 31.2%; line-gap-override: 0%; }
+
+:root {
+  --linen: #eceee9;
+  --linen-2: #e2e5de;
+  --linen-3: #d7dbd3;
+  --ink: #1f2420;
+  --ink-soft: #4b534c;
+  --survey: #2d4a63;
+  --survey-soft: #4a6b86;
+  --oxide: #8c3a2a;
+  --hair: #b9bfb6;
+  --rule: #8e968c;
+
+  /* Sale types. Three blues of one survey ink, one oxide, one graphite. Nothing outside it. */
+  --t-lien: #22425c;
+  --t-deed: #4a6b86;
+  --t-hybrid: #6b5a43;
+  --t-redeemable: #3f5f52;
+  --t-other: #5d625b;
+  --t-none: #8c3a2a;
+
+  --body: 'Vollkorn', 'VK400 w Georgia', 'VK400 w Times', Georgia, 'Times New Roman', serif;
+  --h1f: 'Vollkorn', 'VK700 w Georgia', 'VK700 w Times', Georgia, 'Times New Roman', serif;
+  --h2f: 'Vollkorn', 'VK600 w Georgia', 'VK600 w Times', Georgia, 'Times New Roman', serif;
+  --label: 'Archivo Narrow', 'AN600 w Arial', Arial, sans-serif;
+  --measure: 66ch;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; color-scheme: light; }
+body {
+  margin: 0; background: var(--linen); color: var(--ink);
+  font: 400 17px/1.6 var(--body);
+  overflow-x: hidden;
+}
+a { color: var(--survey); text-underline-offset: .15em; text-decoration-thickness: 1px; }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 2px solid var(--oxide); outline-offset: 2px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--linen); padding: .6em 1em; z-index: 50; }
+.skip:focus { left: 8px; top: 8px; }
+.muted { color: var(--ink-soft); }
+small { display: block; color: var(--ink-soft); font-size: .84em; }
+code { font-family: var(--label); background: var(--linen-2); padding: 0 .25em; }
+
+h1, h2, h3 { margin: 0 0 .4em; letter-spacing: 0; }
+h1 { font: 700 1.75rem/1.15 var(--h1f); }
+h2 { font: 600 1.125rem/1.2 var(--h2f); }
+h3 { font: 600 1.0625rem/1.25 var(--h2f); margin-top: 1.5em; }
+
+/* ---------------------------------------------------------------------------
+   THE SPINE. A plat book opens on a stiff cover with the volume name and its tabs, so the
+   header is a double rule with the brand above a row of plate tabs. It is NOT sticky: a plat
+   book page does not carry its cover down the page with it, and a sticky bar costs 56px of a
+   375px screen on every scroll.
+
+   FIVE LINKS, ONE ROW, AT 375px. The live site learned this the hard way: .top nav was
+   flex: none with no wrap and ran off every phone for three days while overflow-x: hidden hid
+   the evidence. Both halves of the safety net are kept. Measure headroom as the row width
+   minus the sum of the links' natural widths; space-between puts the last right edge on the
+   row edge whatever happens, so it can never tell you whether anything fits.
+   --------------------------------------------------------------------------- */
+.top {
+  display: flex; flex-direction: column; gap: 0;
+  padding: .5rem clamp(.75rem, 3vw, 2rem) 0;
+  border-bottom: 3px double var(--ink);
+  background: var(--linen);
+}
+.brand {
+  display: flex; align-items: center; gap: .5rem; min-height: 44px; min-width: 0;
+  color: var(--ink); text-decoration: none;
+  font: 700 1.375rem/1.1 var(--h1f);
+}
+.brand em {
+  display: block; font: 600 .625rem/1.3 var(--label); font-style: normal;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft);
+}
+.brand > span:last-child { display: grid; gap: .1rem; min-width: 0; }
+.brand-mark {
+  flex: none; width: 30px; height: 30px; display: grid; place-items: center;
+  background: var(--ink); color: var(--linen);
+  font: 700 1rem/1 var(--label); letter-spacing: 0;
+}
+.top nav {
+  display: flex; flex-wrap: wrap; min-width: 0;
+  border-top: 1px solid var(--hair); margin-top: .35rem;
+}
+.top nav a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  padding: .75rem .5rem;
+  font: 600 .8125rem/1 var(--label); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none;
+  border-right: 1px solid var(--hair);
+}
+.top nav a:first-child { padding-left: 0; }
+.top nav a:hover { color: var(--oxide); }
+.top nav a em { font-style: normal; }
+/* The one link to the one thing we sell. An oxide rule under it, the same ink the pending
+   stamp uses, because both are "look here" and the page has no third thing to shout about. */
+.top nav a.nav-sheet { color: var(--oxide); box-shadow: inset 0 -3px 0 var(--oxide); border-right: 0; }
+@media (max-width: 639.98px) {
+  .top nav a { padding: .75rem .34rem; font-size: .75rem; letter-spacing: .05em; }
+  .brand { font-size: 1.25rem; }
+  /* "Free" is held back below 640px and the link reads "Rules Sheet", exactly as the live site
+     does it and for the same reason. Measured without this rule: one row down to 375px, but two
+     rows at 360px and 320px, which are real phones. The front page block and the sheet's own
+     page both lead with the word free, so nothing about it being free depends on this label.
+     Measure headroom as the row width minus the sum of the links' own widths; the row's right
+     edge tells you nothing. */
+  .top nav a em { display: none; }
+}
+
+main { padding: 0 clamp(.75rem, 3vw, 2rem) 3rem; max-width: 1180px; margin: 0 auto; }
+
+.foot {
+  border-top: 3px double var(--ink); margin-top: 3.5rem;
+  padding: 1.5rem clamp(.75rem, 3vw, 2rem) 4rem;
+  background: var(--linen-2); color: var(--ink-soft); font-size: .9375rem;
+}
+.foot p { max-width: var(--measure); }
+.disclaimer { color: var(--ink); font-weight: 700; }
+/* Not a coloured bar: a plat book says "this is a note" with a rule and an indent. */
+.disclaimer-line {
+  color: var(--ink-soft); font-size: .9375rem;
+  border-left: 2px solid var(--rule); padding-left: .7rem; margin: .8rem 0;
+}
+
+/* ---------------------------------------------------------------------------
+   THE TITLE PLATE. No hero wash, no gridlines, no animation on load: a plate is printed, it
+   does not arrive. The stamp line above the title is the one place an uppercase label sits
+   above a heading, and it is there because it carries data (how many records, free or not),
+   not because every heading needs a hat.
+   --------------------------------------------------------------------------- */
+.hero { padding: 1.25rem 0 1rem; border-bottom: 1px solid var(--hair); }
+.eyebrow {
+  margin: 0 0 .5rem; padding-bottom: .4rem;
+  font: 600 .6875rem/1.4 var(--label); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--oxide); border-bottom: 1px solid var(--hair);
+}
+[data-page="home"] h1 { font-size: 2rem; }
+.lede { color: var(--ink-soft); max-width: var(--measure); margin: 0 0 1rem; }
+
+.search { position: relative; max-width: 34rem; margin-top: 1rem; }
+.search input, .filter, .field {
+  width: 100%; min-height: 48px; padding: .6rem .75rem;
+  border: 1px solid var(--rule); border-radius: 0;
+  background: #f7f8f5; color: var(--ink); font: inherit;
+}
+.search input:focus, .filter:focus { outline: 2px solid var(--oxide); outline-offset: -2px; border-color: var(--ink); }
+.results {
+  position: absolute; left: 0; right: 0; top: calc(100% - 1px); z-index: 30;
+  list-style: none; margin: 0; padding: 0;
+  background: #f7f8f5; border: 1px solid var(--ink); border-top: 3px double var(--ink);
+}
+.results a {
+  display: flex; justify-content: space-between; gap: 1rem; align-items: center;
+  padding: .6rem .75rem; min-height: 44px; color: var(--ink); text-decoration: none;
+  border-bottom: 1px dotted var(--hair);
+}
+.results li:last-child a { border-bottom: 0; }
+.results a:hover, .results a:focus { background: var(--linen-3); }
+.results .muted { font: 600 .6875rem/1.4 var(--label); letter-spacing: .08em; text-transform: uppercase; }
+
+/* The one thing we sell. An inserted leaf: tipped into the book, ruled off top and bottom,
+   on the deeper ground tone so it reads as an insert rather than part of the plate. */
+.sheet-band {
+  margin: 1.25rem 0 0; padding: 1rem 1rem 1.1rem;
+  background: var(--linen-2);
+  border: 1px solid var(--hair); border-top: 3px double var(--ink);
+}
+.sheet-band h2 { margin-bottom: .4em; }
+.sheet-band p { max-width: var(--measure); }
+.sheet-band .muted { font-size: .9rem; margin-bottom: 0; }
+
+/* A button in a plat book is a rubber stamp: a hard rule, square, no lift, no shadow. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 0 1.2rem;
+  background: var(--ink); color: var(--linen); border: 2px solid var(--ink); border-radius: 0;
+  font: 600 .8125rem/1 var(--label); letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none; cursor: pointer;
+}
+.btn:hover { background: var(--survey); border-color: var(--survey); color: var(--linen); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--linen-3); color: var(--ink); }
+
+/* ---------------------------------------------------------------------------
+   PLATES. Every major section is a numbered plate, which is the signature of this direction.
+   The numbers are drawn by a CSS counter, so they are never typed, never wrong, and never
+   claim a plate that is not there.
+   --------------------------------------------------------------------------- */
+main { counter-reset: plate; }
+.home-grid, .counties-sec, .prose, .sheet-band { position: relative; }
+.counties-sec > .sec-head > h2::before,
+.prose > h2:first-child::before {
+  counter-increment: plate;
+  content: "Plate " counter(plate) " \00a0\00b7\00a0 ";
+  font: 600 .625rem/1.4 var(--label); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-soft); white-space: nowrap;
+}
+/* Running text is read, not consulted, so it gets no plate number and no ruled density.
+   Lando: "Lessons get more air than state pages: no ruled density behind running text." */
+[data-page="lesson"] .prose > h2:first-child::before,
+[data-page="lessons"] .prose > h2:first-child::before,
+[data-page="start-here"] .prose > h2:first-child::before,
+[data-page="about"] .prose > h2:first-child::before,
+[data-page="legal"] .prose > h2:first-child::before { content: none; }
+
+.home-grid { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); margin-top: 1.5rem; }
+/* The map is a plate: ruled, flat, on the paper. No card, no shadow, no rounded corner. */
+.map-wrap { border: 1px solid var(--hair); border-top: 3px double var(--ink); padding: .8rem; background: #f7f8f5; }
+.map { width: 100%; height: auto; display: block; }
+.map path { stroke: #f7f8f5; stroke-width: .6; }
+.map a:hover path, .map path[data-i]:hover, .map path.sel { stroke: var(--ink); stroke-width: 1.1; }
+.county-map path { stroke-width: .5; }
+.county-map path[data-i] { cursor: pointer; }
+.map path.dim { opacity: .16; }
+.t-lien { fill: var(--t-lien); --c: var(--t-lien); }
+.t-deed { fill: var(--t-deed); --c: var(--t-deed); }
+.t-hybrid { fill: var(--t-hybrid); --c: var(--t-hybrid); }
+.t-redeemable { fill: var(--t-redeemable); --c: var(--t-redeemable); }
+.t-other { fill: var(--t-other); --c: var(--t-other); }
+.t-none { fill: var(--t-none); --c: var(--t-none); }
+.legend {
+  list-style: none; display: flex; flex-wrap: wrap; gap: .35rem 1rem; padding: 0; margin: .7rem 0 0;
+  font: 600 .6875rem/1.4 var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft);
+}
+.legend li { display: flex; align-items: center; gap: .35rem; }
+.sw { width: 10px; height: 10px; border-radius: 0; background: var(--c); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--ink); }
+.chip {
+  flex: 0 1 auto; min-height: 44px; padding: 0 .7rem;
+  border: 0; border-right: 1px solid var(--hair); border-radius: 0;
+  background: transparent; color: var(--ink); cursor: pointer;
+  font: 600 .75rem/1 var(--label); letter-spacing: .08em; text-transform: uppercase;
+}
+.chip:hover { color: var(--oxide); }
+.chip span { color: var(--ink-soft); }
+.chip.on { background: var(--ink); color: var(--linen); border-right-color: var(--ink); }
+.chip.on span { color: var(--linen); }
+
+/* ---------------------------------------------------------------------------
+   THE INDEX OF STATES. Direction 1's second signature: a dense two-column index, the way the
+   back of a plat book lists its plates, not a grid of cards. All 51 states are in it, as asked,
+   and every row is a 44px tap target with a dotted leader down the page.
+   The cards are a list on paper. One rule between rows, nothing boxed.
+   --------------------------------------------------------------------------- */
+.cards { list-style: none; padding: 0; margin: .8rem 0 0; display: block; }
+.card { min-width: 0; break-inside: avoid; }
+/* TWO COLUMNS, NOT THREE. The sale-type mark had its own auto column at first and the 1fr name
+   column ate it: at 1440px "Tax certificate sale, then tax deed sale" rendered as "TAX...",
+   which tells a reader nothing. On a state page that string IS the audited sentence, so it gets
+   the full width of the row here and sits under the name. The nowrap and ellipsis below stay as
+   the backstop the live stylesheet learned to keep: a long string must never widen the row. */
+.card a {
+  display: grid; grid-template-columns: 2.4rem minmax(0, 1fr);
+  grid-template-areas: "code name" "code pill" "code facts" "code foot";
+  gap: 0 .6rem; align-items: baseline;
+  padding: .55rem 0; min-height: 44px;
+  color: var(--ink); text-decoration: none;
+  border-bottom: 1px dotted var(--hair);
+}
+.card a:hover { background: var(--linen-2); }
+.card a:hover .card-name { text-decoration: underline; }
+.card-top { grid-area: code; display: block; }
+.code { font: 600 .8125rem/1.5 var(--label); letter-spacing: .1em; color: var(--ink-soft); }
+.card-name { grid-area: name; font: 600 1.0625rem/1.3 var(--h2f); overflow-wrap: anywhere; }
+.card-facts { grid-area: facts; display: block; font-size: .875rem; color: var(--ink-soft); min-width: 0; }
+.card-facts span { overflow-wrap: anywhere; }
+.card-facts span + span::before { content: " \00b7 "; color: var(--hair); }
+.card-facts b { font-weight: 400; font-style: italic; }
+.card-foot {
+  grid-area: foot; font: 600 .625rem/1.5 var(--label); letter-spacing: .08em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+/* The sale-type mark sits in the index as a word in narrow caps, not a filled lozenge: in a
+   book the type of plate is printed, not badged. The colour still carries the data. */
+.pill {
+  display: inline-block; max-width: 100%; min-width: 0;
+  padding: .15rem 0 .15rem .5rem;
+  border-left: 3px solid var(--c, var(--t-other));
+  background: transparent; color: var(--ink-soft);
+  font: 600 .625rem/1.5 var(--label); letter-spacing: .09em; text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+.card-top .pill, .county .pill { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* A state that states no law is stamped in oxide, the recorder's red. The only use of it. */
+.pill.t-none { color: var(--oxide); border-left-color: var(--oxide); font-weight: 600; }
+/* ON A STATE PAGE THE SALE TYPE IS NOT A BADGE. It is the audited sentence itself, carrying its
+   own statute, and it can run to a full line: "Tax certificate sale, then tax deed sale". Set in
+   the index face it would be 10px narrow uppercase, which is the wrong size for a legal
+   statement and the wrong case for a sentence. Here only the margin rule carries the colour and
+   the words are set at reading size. The live stylesheet draws the same line, for the same
+   reason: it clips the badge in the index and in the county list, and nowhere else. */
+.fact dd .pill, .kv dd .pill {
+  font: 400 1rem/1.6 var(--body); letter-spacing: 0; text-transform: none;
+  color: var(--ink); padding-left: .6rem;
+}
+.card a .pill { grid-area: pill; align-self: start; margin: .1rem 0 .15rem; }
+
+@media (min-width: 540px) { .cards { columns: 2; column-gap: 2rem; } }
+@media (min-width: 900px) { .home-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: start; } .cards { columns: 2; } }
+@media (min-width: 1200px) { .cards { columns: 2; column-gap: 2.5rem; } }
+
+/* Start Here and the five lessons are cards in an ordered list, not index rows. */
+[data-page="start-here"] .cards, [data-page="lessons"] .cards { columns: 1; margin-top: 1rem; }
+[data-page="start-here"] .cards .card a, [data-page="lessons"] .cards .card a {
+  grid-template-columns: minmax(0, 1fr); grid-template-areas: "name" "facts";
+  padding: .9rem 0;
+}
+
+/* ---------------------------------------------------------------------------
+   A STATE PLATE. The title block of a plat sheet: the name, what was checked and when, then
+   the facts as a ruled schedule. A schedule, not six cards: the whole point of this direction
+   is that the numbers line up so two states can be read against each other.
+   --------------------------------------------------------------------------- */
+.crumbs {
+  padding-top: .9rem;
+  font: 600 .6875rem/1.4 var(--label); letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.crumbs a { display: inline-flex; min-height: 44px; align-items: center; color: var(--ink); }
+.state-head { padding-top: .2rem; }
+.title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; border-bottom: 1px solid var(--ink); padding-bottom: .4rem; }
+[data-page="state"] h1, [data-page="pending"] h1 { font-size: 2rem; margin-bottom: 0; }
+.lang { display: flex; border: 1px solid var(--rule); flex: none; }
+.lang button {
+  min-width: 48px; min-height: 44px; border: 0; background: transparent; cursor: pointer;
+  font: 600 .75rem/1 var(--label); letter-spacing: .08em; color: var(--ink-soft);
+}
+.lang button + button { border-left: 1px solid var(--rule); }
+.lang button:hover { color: var(--oxide); }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--linen); }
+
+/* The checked line is a note in the margin of the title block, set in the label face so it
+   reads as an annotation rather than as a sentence of the page's own prose. */
+.fresh {
+  margin: .5rem 0 .2rem; font-size: .9375rem; color: var(--ink-soft);
+  border-left: 2px solid var(--rule); padding-left: .7rem;
+}
+.fresh.ok { color: var(--ink-soft); }
+.fresh time { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.fresh.flag { color: var(--oxide); border-left-color: var(--oxide); font-weight: 600; }
+
+/* The schedule. Label in narrow caps on the left, value on the right, one hairline between
+   rows, tabular numbers so a column of rates reads as a column. */
+.facts { display: block; margin: 1.2rem 0; border-top: 1px solid var(--ink); }
+.fact {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: .1rem .9rem;
+  padding: .7rem 0; border-bottom: 1px solid var(--hair); min-width: 0;
+}
+.fact dt {
+  font: 600 .6875rem/1.4 var(--label); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.fact dd { margin: 0; overflow-wrap: anywhere; min-width: 0; font-variant-numeric: tabular-nums; }
+@media (min-width: 700px) {
+  .fact { grid-template-columns: 11rem minmax(0, 1fr); align-items: baseline; }
+  .fact dt { padding-top: .1rem; }
+}
+.callout { border: 1px solid var(--hair); border-top: 3px double var(--ink); background: var(--linen-2); padding: .8rem 1rem; margin: 1rem 0; }
+.callout ul { margin: .3rem 0 0; padding-left: 1.1rem; }
+
+/* VERIFICATION PENDING. The recorder's stamp: oxide rule, oxide heading, on the deeper ground.
+   This is the one place colour means something, so it gets the only saturated ink in the book. */
+.pending {
+  margin: .7rem 0 .9rem; padding: .8rem .9rem;
+  background: var(--linen-2);
+  border: 1px solid var(--oxide); border-left-width: 4px;
+}
+.pending p { margin: 0; max-width: var(--measure); }
+.pending p + p { margin-top: .45rem; }
+.pending b { color: var(--oxide); }
+.unverified { color: var(--ink-soft); font-style: italic; }
+.claim-flag { color: var(--oxide); font-style: italic; font-size: .92em; }
+
+.counties-sec { margin-top: 2.25rem; border-top: 1px solid var(--hair); padding-top: .9rem; }
+.sec-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .4rem 1.5rem; border-bottom: 1px solid var(--ink); padding-bottom: .35rem; margin-bottom: .8rem; }
+.sec-head h2 { margin: 0; }
+.sec-head .legend { margin: 0; }
+.count { font: 600 .6875rem/1.4 var(--label); letter-spacing: .1em; color: var(--ink-soft); }
+.split { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
+.map-pane { display: none; border: 1px solid var(--hair); padding: .7rem; background: #f7f8f5; }
+.show-map .map-pane { display: block; }
+.show-map .list-pane { display: none; }
+
+/* The county list is the schedule of records at the back of the plate: a dotted leader per
+   row, the office on the second line, the type marked in the margin. */
+.county-list { list-style: none; padding: 0; margin: .8rem 0 0; display: block; border-top: 1px solid var(--hair); }
+.county { min-width: 0; }
+.county button {
+  width: 100%; min-width: 0; min-height: 52px;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "n t" "p t"; align-items: center; gap: 0 .8rem;
+  padding: .5rem 0; border: 0; border-bottom: 1px dotted var(--hair); border-radius: 0;
+  background: transparent; color: var(--ink); font: inherit; text-align: left; cursor: pointer;
+}
+.county button:hover, .county button:focus-visible, .county.sel button { background: var(--linen-2); }
+.cn { grid-area: n; font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
+.cp { grid-area: p; font: 400 .8125rem/1.4 var(--body); color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.county .pill { grid-area: t; }
+/* The map toggle is a tab on the edge of the page, square, in the label face. */
+.map-pill {
+  position: fixed; left: 50%; bottom: max(.75rem, env(safe-area-inset-bottom));
+  transform: translateX(-50%); z-index: 25;
+  min-height: 48px; padding: 0 1.4rem; border: 2px solid var(--ink); border-radius: 0;
+  background: var(--linen); color: var(--ink); cursor: pointer;
+  font: 600 .8125rem/1 var(--label); letter-spacing: .1em; text-transform: uppercase;
+}
+
+/* The county drawer is a loose leaf laid over the plate. Ruled, square, flat. */
+.drawer {
+  position: fixed; left: 0; right: 0; bottom: 0; top: 16vh; z-index: 40;
+  background: var(--linen); border-top: 3px double var(--ink);
+  overflow-y: auto; overscroll-behavior: contain;
+}
+.drawer[hidden] { display: none; }
+.drawer-inner { padding: 1.1rem clamp(.75rem, 3vw, 1.5rem) 3rem; position: relative; }
+.drawer-close {
+  position: sticky; top: 0; float: right; width: 44px; height: 44px;
+  border: 1px solid var(--rule); border-radius: 0; background: var(--linen-2); color: var(--ink);
+  font-size: 1.4rem; cursor: pointer;
+}
+.drawer h2 { margin-right: 3rem; }
+.kv { display: grid; gap: 0; margin: .6rem 0; border-top: 1px solid var(--hair); }
+.kv > div { display: grid; gap: .1rem; padding: .5rem 0; border-bottom: 1px solid var(--hair); min-width: 0; }
+.kv dt { font: 600 .6875rem/1.4 var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+.kv dd { margin: 0; overflow-wrap: anywhere; min-width: 0; }
+.kv-nested { margin: .2rem 0 0; padding-left: .8rem; border-left: 1px solid var(--hair); border-top: 0; }
+.kv-nested > div { border-bottom: 0; padding: .2rem 0; }
+
+/* ---------------------------------------------------------------------------
+   RUNNING TEXT. The measure is capped at 66ch on paragraphs AND on list items and definition
+   lists, borrowed from the CFPB on 2026-11-17: a statute line runs about 190 characters at
+   1440px if nothing caps it.
+   --------------------------------------------------------------------------- */
+.prose { max-width: 42rem; margin-top: 2.25rem; }
+.prose p, .prose li, .prose dd, .prose dt { max-width: var(--measure); }
+.prose.narrow { margin-inline: auto; padding-top: 1.5rem; }
+.prose.center { text-align: center; }
+.prose ul, .prose ol { padding-left: 1.1rem; }
+.prose li { margin: .3rem 0; }
+.mini-states { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem; }
+.mini-states a {
+  display: inline-grid; place-items: center; width: 48px; height: 44px;
+  border: 1px solid var(--rule); text-decoration: none; background: #f7f8f5;
+  font: 600 .75rem/1 var(--label); letter-spacing: .06em; color: var(--ink);
+}
+.mini-states a:hover { background: var(--ink); color: var(--linen); border-color: var(--ink); }
+
+/* LESSONS GET MORE AIR. Lando's instruction, and the one place this file deliberately differs
+   from the rest of the book: longer leading, a wider gap between sections, a narrower measure,
+   and no rule, no tint and no dotted leader anywhere behind the running text. A lesson is read
+   once from the top; a state page is consulted. They should not feel the same. */
+[data-page="lesson"] body, [data-page="lessons"] body { font-size: 17px; }
+[data-page="lesson"] main { max-width: 44rem; }
+[data-page="lesson"] .prose { max-width: 38rem; margin-top: 1.5rem; }
+[data-page="lesson"] .prose p { max-width: 60ch; line-height: 1.75; margin: 0 0 1.15em; }
+[data-page="lesson"] .prose h2 { margin-top: 2.5em; font-size: 1.25rem; }
+[data-page="lesson"] .prose h3 { margin-top: 2em; }
+[data-page="lesson"] .prose li { line-height: 1.7; margin: .5rem 0; }
+[data-page="lesson"] .law-list li { border-bottom: 0; padding: .55rem 0 .55rem .9rem; }
+[data-page="lesson"] .crumbs { border-bottom: 1px solid var(--hair); padding-bottom: .2rem; }
+[data-page="lesson"] h1 { font-size: 1.875rem; line-height: 1.2; margin-top: .6rem; }
+
+/* A statement with its statute beside it. The source steps into the margin on a wide screen,
+   which is direction 1's third signature: on a plat sheet the authority for a line is written
+   out at the edge of the plate, not in the middle of the text. */
+.law-list { list-style: none; padding-left: 0; margin: 1rem 0; }
+.law-list li { margin: 0; padding: .7rem 0 .7rem .9rem; border-left: 2px solid var(--hair); border-bottom: 1px solid var(--hair); }
+.law-list li:last-child { border-bottom: 0; }
+.law-list .src { display: block; margin-top: .3rem; font-size: .875rem; }
+.law-list .src a { color: var(--survey); }
+.law-list .src .muted { margin-left: .4rem; font: 600 .625rem/1.4 var(--label); letter-spacing: .08em; text-transform: uppercase; }
+@media (min-width: 1024px) {
+  /* The margin is RESERVED ON THE LIST ITSELF, not assumed to exist in the container.
+     Reserving it on the container was the first attempt and it pushed the page 20px sideways
+     at exactly 1024px on Start Here and on all five lessons, because .law-list is not always
+     inside .prose: in a full-width container the note ran off the right edge. 14.5rem is the
+     1.25rem gap plus the 13rem note, so the note cannot leave the page at any width. */
+  .law-list { margin-right: 14.5rem; }
+  .law-list li { position: relative; }
+  .law-list .src {
+    position: absolute; left: 100%; margin-left: 1.25rem; top: .7rem; width: 13rem;
+    margin-top: 0; font-size: .8125rem; color: var(--ink-soft);
+  }
+  .law-list .src .muted { display: block; margin-left: 0; }
+  [data-page="lesson"] .prose, [data-page="start-here"] .prose { max-width: 38rem; }
+}
+
+/* A LINK THAT IS THE WHOLE OF ITS ROW IS A TAP TARGET, NOT A PHRASE.
+   A statute link inside a sentence is part of the sentence and is left at its text height; a
+   link that is the entire value of a fact row, or the entire list item, is the only thing there
+   is to tap and has to be 44px. On Georgia's pending page those two links measured 19px on the
+   live site and would have measured 23px here. Measured after this rule: 44px. */
+.fact dd > a:only-child,
+.prose li > a:only-child,
+.kv dd > a:only-child { display: inline-flex; align-items: center; min-height: 44px; }
+
+.compare { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: .9375rem; }
+.compare th, .compare td { text-align: left; vertical-align: top; padding: .5rem .6rem .5rem 0; border-bottom: 1px solid var(--hair); }
+.compare thead th { border-bottom: 1px solid var(--ink); font: 600 .6875rem/1.4 var(--label); letter-spacing: .12em; text-transform: uppercase; }
+.compare tbody td:first-child { color: var(--ink-soft); }
+@media (max-width: 640px) {
+  .compare, .compare tbody, .compare tr, .compare td { display: block; width: 100%; }
+  .compare thead { display: none; }
+  .compare tr { margin-bottom: .9rem; padding-bottom: .5rem; border-bottom: 1px solid var(--ink); }
+  .compare td { border-bottom: 0; padding: .15rem 0; }
+  .compare tbody td:first-child { font-weight: 600; color: var(--ink); }
+  .compare tbody td:nth-child(2)::before { content: 'Lien: '; font: 600 .625rem/1.4 var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+  .compare tbody td:nth-child(3)::before { content: 'Deed: '; font: 600 .625rem/1.4 var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+}
+
+.glossary, .faq { margin: 1.2rem 0; }
+.glossary dt, .faq dt { font-weight: 600; margin-top: 1.2rem; }
+.glossary dd, .faq dd { margin: .25rem 0 0; color: var(--ink-soft); }
+.faq dt { color: var(--ink); }
+[data-page="start-here"] .glossary dt, [data-page="start-here"] .faq dt { margin-top: 1.4rem; }
+
+/* The statute's own words. Set in the body serif, not a monospace: in a plat book a quotation
+   from the statute is set as text, indented and ruled, the way a deed recites a covenant. */
+.quote { margin: .4rem 0 .5rem; font-size: .9375rem; }
+.quote > summary {
+  cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: .3rem;
+  padding: .2rem .5rem .2rem 0;
+  font: 600 .625rem/1.5 var(--label); letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-soft); border-bottom: 1px solid var(--hair);
+}
+.quote > summary::-webkit-details-marker { display: none; }
+/* No quotation-mark glyph before the label. The live site draws one, but in Vollkorn at this
+   size the pair renders as two tick marks that read as stray characters rather than as quotes.
+   The label already says STATUTE TEXT, and the rule under it marks it as something to open. */
+.quote > summary:hover, .quote[open] > summary { color: var(--oxide); border-bottom-color: var(--oxide); }
+.quote blockquote { margin: .4rem 0 0; padding: .5rem 0 .5rem .9rem; border-left: 2px solid var(--survey-soft); background: transparent; }
+.quote blockquote p { margin: 0; color: var(--ink); font-size: .9375rem; line-height: 1.65; overflow-wrap: anywhere; max-width: var(--measure); }
+.quote blockquote footer { margin-top: .4rem; color: var(--ink-soft); font-size: .8125rem; overflow-wrap: anywhere; }
+.src { font-size: .875rem; }
+
+.extras-card { border: 1px solid var(--hair); border-top: 3px double var(--ink); padding: 1.1rem; margin: 1rem 0; background: var(--linen-2); }
+
+[data-lang="es"] { display: none; }
+.lang-es [data-lang="es"] { display: block; }
+.lang-es [data-lang="en"] { display: none; }
+
+@media (min-width: 900px) {
+  .split { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: start; }
+  .map-pane, .show-map .map-pane { display: block; }
+  .show-map .list-pane { display: block; }
+  .map-pill { display: none; }
+  .drawer { left: auto; top: 0; width: min(440px, 40vw); border-left: 3px double var(--ink); border-top: 0; }
+  .kv > div { grid-template-columns: 11rem minmax(0, 1fr); gap: .9rem; }
+  .kv-nested > div { grid-template-columns: 9rem minmax(0, 1fr); }
+}
+/* There is no load animation anywhere in this direction, so there is nothing for a reduced
+   motion preference to switch off. The rule stays as a guard for anything added later. */
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }

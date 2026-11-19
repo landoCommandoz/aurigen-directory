@@ -26,5 +26,9 @@ foundry/out/law-audit/raw/
 .cursor/
 .agents/
 
-# Local preview build (never committed)
-preview/
+# Local preview build (never committed). The leading slash matters: without it this pattern
+# matches a directory named preview at ANY depth, and it was quietly hiding the SOURCE of the
+# 2026-11-19 design preview as well as its output: cloudflare/src/preview/ (the stylesheets,
+# the two webfonts and their licences) and cloudflare/scripts/preview/ (the saved copy of the
+# Rules Sheet page). Only the built output at the repository root is meant to be ignored.
+/preview/
