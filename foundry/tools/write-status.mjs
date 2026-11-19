@@ -35,7 +35,13 @@ if (prog) {
   // The status of record is gaps.json (the audit updates it as gaps close); PROGRESS.json can lag behind it.
   const cs = (v) => st.filter((s, i) => ((gaps && gaps.states && gaps.states[Object.keys(prog.states)[i]]) || s).checkStatus === v).length;
   const sum = (k) => st.reduce((a, s) => a + (s[k] || 0), 0);
-  out.push(`Changed: ${done} of ${(prog.order || []).length} states audited (${cs('checked')} checked, ${cs('checked with gaps')} checked with gaps), ${blocked} could not be reached (blocked, retried each run). ${sum('corrected')} claims corrected, ${sum('flagged')} flagged, ${sum('unreachable')} unreachable.`);
+  // "the site's own state pages" is here on Lando's instruction of 2026-11-19, and it is not
+  // decoration. This count and the one in the Rules Sheet band on the front page are about two
+  // different things, and a reader who saw both without being told so read them as the site
+  // contradicting itself: the band counts the states the sheet has room for (44), this counts the
+  // states whose own page has been audited (47). Both sentences now name their own scope. If
+  // either is ever reworded, reword the other in the same breath.
+  out.push(`Changed: the site's own state pages, ${done} of ${(prog.order || []).length} audited (${cs('checked')} with no gaps left, ${cs('checked with gaps')} checked with gaps), ${blocked} could not be reached (blocked, retried each run). ${sum('corrected')} claims corrected, ${sum('flagged')} flagged, ${sum('unreachable')} unreachable.`);
 }
 if (chain) {
   const cap = chain.cap;

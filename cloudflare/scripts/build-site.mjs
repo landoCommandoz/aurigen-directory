@@ -8,6 +8,13 @@ import { geoPath, geoAlbersUsa, geoMercator, geoCentroid } from 'd3-geo';
 import { feature } from 'topojson-client';
 import { FIELD_ORDER, loadLedger, claimNote } from './law-pieces.mjs';
 import { countyTextProblems } from './county-text.mjs';
+// The standing check on every piece of structured data the site ships. Its own note carries the
+// rules; build-site runs it on every built page below and fails the build on a single problem.
+import { structuredDataProblems } from './structured-data.mjs';
+// One plain sentence per state page, built from that state's own audited ledger. The note at the
+// top of state-desc.mjs says why it is generated rather than hand-written, and the check near the
+// end of this file proves every figure in every finished sentence is text a reader can see.
+import { stateDesc, figuresIn, DESC_LIMIT } from './state-desc.mjs';
 // The five beginner lessons. PARKED: LESSONS_APPROVED is false, so nothing below writes them,
 // links them or puts them in the sitemap. See the note at the top of lessons.mjs.
 import { LESSONS_APPROVED, lessons, lessonsIndexBody, LESSONS_BASE } from './lessons.mjs';
@@ -215,6 +222,27 @@ function auditedProse(st, L) {
   ${hasEs ? '<p class="muted" data-lang="es" lang="es">La lista de condados y las fuentes están en inglés.</p>' : ''}
 </section>`;
 }
+// THE OLDEST CHECKED DATE ON THE PAGE, which is the only date the page is entitled to put behind
+// the words "last checked". A ledger's own auditedAt is the day the audit ran, and a later
+// correction to one claim moves nothing else: Florida carries claims checked 2026-11-01 and one
+// checked 2026-11-18, and a page headed with the newer date would be telling a reader that the
+// other 2026-11-01 statements had been looked at seventeen days after they were. So the floor is
+// taken, over every English claim the page actually shows and every county source it links, and
+// the build refuses to publish a line whose date is newer than any date the page prints.
+function oldestChecked(st) {
+  const L = st.ledger;
+  if (!L) return '';
+  const days = [];
+  for (const c of L.claims) {
+    if (c.lang !== 'en' || c.shown === '' || !c.checked) continue;
+    days.push(String(c.checked).slice(0, 10));
+  }
+  for (const s of Object.values(L.countySources || {})) {
+    if (s && s.checked) days.push(String(s.checked).slice(0, 10));
+  }
+  return days.length ? days.sort()[0] : '';
+}
+
 function ledgerSources(L) {
   const seen = new Map();
   for (const c of L.claims) {
@@ -463,7 +491,7 @@ function homePage() {
 <section class="sheet-band callout" aria-labelledby="sheet-band-h">
   <p class="eyebrow">Free &middot; nothing is charged</p>
   <h2 id="sheet-band-h">The audited state rules, in one sheet</h2>
-  <p>${SHEET.stateCount} states side by side, ${num(SHEET.rows)} rows, and every row carries its statute, a link to the official page, the date it was checked and the exact words it rests on. ${SHEET.checked} ${SHEET.checked === 1 ? 'state is' : 'states are'} checked; ${SHEET.withGaps} ${SHEET.withGaps === 1 ? 'is' : 'are'} checked with gaps, and the gaps are named in plain words.</p>
+  <p>${SHEET.stateCount} states side by side, ${num(SHEET.rows)} rows, and every row carries its statute, a link to the official page, the date it was checked and the exact words it rests on. These next two counts are about the sheet, not the whole site: of the ${SHEET.stateCount} states in it, ${SHEET.checked} ${SHEET.checked === 1 ? 'is' : 'are'} checked with no gaps left; ${SHEET.withGaps} ${SHEET.withGaps === 1 ? 'is' : 'are'} checked with gaps, and each gap is named in plain words. The site's own ${states.length} state pages are counted separately, and more of them are audited than the sheet has room for.</p>
   <p><a class="btn" href="${sheetHref('home')}">Get the Rules Sheet free</a></p>
   <p class="muted">Free in exchange for an email address. Everything on this site stays free to read either way.</p>
 </section>` : ''}
@@ -474,12 +502,17 @@ function homePage() {
     <ul class="cards" id="cards">${cards}</ul>
   </div>
 </section>`;
-  return page({ title: 'Platbook — free tax lien & deed rules for all 50 states, county by county', desc: 'Free directory of tax lien and tax deed rules for every U.S. state and county: sale type, redemption period, interest rates and auction platforms.', canonical: '/', body });
+  const desc = 'Free directory of tax lien and tax deed rules for every U.S. state and county: sale type, redemption period, interest rates and auction platforms.';
+  return page({ title: 'Platbook — free tax lien & deed rules for all 50 states, county by county', desc, canonical: '/', body, extraHead: orgAndSiteJsonLd(desc) });
 }
 
 // ---------- state ----------
 const unmatchedAll = {};
 const builtStatePages = new Map();
+// Every page that is not a state page, kept by the address it is served at, so the checks at the
+// end of this file can read the real built HTML rather than re-rendering it.
+const otherBuiltPages = new Map();
+const writePage = (rel, canonical, html) => { otherBuiltPages.set(canonical, html); write(rel, html); };
 function statePage(st) {
   const m = matchCounties(st);
   if (m.unmatched.length) unmatchedAll[st.code] = m.unmatched;
@@ -489,8 +522,11 @@ function statePage(st) {
   <p><b>${PENDING_LABEL}.</b> Platbook has not been able to read ${esc(st.name)}'s official source yet, so <b>nothing on this page states ${esc(st.name)} law</b>. The county offices, platforms and links below are still accurate; the legal detail is deliberately blank rather than guessed.</p>
   <p class="muted">Statute: ${p.url ? link(p.url, p.statute || 'Statute') : esc(p.statute || '—')}${p.govUrl && p.govUrl !== p.url ? ` · ${link(p.govUrl, 'state page designating it')}` : ''} · last attempt ${esc(String(p.lastAttempt || '').slice(0, 10))}</p>
 </div>`;
+  // A pending state gets the panel and no last-checked line at all, which is the honest answer:
+  // its official source has not been read, so there is no date to give.
+  const oldest = PEND ? '' : oldestChecked(st);
   const freshLine = PEND ? PENDING_PANEL(PEND) : f.status === 'audited'
-    ? `<p class="fresh ok">Checked against official sources on ${esc(f.lastChecked)}. Each statement is tied to the statute or agency page listed under Sources.</p>`
+    ? `<p class="fresh ok">Last checked against the official source: <time datetime="${esc(oldest)}">${esc(oldest)}</time>. That is the oldest date on this page; every statement below carries its own statute, its official link and the day it was read.</p>`
     : f.status === 'unconfirmed'
     ? `<p class="fresh flag" role="note">⚠ Not re-checked yet. Confirm with the county.</p>`
     : `<p class="fresh ok">Last checked: ${esc(f.lastChecked)} against ${link(f.sourceUrl, f.sourceTitle || f.sourceUrl)}${f.status === 'changed' ? ' — <strong>updated</strong> from the official source' : ''}.</p>`;
@@ -618,10 +654,17 @@ ${st.rules ? `<section class="prose rules"><h2>Detailed state rules</h2>${render
   const title = PEND
     ? `${st.name} tax sale rules by county — verification pending — Platbook`
     : `${st.name} tax ${st.type === 'lien' ? 'lien' : st.type === 'hybrid' ? 'lien & deed' : 'deed'} rules by county — Platbook`;
-  const desc = PEND
-    ? `${st.name}: Platbook has not yet read the official source, so no legal detail is stated. ${st.counties.length} ${countyLabel.toLowerCase()} with offices, platforms and official links.`
-    : `${st.name}: ${st.typeLabel}. Interest/penalty ${firstSentence(st.rate)} Redemption ${firstSentence(st.redemption)} ${st.counties.length} ${countyLabel.toLowerCase()} with auction platforms.`;
-  return page({ title, desc, canonical: `/state/${st.code.toLowerCase()}/`, body });
+  // ONE PLAIN SENTENCE, BUILT FROM THIS STATE'S OWN AUDITED LEDGER. What it replaced was stitched
+  // from st.rate and st.redemption, the PRE-AUDIT fields, so a page could show the audited wording
+  // in its fact rows and the superseded wording in the line a search engine reads: Florida's said
+  // "Interest/penalty Maximum rate set by law: 18% per year (§197. Redemption Until a tax deed is
+  // issued... (§197." - 263 characters, cut off mid-citation twice, and quoting the exact redemption
+  // wording the audit had found wrong. state-desc.mjs and the check at the end of this file are the
+  // two halves of making that impossible again.
+  const desc = stateDesc(st, { pending: PEND });
+  // The trail the page itself prints, two steps, with the link text the reader sees.
+  const crumbs = breadcrumbJsonLd([['All states', '/'], [st.name, `/state/${st.code.toLowerCase()}/`]], `/state/${st.code.toLowerCase()}/ breadcrumb`);
+  return page({ title, desc, canonical: `/state/${st.code.toLowerCase()}/`, body, extraHead: crumbs });
 }
 
 // ---------- simple pages ----------
@@ -630,7 +673,7 @@ const aboutPage = () => page({ title: 'About — Platbook', desc: 'What Platbook
   <h1>About this directory</h1>
   <p>Platbook is a free reference for people researching tax lien and tax deed sales in the United States. It covers all 50 states and Washington, DC, with ${states.reduce((n, s) => n + s.counties.length, 0).toLocaleString('en-US')} county, parish, borough and town records.</p>
   <p>Everything here is free. There is no sign-up and nothing is locked.</p>${SHEET_LISTED ? `
-  <p>There is also the <a href="${sheetHref('about')}">Rules Sheet</a>: the ${SHEET.stateCount} audited states on one page, ${num(SHEET.rows)} rows, each with its statute, the official link, the date checked and the quote it rests on. It is free in exchange for an email address. Nothing on the pages above moves behind it.</p>` : ''}
+  <p>There is also the <a href="${sheetHref('about')}">Rules Sheet</a>: ${SHEET.stateCount} of the audited states on one page, ${num(SHEET.rows)} rows, each with its statute, the official link, the date checked and the quote it rests on. It is free in exchange for an email address. Nothing on the pages above moves behind it.</p>` : ''}
   <h2>Where the data comes from</h2>
   <ul>
     <li>State statutes and official state revenue or treasurer pages, linked on each state page.</li>
@@ -723,11 +766,9 @@ const GLOSSARY = [
   ['Delinquency', 'The point at which an unpaid tax bill becomes officially late. Statutes count most deadlines from this date rather than from the billing date.'],
 ];
 
-const startHerePage = () => page({
-  title: 'Start here: tax liens and tax deeds explained',
-  desc: 'What a tax lien is, what a tax deed is, how they differ, and the words every state page uses. Each legal statement carries its statute, the official link and the date it was checked.',
-  canonical: '/start-here/',
-  body: `
+// The page's question-and-answer markup is built from its own "Short FAQ" definition list and
+// from nothing else, so the body is built first and read, rather than written twice.
+const startHereBody = () => `
 <section class="prose narrow">
   <h1>Start here</h1>
   <p class="lede">If you have never bought a tax lien or a tax deed, this page is the whole idea in a few minutes. It says what each one is, how they differ, what the words on every state page mean, and where the law behind each statement comes from.</p>
@@ -812,7 +853,19 @@ const startHerePage = () => page({
 
   ` : ''}<h2 id="next">Where to go next</h2>
   <p>Pick your state from the <a href="/">state list</a>. Each page gives the type of sale, the rate or penalty, the redemption period, the bidding method and the statutes behind them, plus the counties and the offices that run the sales.</p>
-</section>` });
+</section>`;
+const startHerePage = () => {
+  const body = startHereBody();
+  return page({
+    title: 'Start here: tax liens and tax deeds explained',
+    desc: 'What a tax lien is, what a tax deed is, how they differ, and the words every state page uses. Each legal statement carries its statute, the official link and the date it was checked.',
+    canonical: '/start-here/',
+    body,
+    // The eight pairs are cut out of this page's own Short FAQ list. Nothing is written here,
+    // and faqJsonLdFrom() throws if a question or an answer is not in the page's visible text.
+    extraHead: faqJsonLdFrom(dlPairs(body, 'faq'), body, 'start-here q-and-a'),
+  });
+};
 
 // ---------- question-and-answer markup, built only from text visible on the page ----------
 // Lando's rule for this markup, and the only rule it obeys: nothing in it may be text a reader
@@ -848,19 +901,105 @@ function qaPairs(body) {
   return out;
 }
 function faqJsonLd(body, where) {
-  const pairs = qaPairs(body);
+  return faqJsonLdFrom(qaPairs(body), body, where);
+}
+
+// A question-and-answer pair list read out of a definition list, which is how the Start Here page
+// writes its FAQ: <dl class="faq"> with a <dt> per question and the <dd>s under it as the answer.
+// Same rule as qaPairs() above and the same guarantee: the text is cut out of the page's own
+// markup, never written here, and faqJsonLdFrom() refuses to emit a pair it cannot find in the
+// page's visible text, which fails the build.
+function dlPairs(body, cls) {
+  const dl = body.match(new RegExp(`<dl class="${cls}">([\\s\\S]*?)</dl>`));
+  if (!dl) return [];
+  const out = [];
+  const re = /<dt[^>]*>([\s\S]*?)<\/dt>((?:\s*<dd[^>]*>[\s\S]*?<\/dd>)+)/g;
+  for (let m = re.exec(dl[1]); m; m = re.exec(dl[1])) {
+    const q = visibleText(m[1]);
+    const a = visibleText(m[2]);
+    if (q && a) out.push([q, a]);
+  }
+  return out;
+}
+// The emitter both FAQ sources share, so the "must be visible on the page" rule exists once.
+function faqJsonLdFrom(pairs, body, where) {
   if (!pairs.length) throw new Error(`${where}: no question-and-answer pairs on the page, so no markup can be built from it`);
   const seen = visibleText(body);
   for (const [q, a] of pairs) {
     if (!seen.includes(q)) throw new Error(`${where}: question is not visible on the page: ${q}`);
     if (!seen.includes(a)) throw new Error(`${where}: answer is not visible on the page, under: ${q}`);
   }
-  const data = {
+  return ld({
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: pairs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
-  };
-  return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\u003c')}</script>`;
+  });
+}
+
+// ---------- the rest of the structured data: breadcrumbs, the organisation, the website ----------
+// Added 2026-11-19 on Lando's instruction. Three rules it is built to, and check-structured-data.mjs
+// enforces all three against the built HTML, so a later hand-edit cannot quietly break one:
+//
+//   1. NOTHING IS CLAIMED THAT THE PAGE DOES NOT SAY. A breadcrumb's name is the link text the
+//      reader sees in that same breadcrumb trail; the organisation's name is the brand in the
+//      header; the FAQ pairs are cut out of the page. Nothing here is written from memory.
+//   2. NO RATINGS, NO REVIEWS, NO CREDENTIALS, ever. We have no customers to quote and no
+//      qualification to assert, and inventing either is the one thing this markup could do that
+//      would be worse than having none. The checker fails the build on the mere presence of those
+//      keys anywhere in any block on any page.
+//   3. NOTHING ON THE RULES SHEET KEY PAGE. That page is served by under-review/sheet.js behind
+//      the Worker's licence gate and is deliberately left exactly as it is.
+//
+// No SearchAction is declared on the website, although the home page has a search box. The box
+// filters a list inside the browser and there is no address a search engine could send a query
+// to, so claiming one would describe a feature that does not exist.
+const ld = (data) => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
+const abs = (p) => `${SITE_URL}${p}`;
+const ORG_ID = `${SITE_URL}/#org`;
+const SITE_ID = `${SITE_URL}/#website`;
+// "Platbook" is the brand in the site header on every page, and the description is the home
+// page's own meta description word for word.
+function orgAndSiteJsonLd(homeDesc) {
+  return ld({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': ORG_ID,
+        name: 'Platbook',
+        alternateName: 'Platbook County Resource Directory',
+        url: abs('/'),
+        description: homeDesc,
+        publishingPrinciples: abs('/about/'),
+      },
+      {
+        '@type': 'WebSite',
+        '@id': SITE_ID,
+        name: 'Platbook',
+        url: abs('/'),
+        inLanguage: 'en-US',
+        publisher: { '@id': ORG_ID },
+      },
+    ],
+  });
+}
+// The trail on a state page is the trail the page prints: "All states / <state>". The county and
+// town records are drawers on that same page rather than pages of their own, so there is no
+// deeper address to name; a third step would be a breadcrumb to a page that does not exist.
+function breadcrumbJsonLd(trail, where) {
+  for (const [name, href] of trail) {
+    if (!name || !href) throw new Error(`${where}: a breadcrumb step has no name or no address`);
+  }
+  return ld({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map(([name, href], i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name,
+      item: abs(href),
+    })),
+  });
 }
 
 // ---------- the five beginner lessons, PARKED ----------
@@ -896,17 +1035,17 @@ for (const f of ['fraunces-600-latin.woff2', 'fraunces-600-latin-ext.woff2', 'OF
   fs.mkdirSync(path.dirname(dst), { recursive: true });
   fs.copyFileSync(path.join(BASE, 'src', 'fonts', f), dst);
 }
-write('index.html', homePage());
+writePage('index.html', '/', homePage());
 for (const st of states) { const _sp = statePage(st); builtStatePages.set(st.code, _sp); write(`state/${st.code.toLowerCase()}/index.html`, _sp); }
-write('about/index.html', aboutPage());
-write('start-here/index.html', startHerePage());
+writePage('about/index.html', '/about/', aboutPage());
+writePage('start-here/index.html', '/start-here/', startHerePage());
 // PARKED. These two lines are the whole of what putting the lessons live does.
 if (LESSONS_APPROVED) {
-  write(`${LESSONS_BASE.replace(/^\/|\/$/g, '')}/index.html`, lessonsIndexPage());
-  for (const l of LESSONS) write(`${LESSONS_BASE.replace(/^\/|\/$/g, '')}/${l.slug}/index.html`, lessonPage(l));
+  writePage(`${LESSONS_BASE.replace(/^\/|\/$/g, '')}/index.html`, LESSONS_BASE, lessonsIndexPage());
+  for (const l of LESSONS) writePage(`${LESSONS_BASE.replace(/^\/|\/$/g, '')}/${l.slug}/index.html`, `${LESSONS_BASE}${l.slug}/`, lessonPage(l));
 }
-write('legal/index.html', legalPage());
-write('404.html', notFound());
+writePage('legal/index.html', '/legal/', legalPage());
+writePage('404.html', '/404', notFound());
 write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /extras/\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 // The sheet is in the sitemap only once it is listed, because until then it answers with
 // noindex and a sitemap entry would be asking to be indexed and refusing in the same breath.
@@ -1094,4 +1233,94 @@ console.log(`Extras: ${sales.length} upcoming sale dates in the next 12 months a
     process.exit(1);
   }
   console.log(`County text read on ${builtStatePages.size} state pages: clean`);
+}
+
+// ---------- the one-sentence description says nothing the page does not ----------
+// Every figure in a state page's description has to be text a reader can see on that same page,
+// and the sentence has to fit in the space a search result gives it. Both are checked on the real
+// built HTML, so a renderer that merely looks right cannot satisfy either.
+//
+// WHY THE FIGURE CHECK IS THE ONE THAT MATTERS. The description is assembled out of the ledger's
+// own words, so it cannot invent a rate; what it could do is keep a figure that the page has
+// since stopped showing, which is exactly how the old stitched description came to quote a
+// redemption period the audit had already corrected. Searching the page's visible text for each
+// figure closes that: if the page no longer says 18%, the description cannot either.
+{
+  const problems = [];
+  let longest = 0;
+  for (const st of states) {
+    const where = `/state/${st.code.toLowerCase()}/`;
+    const html = builtStatePages.get(st.code) || '';
+    const m = html.match(/<meta name="description" content="([^"]*)">/);
+    if (!m) { problems.push(`${where}: no description at all`); continue; }
+    const desc = decodeEntities(m[1]);
+    longest = Math.max(longest, desc.length);
+    if (desc.length > DESC_LIMIT) problems.push(`${where}: description is ${desc.length} characters, over the ${DESC_LIMIT} limit: ${desc}`);
+    if (!desc.startsWith(st.name)) problems.push(`${where}: description does not open on the state's name: ${desc}`);
+    const seen = visibleText(html.replace(/<head>[\s\S]*?<\/head>/, ' '));
+    // The figures are taken out of the description THE PAGE ACTUALLY CARRIES, not recomputed from
+    // the generator. Recomputing was the first version of this check and it was worthless: it
+    // compared the generator against itself, so a figure added to the description by hand further
+    // down this file sailed straight through. Proved by adding ", 7.5% bonus." to the sentence and
+    // watching the check pass it.
+    for (const fig of figuresIn(desc.slice(st.name.length))) {
+      if (!seen.includes(fig)) problems.push(`${where}: description states "${fig}", which is not text a reader can see on the page`);
+    }
+  }
+  if (problems.length) {
+    console.error(`\nbuild-site: FAIL - a state description says something its page does not (${problems.length} problems)\n${problems.map((x) => '  - ' + x).join('\n')}\n`);
+    process.exit(1);
+  }
+  console.log(`State descriptions on ${states.length} pages: every figure visible on its own page, longest ${longest} of ${DESC_LIMIT} characters`);
+}
+
+// ---------- the last-checked line, and the date it is allowed to give ----------
+// The line says "last checked", so it must carry the OLDEST date the page prints, never a newer
+// one. This reads every "checked YYYY-MM-DD" and "on YYYY-MM-DD" date out of the built page and
+// refuses a line whose own date is later than any of them. A pending state must carry no such
+// line at all, because its official source has not been read and there is no date to give.
+{
+  const problems = [];
+  const LINE = /Last checked against the official source: <time datetime="(\d{4}-\d\d-\d\d)">/;
+  let withLine = 0;
+  for (const st of states) {
+    const where = `/state/${st.code.toLowerCase()}/`;
+    const html = builtStatePages.get(st.code) || '';
+    const hit = html.match(LINE);
+    if (isPending(st.code)) {
+      if (hit) problems.push(`${where}: a verification-pending state is claiming a last-checked date of ${hit[1]}`);
+      continue;
+    }
+    if (!hit) { problems.push(`${where}: no last-checked line on the page`); continue; }
+    withLine++;
+    const said = hit[1];
+    const expected = oldestChecked(st);
+    if (said !== expected) problems.push(`${where}: the line says ${said}; the oldest date in the ledger is ${expected}`);
+    const printed = [...html.matchAll(/(?:checked|read from the official page by [^<]*? on)\s+(\d{4}-\d\d-\d\d)/g)].map((x) => x[1]);
+    for (const d of printed) {
+      if (d < said) problems.push(`${where}: the line says ${said}, but the page also prints an older date, ${d}`);
+    }
+  }
+  if (problems.length) {
+    console.error(`\nbuild-site: FAIL - a last-checked line is wrong (${problems.length} problems)\n${problems.map((x) => '  - ' + x).join('\n')}\n`);
+    process.exit(1);
+  }
+  console.log(`Last-checked line on ${withLine} state pages, each carrying the oldest date on its own page; none on the ${states.length - withLine} pending states`);
+}
+
+// ---------- the structured data claims nothing the page does not ----------
+// scripts/structured-data.mjs is the standing check. It runs here on every built page and fails
+// the build, and under-review/test/structured-data.test.mjs runs it and proves it still refuses
+// bad markup. The note at the top of that file carries the rules.
+{
+  const pages = new Map();
+  for (const [code, html] of builtStatePages) pages.set(`/state/${code.toLowerCase()}/`, html);
+  for (const [rel, html] of otherBuiltPages) pages.set(rel, html);
+  const problems = structuredDataProblems(pages, { site: SITE_URL, sheetPath: SHEET_PATH });
+  if (problems.length) {
+    console.error(`\nbuild-site: FAIL - structured data a reader could call untrue (${problems.length} problems)\n${problems.map((x) => '  - ' + x).join('\n')}\n`);
+    process.exit(1);
+  }
+  const blocks = [...pages.values()].reduce((n, h) => n + (h.match(/application\/ld\+json/g) || []).length, 0);
+  console.log(`Structured data: ${blocks} blocks over ${pages.size} pages, zero errors`);
 }

@@ -1,6 +1,6 @@
 Updated: 2026-11-18 06:05 UTC. Written by a Claude Code session. Public file: https://theplatbook.com/status.json
 Ran: the Rules Sheet went live on 2026-11-14 and is listed, linked and findable; the plain-words Start Here page went live on 2026-11-17. Tonight: the five beginner lessons are live under Start Here at /start-here/lessons/1/ to /5/, linked from Start Here in order and from each other, with 50 legal sentences each carrying its statute, an official government link and the date it was checked.
-Changed: 47 of 51 states audited (8 checked, 39 checked with gaps), 4 could not be reached (blocked, retried each run). 3034 claims corrected, 28 flagged, 41 unreachable.
+Changed: the site's own state pages, 47 of 51 audited (8 with no gaps left, 39 checked with gaps), 4 could not be reached (blocked, retried each run). 3034 claims corrected, 28 flagged, 41 unreachable.
 Money: no API spend in this update; audit total $16.41 of the $40.00 cap over 9 runs. Model: claude-sonnet-5-5. Nothing else was bought.
 Product: Rules Sheet, 44 states, $0: checkout connected and LIVE since 2026-11-14, listed and linked at https://theplatbook.com/rules-sheet/. Nobody has taken it yet.
 Held: 22 Oklahoma claims held out of publishing until the statute is read; 39 states have a gap-closing item queued (Colorado 2025-26 laws and Arkansas official code first); GA and IN and NY and TN stay "Couldn't reach source" until the certificate step works.
