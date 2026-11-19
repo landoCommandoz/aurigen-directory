@@ -59,18 +59,26 @@ const pageKind = (rel) => {
 };
 
 // ---------- the head swap ----------
-// NEITHER FONT IS PRELOADED, AND THAT IS A MEASURED DECISION, NOT AN OVERSIGHT.
-// The live site preloads Fraunces because no size-adjust value could fix its headline: Fraunces
-// needs 3 lines where Georgia needs 2 at phone width, which is a line-break boundary. Vollkorn
-// has no such boundary at any of the sizes this design uses, so the measured stand-ins hold the
-// layout on their own. Measured at 375px on the throttled mobile profile, 5 runs each:
-//   with both fonts preloaded   home first paint 1200ms, layout shift 0.0000, moved 0px
-//   with Vollkorn preloaded     home first paint 1156ms, layout shift 0.0000, moved 0px
-//   with neither preloaded      home first paint  876ms, layout shift 0.0000, moved 0px
-// The two files are 58KB, which is about 290ms of a 1.6Mbps connection, and they buy nothing:
-// moved was 0px in all five runs of every variant. If a future heading size reintroduces a
-// line-break boundary, put the preload back and re-measure; do not add it on principle.
-const FONT_HEAD = '';
+// BOTH FONTS ARE PRELOADED, AND THAT IS A MEASURED DECISION.
+// The first version of this file preloaded nothing, on the strength of a measurement that said
+// preloading cost 324ms of first paint and moved nothing. That measurement was worthless: the
+// stylesheet was asking for the fonts at the wrong address at the time, so they 404'd, the
+// measured stand-ins rendered the whole page, and "moved nothing" was simply what a page does
+// when its webfonts never arrive. The preloaded files were fetched and then never used, which
+// is where the 324ms went.
+// With the address fixed, the fonts really do arrive, and at 375px on the throttled mobile
+// profile the swap moves the page: lesson 1 pushed everything below the headline down by
+// exactly 36px, which is one extra line of h1 - "Lesson 1: what a tax lien is" needs one more
+// line in Vollkorn than in the width-matched Georgia. That is a LINE-BREAK BOUNDARY, and no
+// size-adjust value can reach one: the stand-in can match the width of the text to a tenth of a
+// percent and the line still breaks in a different place. Measured layout shift without the
+// preload: 0.0410 on Florida, 0.0257 on lesson 1, 0.0179 on Georgia.
+// A font that is already there when the page is first drawn never swaps, so there is nothing to
+// re-wrap. This is the same trade the live site makes for Fraunces, for the same reason, and
+// the comment above page() in build-site.mjs says so.
+const FONT_HEAD = `
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/vollkorn-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/archivo-narrow-600-latin.woff2" crossorigin>`;
 // A linen plate with the volume letter stamped in iron-gall ink, in place of the blue tile.
 const ICON = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23eceee9'/%3E%3Crect x='1.5' y='1.5' width='29' height='29' fill='none' stroke='%231f2420' stroke-width='1.5'/%3E%3Ctext x='16' y='23' font-size='17' text-anchor='middle' fill='%231f2420' font-family='Georgia,serif' font-weight='700'%3EP%3C/text%3E%3C/svg%3E`;
 
@@ -194,6 +202,25 @@ if (fresh !== 47) problems.push(`expected the last-checked line on 47 state page
 const counted = pages.filter((p) => /cloudflareinsights\.com\/beacon/.test(p.after)).length;
 if (counted < 57) problems.push(`the visitor counting is on only ${counted} pages`);
 if (!sheetDone) problems.push('the Rules Sheet page is missing: save the live locked page to scripts/preview/fixtures/rules-sheet.html');
+
+// EVERY FILE A STYLESHEET ASKS FOR MUST EXIST AT THE ADDRESS IT ASKS FOR.
+// This check exists because the first build shipped `url('assets/fonts/vollkorn-latin.woff2')`
+// without a leading slash. A stylesheet served at /assets/platbook.css resolves that against
+// its OWN folder, so the browser asked for /assets/assets/fonts/vollkorn-latin.woff2 and got a
+// 404 - and NOTHING SHOWED IT. The measured stand-in faces did their job perfectly: the page
+// rendered in Georgia and Arial at the right widths, the layout did not move, the screenshots
+// looked right and the speed numbers looked good, because two font files were never fetched.
+// A missing webfont is invisible by design here, so it has to be caught by a check and not by
+// looking at the page.
+for (const [name, css] of [['platbook.css', fs.readFileSync(path.join(OUT, 'assets', 'platbook.css'), 'utf8')],
+                           ['platbook-sheet.css', sheetDone ? fs.readFileSync(path.join(OUT, 'assets', 'platbook-sheet.css'), 'utf8') : '']]) {
+  for (const m of css.matchAll(/url\(['"]?([^'")]+)['"]?\)/g)) {
+    const ref = m[1];
+    if (ref.startsWith('data:') || /^https?:/.test(ref)) continue;
+    if (!ref.startsWith('/')) { problems.push(`${name} asks for "${ref}" with no leading slash, so the browser will look for it next to the stylesheet and get a 404`); continue; }
+    if (!fs.existsSync(path.join(OUT, ref.replace(/^\//, '')))) problems.push(`${name} asks for "${ref}", which is not in the preview`);
+  }
+}
 
 if (problems.length) {
   console.error('PREVIEW REFUSED. The preview must differ from the live site in nothing but its design:');

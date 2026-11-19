@@ -252,18 +252,27 @@ test('the key page refuses every outside script', async () => {
 
 test('the key page is allowed its own fonts and its own icon, and nothing else', async () => {
   const csp = await cspOf();
-  assert.match(csp, /style-src 'unsafe-inline' https:\/\/fonts\.googleapis\.com/);
-  assert.match(csp, /font-src https:\/\/fonts\.gstatic\.com/);
+  // Changed 2026-11-19 with the plat book look: both webfonts are served from this site now,
+  // so the policy names no outside origin at all. That is strictly tighter than what it
+  // replaced, and the deepEqual below is what keeps it that way.
+  assert.match(csp, /style-src 'unsafe-inline'/);
+  assert.ok(!/style-src[^;]*https:/.test(csp), 'no outside stylesheet origin may be allowed');
+  assert.match(csp, /font-src 'self'/);
   assert.match(csp, /img-src data:/);
-  // No third origin crept in - the same two the rest of the site already uses, and no more.
+  // NO outside origin at all. The sheet page loads nothing from anywhere but this site.
   const origins = [...new Set([...csp.matchAll(/https:\/\/([a-z0-9.-]+)/g)].map((m) => m[1]))].sort();
-  assert.deepEqual(origins, ['fonts.googleapis.com', 'fonts.gstatic.com']);
+  assert.deepEqual(origins, [], `the key page must load nothing from outside: found ${origins.join(', ')}`);
 });
 
 test('the page really asks for what the policy allows', async () => {
   // A policy that permits something the page never loads is a hole, not a fix.
   const body = await (await handleSheet(new Request(ORIGIN + '/rules-sheet/'), {}, polarNo, CFG)).text();
-  assert.ok(body.includes('https://fonts.googleapis.com/css2'), 'the page should load the font stylesheet');
+  // The fonts are this site's own files now, asked for by the inline stylesheet and preloaded
+  // in the head. A font the policy blocks fails exactly like a font that is not there, and the
+  // measured stand-in faces then render the page correctly, so nothing on screen would show it.
+  assert.ok(!body.includes('fonts.googleapis.com'), 'the page must not load a third-party font stylesheet');
+  assert.ok(body.includes('/assets/fonts/vollkorn-latin.woff2'), 'the page should preload its own heading font');
+  assert.ok(body.includes("url('/assets/fonts/vollkorn-latin.woff2')"), 'the inline stylesheet should ask for the font by an absolute path');
   assert.ok(body.includes('rel="icon" href="data:image/svg+xml'), 'the icon should be an inline data: image');
   assert.ok(!body.includes('<script'), 'this page carries no script of its own either');
 });
@@ -281,5 +290,5 @@ test('the policy is on the unlocked sheet too, not only the landing page', async
   const csp = res.headers.get('content-security-policy');
   assert.match(csp, /default-src 'none'/);
   assert.ok(!/script-src/.test(csp));
-  assert.match(csp, /font-src https:\/\/fonts\.gstatic\.com/);
+  assert.match(csp, /font-src 'self'/);
 });
