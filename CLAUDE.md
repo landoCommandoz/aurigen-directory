@@ -61,9 +61,37 @@ someone who has never coded, rewrite it. This applies to scheduled runs as well 
 - HANDOFF.md must be updated after every session
 - CLAUDE.md SESSION MEMORY updated after every session
 
-## THE PLAT BOOK PREVIEW (2026-11-19) — NOTHING HERE IS LIVE. Read before touching the preview.
+## THE PLAT BOOK IS LIVE (2026-11-19). Read before touching site.css, the head or the fonts.
 
-- **The whole site in design direction 1 is built and parked as Agent Room approval item 6.**
+- **LIVE since 2026-11-19 on Lando's PIN approval** (Agent Room approval item 6, work item 5,
+  approved 01:58:59). `src/site.css` IS the plat book stylesheet; the old cyanotype look is kept
+  whole on the branch **`before-platbook-2026-11-19`** and as `src/site.css.bak-2026-11-19-before-platbook`.
+  **One-step undo:** run the "Aurigen site" workflow with `mode=restore`,
+  `restore_branch=before-platbook-2026-11-19`, `confirm_restore=true`.
+- **THE APPROVED PREVIEW WAS RENDERING IN THE FALLBACK FONTS AND NOTHING SHOWED IT.**
+  `platbook.css` asked for `url('assets/fonts/...')` with no leading slash. A stylesheet served
+  at `/assets/platbook.css` resolves that against its OWN folder, so the browser asked for
+  `/assets/assets/fonts/...`, got 404 on both files, and the measured stand-in faces rendered the
+  whole site at the right widths. The screenshots looked right, the layout did not move and the
+  speed numbers looked good because two webfonts were never fetched. **A missing webfont is
+  invisible here by design**, so `build-preview.mjs` now fails the build if any `url()` in either
+  stylesheet lacks a leading slash or points at a file that is not in the output. Never judge a
+  webfont by looking at the page; check `document.fonts.check()` or the network.
+- **`font-display` is `optional`, not `swap`, and Lando asked for swap.** Once the fonts really
+  loaded, swap moved the page: lesson 1's headline needs 2 lines in Vollkorn where the
+  width-matched Georgia needs 1, so everything below dropped 36px. Shift 0.0257 lesson 1, 0.0410
+  FL, 0.0179 GA. That is a LINE-BREAK BOUNDARY and no `size-adjust` can reach one. Preload did
+  not fix it; `block` did not either (on a 400Kbps link its 3s timeout expires and it still swaps,
+  0.0255). `optional` is the only setting that never moves the page: 0.0000 at 1.6Mbps with
+  Vollkorn on screen, 0.0000 at 400Kbps with the stand-in on screen. Both fonts are preloaded so
+  an ordinary connection makes optional's window. **If the fonts ever stop appearing, suspect the
+  preload or the CSP before anything else** — the page will still look right either way.
+- **The key page's CSP is tighter now:** both webfonts come from this site, so the two Google
+  origins are gone, `font-src 'self'`, and the page loads nothing from outside at all. Three
+  tests in `sheet.test.mjs` assert exactly that, including that the page really asks for what the
+  policy allows.
+- **To preview a FUTURE look**, the preview route still works and still proves nothing but the
+  design changed:
   `cd cloudflare && node scripts/build-site.mjs && node scripts/build-preview.mjs` writes all
   64 pages to `preview/redesign-2026-11-19/platbook/`. Serve that folder at the ROOT of its own
   server (`npx -y http-server "<folder>" -p 8097 -c-1`); the pages use the site's real addresses,
@@ -101,9 +129,15 @@ someone who has never coded, rewrite it. This applies to scheduled runs as well 
   preview at ANY depth and was silently hiding `cloudflare/src/preview/` and
   `cloudflare/scripts/preview/` — the entire source of this work. It is anchored to the
   repository root now. The built output is still ignored; the source is tracked.
-- **To put it live** (only on Lando approving item 6): copy `src/preview/platbook.css` over
-  `src/site.css`, move the four font files and the two OFL licences into `src/fonts/`, and
-  change the head in `build-site.mjs` the way `build-preview.mjs` does.
+- **Live proof, 2026-11-19, on theplatbook.com itself:** all 62 sitemap addresses plus the key
+  page answer 200; the visible text of all 62 is **word for word identical** to the copies taken
+  before the change; 58 structured-data blocks with 0 validator errors; 51 breadcrumbs; 47
+  last-checked lines; the pending notice on GA, IN, NY and TN unchanged; counting on 61 pages;
+  check-law PASS on 51 states; 135 tests pass. At 375px: layout shift **0.0000** and movement
+  **0px** on `/`, `/state/fl/`, `/state/ga/` and `/start-here/lessons/1/` (was 0.0001, 0.0012,
+  0.0103), first paint 808-948ms, no sideways scroll at 375/768/1024/1440, and no tap target
+  under 44px outside the SVG map. A made-up key still returns **403** and only the 2-state free
+  sample; `sheet.csv` without a key is 404.
 
 ## FONTS, FIRST PAINT AND THE FIVE LESSONS (2026-11-17, lessons live 2026-11-18) — read before touching site.css or the head
 
