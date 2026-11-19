@@ -61,6 +61,50 @@ someone who has never coded, rewrite it. This applies to scheduled runs as well 
 - HANDOFF.md must be updated after every session
 - CLAUDE.md SESSION MEMORY updated after every session
 
+## THE PLAT BOOK PREVIEW (2026-11-19) — NOTHING HERE IS LIVE. Read before touching the preview.
+
+- **The whole site in design direction 1 is built and parked as Agent Room approval item 6.**
+  `cd cloudflare && node scripts/build-site.mjs && node scripts/build-preview.mjs` writes all
+  64 pages to `preview/redesign-2026-11-19/platbook/`. Serve that folder at the ROOT of its own
+  server (`npx -y http-server "<folder>" -p 8097 -c-1`); the pages use the site's real addresses,
+  so opening the files directly finds no stylesheet. Screenshots of every page type at 375 and
+  1440 and the speed numbers are in `preview/redesign-2026-11-19/screenshots/`.
+- **It reskins the REAL built pages; it never writes new ones.** That is the whole design of it:
+  every word, statute, citation, link, date, page address, the pending notice and the visitor
+  counting are the live ones. `build-preview.mjs` compares the visible text and every link of
+  every preview page against the page it came from and REFUSES to write the folder on any
+  difference, and also checks 51 breadcrumbs, the home page's organisation markup, Start Here's
+  question-and-answer markup, 47 last-checked lines and the counting script. The one markup
+  addition is `data-page` on `<html>`, which carries no content and is how the lessons get more
+  air than a state page.
+- **Stand-in font faces are MEASURED, and Vollkorn needs one per weight.** Its ratio against
+  Georgia is 97.9% at 400, 88.3% at 600 and 90.7% at 700 — seven points apart, because Georgia's
+  bold is much wider than Vollkorn's relative to its regular. One family for all three would be
+  wrong at two of them. Vollkorn's own box is ascent 95.2%, descent 44.1%.
+- **Arial Narrow is deliberately NOT in the label stack.** It is the obvious stand-in and it was
+  in the sample's font list. On this PC the name resolves but renders as Arial (881.2px against
+  Arial's 881.2px for the same string), so any ratio written for it would be Arial's wearing
+  Arial Narrow's name. A stale ratio is worse than none.
+- **Neither font is preloaded, and that is measured, not an oversight.** Home first paint at
+  375px: both preloaded 1200ms, Vollkorn only 1156ms, neither 876ms — and movement was 0px in
+  all five runs of every variant, because the stand-ins already hold the layout. The live site
+  preloads Fraunces only because its headline needs 3 lines where Georgia needs 2, a line-break
+  boundary no `size-adjust` can reach; Vollkorn has no such boundary at these sizes.
+- **MEASURE A AND B ALTERNATING, NEVER IN BLOCKS.** Five runs of one design then five of the
+  other gave lesson 1 at 828ms in one pass and 2104ms in the next with nothing changed: this
+  machine's load drifts over minutes, so a block of A and a block of B are measured under
+  different conditions. `scratchpad/measure/measure-ab.mjs` alternates them inside each round and
+  reports the median of the per-round differences. Final figures at 375px, 7 rounds: the plat
+  book is faster on first paint and largest paint on all four pages and has 0.0000 layout shift
+  where the live design has up to 0.0103. Nothing is worse.
+- **`.gitignore` said `preview/` with no leading slash**, which matched a directory named
+  preview at ANY depth and was silently hiding `cloudflare/src/preview/` and
+  `cloudflare/scripts/preview/` — the entire source of this work. It is anchored to the
+  repository root now. The built output is still ignored; the source is tracked.
+- **To put it live** (only on Lando approving item 6): copy `src/preview/platbook.css` over
+  `src/site.css`, move the four font files and the two OFL licences into `src/fonts/`, and
+  change the head in `build-site.mjs` the way `build-preview.mjs` does.
+
 ## FONTS, FIRST PAINT AND THE FIVE LESSONS (2026-11-17, lessons live 2026-11-18) — read before touching site.css or the head
 
 - **`SITE_URL` is fixed and the publish is green.** The workflow files now name
